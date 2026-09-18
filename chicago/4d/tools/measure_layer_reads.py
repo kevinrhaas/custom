@@ -524,6 +524,10 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
+    # The third chip. It was absent from this map for as long as the tally was zero
+    # everywhere; T-1314 put people back under the grade and `gradeChips` has always
+    # drawn all three from one expression.
+    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -581,6 +585,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # covers them all because one line does.
     "arrival.value": ("shown", "(hh.arrival || {}).value"),
     "arrival.precision": ("shown", "words((hh.arrival || {}).precision)"),
+    # T-1169. The year the household is CARRIED at, beside the bound its arrival block
+    # holds: for 1,196 households `arrival` is a `not_later_than` and says only that
+    # somebody was here by a date. Its own row on the card, its own claim block.
+    "arrival_year.value": ("shown", "(hh.arrival_year || {}).value"),
+    "arrival_year.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.note": ("shown", "escapeHtml(block.note)"),
     "party_size_on_arrival.value": ("shown", "party && party.value"),
     "origin.value": ("shown", "(hh.origin || {}).value"),
     "reason_for_coming.value": ("shown", "(hh.reason_for_coming || {}).value"),
@@ -627,6 +637,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-1158's own fields, on the three claims T-1169's stage fills. `tier` drives the
+    # chip through the same `tierOf` line the confidences above name; the rest are read
+    # in `basisHtml`, which opens a disclosure under any invented value saying whether
+    # it was DRAWN from a model or ARGUED from a rule, printing the seed that redraws
+    # it and the evidence that would retire it. `replaceable_by.kind` and
+    # `written_by_stage` are NOT read — the first is the shape of the replacement
+    # record and the second is the build's own bookkeeping — and they stay banked.
+    "arrival_year.tier": ("shown", "tierOf(block) || block.confidence"),
+    "origin.tier": ("shown", "tierOf(block) || block.confidence"),
+    "reason_for_coming.tier": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.basis.kind": ("shown", "basis.kind === 'model'"),
+    "origin.basis.kind": ("shown", "basis.kind === 'model'"),
+    "reason_for_coming.basis.kind": ("shown", "basis.kind === 'model'"),
+    "arrival_year.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "origin.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "arrival_year.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "origin.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "reason_for_coming.replaceable_by.match": (
+        "shown", "escapeHtml(String(rep.match || ''))"),
     # T-0597. The kinship rows, which are the first claim on this layer to point at
     # ANOTHER record. Each of the four link fields is named at its own call site in
     # `kinRows` — the person the tie belongs to here, the term, the far household and
@@ -795,6 +824,24 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    # T-1314. What a RECONSTRUCTED person owes the reader, on their own card:
+    # `reconstructionHtml` says which stage of the programme wrote them and what
+    # counted them, and hands the basis, the seed that redraws a model draw and the
+    # replacement rule to `basisHtml` — the same three parts a reconstructed ATTRIBUTE
+    # already showed, rather than a second vocabulary for the same idea.
+    "persons[].basis.kind": ("shown", "const drawn = basis.kind === 'model'"),
+    "persons[].seed": ("shown", "drawn && block.seed"),
+    "persons[].replaceable_by.kind": ("shown", "const rep = block.replaceable_by"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.programme": (
+        "shown", "escapeHtml(String(rc.programme || 'the reconstruction programme'))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(String(rc.community))"),
+    "persons[].reconstruction.counted_by": ("shown", "escapeHtml(String(rc.counted_by))"),
+    "persons[].reconstruction.band_1840": ("shown", "escapeHtml(String(rc.band_1840))"),
+    "persons[].reconstruction.age_on_scene_date.low": ("shown", "`${age.low} or older`"),
+    "persons[].reconstruction.age_on_scene_date.high": (
+        "shown", "age.high === null || age.high === undefined"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
     # for as long as it was unread a letter-list name and a documented tradesman

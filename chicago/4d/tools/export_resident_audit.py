@@ -914,22 +914,20 @@ def cmd_self_test() -> bool:
     want(any(r["audit_result"] == "corroborated_across_categories" for r in sample), True,
          "the cross-category verdict fires on the real layer")
     # A NAMED PERSON WITH NO SOURCE IS THE ONE ROW THIS AUDIT MUST NEVER PRINT QUIETLY.
-    # Three rows do cite nothing, and all three are the collective "the rest of the
-    # household, unnamed" members an inferred head-count mints; they are never heads and
-    # never named. The assertion is that shape, not the absence.
-    # T-1171 adds the second shape, and it is the same argument one turn further on: a
-    # person the reconstruction programme DREW cites nothing because nothing was read.
-    # Giving one a source would be the invention this layer exists to keep visible. They
-    # carry `grade: reconstructed` and the stage that can re-derive them, and they are
-    # never heads either — the head is the person the sources named, and the family is
-    # drawn around him.
+    # Two kinds of row legitimately cite nothing, and neither is that. Three are the
+    # collective "the rest of the household, unnamed" members an inferred head-count
+    # mints. The rest are the reconstruction programme's people (T-1167, T-1314), which
+    # cite no source BY CONTRACT: no source names them, the evidence is for the NEED and
+    # is argued in `basis`, and `validate.py` warns if one ever carries a source_id. The
+    # assertion is that shape, not the absence — a sourceless row that is neither is
+    # still the failure this was written for.
+    collective = ["beaubien_household_unnamed", "beaubien_mark_household",
+                  "owen_household_unnamed"]
     want(sorted(r["person_id"] for r in sample
-                if r["flag_no_source"] and r["grade"] != "reconstructed"),
-         ["beaubien_household_unnamed", "beaubien_mark_household",
-          "owen_household_unnamed"],
-         "only the three collective household rows cite no source of their own")
-    want(all(r["relationship"] in ("household_member", "wife", "son", "daughter")
-             for r in sample if r["flag_no_source"]), True,
+                if r["flag_no_source"] and r["grade"] != "reconstructed"), collective,
+         "only the three collective household rows cite no source without being a "
+         "reconstruction")
+    want(all(r["relationship"] != "head" for r in sample if r["flag_no_source"]), True,
          "a sourceless row is never a head")
 
     # T-0733. THE RULINGS. The flag now means "a conflict nobody has ruled on", so the

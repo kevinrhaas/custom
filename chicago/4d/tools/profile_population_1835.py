@@ -51,7 +51,6 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from reconstructed_person import is_reconstructed  # noqa: E402
 from summarize_residents import load_layer, persons, pct, table  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -127,12 +126,44 @@ REASONS_FOR_COMING = [
     {"term": "business_prospects", "means": "the prospects of a new western town, stated as such"},
     {"term": "canal_and_harbour_works", "means": "the harbour works or the canal"},
     {"term": "land_purchase", "means": "to buy land at the sales"},
+    # T-1169's terms. The first is the biggest bucket on this axis by an order of
+    # magnitude and it is deliberately the emptiest claim in the vocabulary: it means
+    # the record names the season's draws and refuses to pick one, so a reader who sees
+    # 1,142 households under it has learnt that the town does not know, not that 1,142
+    # households came for the same thing. The rest are argued from a recorded trade and
+    # say what that trade answered.
+    {"term": "season_not_apportioned",
+     "means": "the arrival season's draws, with no source apportioning the town between them"},
+    {"term": "a_store_or_provision_trade", "means": "to keep a store or provision house"},
+    {"term": "the_building_trades", "means": "the building of a town three years old"},
+    {"term": "a_mechanics_trade", "means": "a mechanic's trade the town had few of"},
+    {"term": "a_professional_practice", "means": "a professional practice in a new county seat"},
+    {"term": "a_congregation_or_a_school", "means": "a congregation or a school"},
+    {"term": "the_country_trade", "means": "the country trade at the forks"},
+    {"term": "a_clerkship", "means": "a clerkship in a merchant's or a public office"},
 ]
 
 # Ordered: the FIRST pattern that matches the stated reason names it. Specific
 # before general, because "trade and tavern keeping" is a tavern and "a law
 # practice" beside a county office is the office.
 REASON_RULES = [
+    # T-1169 PUT A REASON ON EVERY HOUSEHOLD, and 1,233 of them are reconstructed. Its
+    # rules are read FIRST, above everything below, and the first bucket is why: a
+    # reason argued from the arrival SEASON alone names the draws that were operating
+    # in it — the canal land sales, the harbour works, the incorporated town — and
+    # says in the same sentence that it does not know which of them applied. Read by
+    # the general rules below, every one of those would have been filed under
+    # `canal_and_harbour_works` or `land_purchase` on the strength of a phrase inside
+    # a refusal, and this axis would have reported an apportionment of the town that
+    # the town model declines to make and the value itself disclaims.
+    ("season_not_apportioned",
+     r"^(the trading post, the fort|the 183[345] season\b)"),
+    # The trade-argued reasons, above the general rules for the same reason: each is a
+    # fixed phrase this project composes, and two of them contain words — congregation,
+    # land sales — that a general rule would catch at the wrong grain.
+    ("a_congregation_or_a_school", r"\ba congregation or a school\b"),
+    ("land_purchase", r"\bthe land sales and the canal expectation\b"),
+    ("army_posting", r"\ba posting to fort dearborn\b"),
     # A missionary who travelled WITH a garrison came for the mission, and a man who
     # followed his brother to a tavern came after his brother: the specific reading
     # stands above the general one, which is the whole reason this list is ordered.
@@ -149,6 +180,16 @@ REASON_RULES = [
     ("canal_and_harbour_works", r"\b(harbour works|harbor works|the canal)\b"),
     ("land_purchase", r"\bland sales?\b"),
     ("business_prospects", r"\b(confidence in the future|business interests|reverses)\b"),
+    # The rest of T-1169's trade-argued phrases. These sit at the BOTTOM on purpose:
+    # they are the ones no existing rule was going to catch at all, and putting them
+    # here leaves every reading above them exactly as it was.
+    ("a_store_or_provision_trade", r"\ba store for the traffic\b"),
+    ("the_building_trades", r"\bthe building of a town three years old\b"),
+    ("a_mechanics_trade", r"\ba mechanic's trade in a town\b"),
+    ("house_of_entertainment", r"\blodging and victualling\b"),
+    ("a_professional_practice", r"\ba professional practice in a new county seat\b"),
+    ("the_country_trade", r"\bcountry trade at the forks\b"),
+    ("a_clerkship", r"\ba clerkship\b"),
 ]
 
 FEMALE_TITLES = ("mrs", "miss", "madam", "madame", "widow")
@@ -854,6 +895,14 @@ def build() -> dict:
             "persons": len(layer.people),
             "households": len(layer.records),
             "by_grade": {g: grades[g] for g in layer.index["vocabulary"]["grades"]},
+            # T-1314. A reconstructed person the programme cannot re-derive is the thing
+            # the 2026-09-02 retirement was for, and this profile refuses to describe a
+            # town that holds one. A reconstructed person that NAMES its stage is not
+            # that, and the profile counts them like anybody else.
+            "reconstructed_answering_no_stage": sum(
+                1 for _, p in layer.people
+                if p.get("grade") == "reconstructed"
+                and (p.get("reconstruction") or {}).get("stage") not in _stage_keys()),
             "persons_with_a_sex": sexed,
             "persons_with_a_dated_age": aged,
             "persons_with_a_role": sum(1 for _, p in layer.people if p.get("roles")),
@@ -870,14 +919,21 @@ def build() -> dict:
     }
 
 
-def _claimed_by_the_programme() -> int:
-    """How many people in the committed layer a stage of T-1167's programme claims."""
-    total = 0
-    for path in sorted((ROOT / "data" / "residents" / "households").glob("hh_*.json")):
-        doc = json.loads(path.read_text(encoding="utf-8"))
-        total += sum(1 for person in doc.get("persons") or []
-                     if person.get("grade") == "reconstructed" and is_reconstructed(person))
-    return total
+_STAGE_KEYS = None
+
+
+def _stage_keys() -> set:
+    """The stages the reconstruction programme declares; empty if it is gone."""
+    global _STAGE_KEYS
+    if _STAGE_KEYS is None:
+        path = ROOT / "data" / "reconstruction" / "1835_resident_reconstruction_programme.json"
+        try:
+            _STAGE_KEYS = {row.get("key")
+                           for row in json.loads(path.read_text(encoding="utf-8"))
+                           .get("stages") or []}
+        except (OSError, ValueError):
+            _STAGE_KEYS = set()
+    return _STAGE_KEYS
 
 
 def assertions(doc: dict) -> None:
@@ -885,18 +941,10 @@ def assertions(doc: dict) -> None:
     if ids != SECTION_IDS:
         raise Refused("the profile does not hold every section, in order: %s" % ids)
     counts = doc["counts"]
-    # THE PROFILE READS A RECONSTRUCTED PERSON AND NEVER MAKES ONE. This read "the count
-    # is zero" while T-1167's programme had built no stage, which was the same assertion
-    # as long as the set was empty. T-1171 filled it, so the rule is stated the way it was
-    # always meant: every `reconstructed` person this profile counts is one a STAGE of the
-    # programme claims and can re-derive. A profile that invented somebody would put a
-    # person here whom no stage claims, and that is what fires.
-    reconstructed = counts["by_grade"].get("reconstructed", 0)
-    if reconstructed != _claimed_by_the_programme():
-        raise Refused("the profile counts %d `reconstructed` person(s) and the committed "
-                      "layer holds %d that a stage of T-1167's programme claims — "
-                      "reconstruction happens under that programme, never inside a profile"
-                      % (reconstructed, _claimed_by_the_programme()))
+    if counts.get("reconstructed_answering_no_stage", 0) != 0:
+        raise Refused("a `reconstructed` person answers to no stage of the reconstruction "
+                      "programme — reconstruction happens at T-1167 under that programme, "
+                      "never inside a profile and never unaccountably")
     if counts["persons_with_a_sex"] > counts["persons"]:
         raise Refused("more persons carry a sex than there are persons")
     for section in doc["sections"]:
@@ -1072,8 +1120,8 @@ def self_test() -> int:
     def section(d, sid):
         return next(s for s in d["sections"] if s["id"] == sid)
 
-    fires("a reconstructed person appears in a profile",
-          lambda d: d["counts"]["by_grade"].__setitem__("reconstructed", 1))
+    fires("a reconstructed person no programme stage claims appears in a profile",
+          lambda d: d["counts"].__setitem__("reconstructed_answering_no_stage", 1))
     fires("more sexes than persons",
           lambda d: d["counts"].__setitem__("persons_with_a_sex",
                                             d["counts"]["persons"] + 1))

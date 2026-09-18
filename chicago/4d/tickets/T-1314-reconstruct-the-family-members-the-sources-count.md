@@ -1,7 +1,7 @@
 ---
 id: T-1314
 title: Reconstruct the family members the sources COUNT and do not name: the 1840 census bands back-projected onto the bridged heads, as the programme's named_families stage
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1170
 opened: 2026-09-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-18
+pr: 1453
+claimed_by: run 9/18/2026, 6:15:55 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T12:50:53.250Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35338400512
 ---
 
 Reconstruct the family members the sources COUNT and do not name: the 1840 census bands back-projected onto the bridged heads, as the programme's named_families stage.

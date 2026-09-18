@@ -18,14 +18,30 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "Orange Co., N.Y.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “Orange Co., N.Y.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A professional practice in a new county seat",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as attorney, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_practice_in_a_new_county_seat — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

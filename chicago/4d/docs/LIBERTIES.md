@@ -12143,8 +12143,6 @@ Related: ticket **T-1249**, piece 1 of **T-0473**; **T-1250** owns the lake edge
 terrain spec, **T-1252** the heightfield and the scene file.
 **Recorded:** 2026-09-17.
 
----
-
 ### L-rc-sex-rate — 587 people are sexed by a coin weighted at the rate of the roll that names them
 
 **What is invented.** Of the 1,282 people the resident layer names, 593 carried no sex after
@@ -12221,9 +12219,111 @@ and nothing else. A period statement of the franchise's or the militia's age rul
 a source record, would turn `civic_list_20_and_over` from a convention into a reading.
 
 Related: tickets **T-1304**, from **T-1168**; **T-1303** handed the finding on.
+### L242 — Three people stand in the town whom the 1840 census counts and no source names
+**Decision:** the reconstruction programme's `named_families` stage (T-1314) writes, into the
+household cards of the 1835 residents the 1840 federal census bridge has `validated`, the members
+that census COUNTS in the head's household five years later and does not name. Three people land
+by it today: `rc_murphy_thomas` (a boy of 5–9 on the scene date), `rc_murphy_honora` (a woman of
+25–34) and `rc_adams_nancy` (a woman of 15–24). Each carries an invented given name drawn from
+`data/reconstruction/1835_invented_name_pools.json` and the head's own surname.
+**Why:** John Murphy's 1840 household holds six people and his card named two; William Hanford
+Adams's holds two and his card named one. The rest were not invented by anybody — they are in a
+federal enumeration, in that head's house, with a sex and an age band. Leaving them out is also a
+claim, and a less defensible one: it says a hotel-keeping couple lived alone.
+**What is invented, exactly:** the NAME, and the assumption that a person counted in the head's
+1840 household was in it in 1835. Nothing else. The sex and the age band are read off the
+schedule; the five-year subtraction is arithmetic; the surname is the household's, not a claim of
+kinship, and the relation is recorded as `household_member` (or `child` under fifteen) because a
+band tally states no relation at all.
+**What this deliberately does NOT do:** it does not touch an unbridged 1840 row — T-0507's line
+stands, that 1840 Chicago had roughly doubled and its households are a shape to test against and
+not a population to fill from. It does not carry the under-5 band of 1840, all but the first month
+of which is born after 1835-07-01, and it drops that band whole rather than guessing a fraction of
+it. It does not spend a `provisional` bridge: `miller_john` is held for that reason and writes
+nobody. And the allocation that decides which band is left over writes no age onto any person the
+sources name.
+**Consequence:** the layer's population rises by three, from 1,282 to 1,285, and two households
+change size — the Murphys from 2 to 4 and the Adams household from 1 to 2. Against
+`size_histogram_1840` the town is still nothing like a real one: mean household size moves from
+1.02 to 1.02 where the 1840 city's is 5.01. This liberty is the programme's `L-rc-persons` and
+`L-rc-families` becoming due, and it is the first time since the retirement of 2026-09-02 that
+anybody in `data/residents/` is graded `reconstructed`.
+**How to resolve:** any source naming a member of the Murphy or Adams household at or before
+1 July 1835 retires the person it names — that is each record's own `replaceable_by`.
+Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**.
 **Recorded:** 2026-09-18.
 
-### L242 — Ninety-one heads the sources leave standing alone are given a wife and children nobody named
+### L243 — Every household in the town now says where it came from and why, and 3,629 of those statements were made here rather than read
+
+**Decision:** stage `attribute_fill_arrival` of the 1835 resident reconstruction programme
+(T-1169) fills `arrival_year`, `origin` and `reason_for_coming` on every one of the 1,258
+household records. Before it ran, `origin` was asserted on 23 cards and `reason_for_coming` on
+25; the other 1,235 and 1,233 read *Not attested*, and 1,196 households carried an arrival that
+was a **bound** — somebody was writing to this name at Chicago by such a date — and no statement
+at all about when they came. After it, **21 origins and 16 arrival years are spent out of the
+Calumet Club Old Settlers roll onto the cards that roll names**, and the remaining **3,629 values
+are ours**: 1,182 drawn arrival years, 1,204 drawn origin regions, 10 origins argued from a
+surname, and 1,233 reasons for coming argued from a trade or a season.
+
+**What it lets through, stated plainly.**
+
+- **A drawn arrival year is a property of a distribution and says nothing about the household it
+  sits on.** It is drawn from the arrival years the known layer records, truncated at that
+  household's own documented bound and renormalised — so a household bounded at 1833 can never
+  draw 1834 — and the block's note opens `DRAWN, NOT READ`. A reader who takes 1,182 of these as
+  1,182 findings has 1,182 fictions.
+- **The origin distribution is not the town's, and this project has no other.** It is the
+  birthplaces of the seventy Old Settlers who registered an arrival at or before 1835: a
+  self-selected roll set down forty-four years later, over-representing the men who stayed,
+  prospered and lived to 1879, and holding no woman who married out of her registered name. The
+  town model's own `open_questions` say exactly this. Every drawn origin rests on it anyway,
+  because refusing to draw leaves 1,204 cards reading *Not attested* and the owner has asked for
+  a complete town.
+- **A birthplace is not an origin.** The 21 origins spent out of the roll are what the man said
+  he was BORN in, and this field asks where the household came FROM. For a generation that moved
+  west in stages those are frequently different places, and each of the 21 blocks says so.
+- **Ten origins rest on a surname.** Where a household's surname is carried by exactly one
+  community pool and that pool is not the Yankee one, the origin is argued from the pool's own
+  evidence. A surname is not a nationality. Nothing here identifies anybody as Métis or Native:
+  that is stage `underdocumented`'s alone (T-1177), it carries `review_required` and
+  `touches_removal`, and it is not done in this stage.
+- **No reason for coming is a finding about a person.** 91 are argued from the household's own
+  recorded trade and name the documented draw that trade answered; 1,142 are argued from the
+  arrival season and name the draws that were operating in it. Every one of them ends with the
+  same sentence: which of those draws brought this household is not recorded.
+
+**What is NOT invented here.** Not one person. This stage writes attribute blocks on households
+that already exist and mints nobody — `tools/reconstruct_residents_1835.py --check` reports 0
+reconstructed persons in the layer after it, exactly as before. It overwrites nothing either: a
+value some earlier reading asserted is refused as not this stage's to rewrite, which is why 23
+origins and 25 reasons are untouched.
+
+**And one refusal is recorded rather than smoothed.** Three merged Old Settlers — Adams,
+Campbell and Couch — registered an arrival LATER than the scene date, and one, Stephen F. Gale,
+registered 1835 against a layer that reads 1833. The contemporary record wins in all four cases
+and the roll's rows are kept as they were read rather than corrected; the block that overrides
+each of them says on the card that it did, and names the year it refused.
+
+**Why not the cohort × trade table T-1169 asked for.** Because the town model refuses to build
+one, in as many words: *the land sales, the canal commission and the harbour works are each a
+documented draw, but no committed source apportions the town between them and this model will not
+invent the split.* Apportioning it here would be inventing that split in the place the model
+declined to, and a seed would have made the result reproducible without making it true. So every
+reason is ARGUED — `basis.kind: rule`, no seed — from something the household itself carries.
+
+**How to resolve:** per value, `replaceable_by` names the search that retires it — a dated source
+saying when this household came, a source saying where from, a source saying why. For the whole
+argued leg, one committed source that apportions the town's arrivals between the land sales, the
+canal and the harbour works retires the rule and all 1,233 values with it. Until then the gate
+keeps them honest: `--check` re-derives every block from the programme file and fails on any
+value that no longer follows from the model row or rule it claims.
+
+Related: ticket **T-1169**, stage `attribute_fill_arrival` of **T-1167**'s programme;
+`data/reconstruction/1835_resident_reconstruction_programme.json` § `arrival_fill`;
+`docs/RESEARCH/1835_resident_reconstruction.md`.
+**Recorded:** 2026-09-18.
+---
+### L244 — Ninety-one heads the sources leave standing alone are given a wife and children nobody named
 
 **Decision:** stage `modelled_families` of the 1835 resident reconstruction programme
 (`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1171) draws a KIN CORE for

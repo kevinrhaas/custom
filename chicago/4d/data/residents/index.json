@@ -1,5 +1,5 @@
 {
- "_doc": "Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed is reserved for a later explicit reconstruction pass and is intentionally zero after the 2026-09-02 synthesis. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.",
+ "_doc": "Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed = a person no source names, written ONLY by tools/reconstruct_residents_1835.py under the programme at data/reconstruction/1835_resident_reconstruction_programme.json, and carrying the stage that re-derives them. It was intentionally zero between the 2026-09-02 synthesis and T-1167, which reopened it under that programme. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.",
  "version": 1,
  "scene_date": "1835-07-01",
  "dossier": "docs/RESEARCH/residents_1835.md",
@@ -369,16 +369,48 @@
    {
     "term": "land_purchase",
     "means": "to buy land at the sales"
+   },
+   {
+    "term": "season_not_apportioned",
+    "means": "the arrival season's draws, with no source apportioning the town between them"
+   },
+   {
+    "term": "a_store_or_provision_trade",
+    "means": "to keep a store or provision house"
+   },
+   {
+    "term": "the_building_trades",
+    "means": "the building of a town three years old"
+   },
+   {
+    "term": "a_mechanics_trade",
+    "means": "a mechanic's trade the town had few of"
+   },
+   {
+    "term": "a_professional_practice",
+    "means": "a professional practice in a new county seat"
+   },
+   {
+    "term": "a_congregation_or_a_school",
+    "means": "a congregation or a school"
+   },
+   {
+    "term": "the_country_trade",
+    "means": "the country trade at the forks"
+   },
+   {
+    "term": "a_clerkship",
+    "means": "a clerkship in a merchant's or a public office"
    }
   ]
  },
  "counts": {
   "households": 1258,
-  "persons": 1589,
+  "persons": 1285,
   "by_grade": {
    "attested": 410,
    "inferred": 872,
-   "reconstructed": 307
+   "reconstructed": 3
   },
   "letter_list_only": 736,
   "projected_residents": 721,
@@ -504,10 +536,9 @@
    "civic_mint": true,
    "head": "adams_elizabeth",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -550,9 +581,10 @@
    "file": "households/hh_adams_william_h.json",
    "head": "adams_william_h",
    "division": "unplaced",
-   "persons": 1,
+   "persons": 2,
    "grades": {
-    "attested": 1
+    "attested": 1,
+    "reconstructed": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -676,10 +708,9 @@
    "civic_mint": true,
    "head": "allen_edward_richards",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -691,10 +722,9 @@
    "file": "households/hh_allen_lieut_james.json",
    "head": "allen_lieut_james",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -1081,10 +1111,9 @@
    "civic_mint": true,
    "head": "austin_w_g",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -1597,10 +1626,9 @@
    "civic_mint": true,
    "head": "barry_william",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2389,10 +2417,9 @@
    "civic_mint": true,
    "head": "blanchard_f_gantry",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 4
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2804,10 +2831,9 @@
    "civic_mint": true,
    "head": "bowen_erastus_selden",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2819,10 +2845,9 @@
    "file": "households/hh_boyer_j_k.json",
    "head": "boyer_j_k",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2879,10 +2904,9 @@
    "civic_mint": true,
    "head": "bradley_joseph",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -3261,10 +3285,9 @@
    "civic_mint": true,
    "head": "brown_william_h",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -3563,10 +3586,9 @@
    "civic_mint": true,
    "head": "burton_john",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -3716,10 +3738,9 @@
    "file": "households/hh_calhoun_john.json",
    "head": "calhoun_john",
    "division": "south",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "chicago_democrat_office",
@@ -3975,10 +3996,9 @@
    "civic_mint": true,
    "head": "cass_lewis",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -4006,10 +4026,9 @@
    "file": "households/hh_caton_john_dean.json",
    "head": "caton_john_dean",
    "division": "south",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "temple_lake_st_building",
@@ -4825,10 +4844,9 @@
    "file": "households/hh_cohen_peter.json",
    "head": "cohen_peter",
    "division": "south",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -4900,10 +4918,9 @@
    "file": "households/hh_collins_j_h.json",
    "head": "collins_j_h",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5058,10 +5075,9 @@
    "civic_mint": true,
    "head": "cook_john",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5151,10 +5167,9 @@
    "civic_mint": true,
    "head": "courtney_henry",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5260,10 +5275,9 @@
    "file": "households/hh_crocker_h.json",
    "head": "crocker_h",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5401,10 +5415,9 @@
    "file": "households/hh_curtiss_j.json",
    "head": "curtiss_j",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5417,10 +5430,9 @@
    "civic_mint": true,
    "head": "curtiss_l_g",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5654,10 +5666,9 @@
    "civic_mint": true,
    "head": "davis_george",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 4
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -5669,10 +5680,9 @@
    "file": "households/hh_davis_john.json",
    "head": "davis_john",
    "division": "north",
-   "persons": 8,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 7
+    "attested": 1
    },
    "lives_at": "steamboat_hotel",
    "works_at": "steamboat_hotel",
@@ -5684,10 +5694,9 @@
    "file": "households/hh_davis_t_o.json",
    "head": "davis_t_o",
    "division": "south",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "chicago_american_office",
@@ -6578,10 +6587,9 @@
    "civic_mint": true,
    "head": "eldridge_john_w",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -6673,10 +6681,9 @@
    "file": "households/hh_elston_daniel.json",
    "head": "elston_daniel",
    "division": "north",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "elston_soap_candle_manufactory",
@@ -7618,10 +7625,9 @@
    "civic_mint": true,
    "head": "gage_eli",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 5
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -7725,10 +7731,9 @@
    "file": "households/hh_garrett_a.json",
    "head": "garrett_a",
    "division": "unplaced",
-   "persons": 8,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 7
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -8361,10 +8366,9 @@
    "civic_mint": true,
    "head": "hale_john",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -8421,10 +8425,9 @@
    "file": "households/hh_hamilton_richard_j.json",
    "head": "hamilton_richard_j",
    "division": "north",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "cobweb_castle",
    "works_at": null,
@@ -8437,10 +8440,9 @@
    "civic_mint": true,
    "head": "handy_henry_s",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9061,10 +9063,9 @@
    "file": "households/hh_hogan_john_s_c.json",
    "head": "hogan_john_s_c",
    "division": "south",
-   "persons": 8,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 7
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "hogan_store",
@@ -9495,10 +9496,9 @@
    "civic_mint": true,
    "head": "hubbard_elijah_kent",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9510,10 +9510,9 @@
    "file": "households/hh_hubbard_gurdon.json",
    "head": "hubbard_gurdon",
    "division": "south",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "old_bank_building",
@@ -9526,10 +9525,9 @@
    "civic_mint": true,
    "head": "hubbard_henry_g",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9837,10 +9835,9 @@
    "file": "households/hh_inf_cooper_north_04.json",
    "head": "inf_cooper_north_04",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9852,10 +9849,9 @@
    "file": "households/hh_inf_joiner_north_02.json",
    "head": "inf_joiner_north_02",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9867,10 +9863,9 @@
    "file": "households/hh_inf_physician_south_01.json",
    "head": "inf_physician_south_01",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9882,10 +9877,9 @@
    "file": "households/hh_inf_tailor_north_02.json",
    "head": "inf_tailor_north_02",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9897,10 +9891,9 @@
    "file": "households/hh_inf_tavern_keeper_north_01.json",
    "head": "inf_tavern_keeper_north_01",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -9928,10 +9921,9 @@
    "file": "households/hh_ingersoll_chester.json",
    "head": "ingersoll_chester",
    "division": "west",
-   "persons": 8,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 7
+    "attested": 1
    },
    "lives_at": "green_tree_tavern",
    "works_at": "green_tree_tavern",
@@ -10229,10 +10221,9 @@
    "civic_mint": true,
    "head": "johnson_sanford",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10245,10 +10236,9 @@
    "civic_mint": true,
    "head": "johnson_seth",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10554,10 +10544,9 @@
    "civic_mint": true,
    "head": "kennicott_william_h",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10803,10 +10792,9 @@
    "file": "households/hh_king_byram.json",
    "head": "king_byram",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10894,10 +10882,9 @@
    "civic_mint": true,
    "head": "king_tuthill",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -10956,10 +10943,9 @@
    "file": "households/hh_kinzie_james.json",
    "head": "kinzie_james",
    "division": "west",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": "james_kinzie_house",
    "works_at": null,
@@ -10985,10 +10971,9 @@
    "file": "households/hh_kinzie_robert_a.json",
    "head": "kinzie_robert_a",
    "division": "west",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "robert_kinzie_store",
@@ -11065,10 +11050,9 @@
    "civic_mint": true,
    "head": "knapp_b_s",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11097,10 +11081,9 @@
    "civic_mint": true,
    "head": "knickerbacker_a_v",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 2
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11113,10 +11096,9 @@
    "civic_mint": true,
    "head": "knight_clark",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11253,10 +11235,9 @@
    "civic_mint": true,
    "head": "lafrombois_joseph",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11672,10 +11653,9 @@
    "file": "households/hh_lewis_samuel.json",
    "head": "lewis_samuel",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -11815,10 +11795,9 @@
    "civic_mint": true,
    "head": "lloyd_alexander",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -12082,10 +12061,9 @@
    "civic_mint": true,
    "head": "ludby_john",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13135,10 +13113,9 @@
    "file": "households/hh_moore_henry.json",
    "head": "moore_henry",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13289,10 +13266,9 @@
    "civic_mint": true,
    "head": "morrison_james_m",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 4
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13459,10 +13435,11 @@
    "file": "households/hh_murphy_john.json",
    "head": "murphy_john",
    "division": "south",
-   "persons": 2,
+   "persons": 4,
    "grades": {
     "attested": 1,
-    "inferred": 1
+    "inferred": 1,
+    "reconstructed": 2
    },
    "lives_at": "exchange_coffee_house",
    "works_at": "exchange_coffee_house",
@@ -13678,10 +13655,9 @@
    "civic_mint": true,
    "head": "newberry_walter_loomis",
    "division": "unplaced",
-   "persons": 8,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 7
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13741,10 +13717,9 @@
    "civic_mint": true,
    "head": "noble_john",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 3
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13831,10 +13806,9 @@
    "file": "households/hh_norton_nelson_r.json",
    "head": "norton_nelson_r",
    "division": "north",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "dearborn_street_drawbridge",
@@ -13911,10 +13885,9 @@
    "civic_mint": true,
    "head": "ogden_w_b",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14193,10 +14166,9 @@
    "civic_mint": true,
    "head": "palmer_j_k",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14427,10 +14399,9 @@
    "civic_mint": true,
    "head": "peacock_elijah",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14458,10 +14429,9 @@
    "file": "households/hh_pearsons_hiram.json",
    "head": "pearsons_hiram",
    "division": "south",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -14489,10 +14459,9 @@
    "file": "households/hh_peck_philip.json",
    "head": "peck_philip",
    "division": "south",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": "peck_store",
    "works_at": "peck_store",
@@ -14663,10 +14632,9 @@
    "file": "households/hh_pierce_asahel.json",
    "head": "pierce_asahel",
    "division": "south",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "pierce_blacksmith_shop",
@@ -14822,10 +14790,9 @@
    "civic_mint": true,
    "head": "porter_hibbard",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -15350,10 +15317,9 @@
    "civic_mint": true,
    "head": "rider_eli_a",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -16439,10 +16405,9 @@
    "civic_mint": true,
    "head": "sherman_silas_w",
    "division": "unplaced",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -16455,10 +16420,9 @@
    "civic_mint": true,
    "head": "sherman_william_george",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -16754,10 +16718,9 @@
    "civic_mint": true,
    "head": "smith_e_kirby",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -16846,10 +16809,9 @@
    "civic_mint": true,
    "head": "smith_matthias",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 4
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -17093,10 +17055,9 @@
    "file": "households/hh_spring_giles.json",
    "head": "spring_giles",
    "division": "south",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -17605,10 +17566,9 @@
    "file": "households/hh_stow_william_h.json",
    "head": "stow_william_h",
    "division": "south",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": "western_hotel",
    "works_at": "western_hotel",
@@ -17837,10 +17797,9 @@
    "file": "households/hh_taylor_augustine.json",
    "head": "taylor_augustine",
    "division": "south",
-   "persons": 7,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 6
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "st_marys_church",
@@ -17867,10 +17826,9 @@
    "civic_mint": true,
    "head": "taylor_edmund_d",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -17898,10 +17856,9 @@
    "civic_mint": true,
    "head": "taylor_william_h",
    "division": "unplaced",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18008,10 +17965,9 @@
    "file": "households/hh_thomas_frederick.json",
    "head": "thomas_frederick",
    "division": "south",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "frederick_thomas_shop",
@@ -18040,10 +17996,9 @@
    "civic_mint": true,
    "head": "thompson_lieut_j_l",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 4
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18273,10 +18228,9 @@
    "civic_mint": true,
    "head": "trowbridge_s_g",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18321,10 +18275,9 @@
    "civic_mint": true,
    "head": "tucker_henry",
    "division": "unplaced",
-   "persons": 5,
+   "persons": 1,
    "grades": {
-    "inferred": 1,
-    "reconstructed": 4
+    "inferred": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -18958,10 +18911,9 @@
    "file": "households/hh_watkins_john.json",
    "head": "watkins_john",
    "division": "north",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "north_side_school_1833",
@@ -19066,10 +19018,9 @@
    "civic_mint": true,
    "head": "wellmaker_john",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -19160,10 +19111,9 @@
    "civic_mint": true,
    "head": "wesencraft_charles",
    "division": "unplaced",
-   "persons": 6,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 5
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -19302,10 +19252,9 @@
    "file": "households/hh_whitlock_james.json",
    "head": "whitlock_james",
    "division": "unplaced",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -19441,10 +19390,9 @@
    "civic_mint": true,
    "head": "williams_eli_b",
    "division": "unplaced",
-   "persons": 2,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,

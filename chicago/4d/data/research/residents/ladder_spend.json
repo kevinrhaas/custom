@@ -11,10 +11,10 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1589,
+  "person_records": 1285,
   "carried_by_the_civic_mint": 392,
   "rungs_spent": 807,
-  "conflicts_for_the_owner": 80,
+  "conflicts_for_the_owner": 83,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 92,
@@ -23,7 +23,7 @@
    "G3": 630
   },
   "conflicts_by_kind": {
-   "abstention": 43,
+   "abstention": 46,
    "downgrade": 36,
    "subtype": 1
   }
@@ -8349,6 +8349,51 @@
     "resident_subtype": "projected_resident"
    },
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
+  },
+  {
+   "person_id": "rc_adams_nancy",
+   "household_id": "hh_adams_william_h",
+   "name": "Nancy Adams",
+   "identity": "id_adams_nancy",
+   "rule": "G5",
+   "grade": "reconstructed",
+   "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "rc_murphy_honora",
+   "household_id": "hh_murphy_john",
+   "name": "Honora Murphy",
+   "identity": "id_murphy_honora",
+   "rule": "G5",
+   "grade": "reconstructed",
+   "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "rc_murphy_thomas",
+   "household_id": "hh_murphy_john",
+   "name": "Thomas Murphy",
+   "identity": "id_murphy_thomas",
+   "rule": "G5",
+   "grade": "reconstructed",
+   "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
    "person_id": "robinson_catherine",

@@ -13,6 +13,23 @@
   "note": "'Arrived early in July, 1833' (Andreas); the Baptist history transcription independently puts him at Chicago 'about 4 July 1833'. Recorded at not_later_than precision on the second source's date, because 'early in July' is a week and not a day.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "reconstructed",
+  "tier": "reconstructed",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1833-07-04 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
+  "basis": {
+   "kind": "model",
+   "id": "arrival",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1833."
+  },
+  "seed": "hh_temple_john_t:arrival_year",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says which year this household came to Chicago"
+  },
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": 6,
   "confidence": "attested",
