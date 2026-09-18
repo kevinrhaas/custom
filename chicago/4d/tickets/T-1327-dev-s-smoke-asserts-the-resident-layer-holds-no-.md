@@ -1,7 +1,7 @@
 ---
 id: T-1327
 title: Dev's smoke asserts the resident layer holds no reconstructed person, and since T-1314 it holds three: the retargeted K18 check is stale again
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-18
+pr: 1466
+claimed_by: run 9/18/2026, 1:47:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T19:04:55.522Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35381768605
 ---
 
 Dev's smoke asserts the resident layer holds no reconstructed person, and since T-1314 it holds three: the retargeted K18 check is stale again.
@@ -78,3 +78,39 @@ graded `reconstructed` without the reconstruction contract on the record. `tools
 already holds that half — "3 reconstructed person(s) in data/residents/, each holding the record
 contract" — which is why the gate is green while the smoke is red. (T-1328 was filed for this
 before dev's copy was visible on the branch, and is withdrawn to here.)
+
+---
+
+**Done, 2026-09-18.** The wire was turned round a second time, not cut. One check
+became three, and the count is read off `index.counts.by_grade.reconstructed`
+rather than written into the gate:
+
+- `nothing was drawn into an evidence-only household` — T-0489's ruling, kept on
+  the population it was made about (`hh_inf_*`: a head the papers name, no
+  `name_basis`, nothing drawn in).
+- `the manifest's reconstructed count is the layer the records hold` — manifest
+  count, the index's own household rows summed, and the records themselves, all
+  three agreeing. It fetches the two households the index says carry a
+  reconstructed person, not the other 1,256.
+- `every reconstructed person carries its stage, basis, seed and replacement` —
+  T-1158's promise: a programme stage, a `basis` with kind/id/note, the `seed`
+  that redraws a `model` draw, `replaceable_by` naming the evidence that retires
+  them. And the live half of K18: a `name_basis` on a person **not** graded
+  `reconstructed` is an undeclared invented name coming back, and it trips.
+
+Measured on a steward runner, both `--published`:
+
+    desktop 1280x800, stage 2-3: 168 passed, 1 failed (3 m 46 s)
+    mobile  390x780,  stage 1-3: 240 passed, 1 failed (3 m 29 s)
+
+      pass  nothing was drawn into an evidence-only household
+      pass  the manifest's reconstructed count is the layer the records hold
+      pass  every reconstructed person carries its stage, basis, seed and replacement
+
+The one red left on both legs is **T-1331**, and it is dev's: `smoke_renderer.mjs`
+reads `placeholder.whereholderFlag` — a field nothing writes — so
+`the placeholder label agrees with the asset it describes` is permanently red.
+The typo is on `origin/dev` at line 7218 and is not in this diff.
+
+`./tools/check.sh` — CHECK PASS, 495 steps, none red. No reader missing: the
+gate's first step reports PIL, numpy and scipy all installed.

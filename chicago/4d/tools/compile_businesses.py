@@ -713,6 +713,7 @@ def check():
 
 def self_test():
     """Break each assertion and require it to fire. A gate nobody has broken is a hope."""
+    global BUSINESSES
     failures = []
 
     def expect(name, records, needle, town_ids=None):
@@ -792,22 +793,40 @@ def self_test():
     expect("two records with one id", twins, "two records carry this id", ids)
 
     # THE COMMITTED COPY IS A DERIVATION, and --check must say so when it is edited.
-    # Broken in a temporary copy of the tree so the working tree is never touched.
+    #
+    # THE COMMENT HERE USED TO SAY "broken in a temporary copy of the tree so the
+    # working tree is never touched", AND THAT IS NOT WHAT IT DID (T-1336). The temp
+    # copy was the BACKUP; the hand-edit went into the live data/businesses/ record and
+    # was copied back in a `finally`. Serially that is invisible. Under check.sh's job
+    # pool it is not: the step declared immediately above this one re-derives that same
+    # directory, the pool runs the two together, and it reads the edit this fixture is
+    # holding. Observed — a branch went red on
+    # `biz_a_chicago_stove_and_hollow_ware_dealer_august_1835.json`, which is
+    # `sorted(...)[0]`, this fixture's own victim, and `--check` was green on the same
+    # tree run alone.
+    #
+    # So the COPY is now the thing that is edited. `check()` reads the module-level
+    # BUSINESSES, and a self-test runs in its own process, so rebinding it is enough:
+    # this process checks the copy while every other process still sees the committed
+    # records. The `finally` puts the binding back, not the bytes — no byte of the live
+    # directory is written any more.
     if BUSINESSES.is_dir():
+        live = BUSINESSES
         with tempfile.TemporaryDirectory() as tmp:
-            sample = sorted(BUSINESSES.glob("biz_*.json"))
+            scratch = Path(tmp) / "businesses"
+            shutil.copytree(live, scratch)
+            sample = sorted(scratch.glob("biz_*.json"))
             if sample:
                 target = sample[0]
-                backup = Path(tmp) / target.name
-                shutil.copy2(target, backup)
                 try:
+                    BUSINESSES = scratch
                     doc = load_json(target)
                     doc["name"] = doc["name"] + " (hand-edited)"
                     target.write_text(dumps(doc), encoding="utf-8")
                     if not any("differs from a rebuild" in b for b in check()):
                         failures.append("a hand-edited compiled record was not refused")
                 finally:
-                    shutil.copy2(backup, target)
+                    BUSINESSES = live
 
     # The build is deterministic: two compiles of the same input agree byte for byte.
     first, _, index_a = compiled_docs()

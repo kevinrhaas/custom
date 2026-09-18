@@ -1697,8 +1697,8 @@ Every household carries an arrival block and 95.1% of them (1196) hold a `not_la
 | class | households | share |
 |---|---:|---:|
 | no lives_at at all | 1238 | 98.4% |
-| a dwelling or a place of business | 15 | 1.2% |
-| a house of entertainment | 3 | 0.2% |
+| a dwelling or a place of business | 10 | 0.8% |
+| a house of entertainment | 8 | 0.6% |
 | the fort | 2 | 0.2% |
 
 ### Every household with a lives_at
@@ -1708,23 +1708,25 @@ Every household carries an arrival block and 95.1% of them (1196) hold a `not_la
 | The Dr Harmon household | harmon_log_cabin | dwelling | a dwelling or a place of business | attested |
 | The Hamilton household | cobweb_castle | agency house residence | a dwelling or a place of business | inferred |
 | The Heacock household | heacock_house_monroe | dwelling | a dwelling or a place of business | attested |
-| The Ingersoll household | green_tree_tavern | tavern inn | a dwelling or a place of business | inferred |
 | The James Kinzie household | james_kinzie_house | residence | a dwelling or a place of business | inferred |
 | The Jean Baptiste Beaubien household | jb_beaubien_homestead | dwelling and trading house | a dwelling or a place of business | inferred |
 | The Madore Beaubien household | madore_beaubien_house | dwelling and store | a dwelling or a place of business | attested |
-| The Mansion House keeper's household | mansion_house | tavern inn | a dwelling or a place of business | inferred |
-| The Murphy household | exchange_coffee_house | tavern inn | a dwelling or a place of business | attested |
 | The Peck household | peck_store | store and dwelling | a dwelling or a place of business | inferred |
 | The Porter household | peck_store | store and dwelling | a dwelling or a place of business | attested |
 | The Robinson household at Wolf Point | robinson_caldwell_cabins | dwelling | a dwelling or a place of business | attested |
-| The Stow household | western_hotel | tavern inn | a dwelling or a place of business | inferred |
-| The Walters household at Wolf Point | wolf_point_tavern | tavern inn | a dwelling or a place of business | inferred |
 | The presbytery household at St Mary's | st_marys_church | church | a dwelling or a place of business | inferred |
 | The Brown boarding-house household | brown_boarding_house | boarding house | a house of entertainment | attested |
 | The Couch household | tremont_house_1 | hotel | a house of entertainment | inferred |
 | The Davis household at the Steamboat Hotel | steamboat_hotel | hotel | a house of entertainment | inferred |
+| The Ingersoll household | green_tree_tavern | tavern inn | a house of entertainment | inferred |
+| The Mansion House keeper's household | mansion_house | tavern inn | a house of entertainment | inferred |
+| The Murphy household | exchange_coffee_house | tavern inn | a house of entertainment | attested |
+| The Stow household | western_hotel | tavern inn | a house of entertainment | inferred |
+| The Walters household at Wolf Point | wolf_point_tavern | tavern inn | a house of entertainment | inferred |
 | The commandant's household | fort_dearborn_commandants_quarters | commanding officers quarters | the fort | attested |
 | The post surgeon's household | fort_dearborn_officers_quarters | officers quarters | the fort | inferred |
+
+*A household is classed a house of entertainment when the roof it names carries one of the 7 function terms that mean lodging for pay: `boarding_house`, `hotel`, `large_boarding_house`, `medium_boarding_house`, `small_boarding_house`, `small_inn_or_tavern`, `tavern_inn`. The test used to name `tavern`, `inn` and `coffee_house`, which the function vocabulary cannot spell and no record ever used, so the taverns counted as dwellings (T-1323).*
 
 *No household in the known layer lodges on a vessel. The crews ashore on 1 July 1835 are T-1178's cohort and none of them is named here.*
 

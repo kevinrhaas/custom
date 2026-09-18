@@ -6182,27 +6182,39 @@ for (const [label, viewport, touch] of [
     });
     await page.waitForTimeout(250);
 
-    // --- the evidence-only households, after the invented names went (T-0524) -
+    // --- the evidence-only households, and the reconstruction contract (T-1327) -
     //
-    // WHAT THIS BLOCK USED TO ASSERT, AND WHY IT NO LONGER CAN. Until 2 September
-    // 2026 the layer minted a `reconstructed` person for every household the
-    // occupation census argued the town needed, gave each one an invented period
-    // name, and carried a `name_basis` block declaring the invention. K18 pinned
-    // the declaration: a visitor who reads a name must be able to see, in the same
-    // card, that we made it up. The owner's T-0489 ruling retired that population —
-    // `data/residents/index.json` now reads `by_grade.reconstructed: 0` — and the
-    // records that survived it say so in as many words ("The invented name this
-    // record used to carry, and its name_basis block, are retired: an invented name
-    // is not kept beside a documented one").
+    // WHAT THIS BLOCK HAS ASSERTED, IN THREE RULINGS, AND WHY IT SAYS THE THIRD.
+    // Until 2 September 2026 the layer minted a `reconstructed` person for every
+    // household the occupation census argued the town needed, gave each one an
+    // invented period name, and carried a `name_basis` block declaring the
+    // invention. K18 pinned the DECLARATION: a visitor who reads a name must be
+    // able to see, in the same card, that we made it up. The owner's T-0489 ruling
+    // retired that population — `by_grade.reconstructed` went to 0 — and rather
+    // than delete a passing-shaped check T-0524 kept the wire and turned it round
+    // to assert the OPPOSITE promise, that the invented-name programme had left
+    // nothing behind.
     //
-    // So the subject of the first two assertions is gone, and the honest move is
-    // not to delete a passing-shaped check: it is to keep the wire and turn it
-    // round. What the layer now promises is the OPPOSITE promise — that the
-    // invented-name programme left nothing behind — and that is what is asserted,
-    // over the manifest's own tally and over the record this block already fetches.
-    // If a future run mints an invented name again, this trips.
+    // T-1167 then made `reconstructed` A GRADE THIS PROJECT WRITES ON PURPOSE,
+    // with a programme, a stage, a basis and a seed on every person, and T-1314's
+    // `named_families` stage wrote the first three of them. So T-0524's promise is
+    // no longer the project's, and asserting it made dev's own smoke inherit a red
+    // that no branch caused. T-1327 turns the wire round a second time rather than
+    // cutting it, because the thing K18 was really guarding is still live:
+    // `name_basis` is still rendered by `js/residents.js` (the "How this person is
+    // named" row), so nothing in the renderer stops an UNDECLARED invented name
+    // coming back.
     //
-    // The `hh_inf_` households the ruling kept are `unplaced` evidence-only
+    // The promise asserted now is the narrower one T-1158 states: a person may be
+    // reconstructed, and where they are, the card has to show its working — the
+    // programme stage that wrote them, the basis they were drawn or argued from,
+    // the seed that redraws a draw, and the evidence that would retire them — and
+    // no person who is NOT reconstructed may carry a name_basis. The count comes
+    // off the manifest rather than being written here, because it moves on every
+    // stage from T-1171 to T-1178 and a hardcoded one would go stale the same way
+    // the last two did.
+    //
+    // The `hh_inf_` households T-0489 kept are `unplaced` evidence-only
     // households: one head the papers name, graded `inferred`, on no roof.
     const invented = await page.evaluate(async () => {
       const api = window.__chicago4d;
@@ -6211,30 +6223,56 @@ for (const [label, viewport, touch] of [
       const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
       const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
       const head = hh.persons.find((p) => p.relationship === 'head') || hh.persons[0];
+      // The reconstruction programme's population, read off the manifest and then
+      // read again off the records it points at. The manifest names which
+      // households carry a reconstructed person, so this fetches those and not the
+      // other twelve hundred — the contract is proved on every reconstructed
+      // person there is, and `name_basis` is sampled over the records they sit in
+      // plus the evidence-only household above.
+      const carrying = index.households
+        .filter((h) => ((h.grades || {}).reconstructed || 0) > 0);
+      const faults = [];
+      let found = 0;
+      let undeclared = 0;
+      for (const r of carrying) {
+        const card = await (await fetch(new URL(`residents/${r.file}`, api.dataBase))).json();
+        for (const p of card.persons || []) {
+          if (p.grade !== 'reconstructed') {
+            // The K18 trip, kept: an invented name on a record that does not own
+            // up to being reconstructed is the failure the whole block exists for.
+            if (p.name_basis) { undeclared += 1; faults.push(`${p.id}: name_basis on a ${p.grade} person`); }
+            continue;
+          }
+          found += 1;
+          const rc = p.reconstruction || {};
+          const basis = p.basis || {};
+          const rep = p.replaceable_by || {};
+          if (!rc.stage || !rc.programme) faults.push(`${p.id}: names no programme stage`);
+          if (!basis.kind || !basis.id || !basis.note) faults.push(`${p.id}: no basis to be drawn from`);
+          else if (basis.kind === 'model' && !p.seed) faults.push(`${p.id}: drawn from ${basis.id} with no seed`);
+          if (!rep.kind || !rep.match) faults.push(`${p.id}: nothing stated would retire them`);
+          if (p.name_basis && !p.name_basis.note) faults.push(`${p.id}: name_basis declares nothing`);
+        }
+      }
       return {
         id: hh.id,
         household: hh.name,
         name: head?.name,
         headGrade: head?.grade,
         headNote: (head?.note || '').slice(0, 400),
-        // The retirement, read three ways: the layer's own tally, this record's
-        // people, and the block that carried the declaration.
-        reconstructedInLayer: index.counts?.by_grade?.reconstructed,
+        // The evidence-only record, read the same two ways it always was: T-0489's
+        // ruling holds HERE even though it no longer holds over the whole layer.
         reconstructedHere: hh.persons.filter((p) => p.grade === 'reconstructed').length,
         anyNameBasis: hh.persons.some((p) => !!p.name_basis),
-        // T-1171. The three reads above were written when the layer held no
-        // reconstructed person at all, and they said so by counting zero. The owner's
-        // ruling of 2026-09-02 retired the OLD programme and allowed one back under an
-        // explicit file; T-1171's stage is the first to write a person under it, so
-        // "nothing left behind" has to be stated as what it always meant: nothing that
-        // no stage claims, and no invented name on the head the sources name.
-        headNameBasis: !!head?.name_basis,
-        unclaimedHere: hh.persons.filter(
-          (p) => p.grade === 'reconstructed' && !(p.reconstruction && p.reconstruction.stage)
-        ).length,
-        namedWithoutAStage: hh.persons.filter(
-          (p) => !!p.name_basis && !(p.reconstruction && p.reconstruction.stage)
-        ).length,
+        // The programme's own population: what the manifest states, what its rows
+        // add up to, and what the records actually hold.
+        statedByManifest: index.counts?.by_grade?.reconstructed ?? null,
+        countedByRows: carrying.reduce((n, h) => n + h.grades.reconstructed, 0),
+        foundOnRecords: found,
+        households: carrying.length,
+        undeclared,
+        faultCount: faults.length,
+        faults: faults.slice(0, 6),
         opening: String(hh.name ?? '').trim().split(/\s+/)[0]
           .replace(/[^A-Za-z]/g, '').toLowerCase(),
         grades: index.vocabulary.grades,
@@ -6246,17 +6284,35 @@ for (const [label, viewport, touch] of [
       && invented.grades?.includes(invented.headGrade)
       && invented.headGrade !== 'reconstructed',
       `head "${invented.name}" graded ${invented.headGrade}`);
-    // The inverse of the retired K18 check, and the reason it is here rather than
-    // deleted: `name_basis` is still rendered by `js/residents.js` (the "How this
-    // person is named" row), so nothing in the renderer stops an invented name
-    // coming back. The DATA is what the ruling changed, so the data is the gate.
-    check(`${label}: the invented-name programme left nothing behind on this layer`,
-      invented.unclaimedHere === 0 && invented.namedWithoutAStage === 0
-      && invented.headNameBasis === false,
-      `${invented.reconstructedInLayer} reconstructed people in the manifest, `
-      + `${invented.reconstructedHere} on ${invented.id}, ${invented.unclaimedHere} of them `
-      + `claimed by no stage; ${invented.namedWithoutAStage} invented name(s) with no stage; `
-      + `the head carries a name_basis: ${invented.headNameBasis}`);
+    // T-0489's ruling, on the population it was made about: the evidence-only
+    // households are heads the papers name, and nothing was ever drawn into one.
+    // A reconstructed person appearing HERE would mean the programme had seated
+    // somebody in a record that exists to hold read evidence only.
+    check(`${label}: nothing was drawn into an evidence-only household`,
+      invented.reconstructedHere === 0 && invented.anyNameBasis === false,
+      `${invented.reconstructedHere} reconstructed people on ${invented.id}, `
+      + `name_basis present: ${invented.anyNameBasis}`);
+    // And the programme's own population, over the manifest's count rather than a
+    // number written here. The three ways of counting must agree: what the manifest
+    // states, what its household rows add up to, and what the records hold. A stage
+    // that writes people without restating the manifest trips this.
+    check(`${label}: the manifest's reconstructed count is the layer the records hold`,
+      Number.isInteger(invented.statedByManifest)
+      && invented.countedByRows === invented.statedByManifest
+      && invented.foundOnRecords === invented.statedByManifest,
+      `manifest ${invented.statedByManifest}, household rows ${invented.countedByRows}, `
+      + `records ${invented.foundOnRecords} across ${invented.households} household(s)`);
+    // The promise that replaced T-0524's (T-1327): not that the programme left
+    // nothing behind, but that everything it leaves behind shows its working —
+    // and that an invented name never rides on a record that is not reconstructed.
+    check(`${label}: every reconstructed person carries its stage, basis, seed and replacement`,
+      invented.faultCount === 0 && invented.undeclared === 0,
+      invented.faultCount
+        ? `${invented.faultCount} fault(s), first ${invented.faults.length}: `
+          + invented.faults.join('; ')
+        : `${invented.foundOnRecords} reconstructed person(s), each naming a stage, `
+          + `a basis, a seed where drawn and the evidence that retires them; `
+          + `${invented.undeclared} undeclared invented name(s)`);
     // The layer-word in this label was `inferred` until K23a, and this assertion
     // was pinned to the HEAD'S OWN GRADE — which is how a name claiming a better
     // grade than its own record survived a release gate. T-0489 renamed these
