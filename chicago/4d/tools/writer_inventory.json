@@ -893,6 +893,12 @@
    "measured": "continuously",
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
+  "report_convergence_closing.py": {
+   "placement": "manifest",
+   "write_mode": "--build",
+   "measured": "2026-09-18",
+   "finding": "Reproduces: ran `--build` on a clean tree, wrote its two outputs and changed no committed byte. In the manifest beside report_convergence_coverage.py, so `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate thereafter."
+  },
   "report_letter_list_collisions.py": {
    "placement": "manifest",
    "write_mode": "--write",
