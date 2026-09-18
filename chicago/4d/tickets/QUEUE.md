@@ -41,7 +41,6 @@
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
-T-1297 — Rule the 718 name-on-a-roll units: the civic poll, voter and Black Hawk War lists, the 1830 census heads and the unruled directory entries
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
