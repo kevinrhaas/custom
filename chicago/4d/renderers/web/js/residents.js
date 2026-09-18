@@ -65,6 +65,7 @@
  */
 
 import { citationItems, escapeHtml } from './citations.js';
+import { tierOf, isNotAsserted, TIER_LABEL, TIER_TITLE } from './attribute-tiers.js';
 // The agency relation, rendered by the module that owns it — one rendering of a
 // holding for the building card and the person card both (T-1041).
 import { agencySectionHtml, loadAgencies } from './agencies.js';
@@ -88,8 +89,44 @@ function rank(list, value) {
  * second one that means the same thing.
  */
 export function swatch(level) {
-  const cls = { attested: 'sw-doc', inferred: 'sw-inf' }[level] || 'sw-rec';
-  return `<i class="sw ${cls}" title="${escapeHtml(level || 'reconstructed')}"></i>`;
+  const cls = { attested: 'sw-doc', inferred: 'sw-inf', unknown: 'sw-unk' }[level] || 'sw-rec';
+  return `<i class="sw ${cls}" title="${escapeHtml(TIER_TITLE[level] || level || 'reconstructed')}"></i>`;
+}
+
+/**
+ * The tier's own word, beside the chip (T-1158). The chip alone was a colour with a
+ * tooltip, which is not a reading: a visitor scanning a card could see that two rows
+ * differed without being told how. `unknown` prints nothing here, because its value
+ * already reads "not recorded" and the row would otherwise say it twice.
+ */
+function tierWord(tier) {
+  if (!tier || tier === 'unknown') return '';
+  return `<span class="res-tier" title="${escapeHtml(TIER_TITLE[tier])}">${
+    escapeHtml(TIER_LABEL[tier])}</span>`;
+}
+
+/**
+ * What a reconstructed value rests on, and what would retire it — the half of the tier
+ * a reader has to be able to open (T-1158). Collapsed, because forty blocks in the
+ * whole layer carry one and a card should not make the other ten thousand pay for it.
+ *
+ * `basis.kind` is the distinction worth reading: `model` was DRAWN and carries the seed
+ * that redraws it, `rule` was ARGUED and carries the rule it was argued under. A drawn
+ * value nobody can redraw is not reproducible, so the seed is printed rather than kept
+ * for the gate.
+ */
+function basisHtml(block) {
+  const basis = block && block.basis;
+  if (!basis || typeof basis !== 'object') return '';
+  const rep = block.replaceable_by || null;
+  const drawn = basis.kind === 'model';
+  return `<details class="res-basis"><summary>${
+    drawn ? 'Drawn from a model' : 'Argued from a rule'} — <code>${
+    escapeHtml(String(basis.id || ''))}</code></summary>
+    <span class="res-why">${escapeHtml(String(basis.note || ''))}${
+    drawn && block.seed ? ` Redrawn with the seed <code>${escapeHtml(String(block.seed))}</code>.` : ''}${
+    rep ? ` This value is replaced the moment the project holds ${escapeHtml(String(rep.match || ''))}.` : ''}
+    </span></details>`;
 }
 
 /**
@@ -130,13 +167,18 @@ function row(label, value) {
  */
 function claimRow(label, value, block, citationsById) {
   if (!block) return '';
+  // T-1158. The chip is the TIER now, not the raw confidence, and the two part company
+  // on exactly the rows a reader most needs them to: a null value under `confidence:
+  // "reconstructed"` is not an invention, it is an absence, and it gets the `unknown`
+  // chip and no tier word rather than the hatched one that says we made it up.
+  const tier = tierOf(block) || block.confidence;
   const shown = value === null || value === undefined || value === ''
     ? 'not recorded' : value;
   const note = block.note ? `<br><span class="res-why">${escapeHtml(block.note)}</span>` : '';
   const cites = (block.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const list = cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
   return `<dt>${escapeHtml(label)}</dt>
-    <dd>${swatch(block.confidence)}${escapeHtml(shown)}${note}${list}</dd>`;
+    <dd>${swatch(tier)}${tierWord(tier)}${escapeHtml(shown)}${basisHtml(block)}${note}${list}</dd>`;
 }
 
 /**
@@ -1168,7 +1210,8 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       ${row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', born && born.value, born, citationsById)}
-      ${occ.value ? `<dt>Occupation</dt><dd>${swatch(occ.confidence)}${escapeHtml(words(occ.value))}${
+      ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
+        isNotAsserted(occ) ? 'not recorded' : escapeHtml(words(occ.value))}${
         occ.later_occupation ? ' for 1835' : ''}${
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         laterOccupationHtml(occ.later_occupation, citationsById)}${

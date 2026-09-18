@@ -1,7 +1,7 @@
 ---
 id: T-1158
 title: Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-17
+pr: 1426
+claimed_by: run 9/17/2026, 7:44:21 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T01:36:27.093Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35292169604
 ---
 
 The owner, 2026-09-17: *"note for each attribute of each person what is attested, inferred or
@@ -76,3 +76,49 @@ write has a place to say its tier and why, and a reconstructed value cannot be w
 a basis and a seed.
 
 **Links:** T-1145 · T-1146 · T-1147 · AGENTS.md § RECONSTRUCTED IS A TIER · `docs/PROVENANCE.md`.
+
+## WHAT SHIPPED, AND THE ONE CLAUSE THAT DID NOT (2026-09-18)
+
+The tier vocabulary, the collision's resolution, the contract, the gate, the report, the
+card and the docs all landed. **The clause that did not is "written into the card", and
+the reason is worth keeping.**
+
+Writing `tier` into all 1,258 household records was tried first and measured: ten of
+`check.sh`'s steps go red the moment a tier lands in a card, because those bytes are
+owned by NINE derivations that each rebuild a card from its sources and compare the
+result — `synthesize_resident_research.py --drift`, the four mints, both
+back-projections, `qualify_later_trades.py`, `survey_stated_kin.py` and the four
+directory crosswalks. None of them knows the field exists, so every one of them drops
+it on the next pass. A field nine writers silently drop is a field that lies.
+
+So the EXISTING layer's tiers are derived — in `tools/migrate_attribute_tiers.py` for
+the gate and the published table, in `renderers/web/js/attribute-tiers.js` for the card
+a visitor opens, with `tools/check_attribute_tiers.mjs` holding the two to one answer.
+What a RECORD may carry is the full shape, enforced by `validate.py` wherever it appears,
+so the reconstruction bands from T-1167 write tiers on the records they mint from day one
+and are refused if they write one wrong. **Teaching the nine writers to emit the tier
+belongs with T-1144**, which already owns that layer's drift and has to re-run all three
+writers anyway; doing it here would have meant landing nine writer changes and 1,258
+rewritten cards inside a ticket about a vocabulary.
+
+Clause by clause:
+
+- Schema + `validate.py` refusals + a mutation self-test breaking each rule — **done**
+  (`check_tier_block`, 29 self-test cases, wired into `check.sh` twice).
+- The migration tool with a report of counts per attribute per tier, and zero value
+  changing tier upward — **done**; the tier is derived from the block's own confidence,
+  so it cannot exceed it, and `validate.py` refuses a written tier that disagrees.
+- Tier beside each attribute on the card, and the basis on expand — **done**. The forty
+  reconstructed values' basis and replacement rule are published in the derived table and
+  rendered structurally by `basisHtml` on any record that carries them; on today's forty
+  the basis is also the block's own note, which the card already prints in full.
+- The People view's `attested / inferred / reconstructed` filter on the derived record
+  grade — **already existed** (`people.js`, the `grade` pill row). What it lacked was the
+  per-attribute reading, which is what shipped.
+- `summarize_residents.py` per-attribute tier section — **done** (`tiers`).
+- `docs/PROVENANCE.md` — **done**, including the disambiguation the project now needs:
+  a SOURCE carries a numbered tier (the 1-6 evidence ladder), an ATTRIBUTE carries a
+  named one, and nothing reads both off the same field.
+
+The town census gained no tier section: it counts people and roofs, not attributes, and
+the per-attribute table is a research artefact. Stated rather than quietly skipped.
