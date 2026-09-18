@@ -161,7 +161,25 @@
      "for_merge": "A stray terminal s, and the anchor side is one of the best-documented men in the layer: Giles Spring, attorney of S. & Goodrich, res 62 Adams, on the 1834 poll, the 1835 poll as 'Spring, G.', and in the Democrat as 'G. Spring' and 'Spring, G.'. The initial G agrees, the town holds exactly one Spring and one Springs, and a man the paper already prints under a bare G is the obvious referent for 'G. Springs'.",
      "against_merge": "NO ISSUE SETS BOTH SPELLINGS, AND THE SPRINGS STEM IS NOT EMPTY. 'G. Springs' is the Democrat of 29 October 1834 (#c008); Giles Spring's own Democrat settings are 28 January 1834 (#c006), 3 September 1834 (#c005) and 12 November 1834 (#c008) — four different issues of one paper and not one of them sets Spring and Springs together. The corpus sets Springs 53 times in its own right. C9's demonstration is what is missing and nothing else, which is D7 exactly; the anchor makes the fold attractive and D7 is the rule that says an attractive fold with no page is still a refusal."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "50-59",
+    "low": 50,
+    "high": 59,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 50 under 60', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "spring_giles:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('spring_giles:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

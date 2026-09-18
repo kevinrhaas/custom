@@ -571,9 +571,11 @@ def check_named_families(prog: dict) -> list:
         elif pid not in want:
             problems.append(f"{pid}: carries stage '{NAMED_FAMILIES_STAGE}' and no 1840 "
                             f"bridged row derives them")
-        elif have[pid] != want[pid]:
-            differing = sorted(k for k in set(want[pid]) | set(have[pid])
-                               if want[pid].get(k) != have[pid].get(k))
+        elif any(have[pid].get(k) != v for k, v in want[pid].items()):
+            # Only the keys THIS stage authors. A later stage may add its own block to a
+            # person - T-1304's `age_band` is the first - and a stage that demanded its
+            # own output back byte for byte would refuse every stage that ran after it.
+            differing = sorted(k for k, v in want[pid].items() if have[pid].get(k) != v)
             problems.append(f"{pid}: the committed record does not re-derive; "
                             f"{', '.join(differing)} differ(s)")
     return problems
@@ -585,6 +587,27 @@ def check_named_families(prog: dict) -> list:
 
 BUILDERS = {NAMED_FAMILIES_STAGE: build_named_families}
 CHECKERS = {NAMED_FAMILIES_STAGE: check_named_families}
+# the stages, and the modules that build them
+# --------------------------------------------------------------------------
+#
+# A STAGE IS A TICKET, and a stage large enough to need its own measurement, its own
+# model file and its own gate gets its own module rather than another thousand lines
+# here. The programme file names the module in `built_by`; this table is the writer's
+# own copy, and `--check` holds the two together so a stage cannot be marked implemented
+# with nothing behind it.
+
+def _build_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.build()
+
+
+def _check_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.check()
+
+
+STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age}
+STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age}
 
 
 # --------------------------------------------------------------------------
@@ -622,11 +645,18 @@ def cmd_build(prog: dict, key: str) -> int:
               f"stage in {stage['ticket']} and set `implemented` in the programme file.",
               file=sys.stderr)
         return 1
+    # TWO REGISTRIES, ONE DISPATCH. A stage small enough to live in this file is in
+    # BUILDERS and is called with the programme; a stage big enough to need its own
+    # module is in STAGE_BUILDERS and calls that module. Neither is the general case, so
+    # the table a stage is in is the statement of which kind it is.
     if key in BUILDERS:
         return BUILDERS[key](prog, write=True)
-    print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme file "
-          f"and this writer disagree", file=sys.stderr)
-    return 2
+    builder = STAGE_BUILDERS.get(key)
+    if builder is None:
+        print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme "
+              f"file and this writer disagree", file=sys.stderr)
+        return 2
+    return builder()
 
 
 def cmd_check(prog: dict) -> int:
@@ -674,6 +704,8 @@ def cmd_check(prog: dict) -> int:
     for stage in prog["stages"]:
         if not stage.get("implemented"):
             continue
+        if stage["key"] in STAGE_CHECKERS:
+            continue  # re-derived by its own module, below
         if stage["key"] not in CHECKERS:
             error(f"stage {stage['key']}", "is marked implemented and this writer carries no "
                                            "derivation for it")
@@ -682,6 +714,10 @@ def cmd_check(prog: dict) -> int:
             error(f"stage {stage['key']}", problem)
 
     built = [s["key"] for s in prog["stages"] if s.get("implemented")]
+    for key in built:
+        if key not in STAGE_BUILDERS and key not in BUILDERS:
+            error(f"stage {key}", "is marked implemented and this writer has no build for "
+                                  "it - the programme file and the writer disagree")
     if problems:
         for p in problems:
             print(f"  FAIL {p}")
@@ -693,6 +729,13 @@ def cmd_check(prog: dict) -> int:
     if not built:
         print("  ok    no stage has been built yet (T-1167 opened the programme and wrote "
               "nobody), so there is no draw to re-derive")
+    for key in built:
+        checker = STAGE_CHECKERS.get(key)
+        if checker is None:
+            continue
+        print(f"  ---   stage '{key}' re-derives its own draw:")
+        if checker() != 0:
+            return 1
     return 0
 
 

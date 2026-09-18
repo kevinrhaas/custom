@@ -44,6 +44,20 @@
   "sources": [
    "chicago_voter_lists_1833_1835_irad"
   ],
+  "last_dated_appearance": {
+   "as_read": "1834",
+   "precision": "year",
+   "reaches": "1834-12-31",
+   "includes_scene_date": false,
+   "days_before_scene_date": 182,
+   "leg": "sighting",
+   "person": "morrison_ordemus",
+   "record": "poll_1834_076",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "note": "A DATED READING OF THIS PERSON, AND THE LAST ONE THE CORPUS HOLDS. Read from `civic_evidence` as `1834`, which reaches 1834-12-31 — 182 day(s) short of 1835-07-01. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
@@ -87,7 +101,42 @@
      "for_merge": "The surname agrees letter for letter, d and s are one substitution apart in a worn impression, and Orsemus Morrison is one of the town's documented carpenters: the 1833 tax list, Fergus 1843 ('Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]') and Norris 1844 ('carpenter, house Clark st'). 'Ordemus' is a forename that exists nowhere else in the corpus, which is the profile of a mis-read rather than a man.",
      "against_merge": "TWO ROLLS OF ONE TRANSCRIPTION, AND NEITHER SETS BOTH. 'Morrison, Orsemus' is the 1833 tax list (line 128) and 'Morrison, Ordemus' the poll filed 11 August 1834 (line 245) — and that poll also enters 'Morrison, J. M.' at line 244, so the roll that set Ordemus was setting Morrisons carefully. No roll sets both forenames; a shared source id is not a shared printing. The town holds five Morrison cards, so the surname decides nothing. D9, and the forename's absence from the rest of the corpus is kept in `for_merge` because it is what a reading of the 1834 poll's image would test."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "sex_share_of_the_roll",
+     "note": "Drawn at 94.7% male, the rate measured on the civic roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
+    },
+    "seed": "morrison_ordemus:sex_ratio",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+    },
+    "note": "A DRAW, NOT A READING. Nothing about this person says which sex they were: T-1303 refused the name and was right to. This value is drawn from the measured male share of the roll the person was named on, seeded by their own id so the draw reproduces - retype 'morrison_ordemus:sex_ratio' and the same face comes up. It carries no weight as evidence about this person and it is never promoted. The rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names."
+   },
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 20 under 30', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "morrison_ordemus:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('morrison_ordemus:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

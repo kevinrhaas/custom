@@ -160,6 +160,25 @@ function bornYears(born) {
   return born.value;
 }
 
+/**
+ * An age band as a reader should meet it (T-1304). The 1840 schedule's bands are decadal
+ * above twenty and the block carries their edges, so the card prints the interval rather
+ * than the machine-readable `20-29` — and the top band, which has no upper edge, prints
+ * as "70 or older" rather than as a range with a hole in it.
+ *
+ * NOTHING HERE TURNS A BAND INTO A YEAR. The whole point of the band is that the project
+ * does not know the year; a card that printed a midpoint would undo that in one line.
+ */
+function bandYears(band) {
+  if (!band || band.value === null || band.value === undefined) return null;
+  const low = band.low;
+  const high = band.high;
+  if (typeof low !== 'number') return String(band.value);
+  if (typeof high !== 'number') return `${low} or older`;
+  if (low === 0) return `under ${high + 1}`;
+  return `${low} to ${high}`;
+}
+
 function row(label, value) {
   if (value === null || value === undefined || value === '') return '';
   return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
@@ -180,6 +199,50 @@ function row(label, value) {
  * way `fauna.js` does it and for the same reason: a figure read through a
  * generic accessor is a figure a read census cannot see in this file's text.
  */
+/**
+ * The dated evidence leg under an `uncertain` presence (T-1144, acceptance 9).
+ *
+ * A card that says "here on 1 July 1835: uncertain" is making a finding, and the thing
+ * that makes it one is a date — the last day the corpus can still see this person. That
+ * date is derived onto the record by `tools/derive_presence_evidence_leg.py`, so the
+ * card can print it instead of leaving a reader to infer it from the paragraph above.
+ *
+ * WHAT THE ROW WILL NOT DO is let a date read as a sighting when it is not one. The leg
+ * says which kind it is — a dated reading, the far end of a cited source's SPAN, or an
+ * arrival bound — and a reading whose own window covers 1 July 1835 (a source that says
+ * only `1835`) pins no day before it and says so here.
+ */
+function presenceLegRow(hh, citationsById) {
+  const presence = hh.present_on_scene_date || {};
+  const leg = presence.last_dated_appearance;
+  if (!leg || presence.value !== 'uncertain') return '';
+  const kind = {
+    sighting: 'a dated reading of this person',
+    source_span: "the far end of a cited source's span, which is not a sighting",
+    arrival_bound: 'an arrival bound, which is not a sighting',
+  }[leg.leg];
+  if (!leg.as_read) {
+    return `<dt>Last dated evidence before that day</dt>
+      <dd>${swatch('unknown')}none${
+        leg.note ? `<br><span class="res-why">${escapeHtml(leg.note)}</span>` : ''}</dd>`;
+  }
+  // A COARSE READING SAYS SO. `precision` is how exact the source was — a day, a
+  // month, a year — and `reaches` the latest day that reading can still mean. A year
+  // whose window covers 1 July 1835 pins nothing before it, and the row says which.
+  const exactness = { day: 'to the day', month: 'to the month', year: 'to the year' }[
+    leg.precision] || leg.precision;
+  const reach = leg.includes_scene_date
+    ? `read ${exactness}, so it can mean any day up to ${leg.reaches} — a window that `
+      + 'covers 1 July 1835 itself, and pins nothing before it'
+    : `read ${exactness}, reaching ${leg.reaches} — ${leg.days_before_scene_date} `
+      + 'day(s) before the scene date';
+  const cites = (leg.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const list = cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
+  return `<dt>Last dated evidence before that day</dt>
+    <dd>${escapeHtml(leg.as_read)} — ${escapeHtml(kind || leg.leg)}, ${escapeHtml(reach)}${
+      leg.note ? `<br><span class="res-why">${escapeHtml(leg.note)}</span>` : ''}${list}</dd>`;
+}
+
 function claimRow(label, value, block, citationsById) {
   if (!block) return '';
   // T-1158. The chip is the TIER now, not the raw confidence, and the two part company
@@ -1246,6 +1309,13 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
   // one sex's naming only — the reasoning travels with it and the row is a graded claim
   // like every other. Where it came off a source with the rest of the record, the mints
   // wrote the bare string and there is no reasoning of ours to print.
+  //
+  // T-1304 writes the same block for a sex it DREW, graded `reconstructed`, and that is
+  // the whole reason no new rendering was needed for it: `claimRow` already prints the
+  // tier, the reasoning, the model the value was drawn from, the seed that redraws it and
+  // the evidence that would retire it. A drawn value that rendered like a read one would
+  // be the misrepresentation; a drawn value that renders THROUGH the same graded row,
+  // wearing the reconstructed chip and opening on its own seed, is the opposite.
   const basis = person.sex_basis || null;
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
@@ -1262,6 +1332,8 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         : row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', bornYears(born), born, citationsById)}
+      ${claimRow('Age band on 1 July 1835', bandYears(person.age_band),
+        person.age_band, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
         isNotAsserted(occ) ? 'not recorded' : escapeHtml(words(occ.value))}${
         occ.later_occupation ? ' for 1835' : ''}${
@@ -1358,6 +1430,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${presenceLegRow(hh, citationsById)}
       ${associationsHtml(hh.associated_with, citationsById,
         'Where this household was, and when')}
       ${kinRows(hh, citationsById)}

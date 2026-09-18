@@ -22,7 +22,7 @@
    "reconstructed": 3
   },
   "reconstructed_answering_no_stage": 0,
-  "persons_with_a_sex": 692,
+  "persons_with_a_sex": 1279,
   "persons_with_a_dated_age": 64,
   "persons_with_a_role": 327,
   "households_naming_an_origin": 23,
@@ -124,19 +124,33 @@
   "sex_rules": [
    {
     "rule": "recorded",
-    "means": "a source records the sex on the card"
+    "tier": "attested",
+    "means": "a source records the sex on the card, and no pass had to read it"
    },
    {
     "rule": "inferred_title",
+    "tier": "inferred",
     "means": "the read name carries a gendered title (Mrs, Miss, Widow, Mr)"
    },
    {
+    "rule": "inferred_contraction",
+    "tier": "inferred",
+    "means": "the name is a period contraction every attested expansion of which is one sex's"
+   },
+   {
     "rule": "inferred_forename",
-    "means": "the forename stands in exactly one sex's period pool and in no other"
+    "tier": "inferred",
+    "means": "the forename stands in exactly one sex's naming and in no other (T-1303's derived table, which refuses a name its own evidence splits)"
+   },
+   {
+    "rule": "reconstructed_from_the_roll",
+    "tier": "reconstructed",
+    "means": "DRAWN at the male rate measured on the roll this person was named off, seeded by their own id (T-1304) — never evidence about this person"
    },
    {
     "rule": "unknown",
-    "means": "the name is an initial, a surname alone, or carries neither signal"
+    "tier": "unknown",
+    "means": "the name is an initial no roll rate reaches, or a collective description that names nobody"
    }
   ]
  },
@@ -508,7 +522,7 @@
   {
    "id": "sex",
    "title": "Sex",
-   "lead": "692 of 1285 persons (53.9%) can be sexed at all — 692 because a source records it, 0 from a gendered title, 0 from a forename that stands in exactly one sex's period pool. The rest are an initial, a surname alone, or a forename both sexes used.",
+   "lead": "1279 of 1285 persons (99.5%) carry a sex, AT THREE DIFFERENT TIERS and the table below is the only honest way to read them together: 102 because a source records it, 590 read off a gendered title, a period contraction or a forename that stands in one sex's naming only, and 587 DRAWN at the male rate measured on the roll the person was named off. A drawn sex is not evidence about that person and never becomes any; the 6 left are collective descriptions that name nobody.",
    "tables": [
     {
      "title": "Sex by the rule that says so",
@@ -518,37 +532,45 @@
       "share",
       "recorded",
       "inferred_title",
+      "inferred_contraction",
       "inferred_forename",
+      "reconstructed_from_the_roll",
       "unknown"
      ],
-     "aligns": "lrrrrrr",
+     "aligns": "lrrrrrrrr",
      "rows": [
       [
        "male",
-       648,
-       "50.4%",
-       648,
+       1199,
+       "93.3%",
+       85,
        0,
-       0,
+       32,
+       531,
+       551,
        0
       ],
       [
        "female",
-       44,
-       "3.4%",
-       44,
+       80,
+       "6.2%",
+       17,
        0,
        0,
+       27,
+       36,
        0
       ],
       [
        "unknown",
-       593,
-       "46.1%",
+       6,
+       "0.5%",
        0,
        0,
        0,
-       593
+       0,
+       0,
+       6
       ]
      ],
      "note": ""
@@ -565,9 +587,9 @@
      "rows": [
       [
        "recorded",
-       692,
-       "53.9%",
-       "a source records the sex on the card"
+       102,
+       "7.9%",
+       "a source records the sex on the card, and no pass had to read it"
       ],
       [
        "inferred_title",
@@ -576,16 +598,28 @@
        "the read name carries a gendered title (Mrs, Miss, Widow, Mr)"
       ],
       [
+       "inferred_contraction",
+       32,
+       "2.5%",
+       "the name is a period contraction every attested expansion of which is one sex's"
+      ],
+      [
        "inferred_forename",
-       0,
-       "0.0%",
-       "the forename stands in exactly one sex's period pool and in no other"
+       558,
+       "43.4%",
+       "the forename stands in exactly one sex's naming and in no other (T-1303's derived table, which refuses a name its own evidence splits)"
+      ],
+      [
+       "reconstructed_from_the_roll",
+       587,
+       "45.7%",
+       "DRAWN at the male rate measured on the roll this person was named off, seeded by their own id (T-1304) — never evidence about this person"
       ],
       [
        "unknown",
-       593,
-       "46.1%",
-       "the name is an initial, a surname alone, or carries neither signal"
+       6,
+       "0.5%",
+       "the name is an initial no roll rate reaches, or a collective description that names nobody"
       ]
      ],
      "note": ""
@@ -598,7 +632,7 @@
   {
    "id": "age",
    "title": "Age",
-   "lead": "64 of 1285 persons carry a year or an age; 419 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage. 802 persons carry nothing that bears on age. THERE IS NO AGE PYRAMID HERE: 64 dated ages cannot make one, which is T-1174's brief.",
+   "lead": "64 of 1285 persons carry a year or an age off a source; 419 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage — and 802 carry nothing that bears on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and the tier table below says which of the three it stands on. The bands are the 1840 Chicago schedule's and a drawn one is never turned into a year. THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the rolls name, overwhelmingly adult men, and the women and children the pyramid lacks are T-1174's brief.",
    "tables": [
     {
      "title": "Age bands",
@@ -651,6 +685,120 @@
        802,
        "62.4%",
        "nothing on the card bears on age at all"
+      ]
+     ],
+     "note": ""
+    },
+    {
+     "title": "The age band every person now carries, by tier",
+     "headers": [
+      "tier",
+      "persons",
+      "share",
+      "what it means"
+     ],
+     "aligns": "lrrl",
+     "rows": [
+      [
+       "attested",
+       7,
+       "0.5%",
+       "the band this person's own recorded birth year or age puts them in"
+      ],
+      [
+       "inferred",
+       57,
+       "4.4%",
+       "the band an inferred birth year or age puts them in"
+      ],
+      [
+       "reconstructed",
+       1215,
+       "94.6%",
+       "DRAWN from the 1840 Chicago schedule's sex × age bands, conditioned on what the person is recorded doing, seeded by their own id — a band, never a year"
+      ],
+      [
+       "unknown",
+       6,
+       "0.5%",
+       "a collective description: a row that stands for more than one person has no band of its own"
+      ]
+     ],
+     "note": ""
+    },
+    {
+     "title": "The layer by age band on 1 July 1835",
+     "headers": [
+      "band",
+      "persons",
+      "share"
+     ],
+     "aligns": "lrr",
+     "rows": [
+      [
+       "0-4",
+       1,
+       "0.1%"
+      ],
+      [
+       "5-9",
+       1,
+       "0.1%"
+      ],
+      [
+       "10-14",
+       2,
+       "0.2%"
+      ],
+      [
+       "15-19",
+       108,
+       "8.4%"
+      ],
+      [
+       "20-29",
+       619,
+       "48.2%"
+      ],
+      [
+       "30-39",
+       361,
+       "28.1%"
+      ],
+      [
+       "40-49",
+       116,
+       "9.0%"
+      ],
+      [
+       "50-59",
+       43,
+       "3.3%"
+      ],
+      [
+       "60-69",
+       16,
+       "1.2%"
+      ],
+      [
+       "70-79",
+       9,
+       "0.7%"
+      ],
+      [
+       "15-24",
+       1,
+       "0.1%"
+      ],
+      [
+       "5-9",
+       1,
+       "0.1%"
+      ],
+      [
+       "25-34",
+       1,
+       "0.1%"
       ]
      ],
      "note": ""
@@ -1696,7 +1844,7 @@
   {
    "id": "households",
    "title": "Household composition",
-   "lead": "1237 of 1258 households (98.3%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 21 households name a second person; 34 heads read as women.",
+   "lead": "1237 of 1258 households (98.3%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 21 households name a second person; 70 heads read as women.",
    "tables": [
     {
      "title": "Persons in the household",

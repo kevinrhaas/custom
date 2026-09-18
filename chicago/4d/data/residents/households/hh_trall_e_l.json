@@ -44,6 +44,20 @@
   "sources": [
    "chicago_voter_lists_1833_1835_irad"
   ],
+  "last_dated_appearance": {
+   "as_read": "1835",
+   "precision": "year",
+   "reaches": "1835-12-31",
+   "includes_scene_date": true,
+   "days_before_scene_date": null,
+   "leg": "sighting",
+   "person": "trall_e_l",
+   "record": "poll_1835_080",
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "note": "A DATED READING OF THIS PERSON, AND THE LAST ONE THE CORPUS HOLDS. Read from `civic_evidence` as `1835`, which reaches 1835-12-31 — a window that covers 1835-07-01 itself, so it pins no last sighting before the day and cannot be read as one. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
@@ -86,7 +100,42 @@
      "for_merge": "E. L. Thrall is a documented tradesman of the town — the Democrat of 4 June 1834, column 9, gives him the trade (clothier, tailor) at Charles Taylor's old stand on South Water Street, the business handed to him by its previous owner; Fergus 1843 prints 'Thrall, E. L., clerk, Charles Walker & Co.' and Norris 1844 'Thrall, E. L. clerk, at C. Walker & Co.' The only entry of the stem on any of the town's own rolls is 'Trall, E.L.' on the poll list of 1835 (line 367), and a documented tradesman keeping a South Water Street stand is a man who could be expected on it. The town holds exactly one bearer of each spelling, both 'E. L.'",
      "against_merge": "THE TWO BODIES OF EVIDENCE NEVER TOUCH. Searched over every deposited text and every extracted claim: 'Trall' occurs in exactly two places, the 1835 poll list and genealogytrails' transcription of it — and the Chicago Democrat, Fergus 1839, Fergus 1843, Norris 1844, the Newberry locality cards and Moses & Kirkland set only Thrall, never Trall. The rolls know one spelling, the press and the books know the other, and no publication is caught setting both. That is the Pruyne shape exactly, and it is refused for the same reason. A reader may note the paper's own printing of the trade advertisement reads 'E. L. TRRALL' — a garble that is neither spelling cleanly, and could be read toward either — but a single garbled printing is not a title caught SETTING BOTH, which is what C9 requires, and reading it toward the fold is the reader's willingness, not the printer's inconsistency. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "sex_share_of_the_roll",
+     "note": "Drawn at 94.7% male, the rate measured on the civic roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
+    },
+    "seed": "trall_e_l:sex_ratio",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+    },
+    "note": "A DRAW, NOT A READING. Nothing about this person says which sex they were: T-1303 refused the name and was right to. This value is drawn from the measured male share of the roll the person was named on, seeded by their own id so the draw reproduces - retype 'trall_e_l:sex_ratio' and the same face comes up. It carries no weight as evidence about this person and it is never promoted. The rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names."
+   },
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 20 under 30', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "trall_e_l:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('trall_e_l:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

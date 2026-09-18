@@ -51,7 +51,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1170 | 168 | split_live | yes |
 | T-1182 | 37 | open | yes |
 | T-1188 | 12 | open | yes |
-| T-1168 | 3 | split_live | yes |
+| T-1315 | 3 | open | yes |
 | T-1144 | 1 | open | yes |
 | T-1299 | 1 | open | yes |
 
@@ -231,7 +231,7 @@ Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/
 | `outside_chicago` | 109 |
 | `refused` | 8,524 |
 
-The same rule over the gate itself: of **168** tools carrying a `--check`, **162** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
+The same rule over the gate itself: of **171** tools carrying a `--check`, **165** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 
 | Ungated check | Owner | States why |
 | --- | ---: | ---: |

@@ -153,12 +153,29 @@ REASON_RULES = [
 FEMALE_TITLES = ("mrs", "miss", "madam", "madame", "widow")
 MALE_TITLES = ("mr", "master")
 
+# THE THREE TIERS, AND WHY THE RULE IS READ OFF THE CARD RATHER THAN RECOMPUTED (T-1304).
+# Until 2026-09-18 this report decided a sex itself, from the pools, and called anything
+# already on the card `recorded`. That was right when nothing else wrote a sex; it stopped
+# being right the moment T-1303 wrote 590 read sexes and T-1304 drew 587 more, because it
+# read all 1,276 as a source's statement and printed `recorded 689` over a layer where 99
+# people have a source. The rule now comes from the `sex_basis` block the writing pass
+# leaves behind, which is the only thing that knows which rule fired.
 SEX_RULES = [
-    {"rule": "recorded", "means": "a source records the sex on the card"},
-    {"rule": "inferred_title", "means": "the read name carries a gendered title (Mrs, Miss, Widow, Mr)"},
-    {"rule": "inferred_forename",
-     "means": "the forename stands in exactly one sex's period pool and in no other"},
-    {"rule": "unknown", "means": "the name is an initial, a surname alone, or carries neither signal"},
+    {"rule": "recorded", "tier": "attested",
+     "means": "a source records the sex on the card, and no pass had to read it"},
+    {"rule": "inferred_title", "tier": "inferred",
+     "means": "the read name carries a gendered title (Mrs, Miss, Widow, Mr)"},
+    {"rule": "inferred_contraction", "tier": "inferred",
+     "means": "the name is a period contraction every attested expansion of which is one sex's"},
+    {"rule": "inferred_forename", "tier": "inferred",
+     "means": "the forename stands in exactly one sex's naming and in no other (T-1303's "
+              "derived table, which refuses a name its own evidence splits)"},
+    {"rule": "reconstructed_from_the_roll", "tier": "reconstructed",
+     "means": "DRAWN at the male rate measured on the roll this person was named off, "
+              "seeded by their own id (T-1304) — never evidence about this person"},
+    {"rule": "unknown", "tier": "unknown",
+     "means": "the name is an initial no roll rate reaches, or a collective description "
+              "that names nobody"},
 ]
 
 
@@ -228,9 +245,19 @@ def pools() -> tuple:
 
 
 def sex_of(person: dict, male: set, female: set, both: set) -> tuple:
-    """(sex or None, the rule that says so)."""
+    """(sex or None, the rule that says so). The card's own `sex_basis` decides."""
     recorded = person.get("sex")
     if recorded:
+        basis = person.get("sex_basis") or {}
+        conf, note = basis.get("confidence"), basis.get("note") or ""
+        if conf == "reconstructed":
+            return recorded, "reconstructed_from_the_roll"
+        if conf == "inferred":
+            if "PRINTED WITH A TITLE" in note:
+                return recorded, "inferred_title"
+            if "PERIOD CONTRACTION" in note:
+                return recorded, "inferred_contraction"
+            return recorded, "inferred_forename"
         return recorded, "recorded"
     title, fore = name_parts(person.get("name") or "")
     if title in FEMALE_TITLES:
@@ -361,12 +388,17 @@ def sec_sex(L) -> dict:
     return {
         "id": "sex",
         "title": "Sex",
-        "lead": ("%d of %d persons (%s) can be sexed at all — %d because a source records "
-                 "it, %d from a gendered title, %d from a forename that stands in exactly "
-                 "one sex's period pool. The rest are an initial, a surname alone, or a "
-                 "forename both sexes used."
+        "lead": ("%d of %d persons (%s) carry a sex, AT THREE DIFFERENT TIERS and the "
+                 "table below is the only honest way to read them together: %d because a "
+                 "source records it, %d read off a gendered title, a period contraction or "
+                 "a forename that stands in one sex's naming only, and %d DRAWN at the "
+                 "male rate measured on the roll the person was named off. A drawn sex is "
+                 "not evidence about that person and never becomes any; the %d left are "
+                 "collective descriptions that name nobody."
                  % (known, total, pct(known, total), by_rule["recorded"],
-                    by_rule["inferred_title"], by_rule["inferred_forename"])),
+                    by_rule["inferred_title"] + by_rule["inferred_contraction"]
+                    + by_rule["inferred_forename"],
+                    by_rule["reconstructed_from_the_roll"], by_rule["unknown"])),
         "tables": [
             {"title": "Sex by the rule that says so", **plain_table(
                 ["sex", "persons", "share"] + rules, sex_rows, "lrr" + "r" * len(rules))},
@@ -397,18 +429,52 @@ def sec_age(L) -> dict:
             pyramid.append((p["name"], 1835 - int(year) if year else None,
                             tier_of(p["birth_year"])))
     pyramid.sort(key=lambda r: (r[1] is None, -(r[1] or 0), r[0]))
+    # THE THREE TIERS OF AN AGE (T-1304). `age_band` is written for every person: at the
+    # tier of their own birth year where one is on the card, and `reconstructed` where the
+    # band was drawn from the 1840 schedule. The table above says what the EVIDENCE bears;
+    # this one says what the layer now carries and at what tier, which are not the same
+    # question and must not be printed as if they were.
+    age_tiers = Counter()
+    age_values = Counter()
+    for _h, p in L.people:
+        block = p.get("age_band") or {}
+        tier = block.get("tier") or "none"
+        if block.get("value") is None:
+            tier = "unknown"
+        age_tiers[tier] += 1
+        if block.get("value"):
+            age_values[(block["value"], block.get("low"))] += 1
+    tier_rows = [[t, age_tiers[t], pct(age_tiers[t], total), m] for t, m in (
+        ("attested", "the band this person's own recorded birth year or age puts them in"),
+        ("inferred", "the band an inferred birth year or age puts them in"),
+        ("reconstructed", "DRAWN from the 1840 Chicago schedule's sex × age bands, "
+                          "conditioned on what the person is recorded doing, seeded by "
+                          "their own id — a band, never a year"),
+        ("unknown", "a collective description: a row that stands for more than one person "
+                    "has no band of its own"),
+    ) if age_tiers[t]]
+    band_rows = [[b, n, pct(n, total)] for (b, _low), n in
+                 sorted(age_values.items(), key=lambda kv: (kv[0][1] is None, kv[0][1]))]
     return {
         "id": "age",
         "title": "Age",
-        "lead": ("%d of %d persons carry a year or an age; %d more are placed in an adult "
-                 "band by what they are recorded DOING — a poll, a tax list, a muster, a "
-                 "trade, an office, a marriage. %d persons carry nothing that bears on age. "
-                 "THERE IS NO AGE PYRAMID HERE: %d dated ages cannot make one, which is "
-                 "T-1174's brief."
-                 % (dated, total, adults, bands["unknown"], dated)),
+        "lead": ("%d of %d persons carry a year or an age off a source; %d more are placed "
+                 "in an adult band by what they are recorded DOING — a poll, a tax list, a "
+                 "muster, a trade, an office, a marriage — and %d carry nothing that bears "
+                 "on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and "
+                 "the tier table below says which of the three it stands on. The bands are "
+                 "the 1840 Chicago schedule's and a drawn one is never turned into a year. "
+                 "THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the "
+                 "rolls name, overwhelmingly adult men, and the women and children the "
+                 "pyramid lacks are T-1174's brief."
+                 % (dated, total, adults, bands["unknown"])),
         "tables": [
             {"title": "Age bands", **plain_table(
                 ["band", "persons", "share", "what it means"], rows, "lrrl")},
+            {"title": "The age band every person now carries, by tier", **plain_table(
+                ["tier", "persons", "share", "what it means"], tier_rows, "lrrl")},
+            {"title": "The layer by age band on 1 July 1835", **plain_table(
+                ["band", "persons", "share"], band_rows, "lrr")},
             {"title": "Every dated age in the layer", **plain_table(
                 ["person", "age on 1 July 1835", "tier"],
                 [[n, a if a is not None else "-", t] for n, a, t in pyramid], "lrl")},

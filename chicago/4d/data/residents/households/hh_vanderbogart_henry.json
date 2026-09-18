@@ -46,6 +46,20 @@
    "chicago_democrat_1833_1835",
    "fergus_1843_old_settler_death_notices"
   ],
+  "last_dated_appearance": {
+   "as_read": "1835-05-20",
+   "precision": "day",
+   "reaches": "1835-05-20",
+   "includes_scene_date": false,
+   "days_before_scene_date": 42,
+   "leg": "sighting",
+   "person": "vanderbogart_henry",
+   "record": "person_h_vanderbogart",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "note": "A DATED READING OF THIS PERSON, AND THE LAST ONE THE CORPUS HOLDS. Read from `press_evidence` as `1835-05-20`, which reaches 1835-05-20 — 42 day(s) short of 1835-07-01. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
@@ -134,6 +148,17 @@
    "resident_research": {
     "regraded_on": "2026-09-04",
     "rule": "G1b"
+   },
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "inferred",
+    "tier": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
    },
    "sex": "male",
    "sex_basis": {

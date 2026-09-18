@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 11146,
-    "tiers_written_on_the_card": 0,
+    "blocks": 13024,
+    "tiers_written_on_the_card": 1878,
     "by_tier": {
-      "attested": 584,
-      "inferred": 3205,
-      "reconstructed": 40,
-      "unknown": 7317
+      "attested": 591,
+      "inferred": 3262,
+      "reconstructed": 1842,
+      "unknown": 7329
     },
     "by_attribute": {
       "arrival": {
@@ -89,6 +89,12 @@
         "reconstructed": 0,
         "unknown": 1246
       },
+      "persons[].age_band": {
+        "attested": 7,
+        "inferred": 57,
+        "reconstructed": 1215,
+        "unknown": 6
+      },
       "persons[].age_on_scene_date": {
         "attested": 7,
         "inferred": 2,
@@ -128,8 +134,8 @@
       "persons[].sex_basis": {
         "attested": 0,
         "inferred": 590,
-        "reconstructed": 0,
-        "unknown": 0
+        "reconstructed": 587,
+        "unknown": 6
       },
       "present_on_scene_date": {
         "attested": 22,
@@ -1107,6 +1113,69 @@
         "kind": "person",
         "match": "an 1835-window source that gives this person a Chicago work address"
       }
+    }
+  ],
+  "drawn": [
+    {
+      "attribute": "persons[].age_band",
+      "basis": {
+        "kind": "model",
+        "id": "age_bands_1840"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+      },
+      "values": 1212,
+      "by_value": {
+        "20-29": 591,
+        "30-39": 338,
+        "40-49": 112,
+        "15-19": 106,
+        "50-59": 41,
+        "60-69": 15,
+        "70-79": 8,
+        "10-14": 1
+      },
+      "a_seed": "abbot_8_g:age_bands_1840",
+      "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "persons[].age_band",
+      "basis": {
+        "kind": "rule",
+        "id": "counted_by_a_census_column"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+      },
+      "values": 3,
+      "by_value": {
+        "15-24": 1,
+        "25-34": 1,
+        "5-9": 1
+      },
+      "a_seed": null,
+      "a_card": "hh_adams_william_h"
+    },
+    {
+      "attribute": "persons[].sex_basis",
+      "basis": {
+        "kind": "model",
+        "id": "sex_share_of_the_roll"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+      },
+      "values": 587,
+      "by_value": {
+        "male": 551,
+        "female": 36
+      },
+      "a_seed": "abbot_8_g:sex_ratio",
+      "a_card": "hh_abbot_8_g"
     }
   ]
 }
