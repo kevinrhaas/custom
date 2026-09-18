@@ -57,7 +57,7 @@ record agree; two newspaper notices of the same name are
 | church | 40 |
 | book | 256 |
 | directory | 225 |
-| secondary | 80 |
+| secondary | 81 |
 
 The category of a source id is the audit's one judgement, and it is a written
 table in the tool rather than a heuristic: census, directory, church and civic
@@ -118,6 +118,7 @@ secondary). A source id no rule reaches stops the build.
 | `early_illinois_barrows_school` | book | book |
 | `elgin_history_gifford` | secondary | website |
 | `encyclopedia_chicago_biographical_index_d` | secondary | website |
+| `encyclopedia_chicago_biographical_p` | secondary | website |
 | `encyclopedia_chicago_frederick_thomas` | secondary | website |
 | `encyclopedia_chicago_medical_pharmaceutical` | secondary | website |
 | `fergus_1843_old_settler_death_notices` | book | book |
@@ -132,6 +133,7 @@ secondary). A source id no rule reaches stops the build.
 | `hubbard_autobiography_1911` | book | book |
 | `illinois_courts_caton_biography` | secondary | website |
 | `indiana_absalom_reel_1834` | secondary | website |
+| `ingale_early_chicago_reminiscence` | secondary | website |
 | `jsp_illinois_statutes_gale_imprint` | secondary | website |
 | `kane_geneva_andrew_miles` | secondary | website |
 | `kane_history_geneva_edward_trimble` | book | book |
