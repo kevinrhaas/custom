@@ -1,7 +1,7 @@
 ---
 id: T-1293
 title: The 1835 town model in one pass: population, occupations, households, lodging and arrival, each with its method and its uncertainty stated as a range
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 9:02:28 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35296758151
 ---
 
 **Owner, 2026-09-17:** the research is done; this band is the CHECK AND PREP before the city
