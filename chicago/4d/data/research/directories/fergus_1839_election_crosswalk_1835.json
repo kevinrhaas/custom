@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1280
+   "n": 1283
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -40,7 +40,7 @@
   "residents_matched_one_entry": 90,
   "residents_ambiguous": 31,
   "residents_contested": 18,
-  "residents_surname_only_refused": 216,
+  "residents_surname_only_refused": 219,
   "residents_further_initial_disagreed_refused": 4,
   "residents_letter_list_bucket_refused": 1,
   "voters_matched_one_entry": 81,
@@ -4025,6 +4025,11 @@
     "rule": "The surname 'Adams' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hiram A Adams'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Honora Murphy",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Murphy' stands in the 1837 poll and no man under it carries the initial 'H' of 'Honora Murphy'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Ira Kimberly",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Kimberly' stands in the 1837 poll and no man under it carries the initial 'I' of 'Ira Kimberly'. A surname-only agreement is a refusal."
@@ -4330,6 +4335,11 @@
     "rule": "The surname 'Palmer' stands in the 1837 poll and no man under it carries the initial 'N' of 'N. H. Palmer'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Nancy Adams",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Adams' stands in the 1837 poll and no man under it carries the initial 'N' of 'Nancy Adams'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Nathan Seymour",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Seymour' stands in the 1837 poll and no man under it carries the initial 'N' of 'Nathan Seymour'. A surname-only agreement is a refusal."
@@ -4508,6 +4518,11 @@
     "name": "Thomas Lewis",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Lewis' stands in the 1837 poll and no man under it carries the initial 'T' of 'Thomas Lewis'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Thomas Murphy",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Murphy' stands in the 1837 poll and no man under it carries the initial 'T' of 'Thomas Murphy'. A surname-only agreement is a refusal."
    },
    {
     "name": "Thomas Parsons",
