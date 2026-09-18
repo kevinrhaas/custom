@@ -2578,6 +2578,26 @@ step "the land-sale rulings re-derive from the register and the crosswalk (T-129
 selftest "…and each of its rules still fires on the row it is for" \
   python3 tools/spend_land_sales_rulings.py --self-test
 
+# T-1144 ACCEPTANCE 9. 820 households stand `present_on_scene_date: uncertain`, and what
+# makes that a finding rather than a gap is a DATE: the last day the corpus can still see
+# the person. T-1159 classifies those presences by it and T-1172 re-admits them against
+# it, so the date is load-bearing for two tickets — and until 2026-09-18 it lived only in
+# the prose of the presence note, where the roster below reached for it with a regular
+# expression. A second representation of the same fact is the thing that drifts, and that
+# one found a date on the handful of notes that happened to print one.
+#
+# It is derived from the card's own evidence blocks now, written onto the card, and read
+# from there. The gate holds both halves of the contract: a leg under every uncertain
+# presence, and NO leg on a presence that has since been settled — the field is the
+# evidence under a verdict and may not outlive it. The mints rebuild the presence block
+# whole, so `tools/resident_mint_carry.py` carries the leg through them and its own
+# self-test asserts both the slot and the removal.
+step "every uncertain presence carries the dated evidence leg under it (T-1144)" \
+  python3 tools/derive_presence_evidence_leg.py --check
+
+selftest "…and the leg's tier, window and removal rules fire over their fixtures" \
+  python3 tools/derive_presence_evidence_leg.py --self-test
+
 # T-1159. The borderline roster is the OFFER reconstruction reads before it invents a
 # name: every name the research read and withheld from 1835, with the reason it was
 # withheld and what may be done with it. It is derived from the ledger and the resident
