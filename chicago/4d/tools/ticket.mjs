@@ -915,6 +915,16 @@ function reserveIdNum(startAt, count = 1) {
     const commit = claimCommit(id, 'mint', null);
     if (!commit) { return { ids: null, why: 'could not write a lock commit' }; }
     const push = gitTry(['push', 'origin', `${commit}:${ref}`, `--force-with-lease=${ref}:`]);
+    // A PUSH THAT CHANGED NOTHING NEVER RESERVED ANYTHING, whatever its exit status —
+    // the same guard `takeClaimLock` carries, and for a worse failure. Two runs that
+    // build a parentless empty-tree commit with the same forced identity in the same
+    // second produce the SAME SHA, and git answers the second `Everything up-to-date`,
+    // exit 0. `claimCommit`'s nonce should make that unreachable; the guard stays
+    // because if it ever is reached the loser is told it holds an id another run holds
+    // too, which is exactly the collision this whole mechanism exists to stop.
+    if (push.ok && /Everything up-to-date/i.test(push.err || '')) {
+      return { ids: null, why: 'the reservation push changed nothing' };
+    }
     if (push.ok) { taken.push(id); n += 1; continue; }
     if (isRefRejection(push.err)) { n += 1; continue; }   // somebody holds it — step past
     return { ids: null, why: (push.err || '').trim().split('\n').filter(Boolean).pop() || 'push failed' };
@@ -2053,19 +2063,35 @@ switch (cmd) {
     // ticket file is the reservation and the marker is litter.
     const idLocks = remoteBranches().filter((b) => /^idlock\/t-\d{4}$/.test(b.name));
     if (idLocks.length) {
-      const landed = idLocks.filter((b) => {
-        const id = b.name.replace(/^idlock\//, '').toUpperCase();
-        return tickets.some((t) => t.id === id);
+      // TWO WAYS A RESERVATION STOPS BEING ONE, and only the first was obvious.
+      //
+      //   landed    — the tree carries the ticket, so the ticket file IS the
+      //               reservation and the marker is litter.
+      //   abandoned — no tree anywhere carries it and the marker is older than a
+      //               run. The mint never became a ticket: a run died between
+      //               reserving and writing, or somebody probed the mechanism.
+      //               Swept by AGE here because possession can never arrive —
+      //               without this an abandoned lock is litter for ever, and it
+      //               also burns the id, since the next mint steps past a held ref.
+      const idOfLock = (b) => b.name.replace(/^idlock\//, '').toUpperCase();
+      const landed = idLocks.filter((b) => tickets.some((t) => t.id === idOfLock(b)));
+      const abandoned = idLocks.filter((b) => {
+        if (tickets.some((t) => t.id === idOfLock(b))) return false;
+        const age = branchAgeHours(b.sha);
+        return age !== null && age > RUN_HOURS;
       });
-      console.log(`\nID LOCKS — ${idLocks.length} held, ${landed.length} whose ticket this tree already carries`);
+      console.log(`\nID LOCKS — ${idLocks.length} held, ${landed.length} landed, ${abandoned.length} abandoned`);
       if (has('sweep')) {
-        for (const b of landed) {
+        for (const b of [...landed, ...abandoned]) {
           const ok = gitTry(['push', 'origin', '--delete', b.name]).ok;
           console.log(`  ${ok ? 'deleted' : 'could not delete'} ${b.name}`);
         }
-        if (!landed.length) console.log('  nothing to sweep — every reservation is still in flight');
-      } else if (landed.length) {
-        console.log(`  \`ticket.mjs claims --sweep\` deletes the ${landed.length} that have landed.`);
+        if (!landed.length && !abandoned.length) {
+          console.log('  nothing to sweep — every reservation is still in flight');
+        }
+      } else if (landed.length || abandoned.length) {
+        console.log(`  \`ticket.mjs claims --sweep\` deletes the ${landed.length + abandoned.length} `
+          + 'that are no longer reserving anything.');
       }
     }
     break;
