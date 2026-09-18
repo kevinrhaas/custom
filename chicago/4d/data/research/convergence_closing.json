@@ -1,6 +1,6 @@
 {
- "_doc": "T-1144 acceptance 6 — where every standing household, person and grade came from, and what was retired to get there. Derived by tools/report_convergence_closing.py; --check re-derives it.",
- "ticket": "T-1144",
+ "_doc": "T-1333 acceptance 6 — where every standing household, person and grade came from, and what was retired to get there. Derived by tools/report_convergence_closing.py; --check re-derives it.",
+ "ticket": "T-1333",
  "scene_date": "1835-07-01",
  "as_of": "2026-09-18",
  "standing": {
@@ -1476,5 +1476,292 @@
   "ticket": "T-1222",
   "why": "byte-identity is the wrong contract for a pass that is not the last writer of its own files: tools/synthesize_resident_research.py rewrites the letter_list_only cohort's grade, subtype and note after this mint runs, so re-deriving over the committed tree REVERTS that work. T-0662 read the drift and T-1228 holds the field-level ownership settlement it wants instead. data/research/check_gate_baseline.json carries the standing row."
  },
+ "measures": {
+  "households": 1258,
+  "persons": 1288,
+  "attested": 410,
+  "inferred": 875,
+  "reconstructed": 3,
+  "retired": 66,
+  "redirects_that_arrive": 66,
+  "cards_no_writer_derives": 79,
+  "invented_name_survivors": 5,
+  "letter_list_carried_out_of_cohort": 7,
+  "households_from_civic": 392,
+  "households_from_documented": 39,
+  "households_from_letter_list": 743,
+  "households_from_placed": 5,
+  "households_from_authored": 79,
+  "rebuilt_away_people_still_present": 0,
+  "uncertain_presences": 820,
+  "uncertain_presences_carrying_the_leg": 820,
+  "settled_presences_still_carrying_a_leg": 0
+ },
+ "rebuilt_away": {
+  "Mary Durbin": 0,
+  "John Simmons": 0,
+  "John Vincent": 0,
+  "Cery Logdson": 0
+ },
+ "baselines": [
+  {
+   "id": "convergence_opened",
+   "ref": "f7d090ebc",
+   "date": "2026-09-15",
+   "what": "The tree T-1144 opened on — the last commit of 2026-09-15, the day the parent ticket was written and its opening measurement taken. This is the baseline the CONVERGENCE is measured against.",
+   "recorded_readings": {
+    "audit_scene_window_trades_standing_rows": {
+     "value": 6,
+     "command": "python3 tools/audit_scene_window_trades.py --check",
+     "read_on": "2026-09-18",
+     "note": "T-1144 acceptance 5. Not derived by this report — read from the tool that owns the rule, at this commit, on the date above. The live end of the same measure is proved on every commit by that tool's own step in check.sh."
+    }
+   }
+  },
+  {
+   "id": "ticket_opened",
+   "ref": "0f3b6db5c",
+   "date": "2026-09-18",
+   "what": "The tree T-1333 opened on — the commit that split T-1144 into this ticket and T-1334. This is the baseline THIS TICKET's acceptance 2 names.",
+   "recorded_readings": {
+    "audit_scene_window_trades_standing_rows": {
+     "value": 0,
+     "command": "python3 tools/audit_scene_window_trades.py --check",
+     "read_on": "2026-09-18",
+     "note": "T-1144 acceptance 5, read at the commit that opened this ticket."
+    }
+   }
+  }
+ ],
+ "deltas": [
+  {
+   "measure": "households",
+   "now": 1258,
+   "at": {
+    "convergence_opened": 1281,
+    "ticket_opened": 1258
+   },
+   "change": {
+    "convergence_opened": -23,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "persons",
+   "now": 1288,
+   "at": {
+    "convergence_opened": 1305,
+    "ticket_opened": 1288
+   },
+   "change": {
+    "convergence_opened": -17,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "attested",
+   "now": 410,
+   "at": {
+    "convergence_opened": 419,
+    "ticket_opened": 410
+   },
+   "change": {
+    "convergence_opened": -9,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "inferred",
+   "now": 875,
+   "at": {
+    "convergence_opened": 886,
+    "ticket_opened": 875
+   },
+   "change": {
+    "convergence_opened": -11,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "reconstructed",
+   "now": 3,
+   "at": {
+    "convergence_opened": 0,
+    "ticket_opened": 3
+   },
+   "change": {
+    "convergence_opened": 3,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "retired",
+   "now": 66,
+   "at": {
+    "convergence_opened": 60,
+    "ticket_opened": 66
+   },
+   "change": {
+    "convergence_opened": 6,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "redirects_that_arrive",
+   "now": 66,
+   "at": {
+    "convergence_opened": 60,
+    "ticket_opened": 66
+   },
+   "change": {
+    "convergence_opened": 6,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "cards_no_writer_derives",
+   "now": 79,
+   "at": {
+    "convergence_opened": 79,
+    "ticket_opened": 79
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "invented_name_survivors",
+   "now": 5,
+   "at": {
+    "convergence_opened": 5,
+    "ticket_opened": 5
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "letter_list_carried_out_of_cohort",
+   "now": 7,
+   "at": {
+    "convergence_opened": 7,
+    "ticket_opened": 7
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "households_from_civic",
+   "now": 392,
+   "at": {
+    "convergence_opened": 413,
+    "ticket_opened": 392
+   },
+   "change": {
+    "convergence_opened": -21,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "households_from_documented",
+   "now": 39,
+   "at": {
+    "convergence_opened": 39,
+    "ticket_opened": 39
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "households_from_letter_list",
+   "now": 743,
+   "at": {
+    "convergence_opened": 745,
+    "ticket_opened": 743
+   },
+   "change": {
+    "convergence_opened": -2,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "households_from_placed",
+   "now": 5,
+   "at": {
+    "convergence_opened": 5,
+    "ticket_opened": 5
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "households_from_authored",
+   "now": 79,
+   "at": {
+    "convergence_opened": 79,
+    "ticket_opened": 79
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "rebuilt_away_people_still_present",
+   "now": 0,
+   "at": {
+    "convergence_opened": 4,
+    "ticket_opened": 0
+   },
+   "change": {
+    "convergence_opened": -4,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "uncertain_presences",
+   "now": 820,
+   "at": {
+    "convergence_opened": 832,
+    "ticket_opened": 820
+   },
+   "change": {
+    "convergence_opened": -12,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "uncertain_presences_carrying_the_leg",
+   "now": 820,
+   "at": {
+    "convergence_opened": 0,
+    "ticket_opened": 820
+   },
+   "change": {
+    "convergence_opened": 820,
+    "ticket_opened": 0
+   }
+  },
+  {
+   "measure": "settled_presences_still_carrying_a_leg",
+   "now": 0,
+   "at": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   },
+   "change": {
+    "convergence_opened": 0,
+    "ticket_opened": 0
+   }
+  }
+ ],
  "faults": []
 }

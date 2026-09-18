@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Where every standing household, person and grade came from (T-1144 acceptance 6).
+"""Where every standing household, person and grade came from (T-1333; T-1144 acceptance 6).
 
     python3 tools/report_convergence_closing.py             the accounting, read out
     python3 tools/report_convergence_closing.py --build     write the table and the report
     python3 tools/report_convergence_closing.py --check     it re-derives, and nothing drifted
     python3 tools/report_convergence_closing.py --self-test the rules below, held over fixtures
+    python3 tools/report_convergence_closing.py --closing-set  rebuild the five, in the
+                                                manifest's order, and re-derive each one
 
-WHAT THIS IS. T-1144's sixth acceptance asks the convergence pass to rebuild the five
+WHAT THIS IS. T-1333, the closing-rebuild half of T-1144's split. Its sixth acceptance asks the convergence pass to rebuild the five
 derived resident artefacts and then give "the exact household/person/grade deltas" and
 "every retired id's redirect". The five rebuilds are gated in check.sh already — the index
 by `rebuild_resident_index.py --check`, the sidecars by `compile_scene.py --all --check`,
@@ -16,14 +18,26 @@ so each of them is a fixed point that a lap re-proves. What has never existed is
 report: a reader who asks *what is this layer made of, and what did the passes retire to
 get there* has had to walk 1,258 cards and join them to a 66-row redirect table by hand.
 
-THE DELTA IS AN ACCOUNTING, NOT A DIFF AGAINST A DATE. A diff against a remembered
-yesterday would need a snapshot nothing derives, and a snapshot nothing derives is the
-exact failure the last pass found in `index.json`'s `merged` table. So the delta here is
-the one every card can be asked for directly: **which pass put this household in the tree**
-(`source_pass`, written by the mint that minted it), what each pass contributed, and what
-left — the 66 retirements with the redirect each one resolves to. Minted plus authored
-equals standing; retired plus standing equals everything the passes ever held. Both sums
-are asserted, so the table cannot quietly stop adding up.
+THE DELTAS ARE MEASURED, AND THE BASELINES ARE FROZEN. T-1333 is explicit that a count
+with no baseline is not a delta, so every measure here is stated against readings taken
+once over named commits and committed to
+`data/research/convergence_closing_baseline.json`: the tree T-1144 opened on
+(`f7d090ebc`, 2026-09-15) and the tree this ticket opened on (`0f3b6db5c`, 2026-09-18).
+Each was measured with THIS FILE'S OWN `build()`, checked out into a worktree, so the two
+ends of every delta are measured the same way. This report reads that file and never
+rewrites it — a baseline that moves is not a baseline.
+
+A measure an older baseline is silent on prints `not measured then`, not `0`: the tree was
+real and the reading was simply never taken, and a zero would be a claim nobody made. A
+measure a baseline records and this report stops producing is the other direction, and it
+is a fault, because a renamed measure loses its history in silence.
+
+BESIDE THE DELTAS, THE ACCOUNTING. Where the layer stands is the other question acceptance
+6 asks, and the answer is the one every card can be asked for directly: **which pass put
+this household in the tree** (`source_pass`, written by the mint that minted it), what each
+pass contributed, and what left — the 66 retirements with the redirect each one resolves
+to. Minted plus authored equals standing; retired plus standing equals everything the
+passes ever held. Both sums are asserted, so the table cannot quietly stop adding up.
 
 PERSONS ARE ATTRIBUTED TO THEIR HOUSEHOLD'S PASS, and that is stated rather than hidden: a
 person record carries a grade and no pass of its own, because a mint mints a household and
@@ -34,6 +48,9 @@ card's pass and named separately below, so the two readings never get confused.
 WHAT IT REFUSES. Four faults, each of which fails `--build` as well as `--check`, because
 writing one of them down publishes it:
 
+  * `baseline_missing` / `measure_lost_its_history` — the delta table stops being a delta
+    table, either because the frozen readings are unreadable or because a measure that has
+    history has been renamed out from under it.
   * `index_disagrees` — `data/residents/index.json`'s counts must equal the tree the cards
     make. The index is the file every reader and every renderer takes these numbers from;
     if it and the cards part company, everything below is arithmetic on a stale header.
@@ -73,11 +90,19 @@ DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 OUT = DATA / "research" / "convergence_closing.json"
+BASELINE = DATA / "research" / "convergence_closing_baseline.json"
 REPORT = ROOT / "docs" / "RESEARCH" / "convergence-closing-2026-09.md"
 
 SCENE_DATE = "1835-07-01"
-TICKET = "T-1144"
+TICKET = "T-1333"
+PARENT = "T-1144"
 AS_OF = "2026-09-18"
+
+# T-1333 acceptance 4. The four people T-1144 acceptance 3 rebuilt away: they rested only
+# on church readings whose `at_chicago` values are all false, so no Chicago source places
+# any of them in this town. The measure is their ABSENCE, and it is stated as a delta at
+# both ends rather than re-asserted from a spot reading.
+REBUILT_AWAY = ("Mary Durbin", "John Simmons", "John Vincent", "Cery Logdson")
 
 # The closed vocabulary of writers. `None` is not a pass: it is a card no mint minted.
 # Each mint is named with the tool that owns it so a reader can go and run the writer.
@@ -93,6 +118,14 @@ GRADES = ("attested", "inferred", "reconstructed")
 # The five artefacts acceptance 6 names, and the gate step that re-derives each. This is a
 # pointer table, not a second gate: check.sh runs these, and the report cites them so the
 # reader knows the counts below stand on a fixed point rather than on a lucky tree.
+#
+# `--closing-set` below is T-1333 acceptance 1: ONE rebuild of the whole set, in the order
+# `tools/derived_manifest.json` records, followed by each one's own re-derivation. The
+# manifest is the source of both the order and the commands — the acceptance's whole point
+# is that this is not five tools run by hand in an order nobody wrote down, so this mode
+# reads the order rather than restating it, and it fails if the set stops being five.
+CLOSING_SET_TOOLS = ("rebuild_resident_index.py", "report_convergence_closing.py",
+                     "compile_scene.py", "town_census.py", "export_resident_audit.py")
 FIXED_POINTS = [
     ("data/residents/index.json", "python3 tools/rebuild_resident_index.py --check"),
     ("the scene sidecars", "python3 tools/compile_scene.py --all --check"),
@@ -143,6 +176,64 @@ def unowned_kind(household: dict) -> str:
 
 def grades_of(household: dict) -> Counter:
     return Counter(person.get("grade") for person in household.get("persons", []))
+
+
+def deltas(baselines: list[dict], now: dict) -> list[dict]:
+    """One row per measure, with every baseline's reading beside the live one.
+
+    A measure a baseline is SILENT on prints `not measured then`, never 0: the older tree
+    was real, the reading was simply never taken over it, and writing a zero there would be
+    a claim nobody made. A measure a baseline names and the live report no longer produces
+    is the other direction and is a fault — a renamed measure loses its history silently.
+    """
+    rows = []
+    for key in now:
+        row = {"measure": key, "now": now[key], "at": {}}
+        for baseline in baselines:
+            before = baseline["measures"].get(key)
+            row["at"][baseline["id"]] = before
+            row.setdefault("change", {})[baseline["id"]] = (
+                None if before is None else now[key] - before)
+        rows.append(row)
+    return rows
+
+
+def orphaned_measures(baselines: list[dict], now: dict) -> list[tuple]:
+    """A measure a baseline records and this report no longer produces."""
+    return sorted({(b["id"], key) for b in baselines
+                   for key in b["measures"] if key not in now})
+
+
+def rebuilt_away_present(households: list[dict]) -> dict:
+    """T-1144 acceptance 3, as a number at each end. A name is PRESENT if any card or any
+    person on a card carries it; the acceptance is that all four read zero."""
+    found = {name: 0 for name in REBUILT_AWAY}
+    for household in households:
+        for person in household.get("persons", []):
+            name = (person.get("name") or "").strip()
+            for wanted in REBUILT_AWAY:
+                if name == wanted:
+                    found[wanted] += 1
+    return found
+
+
+def presence_legs(households: list[dict]) -> dict:
+    """T-1144 acceptance 9, as a number at each end: every household whose presence on the
+    scene date is `uncertain` carries the dated evidence leg that made it uncertain, and a
+    household that is NOT uncertain does not carry one. Both halves, because the field may
+    not outlive the verdict."""
+    uncertain = with_leg = settled_with_leg = 0
+    for household in households:
+        presence = household.get("present_on_scene_date") or {}
+        leg = presence.get("last_dated_appearance")
+        if presence.get("value") == "uncertain":
+            uncertain += 1
+            if leg is not None:
+                with_leg += 1
+        elif leg is not None:
+            settled_with_leg += 1
+    return {"uncertain": uncertain, "carrying_the_leg": with_leg,
+            "settled_but_still_carrying_one": settled_with_leg}
 
 
 def redirect_arrives(row: dict, live_households: set, live_persons: set) -> bool:
@@ -250,6 +341,16 @@ def build(households: list[dict] | None = None, index: dict | None = None) -> di
                           f"{row.get('merged_into_person')}, which is no live card",
             })
 
+    try:
+        _baselines = json.loads(BASELINE.read_text(encoding="utf-8"))["baselines"]
+    except (OSError, ValueError, KeyError):
+        _baselines = []
+        faults.append({
+            "fault": "baseline_missing", "household": None, "pass": None,
+            "detail": f"{BASELINE.name} is unreadable — a count with no baseline is not "
+                      f"a delta (T-1333 acceptance 2)",
+        })
+
     standing = {
         "households": len(households),
         "persons": len(live_persons),
@@ -285,6 +386,37 @@ def build(households: list[dict] | None = None, index: dict | None = None) -> di
         and not any(p.get("letter_list_only") for p in h.get("persons", []))
     ]
 
+    baselines = _baselines
+    measures = {
+        "households": standing["households"],
+        "persons": standing["persons"],
+        "attested": standing["by_grade"]["attested"],
+        "inferred": standing["by_grade"]["inferred"],
+        "reconstructed": standing["by_grade"]["reconstructed"],
+        "retired": standing["retired"],
+        "redirects_that_arrive": sum(1 for r in retirements if r["arrives"]),
+        "cards_no_writer_derives": len(unowned.get("authored_core", []))
+                                   + len(unowned.get("invented_name_survivor", [])),
+        "invented_name_survivors": len(unowned.get("invented_name_survivor", [])),
+        "letter_list_carried_out_of_cohort": len(carried_out),
+    }
+    for label in sorted(MINTS) + [AUTHORED]:
+        measures[f"households_from_{label}"] = by_pass.get(label, {}).get("households", 0)
+    rebuilt = rebuilt_away_present(households)
+    measures["rebuilt_away_people_still_present"] = sum(rebuilt.values())
+    legs = presence_legs(households)
+    measures["uncertain_presences"] = legs["uncertain"]
+    measures["uncertain_presences_carrying_the_leg"] = legs["carrying_the_leg"]
+    measures["settled_presences_still_carrying_a_leg"] = \
+        legs["settled_but_still_carrying_one"]
+
+    for baseline_id, key in orphaned_measures(_baselines, measures):
+        faults.append({
+            "fault": "measure_lost_its_history", "household": None, "pass": None,
+            "detail": f"baseline {baseline_id} records `{key}` and this report no longer "
+                      f"produces it — rename it back or add a row saying why it went",
+        })
+
     return {
         "_doc": f"{TICKET} acceptance 6 — where every standing household, person and "
                 f"grade came from, and what was retired to get there. Derived by "
@@ -302,6 +434,13 @@ def build(households: list[dict] | None = None, index: dict | None = None) -> di
                                                     key=lambda r: r["household"]),
         "fixed_points": [{"artefact": a, "verify": v} for a, v in FIXED_POINTS],
         "not_a_fixed_point": NOT_A_FIXED_POINT,
+        "measures": measures,
+        "rebuilt_away": rebuilt,
+        "baselines": [{"id": b["id"], "ref": b["ref"], "date": b["date"],
+                       "what": b["what"],
+                       "recorded_readings": b.get("recorded_readings", {})}
+                      for b in baselines],
+        "deltas": deltas(baselines, measures),
         "faults": sorted(faults, key=lambda f: (f["fault"], f["household"] or "",
                                                 f["detail"])),
     }
@@ -358,7 +497,66 @@ def report(doc: dict) -> str:
         f"tool in `--build` as well as `--check`, because the index is the header every "
         f"reader and every renderer takes these numbers from.",
         "",
-        "## 2. The cards no writer derives",
+        "## 2. The deltas, measured",
+        "",
+        f"A count with no baseline is not a delta. Each reading below was taken once over "
+        f"a named commit, with the same code that measures the live tree, and frozen into "
+        f"`data/research/convergence_closing_baseline.json` — this report reads that file "
+        f"and never rewrites it.",
+        "",
+    ] + [
+        f"* **`{b['id']}`** — `{b['ref']}`, {b['date']}. {b['what']}"
+        for b in doc["baselines"]
+    ] + [
+        "",
+        "| Measure | "
+        + " | ".join(f"{b['id']} ({b['date']})" for b in doc["baselines"])
+        + " | now | change since the convergence opened |",
+        "| --- | " + " ".join("---: |" for _ in doc["baselines"])
+        + " ---: | ---: |",
+    ] + [
+        f"| `{row['measure']}` | "
+        + " | ".join(
+            "not measured then" if row["at"][b["id"]] is None
+            else _n(row["at"][b["id"]]) for b in doc["baselines"])
+        + f" | {_n(row['now'])} | "
+        + ("—" if row["change"].get("convergence_opened") is None
+           else f"{row['change']['convergence_opened']:+,}") + " |"
+        for row in doc["deltas"]
+    ] + [
+        "",
+        f"**The right-hand column is what the convergence did, and three rows of it are "
+        f"acceptances this ticket was asked to state as deltas rather than repeat as spot "
+        f"readings.** `rebuilt_away_people_still_present` runs 4 → 0: Mary Durbin, John "
+        f"Simmons, John Vincent and Cery Logdson were on cards when T-1144 opened and hold "
+        f"no household or person record now (acceptance 3). "
+        f"`uncertain_presences_carrying_the_leg` runs 0 → "
+        f"{_n(doc['measures']['uncertain_presences_carrying_the_leg'])}: the dated evidence "
+        f"leg under every uncertain presence did not exist at the baseline and is now "
+        f"derived on all {_n(doc['measures']['uncertain_presences'])} of them, with "
+        f"{_n(doc['measures']['settled_presences_still_carrying_a_leg'])} settled presences "
+        f"still carrying one, because the field may not outlive the verdict (acceptance 9).",
+        "",
+        f"**Every delta against `ticket_opened` is zero**, which is the other half of the "
+        f"claim: the resident layer has not moved since this ticket was written, so the "
+        f"accounting below describes a tree that is standing still rather than one being "
+        f"measured mid-rebuild.",
+        "",
+    ] + [
+        "Acceptance 5 is the one row this report does not derive, and it says so rather "
+        "than quietly carrying it: "
+        + "; ".join(
+            f"`audit_scene_window_trades.py --check` read "
+            f"{b['recorded_readings']['audit_scene_window_trades_standing_rows']['value']} "
+            f"standing row(s) at `{b['ref']}`"
+            for b in doc["baselines"]
+            if "audit_scene_window_trades_standing_rows" in b["recorded_readings"])
+        + ". Those are recorded readings from the tool that owns the rule. The LIVE end of "
+          "that measure needs no recording here: that same tool's `--check` is its own step "
+          "in `check.sh` and runs on every commit, so a standing row coming back is red "
+          "before this report could go stale.",
+        "",
+        "## 3. The cards no writer derives",
         "",
     ]
     core = doc["unowned"].get("authored_core", [])
@@ -396,7 +594,7 @@ def report(doc: dict) -> str:
             "",
         ]
     out += [
-        "## 3. The reconstructed grade, and who is allowed to write it",
+        "## 4. The reconstructed grade, and who is allowed to write it",
         "",
     ]
     rc = doc["reconstructed_persons"]
@@ -420,7 +618,7 @@ def report(doc: dict) -> str:
             f"{'yes' if row['has_replaceable_by'] else 'NO'} |")
     out += [
         "",
-        "## 4. Every retired id and where it goes",
+        "## 5. Every retired id and where it goes",
         "",
         f"**{_n(len(doc['retirements']))} retirements**, each with the merge rule that "
         f"made it and the ticket that ruled it. `Arrives` is asked fresh here: the "
@@ -441,7 +639,7 @@ def report(doc: dict) -> str:
     carried = doc["letter_list_carried_out_of_cohort"]
     out += [
         "",
-        "## 5. The one derivation that is not a fixed point",
+        "## 6. The one derivation that is not a fixed point",
         "",
         f"The five artefacts acceptance 6 names all re-derive, and check.sh proves each "
         f"one on every run:",
@@ -451,6 +649,21 @@ def report(doc: dict) -> str:
     ]
     for row in doc["fixed_points"]:
         out.append(f"| {row['artefact']} | `{row['verify']}` |")
+    out += [
+        "",
+        "**Four of the five are in `tools/derived_manifest.json`, and the fifth cannot be** "
+        "— which T-1333 acceptance 5 asks to be recorded as a finding rather than a "
+        "footnote. `rebuild_resident_index.py`, `compile_scene.py`, `town_census.py` and "
+        "`export_resident_audit.py` each carry a manifest step, and this report carries one "
+        "beside them. The published residents layer has none because its output is the "
+        "publish mirror, which has been untracked by design since T-0938 — the manifest "
+        "resolves committed files, and there is no committed file here to resolve. Its "
+        "freshness is gated instead by `check_published_residents.mjs`, which asserts that "
+        "the shipped minified layer parses to a value deep-equal to its source, file for "
+        "file. So the set is covered; it is covered by two mechanisms rather than one, and "
+        "that is worth knowing before somebody adds a manifest row that would resolve "
+        "nothing.",
+    ]
     nfp = doc["not_a_fixed_point"]
     out += [
         "",
@@ -474,7 +687,7 @@ def report(doc: dict) -> str:
         out.append(f"| `{row['household']}` | {row['head'] or '—'} | {grades} |")
     out += [
         "",
-        "## 6. Faults",
+        "## 7. Faults",
         "",
     ]
     if doc["faults"]:
@@ -661,14 +874,87 @@ def self_test() -> int:
     ok("the committed tree itself raises no fault", not build()["faults"])
     doc = build()
 
+    base = [{"id": "then", "ref": "abc1234", "date": "2026-01-01", "what": "a fixture",
+             "measures": {"households": 10, "gone": 1}}]
+    rows = {r["measure"]: r for r in deltas(base, {"households": 12, "added": 3})}
+    ok("a measure both ends hold gets its arithmetic",
+       rows["households"]["at"]["then"] == 10 and rows["households"]["change"]["then"] == 2)
+    ok("a measure the baseline is silent on reads `not measured then`, never 0",
+       rows["added"]["at"]["then"] is None and rows["added"]["change"]["then"] is None)
+    ok("a measure the baseline holds and the report dropped loses its history, and that "
+       "is a fault",
+       orphaned_measures(base, {"households": 12, "added": 3}) == [("then", "gone")])
+    ok("…and nothing is orphaned when the report still produces every recorded measure",
+       orphaned_measures(base, {"households": 12, "gone": 1}) == [])
+
+    ok("a rebuilt-away person still on a card is counted",
+       rebuilt_away_present([{"persons": [{"name": "Mary Durbin"}]}])["Mary Durbin"] == 1)
+    ok("…and a name that merely contains one is not",
+       rebuilt_away_present([{"persons": [{"name": "Mary Durbinson"}]}])["Mary Durbin"] == 0)
+    ok("the committed tree holds none of the four", sum(build()["rebuilt_away"].values()) == 0)
+
+    legs = presence_legs([
+        {"present_on_scene_date": {"value": "uncertain", "last_dated_appearance": {}}},
+        {"present_on_scene_date": {"value": "uncertain"}},
+        {"present_on_scene_date": {"value": "present", "last_dated_appearance": {}}},
+        {"present_on_scene_date": {"value": "present"}},
+    ])
+    ok("an uncertain presence carrying its leg is counted on both columns",
+       legs["uncertain"] == 2 and legs["carrying_the_leg"] == 1)
+    ok("a settled presence that kept a leg is counted, because the field may not outlive "
+       "the verdict", legs["settled_but_still_carrying_one"] == 1)
+
     # The report is a pure function of the table: the same doc must render the same bytes,
     # or --check's report comparison is meaningless.
     ok("the report renders identically from the same table",
        report(doc) == report(json.loads(json.dumps(doc))))
 
-    total = 22
+    total = 31
     print(f"self-test: {total - len(failures)}/{total} assertions hold")
     return 1 if failures else 0
+
+
+def closing_set() -> int:
+    """T-1333 acceptance 1, run rather than argued."""
+    import subprocess
+    import time
+
+    manifest = json.loads((ROOT / "tools" / "derived_manifest.json").read_text("utf-8"))
+    steps = [s for s in manifest["steps"]
+             if any(tool in " ".join(s["command"]) for tool in CLOSING_SET_TOOLS)]
+    if len(steps) != len(CLOSING_SET_TOOLS):
+        print(f"FAIL the closing set is {len(steps)} manifest step(s), not "
+              f"{len(CLOSING_SET_TOOLS)} — a member left the manifest, which T-1333 "
+              f"acceptance 5 calls a finding and not a footnote", file=sys.stderr)
+        return 1
+
+    print(f"{len(steps)} closing-set step(s), in the manifest's order:")
+    for step in steps:
+        print("   ", " ".join(step["command"]))
+
+    def run(label, phase):
+        print(f"\n--- {label} ---")
+        for step in steps:
+            command = step.get(phase)
+            if not command:
+                print(f"  --  {' '.join(step['command'])} declares no {phase}")
+                continue
+            started = time.time()
+            result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+            verdict = "ok  " if result.returncode == 0 else "FAIL"
+            print(f"  {verdict} {' '.join(command)}  {time.time() - started:.1f}s")
+            if result.returncode:
+                print(result.stdout[-1500:], result.stderr[-1500:], file=sys.stderr)
+                return 1
+        return 0
+
+    if run("one rebuild, in the manifest's order", "command"):
+        return 1
+    if run("and every one re-derives on the tree it just wrote", "verify"):
+        return 1
+    print("\nCLOSING SET: PASS — rebuilt in the manifest's order, and every member "
+          "re-derives afterwards.")
+    return 0
 
 
 def main() -> int:
@@ -677,11 +963,14 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--self-test", dest="self_test", action="store_true")
     parser.add_argument("--report", action="store_true")
+    parser.add_argument("--closing-set", dest="closing_set", action="store_true")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.closing_set:
+        return closing_set()
     if args.check:
         return check(quiet=args.quiet)
     if args.report:

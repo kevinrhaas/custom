@@ -1,0 +1,89 @@
+{
+ "_doc": "T-1333 acceptance 2: the frozen readings the closing accounting states its deltas AGAINST. A count with no baseline is not a delta, and a baseline recomputed from git history is not reproducible in a shallow clone — so each reading is taken once, at a named commit, and committed here. tools/report_convergence_closing.py reads this file and NEVER rewrites it.",
+ "_how_taken": "Check the named commit out into a worktree, copy tools/report_convergence_closing.py into it, and call build()['measures'] — the same code that measures the live tree, so the two ends of every delta are measured the same way. Recorded readings carry their own command instead.",
+ "_the_rule": "A baseline row is FROZEN. It is a reading of a tree that existed, and it is never re-derived, re-fitted or quietly corrected: if it was wrong it is wrong in the record, and a later row says so. Adding a measure to the report leaves the older baselines silent on it, which the report prints as `not measured then` rather than as a zero — a zero would be a claim nobody made.",
+ "baselines": [
+  {
+   "id": "convergence_opened",
+   "ref": "f7d090ebc",
+   "date": "2026-09-15",
+   "what": "The tree T-1144 opened on — the last commit of 2026-09-15, the day the parent ticket was written and its opening measurement taken. This is the baseline the CONVERGENCE is measured against.",
+   "measures": {
+    "households": 1281,
+    "persons": 1305,
+    "attested": 419,
+    "inferred": 886,
+    "reconstructed": 0,
+    "retired": 60,
+    "redirects_that_arrive": 60,
+    "cards_no_writer_derives": 79,
+    "invented_name_survivors": 5,
+    "letter_list_carried_out_of_cohort": 7,
+    "households_from_civic": 413,
+    "households_from_documented": 39,
+    "households_from_letter_list": 745,
+    "households_from_placed": 5,
+    "households_from_authored": 79,
+    "rebuilt_away_people_still_present": 4,
+    "uncertain_presences": 832,
+    "uncertain_presences_carrying_the_leg": 0,
+    "settled_presences_still_carrying_a_leg": 0
+   },
+   "rebuilt_away": {
+    "Mary Durbin": 1,
+    "John Simmons": 1,
+    "John Vincent": 1,
+    "Cery Logdson": 1
+   },
+   "recorded_readings": {
+    "audit_scene_window_trades_standing_rows": {
+     "value": 6,
+     "command": "python3 tools/audit_scene_window_trades.py --check",
+     "read_on": "2026-09-18",
+     "note": "T-1144 acceptance 5. Not derived by this report — read from the tool that owns the rule, at this commit, on the date above. The live end of the same measure is proved on every commit by that tool's own step in check.sh."
+    }
+   }
+  },
+  {
+   "id": "ticket_opened",
+   "ref": "0f3b6db5c",
+   "date": "2026-09-18",
+   "what": "The tree T-1333 opened on — the commit that split T-1144 into this ticket and T-1334. This is the baseline THIS TICKET's acceptance 2 names.",
+   "measures": {
+    "households": 1258,
+    "persons": 1288,
+    "attested": 410,
+    "inferred": 875,
+    "reconstructed": 3,
+    "retired": 66,
+    "redirects_that_arrive": 66,
+    "cards_no_writer_derives": 79,
+    "invented_name_survivors": 5,
+    "letter_list_carried_out_of_cohort": 7,
+    "households_from_civic": 392,
+    "households_from_documented": 39,
+    "households_from_letter_list": 743,
+    "households_from_placed": 5,
+    "households_from_authored": 79,
+    "rebuilt_away_people_still_present": 0,
+    "uncertain_presences": 820,
+    "uncertain_presences_carrying_the_leg": 820,
+    "settled_presences_still_carrying_a_leg": 0
+   },
+   "rebuilt_away": {
+    "Mary Durbin": 0,
+    "John Simmons": 0,
+    "John Vincent": 0,
+    "Cery Logdson": 0
+   },
+   "recorded_readings": {
+    "audit_scene_window_trades_standing_rows": {
+     "value": 0,
+     "command": "python3 tools/audit_scene_window_trades.py --check",
+     "read_on": "2026-09-18",
+     "note": "T-1144 acceptance 5, read at the commit that opened this ticket."
+    }
+   }
+  }
+ ]
+}
