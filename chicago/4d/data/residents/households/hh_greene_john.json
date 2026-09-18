@@ -22,9 +22,21 @@
   "note": "Nothing reached names a wife or children at the post. Inferred rather than asserted."
  },
  "origin": {
-  "value": null,
+  "value": "The Mid-Atlantic states",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
+  "basis": {
+   "kind": "model",
+   "id": "origin",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
+  },
+  "seed": "hh_greene_john:origin_region",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says where this household came from"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
   "value": "Ordered to command the post",

@@ -13,6 +13,13 @@
   "note": "The year the Couches bought the Tremont, which is the earliest date either source puts them at Chicago. It is a purchase date standing in for an arrival date and it is graded accordingly.",
   "precision": "year"
  },
+ "arrival_year": {
+  "value": 1834,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "TWO STATEMENTS, AND THE CONTEMPORARY ONE WINS. This household's arrival block reads 1834 from the evidence that put it in this layer; the same man registered “1836,” at the Calumet Club on the roll of 1879. The year carried here is the layer's, because a recollection set down forty-four years later does not outrank a record made nearer the time — and the roll's row is kept as it was read in data/research/old_settlers/people.json rather than corrected to agree.",
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
@@ -22,9 +29,14 @@
   "note": "Two brothers are named in the purchase. Whether they travelled together, and whether either brought a family, is not stated."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "New York.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “New York.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
   "value": "To buy and run a hotel in a booming town",

@@ -14,20 +14,46 @@
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 25 March 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1835,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "THE MAN'S OWN RECOLLECTION, NOT A CONTEMPORARY RECORD. He registered at the Calumet Club on the roll of 1879 and gave 1835, April, as his date of coming to Chicago — forty-four years after the fact. The roll's own `arrival_year_basis` says it dates the claim and does not prove it, so the year is carried at `inferred` and the household's `arrival` block keeps the bound the contemporary evidence sets.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Virginia.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “Virginia.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_arrival_cohort",
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1835) is the only thing about it this value rests on."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

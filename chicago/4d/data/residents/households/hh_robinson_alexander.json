@@ -26,9 +26,20 @@
   "note": "Andreas states both parents and the birthplace, and the route by way of the St Joseph in Michigan, where he traded and married before coming here."
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "The country trade at the forks",
   "confidence": "reconstructed",
-  "note": "NOT ATTESTED, and the question is differently shaped for this household than for the emigrant ones. Robinson was here before the town was; asking why he 'came' imports a frame that fits a New England merchant and not a man whose people the land belonged to. The field is left null on purpose rather than filled with a trader's motive."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as trader, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.the_country_trade — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": "robinson_caldwell_cabins",

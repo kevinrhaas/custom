@@ -120,6 +120,13 @@ NOT_ASSERTED = (None, "", "none_recorded")
 # attribute's own definition read back as a search; nothing here is a prediction.
 REPLACEABLE_BY = {
     "arrival": ("person", "a dated source that says when this person came to Chicago"),
+    # T-1169. The YEAR a household is carried at, beside the bound its `arrival` block
+    # holds — for 1,196 households that block is a `not_later_than` and dates a letter,
+    # not a coming. Written only by stage `attribute_fill_arrival` of the reconstruction
+    # programme, which supplies its own basis and seed per value; these are the defaults
+    # the migration would use on a block that arrived without them.
+    "arrival_year": ("person", "a dated source that says which year this household came "
+                               "to Chicago"),
     "origin": ("person", "a source that says where this person came from"),
     "reason_for_coming": ("person", "a source that says why this person came"),
     "party_size_on_arrival": ("household", "a source that counts the party this household arrived in"),
@@ -143,6 +150,20 @@ BASIS_RULE = {
     "arrival": ("arrival_earliest_year_forced",
                 "No source dates the coming. The value is the earliest year the committed "
                 "evidence forces, carried at the precision the note states."),
+    # T-1169. Both rules stage `attribute_fill_arrival` argues a reason under name
+    # themselves on the block; this is the default for a reason that reached the tier
+    # without one, and it says the same thing both of those do.
+    "reason_for_coming": ("reason_not_apportioned",
+                          "No source says why this household came. The value names the "
+                          "documented draws the household's trade or season answered and "
+                          "chooses among them nowhere: the town model apportions the town "
+                          "between the land sales, the canal and the harbour works in no "
+                          "place, and neither does this."),
+    "arrival_year": ("arrival_year_drawn_within_the_bound",
+                     "No source dates the coming. The year is drawn from the arrival years "
+                     "the known layer records, truncated at this household's own documented "
+                     "bound, and it is a property of that distribution rather than a finding "
+                     "about this household."),
     "origin": ("origin_uncited_literature",
                "The origin is repeated in the Chicago literature and could not be traced to "
                "a source this project holds, so it is carried as a conjecture that cites "
@@ -328,14 +349,39 @@ def lift(card_id: str, path: str, block: dict) -> dict:
     if "tier" not in out:
         out["tier"] = tier
     if tier == "reconstructed":
-        rule = BASIS_RULE_BY_CARD.get((card_id, path)) or BASIS_RULE.get(path)
+        # A BLOCK THAT BROUGHT ITS OWN WORKING KEEPS IT (T-1169). The tables below are
+        # the MIGRATION's defaults: they exist for the values that reached this tier
+        # before the shape did, one argument per attribute, because those blocks say
+        # nothing about where they came from and somebody had to write it down. A block
+        # a reconstruction stage wrote is the opposite case — it carries the model row
+        # it was drawn from and the seed that redraws it, per value — and overwriting
+        # that with an attribute-wide rule published 1,182 drawn years as though they
+        # had been argued, and dropped every seed. The default is a fallback, not an
+        # override.
+        own = block.get("basis")
+        if isinstance(own, dict) and own.get("kind") in BASIS_KINDS and str(
+                own.get("id") or "").strip():
+            out["basis"] = own
+            if block.get("seed") is not None:
+                out["seed"] = block["seed"]
+            own_rep = block.get("replaceable_by")
+            if isinstance(own_rep, dict) and own_rep.get("kind") in REPLACEABLE_KINDS:
+                out["replaceable_by"] = own_rep
+                return out
+        else:
+            rule = BASIS_RULE_BY_CARD.get((card_id, path)) or BASIS_RULE.get(path)
+            if rule is None:
+                raise SystemExit(
+                    f"FAIL {path}: a reconstructed value on an attribute with no rule and no "
+                    f"replacement row. Add it to BASIS_RULE/REPLACEABLE_BY in "
+                    f"tools/migrate_attribute_tiers.py — this tool will not invent one.")
+            out["basis"] = {"kind": "rule", "id": rule[0], "note": rule[1]}
         rep = REPLACEABLE_BY.get(path)
-        if rule is None or rep is None:
+        if rep is None:
             raise SystemExit(
                 f"FAIL {path}: a reconstructed value on an attribute with no rule and no "
                 f"replacement row. Add it to BASIS_RULE/REPLACEABLE_BY in "
                 f"tools/migrate_attribute_tiers.py — this tool will not invent one.")
-        out["basis"] = {"kind": "rule", "id": rule[0], "note": rule[1]}
         out["replaceable_by"] = {"kind": rep[0], "match": rep[1]}
     return out
 

@@ -18,9 +18,21 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
+  "value": "New York State",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
+  "basis": {
+   "kind": "model",
+   "id": "origin",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
+  },
+  "seed": "hh_blodgett_tyler_k:origin_region",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says where this household came from"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
   "value": "To open a brickyard where there was none",

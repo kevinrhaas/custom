@@ -26,9 +26,20 @@
   "note": "'Arriving from Vermont on 8 October 1833', per data/structures/pierce_blacksmith_shop.json's reading of Andreas."
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A mechanic's trade in a town that had few of it",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as blacksmith, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_mechanics_trade — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

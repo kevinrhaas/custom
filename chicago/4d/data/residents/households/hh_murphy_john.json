@@ -12,6 +12,23 @@
   "note": "NOT AN ARRIVAL IN CHICAGO - AN ARRIVAL IN THE HOUSE. What August 1834 dates is the Murphys taking charge of the Exchange Coffee House, and Andreas says nothing about when they reached the town. The value is carried at not_later_than precision for that reason: they were here by 1 August 1834, and possibly long before.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1834,
+  "confidence": "reconstructed",
+  "tier": "reconstructed",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1834-08-01 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
+  "basis": {
+   "kind": "model",
+   "id": "arrival",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1834."
+  },
+  "seed": "hh_murphy_john:arrival_year",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says which year this household came to Chicago"
+  },
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
@@ -21,9 +38,20 @@
   "note": "Two is the number of people the source names taking charge of the house. It is a count of the keepers, not of a travelling party, and no children are mentioned."
  },
  "origin": {
-  "value": null,
+  "value": "Ireland",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THE NAME, AND A SURNAME IS NOT A NATIONALITY. This household's surname is carried by the irish pool in data/reconstruction/1835_invented_name_pools.json and by no other pool, and that pool's `evidence` field states what this dataset attests about who bore those names in this town. The French colonial value names a COUNTRY OF ORIGIN and no community membership. The pool it comes from is labelled 'French colonial and metis'; saying of anybody in this town that they were Metis or Native is stage `underdocumented`'s (T-1177) alone, under the standing Indigenous-history constraint AGENTS.md sets, and is not said here.",
+  "basis": {
+   "kind": "rule",
+   "id": "origin_from_surname_community",
+   "note": "The one community pool that carries this surname points at an origin more sharply than a draw over a roll of seventy births does."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says where this household came from"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
   "value": "To keep a new hotel on Lake Street",

@@ -174,6 +174,7 @@ MASTER = DATA / "research" / "residents" / "identity_master.json"
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from carry_stage_blocks import carry  # noqa: E402  (T-1169; a mint owns its record, a reconstruction stage owns its blocks)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
@@ -1040,7 +1041,10 @@ def build(preload: dict | None = None):
             raise SystemExit(f"two identities mint the same household id {doc['id']}")
         taken.add(doc["id"])
         taken.add(doc["persons"][0]["id"])
-        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
+        # T-1169. The record is this pass's; the blocks a reconstruction stage
+        # marked are that stage's, and are carried through rather than derived
+        # away. See tools/carry_stage_blocks.py for why both passes are right.
+        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(carry(doc), 1)
 
     # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
     # keep every other row verbatim, so a household no pass owned could be regraded

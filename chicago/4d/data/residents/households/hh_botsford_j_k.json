@@ -13,20 +13,46 @@
   "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. The corpus first prints this person at the Democrat of 10 September 1834, column 15, so they are in the town's paper by 1834-02-18 and at no stated time before it; nothing reached says when they came. Last printed 1834-12-03.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "THE MAN'S OWN RECOLLECTION, NOT A CONTEMPORARY RECORD. He registered at the Calumet Club on the roll of 1879 and gave 1833, as his date of coming to Chicago — forty-four years after the fact. The roll's own `arrival_year_basis` says it dates the claim and does not prove it, so the year is carried at `inferred` and the household's `arrival` block keeps the bound the contemporary evidence sets.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Connecticut.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “Connecticut.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A store for the traffic of a town filling up",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as grocer, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_store_for_the_traffic — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

@@ -27,9 +27,20 @@
   "note": "THE FIELD IS A CHAIN, AND MONTREAL ALONE WOULD HAVE BEEN THE WRONG END OF IT. Hurlbut's Chicago Antiquities (1881) pages 28-36 gives both ends in one sentence: \"He was born in Windsor, Vt., in 1802 and parents were Elizur and Abigail (Sage) Hubbard\", and \"Mr. Hubbard left Montreal, were his parents then lived, May 13, 1818\" (bk_afc_004). Montreal is where his PARENTS were living in 1818 and the place he departed from as an indentured clerk of sixteen; it is a waypoint on the way here, not the place he came from, and this record declines to write it on its own. The compound form is this dataset's own idiom for the case and not an invention for this card: hh_maxwell_philip carries \"Sackett's Harbor, New York; born at Guilford, Vermont\", hh_dole_george_w \"Connecticut, by way of Detroit\", and hh_egan_william_b traces nine places in one value under a note that says in terms that \"'origin' for this population is often a chain\". WHAT THE SECOND SOURCE ADDS, AND WHAT IT DOES NOT. The Calumet Club's register of 27 May 1879 prints this man's own entry with a birthplace column - \"Hubbard, Gurdon S. | 1818, Oct. 1, | Windsor, Vt. | 76 | 243 White St., Chicago.\" (os1879r078, data/research/old_settlers/people.json, read off the page images of Early Chicago pages 84-90). So Windsor stands on two independent and differently mediated readings - a compiler's prose of 1881 and the man's own hand in 1879 - which is why it leads the value. It does not lift the grade: under the ratified ladder (T-0513) a later recollection corroborates and dates and cannot lift a rung by itself, and the Hurlbut sentence is the rung-4 compiler's layer that data/sources/chicago_antiquities_american_fur_co.json forbids reading as period evidence. Two recollections agreeing is still two recollections. WHAT IS NOT WRITTEN HERE. Hubbard did not arrive as a household at all - he came in 1818 as an American Fur Company clerk, seventeen years before the scene, and whatever household stands under his name in 1835 is not the one that left Montreal - so `party_size_on_arrival` and `reason_for_coming` are untouched and stay unattested. THE PARENTS THE SAME SENTENCE NAMES ARE WRITTEN HERE, IN THIS NOTE, AND THAT IS THE WHOLE OF WHERE THEY GO. Elizur and Abigail (Sage) Hubbard were living in Montreal in 1818, were never in this scene, and have no household and no person id in this dataset. T-0849 asked whether `kin[]` should grow a shape for a relative outside the town - a row with `household` null and the source's own string in its place - and ruled on 2026-09-10 that it should not: every rule `kin[]` enforces is a rule about the far end, so a row with no far end is a kin row with the checked part removed, and what is left is a graded name, which is a note. So they are a note, at the grade and on the citation this field already carries - inferred, on Hurlbut's rung-4 compiler prose - which is the same footing a kin row could have claimed and no more. This is the idiom the `birth_year` note below uses for the birthplace and hh_harmon_elijah_d and hh_porter_jeremiah use for theirs; docs/PROVENANCE.md states it as a general rule and tools/validate.py refuses the null-household row in the ruling's own words. (T-0753 wrote this field; T-0849 closed the clause it stopped at, closing what T-0594's acceptance held out.)"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "The carrying trade at the head of the lake",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as packer, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.the_carrying_trade — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

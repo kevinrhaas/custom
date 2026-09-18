@@ -53,12 +53,12 @@
   "roster_offered": {
     "total": 1490,
     "by_class": {
-      "R1_in_window_uncertain": 814,
+      "R1_in_window_uncertain": 805,
       "R2_in_window_single_source": 40,
       "R3_1834_return_or_muster": 28,
       "R4_surname_only_census": 424,
       "R5_later_only_backprojectable": 55,
-      "R6_native_metis_black": 129
+      "R6_native_metis_black": 138
     },
     "tickets": {
       "R1_in_window_uncertain": "T-1172",
