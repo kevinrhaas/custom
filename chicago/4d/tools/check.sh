@@ -2090,6 +2090,15 @@ step "a claim that outlived the window is work, and a merged branch is still lit
 step "a split keeps its claim, and the queue drops only finished work and regains what a merge lost" \
   node tools/test_ticket_claim_split.mjs
 
+# A GATED WRITER BELONGS IN THE MANIFEST (T-1282, owner 2026-09-18). A tool this gate runs
+# with --check, and that can also write, produces DERIVED content by definition — so if
+# derived_manifest.json has never heard of it, rederive.mjs never runs it, the lap leaves
+# every open PR stale and this gate goes red with no automated remedy. That cost four
+# separate hand-fixes on the night of 2026-09-17. The rule was already written in the
+# manifest's preamble and did not hold, so it is a step now.
+step "every gated writer is in the derived manifest, or exempted in writing" \
+  node tools/audit_manifest_coverage.mjs
+
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
 # T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to
