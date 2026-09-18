@@ -26,7 +26,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1283
+   "n": 1286
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -48,7 +48,7 @@
   "residents_matched_one_entry": 164,
   "residents_ambiguous": 11,
   "residents_contested": 4,
-  "residents_surname_only_refused": 263,
+  "residents_surname_only_refused": 266,
   "voters_matched_one_entry": 122,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
@@ -5643,6 +5643,11 @@
     "rule": "The surname 'Adams' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Elizabeth Adams'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Ellen Hamilton",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Hamilton' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Ellen Hamilton'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Emeline Egan",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Egan' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Emeline Egan'. A surname-only agreement is a refusal."
@@ -6433,6 +6438,11 @@
     "rule": "The surname 'Powers' is in Fergus 1839 and no entry under it carries the initial 'T' of 'T. W. Powers'. A surname-only agreement is a refusal."
    },
    {
+    "name": "The Harmon daughter later known as Mrs A. G. Burley",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Burley' is in Fergus 1839 and no entry under it carries the initial 'T' of 'The Harmon daughter later known as Mrs A. G. Burley'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Tho's Allison",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Allison' is in Fergus 1839 and no entry under it carries the initial 'T' of \"Tho's Allison\". A surname-only agreement is a refusal."
@@ -6496,6 +6506,11 @@
     "name": "Watson M Snow",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Snow' is in Fergus 1839 and no entry under it carries the initial 'W' of 'Watson M Snow'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Welthyan Loomis Harmon",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Harmon' is in Fergus 1839 and no entry under it carries the initial 'W' of 'Welthyan Loomis Harmon'. A surname-only agreement is a refusal."
    },
    {
     "name": "William A Bell",

@@ -152,7 +152,16 @@ RULES = {
     },
     "the_enrichment_names_kin_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        # WAS T-1170 UNTIL T-1313 CLOSED ON 2026-09-18. That ticket was SPLIT into
+        # T-1312 (read and rule the named relatives), T-1313 (seat them) and T-1314
+        # (reconstruct the ones only counted), and with the last of the three done the
+        # parent is spent work — a unit deferred to it is stranded exactly as it would
+        # be behind a closed ticket (T-1237). The three children do not cover these
+        # units: they answered the relatives who are NOBODY in this dataset, and each
+        # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
+        # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
+        # between two cards rather than a person to seat, which is T-1320.
+        "ticket": "T-1320",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -347,7 +356,16 @@ RULES = {
     },
     "the_family_column_names_kin": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        # WAS T-1170 UNTIL T-1313 CLOSED ON 2026-09-18. That ticket was SPLIT into
+        # T-1312 (read and rule the named relatives), T-1313 (seat them) and T-1314
+        # (reconstruct the ones only counted), and with the last of the three done the
+        # parent is spent work — a unit deferred to it is stranded exactly as it would
+        # be behind a closed ticket (T-1237). The three children do not cover these
+        # units: they answered the relatives who are NOBODY in this dataset, and each
+        # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
+        # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
+        # between two cards rather than a person to seat, which is T-1320.
+        "ticket": "T-1320",
         "statement": (
             "The unit is the paper's own MARRIED or DIED column, printed under that "
             "heading: it names a bride and a groom, or a decedent and the survivor they "
@@ -358,7 +376,16 @@ RULES = {
     },
     "the_register_entry_names_kin": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        # WAS T-1170 UNTIL T-1313 CLOSED ON 2026-09-18. That ticket was SPLIT into
+        # T-1312 (read and rule the named relatives), T-1313 (seat them) and T-1314
+        # (reconstruct the ones only counted), and with the last of the three done the
+        # parent is spent work — a unit deferred to it is stranded exactly as it would
+        # be behind a closed ticket (T-1237). The three children do not cover these
+        # units: they answered the relatives who are NOBODY in this dataset, and each
+        # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
+        # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
+        # between two cards rather than a person to seat, which is T-1320.
+        "ticket": "T-1320",
         "statement": (
             "The entry's own `cells.role` puts this person in the KIN of a dated "
             "sacrament at Chicago -- the child, the father, the mother, the groom, the "
