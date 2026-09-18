@@ -1,7 +1,7 @@
 ---
 id: T-1158
 title: Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-16
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 7:44:21 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35292169604
 ---
 
 The owner, 2026-09-17: *"note for each attribute of each person what is attested, inferred or
