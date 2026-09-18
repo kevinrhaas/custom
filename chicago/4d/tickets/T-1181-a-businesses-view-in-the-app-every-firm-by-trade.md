@@ -1,7 +1,7 @@
 ---
 id: T-1181
 title: A Businesses view in the app: every firm by trade, street and tier, with its proprietors, staff, dated locations and location limit on one card — the visible surface for the audit and reconstruction bands
-state: claimed
+state: split
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: run 9/18/2026, 8:47:07 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T13:49:28.215Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35351828193
 ---
 

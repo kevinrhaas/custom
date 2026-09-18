@@ -74,6 +74,7 @@ BUSINESSES = ROOT / "data" / "businesses"
 AUTHORED = BUSINESSES / "authored"
 INDEX = BUSINESSES / "index.json"
 SCHEMA = ROOT / "data" / "businesses.schema.json"
+STREETS = ROOT / "data" / "streets" / "1835.json"
 
 REGISTER_PREFIX = "business_"
 ID_PREFIX = "biz_"
@@ -387,6 +388,113 @@ def crosswalk(records, rows):
     return out
 
 
+# ---------------------------------------------------------- the directory's rows
+
+def street_names():
+    """`street_id` -> the name the town used in 1835, for the row a directory prints.
+
+    The corridors are the only place that mapping lives, and a business's
+    `street_id` is one of their ids; an id the corridors do not hold comes
+    through as its own id rather than as a guess.
+    """
+    return {s["id"]: s.get("name_1835") or s["id"] for s in load_json(STREETS)["streets"]}
+
+
+def record_grade(record):
+    """The grade of the firm ITSELF, which is not the grade of any one of its rows.
+
+    A business record states tiers in three places — who ran it, where it stood and
+    when it opened — and a directory has to answer one question with them: how well
+    is this house evidenced? So: `attested` where ANY of those claims is attested (a
+    named proprietor, a premises, an announced opening), `reconstructed` where every
+    one of them is reconstructed, `inferred` otherwise. The definition is stated here
+    and printed in the app, because a grade a reader cannot unpick is a claim.
+    """
+    tiers = [record["dates"].get("tier")]
+    tiers += [loc.get("tier") for loc in record["locations"]]
+    tiers += [p.get("tier") for p in record["proprietors"] + record["partners"] + record["staff"]]
+    tiers = [t for t in tiers if t]
+    if not tiers:
+        return "inferred"
+    if "attested" in tiers:
+        return "attested"
+    if all(t == "reconstructed" for t in tiers):
+        return "reconstructed"
+    return "inferred"
+
+
+def primary_location(record, streets):
+    """The location a row is filed under: the one marked `primary`, else the first.
+
+    A firm with two premises is filed under its principal one and the card prints
+    the dated list in full — the list is the record, this is only the row.
+    """
+    locs = record["locations"]
+    if not locs:
+        return None
+    loc = next((x for x in locs if x.get("primary")), locs[0])
+    street_id = loc.get("street_id")
+    return {
+        "kind": loc.get("kind"),
+        "structure_id": loc.get("structure_id"),
+        "street_id": street_id,
+        "street": streets.get(street_id) if street_id else None,
+        "tier": loc.get("tier"),
+        "from": loc.get("from"),
+        "to": loc.get("to"),
+        "limit_reason": loc.get("limit_reason"),
+    }
+
+
+def index_people(record):
+    """Everyone the record names, flattened to `{name, person_id, role, tier, from, to}`.
+
+    The directory searches proprietors by name and the card links the ones the town
+    holds a card for; both want one list, and the three fields it comes from say the
+    same things in the same words.
+    """
+    out = []
+    for field in ("proprietors", "partners", "staff"):
+        for person in record[field]:
+            out.append({
+                "name": person.get("name"),
+                "person_id": person.get("person_id"),
+                "role": person.get("role") or field[:-1],
+                "tier": person.get("tier"),
+                "from": person.get("from"),
+                "to": person.get("to"),
+            })
+    return out
+
+
+def index_row(record, streets):
+    """One business as a directory row: everything the list, its filters and its
+    counts read, and nothing the card alone needs — the card fetches the record."""
+    return {
+        "id": record["id"],
+        "file": "%s.json" % record["id"],
+        "name": record["name"],
+        "register_id": record.get("register_id"),
+        "provenance": record["provenance"],
+        "type": record["type"],
+        "present_at_scene_date": record["present_at_scene_date"],
+        "grade": record_grade(record),
+        "trade": record.get("trade"),
+        "occupation": record.get("occupation"),
+        "goods": record.get("goods") or [],
+        "firm_styles": record.get("firm_styles") or [],
+        "people": index_people(record),
+        "where": primary_location(record, streets),
+        "locations": len(record["locations"]),
+        "opened": record["dates"].get("opened"),
+        "closed": record["dates"].get("closed"),
+        "dates_tier": record["dates"].get("tier"),
+        "proprietor_community": record.get("proprietor_community"),
+        "review_required": bool(record.get("review_required")),
+        "liberties": sorted(k for k, v in (record.get("liberties") or {}).items() if v),
+    }
+
+
 def build_index(records, authored, rows):
     everything = records + authored
     counts_by_type = {}
@@ -400,6 +508,15 @@ def build_index(records, authored, rows):
     linked = sum(1 for r in everything for p in r["proprietors"] + r["partners"] + r["staff"]
                  if p["person_id"])
     named = sum(1 for r in everything for p in r["proprietors"] + r["partners"] + r["staff"])
+    counts_by_grade = {}
+    counts_by_street = {}
+    streets = street_names()
+    directory = [index_row(r, streets) for r in sorted(everything, key=lambda r: r["id"])]
+    for row in directory:
+        counts_by_grade[row["grade"]] = counts_by_grade.get(row["grade"], 0) + 1
+        street = (row["where"] or {}).get("street")
+        if street:
+            counts_by_street[street] = counts_by_street.get(street, 0) + 1
     walk = crosswalk(everything, rows)
     return {
         "schema": 1,
@@ -419,13 +536,18 @@ def build_index(records, authored, rows):
             "named_people_linked_to_a_town_card": linked,
             "works_at_households": len(walk),
             "works_at_households_resolving_to_a_business": sum(1 for w in walk if w["business_ids"]),
+            "by_grade": dict(sorted(counts_by_grade.items())),
+            "by_street": dict(sorted(counts_by_street.items())),
         },
-        "businesses": [
-            {"id": r["id"], "file": "%s.json" % r["id"], "name": r["name"],
-             "register_id": r.get("register_id"), "provenance": r["provenance"],
-             "type": r["type"], "present_at_scene_date": r["present_at_scene_date"]}
-            for r in sorted(everything, key=lambda r: r["id"])
-        ],
+        "_businesses_doc": ("THE DIRECTORY'S ROWS. Each carries what the Businesses list, its "
+                            "filters and its counts read — the card fetches the record itself "
+                            "and prints the rest. `grade` is the firm's own, not any one row's: "
+                            "attested where any of who-ran-it, where-it-stood or when-it-opened "
+                            "is attested, reconstructed where every one of them is, inferred "
+                            "otherwise. `place` is the PRIMARY location; `locations` says how "
+                            "many the record holds. The layer states no division for a business "
+                            "— street is as near as the record goes."),
+        "businesses": directory,
         "_works_at_doc": ("THE CROSSWALK, NOT A RULING. A household's `works_at` names a STRUCTURE; "
                           "this says which business records stand in that structure. Two entries "
                           "mean two houses share the roof and the evidence does not choose between "
