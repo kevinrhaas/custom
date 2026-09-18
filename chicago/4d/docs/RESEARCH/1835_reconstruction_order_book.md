@@ -7,7 +7,7 @@
 
 | | target | known | to reconstruct |
 |---|---:|---:|---:|
-| Persons | 2,535 | 457 | 2,081 |
+| Persons | 2,535 | 459 | 2,079 |
 | Households | 643 | 436 | 209 |
 | Businesses (enumerated classes) | 120 | 118 | 24 |
 | Roofs | 668 | 384 | 297 |
@@ -23,16 +23,16 @@
 
 ## Real names before invented ones
 
-The roster offers 1,490 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,798 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
-| `R1_in_window_uncertain` | 814 | T-1172 |
-| `R2_in_window_single_source` | 40 | T-1172 |
-| `R3_1834_return_or_muster` | 28 | T-1172 |
+| `R1_in_window_uncertain` | 805 | T-1172 |
+| `R2_in_window_single_source` | 346 | T-1172 |
+| `R3_1834_return_or_muster` | 30 | T-1172 |
 | `R4_surname_only_census` | 424 | T-1170 |
 | `R5_later_only_backprojectable` | 55 | T-1172 |
-| `R6_native_metis_black` | 129 | T-1177 |
+| `R6_native_metis_black` | 138 | T-1177 |
 
 ## Persons
 
@@ -59,7 +59,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/female/20_29/north/lodging/trade` | 6 | 1 | 5 | 0 | T-1175 |
 | `persons/female/20_29/north/lodging/none` | 12 | 2 | 10 | 0 | T-1175 |
 | `persons/female/20_29/south/family/trade` | 43 | 8 | 35 | 0 | T-1173 |
-| `persons/female/20_29/south/family/none` | 81 | 15 | 66 | 0 | T-1174 |
+| `persons/female/20_29/south/family/none` | 81 | 16 | 65 | 0 | T-1174 |
 | `persons/female/20_29/south/lodging/trade` | 15 | 3 | 12 | 0 | T-1175 |
 | `persons/female/20_29/south/lodging/none` | 29 | 6 | 23 | 0 | T-1175 |
 | `persons/female/20_29/west/family/trade` | 16 | 3 | 13 | 0 | T-1173 |
@@ -118,7 +118,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/male/20_29/north/family/none` | 58 | 10 | 48 | 0 | T-1171 |
 | `persons/male/20_29/north/lodging/trade` | 11 | 2 | 9 | 0 | T-1175 |
 | `persons/male/20_29/north/lodging/none` | 20 | 4 | 16 | 0 | T-1175 |
-| `persons/male/20_29/south/family/trade` | 73 | 13 | 60 | 0 | T-1173 |
+| `persons/male/20_29/south/family/trade` | 73 | 14 | 59 | 0 | T-1173 |
 | `persons/male/20_29/south/family/none` | 139 | 26 | 113 | 0 | T-1171 |
 | `persons/male/20_29/south/lodging/trade` | 26 | 5 | 21 | 0 | T-1175 |
 | `persons/male/20_29/south/lodging/none` | 49 | 10 | 39 | 0 | T-1175 |

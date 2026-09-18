@@ -46,7 +46,7 @@
      "list_date": "1833-08-10",
      "as_read": "Adams, W. H.",
      "line": 22,
-     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'W. H. Adams' against resident 'William Hanford Adams'"
     },
     {
@@ -56,7 +56,7 @@
      "list_date": "1835",
      "as_read": "Adams, William H.",
      "line": 286,
-     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'William H. Adams' against resident 'William Hanford Adams'"
     }
    ]
@@ -2321,7 +2321,7 @@
      "list_date": "1834-08-11",
      "as_read": "Adams, James",
      "line": 171,
-     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'James Adams' against resident 'James Adams'"
     }
    ]
@@ -3140,7 +3140,7 @@
      "list_date": "1834-08-11",
      "as_read": "Murphy, John",
      "line": 247,
-     "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'John Murphy' against resident 'John Murphy'"
     },
     {
@@ -3150,7 +3150,7 @@
      "list_date": "1835",
      "as_read": "Murphy, John",
      "line": 338,
-     "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'John Murphy' against resident 'John Murphy'"
     }
    ]

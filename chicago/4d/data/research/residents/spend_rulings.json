@@ -42,12 +42,12 @@
     },
     "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
       "disposition": "unresolved",
-      "ticket": "T-1169",
+      "ticket": "T-1319",
       "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names an ARRIVAL, a departure, an origin or a dated appearance that bounds one, and T-1169 is the pass that fills arrival date, origin and reason for coming -- its acceptance takes the earliest dated appearance as the bound, which is exactly what a voter roll, a letter list or a treaty payment naming a man of Chicago is."
     },
     "the_enrichment_names_kin_no_field_carries": {
       "disposition": "unresolved",
-      "ticket": "T-1170",
+      "ticket": "T-1320",
       "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names KIN -- a spouse, a marriage, a child, a parent or a household the source distinguishes -- and T-1170 is the pass that gives the attested and inferred heads the families the sources name."
     },
     "the_later_volume_enriches_a_biography_and_names_no_1835_field": {

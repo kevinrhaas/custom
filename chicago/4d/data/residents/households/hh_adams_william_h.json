@@ -9,20 +9,53 @@
   "confidence": "reconstructed",
   "note": "NOT AN ARRIVAL DATE, AND THE RECORD HAD NONE AT ALL. The recovered v4 research places William H. Adams on an 1835 Chicago poll list; it does not say when the poll was taken, and nothing in the corpus says when he came. The only thing the evidence bears is that he was in Chicago at some point during 1835, so the value carried here is the last day that evidence can reach, at 'not_later_than' precision — the same shape the town's letter-list arrivals take, and a bound rather than a date. Whether he was standing here on 1 July 1835 is the open question present_on_scene_date records as uncertain. The block arrived from PR #670 with a null value and no precision, which the gate could not read."
  },
+ "arrival_year": {
+  "value": 1835,
+  "confidence": "reconstructed",
+  "tier": "reconstructed",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1835-12-31 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household. THE ROLL'S OWN YEAR IS REFUSED HERE: this man registered “1837, Sept.” at the Calumet Club in 1879, which is after the scene date, and the contemporary evidence that put this household in the 1835 layer bounds it at 1835-12-31. A recollection set down forty-four years later does not outrank a record made at the time, and the roll's row is kept in data/research/old_settlers/people.json rather than corrected.",
+  "basis": {
+   "kind": "model",
+   "id": "arrival",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1835."
+  },
+  "seed": "hh_adams_william_h:arrival_year",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says which year this household came to Chicago"
+  },
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Westport, Conn.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “Westport, Conn.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_arrival_cohort",
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1835) is the only thing about it this value rests on."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,
@@ -40,6 +73,20 @@
   "sources": [
    "resident_research_v4_1835_census_bridge"
   ],
+  "last_dated_appearance": {
+   "as_read": "1834-03-25",
+   "precision": "day",
+   "reaches": "1834-03-25",
+   "includes_scene_date": false,
+   "days_before_scene_date": 463,
+   "leg": "sighting",
+   "person": "adams_william_h",
+   "record": "person_william_adams",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "note": "A DATED READING OF THIS PERSON, AND THE LAST ONE THE CORPUS HOLDS. Read from `press_evidence` as `1834-03-25`, which reaches 1834-03-25 — 463 day(s) short of 1835-07-01. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "Direct appearance as William H. Adams on the 1835 Chicago poll list establishes him as a real circa-1835 Chicago resident, but the recovered research does not establish that the poll was taken exactly on the 1835-07-01 scene date."
  },
  "persons": [
@@ -227,6 +274,59 @@
      "calumet_club_early_chicago_1879"
     ],
     "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 64: \"Adams, William H. | 1837, Sept. | Westport, Conn. | 64 | Chicago.\". An age of 64 completed years given on that day means the birth falls after 27 May 1814 and on or before 27 May 1815, so the birth year is 1814 or 1815. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS1), in data/research/old_settlers/people.json."
+   }
+  },
+  {
+   "id": "rc_adams_nancy",
+   "name": "Nancy Adams",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "name_basis": {
+    "confidence": "reconstructed",
+    "note": "INVENTED. The given name is drawn from the yankee given-name pool in data/reconstruction/1835_invented_name_pools.json by the seed below; the surname is the head's own, which is the household the count places this person in and not a claim of kinship. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "household_size",
+    "note": "COUNTED, NOT NAMED. The 1840 federal census household of Adams (IPUMS serial 5101954, printed page 229 row 9) tallies one 'free white females 20 under 30'. Enumerated 1840-06-01 and back-projected 5 years, that person was 15-24 on 1835-07-01 and so was already alive and in this town's head's household; the card names 1 of the row's 2 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
+   },
+   "seed": "hh_adams_william_h:household_size/nwf20/1",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "any source naming a member of the Adams household at or before 1835-07-01"
+   },
+   "reconstruction": {
+    "stage": "named_families",
+    "programme": "chicago_july_1835_resident_reconstruction_programme",
+    "community": "yankee",
+    "band_1840": "free white females 20 under 30",
+    "age_on_scene_date": {
+     "low": 15,
+     "high": 24
+    },
+    "counted_by": "census_1840 serial 5101954"
+   },
+   "note": "RECONSTRUCTED PERSON. The 1840 census counts this household member and does not name them; the relation is 'household_member' because a band tally states an age and a sex and no relation at all. The band is the one the card's named people leave over once they have absorbed the senior bands of their sex, and that allocation writes no age onto any of THEM. Nothing here is evidence about a named individual: the need is the count, and any source naming this household's people retires them.",
+   "age_band": {
+    "value": "15-24",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "note": "READ OFF A COUNT, NOT DRAWN. The `named_families` stage wrote this person from a census column - “free white females 20 under 30” - and the band back-projects to 15-24 on the scene date. This pass draws an age only where nothing dates one, and a tally in an age column dates one.",
+    "basis": {
+     "kind": "rule",
+     "id": "counted_by_a_census_column",
+     "note": "ARGUED, NOT DRAWN. The `named_families` stage wrote this person BECAUSE the 1840 schedule tallies them in “free white females 20 under 30”; that column is the only thing said about their age, and five years off it is the whole derivation. No model row is consulted and nothing is drawn, so this block carries no seed."
+    },
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    }
    }
   }
  ],

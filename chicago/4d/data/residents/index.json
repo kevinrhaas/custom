@@ -1,5 +1,5 @@
 {
- "_doc": "Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed is reserved for a later explicit reconstruction pass and is intentionally zero after the 2026-09-02 synthesis. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.",
+ "_doc": "Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed = a person no source names, written ONLY by tools/reconstruct_residents_1835.py under the programme at data/reconstruction/1835_resident_reconstruction_programme.json, and carrying the stage that re-derives them. It was intentionally zero between the 2026-09-02 synthesis and T-1167, which reopened it under that programme. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.",
  "version": 1,
  "scene_date": "1835-07-01",
  "dossier": "docs/RESEARCH/residents_1835.md",
@@ -369,16 +369,48 @@
    {
     "term": "land_purchase",
     "means": "to buy land at the sales"
+   },
+   {
+    "term": "season_not_apportioned",
+    "means": "the arrival season's draws, with no source apportioning the town between them"
+   },
+   {
+    "term": "a_store_or_provision_trade",
+    "means": "to keep a store or provision house"
+   },
+   {
+    "term": "the_building_trades",
+    "means": "the building of a town three years old"
+   },
+   {
+    "term": "a_mechanics_trade",
+    "means": "a mechanic's trade the town had few of"
+   },
+   {
+    "term": "a_professional_practice",
+    "means": "a professional practice in a new county seat"
+   },
+   {
+    "term": "a_congregation_or_a_school",
+    "means": "a congregation or a school"
+   },
+   {
+    "term": "the_country_trade",
+    "means": "the country trade at the forks"
+   },
+   {
+    "term": "a_clerkship",
+    "means": "a clerkship in a merchant's or a public office"
    }
   ]
  },
  "counts": {
   "households": 1258,
-  "persons": 1285,
+  "persons": 1288,
   "by_grade": {
    "attested": 410,
    "inferred": 875,
-   "reconstructed": 0
+   "reconstructed": 3
   },
   "letter_list_only": 736,
   "projected_residents": 721,
@@ -549,9 +581,10 @@
    "file": "households/hh_adams_william_h.json",
    "head": "adams_william_h",
    "division": "unplaced",
-   "persons": 1,
+   "persons": 2,
    "grades": {
-    "attested": 1
+    "attested": 1,
+    "reconstructed": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -13404,10 +13437,11 @@
    "file": "households/hh_murphy_john.json",
    "head": "murphy_john",
    "division": "south",
-   "persons": 2,
+   "persons": 4,
    "grades": {
     "attested": 1,
-    "inferred": 1
+    "inferred": 1,
+    "reconstructed": 2
    },
    "lives_at": "exchange_coffee_house",
    "works_at": "exchange_coffee_house",

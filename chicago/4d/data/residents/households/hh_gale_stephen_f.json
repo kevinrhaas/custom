@@ -12,20 +12,43 @@
   "note": "NOT STATED. The roster gives him an origin and no year. 1833 is the year the roster describes and bounds his presence from above.",
   "precision": "year"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "TWO STATEMENTS, AND THE CONTEMPORARY ONE WINS. This household's arrival block reads 1833 from the evidence that put it in this layer; the same man registered “1835, May,” at the Calumet Club on the roll of 1879. The year carried here is the layer's, because a recollection set down forty-four years later does not outrank a record made nearer the time — and the roll's row is kept as it was read in data/research/old_settlers/people.json rather than corrected to agree.",
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "Exeter, N. H.",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives “Exeter, N. H.” as where this man was BORN; this field asks where the household came FROM, and a generation that moved west in stages frequently did not come from the state it was born in. It is carried as the best statement of origin the sources make about this household and not as a last residence.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A store for the traffic of a town filling up",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as merchant, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_store_for_the_traffic — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,
@@ -43,6 +66,20 @@
   "sources": [
    "andreas_1884_v1"
   ],
+  "last_dated_appearance": {
+   "as_read": "1673/1857",
+   "precision": "source_span",
+   "reaches": "1857-12-31",
+   "includes_scene_date": true,
+   "days_before_scene_date": null,
+   "leg": "source_span",
+   "person": "gale_stephen_f",
+   "record": null,
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "NO SIGHTING, SO THE LEG IS A SOURCE'S SPAN. The card holds no dated reading of this person at or before the scene date; the date here is the far end of what a cited source COVERS, which the role's own note calls the source's bound and not the man's. Read from `roles[] (source_span)` as `1673/1857`, which reaches 1857-12-31 — a window that covers 1835-07-01 itself, so it pins no last sighting before the day and cannot be read as one. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "PRESENCE ON THE SCENE DATE IS AN ASSUMPTION OF CONTINUITY AND NOT A STATEMENT. Nothing reached follows this household past 1833. It is graded uncertain rather than present because the town's population roughly quadrupled between the roster and the scene date and a great many of the men on it were, in Andreas's own phrase, 'adventurers, comprising moneyed speculators and prospectors, as yet undecided whether to stay at Chicago or go on'."
  },
  "persons": [
