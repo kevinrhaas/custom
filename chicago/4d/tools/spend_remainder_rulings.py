@@ -398,13 +398,21 @@ RULES = {
     },
     "a_dated_appearance_bounds_a_presence": {
         "disposition": "unresolved",
-        "ticket": "T-1318",
+        # T-1318 WAS SPLIT ON 2026-09-18 AND A HAND-OFF NAMES THE PIECE THAT HOLDS THE
+        # CORPUS, not the parent. The parent stays `split_live` while a child is open, so
+        # this pointer does not go red today -- it would go red the day T-1329 closed, on
+        # 223 units nobody had touched, which is the failure mode the ledger's own
+        # EPIC_PIECES comment records twice (61 units when T-1146 split, 3,384 when T-1236
+        # did). T-1326 took the other child's corpus, the town's own poll and tax rolls,
+        # and asserted it; the register sponsorships and the press notices are T-1329's.
+        "ticket": "T-1329",
         "statement": (
             "The unit puts a named person at Chicago on a dated day and states nothing "
             "else about them -- standing sponsor or witness at a register entry, or named "
             "in a dated notice of the town's print. A dated appearance BOUNDS a presence "
             "and is never itself a presence, and the earliest dated appearance is the "
-            "bound T-1169 works from. This ruling hands the date on and writes nothing: it "
+            "bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, "
+            "and T-1329 now. This ruling hands the date on and writes nothing: it "
             "does not decide that a named party is a resident, that a name is a person "
             "rather than a firm, or that it is the individual a card of that name already "
             "holds."),
