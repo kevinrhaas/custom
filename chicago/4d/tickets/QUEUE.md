@@ -19,14 +19,7 @@
 # their lower resident yield. Read each ticket before splitting or claiming.
 # Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
 # reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
-# reconstructed people, businesses and roofs, and those waited for T-1157 to say GO.
-#   IT SAYS GO (2026-09-18, docs/RESEARCH/research-signoff-2026-09.md): the entry condition
-# is MET and bands 3-5 are open. Ten conditions, every one a measurement over committed
-# files, and check.sh re-derives the verdict on every commit — so if one breaks the build
-# goes red and the signature has to be earned again rather than inherited. The GO says the
-# research is ACCOUNTED FOR, not that 1835 is known: the report's § 7 names six gaps that
-# stay gaps, and a reconstructed value that fills one carries its tier, basis, seed and
-# replaceable_by (T-1158) so a later reading can displace it.
+# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
 #   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
 #   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
 #   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
@@ -51,7 +44,6 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1301 — Spend the 98 corroborated_enrichment research units the remainder ruling hands to T-1160: each sourced fact about a person this town already holds written into the structured field that carries it, or repointed to the attribute-fill ticket whose acceptance owns it

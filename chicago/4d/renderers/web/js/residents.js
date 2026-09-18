@@ -1312,6 +1312,12 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
            <code>AGENTS.md</code>. This record is published as research; nothing about the
            removal is depicted or staged in the scene.</dd>` : ''}
+      ${hh.surname_collision
+        ? `<dt>Another card holds this family name</dt><dd>${
+            escapeHtml(hh.surname_collision.refusal)} — ${
+            escapeHtml((hh.surname_collision.holds_the_surname || []).join('; '))}.
+           Nothing is retired: ${escapeHtml(hh.surname_collision.ruling)}.
+           ${escapeHtml(hh.surname_collision.note)}</dd>` : ''}
       ${hh.research_note
         ? `<dt>What this record is worth</dt><dd>${escapeHtml(hh.research_note)}</dd>` : ''}
     </dl>
