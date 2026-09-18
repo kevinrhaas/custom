@@ -931,6 +931,12 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 1 for r in rows if r.get("roles") and not r.get("roles_at_scene_date")),
             "readmitted": len(readmitted),
             "readmitted_households": readmitted_households,
+            # The persons the re-admission MINTED, which is exactly the number by which
+            # this file's people count exceeds data/residents/index.json's. The manifest
+            # is derived from the mints' directory and cannot see a reconstruction, so the
+            # two are meant to differ by this and by nothing else.
+            "readmitted_persons": sum(
+                1 for r in readmitted if r["readmission"]["kind"] == "card_minted"),
             "readmitted_by_kind": {
                 kind: sum(1 for r in readmitted if r["readmission"]["kind"] == kind)
                 for kind in ("presence_ruled", "card_minted")},

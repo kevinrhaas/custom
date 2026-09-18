@@ -11705,7 +11705,7 @@ for (const [label, viewport, touch] of [
       const manifest = await (await fetch(new URL('residents/index.json', api.dataBase))).json();
       const rows = () => [...document.querySelectorAll('#people-results .person-row')];
       out.counts = { rows: rows().length, api: dir.people, file: pj.people?.length, stated: pj.counts?.people,
-        manifest: manifest.counts?.persons,
+        manifest: manifest.counts?.persons, readmitted: pj.counts?.readmitted_persons ?? 0,
         countText: document.getElementById('people-count')?.textContent ?? '' };
       out.search = { matched: dir.search('Beaubien'),
         mark: document.querySelector('#people-results [data-person-id="beaubien_mark"] .person-name')?.textContent.trim() ?? null,
@@ -11731,9 +11731,16 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
       people.api && !people.error && people.counts.rows > 0 && people.counts.api === people.counts.file
-      && people.counts.file === people.counts.stated && people.counts.stated === people.counts.manifest
+      // T-1172. The manifest is derived from data/residents/households/ and CANNOT see a
+      // reconstruction, which is the whole point of writing the re-admitted cards outside
+      // that directory. So the directory lists the manifest's people PLUS the cards the
+      // re-admission minted, and the two numbers are held to differ by exactly that and by
+      // nothing else — a drift either way is a card that reached the town by some path
+      // this assertion does not know about.
+      && people.counts.file === people.counts.stated
+      && people.counts.stated === people.counts.manifest + people.counts.readmitted
       && people.counts.manifest > 1000
-      && new RegExp(`^${String(people.counts.manifest).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
+      && new RegExp(`^${String(people.counts.stated).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
       JSON.stringify(people.counts));
     check(`${label}: searching "Beaubien" finds Mark Beaubien`,
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
