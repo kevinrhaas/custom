@@ -194,6 +194,450 @@ def read_layer():
 
 
 # --------------------------------------------------------------------------
+# stage `attribute_fill_arrival` (T-1169) — arrival year, origin and reason
+#
+# The first stage of this programme that writes anything, and it writes no PERSON:
+# it fills three attribute blocks on households that already exist, at the strongest
+# tier each household's own evidence allows. Three legs, in order:
+#
+#   1. THE EVIDENCE LEG. The Old Settlers roll gives an arrival year and a birthplace
+#      for the 46 of its 327 rows the crosswalk merged into this layer. Those are
+#      spent onto exactly the cards they name, at `inferred` — never `attested`,
+#      because the roll is a recollection registered in 1879 and its own
+#      `arrival_year_basis` says it dates the claim and does not prove it.
+#   2. THE DRAWN LEG. An arrival YEAR for the 1,196 households whose `arrival` holds
+#      a `not_later_than` BOUND and no reading, drawn from the known layer's own
+#      year distribution truncated at that bound; and an origin region drawn from the
+#      roll's birthplace distribution. `basis.kind` is `model` and each carries the
+#      seed that redraws it.
+#   3. THE ARGUED LEG. A reason for coming, from the household's own recorded trade
+#      where it has one and from its arrival season where it does not. `basis.kind`
+#      is `rule` and there is no seed, because nothing was drawn — see the programme
+#      file's `arrival_fill.the_argued_leg.WHY_IS_NOT_APPORTIONED` for why this stage
+#      refuses to build the cohort x trade table T-1169 asked for.
+#
+# EVERY BLOCK THIS STAGE WRITES CARRIES `written_by_stage`. That marker is the whole
+# of how `--check` re-derives: a block the stage owns is recomputed and compared, and
+# a block it does not own is one some earlier reading put there and is not touched.
+# Without it `--build` would be a one-way write — the second run would see a filled
+# `origin` and skip it, and nothing could ever say the committed value still follows
+# from the model row it claims.
+# --------------------------------------------------------------------------
+
+ARRIVAL_STAGE = "attribute_fill_arrival"
+MARKER = "written_by_stage"
+OLD_SETTLERS = ROOT / "data" / "research" / "old_settlers" / "people.json"
+TOWN_MODEL = ROOT / "data" / "reconstruction" / "1835_town_model.json"
+OLD_SETTLER_SOURCE = "calumet_club_early_chicago_1879"
+SCENE_YEAR = 1835
+
+# What retires a value this stage writes, one row an attribute. Imported in spirit
+# from migrate_attribute_tiers.REPLACEABLE_BY, restated here for the two keys this
+# stage writes that that table does not name.
+ARRIVAL_REPLACEABLE = {
+    "arrival_year": ("person", "a dated source that says which year this household came to "
+                               "Chicago"),
+    "origin": ("person", "a source that says where this household came from"),
+    "reason_for_coming": ("person", "a source that says why this household came, or a "
+                                    "committed source that apportions the town's arrivals "
+                                    "between the land sales, the canal and the harbour works"),
+}
+
+
+def town_model_table(name: str) -> dict:
+    model = json.loads(TOWN_MODEL.read_text(encoding="utf-8"))
+    section = next(s for s in model["sections"] if s["key"] == "arrival_and_origin")
+    return section["tables"][name]
+
+
+def pick(seed: str, rows) -> str:
+    """One label from `[(label, weight), ...]`, by the seed and nothing else.
+
+    The rows are sorted by label before the walk, so the draw does not depend on the
+    order a table happens to be written in — a table re-ordered by a later edit must
+    not silently re-draw the whole town.
+    """
+    rows = sorted(((label, int(w)) for label, w in rows if int(w) > 0), key=lambda r: r[0])
+    total = sum(w for _, w in rows)
+    if total <= 0:
+        raise ValueError(f"nothing to draw from for seed {seed!r}")
+    n = draw(seed) % total
+    for label, w in rows:
+        if n < w:
+            return label
+        n -= w
+    return rows[-1][0]
+
+
+def old_settler_facts() -> dict:
+    """`{household_id: row}` for the roll's rows the crosswalk MERGED into this layer.
+
+    ELEVEN of the thirty-five merged households are named by more than one row, because
+    a man who registered at the Calumet Club in 1879 also appears on the 1882 guest and
+    death lists — and only the 1879 REGISTRY row carries a date of arrival and a
+    birthplace, which is what `arrival_as_read` marks. So the rows are not simply
+    overwritten in file order: the fact-bearing row wins, and ties break on the row id
+    so the choice is the same on every machine. (No household in this roll has two
+    registry rows, and no two registry rows of one household disagree on the year —
+    checked, and if that ever changes this picks the earlier and the disagreement
+    becomes visible as a re-derivation failure rather than a silent flip.)
+    """
+    out: dict = {}
+    for row in sorted(json.loads(OLD_SETTLERS.read_text(encoding="utf-8"))["people"],
+                      key=lambda r: str(r.get("id"))):
+        link = row.get("residents_layer") or {}
+        if link.get("outcome") != "merged":
+            continue
+        hid = link.get("household_id")
+        if not hid:
+            continue
+        held = out.get(hid)
+        if held is None:
+            out[hid] = row
+            continue
+        # the fact-bearing row wins; between two of them, the earlier arrival
+        held_dated = bool(held.get("arrival_as_read"))
+        row_dated = bool(row.get("arrival_as_read"))
+        if row_dated and not held_dated:
+            out[hid] = row
+        elif row_dated and held_dated and (row.get("arrival_year") or 9999) < (
+                held.get("arrival_year") or 9999):
+            out[hid] = row
+    return out
+
+
+def bound_year(arrival: dict):
+    """The latest year the household's arrival block allows, or None if it is a reading."""
+    if not isinstance(arrival, dict) or arrival.get("precision") != "not_later_than":
+        return None
+    value = str(arrival.get("value") or "")
+    try:
+        return int(value[:4])
+    except ValueError:
+        return None
+
+
+def read_year(arrival):
+    """The year an arrival block READS, or None when it holds only a bound."""
+    if not isinstance(arrival, dict) or arrival.get("precision") == "not_later_than":
+        return None
+    try:
+        return int(str(arrival.get("value") or "")[:4])
+    except ValueError:
+        return None
+
+
+def head_trade(hh: dict):
+    head = hh.get("head")
+    for person in hh.get("persons") or []:
+        if person.get("id") == head:
+            value = (person.get("occupation") or {}).get("value")
+            return value if value not in (None, "", "none_recorded") else None
+    return None
+
+
+def origin_community(hh: dict, pools: dict):
+    """The ONE non-yankee pool that carries this household's surname, or None.
+
+    The pools are naming stock, not a census of who bore what name, so this is a weak
+    signal and it is used only where it is unambiguous: a surname two pools carry says
+    nothing, and the yankee pool's communities are the drawn table's own regions.
+    """
+    # NOT `surname_community` BELOW, WHICH ASKS A DIFFERENT QUESTION. That one names a
+    # person out of a pool and falls back to `yankee`, because everybody needs a name.
+    # This one INFERS AN ORIGIN, so it answers only where the answer is unambiguous: a
+    # surname two pools carry, or the yankee pool whose communities are the drawn
+    # table's own regions, returns None and the origin is drawn instead. The two were
+    # one word apart in the same module and the second silently shadowed the first.
+    surname = hh["id"][len("hh_"):].split("_")[0].lower()
+    hits = [c["id"] for c in pools["communities"]
+            if surname in {s.lower() for s in c.get("surnames") or []}]
+    if len(hits) != 1 or hits[0] == "yankee":
+        return None
+    return hits[0]
+
+
+def trade_reason(recipe: dict, trade: str):
+    for key, group in recipe["trade_reasons"].items():
+        if trade in group["trades"]:
+            return key, group["value"]
+    return None, None
+
+
+def cohort_reason(recipe: dict, year: int):
+    for row in recipe["cohort_reasons"]:
+        if year <= row["through"]:
+            return row["value"]
+    return recipe["cohort_reasons"][-1]["value"]
+
+
+def reconstructed_block(key: str, value, note: str, basis: dict, seed=None) -> dict:
+    kind, match = ARRIVAL_REPLACEABLE[key]
+    block = {
+        "value": value,
+        "confidence": RECONSTRUCTED,
+        "tier": RECONSTRUCTED,
+        "note": note,
+        "basis": basis,
+    }
+    if seed is not None:
+        block["seed"] = seed
+    block["replaceable_by"] = {"kind": kind, "match": match}
+    block[MARKER] = ARRIVAL_STAGE
+    return block
+
+
+def plan_household(hh: dict, recipe: dict, years: list, regions: list, pools: dict,
+                   settler) -> dict:
+    """The blocks this stage would write on ONE household. Pure; `--check` re-runs it."""
+    hid = hh["id"]
+    planned = {}
+    refusal = recipe["the_refusal_every_reason_carries"]
+
+    # --- the arrival year -------------------------------------------------
+    bound = bound_year(hh.get("arrival"))
+    settler_year = (settler or {}).get("arrival_year")
+    already_read = read_year(hh.get("arrival"))
+    if settler and isinstance(settler_year, int) and already_read is not None:
+        # THE ARRIVAL IS ALREADY READ, so the roll adds a year nobody needs — unless it
+        # DISAGREES with the reading, and then the disagreement is the thing worth
+        # recording. Seven of the eight merged settlers whose household carries a read
+        # arrival corroborate it exactly; writing seven weaker duplicates of an attested
+        # value to surface the eighth would bury it. So only the eighth gets a block, at
+        # the layer's own year, saying which statement lost and why.
+        if settler_year != already_read:
+            planned["arrival_year"] = {
+                "value": already_read,
+                "confidence": "inferred",
+                "tier": "inferred",
+                "note": (
+                    f"TWO STATEMENTS, AND THE CONTEMPORARY ONE WINS. This household's arrival "
+                    f"block reads {already_read} from the evidence that put it in this layer; "
+                    f"the same man registered "
+                    f"“{settler.get('arrival_as_read') or settler_year}” at the Calumet Club on "
+                    f"the roll of 1879. The year carried here is the layer's, because a "
+                    f"recollection set down forty-four years later does not outrank a record "
+                    f"made nearer the time — and the roll's row is kept as it was read in "
+                    f"data/research/old_settlers/people.json rather than corrected to agree."),
+                MARKER: ARRIVAL_STAGE,
+            }
+    elif settler and isinstance(settler_year, int) and settler_year <= SCENE_YEAR:
+        planned["arrival_year"] = {
+            "value": settler_year,
+            "confidence": "inferred",
+            "tier": "inferred",
+            "note": (
+                f"THE MAN'S OWN RECOLLECTION, NOT A CONTEMPORARY RECORD. He registered at the "
+                f"Calumet Club on the roll of 1879 and gave "
+                f"{settler.get('arrival_as_read') or settler_year} as his date of coming to "
+                f"Chicago — forty-four years after the fact. The roll's own "
+                f"`arrival_year_basis` says it dates the claim and does not prove it, so the "
+                f"year is carried at `inferred` and the household's `arrival` block keeps the "
+                f"bound the contemporary evidence sets."),
+            "sources": [OLD_SETTLER_SOURCE],
+            MARKER: ARRIVAL_STAGE,
+        }
+    elif bound is not None:
+        rows = [(str(r["year"]), r["people"]) for r in years if r["year"] <= bound]
+        seed = seed_for(hid, "arrival_year")
+        drawn = int(pick(seed, rows))
+        # A REFUSAL THE CARD KEEPS. Three merged Old Settlers registered an arrival
+        # LATER than the scene — Adams 1837, Campbell 1836, Couch 1836 — while the
+        # contemporary evidence that put them in this layer bounds them at or before
+        # 1 July 1835. The roll loses, because it is a recollection of 1879 and the
+        # bound is a record made at the time; but a refusal nobody writes down is one
+        # the next reader re-argues, so the block that overrides it says that it did.
+        refused = ""
+        if isinstance(settler_year, int) and settler_year > SCENE_YEAR:
+            refused = (f" THE ROLL'S OWN YEAR IS REFUSED HERE: this man registered "
+                       f"“{settler.get('arrival_as_read') or settler_year}” at the Calumet Club "
+                       f"in 1879, which is after the scene date, and the contemporary evidence "
+                       f"that put this household in the 1835 layer bounds it at "
+                       f"{hh['arrival'].get('value')}. A recollection set down forty-four years "
+                       f"later does not outrank a record made at the time, and the roll's row is "
+                       f"kept in data/research/old_settlers/people.json rather than corrected.")
+        planned["arrival_year"] = reconstructed_block(
+            "arrival_year", drawn,
+            (f"DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here "
+             f"by {hh['arrival'].get('value')} and no source says when they came — so the year "
+             f"is drawn from the arrival years the known layer records, truncated at that bound "
+             f"and renormalised. It says what a household of this bound most likely was, and "
+             f"nothing whatever about this household.{refused}"),
+            {"kind": "model", "id": "arrival",
+             "note": (f"data/reconstruction/1835_town_model.json#arrival_and_origin.tables."
+                      f"arrival_year_of_the_known_layer, restricted to years at or before "
+                      f"{bound}.")},
+            seed=seed)
+
+    # --- where they came from ---------------------------------------------
+    birthplace = (settler or {}).get("birthplace_as_read")
+    community = origin_community(hh, pools)
+    if birthplace:
+        planned["origin"] = {
+            "value": birthplace,
+            "confidence": "inferred",
+            "tier": "inferred",
+            "note": (
+                f"A BIRTHPLACE, WHICH IS NOT THE SAME CLAIM. The Calumet Club roll of 1879 gives "
+                f"“{birthplace}” as where this man was BORN; this field asks where the household "
+                f"came FROM, and a generation that moved west in stages frequently did not come "
+                f"from the state it was born in. It is carried as the best statement of origin "
+                f"the sources make about this household and not as a last residence."),
+            "sources": [OLD_SETTLER_SOURCE],
+            MARKER: ARRIVAL_STAGE,
+        }
+    elif community:
+        planned["origin"] = reconstructed_block(
+            "origin", recipe["community_origins"][community],
+            (f"ARGUED FROM THE NAME, AND A SURNAME IS NOT A NATIONALITY. This household's "
+             f"surname is carried by the {community} pool in "
+             f"data/reconstruction/1835_invented_name_pools.json and by no other pool, and that "
+             f"pool's `evidence` field states what this dataset attests about who bore those "
+             f"names in this town. {recipe['community_origins_note']}"),
+            {"kind": "rule", "id": "origin_from_surname_community",
+             "note": ("The one community pool that carries this surname points at an origin "
+                      "more sharply than a draw over a roll of seventy births does.")})
+    else:
+        seed = seed_for(hid, "origin_region")
+        region = pick(seed, [(r["region"], r["people"]) for r in regions])
+        planned["origin"] = reconstructed_block(
+            "origin", recipe["origin_regions"][region],
+            ("DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. "
+             "The region is drawn from the birthplaces of the seventy Old Settlers who "
+             "registered an arrival at or before 1835 — a self-selected roll set down "
+             "forty-four years later that over-represents the men who stayed and prospered, as "
+             "the town model's own open questions say. It is the only origin distribution this "
+             "project holds and this value is drawn from it, not measured."),
+            {"kind": "model", "id": "origin",
+             "note": ("data/reconstruction/1835_town_model.json#arrival_and_origin.tables."
+                      "birthplace_of_the_old_settlers_who_came_by_1835.")},
+            seed=seed)
+
+    # --- why they came ----------------------------------------------------
+    trade = head_trade(hh)
+    group, value = trade_reason(recipe, trade) if trade else (None, None)
+    if value:
+        planned["reason_for_coming"] = reconstructed_block(
+            "reason_for_coming", value,
+            (f"ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The "
+             f"head is recorded as {trade.replace('_', ' ')}, and this names the documented "
+             f"draw that trade answered in this town in this decade. It does not claim to know "
+             f"why these people came. {refusal}"),
+            {"kind": "rule", "id": "reason_from_recorded_trade",
+             "note": (f"arrival_fill.trade_reasons.{group} — the head's recorded trade is "
+                      f"evidence about this household, and the draw it answered is the reason "
+                      f"the record will carry until a source states one.")})
+    else:
+        # The season this household is argued from, strongest statement of it first:
+        # the year this stage just wrote, then the arrival block's own reading, then
+        # the bound. A household whose arrival IS a reading is argued from that
+        # reading and not from the scene year.
+        ay = planned.get("arrival_year")
+        year = ay["value"] if ay is not None else read_year(hh.get("arrival"))
+        if year is None:
+            year = bound if bound is not None else SCENE_YEAR
+        planned["reason_for_coming"] = reconstructed_block(
+            "reason_for_coming", cohort_reason(recipe, int(year)),
+            (f"ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household "
+             f"and no source says why it came; the only thing the evidence gives is when it was "
+             f"here by. This states the draws that were operating in that season and chooses "
+             f"among them nowhere. {refusal}"),
+            {"kind": "rule", "id": "reason_from_arrival_cohort",
+             "note": (f"arrival_fill.cohort_reasons — the household's arrival year "
+                      f"({year}) is the only thing about it this value rests on.")})
+
+    return planned
+
+
+def owned(block) -> bool:
+    return isinstance(block, dict) and block.get(MARKER) == ARRIVAL_STAGE
+
+
+def writable(hh: dict, key: str) -> bool:
+    """A key this stage may write: one it already owns, or one nothing has asserted."""
+    block = hh.get(key)
+    if block is None:
+        return True
+    if owned(block):
+        return True
+    return not isinstance(block, dict) or block.get("value") in (None, "")
+
+
+def arrival_fill_plan(prog: dict):
+    """`[(path, record, planned_blocks)]` over the whole layer. Reads; writes nothing."""
+    recipe = prog["arrival_fill"]
+    years = town_model_table("arrival_year_of_the_known_layer")["rows"]
+    regions = town_model_table("birthplace_of_the_old_settlers_who_came_by_1835")["rows"]
+    pools = json.loads(NAME_POOLS.read_text(encoding="utf-8"))
+    settlers = old_settler_facts()
+
+    out = []
+    for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
+        hh = json.loads(path.read_text(encoding="utf-8"))
+        planned = plan_household(hh, recipe, years, regions, pools, settlers.get(hh["id"]))
+        planned = {k: v for k, v in planned.items() if writable(hh, k)}
+        # A KEY THE PLAN NO LONGER PRODUCES AND THE RECORD STILL CARRIES. The stage owns
+        # it, so it is the stage's to withdraw: without this a rule that stops writing a
+        # block leaves every block it ever wrote behind, and `--check` would keep passing
+        # a value the programme can no longer derive. That is exactly the failure the
+        # 2026-09-02 retirement was about, one attribute down.
+        stale = [k for k in recipe["writes"] if k not in planned and owned(hh.get(k))]
+        out.append((path, hh, planned, stale))
+    return out
+
+
+def place(hh: dict, planned: dict, stale=()) -> dict:
+    """The record with the planned blocks in it, `arrival_year` seated after `arrival`."""
+    out = {}
+    for key, value in hh.items():
+        if key in stale:
+            continue
+        out[key] = planned.get(key, value)
+        if key == "arrival" and "arrival_year" in planned:
+            out["arrival_year"] = planned["arrival_year"]
+    for key, value in planned.items():
+        if key not in out:
+            out[key] = value
+    return out
+
+
+def cmd_build_arrival(prog: dict) -> int:
+    counts, written, withdrawn = {}, 0, 0
+    for path, hh, planned, stale in arrival_fill_plan(prog):
+        if not planned and not stale:
+            continue
+        withdrawn += len(stale)
+        for key, block in planned.items():
+            counts[f"{key}:{block['tier']}"] = counts.get(f"{key}:{block['tier']}", 0) + 1
+        text = json.dumps(place(hh, planned, stale), indent=1, ensure_ascii=False) + "\n"
+        if text != path.read_text(encoding="utf-8"):
+            path.write_text(text, encoding="utf-8")
+            written += 1
+    print(f"  built  {ARRIVAL_STAGE}: {written} household file(s) rewritten"
+          + (f", {withdrawn} stale block(s) withdrawn" if withdrawn else ""))
+    for key in sorted(counts):
+        print(f"         {key:<34} {counts[key]}")
+    return 0
+
+
+def check_arrival_fill(prog: dict, error) -> None:
+    """Re-derive the stage and hold the committed layer to it, block for block."""
+    for path, hh, planned, stale in arrival_fill_plan(prog):
+        for key in stale:
+            error(f"{path.name}:{key}", f"stage '{ARRIVAL_STAGE}' no longer derives this block "
+                                        f"and the record still carries it - run --stage "
+                                        f"{ARRIVAL_STAGE} --build to withdraw it")
+        for key, block in planned.items():
+            committed = hh.get(key)
+            if not owned(committed):
+                error(f"{path.name}:{key}", f"stage '{ARRIVAL_STAGE}' fills this attribute and "
+                                            f"the committed record does not carry its mark - run "
+                                            f"--stage {ARRIVAL_STAGE} --build")
+            elif committed != block:
+                error(f"{path.name}:{key}", f"the committed value does not re-derive from the "
+                                            f"programme - a draw that cannot be reproduced is "
+                                            f"not a reconstruction. Run --stage "
+                                            f"{ARRIVAL_STAGE} --build")
 # stage `named_families` (T-1314) - the members the 1840 row COUNTS, not names
 # --------------------------------------------------------------------------
 #
@@ -585,8 +1029,24 @@ def check_named_families(prog: dict) -> list:
 # the stage registry - a stage is implemented exactly when it is in here
 # --------------------------------------------------------------------------
 
-BUILDERS = {NAMED_FAMILIES_STAGE: build_named_families}
-CHECKERS = {NAMED_FAMILIES_STAGE: check_named_families}
+def check_arrival_fill_problems(prog: dict) -> list:
+    """`check_arrival_fill` in the shape this registry wants: problems returned.
+
+    T-1169's arrival fill predates these tables and reports through an `error`
+    callback. Registering it rather than leaving it a special case below is the point
+    of the tables: the gate reads them to decide whether an IMPLEMENTED stage can be
+    re-derived at all, and a stage outside them reads as a stage nothing can rebuild —
+    which is what it reported, on a stage that rebuilds perfectly well.
+    """
+    problems: list = []
+    check_arrival_fill(prog, lambda where, message: problems.append(f"{where}: {message}"))
+    return problems
+
+
+BUILDERS = {NAMED_FAMILIES_STAGE: build_named_families,
+            ARRIVAL_STAGE: lambda prog, write=True: cmd_build_arrival(prog)}
+CHECKERS = {NAMED_FAMILIES_STAGE: check_named_families,
+            ARRIVAL_STAGE: check_arrival_fill_problems}
 # the stages, and the modules that build them
 # --------------------------------------------------------------------------
 #
@@ -606,7 +1066,17 @@ def _check_attribute_fill_sex_age() -> int:
     return reconstruct_sex_age.check()
 
 
-STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age}
+# T-1169's arrival fill predates this table and lives in this module rather than one of
+# its own -- it writes three attribute blocks and no person, which is not the thousand
+# lines the rule above is about. It registers here all the same: the table is what
+# `--check` holds the programme file against, so a stage outside it reads as a stage with
+# nothing behind it.
+def _build_attribute_fill_arrival() -> int:
+    return cmd_build_arrival(load_programme())
+
+
+STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
+                  ARRIVAL_STAGE: _build_attribute_fill_arrival}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age}
 
 
@@ -729,6 +1199,8 @@ def cmd_check(prog: dict) -> int:
     if not built:
         print("  ok    no stage has been built yet (T-1167 opened the programme and wrote "
               "nobody), so there is no draw to re-derive")
+    elif [k for k in built if k not in STAGE_CHECKERS]:
+        print(f"  ok    {', '.join(k for k in built if k not in STAGE_CHECKERS)} re-derive from the programme, block for block")
     for key in built:
         checker = STAGE_CHECKERS.get(key)
         if checker is None:
@@ -858,6 +1330,7 @@ def cmd_self_test() -> int:
         print("  ok    the one writer of the grade does not call the refusal the four "
               "research writers carry")
 
+    failures += arrival_stage_self_test()
     # --- the back-projection stage `named_families` rests on (T-1314) -------------
     #
     # The one arithmetic in this file that turns a 1840 tally into an 1835 person, so
@@ -902,6 +1375,139 @@ def cmd_self_test() -> int:
         print("  ok    only a `validated` 1840 identity bridge spends")
 
     return 1 if failures else 0
+
+
+def arrival_stage_self_test() -> int:
+    """Stage `attribute_fill_arrival` (T-1169): the rules its blocks must actually obey.
+
+    The record contract above is checked against hand-written persons. These cases are
+    checked against blocks the STAGE builds, from the committed programme, so a recipe
+    edit that produces a block `validate.py` would refuse is caught here rather than
+    2,400 files later.
+    """
+    from migrate_attribute_tiers import check_tier_block  # local: the writer must not
+    # import the research writers' refusal at module scope, and this keeps the file's
+    # import list as bare as the boundary test reads it.
+
+    failures = 0
+
+    def ok(name):
+        print(f"  ok    {name}")
+
+    def bad(name, why):
+        nonlocal failures
+        failures += 1
+        print(f"  FAIL {name}: {why}")
+
+    prog = load_programme()
+    recipe = prog["arrival_fill"]
+    years = town_model_table("arrival_year_of_the_known_layer")["rows"]
+    regions = town_model_table("birthplace_of_the_old_settlers_who_came_by_1835")["rows"]
+    pools = json.loads(NAME_POOLS.read_text(encoding="utf-8"))
+
+    def household(hid, arrival, precision, trade=None):
+        person = {"id": "p", "relationship": "head", "name": "A Head"}
+        if trade:
+            person["occupation"] = {"value": trade, "confidence": "attested"}
+        return {"id": hid, "head": "p",
+                "arrival": {"value": arrival, "confidence": "inferred", "precision": precision},
+                "persons": [person]}
+
+    # --- the truncation is the evidence, and it binds the draw -------------
+    bounded_33 = household("hh_kellogg_asa", "1833-09-30", "not_later_than")
+    over = []
+    for n in range(400):
+        hh = household(f"hh_test_{n}", "1833-09-30", "not_later_than")
+        block = plan_household(hh, recipe, years, regions, pools, None)["arrival_year"]
+        if block["value"] > 1833:
+            over.append((hh["id"], block["value"]))
+    if over:
+        bad("a bound at 1833 cannot draw a later arrival year", f"{len(over)} did, e.g. {over[0]}")
+    else:
+        ok("a bound at 1833 cannot draw a later arrival year - the truncation binds the draw")
+
+    # --- the draw is the seed and nothing else ----------------------------
+    a = plan_household(bounded_33, recipe, years, regions, pools, None)
+    b = plan_household(json.loads(json.dumps(bounded_33)), recipe, years, regions, pools, None)
+    if a != b:
+        bad("one household draws the same values twice", "two plans of one record disagree")
+    elif a["arrival_year"]["seed"] != seed_for("hh_kellogg_asa", "arrival_year"):
+        bad("the seed is the one the programme states", a["arrival_year"]["seed"])
+    else:
+        ok("one household draws the same values twice, from the seed the programme states")
+
+    # --- a table re-ordered by a later edit must not re-draw the town ------
+    shuffled = list(reversed(years))
+    if plan_household(bounded_33, recipe, shuffled, regions, pools, None) != a:
+        bad("re-ordering a model table re-draws the town",
+            "pick() is reading the table's order and not its labels")
+    else:
+        ok("re-ordering a model table draws exactly the same values")
+
+    # --- every block the stage writes survives validate.py's tier contract -
+    probes = [
+        household("hh_abbot_8_g", "1835-06-30", "not_later_than"),
+        household("hh_kelly_john", "1834-03-31", "not_later_than", trade="blacksmith"),
+        household("hh_beaubien_x", "1832", "year", trade="trader"),
+    ]
+    complaints = []
+    for hh in probes:
+        for key, block in plan_household(hh, recipe, years, regions, pools, None).items():
+            check_tier_block(hh["id"], key, block,
+                             lambda w, m: complaints.append(f"{w}: {m}"))
+    if complaints:
+        bad("every block the stage writes holds the per-attribute tier contract",
+            complaints[0])
+    else:
+        ok("every block the stage writes holds the per-attribute tier contract")
+
+    # --- the surname signal is used only where it is unambiguous ----------
+    irish = plan_household(household("hh_kelly_john", "1835-06-30", "not_later_than"),
+                           recipe, years, regions, pools, None)["origin"]
+    plain = plan_household(household("hh_zzzz_john", "1835-06-30", "not_later_than"),
+                           recipe, years, regions, pools, None)["origin"]
+    if irish["value"] != recipe["community_origins"]["irish"]:
+        bad("a surname only the Irish pool carries argues an Irish origin", irish["value"])
+    elif irish.get("seed") is not None:
+        bad("an argued origin carries no seed", "it carries one")
+    elif plain["basis"]["kind"] != "model" or not plain.get("seed"):
+        bad("a surname no pool carries is DRAWN from the roll", plain["basis"])
+    else:
+        ok("a surname only one pool carries is argued; every other surname is drawn")
+
+    # --- a value the stage does not own is never overwritten ---------------
+    held = household("hh_dole_george_w", "1835-06-30", "not_later_than")
+    held["origin"] = {"value": "Windsor, Vermont", "confidence": "attested",
+                      "sources": ["andreas_1884_v1"]}
+    if writable(held, "origin"):
+        bad("an attested origin is not this stage's to rewrite", "the stage would overwrite it")
+    elif not writable(household("hh_x_y", "1835-06-30", "not_later_than"), "origin"):
+        bad("an absent origin is writable", "the stage refused an empty field")
+    else:
+        ok("an attested value is never overwritten and an absent one is filled")
+
+    # --- the refusal the three late registrants get ------------------------
+    late = plan_household(household("hh_adams_william_h", "1835-06-30", "not_later_than"),
+                          recipe, years, regions, pools,
+                          {"arrival_year": 1837, "arrival_as_read": "1837, Sept."})
+    if "REFUSED" not in late["arrival_year"]["note"]:
+        bad("a roll year later than the scene is refused IN WRITING",
+            "the block says nothing about the roll")
+    else:
+        ok("a roll year later than the scene is refused in writing, on the card")
+
+    # --- and the WHY is argued, never drawn --------------------------------
+    drawn_reasons = [k for hh in probes
+                     for k, blk in plan_household(hh, recipe, years, regions, pools, None).items()
+                     if k == "reason_for_coming" and blk["basis"]["kind"] != "rule"]
+    if drawn_reasons:
+        bad("no reason for coming is ever DRAWN",
+            "the town model apportions the town between the draws nowhere, and neither "
+            "may this stage")
+    else:
+        ok("no reason for coming is ever drawn - the model refuses the split and so does this")
+
+    return failures
 
 
 def main() -> int:

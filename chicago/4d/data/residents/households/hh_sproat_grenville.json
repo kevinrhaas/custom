@@ -12,6 +12,23 @@
   "note": "Not_later_than precision on the date of the Democrat issue that reports his school already running. A school in operation on 26 November 1833 means a teacher in Chicago before it.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "reconstructed",
+  "tier": "reconstructed",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1833-11-26 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
+  "basis": {
+   "kind": "model",
+   "id": "arrival",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1833."
+  },
+  "seed": "hh_sproat_grenville:arrival_year",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says which year this household came to Chicago"
+  },
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
@@ -26,9 +43,20 @@
   "note": "'A school established in the village by Mr. Sproat of Boston' - the Chicago Democrat's own words, in the town's own week. The only contemporary origin statement about any resident in this dataset."
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A congregation or a school",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as schoolteacher, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_congregation_or_a_school — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

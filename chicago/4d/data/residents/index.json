@@ -369,6 +369,38 @@
    {
     "term": "land_purchase",
     "means": "to buy land at the sales"
+   },
+   {
+    "term": "season_not_apportioned",
+    "means": "the arrival season's draws, with no source apportioning the town between them"
+   },
+   {
+    "term": "a_store_or_provision_trade",
+    "means": "to keep a store or provision house"
+   },
+   {
+    "term": "the_building_trades",
+    "means": "the building of a town three years old"
+   },
+   {
+    "term": "a_mechanics_trade",
+    "means": "a mechanic's trade the town had few of"
+   },
+   {
+    "term": "a_professional_practice",
+    "means": "a professional practice in a new county seat"
+   },
+   {
+    "term": "a_congregation_or_a_school",
+    "means": "a congregation or a school"
+   },
+   {
+    "term": "the_country_trade",
+    "means": "the country trade at the forks"
+   },
+   {
+    "term": "a_clerkship",
+    "means": "a clerkship in a merchant's or a public office"
    }
   ]
  },

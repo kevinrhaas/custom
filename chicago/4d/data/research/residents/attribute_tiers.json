@@ -26,19 +26,25 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 13024,
-    "tiers_written_on_the_card": 1878,
+    "blocks": 14222,
+    "tiers_written_on_the_card": 5544,
     "by_tier": {
       "attested": 591,
-      "inferred": 3262,
-      "reconstructed": 1842,
-      "unknown": 7329
+      "inferred": 3299,
+      "reconstructed": 5471,
+      "unknown": 4861
     },
     "by_attribute": {
       "arrival": {
         "attested": 52,
         "inferred": 1200,
         "reconstructed": 6,
+        "unknown": 0
+      },
+      "arrival_year": {
+        "attested": 0,
+        "inferred": 16,
+        "reconstructed": 1182,
         "unknown": 0
       },
       "directories.people[].address_later": {
@@ -79,9 +85,9 @@
       },
       "origin": {
         "attested": 11,
-        "inferred": 11,
-        "reconstructed": 1,
-        "unknown": 1235
+        "inferred": 32,
+        "reconstructed": 1215,
+        "unknown": 0
       },
       "party_size_on_arrival": {
         "attested": 3,
@@ -146,8 +152,8 @@
       "reason_for_coming": {
         "attested": 12,
         "inferred": 13,
-        "reconstructed": 0,
-        "unknown": 1233
+        "reconstructed": 1233,
+        "unknown": 0
       },
       "works_at": {
         "attested": 32,
@@ -1117,6 +1123,76 @@
   ],
   "drawn": [
     {
+      "attribute": "arrival_year",
+      "basis": {
+        "kind": "model",
+        "id": "arrival"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a dated source that says which year this household came to Chicago"
+      },
+      "values": 1182,
+      "by_value": {
+        "1834": 605,
+        "1835": 252,
+        "1833": 232,
+        "1832": 43,
+        "1831": 19,
+        "1830": 7,
+        "1812": 5,
+        "1816": 5,
+        "1823": 4,
+        "1818": 3,
+        "1827": 3,
+        "1820": 2,
+        "1826": 2
+      },
+      "a_seed": "hh_abbot_8_g:arrival_year",
+      "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "origin",
+      "basis": {
+        "kind": "model",
+        "id": "origin"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that says where this household came from"
+      },
+      "values": 1204,
+      "by_value": {
+        "New York State": 494,
+        "New England": 421,
+        "The Mid-Atlantic states": 108,
+        "England": 94,
+        "The Southern states": 53,
+        "Ireland": 19,
+        "West of the Alleghenies": 15
+      },
+      "a_seed": "hh_abbot_8_g:origin_region",
+      "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "origin",
+      "basis": {
+        "kind": "rule",
+        "id": "origin_from_surname_community"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that says where this household came from"
+      },
+      "values": 10,
+      "by_value": {
+        "Ireland": 7,
+        "The French colonial settlements of the Detroit and Milwaukee country": 3
+      },
+      "a_seed": null,
+      "a_card": "hh_bertrand_b_h"
+    },
+    {
       "attribute": "persons[].age_band",
       "basis": {
         "kind": "model",
@@ -1176,6 +1252,54 @@
       },
       "a_seed": "abbot_8_g:sex_ratio",
       "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "reason_for_coming",
+      "basis": {
+        "kind": "rule",
+        "id": "reason_from_arrival_cohort"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+      },
+      "values": 1142,
+      "by_value": {
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 581,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 250,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 221,
+        "The trading post, the fort and the country trade — the town before the boom": 90
+      },
+      "a_seed": null,
+      "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "reason_for_coming",
+      "basis": {
+        "kind": "rule",
+        "id": "reason_from_recorded_trade"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+      },
+      "values": 91,
+      "by_value": {
+        "A store for the traffic of a town filling up": 23,
+        "A mechanic's trade in a town that had few of it": 12,
+        "A professional practice in a new county seat": 12,
+        "Lodging and victualling the traffic": 8,
+        "A congregation or a school": 7,
+        "The building of a town three years old": 7,
+        "A county office in a newly organised county": 6,
+        "The carrying trade at the head of the lake": 5,
+        "The land sales and the canal expectation": 5,
+        "A posting to Fort Dearborn or the Indian Agency": 3,
+        "The country trade at the forks": 2,
+        "A clerkship in a merchant's or a public office": 1
+      },
+      "a_seed": null,
+      "a_card": "hh_allen_lieut_james"
     }
   ]
 }
