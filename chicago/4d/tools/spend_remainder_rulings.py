@@ -193,8 +193,19 @@ RULES = {
         # units: they answered the relatives who are NOBODY in this dataset, and each
         # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
         # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
-        # between two cards rather than a person to seat, which is T-1320.
-        "ticket": "T-1320",
+        # between two cards rather than a person to seat, which was T-1320.
+        #
+        # AND IT MOVED AGAIN TO T-1335 ON 2026-09-18, for the same reason one step out.
+        # T-1320 is scoped to the BOOK corpus by its own title — the ties whose relative
+        # is ALSO a held resident, and the book-corpus relatives who are nobody here —
+        # and the retarget above pointed ALL FOUR domains at it, which it never covered.
+        # Its pass (tools/spend_book_kin.py, PR #1464) did the book job and the ticket
+        # closed, stranding 168 units: 147 church, 12 newspapers, 7 residents, and 2 book
+        # units its own pass left unruled. T-1335 is the family pass proper and owns all
+        # of them. This is the T-1237 rule reached from the other side — not a split
+        # parent going quiet, but a handoff aimed at a ticket narrower than the line
+        # pointing at it.
+        "ticket": "T-1335",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -206,7 +217,8 @@ RULES = {
             "fact it names; this unit's own note says which field that is. This one names KIN -- a "
             "spouse, a marriage, a child, a parent or a household the source distinguishes -- and "
             "T-1170 is the pass that gives the attested and inferred heads the families the sources "
-            "name."),
+            "name."
+            " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
     },
     "the_enrichment_names_a_trade_or_premises_no_field_carries": {
         "disposition": "unresolved",
@@ -399,15 +411,27 @@ RULES = {
         # units: they answered the relatives who are NOBODY in this dataset, and each
         # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
         # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
-        # between two cards rather than a person to seat, which is T-1320.
-        "ticket": "T-1320",
+        # between two cards rather than a person to seat, which was T-1320.
+        #
+        # AND IT MOVED AGAIN TO T-1335 ON 2026-09-18, for the same reason one step out.
+        # T-1320 is scoped to the BOOK corpus by its own title — the ties whose relative
+        # is ALSO a held resident, and the book-corpus relatives who are nobody here —
+        # and the retarget above pointed ALL FOUR domains at it, which it never covered.
+        # Its pass (tools/spend_book_kin.py, PR #1464) did the book job and the ticket
+        # closed, stranding 168 units: 147 church, 12 newspapers, 7 residents, and 2 book
+        # units its own pass left unruled. T-1335 is the family pass proper and owns all
+        # of them. This is the T-1237 rule reached from the other side — not a split
+        # parent going quiet, but a handoff aimed at a ticket narrower than the line
+        # pointing at it.
+        "ticket": "T-1335",
         "statement": (
             "The unit is the paper's own MARRIED or DIED column, printed under that "
             "heading: it names a bride and a groom, or a decedent and the survivor they "
             "are named by, and the magistrate or minister who officiated. A marriage names "
             "a spouse and creates nobody; T-1170 gives the attested and inferred heads the "
             "families the sources name, from exactly these ruled kin ties. No household "
-            "member is minted here and no kin tie is written here."),
+            "member is minted here and no kin tie is written here."
+            " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
     },
     "the_register_entry_names_kin": {
         "disposition": "unresolved",
@@ -419,15 +443,27 @@ RULES = {
         # units: they answered the relatives who are NOBODY in this dataset, and each
         # of these names a relative who is HERSELF A HELD RESIDENT — Josette as Jean
         # Baptiste Beaubien's wife, Catherine Chevalier as Robinson's. That is a tie
-        # between two cards rather than a person to seat, which is T-1320.
-        "ticket": "T-1320",
+        # between two cards rather than a person to seat, which was T-1320.
+        #
+        # AND IT MOVED AGAIN TO T-1335 ON 2026-09-18, for the same reason one step out.
+        # T-1320 is scoped to the BOOK corpus by its own title — the ties whose relative
+        # is ALSO a held resident, and the book-corpus relatives who are nobody here —
+        # and the retarget above pointed ALL FOUR domains at it, which it never covered.
+        # Its pass (tools/spend_book_kin.py, PR #1464) did the book job and the ticket
+        # closed, stranding 168 units: 147 church, 12 newspapers, 7 residents, and 2 book
+        # units its own pass left unruled. T-1335 is the family pass proper and owns all
+        # of them. This is the T-1237 rule reached from the other side — not a split
+        # parent going quiet, but a handoff aimed at a ticket narrower than the line
+        # pointing at it.
+        "ticket": "T-1335",
         "statement": (
             "The entry's own `cells.role` puts this person in the KIN of a dated "
             "sacrament at Chicago -- the child, the father, the mother, the groom, the "
             "bride, the spouse or the decedent of a baptism, a marriage or a death. "
             "T-1170's field is the spouses, children, kin and dependants the baptism and "
             "marriage registers name. The tie is handed on whole; nobody is minted, no "
-            "household is edited, and the entry's `confidence` is untouched."),
+            "household is edited, and the entry's `confidence` is untouched."
+            " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
     },
     "a_dated_appearance_bounds_a_presence": {
         "disposition": "unresolved",

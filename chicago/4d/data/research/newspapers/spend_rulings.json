@@ -24,8 +24,8 @@
     },
     "the_family_column_names_kin": {
       "disposition": "unresolved",
-      "ticket": "T-1320",
-      "statement": "The unit is the paper's own MARRIED or DIED column, printed under that heading: it names a bride and a groom, or a decedent and the survivor they are named by, and the magistrate or minister who officiated. A marriage names a spouse and creates nobody; T-1170 gives the attested and inferred heads the families the sources name, from exactly these ruled kin ties. No household member is minted here and no kin tie is written here."
+      "ticket": "T-1335",
+      "statement": "The unit is the paper's own MARRIED or DIED column, printed under that heading: it names a bride and a groom, or a decedent and the survivor they are named by, and the magistrate or minister who officiated. A marriage names a spouse and creates nobody; T-1170 gives the attested and inferred heads the families the sources name, from exactly these ruled kin ties. No household member is minted here and no kin tie is written here. THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."
     },
     "the_issue_is_printed_after_the_scene_date": {
       "disposition": "later_only",

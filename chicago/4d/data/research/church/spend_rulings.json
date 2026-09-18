@@ -21,8 +21,8 @@
     },
     "the_register_entry_names_kin": {
       "disposition": "unresolved",
-      "ticket": "T-1320",
-      "statement": "The entry's own `cells.role` puts this person in the KIN of a dated sacrament at Chicago -- the child, the father, the mother, the groom, the bride, the spouse or the decedent of a baptism, a marriage or a death. T-1170's field is the spouses, children, kin and dependants the baptism and marriage registers name. The tie is handed on whole; nobody is minted, no household is edited, and the entry's `confidence` is untouched."
+      "ticket": "T-1335",
+      "statement": "The entry's own `cells.role` puts this person in the KIN of a dated sacrament at Chicago -- the child, the father, the mother, the groom, the bride, the spouse or the decedent of a baptism, a marriage or a death. T-1170's field is the spouses, children, kin and dependants the baptism and marriage registers name. The tie is handed on whole; nobody is minted, no household is edited, and the entry's `confidence` is untouched. THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."
     },
     "the_roll_is_beyond_the_reading_window": {
       "disposition": "later_only",
