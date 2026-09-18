@@ -41,6 +41,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 PROGRAMME_TICKET = "T-1167"
+# The programme that ticket opened - the one authority a reconstructed resident may
+# stand on, and the file this gate reads its stage keys out of.
+PROGRAMME = ROOT / "data" / "reconstruction" / "1835_resident_reconstruction_programme.json"
 
 RESERVED = "reconstructed"
 # What a research writer may emit. The reserved third value is deliberately absent.
@@ -137,13 +140,43 @@ def refuse_texts(files, writer):
     refuse(docs, writer)
 
 
+def programme_stage_keys():
+    """The stages the reconstruction programme declares, or an empty set.
+
+    T-1314. This gate's subject is the four RESEARCH writers: none of them may mint a
+    reconstructed resident, and the checks below prove each still carries the refusal.
+    The committed layer is a different question, because since T-1167 one tool - the
+    programme's own writer - legitimately does mint them. So the layer is held to the
+    narrower rule that is actually the invariant: a reconstructed person must NAME the
+    programme stage that re-derives them. An empty set (no programme) refuses every
+    one of them, which is the right answer - with no programme there is no authority.
+    """
+    try:
+        prog = json.loads(PROGRAMME.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    return {s.get("key") for s in prog.get("stages") or [] if isinstance(s, dict)}
+
+
 def check():
     problems = []
 
     committed = {p.name: json.loads(p.read_text(encoding="utf-8"))
                  for p in sorted(HOUSEHOLDS.glob("*.json"))}
+    stage_keys = programme_stage_keys()
+    claimed = 0
+    unclaimed = {}
+    for label, doc in committed.items():
+        keep = []
+        for person in persons(doc):
+            if person.get("grade") == RESERVED and \
+                    (person.get("reconstruction") or {}).get("stage") in stage_keys:
+                claimed += 1
+                continue
+            keep.append(person)
+        unclaimed[label] = dict(doc, persons=keep)
     try:
-        refuse(committed, "the committed resident layer")
+        refuse(unclaimed, "the committed resident layer")
     except ReconstructedGradeRefused as exc:
         problems.append(str(exc))
 
@@ -162,8 +195,10 @@ def check():
             print(" -", p)
         return 1
     people = sum(len(persons(d)) for d in committed.values())
-    print(f"   OK: {people} resident(s) across {len(committed)} household(s), none "
-          f"graded `{RESERVED}`; all {len(WIRED_WRITERS)} writers refuse it")
+    print(f"   OK: {people} resident(s) across {len(committed)} household(s); the "
+          f"{claimed} graded `{RESERVED}` each name a stage of the reconstruction "
+          f"programme and no other person carries the grade; all "
+          f"{len(WIRED_WRITERS)} research writers refuse it")
     return 0
 
 

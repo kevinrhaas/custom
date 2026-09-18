@@ -12142,3 +12142,37 @@ re-deriving the date and refusing any hand edit of it.
 Related: ticket **T-1249**, piece 1 of **T-0473**; **T-1250** owns the lake edge, **T-1251** the
 terrain spec, **T-1252** the heightfield and the scene file.
 **Recorded:** 2026-09-17.
+
+### L242 — Three people stand in the town whom the 1840 census counts and no source names
+**Decision:** the reconstruction programme's `named_families` stage (T-1314) writes, into the
+household cards of the 1835 residents the 1840 federal census bridge has `validated`, the members
+that census COUNTS in the head's household five years later and does not name. Three people land
+by it today: `rc_murphy_thomas` (a boy of 5–9 on the scene date), `rc_murphy_honora` (a woman of
+25–34) and `rc_adams_nancy` (a woman of 15–24). Each carries an invented given name drawn from
+`data/reconstruction/1835_invented_name_pools.json` and the head's own surname.
+**Why:** John Murphy's 1840 household holds six people and his card named two; William Hanford
+Adams's holds two and his card named one. The rest were not invented by anybody — they are in a
+federal enumeration, in that head's house, with a sex and an age band. Leaving them out is also a
+claim, and a less defensible one: it says a hotel-keeping couple lived alone.
+**What is invented, exactly:** the NAME, and the assumption that a person counted in the head's
+1840 household was in it in 1835. Nothing else. The sex and the age band are read off the
+schedule; the five-year subtraction is arithmetic; the surname is the household's, not a claim of
+kinship, and the relation is recorded as `household_member` (or `child` under fifteen) because a
+band tally states no relation at all.
+**What this deliberately does NOT do:** it does not touch an unbridged 1840 row — T-0507's line
+stands, that 1840 Chicago had roughly doubled and its households are a shape to test against and
+not a population to fill from. It does not carry the under-5 band of 1840, all but the first month
+of which is born after 1835-07-01, and it drops that band whole rather than guessing a fraction of
+it. It does not spend a `provisional` bridge: `miller_john` is held for that reason and writes
+nobody. And the allocation that decides which band is left over writes no age onto any person the
+sources name.
+**Consequence:** the layer's population rises by three, from 1,282 to 1,285, and two households
+change size — the Murphys from 2 to 4 and the Adams household from 1 to 2. Against
+`size_histogram_1840` the town is still nothing like a real one: mean household size moves from
+1.02 to 1.02 where the 1840 city's is 5.01. This liberty is the programme's `L-rc-persons` and
+`L-rc-families` becoming due, and it is the first time since the retirement of 2026-09-02 that
+anybody in `data/residents/` is graded `reconstructed`.
+**How to resolve:** any source naming a member of the Murphy or Adams household at or before
+1 July 1835 retires the person it names — that is each record's own `replaceable_by`.
+Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**.
+**Recorded:** 2026-09-18.

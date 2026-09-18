@@ -423,6 +423,13 @@ def plan_named_families(prog: dict) -> dict:
                                 f"'{BRIDGE_STATUS_THAT_SPENDS}' and rests on 1835 evidence for "
                                 f"the HEAD, never on this composition.",
                     },
+                    "occupation": {
+                        "value": "none_recorded",
+                        "confidence": RECONSTRUCTED,
+                        "note": "A band tally states a sex and an age and nothing else. What "
+                                "this person did is not claimed, and a null here is the claim "
+                                "that the count cannot say - not that they did nothing.",
+                    },
                     "seed": seed,
                     "replaceable_by": {
                         "kind": "person",

@@ -233,6 +233,11 @@
     "id": "household_size",
     "note": "COUNTED, NOT NAMED. The 1840 federal census household of Adams (IPUMS serial 5101954, printed page 229 row 9) tallies one 'free white females 20 under 30'. Enumerated 1840-06-01 and back-projected 5 years, that person was 15-24 on 1835-07-01 and so was already alive and in this town's head's household; the card names 1 of the row's 2 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
    },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
+   },
    "seed": "hh_adams_william_h:household_size/nwf20/1",
    "replaceable_by": {
     "kind": "person",

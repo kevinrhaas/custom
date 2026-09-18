@@ -258,6 +258,11 @@
     "id": "household_size",
     "note": "COUNTED, NOT NAMED. The 1840 federal census household of Murphy (IPUMS serial 5102066, printed page 233 row 30) tallies one 'free white males 10 under 15'. Enumerated 1840-06-01 and back-projected 5 years, that person was 5-9 on 1835-07-01 and so was already alive and in this town's head's household; the card names 2 of the row's 6 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
    },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
+   },
    "seed": "hh_murphy_john:household_size/nwm1014/1",
    "replaceable_by": {
     "kind": "person",
@@ -290,6 +295,11 @@
     "kind": "model",
     "id": "household_size",
     "note": "COUNTED, NOT NAMED. The 1840 federal census household of Murphy (IPUMS serial 5102066, printed page 233 row 30) tallies one 'free white females 30 under 40'. Enumerated 1840-06-01 and back-projected 5 years, that person was 25-34 on 1835-07-01 and so was already alive and in this town's head's household; the card names 2 of the row's 6 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
    },
    "seed": "hh_murphy_john:household_size/nwf30/1",
    "replaceable_by": {
