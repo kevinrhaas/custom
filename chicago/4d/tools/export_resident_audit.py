@@ -917,11 +917,18 @@ def cmd_self_test() -> bool:
     # Three rows do cite nothing, and all three are the collective "the rest of the
     # household, unnamed" members an inferred head-count mints; they are never heads and
     # never named. The assertion is that shape, not the absence.
-    want(sorted(r["person_id"] for r in sample if r["flag_no_source"]),
+    # T-1171 adds the second shape, and it is the same argument one turn further on: a
+    # person the reconstruction programme DREW cites nothing because nothing was read.
+    # Giving one a source would be the invention this layer exists to keep visible. They
+    # carry `grade: reconstructed` and the stage that can re-derive them, and they are
+    # never heads either — the head is the person the sources named, and the family is
+    # drawn around him.
+    want(sorted(r["person_id"] for r in sample
+                if r["flag_no_source"] and r["grade"] != "reconstructed"),
          ["beaubien_household_unnamed", "beaubien_mark_household",
           "owen_household_unnamed"],
          "only the three collective household rows cite no source of their own")
-    want(all(r["relationship"] == "household_member"
+    want(all(r["relationship"] in ("household_member", "wife", "son", "daughter")
              for r in sample if r["flag_no_source"]), True,
          "a sourceless row is never a head")
 

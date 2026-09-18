@@ -31,6 +31,12 @@ admits one. Four refusals, each with a reason a reader can check:
      T-1314 own those, and this stage draws only where they do not.
   4. The fort and the country outside the town get nothing. T-1176 musters the garrison
      and the order book never apportions the fort division.
+  5. A household under a standing review gets nothing, and neither does a head whose own
+     trade says he kept no wife. AGENTS.md's Indigenous-history review confines a Native or
+     Metis reconstruction to T-1177's stage, and the programme asserts that from the other
+     side; a household flagged `review_required` or `touches_removal` is in that hands, not
+     this stage's. And a model that gave Father St Cyr a wife would be inventing against
+     the record rather than into a gap in it, which is the one draw no quota excuses.
 
   And one bound that is not a refusal: NOBODY BUT KIN IS DRAWN. The household types carry
   servants, apprentices and journeymen, and the size the 1840 histogram draws is of the
@@ -82,6 +88,12 @@ CIVIL = ("south", "west", "north")
 # eight are the 1840 tail and this stage does not draw them: the model reads that tail
 # as "boarding houses, hotels and crews", which is lodging and belongs to T-1175.
 KIN_MAX = 8
+
+# Trades whose holder the sources place under a vow of celibacy. A Catholic priest kept no
+# wife, and drawing one for Father St Cyr would be an invention the record itself refutes —
+# the one kind of draw a model may never make. Protestant ministers married and are not
+# here: Jeremiah Porter's household is a family the sources name.
+CELIBATE_TRADES = ("priest",)
 
 # The order book's own six bands, so a drawn person can be counted into its buckets.
 BOOK_BANDS = (("under_10", 0, 10), ("10_19", 10, 20), ("20_29", 20, 30),
@@ -197,6 +209,11 @@ def eligibility(card: dict) -> tuple:
         return False, "the head is not a person the sources name"
     if card.get("division") not in CIVIL and card.get("division") != "unplaced":
         return False, "the fort and the country outside the town are not this stage's"
+    if card.get("review_required") or card.get("touches_removal"):
+        return False, ("the household carries a standing review, and only T-1177's stage "
+                       "may reconstruct within one")
+    if (value_of(head.get("occupation")) or "") in CELIBATE_TRADES:
+        return False, "the head's own trade says he kept no wife"
     if (value_of(head.get("sex_basis")) or head.get("sex")) != "male":
         return False, "a woman heading her own household is the age pyramid's, T-1174"
     band = head.get("age_band")
@@ -785,6 +802,12 @@ def self_test() -> int:
     fires("a household that already holds a second person is refused",
           eligibility(card(persons=base["persons"] + [dict(base["persons"][0], id="y")]))[0] is False)
     fires("the fort is refused", eligibility(card(division="fort"))[0] is False)
+    fires("a household under a standing review is refused",
+          eligibility(card(review_required=True))[0] is False
+          and eligibility(card(touches_removal=True))[0] is False)
+    fires("a head the sources place under a vow is refused",
+          eligibility(card(persons=[dict(base["persons"][0],
+                                         occupation={"value": "priest"})]))[0] is False)
     fires("a woman heading her own household is refused",
           eligibility(card(persons=[dict(base["persons"][0], sex="female")]))[0] is False)
     fires("a head under twenty is refused",
@@ -810,7 +833,7 @@ def self_test() -> int:
     fires("a drawn person names the stage that wrote them",
           ours({"reconstruction": {"stage": STAGE}}) and not ours({"grade": "attested"}))
 
-    print("   %d rule(s) checked, %d failed" % (16, len(failures)))
+    print("   %d rule(s) checked, %d failed" % (18, len(failures)))
     return 1 if failures else 0
 
 

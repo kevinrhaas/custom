@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 13954,
-    "tiers_written_on_the_card": 2499,
+    "blocks": 13939,
+    "tiers_written_on_the_card": 2489,
     "by_tier": {
       "attested": 591,
       "inferred": 3262,
-      "reconstructed": 2463,
-      "unknown": 7638
+      "reconstructed": 2453,
+      "unknown": 7633
     },
     "by_attribute": {
       "arrival": {
@@ -92,7 +92,7 @@
       "persons[].age_band": {
         "attested": 7,
         "inferred": 57,
-        "reconstructed": 1524,
+        "reconstructed": 1519,
         "unknown": 6
       },
       "persons[].age_on_scene_date": {
@@ -122,14 +122,14 @@
       "persons[].name_basis": {
         "attested": 0,
         "inferred": 0,
-        "reconstructed": 312,
+        "reconstructed": 307,
         "unknown": 0
       },
       "persons[].occupation": {
         "attested": 119,
         "inferred": 9,
         "reconstructed": 0,
-        "unknown": 1466
+        "unknown": 1461
       },
       "persons[].profile_facts[]": {
         "attested": 1,
@@ -1132,16 +1132,16 @@
         "kind": "person",
         "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
       },
-      "values": 1524,
+      "values": 1519,
       "by_value": {
-        "20-29": 662,
+        "20-29": 660,
         "30-39": 353,
-        "0-4": 176,
+        "0-4": 175,
         "40-49": 113,
         "15-19": 108,
         "50-59": 41,
-        "5-9": 24,
-        "10-14": 23,
+        "5-9": 23,
+        "10-14": 22,
         "60-69": 15,
         "70-79": 8,
         "50+": 1
@@ -1159,7 +1159,7 @@
         "kind": "person",
         "match": "a source naming a member of Elizabeth Adams's family"
       },
-      "values": 312,
+      "values": 307,
       "by_value": {
         "Almira Hubbard": 2,
         "Amanda King": 2,
@@ -1203,14 +1203,12 @@
         "Anna Courtney": 1,
         "Anna Palmer": 1,
         "Anna Tucker": 1,
-        "Antoine (Sauganash)": 1,
         "Archange Lloyd": 1,
         "Archange Newberry": 1,
         "Archange Norton": 1,
         "Archange Thompson": 1,
         "Asa Davis": 1,
         "Asa Shrigley": 1,
-        "Baptiste (Sauganash)": 1,
         "Baptiste Lloyd": 1,
         "Benjamin Cohen": 1,
         "Betsey Austin": 1,
@@ -1349,7 +1347,6 @@
         "Lydia Rider": 1,
         "Lydia Smith": 1,
         "Lydia Spring": 1,
-        "Madeleine (Sauganash)": 1,
         "Madeleine Johnson": 1,
         "Madeleine Lloyd": 1,
         "Madeleine Newberry": 1,
@@ -1362,7 +1359,6 @@
         "Maria Morrison": 1,
         "Maria Rider": 1,
         "Maria Whitlock": 1,
-        "Marie Cyr": 1,
         "Marie Garland": 1,
         "Marie Newberry": 1,
         "Martha Bowen": 1,
@@ -1457,7 +1453,6 @@
         "Susan Ludby": 1,
         "Susan Peacock": 1,
         "Susan Stow": 1,
-        "Therese Cyr": 1,
         "Therese Trowbridge": 1,
         "Therese Watkins": 1,
         "Victoire Eels": 1,

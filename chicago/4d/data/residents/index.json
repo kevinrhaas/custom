@@ -374,11 +374,11 @@
  },
  "counts": {
   "households": 1258,
-  "persons": 1594,
+  "persons": 1589,
   "by_grade": {
    "attested": 410,
    "inferred": 872,
-   "reconstructed": 312
+   "reconstructed": 307
   },
   "letter_list_only": 736,
   "projected_residents": 721,
@@ -3687,10 +3687,9 @@
    "file": "households/hh_caldwell_billy.json",
    "head": "caldwell_billy",
    "division": "north",
-   "persons": 4,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 3
+    "attested": 1
    },
    "lives_at": null,
    "works_at": "cobweb_castle",
@@ -17170,10 +17169,9 @@
    "file": "households/hh_st_cyr_john_mary.json",
    "head": "st_cyr_john_mary",
    "division": "south",
-   "persons": 3,
+   "persons": 1,
    "grades": {
-    "attested": 1,
-    "reconstructed": 2
+    "attested": 1
    },
    "lives_at": "st_marys_church",
    "works_at": "st_marys_church",
