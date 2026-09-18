@@ -1,7 +1,7 @@
 ---
 id: T-1312
 title: Read and rule every family member the committed sources NAME for an 1835 head — the marriage verb the kin survey cannot see, and the relatives it reads and cannot land
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1170
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1451
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T10:48:00.048Z
 claimed_run: null
 ---
 

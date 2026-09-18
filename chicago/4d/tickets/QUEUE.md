@@ -49,7 +49,6 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1304 — Reconstruct the sex and age no evidence can settle: the population model's sex × age band per bucket seeded by person id, the letter lists at their measured adult-male rate, the known-profile report showing three tiers, and the person card printing sex and age with its tier and reason
 T-1169 — Fill arrival date, origin and reason for coming for every attested and inferred person: the earliest dated appearance as the bound, the biographies where they speak, the arrival model otherwise — dated, tiered and explained
-T-1312 — Read and rule every family member the committed sources NAME for an 1835 head — the marriage verb the kin survey cannot see, and the relatives it reads and cannot land
 T-1313 — Seat the ruled family members: open the seat on stated_family_rulings.json and re-derive the forty committed artifacts that count the town
 T-1314 — Reconstruct the family members the sources COUNT and do not name: the 1840 census bands back-projected onto the bridged heads, as the programme's named_families stage
 T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
