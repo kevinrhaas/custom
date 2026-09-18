@@ -25,12 +25,12 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | civic | 293 | 13 | 0 | 1 | 36 | 160 | 503 |
 | directories | 0 | 8,245 | 0 | 3 | 1 | 9 | 8,258 |
 | genealogytrails | 0 | 1 | 0 | 1 | 3 | 0 | 5 |
-| land_sales | 0 | 570 | 46 | 0 | 603 | 353 | 1,572 |
+| land_sales | 313 | 570 | 46 | 0 | 603 | 40 | 1,572 |
 | newberry_index | 0 | 0 | 0 | 0 | 6,658 | 0 | 6,658 |
 | newspapers | 144 | 51 | 0 | 109 | 0 | 885 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
 | residents | 24 | 7 | 0 | 0 | 982 | 67 | 1,080 |
-| **Total** | **472** | **12,568** | **109** | **173** | **8,547** | **1,824** | **23,693** |
+| **Total** | **785** | **12,568** | **109** | **173** | **8,547** | **1,511** | **23,693** |
 
 ## Second-hop preservation
 
@@ -51,7 +51,6 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1315 | 3 |
 | T-1317 | 21 |
 | T-1329 | 238 |
-| T-1332 | 313 |
 | T-1334 | 1 |
 | T-1335 | 168 |
 

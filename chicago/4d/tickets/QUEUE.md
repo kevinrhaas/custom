@@ -50,7 +50,6 @@ T-1333 — The closing convergence rebuild: index.json, the sidecars, the town c
 T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
 T-1317 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
 T-1329 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
-T-1332 — Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 1 July 1835 by a purchaser the crosswalk joined to a card this town holds, written onto that card as a dated appearance and never as a residence
 T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
@@ -194,4 +193,4 @@ T-1331 — The placeholder-label smoke check reads a field that does not exist, 
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1336 — The parallel gate from T-1289 races: a self-test that breaks a live file to prove a check fires runs concurrently with the step that reads it, so any PR in the queue can go red on a tree that is green
+
