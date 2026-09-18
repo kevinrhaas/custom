@@ -9,18 +9,18 @@ Registered reading units: **23,693**, as of 2026-09-15. Unclassified: **0**. Ass
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 173 |
-| asserted | 182 |
+| asserted | 471 |
 | later_only | 12,568 |
 | outside_chicago | 109 |
-| refused | 8,526 |
-| unresolved | 2,135 |
+| refused | 8,547 |
+| unresolved | 1,825 |
 
 Every asserted unit names the record and field it wrote to. Grouped by the layer that file belongs to:
 
 | Layer | Asserted units landed |
 | --- | ---: |
 | residents | 0 |
-| households | 182 |
+| households | 471 |
 | businesses | 0 |
 | structures | 0 |
 | outside the four layers | 0 |
@@ -33,14 +33,14 @@ Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then `python
 
 | Measure | Count |
 | --- | ---: |
-| Persons | 1,285 |
+| Persons | 1,288 |
 | Households | 1,258 |
 | Persons graded `attested` | 410 |
-| Persons graded `inferred` | 872 |
+| Persons graded `inferred` | 875 |
 | Persons graded `reconstructed` | 3 |
 | Letter-list-only names | 736 |
 | Projected residents | 721 |
-| Merged away | 65 |
+| Merged away | 66 |
 
 Reproduce: `python3 -c "import json;print(json.load(open('data/residents/index.json'))['counts'])"`.
 
@@ -116,24 +116,24 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1144 | 1 | open | yes |
-| T-1170 | 168 | split_live | yes |
+| T-1144 | 6 | split_live | yes |
 | T-1172 | 260 | open | yes |
-| T-1180 | 494 | split_live | yes |
-| T-1182 | 37 | open | yes |
+| T-1182 | 531 | open | yes |
 | T-1188 | 12 | open | yes |
 | T-1198 | 271 | open | yes |
 | T-1299 | 1 | open | yes |
 | T-1315 | 3 | open | yes |
-| T-1318 | 538 | open | yes |
-| T-1319 | 343 | open | yes |
-| T-1323 | 7 | open | yes |
+| T-1317 | 21 | open | yes |
+| T-1320 | 168 | open | yes |
+| T-1329 | 238 | open | yes |
+| T-1332 | 313 | open | yes |
+| T-1334 | 1 | open | yes |
 
 Reproduce: `python3 tools/measure_research_spend.py --check`.
 
 ## 7. The gaps, stated
 
-1. **No unit-level ledger entry reaches the business or structure layers.** 182 asserted units land on residents and households and 0 on businesses and structures. Closing it means an authored business record (T-1180) and a seat on the ground (T-1198) for a claim to be asserted ONTO.
+1. **No unit-level ledger entry reaches the business or structure layers.** 471 asserted units land on residents and households and 0 on businesses and structures. Closing it means an authored business record (T-1180) and a seat on the ground (T-1198) for a claim to be asserted ONTO.
 2. **28 of the 179 firms standing on 1 July 1835 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits this and T-1189 staffs it.
 3. **62 firms are unplaceable and 61 reach a street and no further.** Those 123 are the location limits the research preserved rather than guessed past; T-1198 seats what can be seated and the rest stay limits.
 4. **1,238 of 1,258 households have no `lives_at`.** Most are letter-list-only names (736) whose whole evidence is that a letter waited for them; where they live is T-1159's roster question, not a hole in the reading.

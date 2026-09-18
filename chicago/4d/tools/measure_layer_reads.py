@@ -223,6 +223,15 @@ AMBIGUOUS_LEAVES = frozenset({
     # view really does read a role's claim id (T-1255) it declares the expression and
     # never reaches here.
     "claim",
+    # T-1313's `persons[].stated_family.statement`. `statement` is a word this renderer
+    # already owns twice over: `orderbook.js` prints `d.statement` and `i.statement` off
+    # the reconstruction order book's own disagreement rows, which are not a resident
+    # layer figure at all. A bare-name scan attributed that read to the marker the
+    # stated-family pass writes, and called an unread provenance key a phantom. Same
+    # shape as the four above and the same narrowing rather than an exemption: qualified
+    # by its data parent, so the day a card really does print which STATEMENT seated a
+    # wife it declares `stated_family.statement` and never reaches here.
+    "statement",
     # T-1144's `present_on_scene_date.last_dated_appearance.record`. `record` is a word
     # this renderer has used from the start for the thing a popup is showing —
     # `hit.record`, `z.record`, `task.record.id`, `boat.record` — none of which is a
@@ -1188,6 +1197,57 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
+    # -------------------------------------------------------------------------
+    # T-1313 seated the three relatives T-1170's reading ruled `write`, and every seated
+    # person carries the marker that makes the write re-derivable. Six keys, none of them
+    # a figure about a person: one names the pass, one the ticket, one resolves the read
+    # statement, one is a matcher's normalised copy of `relationship`, one is the source's
+    # own wording kept for audit, one is the field the sentence was read out of. The
+    # evidence a visitor judges these three women by — grade, sources, note, relationship
+    # — is on the card already and is read there. Same class as `source_pass`.
+    "residents/household:persons[].stated_family.pass": (
+        "The stated-family pass's own bookkeeping — which pass wrote this person, so "
+        "`--build` can lift its whole output back out and re-derive it rather than "
+        "appending to it. That re-derivability is the reason the key exists: a "
+        "verdict re-read from `write` to `no_seat` has to take somebody back OUT of "
+        "the town, and a pass that cannot find its own writes cannot do that. It is a "
+        "fact about the tool, not about the woman on the card."
+    ),
+    "residents/household:persons[].stated_family.ticket": (
+        "Which ticket seated this person. Repository provenance of the same class as "
+        "`source_pass` — useful to a reader of the JSON and to the run that has to "
+        "audit a pass, and not part of what a visitor judges the record by. What the "
+        "visitor needs is the evidence, and the card already shows it: the grade, the "
+        "sources and the note that says what the source does NOT say."
+    ),
+    "residents/household:persons[].stated_family.statement": (
+        "The id of the read statement this seat came from — a foreign key into the "
+        "derived reading in docs/RESEARCH/stated-families-2026-09.md and into the "
+        "verdict table in data/residents/stated_family_rulings.json. It resolves a "
+        "row; it states nothing about the person. The claim it resolves to reaches "
+        "the visitor as the note and the sources on this person's own row."
+    ),
+    "residents/household:persons[].stated_family.relation": (
+        "The normalised relation word the reading matched on — `wife`, `daughter`. "
+        "The poorer of two copies: the person's own `relationship` is what the card "
+        "prints, it is the field every other resident carries, and it is authored for "
+        "a reader rather than for a matcher. Showing this one instead would be "
+        "showing less, which is the ruling this table already makes about "
+        "`households[].present_on_scene_date`."
+    ),
+    "residents/household:persons[].stated_family.as_read": (
+        "The source's words for the relative, kept verbatim so the match can be "
+        "audited against the page — 'Welthyan Loomis', 'Mrs A. G. Burley'. Where it "
+        "differs from the name on the card that difference is a finding, and it "
+        "belongs in the note, which is where it is written and where the visitor "
+        "reads it. Un-banks the day a card prints the reading beside the name."
+    ),
+    "residents/household:persons[].stated_family.read_from": (
+        "Which field of which record the statement was read out of — the pass's audit "
+        "trail back to the sentence. File-and-field routing, the same class of key as "
+        "`record_file`, and it names a location in this repository rather than "
+        "anything about 1835."
+    ),
     # T-1238's two closed sets, re-authored HERE by T-1255 because they were written
     # straight into layer_reads_baseline.json and nowhere else — the same mistake
     # `flora/zone:woody_stratum.measured_from` below records, and `--update` deletes a
@@ -1269,6 +1329,47 @@ REFUSALS: dict[str, str] = {
         "where the evidence that made them projected is beside the label. A bare total "
         "with nothing beside it was the poorer of the two copies. The field stays in the "
         "manifest because the mint tools derive it and validate.py holds it."),
+    # -------------------------------------------------------------------------
+    # RECOVERED BY T-1313, which needed `--update` to bank six keys and found that
+    # running it would have deleted these five. They were written straight into
+    # layer_reads_baseline.json and never into this table — the SAME mistake
+    # `flora/zone:woody_stratum.measured_from` above records against itself, repeated on
+    # T-1304's profile vocabulary. `--update` rebuilds the bank from the measurement and
+    # re-attaches a refusal only if it is HERE, so the first re-derivation drops every
+    # one of them silently. A stated refusal is a judgement somebody made; this table is
+    # the only place one may be authored, and these are moved into it verbatim.
+    "residents/manifest:vocabulary.age_bands[].age_band": (
+        "The closed set of age bands tools/profile_population_1835.py sorts every "
+        "person into, and the rule that assigns each one. The band a person falls in "
+        "is a DERIVATION over their card, not a field on it, so the browser meets it "
+        "in the profile document the panel renders "
+        "(data/reconstruction/1835_population_profile.json) and never here. This copy "
+        "is the definition the generator is held to, and it un-banks the day a card "
+        "starts carrying its own band."
+    ),
+    "residents/manifest:vocabulary.age_bands[].means": (
+        "The plain-English meaning of an age band. Published beside the band for the "
+        "same reason and read the same way — off the profile document, where the "
+        "panel prints it — never out of the manifest."
+    ),
+    "residents/manifest:vocabulary.age_bands[].rule": (
+        "The exact test that puts a person in an age band. It is a statement about "
+        "the generator, which is what makes it worth shipping beside the layer; no "
+        "renderer re-implements it, because a second implementation of a derivation "
+        "rule is a second answer to the same question."
+    ),
+    "residents/manifest:vocabulary.reasons_for_coming[].means": (
+        "What a reason term means, published beside it so a reader of the layer can "
+        "check the sorting without the tool. Read off the profile document by the "
+        "panel, never out of the manifest."
+    ),
+    "residents/manifest:vocabulary.reasons_for_coming[].term": (
+        "The closed set of reasons a household may state for coming to Chicago. A "
+        "household record carries its reason as PROSE and the term is the derivation "
+        "over it, so the panel prints the term out of the profile document; a card "
+        "printing the LIST would be printing the schema rather than anything about "
+        "the town."
+    ),
     # -------------------------------------------------------------------------
     # T-1233 ruled on the 83 unread resident paths: 63 were wired to the card in the
     # same commit, `_merged_doc` was classified as prose, and these twelve are refused
@@ -1935,7 +2036,7 @@ def main() -> int:
             "entries": {k: ({**state["unread"][k], "refused_because": REFUSALS[k]}
                              if k in REFUSALS else state["unread"][k])
                         for k in sorted(state["unread"])},
-        }, indent=2) + "\n", encoding="utf-8")
+        }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"wrote {BASELINE.relative_to(ROOT)} ({len(state['unread'])} entries)")
         return 0
 

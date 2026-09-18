@@ -4732,8 +4732,18 @@ for (const [label, viewport, touch] of [
         // the same man's name over the same door. Walks, crossings, fences and
         // refusals do not move: the building is still there and still the street
         // wall on that face.
+        // T-1311 closed the structure `function` vocabulary, and six roofs that had
+        // spelled their trade the second way — `store-residence` rather than
+        // `store_residence`, `blacksmith shop` rather than `blacksmith_shop` —
+        // became visible to the hitching rule for the first time. Every one is a
+        // reconstructed anonymous slot, so every one is REFUSED, which is what the
+        // rule already said about the other reconstructed trades on this layer and
+        // had simply never been asked about these: 86 refusals to 92. Walks,
+        // crossings, fences and posts do not move, and that is the point of the
+        // migration — nothing on the ground changed, only what the record says
+        // about the roofs it can now see.
         && frontage.census?.posts === 19 && frontage.census?.fences === 31
-        && frontage.census?.refused === 86
+        && frontage.census?.refused === 92
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -6172,27 +6182,39 @@ for (const [label, viewport, touch] of [
     });
     await page.waitForTimeout(250);
 
-    // --- the evidence-only households, after the invented names went (T-0524) -
+    // --- the evidence-only households, and the reconstruction contract (T-1327) -
     //
-    // WHAT THIS BLOCK USED TO ASSERT, AND WHY IT NO LONGER CAN. Until 2 September
-    // 2026 the layer minted a `reconstructed` person for every household the
-    // occupation census argued the town needed, gave each one an invented period
-    // name, and carried a `name_basis` block declaring the invention. K18 pinned
-    // the declaration: a visitor who reads a name must be able to see, in the same
-    // card, that we made it up. The owner's T-0489 ruling retired that population —
-    // `data/residents/index.json` now reads `by_grade.reconstructed: 0` — and the
-    // records that survived it say so in as many words ("The invented name this
-    // record used to carry, and its name_basis block, are retired: an invented name
-    // is not kept beside a documented one").
+    // WHAT THIS BLOCK HAS ASSERTED, IN THREE RULINGS, AND WHY IT SAYS THE THIRD.
+    // Until 2 September 2026 the layer minted a `reconstructed` person for every
+    // household the occupation census argued the town needed, gave each one an
+    // invented period name, and carried a `name_basis` block declaring the
+    // invention. K18 pinned the DECLARATION: a visitor who reads a name must be
+    // able to see, in the same card, that we made it up. The owner's T-0489 ruling
+    // retired that population — `by_grade.reconstructed` went to 0 — and rather
+    // than delete a passing-shaped check T-0524 kept the wire and turned it round
+    // to assert the OPPOSITE promise, that the invented-name programme had left
+    // nothing behind.
     //
-    // So the subject of the first two assertions is gone, and the honest move is
-    // not to delete a passing-shaped check: it is to keep the wire and turn it
-    // round. What the layer now promises is the OPPOSITE promise — that the
-    // invented-name programme left nothing behind — and that is what is asserted,
-    // over the manifest's own tally and over the record this block already fetches.
-    // If a future run mints an invented name again, this trips.
+    // T-1167 then made `reconstructed` A GRADE THIS PROJECT WRITES ON PURPOSE,
+    // with a programme, a stage, a basis and a seed on every person, and T-1314's
+    // `named_families` stage wrote the first three of them. So T-0524's promise is
+    // no longer the project's, and asserting it made dev's own smoke inherit a red
+    // that no branch caused. T-1327 turns the wire round a second time rather than
+    // cutting it, because the thing K18 was really guarding is still live:
+    // `name_basis` is still rendered by `js/residents.js` (the "How this person is
+    // named" row), so nothing in the renderer stops an UNDECLARED invented name
+    // coming back.
     //
-    // The `hh_inf_` households the ruling kept are `unplaced` evidence-only
+    // The promise asserted now is the narrower one T-1158 states: a person may be
+    // reconstructed, and where they are, the card has to show its working — the
+    // programme stage that wrote them, the basis they were drawn or argued from,
+    // the seed that redraws a draw, and the evidence that would retire them — and
+    // no person who is NOT reconstructed may carry a name_basis. The count comes
+    // off the manifest rather than being written here, because it moves on every
+    // stage from T-1171 to T-1178 and a hardcoded one would go stale the same way
+    // the last two did.
+    //
+    // The `hh_inf_` households T-0489 kept are `unplaced` evidence-only
     // households: one head the papers name, graded `inferred`, on no roof.
     const invented = await page.evaluate(async () => {
       const api = window.__chicago4d;
@@ -6201,17 +6223,56 @@ for (const [label, viewport, touch] of [
       const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
       const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
       const head = hh.persons.find((p) => p.relationship === 'head') || hh.persons[0];
+      // The reconstruction programme's population, read off the manifest and then
+      // read again off the records it points at. The manifest names which
+      // households carry a reconstructed person, so this fetches those and not the
+      // other twelve hundred — the contract is proved on every reconstructed
+      // person there is, and `name_basis` is sampled over the records they sit in
+      // plus the evidence-only household above.
+      const carrying = index.households
+        .filter((h) => ((h.grades || {}).reconstructed || 0) > 0);
+      const faults = [];
+      let found = 0;
+      let undeclared = 0;
+      for (const r of carrying) {
+        const card = await (await fetch(new URL(`residents/${r.file}`, api.dataBase))).json();
+        for (const p of card.persons || []) {
+          if (p.grade !== 'reconstructed') {
+            // The K18 trip, kept: an invented name on a record that does not own
+            // up to being reconstructed is the failure the whole block exists for.
+            if (p.name_basis) { undeclared += 1; faults.push(`${p.id}: name_basis on a ${p.grade} person`); }
+            continue;
+          }
+          found += 1;
+          const rc = p.reconstruction || {};
+          const basis = p.basis || {};
+          const rep = p.replaceable_by || {};
+          if (!rc.stage || !rc.programme) faults.push(`${p.id}: names no programme stage`);
+          if (!basis.kind || !basis.id || !basis.note) faults.push(`${p.id}: no basis to be drawn from`);
+          else if (basis.kind === 'model' && !p.seed) faults.push(`${p.id}: drawn from ${basis.id} with no seed`);
+          if (!rep.kind || !rep.match) faults.push(`${p.id}: nothing stated would retire them`);
+          if (p.name_basis && !p.name_basis.note) faults.push(`${p.id}: name_basis declares nothing`);
+        }
+      }
       return {
         id: hh.id,
         household: hh.name,
         name: head?.name,
         headGrade: head?.grade,
         headNote: (head?.note || '').slice(0, 400),
-        // The retirement, read three ways: the layer's own tally, this record's
-        // people, and the block that carried the declaration.
-        reconstructedInLayer: index.counts?.by_grade?.reconstructed,
+        // The evidence-only record, read the same two ways it always was: T-0489's
+        // ruling holds HERE even though it no longer holds over the whole layer.
         reconstructedHere: hh.persons.filter((p) => p.grade === 'reconstructed').length,
         anyNameBasis: hh.persons.some((p) => !!p.name_basis),
+        // The programme's own population: what the manifest states, what its rows
+        // add up to, and what the records actually hold.
+        statedByManifest: index.counts?.by_grade?.reconstructed ?? null,
+        countedByRows: carrying.reduce((n, h) => n + h.grades.reconstructed, 0),
+        foundOnRecords: found,
+        households: carrying.length,
+        undeclared,
+        faultCount: faults.length,
+        faults: faults.slice(0, 6),
         opening: String(hh.name ?? '').trim().split(/\s+/)[0]
           .replace(/[^A-Za-z]/g, '').toLowerCase(),
         grades: index.vocabulary.grades,
@@ -6223,16 +6284,35 @@ for (const [label, viewport, touch] of [
       && invented.grades?.includes(invented.headGrade)
       && invented.headGrade !== 'reconstructed',
       `head "${invented.name}" graded ${invented.headGrade}`);
-    // The inverse of the retired K18 check, and the reason it is here rather than
-    // deleted: `name_basis` is still rendered by `js/residents.js` (the "How this
-    // person is named" row), so nothing in the renderer stops an invented name
-    // coming back. The DATA is what the ruling changed, so the data is the gate.
-    check(`${label}: the invented-name programme left nothing behind on this layer`,
-      invented.reconstructedInLayer === 0 && invented.reconstructedHere === 0
-      && invented.anyNameBasis === false,
-      `${invented.reconstructedInLayer} reconstructed people in the manifest, `
-      + `${invented.reconstructedHere} on ${invented.id}, `
+    // T-0489's ruling, on the population it was made about: the evidence-only
+    // households are heads the papers name, and nothing was ever drawn into one.
+    // A reconstructed person appearing HERE would mean the programme had seated
+    // somebody in a record that exists to hold read evidence only.
+    check(`${label}: nothing was drawn into an evidence-only household`,
+      invented.reconstructedHere === 0 && invented.anyNameBasis === false,
+      `${invented.reconstructedHere} reconstructed people on ${invented.id}, `
       + `name_basis present: ${invented.anyNameBasis}`);
+    // And the programme's own population, over the manifest's count rather than a
+    // number written here. The three ways of counting must agree: what the manifest
+    // states, what its household rows add up to, and what the records hold. A stage
+    // that writes people without restating the manifest trips this.
+    check(`${label}: the manifest's reconstructed count is the layer the records hold`,
+      Number.isInteger(invented.statedByManifest)
+      && invented.countedByRows === invented.statedByManifest
+      && invented.foundOnRecords === invented.statedByManifest,
+      `manifest ${invented.statedByManifest}, household rows ${invented.countedByRows}, `
+      + `records ${invented.foundOnRecords} across ${invented.households} household(s)`);
+    // The promise that replaced T-0524's (T-1327): not that the programme left
+    // nothing behind, but that everything it leaves behind shows its working —
+    // and that an invented name never rides on a record that is not reconstructed.
+    check(`${label}: every reconstructed person carries its stage, basis, seed and replacement`,
+      invented.faultCount === 0 && invented.undeclared === 0,
+      invented.faultCount
+        ? `${invented.faultCount} fault(s), first ${invented.faults.length}: `
+          + invented.faults.join('; ')
+        : `${invented.foundOnRecords} reconstructed person(s), each naming a stage, `
+          + `a basis, a seed where drawn and the evidence that retires them; `
+          + `${invented.undeclared} undeclared invented name(s)`);
     // The layer-word in this label was `inferred` until K23a, and this assertion
     // was pinned to the HEAD'S OWN GRADE — which is how a name claiming a better
     // grade than its own record survived a release gate. T-0489 renamed these
@@ -7205,7 +7285,7 @@ for (const [label, viewport, touch] of [
     // never claimed when it is not. A real bake wearing a placeholder label is a
     // lie in the opposite direction, and would previously have passed.
     check(`${label}: the placeholder label agrees with the asset it describes`,
-      placeholder.placeholderFlag === (placeholder.recommended === true),
+      placeholder.whereholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
     // --- the standing constraint, on the card ------------------------------
@@ -10997,13 +11077,17 @@ for (const [label, viewport, touch] of [
     });
     // Was "Go to is a tab of its own, immediately after Controls" (five tabs).
     // The claim is the same — the rail's order is exact and Go to leads it —
-    // over the seven sections T-0701 gave the drawer.
-    check(`${label}: the rail lists the seven sections in order, Go to first`,
-      tabStrip.order.join(',') === 'goto,travel,people,evidence,settings,controls,whatsnew',
+    // over the eight sections the drawer carries since T-1324 put the town's
+    // firms beside its people.
+    check(`${label}: the rail lists the eight sections in order, Go to first`,
+      tabStrip.order.join(',') === 'goto,travel,people,businesses,evidence,settings,controls,whatsnew',
       tabStrip.order.join(','));
-    // Was "five tabs still fit the panel on one row, unsqueezed". Seven items
-    // now, one column on the desktop drawer and one row on the phone sheet.
-    check(`${label}: seven rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
+    // Was "five tabs still fit the panel on one row, unsqueezed". Eight items
+    // now, one column on the desktop drawer and one row on the phone sheet —
+    // and the phone is the binding case: eight of them share 390 px, which is
+    // why the Businesses tab wears the short label "Firms" on the rail and
+    // carries its full name in `data-title` for the drawer's head.
+    check(`${label}: eight rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
       (touch ? tabStrip.rows === 1 : tabStrip.cols === 1)
       && tabStrip.overflow <= 1 && !tabStrip.squeezed.length && !tabStrip.boxless.length,
       `${tabStrip.rows} row(s) x ${tabStrip.cols} column(s), ${tabStrip.overflow}px of rail `
@@ -11776,6 +11860,87 @@ for (const [label, viewport, touch] of [
       && Math.abs(goThere.end.framed.got - goThere.end.framed.want) <= 2.5
       && goThere.cardClosed,
       JSON.stringify(goThere));
+
+    // T-1324: the Businesses directory — every firm the register knows, searched,
+    // narrowed by how far the record could place it, and opened. The point of the
+    // view is the 140 firms with no roof in this town, so the check that matters
+    // is that the unplaceable ones are REACHABLE and print their limit: a house
+    // the register could place nowhere is evidence, not an absence, and the one
+    // thing this project will not do is invent a building to carry it.
+    await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
+    await clickChrome('.panel-tab[data-tab="businesses"]');
+    const biz = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const dir = api.businesses;
+      const out = { api: !!dir && typeof dir.search === 'function', error: dir?.error ?? null };
+      const idx = await (await fetch(new URL('businesses/index.json', api.dataBase))).json();
+      const rows = () => [...document.querySelectorAll('#businesses-results .person-row')];
+      out.counts = { rows: rows().length, api: dir.businesses, file: idx.businesses?.length,
+        stated: idx.counts?.records,
+        countText: document.getElementById('businesses-count')?.textContent ?? '',
+        title: document.getElementById('panel-title')?.textContent.trim() ?? '' };
+      out.search = { matched: dir.search('crockery'),
+        note: document.getElementById('businesses-result-note')?.textContent ?? '' };
+      dir.search('');
+      const all = dir.state?.matched;
+      out.pill = { all, matched: dir.filter('place', 'unplaceable'),
+        stated: idx.counts?.by_where_kind?.unplaceable,
+        pressed: document.querySelector('.pill[data-filter="place"][aria-pressed="true"]')?.dataset.value,
+        offKind: rows().filter((r) => !/unplaceable/.test(r.querySelector('.person-mark')?.textContent ?? ''))
+          .map((r) => r.dataset.businessId).slice(0, 5), rows: rows().length };
+      const firstUnplaceable = rows()[0]?.dataset.businessId ?? null;
+      dir.filter('place', '');
+      out.pill.cleared = dir.state?.matched;
+      // A roofless firm first: its card must say where the record stops.
+      const openedLimit = await dir.open(firstUnplaceable);
+      const card = document.getElementById('businesses-card');
+      out.roofless = { opened: openedLimit, id: firstUnplaceable,
+        limit: card?.querySelector('.biz-limit')?.textContent.trim() ?? '',
+        go: !!card?.querySelector('.biz-go') };
+      dir.close();
+      // …then one with a roof of its own, which must offer the way to it.
+      const withRoof = idx.businesses.find((b) => b.where?.kind === 'premises' && b.where.structure_id
+        && api.registry.has(b.where.structure_id));
+      const opened = await dir.open(withRoof?.id);
+      const go = card?.querySelector('.biz-go');
+      out.card = { opened, wanted: withRoof?.id ?? null, wantedStructure: withRoof?.where?.structure_id ?? null,
+        hidden: card?.hasAttribute('hidden'),
+        shown: card?.checkVisibility(),
+        name: card?.querySelector('.people-card-name')?.textContent.trim() ?? '',
+        title: document.getElementById('panel-title')?.textContent.trim() ?? '',
+        backShown: !document.getElementById('panel-back')?.hasAttribute('hidden'),
+        go: go?.dataset.structure ?? null,
+        locations: card?.querySelectorAll('.biz-loc').length ?? 0,
+        printings: /printings that attest it/.test(card?.textContent ?? '') };
+      dir.close();
+      return out;
+    });
+    check(`${label}: the Businesses directory lists every firm, and its count is the index's`,
+      biz.api && !biz.error && biz.counts.rows > 0 && biz.counts.api === biz.counts.file
+      && biz.counts.file === biz.counts.stated && biz.counts.stated > 150
+      && biz.counts.rows === biz.counts.stated
+      && new RegExp(`^${biz.counts.stated} firms`).test(biz.counts.countText)
+      && biz.counts.title === 'Businesses',
+      JSON.stringify(biz.counts));
+    check(`${label}: searching a good the papers advertised finds the houses that sold it`,
+      biz.search.matched > 0 && biz.search.matched < biz.counts.stated
+      && /crockery/i.test(biz.search.note),
+      JSON.stringify(biz.search));
+    check(`${label}: the unplaceable pill narrows the list to the firms with no place at all`,
+      biz.pill.matched > 0 && biz.pill.matched === biz.pill.stated && biz.pill.matched < biz.pill.all
+      && biz.pill.rows === biz.pill.matched && !biz.pill.offKind.length
+      && biz.pill.pressed === 'unplaceable' && biz.pill.cleared === biz.pill.all,
+      JSON.stringify(biz.pill));
+    check(`${label}: a firm the register could not place says how far the record goes, and offers no building`,
+      biz.roofless.opened && /How far the record goes:/.test(biz.roofless.limit)
+      && biz.roofless.limit.length > 40 && !biz.roofless.go,
+      JSON.stringify(biz.roofless));
+    check(`${label}: a firm with premises opens a card with its locations, its printings and the way there`,
+      biz.card.opened && biz.card.hidden === false && biz.card.shown && biz.card.name.length > 0
+      && biz.card.title === biz.card.name && biz.card.backShown
+      && biz.card.go === biz.card.wantedStructure
+      && biz.card.locations > 0 && biz.card.printings,
+      JSON.stringify(biz.card));
 
     // T-0710: the Evidence hub — nine tiles whose counts are their mounts'
     // entries, a topic that searches, and a way back. The eighth is T-1160's

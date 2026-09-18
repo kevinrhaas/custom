@@ -139,17 +139,61 @@ def archetype_for(family: str) -> str:
 
 
 def function_for(family: str) -> str:
+    """The band's term from the closed vocabulary (T-1311)."""
     return {
-        "D1": "older log dwelling", "D2": "rough plank dwelling or shanty",
-        "D3": "one-room frame cottage", "D4": "two-room frame cottage",
-        "D5": "deep-plan frame cottage", "D6": "one-and-a-half-story frame cottage",
-        "D7": "small two-story frame house", "C1": "small shop or office",
-        "C2": "store-residence", "C3": "narrow two-story store",
-        "W1": "blacksmith shop", "W2": "carpenter or joiner shop",
-        "W3": "cooper, wagon, or wheelwright shop", "W4": "small artisan shop",
-        "F1": "freight or storage shed", "F2": "narrow two-story warehouse",
-        "A1": "stable", "A2": "barn or carriage shed", "A3": "privy",
-        "A4": "woodshed or storage shed", "A5": "small utility building",
+        "D1": "older_log_dwelling",
+        "D2": "rough_plank_dwelling_or_shanty",
+        "D3": "one_room_frame_cottage",
+        "D4": "two_room_frame_cottage",
+        "D5": "deep_plan_frame_cottage",
+        "D6": "one_and_a_half_story_frame_cottage",
+        "D7": "small_two_story_frame_house",
+        "C1": "small_shop_or_office",
+        "C2": "store_residence",
+        "C3": "narrow_two_story_store",
+        "W1": "blacksmith_shop",
+        "W2": "carpenter_or_joiner_shop",
+        "W3": "cooper_wagon_or_wheelwright_shop",
+        "W4": "small_artisan_shop",
+        "F1": "freight_or_storage_shed",
+        "F2": "narrow_two_story_warehouse",
+        "A1": "stable",
+        "A2": "barn_or_carriage_shed",
+        "A3": "privy",
+        "A4": "woodshed_or_storage_shed",
+        "A5": "small_utility_building",
+    }[family]
+
+
+def label_for(family: str) -> str:
+    """The prose the record's human-facing `name` has always used.
+
+    Split from `function_for` by T-1311, which closed the `function` vocabulary.
+    A term is not a phrase to put in front of a visitor, and migrating a
+    vocabulary is not licence to rename the buildings that carry it.
+    """
+    return {
+        "D1": "older log dwelling",
+        "D2": "rough plank dwelling or shanty",
+        "D3": "one-room frame cottage",
+        "D4": "two-room frame cottage",
+        "D5": "deep-plan frame cottage",
+        "D6": "one-and-a-half-story frame cottage",
+        "D7": "small two-story frame house",
+        "C1": "small shop or office",
+        "C2": "store-residence",
+        "C3": "narrow two-story store",
+        "W1": "blacksmith shop",
+        "W2": "carpenter or joiner shop",
+        "W3": "cooper, wagon, or wheelwright shop",
+        "W4": "small artisan shop",
+        "F1": "freight or storage shed",
+        "F2": "narrow two-story warehouse",
+        "A1": "stable",
+        "A2": "barn or carriage shed",
+        "A3": "privy",
+        "A4": "woodshed or storage shed",
+        "A5": "small utility building",
     }[family]
 
 
@@ -385,7 +429,7 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
     function = function_for(family)
     return {
         "id": sid,
-        "name": f"Reconstructed {family} {function} #{seq:03d}",
+        "name": f"Reconstructed {family} {label_for(family)} #{seq:03d}",
         "archetype": archetype_for(family),
         "phases": [{
             "id": PHASE_ID,

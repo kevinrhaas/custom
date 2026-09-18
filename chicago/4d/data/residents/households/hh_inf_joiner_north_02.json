@@ -107,6 +107,50 @@
     "chicago_voter_lists_1833_1835_irad",
     "isa_public_domain_land_tract_sales"
    ],
+   "dated_bounds": [
+    {
+     "bound_kind": "presence",
+     "list": "poll_1834",
+     "list_title": "Election returns — poll list of 1834, filed 11 August 1834",
+     "record_id": "poll_1834_092",
+     "as_read": "Reed, James W.",
+     "locator": "voter_lists_1833_1835.txt line 261",
+     "describes_date": "1834-08-11",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-08-11",
+     "here_by": "1834-08-11",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "identity_discriminator": "forenames agree initial for initial: entry 'James W. Reed' against resident 'J. W. Reed'",
+     "identity_rule": "one resident of the surname 'Reed' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
+     "note": "A BOUND ON PRESENCE, AND NOTHING FURTHER. Election returns — poll list of 1834, filed 11 August 1834 records a man who presented himself and voted, so the entry places a body in Chicago no later than 1834-08-11. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes: a man on a roll of 1833, 1834 or 1835 is not thereby at Chicago on 1 July 1835. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The reading of the roll is documented — the town's own paper, held by the Illinois Regional Archives Depository, twice mediated by Schulz's transcription and Genealogy Trails' republication, which this project has not gone behind. What no source states is that the man on the roll is the person on this card: data/research/civic/voter_crosswalk.json joins them on a name, by its rule “one resident of the surname 'Reed' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.”, and forenames agree initial for initial: entry 'James W. Reed' against resident 'J. W. Reed'. A bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
+    },
+    {
+     "bound_kind": "presence",
+     "list": "poll_1835",
+     "list_title": "Poll list of 1835",
+     "record_id": "poll_1835_062",
+     "as_read": "Reed, J.W.",
+     "locator": "voter_lists_1833_1835.txt line 349",
+     "describes_date": "1835",
+     "date_confidence": "inferred",
+     "precision": "year",
+     "reaches": "1835-12-31",
+     "here_by": "1835-12-31",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "identity_discriminator": "forenames agree initial for initial: entry 'J.W. Reed' against resident 'J. W. Reed'",
+     "identity_rule": "one resident of the surname 'Reed' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
+     "note": "A BOUND ON PRESENCE, AND NOTHING FURTHER. Poll list of 1835 records a man who presented himself and voted, so the entry places a body in Chicago no later than 1835-12-31. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes: a man on a roll of 1833, 1834 or 1835 is not thereby at Chicago on 1 July 1835. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The reading of the roll is documented — the town's own paper, held by the Illinois Regional Archives Depository, twice mediated by Schulz's transcription and Genealogy Trails' republication, which this project has not gone behind. What no source states is that the man on the roll is the person on this card: data/research/civic/voter_crosswalk.json joins them on a name, by its rule “one resident of the surname 'Reed' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.”, and forenames agree initial for initial: entry 'J.W. Reed' against resident 'J. W. Reed'. A bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "civic_evidence": [
     {
      "list": "poll_1834",
@@ -219,7 +263,7 @@
     "basis": {
      "kind": "model",
      "id": "sex_share_of_the_roll",
-     "note": "Drawn at 88.4% male, the rate measured on the unclaimed roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
+     "note": "Drawn at 86.6% male, the rate measured on the unclaimed roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
     },
     "seed": "inf_joiner_north_02:sex_ratio",
     "replaceable_by": {

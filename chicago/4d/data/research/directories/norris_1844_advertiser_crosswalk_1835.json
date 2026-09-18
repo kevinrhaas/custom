@@ -17,11 +17,11 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1283,
+  "residents_considered": 1286,
   "matched_one_card": 19,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 6,
-  "surname_present_initial_absent_refused": 130,
+  "surname_present_initial_absent_refused": 133,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "cards_the_whole_name_refused": 0,
@@ -1184,6 +1184,13 @@
    "rule": "The surname 'Adams' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Elizabeth Adams'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Ellen Hamilton",
+   "person_id": "hamilton_ellen",
+   "surname_on_a_card": "Hamilton",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hamilton' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'Ellen Hamilton'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Emeline Egan",
    "person_id": "egan_emeline",
    "surname_on_a_card": "Egan",
@@ -1779,6 +1786,13 @@
    "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Silas W Sherman'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "The Harmon daughter later known as Mrs A. G. Burley",
+   "person_id": "harmon_daughter_burley",
+   "surname_on_a_card": "Burley",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Burley' stands on an 1844 advertising card and no proprietor under it carries the initial 'T' of 'The Harmon daughter later known as Mrs A. G. Burley'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Thomas Cook",
    "person_id": "cook_thomas",
    "surname_on_a_card": "Cook",
@@ -1812,6 +1826,13 @@
    "surname_on_a_card": "Newberry",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Newberry' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Walter Loomis Newberry'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Welthyan Loomis Harmon",
+   "person_id": "harmon_welthyan",
+   "surname_on_a_card": "Harmon",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Welthyan Loomis Harmon'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William George Sherman",

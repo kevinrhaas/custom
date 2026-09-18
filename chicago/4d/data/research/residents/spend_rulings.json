@@ -5,11 +5,13 @@
   "generated_by": "tools/spend_remainder_rulings.py",
   "counts": {
     "corroboration_confirms_and_moves_nothing": 47,
+    "the_enrichment_dates_an_appearance_the_card_already_carries": 15,
+    "the_enrichment_is_written_onto_the_card_it_names": 7,
     "the_enrichment_names_a_birth_or_age_no_field_carries": 3,
     "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": 12,
+    "the_enrichment_names_a_departure_from_chicago_no_field_carries": 6,
     "the_enrichment_names_a_landholding_no_field_carries": 2,
     "the_enrichment_names_a_trade_or_premises_no_field_carries": 37,
-    "the_enrichment_names_an_arrival_or_origin_no_field_carries": 30,
     "the_enrichment_names_kin_no_field_carries": 7,
     "the_later_volume_enriches_a_biography_and_names_no_1835_field": 7,
     "the_manifest_is_a_reservation_and_not_a_reading": 75,
@@ -19,6 +21,14 @@
     "corroboration_confirms_and_moves_nothing": {
       "disposition": "refused",
       "statement": "The completed pass returned `corroborated`: an independent source agrees with what the card already says, and the finding's own words are that the person was confirmed, NOT MOVED. Under the evidence ladder ratified 2026-09-03 corroboration corroborates; it does not promote and it names no new structured field, so there is nothing here to write. The agreement is a closed decision and the sources stand in the finding where the pass put them."
+    },
+    "the_enrichment_dates_an_appearance_the_card_already_carries": {
+      "disposition": "refused",
+      "statement": "The completed pass returned `corroborated_enrichment` naming an arrival, an origin or a dated appearance, and T-1330 read it against the card it names: the card ALREADY carries that date or that place, from a source of its own, at equal or better precision. Under the evidence ladder ratified 2026-09-03 corroboration corroborates; it does not promote, and a second volume agreeing that a man Andreas puts at Chicago in 1833 was at Chicago in 1833 names no field to fill. This is a finished answer rather than a deferral, and the finer detail some of these carry -- a month inside a year the card states, a roster naming inside a residence the card states -- is recorded in this unit's own note rather than written over a reading that owns the field. The nine of the thirty that DID retire a drawn or guessed value are not here: they are asserted on their cards by tools/spend_enrichment_arrivals.py and the ledger closes them by reading the card, which is why a ruling on one of them would be a fault."
+    },
+    "the_enrichment_is_written_onto_the_card_it_names": {
+      "disposition": "asserted",
+      "statement": "The completed pass returned `corroborated_enrichment` naming an arrival year or an origin, and T-1330 WROTE IT ONTO THE CARD -- over a value the arrival stage had drawn from a distribution, or over a year this project's own note called a guess. tools/spend_enrichment_arrivals.py holds the adjudication, writes the block and re-derives it under --check; the block is `inferred`, cites the volume the finding names, says which person it is about, and carries no `written_by_stage` mark, which is how reconstruct_residents_1835.py's `writable()` yields the field to it. This ruling exists because the ledger's own assertion test cannot see a spend of this kind: it closes a unit only where the card cites a source the READING already carried, and the whole value of these nine is that they bring a volume it did not. The `wrote` list on each row names the file and the field, and tools/research_spend_ledger.py re-reads every one of them -- an assertion a register cannot show is a fault, not an assertion."
     },
     "the_enrichment_names_a_birth_or_age_no_field_carries": {
       "disposition": "unresolved",
@@ -30,6 +40,11 @@
       "ticket": "T-1188",
       "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names a CIVIC, CHURCH, SCHOOL or GARRISON POST -- a county office, a town trusteeship, a coronership, a ministry, a church membership, a school kept or an officer's clerkship -- and T-1188 completes those establishments with their staff, attested where the sources name the officer."
     },
+    "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
+      "disposition": "unresolved",
+      "ticket": "T-1144",
+      "statement": "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from Chicago -- a removal, a migration to another town, a prospecting journey that ended somewhere else -- for a person this town holds a card for. T-1330 read all thirty arrival-and-origin enrichments one at a time and these six name a going rather than a coming. No field on a resident card carries a departure: the only thing a removal bears on is `present_on_scene_date`, and whether a man documented as leaving in 1835 was at Chicago on 1 July of that year is exactly the question T-1144 owns -- \"no false Chicago resident, and no 1835 claim above its dated evidence\". It is handed there and asserted nowhere: this pass does not move a presence, because a removal read out of one volume without the others beside it is how a layer loses a resident it had evidence for."
+    },
     "the_enrichment_names_a_landholding_no_field_carries": {
       "disposition": "unresolved",
       "ticket": "T-1198",
@@ -40,14 +55,9 @@
       "ticket": "T-1182",
       "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names a TRADE, a firm, a shop, a tavern, a store or the premises one was kept at, and T-1182 is the audit of every attested and inferred business against the research -- proprietors, partners, dates and premises -- which also raises an inferred business for an in- window trade that has none."
     },
-    "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
-      "disposition": "unresolved",
-      "ticket": "T-1319",
-      "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names an ARRIVAL, a departure, an origin or a dated appearance that bounds one, and T-1169 is the pass that fills arrival date, origin and reason for coming -- its acceptance takes the earliest dated appearance as the bound, which is exactly what a voter roll, a letter list or a treaty payment naming a man of Chicago is."
-    },
     "the_enrichment_names_kin_no_field_carries": {
       "disposition": "unresolved",
-      "ticket": "T-1170",
+      "ticket": "T-1320",
       "statement": "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a person this town holds -- a trade, an address, an origin, a kinship, a date -- that extends the card and that no exact source-bearing structured field on that card carries today. It is not refused, because it is true research; it is not written here, because writing one attribute at a time, out of one pass and without the other sources beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them one at a time and handed each to the OPEN ticket whose acceptance owns the kind of fact it names; this unit's own note says which field that is. This one names KIN -- a spouse, a marriage, a child, a parent or a household the source distinguishes -- and T-1170 is the pass that gives the attested and inferred heads the families the sources name."
     },
     "the_later_volume_enriches_a_biography_and_names_no_1835_field": {
@@ -96,7 +106,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/caldwell_billy",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on caldwell_billy returned: “Institutional histories corroborate Billy Caldwell's Chicago leadership and place the westward removal in 1835. This conflicts with Andreas/project language placing migration in 1836 and is retained as a dated conflict.” Sources as recorded: encyclopedia_chicago_potawatomis. T-1301 reads that as a dated removal that conflicts with the record's own migration year."
     },
     {
@@ -186,7 +196,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/kinzie_juliette",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on kinzie_juliette returned: “Wisconsin Historical Society identifies the Fort Winnebago agency house as John and Juliette Kinzie's 1830–33 residence and corroborates her authorship of Wau-Bun.” Sources as recorded: whs_kinzie_agency_house. T-1301 reads that as a dated pre-Chicago residence at the Fort Winnebago agency house."
     },
     {
@@ -231,8 +241,14 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/peck_philip",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on peck_philip returned: “Chicago History Museum's encyclopedia and period histories identify Philip F. W. Peck as a Providence-born merchant and real-estate developer arriving in July 1831. Spelling varies Phillip/Philip.” Sources as recorded: encyclopedia_chicago_biographical_p. T-1301 reads that as a Providence origin and a dated July 1831 arrival."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on peck_philip returned: “Chicago History Museum's encyclopedia and period histories identify Philip F. W. Peck as a Providence-born merchant and real-estate developer arriving in July 1831. Spelling varies Phillip/Philip.” Sources as recorded: encyclopedia_chicago_biographical_p. T-1301 reads that as a Providence origin and a dated July 1831 arrival.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_peck_philip.json",
+          "field": "origin"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/porter_eliza_chappel",
@@ -266,7 +282,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/spring_giles",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on spring_giles returned: “The Papers of Abraham Lincoln gives Spring's relocation to Chicago in June 1833, Franklin and South Water law office, 1836 partnership and marriage, improving the household's year-only arrival.” Sources as recorded: pal_giles_spring. T-1301 reads that as a relocation to Chicago dated June 1833."
     },
     {
@@ -276,13 +292,29 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/temple_john_t",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on temple_john_t returned: “A municipal preservation study corroborates Temple's July 1833 arrival with wife and four children and his mail contract, but gives dwelling and office locations that conflict with the household. Addresses remain …” Sources as recorded: plainfield_john_temple_report. T-1301 reads that as a July 1833 arrival with a family."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on temple_john_t returned: “A municipal preservation study corroborates Temple's July 1833 arrival with wife and four children and his mail contract, but gives dwelling and office locations that conflict with the household. Addresses remain …” Sources as recorded: plainfield_john_temple_report. T-1301 reads that as a July 1833 arrival with a family.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_temple_john_t.json",
+          "field": "arrival_year"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/tuller_elam",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on tuller_elam returned: “A county biography says Elam Tuller's family reached Chicago in July 1833 and identifies his Connecticut origin and farmer, mechanic and steam-engine manufacturing background. Two letter returns support the chronology.” Sources as recorded: whiteside_elam_tuller. T-1301 reads that as a July 1833 family arrival and a Connecticut origin."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on tuller_elam returned: “A county biography says Elam Tuller's family reached Chicago in July 1833 and identifies his Connecticut origin and farmer, mechanic and steam-engine manufacturing background. Two letter returns support the chronology.” Sources as recorded: whiteside_elam_tuller. T-1301 reads that as a July 1833 family arrival and a Connecticut origin.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_tuller_elam.json",
+          "field": "arrival_year"
+        },
+        {
+          "file": "data/residents/households/hh_tuller_elam.json",
+          "field": "origin"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/vann_angeline",
@@ -291,7 +323,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_02_75_cohort.json#people/wright_john",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on wright_john returned: “Chicago Public Library distinguishes storekeeper John Wright from son John Stephen and dates their joint arrival with merchandise to 29 October 1832 and Prairie Store at Lake and Clark.” Sources as recorded: cpl_john_s_wright_papers. T-1301 reads that as a joint arrival dated 29 October 1832."
     },
     {
@@ -341,12 +373,12 @@
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/carver_david",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on carver_david returned: “Cook County history independently places David Carver on Chicago's 1833 voter roster. The exact name and civic chronology strengthen identity; later lumber claims remain dependent on retrospective accounts.” Sources as recorded: goodman_history_cook_county_early. T-1301 reads that as a dated 1833 voter-roster appearance, which is an arrival bound."
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/casey_edward_w",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on casey_edward_w returned: “John Dean Caton's near-participant recollection says Edward W. Casey was the only other lawyer he remembered arriving in Chicago in 1833 and places him in the early circuit-court circle.” Sources as recorded: caton_atlantic_chicago_1893. T-1301 reads that as an 1833 arrival remembered by a near participant."
     },
     {
@@ -356,8 +388,14 @@
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/church_thomas",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on church_thomas returned: “A published early-Chicago reminiscence says Thomas Church arrived in 1834 and describes his Lake Street building activity. It corroborates the uncommon name, migration year and merchant setting without proving …” Sources as recorded: ingale_early_chicago_reminiscence. T-1301 reads that as an 1834 arrival."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on church_thomas returned: “A published early-Chicago reminiscence says Thomas Church arrived in 1834 and describes his Lake Street building activity. It corroborates the uncommon name, migration year and merchant setting without proving …” Sources as recorded: ingale_early_chicago_reminiscence. T-1301 reads that as an 1834 arrival.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_church_thomas.json",
+          "field": "arrival"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/churchill_alfred",
@@ -406,7 +444,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/gale_stephen_f",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on gale_stephen_f returned: “Cook County history places Stephen F. Gale on Chicago's 1833 voter roster; a later statute bibliography identifies his Chicago printing imprint in 1839. Together they extend civic and publishing chronology without …” Sources as recorded: goodman_history_cook_county_early, jsp_illinois_statutes_gale_imprint. T-1301 reads that as a dated 1833 voter-roster appearance."
     },
     {
@@ -421,7 +459,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_03_75_cohort.json#people/jones_benjamin",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on jones_benjamin returned: “A Library of Congress engineering history identifies Benjamin Jones as a Chicago merchant and land speculator who bought at the Manitowoc River mouth in 1835 and settled there in 1836. This supplies a dated migration …” Sources as recorded: loc_mantowoc_benjamin_jones. T-1301 reads that as a dated 1835 purchase and an 1836 removal."
     },
     {
@@ -486,22 +524,17 @@
     },
     {
       "unit": "residents:data/research/residents/pass_04_75_cohort.json#people/norton_nelson_r",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on norton_nelson_r returned: “Early Chicago history preserves Nelson R. Norton's own chronology: arrival November 16, 1833, construction of the Dearborn Street drawbridge beginning March 1834 and completion around June. Exact name plus the …” Sources as recorded: goodman_history_cook_county_early. T-1301 reads that as an arrival dated 16 November 1833."
     },
     {
-      "unit": "residents:data/research/residents/pass_04_75_cohort.json#people/paine_seth",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on paine_seth returned: “Andreas's Seth Paine biography gives an exact uncommon name and a direct 1834 migration from Montpelier, Vermont to Chicago. In combination with the 1835 postal entry, this is sufficient to treat the postal name as …” Sources as recorded: andreas_seth_paine_1834. T-1301 reads that as an 1834 migration from Montpelier, Vermont."
-    },
-    {
       "unit": "residents:data/research/residents/pass_04_75_cohort.json#people/pierce_asahel",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on pierce_asahel returned: “Early Chicago history identifies Asahel Pierce as an October 1833 arrival and blacksmith/agricultural-implement maker. The uncommon name and distinctive trade provide independent corroboration, but no unsupported July …” Sources as recorded: goodman_history_cook_county_early. T-1301 reads that as an October 1833 arrival."
     },
     {
       "unit": "residents:data/research/residents/pass_04_75_cohort.json#people/porthier_joseph",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on porthier_joseph returned: “Pioneer History of Milwaukee supplies a materially tighter migration chronology than the existing record: Joseph Porthier left Chicago with Horace Chase on February 27, 1835, briefly returned to Chicago for means, then …” Sources as recorded: buck_pioneer_milwaukee_porthier_1835. T-1301 reads that as a departure dated 27 February 1835 and a return."
     },
     {
@@ -526,7 +559,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_04_75_cohort.json#people/sweet_alanson",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on sweet_alanson returned: “Milwaukee histories identify Alanson Sweet as an early Chicago stone mason who moved to Milwaukee in 1835. The migration is real and important, but the reviewed passage does not supply a sufficiently safe departure day …” Sources as recorded: buck_pioneer_milwaukee_alanson_sweet. T-1301 reads that as a removal to Milwaukee in 1835."
     },
     {
@@ -595,18 +628,13 @@
       "note": "The pass on holliday_william returned: “Greene County history places a William Holliday, a Kentucky-born physician, in White Hall by 1834. The exact name and Illinois chronology warrant retaining the record as a candidate, but White Hall is strong competing …” Candidate(s) as recorded: Dr. William Holliday of White Hall, Illinois (weak, asserted=False)."
     },
     {
-      "unit": "residents:data/research/residents/pass_05_75_cohort.json#people/hugunin_leonard_c",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on hugunin_leonard_c returned: “The Old Settlers of Chicago proceedings record Leonard C. Hugunin as arriving 17 August 1833, and the 1839 Chicago directory lists Leonard C. Hugunin as a speculator. The rare full name, dated Chicago arrival and later …” Sources as recorded: chicago_old_settlers_hugunin_1883, fergus_chicago_directory_1839. T-1301 reads that as an arrival dated 17 August 1833."
-    },
-    {
       "unit": "residents:data/research/residents/pass_05_75_cohort.json#people/jaines_gooding",
       "rule": "the_pass_named_a_candidate_and_did_not_assert_it",
       "note": "The pass on jaines_gooding returned: “Will County histories identify Deacon James Gooding, who settled Gooding's Grove in 1832 when the area was still Cook County. The printed 'Jaines' form is plausibly an OCR/transcription variant of James and the …” Candidate(s) as recorded: James Gooding of Gooding's Grove (moderate, asserted=False)."
     },
     {
       "unit": "residents:data/research/residents/pass_05_75_cohort.json#people/kercheval_gholson",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on kercheval_gholson returned: “The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause, while the contemporary town record identifies him among Chicago's early civic actors. This corroborates the exact person, …” Sources as recorded: okstate_treaty_chicago_1833, chicagology_prefire278. T-1301 reads that as a dated 1833 treaty payment naming him of Chicago."
     },
     {
@@ -651,7 +679,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_06_75_cohort.json#people/andrews_davi",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on andrews_davi returned: “Retrospective Cook County biography identifies David Andrews in Cook County from 1834 and supports exact-name continuity; the evidence does not establish a specific 1 July 1835 roof.” Sources as recorded: chicago_democrat_1833_1835, resident_research_cook_county_andrews_1884. T-1301 reads that as a dated Cook County presence from 1834."
     },
     {
@@ -731,8 +759,14 @@
     },
     {
       "unit": "residents:data/research/residents/pass_07_75_cohort.json#people/jackson_samuel",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on jackson_samuel returned: “Cook County history states Samuel Jackson arrived from Buffalo June 27, 1833 and served as foreman of Chicago harbor construction for some time. This independently corroborates the exact named Chicago person and …” Sources as recorded: chicago_democrat_1833_1835, resident_research_cook_harbor_jackson. T-1301 reads that as an arrival from Buffalo dated 27 June 1833."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on jackson_samuel returned: “Cook County history states Samuel Jackson arrived from Buffalo June 27, 1833 and served as foreman of Chicago harbor construction for some time. This independently corroborates the exact named Chicago person and …” Sources as recorded: chicago_democrat_1833_1835, resident_research_cook_harbor_jackson. T-1301 reads that as an arrival from Buffalo dated 27 June 1833.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_jackson_samuel.json",
+          "field": "arrival_year"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_07_75_cohort.json#people/minard_ira",
@@ -781,7 +815,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_08_75_cohort.json#people/orsemus_morrison",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on orsemus_morrison returned: “Orsemus Morrison came to Chicago in 1833, acquired school-section property, and worked as a mechanic/builder.” Sources as recorded: resident_research_cook_morrison_album. T-1301 reads that as an 1833 arrival."
     },
     {
@@ -851,7 +885,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_09_75_cohort.json#people/pugsley_john_k",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on pugsley_john_k returned: “An 1880 Van Buren County history says John K. Pugsley left near Utica, New York in June 1835, traveled to Chicago, prospected there, then returned to Paw Paw Township and entered land. The full middle-initial name, …” Sources as recorded: resident_research_pugsley_barrien_vanburen. T-1301 reads that as a June 1835 journey from near Utica, and a return."
     },
     {
@@ -871,7 +905,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_10_75_cohort.json#people/boilvin_nicholas",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on boilvin_nicholas returned: “The exact uncommon name Nicholas Boilvin appears in multiple 1834 Chicago post-office returns and independently in the 1833 Treaty of Chicago payment schedule. The paired contemporary-era evidence safely corroborates …” Sources as recorded: chicago_democrat_1833_1835, fcp_treaty_chicago_1833_payments. T-1301 reads that as dated 1834 post-office returns and an 1833 treaty schedule."
     },
     {
@@ -881,12 +915,12 @@
     },
     {
       "unit": "residents:data/research/residents/pass_10_75_cohort.json#people/christy_nathan",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on christy_nathan returned: “The 1834 Chicago letter-list evidence places Nathan Christy beside the uncommon Rumsey Christy, and the 1843 Chicago directory independently lists both Nathan Christy and Rumsey Christy. That paired-name continuity is a …” Sources as recorded: chicago_democrat_1833_1835, fergus_chicago_directory_1843. T-1301 reads that as a dated 1834 letter-list appearance."
     },
     {
       "unit": "residents:data/research/residents/pass_10_75_cohort.json#people/cleland_martin",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_names_a_departure_from_chicago_no_field_carries",
       "note": "The pass on cleland_martin returned: “An 1886 family genealogy gives an unusually specific migration chronology: Martin Cleland traveled from Chautauqua, New York, to Chicago on a prospecting tour in 1834 and selected a future home near Niles, Michigan; the …” Sources as recorded: chicago_democrat_1833_1835, marsh_genealogy_martin_cleland_1886. T-1301 reads that as an 1834 prospecting journey from Chautauqua, New York."
     },
     {
@@ -931,13 +965,19 @@
     },
     {
       "unit": "residents:data/research/residents/pass_10_75_cohort.json#people/vasseur_noel",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on vasseur_noel returned: “The exact uncommon name Noel Vasseur appears in the 1835 Chicago postal list and independently in the 1833 Treaty of Chicago payment schedule. This corroborates the identity and fur-trade/treaty-era regional context, …” Sources as recorded: chicago_democrat_1833_1835, fcp_treaty_chicago_1833_payments. T-1301 reads that as an 1835 postal list and an 1833 treaty schedule."
     },
     {
       "unit": "residents:data/research/residents/pass_11_75_cohort.json#people/andrus_thomas",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on andrus_thomas returned: “DuPage history gives a detailed chronology for Thomas Andrus: arrival in Chicago Dec. 1, 1833, carpenter/pile-driving work in 1834, return east in autumn 1834, and arrival back at Chicago in June 1835 before settling in …” Sources as recorded: rr_dupage_andrus_1882. T-1301 reads that as an arrival dated 1 December 1833 and a June 1835 return."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on andrus_thomas returned: “DuPage history gives a detailed chronology for Thomas Andrus: arrival in Chicago Dec. 1, 1833, carpenter/pile-driving work in 1834, return east in autumn 1834, and arrival back at Chicago in June 1835 before settling in …” Sources as recorded: rr_dupage_andrus_1882. T-1301 reads that as an arrival dated 1 December 1833 and a June 1835 return.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_andrus_thomas.json",
+          "field": "arrival_year"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_11_75_cohort.json#people/bristol_r_c",
@@ -961,8 +1001,14 @@
     },
     {
       "unit": "residents:data/research/residents/pass_11_75_cohort.json#people/evans_sciota",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
-      "note": "The pass on evans_sciota returned: “A Cook County history quoting the Chicago Democrat's October 15, 1834 political list names Sciota Evans among leading Cook County Democratic-Republicans. Milwaukee records then show Sciota Evans as constable in …” Sources as recorded: rr_cook_democratic_republicans_1834. T-1301 reads that as a dated October 1834 list and a later Milwaukee office."
+      "rule": "the_enrichment_is_written_onto_the_card_it_names",
+      "note": "The pass on evans_sciota returned: “A Cook County history quoting the Chicago Democrat's October 15, 1834 political list names Sciota Evans among leading Cook County Democratic-Republicans. Milwaukee records then show Sciota Evans as constable in …” Sources as recorded: rr_cook_democratic_republicans_1834. T-1301 reads that as a dated October 1834 list and a later Milwaukee office.",
+      "wrote": [
+        {
+          "file": "data/residents/households/hh_evans_sciota.json",
+          "field": "arrival_year"
+        }
+      ]
     },
     {
       "unit": "residents:data/research/residents/pass_11_75_cohort.json#people/fitzgerald_thos",
@@ -1036,7 +1082,7 @@
     },
     {
       "unit": "residents:data/research/residents/pass_12_11_cohort.json#people/woodworth_james_h",
-      "rule": "the_enrichment_names_an_arrival_or_origin_no_field_carries",
+      "rule": "the_enrichment_dates_an_appearance_the_card_already_carries",
       "note": "The pass on woodworth_james_h returned: “The U.S. House historian independently states that James Hutchinson Woodworth moved to Chicago in 1833 and engaged in the dry-goods business. The exact full name and matching chronology strongly corroborate the postal …” Sources as recorded: chicago_democrat_1833_1835, ushouse_james_h_woodworth. T-1301 reads that as a move to Chicago in 1833."
     },
     {

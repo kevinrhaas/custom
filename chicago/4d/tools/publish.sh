@@ -231,6 +231,20 @@ for q in Path(sys.argv[1]).rglob("*.json"):
 MINIFY
 fi
 
+# The business layer. 196 firms compiled from the register — and 166 of them
+# have no roof in this town, so a card in the Businesses directory is the ONLY
+# place a visitor can reach them. `businesses/index.json` is what the directory
+# lists; each `biz_*.json` is fetched when its card opens. Leave this out and the
+# section is empty on the deployed site while the dev tree fills it — the
+# scenes/, fauna/, residents/ and frontage/ failure, a sixth time. Copied
+# verbatim, not minified as the residents are: 1.2 MB is nothing against the
+# budget, and a byte-identical mirror is one the publish gate can check by
+# comparison rather than one that needs a transform rule and a gate of its own.
+if [ -d data/businesses ]; then
+  rm -rf "$SITE/data/businesses"
+  cp -a data/businesses "$SITE/data/businesses"
+fi
+
 # The enclosure layer — fence lines, yards and pens, drawn by
 # renderers/web/js/enclosures.js straight from these numbers. It carries no GLB
 # by design (an enclosure is a perimeter, not a footprint), so this copy is the

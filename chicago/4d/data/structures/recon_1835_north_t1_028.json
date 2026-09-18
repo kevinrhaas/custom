@@ -120,7 +120,7 @@
     }
   ],
   "function": {
-    "value": "small inn or tavern",
+    "value": "small_inn_or_tavern",
     "confidence": "reconstructed",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"

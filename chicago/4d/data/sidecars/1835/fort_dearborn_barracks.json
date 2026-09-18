@@ -112,7 +112,7 @@
       "note": "Same reasoning as the officers' quarters: galleries fronting the parade are documented for the FIRST fort and for no building in this one, and a plain front is a claim the visitor sees."
     },
     "function": {
-      "value": "enlisted men's barracks",
+      "value": "enlisted_mens_barracks",
       "confidence": "attested",
       "sources": [
         "andreas_1884_v1"

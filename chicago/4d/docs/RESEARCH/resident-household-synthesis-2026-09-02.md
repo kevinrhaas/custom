@@ -7,9 +7,9 @@ T-0487 → T-0490 synthesis of the completed newspaper/letter-list sweep, reside
 | Measure | Before | After |
 |---|---:|---:|
 | Households | 920 | 1258 |
-| Person entries | 956 | 1285 |
+| Person entries | 956 | 1288 |
 | Attested | 823 | 410 |
-| Inferred | 25 | 872 |
+| Inferred | 25 | 875 |
 | Reconstructed | 108 | 3 |
 | Letter-list-only flag | 727 | 736 |
 | Projected residents | 0 | 721 |
