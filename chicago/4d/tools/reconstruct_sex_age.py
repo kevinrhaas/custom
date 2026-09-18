@@ -223,6 +223,38 @@ def ours_age(block) -> bool:
     return isinstance(block, dict)
 
 
+def counted_band_block(person: dict) -> dict:
+    """The `age_band` of somebody a census column already counted, not drawn (T-1314)."""
+    age = (person.get("reconstruction") or {}).get("age_on_scene_date") or {}
+    low, high = age.get("low"), age.get("high")
+    span = f"{low} or older" if high is None else f"{low}-{high}"
+    stage = (person.get("reconstruction") or {}).get("stage")
+    band = (person.get("reconstruction") or {}).get("band_1840")
+    return {
+        "value": span,
+        "confidence": RECONSTRUCTED,
+        "tier": RECONSTRUCTED,
+        "note": (f"READ OFF A COUNT, NOT DRAWN. The `{stage}` stage wrote this person from a "
+                 f"census column - \u201c{band}\u201d - and the band back-projects to {span} "
+                 f"on the scene date. This pass draws an age only where nothing dates one, and "
+                 f"a tally in an age column dates one."),
+        "basis": {
+            "kind": "rule",
+            "id": "counted_by_a_census_column",
+            "note": (f"ARGUED, NOT DRAWN. The `{stage}` stage wrote this person BECAUSE the "
+                     f"1840 schedule tallies them in \u201c{band}\u201d; that column is the "
+                     f"only thing said about their age, and five years off it is the whole "
+                     f"derivation. No model row is consulted and nothing is drawn, so this "
+                     f"block carries no seed."),
+        },
+        "replaceable_by": {
+            "kind": "person",
+            "match": ("a source that states this person's age, their birth year, or an "
+                      "interval either can be read out of"),
+        },
+    }
+
+
 def without_this_pass(card: dict) -> dict:
     """The card as it stood before this pass ever ran. The basis of `--check`."""
     out = json.loads(json.dumps(card))
@@ -575,6 +607,16 @@ def fill(base: dict) -> tuple:
         roll = roll_of(card)
         for person in card.get("persons") or []:
             pid = str(person.get("id") or "")
+            # A PERSON A CENSUS BAND ALREADY DATES IS NOT ONE TO DRAW AN AGE FOR (T-1314).
+            # The `named_families` stage writes people the 1840 schedule COUNTS in an age
+            # column, and carries the band it back-projects to on the record. Drawing an
+            # age band for them out of the population model would put a draw beside a
+            # reading of the same person and let the weaker one win a coin toss.
+            if (person.get("reconstruction") or {}).get("age_on_scene_date"):
+                person["age_band"] = counted_band_block(person)
+                counts["age_read"][roll] += 1
+                settle_order(person)
+                continue
             if collective(person):
                 if not person.get("sex"):
                     person["sex_basis"] = refusal_block("sex")
