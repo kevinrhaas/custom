@@ -94,6 +94,30 @@
     "residents/household:persons[].roles[].place": {
       "records": 687
     },
+    "residents/household:persons[].stated_family.as_read": {
+      "records": 3,
+      "refused_because": "The source's words for the relative, kept verbatim so the match can be audited against the page — 'Welthyan Loomis', 'Mrs A. G. Burley'. Where it differs from the name on the card that difference is a finding, and it belongs in the note, which is where it is written and where the visitor reads it. Un-banks the day a card prints the reading beside the name."
+    },
+    "residents/household:persons[].stated_family.pass": {
+      "records": 3,
+      "refused_because": "The stated-family pass's own bookkeeping — which pass wrote this person, so `--build` can lift its whole output back out and re-derive it rather than appending to it. That re-derivability is the reason the key exists: a verdict re-read from `write` to `no_seat` has to take somebody back OUT of the town, and a pass that cannot find its own writes cannot do that. It is a fact about the tool, not about the woman on the card."
+    },
+    "residents/household:persons[].stated_family.read_from": {
+      "records": 3,
+      "refused_because": "Which field of which record the statement was read out of — the pass's audit trail back to the sentence. File-and-field routing, the same class of key as `record_file`, and it names a location in this repository rather than anything about 1835."
+    },
+    "residents/household:persons[].stated_family.relation": {
+      "records": 3,
+      "refused_because": "The normalised relation word the reading matched on — `wife`, `daughter`. The poorer of two copies: the person's own `relationship` is what the card prints, it is the field every other resident carries, and it is authored for a reader rather than for a matcher. Showing this one instead would be showing less, which is the ruling this table already makes about `households[].present_on_scene_date`."
+    },
+    "residents/household:persons[].stated_family.statement": {
+      "records": 3,
+      "refused_because": "The id of the read statement this seat came from — a foreign key into the derived reading in docs/RESEARCH/stated-families-2026-09.md and into the verdict table in data/residents/stated_family_rulings.json. It resolves a row; it states nothing about the person. The claim it resolves to reaches the visitor as the note and the sources on this person's own row."
+    },
+    "residents/household:persons[].stated_family.ticket": {
+      "records": 3,
+      "refused_because": "Which ticket seated this person. Repository provenance of the same class as `source_pass` — useful to a reader of the JSON and to the run that has to audit a pass, and not part of what a visitor judges the record by. What the visitor needs is the evidence, and the card already shows it: the grade, the sources and the note that says what the source does NOT say."
+    },
     "residents/household:source_pass": {
       "records": 1179,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows — grade, letter_list_only, sources — is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."

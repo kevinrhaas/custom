@@ -1082,9 +1082,9 @@
   },
   "after": {
     "households": 1258,
-    "persons": 1282,
+    "persons": 1285,
     "attested": 410,
-    "inferred": 872,
+    "inferred": 875,
     "reconstructed": 0,
     "letter_list_only": 736,
     "projected_residents": 721,

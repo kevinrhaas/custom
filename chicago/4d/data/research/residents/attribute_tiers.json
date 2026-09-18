@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 11143,
+    "blocks": 11146,
     "tiers_written_on_the_card": 0,
     "by_tier": {
       "attested": 584,
       "inferred": 3205,
       "reconstructed": 40,
-      "unknown": 7314
+      "unknown": 7317
     },
     "by_attribute": {
       "arrival": {
@@ -117,7 +117,7 @@
         "attested": 119,
         "inferred": 9,
         "reconstructed": 0,
-        "unknown": 1154
+        "unknown": 1157
       },
       "persons[].profile_facts[]": {
         "attested": 1,
