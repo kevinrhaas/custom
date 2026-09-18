@@ -1,7 +1,7 @@
 ---
 id: T-1144
 title: Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T19:57:45.318Z
 claimed_run: null
 ---
 
@@ -292,3 +292,40 @@ are fixed points today; what remains is the report that states their deltas, and
 the letter-list leg under it first.
 
 `claimed_by` is cleared with this: nobody holds this ticket.
+
+
+## AND NOW IT IS SPLIT, AFTER THE SECTION ABOVE (2026-09-18)
+
+The section above was written by the run that closed acceptance 6's redirect leg, and it
+ends "the ticket stays open". That was right when it was written. This one supersedes it:
+**T-1144 is split, not open**, and the two things it says are left are exactly the two
+children.
+
+Seven passes have closed acceptances 4, 7, 8, 9 and acceptance 6's redirect leg, each on
+its own PR. What is left does not fit one more run, and it is not one question:
+
+**T-1333 — the closing convergence rebuild.** Acceptance 6's other half, in the words the
+section above uses for it: "the closing rebuild with the exact household/person/grade
+deltas". Acceptances 3, 5 and 9 measure clean today but were deliberately left "to the
+closing pass to state as deltas rather than claimed closed from a spot reading" (the
+2026-09-18 second pass, above), so they are banked here and stated by the same rebuild.
+
+**T-1334 — the letter-list mint's drift and the one-letter-apart identity rule.**
+Acceptance 1, and the last slot of acceptance 2. The section above names the blocker
+itself — "acceptance 1's letter-list leg is still T-1222's 798-file drift behind
+T-0691/T-0660" — and that drift is read by T-1222, not by this layer's closing pass.
+
+**WHY THE SPLIT HAPPENS NOW RATHER THAN AT THE END.** One research unit defers to this
+ticket by id: `identity_open_one_letter_apart` in `data/research/spend_rulings.json`, whose
+statement is "the convergence ticket owns mint drift and false residents". Under the T-1237
+rule a unit cannot defer to spent work, and a split parent whose children have all closed
+IS spent work — so had T-1144 been split on the day its last child landed, that unit would
+have been stranded in the same breath. It is repointed to **T-1334** with this, which is
+the child that actually owns mint drift.
+
+The line is left `unresolved` and **open**, not `blocked`: `blocked` is not in the ticket
+system's `WORKABLE` set, and a unit whose owner is unworkable is a strand wearing a
+different word.
+
+`claimed_by` is cleared: nobody holds this ticket, and nobody should — the children are
+where the work is.
