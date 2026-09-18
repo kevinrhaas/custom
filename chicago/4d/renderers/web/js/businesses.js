@@ -1,0 +1,591 @@
+/**
+ * businesses.js — the Businesses section of the drawer: every firm the town's
+ * record knows, findable.
+ *
+ * WHY THIS EXISTS. The renderer never opened `register_1835.json` or the
+ * business layer at all: a firm reached a visitor only through a building
+ * card's "Use"/"Keepers" lines, a signboard tap, or the agencies panel. That
+ * works for the 30 houses that stand in a roof of their own, and it leaves the
+ * other 166 — 26 placed against a landmark and no closer, 61 known to a street
+ * and no further, 79 the register could place nowhere at all — invisible in a
+ * walk of the town. They are not
+ * lesser evidence. A printed advertisement with no address is still a house
+ * that traded here, and the one thing it must never become is a building
+ * invented to carry it. So it gets a card instead of a roof.
+ *
+ * WHAT IT READS. `data/businesses/index.json`, which `tools/compile_businesses.py`
+ * derives from the register, the gazetteer and the resident layer — one row a
+ * firm, carrying what a list needs to sort, filter, count and search. The record
+ * itself is fetched the first time a card is opened, the way `people.js` fetches
+ * a household: the list is 196 rows and must paint at once; a card is one file.
+ *
+ * THE GRADE ON A ROW is the FIRM's, and a firm states its tiers in three places
+ * — who ran it, where it stood, when it opened. `compile_businesses.record_grade`
+ * folds those into one: attested where any of them is attested, reconstructed
+ * where every one of them is, inferred otherwise. The card prints all three
+ * separately, so the fold can always be unpicked.
+ *
+ * THE PLACE FILTER is the point of the view. `premises` is a roof of its own,
+ * `anchored` is "next door to the Sauganash" and no roof, `street_only` is a
+ * street and no more, `unplaceable` is a house the register could not put
+ * anywhere — and every one of those says, in the record's own words, WHY it
+ * stops there. A visitor can ask for the unplaceable ones and read 79 limits.
+ *
+ * It files a firm ONCE, under its primary location, so the tally it counts by is
+ * `counts.by_where_kind` (firms) and never `counts.by_location_kind` (locations).
+ * Four of these houses moved inside the window and carry two addresses; a firm
+ * filed under the street it ended on still holds the unplaceable one it left.
+ *
+ * Contract (main.js): `mountBusinesses({ mount, index, registry, dataBase,
+ * onGoTo, onPerson, onTitle, problems })` -> `{ businesses, error, search,
+ * open, close, filter, results, state }`.
+ */
+
+import { escapeHtml } from './citations.js';
+import { displayName } from './display-name.js';
+import { words } from './residents.js';
+
+/** Diacritics folded, lower-cased, one space between words — the same reduction
+ *  people.js applies, so the two directories answer a query the same way. */
+function fold(s) {
+  return String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+const n = (x) => Number(x || 0).toLocaleString('en-GB');
+
+/** How far the record could place a house, in the visitor's words. The order is
+ *  the ladder: a roof, a landmark, a street, nothing. */
+const PLACE = {
+  premises: ['on a roof', 'A building of its own in this town — the card takes you to it'],
+  anchored: ['by a landmark', 'Placed against a building the town holds, with no roof of its own'],
+  street_only: ['street only', 'A street and no further: the printing names no premises'],
+  unplaceable: ['unplaceable', 'The register resolved no place for this house at all'],
+};
+
+const GRADE_TITLE = {
+  attested: 'a source attests this house — its keeper, its premises or its opening — at first hand',
+  inferred: 'reasoned from the evidence: the printings put this house here, and no one claim of it is attested',
+  reconstructed: 'no source speaks to this house; built to fill a count the town demonstrably needed',
+};
+
+/** The two liberties a compiled business can owe, in the schema's own words. */
+const LIBERTY = {
+  survival_required: 'Documented before 1 July 1835 and assumed still trading on it.',
+  backdating_required: 'Documented only after 1 July 1835 and assumed already open on it.',
+};
+
+/** A date as a card prints it: the ISO day where there is one, the year alone
+ *  where the record gives only that, an em dash where it gives nothing. */
+function day(d) {
+  if (!d) return '—';
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d));
+  if (!m) return String(d);
+  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'][Number(m[2]) - 1];
+  return `${Number(m[3])} ${month} ${m[1]}`;
+}
+
+/** The filter rows, declared as data so the per-pill count pass can drop one row
+ *  at a time — the same shape people.js uses, for the same reason. */
+function filterSpecs(rows, counts) {
+  const tally = (get) => {
+    const c = new Map();
+    for (const r of rows) for (const v of [].concat(get(r) ?? [])) if (v) c.set(v, (c.get(v) || 0) + 1);
+    return c;
+  };
+  const types = tally((r) => r.type);
+  const trades = tally((r) => r.occupation);
+  const streets = tally((r) => r.where?.street);
+  const topTypes = [...types.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 6);
+  const topTrades = [...trades.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8);
+  const grades = ['attested', 'inferred', 'reconstructed'].filter((g) => (counts.by_grade || {})[g] > 0);
+  return [
+    {
+      key: 'type', label: 'Kind',
+      options: topTypes.map(([v]) => [v, words(v)]),
+      more: [...types.keys()].sort().map((v) => [v, words(v)]),
+      test: (v) => (r) => r.type.includes(v),
+    },
+    {
+      key: 'occupation', label: 'Trade',
+      options: topTrades.map(([v]) => [v, words(v)]),
+      more: [...trades.keys()].sort().map((v) => [v, words(v)]),
+      test: (v) => (r) => r.occupation === v,
+    },
+    {
+      key: 'street', label: 'Street',
+      options: [...streets.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([v]) => [v, v.replace(/ Street$/, '')]),
+      test: (v) => (r) => r.where?.street === v,
+    },
+    {
+      key: 'place', label: 'How far it is placed',
+      options: Object.keys(PLACE).map((v) => [v, PLACE[v][0]]),
+      test: (v) => (r) => r.where?.kind === v,
+    },
+    {
+      key: 'grade', label: 'Grade', group: 'facts',
+      options: grades.map((v) => [v, v]),
+      test: (v) => (r) => r.grade === v,
+    },
+    {
+      key: 'present', label: '', toggle: true, group: 'facts',
+      options: [['yes', 'Trading on 1 July']],
+      test: () => (r) => !!r.present_at_scene_date,
+    },
+  ];
+}
+
+/**
+ * Mount the directory into `mount` (`#businesses-directory`).
+ *
+ * @param {object} o
+ * @param {HTMLElement|null} o.mount
+ * @param {object|null} o.index        the compiled `businesses/index.json`, or null
+ * @param {Map} o.registry             loaded structures by id, for a premises title
+ * @param {URL} o.dataBase             where data/ lives
+ * @param {(target: object) => void} o.onGoTo          travel to a firm's building
+ * @param {(personId: string) => void} [o.onPerson]    open a proprietor's own card
+ * @param {(text: string|null, onBack?: Function) => void} [o.onTitle]
+ * @param {string[]} [o.problems]
+ */
+export async function mountBusinesses({
+  mount, index, registry, dataBase, onGoTo, onPerson = null, onTitle = null, problems = [],
+} = {}) {
+  const idle = {
+    search() { return 0; }, open() { return Promise.resolve(false); }, close() {},
+    filter() { return 0; }, results() { return []; }, get state() { return null; },
+  };
+  if (!mount) return { businesses: 0, error: 'no mount', ...idle };
+  if (!index || !Array.isArray(index.businesses)) {
+    mount.innerHTML = '<p class="legend-note">The businesses directory did not load '
+      + '(<code>data/businesses/index.json</code>). The firms with a roof are still on their '
+      + 'building cards.</p>';
+    return { businesses: 0, error: 'businesses/index.json missing', ...idle };
+  }
+
+  const section = mount.closest('.panel-body');
+  if (typeof onTitle === 'function') section?.classList.add('has-head-back');
+
+  const counts = index.counts || {};
+  const rows = index.businesses.map((r) => ({
+    ...r,
+    _name: fold(r.name),
+    _words: fold(r.name).split(' '),
+    // Searchable: the firm's name and every style it printed itself under, what it
+    // sold, the trade word, the street, and everyone the record names — a visitor
+    // looking for "Harmon" or for "crockery" is asking the same list one question.
+    _text: fold([r.name, ...(r.firm_styles || []), ...(r.goods || []), r.trade,
+      r.occupation ? words(r.occupation) : '', ...r.type.map((t) => words(t)),
+      r.where?.street || '', ...(r.people || []).map((p) => p.name)].join(' ')),
+  }));
+  const byId = new Map(rows.map((r) => [r.id, r]));
+  const specs = filterSpecs(rows, counts);
+
+  const compact = typeof matchMedia === 'function' ? matchMedia('(max-width: 620px)') : null;
+  const state = {
+    q: '', filters: {}, open: null, matched: 0, lastOpened: null,
+    filtersOpen: !(compact && compact.matches),
+  };
+
+  mount.innerHTML = `
+    <div class="people-home biz-home">
+      <p class="people-count" id="businesses-count">${n(counts.records)} firms the record knows
+        · ${n(counts.present_at_scene_date)} trading on 1 July 1835
+        · ${n((counts.by_where_kind || {}).premises)} with a roof of their own</p>
+      <div class="field people-field">
+        <input type="search" id="businesses-search" placeholder="A firm, a keeper, a trade, a good…"
+          autocomplete="off" spellcheck="false" aria-label="Search the businesses of the town"
+          aria-controls="businesses-results">
+      </div>
+      <div class="people-toolbar">
+        <button type="button" class="pill people-filters-toggle" id="businesses-filters-toggle"
+          aria-expanded="false" aria-controls="businesses-filters">Filters</button>
+      </div>
+      <div id="businesses-filters" class="people-filters"></div>
+      <p class="people-note" id="businesses-result-note" aria-live="polite"></p>
+      <div id="businesses-results" class="people-results" role="listbox" aria-label="Businesses"></div>
+    </div>
+    <div id="businesses-card" class="people-card biz-card" hidden></div>`;
+
+  const $ = (sel) => mount.querySelector(sel);
+  const home = $('.biz-home');
+  const input = $('#businesses-search');
+  const filtersEl = $('#businesses-filters');
+  const filtersToggle = $('#businesses-filters-toggle');
+  const noteEl = $('#businesses-result-note');
+  const resultsEl = $('#businesses-results');
+  const cardEl = $('#businesses-card');
+
+  // ---- filtering -------------------------------------------------------- //
+
+  function activeTests(except = null) {
+    const tests = [];
+    for (const spec of specs) {
+      const v = state.filters[spec.key];
+      if (v === undefined || v === null || v === '' || spec.key === except) continue;
+      tests.push(spec.test(v));
+    }
+    return tests;
+  }
+
+  function searchRank(r, q, qWords) {
+    if (!q) return 0;
+    for (const w of qWords) if (!r._text.includes(w)) return -1;
+    if (r._name.startsWith(q)) return 0;
+    if (r._words.some((w) => w.startsWith(q))) return 1;
+    if (r._name.includes(q)) return 2;
+    return 3;
+  }
+
+  function matches(except = null) {
+    const q = fold(state.q);
+    const qWords = q ? q.split(' ') : [];
+    const tests = activeTests(except);
+    const out = [];
+    for (const r of rows) {
+      let ok = true;
+      for (const t of tests) if (!t(r)) { ok = false; break; }
+      if (!ok) continue;
+      const rank = searchRank(r, q, qWords);
+      if (rank < 0) continue;
+      out.push([rank, r]);
+    }
+    if (q) out.sort((a, b) => a[0] - b[0]);
+    return out.map(([, r]) => r);
+  }
+
+  // ---- filter pills ----------------------------------------------------- //
+
+  function pill(key, value, label, count, on) {
+    const empty = count === 0 && !on;
+    return `<button type="button" class="pill" data-filter="${escapeHtml(key)}" data-value="${escapeHtml(value)}"
+      aria-pressed="${on ? 'true' : 'false'}"${empty ? ' disabled' : ''}>${escapeHtml(label)}${
+      count === null ? '' : ` <span class="pill-n">${n(count)}</span>`}</button>`;
+  }
+
+  function paintFilters() {
+    const anyOn = Object.values(state.filters).some((v) => v !== undefined && v !== null && v !== '');
+    const rowHtml = (spec) => {
+      const current = state.filters[spec.key] ?? '';
+      const pool = matches(spec.key);
+      const countOf = (v) => { const t = spec.test(v); let c = 0; for (const r of pool) if (t(r)) c++; return c; };
+      const label = spec.label ? `<span class="people-flabel">${escapeHtml(spec.label)}</span>` : '';
+      if (spec.toggle) {
+        const [v, text] = spec.options[0];
+        return `<div class="people-frow people-frow-toggle" data-row="${spec.key}">${label}
+          <div class="pills">${pill(spec.key, v, text, countOf(v), current === v)}</div></div>`;
+      }
+      const inTop = spec.options.some(([v]) => v === current);
+      const pills = pill(spec.key, '', 'All', pool.length, current === '')
+        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('');
+      const more = spec.more
+        ? `<select class="people-more-select" id="businesses-more-${escapeHtml(spec.key)}"
+            aria-label="More ${escapeHtml(spec.label.toLowerCase())}">
+            <option value=""${current === '' || inTop ? ' selected' : ''}>more…</option>${
+          spec.more.map(([v, text]) => `<option value="${escapeHtml(v)}"${current === v ? ' selected' : ''}>${
+            escapeHtml(text)} (${countOf(v)})</option>`).join('')}</select>`
+        : '';
+      return `<div class="people-frow" data-row="${spec.key}">${label}<div class="pills">${pills}${more}</div></div>`;
+    };
+    let html = '';
+    let group = null;
+    for (const spec of specs) {
+      if (spec.group) {
+        if (group !== spec.group) { if (group) html += '</div>'; html += `<div class="people-fgroup" data-group="${spec.group}">`; group = spec.group; }
+      } else if (group) { html += '</div>'; group = null; }
+      html += rowHtml(spec);
+    }
+    if (group) html += '</div>';
+    filtersEl.innerHTML = html
+      + `<button type="button" class="people-clear link" id="businesses-clear"${anyOn ? '' : ' hidden'}>Clear filters</button>`;
+    for (const pills of filtersEl.querySelectorAll('.pills')) {
+      const on = pills.querySelector('.pill[aria-pressed="true"]:not([data-value=""])');
+      if (on && pills.scrollWidth > pills.clientWidth) {
+        const left = on.getBoundingClientRect().left - pills.getBoundingClientRect().left + pills.scrollLeft;
+        pills.scrollLeft = Math.max(0, left - 12);
+      }
+    }
+    const active = Object.keys(state.filters).length;
+    filtersEl.hidden = !state.filtersOpen;
+    filtersToggle.setAttribute('aria-expanded', String(state.filtersOpen));
+    filtersToggle.classList.toggle('is-active', active > 0);
+    filtersToggle.innerHTML = `Filters${active ? ` <span class="pill-n">${active} on</span>` : ''}`;
+  }
+
+  filtersToggle.addEventListener('click', () => {
+    state.filtersOpen = !state.filtersOpen;
+    paintFilters();
+    if (state.filtersOpen) filtersEl.querySelector('.pill')?.focus?.({ preventScroll: true });
+  });
+  compact?.addEventListener?.('change', (ev) => {
+    state.filtersOpen = !ev.matches || Object.keys(state.filters).length > 0;
+    paintFilters();
+  });
+  filtersEl.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('button.pill');
+    if (btn) {
+      const on = btn.getAttribute('aria-pressed') === 'true';
+      setFilter(btn.dataset.filter, on && btn.dataset.value !== '' ? '' : btn.dataset.value);
+      return;
+    }
+    if (ev.target.closest('#businesses-clear')) { state.filters = {}; paint(); }
+  });
+  filtersEl.addEventListener('change', (ev) => {
+    const sel = ev.target.closest('select.people-more-select');
+    if (sel) setFilter(sel.id.replace('businesses-more-', ''), sel.value);
+  });
+
+  function setFilter(key, value) {
+    if (!specs.some((s) => s.key === key)) return;
+    if (value === '' || value === null || value === undefined) delete state.filters[key];
+    else state.filters[key] = String(value);
+    paint();
+  }
+
+  // ---- the list --------------------------------------------------------- //
+
+  /** The building's title as the town names it, so a premises reads "The Green
+   *  Tree tavern" and not `green_tree_tavern`. */
+  function buildingTitle(id) {
+    const rec = registry?.get?.(id);
+    return rec ? displayName(rec.sidecar, id).title : null;
+  }
+
+  function whereText(r) {
+    const p = r.where;
+    if (!p) return '';
+    if (p.kind === 'premises' && p.structure_id) return buildingTitle(p.structure_id) || p.street || 'a roof of its own';
+    if (p.street) return p.street;
+    if (p.kind === 'anchored' && p.structure_id) return `by ${buildingTitle(p.structure_id) || words(p.structure_id)}`;
+    return '';
+  }
+
+  function rowHtml(r) {
+    const sub = [
+      r.trade || (r.occupation ? words(r.occupation) : ''),
+      whereText(r),
+      r.opened ? `from ${String(r.opened).slice(0, 4)}` : '',
+    ].filter(Boolean).join(' · ');
+    const kind = r.where?.kind;
+    const mark = kind && kind !== 'premises'
+      ? `<span class="person-mark mark-${escapeHtml(kind)}" title="${escapeHtml(PLACE[kind]?.[1] || '')}">${
+        escapeHtml(PLACE[kind]?.[0] || words(kind))}</span>`
+      : '';
+    return `<button type="button" class="person-row" role="option" data-business-id="${escapeHtml(r.id)}"
+        aria-selected="false">
+      <i class="grade-dot grade-${escapeHtml(r.grade)}" title="${escapeHtml(r.grade)}: ${
+        escapeHtml(GRADE_TITLE[r.grade] || GRADE_TITLE.inferred)}"></i>
+      <span class="person-main"><span class="person-name">${escapeHtml(r.name)}</span>${
+        sub ? `<small class="person-sub">${escapeHtml(sub)}</small>` : ''}</span>${mark}</button>`;
+  }
+
+  let current = [];
+  function paintList() {
+    current = matches();
+    state.matched = current.length;
+    resultsEl.innerHTML = current.length
+      ? current.map(rowHtml).join('')
+      : `<p class="people-empty">No firm by that name. Try a trade — "tailor", "forwarding" — or a good
+         the papers advertised, like "crockery". ${n((counts.by_where_kind || {}).unplaceable)} of these
+         houses are known from a printing and nothing else, so a street will not find them.</p>`;
+    const narrowing = state.q.trim() || Object.keys(state.filters).length;
+    noteEl.textContent = narrowing
+      ? `${n(current.length)} of ${n(rows.length)} firms${state.q.trim() ? ` match “${state.q.trim()}”` : ''}`
+      : `Every firm the record knows, by name. ${n(rows.length)} of them.`;
+  }
+
+  function paint() { paintFilters(); paintList(); }
+
+  let typing = 0;
+  input.addEventListener('input', () => {
+    clearTimeout(typing);
+    typing = setTimeout(() => { state.q = input.value; paint(); }, 60);
+  });
+  input.addEventListener('keydown', (ev) => {
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); resultsEl.querySelector('.person-row')?.focus(); }
+    if (ev.key === 'Enter') { const first = resultsEl.querySelector('.person-row'); if (first) open(first.dataset.businessId); }
+  });
+  resultsEl.addEventListener('keydown', (ev) => {
+    const row = ev.target.closest('.person-row');
+    if (!row) return;
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); row.nextElementSibling?.focus?.(); }
+    if (ev.key === 'ArrowUp') { ev.preventDefault(); (row.previousElementSibling || input).focus(); }
+  });
+  resultsEl.addEventListener('click', (ev) => {
+    const row = ev.target.closest('.person-row');
+    if (row) open(row.dataset.businessId);
+  });
+
+  // ---- the business card ------------------------------------------------ //
+
+  const getJson = async (rel) => {
+    const res = await fetch(new URL(rel, dataBase), { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`${rel}: ${res.status} ${res.statusText}`);
+    return res.json();
+  };
+
+  /** One dated location, in the ladder's own words. A premises offers the way to
+   *  it; everything below a premises prints the limit the record states, because
+   *  the limit is the finding. */
+  function locationHtml(loc) {
+    const kind = loc.kind || 'unplaceable';
+    const [label, why] = PLACE[kind] || [words(kind), ''];
+    const title = loc.structure_id ? buildingTitle(loc.structure_id) : null;
+    const where = kind === 'premises' && title ? title
+      : kind === 'anchored' && title ? `by ${title}`
+        : loc.street_id ? words(loc.street_id) : 'nowhere the register could name';
+    const dates = loc.from || loc.to
+      ? `<span class="biz-when">${escapeHtml(day(loc.from))} – ${loc.to ? escapeHtml(day(loc.to)) : 'no close recorded'}</span>`
+      : '';
+    const go = loc.structure_id && registry?.has?.(loc.structure_id)
+      ? `<button type="button" class="people-go biz-go" data-structure="${escapeHtml(loc.structure_id)}">
+          <span class="people-go-verb">Go to ${kind === 'premises' ? 'the premises' : 'the landmark'}</span>
+          <span class="people-go-title">${escapeHtml(title || words(loc.structure_id))}</span></button>`
+      : '';
+    return `<li class="biz-loc${loc.primary ? ' is-primary' : ''}">
+      <p class="biz-loc-head"><i class="grade-dot grade-${escapeHtml(loc.tier || 'inferred')}"></i>
+        <b>${escapeHtml(where)}</b>
+        <span class="person-mark mark-${escapeHtml(kind)}" title="${escapeHtml(why)}">${escapeHtml(label)}</span>${
+      loc.primary ? '<span class="biz-primary">principal</span>' : ''}</p>
+      ${dates}
+      ${loc.basis ? `<p class="legend-note">${escapeHtml(loc.basis)}</p>` : ''}
+      ${loc.limit_reason ? `<p class="legend-note biz-limit">How far the record goes: ${escapeHtml(loc.limit_reason)}</p>` : ''}
+      ${go}</li>`;
+  }
+
+  /** One person the record names. The link is offered only where the town holds a
+   *  card for them — 157 of 209 — and the rest are named without one, which is
+   *  itself a reading: the register printed a name the resident layer never met. */
+  function personHtml(p) {
+    const dates = p.from ? ` <span class="biz-when">${escapeHtml(day(p.from))}${p.to ? ` – ${escapeHtml(day(p.to))}` : ''}</span>` : '';
+    const name = p.person_id && onPerson
+      ? `<button type="button" class="link biz-person" data-person="${escapeHtml(p.person_id)}">${escapeHtml(p.name || p.person_id)}</button>`
+      : `<b>${escapeHtml(p.name || 'unnamed')}</b>`;
+    return `<li><i class="grade-dot grade-${escapeHtml(p.tier || 'inferred')}" title="${escapeHtml(p.tier || '')}"></i>
+      ${name} <span class="biz-role">${escapeHtml(words(p.role || 'proprietor'))}</span>${dates}${
+      p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}</li>`;
+  }
+
+  function recordHtml(rec, row) {
+    const people = [
+      ...(rec.proprietors || []).map((p) => ({ ...p, role: p.role || 'proprietor' })),
+      ...(rec.partners || []).map((p) => ({ ...p, role: p.role || 'partner' })),
+      ...(rec.staff || []).map((p) => ({ ...p, role: p.role || 'staff' })),
+    ];
+    const liberties = Object.entries(rec.liberties || {}).filter(([, on]) => on);
+    const ev = rec.evidence || {};
+    return [
+      people.length
+        ? `<h4 class="people-card-h">Who kept it</h4><ul class="biz-people">${people.map(personHtml).join('')}</ul>`
+        : '<h4 class="people-card-h">Who kept it</h4><p class="legend-note">The printings name nobody. '
+          + 'A house with no keeper on its record is a reading about the register, not about the town.</p>',
+      `<h4 class="people-card-h">Where it stood</h4><ul class="biz-locs">${
+        (rec.locations || []).map(locationHtml).join('') || '<li class="legend-note">No location on the record.</li>'}</ul>`,
+      `<h4 class="people-card-h">When</h4>
+       <p class="biz-dates"><i class="grade-dot grade-${escapeHtml(rec.dates?.tier || 'inferred')}"></i>
+         opened ${escapeHtml(day(rec.dates?.opened))} · closed ${rec.dates?.closed ? escapeHtml(day(rec.dates.closed)) : 'no close recorded'}${
+  rec.dates?.precision ? ` <span class="biz-role">${escapeHtml(words(rec.dates.precision))}</span>` : ''}</p>
+       ${rec.dates?.basis ? `<p class="legend-note">${escapeHtml(rec.dates.basis)}</p>` : ''}`,
+      (rec.goods || []).length
+        ? `<h4 class="people-card-h">What it sold</h4><p class="biz-goods">${
+          rec.goods.map((g) => `<span class="biz-good">${escapeHtml(g)}</span>`).join('')}</p>`
+        : '',
+      `<h4 class="people-card-h">The printings that attest it</h4>
+       <p class="legend-note">First printed ${escapeHtml(day(ev.first_issue))}, last ${escapeHtml(day(ev.last_issue))}${
+  (rec.claim_ids || []).length ? ` · ${n(rec.claim_ids.length)} claim${rec.claim_ids.length === 1 ? '' : 's'}` : ''}.</p>
+       ${(rec.claim_ids || []).length ? `<ul class="biz-claims">${rec.claim_ids.map((c) => `<li><code>${escapeHtml(c)}</code></li>`).join('')}</ul>` : ''}`,
+      liberties.length
+        ? `<h4 class="people-card-h">What we made up</h4><ul class="biz-liberties">${
+          liberties.map(([k]) => `<li>${escapeHtml(LIBERTY[k] || words(k))}</li>`).join('')}</ul>`
+        : '',
+      rec.replaceable_by
+        ? `<h4 class="people-card-h">What would replace this</h4><p class="legend-note">${escapeHtml(rec.replaceable_by)}</p>`
+        : '',
+      row.review_required
+        ? '<p class="legend-note biz-review">This record is marked for review before the scene is released.</p>'
+        : '',
+    ].filter(Boolean).join('');
+  }
+
+  let openSeq = 0;
+  /** Open a firm's card in place of the list. Resolves true once the record has
+   *  been fetched and rendered (or its failure written), so a harness can await it. */
+  async function open(id) {
+    const r = byId.get(id);
+    if (!r) return false;
+    const seq = ++openSeq;
+    state.open = id;
+    const kind = r.where?.kind;
+    cardEl.innerHTML = `
+      <button type="button" class="people-back" id="businesses-back">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        All businesses</button>
+      <h3 class="people-card-name">${escapeHtml(r.name)}</h3>
+      <p class="people-card-meta">
+        <i class="grade-dot grade-${escapeHtml(r.grade)}"></i>${escapeHtml(r.grade)}${
+  kind ? ` · <span class="person-mark mark-${escapeHtml(kind)}">${escapeHtml(PLACE[kind]?.[0] || words(kind))}</span>` : ''}${
+  r.present_at_scene_date ? '' : ' · <span class="person-mark mark-unplaceable">not trading on 1 July</span>'}
+        <br><span class="people-card-hh">${escapeHtml(r.trade || r.type.map((t) => words(t)).join(', '))}</span>
+      </p>
+      <p class="people-card-what">${escapeHtml(GRADE_TITLE[r.grade] || '')}.</p>
+      <div class="people-card-body" aria-busy="true"><p class="legend-note">Loading the business record…</p></div>`;
+    home.hidden = true;
+    cardEl.hidden = false;
+    section?.classList.add('people-card-open');
+    if (typeof onTitle === 'function') onTitle(r.name, () => { state.lastOpened = state.open; close(); });
+    mount.closest('.panel-scroll')?.scrollTo?.(0, 0);
+    cardEl.querySelector('.people-back')?.focus?.({ preventScroll: true });
+
+    const body = cardEl.querySelector('.people-card-body');
+    try {
+      const rec = await getJson(`businesses/${r.file}`);
+      if (seq !== openSeq) return false;
+      body.innerHTML = recordHtml(rec, r);
+    } catch (err) {
+      if (seq !== openSeq) return false;
+      problems.push(`businesses: ${err.message} — one business record is missing`);
+      body.innerHTML = `<p class="legend-note">This firm's record could not be loaded. It is committed at
+        <code>data/businesses/${escapeHtml(r.file || '')}</code>.</p>`;
+    } finally {
+      if (seq === openSeq) body.removeAttribute('aria-busy');
+    }
+    return true;
+  }
+
+  function close() {
+    state.open = null;
+    cardEl.hidden = true;
+    cardEl.innerHTML = '';
+    home.hidden = false;
+    section?.classList.remove('people-card-open');
+    if (typeof onTitle === 'function') onTitle(null);
+    paintList();
+    const row = resultsEl.querySelector(`.person-row[data-business-id="${CSS.escape(state.lastOpened || '')}"]`);
+    (row || input)?.focus?.({ preventScroll: true });
+  }
+
+  cardEl.addEventListener('click', (ev) => {
+    if (ev.target.closest('.people-back')) { state.lastOpened = state.open; close(); return; }
+    const go = ev.target.closest('.biz-go');
+    if (go) { onGoTo?.({ kind: 'structure', id: go.dataset.structure }); return; }
+    const person = ev.target.closest('.biz-person');
+    if (person) onPerson?.(person.dataset.person);
+  });
+
+  paint();
+
+  return {
+    businesses: rows.length,
+    error: null,
+    search(q) { input.value = String(q ?? ''); state.q = input.value; paint(); return state.matched; },
+    open,
+    close,
+    filter(key, value) { setFilter(key, value); return state.matched; },
+    showFilters(on = true) { state.filtersOpen = !!on; paintFilters(); },
+    results() { return current.map((r) => r.id); },
+    get state() { return { ...state, filters: { ...state.filters } }; },
+  };
+}
