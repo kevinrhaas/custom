@@ -29,12 +29,12 @@
     "households_total": 1258,
     "households_present": 436,
     "households_uncertain": 820,
-    "persons_total": 1282,
-    "persons_present": 456,
+    "persons_total": 1285,
+    "persons_present": 458,
     "persons_present_attested": 133,
     "persons_present_inferred": 323,
     "persons_present_by_division": {
-      "south": 50,
+      "south": 52,
       "west": 6,
       "north": 10,
       "fort": 2
@@ -71,8 +71,8 @@
   },
   "totals": {
     "persons_target": 2533,
-    "persons_known": 456,
-    "persons_to_reconstruct": 2080,
+    "persons_known": 458,
+    "persons_to_reconstruct": 2078,
     "households_target": 643,
     "households_known": 436,
     "households_to_reconstruct": 209,
@@ -301,9 +301,9 @@
             "trade": "none"
           },
           "target": 81,
-          "known_attested": 4,
+          "known_attested": 5,
           "known_inferred": 11,
-          "to_reconstruct": 66,
+          "to_reconstruct": 65,
           "filled": 0,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
@@ -1305,8 +1305,8 @@
           },
           "target": 73,
           "known_attested": 4,
-          "known_inferred": 9,
-          "to_reconstruct": 60,
+          "known_inferred": 10,
+          "to_reconstruct": 59,
           "filled": 0,
           "owning_ticket": "T-1173",
           "basis": "an adult at a trade"

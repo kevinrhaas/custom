@@ -178,7 +178,9 @@
     "household_size"
    ],
    "note": "Registers, 1840 census rows, biographies and the ruled kin ties come first; the model is what fills a counted-but-unnamed dependant.",
-   "implemented": false
+   "implemented": true,
+   "community": "the head's own surname, looked up in the name pools' surname lists; yankee where it is in none",
+   "method": "Only a `validated` row of data/research/residents/census_1840_identity_bridges.csv spends. Its IPUMS household is read from the committed extract at the sha256 composition_1840.json records, banded by T-0504's column map, back-projected five years, and the under-5 band dropped whole because all but its first month is born after 1835-07-01. The card's named people absorb the senior bands of their own sex first; the bands that remain are the members the row counts and does not name. Nobody is removed when the card holds more of a sex than the 1840 row counts. The allocation decides only which band is LEFT OVER; it writes no age onto a person the sources name, and nothing here may be read as a claim about how old a named resident was."
   },
   {
    "key": "modelled_families",

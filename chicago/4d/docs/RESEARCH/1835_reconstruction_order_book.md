@@ -7,7 +7,7 @@
 
 | | target | known | to reconstruct |
 |---|---:|---:|---:|
-| Persons | 2,533 | 456 | 2,080 |
+| Persons | 2,533 | 458 | 2,078 |
 | Households | 643 | 436 | 209 |
 | Businesses (enumerated classes) | 120 | 118 | 24 |
 | Roofs | 668 | 384 | 297 |
@@ -59,7 +59,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/female/20_29/north/lodging/trade` | 6 | 1 | 5 | 0 | T-1175 |
 | `persons/female/20_29/north/lodging/none` | 12 | 2 | 10 | 0 | T-1175 |
 | `persons/female/20_29/south/family/trade` | 43 | 8 | 35 | 0 | T-1173 |
-| `persons/female/20_29/south/family/none` | 81 | 15 | 66 | 0 | T-1174 |
+| `persons/female/20_29/south/family/none` | 81 | 16 | 65 | 0 | T-1174 |
 | `persons/female/20_29/south/lodging/trade` | 15 | 3 | 12 | 0 | T-1175 |
 | `persons/female/20_29/south/lodging/none` | 29 | 6 | 23 | 0 | T-1175 |
 | `persons/female/20_29/west/family/trade` | 16 | 3 | 13 | 0 | T-1173 |
@@ -118,7 +118,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/male/20_29/north/family/none` | 58 | 11 | 47 | 0 | T-1171 |
 | `persons/male/20_29/north/lodging/trade` | 11 | 2 | 9 | 0 | T-1175 |
 | `persons/male/20_29/north/lodging/none` | 20 | 4 | 16 | 0 | T-1175 |
-| `persons/male/20_29/south/family/trade` | 73 | 13 | 60 | 0 | T-1173 |
+| `persons/male/20_29/south/family/trade` | 73 | 14 | 59 | 0 | T-1173 |
 | `persons/male/20_29/south/family/none` | 139 | 26 | 113 | 0 | T-1171 |
 | `persons/male/20_29/south/lodging/trade` | 26 | 5 | 21 | 0 | T-1175 |
 | `persons/male/20_29/south/lodging/none` | 48 | 9 | 39 | 0 | T-1175 |

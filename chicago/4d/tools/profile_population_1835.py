@@ -895,6 +895,14 @@ def build() -> dict:
             "persons": len(layer.people),
             "households": len(layer.records),
             "by_grade": {g: grades[g] for g in layer.index["vocabulary"]["grades"]},
+            # T-1314. A reconstructed person the programme cannot re-derive is the thing
+            # the 2026-09-02 retirement was for, and this profile refuses to describe a
+            # town that holds one. A reconstructed person that NAMES its stage is not
+            # that, and the profile counts them like anybody else.
+            "reconstructed_answering_no_stage": sum(
+                1 for _, p in layer.people
+                if p.get("grade") == "reconstructed"
+                and (p.get("reconstruction") or {}).get("stage") not in _stage_keys()),
             "persons_with_a_sex": sexed,
             "persons_with_a_dated_age": aged,
             "persons_with_a_role": sum(1 for _, p in layer.people if p.get("roles")),
@@ -911,14 +919,32 @@ def build() -> dict:
     }
 
 
+_STAGE_KEYS = None
+
+
+def _stage_keys() -> set:
+    """The stages the reconstruction programme declares; empty if it is gone."""
+    global _STAGE_KEYS
+    if _STAGE_KEYS is None:
+        path = ROOT / "data" / "reconstruction" / "1835_resident_reconstruction_programme.json"
+        try:
+            _STAGE_KEYS = {row.get("key")
+                           for row in json.loads(path.read_text(encoding="utf-8"))
+                           .get("stages") or []}
+        except (OSError, ValueError):
+            _STAGE_KEYS = set()
+    return _STAGE_KEYS
+
+
 def assertions(doc: dict) -> None:
     ids = [s["id"] for s in doc["sections"]]
     if ids != SECTION_IDS:
         raise Refused("the profile does not hold every section, in order: %s" % ids)
     counts = doc["counts"]
-    if counts["by_grade"].get("reconstructed", 0) != 0:
-        raise Refused("the `reconstructed` grade is not zero — reconstruction begins at "
-                      "T-1167 under its own programme, never inside a profile")
+    if counts.get("reconstructed_answering_no_stage", 0) != 0:
+        raise Refused("a `reconstructed` person answers to no stage of the reconstruction "
+                      "programme — reconstruction happens at T-1167 under that programme, "
+                      "never inside a profile and never unaccountably")
     if counts["persons_with_a_sex"] > counts["persons"]:
         raise Refused("more persons carry a sex than there are persons")
     for section in doc["sections"]:
@@ -1094,8 +1120,8 @@ def self_test() -> int:
     def section(d, sid):
         return next(s for s in d["sections"] if s["id"] == sid)
 
-    fires("a reconstructed person appears in a profile",
-          lambda d: d["counts"]["by_grade"].__setitem__("reconstructed", 1))
+    fires("a reconstructed person no programme stage claims appears in a profile",
+          lambda d: d["counts"].__setitem__("reconstructed_answering_no_stage", 1))
     fires("more sexes than persons",
           lambda d: d["counts"].__setitem__("persons_with_a_sex",
                                             d["counts"]["persons"] + 1))

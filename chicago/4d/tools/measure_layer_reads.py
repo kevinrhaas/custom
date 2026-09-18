@@ -524,6 +524,10 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
+    # The third chip. It was absent from this map for as long as the tally was zero
+    # everywhere; T-1314 put people back under the grade and `gradeChips` has always
+    # drawn all three from one expression.
+    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -796,6 +800,24 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    # T-1314. What a RECONSTRUCTED person owes the reader, on their own card:
+    # `reconstructionHtml` says which stage of the programme wrote them and what
+    # counted them, and hands the basis, the seed that redraws a model draw and the
+    # replacement rule to `basisHtml` — the same three parts a reconstructed ATTRIBUTE
+    # already showed, rather than a second vocabulary for the same idea.
+    "persons[].basis.kind": ("shown", "const drawn = basis.kind === 'model'"),
+    "persons[].seed": ("shown", "drawn && block.seed"),
+    "persons[].replaceable_by.kind": ("shown", "const rep = block.replaceable_by"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.programme": (
+        "shown", "escapeHtml(String(rc.programme || 'the reconstruction programme'))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(String(rc.community))"),
+    "persons[].reconstruction.counted_by": ("shown", "escapeHtml(String(rc.counted_by))"),
+    "persons[].reconstruction.band_1840": ("shown", "escapeHtml(String(rc.band_1840))"),
+    "persons[].reconstruction.age_on_scene_date.low": ("shown", "`${age.low} or older`"),
+    "persons[].reconstruction.age_on_scene_date.high": (
+        "shown", "age.high === null || age.high === undefined"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
     # for as long as it was unread a letter-list name and a documented tradesman

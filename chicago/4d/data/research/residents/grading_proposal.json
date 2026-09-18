@@ -59,19 +59,19 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6797,
+  "identities": 6800,
   "by_grade": {
-   "None": 43,
+   "None": 46,
    "not_1835_resident": 4469,
    "inferred": 1903,
    "attested": 382
   },
   "by_subtype": {
-   "None": 5142,
+   "None": 5145,
    "projected_resident": 1655
   },
   "by_rule": {
-   "G5": 43,
+   "G5": 46,
    "G0": 4469,
    "G3": 1654,
    "G1b": 306,
@@ -83,8 +83,8 @@
    "G2a": 33,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 80,
-  "conflicts": 79
+  "proposed_changes_to_existing_people": 83,
+  "conflicts": 82
  },
  "proposals": [
   {"identity":"id_abbot_g","name":"G Abbot","canonical_person_id":"abbot_8_g","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
@@ -107,6 +107,7 @@
   {"identity":"id_adams_joseph","name":"Joseph Adams","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["old_settlers:fdn0002","newspapers:person_joseph_ada_m_s"],"evidence_classes":["death_notice","newspaper_letter_list"]},
   {"identity":"id_adams_maria","name":"Maria Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0183"],"evidence_classes":["directory_1843"]},
   {"identity":"id_adams_muriel","name":"Muriel Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9M5:9"],"evidence_classes":["census_1840"]},
+  {"identity":"id_adams_nancy","name":"Nancy Adams","canonical_person_id":"rc_adams_nancy","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_adams_r_e_w","name":"R E W Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0130","directories:f1843_e0184","directories:n1844_e0008"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_adams_stratten","name":"Stratten Adams","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_strat_t_en_adams"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_adams_w_a","name":"W A Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9WF:17"],"evidence_classes":["census_1840"]},
@@ -4520,12 +4521,14 @@
   {"identity":"id_murphy_charles","name":"Charles Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-B3:9"],"evidence_classes":["census_1840"]},
   {"identity":"id_murphy_edward","name":"Edward Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_082_3","directories:f1843_e1860","old_settlers:fdn0477"],"evidence_classes":["church_after_1835","death_notice","directory_1843"]},
   {"identity":"id_murphy_harriet","name":"Harriet Murphy","canonical_person_id":"murphy_harriet","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
+  {"identity":"id_murphy_honora","name":"Honora Murphy","canonical_person_id":"rc_murphy_honora","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_murphy_james_k","name":"James K Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1861"],"evidence_classes":["directory_1843"]},
   {"identity":"id_murphy_john","name":"John Murphy","canonical_person_id":"murphy_john","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_078","civic:poll_1835_051","church:st_cyr_marriage_006_1","census_1840:33S7-9YYJ-98M:27","census_1840:33SQ-GYYJ-RJ:30","directories:f1843_e0104","directories:f1843_e1862","directories:f1843_e1863","directories:n1844_e1323","directories:n1844_e1324"],"evidence_classes":["census_1840","church_1833_1835","directory_1843","directory_1844","poll_1834","poll_1835","town_layer"]},
   {"identity":"id_murphy_mary","name":"Mary Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_073_2"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_murphy_n","name":"N Murphy","canonical_person_id":"murphy_n","rule":"G2c","grade":"inferred","resident_subtype":null,"evidence":["church:st_cyr_marriage_001_1"],"evidence_classes":["church_1833_1835","town_layer"]},
   {"identity":"id_murphy_patrick","name":"Patrick Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_020_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_murphy_richard","name":"Richard Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0478"],"evidence_classes":["death_notice"]},
+  {"identity":"id_murphy_thomas","name":"Thomas Murphy","canonical_person_id":"rc_murphy_thomas","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_murphy_timothy","name":"Timothy Murphy","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_081_1","census_1840:33S7-9YYJ-2T:25","directories:f1843_e1865","directories:n1844_e1325"],"evidence_classes":["census_1840","church_after_1835","directory_1843","directory_1844"]},
   {"identity":"id_murray_alonzo","name":"Alonzo Murray","canonical_person_id":"murray_alonzo","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_alonzo_murray","newspapers:person_murray_a"],"evidence_classes":["newspaper_1833_1835","newspaper_letter_list","town_layer"]},
   {"identity":"id_murray_denis","name":"Denis Murray","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_117_3"],"evidence_classes":["church_after_1835"]},
@@ -6887,6 +6890,7 @@
  ],
  "changes_to_existing_people": [
   {"identity":"id_abbot_g","person_id":"abbot_8_g","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
+  {"identity":"id_adams_nancy","person_id":"rc_adams_nancy","from":{"grade":"reconstructed","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_almond_axtell","person_id":"almond_axtell_2","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_andrews_davi","person_id":"andrews_davi","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_andrus_thomas","person_id":"andrus_thomas","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
@@ -6942,6 +6946,8 @@
   {"identity":"id_mitchell_henry","person_id":"mitchell_henry","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},
   {"identity":"id_mulford_edward_h","person_id":"mulford_e_h","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_murphy_harriet","person_id":"murphy_harriet","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
+  {"identity":"id_murphy_honora","person_id":"rc_murphy_honora","from":{"grade":"reconstructed","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
+  {"identity":"id_murphy_thomas","person_id":"rc_murphy_thomas","from":{"grade":"reconstructed","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_nelts_william","person_id":"nelts_wm","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_noble_mark","person_id":"noble_mark","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2b","direction":"down"},
   {"identity":"id_norton_nelson_r","person_id":"norton_nelson_r","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
@@ -6969,6 +6975,7 @@
  ],
  "conflicts": [
   {"identity":"id_abbot_g","kind":"abstention","rule":"G5","person_id":"abbot_8_g","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
+  {"identity":"id_adams_nancy","kind":"abstention","rule":"G5","person_id":"rc_adams_nancy","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_almond_axtell","kind":"abstention","rule":"G5","person_id":"almond_axtell_2","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_andrews_davi","kind":"downgrade","rule":"G3","person_id":"andrews_davi","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_andrus_thomas","kind":"downgrade","rule":"G3","person_id":"andrus_thomas","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
@@ -7023,6 +7030,8 @@
   {"identity":"id_mitchell_henry","kind":"downgrade","rule":"G2e","person_id":"mitchell_henry","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_mulford_edward_h","kind":"abstention","rule":"G5","person_id":"mulford_e_h","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["death_notice","town_layer"]},
   {"identity":"id_murphy_harriet","kind":"abstention","rule":"G5","person_id":"murphy_harriet","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
+  {"identity":"id_murphy_honora","kind":"abstention","rule":"G5","person_id":"rc_murphy_honora","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
+  {"identity":"id_murphy_thomas","kind":"abstention","rule":"G5","person_id":"rc_murphy_thomas","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_nelts_william","kind":"abstention","rule":"G5","person_id":"nelts_wm","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_noble_mark","kind":"downgrade","rule":"G2b","person_id":"noble_mark","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_norton_nelson_r","kind":"downgrade","rule":"G3","person_id":"norton_nelson_r","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},

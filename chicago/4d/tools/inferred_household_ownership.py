@@ -50,6 +50,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 RECORD = ROOT / "data" / "reconstruction" / "1835_inferred_household_pass_ownership.json"
 STRUCTURES = ROOT / "data" / "structures"
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+# The programme that reopened invented naming under an auditable stage (T-1167).
+PROGRAMME_1167 = ROOT / "data" / "reconstruction" / "1835_resident_reconstruction_programme.json"
 
 MISSING = object()          # distinct from a committed null
 
@@ -260,15 +262,34 @@ def check_names_pass(derived: dict[pathlib.Path, dict],
         drift.append("not one person in the naming pass's input is graded "
                      "reconstructed, so no invented name was dealt and nothing below "
                      "is a test")
-    # half B: not one of these names stands in the tree, because T-0489 retired
-    # every person this pass ever named.
+    # half B: not one of THIS PASS's names stands in the tree, because T-0489 retired
+    # every person it ever named.
+    #
+    # T-1314 narrowed what "this pass's" means. The test used to be "no person in the
+    # tree carries a name_basis at all", which was the same sentence for as long as this
+    # pass was the only thing that had ever dealt an invented name. Since T-1167 the
+    # reconstruction programme deals them too, under a stage that re-derives the person
+    # and a record contract `tools/reconstruct_residents_1835.py --check` holds. Those
+    # are not this pass's people coming back, and reading them as such would make the
+    # programme the owner asked for unlandable. A name_basis on anyone the programme does
+    # NOT claim is still exactly the return T-0489 forbade, and still fails here.
+    try:
+        prog = json.loads(PROGRAMME_1167.read_text(encoding="utf-8"))
+        stage_keys = {row.get("key") for row in prog.get("stages") or []}
+    except (OSError, ValueError):
+        stage_keys = set()
+
+    def unclaimed(person):
+        return (isinstance(person, dict) and person.get("name_basis")
+                and (person.get("reconstruction") or {}).get("stage") not in stage_keys)
+
     standing = sorted(p.name for p in HOUSEHOLDS.glob("*.json")
-                      if any(isinstance(person, dict) and person.get("name_basis")
-                             for person in json.loads(
-                                 p.read_text(encoding="utf-8")).get("persons", [])))
-    drift += [f"data/residents/households/{name} carries an invented name_basis — "
-              f"T-0489 retired the reconstructed resident population and nothing may "
-              f"put an invented resident back" for name in standing]
+                      if any(unclaimed(person) for person in json.loads(
+                          p.read_text(encoding="utf-8")).get("persons", [])))
+    drift += [f"data/residents/households/{name} carries an invented name_basis that no "
+              f"reconstruction stage claims — T-0489 retired the reconstructed resident "
+              f"population and nothing may put an invented resident back outside the "
+              f"programme" for name in standing]
     return drift
 
 

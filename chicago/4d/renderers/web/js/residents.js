@@ -1262,6 +1262,36 @@ export function rolesHtml(roles, citationsById) {
       <ol class="res-roles">${ordered.map((r) => roleRowHtml(r, citationsById)).join('')}</ol></dd>`;
 }
 
+/**
+ * Why a person nobody named is standing in this town, on their own card (T-1314).
+ *
+ * A `reconstructed` person is the one kind of record here that a visitor could
+ * mistake for a finding, so the card says the opposite out loud: which stage of the
+ * reconstruction programme wrote them, what counted them, what age the count puts
+ * them at, and what would retire them. `basisHtml` already prints the basis, the
+ * seed that redraws a model draw and the replacement rule — the same three parts a
+ * reconstructed ATTRIBUTE shows — so the person reuses it rather than growing a
+ * second vocabulary for the same idea.
+ */
+function reconstructionHtml(person) {
+  const rc = person && person.reconstruction;
+  if (!rc || typeof rc !== 'object') return '';
+  const age = rc.age_on_scene_date || null;
+  const span = age
+    ? (age.high === null || age.high === undefined ? `${age.low} or older` : `${age.low}–${age.high}`)
+    : '';
+  return `<dt>Why this person is here</dt><dd>${swatch('reconstructed')}No source names them.
+    They are written by the <code>${escapeHtml(String(rc.stage || ''))}</code> stage of
+    ${escapeHtml(String(rc.programme || 'the reconstruction programme'))}${
+    rc.counted_by ? `, counted by ${escapeHtml(String(rc.counted_by))}` : ''}.${
+    rc.band_1840 ? `<br><span class="res-why">The record that counts them reads
+      “${escapeHtml(String(rc.band_1840))}”${span ? `, which is ${escapeHtml(span)} on 1 July 1835` : ''}.
+      </span>` : ''}${
+    rc.community ? `<br><span class="res-why">The invented forename is drawn from the
+      ${escapeHtml(String(rc.community))} pool.</span>` : ''}
+    ${basisHtml(person)}</dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
@@ -1325,6 +1355,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${reconstructionHtml(person)}
       ${nameRulingHtml(person.name_ruling, citationsById)}
       ${profileFactsHtml(person.profile_facts, citationsById)}
       ${withheldFactsHtml(withheldByPerson.get(person.id), citationsById)}
