@@ -79,7 +79,6 @@
    "resident_subtype": "projected_resident",
    "age_band": {
     "value": "30-39",
-    "census_band": "free white males 30 under 40",
     "low": 30,
     "high": 39,
     "confidence": "reconstructed",
@@ -87,7 +86,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
     },
     "seed": "steel_richard:age_bands_1840",
     "replaceable_by": {

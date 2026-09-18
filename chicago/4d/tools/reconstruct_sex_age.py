@@ -434,7 +434,6 @@ def age_block_drawn(row: dict, conditioning: str, seed: str, sex: str) -> dict:
     cond = CONDITIONINGS[conditioning]
     return {
         "value": row["band"],
-        "census_band": row["census_band"],
         "low": row["low"],
         "high": row["high"],
         "confidence": RECONSTRUCTED,
@@ -442,8 +441,13 @@ def age_block_drawn(row: dict, conditioning: str, seed: str, sex: str) -> dict:
         "basis": {
             "kind": "model",
             "id": "age_bands_1840",
-            "note": "Drawn from the 1840 Chicago schedule's %s bands, conditioned on "
-                    "`%s` because %s." % (sex, conditioning, cond["when"]),
+            # The column is named IN the note rather than carried as a field of its own:
+            # `tools/measure_layer_reads.py` is right that a figure shipped to a browser
+            # that nothing reads is dead weight, and a reader wants the schedule's own
+            # words here, not a second machine-readable copy of the band edges above.
+            "note": "Drawn from the 1840 Chicago schedule's column '%s', one of its %s "
+                    "bands, conditioned on `%s` because %s."
+                    % (row["census_band"], sex, conditioning, cond["when"]),
         },
         "seed": seed,
         "replaceable_by": {
@@ -462,18 +466,28 @@ def age_block_drawn(row: dict, conditioning: str, seed: str, sex: str) -> dict:
     }
 
 
-def age_block_read(low: int, high, band: str, tier: str, from_what: str) -> dict:
-    return {
+def age_block_read(low: int, high, band: str, tier: str, from_what: str,
+                   sources: list) -> dict:
+    """The band a value already on the card puts the person in, at that value's own tier.
+
+    IT CARRIES THAT VALUE'S SOURCES, and must: `validate.py` refuses an `attested` claim
+    with no `source_id`, and it is right to — a view of an attested figure that cited
+    nothing would be the one row on the card asking to be taken on trust.
+    """
+    out = {
         "value": band,
         "low": low,
         "high": high,
         "confidence": tier,
         "tier": tier,
-        "note": "THE BAND THIS PERSON'S OWN %s PUTS THEM IN on 1 July 1835. It is a view "
-                "of a value already on this card and adds nothing to it; it exists so the "
-                "age axis can be read across the whole layer at once, beside the bands "
-                "the model draws for everybody else." % from_what,
     }
+    if sources:
+        out["sources"] = list(sources)
+    out["note"] = ("THE BAND THIS PERSON'S OWN %s PUTS THEM IN on 1 July 1835. It is a view "
+                "of a value already on this card and adds nothing to it; it exists so the "
+                   "age axis can be read across the whole layer at once, beside the bands "
+                   "the model draws for everybody else." % from_what)
+    return out
 
 
 def refusal_block(what: str) -> dict:
@@ -591,13 +605,15 @@ def fill(base: dict) -> tuple:
                 row = band_for_age(SCENE_YEAR - int(born), sex, bands)
                 person["age_band"] = age_block_read(
                     row["low"], row["high"], row["band"],
-                    tier_of_block(person.get("birth_year")), "BIRTH YEAR")
+                    tier_of_block(person.get("birth_year")), "BIRTH YEAR",
+                    (person.get("birth_year") or {}).get("sources") or [])
                 counts["age_read"]["birth_year"] += 1
             elif aged is not None:
                 row = band_for_age(int(aged), sex, bands)
                 person["age_band"] = age_block_read(
                     row["low"], row["high"], row["band"],
-                    tier_of_block(person.get("age_on_scene_date")), "STATED AGE")
+                    tier_of_block(person.get("age_on_scene_date")), "STATED AGE",
+                    (person.get("age_on_scene_date") or {}).get("sources") or [])
                 counts["age_read"]["age_on_scene_date"] += 1
             else:
                 conditioning = conditioning_of(person)
@@ -724,15 +740,20 @@ def self_test() -> int:
 
     drawn = age_block_drawn({"band": "20-29", "census_band": "free white males 20 under 30",
                              "low": 20, "high": 29}, "civic_list_20_and_over", "s", "male")
+    ok("a drawn age band names the schedule's own column",
+       "free white males 20 under 30" in drawn["basis"]["note"])
     ok("a drawn age band writes no birth year", "birth_year" not in drawn)
     ok("a drawn age band carries its seed and its replacement rule",
        drawn.get("seed") == "s" and drawn["replaceable_by"]["kind"] == "person")
     ok("a drawn age band says the conditioning is the model's",
        "NOT A SOURCE'S" in drawn["note"])
 
-    read = age_block_read(20, 29, "20-29", "inferred", "BIRTH YEAR")
+    read = age_block_read(20, 29, "20-29", "inferred", "BIRTH YEAR", ["a_source"])
     ok("a read age band carries no basis, seed or replacement rule",
        not any(k in read for k in ("basis", "seed", "replaceable_by")))
+    ok("a read age band cites what it is a view of", read["sources"] == ["a_source"])
+    ok("...and cites nothing where the value it reads cites nothing",
+       "sources" not in age_block_read(20, 29, "20-29", "inferred", "BIRTH YEAR", []))
 
     want = ["id", "name", "age_band", "sex", "sex_basis", "birth_year"]
     scrambled = {"id": "p", "sex": "male",

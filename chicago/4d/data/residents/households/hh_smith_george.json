@@ -135,6 +135,9 @@
     "high": 4,
     "confidence": "inferred",
     "tier": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
     "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
    },
    "sex": "male",

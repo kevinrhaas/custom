@@ -207,7 +207,6 @@
    ],
    "age_band": {
     "value": "40-49",
-    "census_band": "free white males 40 under 50",
     "low": 40,
     "high": 49,
     "confidence": "reconstructed",
@@ -215,7 +214,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 40 under 50', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
     },
     "seed": "hubbard_henry_g:age_bands_1840",
     "replaceable_by": {

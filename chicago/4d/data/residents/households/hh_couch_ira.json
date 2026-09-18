@@ -163,7 +163,6 @@
    ],
    "age_band": {
     "value": "20-29",
-    "census_band": "free white males 20 under 30",
     "low": 20,
     "high": 29,
     "confidence": "reconstructed",
@@ -171,7 +170,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 20 under 30', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
     },
     "seed": "couch_ira:age_bands_1840",
     "replaceable_by": {
@@ -270,6 +269,9 @@
     "high": 39,
     "confidence": "inferred",
     "tier": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
     "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
    },
    "birth_year": {

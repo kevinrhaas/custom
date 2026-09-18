@@ -163,7 +163,6 @@
    ],
    "age_band": {
     "value": "20-29",
-    "census_band": "free white males 20 under 30",
     "low": 20,
     "high": 29,
     "confidence": "reconstructed",
@@ -171,7 +170,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 20 under 30', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
     },
     "seed": "taylor_anson_h:age_bands_1840",
     "replaceable_by": {
@@ -294,7 +293,6 @@
    ],
    "age_band": {
     "value": "40-49",
-    "census_band": "free white males 40 under 50",
     "low": 40,
     "high": 49,
     "confidence": "reconstructed",
@@ -302,7 +300,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 40 under 50', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
     },
     "seed": "taylor_charles:age_bands_1840",
     "replaceable_by": {

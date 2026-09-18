@@ -170,7 +170,6 @@
    ],
    "age_band": {
     "value": "30-39",
-    "census_band": "free white males 30 under 40",
     "low": 30,
     "high": 39,
     "confidence": "reconstructed",
@@ -178,7 +177,7 @@
     "basis": {
      "kind": "model",
      "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
     },
     "seed": "pruyne_peter:age_bands_1840",
     "replaceable_by": {
@@ -400,6 +399,9 @@
     "high": 39,
     "confidence": "attested",
     "tier": "attested",
+    "sources": [
+     "history_medicine_chicago_kimberly_maxwell"
+    ],
     "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
    }
   }
