@@ -162,6 +162,16 @@ function filterSpecs(people) {
       options: [['yes', 'Has an address']],
       test: () => (r) => !!(r.lives_at || r.works_at),
     },
+    // T-1172. The names the research READ and WITHHELD, offered back at the
+    // reconstructed tier: a presence the corpus never settled, ruled against the
+    // persistence model, or a card minted under a read name the town had no row for.
+    // One pill each, because they are different acts and a reader should be able to
+    // see the second kind without the first burying it.
+    {
+      key: 'readmitted', label: 'Re-admitted',
+      options: [['presence_ruled', 'presence ruled'], ['card_minted', 'minted from a read name']],
+      test: (v) => (r) => r.readmission?.kind === v,
+    },
     // The dated roles, as the one question the plural field makes askable (T-1255):
     // who the sources word at the scene date, and who they word only in another
     // year. The second pill is the whole reason the field went plural — 135 people
@@ -556,6 +566,28 @@ export async function mountPeople({
     return `<p class="people-noaddr" data-reason="pending">No known address${escapeHtml(unresolved)}<span class="people-noaddr-why"></span></p>`;
   }
 
+  /**
+   * The re-admission, said on the card in words (T-1172).
+   *
+   * Two things a reader is owed and cannot get from a grade dot: that this row
+   * stands on ONE reading the research withheld, and what would retire it again.
+   * A presence ruling also names the value it stands beside — the research's own
+   * `uncertain` is kept, not overwritten, and the card is where that has to show.
+   */
+  function readmissionHtml(r) {
+    const rm = r.readmission;
+    if (!rm) return '';
+    const lead = rm.kind === 'presence_ruled'
+      ? `The research left this person’s presence on 1 July 1835 <b>${escapeHtml(rm.stood_at)}</b> and it stands there still. `
+        + `Beside it, the reconstruction reads <b>${escapeHtml(r.present)}</b>.`
+      : `A name the corpus printed once and the research withheld, minted back into the town under its own read name`
+        + `${rm.name_as_read ? ` — read as “${escapeHtml(rm.name_as_read)}”` : ''}.`;
+    return `<p class="people-card-readmitted"><b>Re-admitted from the borderline roster.</b> ${lead}`
+      + `${rm.note ? ` ${escapeHtml(rm.note)}` : ''}`
+      + `${rm.stands_on ? ` ${escapeHtml(rm.stands_on)}` : ''}`
+      + `${rm.replaced_by ? ` <i>Retired by ${escapeHtml(rm.replaced_by)}.</i>` : ''}</p>`;
+  }
+
   let openSeq = 0;
   /**
    * Open a person's card in place of the list. Resolves `true` once the household
@@ -584,6 +616,7 @@ export async function mountPeople({
       </p>
       <div class="people-card-actions">${actionsHtml(r)}</div>
       <p class="people-card-what">${escapeHtml(knownTitle)}.</p>
+      ${readmissionHtml(r)}
       <div class="people-card-body" aria-busy="true"><p class="legend-note">Loading the household record…</p></div>`;
     home.hidden = true;
     cardEl.hidden = false;

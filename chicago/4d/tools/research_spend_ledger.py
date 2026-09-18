@@ -236,6 +236,19 @@ def cited_sources(node) -> set[str]:
     return found
 
 
+# T-1172. `data/residents/readmitted/` is the RECONSTRUCTION, not the research: the
+# borderline roster's names offered back at the reconstructed tier by
+# tools/readmit_borderline_roster.py. The research instruments below measure what the
+# sources say and what has been spent of them, and a reconstruction is neither. Reading it
+# here would let an invention raise the research meter, join a crosswalk, or stand as a
+# rival card in an identity ruling — which is the exact boundary that stage is built on.
+READMITTED_DIR = "readmitted"
+
+
+def town_records(root):
+    """Every committed resident record EXCEPT the reconstruction's own."""
+    return [p for p in sorted(root.rglob("*.json")) if p.parent.name != READMITTED_DIR]
+
 def target_index(root: Path, raw_ids: set[str]) -> dict[str, list[dict]]:
     """Index source-bearing structured resident assertions by the unit ids they name."""
     found = defaultdict(list)
@@ -264,7 +277,7 @@ def target_index(root: Path, raw_ids: set[str]) -> dict[str, list[dict]]:
             for index, value in enumerate(node):
                 walk(value, parts + [index], root_id, rel)
 
-    for path in sorted((root / "data" / "residents").rglob("*.json")):
+    for path in town_records((root / "data" / "residents")):
         doc = read_json(path)
         if not isinstance(doc, dict) or not doc.get("id"):
             continue

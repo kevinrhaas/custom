@@ -46,7 +46,7 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1168 | 3 |
 | T-1169 | 902 |
 | T-1170 | 168 |
-| T-1172 | 260 |
+| T-1179 | 260 |
 | T-1180 | 494 |
 | T-1182 | 37 |
 | T-1188 | 12 |

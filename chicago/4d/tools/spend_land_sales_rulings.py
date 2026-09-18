@@ -59,6 +59,19 @@ OUTSIDE_COOK = {
     "ST. LOUIS": "St. Louis, Missouri",
 }
 
+# T-1172 closed on 2026-09-18 having re-admitted the roster, so on this file's own
+# rule — a hand-off names the OPEN ticket whose field owns the finding — the hand-off
+# moves on again rather than pointing at finished work.
+HANDED_ON = (
+    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
+    "the reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json — and that settles nothing about "
+    "the evidence, which is why this unit stays `unresolved`. The hand-off moves "
+    "to T-1179, the ticket that converges the reconstructed resident layer and is "
+    "where a re-admission is finally reconciled against the index, the sidecars "
+    "and the town census; the re-admission's own `withdrawn_if` clause is what "
+    "retires it before then.")
+
 RULES = {
     "the_purchaser_is_a_corporate_body": {
         "disposition": "refused",
@@ -135,7 +148,7 @@ RULES = {
         # names as reconstructed residents under their own read names. This file's own
         # doc calls for exactly this: a hand-off names the OPEN ticket whose field owns
         # the finding, and that ticket closing turns the file red.
-        "ticket": "T-1172",
+        "ticket": "T-1179",
         "statement": (
             "The tract was entered on or before 1 July 1835, the register's Residence "
             "column reads COOK, and no upheld crosswalk join puts this purchaser on a card "
@@ -144,7 +157,7 @@ RULES = {
             "is a dated document stating that a named person lived in Cook County inside "
             "the scene window. T-1159's borderline roster carries exactly this name, with "
             "its source and its re-admission class; T-1172 is the ticket that re-admits "
-            "it, so the finding is handed there and asserted nowhere."),
+            "it, so the finding is handed there and asserted nowhere." + HANDED_ON),
     },
     "a_sale_is_never_a_residence": {
         "disposition": "refused",

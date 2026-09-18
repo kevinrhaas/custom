@@ -1,7 +1,7 @@
 ---
 id: T-1172
 title: Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 0
 claimed_by: run 9/18/2026, 5:54:32 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T11:07:40.682Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35336547651
 ---
 

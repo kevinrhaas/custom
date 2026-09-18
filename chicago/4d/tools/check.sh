@@ -2253,6 +2253,21 @@ step "the reconstruction programme answers for every reconstructed resident" \
 selftest "...and each rule of the record contract refuses its own mutation" \
   python3 tools/reconstruct_residents_1835.py --self-test
 
+# T-1172, stage `readmissions` of that programme. The borderline roster (T-1159) holds
+# every name the corpus PRINTED and the research WITHHELD; this stage spends four of its
+# seven classes, and it overturns no refusal. What the gate below holds: that all 898
+# re-admissions re-derive from the roster, the layer and the three persistence crosswalks
+# they are priced against; that every minted card still answers to the record contract;
+# and - the one that matters most - that every card an R1 ruling stands beside STILL reads
+# `uncertain` in the research layer, so a reconstruction cannot outlive the refusal it was
+# written against. A hand-edited card or a persistence rate nudged toward a nicer figure
+# fails here.
+step "every re-admission re-derives, and no refusal it stands beside has moved" \
+  python3 tools/readmit_borderline_roster.py --check
+
+selftest "...and a guessed date, a borrowed name and a rising persistence curve are refused" \
+  python3 tools/readmit_borderline_roster.py --self-test
+
 step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
 
