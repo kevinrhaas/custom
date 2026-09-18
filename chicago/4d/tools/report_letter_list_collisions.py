@@ -118,27 +118,6 @@ def attachment(doc: dict, person: dict) -> list[str]:
     return carried
 
 
-def holder_of(fam: str, docs: dict, accepted_names: dict) -> str:
-    """Who holds the family name the refusal names — the survivor, whoever they are.
-
-    Two shapes, because the two refusals mean different things. Refusal 7 ("the town
-    already names a X") points OUTSIDE this pass, at a household some other pass
-    minted. Refusal 8 ("surname already minted") points at a candidate this same pass
-    accepted earlier in `rank()` order.
-    """
-    outside = []
-    for path, doc in sorted(docs.items()):
-        if m.minted_by(path, doc, "letter_list", m.PREFIX):
-            continue
-        for person in doc.get("persons") or []:
-            if m.surname(person.get("name") or "") == fam:
-                outside.append(f"{person['name']} ({path.stem})")
-    if outside:
-        return "; ".join(outside[:3]) + (" …" if len(outside) > 3 else "")
-    inside = [f"{name}" for name, f in accepted_names.items() if f == fam]
-    return "; ".join(sorted(inside)) or "—"
-
-
 # ---------------------------------------------------------------------------
 # the derivation
 # ---------------------------------------------------------------------------
@@ -152,7 +131,14 @@ def derive() -> dict:
 
     new_by_id = {cand["id"]: cand for cand, _ in new_accepted}
     old_by_id = {cand["id"]: cand for cand, _ in old_accepted}
-    reasons = {cid: reason for cid, _name, _n, reason in new_refused}
+    # T-0660's ruling (c) changed where the answer is read from, and not what it is.
+    # A mint-time refusal no longer drops a standing record, so the difference between
+    # the readings is no longer a difference in who is ACCEPTED — it is a difference in
+    # who the pass now SAYS a collision on. Same candidates, same order, same rows.
+    new_collided = {cand["id"]: cand["surname_collision"]
+                    for cand, _ in new_accepted if cand.get("surname_collision")}
+    old_collided = {cand["id"] for cand, _ in old_accepted
+                    if cand.get("surname_collision")}
     returns = {cand["id"]: len(m.returns_of(gaz["mentions"]))
                for cand, gaz in new_accepted}
     printings = {cand["id"]: len(gaz["mentions"]) for cand, gaz in new_accepted}
@@ -160,26 +146,25 @@ def derive() -> dict:
         returns.setdefault(cand["id"], len(m.returns_of(gaz["mentions"])))
         printings.setdefault(cand["id"], len(gaz["mentions"]))
 
-    accepted_names = {m.display(cand["name"]): m.surname(cand["name"])
-                      for cand, _ in new_accepted}
     committed = committed_letter_list(docs)
 
     pairs = []
-    for cid in sorted(set(old_by_id) - set(new_by_id)):
-        printed = old_by_id[cid]["name"]
+    for cid in sorted(set(new_collided) - old_collided):
+        printed = new_by_id[cid]["name"]
         shown = m.display(printed)
         stem, doc, person = committed.get(shown, (None, None, None))
+        held = new_collided[cid]["holds_the_surname"]
         pairs.append({
             "printed": printed,
             "display": shown,
             "old_surname": pre_t0638_surname(printed),
             "new_surname": m.surname(printed),
-            "reason": reasons.get(cid, "—"),
+            "reason": new_collided[cid]["refusal"],
             "committed": stem,
             "returns": returns.get(cid, 0),
             "printings": printings.get(cid, 0),
             "carries": attachment(doc, person) if doc else [],
-            "holder": holder_of(m.surname(printed), docs, accepted_names),
+            "holder": "; ".join(held[:3]) + (" …" if len(held) > 3 else "") or "—",
         })
 
     admitted = []
@@ -225,6 +210,8 @@ def derive() -> dict:
         "pool": len(new_accepted) + len(new_refused),
         "new_accepted": len(new_accepted),
         "old_accepted": len(old_accepted),
+        "new_collided": len(new_collided),
+        "old_collided": len(old_collided),
         "committed": len(committed_ids),
         "derived": len(derived_ids),
         "pairs": pairs,
@@ -287,28 +274,35 @@ def lines(d: dict) -> list[str]:
         "simply too blunt to see it under one of them. The count below fell by one",
         "accordingly, and nothing was retired to make that happen.",
         "",
-        "T-0660 asks for this list before anything is retired, and the reason is in the third",
-        "section: the pass's own ranking would not always keep the better record, and two of",
-        "these collisions are not duplicates at all but two different men who cannot both hold",
-        "one family name.",
+        "THE OWNER RULED, 2026-09-18: option (c). Refusals 7 and 8 are MINT-TIME rules and",
+        "do not un-mint a record that already stands. NOTHING IS RETIRED. The pass keeps every",
+        "standing record a mint-time refusal lands on and SAYS the collision on its card — a",
+        "`surname_collision` block naming the other holder — so a reader sees both records and",
+        "why both are here. `rank()` is unchanged, the cohort is not re-derived, and the",
+        "population does not move. This report is therefore no longer a list of proposed",
+        "retirements; it is the derivation behind the blocks, and the rows below are the same",
+        "rows they were, read now off what the pass says rather than off who it drops.",
         "",
         "## The two readings, over the same pool",
         "",
         f"* the pool the register offers this pass: **{d['pool']}** candidates",
         f"* accepted under the pre-T-0638 reading: **{d['old_accepted']}**",
         f"* accepted under the corrected reading: **{d['new_accepted']}**",
-        f"* candidates the correction REFUSES that the old reading accepted: "
-        f"**{len(d['pairs'])}**",
+        f"* standing records a mint-time refusal lands on, corrected reading: "
+        f"**{d['new_collided']}**; pre-T-0638 reading: **{d['old_collided']}**",
+        f"* THE COLLISIONS THIS FAULT UNCOVERED — said under the corrected reading and "
+        f"not under the old one: **{len(d['pairs'])}**",
         f"* candidates the correction ADMITS that the old reading refused: "
         f"**{len(d['admitted'])}**",
         "",
         "## The collisions — what the paper printed, and who holds the surname instead",
         "",
         "`old` and `new` are the family name each reading takes off the printing. `holds it`",
-        "is the record the refusal defers to — the survivor, if a survivor is what the owner",
-        "rules for. `carries` is what a retirement would strand.",
+        "is the record the refusal defers to, and under the ruling it defers by SAYING so and",
+        "not by standing down. `carries` is what a retirement would have stranded, and is kept",
+        "in the table because it is the measure of what option (c) declined to throw away.",
         "",
-        "| printed | as a card shows it | old | new | refused because | holds it | returns | carries |",
+        "| printed | as a card shows it | old | new | the refusal it says | holds it | returns | carries |",
         "|---|---|---|---|---|---|---|---|",
     ]
     for p in d["pairs"]:
@@ -318,24 +312,30 @@ def lines(d: dict) -> list[str]:
             f"{', '.join(p['carries']) or '—'} |")
     out += [
         "",
-        "## Why a tool may not pick the survivor",
+        "## Why no tool picks a survivor, and why the ruling asked none to",
+        "",
+        "These were the three reasons the loop could not answer the survivorship question,",
+        "and they are why the owner answered it with (c) — keep both, say the collision.",
         "",
         "* **They are not all duplicates.** `Joel C. Mills` and `Philo C. Mills` are two",
         "  different men. Refusal 8 is a rule about how much one pass may assert on a family",
-        "  name, not a statement that two records are one person — so applying it here",
-        "  removes a person rather than merging two.",
+        "  name, not a statement that two records are one person — so retiring on it would",
+        "  have removed a person rather than merging two.",
         "* **`rank()` is blind to how good a record is.** It orders single-return names by",
-        "  the NEWEST return, so where two printings of one surname both stand, the survivor",
-        "  is whichever letter was printed later — not the one with the fuller name, the",
-        "  research row or the directory match.",
-        "* **The loser can be the better-attested record.** The `carries` column above is the",
-        "  measure of that, and it is not empty.",
+        "  the NEWEST return, so the survivor would have been whichever letter was printed",
+        "  later — not the one with the fuller name, the research row or the directory match.",
+        "  The ruling leaves `rank()` alone precisely because it no longer has to pick.",
+        "* **The loser would have been the better-attested record.** The `carries` column",
+        "  above is the measure of that, and it is not empty.",
         "",
         "## The committed cohort against its own derivation",
         "",
         f"The tree holds **{d['committed']}** letter-list households. The pass, run today",
         f"against that same tree, derives **{d['derived']}**. `check.sh` runs this pass's",
-        "`--gate` and not its `--check`, so the gap has never been red. Split by cause:",
+        "`--gate` and not its `--check`, so the gap has never been red. Under the ruling the",
+        "mint-time causes are gone from this table by construction — a standing record is no",
+        "longer out of step with its own pass for colliding on a family name. What is left is",
+        "split by cause:",
         "",
         "| households | cause |",
         "|---|---|",
@@ -344,10 +344,13 @@ def lines(d: dict) -> list[str]:
         out.append(f"| {n} | {cause} |")
     out += [
         "",
-        "**This is the finding that resizes T-0660.** The ticket was filed believing the",
-        "retirements were the collisions. Most of them are not: they are records whose",
-        "surname the town acquired from a LATER pass, long after this cohort was minted, and",
-        "retiring them is a separate ruling about a separate rule.",
+        "**This is the finding that resized T-0660, and the ruling then dissolved it.** The",
+        "ticket was filed believing the retirements were the collisions. Most of them were",
+        "not: they were records whose surname the town acquired from a LATER pass, long after",
+        "this cohort was minted — T-0691's 76, filed as a separate ruling about a separate",
+        "rule. Option (c) answers both with one sentence, because neither kind of collision",
+        "un-mints anything now. What survives of T-0691 is wiring its `--check` into",
+        "`check.sh`, which is a gate question and not a retirement question.",
         "",
         "## The candidates the correction admits",
         "",
@@ -364,7 +367,8 @@ def lines(d: dict) -> list[str]:
         "## A residual fault in the corrected reading",
         "",
         "Reported here rather than fixed, because a change to `surname()` re-derives the",
-        "whole cohort — the thing this ticket exists to put to the owner before it happens.",
+        "whole cohort, and the ruling of 2026-09-18 explicitly declined to pay for that: it",
+        "is option (b)'s cost, and (b) is not what was chosen.",
         "",
     ]
     if d["residual"]:
@@ -393,6 +397,67 @@ def render() -> str:
     return "\n".join(lines(derive())) + "\n"
 
 
+# ---------------------------------------------------------------------------
+# the blocks the ruling asks for, on the cards this fault collided
+# ---------------------------------------------------------------------------
+
+def blocks() -> dict:
+    """The `surname_collision` block for each of this fault's standing cards.
+
+    DERIVED FROM THE PASS, NOT WRITTEN HERE. `mint_letter_list_residents.record()`
+    composes the block, so the card and the refusal that produced it cannot drift
+    apart, and this tool only says WHICH cards T-0660 owns: the ones the corrected
+    reading collides and the pre-T-0638 reading did not. The other collisions the
+    pass now says — the ones the town's LATER passes caused, which were T-0691's
+    subject — are written when the cohort is next re-derived; they are not this
+    ticket's rows and are not hand-picked into it.
+
+    Returns {path: block}, and nothing else on the card is touched: a full re-derive
+    of this cohort is a different unit of work (T-1222 holds its 798-file drift) and
+    landing it through here would bury eight blocks in it.
+    """
+    docs = {q: m.load(q) for q in sorted(m.HOUSEHOLDS.glob("*.json"))}
+    index = m.load(m.INDEX)
+    new_accepted, _ = mint_with(m.surname, docs, index)
+    old_accepted, _ = mint_with(pre_t0638_surname, docs, index)
+    old_collided = {cand["id"] for cand, _ in old_accepted
+                    if cand.get("surname_collision")}
+
+    out, seen = {}, set()
+    for cand, gaz in new_accepted:
+        doc = m.record(cand, gaz, docs, seen)
+        seen.add(doc["id"])
+        if not cand.get("surname_collision") or cand["id"] in old_collided:
+            continue
+        path = m.HOUSEHOLDS / f"{doc['id']}.json"
+        if path not in docs:
+            continue          # not standing, so the ruling has nothing to protect
+        out[path] = doc["surname_collision"]
+    return out
+
+
+def carded(write: bool) -> int:
+    """Write (or check) the block on each card, changing nothing else on it."""
+    drifted = []
+    for path, block in sorted(blocks().items()):
+        doc = m.load(path)
+        if doc.get("surname_collision") == block:
+            continue
+        if not write:
+            drifted.append(path)
+            continue
+        doc["surname_collision"] = block
+        path.write_text(m.dumps(doc, 1), encoding="utf-8")
+        print(f"   said the collision on {path.stem}")
+    if drifted:
+        for path in drifted:
+            print(f"   DRIFT: {path.relative_to(ROOT)} does not say its collision")
+        return 1
+    print("   OK: every card this fault collides says so" if not write else
+          "   done")
+    return 0
+
+
 def self_test() -> int:
     """The report is only worth anything if the two readings really are two."""
     failures = []
@@ -405,7 +470,10 @@ def self_test() -> int:
     d = derive()
     if not d["pairs"]:
         failures.append("no collision derived at all — the diff cannot be empty while "
-                        "T-0660 is open")
+                        "the corrected reading still collides these printings")
+    if d["old_accepted"] > d["new_accepted"]:
+        failures.append("the corrected reading accepts FEWER records than the old one: "
+                        "T-0660's ruling (c) says a mint-time refusal retires nobody")
     if any(p["new_surname"] == p["old_surname"] and "already minted" not in p["reason"]
            for p in d["pairs"]):
         failures.append("a collision is reported whose surname did not move and whose "
@@ -424,11 +492,17 @@ def main() -> int:
     ap.add_argument("--write", action="store_true", help="write the committed report")
     ap.add_argument("--check", action="store_true",
                     help="re-derive and fail if the committed report has drifted")
+    ap.add_argument("--write-records", action="store_true",
+                    help="write the surname_collision block onto the standing cards")
+    ap.add_argument("--check-records", action="store_true",
+                    help="fail if a card this fault collides does not say so")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.write_records or args.check_records:
+        return carded(args.write_records)
     text = render()
     if args.write:
         REPORT.write_text(text, encoding="utf-8")

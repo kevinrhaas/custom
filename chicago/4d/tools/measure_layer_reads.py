@@ -682,6 +682,16 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),
+    # T-0660's ruling (c). Refusals 7 and 8 are mint-time rules: where one lands on a
+    # card that already stands, the pass keeps the record and SAYS the collision on it
+    # instead of retiring anybody. Saying it to a TOOL and not to a reader would be
+    # half the ruling — "so a reader sees the collision and why both records are
+    # there" is its own wording — so the row is on the card, under the family name it
+    # shares. The note is the reasoning and the other three are the figures.
+    "surname_collision.refusal": ("shown", "escapeHtml(hh.surname_collision.refusal)"),
+    "surname_collision.holds_the_surname": (
+        "shown", "(hh.surname_collision.holds_the_surname || []).join('; ')"),
+    "surname_collision.ruling": ("shown", "escapeHtml(hh.surname_collision.ruling)"),
     # The person. `grade` is how much of the PERSON is reconstructed and the
     # occupation's `confidence` is how well that one attribute is evidenced; the
     # manifest is emphatic that the two axes must not be conflated, and they are
