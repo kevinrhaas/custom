@@ -1,6 +1,6 @@
 # The letter-list mint's 798 files, counted — 2026-09-18
 
-Measured on `origin/dev` at `076051973` by `tools/letter_list_mint_drift.py`, which reads
+Measured on `origin/dev` at `076051973` by `tools/letter_list_mint_drift.py`, and re-run unchanged after rebasing onto `68ad5bd82`, which reads
 `tools/mint_letter_list_residents.py`'s own derivation against the committed tree. T-1334's
 first acceptance is that the drift is **measured and named** — *a number, not "it drifts"* —
 and this is that reading.

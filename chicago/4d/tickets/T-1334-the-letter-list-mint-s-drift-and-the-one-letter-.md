@@ -65,7 +65,7 @@ MAKES THE JOIN, and joining two names by eye stays refused. T-0961's absence on 
 keeps its text and gains a pointer.
 
 **Acceptance 3, the deferring unit.** `identity_open_one_letter_apart` is removed with the
-question it existed for. `bk_mose1_as_028` rules under `handed_to_the_arrival_pass` to T-1317.
+question it existed for. `bk_mose1_as_028` rules under `handed_to_the_arrival_pass`, whose owner is T-1340 since T-1317 split on 2026-09-18.
 This ticket owns no unresolved unit at close.
 
 **Acceptance 4, agreeing with T-1222 rather than racing it.** No gate step was written and
