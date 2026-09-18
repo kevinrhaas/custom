@@ -53,7 +53,7 @@
       "description": "Dated states of this structure. For a scene date, exactly one phase must cover it."
     },
     "function": {
-      "$ref": "#/$defs/attested"
+      "$ref": "#/$defs/structure_function"
     },
     "occupants": {
       "$ref": "#/$defs/attested"
@@ -511,6 +511,152 @@
       "additionalProperties": false,
       "properties": {
         "value": {},
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "source_id values that must resolve in data/sources/"
+        },
+        "note": {
+          "type": "string",
+          "description": "Required for inferred. State the reasoning, and record original historical units here."
+        },
+        "geometry": {
+          "enum": [
+            "absent",
+            "simplified",
+            "record_only"
+          ],
+          "description": "What the generated mesh does with this value, for attributes the archetype does not read. 'absent': the thing is attested and nothing of it is built. 'simplified': something stands in its place but this value does not drive it. 'record_only': not a build instruction at all — a rejected reading or a negative finding. Required by tools/validate.py on every attribute outside its archetype's CONSUMED set; 'absent' and 'simplified' must be claimed by a liberty in docs/LIBERTIES.md. Its absence asserts nothing on its own: an attribute the archetype does read is built from the value by construction."
+        }
+      }
+    },
+    "structure_function": {
+      "type": "object",
+      "description": "A structure's use on the scene date, from the closed vocabulary below (T-1311). It was a free string until 2026-09-18 and 384 records had spelled it 109 ways, three of them the same word twice - `blacksmith_shop` and `blacksmith shop`, `store_residence` and `store-residence`, two spellings of the cooper/wheelwright shop. The signage rule, the yard goods, the building-material rule and the register's occupation crosswalk all match this value EXACTLY, so a second spelling is a trade those rules cannot see. This enum is the single source of truth for the vocabulary: tools/normalise_structure_function.py reads it rather than holding a copy, and its --check also refuses a signage trade name the vocabulary cannot spell. To add a term, add it here - and say in the commit what building carries it.",
+      "required": [
+        "value",
+        "confidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "enum": [
+            "agency_house_residence",
+            "artillery_house",
+            "auction_room",
+            "bakery",
+            "barber_shop",
+            "barn",
+            "barn_or_carriage_shed",
+            "blacksmith_shop",
+            "block_house",
+            "boarding_house",
+            "brickyard",
+            "butcher_shop",
+            "carpenter_or_joiner_shop",
+            "church",
+            "commanding_officers_quarters",
+            "company_gardens",
+            "cooper_wagon_or_wheelwright_shop",
+            "cooperage",
+            "council_house",
+            "county_court_house",
+            "deep_plan_frame_cottage",
+            "drug_store",
+            "dwelling",
+            "dwelling_and_store",
+            "dwelling_and_trading_house",
+            "dwelling_farmstead",
+            "dwelling_former_school_use_unattested",
+            "dwelling_to_let",
+            "enlisted_mens_barracks",
+            "forwarding_and_commission_store",
+            "forwarding_commission_warehouse",
+            "freight_or_storage_shed",
+            "freight_shed",
+            "garrison_flagstaff",
+            "grocery_and_provision_store",
+            "guard_house",
+            "gunsmith_shop",
+            "harbour_light",
+            "harbour_works",
+            "harness_shop",
+            "hotel",
+            "hotel_stable",
+            "hotel_under_construction",
+            "jail",
+            "large_boarding_house",
+            "large_workshop",
+            "larger_one_and_a_half_story_house",
+            "livestock_pound",
+            "log_cabin_former_store_and_school_use_unattested",
+            "log_house_former_school_use_unattested",
+            "medium_boarding_house",
+            "meeting_house_and_school",
+            "meeting_house_school",
+            "merchant_or_professional_house",
+            "military_barn",
+            "military_post_enclosure",
+            "narrow_two_story_store",
+            "narrow_two_story_warehouse",
+            "office_and_lodging",
+            "officers_quarters",
+            "older_log_dwelling",
+            "one_and_a_half_story_frame_cottage",
+            "one_room_frame_cottage",
+            "outbuilding",
+            "packing_house",
+            "parade_and_drill_ground",
+            "physicians_office",
+            "powder_magazine",
+            "printing_office",
+            "printing_office_and_store",
+            "privy",
+            "provision_store",
+            "residence",
+            "river_crossing",
+            "root_cellar",
+            "rough_plank_dwelling_or_shanty",
+            "saddlery_and_harness_shop",
+            "sawpit_shed",
+            "school",
+            "schoolhouse_or_meeting_hall",
+            "shoemaker_shop",
+            "shop",
+            "slaughterhouse_packing",
+            "small_artisan_shop",
+            "small_boarding_house",
+            "small_inn_or_tavern",
+            "small_shop_or_office",
+            "small_two_story_frame_house",
+            "small_utility_building",
+            "soap_candle_manufactory",
+            "stable",
+            "stable_and_wagon_yard",
+            "store",
+            "store_and_dwelling",
+            "store_residence",
+            "street_crossing",
+            "sutlers_store",
+            "tailor_shop",
+            "tannery",
+            "tavern_inn",
+            "tavern_stable",
+            "trading_house",
+            "two_room_frame_cottage",
+            "warehouse_and_slaughter_yard",
+            "wash_house",
+            "wheelwright_shop",
+            "woodshed_or_storage_shed",
+            "workshop"
+          ],
+          "description": "The closed function vocabulary. Terms are lower-case with `_` between words; tools/normalise_structure_function.py --self-test holds the folding rule."
+        },
         "confidence": {
           "$ref": "#/$defs/confidence"
         },

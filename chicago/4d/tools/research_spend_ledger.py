@@ -371,7 +371,11 @@ EPIC_PIECES = {
 # divides by what the unit describes rather than by which domain read it, because an
 # enterprise claim and a place claim are absorbed by different bands.
 PLACE_AND_ENTERPRISE = {
-    "business": ("T-1180", "The authored business layer owns this unasserted enterprise claim."),
+    # WAS T-1180 UNTIL T-1311 CLOSED ON 2026-09-18.
+    # That ticket split into T-1310 (the business record layer) and T-1311 (the structure-function vocabulary), and with the second of the two done the parent is spent work a unit cannot defer to (T-1237).
+    # T-1310 BUILT the layer -- 196 firms with a tier on every field -- so what is left for these notices is not building it but reconciling them against it, which is T-1182's field: audit every attested and inferred business against the research, its proprietors, partners, dates and premises.
+    #
+    "business": ("T-1182", "The business audit owns this unasserted enterprise claim."),
     "building": ("T-1198", "The seating pass owns this unasserted place claim."),
     "street": ("T-1198", "The seating pass owns this unasserted place claim."),
     "infrastructure": ("T-1198", "The seating pass owns this unasserted place claim."),

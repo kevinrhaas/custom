@@ -119,17 +119,48 @@ def archetype_for(family: str) -> str:
 # The West families, worded from the crosswalk's own labels so a visitor reading the
 # card and a maintainer reading the ledger see the same trade.
 FUNCTIONS = {
-    "D1": "older log dwelling", "D2": "rough plank dwelling or shanty",
-    "D3": "one-room frame cottage", "D4": "two-room frame cottage",
-    "D5": "deep-plan frame cottage", "D6": "one-and-a-half-story frame cottage",
-    "D7": "small two-story frame house", "H1": "small boarding house",
-    "H2": "medium boarding house", "C1": "small shop or office",
-    "C2": "store-residence", "W1": "blacksmith shop",
+    "D1": "older_log_dwelling", "D2": "rough_plank_dwelling_or_shanty",
+    "D3": "one_room_frame_cottage", "D4": "two_room_frame_cottage",
+    "D5": "deep_plan_frame_cottage", "D6": "one_and_a_half_story_frame_cottage",
+    "D7": "small_two_story_frame_house", "H1": "small_boarding_house",
+    "H2": "medium_boarding_house", "C1": "small_shop_or_office",
+    "C2": "store_residence", "W1": "blacksmith_shop",
+    "W2": "carpenter_or_joiner_shop",
+    "W3": "cooper_wagon_or_wheelwright_shop", "W4": "small_artisan_shop",
+    "W5": "large_workshop", "F1": "freight_or_storage_shed",
+    "A1": "stable", "A2": "barn_or_carriage_shed", "A3": "privy",
+    "A4": "woodshed_or_storage_shed", "A5": "small_utility_building",
+}
+
+# The prose the record's human-facing `name` has always used. Split from FUNCTIONS
+# by T-1311, which closed the `function` vocabulary: the value is now a term from
+# `data/structures.schema.json`, and a term is not a phrase to put in front of a
+# visitor. Both tables are keyed by the same band, and this one keeps the names
+# these records already carry - migrating a vocabulary is not licence to rename
+# 48 buildings.
+LABELS = {
+    "D1": "older log dwelling",
+    "D2": "rough plank dwelling or shanty",
+    "D3": "one-room frame cottage",
+    "D4": "two-room frame cottage",
+    "D5": "deep-plan frame cottage",
+    "D6": "one-and-a-half-story frame cottage",
+    "D7": "small two-story frame house",
+    "H1": "small boarding house",
+    "H2": "medium boarding house",
+    "C1": "small shop or office",
+    "C2": "store-residence",
+    "W1": "blacksmith shop",
     "W2": "carpenter or joiner shop",
-    "W3": "cooper, wagon or wheelwright shop", "W4": "small artisan shop",
-    "W5": "large workshop", "F1": "freight or storage shed",
-    "A1": "stable", "A2": "barn or carriage shed", "A3": "privy",
-    "A4": "woodshed or storage shed", "A5": "small utility building",
+    "W3": "cooper, wagon or wheelwright shop",
+    "W4": "small artisan shop",
+    "W5": "large workshop",
+    "F1": "freight or storage shed",
+    "A1": "stable",
+    "A2": "barn or carriage shed",
+    "A3": "privy",
+    "A4": "woodshed or storage shed",
+    "A5": "small utility building",
 }
 
 
@@ -360,6 +391,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
     family = row["family"]
     finish_key, paint = finish_for(seq)
     function = FUNCTIONS[family]
+    label = LABELS[family]
     where = CLUSTER_PLACE.get(row["cluster"], "the West Division approaches")
     setback = (f" Set back {math.hypot(de, dn):.1f} m from the recipe coordinate, which "
                "placed it inside a platted street corridor; the move is well inside the "
@@ -376,7 +408,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                     "frame block because no boarding-house generator is implemented."
                     if family == "H2" else "")
     return {
-        "id": sid, "name": f"Reconstructed {family} {function} #{seq:03d}",
+        "id": sid, "name": f"Reconstructed {family} {label} #{seq:03d}",
         "archetype": archetype_for(family),
         "phases": [{
             "id": PHASE_ID,
