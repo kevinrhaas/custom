@@ -6212,6 +6212,19 @@ for (const [label, viewport, touch] of [
         reconstructedInLayer: index.counts?.by_grade?.reconstructed,
         reconstructedHere: hh.persons.filter((p) => p.grade === 'reconstructed').length,
         anyNameBasis: hh.persons.some((p) => !!p.name_basis),
+        // T-1171. The three reads above were written when the layer held no
+        // reconstructed person at all, and they said so by counting zero. The owner's
+        // ruling of 2026-09-02 retired the OLD programme and allowed one back under an
+        // explicit file; T-1171's stage is the first to write a person under it, so
+        // "nothing left behind" has to be stated as what it always meant: nothing that
+        // no stage claims, and no invented name on the head the sources name.
+        headNameBasis: !!head?.name_basis,
+        unclaimedHere: hh.persons.filter(
+          (p) => p.grade === 'reconstructed' && !(p.reconstruction && p.reconstruction.stage)
+        ).length,
+        namedWithoutAStage: hh.persons.filter(
+          (p) => !!p.name_basis && !(p.reconstruction && p.reconstruction.stage)
+        ).length,
         opening: String(hh.name ?? '').trim().split(/\s+/)[0]
           .replace(/[^A-Za-z]/g, '').toLowerCase(),
         grades: index.vocabulary.grades,
@@ -6228,11 +6241,12 @@ for (const [label, viewport, touch] of [
     // person is named" row), so nothing in the renderer stops an invented name
     // coming back. The DATA is what the ruling changed, so the data is the gate.
     check(`${label}: the invented-name programme left nothing behind on this layer`,
-      invented.reconstructedInLayer === 0 && invented.reconstructedHere === 0
-      && invented.anyNameBasis === false,
+      invented.unclaimedHere === 0 && invented.namedWithoutAStage === 0
+      && invented.headNameBasis === false,
       `${invented.reconstructedInLayer} reconstructed people in the manifest, `
-      + `${invented.reconstructedHere} on ${invented.id}, `
-      + `name_basis present: ${invented.anyNameBasis}`);
+      + `${invented.reconstructedHere} on ${invented.id}, ${invented.unclaimedHere} of them `
+      + `claimed by no stage; ${invented.namedWithoutAStage} invented name(s) with no stage; `
+      + `the head carries a name_basis: ${invented.headNameBasis}`);
     // The layer-word in this label was `inferred` until K23a, and this assertion
     // was pinned to the HEAD'S OWN GRADE — which is how a name claiming a better
     // grade than its own record survived a release gate. T-0489 renamed these
