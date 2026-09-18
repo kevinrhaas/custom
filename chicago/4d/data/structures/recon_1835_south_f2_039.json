@@ -155,7 +155,7 @@
     }
   ],
   "function": {
-    "value": "narrow two-story warehouse",
+    "value": "narrow_two_story_warehouse",
     "confidence": "reconstructed",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
