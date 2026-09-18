@@ -342,14 +342,16 @@ RULES = {
     },
     "the_notice_names_a_firm": {
         "disposition": "unresolved",
-        "ticket": "T-1180",
+        "ticket": "T-1182",
         "statement": (
             "The unit carries a `business` block: the reading pulled a firm name, and "
             "where it could a trade, a proprietor and a street placement, out of the "
             "advertisement or notice. That is enterprise evidence, and the ledger routes "
             "every business unit to the authored business layer, which is the piece that "
             "still has this corpus to spend -- one record per firm, compiled beside the "
-            "newspaper-derived register. It read T-1147 until the place and enterprise "
+            "newspaper-derived register. "
+            "IT READ T-1180 UNTIL T-1311 CLOSED ON 2026-09-18: that ticket split into T-1310, which BUILT the layer, and T-1311, and with both done the parent is spent work a unit cannot defer to. What is left for these notices is reconciling them against the layer rather than building it, which is T-1182's audit. "
+            "It read T-1147 until the place and enterprise "
             "completion pass closed (T-1241). A firm is not minted here, a placement is "
             "not written here, and a contradiction between two notices is not resolved "
             "here."),

@@ -9535,7 +9535,7 @@
       [
        "The Hamilton household",
        "cobweb_castle",
-       "agency_house_residence",
+       "agency house residence",
        "a dwelling or a place of business",
        "inferred"
       ],
@@ -9549,7 +9549,7 @@
       [
        "The Ingersoll household",
        "green_tree_tavern",
-       "tavern_inn",
+       "tavern inn",
        "a dwelling or a place of business",
        "inferred"
       ],
@@ -9563,42 +9563,42 @@
       [
        "The Jean Baptiste Beaubien household",
        "jb_beaubien_homestead",
-       "dwelling_and_trading_house",
+       "dwelling and trading house",
        "a dwelling or a place of business",
        "inferred"
       ],
       [
        "The Madore Beaubien household",
        "madore_beaubien_house",
-       "dwelling_and_store",
+       "dwelling and store",
        "a dwelling or a place of business",
        "attested"
       ],
       [
        "The Mansion House keeper's household",
        "mansion_house",
-       "tavern_inn",
+       "tavern inn",
        "a dwelling or a place of business",
        "inferred"
       ],
       [
        "The Murphy household",
        "exchange_coffee_house",
-       "tavern_inn",
+       "tavern inn",
        "a dwelling or a place of business",
        "attested"
       ],
       [
        "The Peck household",
        "peck_store",
-       "store_and_dwelling",
+       "store and dwelling",
        "a dwelling or a place of business",
        "inferred"
       ],
       [
        "The Porter household",
        "peck_store",
-       "store_and_dwelling",
+       "store and dwelling",
        "a dwelling or a place of business",
        "attested"
       ],
@@ -9612,14 +9612,14 @@
       [
        "The Stow household",
        "western_hotel",
-       "tavern_inn",
+       "tavern inn",
        "a dwelling or a place of business",
        "inferred"
       ],
       [
        "The Walters household at Wolf Point",
        "wolf_point_tavern",
-       "tavern_inn",
+       "tavern inn",
        "a dwelling or a place of business",
        "inferred"
       ],
@@ -9633,7 +9633,7 @@
       [
        "The Brown boarding-house household",
        "brown_boarding_house",
-       "boarding_house",
+       "boarding house",
        "a house of entertainment",
        "attested"
       ],
@@ -9654,14 +9654,14 @@
       [
        "The commandant's household",
        "fort_dearborn_commandants_quarters",
-       "commanding officer's quarters",
+       "commanding officers quarters",
        "the fort",
        "attested"
       ],
       [
        "The post surgeon's household",
        "fort_dearborn_officers_quarters",
-       "officers' quarters",
+       "officers quarters",
        "the fort",
        "inferred"
       ]

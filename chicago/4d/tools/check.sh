@@ -323,6 +323,25 @@ step "no committed list carries the same id twice" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/check_unique_ids.py --self-test
 
+# THE STRUCTURE FUNCTION VOCABULARY IS CLOSED (T-1311). `function.value` was a free
+# string and 384 records had spelled it 109 ways — three of them the same word twice
+# (`blacksmith_shop` and `blacksmith shop`, `store_residence` and `store-residence`,
+# two spellings of the cooper/wheelwright shop). The signage rule, the yard goods,
+# the street-edge furniture and the register's occupation crosswalk all match this
+# value EXACTLY, so a second spelling is a trade those rules cannot see: closing the
+# vocabulary gave nine anonymous roofs a WRITTEN refusal apiece in three derived
+# layers that had simply not noticed them. `data/structures.schema.json` carries the
+# vocabulary and validate.py refuses a value outside it; this asks the two questions
+# the schema cannot — that every committed value is its own canonical form under the
+# folding rule, and that no OTHER copy of the vocabulary has gone stale against it
+# (the signage rule's trade names, the card's FUNCTION_WORDS, where `store-residence`
+# sat as an unreachable branch for as long as the free string existed).
+step "every structure function is a term of the closed vocabulary" \
+  python3 tools/normalise_structure_function.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/normalise_structure_function.py --self-test
+
 # THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
 # ours' order, theirs' closes and theirs' new tickets — because a text merge of
 # a re-ranked queue against a branch that closed tickets conflicts on every hunk,

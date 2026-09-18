@@ -4732,8 +4732,18 @@ for (const [label, viewport, touch] of [
         // the same man's name over the same door. Walks, crossings, fences and
         // refusals do not move: the building is still there and still the street
         // wall on that face.
+        // T-1311 closed the structure `function` vocabulary, and six roofs that had
+        // spelled their trade the second way — `store-residence` rather than
+        // `store_residence`, `blacksmith shop` rather than `blacksmith_shop` —
+        // became visible to the hitching rule for the first time. Every one is a
+        // reconstructed anonymous slot, so every one is REFUSED, which is what the
+        // rule already said about the other reconstructed trades on this layer and
+        // had simply never been asked about these: 86 refusals to 92. Walks,
+        // crossings, fences and posts do not move, and that is the point of the
+        // migration — nothing on the ground changed, only what the record says
+        // about the roofs it can now see.
         && frontage.census?.posts === 19 && frontage.census?.fences === 31
-        && frontage.census?.refused === 86
+        && frontage.census?.refused === 92
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'

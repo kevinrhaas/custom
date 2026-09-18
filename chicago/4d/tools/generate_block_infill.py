@@ -63,6 +63,9 @@ from measure_no_build_ground import region_ring as no_build_ring  # noqa: E402
 # next block's — since it is the one form value that depends on where a building's
 # neighbours stand. See tools/siding_stock.py.
 from siding_stock import deal_records as deal_siding  # noqa: E402
+# T-1311. A band the FUNCTIONS table below has no row for takes its term from the same
+# folding rule the migration used, so a new band cannot reopen the free string.
+from normalise_structure_function import canonical as canonical_function  # noqa: E402
 
 
 def no_build_rings() -> dict[str, list[tuple[float, float]]]:
@@ -289,18 +292,50 @@ REFUSED_FAMILIES = {
 
 
 FUNCTIONS = {
-    "D1": "older log dwelling", "D2": "rough plank dwelling or shanty",
-    "D3": "one-room frame cottage", "D4": "two-room frame cottage",
-    "D5": "deep-plan frame cottage", "D6": "one-and-a-half-story frame cottage",
+    "D1": "older_log_dwelling", "D2": "rough_plank_dwelling_or_shanty",
+    "D3": "one_room_frame_cottage", "D4": "two_room_frame_cottage",
+    "D5": "deep_plan_frame_cottage", "D6": "one_and_a_half_story_frame_cottage",
+    "D7": "small_two_story_frame_house",
+    "H1": "larger_one_and_a_half_story_house", "H2": "merchant_or_professional_house",
+    "C1": "small_shop_or_office", "C2": "store_residence",
+    "C3": "narrow_two_story_store",
+    "W1": "blacksmith_shop", "W2": "carpenter_or_joiner_shop",
+    "W3": "cooper_wagon_or_wheelwright_shop", "W4": "small_artisan_shop",
+    "F1": "freight_or_storage_shed", "F2": "narrow_two_story_warehouse",
+    "A1": "stable", "A2": "barn_or_carriage_shed", "A3": "privy",
+    "A4": "woodshed_or_storage_shed", "A5": "small_utility_building",
+}
+
+# The prose the record's human-facing `name` has always used. Split from FUNCTIONS
+# by T-1311, which closed the `function` vocabulary: the value is now a term from
+# `data/structures.schema.json`, and a term is not a phrase to put in front of a
+# visitor. Both tables are keyed by the same band, and this one keeps the names
+# these records already carry - migrating a vocabulary is not licence to rename
+# 120 buildings.
+LABELS = {
+    "D1": "older log dwelling",
+    "D2": "rough plank dwelling or shanty",
+    "D3": "one-room frame cottage",
+    "D4": "two-room frame cottage",
+    "D5": "deep-plan frame cottage",
+    "D6": "one-and-a-half-story frame cottage",
     "D7": "small two-story frame house",
-    "H1": "larger one-and-a-half-story house", "H2": "merchant or professional house",
-    "C1": "small shop or office", "C2": "store-residence",
+    "H1": "larger one-and-a-half-story house",
+    "H2": "merchant or professional house",
+    "C1": "small shop or office",
+    "C2": "store-residence",
     "C3": "narrow two-story store",
-    "W1": "blacksmith shop", "W2": "carpenter or joiner shop",
-    "W3": "cooper, wagon, or wheelwright shop", "W4": "small artisan shop",
-    "F1": "freight or storage shed", "F2": "narrow two-story warehouse",
-    "A1": "stable", "A2": "barn or carriage shed", "A3": "privy",
-    "A4": "woodshed or storage shed", "A5": "small utility building",
+    "W1": "blacksmith shop",
+    "W2": "carpenter or joiner shop",
+    "W3": "cooper, wagon, or wheelwright shop",
+    "W4": "small artisan shop",
+    "F1": "freight or storage shed",
+    "F2": "narrow two-story warehouse",
+    "A1": "stable",
+    "A2": "barn or carriage shed",
+    "A3": "privy",
+    "A4": "woodshed or storage shed",
+    "A5": "small utility building",
 }
 
 
@@ -665,7 +700,9 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
         local_e, local_n, bearing = place(edge_mid, inward, setback, lateral, width, depth)
 
     finish_key, paint = finish_for(sid)
-    function = FUNCTIONS.get(family) or (spec["label"] or family).lower()
+    fallback = (spec["label"] or family).lower()
+    function = FUNCTIONS.get(family) or canonical_function(fallback)
+    label = LABELS.get(family) or fallback
     ancillary = slot["inventory_class"] == "ancillary"
     bounded = block["bounded_by"]
     faces = bounded["south"] if fronts_alley else slot["fronts"]
@@ -761,7 +798,7 @@ def make_record(block: dict, slot: dict, lot_index: int | None, frame: dict | No
                if family.startswith("H") else "")
     return {
         "id": sid,
-        "name": f"Reconstructed {family} {function} #{seq:02d}",
+        "name": f"Reconstructed {family} {label} #{seq:02d}",
         "archetype": spec["archetype"],
         "phases": [{
             "id": PHASE_ID,
