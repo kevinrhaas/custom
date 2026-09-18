@@ -88,6 +88,15 @@ const TOPICS = [
       + '<path d="M12 17.4h.01"/>'),
     facet: scopeFacet,
   },
+  {
+    id: 'population',
+    gloss: 'Who the sources actually name, profiled axis by axis',
+    icon: SVG('<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/>'
+      + '<path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17.5 14.9c1.9.6 3 2.4 3 4.6"/>'),
+    // The chip is the section's own row count: an axis is as big as the table
+    // under it, and a pill per axis would be a pill per entry.
+    facet: () => null,
+  },
 ];
 
 /** The chip text on an entry's own summary row — not a nested entry's. */

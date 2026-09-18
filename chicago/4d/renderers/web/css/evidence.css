@@ -200,3 +200,32 @@
 @media (prefers-reduced-motion: reduce) {
   .ev-tile, .ev-pill, .ev-about > summary::before { transition: none; }
 }
+
+/* ---- T-1160: the population profile's tables ------------------------------ */
+/* An axis of the profile is a lead sentence, one or more tables and its notes.
+   The tables are the only thing in a `.liberties` mount that is genuinely
+   two-dimensional, and at 390 px a nine-column tier table cannot be made to fit
+   by wrapping alone — so the TABLE scrolls sideways inside its own box while the
+   card does not, which is the one place in this panel where a horizontal scroll
+   is the honest answer rather than a fault. `overflow-wrap` still inherits from
+   `.liberties`, so a long unbreakable run inside a cell breaks instead of
+   widening the row; only `.num` is held on one line, because a percentage split
+   across two lines is unreadable and is never long enough to need the break. */
+.pop-table { margin: 12px 0 0; }
+.pop-table > figcaption {
+  font-size: 12px; font-weight: 600; letter-spacing: .01em;
+  color: color-mix(in srgb, var(--ink) 72%, transparent); margin-bottom: 5px;
+}
+.pop-scroll { overflow-x: auto; border: 1px solid var(--edge); border-radius: 8px; }
+.pop-scroll table { border-collapse: collapse; width: 100%; font-size: 12px; }
+.pop-scroll th, .pop-scroll td {
+  padding: 5px 8px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid color-mix(in srgb, var(--edge) 60%, transparent);
+}
+.pop-scroll th { font-weight: 600; background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.pop-scroll tbody tr:last-child > * { border-bottom: 0; }
+.liberties .pop-scroll th.num, .liberties .pop-scroll td.num {
+  text-align: right; white-space: nowrap;
+}
+.pop-lead { margin: 0; }
+.pop-note { margin: 10px 0 0; font-style: italic; }
