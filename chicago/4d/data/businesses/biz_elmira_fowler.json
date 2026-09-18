@@ -1,0 +1,86 @@
+{
+  "id": "biz_elmira_fowler",
+  "register_id": "business_elmira_fowler",
+  "name": "Elmira Fowler",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "millinery and dress making",
+  "occupation": "milliner",
+  "goods": [
+    "band-boxes",
+    "calashes",
+    "caps",
+    "cloaks",
+    "dresses",
+    "hats",
+    "head-dresses",
+    "hoods",
+    "pelisses"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Elmira Fowler",
+      "person_id": "fowler_elmira",
+      "register_person_id": "person_elmira_fowler",
+      "role": "proprietor",
+      "from": "1834-11-05",
+      "to": "1834-11-05",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card fowler_elmira (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_11_05#c004"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "dearborn",
+      "face": null,
+      "primary": true,
+      "from": "1834-11-05",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Dearborn Street and nothing narrower; the anchor 'the new bridge' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-11-05",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-11-05, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "copy_dates": [
+      "1834-11-02"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_11_05#c004"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

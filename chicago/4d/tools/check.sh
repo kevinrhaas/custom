@@ -2266,6 +2266,21 @@ step "every mint that re-derives a household carries the blocks it does not own"
 
 selftest "...and its own assertions still fire when broken" \
   python3 tools/carry_stage_blocks.py --self-test
+# T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
+# scale. 593 people carried no sex after T-1303 had read every title and forename the
+# evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
+# the male rate MEASURED on the roll the person was named off, and an age BAND from the
+# 1840 schedule's sex x age columns, each seeded by the person's own id and each carrying
+# what would retire it. The gate below is what keeps that honest rather than decorative -
+# the rates re-derive from the layer, every drawn block re-derives from its seed, no birth
+# year is written out of a decadal band, and the six collective descriptions that name
+# nobody stay refused. `--check` proves the whole draw reproduces; a hand-edited card or a
+# rate nudged toward a nicer figure fails here.
+step "every drawn sex and age band re-derives from its seed, and the rates from the layer" \
+  python3 tools/reconstruct_sex_age.py --check
+
+selftest "...and a draw with no seed, a band turned into a year and a sexed group are refused" \
+  python3 tools/reconstruct_sex_age.py --self-test
 
 step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
@@ -3334,6 +3349,35 @@ step "Fergus's death notices are on the cards the crosswalk names" \
 selftest "…and that pass writes one block, moves no grade and repeats without drift" \
   python3 tools/spend_old_settlers.py --self-test
 
+# T-1303 (from T-1168). The two rolls above carry an age at death and an age given at the
+# Calumet Club, and neither had ever reached a person's `birth_year`; 1,183 of 1,282 people
+# carried no sex at all. This pass spends both, and reads a sex off a gendered title or off
+# a forename that stands in one sex's naming only — never off an initial, never off a rank,
+# and never off a name its own evidence splits. The forename table is DERIVED from the
+# people whose sex a source records plus the period pools, so `--check` holds that it has
+# not been hand-widened, and holds every card against what the pass derives from the layer
+# WITHOUT its own fills — which is what stops the table reading its guesses back in as
+# evidence. The tier the model owes the rest is T-1304's.
+step "sex and age stand on the evidence, and the forename table re-derives" \
+  python3 tools/spend_person_sex_age.py --check
+
+selftest "…and an initial, a rank and an ambiguous forename still fire nothing" \
+  python3 tools/spend_person_sex_age.py --self-test
+
+# T-1170. The kin survey lands a tie only where BOTH ends are people this town holds, and
+# its own count says what that leaves: twelve relatives OF A HEAD THIS LAYER CARRIES who
+# are nobody in the dataset. A second reading is needed to see the rest, because the period
+# prints a wife as a marriage — 'married Welthyan Loomis 30 October 1808' — and the survey's
+# `<relation> of <Name>` pattern cannot see one. This pass reads both, and every statement
+# it reads is answered in data/residents/stated_family_rulings.json by somebody who has read
+# the source. It writes the members a source NAMES and refuses to reconstruct: the ones a
+# source merely COUNTS are the programme's, on the other side of the refusal gate above.
+step "every family member the sources name is ruled on, and the ruled writes are on the cards" \
+  python3 tools/spend_stated_families.py --check
+
+selftest "…and an unruled statement, a lost write and a stale report all still fire" \
+  python3 tools/spend_stated_families.py --self-test
+
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and
 # NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
@@ -3847,6 +3891,20 @@ step "the scene-date register re-derives, and every action names its target" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/compile_register.py --self-test
+
+# T-1310, of T-1180. AND WHERE A BUSINESS IS ACTUALLY WRITTEN DOWN. The register is a
+# reading of the newspapers; data/businesses/ is the layer that reading compiles into,
+# where a house of trade carries a tier on every field, the people it names carry a link
+# to a town card or a stated reason there is none, and the 61 street-only and 62
+# unplaceable businesses carry their LIMIT as a location kind rather than as prose in an
+# action note. Compiled, never authored, for the same reason as the two files above: a
+# hand-edited record is a place to promote a business — or a proprietor, or a premises —
+# without an argument.
+step "the business layer re-derives, and every register row has a record" \
+  python3 tools/compile_businesses.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/compile_businesses.py --self-test
 
 # And what the town DOES with the register's `street_only` businesses (T-0354). The owner
 # ruled on 2026-08-29 that a business the paper places on a platted street and nothing

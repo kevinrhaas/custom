@@ -183,7 +183,31 @@
      "for_merge": "A doubled terminal l, and the Kimball card is an anchor with a workplace — W. Kimball of the Democrat's own junction, in the paper of 26 November and 10 December 1833, in Andreas's 1835 town officers list, and in Fergus 1843 as 'Kimball, Walter'. 'Wm.' and 'W.' agree at the initial. 'Kimbal' is set nowhere in the deposited corpus.",
      "against_merge": "WM. IS NOT WALTER. The anchor's forename is printed whole — Walter — by Fergus 1843, and the 1840 census sets him 'W. R. Kimball' with a middle initial R the other card does not carry; the letter-list card is printed 'Wm. Kimbal', which is William written short. Two different given names that happen to share an initial is D10's shape, not C9's, and the fold would rename a documented man. The two readings besides never touch: a post-office return of 9 July 1834 (#c012) against a newspaper, a directory and a census. D10."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "inferred",
+    "tier": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+   },
+   "birth_year": {
+    "value": 1809,
+    "precision": "band",
+    "band": [
+     1809,
+     1810
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 69: \"Kimball, Walter, | 1833, Sept. | Rome, N.Y. | 69 | Chicago.\". An age of 69 completed years given on that day means the birth falls after 27 May 1809 and on or before 27 May 1810, so the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS2A), in data/research/old_settlers/people.json."
+   }
   }
  ],
  "touches_removal": false,

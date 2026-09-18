@@ -349,33 +349,27 @@ def lift(card_id: str, path: str, block: dict) -> dict:
     if "tier" not in out:
         out["tier"] = tier
     if tier == "reconstructed":
-        # A BLOCK THAT BROUGHT ITS OWN WORKING KEEPS IT (T-1169). The tables below are
-        # the MIGRATION's defaults: they exist for the values that reached this tier
-        # before the shape did, one argument per attribute, because those blocks say
-        # nothing about where they came from and somebody had to write it down. A block
-        # a reconstruction stage wrote is the opposite case — it carries the model row
-        # it was drawn from and the seed that redraws it, per value — and overwriting
-        # that with an attribute-wide rule published 1,182 drawn years as though they
-        # had been argued, and dropped every seed. The default is a fallback, not an
-        # override.
-        own = block.get("basis")
-        if isinstance(own, dict) and own.get("kind") in BASIS_KINDS and str(
-                own.get("id") or "").strip():
-            out["basis"] = own
+        # A WRITER THAT STATES ITS OWN BASIS KEEPS IT (T-1169, restated by T-1304). The tables below exist to
+        # lift values that were written BEFORE the tier shape did, and which therefore
+        # carry no basis of their own. Every reconstruction band from T-1304 onward writes
+        # its own `basis`, `seed` and `replaceable_by` at the moment it draws - the note
+        # names the model row, the roll and the conditioning, and no table here could
+        # restate that per value without repeating the draw. Overwriting a stated basis
+        # with a table row would file a DRAW under an argued rule and lose its seed, which
+        # is the one thing that makes a draw reproducible. T-1169's arrival fill reached the same
+        # conclusion from the other end: the attribute-wide rule published 1,182 DRAWN
+        # years as though they had been ARGUED and dropped every seed. Its
+        # `reconstructed_block` writes `basis` and `replaceable_by` on every block, so the
+        # test below covers it and there is one implementation rather than two.
+        own_basis = block.get("basis")
+        own_rep = block.get("replaceable_by")
+        if isinstance(own_basis, dict) and isinstance(own_rep, dict):
+            out["basis"] = own_basis
             if block.get("seed") is not None:
                 out["seed"] = block["seed"]
-            own_rep = block.get("replaceable_by")
-            if isinstance(own_rep, dict) and own_rep.get("kind") in REPLACEABLE_KINDS:
-                out["replaceable_by"] = own_rep
-                return out
-        else:
-            rule = BASIS_RULE_BY_CARD.get((card_id, path)) or BASIS_RULE.get(path)
-            if rule is None:
-                raise SystemExit(
-                    f"FAIL {path}: a reconstructed value on an attribute with no rule and no "
-                    f"replacement row. Add it to BASIS_RULE/REPLACEABLE_BY in "
-                    f"tools/migrate_attribute_tiers.py — this tool will not invent one.")
-            out["basis"] = {"kind": "rule", "id": rule[0], "note": rule[1]}
+            out["replaceable_by"] = own_rep
+            return out
+        rule = BASIS_RULE_BY_CARD.get((card_id, path)) or BASIS_RULE.get(path)
         rep = REPLACEABLE_BY.get(path)
         if rep is None:
             raise SystemExit(
@@ -386,21 +380,68 @@ def lift(card_id: str, path: str, block: dict) -> dict:
     return out
 
 
+def own_basis(block: dict) -> bool:
+    """True when the writer stated the block's own basis rather than leaving it to lift."""
+    return isinstance(block.get("basis"), dict) and isinstance(block.get("replaceable_by"), dict)
+
+
 def reconstructed_rows() -> list[dict]:
-    """Every genuinely reconstructed value in the layer, with the basis it rests on.
+    """Every AUTHORED reconstructed value in the layer, with the basis it rests on.
 
     Forty rows out of ten and a half thousand claims, and they are the ones a reader and
     a reconstruction band both need: the value this project supplied rather than read,
     the rule or model it came from, and the evidence that would retire it.
+
+    A value a reconstruction band DREW is not listed here - see `drawn_rows` and the
+    reason it is a summary.
     """
     rows: list[dict] = []
     for f in cards():
         doc = json.loads(f.read_text(encoding="utf-8"))
         for path, block in walk_blocks(doc):
-            if tier_for(block) != "reconstructed":
+            if tier_for(block) != "reconstructed" or own_basis(block):
                 continue
             rows.append({"card": f.stem, "attribute": path, **lift(f.stem, path, block)})
     return sorted(rows, key=lambda r: (r["card"], r["attribute"]))
+
+
+def drawn_rows() -> list[dict]:
+    """The DRAWN reconstructions, one row an (attribute, basis) pair rather than a value.
+
+    T-1304 is the first band to draw at scale: 587 sexes and 1,212 age bands, each with a
+    basis note naming its roll and its conditioning and a seed of its own. Listing them
+    one row a person would publish several megabytes of prose that is already on the card
+    and already re-derivable from the model, so this table publishes the SHAPE - which
+    attribute, drawn from which model row, how many values rest on it, what would retire
+    them, and a seed a reader can retype - and leaves the per-person draw where it is
+    reproduced. The `counts` above still count every one of them.
+    """
+    groups: dict = {}
+    for f in cards():
+        doc = json.loads(f.read_text(encoding="utf-8"))
+        for path, block in walk_blocks(doc):
+            if tier_for(block) != "reconstructed" or not own_basis(block):
+                continue
+            basis = block["basis"]
+            key = (path, basis.get("kind"), basis.get("id"))
+            row = groups.setdefault(key, {
+                "attribute": path,
+                "basis": {"kind": basis.get("kind"), "id": basis.get("id")},
+                "replaceable_by": block["replaceable_by"],
+                "values": 0,
+                "by_value": Counter(),
+                "a_seed": block.get("seed"),
+                "a_card": f.stem,
+            })
+            row["values"] += 1
+            row["by_value"][block.get("value")] += 1
+    out = []
+    for key in sorted(groups):
+        row = dict(groups[key])
+        row["by_value"] = dict(sorted(row["by_value"].items(),
+                                      key=lambda kv: (-kv[1], str(kv[0]))))
+        out.append(row)
+    return out
 
 
 def derive() -> dict:
@@ -453,13 +494,16 @@ def payload() -> dict:
         },
         "counts": derive(),
         "reconstructed": reconstructed_rows(),
+        "drawn": drawn_rows(),
     }
 
 
 def render(p: dict) -> str:
     c = p["counts"]
+    drawn = sum(r["values"] for r in p["drawn"])
     lines = [f"attribute tiers: {c['blocks']} block(s) on {c['cards']} card(s), "
-             f"{len(p['reconstructed'])} reconstructed value(s)"]
+             f"{len(p['reconstructed'])} authored reconstruction(s) and {drawn} drawn "
+             f"across {len(p['drawn'])} model row(s)"]
     for t in TIERS:
         lines.append(f"  tier  {t:16} {c['by_tier'][t]}")
     lines.append("  per attribute (attested / inferred / reconstructed / unknown):")
@@ -486,7 +530,8 @@ def check() -> int:
         return 1
     p = payload()
     committed = json.loads(TIER_TABLE.read_text(encoding="utf-8"))
-    bad = [k for k in ("vocabulary", "counts", "reconstructed") if committed.get(k) != p[k]]
+    bad = [k for k in ("vocabulary", "counts", "reconstructed", "drawn")
+           if committed.get(k) != p[k]]
     if bad:
         print(f"FAIL {TIER_TABLE.relative_to(ROOT)} does not re-derive: {bad} differ. Rebuild "
               f"with --build; the file is derived and a hand-edit loses.", file=sys.stderr)
@@ -572,6 +617,19 @@ def self_test() -> int:
         ok = bool(got) == want_error
         print(("ok   " if ok else "FAIL ") + label + ("" if ok else f"  -> {got}"))
         failed += 0 if ok else 1
+
+    # T-1304: the lift must LEAVE a writer's own basis alone. A drawn value whose basis
+    # is rewritten from the tables above is filed under an argued rule and loses the seed
+    # that reproduces it, which is the difference between a reconstruction and a guess.
+    lifted = lift("hh_x", "persons[].sex_basis", drawn)
+    for label, cond in (
+        ("the lift keeps a writer's own basis", lifted["basis"] == drawn["basis"]),
+        ("the lift keeps a writer's own seed", lifted.get("seed") == drawn["seed"]),
+        ("the lift keeps a writer's own replacement rule",
+         lifted["replaceable_by"] == drawn["replaceable_by"]),
+    ):
+        print(("ok   " if cond else "FAIL ") + label)
+        failed += 0 if cond else 1
 
     derivations = [
         ("a null value under reconstructed", {"value": None, "confidence": "reconstructed"}, "unknown"),

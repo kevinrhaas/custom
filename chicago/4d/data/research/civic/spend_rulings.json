@@ -20,12 +20,12 @@
   "rules": {
     "the_poll_book_bounds_a_held_residents_presence": {
       "disposition": "unresolved",
-      "ticket": "T-1314",
+      "ticket": "T-1318",
       "statement": "A poll list records a man who presented himself and voted at a town election, so the entry does place a body in Chicago on the day the list was taken. The voter crosswalk matches this entry to a person the town already holds, on surname and on forenames agreeing initial for initial. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes — a man at Chicago in 1830 or 1832 is not thereby at Chicago on 1 July 1835 — and a source LATER than it does not promote either. What the entry therefore gives is a BOUND on that person's presence — he was here by this date — and drawing an arrival from a bound is the arrival pass's work, with the other dated appearances of the same man in front of it. The unit is handed on unasserted; no card is edited, no confidence moves, and the identity the crosswalk made is neither re-opened nor strengthened here."
     },
     "the_1833_tax_roll_bounds_property_and_not_presence": {
       "disposition": "unresolved",
-      "ticket": "T-1314",
+      "ticket": "T-1318",
       "statement": "The entry stands on the 1833 TAX list, and this domain's own reading has already ruled what that list is: 'THE 1833 TAX LIST OF THE TOWN OF CHICAGO IS A PROPERTY ROLL AND NOT A CHECK ON RESIDENCE' (claims/town_findings_voter_lists.json v005), settled out of the list's own membership. A man may be taxed on a town lot he does not live on, so the roll bounds his PROPERTY in the town and not his body in it. The crosswalk matches the entry to a person the town holds; the unit is handed to the arrival pass with that limit stated, so the bound is weighed for what it is rather than read as a residence."
     },
     "a_roll_agreeing_on_surname_alone_is_never_a_merge": {
@@ -39,7 +39,7 @@
     },
     "the_1832_enrollment_may_bound_a_rolled_mans_arrival": {
       "disposition": "unresolved",
-      "ticket": "T-1314",
+      "ticket": "T-1318",
       "statement": "The Black Hawk War index enrolls this man AT CHICAGO in 1832, and the crosswalk finds one reading on the 1833-1835 poll and tax lists that agrees with him initial for initial. The crosswalk is explicit that this is corroboration and not an identity: the same NAME stands on both, and whether it is the same MAN it does not say. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes — a man at Chicago in 1830 or 1832 is not thereby at Chicago on 1 July 1835 — and a source LATER than it does not promote either. So the enrollment cannot assert a residence; what it can do, IF the identity holds, is push that man's presence at Chicago back to 1832, three years before the scene. That is a candidate bound and the arrival pass owns it, with the identity still open."
     },
     "an_ambiguous_enrollment_agreement_is_never_a_merge": {

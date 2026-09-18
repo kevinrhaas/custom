@@ -1,0 +1,93 @@
+{
+  "id": "biz_sarah_d_howe",
+  "register_id": "business_sarah_d_howe",
+  "name": "Sarah D. Howe",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "dress, cloak and habit making",
+  "occupation": "dressmaker",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Howe, Sarah D.",
+      "person_id": "howe_sarah_d",
+      "register_person_id": "person_howe_sarah_d",
+      "role": "partner",
+      "from": "1835-08-19",
+      "to": "1835-08-22",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card howe_sarah_d (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_08_22#c001",
+        "chicago_democrat_1835_08_19#c013"
+      ]
+    },
+    {
+      "name": "Sarah D. Howe",
+      "person_id": "howe_sarah_d",
+      "register_person_id": "person_sarah_d_howe",
+      "role": "partner",
+      "from": "1835-08-19",
+      "to": "1835-08-22",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card howe_sarah_d (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_08_22#c001",
+        "chicago_democrat_1835_08_19#c013"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "lake",
+      "face": null,
+      "primary": true,
+      "from": "1835-08-19",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Lake Street and nothing narrower; the anchor 'the house occupied by Dr. Austin' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-08-18",
+    "closed": null,
+    "precision": "exact",
+    "tier": "attested",
+    "basis": "The paper announces the opening: chicago_american_1835_08_22#c001 (1835-08-18); chicago_democrat_1835_08_19#c013 (1835-08-18)."
+  },
+  "evidence": {
+    "first_issue": "1835-08-19",
+    "last_issue": "1835-08-22",
+    "copy_dates": [
+      "1835-08-18"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_08_22#c001",
+    "chicago_democrat_1835_08_19#c013"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

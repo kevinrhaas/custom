@@ -1,0 +1,78 @@
+{
+  "id": "biz_dr_j_h_barnard",
+  "register_id": "business_dr_j_h_barnard",
+  "name": "Dr. J. H. Barnard",
+  "provenance": "compiled_from_register",
+  "type": [
+    "physician"
+  ],
+  "trade": "physician",
+  "occupation": "physician",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "J. H. Barnard",
+      "person_id": "barnard_j_h",
+      "register_person_id": "person_j_h_barnard",
+      "role": "proprietor",
+      "from": "1835-06-04",
+      "to": "1835-06-13",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card barnard_j_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_06_13#c009",
+        "chicago_democrat_1835_06_04#c006"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "anchored",
+      "structure_id": null,
+      "street_id": "lake",
+      "face": null,
+      "primary": true,
+      "from": "1835-06-04",
+      "to": null,
+      "tier": "inferred",
+      "basis": "Placeable against the committed town. The landmark is the committed structure new_york_house.",
+      "limit_reason": "The register places this house against new_york_house and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+    }
+  ],
+  "dates": {
+    "opened": "1835-06-04",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-06-04, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-06-04",
+    "last_issue": "1835-06-13",
+    "copy_dates": [
+      "1835-06-03"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_06_13#c009",
+    "chicago_democrat_1835_06_04#c006"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

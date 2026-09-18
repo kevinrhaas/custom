@@ -12211,4 +12211,82 @@ value that no longer follows from the model row or rule it claims.
 Related: ticket **T-1169**, stage `attribute_fill_arrival` of **T-1167**'s programme;
 `data/reconstruction/1835_resident_reconstruction_programme.json` § `arrival_fill`;
 `docs/RESEARCH/1835_resident_reconstruction.md`.
+---
+
+### L-rc-sex-rate — 587 people are sexed by a coin weighted at the rate of the roll that names them
+
+**What is invented.** Of the 1,282 people the resident layer names, 593 carried no sex after
+T-1303 had read every gendered title and every forename this project holds evidence about.
+587 of them now carry one, and NOT ONE of those 587 values is a reading about that person.
+Each is a draw: a number from `blake2s(<person_id>:sex_ratio)` against the male rate measured
+on the roll the person was named off, graded `reconstructed`, carrying the seed that redraws
+it and the evidence that would retire it. 552 came up male and 35 female.
+
+**What is NOT invented.** The rates. They are measured on this layer's own people, roll by
+roll, over those whose sex the evidence already settles: the letter lists read 351 men in 372
+settled names (94.4%), the civic rolls 197 in 208 (94.7%), the unclaimed names 83 in 92
+(90.2%). A roll settling fewer than 50 names is not measured on its own and draws at the
+pooled rate of every roll (93.9%); `documented` and `placed` do that, for 27 people between
+them. The measurement is committed, re-derived on every commit, and printed in
+`data/reconstruction/1835_sex_age_model.json`.
+
+**The bias, and it runs one way.** The forename table those rates are measured through was
+derived mostly from this layer's men, so a woman's forename is likelier than a man's to be
+missing from it and to fall into the very group being drawn for. Every rate here is therefore
+a **ceiling** on its roll's male share rather than a point reading of it, and the 552/35 split
+leans male by an amount this pass cannot bound. Smoothing it toward a guessed correction would
+be a second invention on top of the first, so it is stated instead.
+
+**What it is not.** It is not a claim about the town. The rolls read 93.9% male; the town model
+reads 120.9–150 males per 100 females, a 55–60% male town. Nothing here is drawn at the town's
+ratio, because none of these people is a draw from the town — they are people a roll already
+named, and a roll of correspondents, voters and subscribers names adult men. The women and
+children the town's pyramid lacks are **T-1174**'s, under its own quota, as new people.
+
+**How to resolve:** any source recording one of these people's sex, any gendered title on the
+name, or a forename the project's evidence later lets fire. Each retires exactly one draw and
+touches no other, which is what `replaceable_by` on the block is for.
+
+Related: tickets **T-1304**, from **T-1168**; **T-1303** read the tiers above it.
+**Recorded:** 2026-09-18.
+
+---
+
+### L-rc-age-conditioning — every drawn age band assumes that a roll names an adult, and no source says so
+
+**What is invented.** 1,212 of the layer's 1,282 people now carry an age band drawn from the
+1840 Chicago schedule's sex × age columns, seeded by their own id. The band is the invention;
+so is the CONDITIONING that decides which columns the draw may land in:
+
+| conditioning | people | drawn from | what it assumes |
+|---|---:|---|---|
+| `civic_list_20_and_over` | 192 | the schedule's 20-and-over bands | that a poll, tax or muster list names somebody 20 or over |
+| `named_on_a_roll_15_and_over` | 1,019 | the 15-and-over bands | that a roll naming a person in their own right names somebody 15 or over |
+| `dependent_child_under_15` | 1 | the under-15 bands | nothing beyond the record, which calls the person a child |
+
+**Why it had to be declared rather than derived.** T-1303 found and refused the shortcut: a
+poll list, a civic office or a trade says a person was an adult and says nothing about when
+they were born, and the franchise's own age rule is not in any source record this project
+holds. The ticket's instruction was to find the statute and cite it or draw the band from the
+model and say so. There is no statute in this corpus, so this is the saying-so. `15` rather
+than `20` for the general case because an apprentice or a journeyman stands on a trade roll;
+the 1840 schedule counts a child as a tally inside a household and never as a correspondent,
+which is the whole of the argument that a roll's names are not children.
+
+**What it costs.** Any person on these rolls who was in fact 14 or younger cannot be drawn as
+a child, and any voter under 20 cannot be drawn under 20. Both are excluded by assumption
+rather than by evidence.
+
+**What is NOT invented.** No birth year. A draw yields the band the schedule prints — `20
+under 30` — and the card prints that interval. An exact year taken from a decadal band would
+read as a record of a birth, which is the misrepresentation T-1303 refused six thin
+death-notice matches to avoid, and it is refused here by the writer and by its self-test.
+The 1840 distribution is used only as the schedule's own `what_this_may_calibrate` allows:
+the sex ratio and the child share as shapes. It names nobody and supplies nobody.
+
+**How to resolve:** a source stating a person's age or birth year retires that person's band
+and nothing else. A period statement of the franchise's or the militia's age rule, committed as
+a source record, would turn `civic_list_20_and_over` from a convention into a reading.
+
+Related: tickets **T-1304**, from **T-1168**; **T-1303** handed the finding on.
 **Recorded:** 2026-09-18.

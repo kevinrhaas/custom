@@ -613,6 +613,37 @@ def check_arrival_fill(prog: dict, error) -> None:
                                             f"programme - a draw that cannot be reproduced is "
                                             f"not a reconstruction. Run --stage "
                                             f"{ARRIVAL_STAGE} --build")
+# the stages, and the modules that build them
+# --------------------------------------------------------------------------
+#
+# A STAGE IS A TICKET, and a stage large enough to need its own measurement, its own
+# model file and its own gate gets its own module rather than another thousand lines
+# here. The programme file names the module in `built_by`; this table is the writer's
+# own copy, and `--check` holds the two together so a stage cannot be marked implemented
+# with nothing behind it.
+
+def _build_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.build()
+
+
+def _check_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.check()
+
+
+# T-1169's arrival fill predates this table and lives in this module rather than one of
+# its own -- it writes three attribute blocks and no person, which is not the thousand
+# lines the rule above is about. It registers here all the same: the table is what
+# `--check` holds the programme file against, so a stage outside it reads as a stage with
+# nothing behind it.
+def _build_attribute_fill_arrival() -> int:
+    return cmd_build_arrival(load_programme())
+
+
+STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
+                  ARRIVAL_STAGE: _build_attribute_fill_arrival}
+STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age}
 
 
 # --------------------------------------------------------------------------
@@ -650,11 +681,12 @@ def cmd_build(prog: dict, key: str) -> int:
               f"stage in {stage['ticket']} and set `implemented` in the programme file.",
               file=sys.stderr)
         return 1
-    if key == ARRIVAL_STAGE:
-        return cmd_build_arrival(prog)
-    print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme file "
-          f"and this writer disagree", file=sys.stderr)
-    return 2
+    builder = STAGE_BUILDERS.get(key)
+    if builder is None:
+        print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme "
+              f"file and this writer disagree", file=sys.stderr)
+        return 2
+    return builder()
 
 
 def cmd_check(prog: dict) -> int:
@@ -698,6 +730,10 @@ def cmd_check(prog: dict) -> int:
         check_invented_name(where, person, real_names, error)
 
     built = [s["key"] for s in prog["stages"] if s.get("implemented")]
+    for key in built:
+        if key not in STAGE_BUILDERS:
+            error(f"stage {key}", "is marked implemented and this writer has no build for "
+                                  "it - the programme file and the writer disagree")
     if ARRIVAL_STAGE in built:
         check_arrival_fill(prog, error)
     if problems:
@@ -711,8 +747,15 @@ def cmd_check(prog: dict) -> int:
     if not built:
         print("  ok    no stage has been built yet (T-1167 opened the programme and wrote "
               "nobody), so there is no draw to re-derive")
-    else:
-        print(f"  ok    {', '.join(built)} re-derive from the programme, block for block")
+    elif [k for k in built if k not in STAGE_CHECKERS]:
+        print(f"  ok    {', '.join(k for k in built if k not in STAGE_CHECKERS)} re-derive from the programme, block for block")
+    for key in built:
+        checker = STAGE_CHECKERS.get(key)
+        if checker is None:
+            continue
+        print(f"  ---   stage '{key}' re-derives its own draw:")
+        if checker() != 0:
+            return 1
     return 0
 
 

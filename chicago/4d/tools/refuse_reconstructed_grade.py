@@ -20,8 +20,8 @@ nothing asserted it. T-1228's lesson on this same gate file is that an invariant
 nobody asserts is one a refactor may delete unseen.
 
 So: every writer of the resident layer calls `refuse()` on what it is about to
-write, in EVERY mode including `--check`, and `--check` here proves all four are
-still wired. The reconstruction generator T-1167 brings simply does not call it;
+write, in EVERY mode including `--check`, and `--check` here proves every one of
+them is still wired. The reconstruction generator T-1167 brings simply does not call it;
 that is the whole boundary, and it is one line per writer to see.
 
 What this does NOT touch: per-attribute `confidence`. A record may say
@@ -46,7 +46,7 @@ RESERVED = "reconstructed"
 # What a research writer may emit. The reserved third value is deliberately absent.
 WRITABLE_GRADES = ("attested", "inferred")
 
-# The four writers of data/residents/, and the EXACT call each one must carry.
+# The writers of data/residents/, and the EXACT call each one must carry.
 # Named here rather than discovered, so deleting a writer's hook is a failure and
 # not a silently shorter list — and spelled as the call rather than the module,
 # because importing a refusal and never calling it is the shape this is for.
@@ -59,6 +59,11 @@ WIRED_WRITERS = {
         'refuse_texts(files, "mint_letter_list_residents.py")',
     "tools/mint_placed_residents.py":
         'refuse_texts(files, "mint_placed_residents.py")',
+    # T-1170. A fifth writer, and the first one that is not a mint: it seats the family
+    # members the sources NAME on a head this layer already carries. The counted ones are
+    # the reconstruction programme's and are on the other side of this boundary.
+    "tools/spend_stated_families.py":
+        'refusal.refuse(changed, WRITER)',
 }
 
 

@@ -126,7 +126,31 @@
      "for_merge": "Two five-letter surnames differing in the last letter, both initials beginning W, and both known to the town from one office inside seven weeks. Neither stem is populated: 'Lewie' is set three times in the whole deposited corpus and 'Lewin' twice.",
      "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'Lewie, Wm.' is on the return of 1 July 1835 (#c005); 'W. Y. Lewin' on the return of 20 May 1835 (#c013). No return sets both. Neither card is an anchor — T-0482 closed no_corroboration and T-0478 no_corroboration_yet, and neither carries a trade, a street or a household. The forenames agree only at the first letter: 'Wm.' is William written short and 'W. Y.' is an initial with a middle initial the other reading does not have, so the fold is not one letter but a letter and a name. D6."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "lewie_wm:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('lewie_wm:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Wm.' IS THE PERIOD CONTRACTION OF William, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
+   }
   }
  ],
  "touches_removal": false,

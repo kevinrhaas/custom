@@ -1,0 +1,76 @@
+{
+  "id": "biz_ebenezer_s_more_attorney_at_law",
+  "register_id": "business_ebenezer_s_more_attorney_at_law",
+  "name": "Ebenezer S. More, attorney at law",
+  "provenance": "compiled_from_register",
+  "type": [
+    "lawyer"
+  ],
+  "trade": "attorney at law",
+  "occupation": "attorney",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Ebenezer S. More",
+      "person_id": "more_ebenezer_s",
+      "register_person_id": "person_ebenezer_s_more",
+      "role": "proprietor",
+      "from": "1835-07-04",
+      "to": "1835-07-04",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card more_ebenezer_s (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_07_04#c009"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "monroe",
+      "face": null,
+      "primary": true,
+      "from": "1835-07-04",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Monroe Street and nothing narrower; the anchor 'the Public Square' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-07-04",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-07-04, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-07-04",
+    "last_issue": "1835-07-04",
+    "copy_dates": [
+      "1835-07-04"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_07_04#c009"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

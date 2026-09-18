@@ -1,0 +1,81 @@
+{
+  "id": "biz_russell_e_heacock",
+  "register_id": "business_russell_e_heacock",
+  "name": "Russell E. Heacock",
+  "provenance": "compiled_from_register",
+  "type": [
+    "lawyer",
+    "other"
+  ],
+  "trade": "counsellor and attorney at law, land conveyancing, justice of the peace business, and a land agency office",
+  "occupation": "attorney",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Russell E. Heacock",
+      "person_id": "heacock_russel_e",
+      "register_person_id": "person_russell_e_heacock",
+      "role": "proprietor",
+      "from": "1835-05-27",
+      "to": "1835-07-29",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card heacock_russel_e (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_05_27#c007",
+        "chicago_democrat_1835_07_08#c012",
+        "chicago_democrat_1835_07_29#c018"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "anchored",
+      "structure_id": null,
+      "street_id": "lake",
+      "face": null,
+      "primary": true,
+      "from": "1835-05-27",
+      "to": null,
+      "tier": "inferred",
+      "basis": "Placeable against the committed town. A crossing of two platted streets: franklin and lake.",
+      "limit_reason": "The register places this house against franklin+lake and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+    }
+  ],
+  "dates": {
+    "opened": "1835-05-27",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-05-27, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-05-27",
+    "last_issue": "1835-07-29",
+    "copy_dates": [
+      "1835-05-23"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_05_27#c007",
+    "chicago_democrat_1835_07_08#c012",
+    "chicago_democrat_1835_07_29#c018"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

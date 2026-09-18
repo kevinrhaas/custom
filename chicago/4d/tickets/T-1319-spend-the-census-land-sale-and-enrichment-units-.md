@@ -1,5 +1,5 @@
 ---
-id: T-1315
+id: T-1319
 title: Spend the land-sale and enrichment units: the entered tracts whose purchaser join the adjudication upheld, and the corroborated_enrichment rows naming an arrival or origin no structured field carries
 state: open
 epic: META
@@ -7,7 +7,7 @@ requested_by: loop
 seen: false
 effort: S
 legacy_id: null
-parent: T-1312
+parent: T-1316
 opened: 2026-09-18
 closed: null
 pr: null
@@ -20,7 +20,7 @@ claimed_run: null
 
 Spend the census, land-sale and enrichment units: the 1830 schedule lines that bound a held resident, the entered tracts whose purchaser join was upheld, and the corroborated_enrichment rows naming an arrival or origin no field carries.
 
-Piece 3 of 3 of **T-1312 — Spend the 902 units the ledger hands to the arrival pass: the dated arrivals, nativities, origins and presence bounds the books, the 1830 census, the church register, the poll lists, the land sales and the press state, onto the cards they name**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+Piece 3 of 3 of **T-1316 — Spend the 902 units the ledger hands to the arrival pass: the dated arrivals, nativities, origins and presence bounds the books, the 1830 census, the church register, the poll lists, the land sales and the press state, onto the cards they name**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
@@ -40,5 +40,5 @@ allowed it would be reading them as spent.
 its source, or refused in writing under a named rule, or handed on to a ticket that is open;
 `measure_research_spend.py --check` green with **0** units owned by this ticket at the end.
 
-**Links:** T-1169 · T-1313 · T-1314 · T-1315 · T-1157 · `data/research/*/spend_rulings.json` ·
+**Links:** T-1169 · T-1317 · T-1318 · T-1319 · T-1157 · `data/research/*/spend_rulings.json` ·
 `tools/measure_research_spend.py`.

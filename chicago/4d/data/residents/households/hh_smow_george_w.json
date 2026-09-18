@@ -127,7 +127,31 @@
      "for_merge": "m FOR n IN A FOUR-LETTER SURNAME, AND THE OTHER SIDE IS ONE OF THE TOWN'S BEST-KNOWN MEN. George W. Snow — surveyor, lumber merchant, the 1833 tax list, the poll of 1834, the Democrat of 10 December 1833 and 18 June 1834, Fergus 1843 ('Snow, George Washington, lumber merchant') and Norris 1844 — carries 'George W.' letter for letter with the Smow card. 'Smow' is set twice in the whole deposited corpus and both are this one reading; the stem has no family, no trade and no second bearer anywhere.",
      "against_merge": "AND NO ONE ROLL SETS BOTH. 'Smow, George W.' is the poll of 10 August 1833 (voter_lists_1833_1835.txt line 46); 'Snow, George W.' is the 1833 tax list (line 148) and the 1834 poll (line 271). Three rolls in one transcription and not one of them carries both spellings, so the printer is never caught and C9's demonstration is missing. T-1027 files this card under the garbles that R5 refuses and T-0695 reads, and that is the second reason not to fold it here: repairing a wreck by guessing at it is what R5 exists to prevent, and the poll's own image is what would repair it. D9 on the rolls, R5's caution behind it, and the `snow` cluster's C2 merge of 'G. W.' onto George W. Snow is untouched because that card is spelled Snow."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 20 under 30', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "smow_george_w:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('smow_george_w:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'George' is read as male because 2 persons in this layer whose sex a source records bear it (dole_george_w, snow_george_w), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

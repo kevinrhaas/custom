@@ -1,0 +1,78 @@
+{
+  "id": "biz_e_w_haddock",
+  "register_id": "business_e_w_haddock",
+  "name": "E. W. Haddock",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "merchant",
+  "occupation": "merchant",
+  "goods": [
+    "superfine flour"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "E. W. Haddock",
+      "person_id": null,
+      "register_person_id": "person_e_w_haddock",
+      "role": "proprietor",
+      "from": "1834-03-18",
+      "to": "1834-03-18",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_e_w_haddock with action 'replace_invented': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_03_18#c011"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "mansion_house",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-03-18",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure mansion_house on its occupants. mansion_house already stands and its occupants carries haddock — 'Edward Haddock or Abram A. Markle; keeper'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1834-03-18",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-03-18, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "copy_dates": [
+      "1834-02-17"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_03_18#c011"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

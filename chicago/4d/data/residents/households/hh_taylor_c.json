@@ -126,7 +126,25 @@
      "for_merge": "Only the initial. Strip \"Mrs.\" and `C.` expands to exactly one full Taylor forename in this town — Charles — with no rival, which is C2's own test and would ordinarily land the merge. It is also true that this is exactly how the period prints a married woman — the honorific standing on her husband's forename, whoever he was — so the shape itself argues nothing either way. That is an argument for a KINSHIP, not for one card: R6 (#998) settled that a wife is not her husband.",
      "against_merge": "A WOMAN AND A MAN, AND THE PAGE PRINTS THE HONORIFIC. The Chicago Democrat of 19 August 1835 (c007) invites the town to a sale \"at the hous[e] of Mrs. C. Taylor, Water-st.\" — she keeps a house and hosts the Juvenile Society in it. The rival card is Charles H. Taylor, Anson's brother on hh_taylor_anson: a carpenter on the 1833, 1834 and 1835 poll lists, in the federal land tract register and in the 1840 census, every one of them a man's record. Merging would assert that the notice named him, which no reading of \"Mrs.\" supports. THE PROOF HERE IS NOT BROWN'S PROOF, and the difference is why this ruling is written out rather than cited: R6 and D3 were built on ONE SOURCE PRINTING BOTH READINGS as separate entries, because `Mrs. Rufus B. Brown` and `Brown, Rufus B.` are identical once the honorific is stripped and nothing in the letters tells a Rufus from an Eliza. These two are not identical after the strip — `Taylor, C.` against `Taylor, Charles H.` — so the pair never needed that proof to be held apart; what joins them is the ordinary initial rule (C2 on the card side, M2 in the derivation) reaching across an honorific it cannot see. That is the shape T-0951 now carries."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white females 30 under 40', one of its female bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "taylor_c:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('taylor_c:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

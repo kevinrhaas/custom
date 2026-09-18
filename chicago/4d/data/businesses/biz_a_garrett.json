@@ -1,0 +1,85 @@
+{
+  "id": "biz_a_garrett",
+  "register_id": "business_a_garrett",
+  "name": "A. Garrett",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "auction and commission",
+  "occupation": "auctioneer",
+  "goods": [
+    "boots and shoes",
+    "crockery",
+    "dry goods",
+    "groceries",
+    "hardware",
+    "ready made clothing"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "A. Garrett",
+      "person_id": "garrett_a",
+      "register_person_id": "person_a_garrett",
+      "role": "proprietor",
+      "from": "1834-12-17",
+      "to": "1834-12-24",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card garrett_a (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_12_17#c001",
+        "chicago_democrat_1834_12_24#c001"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1834-12-17",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water street and nothing narrower; the anchor 'the bridge' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-12-17",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-12-17, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-12-17",
+    "last_issue": "1834-12-24",
+    "copy_dates": [
+      "1834-12-16"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_12_17#c001",
+    "chicago_democrat_1834_12_24#c001"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

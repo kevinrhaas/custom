@@ -43,7 +43,6 @@ Only tickets whose current state is open may own an unresolved unit.
 | Ticket | Units |
 | --- | ---: |
 | T-1144 | 1 |
-| T-1168 | 3 |
 | T-1170 | 168 |
 | T-1172 | 260 |
 | T-1180 | 494 |
@@ -52,7 +51,8 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1198 | 271 |
 | T-1299 | 1 |
 | T-1313 | 21 |
-| T-1314 | 538 |
-| T-1315 | 343 |
+| T-1315 | 3 |
+| T-1318 | 538 |
+| T-1319 | 343 |
 
 Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.

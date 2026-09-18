@@ -1,0 +1,127 @@
+{
+  "id": "biz_david_carver",
+  "register_id": "business_david_carver",
+  "name": "David Carver",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "lumber yard",
+  "occupation": "lumber_merchant",
+  "goods": [
+    "Bacon",
+    "Crockery Ware",
+    "Flour",
+    "Grain",
+    "Hard Bread",
+    "Oil",
+    "Pine Lumber",
+    "Poplar Lumber",
+    "Pork",
+    "Produce",
+    "Provisions",
+    "Shoes",
+    "Tin Ware",
+    "Whiskey",
+    "flour",
+    "forwarding",
+    "grain",
+    "lath",
+    "lumber",
+    "merchandize on consignment",
+    "red cedar posts",
+    "shingles"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "David Carver",
+      "person_id": "carver_david",
+      "register_person_id": "person_david_carver",
+      "role": "proprietor",
+      "from": "1833-12-03",
+      "to": "1835-07-29",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card carver_david (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_12_03#c009",
+        "chicago_democrat_1834_02_25#c003",
+        "chicago_democrat_1834_03_04#c006",
+        "chicago_democrat_1834_04_01#c006",
+        "chicago_democrat_1834_04_16#c008",
+        "chicago_democrat_1834_04_30#c013",
+        "chicago_democrat_1834_06_04#c010",
+        "chicago_democrat_1834_06_11#c009",
+        "chicago_democrat_1834_06_18#c010",
+        "chicago_democrat_1834_07_02#c006",
+        "chicago_democrat_1835_06_04#c004",
+        "chicago_democrat_1835_07_22#c013",
+        "chicago_democrat_1835_07_29#c016"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1833-12-03",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
+    }
+  ],
+  "dates": {
+    "opened": "1833-12-03",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-12-03, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-12-03",
+    "last_issue": "1835-07-29",
+    "copy_dates": [
+      "1833-12-03",
+      "1834-02-25",
+      "1834-05-25",
+      "1834-06-04",
+      "1835-06-04"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_12_03#c009",
+    "chicago_democrat_1834_02_25#c003",
+    "chicago_democrat_1834_03_04#c006",
+    "chicago_democrat_1834_04_01#c006",
+    "chicago_democrat_1834_04_16#c008",
+    "chicago_democrat_1834_04_30#c013",
+    "chicago_democrat_1834_06_04#c010",
+    "chicago_democrat_1834_06_11#c009",
+    "chicago_democrat_1834_06_18#c010",
+    "chicago_democrat_1834_07_02#c006",
+    "chicago_democrat_1835_06_04#c004",
+    "chicago_democrat_1835_07_22#c013",
+    "chicago_democrat_1835_07_29#c016"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

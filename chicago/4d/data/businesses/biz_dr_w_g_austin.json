@@ -1,0 +1,95 @@
+{
+  "id": "biz_dr_w_g_austin",
+  "register_id": "business_dr_w_g_austin",
+  "name": "Dr. W. G. Austin",
+  "provenance": "compiled_from_register",
+  "type": [
+    "physician"
+  ],
+  "trade": "practice of medicine, botanic system",
+  "occupation": "physician",
+  "goods": [
+    "medicines"
+  ],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Austin, W. G.",
+      "person_id": "austin_w_g",
+      "register_person_id": "person_austin_w_g",
+      "role": "partner",
+      "from": "1835-08-08",
+      "to": "1835-08-12",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card austin_w_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_08_08#c001",
+        "chicago_democrat_1835_08_12#c004"
+      ]
+    },
+    {
+      "name": "W. G. Austin",
+      "person_id": "austin_w_g",
+      "register_person_id": "person_w_g_austin",
+      "role": "partner",
+      "from": "1835-08-08",
+      "to": "1835-08-12",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card austin_w_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_08_08#c001",
+        "chicago_democrat_1835_08_12#c004"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "lake",
+      "face": null,
+      "primary": true,
+      "from": "1835-08-08",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Lake Street and nothing narrower; the anchor 'the post office' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-08-07",
+    "closed": null,
+    "precision": "exact",
+    "tier": "attested",
+    "basis": "The paper announces the opening: chicago_american_1835_08_08#c001 (1835-08-07); chicago_democrat_1835_08_12#c004 (1835-08-07)."
+  },
+  "evidence": {
+    "first_issue": "1835-08-08",
+    "last_issue": "1835-08-12",
+    "copy_dates": [
+      "1835-08-07"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_08_08#c001",
+    "chicago_democrat_1835_08_12#c004"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

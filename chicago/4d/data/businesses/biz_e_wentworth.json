@@ -1,0 +1,78 @@
+{
+  "id": "biz_e_wentworth",
+  "register_id": "business_e_wentworth",
+  "name": "E. Wentworth",
+  "provenance": "compiled_from_register",
+  "type": [
+    "tavern"
+  ],
+  "trade": "tavern",
+  "occupation": "tavern_keeper",
+  "goods": [
+    "corn",
+    "entertainment",
+    "oats"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "E. Wentworth",
+      "person_id": null,
+      "register_person_id": "person_e_wentworth",
+      "role": "proprietor",
+      "from": "1834-12-10",
+      "to": "1834-12-10",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_e_wentworth with action 'replace_invented': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_12_10#c006"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-12-10",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "The paper puts this business outside the committed town — a road leading out of town — 'road from Chicago leading to' — so no structure inside it carries the firm and none is built for it. The anchor 'the road from Chicago leading to Ottawa' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-12-10",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-12-10, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-12-10",
+    "last_issue": "1834-12-10",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_12_10#c006"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

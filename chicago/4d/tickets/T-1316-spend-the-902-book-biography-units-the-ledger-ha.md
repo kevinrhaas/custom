@@ -1,5 +1,5 @@
 ---
-id: T-1312
+id: T-1316
 title: Spend the 902 units the ledger hands to the arrival pass: the dated arrivals, nativities, origins and presence bounds the books, the 1830 census, the church register, the poll lists, the land sales and the press state, onto the cards they name
 state: split
 epic: META

@@ -1,0 +1,93 @@
+{
+  "id": "biz_d_graves",
+  "register_id": "business_d_graves",
+  "name": "D. Graves",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "bakery",
+  "occupation": "baker",
+  "goods": [
+    "Bread",
+    "Cakes",
+    "Crackers",
+    "bread",
+    "cakes",
+    "crackers",
+    "fresh bread"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "D. Graves",
+      "person_id": null,
+      "register_person_id": "person_d_graves",
+      "role": "proprietor",
+      "from": "1834-03-25",
+      "to": "1834-12-10",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_d_graves with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_03_25#c003",
+        "chicago_democrat_1834_07_09#c022",
+        "chicago_democrat_1834_10_15#c008",
+        "chicago_democrat_1834_11_05#c012",
+        "chicago_democrat_1834_12_10#c010"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1834-03-25",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water Street and nothing narrower; the anchor \"Newberry & Dole's store\" names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-03-25",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-03-25, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-03-25",
+    "last_issue": "1834-12-10",
+    "copy_dates": [
+      "1834-03-25",
+      "1834-05-25"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_03_25#c003",
+    "chicago_democrat_1834_07_09#c022",
+    "chicago_democrat_1834_10_15#c008",
+    "chicago_democrat_1834_11_05#c012",
+    "chicago_democrat_1834_12_10#c010"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}
