@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A card stops calling “we don’t know” an invention', kind: 'change', ts: '',
+  { v: 928, title: 'A card stops calling “we don’t know” an invention', kind: 'change', ts: '2026-09-18T01:37:06.979Z', date: 'Sep 17, 2026, 8:37 PM CT',
     items: [
       'Open almost any person in this town and most of their card reads the same way: where they came from, why they came, who they came with, where they lived, where they worked — not recorded, not recorded, not recorded. That is the honest state of the record for 1835 Chicago, and it is not the problem. The problem is that every one of those blanks was wearing the same hatched mark this project uses to say WE MADE THIS UP. A household whose origin and address were simply never written down was being shown to you as four inventions.',
       'There are 10,499 of these statements across the town’s 1,258 household records. 7,314 of them — seven in ten — assert nothing at all. Forty are genuine reconstructions: a conjectured arrival year, an address carried back out of a later directory. Under one word and one mark, the commonest case and the rarest were indistinguishable, and the commonest one was slandering the research.',
