@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 14222,
-    "tiers_written_on_the_card": 5540,
+    "blocks": 14228,
+    "tiers_written_on_the_card": 5543,
     "by_tier": {
       "attested": 591,
       "inferred": 3305,
-      "reconstructed": 5465,
-      "unknown": 4861
+      "reconstructed": 5467,
+      "unknown": 4865
     },
     "by_attribute": {
       "arrival": {
@@ -98,8 +98,8 @@
       "persons[].age_band": {
         "attested": 7,
         "inferred": 57,
-        "reconstructed": 1215,
-        "unknown": 6
+        "reconstructed": 1217,
+        "unknown": 7
       },
       "persons[].age_on_scene_date": {
         "attested": 7,
@@ -129,7 +129,7 @@
         "attested": 119,
         "inferred": 9,
         "reconstructed": 0,
-        "unknown": 1157
+        "unknown": 1160
       },
       "persons[].profile_facts[]": {
         "attested": 1,
@@ -1115,19 +1115,18 @@
       },
       "values": 1181,
       "by_value": {
-        "1834": 605,
-        "1835": 251,
-        "1833": 232,
-        "1832": 43,
-        "1831": 17,
-        "1812": 5,
+        "1834": 599,
+        "1835": 259,
+        "1833": 215,
+        "1832": 39,
+        "1831": 33,
+        "1830": 10,
+        "1812": 6,
+        "1823": 6,
         "1816": 5,
-        "1827": 5,
-        "1830": 5,
-        "1823": 4,
-        "1826": 4,
-        "1818": 3,
-        "1820": 2
+        "1818": 4,
+        "1827": 4,
+        "1824": 1
       },
       "a_seed": "hh_abbot_8_g:arrival_year",
       "a_card": "hh_abbot_8_g"
@@ -1183,16 +1182,17 @@
         "kind": "person",
         "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
       },
-      "values": 1212,
+      "values": 1214,
       "by_value": {
         "20-29": 591,
-        "30-39": 338,
+        "30-39": 339,
         "40-49": 112,
         "15-19": 106,
         "50-59": 41,
         "60-69": 15,
         "70-79": 8,
-        "10-14": 1
+        "10-14": 1,
+        "5-9": 1
       },
       "a_seed": "abbot_8_g:age_bands_1840",
       "a_card": "hh_abbot_8_g"
@@ -1246,10 +1246,10 @@
       },
       "values": 1142,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 581,
-        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 250,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 221,
-        "The trading post, the fort and the country trade — the town before the boom": 90
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 580,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 255,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 208,
+        "The trading post, the fort and the country trade — the town before the boom": 99
       },
       "a_seed": null,
       "a_card": "hh_abbot_8_g"

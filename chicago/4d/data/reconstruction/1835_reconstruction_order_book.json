@@ -29,14 +29,14 @@
     "households_total": 1258,
     "households_present": 436,
     "households_uncertain": 820,
-    "persons_total": 1285,
-    "persons_present": 458,
+    "persons_total": 1288,
+    "persons_present": 459,
     "persons_present_attested": 133,
-    "persons_present_inferred": 323,
+    "persons_present_inferred": 324,
     "persons_present_by_division": {
       "south": 52,
       "west": 6,
-      "north": 10,
+      "north": 11,
       "fort": 2
     },
     "households_present_by_division": {
@@ -51,14 +51,14 @@
     "households_with_a_works_at": 36
   },
   "roster_offered": {
-    "total": 1703,
+    "total": 1798,
     "by_class": {
       "R1_in_window_uncertain": 805,
-      "R2_in_window_single_source": 252,
+      "R2_in_window_single_source": 346,
       "R3_1834_return_or_muster": 30,
       "R4_surname_only_census": 424,
       "R5_later_only_backprojectable": 55,
-      "R6_native_metis_black": 137
+      "R6_native_metis_black": 138
     },
     "tickets": {
       "R1_in_window_uncertain": "T-1172",
@@ -70,9 +70,9 @@
     }
   },
   "totals": {
-    "persons_target": 2533,
-    "persons_known": 458,
-    "persons_to_reconstruct": 2078,
+    "persons_target": 2535,
+    "persons_known": 459,
+    "persons_to_reconstruct": 2079,
     "households_target": 643,
     "households_known": 436,
     "households_to_reconstruct": 209,
@@ -89,10 +89,10 @@
       "title": "Persons",
       "lead": "Who the town still has to be given, by sex, age, division, household and trade.",
       "summary": {
-        "town_target": 2533,
-        "town_target_basis": "the model's own point within 2,350-3,265",
+        "town_target": 2535,
+        "town_target_basis": "the model's own point within 2,352-3,265",
         "town_target_range": [
-          2350,
+          2352,
           3265
         ],
         "employed_target": 506,
@@ -1254,8 +1254,8 @@
           },
           "target": 58,
           "known_attested": 3,
-          "known_inferred": 8,
-          "to_reconstruct": 47,
+          "known_inferred": 7,
+          "to_reconstruct": 48,
           "filled": 0,
           "owning_ticket": "T-1171",
           "basis": "otherwise: a family drawn from the household model"
@@ -1354,9 +1354,9 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 48,
+          "target": 49,
           "known_attested": 3,
-          "known_inferred": 6,
+          "known_inferred": 7,
           "to_reconstruct": 39,
           "filled": 0,
           "owning_ticket": "T-1175",
@@ -2070,8 +2070,8 @@
           },
           "target": 22,
           "known_attested": 1,
-          "known_inferred": 2,
-          "to_reconstruct": 19,
+          "known_inferred": 3,
+          "to_reconstruct": 18,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -2085,10 +2085,10 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 147,
+          "target": 148,
           "known_attested": 8,
           "known_inferred": 20,
-          "to_reconstruct": 119,
+          "to_reconstruct": 120,
           "filled": 0,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
@@ -3462,10 +3462,10 @@
     {
       "id": "people_per_roof",
       "owning_ticket": "T-1196",
-      "model": 2533,
+      "model": 2535,
       "programme": 668,
       "delta": 0,
-      "statement": "2,533 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
+      "statement": "2,535 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
     }
   ],
   "invariants": [
@@ -3497,7 +3497,7 @@
       "id": "dwellings_ratio_within_its_bracket",
       "owning_ticket": "T-1215",
       "statement": "The town census's people-per-dwelling ratio is met within the model's bracket.",
-      "measured_now": "the book orders 2,533 people into 643 households."
+      "measured_now": "the book orders 2,535 people into 643 households."
     },
     {
       "id": "no_bucket_overfilled",

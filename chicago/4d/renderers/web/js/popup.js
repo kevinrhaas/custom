@@ -607,7 +607,6 @@ function withDot(text, dot) {
 const FUNCTION_WORDS = {
   tavern_inn: 'tavern & inn',
   store_residence: 'store & residence',
-  'store-residence': 'store & residence',
   dwelling_to_let: 'dwelling, to let',
   hotel_under_construction: 'hotel, under construction',
   slaughterhouse_packing: 'slaughterhouse & packing house',
@@ -617,6 +616,38 @@ const FUNCTION_WORDS = {
   dwelling_farmstead: 'farmstead dwelling',
   physicians_office: "physician's office",
   agency_house_residence: 'agency house & residence',
+  // T-1311 closed the `function` vocabulary and folded 109 free strings onto 106
+  // terms. These are the ones whose PROSE the card had been printing straight off
+  // the record — hyphens, commas, apostrophes and all — and which the generic rule
+  // would now flatten. The card goes on saying exactly what it said before the
+  // vocabulary was closed; the punctuation is the record's, not an addition.
+  one_room_frame_cottage: 'one-room frame cottage',
+  two_room_frame_cottage: 'two-room frame cottage',
+  deep_plan_frame_cottage: 'deep-plan frame cottage',
+  one_and_a_half_story_frame_cottage: 'one-and-a-half-story frame cottage',
+  larger_one_and_a_half_story_house: 'larger one-and-a-half-story house',
+  small_two_story_frame_house: 'small two-story frame house',
+  narrow_two_story_store: 'narrow two-story store',
+  narrow_two_story_warehouse: 'narrow two-story warehouse',
+  cooper_wagon_or_wheelwright_shop: 'cooper, wagon or wheelwright shop',
+  parade_and_drill_ground: 'parade and drill ground',
+  block_house: 'block-house',
+  county_court_house: 'county court-house',
+  commanding_officers_quarters: "commanding officer's quarters",
+  officers_quarters: "officers' quarters",
+  enlisted_mens_barracks: "enlisted men's barracks",
+  sutlers_store: "sutler's store",
+  // The three records whose function was a SENTENCE about a use that had ended.
+  // `kindWords` below still cuts each at its first semicolon, so the kind line
+  // reads "dwelling" / "log house" / "log cabin" exactly as it always has, and the
+  // Use row still carries the whole of it.
+  dwelling_former_school_use_unattested:
+    "dwelling; used as John Watkins' school in 1833, use on the scene date unattested",
+  log_house_former_school_use_unattested:
+    'log house; infant school 1833-34, use on the scene date unattested',
+  log_cabin_former_store_and_school_use_unattested:
+    "log cabin; Chicago's first drug store 1832, let 1832-33, Eliza Chappel's school "
+    + '1833-34; use on the scene date unattested',
 };
 
 /** The record's `function`, in words. Already-prose values ("one-room frame

@@ -115,7 +115,7 @@
       "note": "A NEGATIVE THAT IS ALSO A CHOICE. Captain Whistler's 1808 index to the FIRST fort says 'the Barracks are two storeys high with shingled Roofs and Galliaries fronting the parade' (Quaife), and galleries on the parade front are the type. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were 'differently constructed'. A plain front is rendered because nobody found evidence either way, which is itself a claim a visitor sees."
     },
     "function": {
-      "value": "officers' quarters",
+      "value": "officers_quarters",
       "confidence": "attested",
       "sources": [
         "andreas_1884_v1",

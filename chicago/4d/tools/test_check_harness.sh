@@ -132,5 +132,51 @@ else
   bad "only $selftests self-test steps are tagged — check.sh had 114 when T-0763 landed"
 fi
 
+# T-1289. THE POOL MUST REACH THE SAME VERDICT AS THE SERIAL PATH, and print the same
+# thing in the same order. A gate that is faster and differently right is not faster.
+#
+# Each run is its own shell so the harness's counters start clean; the run prints its
+# transcript and then one VERDICT line, which is what the comparison reads.
+_pool_run() {
+  CHECK_JOBS="$1" bash -c '
+    source tools/check_harness.sh
+    step     "first"  sh -c "echo one"
+    selftest "second" sh -c "echo two; exit 0"
+    step     "third"  sh -c "echo three; exit 1"
+    step     "fourth" sh -c "echo four"
+    check_flush
+    printf "VERDICT failed=%s steps=%s selftests=%s\n" \
+      "$CHECK_FAILED" "$CHECK_STEPS" "$CHECK_SELFTESTS"
+  ' 2>&1
+}
+
+serial_run="$(_pool_run 1)"
+parallel_run="$(_pool_run 4)"
+
+if [ "$serial_run" = "$parallel_run" ]; then
+  ok "a four-job run prints byte-for-byte what a serial run prints, and agrees on the verdict"
+else
+  bad "the pool differs from the serial path:"
+  diff <(printf '%s\n' "$serial_run") <(printf '%s\n' "$parallel_run") | sed 's/^/        /'
+fi
+want "$(printf '%s\n' "$parallel_run" | grep -o 'failed=[01]')" "failed=1" \
+     "a step that exits non-zero still fails the gate under the pool"
+want "$(printf '%s\n' "$parallel_run" | grep -o 'steps=[0-9]*')" "steps=4" \
+     "the pool counts every step it ran"
+
+# The order is the DECLARED order, not the order they finished in.
+ordered="$(CHECK_JOBS=4 bash -c '
+  source tools/check_harness.sh
+  step "slow" sh -c "sleep 0.5; echo SLOW"
+  step "fast" sh -c "echo FAST"
+  check_flush' 2>&1)"
+slow_at="$(printf '%s\n' "$ordered" | grep -n SLOW | head -1 | cut -d: -f1)"
+fast_at="$(printf '%s\n' "$ordered" | grep -n FAST | head -1 | cut -d: -f1)"
+if [ -n "$slow_at" ] && [ -n "$fast_at" ] && [ "$slow_at" -lt "$fast_at" ]; then
+  ok "a slow step prints before the fast one declared after it, though it finished last"
+else
+  bad "the pool printed in completion order, not declaration order"
+fi
+
 printf '\n%d passed, %d failed\n' "$PASS" "$FAILN"
 [ "$FAILN" -eq 0 ]
