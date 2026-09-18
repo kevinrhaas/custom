@@ -7205,7 +7205,7 @@ for (const [label, viewport, touch] of [
     // never claimed when it is not. A real bake wearing a placeholder label is a
     // lie in the opposite direction, and would previously have passed.
     check(`${label}: the placeholder label agrees with the asset it describes`,
-      placeholder.placeholderFlag === (placeholder.recommended === true),
+      placeholder.whereholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
     // --- the standing constraint, on the card ------------------------------
@@ -10997,13 +10997,17 @@ for (const [label, viewport, touch] of [
     });
     // Was "Go to is a tab of its own, immediately after Controls" (five tabs).
     // The claim is the same — the rail's order is exact and Go to leads it —
-    // over the seven sections T-0701 gave the drawer.
-    check(`${label}: the rail lists the seven sections in order, Go to first`,
-      tabStrip.order.join(',') === 'goto,travel,people,evidence,settings,controls,whatsnew',
+    // over the eight sections the drawer carries since T-1324 put the town's
+    // firms beside its people.
+    check(`${label}: the rail lists the eight sections in order, Go to first`,
+      tabStrip.order.join(',') === 'goto,travel,people,businesses,evidence,settings,controls,whatsnew',
       tabStrip.order.join(','));
-    // Was "five tabs still fit the panel on one row, unsqueezed". Seven items
-    // now, one column on the desktop drawer and one row on the phone sheet.
-    check(`${label}: seven rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
+    // Was "five tabs still fit the panel on one row, unsqueezed". Eight items
+    // now, one column on the desktop drawer and one row on the phone sheet —
+    // and the phone is the binding case: eight of them share 390 px, which is
+    // why the Businesses tab wears the short label "Firms" on the rail and
+    // carries its full name in `data-title` for the drawer's head.
+    check(`${label}: eight rail items fit the panel unsqueezed — one column on desktop, one row on a phone`,
       (touch ? tabStrip.rows === 1 : tabStrip.cols === 1)
       && tabStrip.overflow <= 1 && !tabStrip.squeezed.length && !tabStrip.boxless.length,
       `${tabStrip.rows} row(s) x ${tabStrip.cols} column(s), ${tabStrip.overflow}px of rail `
@@ -11776,6 +11780,87 @@ for (const [label, viewport, touch] of [
       && Math.abs(goThere.end.framed.got - goThere.end.framed.want) <= 2.5
       && goThere.cardClosed,
       JSON.stringify(goThere));
+
+    // T-1324: the Businesses directory — every firm the register knows, searched,
+    // narrowed by how far the record could place it, and opened. The point of the
+    // view is the 140 firms with no roof in this town, so the check that matters
+    // is that the unplaceable ones are REACHABLE and print their limit: a house
+    // the register could place nowhere is evidence, not an absence, and the one
+    // thing this project will not do is invent a building to carry it.
+    await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
+    await clickChrome('.panel-tab[data-tab="businesses"]');
+    const biz = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const dir = api.businesses;
+      const out = { api: !!dir && typeof dir.search === 'function', error: dir?.error ?? null };
+      const idx = await (await fetch(new URL('businesses/index.json', api.dataBase))).json();
+      const rows = () => [...document.querySelectorAll('#businesses-results .person-row')];
+      out.counts = { rows: rows().length, api: dir.businesses, file: idx.businesses?.length,
+        stated: idx.counts?.records,
+        countText: document.getElementById('businesses-count')?.textContent ?? '',
+        title: document.getElementById('panel-title')?.textContent.trim() ?? '' };
+      out.search = { matched: dir.search('crockery'),
+        note: document.getElementById('businesses-result-note')?.textContent ?? '' };
+      dir.search('');
+      const all = dir.state?.matched;
+      out.pill = { all, matched: dir.filter('place', 'unplaceable'),
+        stated: idx.counts?.by_where_kind?.unplaceable,
+        pressed: document.querySelector('.pill[data-filter="place"][aria-pressed="true"]')?.dataset.value,
+        offKind: rows().filter((r) => !/unplaceable/.test(r.querySelector('.person-mark')?.textContent ?? ''))
+          .map((r) => r.dataset.businessId).slice(0, 5), rows: rows().length };
+      const firstUnplaceable = rows()[0]?.dataset.businessId ?? null;
+      dir.filter('place', '');
+      out.pill.cleared = dir.state?.matched;
+      // A roofless firm first: its card must say where the record stops.
+      const openedLimit = await dir.open(firstUnplaceable);
+      const card = document.getElementById('businesses-card');
+      out.roofless = { opened: openedLimit, id: firstUnplaceable,
+        limit: card?.querySelector('.biz-limit')?.textContent.trim() ?? '',
+        go: !!card?.querySelector('.biz-go') };
+      dir.close();
+      // …then one with a roof of its own, which must offer the way to it.
+      const withRoof = idx.businesses.find((b) => b.where?.kind === 'premises' && b.where.structure_id
+        && api.registry.has(b.where.structure_id));
+      const opened = await dir.open(withRoof?.id);
+      const go = card?.querySelector('.biz-go');
+      out.card = { opened, wanted: withRoof?.id ?? null, wantedStructure: withRoof?.where?.structure_id ?? null,
+        hidden: card?.hasAttribute('hidden'),
+        shown: card?.checkVisibility(),
+        name: card?.querySelector('.people-card-name')?.textContent.trim() ?? '',
+        title: document.getElementById('panel-title')?.textContent.trim() ?? '',
+        backShown: !document.getElementById('panel-back')?.hasAttribute('hidden'),
+        go: go?.dataset.structure ?? null,
+        locations: card?.querySelectorAll('.biz-loc').length ?? 0,
+        printings: /printings that attest it/.test(card?.textContent ?? '') };
+      dir.close();
+      return out;
+    });
+    check(`${label}: the Businesses directory lists every firm, and its count is the index's`,
+      biz.api && !biz.error && biz.counts.rows > 0 && biz.counts.api === biz.counts.file
+      && biz.counts.file === biz.counts.stated && biz.counts.stated > 150
+      && biz.counts.rows === biz.counts.stated
+      && new RegExp(`^${biz.counts.stated} firms`).test(biz.counts.countText)
+      && biz.counts.title === 'Businesses',
+      JSON.stringify(biz.counts));
+    check(`${label}: searching a good the papers advertised finds the houses that sold it`,
+      biz.search.matched > 0 && biz.search.matched < biz.counts.stated
+      && /crockery/i.test(biz.search.note),
+      JSON.stringify(biz.search));
+    check(`${label}: the unplaceable pill narrows the list to the firms with no place at all`,
+      biz.pill.matched > 0 && biz.pill.matched === biz.pill.stated && biz.pill.matched < biz.pill.all
+      && biz.pill.rows === biz.pill.matched && !biz.pill.offKind.length
+      && biz.pill.pressed === 'unplaceable' && biz.pill.cleared === biz.pill.all,
+      JSON.stringify(biz.pill));
+    check(`${label}: a firm the register could not place says how far the record goes, and offers no building`,
+      biz.roofless.opened && /How far the record goes:/.test(biz.roofless.limit)
+      && biz.roofless.limit.length > 40 && !biz.roofless.go,
+      JSON.stringify(biz.roofless));
+    check(`${label}: a firm with premises opens a card with its locations, its printings and the way there`,
+      biz.card.opened && biz.card.hidden === false && biz.card.shown && biz.card.name.length > 0
+      && biz.card.title === biz.card.name && biz.card.backShown
+      && biz.card.go === biz.card.wantedStructure
+      && biz.card.locations > 0 && biz.card.printings,
+      JSON.stringify(biz.card));
 
     // T-0710: the Evidence hub — nine tiles whose counts are their mounts'
     // entries, a topic that searches, and a way back. The eighth is T-1160's
