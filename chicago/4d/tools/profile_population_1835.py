@@ -27,9 +27,9 @@ counts 3,265 people; this layer holds 1,282 person entries and most of them are 
 name on a post-office return and nothing else. Every table below says how thin its
 own axis is, and the closing section names the buckets the MODEL tickets (T-1293)
 and the reconstruction bands have to supply. Nothing here reconstructs anybody — and
-the `reconstructed` tier is counted rather than assumed away, which is how the twelve
-attribute values already standing at that tier came out of a layer whose person grade
-reads zero reconstructed.
+the `reconstructed` tier is counted rather than assumed away, which is what puts
+T-1158's forty already-reconstructed ATTRIBUTE values beside a person grade that
+reads zero reconstructed. Both numbers are true and only one of them was visible.
 
 THE TWO JUDGEMENTS, both made once and both auditable:
 
@@ -58,12 +58,26 @@ INDEX = ROOT / "data" / "residents" / "index.json"
 POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 STRUCTURES = ROOT / "data" / "structures"
 TOWN_CENSUS = ROOT / "data" / "town_census.json"
+ATTRIBUTE_TIERS = ROOT / "data" / "research" / "residents" / "attribute_tiers.json"
 OUT = ROOT / "data" / "reconstruction" / "1835_population_profile.json"
 REPORT = ROOT / "docs" / "RESEARCH" / "1835_population_profile.md"
 
 SCENE_DATE = "1835-07-01"
 AS_OF = "2026-09-18"
-TIERS = ["attested", "inferred", "reconstructed", "unknown"]
+
+
+def attribute_tiers() -> dict:
+    """T-1158's per-attribute tier census, read rather than restated.
+
+    That pass walks every block on every card and records the tier each one earns.
+    This profile counts the same tiers along its own axes, so the VOCABULARY comes
+    from there — two lists of tier names in one repository is two answers to one
+    question, and the second one goes stale silently.
+    """
+    return json.loads(ATTRIBUTE_TIERS.read_text(encoding="utf-8"))
+
+
+TIERS = attribute_tiers()["vocabulary"]["tiers"]
 
 
 class Refused(Exception):
@@ -312,25 +326,19 @@ def sec_headcount(L) -> dict:
     }
 
 
-TIERED_HOUSEHOLD_FIELDS = ["arrival", "origin", "reason_for_coming", "lives_at",
-                           "works_at", "present_on_scene_date", "party_size_on_arrival"]
-
-
 def reconstructed_attributes(records: list) -> list:
-    """Every household attribute whose own block grades itself `reconstructed`.
+    """Every attribute value standing at the `reconstructed` tier, from T-1158.
 
-    A block with a null value carries `confidence: reconstructed` throughout this
-    layer as a way of saying "not attested", and that is an ABSENCE rather than a
-    reconstruction; only a block that states something is counted here.
+    Read out of that pass's census rather than re-derived here. It walks all 10,499
+    blocks on all 1,258 cards — person-level and nested ones this profile's axes
+    never touch — so re-deriving a subset beside it would publish a smaller number
+    for the same thing, which is the failure a second implementation always ships.
     """
     rows = []
-    for h in records:
-        for field in TIERED_HOUSEHOLD_FIELDS:
-            block = h.get(field)
-            if tier_of(block) != "reconstructed":
-                continue
-            note = (block.get("note") or "").split(".")[0].strip()
-            rows.append([h["id"], field, str(value(block)), note[:96] or "(no note)"])
+    for row in attribute_tiers()["reconstructed"]:
+        note = (row.get("note") or "").split(".")[0].strip()
+        rows.append([row["card"], row["attribute"], str(row.get("value")),
+                     note[:96] or "(no note)"])
     rows.sort()
     return rows
 
@@ -769,6 +777,7 @@ def build() -> dict:
                  "--build. The Evidence hub's 'The town's people' topic renders this."),
         "compiled_from": [
             "data/residents/index.json",
+            "data/research/residents/attribute_tiers.json (T-1158's tier census)",
             "data/residents/ (the household records it manifests)",
             "data/reconstruction/1835_invented_name_pools.json",
             "data/structures/",

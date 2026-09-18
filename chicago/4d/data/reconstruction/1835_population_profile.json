@@ -7,6 +7,7 @@
  "_doc": "The known population of 1 July 1835, per attribute and per tier. DERIVED — do not hand-edit; run tools/profile_population_1835.py --build. The Evidence hub's 'The town's people' topic renders this.",
  "compiled_from": [
   "data/residents/index.json",
+  "data/research/residents/attribute_tiers.json (T-1158's tier census)",
   "data/residents/ (the household records it manifests)",
   "data/reconstruction/1835_invented_name_pools.json",
   "data/structures/",
@@ -268,10 +269,40 @@
        "NOT ATTESTED HERE"
       ],
       [
+       "hh_beaubien_mark",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_brown_lemuel",
+       "directories.people[].back_projection",
+       "Randolph Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_church_thomas",
        "arrival",
        "1834",
        "NOT ATTESTED"
+      ],
+      [
+       "hh_cohen_peter",
+       "directories.people[].back_projection",
+       "South Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_collins_j_h",
+       "directories.people[].residence_back_projection",
+       "Lake Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_curtiss_j",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
        "hh_davis_john",
@@ -286,10 +317,46 @@
        "NOT ATTESTED IN ANYTHING THIS PROJECT HOLDS"
       ],
       [
+       "hh_egan_william_b",
+       "directories.people[].residence_back_projection",
+       "Clark Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_fullerton_alexander",
+       "directories.people[].back_projection",
+       "North Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_funk_absolom",
+       "directories.people[].residence_back_projection",
+       "Wells Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_gale_stephen_f",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_haddock_edward",
        "arrival",
        "1835",
        "NOT ATTESTED AND VERY LIKELY EARLIER"
+      ],
+      [
+       "hh_hamilton_richard_j",
+       "directories.people[].back_projection",
+       "Clark Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_holbrook_john",
+       "directories.people[].back_projection",
+       "South Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
        "hh_inf_cooper_north_04",
@@ -302,6 +369,12 @@
        "present_on_scene_date",
        "present",
        "Presence on the scene date IS the hypothesis: this household exists in the dataset because the t"
+      ],
+      [
+       "hh_inf_physician_south_01",
+       "directories.people[].back_projection",
+       "Dearborn Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
        "hh_inf_physician_south_01",
@@ -322,17 +395,113 @@
        "Presence on the scene date IS the hypothesis: this household exists in the dataset because the t"
       ],
       [
+       "hh_johnson_seth",
+       "directories.people[].residence_back_projection",
+       "Washington Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_jordan_j_b",
+       "directories.people[].residence_back_projection",
+       "Washington Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_king_nehemiah",
+       "directories.people[].residence_back_projection",
+       "Lake Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 9 YEARS"
+      ],
+      [
+       "hh_kinzie_james",
+       "directories.people[].back_projection",
+       "Canal Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_lacey_j_s",
+       "directories.people[].residence_back_projection",
+       "North Water Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_lloyd_alexander",
+       "directories.people[].residence_back_projection",
+       "Wells Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 9 YEARS"
+      ],
+      [
+       "hh_marsh_silvester",
+       "directories.people[].residence_back_projection",
+       "North Water Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 9 YEARS"
+      ],
+      [
+       "hh_marshall_j_a",
+       "directories.people[].back_projection",
+       "South Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_meeker_joseph",
+       "directories.people[].back_projection",
+       "Clark Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_montgomery_l_w",
+       "directories.people[].residence_back_projection",
+       "Market Street",
+       "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
+      ],
+      [
+       "hh_moore_henry",
+       "directories.people[].back_projection",
+       "Clark Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_myers_frederick",
+       "directories.people[].back_projection",
+       "North Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_porthier_joseph",
        "arrival",
        "1830",
        "NOT ATTESTED"
+      ],
+      [
+       "hh_sabine_wm",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_smith_george",
+       "directories.people[].back_projection",
+       "North Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_stewart_r",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_wright_john",
+       "directories.people[].back_projection",
+       "North Water Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ]
      ],
      "note": ""
     }
    ],
    "notes": [
-    "No PERSON carries the `reconstructed` grade (0) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 12 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+    "No PERSON carries the `reconstructed` grade (0) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 40 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
    ]
   },
   {
