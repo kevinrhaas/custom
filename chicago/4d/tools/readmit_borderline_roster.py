@@ -149,6 +149,8 @@ def earliest_meaning(date_text: str):
     should err in.
     """
     text = str(date_text or "").strip()
+    # A SPAN (`1833-11/1835-08`) is two dates and therefore not one; it is read by
+    # dated_evidence() through T-1144's own fields, not guessed at here.
     try:
         if re.fullmatch(r"\d{4}", text):
             return dt.date(int(text), 1, 1)
@@ -159,6 +161,28 @@ def earliest_meaning(date_text: str):
     except ValueError:
         return None
     return None
+
+
+def dated_evidence(row: dict):
+    """(the day the evidence reaches, the text it was read from) or (None, why not).
+
+    T-1144 gave every roster row the far end of its evidence — `dated_evidence_reaches`
+    — and a flag saying whether that evidence's window BRACKETS the scene date. Both
+    matter here. A reading that pins a day before 1 July 1835 is a lag the persistence
+    model can price; a source SPAN that runs through the scene date pins no day before it
+    (the row's own `dated_evidence_leg` says exactly that), and a persistence rate is
+    meaningless over a lag nothing measures. So the second kind is withheld and says so,
+    rather than being priced off the start of a span the person was never sighted at.
+    """
+    when = earliest_meaning(row.get("describes_date"))
+    if when is not None:
+        return when, None
+    if row.get("dated_evidence_includes_scene_date") is True:
+        return None, ("the_evidence_pins_no_day_before_the_scene")
+    reaches = earliest_meaning(row.get("dated_evidence_reaches"))
+    if reaches is not None and reaches <= SCENE_DATE:
+        return reaches, None
+    return None, "undated_reading"
 
 
 def lag_years(when: dt.date) -> float:
@@ -277,9 +301,8 @@ def name_key(name) -> str:
 # the four classes
 # --------------------------------------------------------------------------
 
-def ruling_r1(row: dict, model: dict) -> dict:
+def ruling_r1(row: dict, model: dict, when: dt.date) -> dict:
     """A card the town already holds, whose presence on 1 July 1835 stands `uncertain`."""
-    when = earliest_meaning(row.get("describes_date"))
     hid = row["existing_household_id"]
     value, share, lag, seed = ruled_present(model, hid, when)
     return {
@@ -287,7 +310,7 @@ def ruling_r1(row: dict, model: dict) -> dict:
         "class": row["class"],
         "household_id": hid,
         "name_as_read": row["name_as_read"],
-        "dated_evidence": row.get("describes_date"),
+        "dated_evidence": row.get("describes_date") or row.get("dated_evidence_reaches"),
         "dated_evidence_read_as": when.isoformat(),
         "years_before_the_scene": round(lag, 4),
         "persistence": round(share, 4),
@@ -298,7 +321,8 @@ def ruling_r1(row: dict, model: dict) -> dict:
             "tier": RECONSTRUCTED,
             "basis": {
                 "kind": "model", "id": model["id"],
-                "note": (f"The corpus last names this person on {row.get('describes_date')}, "
+                "note": (f"The corpus last names this person on "
+                         f"{row.get('describes_date') or row.get('dated_evidence_reaches')}, "
                          f"{lag:.2f} years before the scene date, and says nothing after it. "
                          f"The persistence model gives {share:.3f} for that lag; the draw "
                          f"seeded on this household reads {value}."),
@@ -448,26 +472,29 @@ def derive() -> tuple[dict, dict]:
         rule_id = SPENDS[cls]
 
         if cls == "R1_in_window_uncertain":
-            when = earliest_meaning(row.get("describes_date"))
+            when, refusal = dated_evidence(row)
             if when is None:
-                withhold(row, "undated_reading",
-                         "The row's own date cannot be read as a date, so the persistence "
-                         "model has no lag to price and the card keeps its `uncertain`.")
+                withhold(row, refusal,
+                         (row.get("dated_evidence_leg")
+                          or "The row carries no date this tool can read.")
+                         + " So the persistence model has no lag to price, and the card "
+                           "keeps the research's `uncertain` with nothing beside it.")
                 continue
             if row.get("existing_household_id") not in household_ids:
                 withhold(row, "the_card_is_no_longer_in_the_layer",
                          "The roster names a household the index no longer carries; a "
                          "presence cannot be ruled onto a card that is not there.")
                 continue
-            r1.append(ruling_r1(row, model))
+            r1.append(ruling_r1(row, model, when))
             continue
 
         # R2, R3 and R5 all MINT. A read name, no card, and one reading behind it.
-        when = earliest_meaning(row.get("describes_date"))
+        when, refusal = dated_evidence(row)
         if when is None:
-            withhold(row, "undated_reading",
+            withhold(row, refusal,
                      "A mint needs a dated appearance to price its presence against the "
-                     "persistence model, and this reading carries none.")
+                     "persistence model, and this reading gives none: "
+                     + (row.get("dated_evidence_leg") or "it carries no readable date."))
             continue
         key = name_key(title_case(row.get("normalised")))
         if not key:
@@ -786,6 +813,21 @@ def self_test() -> int:
          earliest_meaning("1834-10-22") == dt.date(1834, 10, 22))
     case("an unreadable date is refused rather than guessed",
          earliest_meaning("about 1834") is None and earliest_meaning("") is None)
+
+    # T-1144's two fields, read the way this stage is allowed to read them.
+    case("a row whose evidence brackets the scene date pins no day before it",
+         dated_evidence({"describes_date": "1833-11/1835-08",
+                         "dated_evidence_reaches": "1835-08-31",
+                         "dated_evidence_includes_scene_date": True})
+         == (None, "the_evidence_pins_no_day_before_the_scene"))
+    case("a row whose evidence stops before the scene is priced off where it stops",
+         dated_evidence({"describes_date": None,
+                         "dated_evidence_reaches": "1834-10-22"})
+         == (dt.date(1834, 10, 22), None))
+    case("a plain readable date still outranks the derived reach",
+         dated_evidence({"describes_date": "1834-04-01",
+                         "dated_evidence_reaches": "1835-06-30"})
+         == (dt.date(1834, 4, 1), None))
 
     # The draw is a function of the household id and nothing else, so two runs, two
     # machines and two orderings of the roster agree.

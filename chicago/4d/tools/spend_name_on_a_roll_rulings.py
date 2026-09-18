@@ -51,6 +51,9 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import research_spend_ledger as L  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 TICKET = "T-1297"
 GENERATOR = "tools/spend_name_on_a_roll_rulings.py"
@@ -573,9 +576,41 @@ REGISTERS = {
 }
 
 
+
+def still_open(root: Path = ROOT) -> set[str]:
+    """The units the readings themselves still leave unresolved.
+
+    THE FILE'S OWN CONTRACT, FINALLY ENFORCED (owner ruling, 2026-09-18). The `_doc`
+    below has always promised that a ruling here "can only close a unit nothing else has
+    closed" — but nothing checked it, and `civic_rulings()` ruled on EVERY voter and tax
+    record unconditionally. `research_spend_ledger.classify` consults a ruling only when
+    `natural_disposition` is still `unresolved`; for a unit the readings have already
+    closed, the ruling never fires and the ledger fails it, correctly, because a ruling
+    that reads as work done and is not is worse than no ruling.
+
+    Measured on T-1144's branch: 154 civic units — 58 `poll_1835`, 46 `tax_1833`, 46
+    `poll_1834`, 4 `poll_1833` — were closed by that branch's presence-evidence leg while
+    this register went on ruling them. The owner ruled the branch's route wins, so this
+    register yields, which is what its own doc always said it would do.
+
+    `natural_disposition` reads no ruling register, so this scope cannot be moved by
+    writing one — the same property the T-1298 register relies on.
+    """
+    registry = read_json(root / "data" / "research" / "domains.json")
+    units, faults = L.extract_units(root, registry)
+    if faults:
+        raise SystemExit("the reading registry is faulted: " + "; ".join(faults[:5]))
+    targets = L.target_index(root, {u["source_record_id"] for u in units})
+    return {u["unit_id"] for u in units
+            if L.natural_disposition(root, u, targets).get("disposition") == "unresolved"}
+
+
 def build_document(domain: str) -> dict:
     rules, builder, what = REGISTERS[domain]
-    rulings = builder()
+    # Only units the readings still leave open — see still_open() for why, and for the
+    # 154 this was writing over on T-1144's branch.
+    open_units = still_open()
+    rulings = [r for r in builder() if r["unit"] in open_units]
     tally = Counter(r["rule"] for r in rulings)
     return {
         "schema": "research-spend-rulings-v1",

@@ -12221,18 +12221,21 @@ and nothing else. A period statement of the franchise's or the militia's age rul
 a source record, would turn `civic_list_20_and_over` from a convention into a reading.
 
 Related: tickets **T-1304**, from **T-1168**; **T-1303** handed the finding on.
-### L242 — 898 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
+### L242 — 820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
 
 **Decision:** the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this
 project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction
-programme (T-1167) spends four of its seven classes and re-admits **898** of them:
-**812** cards whose presence on 1 July 1835 the research left `uncertain` are given a
-**second**, reconstructed presence beside it (787 `present`, 25 `absent`), and **86** new
+programme (T-1167) spends four of its seven classes and re-admits **820** of them:
+**734** cards whose presence on 1 July 1835 the research left `uncertain` are given a
+**second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new
 cards are minted under read names the town carried on no row — 19 from a single in-window
 appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own
-biography dates an arrival before the scene. 39 offered rows are withheld, each with its
-reason; 35 of those because a card already in the layer shares the surname and first given
-initial, which is the discriminator this project's own directory crosswalks match on.
+biography dates an arrival before the scene. **117** offered rows are withheld, each with
+its reason: 37 because a card already in the layer shares the surname and first given
+initial — the discriminator this project's own directory crosswalks match on — 41 because
+the row carries no readable date at all, and 39 because T-1144's reading of the row shows
+its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day
+before it. A lag nothing measures is not a lag a persistence rate may be applied to.
 
 **What is invented, exactly.** Two things and no more. First, **that these people were in
 Chicago on 1 July 1835**, which no source says of any of them — that is what "withheld"
@@ -12271,7 +12274,7 @@ T-1170's and R6 (the Native, Métis and Black cohorts, which carry their own rev
 T-1177's; neither is spent here.
 
 **What it leaves open.** The order book models 643 households in the town and the layer now
-reads 1,223 present. The two counts are not in the same unit — 736 of the layer's households
+reads 1,133 present. The two counts are not in the same unit — 736 of the layer's households
 are letter-list CONTAINERS holding one person and arguing for a person rather than a
 dwelling — and reconciling them is T-1171's and T-1179's.
 

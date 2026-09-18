@@ -148,9 +148,9 @@
           ]
         },
         "known_by_presence": {
-          "present": 1328,
-          "absent": 32,
-          "uncertain": 8
+          "present": 1236,
+          "absent": 44,
+          "uncertain": 88
         }
       }
     },
