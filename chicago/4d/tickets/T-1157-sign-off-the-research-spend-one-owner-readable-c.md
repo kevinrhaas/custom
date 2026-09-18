@@ -1,7 +1,7 @@
 ---
 id: T-1157
 title: Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1440
 claimed_by: run 9/18/2026, 12:27:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T06:08:33.402Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35310590693
 ---
 
