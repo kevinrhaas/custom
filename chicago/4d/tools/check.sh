@@ -2521,6 +2521,21 @@ step "the closing research audit still re-derives from the ledger and the four l
 selftest "…and a moved measurement cannot pass as an unchanged report" \
   python3 tools/report_research_closing_audit.py --self-test
 
+# T-1157. And the signature over the two books above. The owner asked, on 2026-09-17, to
+# confirm that the research had been SPENT — on residents, households, trades and offices,
+# on the businesses and who works in them, and on where everyone lived, worked and was
+# otherwise significantly involved. The sign-off answers that on five axes and reduces it
+# to ten CONDITIONS, each a measurement over committed files, and derives a GO or a NO-GO
+# for the reconstruction bands from them. It is gated for the reason the report states
+# about itself: a sign-off that cannot be revoked is not a measurement. If a condition
+# breaks after the signature is given, this step goes red and the next run has to
+# re-derive the verdict rather than inherit it.
+step "the research sign-off re-derives, and its GO still follows from the tree" \
+  python3 tools/report_research_signoff.py --check --quiet
+
+selftest "…and every condition under that verdict fires when it is broken" \
+  python3 tools/report_research_signoff.py --self-test
+
 # T-1296. The land-sale ruling register is DERIVED — 1,572 notes nobody typed — so the
 # claim it makes is not "somebody wrote these down" but "these re-derive from the register
 # as read and the crosswalk as adjudicated". That claim is only worth anything if it is
