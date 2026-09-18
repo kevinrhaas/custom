@@ -3335,6 +3335,20 @@ step "sex and age stand on the evidence, and the forename table re-derives" \
 selftest "…and an initial, a rank and an ambiguous forename still fire nothing" \
   python3 tools/spend_person_sex_age.py --self-test
 
+# T-1170. The kin survey lands a tie only where BOTH ends are people this town holds, and
+# its own count says what that leaves: twelve relatives OF A HEAD THIS LAYER CARRIES who
+# are nobody in the dataset. A second reading is needed to see the rest, because the period
+# prints a wife as a marriage — 'married Welthyan Loomis 30 October 1808' — and the survey's
+# `<relation> of <Name>` pattern cannot see one. This pass reads both, and every statement
+# it reads is answered in data/residents/stated_family_rulings.json by somebody who has read
+# the source. It writes the members a source NAMES and refuses to reconstruct: the ones a
+# source merely COUNTS are the programme's, on the other side of the refusal gate above.
+step "every family member the sources name is ruled on, and the ruled writes are on the cards" \
+  python3 tools/spend_stated_families.py --check
+
+selftest "…and an unruled statement, a lost write and a stale report all still fire" \
+  python3 tools/spend_stated_families.py --self-test
+
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and
 # NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
