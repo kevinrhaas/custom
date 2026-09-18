@@ -29,8 +29,12 @@ tool has never met stops the build rather than falling into a bucket unseen.
 
 THE XLSX IS OPTIONAL AND THE CSV IS NOT. `openpyxl` is not in every sandbox this repo is
 worked from, so the CSV and the README are always written and always gated; the workbook is
-written when openpyxl imports and is never compared byte for byte (a zip carries its own
-timestamps). `--check` fails on a CSV or README that has drifted from the layer — a hand
+written when openpyxl imports. It used to be uncomparable — a zip carries its own
+timestamps, so two builds of the same rows gave different bytes — and because the file is
+COMMITTED that made it conflict on every merge with no content behind it at all, once with
+docProps/core.xml as the entire diff. It is settled now (tools/deterministic_xlsx.py):
+identical rows give identical bytes, so an unchanged workbook no longer appears in
+`git status` and no longer has to be chosen between in a merge. `--check` fails on a CSV or README that has drifted from the layer — a hand
 edit to the audit is refused the same way a hand edit to any generated file here is.
 """
 from __future__ import annotations
@@ -737,6 +741,7 @@ def write_xlsx(table: list[dict], cache: dict) -> bool:
     try:
         from openpyxl import Workbook
         from openpyxl.styles import Font
+        from deterministic_xlsx import settle
     except ImportError:
         return False
     book = Workbook()
@@ -783,6 +788,10 @@ def write_xlsx(table: list[dict], cache: dict) -> bool:
                     source_type(source_id, cache), citing[source_id]])
     OUT.mkdir(parents=True, exist_ok=True)
     book.save(OUT / XLSX_NAME)
+    # A workbook must be a function of its DATA, not of the clock. See the note at the top
+    # and tools/deterministic_xlsx.py: without this, identical rows give different bytes and
+    # this COMMITTED binary conflicts on every merge with no content behind it (T-1282).
+    settle(OUT / XLSX_NAME)
     return True
 
 
