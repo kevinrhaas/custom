@@ -1,0 +1,589 @@
+{
+ "_doc": "DERIVED — regenerate with tools/reconstruct_modelled_families.py --build. The measurement this stage is held to: what was drawn, against the model rows it was drawn from. Do not hand-edit.",
+ "id": "1835_modelled_families",
+ "ticket": "T-1171",
+ "stage": "modelled_families",
+ "target_date": "1835-07-01",
+ "generated_by": "tools/reconstruct_modelled_families.py --build",
+ "not_a_reading": "no source was opened; nobody here is named by one",
+ "heads_drawn_for": 94,
+ "people_drawn": 312,
+ "wives": 88,
+ "children": 224,
+ "refused_by_eligibility": {
+  "a letter-list mint argues for a person and not for a household": 312,
+  "a source already names, counts or rules on this household's family": 16,
+  "a woman heading her own household is the age pyramid's, T-1174": 2,
+  "presence on the scene date is not settled (T-1172's roster holds it)": 822,
+  "the fort and the country outside the town are not this stage's": 3,
+  "the head is not an adult the household model seats as a husband": 9
+ },
+ "refused_by_the_order_book": {},
+ "size_drawn_histogram": {
+  "1": 6,
+  "2": 15,
+  "3": 15,
+  "4": 13,
+  "5": 16,
+  "6": 15,
+  "7": 9,
+  "8": 5
+ },
+ "kin_seated_histogram": {
+  "1": 6,
+  "2": 15,
+  "3": 15,
+  "4": 13,
+  "5": 16,
+  "6": 15,
+  "7": 9,
+  "8": 5
+ },
+ "drawn_into_bands": {
+  "10_19": 24,
+  "20_29": 71,
+  "30_39": 15,
+  "40_49": 1,
+  "50_plus": 1,
+  "under_10": 200
+ },
+ "fills": {
+  "persons/female/10_19/north/family/none": 3,
+  "persons/female/10_19/south/family/none": 8,
+  "persons/female/20_29/north/family/none": 22,
+  "persons/female/20_29/south/family/none": 40,
+  "persons/female/20_29/west/family/none": 9,
+  "persons/female/30_39/north/family/none": 3,
+  "persons/female/30_39/south/family/none": 11,
+  "persons/female/30_39/west/family/none": 1,
+  "persons/female/40_49/south/family/none": 1,
+  "persons/female/50_plus/south/family/none": 1,
+  "persons/female/under_10/north/family/none": 30,
+  "persons/female/under_10/south/family/none": 54,
+  "persons/female/under_10/west/family/none": 23,
+  "persons/male/10_19/north/family/none": 2,
+  "persons/male/10_19/south/family/none": 5,
+  "persons/male/10_19/west/family/none": 6,
+  "persons/male/under_10/north/family/none": 26,
+  "persons/male/under_10/south/family/none": 42,
+  "persons/male/under_10/west/family/none": 25
+ },
+ "by_household": {
+  "hh_adams_elizabeth": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_allen_edward_richards": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_allen_lieut_james": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_austin_w_g": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_barry_william": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_bates_john_jr": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_beaubien_madore": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_blanchard_f_gantry": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_bowen_erastus_selden": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_boyer_j_k": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_bradley_joseph": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_brown_william_h": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_burton_john": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_caldwell_billy": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_calhoun_john": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_carpenter_philo": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_cass_lewis": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_caton_john_dean": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_cohen_peter": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_collins_j_h": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_cook_john": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_courtney_henry": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_crocker_h": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_curtiss_j": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_curtiss_l_g": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_davis_george": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_davis_john": {
+   "size_drawn": 8,
+   "kin_seated": 8,
+   "household_type": "family_with_children"
+  },
+  "hh_davis_t_o": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_eldridge_john_w": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_elston_daniel": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_fullerton_alexander": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_funk_absolom": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_gage_eli": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_garrett_a": {
+   "size_drawn": 8,
+   "kin_seated": 8,
+   "household_type": "family_with_children"
+  },
+  "hh_hale_john": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_hamilton_richard_j": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_handy_henry_s": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_hogan_john_s_c": {
+   "size_drawn": 8,
+   "kin_seated": 8,
+   "household_type": "family_with_children"
+  },
+  "hh_hubbard_elijah_kent": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_hubbard_gurdon": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_hubbard_henry_g": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_inf_cooper_north_04": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_inf_joiner_north_02": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_inf_physician_south_01": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_inf_tailor_north_02": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_inf_tavern_keeper_north_01": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_ingersoll_chester": {
+   "size_drawn": 8,
+   "kin_seated": 8,
+   "household_type": "family_with_children"
+  },
+  "hh_johnson_sanford": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_johnson_seth": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_kennicott_william_h": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_king_byram": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_king_tuthill": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_kinzie_james": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_kinzie_robert_a": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_knapp_b_s": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_knickerbacker_a_v": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_knight_clark": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_lafrombois_joseph": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_lewis_samuel": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_lloyd_alexander": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_ludby_john": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_moore_henry": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_morrison_james_m": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_newberry_walter_loomis": {
+   "size_drawn": 8,
+   "kin_seated": 8,
+   "household_type": "family_with_children"
+  },
+  "hh_noble_john": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_norton_nelson_r": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_ogden_w_b": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_palmer_j_k": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_peacock_elijah": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_pearsons_hiram": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_peck_philip": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_pierce_asahel": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_porter_hibbard": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_rider_eli_a": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_sherman_silas_w": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_sherman_william_george": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_smith_e_kirby": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_smith_matthias": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_smith_william": {
+   "size_drawn": 1,
+   "kin_seated": 1,
+   "household_type": "solitary"
+  },
+  "hh_spring_giles": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_st_cyr_john_mary": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_stow_william_h": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_taylor_augustine": {
+   "size_drawn": 7,
+   "kin_seated": 7,
+   "household_type": "family_with_children"
+  },
+  "hh_taylor_edmund_d": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_taylor_william_h": {
+   "size_drawn": 4,
+   "kin_seated": 4,
+   "household_type": "family_with_children"
+  },
+  "hh_thomas_frederick": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_thompson_lieut_j_l": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_trowbridge_s_g": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_tucker_henry": {
+   "size_drawn": 5,
+   "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_watkins_john": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_wellmaker_john": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_wesencraft_charles": {
+   "size_drawn": 6,
+   "kin_seated": 6,
+   "household_type": "family_with_children"
+  },
+  "hh_whitlock_james": {
+   "size_drawn": 3,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_williams_eli_b": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  }
+ },
+ "measurement": {
+  "the_town_the_book_counts": "present households only",
+  "people_before_this_stage": 456,
+  "people_after_this_stage": 768,
+  "adults_after_this_stage": {
+   "male": 382,
+   "female": 115
+  },
+  "adult_sex_ratio_before": 1414.8,
+  "adult_sex_ratio_after": 332.2,
+  "the_model_s_range": [
+   120.9,
+   150.0
+  ],
+  "inside_the_model_s_range": false,
+  "what_closes_it": "T-1174 draws the 855 women and children the pyramid still lacks; T-1179 converges the layer and re-runs the profile.",
+  "age_pyramid_after": {
+   "10_19": 65,
+   "20_29": 270,
+   "30_39": 158,
+   "40_49": 44,
+   "50_plus": 25,
+   "under_10": 200
+  },
+  "household_size_1840_share": {
+   "1": 0.0742,
+   "2": 0.1495,
+   "3": 0.1912,
+   "4": 0.1761,
+   "5": 0.1645,
+   "6": 0.1101,
+   "7": 0.0857,
+   "8": 0.0487
+  },
+  "household_size_drawn_share": {
+   "1": 0.0638,
+   "2": 0.1596,
+   "3": 0.1596,
+   "4": 0.1383,
+   "5": 0.1702,
+   "6": 0.1596,
+   "7": 0.0957,
+   "8": 0.0532
+  },
+  "largest_share_gap": 0.0495
+ }
+}

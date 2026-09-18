@@ -365,6 +365,13 @@ def known_layer(residents: dict) -> dict:
     Rule 3: only a household whose presence on the scene date is `present` counts
     as known. The `uncertain` ones are the roster's R1 class and are offered, not
     counted — counting them in both places would order one person twice.
+
+    AND A RECONSTRUCTED PERSON IS NOT KNOWN. `known` is what the SOURCES give the town;
+    a reconstructed person is the order being filled, and `filled` is their counter.
+    Counting them here as well would retire their own quota a second time — a bucket
+    that drew its last person would read `filled: n` against `to_reconstruct: 0` and the
+    overfill gate would fire on a stage that obeyed it exactly. T-1171 was the first
+    stage to write a person and the first to meet this; it read zero before that.
     """
     households = residents.get("households", [])
     if not households:
@@ -394,16 +401,17 @@ def known_layer(residents: dict) -> dict:
         if presence != "present":
             continue
         out["households_present"] += 1
-        out["persons_present"] += persons
         grades = hh.get("grades") or {}
+        named = persons - int(grades.get("reconstructed") or 0)
+        out["persons_present"] += named
         out["persons_present_attested"] += int(grades.get("attested") or 0)
         out["persons_present_inferred"] += int(grades.get("inferred") or 0)
         division = hh.get("division")
         if division in out["persons_present_by_division"]:
-            out["persons_present_by_division"][division] += persons
+            out["persons_present_by_division"][division] += named
             out["households_present_by_division"][division] += 1
         else:
-            out["persons_present_unplaced"] += persons
+            out["persons_present_unplaced"] += named
             out["households_present_unplaced"] += 1
         if hh.get("lives_at"):
             out["households_with_a_lives_at"] += 1

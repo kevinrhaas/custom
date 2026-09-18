@@ -194,8 +194,20 @@ def _check_attribute_fill_sex_age() -> int:
     return reconstruct_sex_age.check()
 
 
-STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age}
-STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age}
+def _build_modelled_families() -> int:
+    import reconstruct_modelled_families
+    return reconstruct_modelled_families.build()
+
+
+def _check_modelled_families() -> int:
+    import reconstruct_modelled_families
+    return reconstruct_modelled_families.check()
+
+
+STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
+                  "modelled_families": _build_modelled_families}
+STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
+                  "modelled_families": _check_modelled_families}
 
 
 # --------------------------------------------------------------------------
