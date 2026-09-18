@@ -68,3 +68,17 @@ Fifty-nine tickets, each one run (`S`/`M`), owner-requested, inserted between RE
 SOUTH THROUGH TIME. Sections over fifteen tickets are lettered sub-bands (RESIDENTS A/B/C,
 STRUCTURES A–E) so different agents can take a sub-band; the queue order within a section is the
 dependency order. Build tickets are `needs_bake` and hand a successor on, T-0028's shape.
+
+
+## The bands below the sign-off spend research; they do not start more
+
+**Owner, 2026-09-18.** Bands 3, 4 and 5 read the layer bands 1 and 2 signed off and write
+from it. They may not open a new reading of a source or file a ticket to do so.
+
+A gap found while reconstructing goes into the order book as a quantity and into the
+record's own `basis` and `replaceable_by`, which is what those fields are for. A
+reconstructed value on thin evidence, labelled and replaceable, is the expected output.
+
+The exception is a gap that makes the work impossible rather than uncertain: that is a
+blocker on the ticket it blocks, and becomes a research ticket only if it survives there,
+under the written-reason override the ticket budget requires.
