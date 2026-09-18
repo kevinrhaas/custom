@@ -32,13 +32,13 @@ Reproduce: `python3 tools/report_research_signoff.py --check`.
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 173 |
-| asserted | 824 |
+| asserted | 831 |
 | later_only | 12,568 |
 | outside_chicago | 109 |
 | refused | 8,632 |
-| unresolved | 1,387 |
+| unresolved | 1,380 |
 
-Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 824 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
+Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 831 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
 
 An `unresolved` unit is research read and not yet spent, and it is only legitimate while the ticket it defers to is still going to happen. Read the owners column carefully — it is the most informative table in this report:
 
@@ -50,7 +50,6 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1335 | 168 | open | yes |
 | T-1338 | 128 | open | yes |
 | T-1188 | 12 | open | yes |
-| T-1340 | 7 | open | yes |
 | T-1144 | 6 | split_live | yes |
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | open | yes |

@@ -7,9 +7,10 @@
   "value": "1833-06-19",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v2"
   ],
-  "note": "The day, stated plainly.",
+  "note": "The day, stated plainly. BOTH VOLUMES OF THE COMPILER AGREE WITH THIS DATE AND NEITHER SHARPENS IT. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005) names John Dean Caton first among the arrivals of the spring of 1833; vol. 2, printed page 153 (claim bk_mose2_005) says he \"arrived in 1833\" and brought the first suit begun in any court of record in Cook county, tried in the spring of 1834. THE CARD'S 19 JUNE 1833 IS INSIDE BOTH: a day stated plainly by Andreas, and 19 June is in the spring the list puts him in. So the two readings corroborate at season and year precision and the field keeps Andreas's day. The first suit is an occupation fact and not an arrival one; it is recorded here because it is the same sentence. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "day"
  },
  "party_size_on_arrival": {

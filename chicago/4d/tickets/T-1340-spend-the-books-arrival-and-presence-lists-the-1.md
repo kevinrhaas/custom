@@ -1,7 +1,7 @@
 ---
 id: T-1340
 title: Spend the books' arrival and presence lists: the 1832 and spring-1833 arrival lists, the Baptist fourteen of 1833 and the Episcopal eleven of 1834, each name first ruled against the residents layer by the crosswalk's own join rules
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1317
 opened: 2026-09-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 6:19:21 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35405022216
 ---
 
 Spend the books' arrival and presence lists: the 1832 and spring-1833 arrival lists, the Baptist fourteen of 1833 and the Episcopal eleven of 1834, each name first ruled against the residents layer by the crosswalk's own join rules.

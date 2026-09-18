@@ -1163,7 +1163,7 @@
   {
    "id": "origin_and_arrival",
    "title": "Origin and arrival",
-   "lead": "Every household carries an arrival block and 95.1% of them (1196) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1258 households name an origin and 1258 a reason for coming.",
+   "lead": "Every household carries an arrival block and 94.9% of them (1194) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1258 households name an origin and 1258 a reason for coming.",
    "tables": [
     {
      "title": "The three axes, by tier",
@@ -1183,16 +1183,16 @@
        1258,
        "100.0%",
        11,
-       39,
-       1208,
+       41,
+       1206,
        0
       ],
       [
        "arrival date or bound",
        1258,
        "100.0%",
-       52,
-       1202,
+       51,
+       1203,
        4,
        0
       ],
@@ -1219,13 +1219,18 @@
      "rows": [
       [
        "not_later_than",
-       1196,
-       "95.1%"
+       1194,
+       "94.9%"
       ],
       [
        "year",
        44,
        "3.5%"
+      ],
+      [
+       "season",
+       7,
+       "0.6%"
       ],
       [
        "month",
@@ -1236,11 +1241,6 @@
        "day",
        6,
        "0.5%"
-      ],
-      [
-       "season",
-       5,
-       "0.4%"
       ],
       [
        "either_of_two_days",
@@ -3180,7 +3180,7 @@
       [
        "The Carpenter household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -11765,8 +11765,8 @@
       ],
       [
        "George W. Snow",
-       "New York State",
-       "reconstructed"
+       "Vermont",
+       "inferred"
       ],
       [
        "George Washington Dole",
@@ -13210,8 +13210,8 @@
       ],
       [
        "John S. Wright",
-       "New York State",
-       "reconstructed"
+       "Massachusetts",
+       "inferred"
       ],
       [
        "John Scott",
@@ -13295,8 +13295,8 @@
       ],
       [
        "John Wright",
-       "New York State",
-       "reconstructed"
+       "Massachusetts",
+       "inferred"
       ],
       [
        "John Y. M'Lean",

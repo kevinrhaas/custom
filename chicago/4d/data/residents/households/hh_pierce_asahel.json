@@ -7,9 +7,10 @@
   "value": "1833-10-08",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "The day, from the structure record's reading of Andreas.",
+  "note": "The day, from the structure record's reading of Andreas. THE COMPILER PUTS HIM IN THE WRONG SEASON AND THE FIELD DOES NOT MOVE. Moses and Kirkland vol. 1, printed page 90 (claim bk_mose1_005), names Asahel Pierce among the arrivals of the SPRING of 1833; this field is 8 October 1833 at day precision from Andreas, which is autumn. The two disagree by about five months. The card keeps the day: it is earlier evidence, finer, and attested, against a bare seasonal list in an 1895 compilation that says \"among\" and is a roll of examples. The disagreement is recorded rather than averaged, because a later run reading the same page should find that this project has already looked at it. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "day"
  },
  "party_size_on_arrival": {
