@@ -44,11 +44,8 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
-T-1301 — Spend the 98 corroborated_enrichment research units the remainder ruling hands to T-1160: each sourced fact about a person this town already holds written into the structured field that carries it, or repointed to the attribute-fill ticket whose acceptance owns it
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 #     QUOTA: data/reconstruction/1835_reconstruction_order_book.json (T-1166). Every person
 #     bucket names the ticket that owes it; a filler records its fill there or the gate is red.
@@ -198,3 +195,4 @@ T-1294 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
+
