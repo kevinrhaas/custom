@@ -1,5 +1,5 @@
 ---
-id: T-1320
+id: T-1323
 title: The population profile's lodging test names three functions no building can spell: tavern, inn and coffee_house are not vocabulary terms, so every house of entertainment is classed a dwelling
 state: open
 epic: META

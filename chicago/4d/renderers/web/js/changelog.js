@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nine roofs nobody could see, and the spelling that hid them', kind: 'change', ts: '',
+  { v: 949, title: 'Nine roofs nobody could see, and the spelling that hid them', kind: 'change', ts: '2026-09-18T15:44:24.925Z', date: 'Sep 18, 2026, 10:44 AM CT',
     items: [
       'Every building in this reconstruction carries a line saying what it was for \u2014 a store, a blacksmith\u2019s shop, a two-room frame cottage. That line was free text, and 384 buildings had written it 109 different ways. Three of those ways were the same thing twice: a blacksmith\u2019s shop spelled with an underscore and a blacksmith\u2019s shop spelled with a space, a store-residence with a hyphen and a store_residence without one, two spellings of the cooper and wheelwright\u2019s shop.',
       'That is not a tidiness problem, because four separate rules read that line by matching it exactly. The rule that decides which door gets a painted sign, the one that stands barrels and cases on a merchant\u2019s frontage, the one that sets a hitching post at a street edge, and the crosswalk that turns a building\u2019s trade into a person\u2019s occupation \u2014 a shop spelled the second way was a shop none of them could see. Nine buildings were invisible to all four, silently, with nothing anywhere saying so.',
