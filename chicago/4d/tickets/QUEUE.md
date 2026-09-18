@@ -49,7 +49,6 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1301 — Spend the 98 corroborated_enrichment research units the remainder ruling hands to T-1160: each sourced fact about a person this town already holds written into the structured field that carries it, or repointed to the attribute-fill ticket whose acceptance owns it
-T-1166 — The reconstruction order book: known minus model, per bucket and per division — exactly how many persons, households, businesses and structures of each kind to reconstruct, in the order the bands below will build them, published as a card
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 #     QUOTA: data/reconstruction/1835_reconstruction_order_book.json (T-1166). Every person
 #     bucket names the ticket that owes it; a filler records its fill there or the gate is red.
