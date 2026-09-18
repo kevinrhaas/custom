@@ -237,7 +237,7 @@ The same rule over the gate itself: of **168** tools carrying a `--check`, **162
 | --- | ---: | ---: |
 | `tools/measure_boot_payload.mjs` | T-1156 | yes |
 | `tools/measure_street_widths.py` | — | yes |
-| `tools/mint_letter_list_residents.py` | T-0691 | yes |
+| `tools/mint_letter_list_residents.py` | T-1222 | yes |
 | `tools/rename_household_ids.py` | — | yes |
 | `tools/trace_shoreline.py` | — | yes |
 | `tools/verify_fergus_1839_first_ward.py` | — | yes |
