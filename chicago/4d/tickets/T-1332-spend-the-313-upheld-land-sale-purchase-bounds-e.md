@@ -1,7 +1,7 @@
 ---
 id: T-1332
 title: Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 1 July 1835 by a purchaser the crosswalk joined to a card this town holds, written onto that card as a dated appearance and never as a residence
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1319
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1472
 claimed_by: run 9/18/2026, 2:41:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T20:29:21.865Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35386917968
 ---
 
