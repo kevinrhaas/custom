@@ -55,6 +55,20 @@
   "sources": [
    "andreas_1884_v1"
   ],
+  "last_dated_appearance": {
+   "date": null,
+   "as_read": "1673/1857",
+   "precision": "source_span",
+   "reaches": "1835-07-01",
+   "days_before_scene_date": 0,
+   "leg": "source_span",
+   "person": "harmon_elijah_d",
+   "record": null,
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "NO SIGHTING, SO THE LEG IS A SOURCE'S SPAN. The card holds no dated reading of this person at or before the scene date; the date here is the far end of what a cited source COVERS, which the role's own note calls the source's bound and not the man's. Read from `roles[] (source_span)` as `1673/1857`, which reaches 1835-07-01 — the scene date itself. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE HEAD IS DOCUMENTED TO HAVE LEFT. Andreas: 'In 1834, Dr. Harmon migrated to Texas, and until the time of his death - January 3, 1869 - divided his sojourns between that State and Chicago.' A man who divides his sojourns between Texas and Chicago is in one of them on 1 July 1835 and the source does not say which. Recorded as uncertain, and it must not be silently resolved to 'present' because his sons were here."
  },
  "persons": [

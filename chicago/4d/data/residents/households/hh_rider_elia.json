@@ -46,6 +46,20 @@
    "chicago_democrat_1833_1835",
    "chicago_voter_lists_1833_1835_irad"
   ],
+  "last_dated_appearance": {
+   "date": "1834-10-01",
+   "as_read": "1834-10-01",
+   "precision": "day",
+   "reaches": "1834-10-01",
+   "days_before_scene_date": 273,
+   "leg": "sighting",
+   "person": "rider_elia",
+   "record": "person_e_rider",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "note": "A DATED READING OF THIS PERSON, AND THE LAST ONE THE CORPUS HOLDS. Read from `press_evidence` as `1834-10-01`, which reaches 1834-10-01 — 273 day(s) short of 1835-07-01. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
