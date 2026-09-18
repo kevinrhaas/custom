@@ -107,6 +107,19 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "wilson-wilton",
+     "weighed_against": [
+      "wilton_john_l"
+     ],
+     "for_merge": "S against T is one letter, 'John' is identical, and the middle initial L is printed on one card and absent on the other, which is M3's shape and not a contradiction.",
+     "against_merge": "WILSON IS ONE OF THE MOST POPULATED SURNAMES IN THE CORPUS AND THE TWO BODIES OF EVIDENCE NEVER MEET. 'John Wilson' is the post-office return of 28 January 1834 (#c001) and two separate 1840 census households (229:2 and 239:4) — the census itself holding two John Wilsons, which is the town telling us the name is not unique; 'Wilton, John L.' is the 1835 poll list alone. Wilson is set 314 times in the deposited corpus against Wilton's eight, and the reading index holds 24 Wilson identities. A letter list and a census against a poll roll is D7's 'two instruments that never touch', and no printing sets both spellings. D7."
+    }
    ]
   }
  ],

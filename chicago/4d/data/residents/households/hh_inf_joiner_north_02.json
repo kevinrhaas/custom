@@ -135,6 +135,19 @@
      "claim": null,
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D10",
+     "cluster": "reed-reid",
+     "weighed_against": [
+      "reid_j_chester"
+     ],
+     "for_merge": "Reed and Reid are one surname's two spellings and the leading initial J agrees. The Reed card is an anchor: James W. Reed, joiner, on the 1834 and 1835 polls and in the Democrat of 31 December 1833 and 13 August 1834.",
+     "against_merge": "THE MIDDLE NAMES ARE BOTH PRINTED AND THEY DISAGREE. Every Reed reading sets W or 'James W.'; the Reid card reads 'J. Chester Reid' in the post-office return of 2 July 1834 (#c031). Chester against W is not a spelling, an abbreviation or an absence — it is a different name at the same position — so C9's first condition, that nothing but the one letter stands between the cards, is false and D7, which exists for pairs that fail only C9's demonstration, is not available either. C4's merge over a contradicted middle initial is confined to manuscript lists a copyist mis-set and does not reach a full middle name. The town besides holds reed_s_w, reed_thomas and reed_william. D10."
+    }
    ]
   }
  ],

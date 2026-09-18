@@ -97,7 +97,20 @@
      }
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "teal-teall",
+     "weighed_against": [
+      "teal_william"
+     ],
+     "for_merge": "A terminal l doubled, 'William' and 'Wm.' being the same forename written long and short, and two returns of the same office ten weeks apart. T-0486 found a William Teall of Michigan City arriving in 1834 and licensed to vend merchandise — a real man of the name in the region in the window, which is the strongest external fact either card has.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'William Teal' is on the return of 28 January 1834 (#c001) and 'Wm. Teall' on the return of 1 April 1834 (#c002), the latter read as 'Wm. Teall i 1 Lot Has' — a line the impression damaged. Neither return carries the other spelling; neither card is an anchor; the corpus sets Teal nine times and Teall three, and no setting of either ties to a Chicago household. T-0486's Michigan City man is evidence about a name, not a bridge to this town, and the ticket itself stopped at candidate_identity. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

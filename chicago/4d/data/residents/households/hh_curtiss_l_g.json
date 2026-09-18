@@ -91,6 +91,19 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "curtis-liman-curtiss-l-g",
+     "weighed_against": [
+      "curtis_liman"
+     ],
+     "for_merge": "The initial L agrees with Liman and both cards are Chicago readings of the summer of 1835.",
+     "against_merge": "ONE ISSUE SETS BOTH SPELLINGS IN TWO DIFFERENT COLUMNS, WHICH IS EVIDENCE AGAINST AND NOT FOR. The Democrat of 1 July 1835 prints 'Curtis, Liman' in the post-office return at column 4 and 'L. Curtiss' at column 13 of the same issue. A compositor who set Curtis in one column and Curtiss in another that day was distinguishing two names, not wavering over one; C9 asks for a printing caught setting both spellings FOR ONE MAN and this is a printing caught keeping them apart. L. G. Curtiss is besides set 'L. G. Curtiss' on 22 July and 'Curtiss, L. G.' on 5 August 1835, three settings that never drop the second s, and the town holds curtiss_j beside him. The middle initial G is printed on the Curtiss side and absent on Liman's. D7."
+    }
    ]
   }
  ],

@@ -73,7 +73,31 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R3",
+     "cluster": "barre-barry-j-r",
+     "weighed_against": [
+      "barry_j_r"
+     ],
+     "for_merge": "One letter of surname and the forename initial J on both, and the town's only other Barry readings are these three cards.",
+     "against_merge": "R AND S ARE BOTH PRINTED AND THEY DISAGREE. 'John S. Barre' is the post-office return of 9 July 1834 (#c003); 'Barry, J. R.' is the poll filed 11 August 1834. Neither card is documented beyond a list — no trade, no address, no arrival — so C4's anchor is missing and the contradiction has nothing to be weighed against. This is exactly the `barry-j` cluster's ruling, which refuses J. R. against John S. within the Barry spelling; folding the surname as well cannot rescue it. R3."
+    },
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "barre-barry-john-s",
+     "weighed_against": [
+      "barry_john_s"
+     ],
+     "for_merge": "'John S.' agrees letter for letter including the middle initial, so nothing but the surname's last letters stands between the cards, and both are post-office readings of the same office within ten months.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'John S. Barre' is on the return of 9 July 1834 (chicago_democrat_1834_07_09#c003) and 'John S. Barry' on the return of 20 May 1835 (chicago_democrat_1835_05_20#c013). Neither card is an anchor. BARRY IS A POPULATED SURNAME AT THIS TOWN AND BARRE IS NOT: the town holds barry_j_r, barry_john_s and barry_william, the reading index eight Barry identities, and the deposited corpus sets Barry 59 times against Barre's 14 — of which the Barre hits are the French place name in Moses & Kirkland, not a Chicago family. A surname several men bear is not a slip for one nobody else bears. D6, and the `barry-j` cluster's R3 refusal stands beside it."
+    }
+   ]
   }
  ],
  "touches_removal": false,

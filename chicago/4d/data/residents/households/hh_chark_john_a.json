@@ -73,7 +73,31 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R5",
+     "cluster": "chark-clark-john-a",
+     "weighed_against": [
+      "clark_john_a"
+     ],
+     "for_merge": "'Chark' is one letter from Clark, h for l, and the forename 'John A.' agrees letter for letter with John A. Clark, in the Democrat of 11 February 1834 (#c001) — the same middle initial A. The stem 'Chark' is set nowhere in the deposited corpus and the town holds no other bearer of it: on the face of it a card minted off a garble.",
+     "against_merge": "A GARBLED READING CANNOT BE TESTED, AND THERE ARE TWO CLARKS IT COULD BE. R5 is the standing refusal and T-0695 is the ticket that reads these cards at the image; T-1027 files `chark_john_a` under the garbles in its own words — 'a fold here would repair a wreck by guessing at it'. The guess is not even single-valued: the town holds clark_john_a and clark_john_k, and the `clark-john` cluster has already ruled those two DISTINCT under D1 on their contradicting middle initials, so a fold of 'John A. Chark' would have to choose which of two ruled-apart men to join. Clark is set 2,655 times in the corpus and the reading index holds 37 Clark identities. R5, and the reading belongs to T-0695."
+    },
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R5",
+     "cluster": "chark-clark-john-k",
+     "weighed_against": [
+      "clark_john_k"
+     ],
+     "for_merge": "'Chark' is one letter from Clark, h for l, and the forename 'John A.' agrees letter for letter with John K. Clark, in the American of 11 July 1835 (#c007). The stem 'Chark' is set nowhere in the deposited corpus and the town holds no other bearer of it: on the face of it a card minted off a garble.",
+     "against_merge": "A GARBLED READING CANNOT BE TESTED, AND THERE ARE TWO CLARKS IT COULD BE. R5 is the standing refusal and T-0695 is the ticket that reads these cards at the image; T-1027 files `chark_john_a` under the garbles in its own words — 'a fold here would repair a wreck by guessing at it'. The guess is not even single-valued: the town holds clark_john_a and clark_john_k, and the `clark-john` cluster has already ruled those two DISTINCT under D1 on their contradicting middle initials, so a fold of 'John A. Chark' would have to choose which of two ruled-apart men to join. Clark is set 2,655 times in the corpus and the reading index holds 37 Clark identities. R5, and the reading belongs to T-0695."
+    }
+   ]
   }
  ],
  "touches_removal": false,

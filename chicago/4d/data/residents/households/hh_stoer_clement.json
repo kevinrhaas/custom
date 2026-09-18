@@ -74,7 +74,20 @@
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R5",
+     "cluster": "stoel-stoer",
+     "weighed_against": [
+      "stoel_c_ii"
+     ],
+     "for_merge": "One terminal letter, l against r, on a five-letter surname neither of which is populated anywhere — 'Stoel' is set seven times in the corpus and 'Stoer' twice, all of them these two records and their echoes — and the initial C agrees with Clement.",
+     "against_merge": "THE READING IS 'STOEL, C. II.' AND 'II' IS NOT A NAME. The middle token is type damage, almost certainly an H, and T-1027 files this card among the garbles R5 refuses. Until the image is read the pair cannot be compared at the middle position at all, and the two bodies of evidence do not touch meanwhile: 'Stoel, C. II.' is the post-office return of 1 July 1835 (#c006) and 'Stoer, Clement' the 1833 tax list, two years and two instruments apart. R5, and T-0695 owns the image."
+    }
+   ]
   }
  ],
  "touches_removal": false,

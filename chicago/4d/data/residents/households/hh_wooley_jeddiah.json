@@ -92,7 +92,20 @@
      }
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D8",
+     "cluster": "wooley-jeddiah-jedidiah",
+     "weighed_against": [
+      "wooley_jedidiah"
+     ],
+     "for_merge": "Jeddiah and Jedidiah are one biblical forename written short and long, the surname agrees letter for letter, the town holds only these two Wooleys, and T-0481 found the La Salle land-sale records listing a Jeddiah Wooley repeatedly on 16-17 June 1835 — a fortnight before the scene date.",
+     "against_merge": "THE TAX ENTRY IS A JUNIOR, SO THE TOWN HELD TWO MEN OF THE LONGER NAME. The 1833 tax list reads 'Wooley, Jedidiah Jr.', and a roll that troubles to write Jr. is a roll telling us a senior of the same name existed; the letter-list 'Jeddiah Wooley' of 2 July 1834 (#c034) could be either of them, and a fold would have to choose. No printing sets both spellings: a tax roll against a post-office return, which never touch. Neither card is an anchor — no trade, no street, no household on either. D8, and the Jr. is the fact that keeps it there."
+    }
+   ]
   }
  ],
  "touches_removal": false,

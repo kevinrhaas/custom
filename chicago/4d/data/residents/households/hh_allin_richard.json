@@ -77,7 +77,20 @@
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "evidence_against": "Surname only, in Newberry index — each a committed refusal on the forename.",
     "summary": "No independent bridge; see the ledger."
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "allan-allin",
+     "weighed_against": [
+      "allan_richard_b"
+     ],
+     "for_merge": "One letter inside a five-letter surname with 'Richard' on both, and the two returns are six weeks apart in the scene year itself — the second of them closed on 1 July 1835, the scene date. Neither name is in the corpus under any other forename: 'Allin' is set twice in the whole deposited corpus and both settings are these letter-list impressions.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'Richard B. Allan' stands on the return of 20 May 1835 (chicago_democrat_1835_05_20#c013); 'Allin, Richard' on the return of 1 July 1835 (chicago_democrat_1835_07_01#c004). No return carries both spellings, neither card is an anchor — no trade, no dwelling, no corroborated research on either, both closed no_corroboration by T-0485 and T-0508 — and the middle initial B is printed on one and absent on the other. The office closed two returns six weeks apart and was never asked to set the two spellings together: C9's demonstration is absent and D5's roll is absent with it. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -74,7 +74,21 @@
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "undecided",
+     "rule": "U2",
+     "cluster": "mcgregor-mgregor",
+     "weighed_against": [
+      "mgregor_a"
+     ],
+     "referred_to": "owner",
+     "for_merge": "THE TWO SURNAMES ARE ONE WORD. The Democrat of 2 July 1834 (#c009) sets \"A. M'Gregor\" — with the Scots apostrophe — and this project's own normaliser rendered it `mgregor`, which is why a one-letter test sees a difference at all. M'Gregor and McGregor are the same surname, so what actually stands between the cards is the initial A against the forename 'Ashor' of 'McGregor, Ashor' on the poll filed 11 August 1834. The town holds no other McGregor of any spelling, so the initial has exactly one candidate — which is C2's shape, an initial onto its one full forename, and C2 is a MERGE rule.",
+     "against_merge": "AND THE QUESTION IS NOT THIS PAIR'S. The obstacle is a normalisation: the two card ids differ because `M'Gregor` was folded to `mgregor` rather than to `mcgregor`, and deciding that is a change to how the project renders Scots and Irish particles across the whole layer — the same class of decision C7 settled for Dutch and French particles, and not one to settle from inside one pair of cards. Ruling MERGE here would land a fold whose real warrant is a rule nobody has written; ruling DISTINCT would assert two McGregors the corpus does not show. So both readings are kept and the pair is recorded AMBIGUOUS under U2 — the finished answer T-1291's owner asked for, not a deferral. NO TICKET IS FILED, by that ticket's fourth acceptance clause."
+    }
+   ]
   }
  ],
  "touches_removal": false,
