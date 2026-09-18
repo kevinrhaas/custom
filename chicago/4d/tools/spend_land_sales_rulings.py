@@ -126,15 +126,25 @@ RULES = {
     },
     "the_cook_residence_names_a_withheld_person": {
         "disposition": "unresolved",
-        "ticket": "T-1159",
+        # T-1159 BUILT THE ROSTER, SO THE HAND-OFF MOVES ON. These rows were handed to
+        # T-1159 to be CARRIED, and they are: each one is a row of
+        # data/reconstruction/1835_borderline_roster.json in class
+        # `R2_in_window_single_source`. Carrying is not spending — a roster offers a name
+        # and mints nobody — so the unit is still unresolved, and it now names the ticket
+        # that will actually spend it: T-1172, which re-admits the roster's single-source
+        # names as reconstructed residents under their own read names. This file's own
+        # doc calls for exactly this: a hand-off names the OPEN ticket whose field owns
+        # the finding, and that ticket closing turns the file red.
+        "ticket": "T-1172",
         "statement": (
             "The tract was entered on or before 1 July 1835, the register's Residence "
             "column reads COOK, and no upheld crosswalk join puts this purchaser on a card "
             "this town holds — either the identity was weighed and refused, or the layer has "
             "never seen the name. A county is not a town and this row mints nobody, but it "
             "is a dated document stating that a named person lived in Cook County inside "
-            "the scene window. That is exactly the read-and-withheld name T-1159's "
-            "borderline roster exists to carry, with its source and its re-admission class."),
+            "the scene window. T-1159's borderline roster carries exactly this name, with "
+            "its source and its re-admission class; T-1172 is the ticket that re-admits "
+            "it, so the finding is handed there and asserted nowhere."),
     },
     "a_sale_is_never_a_residence": {
         "disposition": "refused",
