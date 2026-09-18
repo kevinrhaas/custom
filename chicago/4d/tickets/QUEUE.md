@@ -46,7 +46,6 @@ T-1298 — Rule the 1,094 remaining units: the resident-pass reserved people, th
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-T-1290 — Close the 1840 census reading to the standard already set, and record the residue as an accepted gap rather than nine more leaf tickets
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
