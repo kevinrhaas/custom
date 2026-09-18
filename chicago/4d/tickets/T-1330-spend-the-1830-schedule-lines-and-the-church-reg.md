@@ -1,7 +1,7 @@
 ---
 id: T-1330
 title: Spend the 1830 schedule lines and the church register sponsorships onto the cards they name: a dated bound where the identification already stands, and a written refusal under a named rule where it does not
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1329
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1467
 claimed_by: run 9/18/2026, 12:58:42 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T19:36:02.593Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35376396531
 ---
 
