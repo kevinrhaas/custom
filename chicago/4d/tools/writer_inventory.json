@@ -14,39 +14,39 @@
    "finding": "Does NOT reproduce: `--write` rewrote 1 committed file(s) on a tree the gate called clean."
   },
   "adopt_street_faces.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "apply_census_1840_bridges.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 2s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "associations.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "audit_scene_window_trades.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "audit_wright_watercourses.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "back_project_addresses.py": {
    "placement": "manifest",
@@ -67,25 +67,25 @@
    "finding": "Cannot rebuild: --build raises on a clean tree (traceback, exit 1)."
   },
   "build_order_book_1835.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "build_survey_tracts.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 15s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "carry_kinzie_west.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "carry_stage_blocks.py": {
    "placement": "not_derivable",
@@ -94,11 +94,11 @@
    "finding": "Cannot rebuild: declares only --check and --self-test; the blunt pattern matched `--build` in a MESSAGE about what a later build would do."
   },
   "census_1840_composition.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "census_1840_fingerprint.py": {
    "placement": "not_derivable",
@@ -125,11 +125,11 @@
    "finding": "Cannot rebuild: run bare it exits 2 (usage) — a checker."
   },
   "compare_norris_1844_readings.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 2s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "compile_agencies.py": {
    "placement": "manifest",
@@ -138,18 +138,18 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "compile_businesses.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "compile_gazetteer.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "compile_liberties.py": {
    "placement": "manifest",
@@ -170,18 +170,18 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "concord_letter_list_1834_01_01.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "concord_letter_list_1834_04_01.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "consolidate_resident_evidence.py": {
    "placement": "manifest",
@@ -256,18 +256,18 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "derive_hay_limits.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "derive_presence_evidence_leg.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces, write-if-changed: wrote nothing on a clean tree, so it was PERTURBED — perturbed one card's leg; --check caught it, --write restored it, tree clean.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "derive_resident_roles.py": {
    "placement": "manifest",
@@ -276,11 +276,11 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "derive_shore_1812.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "derive_timber_belt.py": {
    "placement": "not_derivable",
@@ -289,11 +289,11 @@
    "finding": "Does NOT reproduce: `--write` rewrote 1 committed file(s) on a tree the gate called clean."
   },
   "exhaust_tax_1833.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "export_borderline_roster.py": {
    "placement": "manifest",
@@ -308,67 +308,67 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "export_resident_research_package.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--index",
    "measured": "2026-09-18",
    "finding": "Reproduces, write-if-changed: wrote nothing on a clean tree, so it was PERTURBED — its --build takes a cohort; --index maintains the committed index and reproduces.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "fergus_1839_street_faces.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_block_infill.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 10s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_business_signboards.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_dooryard_pickets.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_dooryard_plantings.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 15s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_fort_apron.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_fort_trees.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_frontage_works.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 5s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_inferred_households.py": {
    "placement": "not_derivable",
@@ -377,11 +377,11 @@
    "finding": "Cannot rebuild: run bare it exits 2 (usage); its build needs arguments this audit did not supply."
   },
   "generate_inferred_infill.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_inferred_names.py": {
    "placement": "not_derivable",
@@ -390,67 +390,67 @@
    "finding": "Does NOT reproduce: `(bare)` rewrote 2 committed file(s) on a tree the gate called clean."
   },
   "generate_lot_building_material.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_lot_line_fences.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_north_infill.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_planted_rows.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_plat_lots.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_river_wharves.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_school_section_grid.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_west_infill.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "generate_yard_goods.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 22s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "lift_letter_list_1834_unread.py": {
    "placement": "not_a_writer",
@@ -495,11 +495,11 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "measure_north_branch_banks.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces, write-if-changed: wrote nothing on a clean tree, so it was PERTURBED — perturbed the committed baseline; --check caught it, --write restored it, tree clean.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "measure_placement_silence.py": {
    "placement": "not_a_writer",
@@ -532,18 +532,18 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "mint_documented_residents.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "mint_placed_residents.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "model_town_1835.py": {
    "placement": "manifest",
@@ -552,25 +552,25 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "newspaper_corpus.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 2s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "normalise_structure_function.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces, write-if-changed: wrote nothing on a clean tree, so it was PERTURBED — perturbed `blacksmith_shop` to `blacksmith shop`; --check caught it, --build restored it.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "old_settlers.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "profile_population_1835.py": {
    "placement": "manifest",
@@ -591,25 +591,25 @@
    "finding": "Does NOT reproduce: `--build` rewrote 1 committed file(s) on a tree the gate called clean."
   },
   "read_census_1830.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_1839.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_1839_election.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_1839_lots.py": {
    "placement": "manifest",
@@ -618,25 +618,25 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "read_fergus_1839_register.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_1843.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_1843_civic.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_fergus_obits.py": {
    "placement": "manifest",
@@ -651,32 +651,32 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "read_kinzie_addition_numerals.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_kinzie_addition_streets.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 2s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_kinzie_addition_water_lots.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 3s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_kinzie_block_name.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 2s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_land_sales.py": {
    "placement": "manifest",
@@ -697,11 +697,11 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "read_michigan_st_tract.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 3s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_newberry_index.py": {
    "placement": "not_derivable",
@@ -710,25 +710,25 @@
    "finding": "Needs OCR shards from outside the repository. Invoked bare it prints its usage and exits 0, writing nothing."
   },
   "read_norris_1844.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_norris_1844_advertiser.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: run bare on a clean tree in 1s it wrote its output and changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_north_branch_bank_wash.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 16s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_north_division_numerals.py": {
    "placement": "not_a_writer",
@@ -737,18 +737,18 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "read_north_side_slough_na.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_school_section_numerals.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_second_presbyterian.py": {
    "placement": "manifest",
@@ -763,46 +763,46 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "read_st_marys_baptisms.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_voter_lists.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_wabansia_block_numerals.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_wabansia_streets.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_wabansia_water_lots.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_washington_madison_numerals.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_west_division_lots.py": {
    "placement": "not_a_writer",
@@ -811,11 +811,11 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "read_west_division_numerals.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "read_wolf_point_numerals.py": {
    "placement": "not_a_writer",
@@ -824,11 +824,11 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "read_wright_legend_swatches.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 16s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "rebuild_resident_index.py": {
    "placement": "manifest",
@@ -837,11 +837,11 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "reconcile_665.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "reconstruct_residents_1835.py": {
    "placement": "manifest",
@@ -862,11 +862,11 @@
    "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
   },
   "register_letter_list_suspicions.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "repair_ocr_turkish_alphabet.py": {
    "placement": "not_a_writer",
@@ -881,11 +881,11 @@
    "finding": "Does NOT reproduce: `(bare)` rewrote 5 committed file(s) on a tree the gate called clean."
   },
   "report_census_1840_residue.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "report_convergence_coverage.py": {
    "placement": "manifest",
@@ -894,11 +894,11 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "report_letter_list_collisions.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "report_research_closing_audit.py": {
    "placement": "manifest",
@@ -913,25 +913,25 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "research_domains.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "resolve_land_tracts.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 6s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "resolve_place_vocabulary.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "rule_fuzzy_card_pairs.py": {
    "placement": "not_a_writer",
@@ -946,60 +946,60 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "school_section_sale.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "seat_kinzie_addition_streets.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "seat_michigan_st_tract.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "seat_wabansia_streets.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--write",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "sort_land_sales_onto_tracts.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_census_1840_heads.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_civic_roll_bounds.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_civic_voter_lists.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_directories.py": {
    "placement": "manifest",
@@ -1020,11 +1020,11 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "spend_fergus_1839_lot_sale.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_ladder_rungs.py": {
    "placement": "manifest",
@@ -1037,7 +1037,7 @@
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "pending_reason": "T-1332 landed after T-1302 batch 2 placed its layer; placement in the manifest dependency order is that pass's to make, not this one's"
   },
   "spend_land_sales.py": {
    "placement": "manifest",
@@ -1046,11 +1046,11 @@
    "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
   },
   "spend_land_sales_rulings.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "spend_name_on_a_roll_rulings.py": {
    "placement": "manifest",
@@ -1119,25 +1119,25 @@
    "finding": "Cannot rebuild: run bare it exits 1 — needs inputs or arguments not supplied."
   },
   "trace_north_branch.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 14s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "trace_river.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 15s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "trace_south_branch.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "(bare)",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `(bare)` on a clean tree in 11s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "trace_south_branch_rees_1849.py": {
    "placement": "not_derivable",
@@ -1146,18 +1146,18 @@
    "finding": "Cannot rebuild: run bare it exits 1 — needs inputs or arguments not supplied."
   },
   "trade_census_1835.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   },
   "trade_census_spend_1835.py": {
-   "placement": "pending",
+   "placement": "manifest",
    "write_mode": "--build",
    "measured": "2026-09-18",
    "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
-   "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
+   "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
   }
  }
 }

@@ -1,7 +1,7 @@
 ---
 id: T-1144
 title: Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T19:57:45.318Z
 claimed_run: null
 ---
 
@@ -237,3 +237,95 @@ and 9 measure clean on this branch (no Mary Durbin, John Simmons, John Vincent o
 Logdson; `audit_scene_window_trades.py --check` reports 0 standing rows; all 820 uncertain
 households carry their `last_dated_appearance` leg), but they are left to the closing pass
 to state as deltas rather than claimed closed from a spot reading.
+
+
+## ACCEPTANCE 6'S REDIRECT LEG IS DONE, AND THE TICKET STAYS OPEN (2026-09-18, third pass)
+
+Acceptance 6 asks the closing pass to *name every retired id's redirect*. The table that
+does the naming — `data/residents/index.json`'s `merged` — turned out to be the one list
+in the manifest that nothing re-derived, and it had drifted in both directions. A report
+written over it would have reported the drift as fact, so the table is derived first.
+
+`tools/rebuild_resident_index.py` now derives `merged` and `counts.merged_away` from the
+`merged_into` block of each record under `data/residents/merged/`, exactly as T-0715 put
+`households` and `counts` on the cards. The existing gate step re-derives it; the existing
+self-test proves each new refusal fires.
+
+**The two drifts it found on `dev`, both repaired by re-derivation and neither by hand:**
+
+1. **`hh_vanderbogart_h` had a record and no row.** Folded onto `hh_vanderbogart_henry`
+   under T-0842 (rule C7, the particle rule — Vanderbogart against Vandenbogart), and left
+   out of the table, so the id resolved to nothing. Its own note says "data/residents/
+   index.json's `merged` table redirects the id", which is the failure sitting inside the
+   record that promised it could not happen. 65 redirects become 66.
+2. **`hh_blanchard_gantry` was carried under `C7`, and its record says `C8`.** The record
+   is right and the table was stale. T-0993 minted C8 *for this fold* — "A MIDDLE NAME IN
+   FULL, STANDING ALONE, WHERE A SOURCE PRINTS THE SAME MAN BOTH WAYS", C6's shape with the
+   initial replaced by a word — and `card_merge_rulings.json` carries `"rule": "C8"` on the
+   ruling itself and calls it "the `blanchard` cluster's C8 merge" where it rules the
+   Blanshards distinct. C7 today is the compound-surname rule, a different argument about a
+   different kind of name, so the table sent a reader to reasoning that was not this fold's.
+
+**A TALLY THAT RE-DERIVES CAN STILL BE A DEAD END,** so the gate asks a second question:
+does each redirect ARRIVE? `redirect_faults()` refuses a `merged_into_household` that is no
+household card, a `merged_into_person` in no card, a redirect pointing at another retired
+card, a retired id that is also a live one, and a row missing any of its fields. Measured
+on this branch: all 66 arrive, no chains, no id both retired and live. The refusal runs in
+`--write` as well as `--check`, because writing a dead end publishes it.
+
+**What was deliberately NOT touched.** Two prose fields in `card_merge_rulings.json` still
+say "C7" for the Blanchard fold — the ruling's `for:` opens "C7, AND THE TOWN'S OWN
+DIRECTORY PRINTS THE NAME WHOLE", and the `also_ruled_on` note says "folds onto
+`blanchard_f_gantry` under C7". They are the ticket's own words written while the letter was
+being minted, the structured `rule` field beside them already says C8, and editing an
+authored reasoning field to tidy a letter is the kind of retroactive smoothing this project
+refuses. They are named here instead, which is where a reader who follows the citation will
+now land.
+
+**Why the ticket is still open.** Acceptance 6's other half — the closing rebuild with the
+exact household/person/grade deltas — is the closing pass, and acceptance 1's letter-list
+leg is still T-1222's 798-file drift behind T-0691/T-0660, unchanged and not made worse
+here. `rebuild_resident_index.py --check`, `town_census.py --check` and
+`export_resident_audit.py --check` all re-derive on this branch (1,258 households, 1,288
+people, 371 buildings standing of 668, 1,288 audit rows), so the layers acceptance 6 names
+are fixed points today; what remains is the report that states their deltas, and it wants
+the letter-list leg under it first.
+
+`claimed_by` is cleared with this: nobody holds this ticket.
+
+
+## AND NOW IT IS SPLIT, AFTER THE SECTION ABOVE (2026-09-18)
+
+The section above was written by the run that closed acceptance 6's redirect leg, and it
+ends "the ticket stays open". That was right when it was written. This one supersedes it:
+**T-1144 is split, not open**, and the two things it says are left are exactly the two
+children.
+
+Seven passes have closed acceptances 4, 7, 8, 9 and acceptance 6's redirect leg, each on
+its own PR. What is left does not fit one more run, and it is not one question:
+
+**T-1333 — the closing convergence rebuild.** Acceptance 6's other half, in the words the
+section above uses for it: "the closing rebuild with the exact household/person/grade
+deltas". Acceptances 3, 5 and 9 measure clean today but were deliberately left "to the
+closing pass to state as deltas rather than claimed closed from a spot reading" (the
+2026-09-18 second pass, above), so they are banked here and stated by the same rebuild.
+
+**T-1334 — the letter-list mint's drift and the one-letter-apart identity rule.**
+Acceptance 1, and the last slot of acceptance 2. The section above names the blocker
+itself — "acceptance 1's letter-list leg is still T-1222's 798-file drift behind
+T-0691/T-0660" — and that drift is read by T-1222, not by this layer's closing pass.
+
+**WHY THE SPLIT HAPPENS NOW RATHER THAN AT THE END.** One research unit defers to this
+ticket by id: `identity_open_one_letter_apart` in `data/research/spend_rulings.json`, whose
+statement is "the convergence ticket owns mint drift and false residents". Under the T-1237
+rule a unit cannot defer to spent work, and a split parent whose children have all closed
+IS spent work — so had T-1144 been split on the day its last child landed, that unit would
+have been stranded in the same breath. It is repointed to **T-1334** with this, which is
+the child that actually owns mint drift.
+
+The line is left `unresolved` and **open**, not `blocked`: `blocked` is not in the ticket
+system's `WORKABLE` set, and a unit whose owner is unworkable is a strand wearing a
+different word.
+
+`claimed_by` is cleared: nobody holds this ticket, and nobody should — the children are
+where the work is.
