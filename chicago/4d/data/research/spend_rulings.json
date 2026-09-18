@@ -36,8 +36,8 @@
     },
     "identity_open_one_letter_apart": {
       "disposition": "unresolved",
-      "ticket": "T-1144",
-      "statement": "The read name and a name in the residents layer differ by one letter, and this domain's crosswalk may only join them through a rule naming both spellings verbatim. The convergence ticket owns mint drift and false residents; a pass that closed this by eye would be manufacturing the identity it claims to find."
+      "ticket": "T-1334",
+      "statement": "The read name and a name in the residents layer differ by one letter, and this domain's crosswalk may only join them through a rule naming both spellings verbatim. T-1144 SPLIT ON 2026-09-18 and a split parent is not a place a unit may wait: this is its child T-1334, which holds acceptance 1 and the last slot of acceptance 2 — one question, read by T-1222. The convergence ticket owns mint drift and false residents; a pass that closed this by eye would be manufacturing the identity it claims to find."
     },
     "named_as_a_visitor_not_a_resident": {
       "disposition": "refused",

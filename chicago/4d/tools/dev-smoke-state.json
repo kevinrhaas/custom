@@ -2101,6 +2101,231 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 88,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the invented-name programme left nothing behind on this layer — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04, name_basis present: false",
+        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
+      ],
+      "wallSeconds": 57,
+      "takenAt": "2026-09-18T19:35:18.473Z",
+      "ref": "HEAD",
+      "commit": "a2f4e043e250",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:66eb003414d104cd",
+      "treeDirty": false,
+      "changelogHash": "sha256:8d11c6c8ea73ca43",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          2.1,
+          1.3
+        ]
+      },
+      "source": "/tmp/smoke_dev_m3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 114,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 332,
+      "takenAt": "2026-09-18T19:38:00.183Z",
+      "ref": "steward/t-1323-lodging-vocabulary",
+      "commit": "e256910ab042",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:008a7f6b406f81c1",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7b992b065c1819d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d_13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 73,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 267,
+      "takenAt": "2026-09-18T19:38:00.106Z",
+      "ref": "steward/t-1323-lodging-vocabulary",
+      "commit": "e256910ab042",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:008a7f6b406f81c1",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7b992b065c1819d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d_12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 177,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 309,
+      "takenAt": "2026-09-18T19:38:00.022Z",
+      "ref": "steward/t-1323-lodging-vocabulary",
+      "commit": "e256910ab042",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:008a7f6b406f81c1",
+      "treeDirty": false,
+      "changelogHash": "sha256:a7b992b065c1819d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_m_1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 177,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 420,
+      "takenAt": "2026-09-18T18:16:29.007Z",
+      "ref": "steward/t-1319-land-sale-enrichment-units",
+      "commit": "2de50beba211",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:fa16f6d086bab985",
+      "treeDirty": false,
+      "changelogHash": "sha256:0c1c03662468771b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          4,
+          3.1
+        ]
+      },
+      "source": "/tmp/smoke-m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 114,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 467,
+      "takenAt": "2026-09-18T18:09:03.825Z",
+      "ref": "steward/t-1319-land-sale-enrichment-units",
+      "commit": "649e30b1e526",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:fa16f6d086bab985",
+      "treeDirty": false,
+      "changelogHash": "sha256:0c1c03662468771b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.3,
+          3.8,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke-d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 88,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the invented-name programme left nothing behind on this layer — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04, name_basis present: false",
+        "desktop 1280x800: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
+      ],
+      "wallSeconds": 187,
+      "takenAt": "2026-09-18T18:00:54.751Z",
+      "ref": "steward/t-1319-land-sale-enrichment-units",
+      "commit": "649e30b1e526",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:fa16f6d086bab985",
+      "treeDirty": false,
+      "changelogHash": "sha256:0c1c03662468771b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.2,
+          1.9,
+          1.2
+        ]
+      },
+      "source": "/tmp/smoke-d3.log"
     }
   ]
 }
