@@ -1,7 +1,7 @@
 ---
 id: T-1339
 title: A step that mutates the working tree cannot be caught by a convention: hold what every gate step WRITES as a measurement, and refuse an unmeasured one
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1479
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T23:15:38.757Z
 claimed_run: null
 ---
 
