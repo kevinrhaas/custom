@@ -162,7 +162,8 @@
      "sources": [
       "st_marys_baptismal_register_1833_1835"
      ],
-     "identity_rule": "The register writes \"Robert Allen Kinzie\" — as 'Mr Robert Kinzie' in the body and 'Robt A. Kinzie' in his own signature — and the residents layer writes \"Robert Allen Kinzie\". The AUTOGRAPH is the merge: a signature is the strongest identification a manuscript can offer, and it agrees with a resident record that has him at Chicago as a merchant through 1834.",
+     "identity_rule": "data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Robert Allen Kinzie' into the residents layer's 'Robert Allen Kinzie' under a written rule naming both spellings verbatim; the rule is read there and is not copied here.",
+     "identity_rule_source": "data/research/church/st_marys_baptisms_crosswalk.json — merges[] into 'Robert Allen Kinzie'",
      "note": "A BOUND ON PRESENCE AT CHICAGO, AND NOTHING FURTHER. The entry is dated 1834-12-22 at Chicago, Cook County, Illinois and this person stood at the font as godfather, so the register places a body in the town no later than 1834-12-22. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The entry is read scan_verified off the page image at `documented` confidence. What no source states is that the sponsor the register names is the person on this card: data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Robert Allen Kinzie' into the residents layer's 'Robert Allen Kinzie' under a written rule, and a bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],

@@ -182,7 +182,8 @@
      "sources": [
       "st_marys_baptismal_register_1833_1835"
      ],
-     "identity_rule": "The register writes \"Mark Beaubien\" and the residents layer writes \"Mark Beaubien\": forename and surname agree exactly. Three further agreements, from sources that did not copy each other: he is at Chicago on 22 May 1833 and again in August 1833 in the register, and the resident record has him keeping the Sauganash and holding the incorporation election at his house on 10 August 1833; his wife is Monique Nadeau in the register and the resident record documents his marriage; and he SIGNS the register in his own hand in 1833 entry 13.",
+     "identity_rule": "data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Mark Beaubien' into the residents layer's 'Mark Beaubien' under a written rule naming both spellings verbatim; the rule is read there and is not copied here.",
+     "identity_rule_source": "data/research/church/st_marys_baptisms_crosswalk.json — merges[] into 'Mark Beaubien'",
      "note": "A BOUND ON PRESENCE AT CHICAGO, AND NOTHING FURTHER. The entry is dated 1833-05-22 at Chicago, Cook County, Illinois and this person stood at the font as godfather, so the register places a body in the town no later than 1833-05-22. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The entry is read scan_verified off the page image at `documented` confidence. What no source states is that the sponsor the register names is the person on this card: data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Mark Beaubien' into the residents layer's 'Mark Beaubien' under a written rule, and a bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -204,7 +205,8 @@
      "sources": [
       "st_marys_baptismal_register_1833_1835"
      ],
-     "identity_rule": "The register writes \"Mark Beaubien\" and the residents layer writes \"Mark Beaubien\": forename and surname agree exactly. Three further agreements, from sources that did not copy each other: he is at Chicago on 22 May 1833 and again in August 1833 in the register, and the resident record has him keeping the Sauganash and holding the incorporation election at his house on 10 August 1833; his wife is Monique Nadeau in the register and the resident record documents his marriage; and he SIGNS the register in his own hand in 1833 entry 13.",
+     "identity_rule": "data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Mark Beaubien' into the residents layer's 'Mark Beaubien' under a written rule naming both spellings verbatim; the rule is read there and is not copied here.",
+     "identity_rule_source": "data/research/church/st_marys_baptisms_crosswalk.json — merges[] into 'Mark Beaubien'",
      "note": "A BOUND ON PRESENCE AT CHICAGO, AND NOTHING FURTHER. The entry is dated 1833-08 at Chicago, Cook County, Illinois and this person stood at the font as godfather, so the register places a body in the town no later than 1833-08-31. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The entry is read scan_verified off the page image at `documented` confidence. What no source states is that the sponsor the register names is the person on this card: data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Mark Beaubien' into the residents layer's 'Mark Beaubien' under a written rule, and a bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],

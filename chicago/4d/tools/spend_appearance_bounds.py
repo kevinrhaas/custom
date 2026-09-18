@@ -57,7 +57,21 @@ THE FOUR RULES THAT KEEP A ROW FROM SAYING MORE THAN IT CAN.
      EARLIER source corroborates and dates and never promotes, and a LATER one does not
      promote either, so `covers_scene_date` is `false` on all 27 rows.
 
-  4. AND THE LADDER CUTS BOTH WAYS, WHICH THIS CORPUS IS THE FIRST TO NEED. Three of the
+  4. A REGISTER ROW CITES ITS MERGE RULE AND DOES NOT TRANSCRIBE IT, which is the one
+     place this pass departs from T-1326 and it was measured rather than chosen. The voter
+     crosswalk's rules are machine-written and uniform — "forenames agree initial for
+     initial" — so carrying one verbatim onto a card carries a name agreement and nothing
+     else. St Mary's merges are hand-written essays that corroborate the identification
+     from OTHER evidence, and three of the nine name a relative: "his wife is Monique
+     Nadeau in the register and the resident record documents his marriage". Copied onto
+     the card, those sentences enter the residents corpus as stated kinship, and
+     `tools/survey_stated_kin.py` read them exactly that way — three unruled kin
+     statements appeared in the gate, about Chandler's daughter and Juneau's father, off a
+     pass that is supposed to write a date. A citation carries the provenance without
+     importing the claims: the row names the crosswalk, the register spelling and the
+     resident name it was merged into, and the rule stays in the file that authored it.
+
+  5. AND THE LADDER CUTS BOTH WAYS, WHICH THIS CORPUS IS THE FIRST TO NEED. Three of the
      thirteen register appearances are dated after 1 July 1835 (20 August, 25 September and
      9 November 1835). A later day cannot bound a presence AT the scene, so those rows
      carry `side_of_scene_date: "later"` and `here_by: null`, and say so. Only an earlier
@@ -308,7 +322,14 @@ def church_rows(by_name: dict) -> list:
                 "covers_scene_date": False,
                 "confidence": CONFIDENCE,
                 "sources": [CHURCH_SOURCE],
-                "identity_rule": merge.get("rule"),
+                "identity_rule": (
+                    "data/research/church/st_marys_baptisms_crosswalk.json merges the "
+                    "register's %r into the residents layer's %r under a written rule "
+                    "naming both spellings verbatim; the rule is read there and is not "
+                    "copied here." % (ruling["name"], merge["into"])),
+                "identity_rule_source": (
+                    "data/research/church/st_marys_baptisms_crosswalk.json — merges[] "
+                    "into %r" % merge["into"]),
                 "note": (
                     "%s THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The entry is read "
                     "scan_verified off the page image at `documented` confidence. What no "
@@ -659,6 +680,9 @@ def self_test() -> int:
        all(len(b["sources"]) == 1 and b["sources"][0] in SOURCE_IDS for b in bounds))
     ok("every bound states the identity rule it rests on",
        all(len(str(b["identity_rule"] or "")) > 40 for b in bounds))
+    ok("a register row cites its merge rule and does not transcribe the crosswalk's prose",
+       all("crosswalk.json merges the register's" in b["identity_rule"]
+           for b in bounds if b["corpus"] == "st_marys_baptisms"))
     ok("nothing is written off St Cyr's pages",
        not any("st_cyr" in str(b["record_id"]) for b in bounds))
     ok("every register row is an attendance role and no kin tie is taken from T-1320",

@@ -51,10 +51,10 @@
     "households_with_a_works_at": 36
   },
   "roster_offered": {
-    "total": 1798,
+    "total": 1795,
     "by_class": {
       "R1_in_window_uncertain": 805,
-      "R2_in_window_single_source": 346,
+      "R2_in_window_single_source": 343,
       "R3_1834_return_or_muster": 30,
       "R4_surname_only_census": 424,
       "R5_later_only_backprojectable": 55,

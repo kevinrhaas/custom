@@ -82,6 +82,54 @@
     "residents/household:origin.written_by_stage": {
       "records": 1235
     },
+    "residents/household:persons[].appearance_bounds[].as_read": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].bound_kind": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].corpus": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].covers_scene_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].date_confidence": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].describes_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].here_by": {
+      "records": 10
+    },
+    "residents/household:persons[].appearance_bounds[].identity_rule": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].identity_rule_source": {
+      "records": 13
+    },
+    "residents/household:persons[].appearance_bounds[].locator": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].precision": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].reaches": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].record_id": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].role": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].side_of_scene_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].source_title": {
+      "records": 27
+    },
     "residents/household:persons[].dated_bounds[].as_read": {
       "records": 292
     },
