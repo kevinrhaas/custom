@@ -3337,6 +3337,22 @@ step "…and each of those rulings is a bound on the card, not only a paragraph"
 selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
   python3 tools/spend_civic_roll_bounds.py --self-test
 
+# T-1330. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
+# the town's press — and only ten of them sat on a card in any form, so an identification
+# had to already stand before a bound could be written. Two did: the resident crosswalk's
+# 14 matched 1830 lines and the baptismal crosswalk's 13 merged register appearances. This
+# pass writes those 27 as `persons[].appearance_bounds[]`; an 1830 row bounds presence in a
+# DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
+# Chicago), and three register appearances are dated after 1 July 1835, so they date an
+# appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
+# registers, and the 128 press units went to T-1331 with the id collision that blocks them.
+step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
+  python3 tools/spend_appearance_bounds.py --check
+
+selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
+  python3 tools/spend_appearance_bounds.py --self-test
+
 # T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
 # Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
 # had matched 101 entries to people this town holds, and the second hop could not even see

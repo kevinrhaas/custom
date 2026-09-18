@@ -400,22 +400,106 @@ RULES = {
         "disposition": "unresolved",
         # T-1318 WAS SPLIT ON 2026-09-18 AND A HAND-OFF NAMES THE PIECE THAT HOLDS THE
         # CORPUS, not the parent. The parent stays `split_live` while a child is open, so
-        # this pointer does not go red today -- it would go red the day T-1329 closed, on
-        # 223 units nobody had touched, which is the failure mode the ledger's own
+        # this pointer does not go red today -- it would go red the day the owning child
+        # closed, on units nobody had touched, which is the failure mode the ledger's own
         # EPIC_PIECES comment records twice (61 units when T-1146 split, 3,384 when T-1236
-        # did). T-1326 took the other child's corpus, the town's own poll and tax rolls,
-        # and asserted it; the register sponsorships and the press notices are T-1329's.
-        "ticket": "T-1329",
+        # did). T-1326 took the first child's corpus, the town's own poll and tax rolls,
+        # and asserted it.
+        # AND T-1329 WAS SPLIT AGAIN ON 2026-09-18, WHICH IS WHY THIS RULE IS NOW THE
+        # PRESS ALONE. That ticket held three corpora and two of them could be answered
+        # off adjudications already made: T-1330 wrote the 14 matched 1830 schedule lines
+        # and the 13 merged St Mary's register appearances onto the cards, as
+        # `persons[].appearance_bounds[]`, and refused the other 83 by name in the four
+        # rules below. The 128 PRESS units could not follow them, and not for want of an
+        # identification: a newspaper claim's ledger id is its bare `c004`, which 55 held
+        # issues each carry, so a bound naming one would close 937 other units of this
+        # corpus as `asserted`. That measurement is T-1331, which owns them and has to
+        # give a claim unit a file-qualified id before it can spend one.
+        "ticket": "T-1331",
         "statement": (
-            "The unit puts a named person at Chicago on a dated day and states nothing "
-            "else about them -- standing sponsor or witness at a register entry, or named "
-            "in a dated notice of the town's print. A dated appearance BOUNDS a presence "
-            "and is never itself a presence, and the earliest dated appearance is the "
-            "bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, "
-            "and T-1329 now. This ruling hands the date on and writes nothing: it "
-            "does not decide that a named party is a resident, that a name is a person "
-            "rather than a firm, or that it is the individual a card of that name already "
-            "holds."),
+            "The unit puts a named person at Chicago on a dated day in the town's PRINT "
+            "and states nothing else about them. A dated appearance BOUNDS a presence and "
+            "is never itself a presence, and the earliest dated appearance is the bound "
+            "the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 "
+            "and T-1329 through their splits, and T-1331 now. This ruling hands the date "
+            "on and writes nothing: it does not decide that a named party is a resident, "
+            "that a name is a person rather than a firm, or that it is the individual a "
+            "card of that name already holds. The register half of this rule is gone, "
+            "spent by T-1330 or refused by the four rules below; what is left here is the "
+            "press, and T-1331 states in its title the id collision that has to be fixed "
+            "before a press claim can name a card at all."),
+    },
+    # ---- T-1330: THE REGISTER APPEARANCES THE CROSSWALKS DID NOT IDENTIFY ------------
+    #
+    # 95 register units reached the rule above as one undifferentiated hand-off, and 13 of
+    # them had an identification standing in
+    # `data/research/church/st_marys_baptisms_crosswalk.json` the whole time. T-1330 wrote
+    # those 13 onto their cards, so they close `asserted` and never reach a register again
+    # (`mine()` drops them, and `research_spend_ledger.ruling_coverage_faults` would fail a
+    # ruling on one).
+    #
+    # The other 82 are the point of these four rules. The ticket's own instruction was
+    # that where an identification CANNOT be made the answer is a refusal in writing and
+    # not a fourth deferral -- and in every one of the 82 cases the refusal has already
+    # been made, by name, in the crosswalk that looked. So each rule below states one
+    # crosswalk outcome and the per-unit note carries that crosswalk's own words. Four
+    # rules and not one, because the four grounds are genuinely different and a single
+    # statement would have to be vague enough to be true of all of them -- the same
+    # argument T-1301 made when it turned one enrichment rule into seven.
+    #
+    # NOTHING HERE MINTS, REGRADES OR REOPENS. A refusal is a complete answer, and each
+    # rule says what would reopen it.
+    "the_register_appearance_names_nobody_this_town_holds": {
+        "disposition": "refused",
+        "statement": (
+            "The crosswalk looked for this adult in the residents layer and found no "
+            "candidate at all -- not a surname, not a variant. 85 of the 111 distinct "
+            "adults St Mary's names in its Chicago entries reach no surname in the town's "
+            "households, and this is one of them. The three readings that stay open are "
+            "the ones the crosswalk itself states: the person had gone by 1835, or was "
+            "never of the town, or is somebody the reconstruction has not found. On all "
+            "three the appearance asserts no 1835 fact, mints nobody and edits no card, "
+            "and what it spends into the town is NOTHING. That is a complete answer and "
+            "not a deferral; the reading stays where it is for any later evidence to "
+            "reach, and a surname arriving in the residents layer is what would reopen "
+            "it."),
+    },
+    "the_register_appearance_identity_was_refused_in_the_crosswalk": {
+        "disposition": "refused",
+        "statement": (
+            "The crosswalk has already refused this row by name: the register shares only "
+            "a surname with the town person or persons it was set beside, or the page "
+            "prints no forename at all to separate them. A surname alone separates nobody "
+            "in a town of families -- this project's standing rule is that a surname-only "
+            "join is always a refusal -- and a refusal written down is not made weaker by "
+            "the ledger carrying it. The refusal was recorded so the next sweep would not "
+            "make the same match again, and it is that record the ledger now reads instead "
+            "of reading the row as work nobody has looked at. A second attribute agreeing "
+            "is what would reopen it."),
+    },
+    "the_register_appearance_identity_is_a_candidate_and_not_a_merge": {
+        "disposition": "refused",
+        "statement": (
+            "The crosswalk declares this row a CANDIDATE and not a match: a surname folds "
+            "equal and the forenames agree initial for initial, which its own rule says is "
+            "a candidate because a merge needs a second attribute to agree as well. A "
+            "candidate is a rival still standing, and a bound written off one would print "
+            "an undecided identity as a decided one -- which is why T-1330 wrote nothing "
+            "off St Cyr's pages, where the crosswalk proposes one merge in 531 entries and "
+            "makes none. The row is refused as a person unit; the candidate stands where it "
+            "is, and a second agreeing attribute is what would reopen it."),
+    },
+    "the_register_reading_is_about_the_town_and_not_a_person": {
+        "disposition": "refused",
+        "statement": (
+            "The crosswalk rules that there is nobody in this reading to crosswalk: it is "
+            "a town finding, or a prose note that BOUNDS the register rather than "
+            "populating it -- who the priest was, how a witness's name was spelled twice. "
+            "It is not refused for being false and it is not out of the window; it is "
+            "refused because there is no person unit in it for a card to receive. The "
+            "content is the register's own chronology, which is where it is already spent. "
+            "A reading naming a person the town holds would not fall here in the first "
+            "place."),
     },
 }
 
@@ -669,8 +753,71 @@ def rule_newspapers(unit: dict, printed: str | None) -> tuple[str, str]:
             f"{where}: a {kind} of {printed} whose entities array is empty. It reads: “{line}”")
 
 
-def rule_church(unit: dict) -> tuple[str, str]:
+# The two committed crosswalks that decide whether a register appearance HAS an
+# identification, and the rule each of their outcomes falls under. A new outcome is a
+# SystemExit and not a guess: `church_identification` raises, the gate goes red, and
+# somebody rules it. Mapping an unseen outcome onto the nearest rule is how a statement
+# stops being true of the units under it.
+CHURCH_CROSSWALKS = (
+    "data/research/church/st_marys_baptisms_crosswalk.json",
+    "data/research/church/st_cyr_crosswalk.json",
+)
+CHURCH_OUTCOME_RULES = {
+    "merged": None,                       # spent on a card by T-1330; see below
+    "no_candidate": "the_register_appearance_names_nobody_this_town_holds",
+    "unmatched": "the_register_appearance_names_nobody_this_town_holds",
+    "refused": "the_register_appearance_identity_was_refused_in_the_crosswalk",
+    "refused_surname_only": "the_register_appearance_identity_was_refused_in_the_crosswalk",
+    "no_forename": "the_register_appearance_identity_was_refused_in_the_crosswalk",
+    "candidate": "the_register_appearance_identity_is_a_candidate_and_not_a_merge",
+    "not_a_person": "the_register_reading_is_about_the_town_and_not_a_person",
+    "ruled_no_town_change": "the_register_reading_is_about_the_town_and_not_a_person",
+}
+
+
+def church_identification(record_id: str, cache: dict) -> dict | None:
+    index = cache.get("church_crosswalk_index")
+    if index is None:
+        index = {}
+        for rel in CHURCH_CROSSWALKS:
+            doc = read_json(ROOT / rel)
+            for entry in (doc.get("rulings") or []) + (doc.get("entries") or []):
+                key = entry.get("record_id") or entry.get("claim_id")
+                if key:
+                    index[key] = dict(entry, crosswalk=rel)
+        cache["church_crosswalk_index"] = index
+    entry = index.get(record_id)
+    if entry is None:
+        return None
+    outcome = str(entry.get("outcome") or "")
+    if outcome not in CHURCH_OUTCOME_RULES:
+        raise SystemExit(
+            f"{record_id}: {entry['crosswalk']} rules it {outcome!r} and this register has "
+            f"no rule for that outcome -- rule it rather than mapping it onto the nearest "
+            f"statement")
+    return entry
+
+
+def church_appearance_rule(row: dict, where: str, seen: str,
+                           entry: dict) -> tuple[str, str]:
+    """What an appearance's own crosswalk already decided about the identity."""
+    rule = CHURCH_OUTCOME_RULES[str(entry.get("outcome"))]
+    told = f"{entry['crosswalk'].rsplit('/', 1)[-1]} rules it {entry.get('outcome')!r}"
+    if rule is None:
+        # SPENT, NOT RULED (T-1330). tools/spend_appearance_bounds.py has written this
+        # appearance onto the card the crosswalk merges it into, so it closes `asserted`
+        # and this register states nothing about it: a ruling on a unit something else
+        # closed reads as work done and is not, and
+        # `research_spend_ledger.ruling_coverage_faults` fails it.
+        return None, (
+            f"{where}: {seen}. {told} into {entry.get('name')!r}, and "
+            f"tools/spend_appearance_bounds.py has written that bound onto the card.")
+    return rule, (f"{where}: {seen}. {told}: {clip(entry.get('rule'), 320)}")
+
+
+def rule_church(unit: dict, cache: dict | None = None) -> tuple[str, str]:
     row = unit["record"]
+    cache = {} if cache is None else cache
     where = f"{unit['source_file'].rsplit('/', 1)[-1].removesuffix('.json')} {row.get('id')}"
     dated = row.get("describes_date")
     if row.get("beyond_ticket_window") is True:
@@ -683,14 +830,23 @@ def rule_church(unit: dict) -> tuple[str, str]:
         return ("the_register_entry_names_kin",
                 f"{where}: {clip(row.get('normalized'), 80)} is the {role} of a register entry "
                 f"dated {dated} at Chicago. {clip(row.get('notes'), 160)}")
+    ruled = church_identification(str(row.get("id") or ""), cache)
     if role in ATTENDANCE_ROLES:
-        return ("a_dated_appearance_bounds_a_presence",
-                f"{where}: {clip(row.get('normalized'), 80)} stands as {role} at a register entry "
-                f"dated {dated} at Chicago. {clip(row.get('notes'), 160)}")
+        seen = (f"{clip(row.get('normalized'), 80)} stands as {role} at a register entry "
+                f"dated {dated} at Chicago")
+        if ruled is None:
+            raise SystemExit(
+                f"{row.get('id')}: an attendance appearance no committed church crosswalk "
+                f"has ruled on -- crosswalk it rather than handing it on")
+        return church_appearance_rule(row, where, seen, ruled)
     if row.get("kind") == "person":
-        return ("a_dated_appearance_bounds_a_presence",
-                f"{where}: a person reading of the register prose, dated {dated}. "
-                f"It reads: “{clip(row.get('normalized'), 180)}”")
+        seen = (f"a person reading of the register prose, dated {dated}, which reads: "
+                f"“{clip(row.get('normalized'), 180)}”")
+        if ruled is None:
+            raise SystemExit(
+                f"{row.get('id')}: a person reading of the register prose no committed "
+                f"church crosswalk has ruled on -- crosswalk it rather than handing it on")
+        return church_appearance_rule(row, where, seen, ruled)
     return ("a_town_reading_with_no_record_to_write",
             f"{where}: a {row.get('kind')} reading of the register, dated {dated}. "
             f"It reads: “{clip(row.get('normalized'), 180)}”")
@@ -752,7 +908,7 @@ def classify(root: Path, unit: dict, cache: dict) -> tuple[str, str]:
         doc = cache.setdefault(unit["source_file"], read_json(root / unit["source_file"]))
         return rule_newspapers(unit, issue_date(doc))
     if domain == "church":
-        return rule_church(unit)
+        return rule_church(unit, cache)
     return rule_books(unit)
 
 
@@ -763,6 +919,8 @@ def build_documents(root: Path = ROOT) -> dict[str, dict]:
         if unit["domain"] not in per_domain:
             raise SystemExit(f"{unit['unit_id']}: T-1298 owns a domain this tool does not rule")
         rule, note = classify(root, unit, cache)
+        if rule is None:                   # spent on a card; see church_appearance_rule
+            continue
         per_domain[unit["domain"]].append({"unit": unit["unit_id"], "rule": rule, "note": note})
     documents = {}
     for domain, rulings in per_domain.items():
@@ -827,6 +985,15 @@ def self_test() -> int:
     # The rules held over the corpus they derive.
     def held(label, unit, want, **kw):
         got = classify(ROOT, unit, {}) if not kw else kw["fn"](unit)
+        if want is None:
+            # SPENT, NOT RULED (T-1330): the note has to say where the unit went instead,
+            # or the register is silent about a unit for no stated reason.
+            if got[0] is not None:
+                failures.append(f"{label}: is ruled here and it is spent on a card "
+                                f"(fell under {got[0]!r})")
+            elif "spend_appearance_bounds" not in got[1]:
+                failures.append(f"{label}: is unruled and does not say where it went")
+            return
         if got[0] != want:
             failures.append(f"{label}: ruled {got[0]!r}, wanted {want!r}")
 
@@ -864,18 +1031,68 @@ def self_test() -> int:
     church = {"source_file": "x/st_marys_baptisms_1833_1835.json",
               "record": {"id": "e1", "normalized": "George Beaubien", "describes_date": "1833-05-22",
                          "cells": {"role": "child"}, "notes": "Child of entry 1."}}
-    held("a register child", church, "the_register_entry_names_kin", fn=rule_church)
-    held("a register sponsor",
-         {**church, "record": {**church["record"], "cells": {"role": "godmother"}}},
-         "a_dated_appearance_bounds_a_presence", fn=rule_church)
+    # T-1330: AN APPEARANCE'S RULE IS ITS CROSSWALK'S OUTCOME, so these fixtures carry a
+    # pre-seeded crosswalk index rather than reading the committed one. The point of each
+    # case is the MAPPING, and a fixture standing on a real record would move the day that
+    # record was re-adjudicated.
+    ruled: dict = {}
+    church_cache = {"church_crosswalk_index": ruled}
+
+    def churched(label, outcome, want, **record):
+        row = dict(church["record"], **record)
+        ruled[row["id"]] = {"outcome": outcome, "crosswalk": "x/st_marys_crosswalk.json",
+                            "name": "George Beaubien",
+                            "rule": "stated verbatim by the crosswalk that looked"}
+        held(label, {**church, "record": row}, want,
+             fn=lambda u: rule_church(u, church_cache))
+
+    held("a register child", church, "the_register_entry_names_kin",
+         fn=lambda u: rule_church(u, church_cache))
+    churched("a sponsor the crosswalk merged", "merged", None,
+             cells={"role": "godmother"})
+    churched("a sponsor the town does not hold", "no_candidate",
+             "the_register_appearance_names_nobody_this_town_holds",
+             id="e2", cells={"role": "godmother"})
+    churched("a sponsor refused on the surname alone", "refused_surname_only",
+             "the_register_appearance_identity_was_refused_in_the_crosswalk",
+             id="e3", cells={"role": "godmother"})
+    churched("a witness printed with no forename", "no_forename",
+             "the_register_appearance_identity_was_refused_in_the_crosswalk",
+             id="e4", cells={"role": "witness"})
+    churched("a witness still standing as a candidate", "candidate",
+             "the_register_appearance_identity_is_a_candidate_and_not_a_merge",
+             id="e5", cells={"role": "witness"})
+    churched("register prose that bounds the register", "ruled_no_town_change",
+             "the_register_reading_is_about_the_town_and_not_a_person",
+             id="p2", kind="person", cells={})
+    churched("a town finding with nobody in it to crosswalk", "not_a_person",
+             "the_register_reading_is_about_the_town_and_not_a_person",
+             id="p3", kind="person", cells={})
     held("the roll beyond the window",
          {**church, "record": {**church["record"], "beyond_ticket_window": True,
                                "cells": {"role": "member"}}},
-         "the_roll_is_beyond_the_reading_window", fn=rule_church)
+         "the_roll_is_beyond_the_reading_window",
+         fn=lambda u: rule_church(u, church_cache))
     held("register prose about the town",
          {**church, "record": {"id": "p1", "kind": "civic", "normalized": "A civic note.",
                                "describes_date": "1834"}},
-         "a_town_reading_with_no_record_to_write", fn=rule_church)
+         "a_town_reading_with_no_record_to_write",
+         fn=lambda u: rule_church(u, church_cache))
+    # And an outcome nobody has written a rule for is a stop, not a nearest match.
+    ruled["e9"] = {"outcome": "invented_outcome", "crosswalk": "x/st_marys_crosswalk.json"}
+    try:
+        rule_church({**church, "record": {**church["record"], "id": "e9",
+                                          "cells": {"role": "godmother"}}}, church_cache)
+        failures.append("an unmapped crosswalk outcome: was ruled anyway")
+    except SystemExit:
+        pass
+    # An appearance no crosswalk has looked at is a stop too, for the same reason.
+    try:
+        rule_church({**church, "record": {**church["record"], "id": "e8",
+                                          "cells": {"role": "godmother"}}}, church_cache)
+        failures.append("an uncrosswalked appearance: was handed on anyway")
+    except SystemExit:
+        pass
 
     book = {"source_file": "x/hubbard_autobiography_1911.json",
             "record": {"id": "b1", "kind": "landscape", "normalized": "The prairie.",

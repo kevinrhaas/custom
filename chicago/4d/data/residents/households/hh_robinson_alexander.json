@@ -108,6 +108,30 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
+   "appearance_bounds": [
+    {
+     "bound_kind": "district_presence",
+     "corpus": "census_1830",
+     "source_title": "Fifth census of the United States, 1830 — the division headed 'Peoria & Putnam Counties & Territory attached'",
+     "record_id": "census1830_n580_027",
+     "as_read": "Alexander Robinson",
+     "role": "head_of_family",
+     "locator": "leaf n580 entry 27, peoria_putnam_1830_leaves_580_582.txt line 46",
+     "describes_date": "1830",
+     "date_confidence": "documented",
+     "precision": "year",
+     "reaches": "1830-12-31",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "census_1830_peoria_county_chicago_precinct"
+     ],
+     "identity_rule": "Surname and given name both agree between the 1830 reading 'Alexander Robinson' and the town person 'Alexander Robinson (Che-che-pin-qua)' in household hh_robinson_alexander. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
+     "note": "A BOUND ON PRESENCE IN A DISTRICT, AND NOT AT CHICAGO. The division is headed 'Peoria & Putnam Counties & Territory attached' and the schedule never writes the word Chicago — the Fox River and Du Page settlements are inside it — so this row bounds presence in that district in the summer of 1830 and puts no body in the town, which is why `here_by` is null. The record's own note says it first: 'Presence in that district in the summer of 1830; not a Chicago residence, and never an 1835 one'. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the leaf is read scan_verified off the federal schedule, and what no source states is that the head of family on it is the person on this card. data/research/census_1830/resident_crosswalk.json joins them on a name agreement and says in terms that it grades nothing on its own. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life.",
    "resident_research": {
     "programme": "resident-research-2026",
