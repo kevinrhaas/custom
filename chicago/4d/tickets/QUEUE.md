@@ -155,7 +155,6 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 8. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
-T-1287 — A split mints its children's ids from the local maximum, so two runs splitting one parent mint the SAME ids for DIFFERENT tickets and the parent's claim lock covers neither
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1302 — The manifest coverage gate only sees a --build declared one way, so 55 gated writers still slip past it
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
