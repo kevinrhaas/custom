@@ -29,8 +29,8 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | newberry_index | 0 | 0 | 0 | 0 | 6,658 | 0 | 6,658 |
 | newspapers | 144 | 51 | 0 | 109 | 0 | 885 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
-| residents | 15 | 7 | 0 | 0 | 967 | 91 | 1,080 |
-| **Total** | **170** | **12,568** | **109** | **173** | **8,524** | **2,149** | **23,693** |
+| residents | 24 | 7 | 0 | 0 | 982 | 67 | 1,080 |
+| **Total** | **179** | **12,568** | **109** | **173** | **8,539** | **2,125** | **23,693** |
 
 ## Second-hop preservation
 
@@ -42,7 +42,7 @@ Only tickets whose current state is open may own an unresolved unit.
 
 | Ticket | Units |
 | --- | ---: |
-| T-1144 | 1 |
+| T-1144 | 7 |
 | T-1172 | 260 |
 | T-1182 | 531 |
 | T-1188 | 12 |
@@ -51,7 +51,7 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1315 | 3 |
 | T-1317 | 21 |
 | T-1318 | 538 |
-| T-1319 | 343 |
+| T-1319 | 313 |
 | T-1320 | 168 |
 
 Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.

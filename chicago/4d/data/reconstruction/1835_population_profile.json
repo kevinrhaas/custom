@@ -328,12 +328,6 @@
        "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
-       "hh_church_thomas",
-       "arrival",
-       "1834",
-       "NOT ATTESTED"
-      ],
-      [
        "hh_cohen_peter",
        "directories.people[].back_projection",
        "South Water Street",
@@ -548,7 +542,7 @@
     }
    ],
    "notes": [
-    "No PERSON carries the `reconstructed` grade (3) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 40 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+    "No PERSON carries the `reconstructed` grade (3) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 39 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
    ]
   },
   {
@@ -1195,8 +1189,8 @@
        1258,
        "100.0%",
        11,
-       32,
-       1215,
+       35,
+       1212,
        0
       ],
       [
@@ -1204,8 +1198,8 @@
        1258,
        "100.0%",
        52,
-       1200,
-       6,
+       1201,
+       5,
        0
       ],
       [
@@ -11301,8 +11295,8 @@
       ],
       [
        "Elam Tuller",
-       "The Mid-Atlantic states",
-       "reconstructed"
+       "Connecticut",
+       "inferred"
       ],
       [
        "Elded Smith",
@@ -14616,8 +14610,8 @@
       ],
       [
        "Philip F. W. Peck",
-       "New York State",
-       "reconstructed"
+       "Providence, Rhode Island",
+       "inferred"
       ],
       [
        "Phillips James",
@@ -15231,8 +15225,8 @@
       ],
       [
        "Seth Paine",
-       "New York State",
-       "reconstructed"
+       "Montpelier, Vermont",
+       "inferred"
       ],
       [
        "Seth Wescott",

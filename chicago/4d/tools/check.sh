@@ -2662,6 +2662,22 @@ step "the remainder rulings re-derive from their five corpora (T-1298)" \
 selftest "…and each of its rules still fires, and hands on only to live work" \
   python3 tools/spend_remainder_rulings.py --self-test
 
+# T-1330. THE SPEND ITSELF, where the two steps above only ROUTE. Thirty of T-1301's
+# `corroborated_enrichment` findings named an arrival, an origin, a departure or a dated
+# appearance, and they had been handed from arrival ticket to arrival ticket without being
+# read against the cards they name. Nine of them retire a value the arrival stage DREW —
+# an origin region taken from the Old Settlers birthplace sample, an arrival year drawn
+# from a distribution truncated at the household's bound — and the block that replaces one
+# carries no `written_by_stage` mark, which is how reconstruct_residents_1835.py's
+# `writable()` yields the field. So two gates have to agree here and this is the first of
+# them: the blocks re-derive from the adjudication, and the adjudication still covers every
+# unit the ruling register hands this pass, in both directions.
+step "the enrichment arrival and origin spend re-derives onto its nine cards (T-1330)" \
+  python3 tools/spend_enrichment_arrivals.py --check
+
+selftest "…and its citation, naming and retirement rules still fire when broken" \
+  python3 tools/spend_enrichment_arrivals.py --self-test
+
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
 # findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718

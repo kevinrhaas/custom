@@ -18,21 +18,13 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": "New York State",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_peck_philip:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Providence, Rhode Island",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A SOURCE, WHERE THE FIELD HELD A DRAW. The completed resident-research pass on peck_philip read the Chicago History Museum's encyclopedia as identifying Philip F. W. Peck as a Providence-born merchant and real-estate developer who arrived in July 1831. The block this replaces was drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 and said “New York State” on no evidence about this household at all; its own `replaceable_by` asked for “a source that says where this household came from”, and this is one. It is a BIRTHPLACE and is carried as the best statement of origin the sources make about this household, not as a last residence. The arrival itself is unchanged: the card already states 1831-07-01 at month precision from Andreas, which the same finding corroborates.",
+  "sources": [
+   "encyclopedia_chicago_biographical_p"
+  ]
  },
  "reason_for_coming": {
   "value": "To open a store with a shipped stock of goods",
