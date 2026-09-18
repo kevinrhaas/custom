@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last 98 readings find the work that owes them', kind: 'change', ts: '',
+  { v: 937, title: 'The last 98 readings find the work that owes them', kind: 'change', ts: '2026-09-18T06:41:51.180Z', date: 'Sep 18, 2026, 1:41 AM CT',
     items: [
       'A reading in this project\u2019s ledger must always name what became of it, and one block of 98 had an answer that quietly went stale. They are the enrichments: a real, sourced fact about somebody the town already carries \u2014 an auctioneer\u2019s trade, a birth date, a marriage, a tavern, a land purchase \u2014 which no field on that card was built to hold. All 98 were waiting on a single pass that has since finished, and a reading may only wait on work that is still going to happen.',
       'They were not re-argued and nothing on a card moved. Each one was read on its own and handed to the pass whose job is that kind of fact: 37 trades and premises go to the audit of the town\u2019s firms, 30 arrivals and origins to the work that dates when people came, 12 county, church and school posts to the establishments that will be staffed, 7 kinships to the families the sources name, 3 birth dates to the ages, and 2 landholdings to the pass that seats people on the ground.',
