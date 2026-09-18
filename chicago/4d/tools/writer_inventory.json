@@ -843,6 +843,12 @@
    "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
    "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
   },
+  "reconstruct_modelled_families.py": {
+   "placement": "manifest",
+   "write_mode": null,
+   "measured": "continuously",
+   "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+  },
   "reconstruct_residents_1835.py": {
    "placement": "manifest",
    "write_mode": null,

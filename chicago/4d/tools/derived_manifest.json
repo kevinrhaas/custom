@@ -350,22 +350,6 @@
       ]
     },
     {
-      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1169's arrival fill: arrival year, origin and reason on 1,258 households.",
-      "command": [
-        "python3",
-        "tools/reconstruct_residents_1835.py",
-        "--stage",
-        "attribute_fill_arrival",
-        "--build"
-      ],
-      "resolves": [],
-      "verify": [
-        "python3",
-        "tools/reconstruct_residents_1835.py",
-        "--check"
-      ]
-    },
-    {
       "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1304's drawn sex and age bands, each seeded by the person's own id.",
       "command": [
         "python3",
@@ -393,6 +377,38 @@
       "verify": [
         "python3",
         "tools/spend_person_sex_age.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 with T-1171, for the reason the three stages above it were listed on #1452 — outside the manifest there is no hand order that converges. Stage `modelled_families`: the kin core the household model says each head the sources leave standing alone kept, drawn against the order book's quota.",
+      "command": [
+        "python3",
+        "tools/reconstruct_modelled_families.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_modelled_families.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/reconstruct_modelled_families.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1169's arrival fill: arrival year, origin and reason on 1,258 households. MOVED BELOW `modelled_families` on 2026-09-18 (T-1171), measured: built above it, `--check` reported all 1,233 arrival draws un-re-derivable after the manifest finished, and building it again at the end made them green with nothing else moving. The stage draws against rates measured over the whole resident layer, and `modelled_families` adds 300 people to that layer, so it has to read the layer the card writers leave behind rather than the one they started from.",
+      "command": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
+        "--stage",
+        "attribute_fill_arrival",
+        "--build"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
         "--check"
       ]
     },

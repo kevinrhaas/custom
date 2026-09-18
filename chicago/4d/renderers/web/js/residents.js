@@ -1448,7 +1448,9 @@ function modelledFamilyHtml(block) {
     ${escapeHtml(words(block.household_type))} of ${escapeHtml(String(block.size_drawn))},
     drawn at the head's own size band from the 1840 city's household histogram;
     ${escapeHtml(String(block.kin_seated))} of them are seated here as kin.
-    <br><span class="res-why">${escapeHtml(String(block.note || ''))}${
+    <br><span class="res-why">Drawn by stage <code>${escapeHtml(String(block.stage))}</code>
+    of the 1835 resident reconstruction programme, ${escapeHtml(String(block.ticket))}.
+    ${escapeHtml(String(block.note || ''))}${
     block.seed ? ` Redrawn with the seed <code>${escapeHtml(String(block.seed))}</code>.` : ''}
     </span></dd>`;
 }

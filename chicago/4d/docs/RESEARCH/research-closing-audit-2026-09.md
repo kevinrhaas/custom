@@ -33,11 +33,11 @@ Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then `python
 
 | Measure | Count |
 | --- | ---: |
-| Persons | 1,288 |
+| Persons | 1,588 |
 | Households | 1,258 |
 | Persons graded `attested` | 410 |
 | Persons graded `inferred` | 875 |
-| Persons graded `reconstructed` | 3 |
+| Persons graded `reconstructed` | 303 |
 | Letter-list-only names | 736 |
 | Projected residents | 721 |
 | Merged away | 65 |

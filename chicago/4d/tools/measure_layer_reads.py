@@ -808,9 +808,22 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.seed": ("shown", "escapeHtml(String(block.seed))"),
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. `name_basis` comes back to this layer with the drawn people: the row
+    # "How this person is named" is a graded claim block like `age_band` above it, and
+    # `claimRow` prints every part of one — the value, the tier chip, the model the
+    # forename was drawn from, the seed that redraws it and the source that would retire
+    # it. It reads through the same expressions because it is the same renderer.
+    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value, named, citationsById)"),
+    "persons[].name_basis.tier": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].name_basis.basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].name_basis.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].name_basis.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].name_basis.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     # T-1171. …and the household block beside them: what size the 1840 histogram drew
     # this house at, and how much of that size is kin rather than the servants and lodgers
     # later stages seat. `modelledFamilyHtml` prints all of it.
+    "modelled_family.stage": ("shown", "escapeHtml(String(block.stage))"),
+    "modelled_family.ticket": ("shown", "escapeHtml(String(block.ticket))"),
     "modelled_family.household_type": ("shown", "escapeHtml(words(block.household_type))"),
     "modelled_family.size_drawn": ("shown", "escapeHtml(String(block.size_drawn))"),
     "modelled_family.kin_seated": ("shown", "escapeHtml(String(block.kin_seated))"),

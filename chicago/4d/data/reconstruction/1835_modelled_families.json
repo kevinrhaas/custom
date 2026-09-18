@@ -6,14 +6,14 @@
  "target_date": "1835-07-01",
  "generated_by": "tools/reconstruct_modelled_families.py --build",
  "not_a_reading": "no source was opened; nobody here is named by one",
- "heads_drawn_for": 91,
- "people_drawn": 307,
- "wives": 86,
- "children": 221,
+ "heads_drawn_for": 89,
+ "people_drawn": 300,
+ "wives": 84,
+ "children": 216,
  "refused_by_eligibility": {
   "a letter-list mint argues for a person and not for a household": 312,
-  "a source already names, counts or rules on this household's family": 16,
-  "a woman heading her own household is the age pyramid's, T-1174": 2,
+  "a source already names, counts or rules on this household's family": 17,
+  "a woman heading her own household is the age pyramid's, T-1174": 3,
   "presence on the scene date is not settled (T-1172's roster holds it)": 822,
   "the fort and the country outside the town are not this stage's": 3,
   "the head is not an adult the household model seats as a husband": 9,
@@ -23,37 +23,37 @@
  "refused_by_the_order_book": {},
  "size_drawn_histogram": {
   "1": 5,
-  "2": 15,
+  "2": 14,
   "3": 14,
   "4": 12,
   "5": 16,
   "6": 15,
-  "7": 9,
+  "7": 8,
   "8": 5
  },
  "kin_seated_histogram": {
   "1": 5,
-  "2": 15,
+  "2": 14,
   "3": 14,
   "4": 12,
   "5": 16,
   "6": 15,
-  "7": 9,
+  "7": 8,
   "8": 5
  },
  "drawn_into_bands": {
   "10_19": 23,
-  "20_29": 69,
+  "20_29": 67,
   "30_39": 15,
   "40_49": 1,
   "50_plus": 1,
-  "under_10": 198
+  "under_10": 193
  },
  "fills": {
   "persons/female/10_19/north/family/none": 3,
   "persons/female/10_19/south/family/none": 7,
-  "persons/female/20_29/north/family/none": 21,
-  "persons/female/20_29/south/family/none": 39,
+  "persons/female/20_29/north/family/none": 20,
+  "persons/female/20_29/south/family/none": 38,
   "persons/female/20_29/west/family/none": 9,
   "persons/female/30_39/north/family/none": 3,
   "persons/female/30_39/south/family/none": 11,
@@ -67,8 +67,8 @@
   "persons/male/10_19/south/family/none": 5,
   "persons/male/10_19/west/family/none": 6,
   "persons/male/under_10/north/family/none": 24,
-  "persons/male/under_10/south/family/none": 42,
-  "persons/male/under_10/west/family/none": 25
+  "persons/male/under_10/south/family/none": 39,
+  "persons/male/under_10/west/family/none": 23
  },
  "by_household": {
   "hh_adams_elizabeth": {
@@ -236,11 +236,6 @@
    "kin_seated": 4,
    "household_type": "family_with_children"
   },
-  "hh_hamilton_richard_j": {
-   "size_drawn": 2,
-   "kin_seated": 2,
-   "household_type": "married_couple"
-  },
   "hh_handy_henry_s": {
    "size_drawn": 4,
    "kin_seated": 4,
@@ -285,11 +280,6 @@
    "size_drawn": 2,
    "kin_seated": 2,
    "household_type": "married_couple"
-  },
-  "hh_inf_tavern_keeper_north_01": {
-   "size_drawn": 7,
-   "kin_seated": 7,
-   "household_type": "family_with_children"
   },
   "hh_ingersoll_chester": {
    "size_drawn": 8,
@@ -529,14 +519,14 @@
  },
  "measurement": {
   "the_town_the_book_counts": "present households only",
-  "people_before_this_stage": 456,
-  "people_after_this_stage": 763,
+  "people_before_this_stage": 459,
+  "people_after_this_stage": 759,
   "adults_after_this_stage": {
-   "male": 382,
-   "female": 113
+   "male": 381,
+   "female": 112
   },
-  "adult_sex_ratio_before": 1414.8,
-  "adult_sex_ratio_after": 338.1,
+  "adult_sex_ratio_before": 1360.7,
+  "adult_sex_ratio_after": 340.2,
   "the_model_s_range": [
    120.9,
    150.0
@@ -545,11 +535,11 @@
   "what_closes_it": "T-1174 draws the 855 women and children the pyramid still lacks; T-1179 converges the layer and re-runs the profile.",
   "age_pyramid_after": {
    "10_19": 64,
-   "20_29": 268,
+   "20_29": 266,
    "30_39": 158,
    "40_49": 44,
    "50_plus": 25,
-   "under_10": 198
+   "under_10": 194
   },
   "household_size_1840_share": {
    "1": 0.0742,
@@ -562,15 +552,15 @@
    "8": 0.0487
   },
   "household_size_drawn_share": {
-   "1": 0.0549,
-   "2": 0.1648,
-   "3": 0.1538,
-   "4": 0.1319,
-   "5": 0.1758,
-   "6": 0.1648,
-   "7": 0.0989,
-   "8": 0.0549
+   "1": 0.0562,
+   "2": 0.1573,
+   "3": 0.1573,
+   "4": 0.1348,
+   "5": 0.1798,
+   "6": 0.1685,
+   "7": 0.0899,
+   "8": 0.0562
   },
-  "largest_share_gap": 0.0547
+  "largest_share_gap": 0.0584
  }
 }

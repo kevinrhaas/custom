@@ -5,7 +5,7 @@
   "source_id": "chicago_voter_lists_1833_1835_irad",
   "publication_source_id": "chicago_genealogist_1993_voter_lists",
   "crosswalk_target": "data/residents/households/*.json",
-  "residents_compared": 1288,
+  "residents_compared": 1285,
   "counts": {
     "entries": 345,
     "matched": 292,
@@ -50,7 +50,7 @@
       "discriminator": "forenames agree initial for initial: entry 'W. H. Adams' against resident 'William Hanford Adams'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1833_002",
@@ -1965,7 +1965,7 @@
       "discriminator": "forenames agree initial for initial: entry 'James Adams' against resident 'James Adams'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_003",
@@ -1978,7 +1978,7 @@
       "discriminator": null,
       "candidate": null,
       "rivals": [],
-      "rule": "no resident of the surname 'Adams' agrees with the entry's forenames (5 bearer(s) of the surname considered), and no bridge row carries the entry."
+      "rule": "no resident of the surname 'Adams' agrees with the entry's forenames (4 bearer(s) of the surname considered), and no bridge row carries the entry."
     },
     {
       "record_id": "poll_1834_004",
@@ -2963,7 +2963,7 @@
       "discriminator": "forenames agree initial for initial: entry 'John Murphy' against resident 'John Murphy'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_079",
@@ -3466,7 +3466,7 @@
       "discriminator": "forenames agree initial for initial: entry 'William H. Adams' against resident 'William Hanford Adams'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Adams' agrees with the entry's forenames; 4 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_002",
@@ -4140,7 +4140,7 @@
       "discriminator": "forenames agree initial for initial: entry 'John Murphy' against resident 'John Murphy'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Murphy' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_052",

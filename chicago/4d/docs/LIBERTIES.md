@@ -12323,17 +12323,17 @@ Related: ticket **T-1169**, stage `attribute_fill_arrival` of **T-1167**'s progr
 `docs/RESEARCH/1835_resident_reconstruction.md`.
 **Recorded:** 2026-09-18.
 ---
-### L244 — Ninety-one heads the sources leave standing alone are given a wife and children nobody named
+### L244 — Eighty-nine heads the sources leave standing alone are given a wife and children nobody named
 
 **Decision:** stage `modelled_families` of the 1835 resident reconstruction programme
 (`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1171) draws a KIN CORE for
 every head whose household record is present on the scene date, holds him alone, is not a
-letter-list mint, and is not under a standing review. Ninety-one heads qualify. Each is given a
+letter-list mint, and is not under a standing review. Eighty-nine heads qualify. Each is given a
 household size drawn from the 1840 Chicago city's own size histogram at his own band — never at
 the mean, which is the household model's explicit instruction — and the size is seated as a wife
-and children: 86 wives and 221 children, 307 people the sources do not name.
+and children: 84 wives and 216 children, 300 people the sources do not name.
 
-**Scope:** `residents.persons[modelled_families]` — 307 people in 91 households, every one of
+**Scope:** `residents.persons[modelled_families]` — 300 people in 89 households, every one of
 them re-derivable from `tools/reconstruct_modelled_families.py --check`.
 
 **What is invented, stated plainly.** That these men were married at all; how many children each
@@ -12358,16 +12358,18 @@ household goes on saying its place is unknown.
 bucket of `data/reconstruction/1835_reconstruction_order_book.json` and a bucket at its
 `to_reconstruct` REFUSES the draw instead of overfilling. No servant, apprentice, journeyman or
 lodger is seated — the drawn size is a floor on the house and the record says so, because the
-staffing model is T-1183's and the lodger is T-1175's. Five refusals keep the stage off evidence
-it must not touch: an uncertain presence (T-1172's roster), a letter-list mint (whose own gate
-proves no record there ever gained a second member), a household a source already speaks about,
-the fort and the country outside the town, and — added when the first build reached them — a
-household under a standing review, which is T-1177's alone under AGENTS.md's Indigenous-history
-review, and a head whose own trade says he kept no wife. The second of those is what stopped this
-stage giving Father St Cyr a family.
+staffing model is T-1183's and the lodger is T-1175's. Eight refusals keep the stage off evidence
+it must not touch, and the build counts every one of them: an unsettled presence on the scene date
+(822, T-1172's roster), a letter-list mint (312, whose own gate proves no record there ever gained
+a second member), a household a source already names, counts or rules on (17, T-1313's and
+T-1314's), a head the household model does not seat as a husband (9), the fort and the country
+outside the town (3, T-1176's), a woman heading her own household (3, the age pyramid's and so
+T-1174's), a household under a standing review (2, T-1177's alone under AGENTS.md's
+Indigenous-history review), and a head whose own trade says he kept no wife (1) — which is what
+stopped this stage giving Father St Cyr a family.
 
-**What it does not fix.** The layer's adult sex ratio moves from 1,414.8 men per 100 women to
-338.1 and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: the
+**What it does not fix.** The layer's adult sex ratio moves from 1,360.7 men per 100 women to
+340.2 and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: the
 women the age pyramid still lacks are 855 people in T-1174's buckets. The measurement is printed
 against the model in `data/reconstruction/1835_modelled_families.json` and says so rather than
 reading as a target reached.
