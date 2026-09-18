@@ -585,6 +585,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # covers them all because one line does.
     "arrival.value": ("shown", "(hh.arrival || {}).value"),
     "arrival.precision": ("shown", "words((hh.arrival || {}).precision)"),
+    # T-1169. The year the household is CARRIED at, beside the bound its arrival block
+    # holds: for 1,196 households `arrival` is a `not_later_than` and says only that
+    # somebody was here by a date. Its own row on the card, its own claim block.
+    "arrival_year.value": ("shown", "(hh.arrival_year || {}).value"),
+    "arrival_year.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.note": ("shown", "escapeHtml(block.note)"),
     "party_size_on_arrival.value": ("shown", "party && party.value"),
     "origin.value": ("shown", "(hh.origin || {}).value"),
     "reason_for_coming.value": ("shown", "(hh.reason_for_coming || {}).value"),
@@ -631,6 +637,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-1158's own fields, on the three claims T-1169's stage fills. `tier` drives the
+    # chip through the same `tierOf` line the confidences above name; the rest are read
+    # in `basisHtml`, which opens a disclosure under any invented value saying whether
+    # it was DRAWN from a model or ARGUED from a rule, printing the seed that redraws
+    # it and the evidence that would retire it. `replaceable_by.kind` and
+    # `written_by_stage` are NOT read — the first is the shape of the replacement
+    # record and the second is the build's own bookkeeping — and they stay banked.
+    "arrival_year.tier": ("shown", "tierOf(block) || block.confidence"),
+    "origin.tier": ("shown", "tierOf(block) || block.confidence"),
+    "reason_for_coming.tier": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.basis.kind": ("shown", "basis.kind === 'model'"),
+    "origin.basis.kind": ("shown", "basis.kind === 'model'"),
+    "reason_for_coming.basis.kind": ("shown", "basis.kind === 'model'"),
+    "arrival_year.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "origin.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "arrival_year.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "origin.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "reason_for_coming.replaceable_by.match": (
+        "shown", "escapeHtml(String(rep.match || ''))"),
     # T-0597. The kinship rows, which are the first claim on this layer to point at
     # ANOTHER record. Each of the four link fields is named at its own call site in
     # `kinRows` — the person the tie belongs to here, the term, the far household and

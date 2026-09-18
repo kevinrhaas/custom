@@ -62,6 +62,12 @@
       "records": 2,
       "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
     },
+    "residents/household:arrival_year.replaceable_by.kind": {
+      "records": 1182
+    },
+    "residents/household:arrival_year.written_by_stage": {
+      "records": 1198
+    },
     "residents/household:division": {
       "records": 1258,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
@@ -69,6 +75,12 @@
     "residents/household:head": {
       "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
+    },
+    "residents/household:origin.replaceable_by.kind": {
+      "records": 1214
+    },
+    "residents/household:origin.written_by_stage": {
+      "records": 1235
     },
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
@@ -101,6 +113,12 @@
     "residents/household:present_on_scene_date.last_dated_appearance.record": {
       "records": 348,
       "refused_because": "The `record_id` or locator of the evidence block the leg came from \u2014 an audit pointer, null on the 383 legs read off a post-office return, which carries no per-return record. The card shows the SOURCE the block cites, which is the part a reader can follow; an internal row id is not."
+    },
+    "residents/household:reason_for_coming.replaceable_by.kind": {
+      "records": 1233
+    },
+    "residents/household:reason_for_coming.written_by_stage": {
+      "records": 1233
     },
     "residents/household:source_pass": {
       "records": 1179,
@@ -187,10 +205,10 @@
       "refused_because": "The closed set of rungs an `associated_with` row may resolve to \u2014 a roof, a street, a part of town. The cards print the row's own `resolves_to` word, because how far the evidence reached is part of the claim; the SET behind it is a schema constraint tools/validate.py enforces, and no renderer implements it as behaviour. It un-banks when one draws a row differently per rung."
     },
     "residents/manifest:vocabulary.reasons_for_coming[].means": {
-      "records": 13
+      "records": 21
     },
     "residents/manifest:vocabulary.reasons_for_coming[].term": {
-      "records": 13
+      "records": 21
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1,

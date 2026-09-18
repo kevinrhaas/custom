@@ -112,3 +112,55 @@ one is held to the record contract instead.
   owner re-ruled that on 2026-09-17 — through stage `underdocumented` alone, every record
   carrying `review_required` and `touches_removal`, under AGENTS.md's Indigenous-history
   review.
+
+---
+
+## Stage `attribute_fill_arrival` — arrival year, origin and reason (T-1169, 2026-09-18)
+
+The first stage of the programme to write anything, and it writes **no person**: it fills three
+attribute blocks on the 1,258 households that already exist. The recipe is
+`1835_resident_reconstruction_programme.json` § `arrival_fill`; the build is
+`--stage attribute_fill_arrival --build` and the re-derivation is the `--check` `tools/check.sh`
+already runs.
+
+**Where the layer stood.** `arrival` was filled on every household — but 1,196 of those are a
+`not_later_than` BOUND, which is a statement that somebody was here BY a date and none at all
+about when they came. `origin` was asserted on 23 cards and `reason_for_coming` on 25. The other
+1,235 and 1,233 read *Not attested*.
+
+**Three legs, strongest first.**
+
+| leg | tier | what it is | count |
+| --- | --- | --- | --- |
+| the Old Settlers roll, spent onto the cards it names | `inferred` | the registry's own arrival year and birthplace, for the 35 rows the crosswalk MERGED into this layer | 16 arrival years, 21 origins |
+| a draw from a model row | `reconstructed`, `basis.kind: model` + seed | the known layer's arrival-year distribution truncated at each household's own bound; the roll's birthplace distribution | 1,182 arrival years, 1,204 origins |
+| an argument from a rule | `reconstructed`, `basis.kind: rule`, no seed | origin from a surname only one community pool carries; reason from the head's recorded trade, or from the arrival season | 10 origins, 1,233 reasons |
+
+**Never `attested`.** The roll is a recollection registered at the Calumet Club in 1879, forty to
+sixty years after the fact, and its own `arrival_year_basis` says it dates the claim and does not
+prove it. A birthplace is not an origin either — this field asks where a household came FROM — and
+each of the 21 blocks says so on the card.
+
+**Four refusals are recorded rather than smoothed.** Adams, Campbell and Couch registered arrivals
+LATER than the scene date; Stephen F. Gale registered 1835 against a layer that reads 1833. The
+contemporary record wins in each case, the roll's rows are kept as they were read, and the block
+that overrides them names the year it refused. Where the roll AGREES with a read arrival — seven
+households — no block is written at all: a weaker duplicate of an attested value is noise, and
+seven of them would have buried the one disagreement worth seeing.
+
+**Why there is no cohort × trade table.** T-1169 asked for a reason drawn from one. The town model
+refuses to build one, in as many words: *the land sales, the canal commission and the harbour works
+are each a documented draw, but no committed source apportions the town between them and this model
+will not invent the split.* Building it here would be inventing that split in the place the model
+declined to, and the seed would have made the result reproducible without making it true. So every
+reason is ARGUED from something the household itself carries — its trade, or its season — names the
+draws that were operating, and ends with the sentence that it does not know which of them applied.
+`docs/LIBERTIES.md` **L242** is the admission; the programme file's
+`arrival_fill.the_argued_leg.WHY_IS_NOT_APPORTIONED` is the argument.
+
+**`written_by_stage` is what makes it re-derivable.** Every block the stage writes carries that
+marker, and it is the whole of how `--check` works: a marked block is recomputed from the programme
+and compared, an unmarked one is some earlier reading's and is never touched, and a marked block the
+recipe no longer produces is WITHDRAWN rather than left behind. Without it `--build` would be a
+one-way write and the committed layer could drift from the rules that claim to explain it — which
+is the failure the 2026-09-02 retirement was about, one attribute down instead of one person.
