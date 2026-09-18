@@ -1,5 +1,5 @@
 ---
-id: T-1324
+id: T-1327
 title: Dev's smoke asserts the resident layer holds no reconstructed person, and since T-1314 it holds three: the retargeted K18 check is stale again
 state: open
 epic: META
