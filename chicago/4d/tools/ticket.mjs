@@ -874,6 +874,71 @@ function releaseClaimLock(id) {
   return r.ok;
 }
 
+// ---------------------------------------------------------------------------
+// T-1287. AN ID IS RESERVED ON THE REMOTE BEFORE IT IS USED, NOT SCANNED FOR.
+//
+// `nextIdNum` reads the highest id on every origin ref and adds one. That scan
+// works — measured 2026-09-18, 1,066 refs in 8 s, and it correctly reports ids
+// sitting on other runs' branches. It is still not enough, and the reason is not
+// that it misses anything:
+//
+//   A MINTED ID IS INVISIBLE TO EVERY OTHER RUN UNTIL THE BRANCH IS PUSHED.
+//
+// Measured the same day. This session renumbered a ticket to T-1324 and pushed
+// twenty minutes later; #1455 minted AND MERGED its own T-1324 inside that
+// window. No scan could have seen the first — it existed only on one disk. Five
+// collisions that day, and the fifth was created by a careful attempt to dodge
+// the fourth by picking an id above everything visible. "Above everything
+// visible" is read-then-write, and any run minting in between wins the race.
+//
+// So minting takes a lock, exactly as claiming a ticket does (T-1145's marker
+// branches, which are a real compare-and-swap and have held since). Push an
+// empty commit to `refs/heads/idlock/t-NNNN` with a lease saying THE REF MUST
+// NOT EXIST; git rejects the loser atomically, and the loser tries the next
+// number. Two runs minting in the same second get different ids, whatever either
+// of them can see.
+//
+// OFFLINE STILL MINTS. A sandbox with no remote, and the test suite, must be able
+// to file a ticket — so an unreachable origin falls back to the scan with a
+// warning that says exactly what was given up. A REJECTION is different from an
+// unreachable remote and is never treated as one.
+const idLockBranch = (id) => `idlock/${id.toLowerCase()}`;
+
+function reserveIdNum(startAt, count = 1) {
+  const taken = [];
+  let n = startAt;
+  let attempts = 0;
+  while (taken.length < count && attempts < 40) {
+    attempts += 1;
+    const id = idOf(n);
+    const ref = `refs/heads/${idLockBranch(id)}`;
+    const commit = claimCommit(id, 'mint', null);
+    if (!commit) { return { ids: null, why: 'could not write a lock commit' }; }
+    const push = gitTry(['push', 'origin', `${commit}:${ref}`, `--force-with-lease=${ref}:`]);
+    if (push.ok) { taken.push(id); n += 1; continue; }
+    if (isRefRejection(push.err)) { n += 1; continue; }   // somebody holds it — step past
+    return { ids: null, why: (push.err || '').trim().split('\n').filter(Boolean).pop() || 'push failed' };
+  }
+  if (taken.length < count) return { ids: null, why: `no free id found in ${attempts} attempts` };
+  return { ids: taken };
+}
+
+/**
+ * `count` consecutive-ish ids, reserved on the remote where another run can see
+ * them. Falls back to the local+remote scan when the remote cannot be reached,
+ * and says so, because a mint that fails is worse than a mint that races.
+ */
+function mintIds(tickets, count = 1) {
+  const start = nextIdNum(tickets);
+  const got = reserveIdNum(start, count);
+  if (got.ids) return got.ids;
+  console.warn(`  NOTE: the id lock could not be taken — ${got.why}.`);
+  console.warn('        Falling back to the highest id this clone can SEE, which is a race:');
+  console.warn('        another run minting right now cannot see this id until the branch is');
+  console.warn('        pushed, and may take it too (T-1287). Push early if you can.');
+  return Array.from({ length: count }, (_, i) => idOf(start + i));
+}
+
 function find(tickets, id) {
   const t = tickets.find((x) => x.id === id);
   if (!t) { console.error(`no ticket ${id}`); process.exit(1); }
@@ -1333,7 +1398,7 @@ switch (cmd) {
       console.error('also clears the ceiling, and `prune` drops any line whose work has finished.');
       process.exit(1);
     }
-    const id = idOf(nextIdNum(tickets));
+    const [id] = mintIds(tickets);
     const t = {
       file: path.join(DIR, `${id}-${slugOf(title)}.md`),
       id, title, state: 'open',
@@ -1493,7 +1558,7 @@ switch (cmd) {
     // owner had ranked higher (T-0217). `queueIndexOf` resolves the line by id
     // AND label, so the line that moves is the one written from THIS file.
     const { i: line, byLabel } = queueIndexOf(old, t.title);
-    t.id = idOf(nextIdNum(tickets));
+    [t.id] = mintIds(tickets);
     const dest = path.join(DIR, `${t.id}-${slugOf(t.title)}.md`);
     writeTicket(t); renameSync(t.file, dest); t.file = dest;
     if (line >= 0) queueReplaceAt(line, [`${t.id} — ${t.title}`]);
@@ -1519,11 +1584,10 @@ switch (cmd) {
       console.error(`usage: ticket.mjs split ${t.id} "first piece" "second piece" [...]`);
       process.exit(1);
     }
-    let next = nextIdNum(tickets) - 1;
+    const minted = mintIds(tickets, titles.length);
     const rows = [];
     titles.forEach((title, n) => {
-      next += 1;
-      const id = idOf(next);
+      const id = minted[n];
       const child = {
         file: path.join(DIR, `${id}-${slugOf(title)}.md`),
         id, title, state: 'open', epic: t.epic, requested_by: t.requested_by,
@@ -1978,6 +2042,31 @@ switch (cmd) {
       if (!stale.length) console.log('\nnothing stale to sweep');
     } else if (stale.length) {
       console.log(`\n${stale.length} older than ${RUN_HOURS}h — \`ticket.mjs claims --sweep\` deletes those.`);
+    }
+
+    // T-1287's id locks are a different animal and are swept by a different rule.
+    // A claim is a LEASE — it expires with the run, and age is what makes it stale.
+    // An id reservation is not a lease: it says an id is spoken for, and it has to
+    // hold from the minute a run mints until the ticket reaches `dev`, which may be
+    // hours and several merges later. Age would delete it exactly when it is still
+    // doing its job. So the rule is possession: once the ticket IS on the base, the
+    // ticket file is the reservation and the marker is litter.
+    const idLocks = remoteBranches().filter((b) => /^idlock\/t-\d{4}$/.test(b.name));
+    if (idLocks.length) {
+      const landed = idLocks.filter((b) => {
+        const id = b.name.replace(/^idlock\//, '').toUpperCase();
+        return tickets.some((t) => t.id === id);
+      });
+      console.log(`\nID LOCKS — ${idLocks.length} held, ${landed.length} whose ticket this tree already carries`);
+      if (has('sweep')) {
+        for (const b of landed) {
+          const ok = gitTry(['push', 'origin', '--delete', b.name]).ok;
+          console.log(`  ${ok ? 'deleted' : 'could not delete'} ${b.name}`);
+        }
+        if (!landed.length) console.log('  nothing to sweep — every reservation is still in flight');
+      } else if (landed.length) {
+        console.log(`  \`ticket.mjs claims --sweep\` deletes the ${landed.length} that have landed.`);
+      }
     }
     break;
   }
