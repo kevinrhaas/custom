@@ -3338,6 +3338,21 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 selftest "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
 
+# T-1326. THE PASS ABOVE PUT THOSE RULINGS ON A CARD AND NOTHING COULD COUNT THEM. It writes
+# a paragraph into `persons[].note`, and `tools/research_spend_ledger.py` reads a unit as
+# SPENT only where a structured node carrying `attested`/`inferred` and a source names it —
+# a person node carries `grade`, not `confidence` — so all 292 matched roll entries went on
+# reading `unresolved` while the evidence sat on the cards. This pass writes the same
+# rulings as `persons[].dated_bounds[]`: one row per entry, `inferred` because every
+# identity in that crosswalk is a name agreement, `covers_scene_date: false` because an
+# earlier source never promotes, and `bound_kind: "property"` with `here_by: null` on a tax
+# row, which is T-1117's standing ruling held in a field instead of in prose.
+step "…and each of those rulings is a bound on the card, not only a paragraph" \
+  python3 tools/spend_civic_roll_bounds.py --check
+
+selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
+  python3 tools/spend_civic_roll_bounds.py --self-test
+
 # T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
 # Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
 # had matched 101 entries to people this town holds, and the second hop could not even see

@@ -32,51 +32,85 @@ const APP = path.resolve(HERE, '..');
 const read = (p) => readFileSync(path.join(APP, p), 'utf8');
 
 /**
- * Gated writers that must NOT be in the manifest, each with the reason. A line here is a
- * decision, not a silencer: it says somebody measured this tool and found that re-running
- * it does not reproduce its committed output, or that its inputs are not in the repository.
+ * T-1302. THE INVENTORY REPLACED THE PATTERN, BECAUSE NO PATTERN WAS RIGHT.
+ *
+ * This audit used to answer "can this tool write?" by matching its SOURCE. Every version
+ * of that test is wrong, and each was measured on 2026-09-18 against the real tree:
+ *
+ *   anchored to a line start (as shipped)  found  0 unlisted writers
+ *   widened bluntly                        found 59 — but EIGHT of those declare no write
+ *                                                mode at all and matched the string
+ *                                                `--build` inside their own prose;
+ *                                                carry_stage_blocks.py has only --check
+ *   matching a DECLARED flag only          found 52 — and misses read_fergus_1839.py,
+ *                                                which has no --build, and WRITES BY
+ *                                                DEFAULT when the argument is neither
+ *                                                --check nor --self-test
+ *
+ * A tool's write mode is sometimes its default branch, so no reading of the source can
+ * answer the question. Behaviour can: run it on a clean tree and ask git what moved. That
+ * is far too slow for a per-commit gate — and it does not need to run per commit, because
+ * the answer only changes when a TOOL changes. So the measurement is committed, with a
+ * date beside every row, in tools/writer_inventory.json, and this gate holds the tree to
+ * it: a gated tool with no measured row fails here. That is what stops a new writer
+ * arriving unmeasured, which is the hole the ticket was filed for.
  */
-const NOT_DERIVABLE = {
-  'crosswalk_census_1840_heads.py':
-    'Passes --check and still does not rebuild to itself: measured 2026-09-14, --build '
-    + 'rewrote 137 lines of census_1840/crosswalk.json and resident_crosswalk.json on a tree '
-    + 'the gate called clean. This is the standing example behind the manifest rule '
-    + '`_must_reproduce`.',
-  'read_newberry_index.py':
-    'Needs OCR shards that live outside the repository. Invoked bare it prints its usage and '
-    + 'exits 0, writing nothing — the failure mode `_must_actually_write` was written for.',
-};
-
 const check = read('tools/check.sh');
 const manifest = read('tools/derived_manifest.json');
+const inventory = JSON.parse(read('tools/writer_inventory.json'));
+const INV = inventory.tools;
 
-// A tool the gate runs with --check, paired with a mode that writes.
+// A tool is LISTED when a step RUNS it, not when a note MENTIONS it. The substring test
+// this replaces read `tools/read_newberry_index.py` out of another step's prose and
+// called it listed — the one tool the old exemption list existed to keep out.
+const manifestTools = new Set(
+  JSON.parse(manifest).steps.flatMap((step) => step.command
+    .filter((a) => /^tools\/[a-z0-9_]+\.py$/.test(a))
+    .map((a) => a.replace(/^tools\//, ''))));
+
 const gated = new Set([...check.matchAll(/python3 tools\/([a-z0-9_]+\.py) --check/g)].map((m) => m[1]));
-const WRITE_MODE = /(?:^|\n)\s*(?:if\s+)?["']--(?:build|write)["']/;
 
-const missing = [];
+const unmeasured = [];
+const disagree = [];
 for (const tool of [...gated].sort()) {
-  let src;
-  try { src = read(`tools/${tool}`); } catch { continue; }
-  if (!WRITE_MODE.test(src)) continue;                 // a checker with no write mode
-  if (manifest.includes(`tools/${tool}`)) continue;     // listed
-  if (NOT_DERIVABLE[tool]) continue;                    // exempted, in writing
-  missing.push(tool);
+  const row = INV[tool];
+  if (!row) { unmeasured.push(tool); continue; }
+  const listed = manifestTools.has(tool);
+  if (row.placement === 'manifest' && !listed) {
+    disagree.push(`${tool} — the inventory says 'manifest'; the manifest does not run it`);
+  } else if (row.placement !== 'manifest' && listed) {
+    disagree.push(`${tool} — the manifest runs it; the inventory says '${row.placement}'`);
+  }
 }
 
-if (missing.length) {
+if (unmeasured.length || disagree.length) {
   console.error('manifest coverage: MISSING.\n');
-  console.error(`${missing.length} tool(s) are gated by check.sh with --check and can WRITE,`);
-  console.error('but are in neither tools/derived_manifest.json nor this file\'s exemption list:\n');
-  for (const t of missing) console.error(`  tools/${t}`);
-  console.error('\nA gated writer the manifest has never heard of is one `rederive.mjs --run`');
-  console.error('never runs, so the lap leaves every open PR stale and its gate goes red with');
-  console.error('no automated remedy. Add it to the manifest — measuring first that --build or');
-  console.error('--write REPRODUCES the committed output on a clean tree, which is the rule');
-  console.error('`_must_reproduce` — or, if it does not reproduce, add it to NOT_DERIVABLE in');
-  console.error('this file with the measurement that says why.\n');
+  if (unmeasured.length) {
+    console.error(`${unmeasured.length} tool(s) are gated with --check and have NO measured row`);
+    console.error('in tools/writer_inventory.json:\n');
+    for (const t of unmeasured) console.error(`  tools/${t}`);
+    console.error('\nMEASURE IT; DO NOT READ ITS SOURCE — the note above says why that cannot');
+    console.error('work. Run its write mode on a clean tree, or run it BARE if it declares no');
+    console.error('flag, and record what git says moved:');
+    console.error('  wrote its own outputs and changed no committed byte  -> reproduces');
+    console.error('  changed a committed byte                             -> not_derivable, WITH THE NUMBER');
+    console.error('  wrote nothing, and it HAS a write flag               -> perturb it before deciding');
+    console.error('  wrote nothing, run bare                              -> not_a_writer\n');
+  }
+  if (disagree.length) {
+    console.error('The inventory and the manifest disagree:\n');
+    for (const d of disagree) console.error(`  ${d}`);
+    console.error('');
+  }
   process.exit(1);
 }
 
-console.log(`manifest coverage: OK — every gated writer is listed or exempted `
-  + `(${gated.size} gated tool(s), ${Object.keys(NOT_DERIVABLE).length} exempted in writing)`);
+const by = (p) => Object.values(INV).filter((r) => r.placement === p).length;
+console.log(`manifest coverage: OK — ${gated.size} gated tool(s), every one measured.`);
+console.log(`  ${by('manifest')} in the manifest · ${by('pending')} measured to reproduce and not yet placed`);
+console.log(`  ${by('not_derivable')} cannot rebuild, each with its number · ${by('not_a_writer')} write nothing`);
+if (by('pending')) {
+  console.log('  The pending ones are recorded, not hidden. Ordering is its own measured pass:');
+  console.log('  on #1452 three reconstruction stages OSCILLATED until they sat in the right');
+  console.log('  slot, so these cannot be appended to the manifest blind (T-1302 batch 2).');
+}

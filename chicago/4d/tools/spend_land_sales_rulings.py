@@ -116,12 +116,12 @@ RULES = {
         "disposition": "unresolved",
         # T-1319 WAS SPLIT ON 2026-09-18 AND AN OWNER MUST BE AN OPEN TICKET. The parent
         # took these 313 rows and the 30 resident enrichments together; T-1330 spent the
-        # enrichments and T-1329 has the rows, which is the same routing EPIC_PIECES makes
+        # enrichments and T-1332 has the rows, which is the same routing EPIC_PIECES makes
         # one file over: the owner of an unasserted unit is the piece that still has THAT
         # corpus to spend. Pointing at the parent survived only while a child was live —
         # the moment T-1330 closed, `split_live` stopped holding and all 313 read as
         # deferred to spent work, which is exactly the fault T-1237 named.
-        "ticket": "T-1329",
+        "ticket": "T-1332",
         "statement": (
             "The tract was entered on or before 1 July 1835 and the crosswalk's "
             "adjudication under T-0700 / T-0850 UPHELD the join between this purchaser and "

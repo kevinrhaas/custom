@@ -1,5 +1,5 @@
 ---
-id: T-1329
+id: T-1332
 title: Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 1 July 1835 by a purchaser the crosswalk joined to a card this town holds, written onto that card as a dated appearance and never as a residence
 state: open
 epic: META
@@ -50,3 +50,10 @@ RESIDENCE. The register's Residence column reads COOK, ILLINOIS, another county 
 a county, a state, or nothing, and never a town. A row can bound a presence. It can never
 assert one, and it may not move a grade or reopen an identity the crosswalk has ruled.
 
+
+**RENUMBERED FROM T-1329 ON THE DAY IT WAS MINTED (2026-09-18).** Another branch split
+T-1318 at the same hour and minted its own T-1329 for the 1830 schedule lines, the church
+register sponsorships and the press notices. Two branches splitting at once each take the
+local max and each get it right alone and wrong together — the same collision
+`data/research/spend_rulings.json` records against T-1312/T-1313. That ticket merged first,
+so this one moved; `tools/spend_land_sales_rulings.py` points the 313 rows here.
