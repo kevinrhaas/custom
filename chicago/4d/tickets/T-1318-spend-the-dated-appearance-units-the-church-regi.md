@@ -1,7 +1,7 @@
 ---
 id: T-1318
 title: Spend the roll-and-appearance units: the 1830 schedule lines, the poll books, the 1833 tax roll, the 1832 Black Hawk enrolment, the church register sponsorships and the press notices, each as a bound on a held resident's presence and never more
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1316
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T15:56:46.338Z
 claimed_run: null
 ---
 

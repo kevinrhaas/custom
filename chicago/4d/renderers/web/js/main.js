@@ -56,6 +56,7 @@ import { mountLiberties } from './liberties.js';
 import { createRouter } from './route.js';
 import { createTravel } from './travel.js';
 import { mountPeople } from './people.js';
+import { mountBusinesses } from './businesses.js';
 import { createEvidenceHub } from './evidence.js';
 
 const VERSION = '0.1.0';
@@ -1668,6 +1669,39 @@ async function boot() {
     sceneId: loaded.scene.id ?? YEAR,
     onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
     // The drawer's head shows the person's name with a back control while a card is open.
+    onTitle: (text, onBack) => hud.setTitle(text, onBack),
+    problems,
+  });
+
+  // …and the town's FIRMS, which until now reached a visitor only through the
+  // roof they stood in. 166 of the 196 the register knows have no roof here — 26
+  // reach a landmark, 61 a street and no further, 79 could be placed nowhere at
+  // all — and the one
+  // thing this project will not do to make them visible is invent a building for
+  // them. So they get a directory and a card: every firm findable by trade,
+  // street, grade and how far the record could place it, and every limit printed.
+  api.businessIndex = await (async () => {
+    try {
+      const res = await fetch(new URL('businesses/index.json', bases.dataBase), { cache: 'no-cache' });
+      if (res.ok) return res.json();
+      problems.push(`businesses: businesses/index.json ${res.status} — no firm is listed in Businesses`);
+    } catch (err) {
+      problems.push(`businesses: ${err.message} — no firm is listed in Businesses`);
+    }
+    return null;
+  })();
+  api.businesses = await mountBusinesses({
+    mount: document.getElementById('businesses-directory'),
+    index: api.businessIndex,
+    registry: loaded.registry,
+    dataBase: bases.dataBase,
+    onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
+    // A proprietor the town holds a card for is one tap from their firm: the
+    // People view already knows how to open them, so this only has to ask.
+    onPerson: (personId) => {
+      hud.selectTab('people');
+      api.people?.open?.(personId);
+    },
     onTitle: (text, onBack) => hud.setTitle(text, onBack),
     problems,
   });

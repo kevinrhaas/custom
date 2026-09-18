@@ -344,6 +344,38 @@ const markers = (bare) =>
   }
 }
 
+// T-1287. TWO RUNS MINTING AT THE SAME MOMENT MUST GET DIFFERENT IDS, and the only
+// honest way to assert it is two clones of one bare remote — the situation the bug
+// describes. Run A mints and does NOT push its branch, which is precisely the window
+// that defeated the id scan: A's ticket exists on one disk and nowhere else.
+{
+  const { tmp, APP, bare } = sandbox();
+  try {
+    const second = path.join(tmp, 'runB');
+    spawnSync('git', ['clone', '-q', bare, second]);
+    const APPB = path.join(second, 'chicago', '4d');
+    cpSync(path.join(APP, 'tools'), path.join(APPB, 'tools'), { recursive: true });
+    cpSync(path.join(APP, 'tickets'), path.join(APPB, 'tickets'), { recursive: true });
+
+    const a = run(APP, 'new', 'run A files something', '--after', 'T-4000');
+    const b = run(APPB, 'new', 'run B files something else', '--after', 'T-4000');
+    const idOfRun = (out) => (/(T-\d{4}) created/.exec(out) ?? [])[1] ?? null;
+    const idA = idOfRun(a.out); const idB = idOfRun(b.out);
+    check('21. two clones minting against one remote get DIFFERENT ids',
+      idA !== null && idB !== null && idA !== idB, `A=${idA} B=${idB}`);
+
+    const locks = spawnSync('git', ['-C', bare, 'for-each-ref', '--format=%(refname:short)',
+      'refs/heads/idlock/'], { encoding: 'utf8' }).stdout.trim().split('\n').filter(Boolean);
+    check('22. …and each id is reserved on the remote, where the other run can see it',
+      locks.length >= 2, locks.join(',') || 'no id locks');
+    check('23. …the reservation happens BEFORE the branch is pushed, which is the whole bug',
+      locks.includes(`idlock/${String(idA).toLowerCase()}`)
+      && locks.includes(`idlock/${String(idB).toLowerCase()}`), locks.join(','));
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 console.log(failures
   ? `\n  ${failures} failure(s)\n`
   : '\n  a split keeps its lock, and the queue drops only finished work and regains what a merge lost\n');

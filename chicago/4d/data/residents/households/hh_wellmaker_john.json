@@ -18,7 +18,7 @@
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1827,
+  "value": 1832,
   "confidence": "reconstructed",
   "tier": "reconstructed",
   "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1832-12-31 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
@@ -64,7 +64,7 @@
   "basis": {
    "kind": "rule",
    "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1827) is the only thing about it this value rests on."
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1832) is the only thing about it this value rests on."
   },
   "replaceable_by": {
    "kind": "person",
@@ -125,6 +125,50 @@
     "fergus_1843_old_settler_death_notices",
     "isa_public_domain_land_tract_sales",
     "st_cyr_register_ichr_v4"
+   ],
+   "dated_bounds": [
+    {
+     "bound_kind": "property",
+     "list": "tax_1833",
+     "list_title": "Tax list of the Town of Chicago, 1833",
+     "record_id": "tax_1833_106",
+     "as_read": "Wellmaker, John",
+     "locator": "voter_lists_1833_1835.txt line 158",
+     "describes_date": "1833",
+     "date_confidence": "documented",
+     "precision": "year",
+     "reaches": "1833-12-31",
+     "here_by": null,
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "identity_discriminator": "forenames agree initial for initial: entry 'John Wellmaker' against resident 'John Wellmaker'",
+     "identity_rule": "one resident of the surname 'Wellmaker' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+     "note": "PROPERTY, NOT PRESENCE (T-1117). Tax list of the Town of Chicago, 1833 names the owners of ground inside the town, resident or not — its entry 110 is Alexander Wolcott, who had been dead since 25 October 1830 — so this row bounds what this person was assessed for and says nothing about where the person was. tools/assert_tax_roll_ruling.py holds that ruling on the two readings it rests on. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The reading of the roll is documented — the town's own paper, held by the Illinois Regional Archives Depository, twice mediated by Schulz's transcription and Genealogy Trails' republication, which this project has not gone behind. What no source states is that the man on the roll is the person on this card: data/research/civic/voter_crosswalk.json joins them on a name, by its rule “one resident of the surname 'Wellmaker' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.”, and forenames agree initial for initial: entry 'John Wellmaker' against resident 'John Wellmaker'. A bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
+    },
+    {
+     "bound_kind": "presence",
+     "list": "poll_1834",
+     "list_title": "Election returns — poll list of 1834, filed 11 August 1834",
+     "record_id": "poll_1834_112",
+     "as_read": "Wellmaker, John",
+     "locator": "voter_lists_1833_1835.txt line 281",
+     "describes_date": "1834-08-11",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-08-11",
+     "here_by": "1834-08-11",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "identity_discriminator": "forenames agree initial for initial: entry 'John Wellmaker' against resident 'John Wellmaker'",
+     "identity_rule": "one resident of the surname 'Wellmaker' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
+     "note": "A BOUND ON PRESENCE, AND NOTHING FURTHER. Election returns — poll list of 1834, filed 11 August 1834 records a man who presented himself and voted, so the entry places a body in Chicago no later than 1834-08-11. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes: a man on a roll of 1833, 1834 or 1835 is not thereby at Chicago on 1 July 1835. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The reading of the roll is documented — the town's own paper, held by the Illinois Regional Archives Depository, twice mediated by Schulz's transcription and Genealogy Trails' republication, which this project has not gone behind. What no source states is that the man on the roll is the person on this card: data/research/civic/voter_crosswalk.json joins them on a name, by its rule “one resident of the surname 'Wellmaker' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.”, and forenames agree initial for initial: entry 'John Wellmaker' against resident 'John Wellmaker'. A bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
+    }
    ],
    "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from church_after_1835, death_notice, muster_1832, newspaper_1833_1835, poll_1834, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “WELLMAKER JOHN”, 1830-09-27: 4 lots in the platted town — lot 1 of block 14 in the town the register codes CHIOT (L1B14CHIOT, as printed); lot 2 of block 14 in the town the register codes CHIOT (L2B14CHIOT, as printed); lot 7 of block 14 in the town the register codes CHIOT (L7B14CHIOT, as printed); lot 8 of block 14 in the town the register codes CHIOT (L8B14CHIOT, as printed), 0.00 acres stated in all, for $94.00 (ls1530, ls1531, ls1532, ls1533). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $94.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WELLMAKER JOHN matches John Wellmaker: the forename names John Wellmaker of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Tax list of the Town of Chicago, 1833 — “Wellmaker, John” (tax_1833_106, line 158); Election returns — poll list of 1834, filed 11 August 1834 — “Wellmaker, John” (poll_1834_112, line 281). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Wellmaker' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json).",
    "civic_evidence": [

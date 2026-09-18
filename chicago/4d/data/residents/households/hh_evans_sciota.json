@@ -14,21 +14,13 @@
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1830,
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1835-03-31 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
-  "basis": {
-   "kind": "model",
-   "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1835."
-  },
-  "seed": "hh_evans_sciota:arrival_year",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says which year this household came to Chicago"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": 1834,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A DATED NAMING EARLIER THAN THE BOUND THE DRAW WAS MADE AGAINST. The completed resident-research pass on evans_sciota read a Cook County history quoting the Chicago Democrat's political list of 15 October 1834 as naming Sciota Evans among the leading Cook County Democratic-Republicans. The arrival stage had drawn 1835 from a distribution truncated at this household's bound of 1835-03-31; a man named on a county political list in October 1834 was here by 1834, so the draw is retired by a year the evidence reaches. This is the LATEST year the arrival can be and not a statement that he came in it, which is why it is `inferred`. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this.",
+  "sources": [
+   "rr_cook_democratic_republicans_1834"
+  ]
  },
  "party_size_on_arrival": {
   "value": null,
@@ -53,14 +45,14 @@
   "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": "The trading post, the fort and the country trade — the town before the boom",
+  "value": "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
   "confidence": "reconstructed",
   "tier": "reconstructed",
   "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
   "basis": {
    "kind": "rule",
    "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1830) is the only thing about it this value rests on."
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1835) is the only thing about it this value rests on."
   },
   "replaceable_by": {
    "kind": "person",

@@ -6,7 +6,7 @@ disagree. The verdicts are AUTHORED in `data/residents/stated_family_rulings.jso
 
 ## The seat is held
 
-Seating is **held** (T-1170's second piece — see tickets/QUEUE.md). The rulings below say who belongs on a card. Seating them is a bigger act than reading them: the resident layer's counts are re-derived by some forty committed artifacts — every mint, the directory and census crosswalks, the population profile, the reconstruction order book, the closing audit — and each holds its own copy to a `--check`. Measured on this branch: seating three people turned `tools/check.sh` from 2 failing steps into 42. That is a cross-cutting change with its own demonstration, and a reading pass should not make it on the way past. It also found a rule while trying: the letter-list mint's ruling of 2026-08-30 permits exactly one person on a letter-list card, which is why Catherine Daugherty Hobson is `no_seat` and not `write`. The reading and the rulings land first; the seating ticket flips this to `open`, runs `--build`, and re-derives the forty.
+Seating is **open** (T-1313 — the seat T-1170's reading left held; see tickets/QUEUE.md): a statement ruled `write` below stands on its household's card.
 
 ## What was read
 
@@ -29,9 +29,9 @@ Seating is **held** (T-1170's second piece — see tickets/QUEUE.md). The ruling
 
 | person | relation | household | source says | grade | seated |
 |---|---|---|---|---|---|
-| Welthyan Loomis Harmon | wife | `hh_harmon_elijah_d` | Welthyan Loomis | inferred | not yet |
-| Ellen Hamilton | daughter | `hh_hamilton_richard_j` | Mrs Ellen Hamilton Keenon | inferred | not yet |
-| The Harmon daughter later known as Mrs A. G. Burley | daughter | `hh_harmon_elijah_d` | Mrs A. G. Burley | inferred | not yet |
+| Welthyan Loomis Harmon | wife | `hh_harmon_elijah_d` | Welthyan Loomis | inferred | yes |
+| Ellen Hamilton | daughter | `hh_hamilton_richard_j` | Mrs Ellen Hamilton Keenon | inferred | yes |
+| The Harmon daughter later known as Mrs A. G. Burley | daughter | `hh_harmon_elijah_d` | Mrs A. G. Burley | inferred | yes |
 
 ## Every statement, with its ruling
 

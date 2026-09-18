@@ -200,6 +200,21 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             if key not in person and key not in owned:
                 person[key] = value
 
+        # T-1326: THE ROLL BOUNDS SIT BESIDE THE SOURCES THEY CITE, NOT AT THE END.
+        # `tools/spend_civic_roll_bounds.py` writes `persons[].dated_bounds[]` after every
+        # mint has run, and the loop above would carry it back in at the tail of whichever
+        # mint happened to rebuild this person. That is not where the pass puts it, and two
+        # gates measure the difference byte for byte rather than semantically —
+        # `spend_person_sex_age.py --check` and `reconstruct_sex_age.py`, which pop `sex`,
+        # `sex_basis`, `age_band` and `birth_year` and re-append them, so a block at the
+        # tail lands before those keys on the next re-derivation and reads as drift on 235
+        # cards. The slot is the one the pass itself writes: immediately after `sources`,
+        # because the block is evidence and belongs beside the sources it cites.
+        bounds = old.get("dated_bounds")
+        if bounds is not None and "dated_bounds" not in owned:
+            person.pop("dated_bounds", None)
+            _insert_after(person, "dated_bounds", bounds, "sources")
+
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
         if pointer is not None and isinstance(person.get("occupation"), dict):

@@ -334,6 +334,69 @@
       ]
     },
     {
+      "why": "T-1313 seats the family members the sources NAME (T-1170's first half): it writes household cards and re-indexes them, so it runs after the index is built and before everything downstream that COUNTS people — the ladder, the roles, the profile, the town model, the order book, the census and the ledger each hold their own copy of the town's totals. Listed here on the day it landed rather than later: the coverage audit's write-mode pattern still misses an argparse-declared --build (T-1302), so this writer slipped past the gate exactly as export_borderline_roster.py did on #1422, and leaving it out is what made a full re-derivation need two passes by hand.",
+      "command": [
+        "python3",
+        "tools/spend_stated_families.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/docs/RESEARCH/stated-families-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_stated_families.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1169's arrival fill: arrival year, origin and reason on 1,258 households.",
+      "command": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
+        "--stage",
+        "attribute_fill_arrival",
+        "--build"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1304's drawn sex and age bands, each seeded by the person's own id.",
+      "command": [
+        "python3",
+        "tools/reconstruct_sex_age.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_sex_age_model.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/reconstruct_sex_age.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1303's read sex and age, spent off the forename table and the rolls.",
+      "command": [
+        "python3",
+        "tools/spend_person_sex_age.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/sex_age_spend.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_person_sex_age.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The ladder's spend, which reads the consolidated evidence above it.",
       "command": [
         "python3",
@@ -391,6 +454,24 @@
         "python3",
         "tools/location_spend.py",
         "--check"
+      ]
+    },
+    {
+      "why": "T-1144 acceptance 7: the per-person convergence coverage table and its report — which roles[] and which home/work/other locations reach 1 July 1835, joined from the roles, the location reconciliation and the business register. A gated writer, so it belongs here: it re-derives whenever any of those three layers moves, and a lap that rebuilt them without rebuilding this join would leave check.sh red with nothing to run.",
+      "command": [
+        "python3",
+        "tools/report_convergence_coverage.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/convergence_coverage.json.gz",
+        "chicago/4d/docs/RESEARCH/convergence-coverage-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/report_convergence_coverage.py",
+        "--check",
+        "--quiet"
       ]
     },
     {

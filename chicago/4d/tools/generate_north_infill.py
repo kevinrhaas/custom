@@ -104,17 +104,49 @@ def archetype_for(family: str) -> str:
 
 
 FUNCTIONS = {
-    "D1": "older log dwelling", "D2": "rough plank dwelling or shanty",
-    "D3": "one-room frame cottage", "D4": "two-room frame cottage",
-    "D5": "deep-plan frame cottage", "D6": "one-and-a-half-story frame cottage",
-    "D7": "small two-story frame house", "H1": "small boarding house",
-    "H2": "medium boarding house", "H3": "large boarding house",
-    "C1": "small shop or office", "C2": "store-residence",
-    "T1": "small inn or tavern", "W1": "blacksmith shop",
-    "W2": "carpenter or joiner shop", "W5": "large workshop",
-    "F1": "freight or storage shed", "I2": "schoolhouse or meeting hall",
-    "A1": "stable", "A2": "barn or carriage shed", "A3": "privy",
-    "A4": "woodshed or storage shed", "A5": "small utility building",
+    "D1": "older_log_dwelling", "D2": "rough_plank_dwelling_or_shanty",
+    "D3": "one_room_frame_cottage", "D4": "two_room_frame_cottage",
+    "D5": "deep_plan_frame_cottage", "D6": "one_and_a_half_story_frame_cottage",
+    "D7": "small_two_story_frame_house", "H1": "small_boarding_house",
+    "H2": "medium_boarding_house", "H3": "large_boarding_house",
+    "C1": "small_shop_or_office", "C2": "store_residence",
+    "T1": "small_inn_or_tavern", "W1": "blacksmith_shop",
+    "W2": "carpenter_or_joiner_shop", "W5": "large_workshop",
+    "F1": "freight_or_storage_shed", "I2": "schoolhouse_or_meeting_hall",
+    "A1": "stable", "A2": "barn_or_carriage_shed", "A3": "privy",
+    "A4": "woodshed_or_storage_shed", "A5": "small_utility_building",
+}
+
+# The prose the record's human-facing `name` has always used. Split from FUNCTIONS
+# by T-1311, which closed the `function` vocabulary: the value is now a term from
+# `data/structures.schema.json`, and a term is not a phrase to put in front of a
+# visitor. Both tables are keyed by the same band, and this one keeps the names
+# these records already carry - migrating a vocabulary is not licence to rename
+# 44 buildings.
+LABELS = {
+    "D1": "older log dwelling",
+    "D2": "rough plank dwelling or shanty",
+    "D3": "one-room frame cottage",
+    "D4": "two-room frame cottage",
+    "D5": "deep-plan frame cottage",
+    "D6": "one-and-a-half-story frame cottage",
+    "D7": "small two-story frame house",
+    "H1": "small boarding house",
+    "H2": "medium boarding house",
+    "H3": "large boarding house",
+    "C1": "small shop or office",
+    "C2": "store-residence",
+    "T1": "small inn or tavern",
+    "W1": "blacksmith shop",
+    "W2": "carpenter or joiner shop",
+    "W5": "large workshop",
+    "F1": "freight or storage shed",
+    "I2": "schoolhouse or meeting hall",
+    "A1": "stable",
+    "A2": "barn or carriage shed",
+    "A3": "privy",
+    "A4": "woodshed or storage shed",
+    "A5": "small utility building",
 }
 
 
@@ -320,6 +352,7 @@ def make_record(row: list, datum: dict) -> dict:
     local_e, local_n = footprint_origin(center_e, center_n, width, depth, float(bearing))
     finish_key, paint = finish_for(seq)
     function = FUNCTIONS[family]
+    label = LABELS[family]
     adjusted = (f" Slot {seq} is shifted {math.hypot(de, dn):.1f} m within the recipe's "
                 "25 m control radius so its entire perimeter meets one terrain surface."
                 if de or dn else "")
@@ -342,7 +375,7 @@ def make_record(row: list, datum: dict) -> dict:
                     " I2 currently uses a generic rectangular frame block because no "
                     "institutional generator is implemented." if family == "I2" else "")
     return {
-        "id": sid, "name": f"Reconstructed {family} {function} #{seq:03d}",
+        "id": sid, "name": f"Reconstructed {family} {label} #{seq:03d}",
         "archetype": archetype_for(family),
         "phases": [{
             "id": PHASE_ID,
