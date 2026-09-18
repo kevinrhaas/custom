@@ -22,7 +22,35 @@ Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 
 
 Piece 1 of 2 of **T-1319 — Spend the land-sale and enrichment units: the entered tracts whose purchaser join the adjudication upheld, and the corroborated_enrichment rows naming an arrival or origin no structured field carries**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
 
-**Acceptance:** (state it before working — one demonstration, never weakened to pass)
+**Acceptance:** (stated before working — one demonstration, never weakened to pass)
+
+ONE DEMONSTRATION: the research-spend ledger closes all 313 of these units as `asserted`
+off the cards, and the derived ruling register rules none of them. Before: `land_sales`
+read `asserted 0 / unresolved 353`, 313 of them deferred to this ticket by name. After:
+`asserted 313 / unresolved 40`, and T-1332 is gone from the ledger's owner table. That is
+the whole of it, and it cannot be reached by writing prose, by moving a grade or by
+declaring an assertion — `tools/research_spend_ledger.py` reads the CARD, and its
+`ruling_coverage_faults` fails a ruling on a unit something else already closed, so the
+register HAS to stop ruling them at the same commit.
+
+AND FOUR THINGS IT MAY NOT DO TO GET THERE, each held by a gate rather than by this note:
+
+  1. NOT ONE ROW CLAIMS A CHICAGO PRESENCE. `here_by` is null on all 313. A purchase is a
+     transaction; the register's only residence column reads a county, a state or UNKNOWN,
+     never a town. The eighteen rows the register states COOK for carry
+     `bound_kind: "residence_in_cook"` and still no `here_by`, because Chicago is in Cook
+     County and Cook County is not Chicago.
+  2. NO ROW IS `attested`. Every identity here is the crosswalk's name adjudication and
+     none of them is an identification a source makes. `date_confidence` is `documented`
+     because the register prints the date; `confidence` is `inferred` because the subject
+     rests on a name.
+  3. NO SECOND SHAPE FOR ONE FACT. The bounds go into `persons[].dated_bounds[]`, the block
+     T-1326 introduced — so the block gains a second owner, and `tools/dated_bounds_block.py`
+     is the rule that stops the two passes wiping each other, with both `--check`s true at
+     once in either run order.
+  4. NO GRADE MOVES, NO IDENTITY REOPENS, NO PERSON IS MINTED, AND NO OTHER KEY IS TOUCHED.
+     `--self-test` diffs a card through the applier and asserts the changed key set is
+     `{"dated_bounds"}` alone.
 
 **READ THIS BEFORE CLAIMING (T-1330, 2026-09-18).** A purchase bound is a DATED APPEARANCE,
 and `persons[].dated_bounds[]` is the structured block a dated appearance belongs in. That
