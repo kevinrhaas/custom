@@ -44,9 +44,10 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
+T-1333 — The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
+T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
 T-1317 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
 T-1329 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
 T-1320 — Spend the kin the committed sources state for a head this town holds and T-1312's card reading never saw: the ties whose relative is ALSO a held resident, written onto both cards as a tie, and the book-corpus relatives who are nobody here, ruled the way T-1312 ruled the card ones — no person minted by either
@@ -63,7 +64,6 @@ T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded coho
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 T-1327 — Dev's smoke asserts the resident layer holds no reconstructed person, and since T-1314 it holds three: the retargeted K18 check is stale again
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1323 — The population profile's lodging test names three functions no building can spell: tavern, inn and coffee_house are not vocabulary terms, so every house of entertainment is classed a dwelling
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
