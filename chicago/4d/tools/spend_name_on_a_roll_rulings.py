@@ -67,7 +67,13 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # open tickets with exactly that field, and a hand-off is not a spend: when either closes,
 # these registers go red and the units come back for a real answer. That is the point.
 ARRIVAL = "T-1169"
-ROSTER = "T-1159"
+# NOT T-1159: that ticket CLOSES with the roster it builds, and the comment above is the
+# reason this matters — "when either closes, these registers go red and the units come back
+# for a real answer". The real answer for a roster name is T-1172, which re-admits the
+# roster's single-source names, and T-1159 moved its 40 land-sale hand-offs there on the
+# same rule. Pointing at the closed ticket instead fails the ledger's invariant that a unit
+# may only defer to work that is still going to happen.
+ROSTER = "T-1172"
 
 LADDER = (
     "Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date "
