@@ -113,19 +113,117 @@ RULES = {
             "closed decision and the sources stand in the finding where the pass put "
             "them."),
     },
-    "the_enrichment_names_an_attribute_no_field_carries": {
+    "the_enrichment_names_a_birth_or_age_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1160",
+        "ticket": "T-1168",
         "statement": (
-            "The completed pass returned `corroborated_enrichment`: a real, sourced fact "
-            "about a person this town holds -- a trade, an address, an origin, a kinship, "
-            "a date -- that extends the card and that no exact source-bearing structured "
-            "field on that card carries today. It is not refused, because it is true "
-            "research; it is not written here, because writing one attribute at a time, "
-            "out of one pass and without the other sources beside it, is how a layer "
-            "acquires facts it cannot defend. T-1160 is the pass that profiles every "
-            "attested and inferred person attribute by attribute and tier by tier, and "
-            "this is one of the attributes it must read."),
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names a BIRTH "
+            "DATE, a birth year or an age, and T-1168 is the pass that fills sex and age for every "
+            "attested and inferred person, each value with its tier and its reason."),
+    },
+    "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1169",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names an "
+            "ARRIVAL, a departure, an origin or a dated appearance that bounds one, and T-1169 is "
+            "the pass that fills arrival date, origin and reason for coming -- its acceptance takes "
+            "the earliest dated appearance as the bound, which is exactly what a voter roll, a "
+            "letter list or a treaty payment naming a man of Chicago is."),
+    },
+    "the_enrichment_names_kin_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1170",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names KIN -- a "
+            "spouse, a marriage, a child, a parent or a household the source distinguishes -- and "
+            "T-1170 is the pass that gives the attested and inferred heads the families the sources "
+            "name."),
+    },
+    "the_enrichment_names_a_trade_or_premises_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1182",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names a TRADE, "
+            "a firm, a shop, a tavern, a store or the premises one was kept at, and T-1182 is the "
+            "audit of every attested and inferred business against the research -- proprietors, "
+            "partners, dates and premises -- which also raises an inferred business for an in- "
+            "window trade that has none."),
+    },
+    "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1188",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names a CIVIC, "
+            "CHURCH, SCHOOL or GARRISON POST -- a county office, a town trusteeship, a coronership, "
+            "a ministry, a church membership, a school kept or an officer's clerkship -- and T-1188 "
+            "completes those establishments with their staff, attested where the sources name the "
+            "officer."),
+    },
+    "the_enrichment_names_a_landholding_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1198",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
+            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
+            "extends the card and that no exact source-bearing structured field on that card "
+            "carries today. It is not refused, because it is true research; it is not written here, "
+            "because writing one attribute at a time, out of one pass and without the other sources "
+            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
+            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
+            "fact it names; this unit's own note says which field that is. This one names LAND "
+            "rather than a trade or a roof -- a purchase, an original-town lot, a holding -- and "
+            "T-1198 is the pass that seats every attested and inferred household and business on "
+            "the ground its evidence allows, plural and dated, with no fabricated coordinates."),
+    },
+    "the_later_volume_enriches_a_biography_and_names_no_1835_field": {
+        "disposition": "later_only",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment` and the source it read is a "
+            "volume or a return PRINTED AFTER 1 July 1835 -- a later directory, an old-settler "
+            "roll, a death notice, an 1837 election return -- which confirms and dates a person the "
+            "town already holds and, in the pass's own words, backfills no in-window value: no "
+            "occupation, no roof, no 1835 attestation. Under the ladder ratified 2026-09-03 such a "
+            "source may corroborate, enrich and date, and may never assert an 1835 fact. That is "
+            "`later_only`, which is an answer and not a deferral: handing it to an attribute-fill "
+            "ticket whose acceptance is about 1835 values would name a field the reading cannot "
+            "fill. The reading stands as committed biography where the pass put it; no card is "
+            "edited and no confidence moves."),
     },
     # ---- the ladder --------------------------------------------------------------
     "the_issue_is_printed_after_the_scene_date": {
@@ -298,6 +396,154 @@ def issue_date(doc: dict) -> str | None:
     return "-".join(match.groups()) if match else None
 
 
+# ---------------------------------------------------------------------------------
+# T-1301: WHERE EACH ENRICHMENT GOES, ONE AT A TIME.
+#
+# T-1298 ruled all 98 `corroborated_enrichment` units under ONE rule whose `ticket` was
+# T-1160, and T-1160 then closed. `research_spend_ledger` holds that a unit may only
+# defer to work that is still going to happen, so the gate went red on all 98 at once --
+# not on the work, on the pointer. T-1301 is the piece that owes them an answer.
+#
+# A blanket repoint of all 98 to one id is the thing to avoid: a rule takes a SINGLE
+# ticket, and these enrichments name six different fields, so one id would hand five of
+# them to a ticket whose acceptance does not mention them -- which is how a unit ends up
+# deferring to work that is not going to happen a second time. So the one rule becomes
+# SEVEN, each naming the open ticket whose acceptance owns the kind of fact it carries,
+# and the table below records the adjudication for every unit BY HAND: the field the
+# pass's own summary names, in a phrase a reader can put beside the summary. The note is
+# still derived -- it prints the finding verbatim -- and only the routing is authored.
+#
+# T-1254 was the sixth destination the ticket named and it is `done`; nothing routes to
+# it. Seven units are not handed on at all: their own summaries say the source is a
+# volume or a return PRINTED AFTER 1 July 1835 which confirms and dates a person the town
+# already holds and backfills no in-window value. Under the ladder ratified 2026-09-03
+# that is `later_only` -- a terminal disposition the registers already use -- and calling
+# it a deferral to an 1835 attribute-fill ticket would be the false half of the pair.
+#
+# NOTHING HERE WRITES A CARD. A hand-off is not a spend; it names the field and the open
+# ticket that owns it, and that ticket closing turns this file red, which is the point.
+AGE = "the_enrichment_names_a_birth_or_age_no_field_carries"
+ARRIVAL = "the_enrichment_names_an_arrival_or_origin_no_field_carries"
+KIN = "the_enrichment_names_kin_no_field_carries"
+TRADE = "the_enrichment_names_a_trade_or_premises_no_field_carries"
+CIVIC = "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"
+LAND = "the_enrichment_names_a_landholding_no_field_carries"
+LATER = "the_later_volume_enriches_a_biography_and_names_no_1835_field"
+
+ENRICHMENT_ROUTE: dict[tuple[str, str], tuple[str, str]] = {
+    ("02", "bates_john_jr"): (TRADE, "an auctioneer's trade and a directory address"),
+    ("02", "beaubien_josette"): (KIN, "a daughter and a wife the source names"),
+    ("02", "caldwell_billy"): (ARRIVAL, "a dated removal that conflicts with the record's own migration year"),
+    ("02", "calhoun_john"): (TRADE, "the founding and operation of a printing office"),
+    ("02", "clybourne_archibald"): (TRADE, "a slaughterhouse and a meat trade with their premises"),
+    ("02", "couch_ira"): (TRADE, "the keeping of the Tremont House"),
+    ("02", "hamilton_richard_j"): (CIVIC, "county clerk and recorder, and the later county offices"),
+    ("02", "hogan_john_s_c"): (CIVIC, "a corporate trustee named in the 1835 incorporation act"),
+    ("02", "kinzie_juliette"): (ARRIVAL, "a dated pre-Chicago residence at the Fort Winnebago agency house"),
+    ("02", "owen_thomas_jv"): (KIN, "a wife and four sons the sources name"),
+    ("02", "pearsons_hiram"): (TRADE, "a house painter's trade the household carried as speculator"),
+    ("02", "peck_philip"): (ARRIVAL, "a Providence origin and a dated July 1831 arrival"),
+    ("02", "porter_eliza_chappel"): (KIN, "an 1835 marriage"),
+    ("02", "porter_jeremiah"): (KIN, "a marriage dated 15 June 1835"),
+    ("02", "robinson_alexander"): (AGE, "a birth year current scholarship disputes"),
+    ("02", "robinson_catherine"): (KIN, "a husband, a marriage year, parents and a grandfather"),
+    ("02", "sen_elijah_wentworth"): (TRADE, "a tavern kept at Wolf Point and later at Sand Ridge"),
+    ("02", "snow_george_w"): (CIVIC, "election as assessor and surveyor in December 1833"),
+    ("02", "spring_giles"): (ARRIVAL, "a relocation to Chicago dated June 1833"),
+    ("02", "taylor_augustine"): (TRADE, "a builder's trade and the building of St Mary's"),
+    ("02", "temple_john_t"): (ARRIVAL, "a July 1833 arrival with a family"),
+    ("02", "tuller_elam"): (ARRIVAL, "a July 1833 family arrival and a Connecticut origin"),
+    ("02", "wright_john"): (ARRIVAL, "a joint arrival dated 29 October 1832"),
+    ("03", "blodgett_tyler_k"): (TRADE, "an 1833 north-bank brickyard and a brick house"),
+    ("03", "brown_rufus"): (TRADE, "a log boarding house kept full"),
+    ("03", "carver_david"): (ARRIVAL, "a dated 1833 voter-roster appearance, which is an arrival bound"),
+    ("03", "casey_edward_w"): (ARRIVAL, "an 1833 arrival remembered by a near participant"),
+    ("03", "church_thomas"): (ARRIVAL, "an 1834 arrival"),
+    ("03", "cobb_silas_b"): (TRADE, "saddlery and harness work and a later Lake Street address"),
+    ("03", "cohen_peter"): (TRADE, "incorporation of the Chicago Hydraulic Company"),
+    ("03", "davis_t_o"): (TRADE, "the establishing of the Whig newspaper in 1835"),
+    ("03", "elston_daniel"): (TRADE, "soap and candle manufacture and a later distillery and brewery"),
+    ("03", "fullerton_alexander"): (CIVIC, "the 1835 town-clerk chronology"),
+    ("03", "gale_stephen_f"): (ARRIVAL, "a dated 1833 voter-roster appearance"),
+    ("03", "heacock_russel_e"): (KIN, "a household the 1843 directory distinguishes"),
+    ("03", "ingersoll_chester"): (TRADE, "the Green Tree house held as landlord 1834-37"),
+    ("03", "jones_benjamin"): (ARRIVAL, "a dated 1835 purchase and an 1836 removal"),
+    ("04", "handy_major"): (TRADE, "a named role in the 1833 river-improvement works"),
+    ("04", "kimberly_edmund_s"): (AGE, "an exact birth date of 7 April 1803"),
+    ("04", "kinzie_robert_a"): (TRADE, "a frame store and membership of Kinzie, Davis & Hyde"),
+    ("04", "mason_matthias"): (TRADE, "a blacksmith shop opened in the fall of 1833"),
+    ("04", "maxwell_philip"): (AGE, "full birth data"),
+    ("04", "mckee_david"): (TRADE, "the agency blacksmith's shop at the foot of State Street"),
+    ("04", "meeker_joseph"): (CIVIC, "church membership, a Sunday-school office and the first meeting house"),
+    ("04", "murphy_john"): (TRADE, "the keeping of the Exchange Coffee House from August 1834"),
+    ("04", "norton_nelson_r"): (ARRIVAL, "an arrival dated 16 November 1833"),
+    ("04", "paine_seth"): (ARRIVAL, "an 1834 migration from Montpelier, Vermont"),
+    ("04", "pierce_asahel"): (ARRIVAL, "an October 1833 arrival"),
+    ("04", "porthier_joseph"): (ARRIVAL, "a departure dated 27 February 1835 and a return"),
+    ("04", "pruyne_peter"): (TRADE, "a drug store kept in partnership from early 1833"),
+    ("04", "sproat_grenville"): (CIVIC, "an English and Classical School opened in the fall of 1833"),
+    ("04", "st_cyr_john_mary"): (CIVIC, "an 1833 appointment, the first Mass and the first church"),
+    ("04", "steele_ashbel"): (CIVIC, "the county coroner's office in the 1835 period"),
+    ("04", "sweet_alanson"): (ARRIVAL, "a removal to Milwaukee in 1835"),
+    ("04", "thomas_frederick"): (TRADE, "a barber-surgeon's and retail druggist's trade"),
+    ("04", "walters_william"): (TRADE, "the Wolf Point Tavern kept 1833-36"),
+    ("04", "watkins_john"): (CIVIC, "a school taught in Chicago in 1835"),
+    ("05", "hugunin_leonard_c"): (ARRIVAL, "an arrival dated 17 August 1833"),
+    ("05", "kercheval_gholson"): (ARRIVAL, "a dated 1833 treaty payment naming him of Chicago"),
+    ("05", "kimball_walter"): (TRADE, "a New Store at the South Water and Clark junction"),
+    ("05", "lampman_henry_s"): (TRADE, "a brickmaker's trade and the yard that engaged him"),
+    ("05", "wright_john_s"): (LAND, "Chicago land purchases and original-town lots"),
+    ("06", "andrews_davi"): (ARRIVAL, "a dated Cook County presence from 1834"),
+    ("06", "blakesley_harvey_a"): (LATER, "later Chicago directories, backfilling no occupation and no roof"),
+    ("06", "mitchell_henry"): (TRADE, "wagon-factory work in 1834"),
+    ("07", "jackson_samuel"): (ARRIVAL, "an arrival from Buffalo dated 27 June 1833"),
+    ("08", "hobson_jesse"): (KIN, "a marriage at Naperville dated 6 April 1835"),
+    ("08", "orsemus_morrison"): (ARRIVAL, "an 1833 arrival"),
+    ("09", "chandler_joseph"): (TRADE, "executive charge of the harbour work begun 1 July 1833"),
+    ("09", "hathaway_joshua"): (TRADE, "the making of the 1834 cadastral map"),
+    ("09", "myers_frederick"): (CIVIC, "a quartermaster's clerkship at Fort Dearborn, 1831-33"),
+    ("09", "pugsley_john_k"): (ARRIVAL, "a June 1835 journey from near Utica, and a return"),
+    ("10", "barrows_mary"): (CIVIC, "an assistant's post in Miss Chappel's school"),
+    ("10", "boilvin_nicholas"): (ARRIVAL, "dated 1834 post-office returns and an 1833 treaty schedule"),
+    ("10", "christy_nathan"): (ARRIVAL, "a dated 1834 letter-list appearance"),
+    ("10", "cleland_martin"): (ARRIVAL, "an 1834 prospecting journey from Chautauqua, New York"),
+    ("10", "vasseur_noel"): (ARRIVAL, "an 1835 postal list and an 1833 treaty schedule"),
+    ("11", "andrus_thomas"): (ARRIVAL, "an arrival dated 1 December 1833 and a June 1835 return"),
+    ("11", "evans_sciota"): (ARRIVAL, "a dated October 1834 list and a later Milwaukee office"),
+    ("11", "kingston_paul"): (LAND, "a Chicago landholding and a dated January 1835 departure"),
+    ("11", "lathrop_samuel_s"): (CIVIC, "First Baptist membership from October 1833"),
+    ("12", "woodworth_james_h"): (ARRIVAL, "a move to Chicago in 1833"),
+    ("14", "bailey_bennet"): (TRADE, "a carpenter and builder's trade printed in 1839"),
+    ("14", "chapman_chas_h"): (TRADE, "a real-estate dealer's trade and a Randolph Street address"),
+    ("14", "clarke_h_b"): (TRADE, "a hardware merchant's trade the 1835 papers carry"),
+    ("14", "collins_j_h"): (TRADE, "an attorney's practice carried across 1834-35"),
+    ("14", "elston_daniel"): (TRADE, "soap and candle manufacture read in pass 3 and never written"),
+    ("14", "marshall_j_a"): (TRADE, "an auction and commission trade on South Water Street"),
+    ("14", "moore_henry"): (TRADE, "an attorney's practice and a Clark Street office"),
+    ("14", "sabine_wm"): (TRADE, "a boarding house at 161 Lake Street"),
+    ("14", "sen_elijah_wentworth"): (TRADE, "the Wolf Point tavern, carried forward from pass 2"),
+    ("14", "stewart_r"): (TRADE, "an attorney's practice on Lake Street"),
+    ("14", "thrall_e_l"): (LATER, "an 1837 election return, carrying a 1837 ward and no 1835 value"),
+    ("15", "doolittle_ehjah"): (LATER, "a volume printed after the scene date, adding no 1835 attestation"),
+    ("15", "kinzie_juliette"): (LATER, "a volume printed after the scene date, adding no 1835 attestation"),
+    ("15", "porter_jeremiah"): (LATER, "a volume printed after the scene date, adding no 1835 attestation"),
+    ("15", "vanderbogart_h"): (LATER, "a volume printed after the scene date, adding no 1835 attestation"),
+    ("15", "wright_john"): (LATER, "a volume printed after the scene date, adding no 1835 attestation"),
+}
+
+
+def enrichment_key(unit: dict) -> tuple[str, str]:
+    """The pass number and the person, which is what makes a resident unit unique.
+
+    Five people were read in two different passes -- Daniel Elston, Elijah Wentworth sen.,
+    Juliette Kinzie, Jeremiah Porter and John Wright -- and the two readings say different
+    things, so the person alone is not a key and the routing is per READING.
+    """
+    name = Path(unit["source_file"]).name
+    match = re.match(r"pass_(\d\d)_", name)
+    return ((match.group(1) if match else name), str(unit["source_record_id"]))
+
+
 def entity_names(row: dict) -> list[str]:
     names = []
     for entity in row.get("entities") or []:
@@ -329,9 +575,17 @@ def rule_residents(unit: dict, finding: dict | None, preamble: str) -> tuple[str
         return ("corroboration_confirms_and_moves_nothing",
                 f"The pass on {unit['source_record_id']} returned: “{summary}” "
                 f"Corroborating sources as recorded: {clip(sources, 200)}.")
-    return ("the_enrichment_names_an_attribute_no_field_carries",
+    key = enrichment_key(unit)
+    route = ENRICHMENT_ROUTE.get(key)
+    if route is None:
+        raise SystemExit(
+            f"{unit['source_record_id']} (pass {key[0]}) is an enrichment T-1301 never "
+            "adjudicated. An enrichment may not be routed by default: add it to "
+            "ENRICHMENT_ROUTE with the field its own summary names.")
+    rule, field = route
+    return (rule,
             f"The pass on {unit['source_record_id']} returned: “{summary}” "
-            f"Sources as recorded: {clip(sources, 180)}.")
+            f"Sources as recorded: {clip(sources, 180)}. T-1301 reads that as {field}.")
 
 
 def rule_newspapers(unit: dict, printed: str | None) -> tuple[str, str]:
@@ -603,9 +857,45 @@ def self_test() -> int:
                                                          "asserted": False}]}, ""))
     held("a corroboration", manifest, "corroboration_confirms_and_moves_nothing",
          fn=lambda u: rule_residents(u, {"outcome": "corroborated", "summary": "s" * 50}, ""))
-    held("an enrichment", manifest, "the_enrichment_names_an_attribute_no_field_carries",
-         fn=lambda u: rule_residents(u, {"outcome": "corroborated_enrichment",
-                                         "summary": "s" * 50}, ""))
+    # T-1301: one fixture per enrichment destination, each on a REAL adjudicated reading,
+    # so the seven rules are held over the units they actually rule rather than over a
+    # synthetic id that would route by default -- which this tool no longer allows.
+    def enrichment(pass_no, person):
+        return {"source_file": f"data/research/residents/pass_{pass_no}_x_cohort.json",
+                "source_record_id": person}
+
+    for label, pass_no, person, want in (
+            ("a birth date", "04", "kimberly_edmund_s", "the_enrichment_names_a_birth_or_age_no_field_carries"),
+            ("an arrival", "04", "norton_nelson_r", "the_enrichment_names_an_arrival_or_origin_no_field_carries"),
+            ("a marriage", "08", "hobson_jesse", "the_enrichment_names_kin_no_field_carries"),
+            ("a trade", "14", "sabine_wm", "the_enrichment_names_a_trade_or_premises_no_field_carries"),
+            ("a county office", "04", "steele_ashbel", "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"),
+            ("a landholding", "05", "wright_john_s", "the_enrichment_names_a_landholding_no_field_carries"),
+            ("a later volume", "15", "doolittle_ehjah", "the_later_volume_enriches_a_biography_and_names_no_1835_field")):
+        held(f"an enrichment naming {label}", enrichment(pass_no, person), want,
+             fn=lambda u: rule_residents(u, {"outcome": "corroborated_enrichment",
+                                             "summary": "s" * 50}, ""))
+
+    # An enrichment this tool never adjudicated must FAIL, not fall to a default. The whole
+    # reason T-1301 exists is that one default pointer went stale and took 98 units with it.
+    try:
+        rule_residents(enrichment("02", "nobody_at_all"),
+                       {"outcome": "corroborated_enrichment", "summary": "s" * 50}, "")
+        failures.append("an unadjudicated enrichment: routed by default instead of failing")
+    except SystemExit:
+        pass
+
+    # ...and the table must be exactly the corpus: no stale row, no unrouted reading.
+    enrichment_units = {
+        enrichment_key(unit) for unit in mine(ROOT)
+        if unit["domain"] == "residents"
+        and str((L.resident_finding(ROOT, unit) or {}).get("outcome") or "") not in
+        ("candidate_identity", "corroborated")
+        and L.resident_finding(ROOT, unit) is not None}
+    for stale in sorted(set(ENRICHMENT_ROUTE) - enrichment_units):
+        failures.append(f"ENRICHMENT_ROUTE holds {stale}, which is not an enrichment unit")
+    for missing in sorted(enrichment_units - set(ENRICHMENT_ROUTE)):
+        failures.append(f"{missing} is an enrichment with no adjudicated field")
 
     documents = build_documents()
     total = 0
