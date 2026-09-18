@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "e07d2b46a1eab801004dea6571eb81fa78dfb3f8c653fa75651c53598a096f29",
+    "fingerprint": "cea4e0d625eb5866ab0baea14a337f09a18a68d3f981a7cdefce8a4bc5b6c114",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1282,
+      "residents": 1285,
       "structures": 384,
       "voters": 345
     }
@@ -13810,6 +13810,11 @@
           "id": "hamilton_richard_j",
           "name": "Richard Jones Hamilton",
           "rule": "exact surname"
+        },
+        {
+          "id": "hamilton_ellen",
+          "name": "Ellen Hamilton",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -14066,6 +14071,11 @@
         {
           "id": "harmon_elijah_d",
           "name": "Dr Elijah Dewey Harmon",
+          "rule": "exact surname"
+        },
+        {
+          "id": "harmon_welthyan",
+          "name": "Welthyan Loomis Harmon",
           "rule": "exact surname"
         },
         {

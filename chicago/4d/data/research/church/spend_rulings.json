@@ -21,7 +21,7 @@
     },
     "the_register_entry_names_kin": {
       "disposition": "unresolved",
-      "ticket": "T-1170",
+      "ticket": "T-1320",
       "statement": "The entry's own `cells.role` puts this person in the KIN of a dated sacrament at Chicago -- the child, the father, the mother, the groom, the bride, the spouse or the decedent of a baptism, a marriage or a death. T-1170's field is the spouses, children, kin and dependants the baptism and marriage registers name. The tie is handed on whole; nobody is minted, no household is edited, and the entry's `confidence` is untouched."
     },
     "the_roll_is_beyond_the_reading_window": {
