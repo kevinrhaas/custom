@@ -1,7 +1,7 @@
 ---
 id: T-1330
 title: Spend the 30 corroborated_enrichment arrival and origin units: each sourced arrival day, origin and dated departure written onto the household it names, or ruled in writing where it only corroborates
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1319
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1463
 claimed_by: run 9/18/2026, 12:13:17 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T18:16:38.916Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35371938176
 ---
 
