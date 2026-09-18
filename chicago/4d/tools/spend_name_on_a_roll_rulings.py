@@ -74,9 +74,9 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # The split gave the parent's corpus to two children: T-1326 took the town's own rolls —
 # the 1833-1835 poll and tax lists — and ASSERTED every matched entry onto the card the
 # crosswalk names, so those units no longer reach this register at all (`still_open()`
-# drops them). T-1327 took the rest of what T-1318 held, the 1830 schedule among it, and
+# drops them). T-1329 took the rest of what T-1318 held, the 1830 schedule among it, and
 # is therefore the open owner of every unit here that is still a hand-off.
-ARRIVAL = "T-1327"  # was T-1318, which was T-1169 until it closed on 2026-09-18
+ARRIVAL = "T-1329"  # was T-1318, which was T-1169 until it closed on 2026-09-18
 # NOT T-1159: that ticket CLOSES with the roster it builds, and the comment above is the
 # reason this matters — "when either closes, these registers go red and the units come back
 # for a real answer". The real answer for a roster name is T-1172, which re-admits the

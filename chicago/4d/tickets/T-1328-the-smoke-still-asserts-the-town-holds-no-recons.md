@@ -1,7 +1,7 @@
 ---
 id: T-1328
 title: The smoke still asserts the town holds no reconstructed people, and the owner's ruling put three there
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-1327, which dev filed for the same finding: the smoke's retargeted K18 check asserts the resident layer holds no reconstructed person and the reconstruction programme seated three. T-1326 measured it independently (desktop part 2-3, 2026-09-18) and the reading is in that PR; the analysis this file held — that the live promise is T-1158's 'a reconstructed person declares itself' rather than 'there are none' — belongs on T-1327.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T17:19:52.666Z
 claimed_run: null
 ---
 

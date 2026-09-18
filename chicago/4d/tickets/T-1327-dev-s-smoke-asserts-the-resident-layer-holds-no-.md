@@ -55,3 +55,26 @@ T-0524 requires.
 
 **Links:** T-0524 · T-0489 · T-1167 · T-1314 · `tools/smoke_renderer.mjs` ·
 `tools/dev-smoke-state.mjs`.
+
+---
+
+**Measured independently on T-1326's branch, 2026-09-18, desktop part 2-3, `--published`:**
+
+```
+FAIL  desktop 1280x800: the invented-name programme left nothing behind on this layer
+      — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04,
+        name_basis present: false
+```
+
+`index.counts.by_grade` reads `{attested: 410, inferred: 875, reconstructed: 3}` identically on
+`origin/dev` and on a branch whose diff does not touch that file, so the red is dev's.
+
+**What the check should assert instead, and why the wire is worth keeping.** Not
+`reconstructed === 0` — that ruling is superseded. The comment at `smoke_renderer.mjs:6180`
+argues for a check that trips when an *undeclared* invented name comes back, and T-1158 states
+the live promise: every reconstructed value carries tier, basis, seed and `replaceable_by`. So
+`name_basis` may exist; where it does it must carry its basis and its seed, and no person may be
+graded `reconstructed` without the reconstruction contract on the record. `tools/check.sh`
+already holds that half — "3 reconstructed person(s) in data/residents/, each holding the record
+contract" — which is why the gate is green while the smoke is red. (T-1328 was filed for this
+before dev's copy was visible on the branch, and is withdrawn to here.)

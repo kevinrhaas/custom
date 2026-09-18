@@ -27,7 +27,7 @@ them sat on a card at all. The line between the two children is the line the evi
 draws: the town's own rolls are one corpus, adjudicated once in `voter_crosswalk.json`, already
 written onto 236 cards in prose by T-0634's pass, and needing only to be made legible to the
 research-spend ledger. The 1830 schedule, the church register and the press notices are three
-other corpora whose cards mostly carry no block at all, and that is T-1327's run.
+other corpora whose cards mostly carry no block at all, and that is T-1329's run.
 
 **Acceptance:** (stated before working — one demonstration, never weakened to pass)
 
@@ -46,7 +46,7 @@ other corpora whose cards mostly carry no block at all, and that is T-1327's run
    `tools/spend_name_on_a_roll_rulings.py` — a ruling on a unit something else closed reads as
    work done and is not — and that file's own self-test is what refuses a rule that never fires.
 7. `measure_research_spend.py --check` green with **0** units owned by this ticket, and 0 owned
-   by the split parent: what this run did not spend is repointed at T-1327, which holds it.
+   by the split parent: what this run did not spend is repointed at T-1329, which holds it.
 8. No grade moves, no identity is reopened, no person is minted, and the applier changes exactly
    one key — asserted by `tools/spend_civic_roll_bounds.py --self-test`.
 
