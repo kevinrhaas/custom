@@ -79,6 +79,36 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # THE SCRIPT BELOW IS THE CHECKOUT, SO IT CANNOT COME FROM THE CHECKOUT.
+      # T-0232 replaced actions/checkout with .github/chicago-4d-clone.sh, which
+      # does `git init .` in an empty workspace and fetches from there. But the
+      # script lives IN the repository, and nothing had put it on disk yet — so
+      # every run died on its first step with
+      #
+      #   .github/chicago-4d-clone.sh: No such file or directory   (exit 127)
+      #
+      # It has never worked: the script and the step that calls it arrived in the
+      # same commit (#1372). Measured 2026-09-18: the last 30 deploy runs on main
+      # had all failed, the first at 2026-09-17T15:22Z — the promotion that carried
+      # that commit to main — and the dev job is `skipped` by design and defers to
+      # main's, so NOTHING had published for eleven hours. The owner found it by
+      # looking at the app: no What's-New entries, while the changelog on dev was
+      # being written normally.
+      #
+      # So fetch the one file over the API first, with the token this job already
+      # holds. It lands in RUNNER_TEMP and NOT in the workspace, deliberately: the
+      # script's `git init .` + checkout would refuse to overwrite an untracked
+      # copy of a path that main also tracks.
+      - name: Fetch the clone script (it is the checkout, so it predates the checkout)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsSL --retry 3 --retry-delay 2 \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.raw" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/.github/chicago-4d-clone.sh?ref=${{ github.sha }}" \
+            -o "$RUNNER_TEMP/chicago-4d-clone.sh"
+          chmod +x "$RUNNER_TEMP/chicago-4d-clone.sh"
       - name: Checkout main (production is always the artifact root)
         # T-0232 — the bounded, retried partial clone from
         # .github/chicago-4d-clone.sh, same as promote-to-prod. The
@@ -89,7 +119,7 @@ jobs:
         # freshness check.
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: .github/chicago-4d-clone.sh main dev
+        run: bash "$RUNNER_TEMP/chicago-4d-clone.sh" main dev
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
