@@ -176,11 +176,21 @@ RULES = {
         # hours earlier by T-1330's arrival-and-origin pass, so `dev` went red on the
         # ledger ratchet and every branch that merged dev inherited the strand.
         #
-        # T-1333 is the child that owns it. The statement below names the question as
-        # "no false Chicago resident, and no 1835 claim above its dated evidence", and
-        # those are T-1144's acceptances 3 and 5, which the split banked into T-1333 to
-        # be stated as measured deltas by the closing rebuild.
-        "ticket": "T-1333",
+        # #1489 MOVED IT TO T-1333 AND THAT WAS ONLY HALF RIGHT. T-1333 was live, so
+        # the ledger cleared; but T-1333's acceptances are a rebuild and measured deltas,
+        # and none of them owns spending a departure onto a presence date. T-1334 is the
+        # identity rule, so it does not either. T-1172 is not the owner: its R1 leg is
+        # scoped to the 893 UNCERTAIN presences, and these six are not all uncertain —
+        # caldwell_billy is attested and present. The departure question is an UNBANKED
+        # REMAINDER of T-1144's split, and pointing it at whichever child happened to be
+        # open would have failed again the moment that child closed, which is precisely
+        # what T-1333's own closing run hit.
+        #
+        # T-1354 was filed for it and owns it: six rulings, each reading the removal
+        # beside the other sources on the card, each either moving present_on_scene_date
+        # with its tier and reason or recording why the removal does not bear on
+        # 1 July 1835.
+        "ticket": "T-1354",
         "statement": (
             "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from "
             "Chicago -- a removal, a migration to another town, a prospecting journey that "
@@ -188,9 +198,10 @@ RULES = {
             "thirty arrival-and-origin enrichments one at a time and these six name a going "
             "rather than a coming. No field on a resident card carries a departure: the only "
             "thing a removal bears on is `present_on_scene_date`, and whether a man "
-            "documented as leaving in 1835 was at Chicago on 1 July of that year is exactly "
-            "the question T-1144 owns -- \"no false Chicago resident, and no 1835 claim above "
-            "its dated evidence\". It is handed there and asserted nowhere: this pass does "
+            "documented as leaving in 1835 was at Chicago on 1 July of that year is the "
+            "question T-1144 asked -- \"no false Chicago resident, and no 1835 claim above "
+            "its dated evidence\" -- which neither child of its split banked. T-1354 owns "
+            "it. It is handed there and asserted nowhere: this pass does "
             "not move a presence, because a removal read out of one volume without the "
             "others beside it is how a layer loses a resident it had evidence for."),
     },
