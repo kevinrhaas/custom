@@ -1,7 +1,7 @@
 ---
 id: T-1185
 title: Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1539
 claimed_by: run 9/19/2026, 5:20:38 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T23:21:21.590Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35472821496
 ---
 
