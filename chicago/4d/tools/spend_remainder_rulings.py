@@ -500,48 +500,57 @@ RULES = {
             "household is edited, and the entry's `confidence` is untouched."
             " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
     },
-    "a_dated_appearance_bounds_a_presence": {
-        "disposition": "unresolved",
-        # T-1318 WAS SPLIT ON 2026-09-18 AND A HAND-OFF NAMES THE PIECE THAT HOLDS THE
-        # CORPUS, not the parent. The parent stays `split_live` while a child is open, so
-        # this pointer does not go red today -- it would go red the day the owning child
-        # closed, on units nobody had touched, which is the failure mode the ledger's own
-        # EPIC_PIECES comment records twice (61 units when T-1146 split, 3,384 when T-1236
-        # did). T-1326 took the first child's corpus, the town's own poll and tax rolls,
-        # and asserted it.
-        # AND T-1329 WAS SPLIT AGAIN ON 2026-09-18, WHICH IS WHY THIS RULE IS NOW THE
-        # PRESS ALONE. That ticket held three corpora and two of them could be answered
-        # off adjudications already made: T-1337 wrote the 14 matched 1830 schedule lines
-        # and the 13 merged St Mary's register appearances onto the cards, as
-        # `persons[].appearance_bounds[]`, and refused the other 83 by name in the four
-        # rules below. The 128 PRESS units could not follow them, and not for want of an
-        # identification: a newspaper claim's ledger id is its bare `c004`, which 55 held
-        # issues each carry, so a bound naming one would close 937 other units of this
-        # corpus as `asserted`. That measurement is T-1338, which owns them and has to
-        # give a claim unit a file-qualified id before it can spend one.
-        # AND T-1338 WAS SPLIT ON THE MEASUREMENT IT WAS MADE TO TAKE. The id collision was
-        # not a hazard ahead of the spend: 142 units were closed `asserted` on it already,
-        # off three resident cards that had each cited exactly ONE claim. Repairing that is
-        # a demonstration of its own and is T-1342 (done); the spend it unblocks is T-1343,
-        # which holds this corpus. The pointer moves with the corpus for the third time and
-        # for the same stated reason -- a hand-off names the piece that holds the units, not
-        # a split parent.
-        "ticket": "T-1343",
+    # ---- T-1343: THE PRESS APPEARANCES THE REGISTER COULD NOT IDENTIFY ---------------
+    #
+    # `a_dated_appearance_bounds_a_presence` STOOD HERE AND HANDED 147 PRESS UNITS ON, for
+    # the fourth time, through T-1169, T-1318, T-1329, T-1338 and T-1343. It is gone,
+    # because the hand-off has been answered rather than moved: T-1342 made a press claim
+    # NAMEABLE -- the ledger key is the issue file's stem and the claim id joined by `#` --
+    # and T-1343 spent every unit of this corpus that reaches a card.
+    # tools/spend_press_bounds.py writes them as `persons[].dated_bounds[]`, 225 bounds on
+    # 148 cards off 111 of the 147 units, so those units close `asserted` and never reach a
+    # register again (`mine()` drops them, and `research_spend_ledger.ruling_coverage_faults`
+    # would fail a ruling on one).
+    #
+    # The other 36 are the point of these two rules, and their ground is one committed
+    # adjudication read and never re-made: `data/research/newspapers/register_1835.json`
+    # says, of every person the press names, whether the residents layer HOLDS that person.
+    # Where it does not, the refusal is about the spend and not about the person -- there is
+    # no card to write on -- and each rule says what would reopen it. A unit whose register
+    # row says `enrich` does not fall here at all: `press_appearance_rule` raises rather
+    # than ruling it, because a unit with a card waiting for it is a unit that pass owes a
+    # bound, and mapping it onto the nearest refusal is how a statement stops being true of
+    # the units under it.
+    "the_press_name_is_a_person_the_town_does_not_hold": {
+        "disposition": "refused",
         "statement": (
-            "The unit puts a named person at Chicago on a dated day in the town's PRINT "
-            "and states nothing else about them. A dated appearance BOUNDS a presence and "
-            "is never itself a presence, and the earliest dated appearance is the bound "
-            "the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 "
-            "and T-1329 and T-1338 through their splits, and T-1343 now. This ruling hands "
-            "the date "
-            "on and writes nothing: it does not decide that a named party is a resident, "
-            "that a name is a person rather than a firm, or that it is the individual a "
-            "card of that name already holds. The register half of this rule is gone, "
-            "spent by T-1337 or refused by the four rules below; what is left here is the "
-            "press. T-1342 has since made a press claim NAMEABLE -- the ledger key is the "
-            "issue file's stem and the claim id joined by `#`, which is the form the "
-            "resident cards' own notes already wrote -- so what is left for T-1343 is the "
-            "identification this rule still refuses to make."),
+            "The claim puts a named person in the town's print on a dated day, and the "
+            "committed newspapers-to-residents register -- "
+            "data/research/newspapers/register_1835.json, derived from the gazetteer and "
+            "the committed town by tools/compile_register.py -- says of every person it "
+            "names here that THIS LAYER HOLDS NO CARD FOR THEM: the register's action is "
+            "`new_resident`, which is a person to be minted and not a person to be written "
+            "on. There is nothing to spend because there is nothing to spend it onto. The "
+            "refusal is about the SPEND and not about the name: the register's row stands, "
+            "the reading is not withdrawn, and nothing here decides whether the person "
+            "lived in the town. WHAT REOPENS IT is the mint: the day this layer holds a "
+            "card for that name the register re-derives to `enrich`, this unit leaves the "
+            "register, and tools/spend_press_bounds.py writes the bound. Nothing here "
+            "mints, regrades or reopens."),
+    },
+    "the_press_name_replaces_an_invented_card": {
+        "disposition": "refused",
+        "statement": (
+            "The claim puts a named person in the town's print on a dated day, and the "
+            "committed newspapers-to-residents register says the printed name REPLACES AN "
+            "INVENTED PERSON: its action is `replace_invented`, which names a card this "
+            "project composed rather than read, and the substitution has not been made. A "
+            "bound written onto that card would rest a dated reading on a person no source "
+            "names, and writing it onto the printed name instead would BE the substitution "
+            "-- a change to the residents layer, which is not a spend and is not this "
+            "pass's to make. WHAT REOPENS IT is the substitution: once it lands the "
+            "register re-derives to `enrich` and the bound is written. Nothing here mints, "
+            "regrades, substitutes or reopens."),
     },
     # ---- T-1337: THE REGISTER APPEARANCES THE CROSSWALKS DID NOT IDENTIFY ------------
     #
@@ -828,7 +837,75 @@ def rule_residents(unit: dict, finding: dict | None, preamble: str) -> tuple[str
             f"Sources as recorded: {clip(sources, 180)}. T-1301 reads that as {field}.")
 
 
-def rule_newspapers(unit: dict, printed: str | None) -> tuple[str, str]:
+# T-1343: A DATED PRESS APPEARANCE IS A CLASSIFICATION, AND ITS RULE IS THE REGISTER'S
+# ANSWER. Two tools have to agree about which press units are in play -- this register and
+# `tools/spend_press_bounds.py`, which spends the ones that reach a card -- and the way
+# they cannot drift apart is for one of them to own the test. `rule_newspapers` is that
+# owner: asked with a probe cache it says only whether the claim IS a dated appearance of a
+# named person, and asked normally it goes on to read the committed register and rule it.
+PRESS_APPEARANCE = "a dated press appearance"
+PRESS_REGISTER = ROOT / "data" / "research" / "newspapers" / "register_1835.json"
+PRESS_GAZETTEER = ROOT / "data" / "research" / "newspapers" / "gazetteer.json"
+PRESS_ACTION_RULES = {
+    "new_resident": "the_press_name_is_a_person_the_town_does_not_hold",
+    "replace_invented": "the_press_name_replaces_an_invented_card",
+}
+
+
+def press_register_index(root: Path = ROOT) -> dict:
+    """Claim key -> the register row of every person the gazetteer says that claim names."""
+    rel = lambda path: root / path.relative_to(ROOT)  # noqa: E731
+    register = {row["id"]: row for row in read_json(rel(PRESS_REGISTER))["persons"]}
+    index: dict = {}
+    for person in read_json(rel(PRESS_GAZETTEER))["persons"]:
+        row = register.get(person["id"])
+        if row is None:
+            continue
+        for claim in person.get("mentions") or []:
+            index.setdefault(claim, []).append(
+                {"person": person["id"], "name": person.get("name"),
+                 "action": row.get("action")})
+    return index
+
+
+def press_appearance_rule(unit: dict, cache: dict | None, note: str) -> tuple[str, str]:
+    """The refusal a dated press appearance falls under, off the committed register."""
+    cache = {} if cache is None else cache
+    if cache.get("press_probe"):
+        return (PRESS_APPEARANCE, note)
+    index = cache.get("press_register_index")
+    if index is None:
+        index = cache["press_register_index"] = press_register_index()
+    key = str(unit.get("record_key") or "")
+    rows = index.get(key) or []
+    actions = sorted({str(row.get("action")) for row in rows})
+    if not rows:
+        raise SystemExit(
+            f"{key}: a dated press appearance the committed register carries no person for. "
+            "Rebuild data/research/newspapers/register_1835.json with "
+            "tools/compile_register.py --build rather than ruling it blind.")
+    if "enrich" in actions:
+        raise SystemExit(
+            f"{key}: the register enriches a card with this claim, so it is T-1343's to "
+            "SPEND and not this register's to rule. Run tools/spend_press_bounds.py.")
+    unseen = [action for action in actions if action not in PRESS_ACTION_RULES]
+    if unseen:
+        raise SystemExit(
+            f"{key}: the register carries action(s) {unseen} that this file has no rule "
+            "for. Rule them rather than mapping them onto the nearest statement.")
+    rule = (PRESS_ACTION_RULES["replace_invented"] if "replace_invented" in actions
+            else PRESS_ACTION_RULES["new_resident"])
+    said = "; ".join("%s → %s" % (row["name"], row["action"]) for row in rows)
+    return (rule, f"{note} The register carries: {clip(said, 200)}")
+
+
+def is_dated_press_appearance(unit: dict, printed: str | None) -> bool:
+    """Whether this claim's only spendable content is a named person on a dated day."""
+    return rule_newspapers(unit, printed, {"press_probe": True})[0] == PRESS_APPEARANCE
+
+
+def rule_newspapers(unit: dict, printed: str | None,
+                    cache: dict | None = None) -> tuple[str, str]:
     row = unit["record"]
     where = f"{unit['source_file'].rsplit('/', 1)[-1].removesuffix('.json')} {row.get('id')}"
     kind = row.get("kind")
@@ -852,17 +929,19 @@ def rule_newspapers(unit: dict, printed: str | None) -> tuple[str, str]:
         if FAMILY_COLUMN.match(str(row.get("normalized") or "")):
             return ("the_family_column_names_kin",
                     f"{where}: the family column of {printed} reads: “{line}”")
-        return ("a_dated_appearance_bounds_a_presence",
-                f"{where}: a person notice of {printed} naming "
-                f"{clip(', '.join(entity_names(row)) or 'no entity row', 120)}. It reads: “{line}”")
+        return press_appearance_rule(
+            unit, cache,
+            f"{where}: a person notice of {printed} naming "
+            f"{clip(', '.join(entity_names(row)) or 'no entity row', 120)}. It reads: “{line}”")
     if kind in {"price", "shipping"}:
         return ("the_market_and_the_port_in_aggregate",
                 f"{where}: a {kind} reading of {printed}. It reads: “{line}”")
     names = entity_names(row)
     if names:
-        return ("a_dated_appearance_bounds_a_presence",
-                f"{where}: a {kind} of {printed} naming {clip(', '.join(names), 150)}. "
-                f"It reads: “{line}”")
+        return press_appearance_rule(
+            unit, cache,
+            f"{where}: a {kind} of {printed} naming {clip(', '.join(names), 150)}. "
+            f"It reads: “{line}”")
     return ("the_column_names_nobody",
             f"{where}: a {kind} of {printed} whose entities array is empty. It reads: “{line}”")
 
@@ -1023,7 +1102,7 @@ def classify(root: Path, unit: dict, cache: dict) -> tuple[str, str]:
         return rule_residents(unit, L.resident_finding(root, unit), preamble)
     if domain == "newspapers":
         doc = cache.setdefault(unit["source_file"], read_json(root / unit["source_file"]))
-        return rule_newspapers(unit, issue_date(doc))
+        return rule_newspapers(unit, issue_date(doc), cache)
     if domain == "church":
         return rule_church(unit, cache)
     return rule_books(unit)
@@ -1149,17 +1228,50 @@ def self_test() -> int:
          {**paper, "record": {**paper["record"], "kind": "person",
                               "normalized": "MARRIED, In this town, on the 12th inst."}},
          "the_family_column_names_kin", fn=lambda u: rule_newspapers(u, "1834-01-07"))
-    held("a person notice that is not the family column",
-         {**paper, "record": {**paper["record"], "kind": "person",
-                              "normalized": "Be it ordained by the Board of Trustees"}},
-         "a_dated_appearance_bounds_a_presence", fn=lambda u: rule_newspapers(u, "1834-01-07"))
+    # T-1343: A PRESS APPEARANCE'S RULE IS THE REGISTER'S ANSWER, so these fixtures carry a
+    # pre-seeded register index rather than reading the committed one — the point of each
+    # case is the MAPPING, and a fixture standing on a real claim would move the day the
+    # register was rebuilt.
+    press = {"press_register_index": {
+        "c_new": [{"person": "person_j_doe", "name": "J. Doe", "action": "new_resident"}],
+        "c_replace": [{"person": "person_j_roe", "name": "J. Roe",
+                       "action": "replace_invented"}],
+        "c_enrich": [{"person": "person_j_coe", "name": "J. Coe", "action": "enrich"}],
+        "c_unseen": [{"person": "person_j_poe", "name": "J. Poe", "action": "withdrawn"}]}}
+    held("a person notice whose name the town does not hold",
+         {**paper, "record_key": "c_new",
+          "record": {**paper["record"], "kind": "person",
+                     "normalized": "Be it ordained by the Board of Trustees"}},
+         "the_press_name_is_a_person_the_town_does_not_hold",
+         fn=lambda u: rule_newspapers(u, "1834-01-07", press))
     held("the marine journal", {**paper, "record": {**paper["record"], "kind": "shipping"}},
          "the_market_and_the_port_in_aggregate", fn=lambda u: rule_newspapers(u, "1835-06-20"))
     held("a notice naming nobody", paper, "the_column_names_nobody",
          fn=lambda u: rule_newspapers(u, "1835-06-10"))
-    held("a notice naming somebody",
-         {**paper, "record": {**paper["record"], "entities": [{"normalized": "George W. Snow"}]}},
-         "a_dated_appearance_bounds_a_presence", fn=lambda u: rule_newspapers(u, "1834-01-07"))
+    held("a notice naming somebody the register would replace",
+         {**paper, "record_key": "c_replace",
+          "record": {**paper["record"], "entities": [{"normalized": "George W. Snow"}]}},
+         "the_press_name_replaces_an_invented_card",
+         fn=lambda u: rule_newspapers(u, "1834-01-07", press))
+    for label, key in (("a unit the register enriches is spent, not ruled", "c_enrich"),
+                       ("a register action with no rule", "c_unseen"),
+                       ("a claim the register carries nobody for", "c_absent")):
+        try:
+            rule_newspapers({**paper, "record_key": key,
+                             "record": {**paper["record"],
+                                        "entities": [{"normalized": "George W. Snow"}]}},
+                            "1834-01-07", press)
+            failures.append(f"{label}: was ruled rather than refused")
+            print(f"  FAIL: {label}")
+        except SystemExit:
+            print(f"  ok:   {label} stops the build")
+    ok_probe = is_dated_press_appearance(
+        {**paper, "record": {**paper["record"],
+                             "entities": [{"normalized": "George W. Snow"}]}}, "1834-01-07")
+    if not ok_probe:
+        failures.append("the probe does not agree that a named press claim is an appearance")
+    print("  %s the probe and the rule agree on what a press appearance is"
+          % ("ok:  " if ok_probe else "FAIL:"))
 
     church = {"source_file": "x/st_marys_baptisms_1833_1835.json",
               "record": {"id": "e1", "normalized": "George Beaubien", "describes_date": "1833-05-22",

@@ -2394,6 +2394,40 @@ step "every re-admission re-derives, and no refusal it stands beside has moved" 
 
 selftest "...and a guessed date, a borrowed name and a rising persistence curve are refused" \
   python3 tools/readmit_borderline_roster.py --self-test
+
+# T-1174, stage `women_and_children` of the same programme, and the first one to write a
+# HOUSEHOLD rather than to draw into one. The rolls that name this town print men, so the
+# house with no man in it is the record the sources never made and the stage above — which
+# is keyed to a male head and says so in its own refusals — cannot create. This one writes
+# 124 female-headed households and the 556 people in them, drawing each head's band and
+# each other person's sex and band against the shortfall the order book still carries in
+# that division, so the draw converges on the population model's pyramid rather than near
+# it. Its --check rebuilds the whole set from the model files and refuses a differing byte
+# on the keys it owns; the keys another stage wrote are that stage's to prove, which is
+# why it compares an owned view rather than the card.
+step "the women and children re-derive from the pyramid the order book still wants" \
+  python3 tools/reconstruct_women_children.py --check
+
+selftest "...and every rule that decides who is drawn refuses its own case" \
+  python3 tools/reconstruct_women_children.py --self-test
+
+# T-1347 (of T-1173), stage `trade_households` of the same programme. The order book's
+# twenty-four `family/trade` buckets ordered 308 adults at a trade that nobody printed;
+# this stage draws them as heads of their own households, deals each a trade from the
+# Fergus 1839 table's shares (T-1346), caps a trade at the December 1835 State census
+# where that census counts a class one person keeps, and puts the refusals and the
+# rounding remainder into the residual — day labour and domestic service, the work the
+# record cannot see. What the gate below holds: that all 308 re-derive from their seeds,
+# that every bucket is filled to its order and no further, that no trade outside the
+# controlled vocabulary reaches a person, and that no kin is seated here — the family each
+# head is owed is written as `household_owed` and seated by T-1174, whose quota it is.
+# `reconstruct_residents_1835.py --check` above holds each drawn person to the record
+# contract, which is the other half. A hand-edited card fails here.
+step "every trade household re-derives, and every bucket the book ordered is filled" \
+  python3 tools/reconstruct_trade_households.py --check
+
+selftest "...and a seniority rule, an over-ceiling trade and a borrowed name are refused" \
+  python3 tools/reconstruct_trade_households.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
@@ -3471,6 +3505,23 @@ step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards
 
 selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
   python3 tools/spend_appearance_bounds.py --self-test
+
+# T-1343. AND THE THIRD CORPUS OF T-1329, WHICH WAITED ON A NAME RATHER THAN AN IDENTITY.
+# The press units could not be spent while a newspaper claim's ledger id was its bare
+# `c004` — 55 held issues each print one, so a bound naming it would have closed 937 other
+# units of this corpus as `asserted`. T-1342 gave a claim a file-qualified key and this
+# pass spends what that unblocked: 111 of the 147 units whose only content is a named
+# person on a dated day, written as `persons[].dated_bounds[]` through the shared block,
+# two owners for the two papers. The identification is the committed register's
+# (`register_1835.json`, `action: enrich`) and is never re-made here; `here_by` is null on
+# every row, because a name in the town's print is not a body in the town. The other 36 are
+# refused by name in the ruling register, and the ledger's own `ruling_coverage_faults`
+# fails a ruling on one of the 111 as work that reads done and is not.
+step "…and the 111 identified press appearances are bounds on the 148 cards they name (T-1343)" \
+  python3 tools/spend_press_bounds.py --check --quiet
+
+selftest "…and a name in print is never a presence, and no card the register did not enrich is touched" \
+  python3 tools/spend_press_bounds.py --self-test
 
 # T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
 # land-sale purchaser units and could not close 313 of them: the tract was entered on or
