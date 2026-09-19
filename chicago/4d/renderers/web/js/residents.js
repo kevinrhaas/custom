@@ -1363,6 +1363,9 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       ${born && born.refused_because
         ? birthRefusedHtml(born, citationsById)
         : claimRow('Born', bornYears(born), born, citationsById)}
+      ${born && born.contradicted_by_the_card
+        ? `<dd><span class="res-why">${escapeHtml(born.contradicted_by_the_card)}</span></dd>`
+        : ''}
       ${claimRow('Age band on 1 July 1835', bandYears(person.age_band),
         person.age_band, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${

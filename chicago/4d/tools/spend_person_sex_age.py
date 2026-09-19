@@ -808,8 +808,11 @@ def apply_to(card: dict, table: dict, lookup: dict, deaths: dict, registry: dict
                     # still a disagreement, and is carried as one rather than dropped.
                     said = contradiction or refusal
                     if said:
-                        block["contradicted_by_the_card"] = said
-                        block["note"] = "%s %s" % (block["note"], contradiction_note(said))
+                        # ONE HOME FOR THE SENTENCE. It is not folded into `note`: the
+                        # card renders this field as a line of its own under the Born
+                        # row, and a disagreement a reader only meets by opening a
+                        # paragraph is one the card has not really said.
+                        block["contradicted_by_the_card"] = contradiction_note(said)
                     person["birth_year"] = block
     return out
 
