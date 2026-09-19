@@ -77,7 +77,28 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "other",
+    "tier": "reconstructed",
+    "rule": "proprietors_agree",
+    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read other: Austin, W. G. (other), W. G. Austin (other). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "from": [
+      {
+        "person_id": "austin_w_g",
+        "name": "Austin, W. G.",
+        "role": "partner",
+        "community": "other",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "austin_w_g",
+        "name": "W. G. Austin",
+        "role": "partner",
+        "community": "other",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

@@ -127,7 +127,21 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_american_1835_06_08#c006 (notice, 1835-06-08), chicago_american_1835_06_13#c015 (notice, 1835-06-13).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "yankee",
+    "tier": "inferred",
+    "rule": "proprietors_agree",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read yankee: Oliver Goss (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "from": [
+      {
+        "person_id": "goss_o",
+        "name": "Oliver Goss",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "inferred"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

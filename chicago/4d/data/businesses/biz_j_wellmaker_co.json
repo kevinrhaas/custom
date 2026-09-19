@@ -78,7 +78,28 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_03_04#c011 (notice, 1834-03-04), chicago_democrat_1834_03_25#c004 (notice, 1834-03-25), chicago_democrat_1834_04_08#c013 (notice, 1834-04-08).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (british, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "adams_william_h",
+        "name": "William Adams",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "inferred"
+      },
+      {
+        "person_id": "wellmaker_john",
+        "name": "John Wellmaker",
+        "role": "partner",
+        "community": "british",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"
