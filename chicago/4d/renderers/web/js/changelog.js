@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Somebody is finally asleep in the Tremont House', kind: 'feature', ts: '',
+  { v: 976, title: 'Somebody is finally asleep in the Tremont House', kind: 'feature', ts: '2026-09-19T10:28:55.650Z', date: 'Sep 19, 2026, 5:28 AM CT',
     items: [
       'The last release counted the beds. Fifteen public houses \u2014 the Tremont, the Sauganash, the Green Tree, Rufus Brown\u2019s boarding house and eleven more \u2014 were each given a number for how many people they slept on an ordinary night, 135 between them, and every one of those beds was empty. Thirty people stood in all fifteen buildings put together, and all thirty were the keepers and their own families. You could walk into a twelve-bed hotel and meet the proprietor and his brother.',
       'Ninety-two of those beds now have somebody in them. Seventeen of the sleepers cost the town nothing: five men the household model had already decided lived alone \u2014 Philo Carpenter the druggist, the auctioneer John Bates jr, the attorney Alexander Fullerton \u2014 and twelve of last week\u2019s working people drawn the same way. They had no roof anywhere. Now they have a bed.',
