@@ -630,7 +630,9 @@ def derive() -> tuple[dict, dict]:
              "why_not": ("A baptism is not a residence and the roster's ineligibility "
                          "ruling is the research layer's, not this stage's to overturn "
                          "from the outside. It is a reading, and a reading is a ticket: "
-                         "this stage files it rather than spending it half-read.")},
+                         "filed as T-1383, with the four entries and what it should "
+                         "answer."),
+             "filed_as": "T-1383"},
         ],
         "minted": sorted(minted, key=lambda m: m["household_id"]),
         "already_on_a_card": sorted(already, key=lambda a: a["row_id"]),

@@ -12702,3 +12702,78 @@ programme's re-admission, women-and-children and trade bands), tickets **T-1353*
 **T-1352**, **T-1178**, **T-1372** (which is owed the crews), **T-1214** (which places the
 camps), the programme **T-1167**.
 **Recorded:** 2026-09-19.
+
+### L250 — Eighty-seven men of the company the 1832 roll heads INDIAN are carded under the licence that carded the other company on the same page
+
+**Decision:** `tools/reconstruct_underdocumented.py` (T-1376, of T-1177) writes **87**
+reconstructed cards into `data/residents/underdocumented/`, one per man of the company the
+Illinois State Archives index of Black Hawk War enrollments heads `INDIAN`, enrolled at
+Chicago in 1832. It is the first output of stage `underdocumented`, the only stage of the
+programme licensed to write a Native or Métis person. Every card carries
+`review_required: true` and `touches_removal: true` with the sentence that says why, the
+`community` value **`native`** and **no nation at all**, and `origin: null`.
+
+**Why:** because the same page had already been half spent. The roll prints 134 men in two
+companies — forty under `G KERCHEVAL` and ninety-four under `INDIAN` — and T-1172 carded
+twenty of Kercheval's under the borderline roster's R3 licence: *on the 1832 muster,
+enrolled at Chicago, no 1835 corroboration, no card; mint reconstructed, presence bounded
+by the persistence rate*. The other ninety-four answer that description word for word.
+They were left out because the roster's R6 rule (`community_term_in_the_reading`) routes any
+reading carrying a Native, Métis or Black term into a class T-1172 was not licensed to
+spend, and R6's owner had no workable ticket until 2026-09-19. Nothing about the evidence
+separated the two companies. Leaving the town with twenty men off that page and none of the
+others is not caution; it is a filing accident with a population in it.
+
+**What is invented, exactly:** one thing. That a man enrolled at Chicago in 1832 was still
+here on 1 July 1835, at the odds the persistence model gives for a three-year lag — the
+same model, the same lag, the same seeded draw that priced Kercheval's twenty. 69 of the 87
+read `present` and 18 read `absent`, and each carries the seed a reader can retype.
+**Nothing else.** The names are the roll's, printed as it prints them, and no surname,
+forename, nation, band, village, age, trade, address or family is supplied for anybody.
+
+**What this deliberately does NOT do.** It writes **no nation**: the roll says `INDIAN` and
+says no more, and choosing among the Potawatomi, the Ottawa and the Ojibwe would invent the
+single fact the record withholds. It draws **no remainder**: the roll counts enrolled MEN,
+no woman or child is on it, the 1840 schedule counts no Native person in any column, and no
+source in this corpus counts the Native and Métis people at Chicago before 1 July 1835 — so
+`the_counted_but_unnamed` in the derived record is a written refusal with the three readings
+that would retire it, not a bracket with a number in it. It does **not** stage the August
+1835 gathering, which is six and a half weeks after the scene. It draws **no figure** for
+anybody (L1). And it **does not read a community term in prose as a statement**: the
+biography of an Indian agent carries the word too, so 2 rows are withheld for that and
+every one of the 29 withheld rows names a stated reason.
+
+**Three refusals it had to overturn to do it, all three rules about European names wearing
+the clothes of rules about evidence.** T-1172 withholds a reading without a surname *and* a
+forename, which would have refused `Cau Be Nah`, `Mas Go` and `Ke O Quaw`, each printed
+whole; the test here is on the reading and not its shape, and a one-word *European* surname
+is still refused. `title_case` turns a single letter into an English initial, printing
+`Ke O. Quaw`; `display_name` capitalises and does nothing else. And the collision key reads
+the last word as a family name, so `Mes Kee Suck` and `Mau Kai Tai O Suck` keyed alike —
+inside this stage the duplicate test is equality of the whole reading. The same key ran the
+other way on `Alexander Robinson (Che-che-pin-qua)`, whose own Indigenous name in a
+parenthesis moved the last word and would have let `ROBINSON, A` be carded twice; the key is
+now taken with the parenthesis off as well.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions, T-1347's trade
+households and T-1353's visitors are. **And the review is not retired, it is held open:** all
+87 carry `review_required`, which blocks a scene from being marked `released` until the
+reading by Native scholars or community organisations that `AGENTS.md` commits to has
+happened. `docs/RESEARCH/native_and_metis_1835.md` lists every source read and what is still
+owed, including the one finding this stage filed rather than spent — that the two women the
+St Mary's register identifies as Indigenous in the priest's own hand are the only adults on
+their own entries the borderline roster ruled ineligible, so the town carries their husbands
+and their children and not them.
+
+**What would retire it:** any source naming one of these men at Chicago on or after 1 July
+1835, or placing him elsewhere on it, retires that row's draw on its own. A source stating
+his nation, band or family replaces `native` with what it says. An 1835 annuity roll, a
+count of the families at the Agency or on the reservations, or a contemporary estimate of
+the Native population about the town before the scene date retires the refusal of the
+remainder. Related: **L246** (the re-admission band whose licence this borrows), **L247**,
+**L248** and **L249** (the same programme's other bands), tickets **T-1376**, **T-1177**,
+**T-1375** (the community attribute this writes into), **T-1377** (the free Black cohort),
+the roster **T-1159**, the programme **T-1167**.
+
+**Recorded:** 2026-09-19.

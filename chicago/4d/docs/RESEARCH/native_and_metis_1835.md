@@ -160,8 +160,8 @@ children and not the women the priest wrote down as Indigenous.
 
 It is not spent here, and the reason matters: a baptism is not a residence, and the
 ineligibility ruling is the research layer's, not this stage's to overturn from outside with
-a one-line patch. It is a reading, and a reading is a ticket. Filed on **T-1377**'s
-neighbour in the queue — see `data/reconstruction/1835_native_and_metis.json`
+a one-line patch. It is a reading, and a reading is a ticket. Filed as **T-1383**, with the four
+entries and what it should answer — see also `data/reconstruction/1835_native_and_metis.json`
 § `sources_read`, which carries the same sentence in machine-readable form.
 
 ## The review still owed
