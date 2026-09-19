@@ -1,0 +1,100 @@
+{
+ "schema": "arrival_supersessions/1",
+ "_doc": "T-1350. The ruled readings that supersede the `arrival` bound a mint derives, and the only way one can reach a card the mints own. Read tools/supersede_arrival.py for the four refusals that govern this file; `--check` applies every one of them to every entry and check.sh runs it. IN SHORT: no identity is made here (an entry spends a merge a crosswalk already committed, and names it), no reading is invented here (an entry names a claim id that exists, in a source this project registers), a supersession must be EARLIER than the bound it replaces, and the grade ceiling is the source's. `supersedes` banks the derived bound the ruling was made against: if a mint later derives a different one the ruling stands on evidence that has moved, and the build stops rather than overwriting the new bound with the old ruling. THE THREE ENTRIES BELOW ARE THE SPRING-1833 HALF of T-1340's seven ruled findings. The Baptist-catalogue half (bk_mose2_010, for Willard Jones, Nathaniel Carpenter and M D Harmon) is NOT here and is T-1352's, because spending it costs more than it pays today: the research ledger's unit is the CLAIM, so one card citing bk_mose2_010 asserts the whole fourteen-name catalogue, and the twelve names it reaches nobody with fall off data/reconstruction/1835_borderline_roster.json. Ten of those twelve are people T-1172 re-admitted as reconstructed residents, measured on this branch 2026-09-19: Allen B. and Hannah C. Freeman, Ebenezer and Betsey Crane, John K. Sargent, Lucinda Jackson, Peter Moore, Peter Warden, Samantha Harmon and Susanna Rice. A supersession that deletes ten evidenced people to date three is not one this project makes. bk_mose1_005 has no such cost and is spent here: hh_kimball_walter already cites it, so the unit was asserted before this ledger existed and no name moves off the roster. J. H. Collins, T-1340's seventh finding, needs no entry at all — the compiler prints his coming undated and there was never a value to move.",
+ "entries": [
+  {
+   "household": "hh_botsford_j_k",
+   "kind": "arrival",
+   "ruled_by": "T-1340",
+   "spent_by": "T-1350",
+   "claim": {
+    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v1.json",
+    "id": "bk_mose1_005"
+   },
+   "crosswalk": {
+    "file": "data/research/books/crosswalk.json",
+    "into": "J. K. Botsford",
+    "from": "John K. Botsford"
+   },
+   "supersedes": {
+    "value": "1834-02-18",
+    "precision": "not_later_than"
+   },
+   "arrival": {
+    "value": "1833-03-01",
+    "confidence": "inferred",
+    "sources": [
+     "moses_kirkland_history_of_chicago_v1",
+     "chicago_democrat_1833_1835"
+    ],
+    "note": "THE SPRING OF 1833, FROM THE COMPILER'S LIST OF THAT SEASON'S ARRIVALS. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005; data/research/books/claims/moses_kirkland_history_of_chicago_v1.json): \"Among the new arrivals in the spring of 1833 are the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter and Rev. Allan B. Freeman.\" Season precision, carried at 1833-03-01, the first day this project reads a season at (hh_pearsons_hiram, hh_blodgett_tyler_k, hh_kimball_walter, minted off this same list). THE LIST SAYS \"AMONG\", SO IT IS A ROLL OF EXAMPLES AND NOT A REGISTER: it can date the men it names and it can never be read to exclude anybody it leaves out. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). THE PAPER'S BOUND IS NOT LOST, IT IS SUBSUMED: a man who came in the spring of 1833 was necessarily in the town when the Democrat first printed him. PRIOR NOTE, KEPT: A BOUND FROM THE PAPER, NOT AN ARRIVAL. The corpus first prints this person at the Democrat of 10 September 1834, column 15, so they are in the town's paper by 1834-02-18 and at no stated time before it; nothing reached says when they came. Last printed 1834-12-03.",
+    "precision": "season"
+   }
+  },
+  {
+   "household": "hh_williams_eli_b",
+   "kind": "arrival",
+   "ruled_by": "T-1340",
+   "spent_by": "T-1350",
+   "claim": {
+    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v1.json",
+    "id": "bk_mose1_005"
+   },
+   "crosswalk": {
+    "file": "data/research/books/crosswalk.json",
+    "into": "Eli B Williams",
+    "from": "Eli B. Williams"
+   },
+   "supersedes": {
+    "value": "1834-12-31",
+    "precision": "not_later_than"
+   },
+   "arrival": {
+    "value": "1833-03-01",
+    "confidence": "inferred",
+    "sources": [
+     "moses_kirkland_history_of_chicago_v1",
+     "census_1840_chicago_familysearch_images",
+     "chicago_democrat_1833_1835",
+     "chicago_voter_lists_1833_1835_irad",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
+    ],
+    "note": "THE SPRING OF 1833, FROM THE COMPILER'S LIST OF THAT SEASON'S ARRIVALS. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005; data/research/books/claims/moses_kirkland_history_of_chicago_v1.json): \"Among the new arrivals in the spring of 1833 are the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter and Rev. Allan B. Freeman.\" Season precision, carried at 1833-03-01, the first day this project reads a season at (hh_pearsons_hiram, hh_blodgett_tyler_k, hh_kimball_walter, minted off this same list). THE LIST SAYS \"AMONG\", SO IT IS A ROLL OF EXAMPLES AND NOT A REGISTER: it can date the men it names and it can never be read to exclude anybody it leaves out. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). THE POLL'S BOUND IS NOT LOST, IT IS SUBSUMED: a man who came in the spring of 1833 was necessarily in the town for the poll of 1834. The same volume names this man again on page 348 among the eleven who organised the first Episcopal congregation in 1834 (claim bk_mose2_018), which is LATER than this field and therefore bounds nothing — it corroborates a man already here. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1834 names this person at Chicago by 31 December 1834 and nothing says when they came.",
+    "precision": "season"
+   }
+  },
+  {
+   "household": "hh_porter_hibbard",
+   "kind": "arrival",
+   "ruled_by": "T-1340",
+   "spent_by": "T-1350",
+   "claim": {
+    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v1.json",
+    "id": "bk_mose1_005"
+   },
+   "crosswalk": {
+    "file": "data/research/books/crosswalk.json",
+    "into": "Hibbard Porter",
+    "from": "Hibbard Porter"
+   },
+   "supersedes": {
+    "value": "1835-07-01",
+    "precision": "not_later_than"
+   },
+   "arrival": {
+    "value": "1833-03-01",
+    "confidence": "inferred",
+    "sources": [
+     "moses_kirkland_history_of_chicago_v1",
+     "chicago_democrat_1833_1835",
+     "chicago_voter_lists_1833_1835_irad",
+     "fergus_chicago_directory_1843",
+     "norris_directory_1844"
+    ],
+    "note": "THE SPRING OF 1833, FROM THE COMPILER'S LIST OF THAT SEASON'S ARRIVALS. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005; data/research/books/claims/moses_kirkland_history_of_chicago_v1.json): \"Among the new arrivals in the spring of 1833 are the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter and Rev. Allan B. Freeman.\" Season precision, carried at 1833-03-01, the first day this project reads a season at (hh_pearsons_hiram, hh_blodgett_tyler_k, hh_kimball_walter, minted off this same list). THE LIST SAYS \"AMONG\", SO IT IS A ROLL OF EXAMPLES AND NOT A REGISTER: it can date the men it names and it can never be read to exclude anybody it leaves out. THE SAME SENTENCE NAMES REV. JEREMIAH PORTER SEPARATELY, which is what keeps the two Porter households apart: this project holds Hibbard Porter, Rev. Jeremiah Porter and Eliza Chappel Porter, and a bare \"Porter\" would have reached none of them. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). THE REGISTER'S BOUND IS NOT LOST, IT IS SUBSUMED, and the gain here is the largest of the three: the register could bound this man no earlier than the scene date itself, and the compiler's list puts him in the town two years and four months before it. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 1 July 1835 and nothing says when they came.",
+    "precision": "season"
+   }
+  }
+ ]
+}

@@ -2350,6 +2350,22 @@ step "every mint that re-derives a household carries the blocks it does not own"
 selftest "...and its own assertions still fire when broken" \
   python3 tools/carry_stage_blocks.py --self-test
 
+# T-1350, the other half of that ownership and the opposite failure. A mint derives
+# `arrival` as a not_later_than BOUND off its register, which is right until a reading
+# says more than the register can — Moses and Kirkland's list of the spring of 1833
+# names men the town's paper does not print for another year. Such a reading used to
+# be written onto the card by hand and then REVERTED by the next --build without a
+# word; T-1340 watched six of its rulings go that way and wrote the failure down. The
+# ledger below is how one reaches a card the mints own, and the gate is what keeps it
+# from becoming a way to write any date anywhere: no identity is made there, no reading
+# is invented there, a supersession must be EARLIER than the bound it replaces, and the
+# grade ceiling is the source's.
+step "every ruled reading that supersedes a derived arrival bound is joined and earlier" \
+  python3 tools/supersede_arrival.py --check
+
+selftest "...and each of its four refusals still fires on its own case" \
+  python3 tools/supersede_arrival.py --self-test
+
 # T-1171, stage `modelled_families` of that programme, and the first one to write a
 # PERSON rather than an attribute block. 94 heads the sources leave standing alone get
 # the wife and children the household model says they kept, drawn at the head's own size

@@ -2279,6 +2279,9 @@
         "/home/runner/work/polecat-platform/polecat-platform/custom-repo/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
+    "tools/supersede_arrival.py": {
+      "wrote": []
+    },
     "tools/surname_one_letter_away.py": {
       "wrote": []
     },
