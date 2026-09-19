@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
-  "measured": "2026-09-18",
+  "measured": "2026-09-19",
   "gate_verdict": "CHECK FAIL",
   "declared_steps": 509,
   "exempt": {
@@ -9,10 +9,10 @@
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
     },
     "chicago/4d/tickets/BOARD.md": {
-      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror above, and `git check-ignore` says so rather than this comment. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and the regeneration is idempotent rather than atomic. Classifying gitignored paths automatically, instead of by this hand-kept list, is filed as its own ticket."
+      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and `ticket.mjs check` writes them only when the mirror is STALE (T-1341) — so this row appears or vanishes with the tree the measurement was taken on, which is the conditional-writer limit T-1339 records. Classifying ignored paths by `git check-ignore` instead of this hand-kept list is T-1345."
     },
     "chicago/4d/tickets/tickets.json": {
-      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror above, and `git check-ignore` says so rather than this comment. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and the regeneration is idempotent rather than atomic. Classifying gitignored paths automatically, instead of by this hand-kept list, is filed as its own ticket."
+      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and `ticket.mjs check` writes them only when the mirror is STALE (T-1341) — so this row appears or vanishes with the tree the measurement was taken on, which is the conditional-writer limit T-1339 records. Classifying ignored paths by `git check-ignore` instead of this hand-kept list is T-1345."
     }
   },
   "tools": {
@@ -1361,13 +1361,13 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build 6df3ab242 · Sep 18, 2026, 6:31 PM CT"
+        "- ../../site/chicago/4d/walk/index.html build a885d2971 · Sep 18, 2026, 7:06 PM CT"
       ]
     },
-    "/tmp/claude-0/wt1480/.github/chicago-4d-dev-preview.mjs": {
+    "/tmp/claude-0/wt1476/.github/chicago-4d-dev-preview.mjs": {
       "wrote": []
     },
-    "/tmp/claude-0/wt1480/.github/chicago-4d-url-check.mjs": {
+    "/tmp/claude-0/wt1476/.github/chicago-4d-url-check.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -2066,13 +2066,13 @@
     "tools/read_wright_legend_swatches.py": {
       "wrote": []
     },
-    "tools/rebuild_closing_set.py": {
-      "wrote": []
-    },
     "tools/rebuild_resident_index.py": {
       "wrote": []
     },
     "tools/reconcile_665.py": {
+      "wrote": []
+    },
+    "tools/reconstruct_modelled_families.py": {
       "wrote": []
     },
     "tools/reconstruct_residents_1835.py": {
@@ -2255,7 +2255,7 @@
         "site/chicago/4d/walk/js/changelog.js"
       ],
       "wrote_by": [
-        "/tmp/claude-0/wt1480/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
+        "/tmp/claude-0/wt1476/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
     "tools/surname_one_letter_away.py": {
@@ -2331,7 +2331,7 @@
         "site/chicago/4d/tickets.json"
       ],
       "wrote_by": [
-        "/tmp/claude-0/wt1480/chicago/4d/tools/ticket.mjs board"
+        "/tmp/claude-0/wtdev/chicago/4d/tools/ticket.mjs check"
       ]
     },
     "tools/tiebreak.py": {
