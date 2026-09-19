@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The two apothecaries nobody advertised', kind: 'feature', ts: '', date: '',
+  { v: 987, title: 'The two apothecaries nobody advertised', kind: 'feature', ts: '2026-09-19T17:34:35.654Z', date: 'Sep 19, 2026, 12:34 PM CT',
     items: [
       'The State census of December 1835 counted four druggists in this town. The newspapers of 1833 to 1835 \u2014 the whole of what this project can read \u2014 name two: Philo Carpenter and Frederick Thomas. The gap is not a doubt about the census. It is the ordinary fact that a shop which never bought an advertisement left no trace in the only two papers that survive, and until now this town simply did not have those shops in it.',
       'It has them now. B. Crandall keeps a drug and medicine store on Dearborn Street; Nathaniel Metcalf keeps one on Kinzie Street, across the river. Neither is a discovery and both say so on their own card, at the top, before they say anything else: nobody named this firm, it stands here because a count the town demonstrably needed was short, and here is the exact line of the order book that bought it.',
