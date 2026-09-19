@@ -1,7 +1,7 @@
 ---
 id: T-1371
 title: Seat the boarders: the single men the household model marked boarding, and new reconstructed lodgers, into the lodging places to their capacities, with each keeper's own household complete
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1175
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 3:06:59 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35430968124
 ---
 
 Seat the boarders: the single men the household model marked boarding, and new reconstructed lodgers, into the lodging places to their capacities, with each keeper's own household complete.
