@@ -7567,7 +7567,7 @@ for (const [label, viewport, touch] of [
       document.querySelector('#popup [data-pop-tab="evidence"]')?.click();
       api.pick('sauganash_hotel');
       const saug = {
-        order: order(['.pop-head', '.pop-lead', '.pop-facts', '.pop-tabs', '.pop-pane']),
+        order: order(['.pop-head', '.pop-lead', '.pop-facts', '.pop-residents', '.pop-tabs', '.pop-pane']),
         residents: !!document.querySelector('#popup .pop-residents'),
         evidenceShown: (() => { const p = document.querySelector('#popup [data-pop-pane="evidence"]');
           return !!p && !p.hasAttribute('hidden') && p.checkVisibility(); })(),
@@ -7575,6 +7575,17 @@ for (const [label, viewport, touch] of [
         tabs: [...document.querySelectorAll('#popup .pop-tab')].map((t) => t.dataset.popTab),
         homes: { where: paneOf('Where did it stand?'), liberties: paneOf('What we made up here'),
           record: paneOf("The record's own account") },
+      };
+      // THE CARD WITH NOBODY ON IT, which was the Sauganash until T-1406 and is the
+      // log jail now. T-1371 seated two men the residents layer already holds in the
+      // Sauganash's beds and T-1406 put them on its card, so the hotel stopped being
+      // an example of a building with no households — it is the five-section order
+      // this assertion needs a witness for, not the hotel. `log_jail` is the same
+      // fixture the "no household gets no section at all" check above already uses.
+      api.pick('log_jail');
+      const jail = {
+        order: order(['.pop-head', '.pop-lead', '.pop-facts', '.pop-tabs', '.pop-pane']),
+        residents: !!document.querySelector('#popup .pop-residents'),
       };
       api.pick('hogan_store');
       const from = api.registry.get('hogan_store')?.sidecar?.documented_range?.from ?? '';
@@ -7588,12 +7599,14 @@ for (const [label, viewport, touch] of [
         facts,
       };
       api.popup.close();
-      return { saug, hogan };
+      return { saug, jail, hogan };
     });
     check(`${label}: the card reads head, lead, facts, tabs, pane — in that order`,
-      cardShape.saug.order.ordered && !cardShape.saug.order.missing.length && !cardShape.saug.residents
+      cardShape.saug.order.ordered && !cardShape.saug.order.missing.length && cardShape.saug.residents
+      && cardShape.jail.order.ordered && !cardShape.jail.order.missing.length && !cardShape.jail.residents
       && cardShape.hogan.order.ordered && !cardShape.hogan.order.missing.length && cardShape.hogan.residents,
-      `sauganash missing [${cardShape.saug.order.missing.join(', ')}] ordered ${cardShape.saug.order.ordered}; `
+      `sauganash (lodgers seated) missing [${cardShape.saug.order.missing.join(', ')}] ordered ${cardShape.saug.order.ordered} residents ${cardShape.saug.residents}; `
+      + `log jail (nobody) missing [${cardShape.jail.order.missing.join(', ')}] ordered ${cardShape.jail.order.ordered} residents ${cardShape.jail.residents}; `
       + `hogan (with households) missing [${cardShape.hogan.order.missing.join(', ')}] ordered ${cardShape.hogan.order.ordered}`);
     check(`${label}: the card opens on its Evidence pane with the other two folded`,
       cardShape.saug.evidenceShown && cardShape.saug.hiddenPanes.join(',') === 'liberties,record'
