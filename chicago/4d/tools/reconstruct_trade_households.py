@@ -973,8 +973,16 @@ def self_test() -> int:
     caps = ceilings()
     fires("a class the town already matches leaves room for nobody",
           caps.get("printer") == 0 and caps.get("schoolteacher") == 0)
+    # THE ATTORNEY CEILING WAS 4 AND IS 7 (T-1388), and the 4 was the defect.
+    # The town read 18 lawyers against the State census's 22 only because the Chicago
+    # Democrat's standing advertising block of 5 August 1835 was minting a second record
+    # for men the register already carried — J. Curtiss, Henry Moore and S. Abell each
+    # stood in the town twice. identity.json now merges those cards into the standing
+    # ones, the town reads 15, and the room this stage has to draw into is the real
+    # shortfall rather than a flattered one. The physicians' 11 is untouched: none of
+    # that class was double-counted.
     fires("a class the town is short of leaves room for the difference",
-          caps.get("physician") == 11 and caps.get("attorney") == 4)
+          caps.get("physician") == 11 and caps.get("attorney") == 7)
 
     rows = dict(trade_rows())
     fires("no trade outside the 1835 vocabulary reaches the draw",

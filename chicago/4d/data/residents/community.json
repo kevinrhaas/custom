@@ -20,12 +20,12 @@
   "known": 2648,
   "unknown": 198,
   "by_community": {
-   "yankee": 1243,
+   "yankee": 1255,
    "new_york": 502,
-   "irish": 405,
+   "irish": 398,
    "unknown": 198,
-   "french_canadian": 126,
    "other": 123,
+   "french_canadian": 121,
    "british": 97,
    "native": 87,
    "southern": 63,
@@ -46,15 +46,15 @@
    "origin_unreadable": 4
   },
   "households_by_community": {
-   "yankee": 698,
+   "yankee": 710,
    "new_york": 501,
    "unknown": 185,
-   "irish": 163,
+   "irish": 156,
    "other": 123,
    "british": 97,
    "native": 87,
    "southern": 60,
-   "french_canadian": 54,
+   "french_canadian": 49,
    "metis": 2
   }
  },
@@ -5979,12 +5979,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_bacon_calvin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_bacon_chauncey": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_bacon_otis": {
+  "rc_bacon_lemuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6010,11 +6015,6 @@
    "rule": "reconstruction_community"
   },
   "rc_bacon_phebe_4": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_bacon_silas": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6084,6 +6084,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_barnes_abner": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_barnes_almira": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -6110,6 +6115,11 @@
    "rule": "reconstruction_community"
   },
   "rc_barnes_amos": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_barnes_benjamin": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6234,11 +6244,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_barnes_rufus": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_barnes_susan": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -6274,11 +6279,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_bertrand_baptiste": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_bertrand_charles": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -6311,16 +6311,6 @@
   },
   "rc_blanchard_f_gantry_wife": {
    "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_bourassa_antoine": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_bourassa_hyacinthe": {
-   "value": "french_canadian",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -6395,11 +6385,6 @@
    "rule": "reconstruction_community"
   },
   "rc_brady_catherine": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_brady_daniel": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6614,6 +6599,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_chapin_asa": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_chapin_clarissa": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -6629,12 +6619,12 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_chapin_eliza": {
+  "rc_chapin_eli": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_chapin_ezra": {
+  "rc_chapin_eliza": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6650,6 +6640,11 @@
    "rule": "reconstruction_community"
   },
   "rc_chapin_henry": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_chapin_jared": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6685,11 +6680,6 @@
    "rule": "reconstruction_community"
   },
   "rc_chevalier_louis": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_chevalier_pierre": {
    "value": "french_canadian",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -6909,13 +6899,18 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_connor_owen": {
+  "rc_cook_john_wife": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_corrigan_cornelius": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_cook_john_wife": {
-   "value": "yankee",
+  "rc_corrigan_daniel": {
+   "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -6999,11 +6994,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_crandall_benjamin": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_crandall_chauncey": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -7080,6 +7070,11 @@
    "rule": "reconstruction_community"
   },
   "rc_crandall_polly_6": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_crandall_reuben": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7264,7 +7259,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_dickinson_seth": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_dickinson_silas": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_dickinson_william": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7345,6 +7350,11 @@
    "rule": "reconstruction_community"
   },
   "rc_donnelly_michael": {
+   "value": "irish",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_donnelly_patrick": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7459,8 +7469,8 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_dufresne_antoine": {
-   "value": "french_canadian",
+  "rc_duffy_owen": {
+   "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -7474,17 +7484,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_dufresne_jean": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_dufresne_joseph": {
    "value": "french_canadian",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
   "rc_dufresne_michel": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_dufresne_pierre": {
    "value": "french_canadian",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7585,16 +7595,6 @@
    "rule": "reconstruction_community"
   },
   "rc_eastman_nathaniel": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_eastman_orrin": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_eastman_samuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7734,11 +7734,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fisk_abner": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_fisk_almira": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -7849,12 +7844,12 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fisk_lemuel": {
+  "rc_fisk_jared": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fisk_luther": {
+  "rc_fisk_lemuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7870,6 +7865,11 @@
    "rule": "reconstruction_community"
   },
   "rc_fisk_phebe": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fisk_seth": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7920,11 +7920,6 @@
    "rule": "reconstruction_community"
   },
   "rc_fitzgerald_honora_4": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_fitzgerald_owen": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8000,11 +7995,6 @@
    "rule": "reconstruction_community"
   },
   "rc_flynn_mary_7": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_flynn_owen": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8244,7 +8234,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_gilbert_harvey": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_gilbert_joseph": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_gilbert_levi": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8304,7 +8304,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_gilbert_samuel": {
+  "rc_goodrich_erastus": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_goodrich_george": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_goodrich_ira": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8320,11 +8330,6 @@
    "rule": "reconstruction_community"
   },
   "rc_goodrich_ruth": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_goodrich_seth": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8399,6 +8404,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_hale_luther": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_hale_ruth": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -8444,17 +8454,17 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_hastings_amos": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_hastings_anna": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
   "rc_hastings_esther": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_hastings_ezra": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8489,12 +8499,12 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_hastings_willard": {
+  "rc_hastings_warren": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_hastings_william": {
+  "rc_hastings_willard": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8570,11 +8580,6 @@
    "rule": "reconstruction_community"
   },
   "rc_hayes_martin": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_hayes_owen": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8694,6 +8699,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_hubbard_orrin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_inf_cooper_north_04_wife": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -8745,11 +8755,6 @@
    "rule": "reconstruction_community"
   },
   "rc_ingalls_abigail": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_ingalls_chauncey": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -8879,11 +8884,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_keegan_daniel": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_keegan_dennis": {
    "value": "irish",
    "tier": "reconstructed",
@@ -8896,11 +8896,6 @@
   },
   "rc_keegan_terence": {
    "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_kellogg_alanson": {
-   "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -8925,6 +8920,16 @@
    "rule": "reconstruction_community"
   },
   "rc_kellogg_lucy": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_kellogg_luther": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_kellogg_otis": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -9274,11 +9279,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_lecuyer_medard": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_leland_abigail": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -9349,7 +9349,7 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_leland_silas": {
+  "rc_leland_samuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -9474,6 +9474,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_lyman_erastus": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_lyman_george": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -9564,12 +9569,12 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_lynch_martin": {
+  "rc_lynch_dennis": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_lynch_owen": {
+  "rc_lynch_martin": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -9640,11 +9645,6 @@
    "rule": "reconstruction_community"
   },
   "rc_mahoney_owen": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_mahoney_patrick": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -9749,11 +9749,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_mcguire_john": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_mcguire_margaret": {
    "value": "irish",
    "tier": "reconstructed",
@@ -9761,6 +9756,11 @@
   },
   "rc_mcguire_mary": {
    "value": "irish",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_metcalf_chauncey": {
+   "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -9839,11 +9839,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_murphy_bryan": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_murphy_dennis": {
    "value": "irish",
    "tier": "reconstructed",
@@ -9906,16 +9901,6 @@
   },
   "rc_murphy_thomas": {
    "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_nash_eli": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_nash_ezra": {
-   "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -10024,12 +10009,27 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_newell_alvah": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_newell_amanda": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
   "rc_newell_benjamin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_newell_chauncey": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_newell_elisha": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10055,6 +10055,11 @@
    "rule": "reconstruction_community"
   },
   "rc_newell_nancy": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_newell_otis": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10134,6 +10139,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_nichols_charles": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_nichols_david": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -10150,11 +10160,6 @@
    "rule": "reconstruction_community"
   },
   "rc_nichols_george": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_nichols_john": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10329,7 +10334,7 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_nolan_martin": {
+  "rc_nolan_owen": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10379,12 +10384,12 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_parmelee_almira": {
+  "rc_parmelee_alanson": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_parmelee_alvah": {
+  "rc_parmelee_almira": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10504,6 +10509,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_pelletier_medard": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_pelletier_pierre": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -10594,11 +10604,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_pratt_harvey": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_pratt_lydia": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -10610,6 +10615,11 @@
    "rule": "reconstruction_community"
   },
   "rc_pratt_maria": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_pratt_orrin": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10680,11 +10690,6 @@
    "rule": "reconstruction_community"
   },
   "rc_quinn_margaret": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_quinn_martin": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -10819,6 +10824,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_robillard_alexis": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_robillard_antoine": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -10910,11 +10920,6 @@
    "rule": "reconstruction_community"
   },
   "rc_sawyer_almira": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_sawyer_charles": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -11074,6 +11079,11 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_sheldon_otis": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_sheldon_phebe": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -11224,17 +11234,22 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_stebbins_hiram": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_stebbins_horace": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_stebbins_joseph": {
+  "rc_stebbins_lemuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_stebbins_lemuel": {
+  "rc_stebbins_levi": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -11340,6 +11355,11 @@
    "rule": "reconstruction_community"
   },
   "rc_stiles_ezra": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_stiles_james": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -11564,11 +11584,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_thayer_harvey": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_thayer_james": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -11719,11 +11734,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_tobin_michael": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_tobin_owen": {
    "value": "irish",
    "tier": "reconstructed",
@@ -11769,6 +11779,16 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
+  "rc_tuttle_amos": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_tuttle_asa": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "rc_tuttle_benjamin": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -11799,8 +11819,8 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_vieau_baptiste": {
-   "value": "french_canadian",
+  "rc_tuttle_silas": {
+   "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -11860,11 +11880,6 @@
    "rule": "reconstruction_community"
   },
   "rc_wadsworth_alanson": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_wadsworth_alvah": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -12029,11 +12044,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_whitcomb_nathaniel": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_whitcomb_otis": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -12164,11 +12174,6 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_wilcox_otis": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
   "rc_wilcox_polly": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -12235,11 +12240,6 @@
    "rule": "reconstruction_community"
   },
   "rc_williams_eli_b_wife": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_woodruff_calvin": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -21977,12 +21977,19 @@
    "head": "rc_bacon_betsey",
    "file": "households/hh_rc_bacon_betsey.json"
   },
-  "hh_rc_bacon_otis": {
+  "hh_rc_bacon_calvin": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_bacon_otis",
-   "file": "reconstructed_trades/hh_rc_bacon_otis.json"
+   "head": "rc_bacon_calvin",
+   "file": "reconstructed_trades/hh_rc_bacon_calvin.json"
+  },
+  "hh_rc_bacon_lemuel": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_bacon_lemuel",
+   "file": "reconstructed_trades/hh_rc_bacon_lemuel.json"
   },
   "hh_rc_bacon_phebe": {
    "value": "yankee",
@@ -21990,13 +21997,6 @@
    "rule": "reconstruction_community",
    "head": "rc_bacon_phebe",
    "file": "households/hh_rc_bacon_phebe.json"
-  },
-  "hh_rc_bacon_silas": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_bacon_silas",
-   "file": "reconstructed_trades/hh_rc_bacon_silas.json"
   },
   "hh_rc_bardwell_ira": {
    "value": "yankee",
@@ -22026,12 +22026,26 @@
    "head": "rc_bardwell_phebe",
    "file": "households/hh_rc_bardwell_phebe.json"
   },
+  "hh_rc_barnes_abner": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_barnes_abner",
+   "file": "reconstructed_trades/hh_rc_barnes_abner.json"
+  },
   "hh_rc_barnes_almira": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_barnes_almira",
    "file": "households/hh_rc_barnes_almira.json"
+  },
+  "hh_rc_barnes_benjamin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_barnes_benjamin",
+   "file": "reconstructed_trades/hh_rc_barnes_benjamin.json"
   },
   "hh_rc_barnes_betsey": {
    "value": "yankee",
@@ -22096,26 +22110,12 @@
    "head": "rc_barnes_nancy",
    "file": "households/hh_rc_barnes_nancy.json"
   },
-  "hh_rc_barnes_rufus": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_barnes_rufus",
-   "file": "reconstructed_trades/hh_rc_barnes_rufus.json"
-  },
   "hh_rc_barnes_susan": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_barnes_susan",
    "file": "households/hh_rc_barnes_susan.json"
-  },
-  "hh_rc_bertrand_baptiste": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_bertrand_baptiste",
-   "file": "reconstructed_trades/hh_rc_bertrand_baptiste.json"
   },
   "hh_rc_bertrand_charles": {
    "value": "french_canadian",
@@ -22138,33 +22138,12 @@
    "head": "rc_bertrand_pierre",
    "file": "reconstructed_trades/hh_rc_bertrand_pierre.json"
   },
-  "hh_rc_bourassa_antoine": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_bourassa_antoine",
-   "file": "reconstructed_trades/hh_rc_bourassa_antoine.json"
-  },
-  "hh_rc_bourassa_hyacinthe": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_bourassa_hyacinthe",
-   "file": "reconstructed_trades/hh_rc_bourassa_hyacinthe.json"
-  },
   "hh_rc_brady_catherine": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_brady_catherine",
    "file": "reconstructed_trades/hh_rc_brady_catherine.json"
-  },
-  "hh_rc_brady_daniel": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_brady_daniel",
-   "file": "reconstructed_trades/hh_rc_brady_daniel.json"
   },
   "hh_rc_brady_honora": {
    "value": "irish",
@@ -22285,12 +22264,26 @@
    "head": "rc_chapin_anna",
    "file": "reconstructed_trades/hh_rc_chapin_anna.json"
   },
+  "hh_rc_chapin_asa": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_chapin_asa",
+   "file": "reconstructed_trades/hh_rc_chapin_asa.json"
+  },
   "hh_rc_chapin_clarissa": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_chapin_clarissa",
    "file": "households/hh_rc_chapin_clarissa.json"
+  },
+  "hh_rc_chapin_eli": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_chapin_eli",
+   "file": "reconstructed_trades/hh_rc_chapin_eli.json"
   },
   "hh_rc_chapin_eliza": {
    "value": "yankee",
@@ -22299,19 +22292,19 @@
    "head": "rc_chapin_eliza",
    "file": "reconstructed_trades/hh_rc_chapin_eliza.json"
   },
-  "hh_rc_chapin_ezra": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_chapin_ezra",
-   "file": "reconstructed_trades/hh_rc_chapin_ezra.json"
-  },
   "hh_rc_chapin_harriet": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_chapin_harriet",
    "file": "households/hh_rc_chapin_harriet.json"
+  },
+  "hh_rc_chapin_jared": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_chapin_jared",
+   "file": "reconstructed_trades/hh_rc_chapin_jared.json"
   },
   "hh_rc_chevalier_alexis": {
    "value": "french_canadian",
@@ -22333,13 +22326,6 @@
    "rule": "reconstruction_community",
    "head": "rc_chevalier_louis",
    "file": "reconstructed_trades/hh_rc_chevalier_louis.json"
-  },
-  "hh_rc_chevalier_pierre": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_chevalier_pierre",
-   "file": "reconstructed_trades/hh_rc_chevalier_pierre.json"
   },
   "hh_rc_cobb_abigail": {
    "value": "yankee",
@@ -22432,12 +22418,19 @@
    "head": "rc_connor_margaret",
    "file": "households/hh_rc_connor_margaret.json"
   },
-  "hh_rc_connor_owen": {
+  "hh_rc_corrigan_cornelius": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_connor_owen",
-   "file": "reconstructed_trades/hh_rc_connor_owen.json"
+   "head": "rc_corrigan_cornelius",
+   "file": "reconstructed_trades/hh_rc_corrigan_cornelius.json"
+  },
+  "hh_rc_corrigan_daniel": {
+   "value": "irish",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_corrigan_daniel",
+   "file": "reconstructed_trades/hh_rc_corrigan_daniel.json"
   },
   "hh_rc_corrigan_honora": {
    "value": "irish",
@@ -22466,13 +22459,6 @@
    "rule": "reconstruction_community",
    "head": "rc_crandall_almira",
    "file": "households/hh_rc_crandall_almira.json"
-  },
-  "hh_rc_crandall_benjamin": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_crandall_benjamin",
-   "file": "reconstructed_trades/hh_rc_crandall_benjamin.json"
   },
   "hh_rc_crandall_chauncey": {
    "value": "yankee",
@@ -22508,6 +22494,13 @@
    "rule": "reconstruction_community",
    "head": "rc_crandall_polly",
    "file": "households/hh_rc_crandall_polly.json"
+  },
+  "hh_rc_crandall_reuben": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_crandall_reuben",
+   "file": "reconstructed_trades/hh_rc_crandall_reuben.json"
   },
   "hh_rc_crandall_rufus": {
    "value": "yankee",
@@ -22572,6 +22565,20 @@
    "head": "rc_dickinson_phebe",
    "file": "reconstructed_trades/hh_rc_dickinson_phebe.json"
   },
+  "hh_rc_dickinson_seth": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_dickinson_seth",
+   "file": "reconstructed_trades/hh_rc_dickinson_seth.json"
+  },
+  "hh_rc_dickinson_william": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_dickinson_william",
+   "file": "reconstructed_trades/hh_rc_dickinson_william.json"
+  },
   "hh_rc_dolan_alice": {
    "value": "irish",
    "tier": "reconstructed",
@@ -22599,6 +22606,13 @@
    "rule": "reconstruction_community",
    "head": "rc_donnelly_mary",
    "file": "reconstructed_trades/hh_rc_donnelly_mary.json"
+  },
+  "hh_rc_donnelly_patrick": {
+   "value": "irish",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_donnelly_patrick",
+   "file": "reconstructed_trades/hh_rc_donnelly_patrick.json"
   },
   "hh_rc_doyle_alice": {
    "value": "irish",
@@ -22670,12 +22684,12 @@
    "head": "rc_duffy_martin",
    "file": "households/hh_rc_duffy_martin.json"
   },
-  "hh_rc_dufresne_antoine": {
-   "value": "french_canadian",
+  "hh_rc_duffy_owen": {
+   "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_dufresne_antoine",
-   "file": "reconstructed_trades/hh_rc_dufresne_antoine.json"
+   "head": "rc_duffy_owen",
+   "file": "reconstructed_trades/hh_rc_duffy_owen.json"
   },
   "hh_rc_dufresne_francois": {
    "value": "french_canadian",
@@ -22691,6 +22705,13 @@
    "head": "rc_dufresne_hyacinthe",
    "file": "reconstructed_trades/hh_rc_dufresne_hyacinthe.json"
   },
+  "hh_rc_dufresne_jean": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_dufresne_jean",
+   "file": "reconstructed_trades/hh_rc_dufresne_jean.json"
+  },
   "hh_rc_dufresne_joseph": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -22704,13 +22725,6 @@
    "rule": "reconstruction_community",
    "head": "rc_dufresne_michel",
    "file": "reconstructed_trades/hh_rc_dufresne_michel.json"
-  },
-  "hh_rc_dufresne_pierre": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_dufresne_pierre",
-   "file": "reconstructed_trades/hh_rc_dufresne_pierre.json"
   },
   "hh_rc_dufresne_therese": {
    "value": "french_canadian",
@@ -22768,20 +22782,6 @@
    "head": "rc_eastman_lucy",
    "file": "reconstructed_trades/hh_rc_eastman_lucy.json"
   },
-  "hh_rc_eastman_orrin": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_eastman_orrin",
-   "file": "reconstructed_trades/hh_rc_eastman_orrin.json"
-  },
-  "hh_rc_eastman_samuel": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_eastman_samuel",
-   "file": "reconstructed_trades/hh_rc_eastman_samuel.json"
-  },
   "hh_rc_fairbanks_amanda": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -22809,13 +22809,6 @@
    "rule": "reconstruction_community",
    "head": "rc_fairbanks_seth",
    "file": "reconstructed_trades/hh_rc_fairbanks_seth.json"
-  },
-  "hh_rc_fisk_abner": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_fisk_abner",
-   "file": "reconstructed_trades/hh_rc_fisk_abner.json"
   },
   "hh_rc_fisk_almira": {
    "value": "yankee",
@@ -22852,12 +22845,12 @@
    "head": "rc_fisk_esther",
    "file": "households/hh_rc_fisk_esther.json"
   },
-  "hh_rc_fisk_luther": {
+  "hh_rc_fisk_jared": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fisk_luther",
-   "file": "reconstructed_trades/hh_rc_fisk_luther.json"
+   "head": "rc_fisk_jared",
+   "file": "reconstructed_trades/hh_rc_fisk_jared.json"
   },
   "hh_rc_fisk_maria": {
    "value": "yankee",
@@ -22880,6 +22873,13 @@
    "head": "rc_fisk_phebe",
    "file": "reconstructed_trades/hh_rc_fisk_phebe.json"
   },
+  "hh_rc_fisk_seth": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fisk_seth",
+   "file": "reconstructed_trades/hh_rc_fisk_seth.json"
+  },
   "hh_rc_fitzgerald_alice": {
    "value": "irish",
    "tier": "reconstructed",
@@ -22900,13 +22900,6 @@
    "rule": "reconstruction_community",
    "head": "rc_fitzgerald_honora",
    "file": "households/hh_rc_fitzgerald_honora.json"
-  },
-  "hh_rc_fitzgerald_owen": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_fitzgerald_owen",
-   "file": "reconstructed_trades/hh_rc_fitzgerald_owen.json"
   },
   "hh_rc_flynn_bryan": {
    "value": "irish",
@@ -22935,13 +22928,6 @@
    "rule": "reconstruction_community",
    "head": "rc_flynn_mary",
    "file": "households/hh_rc_flynn_mary.json"
-  },
-  "hh_rc_flynn_owen": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_flynn_owen",
-   "file": "reconstructed_trades/hh_rc_flynn_owen.json"
   },
   "hh_rc_gagnier_hyacinthe": {
    "value": "french_canadian",
@@ -23041,12 +23027,26 @@
    "head": "rc_gilbert_hannah",
    "file": "households/hh_rc_gilbert_hannah.json"
   },
+  "hh_rc_gilbert_harvey": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_gilbert_harvey",
+   "file": "reconstructed_trades/hh_rc_gilbert_harvey.json"
+  },
   "hh_rc_gilbert_joseph": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_gilbert_joseph",
    "file": "reconstructed_trades/hh_rc_gilbert_joseph.json"
+  },
+  "hh_rc_gilbert_levi": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_gilbert_levi",
+   "file": "reconstructed_trades/hh_rc_gilbert_levi.json"
   },
   "hh_rc_gilbert_mary": {
    "value": "yankee",
@@ -23076,12 +23076,26 @@
    "head": "rc_gilbert_ruth",
    "file": "households/hh_rc_gilbert_ruth.json"
   },
-  "hh_rc_gilbert_samuel": {
+  "hh_rc_goodrich_erastus": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_gilbert_samuel",
-   "file": "reconstructed_trades/hh_rc_gilbert_samuel.json"
+   "head": "rc_goodrich_erastus",
+   "file": "reconstructed_trades/hh_rc_goodrich_erastus.json"
+  },
+  "hh_rc_goodrich_george": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_goodrich_george",
+   "file": "reconstructed_trades/hh_rc_goodrich_george.json"
+  },
+  "hh_rc_goodrich_ira": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_goodrich_ira",
+   "file": "reconstructed_trades/hh_rc_goodrich_ira.json"
   },
   "hh_rc_goodrich_lucy": {
    "value": "yankee",
@@ -23104,13 +23118,6 @@
    "head": "rc_goodrich_ruth",
    "file": "reconstructed_trades/hh_rc_goodrich_ruth.json"
   },
-  "hh_rc_goodrich_seth": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_goodrich_seth",
-   "file": "reconstructed_trades/hh_rc_goodrich_seth.json"
-  },
   "hh_rc_goodrich_sophronia": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23131,6 +23138,13 @@
    "rule": "reconstruction_community",
    "head": "rc_hale_clarissa",
    "file": "households/hh_rc_hale_clarissa.json"
+  },
+  "hh_rc_hale_luther": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_hale_luther",
+   "file": "reconstructed_trades/hh_rc_hale_luther.json"
   },
   "hh_rc_hale_ruth": {
    "value": "yankee",
@@ -23153,6 +23167,13 @@
    "head": "rc_hastings_amanda",
    "file": "reconstructed_trades/hh_rc_hastings_amanda.json"
   },
+  "hh_rc_hastings_amos": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_hastings_amos",
+   "file": "reconstructed_trades/hh_rc_hastings_amos.json"
+  },
   "hh_rc_hastings_anna": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23166,13 +23187,6 @@
    "rule": "reconstruction_community",
    "head": "rc_hastings_esther",
    "file": "reconstructed_trades/hh_rc_hastings_esther.json"
-  },
-  "hh_rc_hastings_ezra": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_hastings_ezra",
-   "file": "reconstructed_trades/hh_rc_hastings_ezra.json"
   },
   "hh_rc_hastings_lydia": {
    "value": "yankee",
@@ -23195,19 +23209,19 @@
    "head": "rc_hastings_silas",
    "file": "reconstructed_trades/hh_rc_hastings_silas.json"
   },
+  "hh_rc_hastings_warren": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_hastings_warren",
+   "file": "reconstructed_trades/hh_rc_hastings_warren.json"
+  },
   "hh_rc_hastings_willard": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_hastings_willard",
    "file": "reconstructed_trades/hh_rc_hastings_willard.json"
-  },
-  "hh_rc_hastings_william": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_hastings_william",
-   "file": "reconstructed_trades/hh_rc_hastings_william.json"
   },
   "hh_rc_hayes_bridget": {
    "value": "irish",
@@ -23229,13 +23243,6 @@
    "rule": "reconstruction_community",
    "head": "rc_hayes_margaret",
    "file": "households/hh_rc_hayes_margaret.json"
-  },
-  "hh_rc_hayes_owen": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_hayes_owen",
-   "file": "reconstructed_trades/hh_rc_hayes_owen.json"
   },
   "hh_rc_hayes_patrick": {
    "value": "irish",
@@ -23272,19 +23279,19 @@
    "head": "rc_hubbard_joseph",
    "file": "reconstructed_trades/hh_rc_hubbard_joseph.json"
   },
+  "hh_rc_hubbard_orrin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_hubbard_orrin",
+   "file": "reconstructed_trades/hh_rc_hubbard_orrin.json"
+  },
   "hh_rc_ingalls_abigail": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_ingalls_abigail",
    "file": "households/hh_rc_ingalls_abigail.json"
-  },
-  "hh_rc_ingalls_chauncey": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_ingalls_chauncey",
-   "file": "reconstructed_trades/hh_rc_ingalls_chauncey.json"
   },
   "hh_rc_ingalls_hannah": {
    "value": "yankee",
@@ -23314,20 +23321,6 @@
    "head": "rc_keegan_bryan",
    "file": "reconstructed_trades/hh_rc_keegan_bryan.json"
   },
-  "hh_rc_keegan_daniel": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_keegan_daniel",
-   "file": "reconstructed_trades/hh_rc_keegan_daniel.json"
-  },
-  "hh_rc_kellogg_alanson": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_kellogg_alanson",
-   "file": "reconstructed_trades/hh_rc_kellogg_alanson.json"
-  },
   "hh_rc_kellogg_almira": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23355,6 +23348,20 @@
    "rule": "reconstruction_community",
    "head": "rc_kellogg_lucy",
    "file": "reconstructed_trades/hh_rc_kellogg_lucy.json"
+  },
+  "hh_rc_kellogg_luther": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_kellogg_luther",
+   "file": "reconstructed_trades/hh_rc_kellogg_luther.json"
+  },
+  "hh_rc_kellogg_otis": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_kellogg_otis",
+   "file": "reconstructed_trades/hh_rc_kellogg_otis.json"
   },
   "hh_rc_kellogg_seth": {
    "value": "yankee",
@@ -23433,13 +23440,6 @@
    "head": "rc_lecuyer_madeleine",
    "file": "households/hh_rc_lecuyer_madeleine.json"
   },
-  "hh_rc_lecuyer_medard": {
-   "value": "french_canadian",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_lecuyer_medard",
-   "file": "reconstructed_trades/hh_rc_lecuyer_medard.json"
-  },
   "hh_rc_leland_abigail": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23496,12 +23496,12 @@
    "head": "rc_leland_rufus",
    "file": "reconstructed_trades/hh_rc_leland_rufus.json"
   },
-  "hh_rc_leland_silas": {
+  "hh_rc_leland_samuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_leland_silas",
-   "file": "reconstructed_trades/hh_rc_leland_silas.json"
+   "head": "rc_leland_samuel",
+   "file": "reconstructed_trades/hh_rc_leland_samuel.json"
   },
   "hh_rc_leland_warren": {
    "value": "yankee",
@@ -23530,6 +23530,13 @@
    "rule": "reconstruction_community",
    "head": "rc_lyman_david",
    "file": "reconstructed_trades/hh_rc_lyman_david.json"
+  },
+  "hh_rc_lyman_erastus": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_lyman_erastus",
+   "file": "reconstructed_trades/hh_rc_lyman_erastus.json"
   },
   "hh_rc_lyman_george": {
    "value": "yankee",
@@ -23580,12 +23587,12 @@
    "head": "rc_lynch_catherine",
    "file": "reconstructed_trades/hh_rc_lynch_catherine.json"
   },
-  "hh_rc_lynch_owen": {
+  "hh_rc_lynch_dennis": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_lynch_owen",
-   "file": "reconstructed_trades/hh_rc_lynch_owen.json"
+   "head": "rc_lynch_dennis",
+   "file": "reconstructed_trades/hh_rc_lynch_dennis.json"
   },
   "hh_rc_lynch_thomas": {
    "value": "irish",
@@ -23614,13 +23621,6 @@
    "rule": "reconstruction_community",
    "head": "rc_mahoney_martin",
    "file": "reconstructed_trades/hh_rc_mahoney_martin.json"
-  },
-  "hh_rc_mahoney_patrick": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_mahoney_patrick",
-   "file": "reconstructed_trades/hh_rc_mahoney_patrick.json"
   },
   "hh_rc_marcotte_jean": {
    "value": "french_canadian",
@@ -23699,19 +23699,19 @@
    "head": "rc_mcguire_johanna",
    "file": "reconstructed_trades/hh_rc_mcguire_johanna.json"
   },
-  "hh_rc_mcguire_john": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_mcguire_john",
-   "file": "reconstructed_trades/hh_rc_mcguire_john.json"
-  },
   "hh_rc_mcguire_mary": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_mcguire_mary",
    "file": "households/hh_rc_mcguire_mary.json"
+  },
+  "hh_rc_metcalf_chauncey": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_metcalf_chauncey",
+   "file": "reconstructed_trades/hh_rc_metcalf_chauncey.json"
   },
   "hh_rc_metcalf_david": {
    "value": "yankee",
@@ -23755,13 +23755,6 @@
    "head": "rc_murphy_bridget",
    "file": "households/hh_rc_murphy_bridget.json"
   },
-  "hh_rc_murphy_bryan": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_murphy_bryan",
-   "file": "reconstructed_trades/hh_rc_murphy_bryan.json"
-  },
   "hh_rc_murphy_dennis": {
    "value": "irish",
    "tier": "reconstructed",
@@ -23783,20 +23776,6 @@
    "head": "rc_murphy_margaret",
    "file": "households/hh_rc_murphy_margaret.json"
   },
-  "hh_rc_nash_eli": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_nash_eli",
-   "file": "reconstructed_trades/hh_rc_nash_eli.json"
-  },
-  "hh_rc_nash_ezra": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_nash_ezra",
-   "file": "reconstructed_trades/hh_rc_nash_ezra.json"
-  },
   "hh_rc_nash_martha": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23811,6 +23790,13 @@
    "head": "rc_nash_nancy",
    "file": "households/hh_rc_nash_nancy.json"
   },
+  "hh_rc_newell_alvah": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_newell_alvah",
+   "file": "reconstructed_trades/hh_rc_newell_alvah.json"
+  },
   "hh_rc_newell_amanda": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23824,6 +23810,20 @@
    "rule": "reconstruction_community",
    "head": "rc_newell_benjamin",
    "file": "reconstructed_trades/hh_rc_newell_benjamin.json"
+  },
+  "hh_rc_newell_chauncey": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_newell_chauncey",
+   "file": "reconstructed_trades/hh_rc_newell_chauncey.json"
+  },
+  "hh_rc_newell_elisha": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_newell_elisha",
+   "file": "reconstructed_trades/hh_rc_newell_elisha.json"
   },
   "hh_rc_newell_hannah": {
    "value": "yankee",
@@ -23852,6 +23852,13 @@
    "rule": "reconstruction_community",
    "head": "rc_newell_nancy",
    "file": "reconstructed_trades/hh_rc_newell_nancy.json"
+  },
+  "hh_rc_newell_otis": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_newell_otis",
+   "file": "reconstructed_trades/hh_rc_newell_otis.json"
   },
   "hh_rc_newell_polly": {
    "value": "yankee",
@@ -23888,6 +23895,13 @@
    "head": "rc_newell_seth",
    "file": "reconstructed_trades/hh_rc_newell_seth.json"
   },
+  "hh_rc_nichols_charles": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_nichols_charles",
+   "file": "reconstructed_trades/hh_rc_nichols_charles.json"
+  },
   "hh_rc_nichols_david": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -23908,13 +23922,6 @@
    "rule": "reconstruction_community",
    "head": "rc_nichols_george",
    "file": "reconstructed_trades/hh_rc_nichols_george.json"
-  },
-  "hh_rc_nichols_john": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_nichols_john",
-   "file": "reconstructed_trades/hh_rc_nichols_john.json"
   },
   "hh_rc_nichols_martha": {
    "value": "yankee",
@@ -23972,12 +23979,12 @@
    "head": "rc_nolan_johanna",
    "file": "households/hh_rc_nolan_johanna.json"
   },
-  "hh_rc_nolan_martin": {
+  "hh_rc_nolan_owen": {
    "value": "irish",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_nolan_martin",
-   "file": "reconstructed_trades/hh_rc_nolan_martin.json"
+   "head": "rc_nolan_owen",
+   "file": "reconstructed_trades/hh_rc_nolan_owen.json"
   },
   "hh_rc_nolan_thomas": {
    "value": "irish",
@@ -24000,19 +24007,19 @@
    "head": "rc_parmelee_abner",
    "file": "reconstructed_trades/hh_rc_parmelee_abner.json"
   },
+  "hh_rc_parmelee_alanson": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_parmelee_alanson",
+   "file": "reconstructed_trades/hh_rc_parmelee_alanson.json"
+  },
   "hh_rc_parmelee_almira": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_parmelee_almira",
    "file": "reconstructed_trades/hh_rc_parmelee_almira.json"
-  },
-  "hh_rc_parmelee_alvah": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_parmelee_alvah",
-   "file": "reconstructed_trades/hh_rc_parmelee_alvah.json"
   },
   "hh_rc_parmelee_maria": {
    "value": "yankee",
@@ -24070,6 +24077,13 @@
    "head": "rc_pelletier_josette",
    "file": "households/hh_rc_pelletier_josette.json"
   },
+  "hh_rc_pelletier_medard": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_pelletier_medard",
+   "file": "reconstructed_trades/hh_rc_pelletier_medard.json"
+  },
   "hh_rc_pelletier_pierre": {
    "value": "french_canadian",
    "tier": "reconstructed",
@@ -24112,13 +24126,6 @@
    "head": "rc_pratt_hannah",
    "file": "reconstructed_trades/hh_rc_pratt_hannah.json"
   },
-  "hh_rc_pratt_harvey": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_pratt_harvey",
-   "file": "reconstructed_trades/hh_rc_pratt_harvey.json"
-  },
   "hh_rc_pratt_lydia": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24132,6 +24139,13 @@
    "rule": "reconstruction_community",
    "head": "rc_pratt_maria",
    "file": "reconstructed_trades/hh_rc_pratt_maria.json"
+  },
+  "hh_rc_pratt_orrin": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_pratt_orrin",
+   "file": "reconstructed_trades/hh_rc_pratt_orrin.json"
   },
   "hh_rc_pratt_seth": {
    "value": "yankee",
@@ -24188,13 +24202,6 @@
    "rule": "reconstruction_community",
    "head": "rc_quinn_margaret",
    "file": "reconstructed_trades/hh_rc_quinn_margaret.json"
-  },
-  "hh_rc_quinn_martin": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_quinn_martin",
-   "file": "reconstructed_trades/hh_rc_quinn_martin.json"
   },
   "hh_rc_quinn_terence": {
    "value": "irish",
@@ -24265,6 +24272,13 @@
    "rule": "reconstruction_community",
    "head": "rc_rice_lydia",
    "file": "households/hh_rc_rice_lydia.json"
+  },
+  "hh_rc_robillard_alexis": {
+   "value": "french_canadian",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_robillard_alexis",
+   "file": "reconstructed_trades/hh_rc_robillard_alexis.json"
   },
   "hh_rc_robillard_antoine": {
    "value": "french_canadian",
@@ -24342,13 +24356,6 @@
    "rule": "reconstruction_community",
    "head": "rc_sawyer_almira",
    "file": "reconstructed_trades/hh_rc_sawyer_almira.json"
-  },
-  "hh_rc_sawyer_charles": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_sawyer_charles",
-   "file": "reconstructed_trades/hh_rc_sawyer_charles.json"
   },
   "hh_rc_sawyer_harriet": {
    "value": "yankee",
@@ -24448,6 +24455,13 @@
    "head": "rc_sheldon_lucy",
    "file": "households/hh_rc_sheldon_lucy.json"
   },
+  "hh_rc_sheldon_otis": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_sheldon_otis",
+   "file": "reconstructed_trades/hh_rc_sheldon_otis.json"
+  },
   "hh_rc_sheldon_phebe": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24490,6 +24504,13 @@
    "head": "rc_stebbins_clarissa",
    "file": "households/hh_rc_stebbins_clarissa.json"
   },
+  "hh_rc_stebbins_hiram": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_stebbins_hiram",
+   "file": "reconstructed_trades/hh_rc_stebbins_hiram.json"
+  },
   "hh_rc_stebbins_horace": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24497,19 +24518,19 @@
    "head": "rc_stebbins_horace",
    "file": "reconstructed_trades/hh_rc_stebbins_horace.json"
   },
-  "hh_rc_stebbins_joseph": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_stebbins_joseph",
-   "file": "reconstructed_trades/hh_rc_stebbins_joseph.json"
-  },
   "hh_rc_stebbins_lemuel": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
    "head": "rc_stebbins_lemuel",
    "file": "reconstructed_trades/hh_rc_stebbins_lemuel.json"
+  },
+  "hh_rc_stebbins_levi": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_stebbins_levi",
+   "file": "reconstructed_trades/hh_rc_stebbins_levi.json"
   },
   "hh_rc_stebbins_lydia": {
    "value": "yankee",
@@ -24573,6 +24594,13 @@
    "rule": "reconstruction_community",
    "head": "rc_stiles_esther",
    "file": "households/hh_rc_stiles_esther.json"
+  },
+  "hh_rc_stiles_james": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_stiles_james",
+   "file": "reconstructed_trades/hh_rc_stiles_james.json"
   },
   "hh_rc_stiles_nathaniel": {
    "value": "yankee",
@@ -24658,13 +24686,6 @@
    "head": "rc_thayer_hannah",
    "file": "households/hh_rc_thayer_hannah.json"
   },
-  "hh_rc_thayer_harvey": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_thayer_harvey",
-   "file": "reconstructed_trades/hh_rc_thayer_harvey.json"
-  },
   "hh_rc_thayer_james": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24721,13 +24742,6 @@
    "head": "rc_tobin_ellen",
    "file": "households/hh_rc_tobin_ellen.json"
   },
-  "hh_rc_tobin_michael": {
-   "value": "irish",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_tobin_michael",
-   "file": "reconstructed_trades/hh_rc_tobin_michael.json"
-  },
   "hh_rc_tobin_owen": {
    "value": "irish",
    "tier": "reconstructed",
@@ -24748,6 +24762,20 @@
    "rule": "reconstruction_community",
    "head": "rc_trottier_toussaint",
    "file": "reconstructed_trades/hh_rc_trottier_toussaint.json"
+  },
+  "hh_rc_tuttle_amos": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_tuttle_amos",
+   "file": "reconstructed_trades/hh_rc_tuttle_amos.json"
+  },
+  "hh_rc_tuttle_asa": {
+   "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_tuttle_asa",
+   "file": "reconstructed_trades/hh_rc_tuttle_asa.json"
   },
   "hh_rc_tuttle_benjamin": {
    "value": "yankee",
@@ -24791,12 +24819,12 @@
    "head": "rc_tuttle_ruth",
    "file": "reconstructed_trades/hh_rc_tuttle_ruth.json"
   },
-  "hh_rc_vieau_baptiste": {
-   "value": "french_canadian",
+  "hh_rc_tuttle_silas": {
+   "value": "yankee",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_vieau_baptiste",
-   "file": "reconstructed_trades/hh_rc_vieau_baptiste.json"
+   "head": "rc_tuttle_silas",
+   "file": "reconstructed_trades/hh_rc_tuttle_silas.json"
   },
   "hh_rc_vieau_francois": {
    "value": "french_canadian",
@@ -24832,13 +24860,6 @@
    "rule": "reconstruction_community",
    "head": "rc_vieau_marie",
    "file": "reconstructed_trades/hh_rc_vieau_marie.json"
-  },
-  "hh_rc_wadsworth_alvah": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_wadsworth_alvah",
-   "file": "reconstructed_trades/hh_rc_wadsworth_alvah.json"
   },
   "hh_rc_wadsworth_polly": {
    "value": "yankee",
@@ -24903,13 +24924,6 @@
    "head": "rc_whitcomb_lydia",
    "file": "households/hh_rc_whitcomb_lydia.json"
   },
-  "hh_rc_whitcomb_nathaniel": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_whitcomb_nathaniel",
-   "file": "reconstructed_trades/hh_rc_whitcomb_nathaniel.json"
-  },
   "hh_rc_whitcomb_sarah": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24966,13 +24980,6 @@
    "head": "rc_wilcox_orrin",
    "file": "reconstructed_trades/hh_rc_wilcox_orrin.json"
   },
-  "hh_rc_wilcox_otis": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_wilcox_otis",
-   "file": "reconstructed_trades/hh_rc_wilcox_otis.json"
-  },
   "hh_rc_wilcox_polly": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -24993,13 +25000,6 @@
    "rule": "reconstruction_community",
    "head": "rc_wilcox_sophronia",
    "file": "households/hh_rc_wilcox_sophronia.json"
-  },
-  "hh_rc_woodruff_calvin": {
-   "value": "yankee",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community",
-   "head": "rc_woodruff_calvin",
-   "file": "reconstructed_trades/hh_rc_woodruff_calvin.json"
   },
   "hh_rc_woodruff_chauncey": {
    "value": "yankee",
