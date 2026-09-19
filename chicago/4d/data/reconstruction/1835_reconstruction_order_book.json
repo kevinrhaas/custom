@@ -2528,7 +2528,7 @@
           "target": 4,
           "known": 2,
           "to_reconstruct": 2,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1184",
           "documented_zero": false,
           "staff_implied": null,
@@ -4174,6 +4174,13 @@
       "stage": "women_and_children",
       "records": 23,
       "by": "tools/reconstruct_women_children.py --build"
+    },
+    {
+      "bucket": "businesses/druggist",
+      "ticket": "T-1184",
+      "stage": "stores_and_provisions",
+      "records": 2,
+      "by": "tools/reconstruct_businesses_1835.py --build"
     }
   ]
 }

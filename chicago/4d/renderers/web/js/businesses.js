@@ -630,6 +630,28 @@ export async function mountBusinesses({
       ${people ? `<ul class="biz-people">${people}</ul>` : ''}`;
   }
 
+  /** WHY A HOUSE NOBODY NAMED IS IN THE TOWN (T-1184). A reconstructed firm has no
+   *  printings to show — that is the whole of what makes it reconstructed — so the card
+   *  prints its ORDER instead: the census line that counts more of its class than the
+   *  register holds, the bucket of the reconstruction order book that bought it, the seed
+   *  a reader can retype to redraw its style and its face, and what retires it. A grade
+   *  dot a reader cannot unpick is a claim; this is the unpicking. */
+  function reconstructionHtml(block) {
+    if (!block || typeof block !== 'object') return '';
+    const basis = block.basis || {};
+    return `<h4 class="people-card-h">Why this house is here</h4>
+      <p class="legend-note biz-invented"><b>Nobody named this firm.</b> It stands in the town
+        because a count the town demonstrably needed was short, and it is written down as an
+        invention rather than as a finding.</p>
+      ${basis.note ? `<p class="legend-note">${escapeHtml(basis.note)}</p>` : ''}
+      <ul class="biz-claims">
+        <li>ordered by <code>${escapeHtml(block.bucket || '')}</code> of the 1835 reconstruction order book</li>
+        <li>written by <code>${escapeHtml(block.group || '')}</code> (${escapeHtml(block.ticket || '')})</li>
+        <li>redraw it from the seed <code>${escapeHtml(block.seed || '')}</code></li>
+      </ul>
+      ${block.withdrawn_if ? `<p class="legend-note">Withdrawn if ${escapeHtml(block.withdrawn_if)}.</p>` : ''}`;
+  }
+
   function recordHtml(rec, row) {
     const people = [
       ...(rec.proprietors || []).map((p) => ({ ...p, role: p.role || 'proprietor' })),
@@ -655,7 +677,12 @@ export async function mountBusinesses({
         ? `<h4 class="people-card-h">What it sold</h4><p class="biz-goods">${
           rec.goods.map((g) => `<span class="biz-good">${escapeHtml(g)}</span>`).join('')}</p>`
         : '',
-      `<h4 class="people-card-h">The printings that attest it</h4>
+      // The printings, OR the order — never both, and never neither. A reconstructed
+      // house has no first issue and no last, and a card that printed 'First printed —'
+      // over one would be offering a silence as a date.
+      rec.reconstruction
+        ? reconstructionHtml(rec.reconstruction)
+        : `<h4 class="people-card-h">The printings that attest it</h4>
        <p class="legend-note">First printed ${escapeHtml(day(ev.first_issue))}, last ${escapeHtml(day(ev.last_issue))}${
   (rec.claim_ids || []).length ? ` · ${n(rec.claim_ids.length)} claim${rec.claim_ids.length === 1 ? '' : 's'}` : ''}.</p>
        ${(rec.claim_ids || []).length ? `<ul class="biz-claims">${rec.claim_ids.map((c) => `<li><code>${escapeHtml(c)}</code></li>`).join('')}</ul>` : ''}`,
