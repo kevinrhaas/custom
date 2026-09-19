@@ -12983,7 +12983,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **T-1196**, the convergence **T-1179**.
 **Recorded:** 2026-09-19.
 
-### L254 — Fifteen free Black residents and two Black-owned firms stand for a count the corpus makes twice and a name it never prints
+### L255 — Fifteen free Black residents and two Black-owned firms stand for a count the corpus makes twice and a name it never prints
 
 **Decision:** `tools/reconstruct_free_black.py` (T-1377, of T-1177) writes **7** households,
 **15** people and **2** firms — the `free_black` sub-stage of stage `underdocumented`, beside
