@@ -2210,6 +2210,27 @@ step "the derived-layer manifest names real files, one owner each, none hand-aut
 selftest "…and its own assertions fire when the manifest is made unsafe" \
   node tools/rederive.mjs --self-test
 
+# AND THE FIVE FILES THAT CLOSE THE RESIDENT LAYER, AS ONE SET (T-1333). index.json with
+# its `merged` redirect table, the 1835 sidecars, the town census, the published residents
+# and the final resident audit are each derived and each already gated above — and until
+# this step nothing said they were a SET or what order they rebuild in. That is not a
+# tidiness complaint: every `--check` above asks whether a file still follows from its
+# inputs, and a file nobody rebuilt at all follows from its inputs perfectly well until
+# somebody else's rebuild moves them. So a run could move the town, rebuild three of the
+# five, and leave a green gate behind. This holds the membership (a member the derived
+# manifest does not run, or an exemption that states no reason, is red), the gating (a
+# member this file never asks `--check` of is red) and the REPORT, which states every
+# number as a delta against the tree T-1333 opened on — so a branch that moves the town
+# and leaves docs/RESEARCH/closing-convergence-2026-09.md alone goes red rather than
+# shipping a page that still reads clean. T-1144 banked its acceptances 3, 5 and 9 here to
+# be stated as measured deltas rather than re-asserted from a spot reading; they are rows
+# in that report now, and a refused name coming back moves one.
+step "the closing set is owned, gated and reported as deltas" \
+  python3 tools/rebuild_closing_set.py --check --quiet
+
+selftest "…and its own assertions fire when a member loses its owner, its gate or its reason" \
+  python3 tools/rebuild_closing_set.py --self-test
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
@@ -3721,6 +3742,20 @@ step "Fergus's 1839 directory rebuilds from its committed text" \
 # surname arriving with no row is invisible to every reader until this fails.
 selftest "…and the seven repaired surnames in it still read off their witnesses" \
   python3 tools/read_fergus_1839.py --self-test
+
+step "…and the trade table counted off it rebuilds too" \
+  python3 tools/build_trade_table_1839.py --check
+
+# T-1346. The table is a PRIOR the reconstruction will draw a head's trade from, so
+# the rules that build it are load-bearing in a way a share never looks. Its own
+# assertions pin the four that would be invisible if they broke: the slot is cut at
+# the first comma so an employer never becomes a trade, the scan's five broken
+# trades are repaired by name, a bare house-word is the trade while a house carrying
+# a proper name is not, and mapped + refused still equals the entries with a printed
+# trade — a normaliser that silently drops what it cannot read is how a share becomes
+# a fiction.
+selftest "…and the trade table's own reading rules still fire" \
+  python3 tools/build_trade_table_1839.py --self-test
 
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839.py --check

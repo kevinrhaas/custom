@@ -625,7 +625,10 @@ def still_open(root: Path = ROOT) -> set[str]:
     units, faults = L.extract_units(root, registry)
     if faults:
         raise SystemExit("the reading registry is faulted: " + "; ".join(faults[:5]))
-    targets = L.target_index(root, {u["source_record_id"] for u in units})
+    # T-1342: the index is keyed on the unit's `record_key`, not its raw id, or a
+    # file-local claim number reaches every issue that prints it and this register
+    # rules a unit a resident card had already closed.
+    targets = L.target_index(root, {u["record_key"] for u in units})
     return {u["unit_id"] for u in units
             if L.natural_disposition(root, u, targets).get("disposition") == "unresolved"}
 

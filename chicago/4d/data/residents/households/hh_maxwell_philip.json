@@ -7,9 +7,10 @@
   "value": "1833-02-03",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "The day he assumed his duties at the post. For an officer under orders that IS the arrival date.",
+  "note": "The day he assumed his duties at the post. For an officer under orders that IS the arrival date. TWO READINGS OF THIS VOLUME NAME HIM AND NEITHER MOVES THIS FIELD. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 89 (claim bk_mose1_001) puts \"Dr. Philip Maxwell from New York\" among the men who came through Chicago in 1832 — A YEAR EARLIER THAN THIS FIELD, AND IT IS REFUSED RATHER THAN AVERAGED. The card's 1833-02-03 is Andreas at day precision, the day he assumed his duties at the post, and for an officer under orders that is the arrival; the compiler's is a bare year in an 1895 list that credits Andreas himself three lines above. A weaker, later, coarser reading does not overturn a stronger, earlier, finer one, and the disagreement is written down instead of resolved. Vol. 2, printed page 348 (claim bk_mose2_018) names him again among the eleven who organised the first Episcopal congregation in 1834 and among its vestry of eight — a dated presence a year AFTER this arrival, which corroborates it and bounds nothing. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "day"
  },
  "party_size_on_arrival": {
@@ -24,8 +25,10 @@
   "value": "Sackett's Harbor, New York; born at Guilford, Vermont",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
-  ]
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
+  ],
+  "note": "THE COMPILER AGREES WITH ANDREAS ON THE STATE. Moses and Kirkland vol. 1, printed page 89 (claim bk_mose1_001), has him \"from New York\", against this field's attested \"Sackett's Harbor, New York\". The value does not move — it is already finer and already attested — and the agreement is recorded because the same sentence is the sole source for two other origins in this layer."
  },
  "reason_for_coming": {
   "value": "Posted to Fort Dearborn by the Army",

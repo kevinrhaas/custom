@@ -7,9 +7,10 @@
   "value": "1832-07-01",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'Arrived here in July, 1832' - month precision, stated twice by Andreas in two chapters.",
+  "note": "'Arrived here in July, 1832' - month precision, stated twice by Andreas in two chapters. THE COMPILER'S 1832 LIST AGREES AND IS COARSER. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 89 (claim bk_mose1_001) names this man among those who came through Chicago in 1832 and decided to remain. A YEAR AND NOT A MONTH, from an 1895 compilation, so it corroborates this field and does not move it. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here). AND ONE SENTENCE IN THE SAME VOLUME NARROWS THE MONTH THIS FIELD ALREADY CARRIES. Printed pages 573-574 (claim bk_mose1_013): \"a month after his arrival, on the 19th of August, 1832, he organized a Sunday school\". Read on the book's own wording that closes the arrival to WITHIN THE MONTH BEFORE 19 AUGUST 1832, which is on or after about 19 July. Andreas has \"Arrived here in July, 1832\", and the two together put the coming in the LAST THIRTEEN DAYS OF JULY 1832. THE VALUE DOES NOT MOVE AND THE PRECISION DOES NOT SHARPEN: 1832-07-01 is where this project carries a month, the narrowing is an inference on a compiler's phrasing rather than a stated date, and sharpening `month` to a fortnight on the strength of \"a month after\" would be reading the book harder than it can bear. It is recorded because it is the finest thing the volume says about any arrival in this reading, and a later run with a dated source should find it already here.",
   "precision": "month"
  },
  "party_size_on_arrival": {

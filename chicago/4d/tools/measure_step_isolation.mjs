@@ -3,7 +3,6 @@
  * measure_step_isolation.mjs — what every gate step WRITES, measured rather than assumed.
  *
  *   node tools/measure_step_isolation.mjs --build     run the gate instrumented, write the file
- *   node tools/measure_step_isolation.mjs --only <tool>  measure ONE tool's own gate steps
  *   node tools/measure_step_isolation.mjs --self-test prove the reader's own assertions fire
  *
  * WHY THIS EXISTS (T-1339, out of T-1336). check.sh runs its steps in a job pool over ONE
@@ -145,66 +144,71 @@ function build() {
   return 0;
 }
 
-
-// --only <tool> — MEASURE ONE TOOL, for the run that adds it (T-1172, 2026-09-19).
-//
-// `--build` is the honest measurement and stays the one that writes the whole file. It
-// runs the gate SERIALLY so a write is attributable, and that is ~16 minutes on this
-// tree — over the 600 s foreground ceiling a steward run has, which is T-1316. So a run
-// that adds a gate step could not measure the step it was adding, and the only ways
-// left were to hand-write a row (a guess wearing a measurement's clothes) or to leave
-// the coverage gate red.
-//
-// This measures the SAME WAY on a smaller set: it takes the commands check.sh itself
-// declares for the named tool, runs each under the same probe env, and merges the row
-// into the existing file. What it does NOT do is re-measure anybody else — every other
-// row keeps the date and the paths its own run measured, and `measured_rows` records
-// which rows were taken this way so the file never claims a whole-gate run it did not
-// have. The next `--build` overwrites all of it from one instrumented gate, which is
-// the state this file wants to be in.
-function buildOnly(tool) {
-  if (!tool) { console.error('usage: measure_step_isolation.mjs --only <tools/x.py>'); return 2; }
-  const steps = declaredSteps(fs.readFileSync(path.join(APP, 'tools', 'check.sh'), 'utf8'));
-  const mine = steps.filter((s) => toolOf(s.command) === tool);
-  if (!mine.length) { console.error(`no gate step runs ${tool} — check.sh declares none`); return 1; }
-
-  const jsonl = fs.mkdtempSync('/tmp/c4d-iso-') + '/probe.jsonl';
+/**
+ * Measure ONE tool, by running exactly the commands check.sh declares for it.
+ *
+ * WHY THIS EXISTS. `--build` is one instrumented gate run — right for a full sweep and
+ * far too heavy for the common case, which is a PR that adds a single gated tool. The
+ * coverage half of the audit refuses such a PR until the tool has a row, so without this
+ * every tool-adding PR paid a ~10 minute rebuild of a measurement already correct for the
+ * other 337 tools. Three paid it in one evening (#1476, #1480, #1488) before it was worth
+ * fixing.
+ *
+ * It measures the SAME WAY `--build` does — the tool's own declared step and self-test
+ * commands, under the same probes — so a row minted here is not a weaker row. What it
+ * gives up is stated: it sees only this tool, so it cannot notice that some OTHER tool
+ * started writing. That is what the full sweep is for, and why --build stays.
+ */
+function buildOne(tool) {
+  const sh = fs.readFileSync(path.join(APP, 'tools', 'check.sh'), 'utf8');
+  const cmds = declaredSteps(sh).filter((s) => toolOf(s.command) === tool);
+  if (!cmds.length) {
+    console.error(`no gate step runs ${tool} — check.sh declares none, so there is `
+      + 'nothing to measure and no row to mint');
+    return 1;
+  }
+  const jsonl = fs.mkdtempSync('/tmp/c4d-iso1-') + '/probe.jsonl';
   fs.writeFileSync(jsonl, '');
   const env = {
     ...process.env,
     ISOLATION_ROOT: ROOT,
     ISOLATION_OUT: jsonl,
     PYTHONPATH: PROBE + (process.env.PYTHONPATH ? ':' + process.env.PYTHONPATH : ''),
-    NODE_OPTIONS: `--require ${path.join(PROBE, 'node_probe.js')}` + (process.env.NODE_OPTIONS ? ' ' + process.env.NODE_OPTIONS : ''),
+    NODE_OPTIONS: `--require ${path.join(PROBE, 'node_probe.js')}`
+      + (process.env.NODE_OPTIONS ? ' ' + process.env.NODE_OPTIONS : ''),
   };
-  for (const s of mine) {
-    console.log(`running ${s.kind}: ${s.command}`);
-    const r = spawnSync('bash', ['-c', s.command], { cwd: APP, env, encoding: 'utf8', maxBuffer: 1 << 28 });
-    if (r.status !== 0) { console.error(`  ^ exited ${r.status} — measure it on a tree where it passes`); return 1; }
+  for (const c of cmds) {
+    console.log(`  ${c.kind.padEnd(8)} ${c.command}`);
+    spawnSync('bash', ['-c', c.command], { cwd: APP, env, encoding: 'utf8', maxBuffer: 1 << 28 });
   }
 
   const wrote = new Set(); const by = new Set();
   for (const line of fs.readFileSync(jsonl, 'utf8').split('\n')) {
     if (!line.trim()) continue;
     let d; try { d = JSON.parse(line); } catch { continue; }
-    const argv0 = (d.argv || [])[0] || '';
-    if (!argv0.includes(tool)) continue;
+    const a0 = (d.argv || [])[0] || '';
+    const key = a0.includes('tools/') ? 'tools/' + a0.split('tools/').pop()
+      : (path.isAbsolute(a0) && a0.startsWith(ROOT + path.sep) ? path.relative(ROOT, a0) : a0);
+    if (key !== tool) continue;               // a helper it spawned is not this row
     for (const w of d.wrote || []) wrote.add(w);
     if ((d.wrote || []).length) by.add((d.argv || []).join(' ').trim());
   }
 
-  const doc = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+  let doc;
+  try { doc = JSON.parse(fs.readFileSync(OUT, 'utf8')); } catch {
+    console.error(`${path.relative(ROOT, OUT)} is missing — run --build once before `
+      + 'measuring a single tool into it');
+    return 1;
+  }
   doc.tools[tool] = { wrote: [...wrote].sort() };
   if (by.size) doc.tools[tool].wrote_by = [...by].sort();
   doc.tools = Object.fromEntries(Object.keys(doc.tools).sort().map((k) => [k, doc.tools[k]]));
-  doc.declared_steps = steps.length;
-  doc.measured_rows = { ...(doc.measured_rows || {}), [tool]: new Date().toISOString().slice(0, 10) };
+  doc.measured = new Date().toISOString().slice(0, 10);
   fs.writeFileSync(OUT, JSON.stringify(doc, null, 2) + '\n');
 
-  const ex = Object.keys(doc.exempt || {});
-  const live = [...wrote].filter((w) => !ex.some((p) => w.startsWith(p)));
-  console.log(`\nmerged ${tool} into ${path.relative(ROOT, OUT)} — ${mine.length} step(s), ${wrote.size} path(s) written`);
-  console.log(live.length ? `  WRITES LIVE  ${live.slice(0, 3).join(', ')}` : '  it wrote nothing in the live tree');
+  const live = [...wrote].filter((w) => !Object.keys(doc.exempt || {}).some((p) => w.startsWith(p)));
+  console.log(`\n${tool}: ${cmds.length} declared command(s) measured — `
+    + (live.length ? `WRITES THE LIVE TREE: ${live.slice(0, 3).join(', ')}` : 'wrote nothing in-tree'));
   return 0;
 }
 
@@ -235,6 +239,20 @@ function selfTest() {
   ok(toolOf("sh -c 'python3 tools/x.py --self-test'") === 'tools/x.py',
      'a tool wrapped in sh -c is still found');
 
+  // --tool selects the SAME commands --build would have measured for that tool, which is
+  // the whole basis for a row minted incrementally being as good as one from a full sweep.
+  const SH2 = 'step "reads" \\\n  python3 tools/a.py --check\n'
+    + 'selftest "…and it fires" \\\n  python3 tools/a.py --self-test\n'
+    + 'step "another tool" \\\n  python3 tools/b.py --check\n';
+  const forA = declaredSteps(SH2).filter((x) => toolOf(x.command) === 'tools/a.py');
+  ok(forA.length === 2, '--tool picks up both the step and the self-test of its tool');
+  ok(forA.some((x) => x.kind === 'selftest'),
+     'and the self-test among them — the half that breaks things on purpose');
+  ok(declaredSteps(SH2).filter((x) => toolOf(x.command) === 'tools/b.py').length === 1,
+     'and does not sweep in another tool\'s commands');
+  ok(declaredSteps(SH2).filter((x) => toolOf(x.command) === 'tools/nope.py').length === 0,
+     'a tool no gate step runs selects nothing, so --tool refuses rather than minting an empty row');
+
   console.log(bad ? `  self-test: ${bad} FAILURE(S)` : '  self-test: every assertion fires');
   return bad ? 1 : 0;
 }
@@ -246,7 +264,10 @@ const isEntry = process.argv[1] && path.resolve(process.argv[1]) === path.resolv
 const arg = isEntry ? process.argv[2] : null;
 if (isEntry) {
 if (arg === '--build') process.exit(build());
-else if (arg === '--only') process.exit(buildOnly(process.argv[3]));
-else if (arg === '--self-test') process.exit(selfTest());
-else { console.error('usage: measure_step_isolation.mjs --build | --only <tool> | --self-test'); process.exit(2); }
+else if (arg === '--tool') {
+  const t = process.argv[3];
+  if (!t) { console.error('usage: measure_step_isolation.mjs --tool tools/x.py'); process.exit(2); }
+  process.exit(buildOne(t));
+} else if (arg === '--self-test') process.exit(selfTest());
+else { console.error('usage: measure_step_isolation.mjs --build | --tool <tools/x> | --self-test'); process.exit(2); }
 }
