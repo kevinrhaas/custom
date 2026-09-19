@@ -353,5 +353,17 @@
   ],
   "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",
   "research_doc": "docs/RESEARCH/sauganash_hotel.md",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "inn_tavern",
+    "beds_ordinary": 7,
+    "beds_crowded": 35,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": true,
+    "enclosed_floor_m2": 158.72,
+    "confidence": "reconstructed",
+    "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 159 m² of enclosed floor (79 m² × 2 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }

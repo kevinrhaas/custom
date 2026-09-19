@@ -223,5 +223,17 @@
   ],
   "research_note": "THIS RECORD IS A RETRACTION, AND THAT IS THE FIRST THING TO KNOW ABOUT IT. The New York House stood on this project's EXCLUDE list from the first structures dossier (docs/research/04-structures-south.md § 13) on the strength of a secondary chronology dating it 1836. On 2026-08-11 that exclusion was FALSIFIED against Andreas p. 635 and data/exclusions.json's entry rewritten to say so in its own words — 'it stays here only until a structure record replaces it' — naming frame, north side of Lake near Wells, two storeys with eaves to the street, and the OPENING MONTH in 1835 as the open question. This is that record, and the opening month is answered from the other side: the Chicago American of 13 June 1835 carries two professional men advertising their offices AT the house. WHY IT MATTERS BEYOND ITS OWN ROOF. 'The New York House' is an ANCHOR in the American's advertising — the register compiled at data/research/newspapers/register_1835.json refuses two placeable businesses with the same sentence, 'The anchor \"the New York House\" names nothing the committed town holds'. Standing the house is what makes those two addresses resolvable, which is why T-0306 was split and this piece taken first. THE WEAK POINT IS THE SIDE OF WELLS, not the street and not the form. Andreas says 'near Wells' and Wells has two sides; the choice of the western block is a dataset argument, recorded as a liberty rather than dressed up as evidence, and it is the one reading a new source would most easily overturn. See docs/RESEARCH/new_york_house.md.",
   "research_doc": "docs/RESEARCH/new_york_house.md",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "inn_tavern",
+    "beds_ordinary": 8,
+    "beds_crowded": 35,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": true,
+    "enclosed_floor_m2": 185.81,
+    "confidence": "reconstructed",
+    "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 186 m² of enclosed floor (93 m² × 2 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }
