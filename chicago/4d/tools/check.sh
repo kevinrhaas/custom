@@ -4301,6 +4301,35 @@ step "the 1835 reconstruction order book re-derives, and no bucket is overfilled
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_order_book_1835.py --self-test
 
+# T-1370, piece 1 of T-1175. HOW MANY BEDS EACH LODGING PLACE HELD. The town model
+# states a bed bracket for the whole town and says in as many words that it "seats
+# nobody in any lodging place and gives no boarding house a capacity of its own";
+# T-1175 cannot seat a boarder without the per-place half, and T-1164 — the ticket
+# that was to have written it — was withdrawn as folded into the town model, which
+# is where the per-place half was lost.
+#
+# WHY A GATE, and it is the same argument as the order book's above. The model is an
+# APPORTIONMENT of figures the town model already owns: each class's total is its
+# place count times the model's own per-place figure, split by enclosed floor area.
+# That construction is the entire claim to honesty here — the model redistributes a
+# number rather than inventing one — and it holds only while the arithmetic does. So
+# `--check` re-derives every row from the town model, the building inventory and the
+# committed structure records, and REFUSES a total that has fallen outside the town
+# model's own bracket, a place that sleeps nobody, or a place given more beds than
+# the largest household the 1840 enumerator recorded.
+#
+# The classification is the other thing worth holding. A lodging place is read off
+# each record's own `function` field and never off the roof programme's family code,
+# because those two disagree: the programme schedules 42 roofs under the group name
+# `larger_boarding_houses`, and 32 of them are families the archetype crosswalk calls
+# houses. Reading the group name instead would quietly put boarders into six south-
+# division dwellings, and the self-test holds that distinction directly.
+step "the 1835 lodging model re-derives, and no house sleeps more than 1840 saw" \
+  python3 tools/build_lodging_model_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/build_lodging_model_1835.py --self-test
+
 # T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
 # town` sits in the book above with no target and no quota, because the town model bounds
 # the town's RESIDENTS and the land-sale crowd, the immigrants awaiting lots, the harbour

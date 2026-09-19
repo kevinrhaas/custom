@@ -190,5 +190,17 @@
   ],
   "research_note": "THE HIGHEST-VALUE SINGLE BUILDING PHASE ONE FOUND, and the reason is that boarding houses bridge the gap between 3,265 people and 398 dwellings. Andreas on the houses of 1834: they 'were always full; and full meant three in a bed sometimes, with the floor covered besides', with emigrants living in their covered wagons outside. The building is log rather than frame on Andreas's own word, which also makes it one of the few log records in the commercial core.",
   "research_doc": "",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "boarding_house",
+    "beds_ordinary": 5,
+    "beds_crowded": 12,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": false,
+    "enclosed_floor_m2": 89.18,
+    "confidence": "reconstructed",
+    "note": "The town model puts a boarding house at 9 people on an ordinary night and 21 when full, from the 1840 household tail (p90 and p99 of 964 Chicago households). This building takes the share of its class's total that its 89 m² of enclosed floor (89 m² × 1 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }
