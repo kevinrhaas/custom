@@ -76,7 +76,15 @@ year that names the person, at that record's own precision — a full date where
 paper gives one, the year's end where a list gives only a year. Where that bound falls
 after 1 July 1835 the validator warns that it straddles the scene date; the note says so
 in words, which is what the validator asks for, and `present_on_scene_date` is
-`uncertain` rather than `present` for exactly those people.
+`uncertain` rather than `present` for exactly those people. A RULED READING MAY
+SUPERSEDE THAT BOUND AND NOTHING ELSE MAY (T-1350): where
+data/research/residents/arrival_supersessions.json names a card this pass owns, the
+reading's block is written instead of the derived one, at the reading's own precision —
+a season where a compiler's list gives one — and everything downstream of the field,
+including the person note below, is composed from it. The ledger's gate holds such a
+reading to four rules this pass could not: the identity must be a crosswalk's, the
+claim must exist, the value must be EARLIER than the bound it replaces, and the grade
+ceiling is the source's. See tools/supersede_arrival.py.
 
 `present_on_scene_date` is `present` only where the record BRACKETS the day — the person
 is named at Chicago at or before 1 July 1835 and named again at or after it. Everyone
@@ -176,10 +184,14 @@ from reconstructed_person import named_by_a_source  # noqa: E402
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from carry_stage_blocks import carry  # noqa: E402  (T-1169; a mint owns its record, a reconstruction stage owns its blocks)
+from supersede_arrival import supersede, supersede_block  # noqa: E402  (T-1350; a ruled reading supersedes a derived bound and cannot be reverted)
+from supersede_arrival import LEDGER as _ARRIVAL_LEDGER, by_household as arrival_supersessions  # noqa: E402
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
 )
+
+LEDGER_NAME = _ARRIVAL_LEDGER.name
 
 PASS_NAME = "civic"
 PREFIX = "hh_civic_"      # legacy shape only; T-0599 ids are plain and this never fires
@@ -840,7 +852,12 @@ def record(row: dict, appearances: list, docs: dict, taken_ids: set,
         pid, n = f"{plain_fragment(name)}_{n}", n + 1
     blocks, sources = evidence_blocks(row, appearances)
     lists = sorted({str(e["list"]) for rows in blocks.values() for e in rows})
-    arrival = arrival_block(appearances, sources)
+    # T-1350. The bound this pass derives, and then the ruled reading that supersedes
+    # it where one does — TAKEN HERE rather than at the write site, because `note_for`
+    # below quotes the arrival note verbatim into the person's note. A card whose
+    # arrival said one thing and whose note said another would be the same silence
+    # this mechanism exists to end, one field further down.
+    arrival = supersede_block(hid, arrival_block(appearances, sources))
     person = {
         "id": pid,
         "name": name,
@@ -1045,7 +1062,11 @@ def build(preload: dict | None = None):
         # T-1169. The record is this pass's; the blocks a reconstruction stage
         # marked are that stage's, and are carried through rather than derived
         # away. See tools/carry_stage_blocks.py for why both passes are right.
-        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(carry(doc), 1)
+        # T-1350. And a READING that supersedes the bound this pass derives is
+        # spent here too, for the same reason and against the opposite
+        # failure: a hand-written arrival used to survive exactly until the
+        # next --build. See tools/supersede_arrival.py.
+        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(supersede(carry(doc)), 1)
 
     # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
     # keep every other row verbatim, so a household no pass owned could be regraded
@@ -1504,9 +1525,25 @@ def gate_problems(docs: dict, index: dict) -> list:
                 problems.append(f"{where}: gained a {key}; the placement sweep does that, "
                                 f"once the resident list is complete")
         arr = doc.get("arrival") or {}
-        if arr.get("precision") != "not_later_than":
-            problems.append(f"{where}: arrival precision {arr.get('precision')!r}; every "
-                            f"arrival this pass writes is a BOUND and says so")
+        # T-1350. Every arrival this pass DERIVES is a bound, because its registers can
+        # say nothing finer: a poll list prints a name and never a coming. But a card
+        # this pass owns can also carry an arrival a RULED READING superseded that bound
+        # with, and that block is the reading's — its precision is the reading's too, and
+        # a season is exactly the kind of thing a register cannot give and a compiler's
+        # list can. So the refusal asks WHOSE the block is before it asks what shape it
+        # has, which is the same per-attribute grain T-1169 cut for a stage's blocks. The
+        # refusal is not weakened: the ledger's own gate holds a superseding reading to
+        # four rules this one never could, and a card the ledger does not name is held to
+        # the bound exactly as before.
+        ruled = arrival_supersessions().get(doc.get("id"))
+        if ruled is None:
+            if arr.get("precision") != "not_later_than":
+                problems.append(f"{where}: arrival precision {arr.get('precision')!r}; every "
+                                f"arrival this pass writes is a BOUND and says so")
+        elif arr != ruled["arrival"]:
+            problems.append(f"{where}: arrival is neither this pass's bound nor the reading "
+                            f"that supersedes it in {LEDGER_NAME} — see "
+                            f"tools/supersede_arrival.py")
         if (doc.get("present_on_scene_date") or {}).get("value") == "present" \
                 and not (doc.get("present_on_scene_date") or {}).get("note"):
             problems.append(f"{where}: present_on_scene_date without its reasoning")
