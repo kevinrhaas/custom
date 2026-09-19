@@ -314,12 +314,12 @@
  "self_intersections": [],
  "structures": {
   "counted_from": "data/sidecars/1835/*.json placement.local_e / local_n",
-  "inside": 302,
-  "outside": 81,
+  "inside": 299,
+  "outside": 84,
   "no_committed_position": 0,
   "outside_by_where": {
    "on_the_united_states_reservation": 23,
-   "north_of_the_limit": 20,
+   "north_of_the_limit": 23,
    "west_of_canal_street": 36,
    "south_of_washington_street": 1,
    "east_of_the_limit_in_the_water": 1,
@@ -354,6 +354,9 @@
    "north_of_the_limit": [
     "clybourn_cabins",
     "clybourn_slaughterhouse",
+    "inf_labourer_shanty_north_a",
+    "inf_labourer_shanty_north_b",
+    "inf_mason_dwelling_north",
     "recon_1835_north_a1_036",
     "recon_1835_north_a2_059",
     "recon_1835_north_d1_013",
