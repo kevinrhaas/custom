@@ -54,3 +54,26 @@ never took. Everything else in that check passes — `matched` 8, `rows` 8, no o
 empty for `data/residents/`, `people.js` and `town_census.json`, and part 12 was **73 passed,
 0 failed** on the same branch before `origin/dev` was merged into it. The only thing that
 changed between the green reading and the red one was the merge.
+
+## The second one, investigated (T-1375, 2026-09-19)
+
+`pressed` is empty because **the pill the assertion reaches for no longer exists**.
+`renderers/web/js/people.js` offers the TOP TEN trades by count as pills and everything else
+through the `More` select; the smoke looks for
+`.pill[data-filter="occupation"][aria-pressed="true"]`. T-1347's reconstructed trades and
+T-1344's women and children have rewritten that top ten —
+
+    domestic 76 · boarding-house keeper 40 · laundress 34 · carpenter 26 · clerk 26
+    labourer 26 · dressmaker 25 · milliner 21 · attorney 15 · merchant 14
+
+— and tavern keeper, with 8, has dropped out of it. `dir.filter('occupation','tavern_keeper')`
+still works, which is why the other four clauses of that check pass; only the DOM lookup for a
+pill fails, and it fails correctly.
+
+So the fix is not to swap in a trade that happens to be in today's top ten — that is the same
+trap one reconstruction stage later. Either drive the row through the `More` select when the
+trade is not a pill, or have the smoke pick its trade off `people.json`'s own top ten and
+assert against that.
+
+Re-measured on this branch at `sha256:f8037d0f341c23d0`, desktop part 12: the same two
+failures and no others, with parts 13 at both viewports green (115 passed, 0 failed each).

@@ -5,23 +5,24 @@
  "head": "carpenter_nathaniel",
  "source_pass": "civic",
  "arrival": {
-  "value": "1834-01-14",
+  "value": "1833-10-19",
   "confidence": "inferred",
   "sources": [
+   "moses_kirkland_history_of_chicago_v2",
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "PRESENT AT CHICAGO ON 19 OCTOBER 1833, FROM THE CATALOGUE OF THE FOURTEEN BAPTISTS WHO ORGANISED THE FIRST BAPTIST SOCIETY. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json): \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise. The catalogue of those present is: Rev. Allen B. Freeman and Hannah C., his wife, S. T. Jackson, Martin D. Harmon, Peter Moore, Nathaniel Carpenter, John K. Sargent, Peter Warden, Willard Jones, Ebenezer and Betsey Crane, Susanna Rice, Samantha Harmon and Lucinda Jackson.\" THE CATALOGUE NAMES 'Nathaniel Carpenter', printed whole on both sides, AND IT IS NOT PHILO — the reading's own notes say `carpenter` 'here is Nathaniel and not Philo', and the crosswalk writes the Philo pairing down as an explicit refusal so it cannot be made again. A PRESENCE IS NOT AN ARRIVAL, AND IT BOUNDS ONE: a person standing in the settlement on 19 October 1833 had reached it by that day, so the bound is carried at 1833-10-19 with `not_later_than` precision — the same kind of statement the register made, moved earlier by a reading that saw the person sooner. THE CATALOGUE IS A ROLL AND NOT A CENSUS: the compiler says twenty-five Baptists were in the settlement and names the fourteen who were PRESENT that day, so the list is a floor. It can date the people it names and it can never be read to exclude anybody it leaves out. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). AND IT ANSWERS A DIFFERENT QUESTION THAN PRESENCE ON THE SCENE DATE: being in the settlement in October 1833 says nothing about 1 July 1835, so `present_on_scene_date` is untouched and goes on reading `uncertain`. THE REGISTER'S BOUND IS NOT LOST, IT IS SUBSUMED: a person present in October 1833 was necessarily in the town when the record below first named them. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1833,
+  "value": 1823,
   "confidence": "reconstructed",
   "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1834-01-14 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1833-10-19 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
   "basis": {
    "kind": "model",
    "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1834."
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1833."
   },
   "seed": "hh_carpenter_nathaniel:arrival_year",
   "replaceable_by": {
@@ -53,14 +54,14 @@
   "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+  "value": "The trading post, the fort and the country trade — the town before the boom",
   "confidence": "reconstructed",
   "tier": "reconstructed",
   "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
   "basis": {
    "kind": "rule",
    "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1833) is the only thing about it this value rests on."
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1823) is the only thing about it this value rests on."
   },
   "replaceable_by": {
    "kind": "person",
@@ -118,7 +119,7 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. PRESENT AT CHICAGO ON 19 OCTOBER 1833, FROM THE CATALOGUE OF THE FOURTEEN BAPTISTS WHO ORGANISED THE FIRST BAPTIST SOCIETY. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json): \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise. The catalogue of those present is: Rev. Allen B. Freeman and Hannah C., his wife, S. T. Jackson, Martin D. Harmon, Peter Moore, Nathaniel Carpenter, John K. Sargent, Peter Warden, Willard Jones, Ebenezer and Betsey Crane, Susanna Rice, Samantha Harmon and Lucinda Jackson.\" THE CATALOGUE NAMES 'Nathaniel Carpenter', printed whole on both sides, AND IT IS NOT PHILO — the reading's own notes say `carpenter` 'here is Nathaniel and not Philo', and the crosswalk writes the Philo pairing down as an explicit refusal so it cannot be made again. A PRESENCE IS NOT AN ARRIVAL, AND IT BOUNDS ONE: a person standing in the settlement on 19 October 1833 had reached it by that day, so the bound is carried at 1833-10-19 with `not_later_than` precision — the same kind of statement the register made, moved earlier by a reading that saw the person sooner. THE CATALOGUE IS A ROLL AND NOT A CENSUS: the compiler says twenty-five Baptists were in the settlement and names the fourteen who were PRESENT that day, so the list is a floor. It can date the people it names and it can never be read to exclude anybody it leaves out. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). AND IT ANSWERS A DIFFERENT QUESTION THAN PRESENCE ON THE SCENE DATE: being in the settlement in October 1833 says nothing about 1 July 1835, so `present_on_scene_date` is untouched and goes on reading `uncertain`. THE REGISTER'S BOUND IS NOT LOST, IT IS SUBSUMED: a person present in October 1833 was necessarily in the town when the record below first named them. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",

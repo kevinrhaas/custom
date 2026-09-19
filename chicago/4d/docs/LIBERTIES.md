@@ -12633,7 +12633,77 @@ tickets **T-1347**, **T-1346**, **T-1173**, the order book **T-1166**, the town 
 **T-1161**, the programme **T-1167**.
 **Recorded:** 2026-09-19.
 
-### L249 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
+### L249 — The summer crowd of 1835 is minted at 384, and the six places it slept are dealt equally because no source ranks them
+
+**Decision:** `tools/reconstruct_transients_1835.py` (T-1353, of T-1178) adopts **384** as
+the transient population of 1 July 1835 — the `twice the 1843 rate` reading of the 192-to-900
+bracket L245 recorded — reserves **77** of it for the land-sale purchasers the Public Domain
+register NAMES, and mints the remaining **307** as reconstructed visitors in 83 `camp` and
+`party` households in `data/residents/transients/`. Their sleeping places are dealt
+**equally across the six classes** T-1352 names, remainder to the first in its printed order:
+51 apiece, 52 to "a room in a public house".
+
+**Why:** because T-1352 bounded the crowd and deliberately adopted no point, printing two
+candidates and leaving the choice to this ticket, and because a bracket nobody spends is a
+measurement the town never sees. The Chicago American of 13 June 1835 put the population at
+2,500 to 3,000 and the strangers at "some hundreds more" — outside its own estimate — and
+until now the strangers were a figure in a model file and nobody in the town.
+
+**What is invented, exactly:** two things, and no more. (1) **The point.** 384 is the
+measured 1843 transient rate doubled because 1 July 1835 was a land-sale week and 1 August
+1843 was not; the rate is Chicago's own enumerator's and the multiplier is ours. The
+alternative, 550, is the midpoint of the American's phrase — an editor's impression printed
+eighteen days before the scene and before the sale crowd arrived — and this project prefers
+a measured comparandum with one invented step to a rhetorical band read at its middle. Both
+sit inside the bracket; this is the lower. (2) **The equal deal.** No source in this corpus
+gives any of the six sleeping-place classes a share, and T-1352 ranks none of them. An equal
+deal is the only apportionment that adds no ranking the record does not carry. Everything
+else is drawn: party size from the 1840 Chicago size histogram cut at eight, sex and age
+band from the 1840 free-white age columns, names from the invented pools and checked against
+every real name in the layer, each with the seed that redraws it.
+
+**What this deliberately does NOT do.** It mints **no crew**: T-1352 records 4 to 6 hulls
+lying at Chicago from the Marine Journal of 4 July 1835 and no committed source gives a crew
+complement for an 1830s lake schooner, so the hulls carry nobody and T-1372 is told what it
+is waiting for. It mints **no harbour-works gang**: the improvement was at work through 1835
+and no source gives its strength in any month. It mints **no named land-sale purchaser and
+no traveller of business or of state**: the register names 105 purchasers and the Democrat
+of 1 July names Lewis Cass, and a drawn person may never stand in for a person a source
+names — 77 slots are reserved and left empty for exactly that reason. It names **no inn**:
+the four roofed classes resolve to the CLASS of place and not to a house, because the
+lodging places' beds belong to the lodging model and are dealt by T-1371 and T-1372, and a
+bed dealt twice is a bed invented once. It authors **no coordinate**: the two out-of-doors
+classes name `the_landing_place`, the one camp ground a committed source puts people on, as
+a *candidate* — T-1214 owns where a camp stands and how large it is. And it writes **no
+`lives_at`**: a visitor of the season kept no residence, and the town census counts a person
+as housed through that field, so writing one would have moved the resident count.
+
+**And one argument this entry records in order to refuse it.** The BUILT lodging places
+carry 320 surge beds — the gap between their ordinary night and their crowded one — against
+307 minted visitors, which reads as a confirmation of the point adopted. It is not one. The
+town had 42 boarding houses and this reconstruction has built five; the programme's full
+surge is 764. The fit measures how far the structure band has got, and letting it choose a
+population would be reading this project's own incompleteness as evidence.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions and T-1347's
+trade households are — and for one more of their own: a card in that directory is a card
+the manifest, the town census and every resident count read, and a visitor must move none
+of them. `data/town_census.json` reports them on a row of its own, as Chicago's own
+enumerator printed `Transient persons` on a row of his own in 1843.
+
+**How to resolve:** a source that ranks the six sleeping-place classes, or gives any one of
+them a count, retires the equal deal whole. A source naming a real member of the crowd
+retires the slot it stands in. A re-reading of the bracket that adopts the other candidate
+point re-cuts every figure here, through `--build` and never by hand.
+
+Related: **L245** (the bracket this spends), **L246**, **L247** and **L248** (the same
+programme's re-admission, women-and-children and trade bands), tickets **T-1353**,
+**T-1352**, **T-1178**, **T-1372** (which is owed the crews), **T-1214** (which places the
+camps), the programme **T-1167**.
+**Recorded:** 2026-09-19.
+
+### L250 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
 
 **Decision:** `tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night
 capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each
@@ -12700,8 +12770,8 @@ seventeen seated people actually slept retires the seat without touching their c
 re-cut lodging model that gives a house a smaller ordinary-night figure retires the
 surplus through `--build`, never by hand.
 
-Related: **L245**, **L246**, **L247** and **L248** (the same programme's transient,
-re-admission, women-and-children and trade bands), tickets **T-1371**, **T-1370**,
+Related: **L245**, **L246**, **L247**, **L248** and **L249** (the same programme's
+transient, re-admission, women-and-children and trade bands), tickets **T-1371**, **T-1370**,
 **T-1175**, the lodging model **T-1370**, the order book **T-1166**, the town model
 **T-1161**, the programme **T-1167**.
 **Recorded:** 2026-09-19.

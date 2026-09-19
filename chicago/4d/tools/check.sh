@@ -2428,6 +2428,25 @@ step "every trade household re-derives, and every bucket the book ordered is fil
 
 selftest "...and a seniority rule, an over-ceiling trade and a borrowed name are refused" \
   python3 tools/reconstruct_trade_households.py --self-test
+
+# T-1353, stage `transients` of the same programme, and the only stage of it that writes
+# people who are NOT residents. T-1352 bounded the summer crowd of 1 July 1835 at 192 to
+# 900 and adopted no point; this stage spends 384 ("twice the 1843 rate"), reserves 77 for
+# the land-sale purchasers the register names, and mints the remaining 307 as visitors in
+# `data/residents/transients/`, dealt equally across the six sleeping-place classes the
+# sources name and do not rank. What the gate below holds: that all 307 re-derive from
+# their seeds, that the classes dealt to are still the ones the committed cohort model
+# prints, that no card claims a residence — the town census counts a person as housed
+# through `lives_at`, and a visitor moving that figure is the one failure this cohort
+# exists to prevent — that the camps name only the one documented ground, that no roofed
+# party names a house whose beds T-1371 is about to deal, and that no invented name is a
+# name the rest of the layer already bears. `reconstruct_residents_1835.py --check` above
+# holds each drawn person to the record contract, which is the other half.
+step "every transient re-derives, and none of them claims a residence" \
+  python3 tools/reconstruct_transients_1835.py --check
+
+selftest "...and a moved sleeping class, a named house and a seated visitor are refused" \
+  python3 tools/reconstruct_transients_1835.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
@@ -2495,6 +2514,20 @@ step "resident roles re-derive, and the 1835 view is the roles that reach it" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/derive_resident_roles.py --self-test
+
+# T-1375, from T-1177. A `community` on every person, derived off what the layer already
+# says — a household's origin block, or a reconstructed person's own name-pool community
+# — and graded no higher than the field it was read from. The step that matters here is
+# the COVERAGE one inside the tool: every distinct `origin.value` in data/residents/ must
+# be accounted for exactly once in data/residents/community_rules.json, as a stated
+# community, as a region, or as explicitly unreadable. A new origin string that nobody has
+# decided the meaning of would otherwise fall silently to `unknown`, which is the one
+# failure this pass exists to make impossible — so it makes the gate red instead.
+step "every person's community re-derives, and every origin string is accounted for" \
+  python3 tools/derive_person_community.py --check
+
+selftest "…and its refusals still fire (no tier above inferred off a place, no cohort it may not write)" \
+  python3 tools/derive_person_community.py --self-test
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one

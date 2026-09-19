@@ -53,6 +53,10 @@ READMITTED = ROOT / "data" / "residents" / "readmitted"
 # so they live outside the mints' directory too and the contract reaches them here.
 MINTED_TRADES = ROOT / "data" / "residents" / "reconstructed_trades"
 MINTED_LODGERS = ROOT / "data" / "residents" / "lodgers"
+# T-1353. The transient cohort is the same case again, and it lives outside the mints'
+# directory for a further reason of its own: these people are NOT residents, and a card in
+# `households/` is a card the manifest, the town census and the resident counts all read.
+TRANSIENTS = ROOT / "data" / "residents" / "transients"
 RETIRED = ROOT / "data" / "reconstruction" / "1835_inferred_household_programme.json"
 NAME_POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 
@@ -188,7 +192,8 @@ def read_layer():
     paths = (sorted(HOUSEHOLDS.glob("hh_*.json"))
              + sorted(READMITTED.glob("hh_*.json"))
              + sorted(MINTED_TRADES.glob("hh_*.json"))
-             + sorted(MINTED_LODGERS.glob("hh_*.json")))
+             + sorted(MINTED_LODGERS.glob("hh_*.json"))
+             + sorted(TRANSIENTS.glob("hh_*.json")))
     for path in paths:
         try:
             rec = json.loads(path.read_text(encoding="utf-8"))
@@ -1118,6 +1123,16 @@ def _check_lodgers() -> int:
     return seat_lodgers_1835.check()
 
 
+def _build_transients() -> int:
+    import reconstruct_transients_1835
+    return reconstruct_transients_1835.build()
+
+
+def _check_transients() -> int:
+    import reconstruct_transients_1835
+    return reconstruct_transients_1835.check()
+
+
 def _build_women_and_children() -> int:
     import reconstruct_women_children
     return reconstruct_women_children.build()
@@ -1143,13 +1158,15 @@ STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
                   "readmissions": _build_readmissions,
                   "trade_households": _build_trade_households,
                   "women_and_children": _build_women_and_children,
-                  "lodgers": _build_lodgers}
+                  "lodgers": _build_lodgers,
+                  "transients": _build_transients}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
                   "modelled_families": _check_modelled_families,
                   "readmissions": _check_readmissions,
                   "trade_households": _check_trade_households,
                   "women_and_children": _check_women_and_children,
-                  "lodgers": _check_lodgers}
+                  "lodgers": _check_lodgers,
+                  "transients": _check_transients}
 
 
 # --------------------------------------------------------------------------

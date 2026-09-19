@@ -275,6 +275,13 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "derive_person_community.py": {
+      "placement": "manifest",
+      "write_mode": "(bare)",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
+      "placed": "by layer, 2026-09-19 — after the card writers that may change an `origin` and before compile_scene, which builds the People view out of its output; see the manifest step"
+    },
     "derive_presence_evidence_leg.py": {
       "placement": "manifest",
       "write_mode": "--write",
@@ -898,6 +905,12 @@
       "write_mode": "--build",
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a tree the gate called clean rewrote its 308 cards and its ledger and changed no committed byte."
+    },
+    "reconstruct_transients_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 83 household cards and its ledger, changed no committed byte."
     },
     "reconstruct_women_children.py": {
       "placement": "manifest",

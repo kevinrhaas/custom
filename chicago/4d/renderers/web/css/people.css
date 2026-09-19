@@ -229,6 +229,10 @@
 }
 .mark-letter_list, .mark-projected { border-color: color-mix(in srgb, var(--con) 60%, transparent); color: var(--con); }
 .mark-civic_mint { border-color: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--accent); }
+/* T-1353. A visitor of the season is not a weaker kind of resident, so the mark is not a
+   weaker version of the resident marks: it reads in the dim ink with a dashed edge, which
+   says "here for a fortnight" without borrowing either of the colours above. */
+.mark-transient { border-style: dashed; border-color: color-mix(in srgb, var(--ink-dim) 70%, transparent); }
 
 .people-empty {
   margin: 0;
@@ -349,6 +353,16 @@
 }
 .people-card-readmitted b { color: var(--ink); }
 .people-card-readmitted i { font-style: italic; }
+/* The visitor's note, the same shape as the re-admission's above and deliberately so:
+   both say "this row is not what the rest of the list is", and a reader who has learnt
+   one should not have to learn the other. The edge is dashed for the same reason the
+   mark is. */
+.people-card-transient {
+  margin: 0 0 14px; padding: 8px 10px; font-size: 11.5px; line-height: 1.55;
+  color: var(--ink-dim); border-left: 2px dashed currentColor; opacity: .95;
+}
+.people-card-transient b { color: var(--ink); }
+.people-card-transient i { font-style: italic; }
 .people-card-h {
   margin: 0 0 8px;
   padding-top: 12px;
