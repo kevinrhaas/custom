@@ -116,6 +116,8 @@ RULE_ID = "underdocumented_r6_company_roll_names_the_man"
 MUSTER_SOURCE = "blackhawk_war_chicago_enrollments_isa"
 MUSTER_FILE = "data/research/civic/records/blackhawk_war_1832_chicago.json"
 INDIAN_COMPANY = "INDIAN"
+# The id every card of THIS sub-stage wears; T-1377's free Black cards wear `hh_fb_`.
+CARD_PREFIX = "hh_um_"
 
 # The re-admissions' own sentence for the same roll, quoted rather than paraphrased so a
 # reader can see that the two stages are standing on one licence.
@@ -657,7 +659,11 @@ def emit(record: dict, cards: dict, write: bool) -> list[str]:
     for hid, card in sorted(cards.items()):
         settle(CARDS / f"{hid}.json", card)
 
-    existing = {p.name for p in CARDS.glob("*.json")} if CARDS.exists() else set()
+    # EACH SUB-STAGE SWEEPS ITS OWN PREFIX and no more. The directory holds two cohorts
+    # now — `hh_um_` is this one's and `hh_fb_` is T-1377's free Black town — and a sweep
+    # of everything would have the two writers deleting each other's cards turn about.
+    existing = ({p.name for p in CARDS.glob(f"{CARD_PREFIX}*.json")}
+                if CARDS.exists() else set())
     for stale in sorted(existing - wanted):
         if write:
             (CARDS / stale).unlink()

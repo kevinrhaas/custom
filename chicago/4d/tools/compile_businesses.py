@@ -94,7 +94,16 @@ def person_ids(residents_dir=None):
     """
     root = Path(residents_dir or RESIDENTS)
     ids = set()
-    for path in sorted(root.glob("households/*.json")) + sorted(root.glob("merged/*.json")):
+    paths = sorted(root.glob("households/*.json")) + sorted(root.glob("merged/*.json"))
+    # AND THE OVERLAY DIRECTORIES (T-1377). `households/` is re-derived by the research
+    # mints, so every stage of the reconstruction programme writes its cards OUTSIDE it
+    # and tools/compile_scene.py overlays them. Those people are in the town; a firm they
+    # keep may name them. Adding them can only make a link resolve that used to dangle —
+    # the register's own ids are all of the mint's shape, so no compiled record moves.
+    # `transients/` is deliberately absent: a transient is not a resident.
+    for overlay in ("readmitted", "reconstructed_trades", "lodgers", "underdocumented"):
+        paths += sorted(root.glob(f"{overlay}/hh_*.json"))
+    for path in paths:
         doc = load_json(path)
         record = doc.get("superseded_record", doc)
         for person in record.get("persons", []) or []:

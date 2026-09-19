@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 196,
+    "records": 198,
     "compiled_from_register": 196,
-    "authored": 0,
-    "present_at_scene_date": 179,
+    "authored": 2,
+    "present_at_scene_date": 181,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
@@ -14,7 +14,7 @@
       "iron_foundry": 1,
       "lawyer": 18,
       "not_stated": 5,
-      "other": 79,
+      "other": 81,
       "physician": 3,
       "printing_office": 3,
       "school": 7,
@@ -29,21 +29,22 @@
       "anchored": 26,
       "premises": 30,
       "street_only": 61,
-      "unplaceable": 83
+      "unplaceable": 85
     },
-    "named_people": 209,
-    "named_people_linked_to_a_town_card": 157,
+    "named_people": 211,
+    "named_people_linked_to_a_town_card": 159,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 21,
     "by_grade": {
       "attested": 158,
-      "inferred": 38
+      "inferred": 38,
+      "reconstructed": 2
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 30,
       "street_only": 61,
-      "unplaceable": 79
+      "unplaceable": 81
     },
     "by_street": {
       "Canal Street": 1,
@@ -57,6 +58,7 @@
     },
     "by_proprietor_community": {
       "british": 9,
+      "free_black": 2,
       "new_york": 41,
       "other": 10,
       "southern": 5,
@@ -100,7 +102,7 @@
       {
         "value": "free_black",
         "label": "Free Black",
-        "count": 0
+        "count": 2
       },
       {
         "value": "yankee",
@@ -10452,6 +10454,94 @@
       "proprietor_community": "new_york",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_fb_barbers_shop",
+      "file": "rcb_fb_barbers_shop.json",
+      "name": "Benjamin Anderson, barber",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "A barber's shop kept by a free Black resident of the town",
+      "occupation": "barber",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Anderson",
+          "person_id": "rc_fb_anderson_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "Nothing places this house. The cohort it belongs to is unplaced for the same reason — no reading puts a free Black household or business on any street of this town — and T-1199 seats the reconstructed layer when the placement policy is written."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "free_black",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": true,
+      "liberties": []
+    },
+    {
+      "id": "rcb_fb_washing_and_ironing",
+      "file": "rcb_fb_washing_and_ironing.json",
+      "name": "Eliza Anderson, washing and ironing",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "A washing and ironing establishment kept by a free Black woman of the town",
+      "occupation": "laundress",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Eliza Anderson",
+          "person_id": "rc_fb_anderson_eliza",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "Nothing places this house. The cohort it belongs to is unplaced for the same reason — no reading puts a free Black household or business on any street of this town — and T-1199 seats the reconstructed layer when the placement policy is written."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "free_black",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": true,
       "liberties": []
     }
   ],
