@@ -1,7 +1,7 @@
 ---
 id: T-1393
 title: Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1179
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1525
 claimed_by: run 9/19/2026, 10:09:20 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T16:02:18.393Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35450782228
 ---
 
