@@ -258,6 +258,18 @@
      "against_merge": "hh_hogan_john was minted from st_cyr_death_03_1, where John Hogan is the DECEDENT, and the register dates that death to October 1834. John S. C. Hogan is documented in the town as postmaster and keeping his store on the scene date of 1 July 1835 and is named on the 1833-1835 voter rolls. A man cannot be buried in 1834 and vote in 1835: these are two men, and the ruling is written onto both cards so no later pass folds the postmaster onto his own namesake's burial."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "church",
+     "place_or_structure_id": "st_marys_church",
+     "resolves_to": "structure",
+     "from": "1834-10",
+     "to": "1834-10",
+     "tier": "attested",
+     "source_id": "st_cyr_register_ichr_v4",
+     "note": "THE REGISTER NAMES HIM AT A PARISH ACT, AND THAT IS THE WHOLE OF THE CLAIM. Father St. Cyr's register carries this person as decedent in st_cyr_death_03_1, dated 1834-10 and tied to this card by the church crosswalk's rule G2c. `st_marys_church` is his church, which the structure record states — 'St. Cyr selected the lot in 1833 and ... was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window'. THIS IS NOT A MEMBERSHIP ROW: being a witness, a party or a decedent at a Catholic act is what the register states, and the dates are the act's own, which is why `from` and `to` are the same day and the row is not carried forward to the scene date."
+    }
+   ],
    "age_band": {
     "value": "20-29",
     "low": 20,

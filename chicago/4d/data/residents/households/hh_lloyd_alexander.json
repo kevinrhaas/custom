@@ -273,6 +273,18 @@
      "against_merge": "AND IT IS STILL REFUSED HERE, BECAUSE NO LANDED RULE REACHES IT AND THIS PASS MAY NOT WRITE ONE. C9 wants one publication caught setting both spellings for one man INSIDE THE WINDOW: the Democrat's two settings are two different issues, and Moses & Kirkland is an 1895 history describing 1840, so the catch is outside the window and its v2 index besides carries a 'Lloyd, Alexander C., 384' whose middle initial neither card has. C11 is the rule this evidence actually fits — two spellings discharging one documented office, tied by a non-name discriminator — but C11 as drafted requires THE SURNAME TO AGREE LETTER FOR LETTER and varies the forename, and it is the surname that varies here. That asymmetry is the same one C14 was written to fix for C12, and fixing it for C11 is a new MERGE rule. T-1027 is explicit that the one-letter pool may not be closed by widening the join, and a merge is a card DELETION that moves the town's count; drawing a rule to make one is the owner's call and not this pass's. So the argument is kept verbatim, as D7 requires, and the cards stay two."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 2 row(s) — ls0279, ls0280 — to this purchaser, read as 'LLOYD ALEXANDER', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 5.68 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'LLOYD ALEXANDER matches Alexander Lloyd: the forename names Alexander Lloyd of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "age_band": {
     "value": "20-29",
     "low": 20,

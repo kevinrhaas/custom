@@ -5382,6 +5382,17 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     sexes = set(vocab.get("sexes") or [])
     presences = set(vocab.get("presence") or [])
     divisions = set(vocab.get("divisions") or [])
+    # T-1405. `associated_with[]` gained a `tract` rung, for the ground a man
+    # BOUGHT rather than the ground he stood on: a quarter-section has no street,
+    # no face and no division, and the survey layer is the only committed list of
+    # which ones this project holds. A missing file is an empty vocabulary and
+    # every tract row then fails loudly, which is the right way round.
+    tracts = set()
+    _tract_file = ROOT / "data" / "reconstruction" / "1835_survey_tracts.json"
+    if _tract_file.exists():
+        tracts = {t.get("id") for t in
+                  (json.loads(_tract_file.read_text()).get("tracts") or [])
+                  if isinstance(t, dict) and t.get("id")}
 
     households: dict = {}
     kin_rows: list = []
@@ -5471,7 +5482,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             if "associated_with" in p:
                 check_association_rows(pwhere, p.get("associated_with"), error=rep.error,
                                        structure_ids=structure_ids, source_ids=source_ids,
-                                       divisions=divisions, scene=scene)
+                                       divisions=divisions, scene=scene,
+                                       tracts=tracts)
                 for msg in singular_drift(p, p.get("associated_with")):
                     rep.error(pwhere, msg)
 
@@ -5575,7 +5587,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         if "associated_with" in h:
             check_association_rows(where, h.get("associated_with"), error=rep.error,
                                    structure_ids=structure_ids, source_ids=source_ids,
-                                   divisions=divisions, scene=scene)
+                                   divisions=divisions, scene=scene,
+                                   tracts=tracts)
             for msg in singular_drift(h, h.get("associated_with")):
                 rep.error(where, msg)
 
