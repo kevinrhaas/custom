@@ -1168,7 +1168,7 @@
   {
    "id": "origin_and_arrival",
    "title": "Origin and arrival",
-   "lead": "Every household carries an arrival block and 95.1% of them (1196) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1258 households name an origin and 1258 a reason for coming.",
+   "lead": "Every household carries an arrival block and 95.0% of them (1195) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1258 households name an origin and 1258 a reason for coming.",
    "tables": [
     {
      "title": "The three axes, by tier",
@@ -1188,16 +1188,16 @@
        1258,
        "100.0%",
        11,
-       39,
-       1208,
+       41,
+       1206,
        0
       ],
       [
        "arrival date or bound",
        1258,
        "100.0%",
-       52,
-       1202,
+       51,
+       1203,
        4,
        0
       ],
@@ -1224,13 +1224,18 @@
      "rows": [
       [
        "not_later_than",
-       1196,
-       "95.1%"
+       1195,
+       "95.0%"
       ],
       [
        "year",
        44,
        "3.5%"
+      ],
+      [
+       "season",
+       6,
+       "0.5%"
       ],
       [
        "month",
@@ -1241,11 +1246,6 @@
        "day",
        6,
        "0.5%"
-      ],
-      [
-       "season",
-       5,
-       "0.4%"
       ],
       [
        "either_of_two_days",
@@ -12415,8 +12415,8 @@
       ],
       [
        "George W. Snow",
-       "New York State",
-       "reconstructed"
+       "Vermont",
+       "inferred"
       ],
       [
        "George Washington Dole",
@@ -14035,8 +14035,8 @@
       ],
       [
        "John S. Wright",
-       "New York State",
-       "reconstructed"
+       "Massachusetts",
+       "inferred"
       ],
       [
        "John Scott",
@@ -14125,8 +14125,8 @@
       ],
       [
        "John Wright",
-       "New York State",
-       "reconstructed"
+       "Massachusetts",
+       "inferred"
       ],
       [
        "John Y. M'Lean",

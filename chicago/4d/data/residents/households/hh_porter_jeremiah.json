@@ -7,9 +7,10 @@
   "value": "1833-05-01",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Porter arrived with the troops from Fort Brady; this project's first_presbyterian_church record has him arriving in May 1833 and organising the church the following month. May is that record's reading and the day is not evidence. Eliza Chappel's own arrival is earlier and separate and is not what this field dates.",
+  "note": "Porter arrived with the troops from Fort Brady; this project's first_presbyterian_church record has him arriving in May 1833 and organising the church the following month. May is that record's reading and the day is not evidence. Eliza Chappel's own arrival is earlier and separate and is not what this field dates. THE COMPILER'S LIST AGREES AND MUST NEVER BE CITED AS THE DATE — the claim's own reading says so. Moses and Kirkland vol. 1, printed page 90 (claim bk_mose1_005), names Rev. Jeremiah Porter among the arrivals of the spring of 1833, while the SAME VOLUME at page 573 has him preaching on 19 May 1833 and at page 571 has him landing with the troops in May. The three are consistent and the list is the coarsest of them. This field's May 1833 already rests on the finer evidence, so the list corroborates it and changes nothing. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "month"
  },
  "party_size_on_arrival": {

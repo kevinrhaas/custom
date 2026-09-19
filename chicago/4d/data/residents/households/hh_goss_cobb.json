@@ -7,9 +7,10 @@
   "value": "1833-06-01",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Cobb's arrival, dated to the day by Andreas's roster: 'S. B. Cobb, a minor, came June 1, 1833.' Goss's own arrival is undated; his canal-lot purchase of 3 September 1832 would put him in the country a year earlier if he is the same O. Goss.",
+  "note": "Cobb's arrival, dated to the day by Andreas's roster: 'S. B. Cobb, a minor, came June 1, 1833.' Goss's own arrival is undated; his canal-lot purchase of 3 September 1832 would put him in the country a year earlier if he is the same O. Goss. THE COMPILER'S SPRING LIST AGREES WITH COBB'S DAY. Moses and Kirkland vol. 1, printed page 90 (claim bk_mose1_005), names Silas B. Cobb among the arrivals of the spring of 1833; Andreas's roster has \"S. B. Cobb, a minor, came June 1, 1833\", which is inside that season. Corroboration at season precision for a field already carrying a day, so it does not move. It says nothing about Goss, whom the compiler does not name. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "day"
  },
  "party_size_on_arrival": {
