@@ -1,7 +1,7 @@
 ---
 id: T-1174
 title: Reconstruct the women and children the age pyramid still lacks after families are drawn: widow-headed households, laundresses, seamstresses, domestics and schoolmistresses, the boarding-house keepers' families and the children of the 1833–35 arrivals, to the population model's sex and age bands
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1497
 claimed_by: run 9/18/2026, 8:31:35 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T03:48:55.907Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35412752345
 ---
 
