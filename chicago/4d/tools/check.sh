@@ -4548,6 +4548,29 @@ step "the 1835 lodging model re-derives, and no house sleeps more than 1840 saw"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_lodging_model_1835.py --self-test
 
+# T-1183. THE RULE EVERY BUSINESS IS STAFFED BY, before anybody is staffed. Zero of
+# the 197 business records carried a hand and the relationship vocabulary had held
+# `clerk`, `apprentice`, `journeyman` and `servant` all along with nobody in them.
+# This model prices the ESTABLISHMENT KINDS — a dry-goods store's clerk, a printing
+# office's journeyman and apprentice, a tavern's bar-keeper, hostler, cook and
+# chambermaid — so that the people T-1189 writes are a claim about a kind of house.
+#
+# WHY A GATE, and it is not the usual re-derivation argument alone. The model rests
+# on one computed quotient — the 1839 directory's 152 clerks over the principals of
+# the trades this model gives a clerk to — and on a reconciliation against the town
+# model's own employment bracket. Both denominators move: the business layer gains
+# records, the 1839 table is itself derived, and the town model re-cuts. `--check`
+# re-derives the model and its report byte for byte and then REFUSES the failure
+# that matters — a staffing table whose high end puts more people to work in the
+# business layer alone than the town model employs in the whole town, which would
+# be workers invented here. It refuses, too, any person id in the output: this file
+# writes nobody, and that is the single line of its acceptance.
+step "the 1835 business staffing model re-derives, and staffs nobody the town cannot employ" \
+  python3 tools/build_staffing_model_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/build_staffing_model_1835.py --self-test
+
 # T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
 # THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
 # ordinary-night capacity of 135 between them and seated nobody; thirty people stood on
