@@ -145,7 +145,10 @@ HOUSEHOLD_BUCKETS = (
     ("store_residence", "stores_mixed_use", "T-1171"),
     ("boarding_house", "larger_boarding_houses", "T-1175"),
     ("inn_tavern", "inns_taverns", "T-1175"),
-    ("institutional", "institutional_public", "T-1188"),
+    # T-1188 split (T-1410, T-1411); the institutional HOUSEHOLDS are the people who
+    # lived at a church, a parsonage or a school, so they go with T-1411. T-1410's
+    # three establishments — post office, land office, county rooms — house nobody.
+    ("institutional", "institutional_public", "T-1411"),
     ("garrison", "fort_principal", "T-1176"),
 )
 

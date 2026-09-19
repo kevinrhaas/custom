@@ -153,9 +153,10 @@ corpus gives, and the floor is low because the corpus is thin, not because the t
   unspecified-Native terms. The one name the clause points at is **the interpreter**: Billy
   Caldwell (Sauganash), `metis` at `attested`, interpreter to the United States Indian
   agency under Col. T. J. V. Owen. An agency post is an employment and not a house he kept,
-  so it is not a `proprietor_community` on anything — it belongs to **T-1188**, which raises
-  the civic establishments as businesses with staff, and the agency is where Caldwell,
-  David McKee the blacksmith and Joseph Porthier the striker are seated.
+  so it is not a `proprietor_community` on anything — it belongs to the civic band. T-1188
+  split (T-1410, T-1411) and the agency fell to neither half, so it is **T-1412** now: the
+  agency is where Caldwell, David McKee the blacksmith and Joseph Porthier the striker are
+  seated, and its standing on 1 July 1835 has to be read before any of them is written.
 - **Free Black — no attested house at all; the floor is zero.** `black_chicago_1835.md` is
   the whole of the reading, and its finding is that the corpus counts the free Black town of
   Chicago twice — Caton's fee in August 1833, the 1840 census — and **names it never**, not
@@ -169,6 +170,50 @@ register, not about the forks. The French Canadian and Métis families of Wolf P
 kept taverns and held permits; what this layer holds is the one of them a book names keeping
 a house. T-1177 reconstructs above these floors, and the floors are what it must not sink
 below.
+
+## The civic establishments — a class the census never counts (T-1410)
+
+Three of the best-documented workplaces in the town were not in this layer at all, because
+the layer was compiled out of printed trade notices and none of them advertised. They are
+authored records now, under `data/businesses/authored/`:
+
+| record | officer, attested | where it stops |
+|---|---|---|
+| `biz_us_land_office_chicago` | James Whitlock, Register · Edmund D. Taylor, Receiver | `street_only` on Lake Street, east side, between Clark and Dearborn |
+| `biz_chicago_post_office` | John S. C. Hogan, Postmaster | `street_only` on South Water Street, at the Franklin end |
+| `biz_cook_county_offices` | Richard Jones Hamilton, County Clerk | `unplaceable` — not on the square, and in no building of the county's own |
+
+**They take a new class, `civic`, and it is the one class in the enumeration the December
+1835 State census does not enumerate.** That count runs through the trades — stores, book
+stores, druggists, taverns, lawyers, physicians — and never reaches a post office. So a
+civic establishment counts against no census line, the crosswalk does not compare it, and
+the reconstruction order book orders none. It is deliberately not `other`, which means *the
+register printed a trade this enumeration has no line for*: these three were never in the
+register at all. The four officer roles (`postmaster`, `land_office_register`,
+`land_office_receiver`, `county_clerk`) are words `data/residents/index.json`
+`.vocabulary.occupations` already carries — one word for the office on the man and on the
+seat.
+
+**A civic establishment is not a civic building, and the dossier had already settled that.**
+`docs/RESEARCH/civic_public_buildings_1835.md` enumerates the town's public roofs at three —
+the log jail, the council house and the lighthouse — and files the land office, the custom
+house and a town hall in `data/exclusions.json` as kind guards, because a public FUNCTION in
+a private room is not a public building. These records honour that: not one of them names a
+structure, and no roof is dealt to any of them.
+
+**One correction the dossier's own summary invites, and which these records carry.** The
+post office on 1 July 1835 is *not* at Hogan's store. The committed `hogan_store` record
+already says so in its `function` note — the office was there from 31 March 1831 until about
+July 1834, when Andreas removes it "to near the corner of Franklin and South Water" — and
+the walkthrough's `first_post_office` anchor marks where the mail BEGAN, not where it was
+taken at the scene date. The conflicting reading is preserved rather than resolved: eight
+printings of Hogan's standing card, through the issue of 1 July 1835 itself, put his South
+Water store "one door [… of] the Post Office", and one door is not four blocks (T-0859).
+The street is what both readings agree on, so the street is as far as the location goes.
+
+**What is deliberately absent: staff.** Each of the three certainly had clerks, and not one
+is written here. Minting them is `T-1189`'s — *staff every business with real persons* — and
+a clerk minted in this record would be a person the resident band never drew, ordered twice.
 
 ## The limits are data now
 
