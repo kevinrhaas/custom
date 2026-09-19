@@ -43,6 +43,12 @@
 # the file. Filing is free and working is not — add a finding to the ticket it was found in
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
+# --- 0. BLOCKING THE QUEUE (owner, 2026-09-19). This row is first because nothing else
+# --- merges past it: the terrain fossil rides every branch the lap touches, so #1521 and
+# --- #1518 sit red on the same four gates and merge-ready will not take either. Clear it
+# --- and the queue drains; leave it and each new lap mints another red PR.
+T-1397 — The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
+
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
@@ -50,7 +56,6 @@
 T-1372 — Crews, the works gang and the guest lists: the vessels in port and the pier-works hands seated, and every lodging card printing who lived there
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 # --- 3C. RECONSTRUCT RESIDENTS — converge
-T-1393 — Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1402 — Audit every present business record against the research: proprietors and partners adjudicated against identity.json, dates honouring opening_announced and dissolved, type = its census class, goods, and every place the research names as a plural locations[] with its limit class — with the field x grade reconciliation table, the report and its --check gate
@@ -233,3 +238,5 @@ T-1380 — A squash merge dropped a shipped release note and re-used its version
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
+T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
+T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand

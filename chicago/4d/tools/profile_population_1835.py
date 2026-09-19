@@ -935,11 +935,266 @@ def sec_should_have_held(L) -> dict:
 # The section ids, in the order the report reads them. The CLI names above are
 # shorter on purpose (`origin` selects `origin_and_arrival`); this is the list the
 # document itself must hold, and a section that goes missing fails against it.
-SECTION_IDS = ["headcount", "sex", "age", "origin_and_arrival", "roles", "households",
-               "lodging", "buildings", "community", "should_have_held"]
+
+# ---------------------------------------------------------------------------
+# T-1393 — per-attribute completeness
+# ---------------------------------------------------------------------------
+#
+# THE NINE QUESTIONS, ASKED OF EVERY PERSON. The rest of this profile reads the layer
+# one axis at a time and each axis chooses its own denominator, so nowhere in it can a
+# reader see whether ONE person is answered on all nine. This section asks them together.
+#
+# IT COUNTS THREE ANSWERS AND NOT TWO. A value at a tier; a value stated with no tier
+# anywhere on the card (`division` and `relationship` are bare strings — the vocabulary
+# lists their terms and nothing records a confidence); and no answer at all. Folding the
+# middle column into `attested` would make an untiered string into evidence, which is the
+# one thing this layer may not do, and folding it into `unknown` would say the card is
+# silent where it speaks. So it is printed as what it is.
+#
+# A STATED ABSENCE IS AN ANSWER. "A role, or a stated reason for having none" is the
+# ticket's phrasing and it is meant: an `occupation` of `none_recorded` carrying a note
+# that says WHY no trade is recorded answers the question. 1,939 of the layer's people
+# are answered that way and only 330 by a role, and the second table below keeps those
+# two apart so the first table cannot be read as a town of tradesmen.
+
+UNTIERED = "stated, no tier written"
+
+COMPLETENESS_NOT_ASSERTED = (None, "", "unknown", "none_recorded", "unplaced")
+
+
+def block_tier(block) -> str:
+    """The tier a block carries — its own `tier` where it writes one, else `confidence`."""
+    if isinstance(block, dict):
+        tier = block.get("tier")
+        if tier in TIERS:
+            return tier
+    return tier_of(block)
+
+
+def _best_tier(tiers: list) -> str:
+    """The strongest tier in a set of claims; UNTIERED when none of them grades itself."""
+    for t in TIERS:
+        if t in tiers:
+            return t
+    return UNTIERED
+
+
+def _c_sex(h, p, pools) -> tuple:
+    sex, rule = sex_of(p, *pools)
+    tier = next(r["tier"] for r in SEX_RULES if r["rule"] == rule)
+    if sex is None:
+        return False, "unknown", ((p.get("sex_basis") or {}).get("note")
+                                  or "no rule in SEX_RULES reaches this name")
+    return True, tier, ""
+
+
+def _c_age(h, p, pools) -> tuple:
+    block = p.get("age_band")
+    if value(block) in COMPLETENESS_NOT_ASSERTED:
+        return False, "unknown", ((block or {}).get("note") if isinstance(block, dict)
+                                  else None) or "the card carries no age band"
+    return True, block_tier(block), ""
+
+
+def _household_axis(field):
+    def read(h, p, pools) -> tuple:
+        block = h.get(field)
+        if value(block) in COMPLETENESS_NOT_ASSERTED:
+            return False, "unknown", "the household card asserts no %s" % field
+        return True, block_tier(block), ""
+    return read
+
+
+def _c_role(h, p, pools) -> tuple:
+    roles = p.get("roles") or []
+    if roles:
+        # A ROLE BLOCK IS NOT A VALUE BLOCK. It carries `role`, not `value`, so
+        # `tier_of` reads it as asserting nothing; its grade is on `confidence`.
+        return True, _best_tier([r.get("confidence") for r in roles]), ""
+    occ = p.get("occupation")
+    if value(occ) not in COMPLETENESS_NOT_ASSERTED:
+        return True, block_tier(occ), ""
+    # A STATED REASON FOR HAVING NONE. The note is the answer; the tier is the one the
+    # block claims for itself, which for almost every row is `reconstructed` — the pass
+    # declining to read a trade into a list of names rather than drawing one.
+    if isinstance(occ, dict) and (occ.get("note") or "").strip():
+        return True, block_tier({"value": "stated_absence",
+                                 "confidence": occ.get("confidence")}), ""
+    return False, "unknown", "no role, and no note saying why there is none"
+
+
+def _c_division(h, p, pools) -> tuple:
+    div = h.get("division")
+    if div in COMPLETENESS_NOT_ASSERTED:
+        return False, "unknown", ("the household stands `unplaced` — no source puts it "
+                                  "on a side of the river")
+    return True, UNTIERED, ""
+
+
+def _c_relationship(h, p, pools) -> tuple:
+    rel = p.get("relationship")
+    if rel in COMPLETENESS_NOT_ASSERTED:
+        return False, "unknown", "the person carries no relationship to the household"
+    return True, UNTIERED, ""
+
+
+COMPLETENESS_AXES = [
+    ("sex", "person", "persons[].sex, ruled by sex_basis", _c_sex),
+    ("age band", "person", "persons[].age_band", _c_age),
+    ("arrival", "household", "arrival", _household_axis("arrival")),
+    ("origin", "household", "origin", _household_axis("origin")),
+    ("reason for coming", "household", "reason_for_coming",
+     _household_axis("reason_for_coming")),
+    ("a role, or a stated reason for having none", "person",
+     "persons[].roles, else persons[].occupation", _c_role),
+    ("presence on the scene date", "household", "present_on_scene_date",
+     _household_axis("present_on_scene_date")),
+    ("division", "household", "division", _c_division),
+    ("household relationship", "person", "persons[].relationship", _c_relationship),
+]
+
+COMPLETENESS_COLUMNS = [t for t in TIERS if t != "unknown"] + [UNTIERED]
+
+# THE ROW WHOSE STATED REASON ITS OWN CARD CONTRADICTS. `reconstruct_sex_age.collective()`
+# reads a name as a group when any token of it is in that pass's COLLECTIVE table, and
+# `the` is in that table because "the rest of the household, unnamed" is a count and not a
+# name. "The Harmon daughter later known as Mrs A. G. Burley" begins with the same article
+# and is ONE woman: Andreas names her singly, the card gives her one sex and seats her as a
+# daughter. So her age band carries the collective refusal — "this row stands for more than
+# one person" — over a row that stands for exactly one, and the true reason is the one her
+# own note gives: no birth year is claimed and nothing bounds it. The refusal's EFFECT is
+# right (no band may be drawn) and its STATED REASON is wrong, which is a provenance defect
+# and not a rounding error. It is named here rather than quietly patched: the fix belongs
+# to the pass that writes the note.
+CONTRADICTED_ROWS = {
+    "harmon_daughter_burley": (
+        "The card refuses an age band as a COLLECTIVE description naming nobody, and this "
+        "row names one woman — Andreas's informant, seated as a daughter and carrying one "
+        "sex. The refusal stands; its reason does not. The true reason is the card's own: "
+        "no birth year is claimed and the marriage of 1808 bounds her birth after it and "
+        "nothing bounds it before 1835."),
+}
+
+
+def sec_completeness(L) -> dict:
+    total = len(L.people)
+    grids = {name: Counter() for name, _, _, _ in COMPLETENESS_AXES}
+    unanswered = defaultdict(list)
+    answered_on_all = 0
+    for h, p in L.people:
+        every = True
+        for name, _, _, read in COMPLETENESS_AXES:
+            ok, tier, why = read(h, p, L.pools)
+            grids[name][tier if ok else "unanswered"] += 1
+            if not ok:
+                every = False
+                unanswered[name].append((h, p, why))
+        answered_on_all += 1 if every else 0
+
+    rows = []
+    for name, carried_by, read_from, _ in COMPLETENESS_AXES:
+        g = grids[name]
+        ans = total - g["unanswered"]
+        rows.append([name, carried_by, ans, pct(ans, total)]
+                    + [g[c] for c in COMPLETENESS_COLUMNS] + [g["unanswered"]])
+
+    role_grid = Counter()
+    for h, p in L.people:
+        if p.get("roles"):
+            role_grid["a role, dated and sourced"] += 1
+        elif value(p.get("occupation")) not in COMPLETENESS_NOT_ASSERTED:
+            role_grid["an occupation, undated"] += 1
+        elif isinstance(p.get("occupation"), dict) and (p["occupation"].get("note") or ""):
+            role_grid["a stated reason for having none"] += 1
+        else:
+            role_grid["nothing"] += 1
+    role_rows = [[k, role_grid[k], pct(role_grid[k], total)] for k in
+                 ["a role, dated and sourced", "an occupation, undated",
+                  "a stated reason for having none", "nothing"]]
+
+    named = {}
+    for name, rowlist in unanswered.items():
+        for h, p, why in rowlist:
+            if len(named) > 40 or (name == "division"):
+                continue
+            entry = named.setdefault(p["id"], {"hh": h["id"], "name": p.get("name") or "",
+                                               "axes": [], "why": why})
+            entry["axes"].append(name)
+    silent_rows = [[pid, e["name"], e["hh"], ", ".join(e["axes"]),
+                    CONTRADICTED_ROWS.get(pid, e["why"]).split(".")[0] + "."]
+                   for pid, e in sorted(named.items())]
+
+    unplaced = grids["division"]["unanswered"]
+    by_roll = Counter(str(h.get("source_pass") or "unclaimed")
+                      for h, p, _ in unanswered["division"])
+    roll_rows = [[roll, n, pct(n, unplaced)] for roll, n in by_roll.most_common()]
+
+    zeroed = [name for name, _, _, _ in COMPLETENESS_AXES if grids[name]["unanswered"] == 0]
+    return {
+        "id": "completeness",
+        "title": "Per-attribute completeness",
+        "lead": ("THE NINE QUESTIONS ASKED OF EVERY ONE OF THE %d PEOPLE, TOGETHER. %d of "
+                 "the nine axes leave nobody unanswered. Sex leaves %d and age band %d — "
+                 "the collective rows, \"the rest of the Beaubien household, unnamed\" and "
+                 "their kind, which name nobody and so can carry neither; every one of them "
+                 "is named below. Division leaves %d, the people of the %d households no "
+                 "source puts on a side of the river, and that is the layer's largest "
+                 "remaining hole: T-1198 seats the households the evidence places and "
+                 "T-1199 the reconstructed ones, and until they run this column cannot "
+                 "read zero without inventing ground. %d people are answered on all nine. "
+                 "Two axes answer in a bare string that carries no confidence anywhere on "
+                 "the card — they are counted under \"%s\" and not under a tier, because a "
+                 "value with no tier is not a value at a tier."
+                 % (total, len(zeroed), grids["sex"]["unanswered"],
+                    grids["age band"]["unanswered"], unplaced,
+                    sum(1 for h in L.records if h.get("division") == "unplaced"),
+                    answered_on_all, UNTIERED)),
+        "tables": [
+            {"title": "Every person, every attribute", **plain_table(
+                ["attribute", "carried by", "answered", "share"] + COMPLETENESS_COLUMNS
+                + ["not answered"], rows,
+                "llrr" + "r" * (len(COMPLETENESS_COLUMNS) + 1),
+                note=("The tier columns and \"not answered\" sum to %d on every row. "
+                      "\"%s\" is `division` and `relationship`, which the index's "
+                      "vocabulary lists as controlled terms and no card grades."
+                      % (total, UNTIERED)))},
+            {"title": "A role, or a stated reason for having none", **plain_table(
+                ["what the card carries", "persons", "share"], role_rows, "lrr",
+                note=("A stated absence is an answer and it is not a trade. The note on "
+                      "those %d cards says why the sources record no occupation — a list "
+                      "of uncalled-for letters prints a name and no trade; the sources of "
+                      "1835 name the occupations of heads and almost never those of wives, "
+                      "children or the people counted with them."
+                      % role_grid["a stated reason for having none"]))},
+            {"title": "The person rows that answer nothing", **plain_table(
+                ["person", "as the card names them", "household", "axes left unanswered",
+                 "what the card gives as the reason"], silent_rows, "lllll",
+                note=("Named rather than summed away, which is the whole of this section. "
+                      "One of them, `harmon_daughter_burley`, carries a reason its own card "
+                      "contradicts: the refusal is written for a collective row and she is "
+                      "one named woman. The refusal's effect is right and its reason is "
+                      "wrong; the fix belongs to the pass that writes the note."))},
+            {"title": "The unplaced, by the roll they were minted off", **plain_table(
+                ["roll", "persons", "share of the unplaced"], roll_rows, "lrr",
+                note=("%d persons in households standing `unplaced`. `unplaced` is a term "
+                      "in the index's own division vocabulary and it is a statement — the "
+                      "sources do not place this household — but it is not a division, so "
+                      "this section counts it unanswered." % unplaced))},
+        ],
+        "notes": ["Every count here is re-derived from the cards by "
+                  "`--build`; `--check` refuses a hand-edit. The axes are the nine T-1393 "
+                  "names and the tool refuses a rebuild whose answered and unanswered rows "
+                  "do not sum to the layer's persons on each of them."],
+    }
+
+
+SECTION_IDS = ["headcount", "completeness", "sex", "age", "origin_and_arrival",
+               "roles", "households", "lodging", "buildings", "community",
+               "should_have_held"]
 
 SECTIONS = [
     ("headcount", sec_headcount),
+    ("completeness", sec_completeness),
     ("sex", sec_sex),
     ("age", sec_age),
     ("origin", sec_origin),
@@ -1009,6 +1264,16 @@ def build() -> dict:
                 1 for h in layer.records if value(h.get("reason_for_coming"))),
             "households_naming_a_lives_at": sum(
                 1 for h in layer.records if value(h.get("lives_at"))),
+            # T-1393. The nine axes asked of every person at once: how many axes leave
+            # nobody unanswered, and how many people are answered on all nine. Both are
+            # in `counts` rather than only in the section so that `--check` moves on them.
+            "axes_answered_by_every_person": sum(
+                1 for _, _, _, read in COMPLETENESS_AXES
+                if all(read(h, p, layer.pools)[0] for h, p in layer.people)),
+            "persons_answering_every_axis": sum(
+                1 for h, p in layer.people
+                if all(read(h, p, layer.pools)[0]
+                       for _, _, _, read in COMPLETENESS_AXES)),
         },
         "vocabulary": {"age_bands": AGE_BANDS, "reasons_for_coming": REASONS_FOR_COMING,
                        "sex_rules": SEX_RULES},
@@ -1044,6 +1309,26 @@ def assertions(doc: dict) -> None:
                       "never inside a profile and never unaccountably")
     if counts["persons_with_a_sex"] > counts["persons"]:
         raise Refused("more persons carry a sex than there are persons")
+    # T-1393. The completeness table's arithmetic, checked rather than trusted: an axis
+    # whose columns do not sum to the layer's persons has lost somebody, and a lost row
+    # is exactly the thing this section exists to refuse.
+    comp = next((s for s in doc["sections"] if s["id"] == "completeness"), None)
+    if comp is None:
+        raise Refused("the profile carries no per-attribute completeness section")
+    axes = comp["tables"][0]
+    if len(axes["rows"]) != len(COMPLETENESS_AXES):
+        raise Refused("completeness: %d axes against the %d T-1393 names"
+                      % (len(axes["rows"]), len(COMPLETENESS_AXES)))
+    for row in axes["rows"]:
+        tallied = sum(row[4:])
+        if tallied != counts["persons"]:
+            raise Refused("completeness: the axis %r counts %d persons against the "
+                          "layer's %d — a row has been lost between the tiers"
+                          % (row[0], tallied, counts["persons"]))
+        if row[2] != counts["persons"] - row[-1]:
+            raise Refused("completeness: the axis %r says %d answered and %d unanswered, "
+                          "which do not make %d" % (row[0], row[2], row[-1],
+                                                    counts["persons"]))
     for section in doc["sections"]:
         if not section.get("lead"):
             raise Refused("%s: a section with no lead sentence says nothing"
@@ -1204,7 +1489,10 @@ def self_test() -> int:
     doc = read_committed() or build()
     faults = []
 
+    fired = []
+
     def fires(name, mutate):
+        fired.append(name)
         broken = json.loads(json.dumps(doc))
         mutate(broken)
         try:
@@ -1230,11 +1518,25 @@ def self_test() -> int:
     fires("'what the town should have held' grows a number",
           lambda d: section(d, "should_have_held")["tables"][0]["rows"]
           .append(["1,983 women and children", "T-1174"]))
+    # T-1393's three: an axis that loses a person between its tiers, an axis list that
+    # stops being the nine the ticket names, and the section going away altogether.
+    fires("a completeness axis loses a person between its tiers",
+          lambda d: section(d, "completeness")["tables"][0]["rows"][0].__setitem__(
+              4, section(d, "completeness")["tables"][0]["rows"][0][4] - 1))
+    fires("a completeness axis's answered and unanswered do not make the layer",
+          lambda d: section(d, "completeness")["tables"][0]["rows"][0].__setitem__(
+              2, 0))
+    fires("the nine axes stop being nine",
+          lambda d: section(d, "completeness")["tables"][0]["rows"].pop())
+    fires("the per-attribute completeness section goes away",
+          lambda d: d["sections"].__setitem__(
+              1, dict(section(d, "completeness"), id="something_else")))
 
     # The two judgements, exercised against the rules rather than the document.
     try:
         reason_term("a reason no rule in this tool has ever seen")
     except Refused:
+        fired.append("an unruled reason for coming")
         print("  fires: an unruled reason for coming is refused, not bucketed as other")
     else:
         faults.append("an unruled reason for coming")
@@ -1259,7 +1561,8 @@ def self_test() -> int:
     if faults:
         print("SELF-TEST FAILED — " + "; ".join(faults))
         return 1
-    print("all 7 assertions fire when broken, and the sex rule holds on 6 probes")
+    print("all %d assertions fire when broken, and the sex rule holds on %d probes"
+          % (len(fired), len(probes)))
     return 0
 
 
