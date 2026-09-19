@@ -715,6 +715,25 @@ step "the residents manifest re-derives from the household cards and the retired
 selftest "…and its own assertions still fire when broken" \
   python3 tools/rebuild_resident_index.py --self-test
 
+# T-1386. 827 of the 2,269 people this layer carries sat outside the town's population on
+# `present_on_scene_date: uncertain` — 276 of them graded `attested` — while 983 of the 984
+# the project RECONSTRUCTED were ruled `present`, because the reconstruction stages rule a
+# presence as they mint one. The layer believed in the people it made up and was undecided
+# about the people it read, and `uncertain` there never meant disputed: it meant nobody had
+# adjudicated. Exactly two cards are out on evidence of absence. The ruling puts all 827
+# in, one at a time, at the tier each card's OWN dated readings reach — attested where a
+# reading covers 1 July 1835, inferred where a source span or a pair of readings brackets
+# it, reconstructed where the corpus stops before the day and the standing rule carries it.
+# A tier is the whole safety property here (a blanket flip would put an undeclared claim on
+# 276 cards), and a tier derived from a card's evidence is only as good as its
+# re-derivation, so this is a gate and not a report: the town census, the population
+# profile, the order book and the gate screen all count off this file.
+step "the presence rulings re-derive from the cards' own dated readings" \
+  python3 tools/rule_presence_1835.py --check
+
+selftest "…and every ruling still passes the project's tier contract" \
+  python3 tools/rule_presence_1835.py --self-test
+
 # The kinship the corpus already states (T-0734). The audit that opened that ticket
 # found 14 of 1,404 people related to anybody at all, and the reason was never that
 # the sources were silent: the register marries couples this town holds both halves
