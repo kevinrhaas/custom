@@ -58,6 +58,7 @@ T-1177 — Reconstruct the under-documented cohorts within their evidence: the N
 T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded cohort: the land-sale visitors, the immigrants awaiting lots, the harbour-works gang and the crews ashore — who they were, how many, and where they slept (tents, wagons, floors, vessels) — for the camps the structure band will build
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
+T-1364 — The town model's arrival share is a count over the wrong denominator: it reads 1.605 of the town arriving in 1833-35 and -777 arriving before, because it divides every person's arrival year by the NAMED layer's 1,285
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
