@@ -1,7 +1,7 @@
 ---
 id: T-1195
 title: The placement policy of 1835, written as testable rules with their evidence: who lived and worked where — merchants and forwarders on the river and Lake Street, professionals by the square and the hotels, mechanics on the side streets, labourers on the small lots and the fringes, farms and country seats outside — and how many buildings a main-street lot held
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-16
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 12:31:37 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35458151020
 ---
 
 The owner: *"spread the businesses and residences and all other civic and other structures across
