@@ -34,22 +34,9 @@
         "chicago_american_1835_06_13#c012",
         "chicago_democrat_1835_06_10#c010",
         "chicago_democrat_1835_08_12#c012"
-      ]
-    },
-    {
-      "name": "Holbrook, John",
-      "person_id": "holbrook_john",
-      "register_person_id": "person_holbrook_john",
-      "role": "partner",
-      "from": "1835-06-10",
-      "to": "1835-08-12",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card holbrook_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_american_1835_06_13#c012",
-        "chicago_democrat_1835_06_10#c010",
-        "chicago_democrat_1835_08_12#c012"
+      ],
+      "also_printed_as": [
+        "Holbrook, John"
       ]
     }
   ],
@@ -90,18 +77,11 @@
     "value": "yankee",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read yankee: John Holbrook (yankee), Holbrook, John (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read yankee: John Holbrook (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "holbrook_john",
         "name": "John Holbrook",
-        "role": "partner",
-        "community": "yankee",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "holbrook_john",
-        "name": "Holbrook, John",
         "role": "partner",
         "community": "yankee",
         "tier": "reconstructed"
