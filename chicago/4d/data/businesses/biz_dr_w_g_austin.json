@@ -27,21 +27,9 @@
       "claim_ids": [
         "chicago_american_1835_08_08#c001",
         "chicago_democrat_1835_08_12#c004"
-      ]
-    },
-    {
-      "name": "W. G. Austin",
-      "person_id": "austin_w_g",
-      "register_person_id": "person_w_g_austin",
-      "role": "partner",
-      "from": "1835-08-08",
-      "to": "1835-08-12",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card austin_w_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_american_1835_08_08#c001",
-        "chicago_democrat_1835_08_12#c004"
+      ],
+      "also_printed_as": [
+        "W. G. Austin"
       ]
     }
   ],
@@ -81,18 +69,11 @@
     "value": "other",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read other: Austin, W. G. (other), W. G. Austin (other). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read other: Austin, W. G. (other). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "austin_w_g",
         "name": "Austin, W. G.",
-        "role": "partner",
-        "community": "other",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "austin_w_g",
-        "name": "W. G. Austin",
         "role": "partner",
         "community": "other",
         "tier": "reconstructed"

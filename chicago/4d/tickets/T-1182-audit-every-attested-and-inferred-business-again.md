@@ -1,7 +1,7 @@
 ---
 id: T-1182
 title: Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-19
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 11:07:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T16:07:49.273Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35453633099
 ---
 
 The owner, 2026-09-17: *"make sure all of the businesses are complete that we have audited against

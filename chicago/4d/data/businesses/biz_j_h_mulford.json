@@ -46,24 +46,9 @@
         "chicago_democrat_1834_07_09#c023",
         "chicago_democrat_1834_12_03#c012",
         "chicago_democrat_1835_08_12#c013"
-      ]
-    },
-    {
-      "name": "Mulford, J. H.",
-      "person_id": "mulford_james_h",
-      "register_person_id": "person_mulford_j_h",
-      "role": "partner",
-      "from": "1834-06-04",
-      "to": "1835-08-12",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card mulford_james_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_democrat_1834_06_04#c004",
-        "chicago_democrat_1834_07_02#c022",
-        "chicago_democrat_1834_07_09#c023",
-        "chicago_democrat_1834_12_03#c012",
-        "chicago_democrat_1835_08_12#c013"
+      ],
+      "also_printed_as": [
+        "Mulford, J. H."
       ]
     }
   ],
@@ -105,18 +90,11 @@
     "value": "new_york",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read new_york: J. H. Mulford (new_york), Mulford, J. H. (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read new_york: J. H. Mulford (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "mulford_james_h",
         "name": "J. H. Mulford",
-        "role": "partner",
-        "community": "new_york",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "mulford_james_h",
-        "name": "Mulford, J. H.",
         "role": "partner",
         "community": "new_york",
         "tier": "reconstructed"

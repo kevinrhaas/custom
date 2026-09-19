@@ -942,27 +942,45 @@ function leadHtml(s, called, p) {
  * building, open the drawer and search a name they were already looking at. The
  * Use row is where that question is asked, so the answer goes on the Use row.
  *
- * Only `premises` firms appear — a house the register puts IN this roof. The 26
- * `anchored` houses name their landmark in prose and carry `structure_id: null`
- * on every one of them, so this cannot yet say which houses stand against the
- * Tremont House, and it does not guess (filed on T-1182). The grade dot is the
- * FIRM's, not the building's, because the firm is what tapping opens.
+ * TWO RELATIONS, ASKED SEPARATELY. A `premises` firm is one the register puts IN
+ * this roof. An `anchored` firm has no roof of its own and the paper sites it BY
+ * this one — "next door to the Sauganash" — and until T-1401 that landmark lived
+ * only inside `limit_reason`'s prose, so this row could not say which four houses
+ * stand against the Tremont House and refused to guess. The compiler resolves the
+ * register's own `action_target` now, so the two groups print as two leads and a
+ * reader is never told a house was here when the source said it was beside here.
+ * The grade dot is the FIRM's, not the building's, because the firm is what
+ * tapping opens.
  *
  * @param {object[]} firms  `firmCrosswalk().byStructure` for this record's id
  * @param {boolean} fromSign  the visitor aimed at this building's signboard
  */
 function firmChipsHtml(firms, fromSign) {
   if (!firms?.length) return '';
-  const lead = fromSign
-    ? (firms.length === 1 ? 'The board hangs for' : 'The board hangs over')
-    : (firms.length === 1 ? 'The register puts one house here'
-      : `The register puts ${firms.length} houses here`);
-  return `<span class="pop-firms"${fromSign ? ' data-from-sign="yes"' : ''}>
-    <span class="pop-firms-lead">${escapeHtml(lead)}</span>${firms.map((f) => `<button type="button"
+  const chips = (list) => list.map((f) => `<button type="button"
       class="pop-firm" data-business="${escapeHtml(f.id)}"
       title="${escapeHtml([f.trade, f.present ? 'trading on 1 July 1835' : 'not trading on 1 July 1835']
     .filter(Boolean).join(' \u2014 '))}"><i class="grade-dot grade-${escapeHtml(f.grade)}"></i>${
-  escapeHtml(f.name)}</button>`).join('')}</span>`;
+  escapeHtml(f.name)}</button>`).join('');
+  const inRoof = firms.filter((f) => f.relation !== 'against');
+  const against = firms.filter((f) => f.relation === 'against');
+  const groups = [];
+  if (inRoof.length) {
+    groups.push([fromSign
+      ? (inRoof.length === 1 ? 'The board hangs for' : 'The board hangs over')
+      : (inRoof.length === 1 ? 'The register puts one house here'
+        : `The register puts ${inRoof.length} houses here`), inRoof]);
+  }
+  // NOT "HERE". The paper sited these by this building and gave them no roof, and
+  // the words have to keep that distance or the card claims a premises the source
+  // never gave.
+  if (against.length) {
+    groups.push([against.length === 1
+      ? 'One house is sited against it'
+      : `${against.length} houses are sited against it`, against]);
+  }
+  return `<span class="pop-firms"${fromSign ? ' data-from-sign="yes"' : ''}>${groups.map(
+    ([lead, list]) => `<span class="pop-firms-lead">${escapeHtml(lead)}</span>${chips(list)}`).join('')}</span>`;
 }
 
 function factsHtml(s, firms = [], fromSign = false) {

@@ -27,7 +27,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_23#c005"
-      ]
+      ],
+      "also_printed_as": []
     },
     {
       "name": "[uncertain: Wm. McKaleb]",
@@ -41,7 +42,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_23#c005"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "staff": [],

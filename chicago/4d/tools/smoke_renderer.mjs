@@ -12077,8 +12077,19 @@ for (const [label, viewport, touch] of [
         // …and the register names him FIVE times, because Collins & Caton prints
         // him under two styles. One printing is not one partnership, so the card
         // must list four rows and not five.
+        //
+        // THE FOLD MOVED INTO THE DATA (T-1401) and this count had to follow it.
+        // It used to read the index's rows, which is where the fifth printing sat:
+        // "J. D. Caton" and "J. Dean Caton" were two entries on biz_collins_caton,
+        // and five rows against four firms is what made this assertion bite. The
+        // compiler folds them on `person_id` now and keeps the styles on
+        // `also_printed_as[]`, so the fifth printing is still in the file and still
+        // counted here — it is simply no longer a second partner. Counting rows
+        // alone would have quietly left this clause asserting 4 > 4, which is to
+        // say asserting nothing at all.
         printings: idx.businesses.reduce((t, b) => t
-          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean').length, 0),
+          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean')
+            .reduce((n, q) => n + 1 + (q.also_printed_as || []).length, 0), 0),
         roof: idx.businesses.filter((b) => b.where?.kind === 'premises'
           && b.where.structure_id === 'temple_lake_st_building').map((b) => b.id).sort(),
         // …and a roof the register puts no house in must say nothing at all,
