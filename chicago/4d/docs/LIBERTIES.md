@@ -12378,7 +12378,56 @@ reading as a target reached.
 Related: tickets **T-1171**, from **T-1167**; **T-1161**'s town model and **T-1166**'s order book
 are the two files it draws against. **Recorded:** 2026-09-18.
 
-### L245 — 820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
+### L245 — "Some hundreds more" is read as a band of 200 to 900, and the transient crowd of 1 July 1835 is bounded by it
+
+**Decision:** `data/reconstruction/1835_transient_cohort.json` (T-1352, piece 1 of T-1178)
+bounds the people who were in Chicago on 1 July 1835 and not of it — the land-sale crowd, the
+immigrants waiting on lots, the harbour gang, the crews ashore — at **192 to 900 persons**. The
+ceiling is the Chicago American of 13 June 1835 read arithmetically: the paper puts the
+population at "between 2500 and 3000" and then adds "Strangers, to the amount of some hundreds
+more". *Some hundreds* is a phrase and not a number, and this model turns it into 200 at the
+least and 900 at the most.
+**Why:** because the alternative is to leave the town's summer crowd unbounded, and the order
+book (T-1166) carries `persons/transient/town` as a row with no target at all until somebody
+states one. The floor is not a liberty — it is the rate Chicago's own enumerator measured in
+1843 (533 transient persons against 7,047 permanent, 7.56%) applied to this model's resident
+point of 2,535, which gives 192. Two arguments that share no evidence land within eight people
+of each other, and that agreement is why the band is offered at all.
+**What is invented, exactly:** the two ends of the phrase. *Some hundreds* could mean three
+hundred and could mean eight; this file says an editor with a thousand strangers in his streets
+writes "a thousand", and that is a judgement about how the American wrote and not a reading of
+what it said. Nothing else here is invented: the 1843 rate is arithmetic on a printed census
+table, the land-sale floor of 77 named purchasers the resident layer cannot place is a count of
+the Public Domain Land Tract Sales register, and the six vessels in port are the Marine Journal
+of 4 July 1835 read as it stands.
+**What this deliberately does NOT do:** it does not adopt a point reading. Two movements cross
+on the scene date in opposite directions — the sale closed on 27 June and the Democrat of 1 July
+says it "has passed", while the Marine Journal has vessels landing passengers on 28 and 29 June
+and again on 2 and 3 July — and no committed source measures either, so the file prints the two
+candidate points with their arguments and adopts neither. It does not accept Norris's 1844
+arithmetic (5,500 said, "not much less than 3000" actual, so 2,500 transients) as the ceiling,
+and says in the file why a recollected rumour does not outrank a contemporary estimate. It does
+not turn hulls into men: no committed source gives the crew of an 1830s lake schooner, so the
+port reading counts vessels. And it writes no person — T-1353 mints the cohort.
+**And one thing is authored rather than derived:** `data/reconstruction/1835_camp_grounds.json`,
+five grounds a camp could stand on. One is documented — the landing place, where the American
+says tents were pitched on the spot the emigrants came ashore. The other four (the lake shore
+south of the fort, the prairie edge west of the Canal Street approach, Wolf Point, the North
+Division ground beyond the dealt parcel) are graded `conjectural` and are offered to T-1214,
+which may refuse all of them. The file authors NO coordinate: each candidate names the committed
+geometry its extent resolves from, and `model_transients_1835.py --check` fails on a candidate
+that types a polygon of its own.
+**How to resolve:** any committed source that counts the strangers at Chicago in the summer of
+1835 retires the band whole — a land-office return of attendance, the Chief Engineer's 1835
+report for the works gang, or a crew list. Until then the gate keeps it honest: `--check`
+re-derives every figure and holds each quoted sentence to the words the corpus carries, so a
+re-extraction that drops "some hundreds more" fails rather than leaving the band standing on a
+sentence that is no longer there.
+
+Related: ticket **T-1352**, piece 1 of **T-1178**; stage `transients` of **T-1167**'s programme;
+`docs/RESEARCH/1835_transient_cohort.md`.
+
+### L246 — 820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
 
 **Decision:** the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this
 project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction

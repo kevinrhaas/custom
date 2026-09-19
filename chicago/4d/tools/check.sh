@@ -4268,6 +4268,30 @@ step "the 1835 reconstruction order book re-derives, and no bucket is overfilled
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_order_book_1835.py --self-test
 
+# T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
+# town` sits in the book above with no target and no quota, because the town model bounds
+# the town's RESIDENTS and the land-sale crowd, the immigrants awaiting lots, the harbour
+# gang and the crews ashore were in the town on 1 July 1835 and not of it. This bounds that
+# cohort — 192 to 900 — and says where it slept; T-1353 mints it and T-1214 places the camps.
+#
+# WHY A GATE. Every figure is a quoted sentence or a count of a file that moves: the floor is
+# a rate off the 1843 census applied to the town model's own resident point, and the measured
+# land-sale floor is a join between the tract register and the resident crosswalk, which the
+# resident layer changes under. Left ungated it would go stale while reading as a decision.
+#
+# The refusals worth knowing: a quoted sentence the corpus no longer carries (the American's
+# "some hundreds more" is the whole ceiling, and a re-extraction that drops it must fail
+# rather than leave the band standing on nothing), a land-sale crosswalk that can place
+# nobody — which would make every purchaser in the register read as a stranger and turn a
+# measurement into a fiction — a camp-ground candidate that types a polygon of its own
+# instead of naming the committed geometry it resolves from, and a headline figure that has
+# acquired a point reading, which this model refused to pick and no later hand may adopt for it.
+step "the 1835 transient cohort re-derives, and its bracket still stands on the sentences it quotes" \
+  python3 tools/model_transients_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/model_transients_1835.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one

@@ -35,7 +35,7 @@
 # looked like city work; they are band 6 now so the ordering says what it means.
 #   AND A RUN MAY NOT FALL INTO THEM. While any row in bands 1-5 is workable, that row is
 # the work. If the top is gated or every row is in flight, the run SAYS SO and stops — it
-# does not walk down to band 6, 7 or 8. That fall-through is how T-0467 and T-1154 were
+# does not walk down to bands 6–9. That fall-through is how T-0467 and T-1154 were
 # picked up out of the bottom of a 148-line queue on 2026-09-17 while the city waited.
 # TICKET BUDGET (T-1295, owner 2026-09-17: "I don't want too many tickets and not making
 # any progress"). `ticket.mjs new` REFUSES at 140 queue lines, and refuses a branch its
@@ -54,7 +54,7 @@ T-1174 — Reconstruct the women and children the age pyramid still lacks after 
 T-1175 — Fill the beds: boarders, lodgers, hotel guests, boarding-house keepers' households, the crews of the vessels in port and the hands at the works, seated in the named and reconstructed lodging places to the lodging model's capacities
 T-1349 — The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
 T-1177 — Reconstruct the under-documented cohorts within their evidence: the Native and Métis people, households and businesses in and around the town, the free Black residents, families and Black-owned businesses, and the Irish and German Catholic town the register implies — every one identified, tiered and reviewable
-T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded cohort: the land-sale visitors, the immigrants awaiting lots, the harbour-works gang and the crews ashore — who they were, how many, and where they slept (tents, wagons, floors, vessels) — for the camps the structure band will build
+T-1353 — Mint the bounded transient cohort as reconstructed persons in camp, crew and party households, counted apart from the residents in the town census and filterable in the People view
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
@@ -147,7 +147,22 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-# --- 8. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
+# --- 8. UNREAL DELIVERY — regular assets, renderer parity, reliable streaming
+# Programme: T-1356; docs/unreal/README.md. Owner-ranked here on 2026-09-18.
+# Remote-workable preparation (still subject to the city-first ordering above):
+T-1357 — Publish a versioned Chicago scene bundle from every successful scheduled asset bake
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+# LOCAL / QUALIFIED UNREAL ONLY — NOT WORKABLE BY THE REMOTE WEB WORKER.
+# HOLD references below are comments, not claimable queue entries. Tickets are blocked-tech.
+# HOLD T-1359 — affected Mac/Unreal/browser access; may diagnose independently of bundles.
+# HOLD T-1358 — after T-1357 and current Unreal/GPU capability receipt.
+# HOLD T-1360 — after T-0252, T-1357, T-1358; Unreal visual/collision receipt required.
+# HOLD T-1361 — after T-1358/T-1359, approved licensed build runner, GPU host, budget and credentials.
+# Coordinator: unblock only when all dependencies AND current executor capability are proven;
+# immediately assign/claim on that eligible executor; otherwise retain blocked-tech.
+# Return unblocked work to this band in the displayed order; do not leave local work open
+# for the general loop. The held epic is a tracker, never a claimable task.
+# --- 9. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
@@ -161,7 +176,6 @@ T-0829 — A repeated string in a provenance or coverage list is the same merge 
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
 T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
@@ -169,7 +183,7 @@ T-0053 — A patched lit material silently inherits another layer's shader progr
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 T-0030 — A queue card in Manager reading tickets.json
-# --- 9. RESEARCH COMPLETION — remaining readings, identity epics, and deposit closeout
+# --- 10. RESEARCH COMPLETION — remaining readings, identity epics, and deposit closeout
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
@@ -203,3 +217,5 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
+T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
+
