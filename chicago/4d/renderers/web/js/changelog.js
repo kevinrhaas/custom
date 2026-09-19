@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Four hulls lying at Chicago, and nobody aboard them', kind: 'feature', ts: '',
+  { v: 982, title: 'Four hulls lying at Chicago, and nobody aboard them', kind: 'feature', ts: '2026-09-19T13:35:24.438Z', date: 'Sep 19, 2026, 8:35 AM CT',
     items: [
       'The Chicago American printed a shipping column, and on 4 July 1835 it covered the week the scene sits in: everything that came into the river from 27 June to 3 July, and everything that cleared out of it. Four vessels were still lying at Chicago when the sun went down on the first of July. Until now this project knew that as a number \u2014 four, in a cell of a table \u2014 and nothing else.',
       'They have names. The schooner Llewelling, Clark master, in on the 28th with passengers. The Hiram, Rathbourn master, in the same day from Michigan with lumber. The Whig, Day master, in on the 29th with merchandize. And a steamboat whose name is torn out of the page. Two more were in the river that morning and gone by dark \u2014 the Philips, Howe master, clearing for Milwaukee, and the Jesse Smith, Drurian master, in from Green Bay with the week\u2019s other cargo of lumber. Each is a record now, with her rig, her master, where she came from and what she carried.',
