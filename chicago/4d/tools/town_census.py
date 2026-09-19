@@ -192,6 +192,14 @@ def census_document() -> dict:
     sidecars = json.loads(
         (DATA / "sidecars" / YEAR / "index.json").read_text(encoding="utf-8"))
     residents = json.loads((DATA / "residents" / "index.json").read_text(encoding="utf-8"))
+    # THE PRESENCE RULINGS (T-1386). The 827 people the research left `uncertain` are
+    # ruled into the town one at a time, each with the tier its own dated readings reach,
+    # in data/reconstruction/1835_presence_rulings.json. They are the difference between
+    # the two figures below and the file is the only place the ruling lives — the cards
+    # are derived and keep the inferred `uncertain` the research wrote.
+    rulings_path = DATA / "reconstruction" / "1835_presence_rulings.json"
+    rulings = (json.loads(rulings_path.read_text(encoding="utf-8"))
+               if rulings_path.exists() else {"rulings": []})
 
     in_scene = {s["id"] for s in sidecars["structures"]}
     roofs = programme["standing"]["physical_roofs"]
@@ -228,6 +236,30 @@ def census_document() -> dict:
                 scene_grades[grade] += int(n or 0)
     cards_total = int(residents["counts"]["persons"])
 
+    # THE POPULATION OF THE TOWN, which is a different question from the one above and is
+    # the one the gate screen answers (T-1386). `scene_*` counts the people a record
+    # ESTABLISHES here on 1 July; this counts every person the project knows of who was in
+    # the town that day — the established, plus the 827 the research left unadjudicated and
+    # this project has now ruled in, each at the tier its own readings reach. The owner's
+    # rule: an attested or inferred resident is in the population unless there is evidence
+    # they were not, and exactly two cards are out on that evidence.
+    ruled_persons = 0
+    ruled_households = 0
+    ruled_tiers = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    ruled_grades = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    for row in rulings.get("rulings", []):
+        ruled_households += 1
+        ruled_persons += int(row.get("persons") or 0)
+        tier = (row.get("present_on_scene_date") or {}).get("tier")
+        if tier in ruled_tiers:
+            ruled_tiers[tier] += int(row.get("persons") or 0)
+        for grade, n in (row.get("grades") or {}).items():
+            if grade in ruled_grades:
+                ruled_grades[grade] += int(n or 0)
+    population_persons = scene_persons + ruled_persons
+    population_grades = {g: scene_grades[g] + ruled_grades[g] for g in scene_grades}
+    absences = len((rulings.get("evidenced_absences") or []))
+
     figure = scene_population_figure()
     point = int(figure["point"])
     low = int(figure["low"])
@@ -247,6 +279,7 @@ def census_document() -> dict:
             "data/residents/index.json",
             "data/residents/households/",
             "data/reconstruction/1835_town_model.json",
+            "data/reconstruction/1835_presence_rulings.json",
         ],
         "buildings": {
             "standing": roofs["min"],
@@ -296,6 +329,34 @@ def census_document() -> dict:
                          "date — the order book's Rule 3. A card the layer holds "
                          "without establishing the person in Chicago on 1 July is not "
                          "counted here; `cards_not_established` is how many those are.",
+                # WHICH QUESTION THIS NUMBER ANSWERS, in one line, because the gate screen
+                # shows a figure from this file and a visitor cannot ask it (T-1386 acc. 4).
+                "question": "How many people does a record establish in Chicago on 1 July "
+                            "1835? It is the strictest reading the layer supports and it "
+                            "is NOT the town's population: it leaves out every person the "
+                            "research left unadjudicated.",
+                "population": {
+                    "persons": population_persons,
+                    "households": scene_households + ruled_households,
+                    "by_grade": population_grades,
+                    "question": "How many people did the project's evidence put in the "
+                                "town on 1 July 1835? This is the population — the "
+                                "established people plus the ones the research left "
+                                "`uncertain` and T-1386 has ruled in, each at the tier "
+                                "its own dated readings reach.",
+                    "established": scene_persons,
+                    "ruled_in": ruled_persons,
+                    "ruled_in_households": ruled_households,
+                    "ruled_in_by_tier": ruled_tiers,
+                    "ruled_in_by_residence_grade": ruled_grades,
+                    "absent_on_evidence": absences,
+                    "basis": "data/reconstruction/1835_presence_rulings.json — one ruling "
+                             "per household the research left `uncertain`, with the dated "
+                             "reading it was reached from. An attested or inferred "
+                             "resident is in the population unless there is EVIDENCE they "
+                             "were not; `absent_on_evidence` is how many that is.",
+                    "generated_by": "tools/rule_presence_1835.py",
+                },
             },
             "basis": "Person entries in households whose `lives_at` names a structure "
                      "that resolves into the scene. A person counts when the building "
@@ -336,6 +397,12 @@ def main() -> int:
               f"{scene['target_low']:,}-{scene['target_high']:,}, and the gate screen "
               "fills a bar toward it.")
         return 1
+    if scene["population"]["persons"] > scene["target_high"]:
+        print("TOWN CENSUS OVERRUN\n  - the ruled population reads "
+              f"{scene['population']['persons']:,} people in the town on the scene date, "
+              f"more than the town model's own ceiling of {scene['target_high']:,}. The "
+              "presence rulings and the model disagree and the gate screen shows both.")
+        return 1
     if scene["persons"] > scene["target_high"]:
         print("TOWN CENSUS OVERRUN\n  - the layer establishes "
               f"{scene['persons']:,} people in the town on the scene date, more than the "
@@ -359,8 +426,10 @@ def main() -> int:
     print(f"{'verified' if args.check else 'generated'} the town census: "
           f"{census['buildings']['standing']} buildings standing of "
           f"{census['buildings']['target']}, "
-          f"{scene['persons']} residents established in the town of "
-          f"{scene['target']} modelled, "
+          f"{scene['population']['persons']} people in the town of "
+          f"{scene['target']} modelled "
+          f"({scene['persons']} of them established by a record that spans the day, "
+          f"{scene['population']['ruled_in']} ruled in by T-1386), "
           f"{census['people']['housed']} of them housed{visitors_line}")
     return 0
 

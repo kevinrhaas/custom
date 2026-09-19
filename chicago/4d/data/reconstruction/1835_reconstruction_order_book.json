@@ -51,6 +51,29 @@
     "households_with_a_lives_at": 16,
     "households_with_a_works_at": 36
   },
+  "population_ruled_in": {
+    "ticket": "T-1386",
+    "source": "data/reconstruction/1835_presence_rulings.json",
+    "persons_ruled_present": 827,
+    "households_ruled_present": 820,
+    "by_presence_tier": {
+      "reconstructed": 679,
+      "inferred": 87,
+      "attested": 61
+    },
+    "by_residence_grade": {
+      "inferred": 550,
+      "attested": 276,
+      "reconstructed": 1
+    },
+    "persons_known_today": 457,
+    "persons_known_if_the_rulings_are_summed_in": 1283,
+    "what_re_cuts_the_quotas": [
+      "T-1196",
+      "T-1197",
+      "T-1179"
+    ]
+  },
   "roster_offered": {
     "total": 1811,
     "by_class": {

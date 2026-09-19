@@ -59,11 +59,25 @@ POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 STRUCTURES = ROOT / "data" / "structures"
 TOWN_CENSUS = ROOT / "data" / "town_census.json"
 ATTRIBUTE_TIERS = ROOT / "data" / "research" / "residents" / "attribute_tiers.json"
+PRESENCE_RULINGS = ROOT / "data" / "reconstruction" / "1835_presence_rulings.json"
 OUT = ROOT / "data" / "reconstruction" / "1835_population_profile.json"
 REPORT = ROOT / "docs" / "RESEARCH" / "1835_population_profile.md"
 
 SCENE_DATE = "1835-07-01"
 AS_OF = "2026-09-18"
+
+
+def presence_rulings() -> dict:
+    """T-1386's ruling layer, read rather than restated.
+
+    The research left 827 people on `present_on_scene_date: uncertain` and the cards still
+    say so — the ruling lives outside them, because the household directory is derived and
+    a ruling is not a mint output. The profile reads it so its presence table says what the
+    town's population actually is instead of stopping at the strictest reading.
+    """
+    if not PRESENCE_RULINGS.exists():
+        return {"rulings": [], "counts": {}}
+    return json.loads(PRESENCE_RULINGS.read_text(encoding="utf-8"))
 
 
 def attribute_tiers() -> dict:
@@ -417,6 +431,17 @@ def sec_headcount(L) -> dict:
                 for d in index["vocabulary"]["divisions"]]
     pres_rows = [[v, presence[v], pct(presence[v], len(records))]
                  for v in index["vocabulary"]["presence"]]
+    # T-1386. The cards' own `uncertain` is kept — it is what the research wrote — and the
+    # ruling that puts those people in the town stands beside it, one row a tier, so the
+    # table above reads as the strictest measure and this one as the population.
+    ruled = presence_rulings()
+    ruled_counts = ruled.get("counts") or {}
+    ruled_tiers = ruled_counts.get("persons_by_tier") or {}
+    ruled_total = int(ruled_counts.get("persons_ruled") or 0)
+    ruled_rows = [[t, ruled_tiers[t], pct(ruled_tiers[t], ruled_total)]
+                  for t in ("attested", "inferred", "reconstructed") if t in ruled_tiers]
+    if ruled_rows:
+        ruled_rows.append(["TOTAL", ruled_total, pct(ruled_total, ruled_total)])
     return {
         "id": "headcount",
         "title": "Headcount",
@@ -430,11 +455,29 @@ def sec_headcount(L) -> dict:
                 ["division", "households", "share"], div_rows, "lrr")},
             {"title": "Households by presence on 1 July 1835", **plain_table(
                 ["presence", "households", "share"], pres_rows, "lrr")},
+        ] + ([
+            {"title": "The people the research left unadjudicated, ruled into the town "
+                      "(T-1386), by the tier their own dated readings reach",
+             **plain_table(["presence tier", "persons", "share"], ruled_rows, "lrr")},
+        ] if ruled_rows else []) + [
             {"title": "Attribute values already standing at the reconstructed tier",
              **plain_table(["household", "field", "value", "why it is at that tier"],
                            already, "llll")},
         ],
-        "notes": ["No PERSON carries the `reconstructed` grade (%d) and this ticket does "
+        "notes": ([
+            "THE TABLE ABOVE IS THE STRICTEST READING AND IT IS NOT THE POPULATION "
+            "(T-1386). %d of these households stand `uncertain` on the card because no "
+            "record follows the person to 1 July 1835 — unadjudicated, never disputed. "
+            "Every one of them has attested or inferred evidence of living in this town "
+            "and none has evidence of being elsewhere that day, so all %d of their people "
+            "are ruled into the town, each at the tier its own readings reach. Exactly %d "
+            "cards are out on evidence of absence. The ruling is "
+            "data/reconstruction/1835_presence_rulings.json; the cards keep the inferred "
+            "`uncertain` the research wrote."
+            % (int(ruled_counts.get("households_ruled") or 0), ruled_total,
+               int(ruled_counts.get("evidenced_absences_left_out") or 0)),
+        ] if ruled_rows else []) + [
+                  "No PERSON carries the `reconstructed` grade (%d) and this ticket does "
                   "not move that: reconstruction begins at T-1167 under its own programme. "
                   "But %d ATTRIBUTE values already do, and a person-grade count hides them "
                   "— which is the whole reason T-1158 puts a tier on the field rather than "
