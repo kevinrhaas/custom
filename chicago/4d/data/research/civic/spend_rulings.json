@@ -214,7 +214,7 @@
     {
       "unit": "civic:data/research/civic/records/voter_lists_1833_1835.json#records/poll_1834_003",
       "rule": "the_roll_names_a_person_the_town_does_not_hold",
-      "note": "Election returns — poll list of 1834, filed 11 August 1834, entry 3 (1834-08-11) enters 'Adams, Wm. H.' read as 'Wm. H. Adams', and the town's households hold no one the crosswalk can join it to: no resident of the surname 'Adams' agrees with the entry's forenames (5 bearer(s) of the surname considered), and no bridge row carries the entry."
+      "note": "Election returns — poll list of 1834, filed 11 August 1834, entry 3 (1834-08-11) enters 'Adams, Wm. H.' read as 'Wm. H. Adams', and the town's households hold no one the crosswalk can join it to: no resident of the surname 'Adams' agrees with the entry's forenames (4 bearer(s) of the surname considered), and no bridge row carries the entry."
     },
     {
       "unit": "civic:data/research/civic/records/voter_lists_1833_1835.json#records/poll_1834_005",

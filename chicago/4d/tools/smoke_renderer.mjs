@@ -12205,8 +12205,17 @@ for (const [label, viewport, touch] of [
         }
       }
       const bodyOf = (el) => (el ? el.textContent.replace(/\s+/g, ' ') : '');
+      // T-1171. The card now carries two kinds of person, so a read of the whole card
+      // cannot say which of them a row belongs to. The HEAD is the person the sources
+      // name and is first; anybody after him on an evidence-only household is a member
+      // the reconstruction programme drew.
+      const rowsOf = (el) => (el ? [...el.querySelectorAll('.res-people .res-person')] : []);
+      const headRowOf = (el) => bodyOf(rowsOf(el)[0]);
+      const kinRowsOf = (el) => rowsOf(el).slice(1).map(bodyOf).join(' ');
       return {
         namedText: bodyOf(named),
+        namedHeadText: headRowOf(named),
+        namedKinText: kinRowsOf(named),
         datedText: bodyOf(dated),
         letterText: bodyOf(letter),
         candidateText: bodyOf(candidate),
@@ -12443,8 +12452,25 @@ for (const [label, viewport, touch] of [
     check(`${label}: an evidence-only household's row says what its roof is not`,
       /What the sources say/.test(residents.namedText)
       && /THIS ROOF DID NOT COME FROM HIS RECORD/.test(residents.namedText)
-      && !/How this person is named/.test(residents.namedText),
-      residents.namedText.slice(0, 200));
+      && !/How this person is named/.test(residents.namedHeadText),
+      residents.namedHeadText.slice(0, 200));
+    // T-1171, and the other half of the same rule. The retirement is asserted on the
+    // HEAD's row now rather than on the whole card, because the card gained people: the
+    // household model draws a wife and children for a head the sources leave standing
+    // alone, and each of them carries the invented name the head's row may not. So the
+    // negative above would have fired on a layer doing exactly what it was ruled to do.
+    // What replaces the missing half is a positive on the drawn rows: they say they are
+    // drawn, name the stage that can redraw them, and print the seed that does it. A
+    // name_basis reappearing on a row that does NOT say those things still fails here.
+    if (residents.namedKinText) {
+      check(`${label}: a drawn family member says they were drawn, and how to redraw them`,
+        /Why this person is in the town/.test(residents.namedKinText)
+        && /Nobody a source names/.test(residents.namedKinText)
+        && /modelled_families/.test(residents.namedKinText)
+        && /How this person is named/.test(residents.namedKinText)
+        && /Redrawn with the seed/.test(residents.namedKinText),
+        residents.namedKinText.slice(0, 300));
+    }
     // The nine the sources actually date, with the reasoning that says which of
     // the two figures the source states and which is arithmetic off it.
     check(`${label}: a dated person carries an age and a birth year, both graded`,
