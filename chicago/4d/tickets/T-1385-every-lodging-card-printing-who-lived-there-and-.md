@@ -1,7 +1,7 @@
 ---
 id: T-1385
 title: Every lodging card printing who lived there, and the crews and the harbour-works gang seated once a committed source gives a complement and a strength
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1372
 opened: 2026-09-19
-closed: null
+closed: 2026-09-19
 pr: null
 claimed_by: run 9/19/2026, 4:08:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T21:48:50.525Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35469356342
 ---
 

@@ -1703,7 +1703,7 @@ def compile_streets(scene_id: str, target_date: str,
 def compile_lodging_occupancy() -> dict[str, dict]:
     """structure_id -> who is on this card tonight, and what the empty beds are.
 
-    T-1385, out of T-1372. T-1370 gave fifteen lodging places a bed count and
+    T-1406, out of T-1385 and T-1372. T-1370 gave fifteen lodging places a bed count and
     T-1371 slept 122 people in them, and the card in front of a visitor said
     neither: it printed the beds under a flat sentence reading "Nobody is seated
     in these beds yet. Who slept here is T-1371." That sentence outlived the
@@ -1817,7 +1817,7 @@ def compile_lodging() -> dict[str, dict]:
             # time it was compiled under the model file's own word for it.
             "note": place["basis"],
             "replaceable_by": place["replaceable_by"],
-            # T-1385. Who is actually in them, from T-1371's ledger. `None` where
+            # T-1406. Who is actually in them, from T-1371's ledger. `None` where
             # the stage never reached this house, which the renderer prints as the
             # silence it is rather than as an empty house.
             "occupancy": occupancy.get(place["id"]),
@@ -1922,7 +1922,7 @@ def compile_residents() -> dict[str, list[dict]]:
 
 
 def overlay_lodgers(out: dict[str, list[dict]]) -> None:
-    """Put T-1371's boarders on the building card that holds their bed (T-1385).
+    """Put T-1371's boarders on the building card that holds their bed (T-1406).
 
     THE HOUSEHOLDS THE MANIFEST CANNOT CARRY. `compile_residents` walks
     `data/residents/index.json`, and that manifest is a summary of

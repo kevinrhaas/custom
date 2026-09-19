@@ -218,7 +218,7 @@ function gradeChip(grade) {
  * arithmetic share as something a source said. It is the weakest claim under the
  * number, which is the rule the rest of this card already follows.
  *
- * AND IT SAYS WHO IS IN THEM (T-1385). This card used to end on the sentence
+ * AND IT SAYS WHO IS IN THEM (T-1406). This card used to end on the sentence
  * "Nobody is seated in these beds yet", which was true for one day. T-1371 then
  * slept 122 people in these fifteen houses and the sentence stayed, so the
  * Tremont's twelve beds held twelve people and its card said the house was empty

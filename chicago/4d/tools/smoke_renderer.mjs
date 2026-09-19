@@ -7576,9 +7576,9 @@ for (const [label, viewport, touch] of [
         homes: { where: paneOf('Where did it stand?'), liberties: paneOf('What we made up here'),
           record: paneOf("The record's own account") },
       };
-      // THE CARD WITH NOBODY ON IT, which was the Sauganash until T-1385 and is the
+      // THE CARD WITH NOBODY ON IT, which was the Sauganash until T-1406 and is the
       // log jail now. T-1371 seated two men the residents layer already holds in the
-      // Sauganash's beds and T-1385 put them on its card, so the hotel stopped being
+      // Sauganash's beds and T-1406 put them on its card, so the hotel stopped being
       // an example of a building with no households — it is the five-section order
       // this assertion needs a witness for, not the hotel. `log_jail` is the same
       // fixture the "no household gets no section at all" check above already uses.
