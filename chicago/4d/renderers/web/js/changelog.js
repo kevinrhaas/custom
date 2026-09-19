@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nobody in this town has ever worked for anybody else', kind: 'feature', ts: '',
+  { v: 987, title: 'Nobody in this town has ever worked for anybody else', kind: 'feature', ts: '2026-09-19T17:36:31.167Z', date: 'Sep 19, 2026, 12:36 PM CT',
     items: [
       'This project knows 197 businesses. Every one of them is worked by its proprietor and, at five firms, a partner \u2014 and by nobody else at all. Not one clerk, not one apprentice, not one journeyman, not one servant. The vocabulary that describes a household has held all four of those words since the people were first written, and for months not a single person in Chicago has stood in any of them.',
       'A dry-goods store on South Water Street was a merchant and a young man behind the counter who very often slept over it. A tavern was a bar-keeper, a hostler, a cook, chambermaids and a boy \u2014 five or six people, none of whom this town currently contains.',
