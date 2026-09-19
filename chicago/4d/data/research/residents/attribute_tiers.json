@@ -26,11 +26,11 @@
   },
   "counts": {
     "cards": 1393,
-    "blocks": 18250,
-    "tiers_written_on_the_card": 8132,
+    "blocks": 18247,
+    "tiers_written_on_the_card": 8129,
     "by_tier": {
       "attested": 590,
-      "inferred": 3318,
+      "inferred": 3315,
       "reconstructed": 8305,
       "unknown": 6037
     },
@@ -43,7 +43,7 @@
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 23,
+        "inferred": 20,
         "reconstructed": 1309,
         "unknown": 0
       },
@@ -5641,19 +5641,19 @@
       },
       "values": 1309,
       "by_value": {
-        "1834": 525,
-        "1835": 417,
-        "1833": 254,
+        "1834": 531,
+        "1835": 407,
+        "1833": 264,
         "1832": 52,
-        "1831": 33,
-        "1824": 8,
-        "1830": 6,
-        "1816": 3,
+        "1831": 30,
+        "1824": 7,
+        "1830": 5,
+        "1812": 4,
         "1818": 3,
-        "1820": 3,
-        "1823": 2,
+        "1820": 2,
         "1827": 2,
-        "1812": 1
+        "1816": 1,
+        "1826": 1
       },
       "a_seed": "hh_abbot_8_g:arrival_year",
       "a_card": "hh_abbot_8_g"
@@ -6873,10 +6873,10 @@
       },
       "values": 1248,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 504,
-        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 397,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 244,
-        "The trading post, the fort and the country trade — the town before the boom": 103
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 498,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 391,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 258,
+        "The trading post, the fort and the country trade — the town before the boom": 101
       },
       "a_seed": null,
       "a_card": "hh_abbot_8_g"

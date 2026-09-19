@@ -196,6 +196,62 @@ function gradeChip(grade) {
   return `<span class="grade grade-${escapeHtml(g)}">${escapeHtml(g)}</span>`;
 }
 
+/**
+ * How many people this house could sleep — the one fact a lodging place is FOR.
+ *
+ * T-1370. The town model has always carried a bed bracket for the whole town and
+ * has always said, in as many words, that it "seats nobody in any lodging place
+ * and gives no boarding house a capacity of its own". So a visitor could open the
+ * Green Tree Tavern and read its footprint, its storeys, its roof pitch and its
+ * finish, and not the number that makes it a tavern rather than a large house.
+ *
+ * TWO NUMBERS, NOT ONE, and the gap between them is the claim. A lodging place in
+ * a boom-year lake port did not have a capacity; it had an ordinary night and a
+ * night when the boats had landed, and the difference between nine and thirty-five
+ * is the whole of what the sources actually describe — "full meant three in a bed
+ * sometimes, with the floor covered besides". A single averaged figure would lose
+ * exactly the thing the evidence is about.
+ *
+ * THE GRADE IS THE CAPACITY'S OWN, not the building's. The Green Tree is an
+ * attested tavern whose bed count is apportioned from an inferred outline, and
+ * printing the building's grade beside the beds would let a visitor read an
+ * arithmetic share as something a source said. It is the weakest claim under the
+ * number, which is the rule the rest of this card already follows.
+ *
+ * AND IT SAYS THAT NOBODY IS IN THEM. An empty bed count on a card that lists
+ * residents below would otherwise read as a house standing empty; it is a house
+ * whose lodgers have not been written yet, which is a different statement and the
+ * honest one. A row with no beds at all — the Lake House, still going up — prints
+ * its reason instead of its number, because a lodging place silent about its
+ * capacity reads as an oversight rather than as a finding.
+ */
+function lodgingSection(s) {
+  const l = s.lodging;
+  if (!l) return '';
+
+  const body = l.beds_ordinary === null
+    ? `<p class="lodge-basis">${escapeHtml(l.note)}</p>`
+    : `<p class="lodge-beds">
+         <span class="lodge-n">${l.beds_ordinary}</span>
+         <span class="lodge-when">on an ordinary night</span>
+         <span class="lodge-sep">·</span>
+         <span class="lodge-n">${l.beds_crowded}</span>
+         <span class="lodge-when">when full</span>
+         ${chip(l.confidence)}
+       </p>
+       <p class="lodge-basis">${escapeHtml(l.note)}${
+         l.clamped_at_1840_maximum
+           ? ` Held at ${l.ceiling}, the largest household the 1840 enumerator recorded here.`
+           : ''}</p>
+       ${noteToggle(l.replaceable_by)}`;
+
+  return `<section class="pop-sec pop-lodging">
+    <h3>How many slept here</h3>
+    ${body}
+    <p class="lodge-empty">${escapeHtml(l.seats_nobody)}</p>
+  </section>`;
+}
+
 function residentsSection(s) {
   const households = Array.isArray(s.residents) ? s.residents : [];
   if (!households.length) return '';
@@ -1218,6 +1274,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
         ${headHtml(s, record, called, p, place)}
         ${leadHtml(s, called, p)}
         ${factsHtml(s)}
+        ${lodgingSection(s)}
         ${residentsSection(s)}
         ${agencySectionHtml(agencies, 'structure_id', record.id, escapeHtml)}
         ${tabsHtml({ liberties: libertyCount + questionCount })}

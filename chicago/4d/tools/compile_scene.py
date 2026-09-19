@@ -798,7 +798,15 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     ruling_for = {r["household_id"]: r for r in readmissions.get("presence_rulings", [])}
     minted_rows = readmissions.get("minted", [])
 
-    def row_for(hh, person, rel, ruling=None, minted=None):
+    # T-1347. The trade households are the same shape one stage on: drawn heads the order
+    # book ordered, living outside the mints' directory for the reason the re-admissions
+    # do, and joining the town here as their own rows. Nothing here reaches back into
+    # data/residents/households/ either.
+    trades_path = DATA / "reconstruction" / "1835_trade_households.json"
+    trades = load(trades_path) if trades_path.exists() else {}
+    trade_rows_minted = trades.get("minted", [])
+
+    def row_for(hh, person, rel, ruling=None, minted=None, trade=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -849,6 +857,18 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "note": ((hh.get("present_on_scene_date") or {}).get("basis") or {}).get("note"),
                 "replaced_by": (person.get("replaceable_by") or {}).get("match"),
             }
+        elif trade is not None:
+            th = hh.get("trade_household") or {}
+            owed = hh.get("household_owed") or {}
+            row["reconstructed_trade"] = {
+                "ticket": th.get("ticket"),
+                "bucket": th.get("bucket"),
+                "trade": th.get("trade"),
+                "stands_on": th.get("stands_on"),
+                "household_size_owed": owed.get("size_drawn"),
+                "kin_seated_by": owed.get("seated_by"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
         return row
 
     rows: list[dict] = []
@@ -873,6 +893,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], minted=minted))
+
+    trade_households = 0
+    for minted in trade_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        trade_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], trade=minted))
 
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
@@ -901,6 +932,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     }
     with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
     readmitted = [r for r in rows if r.get("readmission")]
+    trade_heads = [r for r in rows if r.get("reconstructed_trade")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -943,6 +975,13 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "readmitted_by_class": {
                 cls: sum(1 for r in readmitted if r["readmission"]["class"] == cls)
                 for cls in sorted({r["readmission"]["class"] for r in readmitted})},
+            # T-1347. The heads the order book ordered at a trade, drawn as their own
+            # households. Like the re-admissions, they are invisible to the manifest.
+            "reconstructed_trade_heads": len(trade_heads),
+            "reconstructed_trade_households": trade_households,
+            "reconstructed_trade_by_trade": {
+                t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
+                for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
@@ -1457,6 +1496,67 @@ def compile_streets(scene_id: str, target_date: str,
     return doc.get("surface_standard", ""), out
 
 
+def compile_lodging() -> dict[str, dict]:
+    """structure_id -> how many people that lodging place could sleep.
+
+    T-1370. The beds are derived in `tools/build_lodging_model_1835.py`, which
+    apportions figures the town model already owns across the lodging places this
+    dataset actually holds; `tools/check.sh` re-derives that file, so what is
+    carried here is a committed quantity and not a number this compiler invents.
+
+    WHY THE CARD NEEDS IT. The town model states a bed bracket for the whole town
+    and says in as many words that it "gives no boarding house a capacity of its
+    own". A visitor standing in front of the Green Tree Tavern could read every
+    dimension of it and not the one fact the building is FOR. The grade travels
+    with the number, because a capacity apportioned from a reconstructed outline
+    is reconstructed however well attested the tavern is.
+
+    Missing file is empty, not fatal: a checkout that has not built the model yet
+    compiles a scene with no bed counts on it, which is a card with one section
+    fewer rather than a build that cannot run.
+    """
+    path = DATA / "reconstruction" / "1835_lodging_model.json"
+    if not path.exists():
+        return {}
+    model = load(path)
+    figures = model["the_figures_this_model_does_not_move"]
+    out: dict[str, dict] = {}
+    for place in model["places"]:
+        out[place["id"]] = {
+            "class": place["class"],
+            "beds_ordinary": place["beds_ordinary"],
+            "beds_crowded": place["beds_crowded"],
+            "ceiling": figures["ceiling"],
+            "clamped_at_1840_maximum": place["clamped_at_1840_maximum"],
+            "enclosed_floor_m2": place["enclosed_floor_m2"],
+            "confidence": place["capacity_grade"],
+            # `note`, not `basis`: this is a GRADED CLAIM and the tier gate holds
+            # every one of them to the same shape — an `inferred` value with no
+            # reasoning recorded is refused, and it refused this block the first
+            # time it was compiled under the model file's own word for it.
+            "note": place["basis"],
+            "replaceable_by": place["replaceable_by"],
+            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+        }
+    # The rows the model carries WITHOUT beds, and the reason on each. A building
+    # that reaches the card saying nothing about its lodging reads as an oversight;
+    # one that says why it has no number is the honest version of the same silence.
+    for row in model["not_open_on_the_scene_date"] + model["lodging_outside_the_programme"]:
+        out[row["id"]] = {
+            "class": None,
+            "beds_ordinary": None,
+            "beds_crowded": None,
+            "ceiling": figures["ceiling"],
+            "clamped_at_1840_maximum": False,
+            "enclosed_floor_m2": None,
+            "confidence": "reconstructed",
+            "note": row["why_no_beds"],
+            "replaceable_by": "",
+            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+        }
+    return out
+
+
 def compile_residents() -> dict[str, list[dict]]:
     """structure_id -> the households the residents layer attaches to it.
 
@@ -1543,6 +1643,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     written, skipped = 0, []
     index = []
     residents = compile_residents()
+    lodging = compile_lodging()
     # id -> the phase that resolves into this scene, for the watch list below
     resolved: dict[str, dict] = {}
 
@@ -1754,6 +1855,12 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             sidecar["drawn_by"] = phase["drawn_by"]["layer"]
         if st.get("reconstruction"):
             sidecar["reconstruction"] = st["reconstruction"]
+        # HOW MANY SLEPT HERE (T-1370). Written only on the fifteen lodging
+        # places the model gives beds to, like `reconstruction` above and unlike
+        # `residents`: 330 sidecars carrying `lodging: null` would be 330 files of
+        # diff saying nothing, in a mirror published byte-for-byte.
+        if st["id"] in lodging:
+            sidecar["lodging"] = lodging[st["id"]]
         emit(outdir / f"{st['id']}.json", sidecar)
         resolved[st["id"]] = phase
         index.append({"id": st["id"], "name": st["name"],

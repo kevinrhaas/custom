@@ -252,5 +252,17 @@
   ],
   "research_note": "The building that named Wolf Point, and the least precisely placeable structure in this parcel. Its identity is vivid and its geometry is unknown: the painted wolf sign, the landlord succession, the 12 1/2-cent rate and the Black Hawk War headquarters are all attested, while not one source measures the building, counts its storeys or fixes it to an intersection. TWO DISPUTES ARE RECORDED RATHER THAN RESOLVED: the build date, 1823 versus 1828, where the same publication contradicts itself and 1828 is adopted for the reasons in the phase's date note; and whether it was still in innkeeping in July 1835, where the balance favours yes under a changed name. Neither dispute changes the scene — the building stood, on the west bank, north of the Lake Street crossing, with a wolf on a board outside it. What would change the record is a measured description in Andreas pp. 626-631, or the Braunhold retrospective view of Wolf Point examined at plate level for storey count and massing. See docs/RESEARCH/wolf_point_tavern.md.",
   "research_doc": "docs/RESEARCH/wolf_point_tavern.md",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "inn_tavern",
+    "beds_ordinary": 4,
+    "beds_crowded": 35,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": false,
+    "enclosed_floor_m2": 84.0,
+    "confidence": "reconstructed",
+    "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 84 m² of enclosed floor (84 m² × 1 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }
