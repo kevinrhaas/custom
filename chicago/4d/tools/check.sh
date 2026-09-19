@@ -2350,6 +2350,22 @@ step "every mint that re-derives a household carries the blocks it does not own"
 selftest "...and its own assertions still fire when broken" \
   python3 tools/carry_stage_blocks.py --self-test
 
+# T-1350, the other half of that ownership and the opposite failure. A mint derives
+# `arrival` as a not_later_than BOUND off its register, which is right until a reading
+# says more than the register can — Moses and Kirkland's list of the spring of 1833
+# names men the town's paper does not print for another year. Such a reading used to
+# be written onto the card by hand and then REVERTED by the next --build without a
+# word; T-1340 watched six of its rulings go that way and wrote the failure down. The
+# ledger below is how one reaches a card the mints own, and the gate is what keeps it
+# from becoming a way to write any date anywhere: no identity is made there, no reading
+# is invented there, a supersession must be EARLIER than the bound it replaces, and the
+# grade ceiling is the source's.
+step "every ruled reading that supersedes a derived arrival bound is joined and earlier" \
+  python3 tools/supersede_arrival.py --check
+
+selftest "...and each of its four refusals still fires on its own case" \
+  python3 tools/supersede_arrival.py --self-test
+
 # T-1171, stage `modelled_families` of that programme, and the first one to write a
 # PERSON rather than an attribute block. 94 heads the sources leave standing alone get
 # the wife and children the household model says they kept, drawn at the head's own size
@@ -2394,6 +2410,62 @@ step "the women and children re-derive from the pyramid the order book still wan
 
 selftest "...and every rule that decides who is drawn refuses its own case" \
   python3 tools/reconstruct_women_children.py --self-test
+
+# T-1347 (of T-1173), stage `trade_households` of the same programme. The order book's
+# twenty-four `family/trade` buckets ordered 308 adults at a trade that nobody printed;
+# this stage draws them as heads of their own households, deals each a trade from the
+# Fergus 1839 table's shares (T-1346), caps a trade at the December 1835 State census
+# where that census counts a class one person keeps, and puts the refusals and the
+# rounding remainder into the residual — day labour and domestic service, the work the
+# record cannot see. What the gate below holds: that all 308 re-derive from their seeds,
+# that every bucket is filled to its order and no further, that no trade outside the
+# controlled vocabulary reaches a person, and that no kin is seated here — the family each
+# head is owed is written as `household_owed` and seated by T-1174, whose quota it is.
+# `reconstruct_residents_1835.py --check` above holds each drawn person to the record
+# contract, which is the other half. A hand-edited card fails here.
+step "every trade household re-derives, and every bucket the book ordered is filled" \
+  python3 tools/reconstruct_trade_households.py --check
+
+selftest "...and a seniority rule, an over-ceiling trade and a borrowed name are refused" \
+  python3 tools/reconstruct_trade_households.py --self-test
+
+# T-1353, stage `transients` of the same programme, and the only stage of it that writes
+# people who are NOT residents. T-1352 bounded the summer crowd of 1 July 1835 at 192 to
+# 900 and adopted no point; this stage spends 384 ("twice the 1843 rate"), reserves 77 for
+# the land-sale purchasers the register names, and mints the remaining 307 as visitors in
+# `data/residents/transients/`, dealt equally across the six sleeping-place classes the
+# sources name and do not rank. What the gate below holds: that all 307 re-derive from
+# their seeds, that the classes dealt to are still the ones the committed cohort model
+# prints, that no card claims a residence — the town census counts a person as housed
+# through `lives_at`, and a visitor moving that figure is the one failure this cohort
+# exists to prevent — that the camps name only the one documented ground, that no roofed
+# party names a house whose beds T-1371 is about to deal, and that no invented name is a
+# name the rest of the layer already bears. `reconstruct_residents_1835.py --check` above
+# holds each drawn person to the record contract, which is the other half.
+step "every transient re-derives, and none of them claims a residence" \
+  python3 tools/reconstruct_transients_1835.py --check
+
+selftest "...and a moved sleeping class, a named house and a seated visitor are refused" \
+  python3 tools/reconstruct_transients_1835.py --self-test
+
+# T-1376, the `native_and_metis` half of stage `underdocumented` (T-1177) — the ONLY stage
+# of the programme licensed to write a Native or Metis person. The Illinois State Archives
+# roll of Black Hawk War enrollments at Chicago prints 134 men in two companies, forty
+# under G KERCHEVAL and ninety-four under a company it heads INDIAN; T-1172 was licensed to
+# spend the first and not the second, and the town carried twenty of Kercheval's and none
+# of the others. This stage cards them under the same licence and the same persistence
+# draw. The gate holds four things the record itself cannot: that every card re-derives
+# from its roster row, that every one carries review_required AND touches_removal AND says
+# in its own prose which subject it is held for (AGENTS.md's Indigenous-history rule, which
+# refuses a bare boolean), that every withheld row names a stated reason rather than being
+# silently dropped, and that the counted-but-unnamed remainder is still REFUSED in writing
+# — a later pass that quietly drew a population where no source holds a count would have to
+# delete that refusal to do it.
+step "every Native and Metis card re-derives, each held for review in its own words" \
+  python3 tools/reconstruct_underdocumented.py --check
+
+selftest "...and a written nation, an English initial and a shared syllable are refused" \
+  python3 tools/reconstruct_underdocumented.py --self-test
 
 # T-1349, stage `garrison` of the same programme, and the only one that is not a share of a
 # town model at all. The order book refuses to apportion the fort — "NOT APPORTIONED. The
@@ -2482,6 +2554,20 @@ step "resident roles re-derive, and the 1835 view is the roles that reach it" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/derive_resident_roles.py --self-test
+
+# T-1375, from T-1177. A `community` on every person, derived off what the layer already
+# says — a household's origin block, or a reconstructed person's own name-pool community
+# — and graded no higher than the field it was read from. The step that matters here is
+# the COVERAGE one inside the tool: every distinct `origin.value` in data/residents/ must
+# be accounted for exactly once in data/residents/community_rules.json, as a stated
+# community, as a region, or as explicitly unreadable. A new origin string that nobody has
+# decided the meaning of would otherwise fall silently to `unknown`, which is the one
+# failure this pass exists to make impossible — so it makes the gate red instead.
+step "every person's community re-derives, and every origin string is accounted for" \
+  python3 tools/derive_person_community.py --check
+
+selftest "…and its refusals still fire (no tier above inferred off a place, no cohort it may not write)" \
+  python3 tools/derive_person_community.py --self-test
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
@@ -4321,6 +4407,35 @@ step "the 1835 reconstruction order book re-derives, and no bucket is overfilled
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_order_book_1835.py --self-test
+
+# T-1370, piece 1 of T-1175. HOW MANY BEDS EACH LODGING PLACE HELD. The town model
+# states a bed bracket for the whole town and says in as many words that it "seats
+# nobody in any lodging place and gives no boarding house a capacity of its own";
+# T-1175 cannot seat a boarder without the per-place half, and T-1164 — the ticket
+# that was to have written it — was withdrawn as folded into the town model, which
+# is where the per-place half was lost.
+#
+# WHY A GATE, and it is the same argument as the order book's above. The model is an
+# APPORTIONMENT of figures the town model already owns: each class's total is its
+# place count times the model's own per-place figure, split by enclosed floor area.
+# That construction is the entire claim to honesty here — the model redistributes a
+# number rather than inventing one — and it holds only while the arithmetic does. So
+# `--check` re-derives every row from the town model, the building inventory and the
+# committed structure records, and REFUSES a total that has fallen outside the town
+# model's own bracket, a place that sleeps nobody, or a place given more beds than
+# the largest household the 1840 enumerator recorded.
+#
+# The classification is the other thing worth holding. A lodging place is read off
+# each record's own `function` field and never off the roof programme's family code,
+# because those two disagree: the programme schedules 42 roofs under the group name
+# `larger_boarding_houses`, and 32 of them are families the archetype crosswalk calls
+# houses. Reading the group name instead would quietly put boarders into six south-
+# division dwellings, and the self-test holds that distinction directly.
+step "the 1835 lodging model re-derives, and no house sleeps more than 1840 saw" \
+  python3 tools/build_lodging_model_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/build_lodging_model_1835.py --self-test
 
 # T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
 # town` sits in the book above with no target and no quota, because the town model bounds

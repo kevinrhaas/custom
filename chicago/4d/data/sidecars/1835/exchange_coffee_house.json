@@ -197,5 +197,17 @@
   ],
   "research_note": "MARK BEAUBIEN'S SECOND HOTEL, DOCUMENTED IN EVERYTHING EXCEPT ITS FABRIC. Two independent passages of Andreas - the hotel chapter and the life of Beaubien - agree on the builder, the corner, the year, the keepers and the name, which is more agreement than any other building in this parcel gets. Not one of them says what it was made of, how big it was, how many storeys it had or what it looked like, so every attribute of the form below is conjectural and the confidence view renders the whole house as massing. THE ARCHETYPE CHOICE IS THEREFORE THE GUESS, and it is argued at form.construction rather than buried in the filename. WHY THERE IS NO SEPARATE STAGE OFFICE IN THIS SCENE: data/exclusions.json already excludes one, and this record deliberately does not replace it with a stage-office function here - the only dated evidence for seats being taken at this house is a Chicago American advertisement of 6 August 1836, and the project's own summary of it as '1835-36' is a year generous. See the function note. TWO NAMES IN THE aka LIST POST-DATE THE SCENE and are carried only so the record can be found under them: 'Markle's Exchange Coffee House' is the 1836 advertisement's form, and 'Illinois Exchange' is how Andreas lists a house at this corner among the minor houses of 1845. A SCENE-LEVEL CHECK ON THE PARCEL AS A WHOLE: the Chicago American of 15 August 1835, quoted by Andreas, counted 'eight taverns' in the town six weeks after the scene date. With this record, the Tremont and the Mansion House added, the dataset holds exactly eight public houses for 1835. See docs/RESEARCH/exchange_coffee_house.md.",
   "research_doc": "docs/RESEARCH/exchange_coffee_house.md",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "inn_tavern",
+    "beds_ordinary": 11,
+    "beds_crowded": 35,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": true,
+    "enclosed_floor_m2": 252.0,
+    "confidence": "reconstructed",
+    "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 252 m² of enclosed floor (126 m² × 2 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }

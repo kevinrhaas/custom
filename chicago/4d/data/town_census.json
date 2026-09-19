@@ -7,7 +7,8 @@
   "data/reconstruction/1835_665_roof_programme.json",
   "data/sidecars/1835/index.json",
   "data/residents/index.json",
-  "data/residents/households/"
+  "data/residents/households/",
+  "data/reconstruction/1835_town_model.json"
  ],
  "buildings": {
   "standing": 371,
@@ -24,9 +25,48 @@
   "town_total": 3265,
   "town_total_dwellings": 398,
   "town_total_source": "andreas_1884_v1",
-  "town_total_note": "The town census of November 1835 — four months after the scene date — counts 3,265 people in 398 dwellings (Andreas vol. 1, printed p. 180). Quoted as the town's recorded size, never as the scene's population on 1 July.",
+  "town_total_note": "The town census of November 1835 — four months after the scene date — counts 3,265 people in 398 dwellings (Andreas vol. 1, printed p. 180). Quoted as the town's recorded size, never as the scene's population on 1 July: it is the HIGH END of the town model's range for the scene date, and `scene.target` below is the figure the gate screen and the reconstruction programme both fill toward.",
+  "scene": {
+   "persons": 1315,
+   "households": 560,
+   "by_grade": {
+    "attested": 133,
+    "inferred": 324,
+    "reconstructed": 858
+   },
+   "cards_total": 2144,
+   "cards_not_established": 829,
+   "target": 2536,
+   "target_low": 2353,
+   "target_high": 3265,
+   "target_figure": "population_on_1_july_1835",
+   "target_source": "data/reconstruction/1835_town_model.json",
+   "target_method": "CEILING: the November count of 3,265, because the town grew through 1835 and did not shrink. FLOOR: 44.7% of the 1,285 people the layer carries give an arrival year of 1835, so about 1,458 of the November town arrived that year; spread evenly over an eight-month navigation season, 5 months of that cohort were still to come on 1 July. POINT READING: 2,536, which is the same arithmetic with half the cohort ashore by midsummer rather than three-eighths — the spring land-sale rush pulls arrivals earlier than a flat season does.",
+   "target_note": "The town model's point reading for 1 July 1835 within 2,353–3,265, and the same number the reconstruction order book quotas against. The November count of 3,265 is this range's high end, four months later, and is not what the scene holds.",
+   "basis": "Persons in households the layer records `present` on the scene date — the order book's Rule 3. A card the layer holds without establishing the person in Chicago on 1 July is not counted here; `cards_not_established` is how many those are."
+  },
   "basis": "Person entries in households whose `lives_at` names a structure that resolves into the scene. A person counts when the building they live in stands, so this grows as the town builds out.",
   "floor_note": "A FLOOR, not an estimate: some entries counted here stand for a group a source counts but does not name (see group_entries).",
   "dangling_lives_at": []
+ },
+ "transients": {
+  "persons": 307,
+  "households": 83,
+  "by_household_kind": {
+   "camp": 102,
+   "party": 205
+  },
+  "point_adopted": 384,
+  "point_reading": "twice the 1843 rate",
+  "bracket": [
+   192,
+   900
+  ],
+  "reserved_not_minted": 77,
+  "counted_in_people_housed": 0,
+  "claiming_a_residence": [],
+  "basis": "Reconstructed visitors of the summer of 1835 (T-1353), bounded by data/reconstruction/1835_transient_cohort.json. They are NOT residents: no card here names a dwelling, none is in the resident manifest, and neither figure above moves when this one does.",
+  "why_apart": "The Chicago American of 13 June 1835 put the town's population at 2,500 to 3,000 and the strangers at 'some hundreds more' — outside its own estimate. Chicago's own enumerator printed `Transient persons` as a row of its own in 1843. This row is that row.",
+  "reserved_note": "The land-sale purchasers the register NAMES and this layer cannot place. Slots held open, nobody drawn into them: a reconstruction may not stand in for a person a source names."
  }
 }

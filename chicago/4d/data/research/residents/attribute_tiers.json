@@ -25,26 +25,26 @@
     ]
   },
   "counts": {
-    "cards": 1393,
-    "blocks": 18250,
-    "tiers_written_on_the_card": 8132,
+    "cards": 1382,
+    "blocks": 17784,
+    "tiers_written_on_the_card": 7713,
     "by_tier": {
       "attested": 590,
-      "inferred": 3318,
-      "reconstructed": 8305,
-      "unknown": 6037
+      "inferred": 3315,
+      "reconstructed": 7878,
+      "unknown": 6001
     },
     "by_attribute": {
       "arrival": {
         "attested": 51,
         "inferred": 1203,
-        "reconstructed": 139,
+        "reconstructed": 128,
         "unknown": 0
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 23,
-        "reconstructed": 1309,
+        "inferred": 20,
+        "reconstructed": 1298,
         "unknown": 0
       },
       "directories.people[].address_later": {
@@ -80,25 +80,25 @@
       "lives_at": {
         "attested": 8,
         "inferred": 12,
-        "reconstructed": 11,
+        "reconstructed": 0,
         "unknown": 1362
       },
       "origin": {
         "attested": 11,
         "inferred": 41,
-        "reconstructed": 1341,
+        "reconstructed": 1330,
         "unknown": 0
       },
       "party_size_on_arrival": {
         "attested": 3,
         "inferred": 9,
         "reconstructed": 0,
-        "unknown": 1381
+        "unknown": 1370
       },
       "persons[].age_band": {
         "attested": 7,
         "inferred": 57,
-        "reconstructed": 2198,
+        "reconstructed": 2073,
         "unknown": 7
       },
       "persons[].age_on_scene_date": {
@@ -128,14 +128,14 @@
       "persons[].name_basis": {
         "attested": 0,
         "inferred": 0,
-        "reconstructed": 981,
+        "reconstructed": 856,
         "unknown": 0
       },
       "persons[].occupation": {
         "attested": 119,
         "inferred": 9,
-        "reconstructed": 203,
-        "unknown": 1938
+        "reconstructed": 92,
+        "unknown": 1924
       },
       "persons[].profile_facts[]": {
         "attested": 1,
@@ -152,26 +152,26 @@
       "present_on_scene_date": {
         "attested": 22,
         "inferred": 1231,
-        "reconstructed": 140,
+        "reconstructed": 129,
         "unknown": 0
       },
       "reason_for_coming": {
         "attested": 12,
         "inferred": 13,
-        "reconstructed": 1368,
+        "reconstructed": 1357,
         "unknown": 0
       },
       "works_at": {
         "attested": 32,
         "inferred": 18,
         "reconstructed": 0,
-        "unknown": 1343
+        "unknown": 1332
       }
     },
     "reconstructed_by_basis": {
       "address_back_projection": 18,
       "arrival_bound_from_the_record": 1,
-      "arrival_earliest_year_forced": 138,
+      "arrival_earliest_year_forced": 127,
       "inferred_household_hypothesis": 129,
       "origin_uncited_literature": 1,
       "residence_back_projection": 10
@@ -1476,24 +1476,6 @@
       }
     },
     {
-      "card": "hh_rc_cavanagh_edward",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
       "card": "hh_rc_chapin_clarissa",
       "attribute": "arrival",
       "value": "1835-07-01",
@@ -2089,24 +2071,6 @@
       }
     },
     {
-      "card": "hh_rc_duffy_martin",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
       "card": "hh_rc_dufresne_therese",
       "attribute": "arrival",
       "value": "1835-07-01",
@@ -2209,24 +2173,6 @@
       "replaceable_by": {
         "kind": "household",
         "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
-      }
-    },
-    {
-      "card": "hh_rc_eastman_james",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -2682,42 +2628,6 @@
       "replaceable_by": {
         "kind": "household",
         "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
-      }
-    },
-    {
-      "card": "hh_rc_garrison_company_1",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
-      "card": "hh_rc_garrison_company_2",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -3593,24 +3503,6 @@
       "replaceable_by": {
         "kind": "household",
         "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
-      }
-    },
-    {
-      "card": "hh_rc_metcalf_david",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -4524,42 +4416,6 @@
       }
     },
     {
-      "card": "hh_rc_shea_martin",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
-      "card": "hh_rc_sheldon_erastus",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
       "card": "hh_rc_sheldon_lucy",
       "attribute": "arrival",
       "value": "1835-07-01",
@@ -4767,24 +4623,6 @@
       "replaceable_by": {
         "kind": "household",
         "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
-      }
-    },
-    {
-      "card": "hh_rc_sullivan_thomas",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -4998,24 +4836,6 @@
       }
     },
     {
-      "card": "hh_rc_tobin_patrick",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
       "card": "hh_rc_vieau_josette",
       "attribute": "arrival",
       "value": "1835-07-01",
@@ -5083,24 +4903,6 @@
       "replaceable_by": {
         "kind": "household",
         "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
-      }
-    },
-    {
-      "card": "hh_rc_walsh_owen",
-      "attribute": "arrival",
-      "value": "1835-07-01",
-      "precision": "not_later_than",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "A BOUND THE HYPOTHESIS CARRIES, NOT A READING. No source names these people, so none dates their coming. What the record says is that the post was held on 1835-07-01 — that is the whole of what this stage claims — and a soldier at a held post arrived not later than the day. A company of the 5th Infantry moved on orders and the year below is DRAWN by the programme's arrival stage, not read off a return.",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -5639,75 +5441,25 @@
         "kind": "person",
         "match": "a dated source that says which year this household came to Chicago"
       },
-      "values": 1309,
+      "values": 1298,
       "by_value": {
-        "1834": 525,
-        "1835": 417,
-        "1833": 254,
-        "1832": 52,
+        "1834": 543,
+        "1835": 391,
+        "1833": 253,
+        "1832": 42,
         "1831": 33,
-        "1824": 8,
-        "1830": 6,
-        "1816": 3,
+        "1830": 8,
+        "1812": 7,
+        "1816": 5,
+        "1824": 5,
+        "1826": 4,
         "1818": 3,
-        "1820": 3,
-        "1823": 2,
-        "1827": 2,
-        "1812": 1
+        "1820": 2,
+        "1823": 1,
+        "1827": 1
       },
       "a_seed": "hh_abbot_8_g:arrival_year",
       "a_card": "hh_abbot_8_g"
-    },
-    {
-      "attribute": "lives_at",
-      "basis": {
-        "kind": "rule",
-        "id": "no_married_quarters_are_drawn_so_the_barracks_carries_them"
-      },
-      "replaceable_by": {
-        "kind": "household",
-        "match": "a source placing these people at a named building of the post, or a plan of the post that assigns its quarters"
-      },
-      "values": 8,
-      "by_value": {
-        "fort_dearborn_barracks": 8
-      },
-      "a_seed": null,
-      "a_card": "hh_rc_cavanagh_edward"
-    },
-    {
-      "attribute": "lives_at",
-      "basis": {
-        "kind": "rule",
-        "id": "the_barracks_is_the_building_this_dataset_holds_for_them"
-      },
-      "replaceable_by": {
-        "kind": "household",
-        "match": "a source placing these people at a named building of the post, or a plan of the post that assigns its quarters"
-      },
-      "values": 2,
-      "by_value": {
-        "fort_dearborn_barracks": 2
-      },
-      "a_seed": null,
-      "a_card": "hh_rc_garrison_company_1"
-    },
-    {
-      "attribute": "lives_at",
-      "basis": {
-        "kind": "rule",
-        "id": "the_sutler_lived_at_the_sutlers_store"
-      },
-      "replaceable_by": {
-        "kind": "household",
-        "match": "a source placing these people at a named building of the post, or a plan of the post that assigns its quarters"
-      },
-      "values": 1,
-      "by_value": {
-        "fort_dearborn_sutlers_store": 1
-      },
-      "a_seed": null,
-      "a_card": "hh_rc_metcalf_david"
     },
     {
       "attribute": "origin",
@@ -5719,14 +5471,14 @@
         "kind": "person",
         "match": "a source that says where this household came from"
       },
-      "values": 1330,
+      "values": 1319,
       "by_value": {
-        "New York State": 545,
-        "New England": 465,
-        "The Mid-Atlantic states": 116,
-        "England": 107,
-        "The Southern states": 58,
-        "Ireland": 23,
+        "New York State": 542,
+        "New England": 464,
+        "The Mid-Atlantic states": 112,
+        "England": 106,
+        "The Southern states": 57,
+        "Ireland": 22,
         "West of the Alleghenies": 16
       },
       "a_seed": "hh_abbot_8_g:origin_region",
@@ -5760,12 +5512,12 @@
         "kind": "person",
         "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
       },
-      "values": 2195,
+      "values": 2070,
       "by_value": {
-        "20-29": 775,
-        "30-39": 427,
-        "10-19": 238,
-        "0-9": 222,
+        "20-29": 710,
+        "30-39": 395,
+        "0-9": 217,
+        "10-19": 215,
         "0-4": 170,
         "40-49": 132,
         "15-19": 108,
@@ -5808,7 +5560,7 @@
         "kind": "person",
         "match": "a source naming a member of Elizabeth Adams's family"
       },
-      "values": 981,
+      "values": 856,
       "by_value": {
         "Mary Nolan": 4,
         "Alice Nolan": 2,
@@ -5831,7 +5583,6 @@
         "Abner Crandall": 1,
         "Abner Hale": 1,
         "Abner Ingersoll": 1,
-        "Abner Lyman": 1,
         "Abner Smith": 1,
         "Abner Thayer": 1,
         "Abner Wilcox": 1,
@@ -5844,7 +5595,6 @@
         "Alanson Noble": 1,
         "Alanson Sawyer": 1,
         "Alanson Stiles": 1,
-        "Alanson Wadsworth": 1,
         "Alexis Johnson": 1,
         "Alice Allen": 1,
         "Alice Brown": 1,
@@ -5882,7 +5632,6 @@
         "Alvah Crandall": 1,
         "Alvah Fisk": 1,
         "Alvah Ingalls": 1,
-        "Alvah Lyman": 1,
         "Alvah Rice": 1,
         "Amanda Bradley": 1,
         "Amanda Collins": 1,
@@ -5894,14 +5643,10 @@
         "Amanda Peck": 1,
         "Amanda Thayer": 1,
         "Amanda Wilcox": 1,
-        "Amos Barnes": 1,
         "Amos Boyer": 1,
         "Amos Crandall": 1,
-        "Amos Dickinson": 1,
-        "Amos Fisk": 1,
         "Amos Kennicott": 1,
         "Amos Nichols": 1,
-        "Amos Sheldon": 1,
         "Amos Taylor": 1,
         "Amos Thayer": 1,
         "Amos Woodruff": 1,
@@ -5964,7 +5709,6 @@
         "Bridget Gallagher": 1,
         "Bridget Handy": 1,
         "Bridget Hayes": 1,
-        "Bridget Keegan": 1,
         "Bridget Lynch": 1,
         "Bridget Mahoney": 1,
         "Bridget Murphy": 1,
@@ -5977,7 +5721,6 @@
         "Bryan Doyle": 1,
         "Bryan Nolan": 1,
         "Bryan Reed": 1,
-        "Bryan Tobin": 1,
         "Calvin Cobb": 1,
         "Calvin Eastman": 1,
         "Calvin Fisk": 1,
@@ -6005,7 +5748,6 @@
         "Catherine Sherman": 1,
         "Catherine Thomas": 1,
         "Catherine Trowbridge": 1,
-        "Catherine Walsh": 1,
         "Charles Barnes": 1,
         "Charles Bowen": 1,
         "Charles Chevalier": 1,
@@ -6017,11 +5759,8 @@
         "Charles Newberry": 1,
         "Charles Pothier": 1,
         "Charles Rice": 1,
-        "Charles Stiles": 1,
         "Charles Thayer": 1,
         "Charles Whitcomb": 1,
-        "Chauncey Bacon": 1,
-        "Chauncey Dickinson": 1,
         "Chauncey Gilbert": 1,
         "Chauncey Thayer": 1,
         "Chauncey Wilcox": 1,
@@ -6047,20 +5786,13 @@
         "Clarissa Wilcox": 1,
         "Cornelius Allen": 1,
         "Cornelius Brown": 1,
-        "Cornelius Duffy": 1,
-        "Cornelius Gallagher": 1,
         "Cornelius Mccarthy": 1,
         "Cornelius Murphy": 1,
         "Cornelius Nolan": 1,
         "Cornelius Quinn": 1,
         "Cornelius Reed": 1,
-        "Cornelius Sullivan": 1,
-        "Cornelius Tobin": 1,
-        "Cornelius Walsh": 1,
         "Daniel Fitzgerald": 1,
-        "Daniel Flynn": 1,
         "Daniel Hayes": 1,
-        "Daniel Mahoney": 1,
         "Daniel Mccarthy": 1,
         "Daniel Murphy": 1,
         "Daniel Reilly": 1,
@@ -6068,40 +5800,24 @@
         "Daniel Sherman": 1,
         "David Barnes": 1,
         "David Dickinson": 1,
-        "David Fisk": 1,
         "David Hogan": 1,
         "David Hubbard": 1,
-        "David Metcalf": 1,
         "David Newell": 1,
         "David Sheldon": 1,
         "David Sherman": 1,
         "David Thayer": 1,
-        "Dennis Doyle": 1,
-        "Dennis Duffy": 1,
-        "Dennis Gallagher": 1,
         "Dennis Hayes": 1,
-        "Dennis Keegan": 1,
         "Dennis Mccarthy": 1,
         "Dennis Nolan": 1,
         "Dennis Ryan": 1,
-        "Edward Cavanagh": 1,
         "Edward Dolan": 1,
         "Edward Fitzgerald": 1,
-        "Edward Gallagher": 1,
-        "Edward Mahoney": 1,
-        "Edward Quinn": 1,
         "Edward Ryan": 1,
-        "Edward Shea": 1,
-        "Eli Bardwell": 1,
-        "Eli Barnes": 1,
         "Eli Cobb": 1,
         "Eli Fisk": 1,
         "Eli Lyman": 1,
-        "Eli Stebbins": 1,
         "Eli Stiles": 1,
-        "Elisha Bardwell": 1,
         "Elisha Bradley": 1,
-        "Elisha Eastman": 1,
         "Elisha Kennicott": 1,
         "Elisha Smith": 1,
         "Elisha Wilcox": 1,
@@ -6114,7 +5830,6 @@
         "Eliza Gilbert": 1,
         "Eliza Lafrombois": 1,
         "Eliza Pearsons": 1,
-        "Eliza Sawyer": 1,
         "Eliza Wilcox": 1,
         "Eliza Woodruff": 1,
         "Ellen Carroll": 1,
@@ -6153,8 +5868,6 @@
         "Emily Woodruff": 1,
         "Erastus Fairbanks": 1,
         "Erastus Kinzie": 1,
-        "Erastus Nichols": 1,
-        "Erastus Sheldon": 1,
         "Erastus Tucker": 1,
         "Erastus Woodruff": 1,
         "Esther Barnes": 1,
@@ -6175,10 +5888,8 @@
         "Esther Williams": 1,
         "Ezra Fisk": 1,
         "Ezra Garrett": 1,
-        "Ezra Stiles": 1,
         "Ezra Stow": 1,
         "Ezra Thayer": 1,
-        "Ezra Wadsworth": 1,
         "Ezra Woodruff": 1,
         "Francois Chevalier": 1,
         "Francois Goodhue": 1,
@@ -6188,7 +5899,6 @@
         "George Gilbert": 1,
         "George Ingalls": 1,
         "George King": 1,
-        "George Metcalf": 1,
         "George Morrison": 1,
         "Hannah Boyer": 1,
         "Hannah Curtiss": 1,
@@ -6214,19 +5924,14 @@
         "Harriet Wilcox": 1,
         "Harvey Bardwell": 1,
         "Harvey Chapin": 1,
-        "Harvey Fairbanks": 1,
         "Harvey Fisk": 1,
         "Harvey Kinzie": 1,
         "Harvey Pearsons": 1,
         "Henry Barnes": 1,
-        "Henry Chapin": 1,
         "Henry Cobb": 1,
-        "Henry Eastman": 1,
         "Henry Fairbanks": 1,
         "Henry Fisk": 1,
         "Henry Newell": 1,
-        "Henry Parmelee": 1,
-        "Henry Stebbins": 1,
         "Henry Thayer": 1,
         "Henry Wellmaker": 1,
         "Hiram Barnes": 1,
@@ -6241,22 +5946,18 @@
         "Honora Burke": 1,
         "Honora Connor": 1,
         "Honora Dolan": 1,
-        "Honora Donnelly": 1,
-        "Honora Duffy": 1,
         "Honora Fitzgerald": 1,
         "Honora Flynn": 1,
         "Honora Hayes": 1,
         "Honora Kelly": 1,
         "Honora Lynch": 1,
         "Honora Mahoney": 1,
-        "Honora McCarthy": 1,
         "Honora Murphy": 1,
         "Honora Nolan": 1,
         "Honora Reed": 1,
         "Honora Reilly": 1,
         "Honora Ryan": 1,
         "Honora Shea": 1,
-        "Honora Sullivan": 1,
         "Honora Taylor": 1,
         "Honora Thomas": 1,
         "Horace Bardwell": 1,
@@ -6264,7 +5965,6 @@
         "Horace Cobb": 1,
         "Horace Crandall": 1,
         "Horace Curtiss": 1,
-        "Horace Eastman": 1,
         "Horace Hale": 1,
         "Horace Ingalls": 1,
         "Horace Smith": 1,
@@ -6272,9 +5972,7 @@
         "Horace Wilcox": 1,
         "Horace Woodruff": 1,
         "Hugh Fitzgerald": 1,
-        "Hugh Gallagher": 1,
         "Hugh Handy": 1,
-        "Hugh Hayes": 1,
         "Hugh Lynch": 1,
         "Hugh Mahoney": 1,
         "Hugh Nolan": 1,
@@ -6289,25 +5987,19 @@
         "Ira Gilbert": 1,
         "Ira Ingersoll": 1,
         "Ira King": 1,
-        "Ira Wadsworth": 1,
         "James Bardwell": 1,
         "James Barnes": 1,
         "James Blanchard": 1,
         "James Carroll": 1,
-        "James Corrigan": 1,
         "James Crandall": 1,
-        "James Donnelly": 1,
-        "James Eastman": 1,
         "James Eldridge": 1,
         "James Fairbanks": 1,
         "James Fisk": 1,
         "James Flynn": 1,
         "James Gallagher": 1,
-        "James Hayes": 1,
         "James Kelly": 1,
         "James Leland": 1,
         "James Nolan": 1,
-        "James Parmelee": 1,
         "James Taylor": 1,
         "James Tobin": 1,
         "James Wellmaker": 1,
@@ -6315,7 +6007,6 @@
         "Jared Barnes": 1,
         "Jared Crandall": 1,
         "Jared Hastings": 1,
-        "Jared Kellogg": 1,
         "Jared Newell": 1,
         "Jared Woodruff": 1,
         "Jean Johnson": 1,
@@ -6337,7 +6028,6 @@
         "Johanna Ryan": 1,
         "Johanna Shea": 1,
         "Johanna Thomas": 1,
-        "Johanna Tobin": 1,
         "Johanna Walsh": 1,
         "John Allen": 1,
         "John Blanchard": 1,
@@ -6345,13 +6035,10 @@
         "John Carroll": 1,
         "John Cobb": 1,
         "John Courtney": 1,
-        "John Doyle": 1,
         "John Flynn": 1,
         "John Hayes": 1,
         "John Hubbard": 1,
-        "John Kelly": 1,
         "John Leland": 1,
-        "John McCarthy": 1,
         "John Nolan": 1,
         "John Quinn": 1,
         "John Sherman": 1,
@@ -6371,19 +6058,10 @@
         "Josette Pelletier": 1,
         "Josette Thompson": 1,
         "Josette Vieau": 1,
-        "Lemuel Crandall": 1,
         "Lemuel Fairbanks": 1,
-        "Lemuel Fisk": 1,
-        "Lemuel Hastings": 1,
         "Lemuel Kinzie": 1,
-        "Lemuel Leland": 1,
-        "Lemuel Metcalf": 1,
         "Lemuel Noble": 1,
         "Lemuel Pierce": 1,
-        "Levi Barnes": 1,
-        "Levi Lyman": 1,
-        "Levi Nash": 1,
-        "Levi Newell": 1,
         "Levi Nichols": 1,
         "Levi Wilcox": 1,
         "Levi Woodruff": 1,
@@ -6397,7 +6075,6 @@
         "Lucy Barry": 1,
         "Lucy Bradley": 1,
         "Lucy Curtiss": 1,
-        "Lucy Dickinson": 1,
         "Lucy Gilbert": 1,
         "Lucy Hale": 1,
         "Lucy Hogan": 1,
@@ -6411,7 +6088,6 @@
         "Lucy Woodruff": 1,
         "Luther Fairbanks": 1,
         "Luther Gilbert": 1,
-        "Luther Hastings": 1,
         "Luther Lyman": 1,
         "Luther Stiles": 1,
         "Luther Whitcomb": 1,
@@ -6435,19 +6111,13 @@
         "Madeleine Newberry": 1,
         "Madeleine Norton": 1,
         "Margaret Carroll": 1,
-        "Margaret Cavanagh": 1,
         "Margaret Connor": 1,
-        "Margaret Corrigan": 1,
         "Margaret Dolan": 1,
-        "Margaret Donnelly": 1,
-        "Margaret Doyle": 1,
         "Margaret Duffy": 1,
         "Margaret Flynn": 1,
         "Margaret Hayes": 1,
-        "Margaret Kelly": 1,
         "Margaret Lynch": 1,
         "Margaret Mahoney": 1,
-        "Margaret McGuire": 1,
         "Margaret Murphy": 1,
         "Margaret Nolan": 1,
         "Margaret Reilly": 1,
@@ -6467,7 +6137,6 @@
         "Maria Rider": 1,
         "Maria Stebbins": 1,
         "Maria Thayer": 1,
-        "Maria Wadsworth": 1,
         "Maria Whitlock": 1,
         "Maria Wilcox": 1,
         "Marie Garland": 1,
@@ -6491,16 +6160,9 @@
         "Martha Whitlock": 1,
         "Martha Wilcox": 1,
         "Martin Carroll": 1,
-        "Martin Cavanagh": 1,
         "Martin Connor": 1,
-        "Martin Corrigan": 1,
-        "Martin Duffy": 1,
-        "Martin Hayes": 1,
-        "Martin Lynch": 1,
         "Martin Ryan": 1,
-        "Martin Shea": 1,
         "Martin Sullivan": 1,
-        "Martin Tobin": 1,
         "Mary Adams": 1,
         "Mary Blanchard": 1,
         "Mary Bowen": 1,
@@ -6514,7 +6176,6 @@
         "Mary Hale": 1,
         "Mary Hayes": 1,
         "Mary Ingalls": 1,
-        "Mary Kelly": 1,
         "Mary King": 1,
         "Mary Lynch": 1,
         "Mary Mahoney": 1,
@@ -6536,15 +6197,12 @@
         "Medard Vieau": 1,
         "Michael Blanchard": 1,
         "Michael Carroll": 1,
-        "Michael Connor": 1,
-        "Michael Donnelly": 1,
         "Michael Doyle": 1,
         "Michael Fitzgerald": 1,
         "Michael Flynn": 1,
         "Michael Gallagher": 1,
         "Michael Hayes": 1,
         "Michael Lynch": 1,
-        "Michael McCarthy": 1,
         "Michael Sullivan": 1,
         "Michel Chevalier": 1,
         "Michel Lecuyer": 1,
@@ -6565,37 +6223,25 @@
         "Nancy Woodruff": 1,
         "Nathaniel Boyer": 1,
         "Nathaniel Cobb": 1,
-        "Nathaniel Eastman": 1,
         "Nathaniel Fairbanks": 1,
         "Nathaniel Hubbard": 1,
         "Nathaniel Ingersoll": 1,
-        "Nathaniel Lyman": 1,
         "Nathaniel Nash": 1,
-        "Nathaniel Nichols": 1,
         "Nathaniel Smith": 1,
         "Orrin Crandall": 1,
         "Orrin Davis": 1,
-        "Orrin Fairbanks": 1,
         "Orrin Gilbert": 1,
-        "Orrin Hastings": 1,
         "Orrin Woodruff": 1,
         "Otis Fairbanks": 1,
         "Otis Gilbert": 1,
         "Otis Kinzie": 1,
-        "Otis Nichols": 1,
-        "Otis Whitcomb": 1,
         "Owen Dolan": 1,
         "Owen Doyle": 1,
         "Owen Gallagher": 1,
-        "Owen Keegan": 1,
-        "Owen Mahoney": 1,
         "Owen Thomas": 1,
-        "Owen Walsh": 1,
         "Patrick Kelly": 1,
         "Patrick Lynch": 1,
         "Patrick Nolan": 1,
-        "Patrick Quinn": 1,
-        "Patrick Tobin": 1,
         "Patrick Walsh": 1,
         "Phebe Bacon": 1,
         "Phebe Bardwell": 1,
@@ -6637,9 +6283,7 @@
         "Reuben Barry": 1,
         "Reuben Bradley": 1,
         "Reuben Cobb": 1,
-        "Reuben Fairbanks": 1,
         "Reuben Fisk": 1,
-        "Reuben Ingalls": 1,
         "Reuben Sheldon": 1,
         "Reuben Woodruff": 1,
         "Rhoda Bardwell": 1,
@@ -6659,7 +6303,6 @@
         "Rufus Cohen": 1,
         "Rufus Eldridge": 1,
         "Rufus Pearsons": 1,
-        "Rufus Sawyer": 1,
         "Rufus Stebbins": 1,
         "Ruth Barnes": 1,
         "Ruth Cobb": 1,
@@ -6675,7 +6318,6 @@
         "Ruth Woodruff": 1,
         "Samuel Gage": 1,
         "Samuel King": 1,
-        "Samuel Nash": 1,
         "Samuel Thayer": 1,
         "Samuel Woodruff": 1,
         "Sarah Allen": 1,
@@ -6696,12 +6338,10 @@
         "Seth Hubbard": 1,
         "Seth Nash": 1,
         "Silas Allen": 1,
-        "Silas Dickinson": 1,
         "Silas Fairbanks": 1,
         "Silas Fisk": 1,
         "Silas Hale": 1,
         "Silas Hogan": 1,
-        "Silas Kellogg": 1,
         "Silas Lyman": 1,
         "Silas Newell": 1,
         "Silas Woodruff": 1,
@@ -6730,15 +6370,8 @@
         "Susan Stow": 1,
         "Susan Thayer": 1,
         "Susan Wilcox": 1,
-        "Terence Cavanagh": 1,
-        "Terence Doyle": 1,
         "Terence Flynn": 1,
-        "Terence Gallagher": 1,
-        "Terence Keegan": 1,
-        "Terence Kelly": 1,
-        "Terence Mahoney": 1,
         "Terence Nolan": 1,
-        "Terence Reilly": 1,
         "Therese Dufresne": 1,
         "Therese Gagnier": 1,
         "Therese Laframboise": 1,
@@ -6747,10 +6380,7 @@
         "Therese Watkins": 1,
         "Thomas Burke": 1,
         "Thomas Carroll": 1,
-        "Thomas Gallagher": 1,
         "Thomas Reilly": 1,
-        "Thomas Shea": 1,
-        "Thomas Sullivan": 1,
         "Toussaint Laframboise": 1,
         "Toussaint Vieau": 1,
         "Victoire Eels": 1,
@@ -6771,11 +6401,8 @@
         "Willard Davis": 1,
         "Willard Eastman": 1,
         "Willard Fisk": 1,
-        "Willard Leland": 1,
-        "Willard Newell": 1,
         "Willard Thayer": 1,
         "Willard Wesencraft": 1,
-        "William Bacon": 1,
         "William Barnes": 1,
         "William King": 1,
         "William Nash": 1,
@@ -6808,25 +6435,6 @@
       "a_card": "hh_rc_bacon_betsey"
     },
     {
-      "attribute": "persons[].occupation",
-      "basis": {
-        "kind": "rule",
-        "id": "garrison_fill.establishment"
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
-      },
-      "values": 111,
-      "by_value": {
-        "soldier": 102,
-        "laundress": 8,
-        "sutler": 1
-      },
-      "a_seed": null,
-      "a_card": "hh_rc_cavanagh_edward"
-    },
-    {
       "attribute": "persons[].sex_basis",
       "basis": {
         "kind": "model",
@@ -6845,23 +6453,6 @@
       "a_card": "hh_abbot_8_g"
     },
     {
-      "attribute": "present_on_scene_date",
-      "basis": {
-        "kind": "rule",
-        "id": "the_post_was_held_on_the_scene_date"
-      },
-      "replaceable_by": {
-        "kind": "household",
-        "match": "a post return or order showing the Chicago post unmanned on or about 1 July 1835"
-      },
-      "values": 11,
-      "by_value": {
-        "present": 11
-      },
-      "a_seed": null,
-      "a_card": "hh_rc_cavanagh_edward"
-    },
-    {
       "attribute": "reason_for_coming",
       "basis": {
         "kind": "rule",
@@ -6871,12 +6462,12 @@
         "kind": "person",
         "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
       },
-      "values": 1248,
+      "values": 1237,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 504,
-        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 397,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 244,
-        "The trading post, the fort and the country trade — the town before the boom": 103
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 523,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 368,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 241,
+        "The trading post, the fort and the country trade — the town before the boom": 105
       },
       "a_seed": null,
       "a_card": "hh_abbot_8_g"

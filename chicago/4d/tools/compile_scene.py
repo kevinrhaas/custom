@@ -650,10 +650,16 @@ PERSON_EVIDENCE_KINDS = (
 #: flags are not exclusive — 85 civic-mint people also carry the projected
 #: subtype — so this is a precedence, weakest evidence first, and the filter in
 #: `people.js` reads the underlying flags rather than this word.
-HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected")
+#: `transient` is the exception to the precedence below rather than a rung on it: the
+#: other four grade how well the town knew a RESIDENT, and a visitor of the season is not
+#: one. It is decided by the household the row came from (T-1353), not by a person flag,
+#: so it is passed in rather than read off the person.
+HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected", "transient")
 
 
-def how_known(person: dict) -> str:
+def how_known(person: dict, transient: bool = False) -> str:
+    if transient:
+        return "transient"
     if person.get("letter_list_only"):
         return "letter_list"
     if person.get("civic_mint"):
@@ -798,7 +804,49 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     ruling_for = {r["household_id"]: r for r in readmissions.get("presence_rulings", [])}
     minted_rows = readmissions.get("minted", [])
 
-    def row_for(hh, person, rel, ruling=None, minted=None):
+    # T-1347. The trade households are the same shape one stage on: drawn heads the order
+    # book ordered, living outside the mints' directory for the reason the re-admissions
+    # do, and joining the town here as their own rows. Nothing here reaches back into
+    # data/residents/households/ either.
+    trades_path = DATA / "reconstruction" / "1835_trade_households.json"
+    trades = load(trades_path) if trades_path.exists() else {}
+    trade_rows_minted = trades.get("minted", [])
+
+    # T-1353. The summer crowd, and the one set of rows in this file that is NOT the town's
+    # own population. They live outside the mints' directory for the reason the two above
+    # do and for one more: a card in data/residents/households/ is a card the manifest, the
+    # town census and every resident count read, and a visitor of the season must not move
+    # any of them. The People view gets them so a visitor can see the crowd and filter it
+    # away again; `transient` on the row is what makes that askable.
+    # T-1376, from T-1177. The men of the company the 1832 Black Hawk roll heads INDIAN.
+    # The same shape again, and here for one more reason than the three above: these are
+    # the town's OWN people — the country was theirs — and the town carried twenty men of
+    # the other company on that page and none of these. Every row is review_required and
+    # touches_removal and the card says so in its own words.
+    underdocumented_path = DATA / "reconstruction" / "1835_native_and_metis.json"
+    underdocumented_doc = load(underdocumented_path) if underdocumented_path.exists() else {}
+    underdocumented_rows_minted = underdocumented_doc.get("minted", [])
+
+    transients_path = DATA / "reconstruction" / "1835_transient_persons.json"
+    transients_doc = load(transients_path) if transients_path.exists() else {}
+    transient_rows_minted = transients_doc.get("minted", [])
+
+    # T-1375, from T-1177. The community every person belongs to, derived by
+    # tools/derive_person_community.py off what the layer already says — a household's
+    # origin block, or a reconstructed person's own name-pool community — and graded no
+    # higher than the field it was read from. The row carries the tier and the rule that
+    # fired beside the value, because `yankee` inferred from "New England" and `metis`
+    # stated by a parentage sentence are not the same kind of claim and the card says so.
+    # The vocabulary is the rules file's, in the rules file's order, so the filter's pills
+    # read in a stated order rather than by count.
+    community_path = DATA / "residents" / "community.json"
+    community_rules_path = DATA / "residents" / "community_rules.json"
+    community = load(community_path).get("persons", {}) if community_path.exists() else {}
+    community_vocab = (load(community_rules_path).get("vocabulary", [])
+                       if community_rules_path.exists() else [])
+
+    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None,
+                underdocumented=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -817,11 +865,14 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "letter_list_only": bool(person.get("letter_list_only")),
             "civic_mint": bool(person.get("civic_mint")),
             "resident_subtype": person.get("resident_subtype"),
-            "how_known": how_known(person),
+            "how_known": how_known(person, transient=transient is not None),
             "division": hh.get("division"),
             "arrival_year": arrival_year(arrival.get("value")),
             "arrival_precision": arrival.get("precision"),
             "present": present,
+            "community": (community.get(person.get("id")) or {}).get("value"),
+            "community_tier": (community.get(person.get("id")) or {}).get("tier"),
+            "community_rule": (community.get(person.get("id")) or {}).get("rule"),
             "lives_at": lives.get("value"),
             "works_at": works.get("value"),
             **role_row_view(person),
@@ -849,6 +900,52 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "note": ((hh.get("present_on_scene_date") or {}).get("basis") or {}).get("note"),
                 "replaced_by": (person.get("replaceable_by") or {}).get("match"),
             }
+        elif trade is not None:
+            th = hh.get("trade_household") or {}
+            owed = hh.get("household_owed") or {}
+            row["reconstructed_trade"] = {
+                "ticket": th.get("ticket"),
+                "bucket": th.get("bucket"),
+                "trade": th.get("trade"),
+                "stands_on": th.get("stands_on"),
+                "household_size_owed": owed.get("size_drawn"),
+                "kin_seated_by": owed.get("seated_by"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
+        elif underdocumented is not None:
+            ud = hh.get("underdocumented") or {}
+            row["underdocumented"] = {
+                "ticket": ud.get("ticket"),
+                "sub_stage": ud.get("sub_stage"),
+                "class": ud.get("class"),
+                "name_as_read": ud.get("name_as_read"),
+                "as_printed": ud.get("as_printed"),
+                "company_as_printed": ud.get("company_as_printed"),
+                "place_of_enrollment_as_printed": ud.get("place_of_enrollment_as_printed"),
+                "stands_on": ud.get("stands_on"),
+                "note": ((hh.get("present_on_scene_date") or {}).get("basis") or {}).get("note"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
+            row["review_required"] = True
+            row["touches_removal"] = True
+        elif transient is not None:
+            tr = hh.get("transient") or {}
+            lodged = (hh.get("lodged_at") or [{}])[0]
+            row["transient"] = {
+                "ticket": tr.get("ticket"),
+                "household_kind": tr.get("household_kind"),
+                "cohort_row": tr.get("cohort_row"),
+                "sleeping_class": tr.get("sleeping_class"),
+                "sleeping_place": tr.get("sleeping_place"),
+                "point_adopted": tr.get("point_adopted"),
+                "point_reading": tr.get("point_reading"),
+                "lodged_at_kind": lodged.get("kind"),
+                "lodged_at_place": lodged.get("place_id"),
+                "lodged_at_resolves_to": lodged.get("resolves_to"),
+                "lodged_at_note": (lodged.get("basis") or {}).get("note"),
+                "stands_on": tr.get("stands_on"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
         return row
 
     rows: list[dict] = []
@@ -874,11 +971,53 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], minted=minted))
 
+    trade_households = 0
+    for minted in trade_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        trade_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], trade=minted))
+
+    underdocumented_households = 0
+    for minted in underdocumented_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        underdocumented_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], underdocumented=minted))
+
+    transient_households = 0
+    for minted in transient_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        transient_households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], transient=minted))
+
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
+
+    # T-1353. EVERY TALLY BELOW COUNTS THE TOWN'S OWN PEOPLE, and the visitors are counted
+    # on rows of their own. The distinction is not decorative: `by_grade`, `by_presence`,
+    # `households` and `by_arrival_year` are read straight by tools/model_town_1835.py,
+    # which is the model the reconstruction order book is cut from, so folding 307 visitors
+    # into them would have the town order houses, trades and families for people who were
+    # going home on the next boat. The `people` count and the row list below carry
+    # everybody, because the directory lists everybody; `residents` and `transients`
+    # partition it.
+    resident_rows = [r for r in rows if not r.get("transient")]
 
     def tally(key):
         counts: dict = {}
-        for r in rows:
+        for r in resident_rows:
             v = r.get(key)
             if v is None:
                 continue
@@ -886,21 +1025,31 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         return dict(sorted(counts.items(), key=lambda kv: str(kv[0])))
 
     occupations = tally("occupation")
-    by_grade = {g: sum(1 for r in rows if r["grade"] == g)
+    communities = tally("community")
+    by_grade = {g: sum(1 for r in resident_rows if r["grade"] == g)
                 for g in (vocab.get("grades") or ["attested", "inferred", "reconstructed"])}
-    divisions = {d: sum(1 for r in rows if r["division"] == d)
+    divisions = {d: sum(1 for r in resident_rows if r["division"] == d)
                  for d in (vocab.get("divisions") or sorted(tally("division")))}
-    presence = {p: sum(1 for r in rows if r["present"] == p)
+    presence = {p: sum(1 for r in resident_rows if r["present"] == p)
                 for p in (vocab.get("presence") or sorted(tally("present")))}
+    # `documented` is a statement about a RESIDENT's evidence, so the visitors are taken
+    # out of it rather than folded in: a summer crowd nobody named would otherwise have
+    # read as 307 more documented Chicagoans. They are counted on their own row.
     known = {
-        "documented": sum(1 for r in rows if not r["letter_list_only"] and not r["civic_mint"]
+        "documented": sum(1 for r in resident_rows if not r["letter_list_only"]
+                          and not r["civic_mint"]
                           and r["resident_subtype"] != "projected_resident"),
-        "letter_list": sum(1 for r in rows if r["letter_list_only"]),
-        "civic_mint": sum(1 for r in rows if r["civic_mint"]),
-        "projected": sum(1 for r in rows if r["resident_subtype"] == "projected_resident"),
+        "letter_list": sum(1 for r in resident_rows if r["letter_list_only"]),
+        "civic_mint": sum(1 for r in resident_rows if r["civic_mint"]),
+        "projected": sum(1 for r in resident_rows
+                         if r["resident_subtype"] == "projected_resident"),
+        "transient": len(rows) - len(resident_rows),
     }
-    with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
+    with_address = sum(1 for r in resident_rows if r["lives_at"] or r["works_at"])
     readmitted = [r for r in rows if r.get("readmission")]
+    trade_heads = [r for r in rows if r.get("reconstructed_trade")]
+    transients = [r for r in rows if r.get("transient")]
+    underdocumented = [r for r in rows if r.get("underdocumented")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -921,14 +1070,20 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "by_presence": presence,
             "by_arrival_year": {str(k): v for k, v in sorted(tally("arrival_year").items())},
             "with_address": with_address,
-            "with_lives_at": sum(1 for r in rows if r["lives_at"]),
-            "with_works_at": sum(1 for r in rows if r["works_at"]),
-            "with_occupation": sum(1 for r in rows if r["occupation"]),
-            "with_roles": sum(1 for r in rows if r.get("roles")),
-            "roles": sum(r.get("roles", 0) for r in rows),
-            "with_a_role_at_scene_date": sum(1 for r in rows if r.get("roles_at_scene_date")),
+            "with_lives_at": sum(1 for r in resident_rows if r["lives_at"]),
+            "with_works_at": sum(1 for r in resident_rows if r["works_at"]),
+            "with_occupation": sum(1 for r in resident_rows if r["occupation"]),
+            "by_community": {v["value"]: communities.get(v["value"], 0)
+                             for v in community_vocab},
+            "community_known": sum(1 for r in resident_rows
+                                   if r["community"] not in (None, "unknown")),
+            "with_roles": sum(1 for r in resident_rows if r.get("roles")),
+            "roles": sum(r.get("roles", 0) for r in resident_rows),
+            "with_a_role_at_scene_date": sum(1 for r in resident_rows
+                                             if r.get("roles_at_scene_date")),
             "with_every_role_off_scene_date": sum(
-                1 for r in rows if r.get("roles") and not r.get("roles_at_scene_date")),
+                1 for r in resident_rows
+                if r.get("roles") and not r.get("roles_at_scene_date")),
             "readmitted": len(readmitted),
             "readmitted_households": readmitted_households,
             # The persons the re-admission MINTED, which is exactly the number by which
@@ -943,9 +1098,48 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "readmitted_by_class": {
                 cls: sum(1 for r in readmitted if r["readmission"]["class"] == cls)
                 for cls in sorted({r["readmission"]["class"] for r in readmitted})},
+            # T-1347. The heads the order book ordered at a trade, drawn as their own
+            # households. Like the re-admissions, they are invisible to the manifest.
+            "reconstructed_trade_heads": len(trade_heads),
+            "reconstructed_trade_households": trade_households,
+            "reconstructed_trade_by_trade": {
+                t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
+                for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},
+            # T-1376. The men of the company the 1832 roll heads INDIAN, carded under the
+            # same licence that put twenty men of the other company on that page into the
+            # town. Counted WITH the residents and not apart: unlike the summer crowd,
+            # these are not visitors. Every one is held for the review AGENTS.md commits
+            # to, which is what `review_required` counts.
+            "underdocumented": len(underdocumented),
+            "underdocumented_households": underdocumented_households,
+            "underdocumented_review_required": sum(
+                1 for r in underdocumented if r.get("review_required")),
+            "underdocumented_by_sub_stage": {
+                k: sum(1 for r in underdocumented if r["underdocumented"]["sub_stage"] == k)
+                for k in sorted({r["underdocumented"]["sub_stage"] for r in underdocumented})},
+            # T-1353. The summer crowd, counted APART. Every other figure in this block
+            # counts the town's own people; these three count the visitors, and the
+            # difference is the whole distinction the Chicago American drew when it put
+            # the population at 2,500 to 3,000 and the strangers at "some hundreds more".
+            "transients": len(transients),
+            "transient_households": transient_households,
+            "residents": len(rows) - len(transients),
+            "transient_point_adopted": (transients_doc.get("the_point_adopted") or {})
+                                        .get("persons"),
+            "transient_reserved_not_minted": (transients_doc.get("totals") or {})
+                                              .get("reserved_not_minted"),
+            "transient_by_household_kind": {
+                k: sum(1 for r in transients if r["transient"]["household_kind"] == k)
+                for k in sorted({r["transient"]["household_kind"] for r in transients})},
+            "transient_by_sleeping_class": {
+                c: sum(1 for r in transients if r["transient"]["sleeping_class"] == c)
+                for c in sorted({r["transient"]["sleeping_class"] for r in transients})},
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
+            "communities": [{"value": v["value"], "label": v["label"],
+                             "count": communities.get(v["value"], 0)}
+                            for v in community_vocab],
             "divisions": list(vocab.get("divisions") or divisions.keys()),
             "grades": list(vocab.get("grades") or by_grade.keys()),
             "presence": list(vocab.get("presence") or presence.keys()),
@@ -1457,6 +1651,67 @@ def compile_streets(scene_id: str, target_date: str,
     return doc.get("surface_standard", ""), out
 
 
+def compile_lodging() -> dict[str, dict]:
+    """structure_id -> how many people that lodging place could sleep.
+
+    T-1370. The beds are derived in `tools/build_lodging_model_1835.py`, which
+    apportions figures the town model already owns across the lodging places this
+    dataset actually holds; `tools/check.sh` re-derives that file, so what is
+    carried here is a committed quantity and not a number this compiler invents.
+
+    WHY THE CARD NEEDS IT. The town model states a bed bracket for the whole town
+    and says in as many words that it "gives no boarding house a capacity of its
+    own". A visitor standing in front of the Green Tree Tavern could read every
+    dimension of it and not the one fact the building is FOR. The grade travels
+    with the number, because a capacity apportioned from a reconstructed outline
+    is reconstructed however well attested the tavern is.
+
+    Missing file is empty, not fatal: a checkout that has not built the model yet
+    compiles a scene with no bed counts on it, which is a card with one section
+    fewer rather than a build that cannot run.
+    """
+    path = DATA / "reconstruction" / "1835_lodging_model.json"
+    if not path.exists():
+        return {}
+    model = load(path)
+    figures = model["the_figures_this_model_does_not_move"]
+    out: dict[str, dict] = {}
+    for place in model["places"]:
+        out[place["id"]] = {
+            "class": place["class"],
+            "beds_ordinary": place["beds_ordinary"],
+            "beds_crowded": place["beds_crowded"],
+            "ceiling": figures["ceiling"],
+            "clamped_at_1840_maximum": place["clamped_at_1840_maximum"],
+            "enclosed_floor_m2": place["enclosed_floor_m2"],
+            "confidence": place["capacity_grade"],
+            # `note`, not `basis`: this is a GRADED CLAIM and the tier gate holds
+            # every one of them to the same shape — an `inferred` value with no
+            # reasoning recorded is refused, and it refused this block the first
+            # time it was compiled under the model file's own word for it.
+            "note": place["basis"],
+            "replaceable_by": place["replaceable_by"],
+            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+        }
+    # The rows the model carries WITHOUT beds, and the reason on each. A building
+    # that reaches the card saying nothing about its lodging reads as an oversight;
+    # one that says why it has no number is the honest version of the same silence.
+    for row in model["not_open_on_the_scene_date"] + model["lodging_outside_the_programme"]:
+        out[row["id"]] = {
+            "class": None,
+            "beds_ordinary": None,
+            "beds_crowded": None,
+            "ceiling": figures["ceiling"],
+            "clamped_at_1840_maximum": False,
+            "enclosed_floor_m2": None,
+            "confidence": "reconstructed",
+            "note": row["why_no_beds"],
+            "replaceable_by": "",
+            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+        }
+    return out
+
+
 def compile_residents() -> dict[str, list[dict]]:
     """structure_id -> the households the residents layer attaches to it.
 
@@ -1543,6 +1798,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     written, skipped = 0, []
     index = []
     residents = compile_residents()
+    lodging = compile_lodging()
     # id -> the phase that resolves into this scene, for the watch list below
     resolved: dict[str, dict] = {}
 
@@ -1754,6 +2010,12 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             sidecar["drawn_by"] = phase["drawn_by"]["layer"]
         if st.get("reconstruction"):
             sidecar["reconstruction"] = st["reconstruction"]
+        # HOW MANY SLEPT HERE (T-1370). Written only on the fifteen lodging
+        # places the model gives beds to, like `reconstruction` above and unlike
+        # `residents`: 330 sidecars carrying `lodging: null` would be 330 files of
+        # diff saying nothing, in a mirror published byte-for-byte.
+        if st["id"] in lodging:
+            sidecar["lodging"] = lodging[st["id"]]
         emit(outdir / f"{st['id']}.json", sidecar)
         resolved[st["id"]] = phase
         index.append({"id": st["id"], "name": st["name"],

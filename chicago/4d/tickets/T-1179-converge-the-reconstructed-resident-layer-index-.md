@@ -206,3 +206,58 @@ python3 tools/rebuild_resident_index.py --write
 python3 tools/profile_population_1835.py --build
 python3 tools/build_order_book_1835.py --build
 ```
+
+**Correction (2026-09-19, same night): the set is SIX tools, and a fixed list is the wrong
+shape of answer.** The finding above names four builds in an order and reads as though the
+order is the whole of it. It is not, and the list was wrong three times in one evening. Each
+time the error had the identical shape: the checks that happened to be run came back green, the
+tree was called converged, and the GATE knew about a reader that the list did not.
+
+| attempt | what was rebuilt | what the gate then found |
+|---|---|---|
+| 1 | the three stages, no model | 5 red — model, profile, order book, re-admissions, programme |
+| 2 | only the stale piece (`model --build`, repeatedly) | a 2-cycle: model green, `attribute_fill_arrival` red, three passes running |
+| 3 | all four, in order | 2 red — the 1835 transient cohort and the attribute tiers |
+
+The two missing from attempt 3 are `tools/model_transients_1835.py` and
+`tools/migrate_attribute_tiers.py`. Both read the resident layer; neither was in anybody's
+mental model of the set. With them the whole thing converges and `rederive.mjs --check` reads
+clean:
+
+```
+python3 tools/model_town_1835.py          --build
+python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival --build
+python3 tools/reconstruct_residents_1835.py --stage readmissions           --build
+python3 tools/reconstruct_residents_1835.py --stage women_and_children     --build
+python3 tools/reconstruct_garrison_1835.py                                 --build
+python3 tools/profile_population_1835.py  --build
+python3 tools/build_order_book_1835.py    --build
+python3 tools/model_transients_1835.py    --build
+python3 tools/migrate_attribute_tiers.py  --build
+```
+
+**Take that as a starting point and never as a stopping point.** The set is defined by WHAT
+READS THE LAYER, the layer gains readers as this project grows, and the only authority on the
+current set is `tools/check.sh`. So the method, rather than the list:
+
+1. Run the sequence you have.
+2. Gate. Read the steps it names red.
+3. Rebuild those, re-run the WHOLE sequence — not the step the check named. Attempt 2 above is
+   why: the check names the stage that is stale, and the cycle runs through a stage it does not
+   name. Rebuilding only what the check names never converges.
+4. Gate again. Repeat until it names nothing.
+
+Two more traps worth having in writing, both paid for on #1497 and #1502:
+
+- **A stage's `--check` cannot see that its own input is stale.** Every stage agreed with itself
+  in attempt 1 while the model underneath them all was out of date. Green stage checks are not
+  evidence of a fixed point.
+- **`rederive.mjs --run` can UNDO the fixed point** — it re-runs manifest steps that write the
+  layer the model counts, which is T-1363. So the fixed point has to be verified against a
+  `rederive.mjs --check` that reads clean AFTER the sequence, and a `--run` late in the
+  procedure means starting over.
+
+Acceptance 1 of this ticket is a fixed point over exactly this set. It lists the `--check`
+commands and, as written, neither the order nor the method. Whoever works it should fix that in
+the acceptance itself rather than trusting this finding, which will also be out of date the
+moment another reader of the layer is added.

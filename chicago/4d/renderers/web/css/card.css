@@ -165,6 +165,7 @@
 [data-theme="light"] .fact-reconstructed { color: #6b7480; }
 
 .popup .pop-residents { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--edge); }
+.popup .pop-lodging { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--edge); }
 
 /* ------------------------------------------------------------- the tabs --- */
 

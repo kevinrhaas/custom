@@ -1,7 +1,7 @@
 ---
 id: T-1353
 title: Mint the bounded transient cohort as reconstructed persons in camp, crew and party households, counted apart from the residents in the town census and filterable in the People view
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1178
 opened: 2026-09-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-19
+pr: 1508
+claimed_by: run 9/19/2026, 3:07:49 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T09:20:01.493Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35430931024
 ---
 
 Mint the bounded transient cohort as reconstructed persons in camp, crew and party households, counted apart from the residents in the town census and filterable in the People view.

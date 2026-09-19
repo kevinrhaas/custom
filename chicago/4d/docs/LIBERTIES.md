@@ -12568,7 +12568,217 @@ target reached; T-1179 converges the layer and re-runs the profile.
 Related: tickets **T-1174**, from **T-1167**; **L244** is the stage before it, **T-1161**'s town
 model and **T-1166**'s order book are the two files it draws against. **Recorded:** 2026-09-19.
 
-### L248 — A hundred and two soldiers, eight laundresses, fourteen children and a sutler stand at a post whose roll nobody has read
+### L248 — 308 people are given a trade the town needed and no roster printed, and their shares come from a directory four years late
+
+**Decision:** `tools/reconstruct_trade_households.py` (T-1347, of T-1173) writes 308
+reconstructed heads into `data/residents/reconstructed_trades/`, one per person the
+reconstruction order book counts the town of 1 July 1835 short of in its twenty-four
+`family/trade` buckets — 197 men and 111 women, by sex, age band and division. Each is a
+head of their own household, carries an invented name from the pools, an age band the
+bucket set, and **a trade dealt from the Fergus
+1839 directory's printed shares** (T-1346's table: 1,377 mapped entries over 88 trades).
+
+**Why:** because the order book is the quota and the quota was empty. The town model reads
+1835 Chicago as employing around 506 people and the rosters this project can read name 457
+residents in total; the men who dug the harbour, drove the drays and framed the balloon
+houses, and the women who kept the boarding houses and washed and sewed for the town, were
+not written down by a letter list or a subscription roll. The choice is between a town
+whose working people are only the ones somebody happened to print, and a town whose
+working people are modelled, counted and labelled as modelled. This project takes the
+second and says so on every card.
+
+**What is invented, exactly:** three things, and no more. (1) That the 1839 trade shape is
+the best available 1839-minus-four reading of who worked at what — the volume is Fergus's
+1876 completion of a list that, in its compiler's own words, "was never written", and it
+describes a town three times the size. (2) That the work the record cannot see is day
+labour for the men and domestic service for the women: neither is an establishment, so
+neither is enumerated by a census that counts stores and shops, and both are where this
+model puts the rounding remainder and everything a census ceiling refuses. (3) The names,
+which are drawn from the invented name pools and checked against every real name in the
+layer. Nothing else: the age band is the order book's own axis, the division is the
+bucket's, and each value carries the seed that redraws it.
+
+**What this deliberately does NOT do.** It writes **no seniority rule**: T-1173 sketched
+"labourers young, master tradesmen older" and this stage refuses it, because the 1839 table
+carries no ages and the 1840 schedule carries no trades, so nothing in this corpus prices
+the association — each trade is spread across the bands in proportion to what the book
+ordered, and the master/journeyman split belongs to T-1183. It writes **no arrival**: the arrival model's own distribution is computed over the
+compiled scene, and the scene carries these cards, so an arrival written here would move the
+very table that drew it — and the research layer's arrival fills (T-1169) re-derive from
+that table, so 1,440 research cards would move with it. T-1169 owns the block and T-1179
+joins these cards to the tree it runs over. It seats **no kin**: every head
+is owed the family the 1840 size histogram drew for them, that size and its seed are
+written onto the card as `household_owed`, and the people themselves are `family/none` in
+the order book, which is T-1174's and T-1171's quota — drawing them here would order the
+same women and children twice. And it draws **no trade past its ceiling**: where the
+December 1835 State census counts a class one person keeps, the town model's
+`against_the_state_census` table sets the bound, and a class the town already matches draws
+nobody — which is why 50 of the 111 women fall to domestic service rather than adding
+school and tavern keepers the census says the town already had.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions are: the mint
+writers re-derive that directory and a reconstruction that is not a reading must not move
+under them. They join the town in `data/sidecars/1835/people.json`, which is why that file
+now counts 2,079 people against the manifest's 1,588. `roles[]` does not reach them either;
+T-1179 converges the two trees.
+
+**How to resolve:** a source naming a real resident of one of these trades in one of these
+divisions retires the slot it stands in — the card says which. A per-trade reading of an
+1835 or 1836 source, rather than the 1839 volume, replaces the shares whole.
+
+Related: **L245**, **L246** and **L247** (the same programme’s transient, re-admission and
+women-and-children bands),
+tickets **T-1347**, **T-1346**, **T-1173**, the order book **T-1166**, the town model
+**T-1161**, the programme **T-1167**.
+**Recorded:** 2026-09-19.
+
+### L249 — The summer crowd of 1835 is minted at 384, and the six places it slept are dealt equally because no source ranks them
+
+**Decision:** `tools/reconstruct_transients_1835.py` (T-1353, of T-1178) adopts **384** as
+the transient population of 1 July 1835 — the `twice the 1843 rate` reading of the 192-to-900
+bracket L245 recorded — reserves **77** of it for the land-sale purchasers the Public Domain
+register NAMES, and mints the remaining **307** as reconstructed visitors in 83 `camp` and
+`party` households in `data/residents/transients/`. Their sleeping places are dealt
+**equally across the six classes** T-1352 names, remainder to the first in its printed order:
+51 apiece, 52 to "a room in a public house".
+
+**Why:** because T-1352 bounded the crowd and deliberately adopted no point, printing two
+candidates and leaving the choice to this ticket, and because a bracket nobody spends is a
+measurement the town never sees. The Chicago American of 13 June 1835 put the population at
+2,500 to 3,000 and the strangers at "some hundreds more" — outside its own estimate — and
+until now the strangers were a figure in a model file and nobody in the town.
+
+**What is invented, exactly:** two things, and no more. (1) **The point.** 384 is the
+measured 1843 transient rate doubled because 1 July 1835 was a land-sale week and 1 August
+1843 was not; the rate is Chicago's own enumerator's and the multiplier is ours. The
+alternative, 550, is the midpoint of the American's phrase — an editor's impression printed
+eighteen days before the scene and before the sale crowd arrived — and this project prefers
+a measured comparandum with one invented step to a rhetorical band read at its middle. Both
+sit inside the bracket; this is the lower. (2) **The equal deal.** No source in this corpus
+gives any of the six sleeping-place classes a share, and T-1352 ranks none of them. An equal
+deal is the only apportionment that adds no ranking the record does not carry. Everything
+else is drawn: party size from the 1840 Chicago size histogram cut at eight, sex and age
+band from the 1840 free-white age columns, names from the invented pools and checked against
+every real name in the layer, each with the seed that redraws it.
+
+**What this deliberately does NOT do.** It mints **no crew**: T-1352 records 4 to 6 hulls
+lying at Chicago from the Marine Journal of 4 July 1835 and no committed source gives a crew
+complement for an 1830s lake schooner, so the hulls carry nobody and T-1372 is told what it
+is waiting for. It mints **no harbour-works gang**: the improvement was at work through 1835
+and no source gives its strength in any month. It mints **no named land-sale purchaser and
+no traveller of business or of state**: the register names 105 purchasers and the Democrat
+of 1 July names Lewis Cass, and a drawn person may never stand in for a person a source
+names — 77 slots are reserved and left empty for exactly that reason. It names **no inn**:
+the four roofed classes resolve to the CLASS of place and not to a house, because the
+lodging places' beds belong to the lodging model and are dealt by T-1371 and T-1372, and a
+bed dealt twice is a bed invented once. It authors **no coordinate**: the two out-of-doors
+classes name `the_landing_place`, the one camp ground a committed source puts people on, as
+a *candidate* — T-1214 owns where a camp stands and how large it is. And it writes **no
+`lives_at`**: a visitor of the season kept no residence, and the town census counts a person
+as housed through that field, so writing one would have moved the resident count.
+
+**And one argument this entry records in order to refuse it.** The BUILT lodging places
+carry 320 surge beds — the gap between their ordinary night and their crowded one — against
+307 minted visitors, which reads as a confirmation of the point adopted. It is not one. The
+town had 42 boarding houses and this reconstruction has built five; the programme's full
+surge is 764. The fit measures how far the structure band has got, and letting it choose a
+population would be reading this project's own incompleteness as evidence.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions and T-1347's
+trade households are — and for one more of their own: a card in that directory is a card
+the manifest, the town census and every resident count read, and a visitor must move none
+of them. `data/town_census.json` reports them on a row of its own, as Chicago's own
+enumerator printed `Transient persons` on a row of his own in 1843.
+
+**How to resolve:** a source that ranks the six sleeping-place classes, or gives any one of
+them a count, retires the equal deal whole. A source naming a real member of the crowd
+retires the slot it stands in. A re-reading of the bracket that adopts the other candidate
+point re-cuts every figure here, through `--build` and never by hand.
+
+Related: **L245** (the bracket this spends), **L246**, **L247** and **L248** (the same
+programme's re-admission, women-and-children and trade bands), tickets **T-1353**,
+**T-1352**, **T-1178**, **T-1372** (which is owed the crews), **T-1214** (which places the
+camps), the programme **T-1167**.
+**Recorded:** 2026-09-19.
+
+### L250 — Eighty-seven men of the company the 1832 roll heads INDIAN are carded under the licence that carded the other company on the same page
+
+**Decision:** `tools/reconstruct_underdocumented.py` (T-1376, of T-1177) writes **87**
+reconstructed cards into `data/residents/underdocumented/`, one per man of the company the
+Illinois State Archives index of Black Hawk War enrollments heads `INDIAN`, enrolled at
+Chicago in 1832. It is the first output of stage `underdocumented`, the only stage of the
+programme licensed to write a Native or Métis person. Every card carries
+`review_required: true` and `touches_removal: true` with the sentence that says why, the
+`community` value **`native`** and **no nation at all**, and `origin: null`.
+
+**Why:** because the same page had already been half spent. The roll prints 134 men in two
+companies — forty under `G KERCHEVAL` and ninety-four under `INDIAN` — and T-1172 carded
+twenty of Kercheval's under the borderline roster's R3 licence: *on the 1832 muster,
+enrolled at Chicago, no 1835 corroboration, no card; mint reconstructed, presence bounded
+by the persistence rate*. The other ninety-four answer that description word for word.
+They were left out because the roster's R6 rule (`community_term_in_the_reading`) routes any
+reading carrying a Native, Métis or Black term into a class T-1172 was not licensed to
+spend, and R6's owner had no workable ticket until 2026-09-19. Nothing about the evidence
+separated the two companies. Leaving the town with twenty men off that page and none of the
+others is not caution; it is a filing accident with a population in it.
+
+**What is invented, exactly:** one thing. That a man enrolled at Chicago in 1832 was still
+here on 1 July 1835, at the odds the persistence model gives for a three-year lag — the
+same model, the same lag, the same seeded draw that priced Kercheval's twenty. 69 of the 87
+read `present` and 18 read `absent`, and each carries the seed a reader can retype.
+**Nothing else.** The names are the roll's, printed as it prints them, and no surname,
+forename, nation, band, village, age, trade, address or family is supplied for anybody.
+
+**What this deliberately does NOT do.** It writes **no nation**: the roll says `INDIAN` and
+says no more, and choosing among the Potawatomi, the Ottawa and the Ojibwe would invent the
+single fact the record withholds. It draws **no remainder**: the roll counts enrolled MEN,
+no woman or child is on it, the 1840 schedule counts no Native person in any column, and no
+source in this corpus counts the Native and Métis people at Chicago before 1 July 1835 — so
+`the_counted_but_unnamed` in the derived record is a written refusal with the three readings
+that would retire it, not a bracket with a number in it. It does **not** stage the August
+1835 gathering, which is six and a half weeks after the scene. It draws **no figure** for
+anybody (L1). And it **does not read a community term in prose as a statement**: the
+biography of an Indian agent carries the word too, so 2 rows are withheld for that and
+every one of the 29 withheld rows names a stated reason.
+
+**Three refusals it had to overturn to do it, all three rules about European names wearing
+the clothes of rules about evidence.** T-1172 withholds a reading without a surname *and* a
+forename, which would have refused `Cau Be Nah`, `Mas Go` and `Ke O Quaw`, each printed
+whole; the test here is on the reading and not its shape, and a one-word *European* surname
+is still refused. `title_case` turns a single letter into an English initial, printing
+`Ke O. Quaw`; `display_name` capitalises and does nothing else. And the collision key reads
+the last word as a family name, so `Mes Kee Suck` and `Mau Kai Tai O Suck` keyed alike —
+inside this stage the duplicate test is equality of the whole reading. The same key ran the
+other way on `Alexander Robinson (Che-che-pin-qua)`, whose own Indigenous name in a
+parenthesis moved the last word and would have let `ROBINSON, A` be carded twice; the key is
+now taken with the parenthesis off as well.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions, T-1347's trade
+households and T-1353's visitors are. **And the review is not retired, it is held open:** all
+87 carry `review_required`, which blocks a scene from being marked `released` until the
+reading by Native scholars or community organisations that `AGENTS.md` commits to has
+happened. `docs/RESEARCH/native_and_metis_1835.md` lists every source read and what is still
+owed, including the one finding this stage filed rather than spent — that the two women the
+St Mary's register identifies as Indigenous in the priest's own hand are the only adults on
+their own entries the borderline roster ruled ineligible, so the town carries their husbands
+and their children and not them.
+
+**What would retire it:** any source naming one of these men at Chicago on or after 1 July
+1835, or placing him elsewhere on it, retires that row's draw on its own. A source stating
+his nation, band or family replaces `native` with what it says. An 1835 annuity roll, a
+count of the families at the Agency or on the reservations, or a contemporary estimate of
+the Native population about the town before the scene date retires the refusal of the
+remainder. Related: **L246** (the re-admission band whose licence this borrows), **L247**,
+**L248** and **L249** (the same programme's other bands), tickets **T-1376**, **T-1177**,
+**T-1375** (the community attribute this writes into), **T-1377** (the free Black cohort),
+the roster **T-1159**, the programme **T-1167**.
+
+**Recorded:** 2026-09-19.
+
+### L251 — A hundred and two soldiers, eight laundresses, fourteen children and a sutler stand at a post whose roll nobody has read
 
 **Decision:** stage `garrison` of the 1835 resident reconstruction programme
 (`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1349) writes 11 households
@@ -12628,3 +12838,4 @@ likeliest), and the stage picks none. Nothing was reduced to fit.
 
 Related: tickets **T-1349**, from **T-1176** and **T-1167**; **T-1348** is the officers' half of
 the same parent; **L247** is the stage above it in the programme. **Recorded:** 2026-09-19.
+

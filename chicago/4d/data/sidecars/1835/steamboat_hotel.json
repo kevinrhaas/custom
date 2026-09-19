@@ -273,5 +273,17 @@
   ],
   "research_note": "A HOTEL THAT IS ALL BUSINESS AND NO BUILDING: two sources give a street, a cross-street, a year and a keeper, and not one word about the fabric, the size, the plan, the storeys or the finish. So the archetype choice — `frame_tavern` rather than `log_dwelling` — IS the guess, and it is argued at form.construction rather than buried in the filename: every dateable Chicago hotel from 1833 on is frame, the log taverns belong to 1828-31, and the ordinary reading of a type is still not evidence about a building. Everything dimensional is tagged conjectural and the confidence view renders the whole house as massing. THE DATE IS THE OTHER RISK and it is set out in full on documented_range: 'opened in 1835' with no month, in a scene dated 1 July 1835, in a project that excludes the town's first fire engine for being five months late. WHAT WOULD SETTLE BOTH: the Chicago American, which Davis advertised in and whose first issue is dated 8 June 1835, and the Chicago Democrat. A dated advertisement would fix the opening; an advertisement of the ordinary period kind would also describe the house. See docs/RESEARCH/steamboat_hotel.md.",
   "research_doc": "docs/RESEARCH/steamboat_hotel.md",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": "inn_tavern",
+    "beds_ordinary": 11,
+    "beds_crowded": 35,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": true,
+    "enclosed_floor_m2": 240.0,
+    "confidence": "reconstructed",
+    "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 240 m² of enclosed floor (120 m² × 2 storeys) is of the class's floor area.",
+    "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }

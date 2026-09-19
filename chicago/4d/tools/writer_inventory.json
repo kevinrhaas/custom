@@ -66,6 +66,13 @@
       "measured": "2026-09-18",
       "finding": "Cannot rebuild: --build raises on a clean tree (traceback, exit 1)."
     },
+    "build_lodging_model_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a staged tree in 0s, wrote its two outputs and changed no committed byte.",
+      "placed": "not yet — measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/structures/, which several reconstruction stages write"
+    },
     "build_order_book_1835.py": {
       "placement": "manifest",
       "write_mode": "--build",
@@ -267,6 +274,13 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "derive_person_community.py": {
+      "placement": "manifest",
+      "write_mode": "(bare)",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
+      "placed": "by layer, 2026-09-19 — after the card writers that may change an `origin` and before compile_scene, which builds the People view out of its output; see the manifest step"
     },
     "derive_presence_evidence_leg.py": {
       "placement": "manifest",
@@ -893,6 +907,24 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "reconstruct_trade_households.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a tree the gate called clean rewrote its 308 cards and its ledger and changed no committed byte."
+    },
+    "reconstruct_transients_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 83 household cards and its ledger, changed no committed byte."
+    },
+    "reconstruct_underdocumented.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 87 household cards and its ledger, changed no committed byte."
+    },
     "reconstruct_women_children.py": {
       "placement": "manifest",
       "write_mode": "--build",
@@ -1158,6 +1190,12 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "supersede_arrival.py": {
+      "placement": "not_a_writer",
+      "write_mode": "(none declared)",
+      "measured": "2026-09-19",
+      "finding": "Not a writer: it is a module the four resident mints import, plus --check, --report and --self-test. Run BARE it printed its usage, exited 2 and moved no byte at all — `git status --porcelain` identical before and after. The writing it causes is the mints' own, through `supersede(carry(doc))`, and their rows here already answer for it."
     },
     "survey_stated_kin.py": {
       "placement": "manifest",
