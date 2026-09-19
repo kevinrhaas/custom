@@ -961,7 +961,15 @@ table.attrs td .val { font-variant-numeric: tabular-nums; }
 .pop-lodging .lodge-when { margin-left: 4px; }
 .pop-lodging .lodge-sep { margin: 0 7px; opacity: .5; }
 .pop-lodging .lodge-basis { margin: 0 0 6px; font-size: 11.5px; line-height: 1.45; color: var(--ink-dim); }
-.pop-lodging .lodge-empty { margin: 0; font-size: 11.5px; line-height: 1.45; font-style: italic; color: var(--ink-dim); }
+.pop-lodging .lodge-empty { margin: 0 0 6px; font-size: 11.5px; line-height: 1.45; font-style: italic; color: var(--ink-dim); }
+.pop-lodging .lodge-empty:last-child { margin-bottom: 0; }
+
+/* Who is in the beds, set like the beds themselves so the eye reads capacity and
+   occupancy as the same kind of number. The empty count is dimmed rather than
+   coloured: a bed nobody has argued for is not a warning, and the sentence under
+   it is what actually says why it is empty. */
+.pop-lodging .lodge-who { margin: 8px 0 6px; font-size: 12.5px; line-height: 1.5; color: var(--ink-dim); }
+.pop-lodging .lodge-short { color: var(--ink-dim); font-weight: 500; }
 
 .pop-residents .res-lead { margin: 0 0 8px; font-size: 12px; color: var(--ink-dim); line-height: 1.45; }
 .pop-residents .res-hh { border-top: 1px solid var(--edge); padding-top: 8px; margin-top: 8px; }
