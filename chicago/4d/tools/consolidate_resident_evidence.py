@@ -734,11 +734,24 @@ def read_newspapers():
     return out
 
 
+# T-1172. `data/residents/readmitted/` is the RECONSTRUCTION, not the research: the
+# borderline roster's names offered back at the reconstructed tier by
+# tools/readmit_borderline_roster.py. The research instruments below measure what the
+# sources say and what has been spent of them, and a reconstruction is neither. Reading it
+# here would let an invention raise the research meter, join a crosswalk, or stand as a
+# rival card in an identity ruling — which is the exact boundary that stage is built on.
+READMITTED_DIR = "readmitted"
+
+
+def town_records(root):
+    """Every committed resident record EXCEPT the reconstruction's own."""
+    return [p for p in sorted(root.rglob("*.json")) if p.parent.name != READMITTED_DIR]
+
 def read_town():
     """The residents layer itself. Not a source — it is what the sources are spent onto —
     but an identity has to be able to say which card it already stands on."""
     out = []
-    for path in sorted(RESIDENTS.rglob("*.json")):
+    for path in town_records(RESIDENTS):
         doc = load(path)
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue
@@ -1768,7 +1781,7 @@ TOWN_GRADES: dict = {}
 
 def _load_town_grades():
     TOWN_GRADES.clear()
-    for path in sorted(RESIDENTS.rglob("*.json")):
+    for path in town_records(RESIDENTS):
         doc = load(path)
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue
@@ -1885,7 +1898,7 @@ def ladder_coverage(master, proposal):
     records, states, by_proposed_rule, refusal_rules = [], Counter(), Counter(), Counter()
     by_disputed_rule = Counter()
     total = 0
-    for path in sorted(RESIDENTS.rglob("*.json")):
+    for path in town_records(RESIDENTS):
         doc = load(path)
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue

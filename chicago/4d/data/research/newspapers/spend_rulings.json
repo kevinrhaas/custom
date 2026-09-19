@@ -4,19 +4,19 @@
   "ticket": "T-1298",
   "generated_by": "tools/spend_remainder_rulings.py",
   "counts": {
-    "a_dated_appearance_bounds_a_presence": 128,
-    "the_column_names_nobody": 54,
-    "the_family_column_names_kin": 12,
-    "the_issue_is_printed_after_the_scene_date": 51,
-    "the_letter_list_name_belongs_to_the_borderline_roster": 63,
-    "the_market_and_the_port_in_aggregate": 55,
-    "the_notice_names_a_firm": 15
+    "a_dated_appearance_bounds_a_presence": 147,
+    "the_column_names_nobody": 60,
+    "the_family_column_names_kin": 13,
+    "the_issue_is_printed_after_the_scene_date": 57,
+    "the_letter_list_name_belongs_to_the_borderline_roster": 69,
+    "the_market_and_the_port_in_aggregate": 61,
+    "the_notice_names_a_firm": 19
   },
   "rules": {
     "a_dated_appearance_bounds_a_presence": {
       "disposition": "unresolved",
-      "ticket": "T-1338",
-      "statement": "The unit puts a named person at Chicago on a dated day in the town's PRINT and states nothing else about them. A dated appearance BOUNDS a presence and is never itself a presence, and the earliest dated appearance is the bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 and T-1329 through their splits, and T-1338 now. This ruling hands the date on and writes nothing: it does not decide that a named party is a resident, that a name is a person rather than a firm, or that it is the individual a card of that name already holds. The register half of this rule is gone, spent by T-1337 or refused by the four rules below; what is left here is the press, and T-1338 states in its title the id collision that has to be fixed before a press claim can name a card at all."
+      "ticket": "T-1343",
+      "statement": "The unit puts a named person at Chicago on a dated day in the town's PRINT and states nothing else about them. A dated appearance BOUNDS a presence and is never itself a presence, and the earliest dated appearance is the bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 and T-1329 and T-1338 through their splits, and T-1343 now. This ruling hands the date on and writes nothing: it does not decide that a named party is a resident, that a name is a person rather than a firm, or that it is the individual a card of that name already holds. The register half of this rule is gone, spent by T-1337 or refused by the four rules below; what is left here is the press. T-1342 has since made a press claim NAMEABLE -- the ledger key is the issue file's stem and the claim id joined by `#`, which is the form the resident cards' own notes already wrote -- so what is left for T-1343 is the identification this rule still refuses to make."
     },
     "the_column_names_nobody": {
       "disposition": "aggregate_only",
@@ -33,8 +33,8 @@
     },
     "the_letter_list_name_belongs_to_the_borderline_roster": {
       "disposition": "unresolved",
-      "ticket": "T-1172",
-      "statement": "The unit's own `letter_list_only` field is true: the name's whole evidence is that a letter waited for it at the Chicago post office. Whether a letter-list name is a resident is the question of T-0660 -> T-0691, which is BLOCKED on the owner, and NOTHING HERE INVENTS ITS OUTCOME. What is ruled is the only thing that can be ruled without it: the name was read and it is withheld from 1835, and the borderline roster is exactly that -- every name the research read and withheld, with its source, its reason and its re-admission class, of which `letter-list-only` is one the ticket names. Handing the name to the roster records the withholding; it does not decide the residency. The hand-off names T-1172, the ticket that re-admits the roster's single-source names, because T-1159 closes with the roster it builds."
+      "ticket": "T-1179",
+      "statement": "The unit's own `letter_list_only` field is true: the name's whole evidence is that a letter waited for it at the Chicago post office. Whether a letter-list name is a resident is the question of T-0660 -> T-0691, which is BLOCKED on the owner, and NOTHING HERE INVENTS ITS OUTCOME. What is ruled is the only thing that can be ruled without it: the name was read and it is withheld from 1835, and the borderline roster is exactly that -- every name the research read and withheld, with its source, its reason and its re-admission class, of which `letter-list-only` is one the ticket names. Handing the name to the roster records the withholding; it does not decide the residency. The hand-off named T-1172, the ticket that re-admits the roster's single-source names, because T-1159 closes with the roster it builds. T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at the reconstructed tier, under its own read name, in data/reconstruction/1835_readmissions.json -- and that settles nothing about the evidence, which is why this unit stays `unresolved`. The hand-off moves to T-1179, the ticket that converges the reconstructed resident layer and is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then."
     },
     "the_market_and_the_port_in_aggregate": {
       "disposition": "aggregate_only",
@@ -76,6 +76,16 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_13.json#claims/c002",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_american_1835_06_13 c002: a notice of 1835-06-13 naming John Watkins. It reads: “[…] in Chicago, are requested to meet [… on] Saturday the 19th instan[t at …] o'clock P.M. for the purpose of [e]lect[ing …] and for transacting such other [business as may come …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_13.json#claims/c007",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_american_1835_06_13 c007: a event of 1835-06-13 whose entities array is empty. It reads: “Great Sale of Chic[ago Real] Estate. [WI]LL be sold at auction on […] the 16[t]h [i]n[s]t[ant …] Chicago, many of which are [va]l[uab]l[e] […] lots having a front of […] from 15 …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_13.json#claims/c015",
+      "rule": "the_notice_names_a_firm",
+      "note": "chicago_american_1835_06_13 c015: the notice of 1835-06-13 carries the firm “Goss & Cobb” (trade as read: none; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_20.json#claims/c010",
@@ -136,6 +146,16 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_07_04.json#claims/c010",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_american_1835_07_04 c010: the issue is dated 1835-07-04, after the scene date. The event reads: “CHICAGO AND VI[N]CENNE[S] [R]ailroad. [A] MEETING of the Com[mi]ssioner[s of the] Chicago and Vin[c]e[nn]es Railroad wi[ll be held] at D[a]nville, I[ll]in[o]is, o[n] Monday the …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_07_04.json#claims/c013",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_american_1835_07_04 c013: the issue is dated 1835-07-04, after the scene date. The notice reads: “[Th]e[se] works may all, or either of th[em, be had] of S. B[ir]d[s]a[ll?], 96 No[r]th P[e]a[r]l [street …]; D. Hale[s], 1[2]4 Washington s[t]re[et], [Boston]; [Ken]d[all?], …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_07_11.json#claims/c007",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_american_1835_07_11 c007: the issue is dated 1835-07-11, after the scene date. The event reads: “[Taken up, a] HORSE, [… yea]r[s] ol[d …] [with]out any mark or brand. T[he] ow[ner may have] hi[m] by pro[v]ing property and payi[n]g char[ges, by cal]ling on […] JOHN K. CLARK, …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_07_11.json#claims/c009",
@@ -283,6 +303,11 @@
       "note": "chicago_democrat_1833_12_03 c006: a notice of 1833-12-03 naming Silas W. Sherman. It reads: “[We] are authorized to state, that SILAS W. SHERMAN is a candidate for Constable, at the election on Monday, the 9th inst.”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_03.json#claims/c007",
+      "rule": "the_family_column_names_kin",
+      "note": "chicago_democrat_1833_12_03 c007: the family column of 1833-12-03 reads: “MARRIED, In this town, on Saturday evening 29 ult., by the Hon. R. I. Hamilton, Mr. MARK NOBLE, jun., second son of Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_03.json#claims/c012",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1833_12_03 c012: a notice of 1833-12-03 naming John T. Temple. It reads: “HORSES! HORSES!! WANTED, twenty-five or thirty young Horses, fo[r] which Cash will be paid. JOHN T. TEMPLE. Chicago, De[c.] 2, 1833.”"
@@ -313,9 +338,19 @@
       "note": "chicago_democrat_1833_12_10 c005: a notice of 1833-12-10 naming George W. Snow. It reads: “[Be] it ordained by the Board of Trustees of the town of Chicago, That George W. Snow, be and he is hereby appointed Assessor & Surveyor for said town, for the term of one year …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_10.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1833_12_10 c007: a notice of 1833-12-10 naming John Dean Caton. It reads: “14. Be it further Ordained by the [Bo]ar[d] of Trustees of the town of Chicago, That John Dean Caton, be and he is hereby appointed At[t]orney for the cor[p]oration of said town, …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_10.json#claims/c010",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1833_12_10 c010: a notice of 1833-12-10 naming Col. [Thomas J. V.] Owen. It reads: “REMOVALS. [T]HE office of the Clerk of the C[ounty] [C]ourt[…] for Cook county [is removed] to the building one door West of the house [of] Col. Owen.”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_10.json#claims/c013",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1833_12_10 c013: a notice of 1833-12-10 naming [M]. B. Beaubien. It reads: “Look out for Trouble. [A]LL persons who have or shall be found trespassing upon the fractional [S]ection [N]o. 29, in Township 39, north range 14 east, [com]monly called …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_10.json#claims/c014",
@@ -323,9 +358,19 @@
       "note": "chicago_democrat_1833_12_10 c014: a notice of 1833-12-10 naming John Mann. It reads: “FOUND[.] [O]n or about the 15th of October last, near the Little Cal[u]m[et], a small POCKET [BO]OK, containing some money, which the [ow]ner can have by paying charges and …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_10.json#claims/c015",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1833_12_10 c015: a notice of 1833-12-10 naming Henry Clyburn. It reads: “S[t]rayed, FROM the Door Prairie, about the first of Nov. last, one large gray Horse, 17 hands high, and nine years old. One Iron Gray Mare, 15 1-2 hands high, and 9 years old. …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_17.json#claims/c001",
       "rule": "the_family_column_names_kin",
       "note": "chicago_democrat_1833_12_17 c001: the family column of 1833-12-17 reads: “MARRIED, In this town, on the evening of the 12th inst., by the Hon. R. J. Hamilton, Mr. CHESTER INGERSOLL, to Miss BETSY WEAVER.”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_17.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1833_12_17 c007: a notice of 1833-12-17 naming J. B. Beaubien, Samuel Calhoun. It reads: “Administrator's Notice. [W]HEREAS letters of Administration on the estate of Samuel Calhoun, deceased, have been granted to me, the undersigned, by the Hon. Court of Probate for …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_17.json#claims/c008",
@@ -341,6 +386,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_24.json#claims/c006",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1833_12_24 c006: a notice of 1833-12-24 naming Thomas J. V. Owen, Isaac Harmon. It reads: “Town Ordinances. [At] a meeting of the Board of Trustees of the town of Chicago, hel[d] at the house of Dexter Graves, on the 4th day of December, 1833, the following Ordinances …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_24.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1833_12_24 c007: a notice of 1833-12-24 naming C. H. Chapman. It reads: “Take Notice. [I] REQUEST that all persons to whom I a[m] indebted, will send in their accounts imme[di]ately, as I leave for N[ew]-York on the first [of] February. All persons …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_24.json#claims/c008",
@@ -423,6 +473,11 @@
       "note": "chicago_democrat_1834_02_04 c010: a notice of 1834-02-04 naming Hiram Pearsons. It reads: “Strayed or Stolen, [F]ro[m Wa]ter Lot No. 12, in Kinzie's addition to Chicago, t[h]r[ee] sticks of square [timbe]r. Whoever has taken up said [sticks and] returns them to the …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_02_04.json#claims/c015",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1834_02_04 c015: a price reading of 1834-02-04. It reads: “[C]HICAGO PRICES CURRENT, [R]eported for the Democrat by P. F. Pec[k]. CORRECTED WEE[K]LY.”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_02_04.json#claims/c016",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_02_04 c016: a post-office letter list printed 1834-02-04. Names as read: List of Let[ters] [R]EMAINING in the Post-[Office at Chica]go, Ill., January [1], 183[4]. FIRST ALPHABETICAL COLUMN, read at name level: Eliphalet Atkins 2; J. W. Anderson; [H.] …"
@@ -498,6 +553,11 @@
       "note": "chicago_democrat_1834_03_18 c005: a notice of 1834-03-18 whose entities array is empty. It reads: “For Sale, [L]OT No 3, in Block 120, in the School Section. For terms apply to Jan. 21. P. PRUYNE & CO.”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_18.json#claims/c007",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1834_03_18 c007: a price reading of 1834-03-18. It reads: “CHICAGO PRICES CURRENT, Reported for the Democrat by P. F. Peck. CORRECTED WEEKLY. […] Building Materials — Lumber, poplar, [assort]ed, [per] 1000 [feet] [$]20 00 a [$]23 00; …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_18.json#claims/c008",
       "rule": "the_notice_names_a_firm",
       "note": "chicago_democrat_1834_03_18 c008: the notice of 1834-03-18 carries the firm “Taylor & Handy” (trade as read: unstated — the notice announces only its dissolution; street as read: none)."
@@ -518,6 +578,11 @@
       "note": "chicago_democrat_1834_03_25 c012: a event of 1834-03-25 whose entities array is empty. It reads: “[FE]ELING that w[e have been misrepresent]ed by the nomi[nation of this 'Great Con]vention' of eight [individ]uals, and being un[wil]ling that our fellow-c[itize]ns in the other …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_25.json#claims/c013",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_03_25 c013: a notice of 1834-03-25 naming Calvin Britain, Andrew J. F. Phelan. It reads: “Dissolution. TH[E] copartnership heretofore existing be[tween Calvin] B[ri]tain and Andrew J. [F.] Phelan, under the firm of Britain & Phelan, i[s th]is day dissolved by mutual …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c001",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_04_01 c001: a post-office letter list printed 1834-04-01. Names as read: Constant Abbott, J[o]y H. Avery, Robt. V. Alle[n], Joseph Ada[m]s, Ebene[z]er Alden, Strat[t]en Adams, Clark B. Albe[e], Eben[e]zer Allen, Daniel L. Andrews, Samuel Anderson, Mar[i]a S. Arnold, Clark …"
@@ -531,6 +596,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c014",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_04_01 c014: a event of 1834-04-01 whose entities array is empty. It reads: “[…] [FE]ELING that we have been misre[p]resen[ted] [b]y the [no]mination of this [Convention?] of eight individual[s], and being unwil[ling that our fel]low citizens in the other …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c015",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1834_04_01 c015: a shipping reading of 1834-04-01. It reads: “We understand […] that the Sl[o]op Westward Ho, [sailed] on […] Friday last for St. Jo[seph and went] ashore […]”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c016",
@@ -578,6 +648,11 @@
       "note": "chicago_democrat_1834_04_08 c004: a event of 1834-04-08 whose entities array is empty. It reads: “A man [b]y the [n]a[m]e of [Ni]les Ross[, living] a[bo]ut si[x] miles up the north bra[nch of the] Chicag[o] river, [d]ie[d] o[n] Wednesday of l[ast week] in conseq[ue]nce of …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_08.json#claims/c013",
+      "rule": "the_notice_names_a_firm",
+      "note": "chicago_democrat_1834_04_08 c013: the notice of 1834-04-08 carries the firm “John Wellmaker & Co.” (trade as read: co-partnership, trade not stated; street as read: none)."
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_16.json#claims/c005",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_04_16 c005: a notice of 1834-04-16 naming John Hale. It reads: “[Cook Circuit Court, May term,] A. D. [1834.] Allen O. T. Breed vs. John Hal[e]. [Public] notice is hereby given t[o the said] John Hal[e], of the county of Way[ne, in the] …”"
@@ -601,6 +676,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_16.json#claims/c012",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_04_16 c012: a event of 1834-04-16 naming Niles Ross, Ruel Rose. It reads: “We [are re]quested by Mr. Ruel Rose to [state] that no such person as Niles Ross [lived on the] north Branch of the Chicago river[. We are informed], however, that Niles Ross was …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_16.json#claims/c013",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1834_04_16 c013: a shipping reading of 1834-04-16. It reads: “We under[s]tand that there are fi[v]e ve[ssels on] their passage for this place from the [east.]”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_16.json#claims/c014",
@@ -628,6 +708,11 @@
       "note": "chicago_democrat_1834_04_23 c006: a shipping reading of 1834-04-23. It reads: “MARINE LIST. ARRIVED. [S]ch. [Prudence] Sweet, Cleve[land …] April 15. Sc[hooner …] CLEARED. [S]loop West[w]ard H[o], St. [Joseph]”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_23.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_04_23 c007: a notice of 1834-04-23 naming James B. Campbell, Edmund S. Kimberly. It reads: “FOR THE STATE LEGISLATU[RE.] SENATE. JAMES B. CAMPBELL[,] [uncertain: AUCENTEs LANOWORTHY.] HOUSE OF REPRESENTATIVES. EDMUND S. KIMBERLY,”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_30.json#claims/c001",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_04_30 c001: a event of 1834-04-30 naming Mrs. Diana Hamilton, Richard J. Hamilton. It reads: “D[IED, in] th[i]s town, on the 22d [in]st. Mrs. Dia[n]a [—], wi[f]e of Richard [J.] H[a]milton, Esq[., in the — ] year of her age, leaving an infa[nt of about] one week old. [By] …”"
@@ -636,6 +721,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_30.json#claims/c003",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_04_30 c003: a event of 1834-04-30 whose entities array is empty. It reads: “[uncertain: Tickets of admision 25 cents] [— to be had at In]gersoll's tavern, Hogan's, Pa[…], [K]imberly's, Dole's and Wright['s …] [uncertain: y star un hepromis] [uncertain: …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_30.json#claims/c007",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_democrat_1834_04_30 c007: a notice of 1834-04-30 whose entities array is empty. It reads: “LOTS FOR S[ALE.] On the credit syste[m …] both on the schoo[l] secti[on …] [L]OT No. 6, in block 111 [and …] April 23, 1834.”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_30.json#claims/c008",
@@ -666,6 +756,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_07.json#claims/c006",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_05_07 c006: a notice of 1834-05-07 naming […] Salisbury, Laughton's. It reads: “[N]OTICE. […] the Au Plaine river, about […] [ab]ove Laughton's two [m]ares, […] and bridles about their […] […] a light chesnut color, […] the forehead, a small scar […] [a]bout …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_07.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_05_07 c007: a person notice of 1834-05-07 naming Sophia Laughton, Barnardus H. Laughton. It reads: “[Notice is hereby given] that the undersign[ed has this day taken ou]t letters of Administration, [on the es]tate of Barnardus H. [Laughton, late of the] county of Cook, deceased. …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_07.json#claims/c011",
@@ -701,6 +796,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_04.json#claims/c005",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_06_04 c005: a notice of 1834-06-04 naming P. Pruyne. It reads: “Notice. T[H]E Voters of School District No[.] 1 are requested to meet at the School Room in the Baptist Church, on the 6th of June next at 1-2 past 7 P.M. A punctual attendance is …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_04.json#claims/c015",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_06_04 c015: a notice of 1834-06-04 naming Gholson Kercheval, Richard J. Hamilton. It reads: “Town Lots for Sale. [T]HE subscribers have f[or] sale a number of valuable and eligibly situated Lots and Blocks in the School Se[ction] adjoining the town of Chicago, as laid off …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_04.json#claims/c016",
@@ -743,6 +843,11 @@
       "note": "chicago_democrat_1834_06_11 c014: a notice of 1834-06-11 naming Barnardus H. Laughton, Sophia Laughton. It reads: “Sale of Personal [Property.] [T]he personal property be[longing to the es]tate of Barnardus H. L[aughton, deceased,] will be sold at public vend[ue, at the former] dwelling house …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_11.json#claims/c015",
+      "rule": "the_notice_names_a_firm",
+      "note": "chicago_democrat_1834_06_11 c015: the notice of 1834-06-11 carries the firm “John Bates, Jr.” (trade as read: auctioneer; street as read: none)."
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_18.json#claims/c001",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_06_18 c001: a event of 1834-06-18 whose entities array is empty. It reads: “Chicago.—Our Town [is] building up rapidly. Since spring commenced, there has been built [u]pwards of se[v]enty-fi[v]e b[ui]ldings, and among this number we notice some …”"
@@ -771,6 +876,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_25.json#claims/c002",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_06_25 c002: a event of 1834-06-25 naming H. Haddock. It reads: “Fourth of July. T[HE] citizens of Ch[icago are] requested to me[et at] H. Haddock's Mansio[n House] on Wednesday the 2[5th inst.] at 7 o'clock, P. M. to [make ar]rangements for …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_25.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_06_25 c007: a notice of 1834-06-25 naming N. F. Hurd. It reads: “Trunk Found. [L]EFT near the house of the subscri[ber on] Lake street, about two weeks [since, a] TRUNK, containing clothing, &c. [On] the top of the Trunk are the initials of [W. …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_25.json#claims/c008",
@@ -908,6 +1018,11 @@
       "note": "chicago_democrat_1834_07_09 c006: a post-office letter list printed 1834-07-09. Names as read: Daniel O. Robian, [J]ohn Camp, Absolam Reel, [uncertain: seri Cas…], [C]harles H. Roberts, Quartus J. Carley, Daniel Barclay [K]essege, [E]dward B. Coleman, Benjamin Richardson, [I]saac Clark, David …"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c007",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1834_07_09 c007: a post-office letter list printed 1834-07-09. Names as read: Jacob Shook, James A. Sawyer, [J]ohn O. Deel, Thomas Smith, [W]illiam H. Davis, J. L. Sackett, [J]ohn Dunlap, Elijah Smith, [?]. D. Doty, R. Stewart, [C]harles C. Drake, Nathan Seymour, [L]orenzo …"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c008",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_07_09 c008: a post-office letter list printed 1834-07-09. Names as read: [W]illiam R. Dorby, Samuel Stuart, [D]avid Evert, John Stringer, [?]. W. Easling, James Sanderson, [C]harles Friend, Ruel Starr, [C]handler Fi[s]her, Lewis Sperry, [J]acob P. Foster, Robert Strong, …"
@@ -931,6 +1046,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c012",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_07_09 c012: a post-office letter list printed 1834-07-09. Names as read: John Walton, Rob[e]rt Hill, Hannah Hill, Henry C. West, Wm. C Whittely, David Ingersall, John C Williams, Hardin M. Ir[v]in, J L Warren, Adiel S. Jones, T. Jo[h]nston, Sophia Wellhelm, Horace Wood, …"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c013",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_07_09 c013: a notice of 1834-07-09 naming John S. C. Hogan. It reads: “List of Letters [REMAIN]ING in the Post-Office at Chicago, Ill. July 1, 1834. […] JOHN S. C. HOGAN, P.M.”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c014",
@@ -968,6 +1088,11 @@
       "note": "chicago_democrat_1834_07_16 c006: a post-office letter list printed 1834-07-16. Names as read: [uncertain: Daniel O. Robian], Jo[h]n Camp, Absolam Reel, Levi Cady, Charles [H]. Roberts, Quartus J. Carley, [uncertain: Daniel Barclay Ressege], Edward B. Coleman, Benjamin Richardson, Isaac Clark, …"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c007",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1834_07_16 c007: a post-office letter list printed 1834-07-16. Names as read: Jacob Shook, James A. Sawyer, John O. Deel, Thomas Smith, William H. Davis, J. [L]. Sackett, Jo[h]n Dunlap, Elijah Smith, J. D. Doty, R. Stewart, Charles C. Drake, Nathan Seymour, Lorenzo Downing, …"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c008",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_07_16 c008: a post-office letter list printed 1834-07-16. Names as read: William R. Dorby, Samuel Stuart, David Evert, John Stringer, N. W. Easling, James Sanderson, Charles Friend, Ruel Starr, [C]handler Fi[s]her, Lewis Sperry, Jacob P. Foster, Robert Strong, H. Fisher, …"
@@ -991,6 +1116,16 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c012",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_07_16 c012: a post-office letter list printed 1834-07-16. Names as read: Henry Watkins, Rob[e]rt [H]ill, Henry C. West, Hannah Hill, W[m]. C. Whittely, David Ingersall, John C. Williams, Hardin M. Ir[v]in, J. L. Warren, Ad[i]el S. Jon[e]s, Soph[i]a Wei[l]heim, T. …"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c013",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1834_07_16 c013: a post-office letter list printed 1834-07-16. Names as read: Harvey Crain, Weston Norman, Aaron J. Davis, Eli[a]s Hyde, Joseph Ship, Charles Titterington, Thomas Jones, William Webster, Truman King, Cornelius C. Van Horn"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c015",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_07_16 c015: a event of 1834-07-16 naming J. Bates. It reads: “Auction Sale. […] [Will be sold at] Public Auction […] at the Store House [near] F[o]rt Dearborn, on t[he 19]th inst. at 11 o'clo[ck A.] M., a quantity [of] FLOUR, and a few …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_16.json#claims/c019",
@@ -1031,6 +1166,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_30.json#claims/c006",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_07_30 c006: a price reading of 1834-07-30. It reads: “[CHICAGO] PRICES CURRENT, [Corrected for] the Democrat by P. F. Pec[k.] [COR]RECTED WEEKLY […] [$]9 75 […] S. fine […] 5 00 […] fine […] [Whe]at flour […] 5 50 […] bush[el] 75 a …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_30.json#claims/c007",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1834_07_30 c007: a post-office letter list printed 1834-07-30. Names as read: Amos Leonard, Levi Lucas, Henry F. Miller, Cha[r]les Nock, Daniel [N]ewton, Jerry [P]arsons, Joseph [R]oss, Jo[h]n Reed, Rev. W[m]. Royal, Thos. Galaher jr."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_30.json#claims/c008",
@@ -1108,9 +1248,19 @@
       "note": "chicago_democrat_1834_08_13 c006: a shipping reading of 1834-08-13. It reads: “[M]ARINE LIST. PORT OF CHICAGO. ARRIVED. Aug. 6. Schr. Commodore, Culver, Buffalo. / Schr. Lucinda, Hugunin, St. Joseph. / [1]4. [S]loop [D]art, Barna[rd], [Mil]waukee / New York, …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_13.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_08_13 c007: a event of 1834-08-13 naming J. Bates, jr.. It reads: “Sale of Town Lots. WIL[L] be sold a[t] Haddock's Man[s]ion-House, in Chica[go, on the] [1]5th inst. from 2 to […] [a] number of which lay on the south Branch of th[e Ch]icago …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_13.json#claims/c008",
       "rule": "the_notice_names_a_firm",
       "note": "chicago_democrat_1834_08_13 c008: the notice of 1834-08-13 carries the firm “Marsh & Simons” (trade as read: provision dealers at the Boston Market; street as read: none)."
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_13.json#claims/c013",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_08_13 c013: a notice of 1834-08-13 naming J. B. Beaubien, Pitman Fisher. It reads: “Administrator's Notice. W[il]l be sold at Public Auction, on Thursday the 11th day of September next, a[t] the house of the subscriber, all the personal es[t]ate of Pitman Fisher, …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_13.json#claims/c016",
@@ -1198,6 +1348,11 @@
       "note": "chicago_democrat_1834_09_03 c011: a notice of 1834-09-03 naming Hamilton, Richard J.. It reads: “School Land Patents. [A]LL those having made payment in full for [l]ots purchased at the [sale] of school lands in Chicago, in October, 1833, are requested to call at the office …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_03.json#claims/c013",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_democrat_1834_09_03 c013: a notice of 1834-09-03 whose entities array is empty. It reads: “Wants. [A SI]TUATION as Clerk in a Dry Good [St]o[re, by] a young man who is well acquainted with the Mercantile Business, writes a good hand, and is well acquainted with book …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_03.json#claims/c014",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_09_03 c014: a notice of 1834-09-03 whose entities array is empty. It reads: “To Lease. [L]OT No. 5, in block 35, on corner of Cla[rk] [an]d [R]andolph[ ]stre[e]ts. [En]quire at this office. [F]or particular[s]”"
@@ -1221,6 +1376,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_10.json#claims/c004",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_09_10 c004: a notice of 1834-09-10 naming Pearsons, H.. It reads: “Town Lot for Sale. [WA]TER Lot No. 12, in Kin[zi]e's Addition, and Lots [2], 7 and 8 [in block] 5. H. PEARSONS.”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_10.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_09_10 c007: a notice of 1834-09-10 naming Pearsons, H.. It reads: “[Lots a]nd Blocks for sale on the Scho[ol Section. Lots] [7-8-9-]10-[11-]12 […] and 12[…]. H. PEAR[S]ONS.”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_10.json#claims/c010",
@@ -1283,6 +1443,11 @@
       "note": "chicago_democrat_1834_09_24 c006: a notice of 1834-09-24 naming Byram, Thomas, Kinzie, John H.. It reads: “Caution. [Th]e public are hereby fore[warn]ed against trading for a promiso[r]y Note, given to Thomas By[r]am, by t[h]e subscri[b]er, bearing d[a]te “September 1[7], 1834,” …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_24.json#claims/c007",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_democrat_1834_09_24 c007: a notice of 1834-09-24 whose entities array is empty. It reads: “To Justices of the Peace. P[rinted] in neat form, and for sale at this office, Summons, Subp[oe]na, Warrant, Execution and Venire. Sept. 23, 1834.”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_24.json#claims/c011",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_09_24 c011: a event of 1834-09-24 naming Ingersoll, C., Beaubien, John B.. It reads: “A[n] Election [W]ILL be held at C. Inger[so]ll's, in Plainfield, on the [4]th day of October next for one Major to command o[n]e Battalion in the newly organized Regiment of Cook …”"
@@ -1296,6 +1461,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_08.json#claims/c002",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_10_08 c002: a notice of 1834-10-08 naming H. Pearsons. It reads: “[A]LL person[s] ar[e] forbid cutting tim[b]er, [or] Notice. [t]resspassing in any way on [the north] [w]e[s]t quarter of section No. 4. Township No. [3]9 [… R]ange 14 [E]ast. H. …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_08.json#claims/c007",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_democrat_1834_10_08 c007: a notice of 1834-10-08 whose entities array is empty. It reads: “[The list of letters remaining] in the Post Office at [Chicago …] […]”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_15.json#claims/c004",
@@ -1343,6 +1513,11 @@
       "note": "chicago_democrat_1834_10_22 c006: a post-office letter list printed 1834-10-22. Names as read: Town, [El]ijah S., Thomas, C. G., Taylor, Wm. H., Thomas, David, Troutman, Jo[h]n, Tindal, James, Vandeventer, Wm., W[a]tkins, Theophilus or Robert, Wilson, Asahe[l] B., Willis, Joh[n] J., Ward, …"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_22.json#claims/c007",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1834_10_22 c007: a post-office letter list printed 1834-10-22. Names as read: Hooker, Edward T., Williams, Charles C., Hussy, Robert, Winters, Moses, Ives, Chauncy P., Ingra[h]am, [D]aniel, [Wh]ite, Adonijah, Ing[e]r[s]oll, Austin, W[r]i[g]ht, Orrin, Je[ff]erson, Rob[e]rt H., …"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_22.json#claims/c008",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_10_22 c008: a post-office letter list printed 1834-10-22. Names as read: Johnson, Christopher, Wood, Aaron, Johnson, Seth, White, Edson, Jackson, Samuel, Watkins, Peter, K[in]zey, William, Works, Charles, King[sl]e[y], Edward, Wampler, Westley, Kiger, Ja[m]es, Wilcox, …"
@@ -1366,6 +1541,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_29.json#claims/c006",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_10_29 c006: a person notice of 1834-10-29 naming [?] Carey, [?] Snow, Daniel Whittier, E. B. Mosely, H. Ven De Bogart, [?] Avery, J. M. Marksall, [?] Beaubien, L. C. …. It reads: “[…] [?] Carey, [?] Snow, [?] / Daniel Whittier, E. B. Mosely / [?] Ven De Bogart, A. N. Ful[…] / [?] Avery, J. M. Marksall, J. [?] / [?] Beaubien, L. C. Saxton, H[?] / C. L. …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_29.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_10_29 c007: a event of 1834-10-29 naming J. H. Kinzie, Hans Crocker. It reads: “Resolved, That the Committe[e] be [and] th[e]y are hereby request[ed to prosecute] [a]gainst tho[s]e individuals who [were] [l]ast night engage[d] in gambling, [that the] full …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_10_29.json#claims/c008",
@@ -1398,9 +1578,19 @@
       "note": "chicago_democrat_1834_11_05 c014: a notice of 1834-11-05 whose entities array is empty. It reads: “List of Letters [REMA]INING in the Post Office at Ge[neva?], Il[l]. Oct. 1, 1834, [… names …] C. VAN HORN, P.M. [L]ist of Letters, [REMA]INING in the Post office at Paw[paw?], …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_05.json#claims/c015",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_11_05 c015: a event of 1834-11-05 naming P. Carpenter. It reads: “TEMPERANCE NOT[I]C[E]. [A meeting of] the Chicago Temperance [Society will] be held at the Presbyterian [church, o]n Thurs[d]ay evening next, [at ... o'cloc]k [P.] M. It is hoped …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_12.json#claims/c004",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_11_12 c004: a notice of 1834-11-12 naming George Vardon, Anson W. Taylor. It reads: “Strayed, [from the subscriber, on the … of … last, near the … Pl]ai[n]e river, a large yoke o[f] OXEN; one brown [a]nd white, the other red: formerly the pro[pe]rty of Mr. Anson …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_12.json#claims/c007",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1834_11_12 c007: a price reading of 1834-11-12. It reads: “[CH]ICAGO PRICES CURRENT, [Reported? f]or the Democrat by P. F. P[eck]. CORRECTED WEE[K]LY. [Flour a]nd Meal — Wabash S. fine bbl 4 [5]0; [Ohio? S.] fine bbl 4 00; St. Joseph bbl …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_19.json#claims/c001",
@@ -1451,6 +1641,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c006",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_11_26 c006: a event of 1834-11-26 naming Mary Baxley. It reads: “FOR THE CHICAGO DEMOCRAT. M[r]. Ed[it]or — The follow[ing is a biographi]cal sketch of the late Mrs. BAXLE[Y, which was] read at her funeral by the pastor [of the] Methodist …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c007",
+      "rule": "the_column_names_nobody",
+      "note": "chicago_democrat_1834_11_26 c007: a notice of 1834-11-26 whose entities array is empty. It reads: “Caution. [All per]sons are forbid cutting or drawing a[way tim]ber or wood from [the … of section No. …] Township No. [… of the S.] quarter of section [No. … in To]wnship No. …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_03.json#claims/c008",
@@ -1528,6 +1723,11 @@
       "note": "chicago_democrat_1834_12_24 c005: a notice of 1834-12-24 naming David Laughton, G. W. Snow. It reads: “Administrator's Notice. [Letters] of Administration upon the e[s]tate of D[av]id La[u]ghton, deceased, having been granted to the undersigned by the court of [P]robate of Cook …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_24.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1834_12_24 c007: a notice of 1834-12-24 naming A. Clybourn, Collins. It reads: “Notice. A[L]L persons indebted to A. Clybourn by note [or] open account, are requested to make [immediate] payment: and all notes or accounts [unpaid on] the 10th of January [will …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_24.json#claims/c008",
       "rule": "a_dated_appearance_bounds_a_presence",
       "note": "chicago_democrat_1834_12_24 c008: a notice of 1834-12-24 naming J. H. Mulford. It reads: “[… those indebted are requested to call and settle, and if they] do not on or before the first of [J]anuary, we will be under th[e disagreeable nec]essity of proceeding as the law …”"
@@ -1561,6 +1761,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_01_21.json#claims/c006",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1835_01_21 c006: a shipping reading of 1835-01-21. It reads: “Arrived at this port within a few days past, the schooners Detroit, Huron, and Winnebago, belonging to Messrs. Bronson and Crocker, from the ports of Chicago in Illinois, Michigan …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_01_21.json#claims/c007",
+      "rule": "a_dated_appearance_bounds_a_presence",
+      "note": "chicago_democrat_1835_01_21 c007: a person notice of 1835-01-21 naming H. Crocker, Harmon, Loomis & Co., Abissinia Davis, David Carver, Kinzie & Hall, Levi F. Arnold, Thomas Galaher. It reads: “[missing/obscured: This column contains a municipal meeting notice, commercial notices, and two Post Office letter lists. Narrow internal name-list subcolumns are interleaved in …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_01_21.json#claims/c008",
@@ -1613,6 +1818,11 @@
       "note": "chicago_democrat_1835_05_20 c006: a shipping reading of 1835-05-20. It reads: “[Marine list, arrivals and clearances at Chicago, late April to 1 May 1835:] Sloop Westward Ho, Banks, M[i]lwa[u]kee. Schr. White Pigeon, Noel, Grand river. [Schr.] Jesse Smith, …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_20.json#claims/c013",
+      "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
+      "note": "chicago_democrat_1835_05_20 c013: a post-office letter list printed 1835-05-20. Names as read: Hannah W. Kirby, William Allger, Alexander C. Kent, James Arrasmith, John P. Kittridge, Edward Allen, James Knaggs, E. Allen, [uncertain: Elm.] A. King, Joseph [uncertain: Adams], Hannah A. Kirby, …"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_27.json#claims/c001",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1835_05_27 c001: a price reading of 1835-05-27. It reads: “CHICAGO PRICES CURRENT, CORRECTED WEEKLY. Salt, bbl $2 75 a 3 00. Flour and Meal — Super fine bbl 5 00 a 6 50; fine [5 ..]; Buckwheat flour none; Indian meal bush 1 00 a 1 50. …”"
@@ -1631,6 +1841,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_27.json#claims/c012",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1835_05_27 c012: a event of 1835-05-27 whose entities array is empty. It reads: “The May Term of the Circuit C[ourt com]menced in this town on Monday last, [Judge Breese] presiding. There is [considera]ble business [bef]ore the court, most of [the caus]es …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_27.json#claims/c013",
+      "rule": "the_notice_names_a_firm",
+      "note": "chicago_democrat_1835_05_27 c013: the notice of 1835-05-27 carries the firm “Chicago & St. Joseph Packet (schooner Llewellyn)” (trade as read: packet service for freight and passengers between Chicago …; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_06_04.json#claims/c001",
@@ -1676,6 +1891,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_06_10.json#claims/c006",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1835_06_10 c006: a price reading of 1835-06-10. It reads: “[CHICAGO PRICES CURRENT,] CORRECTED WEEKLY. [Salt, bbl] $2 75 a 3 00. [Flour] and Meal — Super fin[e bbl] 10 00 [a 12 00]; fine 5 [00]; B[u]ckwheat flour none; [Indian] meal bush …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_06_10.json#claims/c007",
+      "rule": "the_market_and_the_port_in_aggregate",
+      "note": "chicago_democrat_1835_06_10 c007: a shipping reading of 1835-06-10. It reads: “[Arrivals of vessels at Chicago:] June 4 Sch. Llewellyn, Clark, St. Joseph. 5 [Sch.] Indiana, M'Queen, do. 5 [Sch.] Swan, Duncan, do. 6 [Sch.] Atalanta, Shepherd, Buffalo. 7 Brig …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_06_17.json#claims/c002",
@@ -1773,9 +1993,19 @@
       "note": "chicago_democrat_1835_07_01 c021: a shipping reading of 1835-07-01. It reads: “[LIST] OF VESSELS [ARRIVED AT] CHICAGO, 1835. [… schoone]r Bridget, —, Buffalo. [… St]. Joseph, Burnham, Kal[amazo]o.”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_08.json#claims/c007",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_democrat_1835_07_08 c007: the issue is dated 1835-07-08, after the scene date. The notice reads: “[NOTI]CE.-All persons are cautioned a-[gainst] purchasing a Note or due bill signed [by me, pay]able to O. I. Thompson or order, [bearing date the 1]2th or 13th of May last, as …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_08.json#claims/c014",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_democrat_1835_07_08 c014: the issue is dated 1835-07-08, after the scene date. The notice reads: “[$]10 Reward. [A] bay HORSE, with short tail, [and a bl]a[ze], with saddle on, runaway near [this town and wa]s taken up by two travellers, [who it is suppos]ed they have left him …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_08.json#claims/c015",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_democrat_1835_07_08 c015: the issue is dated 1835-07-08, after the scene date. The notice reads: “[S]trayed or Stolen, [On o]r about the 14th of June last a sorrel [M]ARE, about fifteen hands high, of[f hind foot] white, a small white spot in her fore-[head, a s]car on one of …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_08.json#claims/c016",
@@ -1813,6 +2043,11 @@
       "note": "chicago_democrat_1835_07_15 c003: the issue is dated 1835-07-15, after the scene date. The shipping reads: “[LIST] OF VESSELS[, ARRIVED] a[t] CHICAGO, 1835. ARRIVED, [July] [9]th, Schr. Hannah[,] [O]s[w]ega[tchie…] [Schr.] Swan, Gilbert[,] St. Joseph[;] Brig John Kinz[ie], Grover, …”"
     },
     {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_15.json#claims/c007",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_democrat_1835_07_15 c007: the issue is dated 1835-07-15, after the scene date. The person reads: “List of Letters [re]main[ing] in the Post Off[i]ce at Henne[p]in, Putnam county, Ill. July 1, 1[8]35 […] THOS. GA[L]A[H]E[R], [jr.] P.M. — List of Letters [RE]MA[IN]ING [in] the …”"
+    },
+    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c001",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_democrat_1835_07_22 c001: the issue is dated 1835-07-22, after the scene date. The event reads: “[MARRIED] […] at Capt. Naper's Settlement, on the 9th inst. [by the] Rev[.] Mr[.] [Bl]ackwell, Mr. STEPHEN E. DOW[…]”"
@@ -1821,6 +2056,11 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c002",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_democrat_1835_07_22 c002: the issue is dated 1835-07-22, after the scene date. The price reads: “CHICAGO PRICES CURRENT, [COR]RECTED WEEKLY. [Flour and Meal—] Super fine [per bbl] 8 00 a 10 00 fine 8 00 Buckwheat flour none. Indian [meal per] bush 1 00 a 1 50 [corn per] bush …”"
+    },
+    {
+      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c007",
+      "rule": "the_issue_is_printed_after_the_scene_date",
+      "note": "chicago_democrat_1835_07_22 c007: the issue is dated 1835-07-22, after the scene date. The notice reads: “Dissolution. [THE] fir[m] of [W]m. Hogu[e] & co. ha[s] been [d]i[ss]olved by mutual consent. All persons [having] unsettled accounts with, o[r] who a[r]e in[debted] to the …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c010",

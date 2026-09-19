@@ -21,21 +21,12 @@
   "note": "Two named Wrights arrive in 1832 and are grouped here as one household. Whether a mother or other children travelled with them is not stated."
  },
  "origin": {
-  "value": "New York State",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_wright_john:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Massachusetts",
+  "confidence": "inferred",
+  "sources": [
+   "moses_kirkland_history_of_chicago_v1"
+  ],
+  "note": "A CAME-FROM AND NOT A BIRTHPLACE, WHICH IS THE CLAIM THIS FIELD ACTUALLY ASKS FOR. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 89 (claim bk_mose1_001): \"Among these in 1832 were Philo Carpenter, and John S. Wright from Massachusetts; T. W. Goodrich, Hamilton Barnes, Dr. Philip Maxwell from New York; Dr. E. S. Kimberly, George W. Snow, of Vermont, and Alanson Sweet.\" The sentence is about men who CAME THROUGH CHICAGO IN 1832 AND DECIDED TO REMAIN, so the state is attached to the coming and not to a birth — which is what separates it from the Calumet Club roll's birthplaces that most of this layer's cited origins rest on. THE DRAWN BLOCK IS RETIRED BY ITS OWN TERMS: it carried `replaceable_by` \"a source that says where this household came from\", and this is that source, so the draw's basis, seed and stage mark go with it. Graded `inferred` and never higher — an 1895 compilation, transcription_mediated, crediting Andreas and Hurlbut on the pages read here (the ceiling T-1322 set for the settlers table in the same volume). THE HOUSEHOLD TAKES THE SON'S STATED ORIGIN BECAUSE THE TWO CAME TOGETHER: this card's own arrival note says \"Both men, same year, stated twice\", John Wright and his son John S. Wright arriving in 1832 as one party, so where they came from is one answer and the compiler gives it for the one of them he names. The draw had said New York State."
  },
  "reason_for_coming": {
   "value": "A store for the traffic of a town filling up",

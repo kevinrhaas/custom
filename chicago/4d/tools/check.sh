@@ -2364,6 +2364,21 @@ step "the modelled families re-derive from the household model and the order boo
 selftest "...and every rule that decides who gets a family refuses its own case" \
   python3 tools/reconstruct_modelled_families.py --self-test
 
+# T-1172, stage `readmissions` of that programme. The borderline roster (T-1159) holds
+# every name the corpus PRINTED and the research WITHHELD; this stage spends four of its
+# seven classes, and it overturns no refusal. What the gate below holds: that all 898
+# re-admissions re-derive from the roster, the layer and the three persistence crosswalks
+# they are priced against; that every minted card still answers to the record contract;
+# and - the one that matters most - that every card an R1 ruling stands beside STILL reads
+# `uncertain` in the research layer, so a reconstruction cannot outlive the refusal it was
+# written against. A hand-edited card or a persistence rate nudged toward a nicer figure
+# fails here.
+step "every re-admission re-derives, and no refusal it stands beside has moved" \
+  python3 tools/readmit_borderline_roster.py --check
+
+selftest "...and a guessed date, a borrowed name and a rising persistence curve are refused" \
+  python3 tools/readmit_borderline_roster.py --self-test
+
 # T-1174, stage `women_and_children` of the same programme, and the first one to write a
 # HOUSEHOLD rather than to draw into one. The rolls that name this town print men, so the
 # house with no man in it is the record the sources never made and the stage above — which
@@ -2379,7 +2394,6 @@ step "the women and children re-derive from the pyramid the order book still wan
 
 selftest "...and every rule that decides who is drawn refuses its own case" \
   python3 tools/reconstruct_women_children.py --self-test
-
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
@@ -3745,6 +3759,20 @@ step "Fergus's 1839 directory rebuilds from its committed text" \
 selftest "…and the seven repaired surnames in it still read off their witnesses" \
   python3 tools/read_fergus_1839.py --self-test
 
+step "…and the trade table counted off it rebuilds too" \
+  python3 tools/build_trade_table_1839.py --check
+
+# T-1346. The table is a PRIOR the reconstruction will draw a head's trade from, so
+# the rules that build it are load-bearing in a way a share never looks. Its own
+# assertions pin the four that would be invisible if they broke: the slot is cut at
+# the first comma so an employer never becomes a trade, the scan's five broken
+# trades are repaired by name, a bare house-word is the trade while a house carrying
+# a proper name is not, and mapped + refused still equals the entries with a printed
+# trade — a normaliser that silently drops what it cannot read is how a share becomes
+# a fiction.
+selftest "…and the trade table's own reading rules still fire" \
+  python3 tools/build_trade_table_1839.py --self-test
+
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839.py --check
 
@@ -4255,6 +4283,30 @@ step "the 1835 reconstruction order book re-derives, and no bucket is overfilled
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_order_book_1835.py --self-test
+
+# T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
+# town` sits in the book above with no target and no quota, because the town model bounds
+# the town's RESIDENTS and the land-sale crowd, the immigrants awaiting lots, the harbour
+# gang and the crews ashore were in the town on 1 July 1835 and not of it. This bounds that
+# cohort — 192 to 900 — and says where it slept; T-1353 mints it and T-1214 places the camps.
+#
+# WHY A GATE. Every figure is a quoted sentence or a count of a file that moves: the floor is
+# a rate off the 1843 census applied to the town model's own resident point, and the measured
+# land-sale floor is a join between the tract register and the resident crosswalk, which the
+# resident layer changes under. Left ungated it would go stale while reading as a decision.
+#
+# The refusals worth knowing: a quoted sentence the corpus no longer carries (the American's
+# "some hundreds more" is the whole ceiling, and a re-extraction that drops it must fail
+# rather than leave the band standing on nothing), a land-sale crosswalk that can place
+# nobody — which would make every purchaser in the register read as a stranger and turn a
+# measurement into a fiction — a camp-ground candidate that types a polygon of its own
+# instead of naming the committed geometry it resolves from, and a headline figure that has
+# acquired a point reading, which this model refused to pick and no later hand may adopt for it.
+step "the 1835 transient cohort re-derives, and its bracket still stands on the sentences it quotes" \
+  python3 tools/model_transients_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/model_transients_1835.py --self-test
 
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names

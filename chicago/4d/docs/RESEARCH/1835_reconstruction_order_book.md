@@ -23,14 +23,14 @@
 
 ## Real names before invented ones
 
-The roster offers 1,680 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,649 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
 | `R1_in_window_uncertain` | 805 | T-1172 |
-| `R2_in_window_single_source` | 213 | T-1172 |
+| `R2_in_window_single_source` | 199 | T-1172 |
 | `R3_1834_return_or_muster` | 30 | T-1172 |
-| `R4_surname_only_census` | 440 | T-1170 |
+| `R4_surname_only_census` | 423 | T-1170 |
 | `R5_later_only_backprojectable` | 55 | T-1172 |
 | `R6_native_metis_black` | 137 | T-1177 |
 

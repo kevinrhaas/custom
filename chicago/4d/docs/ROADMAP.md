@@ -1,5 +1,14 @@
 # ROADMAP
 
+## Unreal delivery — owner-ranked programme, 2026-09-18
+
+T-1356 and [the Unreal runbook](unreal/README.md) hold the programme. Follow the new
+QUEUE band after South Through Time and before Loop Improvements. Reuse T-0252 for
+shared layer exports. Keep local Unreal/GPU and deployment work blocked until both
+dependencies and executor capability are evidenced; the remote web worker is ineligible.
+Source bundles, engine imports, cooked target builds and deployed streams are distinct.
+
+
 The build order and the work parcels. `docs/PLAN.md` carries the full reasoning; this is the
 operational view — what to pick up next, and what it depends on.
 
