@@ -116,7 +116,7 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1144 | 6 | split_live | yes |
+| T-1144 | 6 | split | **NO** |
 | T-1172 | 260 | open | yes |
 | T-1182 | 531 | open | yes |
 | T-1188 | 12 | open | yes |
@@ -139,6 +139,6 @@ Reproduce: `python3 tools/measure_research_spend.py --check`.
 
 ## 8. Closing
 
-Unclassified registered research units: **0**. Dead asserted targets: **0**. Unresolved units deferred to work that is not live: **0**.
+Unclassified registered research units: **0**. Dead asserted targets: **0**. Unresolved units deferred to work that is not live: **6**.
 
 The closed ledger is therefore complete in its own terms, and section 7 names the five places where the research stopped and the ticket that carries each one. This audit makes no GO/NO-GO judgement about reconstruction: that is T-1157's signature, and this is the evidence under it.
