@@ -33,7 +33,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_02#c021"
-      ]
+      ],
+      "also_printed_as": []
     },
     {
       "name": "J. B. Tuttle",
@@ -47,7 +48,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_02#c021"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "staff": [],

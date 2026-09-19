@@ -2767,6 +2767,9 @@
     "tools/old_settlers.py": {
       "wrote": []
     },
+    "tools/pinned_sources.py": {
+      "wrote": []
+    },
     "tools/placement_policy_1835.py": {
       "wrote": []
     },
@@ -2900,6 +2903,9 @@
       "wrote": []
     },
     "tools/reconcile_665.py": {
+      "wrote": []
+    },
+    "tools/reconstruct_businesses_1835.py": {
       "wrote": []
     },
     "tools/reconstruct_garrison_1835.py": {

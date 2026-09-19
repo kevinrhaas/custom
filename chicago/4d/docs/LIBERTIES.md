@@ -12983,9 +12983,77 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **T-1196**, the convergence **T-1179**.
 **Recorded:** 2026-09-19.
 
+### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
+**Scope:** `businesses.records[reconstructed]` — 2 houses of trade, each with an adopted keeper
+
+**Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
+records into `data/businesses/authored/`, one for every house the reconstruction order book
+counts the town of 1 July 1835 short of. Its first group — stores, book stores and the drug
+and provision trades — writes **two**: *B. Crandall, drugs, medicines and dye stuffs* on
+Dearborn Street and *Nathaniel Metcalf, drugs, medicines and dye stuffs* on Kinzie Street.
+Each carries `provenance: reconstructed`, a `reconstruction` block naming the order-book row
+that bought it, and the seed string a reader can retype to redraw its style, its goods line
+and its street face.
+
+**Why:** because the December 1835 State census prints **four druggists** and the newspaper
+register holds **two** — Philo Carpenter and Frederick Thomas. The gap is not a doubt about
+the census; it is the ordinary fact that a shop which never bought an advertisement left no
+trace in the only two papers this project can read. The choice is between a town whose
+trades are only the ones that advertised, and a town whose trades are counted, filled, and
+labelled as filled. This project takes the second and says so on the record.
+
+**What is invented, exactly:** three things, and no more. (1) **The firm style** — the
+form and the goods line, each dealt on the record's own seed from
+`docs/RESEARCH/business-naming-1835.md`, whose every entry is a form the register itself
+prints and names the attested house that prints it. (2) **The street face** — a
+`street_only` location, which the business schema calls a LIMIT rather than a place: no lot,
+no roof, no coordinate, and a `limit_reason` that says no source places this house because
+no source names it. The face is dealt from the faces the register's own distribution of
+street-only businesses allows a retail trade in that division; T-1195 writes the placement
+policy with its evidence and T-1199 seats these houses on the lot grid. (3) **That the
+house existed at all**, which is the census's claim and not this project's.
+
+**The keeper is NOT invented here, and that is the point.** Both proprietors are
+reconstructed trade heads the resident band drew months earlier (L248, stage
+`trade_households`), and their cards said in advance what would happen to them: *"the
+business band adopts these heads as its proprietors rather than minting its own, so the two
+bands fill one quota."* The tool mints no person — `tools/reconstruct_residents_1835.py` is
+the one writer of a person graded `reconstructed`, and a business tool that drew its own
+proprietor would order the same druggist twice, once as a resident and once as a shopkeeper.
+A group ordering more houses than the resident band drew heads for is REFUSED rather than
+under-filled; the shortfall is T-1173's to draw.
+
+**What this deliberately does NOT do.** It writes **no staff** — how many clerks and
+apprentices a house of each kind employed is T-1183's model and nothing here guesses at it.
+It writes **no dates**: the census that orders these houses was taken in December 1835 and
+counts a standing trade, not an opening, so `dates.precision` is `unbounded` and the record
+claims only that the house was trading on the scene date. It writes **no source**, and the
+compiler refuses one on a reconstructed record. And it writes **no class it has not been
+asked to rule on**: the trade-to-census-class table carries one row per class this group
+builds, and a bucket whose class is missing is refused by name with the ticket that owes the
+row — deciding that a refectory keeps a tavern rather than a store is T-1187's ruling, not
+T-1184's.
+
+**Which way it is wrong if it is wrong.** Toward a town with too FEW trades, not too many.
+The census counts **118 enumerated establishments** and the register holds 180 businesses of
+every kind; the order book orders only the 24 the census's own classes leave short, and
+this group's share of that is two. Nothing is reconstructed for the trades the census does
+not enumerate, and no general store is added at all — the register already holds 59 against
+the census's 44, and the book orders none.
+
+**How to resolve:** any register, directory or deed naming a real druggist on either side of
+the river in 1835 retires the house that stands in its slot — each record says so in its
+`replaceable_by`, and the retirement runs through `--build`, never by hand. A re-cut of the
+order book that no longer orders the bucket retires both.
+
+Related: **L248** (the trade heads these houses adopt), **L232** (the 26 businesses that
+stand on the scene date because the only paper naming them was printed later), tickets
+**T-1184**, **T-1173**, the order book **T-1166**, the successors **T-1185** … **T-1189**.
+**Recorded:** 2026-09-19.
+
 ---
 
-### L254 — Seven of the twelve placement clauses are reasoned rather than read, and the four that carry the most future roofs are the thinnest
+### L255 — Seven of the twelve placement clauses are reasoned rather than read, and the four that carry the most future roofs are the thinnest
 
 **Decision:** `data/reconstruction/1835_placement_policy.json` (T-1195) writes down, as twelve
 clauses, where this project will seat every reconstructed building it has not yet built. Eight

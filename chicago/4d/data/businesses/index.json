@@ -3,14 +3,14 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 196,
+    "records": 198,
     "compiled_from_register": 196,
-    "authored": 0,
-    "present_at_scene_date": 179,
+    "authored": 2,
+    "present_at_scene_date": 181,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
-      "druggist": 2,
+      "druggist": 4,
       "iron_foundry": 1,
       "lawyer": 18,
       "not_stated": 5,
@@ -28,26 +28,28 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
+      "street_only": 63,
       "unplaceable": 83
     },
-    "named_people": 209,
-    "named_people_linked_to_a_town_card": 157,
+    "named_people": 198,
+    "named_people_linked_to_a_town_card": 146,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 21,
     "by_grade": {
       "attested": 158,
-      "inferred": 38
+      "inferred": 38,
+      "reconstructed": 2
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
+      "street_only": 63,
       "unplaceable": 79
     },
     "by_street": {
       "Canal Street": 1,
-      "Dearborn Street": 23,
+      "Dearborn Street": 24,
+      "Kinzie Street": 1,
       "La Salle Street": 4,
       "Lake Street": 14,
       "Monroe Street": 1,
@@ -61,7 +63,7 @@
       "other": 10,
       "southern": 5,
       "unknown": 85,
-      "yankee": 46
+      "yankee": 48
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -105,7 +107,7 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 46
+        "count": 48
       },
       {
         "value": "new_york",
@@ -170,6 +172,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -216,12 +219,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1833-12-10"
+          "to": "1833-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -265,12 +270,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-04",
-          "to": "1834-05-21"
+          "to": "1834-05-21",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -318,12 +325,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-12-17",
-          "to": "1834-12-24"
+          "to": "1834-12-24",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -364,12 +373,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-22",
-          "to": "1835-08-22"
+          "to": "1835-08-22",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -412,6 +423,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -455,12 +467,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-27",
-          "to": "1835-07-25"
+          "to": "1835-07-25",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -499,12 +513,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-27",
-          "to": "1835-08-15"
+          "to": "1835-08-15",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -540,6 +556,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -580,12 +597,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-06-20"
+          "to": "1835-06-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "new_york_house",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -624,6 +643,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -667,6 +687,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -706,6 +727,12 @@
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "tremont_house_1",
+          "title": "Tremont House (the first)",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -753,12 +780,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-03-04"
+          "to": "1834-03-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "h_jones_store",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -799,12 +828,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1833-11-26"
+          "to": "1833-11-26",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "h_jones_store",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -854,6 +885,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -901,7 +933,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "Hogan",
@@ -909,7 +942,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "William Brewster",
@@ -917,7 +951,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "Franklin Brewster",
@@ -925,7 +960,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "John S. C. Hogan",
@@ -933,12 +969,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -984,7 +1022,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         },
         {
           "name": "Humphrey",
@@ -992,12 +1031,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1036,12 +1077,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-08",
-          "to": "1835-08-15"
+          "to": "1835-08-15",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "brown_boarding_house",
+        "anchor": null,
         "street_id": "randolph",
         "street": "Randolph Street",
         "tier": "attested",
@@ -1082,12 +1125,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1833-11-26"
+          "to": "1833-11-26",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1133,6 +1178,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1173,6 +1219,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1211,12 +1258,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-12",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1256,12 +1305,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1834-06-04"
+          "to": "1834-06-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1302,6 +1353,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1346,12 +1398,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-04-01",
-          "to": "1834-09-10"
+          "to": "1834-09-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1399,12 +1453,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-01-07",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1450,12 +1506,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-01-07",
-          "to": "1834-04-08"
+          "to": "1834-04-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "elston_soap_candle_manufactory",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -1499,12 +1557,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-05-27",
-          "to": "1835-05-27"
+          "to": "1835-05-27",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1561,6 +1621,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1603,7 +1664,10 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-01-28",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": [
+            "James H. Collins"
+          ]
         },
         {
           "name": "J. D. Caton",
@@ -1611,28 +1675,21 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-01-28",
-          "to": "1835-05-20"
-        },
-        {
-          "name": "James H. Collins",
-          "person_id": "collins_j_h",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1834-01-28",
-          "to": "1835-05-20"
-        },
-        {
-          "name": "J. Dean Caton",
-          "person_id": "caton_john_dean",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1834-01-28",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": [
+            "J. Dean Caton"
+          ]
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_brewster_hogan_co",
+          "title": "Brewster, Hogan & Co.",
+          "streets": []
+        },
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1673,7 +1730,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-11-05",
-          "to": "1834-11-05"
+          "to": "1834-11-05",
+          "also_printed_as": []
         },
         {
           "name": "C. George",
@@ -1681,12 +1739,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-11-05",
-          "to": "1834-11-05"
+          "to": "1834-11-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1724,6 +1784,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -1764,7 +1825,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         },
         {
           "name": "Hol[b]man",
@@ -1772,12 +1834,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -1818,6 +1882,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1858,12 +1923,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-09-10",
-          "to": "1834-09-10"
+          "to": "1834-09-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -1912,12 +1979,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-25",
-          "to": "1834-12-10"
+          "to": "1834-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -1958,7 +2027,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         },
         {
           "name": "R. A. Neff",
@@ -1966,12 +2036,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2018,6 +2090,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2082,12 +2155,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "elston_soap_candle_manufactory",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -2128,6 +2203,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2191,12 +2267,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -2238,7 +2316,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-23",
-          "to": "1834-07-23"
+          "to": "1834-07-23",
+          "also_printed_as": []
         },
         {
           "name": "[uncertain: Wm. McKaleb]",
@@ -2246,12 +2325,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-23",
-          "to": "1834-07-23"
+          "to": "1834-07-23",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2290,12 +2371,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-04",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "new_york_house",
+          "title": "New York House",
+          "streets": []
+        },
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -2336,20 +2424,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-08-08",
-          "to": "1835-08-12"
-        },
-        {
-          "name": "W. G. Austin",
-          "person_id": "austin_w_g",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-08-08",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": [
+            "W. G. Austin"
+          ]
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -2395,12 +2479,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1834-06-04"
+          "to": "1834-06-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -2444,12 +2530,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-23",
-          "to": "1834-07-23"
+          "to": "1834-07-23",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2492,12 +2580,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-18",
-          "to": "1834-03-18"
+          "to": "1834-03-18",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "mansion_house",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -2542,12 +2632,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-12-10",
-          "to": "1834-12-10"
+          "to": "1834-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2591,12 +2683,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-04-08",
-          "to": "1834-04-08"
+          "to": "1834-04-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2640,12 +2734,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2690,12 +2786,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-17",
-          "to": "1834-01-07"
+          "to": "1834-01-07",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2736,7 +2834,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-04-16",
-          "to": "1834-10-08"
+          "to": "1834-10-08",
+          "also_printed_as": []
         },
         {
           "name": "J. Shrigley",
@@ -2744,12 +2843,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-04-16",
-          "to": "1834-10-08"
+          "to": "1834-10-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2792,12 +2893,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-18",
-          "to": "1834-09-10"
+          "to": "1834-09-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2838,12 +2941,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-07-04",
-          "to": "1835-07-04"
+          "to": "1835-07-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "monroe",
         "street": "Monroe Street",
         "tier": "inferred",
@@ -2884,12 +2989,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1835-05-27"
+          "to": "1835-05-27",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -2938,12 +3045,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-11-05",
-          "to": "1834-11-05"
+          "to": "1834-11-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -2987,12 +3096,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-04",
-          "to": "1834-03-04"
+          "to": "1834-03-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3049,12 +3160,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-08",
-          "to": "1835-08-15"
+          "to": "1835-08-15",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "frederick_thomas_shop",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -3097,6 +3210,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -3137,12 +3251,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3181,12 +3297,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-10-08",
-          "to": "1834-11-12"
+          "to": "1834-11-12",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -3227,28 +3345,22 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-17",
-          "to": "1835-08-05"
-        },
-        {
-          "name": "Spring, G.",
-          "person_id": "spring_giles",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1833-12-17",
-          "to": "1835-08-05"
-        },
-        {
-          "name": "Giles Spring",
-          "person_id": "spring_giles",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1833-12-17",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": [
+            "Spring, G.",
+            "Giles Spring"
+          ]
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "tremont_house_1",
+          "title": "Tremont House (the first)",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -3289,7 +3401,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         },
         {
           "name": "William Laird",
@@ -3297,12 +3410,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3343,12 +3458,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3389,12 +3506,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-19",
-          "to": "1835-08-19"
+          "to": "1835-08-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -3458,7 +3577,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         },
         {
           "name": "Goss",
@@ -3466,7 +3586,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         },
         {
           "name": "Cobb",
@@ -3474,12 +3595,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3518,12 +3641,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-12-10",
-          "to": "1834-12-10"
+          "to": "1834-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "tremont_house_1",
+          "title": "Tremont House (the first)",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -3579,6 +3709,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -3665,7 +3796,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1835-07-25"
+          "to": "1835-07-25",
+          "also_printed_as": []
         },
         {
           "name": "Loomis",
@@ -3673,12 +3805,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1835-07-25"
+          "to": "1835-07-25",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -3717,12 +3851,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-04",
-          "to": "1835-07-04"
+          "to": "1835-07-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3761,12 +3897,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "jh_kinzie_forwarding_store",
+          "title": "J. H. Kinzie's Store",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3807,12 +3950,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-12",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -3851,12 +3996,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-02-25",
-          "to": "1834-05-14"
+          "to": "1834-05-14",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -3933,7 +4080,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1835-08-29"
+          "to": "1835-08-29",
+          "also_printed_as": []
         },
         {
           "name": "Hubbard",
@@ -3941,7 +4089,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1835-08-29"
+          "to": "1835-08-29",
+          "also_printed_as": []
         },
         {
           "name": "Gurdon S. Hubbard",
@@ -3949,12 +4098,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1835-08-29"
+          "to": "1835-08-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lasalle",
         "street": "La Salle Street",
         "tier": "inferred",
@@ -3993,12 +4144,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1833-11-26"
+          "to": "1833-11-26",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "green_tree_tavern",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -4039,12 +4192,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-11-19",
-          "to": "1834-11-19"
+          "to": "1834-11-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "exchange_coffee_house",
+          "title": "Exchange Coffee House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -4094,7 +4254,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         },
         {
           "name": "J. B. Tuttle",
@@ -4102,12 +4263,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -4148,7 +4311,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-16",
-          "to": "1834-08-20"
+          "to": "1834-08-20",
+          "also_printed_as": []
         },
         {
           "name": "J. Bates, jr.",
@@ -4156,12 +4320,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-16",
-          "to": "1834-08-20"
+          "to": "1834-08-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "bates_auction_room",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -4202,12 +4368,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-19",
-          "to": "1835-08-19"
+          "to": "1835-08-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -4248,12 +4416,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-07-01"
+          "to": "1835-07-01",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_jones_king_co",
+          "title": "Jones, King & Co.",
+          "streets": []
+        },
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -4292,12 +4467,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -4338,12 +4515,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-17",
-          "to": "1833-12-17"
+          "to": "1833-12-17",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "temple_lake_st_building",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -4388,12 +4567,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-20",
-          "to": "1835-06-20"
+          "to": "1835-06-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "jh_kinzie_forwarding_store",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -4450,20 +4631,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1835-08-12"
-        },
-        {
-          "name": "Mulford, J. H.",
-          "person_id": "mulford_james_h",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1834-06-04",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": [
+            "Mulford, J. H."
+          ]
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -4553,12 +4730,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-02-18",
-          "to": "1834-12-03"
+          "to": "1834-12-03",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -4606,12 +4790,22 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-08-13",
-          "to": "1834-08-13"
+          "to": "1834-08-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "corner",
+          "id": null,
+          "title": "Dearborn Street and Lake Street",
+          "streets": [
+            "dearborn",
+            "lake"
+          ]
+        },
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -4714,12 +4908,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-09-17",
-          "to": "1835-07-18"
+          "to": "1835-07-18",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -4803,20 +4999,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-25",
-          "to": "1835-07-01"
-        },
-        {
-          "name": "J. S. C. Hogan",
-          "person_id": "hogan_john",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1834-03-25",
-          "to": "1835-07-01"
+          "to": "1835-07-01",
+          "also_printed_as": [
+            "J. S. C. Hogan"
+          ]
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "hogan_store",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -4855,7 +5047,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-04",
-          "to": "1834-04-08"
+          "to": "1834-04-08",
+          "also_printed_as": []
         },
         {
           "name": "William Adams",
@@ -4863,12 +5056,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-04",
-          "to": "1834-04-08"
+          "to": "1834-04-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -4912,12 +5107,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-07-11",
-          "to": "1835-07-11"
+          "to": "1835-07-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "wright_building_to_let_a",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -4958,12 +5155,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-10",
-          "to": "1835-06-10"
+          "to": "1835-06-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lasalle",
         "street": "La Salle Street",
         "tier": "inferred",
@@ -5008,7 +5207,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "J. Bates, Jr.",
@@ -5016,12 +5216,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "bates_auction_room",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -5062,12 +5264,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "north_water",
         "street": "North Water Street",
         "tier": "inferred",
@@ -5106,12 +5310,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-07-22",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "temple_lake_st_building",
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "attested",
@@ -5152,12 +5358,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-19",
-          "to": "1835-08-19"
+          "to": "1835-08-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "temple_lake_st_building",
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "attested",
@@ -5226,12 +5434,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-04-16",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "jh_kinzie_forwarding_store",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -5278,20 +5488,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-06-10",
-          "to": "1835-08-12"
-        },
-        {
-          "name": "Holbrook, John",
-          "person_id": "holbrook_john",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-06-10",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": [
+            "Holbrook, John"
+          ]
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "john_holbrook_store",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -5330,12 +5536,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1833-12-10"
+          "to": "1833-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5379,12 +5587,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-07-09"
+          "to": "1834-07-09",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "watkins_school_house",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -5480,12 +5690,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "wright_building_to_let_a",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5566,7 +5778,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-12-03"
+          "to": "1834-12-03",
+          "also_printed_as": []
         },
         {
           "name": "Wm. Jones",
@@ -5574,12 +5787,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-12-03"
+          "to": "1834-12-03",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5649,7 +5864,10 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-27",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": [
+            "Jones, William"
+          ]
         },
         {
           "name": "Byram King",
@@ -5657,7 +5875,10 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-27",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": [
+            "King, Byram"
+          ]
         },
         {
           "name": "H. B. Clarke",
@@ -5665,28 +5886,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-27",
-          "to": "1835-08-05"
-        },
-        {
-          "name": "Jones, William",
-          "person_id": "jones_william",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-05-27",
-          "to": "1835-08-05"
-        },
-        {
-          "name": "King, Byram",
-          "person_id": "king_byram",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-05-27",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -5725,7 +5932,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-07-09"
+          "to": "1834-07-09",
+          "also_printed_as": []
         },
         {
           "name": "Rich'd J. Hamilton",
@@ -5733,12 +5941,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-07-09"
+          "to": "1834-07-09",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5781,6 +5991,12 @@
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "chicago_democrat_office",
+          "title": "The Chicago Democrat Office",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5824,6 +6040,15 @@
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "corner",
+          "id": null,
+          "title": "Canal Street and Lake Street",
+          "streets": [
+            "canal",
+            "lake"
+          ]
+        },
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -5864,12 +6089,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-07-22",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5910,12 +6142,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -5964,12 +6203,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-17",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -6008,12 +6249,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-27",
-          "to": "1835-06-27"
+          "to": "1835-06-27",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6055,6 +6298,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6165,7 +6409,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-06-10",
-          "to": "1835-07-01"
+          "to": "1835-07-01",
+          "also_printed_as": []
         },
         {
           "name": "Wilkinson",
@@ -6173,12 +6418,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-06-10",
-          "to": "1835-07-01"
+          "to": "1835-07-01",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lasalle",
         "street": "La Salle Street",
         "tier": "inferred",
@@ -6217,7 +6464,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-08-13",
-          "to": "1834-08-13"
+          "to": "1834-08-13",
+          "also_printed_as": []
         },
         {
           "name": "Edward Simons",
@@ -6225,12 +6473,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-08-13",
-          "to": "1834-08-13"
+          "to": "1834-08-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6281,12 +6531,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-12-10"
+          "to": "1834-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "mason_blacksmith_shop",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -6327,12 +6579,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-23",
-          "to": "1834-07-23"
+          "to": "1834-07-23",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "randolph",
         "street": "Randolph Street",
         "tier": "inferred",
@@ -6377,12 +6631,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-24",
-          "to": "1835-06-24"
+          "to": "1835-06-24",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -6421,12 +6677,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-12-03",
-          "to": "1834-12-03"
+          "to": "1834-12-03",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6467,12 +6730,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-11-26",
-          "to": "1834-11-26"
+          "to": "1834-11-26",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6520,12 +6790,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-08",
-          "to": "1835-07-04"
+          "to": "1835-07-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "tremont_house_1",
+          "title": "Tremont House (the first)",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -6579,7 +6856,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         },
         {
           "name": "George W. Dole",
@@ -6587,7 +6865,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         },
         {
           "name": "Newberry, [Walter L.]",
@@ -6595,12 +6874,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -6638,6 +6919,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6681,12 +6963,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-17",
-          "to": "1835-06-17"
+          "to": "1835-06-17",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -6762,12 +7046,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-12-10"
+          "to": "1834-12-10",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "peck_store",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -6885,20 +7171,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1835-07-08"
-        },
-        {
-          "name": "Peter Pruyne",
-          "person_id": "pruyne_peter",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1833-12-03",
-          "to": "1835-07-08"
+          "to": "1835-07-08",
+          "also_printed_as": [
+            "Peter Pruyne"
+          ]
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "pruyne_kimball_drugstore",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -6942,12 +7224,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-07-09"
+          "to": "1834-07-09",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_eagle_tavern",
+          "title": "Eagle Tavern",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7002,12 +7291,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-07-08"
+          "to": "1835-07-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -7046,12 +7337,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-01-07",
-          "to": "1834-01-07"
+          "to": "1834-01-07",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -7128,12 +7421,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-07-22"
+          "to": "1835-07-22",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "carpenter_south_water_store",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -7178,7 +7473,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-02-04",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         },
         {
           "name": "Titus H. Abbott",
@@ -7186,12 +7482,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-02-04",
-          "to": "1834-06-11"
+          "to": "1834-06-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7238,7 +7536,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-25",
-          "to": "1834-12-17"
+          "to": "1834-12-17",
+          "also_printed_as": []
         },
         {
           "name": "French",
@@ -7246,12 +7545,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-25",
-          "to": "1834-12-17"
+          "to": "1834-12-17",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "canal",
         "street": "Canal Street",
         "tier": "inferred",
@@ -7296,12 +7597,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-02-18",
-          "to": "1834-03-18"
+          "to": "1834-03-18",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "robert_kinzie_store",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7342,12 +7645,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-06-13"
+          "to": "1835-06-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7388,12 +7693,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1833-12-03"
+          "to": "1833-12-03",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7433,6 +7740,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7484,12 +7792,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-07-04"
+          "to": "1835-07-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -7528,7 +7838,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         },
         {
           "name": "Wm. H. Brown",
@@ -7536,12 +7847,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7598,7 +7911,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-08-27",
-          "to": "1835-08-29"
+          "to": "1835-08-29",
+          "also_printed_as": []
         },
         {
           "name": "Benj. H. Clift",
@@ -7606,12 +7920,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-08-27",
-          "to": "1835-08-29"
+          "to": "1835-08-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7651,12 +7967,22 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-05-27",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "corner",
+          "id": null,
+          "title": "Franklin Street and Lake Street",
+          "streets": [
+            "franklin",
+            "lake"
+          ]
+        },
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -7695,7 +8021,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-06-24",
-          "to": "1835-08-01"
+          "to": "1835-08-01",
+          "also_printed_as": []
         },
         {
           "name": "Abell",
@@ -7703,12 +8030,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-06-24",
-          "to": "1835-08-01"
+          "to": "1835-08-01",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -7747,12 +8076,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -7793,12 +8124,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-08",
-          "to": "1835-07-11"
+          "to": "1835-07-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "goss_cobb_saddlery",
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "attested",
@@ -7837,12 +8170,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7907,12 +8242,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-03-04"
+          "to": "1834-03-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -7953,12 +8290,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-12-03",
-          "to": "1834-12-03"
+          "to": "1834-12-03",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8000,20 +8339,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-07-22",
-          "to": "1835-08-12"
-        },
-        {
-          "name": "Lewis, Samuel",
-          "person_id": "lewis_samuel",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-07-22",
-          "to": "1835-08-12"
+          "to": "1835-08-12",
+          "also_printed_as": [
+            "Lewis, Samuel"
+          ]
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -8054,20 +8389,16 @@
           "role": "partner",
           "tier": "attested",
           "from": "1835-08-19",
-          "to": "1835-08-22"
-        },
-        {
-          "name": "Sarah D. Howe",
-          "person_id": "howe_sarah_d",
-          "role": "partner",
-          "tier": "attested",
-          "from": "1835-08-19",
-          "to": "1835-08-22"
+          "to": "1835-08-22",
+          "also_printed_as": [
+            "Sarah D. Howe"
+          ]
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -8108,12 +8439,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-08",
-          "to": "1835-06-08"
+          "to": "1835-06-08",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8152,7 +8485,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-18",
-          "to": "1834-03-18"
+          "to": "1834-03-18",
+          "also_printed_as": []
         },
         {
           "name": "H. S. Handy",
@@ -8160,12 +8494,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-18",
-          "to": "1834-03-18"
+          "to": "1834-03-18",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8204,12 +8540,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-08-13",
-          "to": "1834-08-13"
+          "to": "1834-08-13",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8250,12 +8588,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-03",
-          "to": "1834-01-07"
+          "to": "1834-01-07",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "temple_building",
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "attested",
@@ -8296,6 +8636,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8333,6 +8674,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8373,12 +8715,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-20",
-          "to": "1835-06-20"
+          "to": "1835-06-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8425,7 +8769,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         },
         {
           "name": "Calhoun, J.",
@@ -8433,12 +8778,22 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "corner",
+          "id": null,
+          "title": "Clark Street and South Water Street",
+          "streets": [
+            "clark",
+            "south_water"
+          ]
+        },
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -8474,6 +8829,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -8514,6 +8870,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8560,12 +8917,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-31",
-          "to": "1834-01-28"
+          "to": "1834-01-28",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8612,12 +8971,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1834-03-04"
+          "to": "1834-03-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8661,7 +9022,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1834-01-07"
+          "to": "1834-01-07",
+          "also_printed_as": []
         },
         {
           "name": "Abbott",
@@ -8669,12 +9031,19 @@
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1834-01-07"
+          "to": "1834-01-07",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "sauganash_hotel",
+          "title": "Sauganash Hotel",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8723,6 +9092,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -8770,6 +9140,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8807,6 +9178,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8847,12 +9219,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-23",
-          "to": "1834-10-01"
+          "to": "1834-10-01",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8894,6 +9268,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -8935,6 +9310,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -8982,7 +9358,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1834-06-25"
+          "to": "1834-06-25",
+          "also_printed_as": []
         },
         {
           "name": "Wm. H. Brown",
@@ -8990,12 +9367,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1834-06-25"
+          "to": "1834-06-25",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9037,12 +9416,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -9086,12 +9467,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-02",
-          "to": "1834-07-02"
+          "to": "1834-07-02",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -9131,6 +9514,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9175,12 +9559,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-09",
-          "to": "1834-07-09"
+          "to": "1834-07-09",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_newberry_dole",
+          "title": "Newberry & Dole",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -9218,6 +9609,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -9255,6 +9647,12 @@
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "mansion_house",
+          "title": "Mansion House",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9300,12 +9698,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-16",
-          "to": "1834-07-16"
+          "to": "1834-07-16",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -9343,6 +9743,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9381,6 +9782,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9418,6 +9820,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9463,6 +9866,7 @@
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lasalle",
         "street": "La Salle Street",
         "tier": "inferred",
@@ -9509,6 +9913,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9549,7 +9954,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-05-21",
-          "to": "1834-10-01"
+          "to": "1834-10-01",
+          "also_printed_as": []
         },
         {
           "name": "Wm. G. Blanchard",
@@ -9557,12 +9963,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-05-21",
-          "to": "1834-10-01"
+          "to": "1834-10-01",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -9600,6 +10008,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9645,12 +10054,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-11-05",
-          "to": "1834-11-05"
+          "to": "1834-11-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_newberry_dole",
+          "title": "Newberry & Dole",
+          "streets": []
+        },
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -9700,12 +10116,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-05-07",
-          "to": "1834-06-04"
+          "to": "1834-06-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_newberry_dole",
+          "title": "Newberry & Dole",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -9777,12 +10200,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
-          "to": "1834-06-04"
+          "to": "1834-06-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "chicago_democrat_office",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -9837,12 +10262,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
-          "to": "1834-01-21"
+          "to": "1834-01-21",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "premises",
         "structure_id": "chicago_democrat_office",
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "attested",
@@ -9883,12 +10310,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-07-08",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -9929,12 +10358,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "south_water",
         "street": "South Water Street",
         "tier": "inferred",
@@ -9975,12 +10406,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-18",
-          "to": "1834-03-18"
+          "to": "1834-03-18",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -10018,6 +10451,7 @@
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -10061,12 +10495,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-04",
-          "to": "1834-06-04"
+          "to": "1834-06-04",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -10112,12 +10548,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-19",
-          "to": "1835-08-19"
+          "to": "1835-08-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -10156,12 +10594,19 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-06-18",
-          "to": "1834-07-16"
+          "to": "1834-07-16",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
+        "anchor": {
+          "kind": "business",
+          "id": "biz_eagle_tavern",
+          "title": "Eagle Tavern",
+          "streets": []
+        },
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -10204,12 +10649,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-24",
-          "to": "1835-08-19"
+          "to": "1835-08-19",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "lake",
         "street": "Lake Street",
         "tier": "inferred",
@@ -10261,12 +10708,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-05-20",
-          "to": "1835-05-20"
+          "to": "1835-05-20",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -10313,12 +10762,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",
-          "to": "1835-08-05"
+          "to": "1835-08-05",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
@@ -10368,7 +10819,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-09-03",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         },
         {
           "name": "John Hale",
@@ -10376,7 +10828,8 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-09-03",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         },
         {
           "name": "Wm. Hogue",
@@ -10384,12 +10837,14 @@
           "role": "partner",
           "tier": "attested",
           "from": "1834-09-03",
-          "to": "1835-07-29"
+          "to": "1835-07-29",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
+        "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
@@ -10432,12 +10887,14 @@
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-13",
-          "to": "1835-07-11"
+          "to": "1835-07-11",
+          "also_printed_as": []
         }
       ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
+        "anchor": null,
         "street_id": "north_water",
         "street": "North Water Street",
         "tier": "inferred",
@@ -10450,6 +10907,102 @@
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_crandall_druggist",
+      "file": "rcb_crandall_druggist.json",
+      "name": "B. Crandall, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Crandall",
+          "person_id": "rc_crandall_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_metcalf_druggist",
+      "file": "rcb_metcalf_druggist.json",
+      "name": "Nathaniel Metcalf, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Nathaniel Metcalf",
+          "person_id": "rc_metcalf_nathaniel",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "kinzie",
+        "street": "Kinzie Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []

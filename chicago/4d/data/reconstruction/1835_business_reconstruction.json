@@ -1,0 +1,33 @@
+{
+  "_doc": "DERIVED from the reconstruction order book and the resident band's trade heads by tools/reconstruct_businesses_1835.py. Do not hand-edit: --check re-derives this file and every record it counts, and tools/check.sh runs it. The counts are the ticket's own acceptance — by class and by street.",
+  "id": "chicago_1835_business_reconstruction",
+  "target_date": "1835-07-01",
+  "written_by": "tools/reconstruct_businesses_1835.py",
+  "quota": "data/reconstruction/1835_reconstruction_order_book.json → bucket_families[businesses]",
+  "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
+  "style_guide": "docs/RESEARCH/business-naming-1835.md",
+  "liberty": "docs/LIBERTIES.md § L254",
+  "records": 2,
+  "groups": {
+    "stores_and_provisions": {
+      "ticket": "T-1184",
+      "title": "stores, book stores and the drug and provision trades",
+      "records": 2,
+      "by_class": {
+        "druggist": 2
+      },
+      "by_street": {
+        "Dearborn Street": 1,
+        "Kinzie Street": 1
+      },
+      "ids": [
+        "rcb_crandall_druggist",
+        "rcb_metcalf_druggist"
+      ],
+      "proprietors_adopted": [
+        "rc_crandall_benjamin",
+        "rc_metcalf_nathaniel"
+      ]
+    }
+  }
+}

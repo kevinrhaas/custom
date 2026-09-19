@@ -51,6 +51,27 @@
   font-size: 11.5px;
   font-variant-numeric: tabular-nums;
 }
+/* The other styles the same paper printed one partner under. Quiet, because the
+   fold is the reading and the typography is only the proof it was a fold. */
+.biz-styles {
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-style: italic;
+}
+/* A house anchored against another house: the only way out its location has. */
+.biz-anchor-firm {
+  padding: 0;
+  border: 0;
+  margin-top: 4px;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+.biz-anchor-firm:hover { text-decoration: underline; }
 .biz-person {
   padding: 0;
   border: 0;
@@ -115,3 +136,13 @@
 .biz-dates { margin: 0 0 6px; font-size: 13px; }
 .biz-dates .grade-dot { margin-right: 6px; }
 .biz-review { color: var(--con); }
+
+/* A reconstructed house says so before it says anything else (T-1184). The lede of
+   "Why this house is here" carries the reconstructed grade's own colour, so a reader who
+   opened the card for a name sees the invention in the same glance as the name. */
+.biz-invented {
+  color: var(--con);
+  border-left: 2px solid var(--con);
+  padding-left: 9px;
+}
+.biz-invented b { color: inherit; }

@@ -40,7 +40,24 @@
         "tier": {"$ref": "#/$defs/tier"},
         "basis": {"type": "string", "minLength": 1},
         "source_id": {"type": ["string", "null"]},
-        "claim_ids": {"type": "array", "items": {"type": "string"}}
+        "claim_ids": {"type": "array", "items": {"type": "string"}},
+        "also_printed_as": {"type": "array", "items": {"type": "string"},
+          "description": "The OTHER styles the same paper printed this same person under, folded onto this row by compile_businesses.fold_printed_styles on `person_id` \u2014 never on the name. \"J. D. Caton\" and \"J. Dean Caton\" are one partner of Collins & Caton, and Giles Spring was printed three ways. The typography is evidence and is kept here rather than deleted; what the fold removes is only the second COUNT of one man. Empty on every row but the twelve the register double-printed."}
+      }
+    },
+    "anchor": {
+      "type": ["object", "null"],
+      "required": ["kind", "id", "title", "streets"],
+      "additionalProperties": false,
+      "description": "THE LANDMARK AN `anchored` LOCATION STANDS AGAINST, as an id rather than as a sentence. The register's `action_target`, resolved by compile_businesses.anchor_of: a committed structure (15), another house in this layer (7), or a crossing of two platted streets (4). It does NOT place the house \u2014 `structure_id` stays null on an anchored location, because the anchor is what the house stood next to and a roof of its own is precisely what the register could not give it.",
+      "properties": {
+        "kind": {"type": "string", "enum": ["structure", "business", "corner"]},
+        "id": {"type": ["string", "null"], "pattern": "^[a-z0-9_]+$",
+          "description": "A committed structure id or a `biz_` id. Null on a corner, which names two streets and no one thing."},
+        "title": {"type": "string", "minLength": 1,
+          "description": "What a card prints: the roof's name, the firm's name, or the two street names joined."},
+        "streets": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "description": "The two street ids of a corner; empty otherwise."}
       }
     },
     "location": {
@@ -62,7 +79,8 @@
         "tier": {"$ref": "#/$defs/tier"},
         "basis": {"type": "string", "minLength": 1},
         "limit_reason": {"type": ["string", "null"],
-          "description": "Required on `street_only` and `unplaceable`: WHY the record stops where it does, in the register's own words."}
+          "description": "Required on `street_only` and `unplaceable`: WHY the record stops where it does, in the register's own words."},
+        "anchor": {"$ref": "#/$defs/anchor"}
       }
     }
   },
@@ -176,6 +194,39 @@
     },
     "review_required": {"type": "boolean"},
     "replaceable_by": {"type": ["string", "null"],
-      "description": "What evidence would retire this record or this reading — the standing instruction to the next researcher."}
+      "description": "What evidence would retire this record or this reading — the standing instruction to the next researcher."},
+    "reconstruction": {
+      "type": "object",
+      "required": ["programme", "group", "ticket", "bucket", "slot", "seed", "basis", "withdrawn_if"],
+      "additionalProperties": false,
+      "description": "PRESENT ON A RECONSTRUCTED HOUSE AND ON NOTHING ELSE (T-1184). The contract the reconstruction programme puts on a reconstructed PERSON, asked of a firm: which order-book row bought this house, which group of which programme wrote it, the seed string a reader can retype to redraw every drawn value on it, and what retires it. A record carrying `provenance: \"reconstructed\"` and no block here cannot say where it came from; tools/reconstruct_businesses_1835.py --check re-derives every one of them from the seed and refuses a hand edit.",
+      "properties": {
+        "programme": {"type": "string",
+          "description": "The writing programme's id — `chicago_1835_business_reconstruction`."},
+        "group": {"type": "string",
+          "description": "The reconstruction group: one of the five the business band cuts the order book into, and the unit one ticket builds."},
+        "ticket": {"type": "string", "pattern": "^T-[0-9]{4}$",
+          "description": "The ticket that owns the order-book rows this group fills — the book's own `owning_ticket`, never restated by hand."},
+        "bucket": {"type": "string",
+          "description": "The order-book bucket key that ordered this house."},
+        "slot": {"type": "string",
+          "description": "The slot within that bucket. Stable across builds because the book's order is, which is what makes the seed reproducible."},
+        "seed": {"type": "string",
+          "description": "The seed STRING every drawn value on this record hashes with blake2s — a reader can retype it and redraw the firm style, the goods line and the street face."},
+        "basis": {
+          "type": "object",
+          "required": ["kind", "id", "note"],
+          "additionalProperties": false,
+          "description": "The shape T-1158 fixed on every reconstructed value: `model` where a table decided it, `rule` where a stated rule did.",
+          "properties": {
+            "kind": {"type": "string", "enum": ["model", "rule"]},
+            "id": {"type": "string"},
+            "note": {"type": "string", "minLength": 1}
+          }
+        },
+        "withdrawn_if": {"type": "string", "minLength": 1,
+          "description": "What retires this house. The same standing instruction the reconstructed trade heads carry, in the same words."}
+      }
+    }
   }
 }
