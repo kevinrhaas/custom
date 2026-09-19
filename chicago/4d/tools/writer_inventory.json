@@ -611,6 +611,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "person_associations.py": {
+      "placement": "pending",
+      "write_mode": "--write",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--write` on a clean tree rewrote the 70 person cards it owns rows on and data/research/residents/person_associations.json, and moved no committed byte (git reported 0 changed paths). Left `pending` rather than appended to the derived manifest: it writes INTO data/residents/households/*.json, which several reconstruction stages also re-derive, so its slot in the dependency order is its own measured pass — it has to run after every stage that settles a person's key order and before the coverage count."
+    },
     "pinned_sources.py": {
       "placement": "not_a_writer",
       "write_mode": null,
