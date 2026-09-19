@@ -1,8 +1,8 @@
 {
- "id": "hh_fb_anderson_john",
+ "id": "hh_fb_anderson_benjamin",
  "name": "The Anderson household — a free Black household of 1835",
  "division": "unplaced",
- "head": "rc_fb_anderson_john",
+ "head": "rc_fb_anderson_benjamin",
  "source_pass": "reconstructed_underdocumented",
  "underdocumented": {
   "ticket": "T-1377",
@@ -64,8 +64,8 @@
  },
  "persons": [
   {
-   "id": "rc_fb_anderson_john",
-   "name": "John Anderson",
+   "id": "rc_fb_anderson_benjamin",
+   "name": "Benjamin Anderson",
    "relationship": "head",
    "grade": "reconstructed",
    "sex": "male",
@@ -92,7 +92,7 @@
     "note": "DEALT, NOT READ. The trade is dealt round the seven this stage carries, in the order the slot falls, so it is reproducible from the seed above and from nothing else. No source gives this person a trade and none gives any Black person at Chicago one before 1840."
    },
    "name_basis": {
-    "value": "John Anderson",
+    "value": "Benjamin Anderson",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -130,8 +130,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the corpus counts six or seven free coloured men at Chicago in August 1833 and the 1840 census counts fifty-three free coloured persons there, and between those two readings the town of 1 July 1835 cannot hold fewer free Black men than 1833 did. The whole of what is claimed is a free Black adult man of this town. REVIEW REQUIRED: this is a reconstruction of a Black resident of a town inside a state whose black laws made a certificate of freedom the condition of his residence, written from six surnames and no biography at all; AGENTS.md's standard holds it for review before a scene carrying it may be marked released. No figure is drawn (L1)."
   },
   {
-   "id": "rc_fb_anderson_catherine",
-   "name": "Catherine Anderson",
+   "id": "rc_fb_anderson_eliza",
+   "name": "Eliza Anderson",
    "relationship": "wife",
    "grade": "reconstructed",
    "sex": "female",
@@ -158,7 +158,7 @@
     "note": "DEALT, NOT READ — and the only woman of this cohort dealt a trade, because the firm below needs a keeper and the corpus names none. The liberty above is the same one the men's trades stand on."
    },
    "name_basis": {
-    "value": "Catherine Anderson",
+    "value": "Eliza Anderson",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -196,8 +196,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. She fills the adult woman of the household shape this card was dealt — one of the three entirely free-coloured households the 1840 Chicago schedule enumerates, which is every reading of a free Black household this corpus holds. REVIEW REQUIRED, for the reason the head's card gives. No figure is drawn (L1)."
   },
   {
-   "id": "rc_fb_anderson_hannah",
-   "name": "Hannah Anderson",
+   "id": "rc_fb_anderson_martha",
+   "name": "Martha Anderson",
    "relationship": "household_member",
    "grade": "reconstructed",
    "sex": "female",
@@ -214,7 +214,7 @@
     "note": "No source records an occupation for this person."
    },
    "name_basis": {
-    "value": "Hannah Anderson",
+    "value": "Martha Anderson",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {

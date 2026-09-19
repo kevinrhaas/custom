@@ -7736,42 +7736,47 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_catherine": {
+  "rc_fb_anderson_benjamin": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_charles": {
+  "rc_fb_anderson_eliza": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_hannah": {
+  "rc_fb_anderson_harriet": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_jane": {
+  "rc_fb_anderson_henry": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_john": {
+  "rc_fb_anderson_maria": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_anderson_lucy": {
+  "rc_fb_anderson_martha": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_askie_benjamin": {
+  "rc_fb_askie_catherine": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_askie_james": {
+  "rc_fb_askie_george": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_askie_john": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -7781,32 +7786,27 @@
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_askie_sarah": {
+  "rc_fb_johnson_david": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_johnson_william": {
+  "rc_fb_white_charles": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_white_samuel": {
+  "rc_fb_williams_lucy": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_williams_harriet": {
+  "rc_fb_williams_samuel": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
-  "rc_fb_williams_henry": {
-   "value": "free_black",
-   "tier": "reconstructed",
-   "rule": "reconstruction_community"
-  },
-  "rc_fb_williams_isaac": {
+  "rc_fb_williams_thomas": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
@@ -17672,54 +17672,54 @@
    "head": "fay_h_k",
    "file": "households/hh_fay_h_k.json"
   },
-  "hh_fb_anderson_charles": {
+  "hh_fb_anderson_benjamin": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_anderson_charles",
-   "file": "underdocumented/hh_fb_anderson_charles.json"
+   "head": "rc_fb_anderson_benjamin",
+   "file": "underdocumented/hh_fb_anderson_benjamin.json"
   },
-  "hh_fb_anderson_john": {
+  "hh_fb_anderson_henry": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_anderson_john",
-   "file": "underdocumented/hh_fb_anderson_john.json"
+   "head": "rc_fb_anderson_henry",
+   "file": "underdocumented/hh_fb_anderson_henry.json"
   },
-  "hh_fb_askie_benjamin": {
+  "hh_fb_askie_george": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_askie_benjamin",
-   "file": "underdocumented/hh_fb_askie_benjamin.json"
+   "head": "rc_fb_askie_george",
+   "file": "underdocumented/hh_fb_askie_george.json"
   },
-  "hh_fb_askie_james": {
+  "hh_fb_askie_john": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_askie_james",
-   "file": "underdocumented/hh_fb_askie_james.json"
+   "head": "rc_fb_askie_john",
+   "file": "underdocumented/hh_fb_askie_john.json"
   },
-  "hh_fb_johnson_william": {
+  "hh_fb_johnson_david": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_johnson_william",
-   "file": "underdocumented/hh_fb_johnson_william.json"
+   "head": "rc_fb_johnson_david",
+   "file": "underdocumented/hh_fb_johnson_david.json"
   },
-  "hh_fb_white_samuel": {
+  "hh_fb_white_charles": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_white_samuel",
-   "file": "underdocumented/hh_fb_white_samuel.json"
+   "head": "rc_fb_white_charles",
+   "file": "underdocumented/hh_fb_white_charles.json"
   },
-  "hh_fb_williams_isaac": {
+  "hh_fb_williams_samuel": {
    "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community",
-   "head": "rc_fb_williams_isaac",
-   "file": "underdocumented/hh_fb_williams_isaac.json"
+   "head": "rc_fb_williams_samuel",
+   "file": "underdocumented/hh_fb_williams_samuel.json"
   },
   "hh_felch_alaneon": {
    "value": "new_york",

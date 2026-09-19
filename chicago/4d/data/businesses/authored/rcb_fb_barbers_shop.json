@@ -1,7 +1,7 @@
 {
  "id": "rcb_fb_barbers_shop",
  "register_id": null,
- "name": "John Anderson, barber",
+ "name": "Benjamin Anderson, barber",
  "provenance": "reconstructed",
  "type": [
   "other"
@@ -12,8 +12,8 @@
  "firm_styles": [],
  "proprietors": [
   {
-   "name": "John Anderson",
-   "person_id": "rc_fb_anderson_john",
+   "name": "Benjamin Anderson",
+   "person_id": "rc_fb_anderson_benjamin",
    "register_person_id": null,
    "role": "proprietor",
    "from": null,
@@ -62,8 +62,8 @@
   "basis": "The one keeper this record names is a reconstructed free Black resident and the card says so. A house is not its keeper, so the reading is an inference about the house and is capped there — and under that, at the tier of the person it is read off, which is a reconstruction.",
   "from": [
    {
-    "person_id": "rc_fb_anderson_john",
-    "name": "John Anderson",
+    "person_id": "rc_fb_anderson_benjamin",
+    "name": "Benjamin Anderson",
     "role": "proprietor",
     "community": "free_black",
     "tier": "reconstructed"

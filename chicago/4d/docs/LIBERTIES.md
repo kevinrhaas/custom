@@ -12911,3 +12911,95 @@ transient, re-admission, women-and-children and trade bands), tickets **T-1371**
 **T-1175**, the lodging model **T-1370**, the order book **T-1166**, the town model
 **T-1161**, the programme **T-1167**.
 **Recorded:** 2026-09-19.
+
+### L253 — Fifteen free Black residents and two Black-owned firms stand for a count the corpus makes twice and a name it never prints
+
+**Decision:** `tools/reconstruct_free_black.py` (T-1377, of T-1177) writes **7** households,
+**15** people and **2** firms — the `free_black` sub-stage of stage `underdocumented`, beside
+T-1376's `native_and_metis`. Cards in `data/residents/underdocumented/hh_fb_*.json`, firms in
+`data/businesses/authored/rcb_fb_*.json`, the derived record
+`data/reconstruction/1835_free_black.json`. Every person is `grade: reconstructed`, wears the
+`rc_fb_` prefix a grep finds, carries `community: free_black`, and carries
+`review_required: true` with its own sentence. `touches_removal` is **false**, deliberately:
+this is not the removal, and borrowing that flag would borrow the weight of a subject this
+stage is not about.
+
+**Why:** T-1375 gave every person in the layer a community and printed one row reading
+`free_black` — **0**. That is a finding about this project and not about 1835 Chicago. The
+corpus counts the free Black town twice and names it never.
+
+**What is invented, exactly, and it is three things.**
+
+**One — the count is carried.** Caton's fee of August 1833 counts "six or seven free coloured
+men" before the Court of County Commissioners, there for the certificates of freedom the
+Illinois black law made the condition of a lawful residence; the 1840 census counts 53 free
+coloured persons in a town of 4,834, which at the same share is about 27 people on 1 July
+1835 (25–35 over the town model's range). Seven men are written — the phrase's upper reading,
+so the cohort stands at or above the floor whichever reading the page means — and **the
+head-room to the ceiling is left standing**, because filling it would mean inventing people
+against a share carried back across five years of the fastest growth this town ever had.
+**No persistence draw**, and that is the one departure from the sub-stage beside it: T-1376
+priced a NAME and a named man may have left, but the subject here is a COUNT and no monotone
+path between the two readings passes below six.
+
+**Two — the names.** Five surnames — Anderson, Askie, Johnson, White, Williams — every one
+off a line of the 1840 Chicago schedule that the borderline roster classes
+`R6_native_metis_black` on its own `community_term_in_the_reading` rule, the enumerator
+having written `coloured` against it. Two rows are refused for an unread position inside the
+surname. The given names are the **town's own stock**, and that is a reading rather than a
+shortcut: every forename the schedule prints whole in that block — Eliza, George, John,
+Joseph — is already borne by a real person of this town, which `--self-test` asserts against
+the committed layer. Two rules stop the pool from becoming a back-projection of five real
+people: no draw may reproduce a printed reading, and none may share a reading's
+`surname | first initial` key, which is the discriminator the directory crosswalks match on
+and the way `Samuel Anderson` would quietly become the schedule's `Sam[l] Anderson`.
+
+**Three — the trades, and this is the largest of the three claims.** The corpus records **no
+occupation for any Black person at Chicago before 1840**: not an advertisement in three years
+of two newspapers, not a directory line, not a roll. The seven trades dealt (barber, cook,
+waiter, drayman, labourer, whitewasher, sawyer) and the one woman's trade (laundress) are the
+service, carrying and labouring trades of a northern lake town, and **dealing from them
+rather than from the merchant and professional classes is an assumption about the 1835 labour
+market and not a reading of anything**. Nothing here says a free Black man at Chicago could
+not keep a store or read law; it says this project has no reading either way and has written
+down which way it guessed. The two firms follow from two of those trades and from nothing
+else: no source names a Black-owned business at Chicago in 1835 or anybody who kept one.
+
+**What this deliberately does NOT do.** It writes **no origin** for anybody — the corpus says
+where this town's white residents came from and says nothing at all about where any Black
+resident came from, and free, freed, born in Illinois or come up out of a slave state is the
+one question its sources most conspicuously do not answer. It **back-projects nobody**: all
+seven 1840 readings are `later_only` and not one is minted. It **claims no kinship** it cannot
+see — where the 1840 shape counts a second adult woman under a roof, she is written
+`household_member` and named nothing else, because sister, mother, boarder and servant are
+readings the schedule's tick marks cannot separate. It **sets aside the woman-headed
+household** the 1840 reading shows rather than dealing her shape to a male head, which would
+invent the man the page does not show. It **seats nobody in a white household**, though four
+1840 leaves show free coloured people living in one — that card belongs to the mints and the
+convergence. And it draws **no figure** for anybody (L1).
+
+**One trap worth recording because it nearly doubled the town.** Leaf `33SQ-GYYJ-PW` carries
+free-coloured cells on fifteen of its thirty lines and **not one of them is a household**: it
+is the enumerator's own recapitulation. Counting them would read this town as holding five
+times the free Black households it does. The writer excludes it on the leaf's own description
+of itself and the self-test asserts both that exactly one leaf is excluded and that excluding
+it is not cosmetic.
+
+**What would retire it:** the Court of County Commissioners' certificates of freedom of
+August 1833 would retire the **whole cohort** and name the men it stands for — they are the
+single most valuable unread document this entry can point at. Any source naming a free Black
+resident of Chicago on or before 1 July 1835 retires a card. Any source naming a free Black
+resident at a trade retires the trade liberty. Any source naming a Black-owned business
+retires a firm. A re-cut of the bracket that no longer puts the floor at the 1833 count
+retires the cohort's size through `--build`, never by hand. And the review is **not retired,
+it is held open**: all 15 cards and both firms carry `review_required`, which blocks a scene
+from being marked `released`.
+
+Related: **L246** (the re-admission band), **L247**, **L248**, **L249**, **L250** (the Native
+and Métis sub-stage beside this one) and **L252** (the same programme's other bands), tickets
+**T-1377**, **T-1177**, **T-1375** (the community attribute this writes into), **T-1378** (the
+proprietor community the firms are filterable by), **T-1179** (which converges the layer and
+is owed the free Black residents who lived under somebody else's roof), the roster **T-1159**,
+the programme **T-1167**. `docs/RESEARCH/black_chicago_1835.md` lists every source read and
+every refusal.
+**Recorded:** 2026-09-19.

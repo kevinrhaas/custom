@@ -278,12 +278,21 @@ def self_test(doc: dict, rules: dict) -> None:
     assert not [p for p, r in persons.items() if r["value"] == "french_colonial"], \
         "the french_colonial pool name reached a person row"
 
+    # The free Black town is written by ONE stage and reaches this pass the way every
+    # other reconstruction does — off `reconstruction.community`, never off an origin
+    # string and never off a surname (T-1377). Same shape as the `metis` rule above: the
+    # value is allowed, the ROUTE it arrived by is what is asserted.
+    free_black = [p for p, r in persons.items() if r["value"] == "free_black"]
+    assert all(persons[p]["rule"] == "reconstruction_community" for p in free_black), \
+        "a free_black value this pass read off an origin string rather than off the stage"
+
     # No cohort this pass is forbidden to write has been written.
-    for forbidden in ("free_black", "german", "potawatomi", "ottawa", "ojibwe"):
+    for forbidden in ("german", "potawatomi", "ottawa", "ojibwe"):
         assert not [p for p, r in persons.items() if r["value"] == forbidden], \
             f"{forbidden} was assigned by a pass that reads no sources"
 
-    print(f"self-test ok — {len(persons)} people, {len(metis)} of stated descent")
+    print(f"self-test ok — {len(persons)} people, {len(metis)} of stated descent, "
+          f"{len(free_black)} free Black, every one of them off the stage that wrote them")
 
 
 def main() -> int:

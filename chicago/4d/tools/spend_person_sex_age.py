@@ -321,10 +321,23 @@ def persons(cards: dict):
 
 # --- the forename table ----------------------------------------------------------------
 
+# A POOL THAT ADDS NO FORENAME IS NOT NAMED IN A CARD'S PROSE (T-1377). The `free_black`
+# pool contributes surnames and, by its own construction and its own note, not one
+# forename the other pools do not already carry — so it can only ever appear in this
+# attribution ALONGSIDE the pools that already licensed the name. Listing it would
+# rewrite the sex sentence of 383 committed cards to read "it stands in the free_black
+# and irish and yankee male forename pool", printing a community term onto four hundred
+# people it says nothing whatever about. The sex reading does not move: `says` is a set
+# and every one of this pool's forenames is already in it.
+POOLS_NOT_NAMED_IN_A_SEX_SENTENCE = ("free_black",)
+
+
 def pool_names() -> tuple:
     """(forename -> [community ids]) for each sex, out of the period pools."""
     male, female = {}, {}
     for community in load(POOLS)["communities"]:
+        if community["id"] in POOLS_NOT_NAMED_IN_A_SEX_SENTENCE:
+            continue
         for name in community.get("given_male") or []:
             male.setdefault(name.lower(), []).append(community["id"])
         for name in community.get("given_female") or []:

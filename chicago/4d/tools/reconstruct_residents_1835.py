@@ -70,6 +70,17 @@ REVIEWED_COMMUNITIES = ("native", "potawatomi", "ottawa", "ojibwe", "metis",
 # The id a reconstructed person's own record must wear, so a grep finds every invention.
 INVENTED_PERSON_PREFIX = "rc_"
 READMISSION_PASS = "reconstructed_readmission"
+# POOLS A SURNAME MAY NOT REACH (T-1377). `free_black` holds five surnames and every one
+# of them is a reading off the 1840 Chicago schedule — Anderson, Askie, Johnson, White,
+# Williams. Four of those five are among the commonest Anglo-American surnames in this
+# town and are already borne here by people the sources name. So a lookup that answered
+# "this household is free Black because its surname is Johnson" would be attributing a
+# person's race from their surname, which is the one inference this project refuses
+# outright — and it would do it to real households, silently, on a rebuild. The pool is
+# drawn from BY NAME, by the one stage licensed to write that cohort, and its own
+# `drawn_by` field says so. `yankee` is refused by the second of these for its own
+# separate reason, which the function states.
+POOLS_NOT_REACHED_BY_A_SURNAME = ("free_black",)
 
 # --- stage `named_families` (T-1314) ---------------------------------------
 NAMED_FAMILIES_STAGE = "named_families"
@@ -371,7 +382,8 @@ def origin_community(hh: dict, pools: dict):
     # one word apart in the same module and the second silently shadowed the first.
     surname = hh["id"][len("hh_"):].split("_")[0].lower()
     hits = [c["id"] for c in pools["communities"]
-            if surname in {s.lower() for s in c.get("surnames") or []}]
+            if c["id"] not in POOLS_NOT_REACHED_BY_A_SURNAME
+            and surname in {s.lower() for s in c.get("surnames") or []}]
     if len(hits) != 1 or hits[0] == "yankee":
         return None
     return hits[0]
@@ -751,6 +763,8 @@ def surname_community(surname: str, pools: dict) -> str:
     anything here has decided what the Murphys were.
     """
     for community in pools["communities"]:
+        if community["id"] in POOLS_NOT_REACHED_BY_A_SURNAME:
+            continue
         if surname in (community.get("surnames") or []):
             return community["id"]
     return "yankee"

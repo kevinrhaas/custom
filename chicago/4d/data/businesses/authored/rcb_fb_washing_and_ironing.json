@@ -1,7 +1,7 @@
 {
  "id": "rcb_fb_washing_and_ironing",
  "register_id": null,
- "name": "Catherine Anderson, washing and ironing",
+ "name": "Eliza Anderson, washing and ironing",
  "provenance": "reconstructed",
  "type": [
   "other"
@@ -12,8 +12,8 @@
  "firm_styles": [],
  "proprietors": [
   {
-   "name": "Catherine Anderson",
-   "person_id": "rc_fb_anderson_catherine",
+   "name": "Eliza Anderson",
+   "person_id": "rc_fb_anderson_eliza",
    "register_person_id": null,
    "role": "proprietor",
    "from": null,
@@ -62,8 +62,8 @@
   "basis": "The one keeper this record names is a reconstructed free Black resident and the card says so. A house is not its keeper, so the reading is an inference about the house and is capped there — and under that, at the tier of the person it is read off, which is a reconstruction.",
   "from": [
    {
-    "person_id": "rc_fb_anderson_catherine",
-    "name": "Catherine Anderson",
+    "person_id": "rc_fb_anderson_eliza",
+    "name": "Eliza Anderson",
     "role": "proprietor",
     "community": "free_black",
     "tier": "reconstructed"

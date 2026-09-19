@@ -307,10 +307,10 @@
  },
  "minted": [
   {
-   "household_id": "hh_fb_anderson_john",
-   "person_id": "rc_fb_anderson_john",
-   "name": "John Anderson",
-   "file": "underdocumented/hh_fb_anderson_john.json",
+   "household_id": "hh_fb_anderson_benjamin",
+   "person_id": "rc_fb_anderson_benjamin",
+   "name": "Benjamin Anderson",
+   "file": "underdocumented/hh_fb_anderson_benjamin.json",
    "trade": "barber",
    "community": "free_black",
    "review_required": true,
@@ -328,10 +328,10 @@
    "slot": "free_black:floor:001"
   },
   {
-   "household_id": "hh_fb_askie_benjamin",
-   "person_id": "rc_fb_askie_benjamin",
-   "name": "Benjamin Askie",
-   "file": "underdocumented/hh_fb_askie_benjamin.json",
+   "household_id": "hh_fb_askie_john",
+   "person_id": "rc_fb_askie_john",
+   "name": "John Askie",
+   "file": "underdocumented/hh_fb_askie_john.json",
    "trade": "cook",
    "community": "free_black",
    "review_required": true,
@@ -349,10 +349,10 @@
    "slot": "free_black:floor:002"
   },
   {
-   "household_id": "hh_fb_johnson_william",
-   "person_id": "rc_fb_johnson_william",
-   "name": "William Johnson",
-   "file": "underdocumented/hh_fb_johnson_william.json",
+   "household_id": "hh_fb_johnson_david",
+   "person_id": "rc_fb_johnson_david",
+   "name": "David Johnson",
+   "file": "underdocumented/hh_fb_johnson_david.json",
    "trade": "waiter",
    "community": "free_black",
    "review_required": true,
@@ -370,10 +370,10 @@
    "slot": "free_black:floor:003"
   },
   {
-   "household_id": "hh_fb_white_samuel",
-   "person_id": "rc_fb_white_samuel",
-   "name": "Samuel White",
-   "file": "underdocumented/hh_fb_white_samuel.json",
+   "household_id": "hh_fb_white_charles",
+   "person_id": "rc_fb_white_charles",
+   "name": "Charles White",
+   "file": "underdocumented/hh_fb_white_charles.json",
    "trade": "drayman",
    "community": "free_black",
    "review_required": true,
@@ -391,10 +391,10 @@
    "slot": "free_black:floor:004"
   },
   {
-   "household_id": "hh_fb_williams_isaac",
-   "person_id": "rc_fb_williams_isaac",
-   "name": "Isaac Williams",
-   "file": "underdocumented/hh_fb_williams_isaac.json",
+   "household_id": "hh_fb_williams_samuel",
+   "person_id": "rc_fb_williams_samuel",
+   "name": "Samuel Williams",
+   "file": "underdocumented/hh_fb_williams_samuel.json",
    "trade": "labourer",
    "community": "free_black",
    "review_required": true,
@@ -412,10 +412,10 @@
    "slot": "free_black:floor:005"
   },
   {
-   "household_id": "hh_fb_anderson_charles",
-   "person_id": "rc_fb_anderson_charles",
-   "name": "Charles Anderson",
-   "file": "underdocumented/hh_fb_anderson_charles.json",
+   "household_id": "hh_fb_anderson_henry",
+   "person_id": "rc_fb_anderson_henry",
+   "name": "Henry Anderson",
+   "file": "underdocumented/hh_fb_anderson_henry.json",
    "trade": "whitewasher",
    "community": "free_black",
    "review_required": true,
@@ -433,10 +433,10 @@
    "slot": "free_black:floor:006"
   },
   {
-   "household_id": "hh_fb_askie_james",
-   "person_id": "rc_fb_askie_james",
-   "name": "James Askie",
-   "file": "underdocumented/hh_fb_askie_james.json",
+   "household_id": "hh_fb_askie_george",
+   "person_id": "rc_fb_askie_george",
+   "name": "George Askie",
+   "file": "underdocumented/hh_fb_askie_george.json",
    "trade": "sawyer",
    "community": "free_black",
    "review_required": true,
