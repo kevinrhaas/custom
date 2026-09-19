@@ -1,7 +1,7 @@
 ---
 id: T-1325
 title: Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1181
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1519
 claimed_by: run 9/19/2026, 7:12:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T13:28:27.538Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35442046588
 ---
 
