@@ -52,7 +52,6 @@ T-1399 — One liberty entry per reconstruction stage, with the counts the compi
 T-1400 — The People view's tier filter and its transient, garrison and reconstructed pills
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1404 — A business for every in-window trade and no_fixed_premises for the trades that carry none, with the physicians' and lawyers' census gaps worked from the research first, the Sept-Dec 1835 crosswalk re-run, and what remains short written to the order book for T-1186
-T-1405 — Persons' other significant locations as associated_with[]: civic seats held, church membership and office, agencies held, land purchased and schools taught, each with kind, place, dates, tier and source — counts before and after
 T-1185 — Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
 T-1186 — Reconstruct the missing professions and services: physicians and law offices to the State census's 14 and 22, land agents, surveyors, a dentist's stand, barbers, teachers, laundresses, seamstresses and domestics, as businesses or as no-premises employments
 T-1187 — Reconstruct the missing lodging, river and transport businesses: boarding houses to the 42-roof programme, the inns the lodging model wants, forwarding and warehouse hands, the ferries, drays and livery, the lumber yards, the pier-works gang and the vessels in port
@@ -231,3 +230,4 @@ T-1383 — The two women the St Mary's priest wrote down as Indigenous are the o
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
 T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand
+
