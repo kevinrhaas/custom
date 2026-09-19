@@ -1546,6 +1546,23 @@
       ]
     },
     {
+      "why": "THE 1835 BUSINESS STAFFING MODEL (T-1183) — the rule T-1189 staffs every business by. It reads the business layer, the 1839 trade table, the town model and the residents vocabulary, and writes a table of establishment kinds with the roles each employed plus a dry run of what the layer implies. It writes NO person, so rebuilding it can never touch a card; it is listed here because it is a gated writer and an unlisted gated writer leaves every open PR stale against it with no automated remedy. Placed after the order book, which is the other quota over these same committed layers; there is no derived dependency between them and this position is reasoned from what the tool reads and writes, not measured.",
+      "command": [
+        "python3",
+        "tools/build_staffing_model_1835.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_business_staffing_model.json",
+        "chicago/4d/docs/RESEARCH/1835_business_staffing_model.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/build_staffing_model_1835.py",
+        "--check"
+      ]
+    },
+    {
       "why": "THE COHORT THE ORDER BOOK CANNOT APPORTION (T-1352, piece 1 of T-1178). It reads the town model's July population, the 1843 census table, the land-sale register and its resident crosswalk, and bounds the people who were in the town on the scene date and not of it. It follows the order book because the row it fills is the one the book leaves open, and it must follow model_town_1835.py because the bracket's floor is a fraction of that model's own resident point. PLACED BY LAYER, as the 89 steps around it are, and not by a measured dependency: the honest test is the first time a change to the town model or the resident crosswalk fails to propagate here. WRITES, BUT DOES NOT CLAIM, ITS OUTPUTS — `resolves` stays empty for the same reason it is empty on the steps beside it.",
       "command": [
         "python3",
