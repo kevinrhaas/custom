@@ -3,48 +3,48 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 200,
+    "records": 240,
     "compiled_from_register": 196,
-    "authored": 4,
-    "present_at_scene_date": 183,
+    "authored": 44,
+    "present_at_scene_date": 223,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
       "druggist": 4,
-      "iron_foundry": 1,
+      "iron_foundry": 2,
       "lawyer": 18,
       "not_stated": 5,
-      "other": 81,
-      "physician": 3,
+      "other": 98,
+      "physician": 8,
       "printing_office": 3,
       "school": 7,
-      "silversmith_jeweller": 1,
+      "silversmith_jeweller": 2,
       "steam_saw_mill": 4,
-      "storage_and_forwarding": 8,
-      "store": 67,
-      "tavern": 9,
+      "storage_and_forwarding": 9,
+      "store": 75,
+      "tavern": 17,
       "tin_and_copper_manufactory": 4
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 30,
+      "premises": 45,
       "street_only": 63,
-      "unplaceable": 85
+      "unplaceable": 110
     },
-    "named_people": 200,
-    "named_people_linked_to_a_town_card": 148,
+    "named_people": 245,
+    "named_people_linked_to_a_town_card": 193,
     "works_at_households": 50,
-    "works_at_households_resolving_to_a_business": 21,
+    "works_at_households_resolving_to_a_business": 33,
     "by_grade": {
       "attested": 158,
-      "inferred": 38,
+      "inferred": 78,
       "reconstructed": 4
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 30,
+      "premises": 45,
       "street_only": 63,
-      "unplaceable": 81
+      "unplaceable": 106
     },
     "by_street": {
       "Canal Street": 1,
@@ -58,13 +58,16 @@
       "South Water Street": 39
     },
     "by_proprietor_community": {
-      "british": 9,
+      "british": 12,
       "free_black": 2,
-      "new_york": 41,
-      "other": 10,
-      "southern": 5,
-      "unknown": 85,
-      "yankee": 48
+      "french_canadian": 2,
+      "irish": 2,
+      "metis": 1,
+      "new_york": 51,
+      "other": 11,
+      "southern": 10,
+      "unknown": 88,
+      "yankee": 61
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -93,12 +96,12 @@
       {
         "value": "metis",
         "label": "Metis",
-        "count": 0
+        "count": 1
       },
       {
         "value": "french_canadian",
         "label": "French Canadian",
-        "count": 0
+        "count": 2
       },
       {
         "value": "free_black",
@@ -108,17 +111,17 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 48
+        "count": 61
       },
       {
         "value": "new_york",
         "label": "New York State",
-        "count": 41
+        "count": 51
       },
       {
         "value": "irish",
         "label": "Irish",
-        "count": 0
+        "count": 2
       },
       {
         "value": "german",
@@ -128,22 +131,22 @@
       {
         "value": "british",
         "label": "British",
-        "count": 9
+        "count": 12
       },
       {
         "value": "southern",
         "label": "Southern",
-        "count": 5
+        "count": 10
       },
       {
         "value": "other",
         "label": "Other",
-        "count": 10
+        "count": 11
       },
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 85
+        "count": 88
       }
     ]
   },
@@ -753,6 +756,52 @@
       ]
     },
     {
+      "id": "biz_andrus_thomas_carpenter",
+      "file": "biz_andrus_thomas_carpenter.json",
+      "name": "Thomas Andrus, carpenter",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "carpenter",
+      "occupation": "carpenter",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Thomas Andrus",
+          "person_id": "andrus_thomas",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_b_jones_grocery_and_provision_store",
       "file": "biz_b_jones_grocery_and_provision_store.json",
       "name": "B. Jones, grocery and provision store",
@@ -854,6 +903,199 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_beaubien_jean_baptiste_merchant",
+      "file": "biz_beaubien_jean_baptiste_merchant.json",
+      "name": "Col. Jean Baptiste Beaubien, merchant and trader",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "merchant and trader",
+      "occupation": "merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Col. Jean Baptiste Beaubien",
+          "person_id": "beaubien_jean_baptiste",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "french_canadian",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_beaubien_madore_merchant",
+      "file": "biz_beaubien_madore_merchant.json",
+      "name": "Madore Benjamin Beaubien, merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "merchant",
+      "occupation": "merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Madore Benjamin Beaubien",
+          "person_id": "beaubien_madore",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "madore_beaubien_house",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_beaubien_mark_tavern_keeper",
+      "file": "biz_beaubien_mark_tavern_keeper.json",
+      "name": "Mark Beaubien, tavern keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tavern keeper",
+      "occupation": "tavern_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Mark Beaubien",
+          "person_id": "beaubien_mark",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "french_canadian",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_blodgett_tyler_k_brickmaker",
+      "file": "biz_blodgett_tyler_k_brickmaker.json",
+      "name": "Tyler K. Blodgett, Henry S. Lampman, brickmaker",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "brickmaker",
+      "occupation": "brickmaker",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Tyler K. Blodgett",
+          "person_id": "blodgett_tyler_k",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Henry S. Lampman",
+          "person_id": "lampman_henry_s",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "brickyard_north_side",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
@@ -1057,6 +1299,52 @@
       "liberties": []
     },
     {
+      "id": "biz_brown_lemuel_blacksmith",
+      "file": "biz_brown_lemuel_blacksmith.json",
+      "name": "Lemuel Brown, blacksmith",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "blacksmith",
+      "occupation": "blacksmith",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Lemuel Brown",
+          "person_id": "brown_lemuel",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_brown_painter",
       "file": "biz_brown_painter.json",
       "name": "Brown, painter",
@@ -1099,6 +1387,61 @@
       "dates_tier": "inferred",
       "proprietor_community": "unknown",
       "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_brown_rufus_boarding_house_keeper",
+      "file": "biz_brown_rufus_boarding_house_keeper.json",
+      "name": "Rufus Brown, Mrs Rufus Brown, boarding house keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "boarding house keeper",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Rufus Brown",
+          "person_id": "brown_rufus",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Mrs Rufus Brown",
+          "person_id": "brown_mrs_rufus",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "brown_boarding_house",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1583,6 +1926,52 @@
       "liberties": []
     },
     {
+      "id": "biz_church_thomas_merchant",
+      "file": "biz_church_thomas_merchant.json",
+      "name": "Thomas Church, merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "merchant",
+      "occupation": "merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Thomas Church",
+          "person_id": "church_thomas",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "thomas_church_store",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_clark_filer_co",
       "file": "biz_clark_filer_co.json",
       "name": "Clark, Filer & Co.",
@@ -1640,6 +2029,98 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_clybourne_archibald_butcher",
+      "file": "biz_clybourne_archibald_butcher.json",
+      "name": "Archibald Clybourne, butcher",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "butcher",
+      "occupation": "butcher",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Archibald Clybourne",
+          "person_id": "clybourne_archibald",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "clybourn_slaughterhouse",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_collett_j_a_refectory_keeper",
+      "file": "biz_collett_j_a_refectory_keeper.json",
+      "name": "J. A. Collett, refectory keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "refectory keeper",
+      "occupation": "refectory_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "J. A. Collett",
+          "person_id": "collett_j_a",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_collins_caton",
@@ -1860,6 +2341,61 @@
       "liberties": [
         "backdating_required"
       ]
+    },
+    {
+      "id": "biz_couch_ira_hotel_keeper",
+      "file": "biz_couch_ira_hotel_keeper.json",
+      "name": "Ira Couch, James Couch, hotel keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "hotel keeper",
+      "occupation": "hotel_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Ira Couch",
+          "person_id": "couch_ira",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "James Couch",
+          "person_id": "couch_james",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "tremont_house_1",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_cromelien_brothers_co",
@@ -2288,6 +2824,52 @@
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_davis_john_hotel_keeper",
+      "file": "biz_davis_john_hotel_keeper.json",
+      "name": "John Davis, hotel keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "hotel keeper",
+      "occupation": "hotel_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John Davis",
+          "person_id": "davis_john",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "steamboat_hotel",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
@@ -3015,6 +3597,52 @@
       "liberties": []
     },
     {
+      "id": "biz_egan_william_b_physician",
+      "file": "biz_egan_william_b_physician.json",
+      "name": "Dr William Bradshaw Egan, physician",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr William Bradshaw Egan",
+          "person_id": "egan_william_b",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_elmira_fowler",
       "file": "biz_elmira_fowler.json",
       "name": "Elmira Fowler",
@@ -3436,6 +4064,52 @@
       "liberties": []
     },
     {
+      "id": "biz_gale_stephen_f_merchant",
+      "file": "biz_gale_stephen_f_merchant.json",
+      "name": "Stephen F. Gale, merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "merchant",
+      "occupation": "merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Stephen F. Gale",
+          "person_id": "gale_stephen_f",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_geo_w_laird_naper_s_settlement",
       "file": "biz_geo_w_laird_naper_s_settlement.json",
       "name": "Geo. W. Laird, Naper's Settlement",
@@ -3728,6 +4402,144 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_haddock_edward_tavern_keeper",
+      "file": "biz_haddock_edward_tavern_keeper.json",
+      "name": "Edward H. Haddock, tavern keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tavern keeper",
+      "occupation": "tavern_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Edward H. Haddock",
+          "person_id": "haddock_edward",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "mansion_house",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_handy_major_mason",
+      "file": "biz_handy_major_mason.json",
+      "name": "Major Handy, mason",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "mason",
+      "occupation": "mason",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Major Handy",
+          "person_id": "handy_major",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_harmon_elijah_d_physician",
+      "file": "biz_harmon_elijah_d_physician.json",
+      "name": "Dr Elijah Dewey Harmon, physician",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr Elijah Dewey Harmon",
+          "person_id": "harmon_elijah_d",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_harmon_loomis_co",
@@ -4119,6 +4931,144 @@
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_inf_cooper_north_04_cooper",
+      "file": "biz_inf_cooper_north_04_cooper.json",
+      "name": "J. Garland, cooper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "cooper",
+      "occupation": "cooper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "J. Garland",
+          "person_id": "inf_cooper_north_04",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_inf_joiner_north_02_joiner",
+      "file": "biz_inf_joiner_north_02_joiner.json",
+      "name": "J. W. Reed, joiner",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "joiner",
+      "occupation": "joiner",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "J. W. Reed",
+          "person_id": "inf_joiner_north_02",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_inf_physician_south_01_physician",
+      "file": "biz_inf_physician_south_01_physician.json",
+      "name": "Dr. Josiah C. Goodhue, physician",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr. Josiah C. Goodhue",
+          "person_id": "inf_physician_south_01",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "british",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
@@ -5912,6 +6862,52 @@
       "liberties": []
     },
     {
+      "id": "biz_keeney_g_w_founder",
+      "file": "biz_keeney_g_w_founder.json",
+      "name": "G. W. Keeney, founder",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "iron_foundry"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "founder",
+      "occupation": "founder",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "G. W. Keeney",
+          "person_id": "keeney_g_w",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_kercheval_hamilton",
       "file": "biz_kercheval_hamilton.json",
       "name": "Kercheval & Hamilton",
@@ -5967,6 +6963,52 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_kimberly_edmund_s_physician",
+      "file": "biz_kimberly_edmund_s_physician.json",
+      "name": "Dr Edmund Stoughton Kimberly, physician",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr Edmund Stoughton Kimberly",
+          "person_id": "kimberly_edmund_s",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_kinzie_forsyth",
@@ -6067,6 +7109,53 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_kinzie_john_h_forwarding_and_commission",
+      "file": "biz_kinzie_john_h_forwarding_and_commission.json",
+      "name": "John Harris Kinzie, forwarding and commission merchant and merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "forwarding and commission merchant and merchant",
+      "occupation": "forwarding_and_commission",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John Harris Kinzie",
+          "person_id": "kinzie_john_h",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "jh_kinzie_forwarding_store",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_l_g_curtiss",
@@ -6559,6 +7648,153 @@
       ]
     },
     {
+      "id": "biz_mckee_david_blacksmith",
+      "file": "biz_mckee_david_blacksmith.json",
+      "name": "David McKee, blacksmith",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "blacksmith",
+      "occupation": "blacksmith",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "David McKee",
+          "person_id": "mckee_david",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "blacksmith_shop_state_st",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_meeker_joseph_carpenter",
+      "file": "biz_meeker_joseph_carpenter.json",
+      "name": "Joseph Meeker, carpenter",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "carpenter",
+      "occupation": "carpenter",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Joseph Meeker",
+          "person_id": "meeker_joseph",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_miller_john_tanner",
+      "file": "biz_miller_john_tanner.json",
+      "name": "John Miller, Benjamin Hall, tanner",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tanner",
+      "occupation": "tanner",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John Miller",
+          "person_id": "miller_john",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Benjamin Hall",
+          "person_id": "hall_benjamin",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "miller_tannery",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_miss_bayne_s_boarding_and_day_school",
       "file": "biz_miss_bayne_s_boarding_and_day_school.json",
       "name": "Miss Bayne's Boarding and Day School",
@@ -6761,6 +7997,107 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_mulford_e_h_watchmaker",
+      "file": "biz_mulford_e_h_watchmaker.json",
+      "name": "E. H. Mulford, watchmaker",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "silversmith_jeweller"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "watchmaker",
+      "occupation": "watchmaker",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "E. H. Mulford",
+          "person_id": "mulford_e_h",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_murphy_john_tavern_keeper",
+      "file": "biz_murphy_john_tavern_keeper.json",
+      "name": "John Murphy, Harriet Murphy, tavern keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tavern keeper",
+      "occupation": "tavern_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John Murphy",
+          "person_id": "murphy_john",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Harriet Murphy",
+          "person_id": "murphy_harriet",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "exchange_coffee_house",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_new_york_clothing_store",
@@ -7573,6 +8910,52 @@
       ]
     },
     {
+      "id": "biz_porthier_joseph_blacksmith",
+      "file": "biz_porthier_joseph_blacksmith.json",
+      "name": "Joseph Porthier, blacksmith",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "blacksmith",
+      "occupation": "blacksmith",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Joseph Porthier",
+          "person_id": "porthier_joseph",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "blacksmith_shop_state_st",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_r_a_kinzie",
       "file": "biz_r_a_kinzie.json",
       "name": "R. A. Kinzie",
@@ -7759,6 +9142,52 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_robinson_alexander_trader",
+      "file": "biz_robinson_alexander_trader.json",
+      "name": "Alexander Robinson (Che-che-pin-qua), trader",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "trader",
+      "occupation": "trader",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Alexander Robinson (Che-che-pin-qua)",
+          "person_id": "robinson_alexander",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "metis",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_rockwell_cabinet_furniture_warehouse",
@@ -8419,6 +9848,98 @@
       ]
     },
     {
+      "id": "biz_smith_george_coffee_house_keeper",
+      "file": "biz_smith_george_coffee_house_keeper.json",
+      "name": "George Smith, coffee house keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "coffee house keeper",
+      "occupation": "coffee_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "George Smith",
+          "person_id": "smith_george",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_stow_william_h_hotel_keeper",
+      "file": "biz_stow_william_h_hotel_keeper.json",
+      "name": "William H. Stow, hotel keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "hotel keeper",
+      "occupation": "hotel_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "William H. Stow",
+          "person_id": "stow_william_h",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "western_hotel",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_stuart_s_confectionary_and_perfumery",
       "file": "biz_stuart_s_confectionary_and_perfumery.json",
       "name": "Stuart's confectionary and perfumery",
@@ -8461,6 +9982,144 @@
       "dates_tier": "inferred",
       "proprietor_community": "unknown",
       "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_sweet_alanson_tavern_keeper",
+      "file": "biz_sweet_alanson_tavern_keeper.json",
+      "name": "Alanson Sweet, tavern keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tavern keeper",
+      "occupation": "tavern_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Alanson Sweet",
+          "person_id": "sweet_alanson",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_taylor_anson_h_carpenter",
+      "file": "biz_taylor_anson_h_carpenter.json",
+      "name": "Anson H. Taylor, carpenter",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "carpenter",
+      "occupation": "carpenter",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Anson H. Taylor",
+          "person_id": "taylor_anson_h",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_taylor_augustine_carpenter",
+      "file": "biz_taylor_augustine_carpenter.json",
+      "name": "Augustine Deodat Taylor, carpenter",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "carpenter",
+      "occupation": "carpenter",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Augustine Deodat Taylor",
+          "person_id": "taylor_augustine",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -8516,6 +10175,98 @@
       "dates_tier": "inferred",
       "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_temple_john_t_physician",
+      "file": "biz_temple_john_t_physician.json",
+      "name": "Dr John Taylor Temple, physician",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr John Taylor Temple",
+          "person_id": "temple_john_t",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_temple_peter_dentist",
+      "file": "biz_temple_peter_dentist.json",
+      "name": "Dr Peter Temple, dentist",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "dentist",
+      "occupation": "dentist",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Dr Peter Temple",
+          "person_id": "temple_peter",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": []
     },
@@ -10434,6 +12185,52 @@
       ]
     },
     {
+      "id": "biz_walters_william_tavern_keeper",
+      "file": "biz_walters_william_tavern_keeper.json",
+      "name": "William Walters, tavern keeper",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "tavern keeper",
+      "occupation": "tavern_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "William Walters",
+          "person_id": "walters_william",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "wolf_point_tavern",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_whitehead_co",
       "file": "biz_whitehead_co.json",
       "name": "Whitehead & Co.",
@@ -10913,6 +12710,98 @@
       "liberties": []
     },
     {
+      "id": "biz_woodworth_james_h_dry_goods_merchant",
+      "file": "biz_woodworth_james_h_dry_goods_merchant.json",
+      "name": "James H. Woodworth, dry goods merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "dry goods merchant",
+      "occupation": "dry_goods_merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "James H. Woodworth",
+          "person_id": "woodworth_james_h",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_wright_john_merchant",
+      "file": "biz_wright_john_merchant.json",
+      "name": "John Wright, merchant",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "merchant",
+      "occupation": "merchant",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John Wright",
+          "person_id": "wright_john",
+          "role": "proprietor",
+          "tier": "inferred",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_crandall_druggist",
       "file": "rcb_crandall_druggist.json",
       "name": "B. Crandall, drugs, medicines and dye stuffs",
@@ -11122,20 +13011,25 @@
       "household_id": "hh_beaubien_madore",
       "head": "beaubien_madore",
       "structure_id": "madore_beaubien_house",
-      "business_ids": []
+      "business_ids": [
+        "biz_beaubien_madore_merchant"
+      ]
     },
     {
       "household_id": "hh_blodgett_tyler_k",
       "head": "blodgett_tyler_k",
       "structure_id": "brickyard_north_side",
-      "business_ids": []
+      "business_ids": [
+        "biz_blodgett_tyler_k_brickmaker"
+      ]
     },
     {
       "household_id": "hh_brown_rufus",
       "head": "brown_rufus",
       "structure_id": "brown_boarding_house",
       "business_ids": [
-        "biz_brown_painter"
+        "biz_brown_painter",
+        "biz_brown_rufus_boarding_house_keeper"
       ]
     },
     {
@@ -11175,25 +13069,33 @@
       "household_id": "hh_church_thomas",
       "head": "church_thomas",
       "structure_id": "thomas_church_store",
-      "business_ids": []
+      "business_ids": [
+        "biz_church_thomas_merchant"
+      ]
     },
     {
       "household_id": "hh_clybourne_archibald",
       "head": "clybourne_archibald",
       "structure_id": "clybourn_slaughterhouse",
-      "business_ids": []
+      "business_ids": [
+        "biz_clybourne_archibald_butcher"
+      ]
     },
     {
       "household_id": "hh_couch_ira",
       "head": "couch_ira",
       "structure_id": "tremont_house_1",
-      "business_ids": []
+      "business_ids": [
+        "biz_couch_ira_hotel_keeper"
+      ]
     },
     {
       "household_id": "hh_davis_john",
       "head": "davis_john",
       "structure_id": "steamboat_hotel",
-      "business_ids": []
+      "business_ids": [
+        "biz_davis_john_hotel_keeper"
+      ]
     },
     {
       "household_id": "hh_davis_t_o",
@@ -11244,7 +13146,8 @@
       "head": "haddock_edward",
       "structure_id": "mansion_house",
       "business_ids": [
-        "biz_e_w_haddock"
+        "biz_e_w_haddock",
+        "biz_haddock_edward_tavern_keeper"
       ]
     },
     {
@@ -11305,7 +13208,8 @@
       "structure_id": "jh_kinzie_forwarding_store",
       "business_ids": [
         "biz_j_h_kinzie_merchant",
-        "biz_john_h_kinzie"
+        "biz_john_h_kinzie",
+        "biz_kinzie_john_h_forwarding_and_commission"
       ]
     },
     {
@@ -11328,19 +13232,26 @@
       "household_id": "hh_mckee_david",
       "head": "mckee_david",
       "structure_id": "blacksmith_shop_state_st",
-      "business_ids": []
+      "business_ids": [
+        "biz_mckee_david_blacksmith",
+        "biz_porthier_joseph_blacksmith"
+      ]
     },
     {
       "household_id": "hh_miller_john",
       "head": "miller_john",
       "structure_id": "miller_tannery",
-      "business_ids": []
+      "business_ids": [
+        "biz_miller_john_tanner"
+      ]
     },
     {
       "household_id": "hh_murphy_john",
       "head": "murphy_john",
       "structure_id": "exchange_coffee_house",
-      "business_ids": []
+      "business_ids": [
+        "biz_murphy_john_tavern_keeper"
+      ]
     },
     {
       "household_id": "hh_norton_nelson_r",
@@ -11378,7 +13289,10 @@
       "household_id": "hh_porthier_joseph",
       "head": "porthier_joseph",
       "structure_id": "blacksmith_shop_state_st",
-      "business_ids": []
+      "business_ids": [
+        "biz_mckee_david_blacksmith",
+        "biz_porthier_joseph_blacksmith"
+      ]
     },
     {
       "household_id": "hh_pruyne_kimberly",
@@ -11412,7 +13326,9 @@
       "household_id": "hh_stow_william_h",
       "head": "stow_william_h",
       "structure_id": "western_hotel",
-      "business_ids": []
+      "business_ids": [
+        "biz_stow_william_h_hotel_keeper"
+      ]
     },
     {
       "household_id": "hh_taylor_anson",
@@ -11446,7 +13362,9 @@
       "household_id": "hh_walters_william",
       "head": "walters_william",
       "structure_id": "wolf_point_tavern",
-      "business_ids": []
+      "business_ids": [
+        "biz_walters_william_tavern_keeper"
+      ]
     },
     {
       "household_id": "hh_watkins_john",

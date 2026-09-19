@@ -42,6 +42,17 @@ Widening it would quietly re-assert what T-0837's write gate refuses; narrowing 
 disagree with the audit this repair is measured by, and a second opinion on that rule is
 the one thing a compatibility view must not have.
 
+AND SINCE T-1404, EVERY ROLE SAYS WHETHER THE TRADE HAD PREMISES OF ITS OWN. `premises`
+is read off `data/businesses/rulings/premises_rulings.json`, one ruling per occupation of the
+closed vocabulary, and it is the half of T-1182's clause 3 that is NOT a business record:
+a clerk, a labourer, a teamster or a boatman kept no house of trade, so the answer to
+"where did this man work?" is `no_fixed_premises` on the role itself, with the ruling's
+basis saying where the work was done and which ticket owes the workplace link. An
+`own_premises` role says the trade implies a house, and
+tools/complete_inwindow_trades.py raises one for every keeper who holds none. A role
+whose printing has not been ruled into the vocabulary (`role: null`) carries `premises:
+null`, because a trade nobody has adjudicated is not a trade this can answer for.
+
 WHAT THIS TICKET DOES NOT READ. The newspaper gazetteer's `persons[].occupations[]`, the
 1839 directory and civic-register crosswalks and the 1843/1844 identity-master appearances
 are T-1254, together with each role's stated place and employer and the migration table.
@@ -58,6 +69,7 @@ DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 SOURCES = DATA / "sources"
 INDEX = DATA / "residents" / "index.json"
+PREMISES_RULINGS = DATA / "businesses" / "rulings" / "premises_rulings.json"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_scene_window_trades import VERDICTS, covers_scene  # noqa: E402
@@ -726,6 +738,32 @@ def fold_duplicates(rows: list[dict]) -> tuple[list[dict], int]:
     return list(kept.values()), folded
 
 
+_PREMISES: dict[str, str] | None = None
+
+
+def premises_of(role: str | None) -> str | None:
+    """Whether this trade implies a house of trade of its own (T-1404, of T-1182).
+
+    A ruling MISSING for a role of the closed vocabulary is a fault and not a silent null:
+    the whole point of the field is that no in-window tradesman falls out of both halves of
+    the clause, and a null that means "unruled" is indistinguishable from a null that means
+    "the printing has not been adjudicated".
+    """
+    global _PREMISES
+    if _PREMISES is None:
+        doc = read_json(PREMISES_RULINGS)
+        _PREMISES = {r["occupation"]: r["premises"] for r in doc["rulings"]}
+    if not role:
+        return None
+    value = _PREMISES.get(role)
+    if value is None:
+        raise SystemExit(
+            "%s: no premises ruling covers the role %r. Rule it in %s — an unruled trade is a "
+            "tradesman who falls out of both halves of T-1182's clause 3."
+            % (GENERATOR, role, PREMISES_RULINGS.relative_to(ROOT)))
+    return value
+
+
 def roles_for(person: dict, gazetteer: dict[str, dict] | None = None) -> list[dict]:
     occ = person.get("occupation")
     if not isinstance(occ, dict):
@@ -746,6 +784,7 @@ def roles_for(person: dict, gazetteer: dict[str, dict] | None = None) -> list[di
     for row in rows:
         row.pop("_disposition", None)
         row.pop("_offered_by", None)
+        row["premises"] = premises_of(row.get("role"))
     return rows
 
 

@@ -1,7 +1,7 @@
 ---
 id: T-1404
 title: A business for every in-window trade and no_fixed_premises for the trades that carry none, with the physicians' and lawyers' census gaps worked from the research first, the Sept-Dec 1835 crosswalk re-run, and what remains short written to the order book for T-1186
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1182
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 4:09:13 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35469364861
 ---
 
 A business for every in-window trade and no_fixed_premises for the trades that carry none, with the physicians' and lawyers' census gaps worked from the research first, the Sept-Dec 1835 crosswalk re-run, and what remains short written to the order book for T-1186.

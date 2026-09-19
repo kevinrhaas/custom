@@ -1197,6 +1197,13 @@ export function associationsHtml(links, citationsById, label) {
  *
  * A role carries no PLACE and no employer yet — that is T-1254's migration — so
  * this block makes no claim about where the work was done. The location half of
+ * AND WHETHER THE TRADE HAD PREMISES (T-1404). `premises` is the half of the
+ * workplace question that is not a business record: a clerk keeps somebody
+ * else's counter and a teamster drives on the road, so the role itself says
+ * `no_fixed_premises` and the row prints that chip. An `own_premises` role needs
+ * no chip — the house it implies is a record of its own in the business layer,
+ * and the card's Works-at row is where it shows.
+ *
  * T-1240 waits on the same data: no record in the layer carries a dated location
  * link or a location limit, and the household's `lives_at`/`works_at` are single
  * undated claims, rendered as such by `householdHtml` above.
@@ -1236,7 +1243,8 @@ function roleRowHtml(role, citationsById) {
     <span class="res-chips">${role.kind
       ? `<span class="res-chip">${escapeHtml(words(role.kind))}</span>` : ''}<span
       class="res-chip ${at ? 'res-role-scene' : 'res-role-off'}">${at
-        ? 'reaches 1 July 1835' : 'not on 1 July 1835'}</span>${role.role
+        ? 'reaches 1 July 1835' : 'not on 1 July 1835'}</span>${role.premises === 'no_fixed_premises'
+      ? '<span class="res-chip res-role-off">no premises of its own</span>' : ''}${role.role
       ? '' : '<span class="res-chip res-role-off">wording not adjudicated</span>'}</span>
     <span class="res-why">Dated by ${escapeHtml(words(role.dated_by || 'undated'))}${precision}.${
       role.note ? ` ${escapeHtml(role.note)}` : ''}</span>

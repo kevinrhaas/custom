@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
-| Businesses (enumerated classes) | 120 | 118 | 24 |
+| Businesses (enumerated classes) | 120 | 142 | 18 |
 | Roofs | 668 | 384 | 297 |
 
 ## The rules this book adds
@@ -205,7 +205,7 @@ The households the model wants, by kind and division.
 The December 1835 State census set against the register the town already holds.
 
 - `register_total`: 196
-- `at_scene_date`: 180
+- `at_scene_date`: 220
 - `census_enumerated_total`: 118
 - `register_businesses_read`: 196
 - `division_note`: EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.
@@ -218,18 +218,18 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/brewery` | 2 | 1 | 1 | 0 | T-1185 |
 | `businesses/church` | 5 | 0 | 5 | 0 | T-1188 |
 | `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
-| `businesses/iron_foundry` | 1 | 1 | 0 | 0 | T-1185 |
+| `businesses/iron_foundry` | 1 | 2 | 0 | 0 | T-1185 |
 | `businesses/lawyer` | 22 | 18 | 4 | 0 | T-1186 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/lyceum_and_reading_room` | 0 | 0 | 0 | 0 | T-1182 |
-| `businesses/physician` | 14 | 3 | 11 | 0 | T-1186 |
+| `businesses/physician` | 14 | 8 | 6 | 0 | T-1186 |
 | `businesses/printing_office` | 2 | 3 | 0 | 0 | T-1188 |
 | `businesses/school` | 7 | 7 | 0 | 0 | T-1188 |
-| `businesses/silversmith_jeweller` | 2 | 1 | 1 | 0 | T-1185 |
+| `businesses/silversmith_jeweller` | 2 | 2 | 0 | 0 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
-| `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
-| `businesses/store` | 44 | 59 | 0 | 0 | T-1184 |
-| `businesses/tavern` | 8 | 8 | 0 | 0 | T-1187 |
+| `businesses/storage_and_forwarding` | 4 | 8 | 0 | 0 | T-1187 |
+| `businesses/store` | 44 | 67 | 0 | 0 | T-1184 |
+| `businesses/tavern` | 8 | 16 | 0 | 0 | T-1187 |
 | `businesses/tin_and_copper_manufactory` | 2 | 4 | 0 | 0 | T-1185 |
 
 ## Structures

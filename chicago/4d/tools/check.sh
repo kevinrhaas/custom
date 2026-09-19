@@ -4366,6 +4366,20 @@ step "the business audit re-derives, and every identity ruling still holds" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/audit_businesses.py --self-test
 
+# T-1404, of T-1182 clause 3. AND WHETHER EVERY IN-WINDOW TRADESMAN HAS SOMEWHERE TO WORK.
+# 47 dated roles reach 1 July 1835 on people the business layer held no workplace for — a
+# blacksmith with no smithy, five physicians against three offices. This raises an
+# `inferred` house for each trade the premises rulings say implies one, folds two keepers
+# of one household's trade into one house, HOLDS a candidate the register may already have
+# printed under a name it could not match, and says `no_fixed_premises` on the role where
+# the trade never had premises of its own. It reconstructs nothing: what the December
+# census still counts short stays short, in the order book, for T-1186.
+step "every in-window trade has a workplace or a stated reason it has none" \
+  python3 tools/complete_inwindow_trades.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/complete_inwindow_trades.py --self-test
+
 # T-1184, the first group of the business reconstruction band. The December 1835 State
 # census counts classes the newspaper register does not hold — four druggists against two
 # — and the order book turns each of those gaps into a quota with the ticket that owes it.

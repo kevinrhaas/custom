@@ -101,8 +101,8 @@
     "households_known": 436,
     "households_to_reconstruct": 209,
     "businesses_target": 120,
-    "businesses_known": 118,
-    "businesses_to_reconstruct": 24,
+    "businesses_known": 142,
+    "businesses_to_reconstruct": 18,
     "roofs_target": 668,
     "roofs_standing": 384,
     "roofs_to_build": 297
@@ -2435,7 +2435,7 @@
       "lead": "The December 1835 State census set against the register the town already holds.",
       "summary": {
         "register_total": 196,
-        "at_scene_date": 180,
+        "at_scene_date": 220,
         "census_enumerated_total": 118,
         "register_businesses_read": 196,
         "division_note": "EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.",
@@ -2545,7 +2545,7 @@
           },
           "census_line": "one iron foundry",
           "target": 1,
-          "known": 1,
+          "known": 2,
           "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1185",
@@ -2554,7 +2554,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 1; the register holds 1 at the scene date"
+          "basis": "the December 1835 State census prints 1; the register holds 2 at the scene date"
         },
         {
           "key": "businesses/lawyer",
@@ -2621,8 +2621,8 @@
           },
           "census_line": "fourteen physicians",
           "target": 14,
-          "known": 3,
-          "to_reconstruct": 11,
+          "known": 8,
+          "to_reconstruct": 6,
           "filled": 0,
           "owning_ticket": "T-1186",
           "documented_zero": false,
@@ -2630,7 +2630,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 14; the register holds 3 at the scene date"
+          "basis": "the December 1835 State census prints 14; the register holds 8 at the scene date"
         },
         {
           "key": "businesses/printing_office",
@@ -2678,8 +2678,8 @@
           },
           "census_line": "two silversmiths and jewellers",
           "target": 2,
-          "known": 1,
-          "to_reconstruct": 1,
+          "known": 2,
+          "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1185",
           "documented_zero": false,
@@ -2687,7 +2687,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 2; the register holds 1 at the scene date"
+          "basis": "the December 1835 State census prints 2; the register holds 2 at the scene date"
         },
         {
           "key": "businesses/steam_saw_mill",
@@ -2716,44 +2716,6 @@
           },
           "census_line": "four storage and forwarding houses",
           "target": 4,
-          "known": 7,
-          "to_reconstruct": 0,
-          "filled": 0,
-          "owning_ticket": "T-1187",
-          "documented_zero": false,
-          "staff_implied": null,
-          "staff_owning_ticket": "T-1183",
-          "compared_by_the_crosswalk": true,
-          "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 4; the register holds 7 at the scene date"
-        },
-        {
-          "key": "businesses/store",
-          "axes": {
-            "class": "store",
-            "division": "unassigned"
-          },
-          "census_line": "forty-four stores (dry goods, hardware and groceries)",
-          "target": 44,
-          "known": 59,
-          "to_reconstruct": 0,
-          "filled": 0,
-          "owning_ticket": "T-1184",
-          "documented_zero": false,
-          "staff_implied": null,
-          "staff_owning_ticket": "T-1183",
-          "compared_by_the_crosswalk": true,
-          "crosswalk_note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)",
-          "basis": "the December 1835 State census prints 44; the register holds 59 at the scene date"
-        },
-        {
-          "key": "businesses/tavern",
-          "axes": {
-            "class": "tavern",
-            "division": "unassigned"
-          },
-          "census_line": "eight taverns",
-          "target": 8,
           "known": 8,
           "to_reconstruct": 0,
           "filled": 0,
@@ -2763,7 +2725,45 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 8; the register holds 8 at the scene date"
+          "basis": "the December 1835 State census prints 4; the register holds 8 at the scene date"
+        },
+        {
+          "key": "businesses/store",
+          "axes": {
+            "class": "store",
+            "division": "unassigned"
+          },
+          "census_line": "forty-four stores (dry goods, hardware and groceries)",
+          "target": 44,
+          "known": 67,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1184",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)",
+          "basis": "the December 1835 State census prints 44; the register holds 67 at the scene date"
+        },
+        {
+          "key": "businesses/tavern",
+          "axes": {
+            "class": "tavern",
+            "division": "unassigned"
+          },
+          "census_line": "eight taverns",
+          "target": 8,
+          "known": 16,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1187",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 8; the register holds 16 at the scene date"
         },
         {
           "key": "businesses/tin_and_copper_manufactory",

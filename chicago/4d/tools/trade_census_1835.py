@@ -28,6 +28,27 @@ WHAT THIS TOOL MAY NOT DO.  It classifies and it counts.  It creates nothing, it
 places nothing, and it upgrades no confidence: the spending of the gap it measures
 is T-1007's, on T-0404's liberty, and a run that finds a hole here files a ticket
 rather than a building.
+
+THE AUTHORED LAYER IS COUNTED TOO, SINCE T-1404.  The register is no longer the whole
+of the town's business layer: `data/businesses/authored/` holds the houses a human or a
+tool wrote down where the paper printed none — the inferred shops T-1404 raises for
+tradesmen whose dated role reaches the scene date, and the reconstructed firms T-1184
+onward draw against this very crosswalk.  Counting the register alone made those houses
+invisible to the comparison AND to the order book cut from it, so the book would have
+ordered eleven physicians reconstructed over a layer that names eight.  An authored
+record carries its census class on itself, in `type`, ruled by whoever wrote it; it needs
+no trade ruling and gets none, and `ruled_by` says `authored_record` so the two
+populations can never be confused in the classification table.
+
+A RECONSTRUCTED HOUSE IS NOT COUNTED, and the reason is the order book.  Its
+`businesses/*` buckets are cut as census count MINUS what the town knows, and the
+reconstructions those buckets order are carried in `filled`, a separate counter.  Count a
+reconstructed firm as known and the same house is subtracted twice: the two druggists
+T-1184 drew against a shortfall of two would close the shortfall AND stand in `filled`,
+and the book's own overfill guard fires.  So `load()` passes the authored records whose
+`provenance` is not `reconstructed` — the attested and inferred houses a source stands
+behind — and the drawn ones stay where they belong, in the counter of the bucket that
+ordered them.
 """
 from __future__ import annotations
 
@@ -40,6 +61,7 @@ ROOT = Path(__file__).resolve().parent.parent
 GAZETTEER = ROOT / "data" / "research" / "newspapers" / "gazetteer.json"
 RULINGS = ROOT / "data" / "research" / "newspapers" / "trade_class_rulings.json"
 CROSSWALK = ROOT / "data" / "research" / "books" / "trade_census_1835_crosswalk.json"
+AUTHORED = ROOT / "data" / "businesses" / "authored"
 
 CLAIM = "bk_mose1_006"
 SOURCE = "moses_kirkland_history_of_chicago_v1"
@@ -62,7 +84,7 @@ class Fault(Exception):
 # the join
 
 
-def classify(gazetteer: dict, rulings: dict) -> list:
+def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> list:
     """One row per business in the register: its printed trade, and its class.
 
     Every fault this raises is a SILENT MISCOUNT if it does not. A business whose
@@ -124,14 +146,37 @@ def classify(gazetteer: dict, rulings: dict) -> list:
             "built_at_scene_date": bool(biz.get("built_at_scene_date")),
         })
 
+    for rec in sorted(authored or [], key=lambda r: r["id"]):
+        classes = sorted(rec.get("type") or [])
+        if not classes:
+            raise Fault(f"{rec['id']}: an authored record naming no class at all. Its `type` IS "
+                        "its ruling; a house with none is a house outside the count.")
+        for cls in classes:
+            if cls not in known:
+                raise Fault(f"{rec['id']}: an authored record names a class the vocabulary does "
+                            f"not hold: {cls}")
+        rows.append({
+            "business_id": rec["id"],
+            "name": rec.get("name"),
+            "trade": rec.get("trade"),
+            "classes": classes,
+            "scope": "in_town",
+            "ruled_by": "authored_record",
+            "basis": (f"AUTHORED, NOT PRINTED. `{rec['id']}` carries its own census class in "
+                      f"`type` and its own grade in `provenance: {rec.get('provenance')}`; the "
+                      "ruling was made by whoever wrote the record and is read off it here."),
+            "built_at_scene_date": bool(rec.get("present_at_scene_date")),
+        })
+
     orphans = sorted(set(by_trade) - seen_trades)
     if orphans:
         raise Fault(
             "rulings for printed trades the register no longer carries — a ruling that has "
             "outlived its reading is a judgement nobody can check:\n  "
             + "\n  ".join(repr(o) for o in orphans))
+    register_ids = {b["id"] for b in gazetteer["businesses"]}
     for business_id in sorted(overrides):
-        if not any(r["business_id"] == business_id for r in rows):
+        if business_id not in register_ids:
             raise Fault(f"an override naming no business in the register: {business_id}")
 
     rows.sort(key=lambda r: r["business_id"])
@@ -179,8 +224,9 @@ def compare(rows: list, rulings: dict) -> list:
     return out
 
 
-def build(gazetteer: dict, rulings: dict) -> dict:
-    rows = classify(gazetteer, rulings)
+def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
+    rows = classify(gazetteer, rulings, authored)
+    register = [r for r in rows if r["ruled_by"] != "authored_record"]
     classes = compare(rows, rulings)
     compared = [c for c in classes if c["outcome"] not in ("not_compared",)]
     empty = [c["class"] for c in compared if c["town_records_in_town"] == 0]
@@ -211,7 +257,9 @@ def build(gazetteer: dict, rulings: dict) -> dict:
             "B1-B6. Disagree with a count by disagreeing with a boundary."),
         "classes": classes,
         "totals": {
-            "businesses_in_register": len(rows),
+            "businesses_in_register": len(register),
+            "authored_records_counted": len(rows) - len(register),
+            "businesses_counted": len(rows),
             "in_town": sum(1 for r in rows if r["scope"] == "in_town"),
             "outside_town": sum(1 for r in rows if r["scope"] != "in_town"),
             "at_scene_date": sum(1 for r in rows
@@ -241,8 +289,12 @@ def render(doc: dict) -> str:
 
 
 def load() -> tuple:
-    return json.loads(GAZETTEER.read_text(encoding="utf-8")), \
-        json.loads(RULINGS.read_text(encoding="utf-8"))
+    authored = [doc for doc in (json.loads(p.read_text(encoding="utf-8"))
+                                for p in sorted(AUTHORED.glob("*.json")))
+                if doc.get("provenance") != "reconstructed"]
+    return (json.loads(GAZETTEER.read_text(encoding="utf-8")),
+            json.loads(RULINGS.read_text(encoding="utf-8")),
+            authored)
 
 
 def cmd_build() -> int:
@@ -264,7 +316,9 @@ def report(doc: dict) -> str:
     t = doc["totals"]
     out.append(f"{'TOTAL (enumerated classes)':<30}{t['census_enumerated_total']:>6}"
                f"{t['town_enumerated_total_at_scene_date']:>13}")
-    out.append(f"\n{t['businesses_in_register']} businesses ruled: {t['in_town']} in town, "
+    out.append(f"\n{t['businesses_counted']} businesses ruled "
+               f"({t['businesses_in_register']} printed in the register, "
+               f"{t['authored_records_counted']} authored): {t['in_town']} in town, "
                f"{t['outside_town']} printed as standing outside it, "
                f"{t['not_stated']} whose notice prints no trade at all.")
     out.append(f"{t['carrying_no_enumerated_class']} carry no enumerated class — the trades the "
@@ -291,7 +345,7 @@ def cmd_check() -> int:
               "changed count means a business changed class or a reading changed.", file=sys.stderr)
         return 1
     print(f"the December 1835 trade count re-derives: "
-          f"{json.loads(fresh)['totals']['businesses_in_register']} businesses classified, "
+          f"{json.loads(fresh)['totals']['businesses_counted']} businesses classified, "
           f"none left out")
     return 0
 
@@ -317,6 +371,15 @@ def _fixture() -> tuple:
         "register_cautions": [],
     }
     return gaz, rules
+
+
+def _fires_authored(gaz, rules, authored, fragment: str) -> None:
+    try:
+        classify(gaz, rules, authored)
+    except Fault as exc:
+        assert fragment in str(exc), f"wrong fault for {fragment!r}: {exc}"
+        return
+    raise AssertionError(f"no fault raised where one was due: {fragment}")
 
 
 def _fires(gaz, rules, fragment: str) -> None:
@@ -397,7 +460,23 @@ def cmd_self_test() -> int:
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
     assert tav["town_records_in_town"] == 0 and tav["town_records_outside_town"] == 1, tav
 
-    print("trade_census_1835 self-tests pass (11 guards)")
+    # THE AUTHORED LAYER. A record carries its own class and is counted beside the register.
+    doc = build(gaz, rules, [{"id": "biz_x_tavern_keeper", "name": "X, tavern keeper",
+                              "trade": "tavern keeper", "type": ["tavern"],
+                              "provenance": "authored", "present_at_scene_date": True}])
+    tav = next(c for c in doc["classes"] if c["class"] == "tavern")
+    assert tav["town_records_at_scene_date"] == 2, tav
+    assert doc["totals"]["businesses_in_register"] == 2, doc["totals"]
+    assert doc["totals"]["authored_records_counted"] == 1, doc["totals"]
+    row = next(r for r in doc["classification"] if r["business_id"] == "biz_x_tavern_keeper")
+    assert row["ruled_by"] == "authored_record", row
+
+    # an authored record naming no class, and one naming a class the vocabulary lacks
+    _fires_authored(gaz, rules, [{"id": "biz_y", "type": []}], "naming no class at all")
+    _fires_authored(gaz, rules, [{"id": "biz_y", "type": ["innkeeper"]}],
+                    "a class the vocabulary does not hold")
+
+    print("trade_census_1835 self-tests pass (14 guards)")
     return 0
 
 

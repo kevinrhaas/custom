@@ -932,6 +932,11 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].roles[].covers_scene_date": (
         "shown", "const at = Boolean(role.covers_scene_date);"),
     "persons[].roles[].confidence": ("shown", "swatch(role.confidence)"),
+    # T-1404. A trade that kept no house of trade of its own says so on the row; an
+    # `own_premises` role needs no chip, because the house it implies is a business
+    # record and the card's Works-at row is where that shows.
+    "persons[].roles[].premises": (
+        "shown", "role.premises === 'no_fixed_premises'"),
     "persons[].roles[].note": ("shown", "escapeHtml(role.note)"),
     "persons[].roles[].sources": (
         "shown", "(role.sources || []).map((id) => citationsById.get(id))"),
