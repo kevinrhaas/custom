@@ -12323,3 +12323,56 @@ Related: ticket **T-1169**, stage `attribute_fill_arrival` of **T-1167**'s progr
 `docs/RESEARCH/1835_resident_reconstruction.md`.
 **Recorded:** 2026-09-18.
 ---
+### L244 — Eighty-nine heads the sources leave standing alone are given a wife and children nobody named
+
+**Decision:** stage `modelled_families` of the 1835 resident reconstruction programme
+(`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1171) draws a KIN CORE for
+every head whose household record is present on the scene date, holds him alone, is not a
+letter-list mint, and is not under a standing review. Eighty-nine heads qualify. Each is given a
+household size drawn from the 1840 Chicago city's own size histogram at his own band — never at
+the mean, which is the household model's explicit instruction — and the size is seated as a wife
+and children: 84 wives and 216 children, 300 people the sources do not name.
+
+**Scope:** `residents.persons[modelled_families]` — 300 people in 89 households, every one of
+them re-derivable from `tools/reconstruct_modelled_families.py --check`.
+
+**What is invented, stated plainly.** That these men were married at all; how many children each
+had; every child's age band and sex; every forename. The surname is the head's own, the forename
+is drawn from `data/reconstruction/1835_invented_name_pools.json`, and no source names a single
+one of these people. Each carries `grade: reconstructed`, the stage that wrote them, the model row
+they were drawn from, the seed a reader can retype to redraw them, and the sentence that retires
+them: *a source naming this head's family*.
+
+**What the model, not a source, decides.** THE SPACING RULE — a wife is drawn from the 1840 female
+adult columns and never above her husband's own band. The 1840 city returned 146.8 men per 100
+women aged twenty and over and the surplus is young unmarried men, so a wife older than her
+husband's decade is the shape the schedule least supports; no source states this and it is an
+assumption of the model. THE CHILD CAP — no child is older than the marriage the head's own age
+band allows, and none is born after 1 July 1835; the first is arithmetic on a drawn band, not a
+reading. THE DIVISION — 1,186 of the 1,258 household records say `unplaced`, so a drawn person is
+allocated to a division bucket of the order book by a seeded draw on the model's own by-division
+shares. That allocation is a LEDGER ACT: it writes no division onto any person or card, and the
+household goes on saying its place is unknown.
+
+**What is NOT invented here.** No draw exceeds the quota: every drawn person is counted into a
+bucket of `data/reconstruction/1835_reconstruction_order_book.json` and a bucket at its
+`to_reconstruct` REFUSES the draw instead of overfilling. No servant, apprentice, journeyman or
+lodger is seated — the drawn size is a floor on the house and the record says so, because the
+staffing model is T-1183's and the lodger is T-1175's. Eight refusals keep the stage off evidence
+it must not touch, and the build counts every one of them: an unsettled presence on the scene date
+(822, T-1172's roster), a letter-list mint (312, whose own gate proves no record there ever gained
+a second member), a household a source already names, counts or rules on (17, T-1313's and
+T-1314's), a head the household model does not seat as a husband (9), the fort and the country
+outside the town (3, T-1176's), a woman heading her own household (3, the age pyramid's and so
+T-1174's), a household under a standing review (2, T-1177's alone under AGENTS.md's
+Indigenous-history review), and a head whose own trade says he kept no wife (1) — which is what
+stopped this stage giving Father St Cyr a family.
+
+**What it does not fix.** The layer's adult sex ratio moves from 1,360.7 men per 100 women to
+340.2 and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: the
+women the age pyramid still lacks are 855 people in T-1174's buckets. The measurement is printed
+against the model in `data/reconstruction/1835_modelled_families.json` and says so rather than
+reading as a target reached.
+
+Related: tickets **T-1171**, from **T-1167**; **T-1161**'s town model and **T-1166**'s order book
+are the two files it draws against. **Recorded:** 2026-09-18.

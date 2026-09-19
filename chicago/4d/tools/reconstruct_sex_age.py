@@ -255,10 +255,31 @@ def counted_band_block(person: dict) -> dict:
     }
 
 
+# A STAGE THAT BRINGS ITS OWN SEX AND AGE IS NOT ONE THIS PASS FILLS (T-1171).
+#
+# This pass draws for a person the sources named and left undescribed. Stage
+# `modelled_families` writes people no source names at all, and it writes them WITH a
+# sex and an age band of its own - the wife drawn from the 1840 female adult columns and
+# never above her husband's band, the child capped by the marriage his band allows. Both
+# blocks carry `basis.id: age_bands_1840`, so without this exemption the ownership test
+# below reads them as this pass's own and redraws them from the roll model, which throws
+# the spacing rule away and replaces a documented draw with an undocumented one. The two
+# stages are not disagreeing about a person: they are writing about different people.
+SELF_DESCRIBING_STAGES = ("modelled_families",)
+
+
+def drawn_by_another_stage(person: dict) -> bool:
+    """A reconstructed person whose own stage already settled their sex and age."""
+    stage = (person.get("reconstruction") or {}).get("stage")
+    return stage in SELF_DESCRIBING_STAGES
+
+
 def without_this_pass(card: dict) -> dict:
     """The card as it stood before this pass ever ran. The basis of `--check`."""
     out = json.loads(json.dumps(card))
     for person in out.get("persons") or []:
+        if drawn_by_another_stage(person):
+            continue
         if ours_sex(person.get("sex_basis")):
             person.pop("sex_basis", None)
             person.pop("sex", None)
@@ -299,6 +320,11 @@ def measure(base: dict) -> dict:
         roll = roll_of(card)
         for person in card.get("persons") or []:
             if collective(person):
+                continue
+            # A DRAW IS NEVER EVIDENCE, WHOEVER DREW IT. The sex another reconstruction
+            # stage drew is as much a draw as one of this pass's, so it is kept out of the
+            # rate for the same reason `base` strips this pass's own fills.
+            if drawn_by_another_stage(person):
                 continue
             if person.get("sex"):
                 settled[roll] += 1
@@ -612,6 +638,9 @@ def fill(base: dict) -> tuple:
             # column, and carries the band it back-projects to on the record. Drawing an
             # age band for them out of the population model would put a draw beside a
             # reading of the same person and let the weaker one win a coin toss.
+            if drawn_by_another_stage(person):
+                counts["age_read"]["another_stage_drew_them"] += 1
+                continue
             if (person.get("reconstruction") or {}).get("age_on_scene_date"):
                 person["age_band"] = counted_band_block(person)
                 counts["age_read"][roll] += 1

@@ -831,22 +831,6 @@
       ]
     },
     {
-      "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
-      "command": [
-        "python3",
-        "tools/synthesize_resident_research.py"
-      ],
-      "resolves": [
-        "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
-        "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
-      ],
-      "verify": [
-        "python3",
-        "tools/synthesize_resident_research.py",
-        "--check"
-      ]
-    },
-    {
       "why": "The cross-domain consolidation reads every crosswalk above, so it runs after all of them.",
       "command": [
         "python3",
@@ -1077,6 +1061,38 @@
       "verify": [
         "python3",
         "tools/spend_person_sex_age.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 with T-1171, for the reason the three stages above it were listed on #1452 — outside the manifest there is no hand order that converges. Stage `modelled_families`: the kin core the household model says each head the sources leave standing alone kept, drawn against the order book's quota.",
+      "command": [
+        "python3",
+        "tools/reconstruct_modelled_families.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_modelled_families.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/reconstruct_modelled_families.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
+      "command": [
+        "python3",
+        "tools/synthesize_resident_research.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
+        "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/synthesize_resident_research.py",
         "--check"
       ]
     },

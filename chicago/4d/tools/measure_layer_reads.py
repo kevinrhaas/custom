@@ -808,6 +808,43 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.seed": ("shown", "escapeHtml(String(block.seed))"),
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. `name_basis` comes back to this layer with the drawn people: the row
+    # "How this person is named" is a graded claim block like `age_band` above it, and
+    # `claimRow` prints every part of one — the value, the tier chip, the model the
+    # forename was drawn from, the seed that redraws it and the source that would retire
+    # it. It reads through the same expressions because it is the same renderer.
+    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value, named, citationsById)"),
+    "persons[].name_basis.tier": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].name_basis.basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].name_basis.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].name_basis.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].name_basis.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. …and the household block beside them: what size the 1840 histogram drew
+    # this house at, and how much of that size is kin rather than the servants and lodgers
+    # later stages seat. `modelledFamilyHtml` prints all of it.
+    "modelled_family.stage": ("shown", "escapeHtml(String(block.stage))"),
+    "modelled_family.ticket": ("shown", "escapeHtml(String(block.ticket))"),
+    "modelled_family.household_type": ("shown", "escapeHtml(words(block.household_type))"),
+    "modelled_family.size_drawn": ("shown", "escapeHtml(String(block.size_drawn))"),
+    "modelled_family.kin_seated": ("shown", "escapeHtml(String(block.kin_seated))"),
+    "modelled_family.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "modelled_family.note": ("shown", "escapeHtml(String(block.note || ''))"),
+    # T-1171. A RECONSTRUCTED PERSON IS THE DRAWN THING, so the disclosure the attribute
+    # tiers hang off a value is printed about the person instead: the stage that wrote
+    # them, the model row, the seed a reader can retype and what would retire them.
+    # `reconstructedHtml` passes the person record straight to `basisHtml`, which is why
+    # `basis`, `seed` and `replaceable_by` read through the same expressions the blocks do.
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.ticket": ("shown", "escapeHtml(String(rc.ticket))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(words(rc.community))"),
+    "persons[].reconstruction.review_required": (
+        "shown", "rc.review_required ? ' This reconstruction carries a standing review.'"),
+    "persons[].basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].basis.id": ("shown", "escapeHtml(String(basis.id || ''))"),
+    "persons[].basis.note": ("shown", "escapeHtml(String(basis.note || ''))"),
+    "persons[].seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
     # T-1314. What a RECONSTRUCTED person owes the reader, on their own card:
     # `reconstructionHtml` says which stage of the programme wrote them and what

@@ -80,6 +80,7 @@ TICKET = "T-0839"
 RULED_ON = "2026-09-05"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from reconstructed_person import is_reconstructed  # noqa: E402
 from consolidate_resident_evidence import split_name_or_reason  # noqa: E402
 
 # A rank is not a forename. `consolidate_resident_evidence.HONORIFICS` already drops the
@@ -157,6 +158,12 @@ def read_town(root: Path | None = None) -> list:
         path = root / entry["file"]
         doc = json.loads(path.read_text(encoding="utf-8"))
         for person in doc.get("persons") or []:
+            # T-1171. A person a stage of the reconstruction programme wrote is not a card
+            # claiming an identity: no source names them and their forename came out of a
+            # name pool. Clustering one against a real card would ask a reader to rule on
+            # whether this dataset's own invention is the man it was drawn beside.
+            if is_reconstructed(person):
+                continue
             rows.append({"household": doc["id"], "person": person["id"],
                          "name": person.get("name") or "", "doc": doc, "record": person})
     return rows

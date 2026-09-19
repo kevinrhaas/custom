@@ -849,6 +849,12 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "reconstruct_modelled_families.py": {
+      "placement": "manifest",
+      "write_mode": null,
+      "measured": "continuously",
+      "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
     "reconstruct_residents_1835.py": {
       "placement": "manifest",
       "write_mode": null,
