@@ -11,8 +11,8 @@ The research spend was, correctly, conservative. This page does not overturn one
 | | count |
 |---|---:|
 | rows | 14507 |
-| ledger units considered (every non-`asserted` unit) | 22864 |
-| of those, units naming no person | 9238 |
+| ledger units considered (every non-`asserted` unit) | 23006 |
+| of those, units naming no person | 9380 |
 
 ## By class
 

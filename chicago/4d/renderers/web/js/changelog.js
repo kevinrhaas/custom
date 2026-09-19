@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two arrival lists, two crowded rooms, fifty-two names ruled', kind: 'change', ts: '',
+  { v: 965, title: 'Two arrival lists, two crowded rooms, fifty-two names ruled', kind: 'change', ts: '2026-09-19T01:52:28.986Z', date: 'Sep 18, 2026, 8:52 PM CT',
     items: [
       'The 1895 compilers whose settlers table moved twelve cards earlier today also print lists of a different kind: who arrived in 1832, who arrived in the spring of 1833, who stood in the room when the Baptists organised on 19 October 1833, who founded the first Episcopal congregation in 1834. Fifty-two named people. The work is not reading the lists \u2014 it is deciding which names reach somebody this town holds. Twenty-seven do; twenty-six do not, and every one of the fifty-two now has its answer written down.',
       'Two households swap a guess for a source. George W. Snow\u2019s origin and the Wrights\u2019 were regions DRAWN from a sample of old settlers, citing nothing, and the sample had put both in New York State. The compiler says Snow was of Vermont and John S. Wright came from Massachusetts \u2014 said in the same breath as the year they came, so it is a came-from and not a birthplace. Both drawn blocks are retired by their own terms.',
