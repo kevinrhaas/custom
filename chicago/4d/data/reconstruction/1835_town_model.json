@@ -77,7 +77,7 @@
           "high": 1285,
           "point": null,
           "is_a_count": true,
-          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 794 reconstructed. A count of the layer, not of the town.",
+          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 1,341 reconstructed. A count of the layer, not of the town.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -148,8 +148,8 @@
           ]
         },
         "known_by_presence": {
-          "present": 1923,
-          "absent": 58,
+          "present": 2472,
+          "absent": 56,
           "uncertain": 98
         }
       }
@@ -475,11 +475,11 @@
         },
         {
           "figure": "household_records_the_layer_carries",
-          "low": 1749,
-          "high": 1749,
+          "low": 1864,
+          "high": 1864,
           "point": null,
           "is_a_count": true,
-          "method": "1,749 household records for 1,285 people — 0.73 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families.",
+          "method": "1,864 household records for 1,285 people — 0.69 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -785,11 +785,11 @@
       "figures": [
         {
           "figure": "arrived_in_the_three_years_before_the_scene",
-          "low": 1.201,
-          "high": 1.201,
+          "low": 1.633,
+          "high": 1.633,
           "point": null,
           "is_a_count": true,
-          "method": "1,543 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -258 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
+          "method": "2,099 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -814 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -797,11 +797,11 @@
         },
         {
           "figure": "arrived_in_1835_itself",
-          "low": 0.51,
-          "high": 0.51,
+          "low": 0.942,
+          "high": 0.942,
           "point": null,
           "is_a_count": true,
-          "method": "655 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below.",
+          "method": "1,211 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -913,8 +913,8 @@
             },
             {
               "year": 1835,
-              "people": 655,
-              "share": 0.5097
+              "people": 1211,
+              "share": 0.9424
             }
           ]
         },

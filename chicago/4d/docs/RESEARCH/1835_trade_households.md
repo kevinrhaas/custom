@@ -81,6 +81,6 @@ rather than minting its own, so the two bands fill one quota. T-1179 converges t
 
 - ledger — `data/reconstruction/1835_trade_households.json` (the plan, the refusals, the fills)
 - cards — `data/residents/reconstructed_trades/hh_rc_*.json`, 308 of them
-- the liberty — **L247** in `docs/LIBERTIES.md`
+- the liberty — **L248** in `docs/LIBERTIES.md`
 - the quota — `data/reconstruction/1835_reconstruction_order_book.json`, `fills` for T-1347
 - the scene — `data/sidecars/1835/people.json`, `counts.reconstructed_trade_heads`

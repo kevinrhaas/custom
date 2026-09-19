@@ -316,10 +316,18 @@ def buckets() -> list:
     return sorted(out)
 
 
-def real_names() -> set:
-    """Every name an attested or inferred person bears, and every name already invented.
-    The programme's collision check: an invented name may never be a real one."""
-    taken = set()
+def layer() -> tuple:
+    """(every name in the layer, the names REAL people bear, every person id).
+
+    THREE SETS, BECAUSE THEY DO THREE JOBS. The programme's collision check is that an
+    invented name may never be an ATTESTED OR INFERRED person's name — a reader who met
+    the name as a finding would meet it again as an invention. The other two are weaker
+    and still necessary: a name another reconstruction already drew is avoided where the
+    pools allow it, and an ID another stage already used may NEVER be reused, because an
+    id that names two people is not an id. T-1174 writes its female-headed households
+    into `households/` and draws from the same pools, so both of those are live.
+    """
+    all_names, real, ids = set(), set(), set()
     for directory in (HOUSEHOLDS, READMITTED):
         if not directory.exists():
             continue
@@ -327,9 +335,15 @@ def real_names() -> set:
             card = json.loads(path.read_text(encoding="utf-8"))
             for person in card.get("persons") or []:
                 name = " ".join(str(person.get("name") or "").split()).lower()
-                if name:
-                    taken.add(name)
-    return taken
+                pid = str(person.get("id") or "")
+                if pid:
+                    ids.add(pid)
+                if not name:
+                    continue
+                all_names.add(name)
+                if person.get("grade") != RECONSTRUCTED:
+                    real.add(name)
+    return all_names, real, ids
 
 
 # ------------------------------------------------------------------- the plan --
@@ -478,18 +492,33 @@ def card_for(slot, pool, sizes, caps, taken_names: set, taken_ids: set) -> dict:
     bucket, sex, band, division, trade, index = slot
     slot_id = f"{STAGE}:{bucket}:{trade}:{index:03d}"
     community = community_for(trade, slot_id, pool)
-    surname = step_past(f"{slot_id}:surname", community["surnames"], set())
+    surnames = community["surnames"]
     givens = community["given_male" if sex == "male" else "given_female"]
-    given = step_past(f"{slot_id}:forename", givens,
-                      {n.split()[0].lower() for n in taken_names
-                       if n.endswith(" " + surname.lower())})
+    # THE WHOLE POOL IS SEARCHED, NOT ONE DRAW AND ONE RETRY. The draw picks where in the
+    # two lists to start; the search then steps through every (surname, forename) pair
+    # from there and takes the first whose full name nobody in the layer bears and whose
+    # id nobody holds. A single retry is what lets `Mary Burke` be drawn twice — once
+    # here and once by T-1174, which draws its Irish laundresses from this same pool.
+    first = draw(f"{slot_id}:surname")
+    second = draw(f"{slot_id}:forename")
+    surname = surnames[first % len(surnames)]
+    given = givens[second % len(givens)]
+    for step_s in range(len(surnames)):
+        candidate_surname = surnames[(first + step_s) % len(surnames)]
+        for step_g in range(len(givens)):
+            candidate_given = givens[(second + step_g) % len(givens)]
+            full = f"{candidate_given} {candidate_surname}"
+            pid = f"{PREFIX}{candidate_surname.lower()}_{candidate_given.lower()}"
+            if full.lower() not in taken_names and pid not in taken_ids:
+                surname, given = candidate_surname, candidate_given
+                break
+        else:
+            continue
+        break
     name = f"{given} {surname}"
-    if name.lower() in taken_names:
-        # The pool is exhausted for this surname; the id scheme's collision suffix is the
-        # answer and the NAME still may not collide, so the surname is stepped instead.
-        surname = step_past(f"{slot_id}:surname_again", community["surnames"],
-                            {surname.lower()})
-        name = f"{given} {surname}"
+    # Every pair in the pool spoken for is possible and is not a failure: the programme's
+    # id scheme carries it on the suffix, and the NAME may then repeat another
+    # reconstruction's — never a real person's, which the contract check proves separately.
     base = f"{PREFIX}{surname.lower()}_{given.lower()}"
     pid, suffix = base, 1
     while pid in taken_ids:
@@ -681,8 +710,7 @@ def fill() -> tuple:
     sizes = size_rows()
     caps = ceilings()
     plan = trade_plan()
-    taken_names = real_names()
-    taken_ids = set()
+    taken_names, _real, taken_ids = layer()
 
     cards = {}
     by_trade = Counter()
@@ -984,9 +1012,11 @@ def self_test() -> int:
     fires("every id is unique and marked as an invention",
           len(cards) == len({c["persons"][0]["id"] for c in cards.values()})
           and all(c["persons"][0]["id"].startswith(PREFIX) for c in cards.values()))
-    taken = real_names()
-    fires("no invented name is a real person's name",
-          not any(c["persons"][0]["name"].lower() in taken for c in cards.values()))
+    _all, real, layer_ids = layer()
+    fires("no invented name is an attested or inferred person's name",
+          not any(c["persons"][0]["name"].lower() in real for c in cards.values()))
+    fires("no drawn id is one the layer already holds",
+          not (layer_ids & {c["persons"][0]["id"] for c in cards.values()}))
     fires("no reviewed community is written by this stage",
           all(c["persons"][0]["reconstruction"]["community"]
               in {"yankee", "irish", "french_colonial"} for c in cards.values()))
@@ -1000,7 +1030,7 @@ def self_test() -> int:
                                       lambda w, m: problems.append((w, m)))
     fires("every drawn person satisfies the programme's record contract", not problems)
 
-    print("   %d rule(s) checked, %d failed" % (22, len(failures)))
+    print("   %d rule(s) checked, %d failed" % (23, len(failures)))
     return 1 if failures else 0
 
 

@@ -892,6 +892,13 @@
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a tree the gate called clean rewrote its 308 cards and its ledger and changed no committed byte."
     },
+    "reconstruct_women_children.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 124 cards and 556 people from their seeds. In the manifest directly after `modelled_families`, which fills the same order-book buckets and has to go first.",
+      "placed": "by stage order, 2026-09-19 — it draws against the quota the stage above it spends"
+    },
     "refuse_reconstructed_grade.py": {
       "placement": "not_a_writer",
       "write_mode": null,

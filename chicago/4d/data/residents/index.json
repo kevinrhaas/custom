@@ -405,12 +405,12 @@
   ]
  },
  "counts": {
-  "households": 1258,
-  "persons": 1588,
+  "households": 1382,
+  "persons": 2144,
   "by_grade": {
    "attested": 410,
    "inferred": 875,
-   "reconstructed": 303
+   "reconstructed": 859
   },
   "letter_list_only": 736,
   "projected_residents": 721,
@@ -15142,6 +15142,1742 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_bacon_betsey",
+   "file": "households/hh_rc_bacon_betsey.json",
+   "head": "rc_bacon_betsey",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_bacon_phebe",
+   "file": "households/hh_rc_bacon_phebe.json",
+   "head": "rc_bacon_phebe",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_bardwell_phebe",
+   "file": "households/hh_rc_bardwell_phebe.json",
+   "head": "rc_bardwell_phebe",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_almira",
+   "file": "households/hh_rc_barnes_almira.json",
+   "head": "rc_barnes_almira",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_betsey",
+   "file": "households/hh_rc_barnes_betsey.json",
+   "head": "rc_barnes_betsey",
+   "division": "north",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_clarissa",
+   "file": "households/hh_rc_barnes_clarissa.json",
+   "head": "rc_barnes_clarissa",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_emily",
+   "file": "households/hh_rc_barnes_emily.json",
+   "head": "rc_barnes_emily",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_esther",
+   "file": "households/hh_rc_barnes_esther.json",
+   "head": "rc_barnes_esther",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_nancy",
+   "file": "households/hh_rc_barnes_nancy.json",
+   "head": "rc_barnes_nancy",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_barnes_susan",
+   "file": "households/hh_rc_barnes_susan.json",
+   "head": "rc_barnes_susan",
+   "division": "west",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_burke_mary",
+   "file": "households/hh_rc_burke_mary.json",
+   "head": "rc_burke_mary",
+   "division": "north",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_carroll_ellen",
+   "file": "households/hh_rc_carroll_ellen.json",
+   "head": "rc_carroll_ellen",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_carroll_johanna",
+   "file": "households/hh_rc_carroll_johanna.json",
+   "head": "rc_carroll_johanna",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_carroll_margaret",
+   "file": "households/hh_rc_carroll_margaret.json",
+   "head": "rc_carroll_margaret",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_chapin_clarissa",
+   "file": "households/hh_rc_chapin_clarissa.json",
+   "head": "rc_chapin_clarissa",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_chapin_harriet",
+   "file": "households/hh_rc_chapin_harriet.json",
+   "head": "rc_chapin_harriet",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_chevalier_angelique",
+   "file": "households/hh_rc_chevalier_angelique.json",
+   "head": "rc_chevalier_angelique",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_cobb_clarissa",
+   "file": "households/hh_rc_cobb_clarissa.json",
+   "head": "rc_cobb_clarissa",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_cobb_martha",
+   "file": "households/hh_rc_cobb_martha.json",
+   "head": "rc_cobb_martha",
+   "division": "south",
+   "persons": 9,
+   "grades": {
+    "reconstructed": 9
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_cobb_polly",
+   "file": "households/hh_rc_cobb_polly.json",
+   "head": "rc_cobb_polly",
+   "division": "north",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_connor_margaret",
+   "file": "households/hh_rc_connor_margaret.json",
+   "head": "rc_connor_margaret",
+   "division": "north",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_corrigan_johanna",
+   "file": "households/hh_rc_corrigan_johanna.json",
+   "head": "rc_corrigan_johanna",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_crandall_almira",
+   "file": "households/hh_rc_crandall_almira.json",
+   "head": "rc_crandall_almira",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_crandall_clarissa",
+   "file": "households/hh_rc_crandall_clarissa.json",
+   "head": "rc_crandall_clarissa",
+   "division": "west",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_crandall_polly",
+   "file": "households/hh_rc_crandall_polly.json",
+   "head": "rc_crandall_polly",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_dickinson_almira",
+   "file": "households/hh_rc_dickinson_almira.json",
+   "head": "rc_dickinson_almira",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_dickinson_harriet",
+   "file": "households/hh_rc_dickinson_harriet.json",
+   "head": "rc_dickinson_harriet",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_dolan_alice",
+   "file": "households/hh_rc_dolan_alice.json",
+   "head": "rc_dolan_alice",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_dolan_johanna",
+   "file": "households/hh_rc_dolan_johanna.json",
+   "head": "rc_dolan_johanna",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_doyle_ellen",
+   "file": "households/hh_rc_doyle_ellen.json",
+   "head": "rc_doyle_ellen",
+   "division": "west",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_duffy_margaret",
+   "file": "households/hh_rc_duffy_margaret.json",
+   "head": "rc_duffy_margaret",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_dufresne_therese",
+   "file": "households/hh_rc_dufresne_therese.json",
+   "head": "rc_dufresne_therese",
+   "division": "north",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_eastman_emily",
+   "file": "households/hh_rc_eastman_emily.json",
+   "head": "rc_eastman_emily",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_eastman_esther",
+   "file": "households/hh_rc_eastman_esther.json",
+   "head": "rc_eastman_esther",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fairbanks_amanda",
+   "file": "households/hh_rc_fairbanks_amanda.json",
+   "head": "rc_fairbanks_amanda",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fairbanks_lydia",
+   "file": "households/hh_rc_fairbanks_lydia.json",
+   "head": "rc_fairbanks_lydia",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fairbanks_polly",
+   "file": "households/hh_rc_fairbanks_polly.json",
+   "head": "rc_fairbanks_polly",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fisk_almira",
+   "file": "households/hh_rc_fisk_almira.json",
+   "head": "rc_fisk_almira",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fisk_anna",
+   "file": "households/hh_rc_fisk_anna.json",
+   "head": "rc_fisk_anna",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fisk_eliza",
+   "file": "households/hh_rc_fisk_eliza.json",
+   "head": "rc_fisk_eliza",
+   "division": "north",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fisk_esther",
+   "file": "households/hh_rc_fisk_esther.json",
+   "head": "rc_fisk_esther",
+   "division": "west",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fitzgerald_alice",
+   "file": "households/hh_rc_fitzgerald_alice.json",
+   "head": "rc_fitzgerald_alice",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_fitzgerald_honora",
+   "file": "households/hh_rc_fitzgerald_honora.json",
+   "head": "rc_fitzgerald_honora",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_flynn_margaret",
+   "file": "households/hh_rc_flynn_margaret.json",
+   "head": "rc_flynn_margaret",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_flynn_mary",
+   "file": "households/hh_rc_flynn_mary.json",
+   "head": "rc_flynn_mary",
+   "division": "south",
+   "persons": 8,
+   "grades": {
+    "reconstructed": 8
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gagnier_therese",
+   "file": "households/hh_rc_gagnier_therese.json",
+   "head": "rc_gagnier_therese",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gallagher_ellen",
+   "file": "households/hh_rc_gallagher_ellen.json",
+   "head": "rc_gallagher_ellen",
+   "division": "north",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gilbert_abigail",
+   "file": "households/hh_rc_gilbert_abigail.json",
+   "head": "rc_gilbert_abigail",
+   "division": "north",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gilbert_clarissa",
+   "file": "households/hh_rc_gilbert_clarissa.json",
+   "head": "rc_gilbert_clarissa",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gilbert_hannah",
+   "file": "households/hh_rc_gilbert_hannah.json",
+   "head": "rc_gilbert_hannah",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gilbert_mary",
+   "file": "households/hh_rc_gilbert_mary.json",
+   "head": "rc_gilbert_mary",
+   "division": "north",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_gilbert_ruth",
+   "file": "households/hh_rc_gilbert_ruth.json",
+   "head": "rc_gilbert_ruth",
+   "division": "west",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_hale_almira",
+   "file": "households/hh_rc_hale_almira.json",
+   "head": "rc_hale_almira",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_hale_clarissa",
+   "file": "households/hh_rc_hale_clarissa.json",
+   "head": "rc_hale_clarissa",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_hastings_almira",
+   "file": "households/hh_rc_hastings_almira.json",
+   "head": "rc_hastings_almira",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_hayes_bridget",
+   "file": "households/hh_rc_hayes_bridget.json",
+   "head": "rc_hayes_bridget",
+   "division": "south",
+   "persons": 9,
+   "grades": {
+    "reconstructed": 9
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_hayes_margaret",
+   "file": "households/hh_rc_hayes_margaret.json",
+   "head": "rc_hayes_margaret",
+   "division": "west",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_ingalls_abigail",
+   "file": "households/hh_rc_ingalls_abigail.json",
+   "head": "rc_ingalls_abigail",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_ingalls_mary",
+   "file": "households/hh_rc_ingalls_mary.json",
+   "head": "rc_ingalls_mary",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_kelly_honora",
+   "file": "households/hh_rc_kelly_honora.json",
+   "head": "rc_kelly_honora",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_laframboise_angelique",
+   "file": "households/hh_rc_laframboise_angelique.json",
+   "head": "rc_laframboise_angelique",
+   "division": "north",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_laframboise_archange",
+   "file": "households/hh_rc_laframboise_archange.json",
+   "head": "rc_laframboise_archange",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_lecuyer_archange",
+   "file": "households/hh_rc_lecuyer_archange.json",
+   "head": "rc_lecuyer_archange",
+   "division": "north",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_lecuyer_madeleine",
+   "file": "households/hh_rc_lecuyer_madeleine.json",
+   "head": "rc_lecuyer_madeleine",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_leland_almira",
+   "file": "households/hh_rc_leland_almira.json",
+   "head": "rc_leland_almira",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_lyman_clarissa",
+   "file": "households/hh_rc_lyman_clarissa.json",
+   "head": "rc_lyman_clarissa",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_lyman_ruth",
+   "file": "households/hh_rc_lyman_ruth.json",
+   "head": "rc_lyman_ruth",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_lynch_bridget",
+   "file": "households/hh_rc_lynch_bridget.json",
+   "head": "rc_lynch_bridget",
+   "division": "south",
+   "persons": 8,
+   "grades": {
+    "reconstructed": 8
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_mahoney_catherine",
+   "file": "households/hh_rc_mahoney_catherine.json",
+   "head": "rc_mahoney_catherine",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_mahoney_honora",
+   "file": "households/hh_rc_mahoney_honora.json",
+   "head": "rc_mahoney_honora",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_mccarthy_johanna",
+   "file": "households/hh_rc_mccarthy_johanna.json",
+   "head": "rc_mccarthy_johanna",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_mcguire_mary",
+   "file": "households/hh_rc_mcguire_mary.json",
+   "head": "rc_mcguire_mary",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_murphy_bridget",
+   "file": "households/hh_rc_murphy_bridget.json",
+   "head": "rc_murphy_bridget",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_murphy_margaret",
+   "file": "households/hh_rc_murphy_margaret.json",
+   "head": "rc_murphy_margaret",
+   "division": "north",
+   "persons": 9,
+   "grades": {
+    "reconstructed": 9
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nash_martha",
+   "file": "households/hh_rc_nash_martha.json",
+   "head": "rc_nash_martha",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nash_nancy",
+   "file": "households/hh_rc_nash_nancy.json",
+   "head": "rc_nash_nancy",
+   "division": "south",
+   "persons": 9,
+   "grades": {
+    "reconstructed": 9
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_newell_hannah",
+   "file": "households/hh_rc_newell_hannah.json",
+   "head": "rc_newell_hannah",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_newell_polly",
+   "file": "households/hh_rc_newell_polly.json",
+   "head": "rc_newell_polly",
+   "division": "west",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_newell_ruth",
+   "file": "households/hh_rc_newell_ruth.json",
+   "head": "rc_newell_ruth",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nichols_martha",
+   "file": "households/hh_rc_nichols_martha.json",
+   "head": "rc_nichols_martha",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nichols_rhoda",
+   "file": "households/hh_rc_nichols_rhoda.json",
+   "head": "rc_nichols_rhoda",
+   "division": "west",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nolan_bridget",
+   "file": "households/hh_rc_nolan_bridget.json",
+   "head": "rc_nolan_bridget",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nolan_honora",
+   "file": "households/hh_rc_nolan_honora.json",
+   "head": "rc_nolan_honora",
+   "division": "north",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_nolan_johanna",
+   "file": "households/hh_rc_nolan_johanna.json",
+   "head": "rc_nolan_johanna",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_parmelee_maria",
+   "file": "households/hh_rc_parmelee_maria.json",
+   "head": "rc_parmelee_maria",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_pelletier_josette",
+   "file": "households/hh_rc_pelletier_josette.json",
+   "head": "rc_pelletier_josette",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_pothier_victoire",
+   "file": "households/hh_rc_pothier_victoire.json",
+   "head": "rc_pothier_victoire",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_pratt_lydia",
+   "file": "households/hh_rc_pratt_lydia.json",
+   "head": "rc_pratt_lydia",
+   "division": "north",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_quinn_ellen",
+   "file": "households/hh_rc_quinn_ellen.json",
+   "head": "rc_quinn_ellen",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_reilly_catherine",
+   "file": "households/hh_rc_reilly_catherine.json",
+   "head": "rc_reilly_catherine",
+   "division": "west",
+   "persons": 8,
+   "grades": {
+    "reconstructed": 8
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_rice_lydia",
+   "file": "households/hh_rc_rice_lydia.json",
+   "head": "rc_rice_lydia",
+   "division": "west",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_ryan_bridget",
+   "file": "households/hh_rc_ryan_bridget.json",
+   "head": "rc_ryan_bridget",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_ryan_ellen",
+   "file": "households/hh_rc_ryan_ellen.json",
+   "head": "rc_ryan_ellen",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_ryan_mary",
+   "file": "households/hh_rc_ryan_mary.json",
+   "head": "rc_ryan_mary",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sawyer_ruth",
+   "file": "households/hh_rc_sawyer_ruth.json",
+   "head": "rc_sawyer_ruth",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sawyer_sophronia",
+   "file": "households/hh_rc_sawyer_sophronia.json",
+   "head": "rc_sawyer_sophronia",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_shea_bridget",
+   "file": "households/hh_rc_shea_bridget.json",
+   "head": "rc_shea_bridget",
+   "division": "west",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_shea_margaret",
+   "file": "households/hh_rc_shea_margaret.json",
+   "head": "rc_shea_margaret",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sheldon_lucy",
+   "file": "households/hh_rc_sheldon_lucy.json",
+   "head": "rc_sheldon_lucy",
+   "division": "south",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_stebbins_clarissa",
+   "file": "households/hh_rc_stebbins_clarissa.json",
+   "head": "rc_stebbins_clarissa",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_stebbins_maria",
+   "file": "households/hh_rc_stebbins_maria.json",
+   "head": "rc_stebbins_maria",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_stiles_almira",
+   "file": "households/hh_rc_stiles_almira.json",
+   "head": "rc_stiles_almira",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_stiles_esther",
+   "file": "households/hh_rc_stiles_esther.json",
+   "head": "rc_stiles_esther",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sullivan_margaret",
+   "file": "households/hh_rc_sullivan_margaret.json",
+   "head": "rc_sullivan_margaret",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_thayer_amanda",
+   "file": "households/hh_rc_thayer_amanda.json",
+   "head": "rc_thayer_amanda",
+   "division": "north",
+   "persons": 8,
+   "grades": {
+    "reconstructed": 8
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_thayer_anna",
+   "file": "households/hh_rc_thayer_anna.json",
+   "head": "rc_thayer_anna",
+   "division": "north",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_thayer_hannah",
+   "file": "households/hh_rc_thayer_hannah.json",
+   "head": "rc_thayer_hannah",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_thayer_maria",
+   "file": "households/hh_rc_thayer_maria.json",
+   "head": "rc_thayer_maria",
+   "division": "south",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_thayer_sarah",
+   "file": "households/hh_rc_thayer_sarah.json",
+   "head": "rc_thayer_sarah",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_tobin_ellen",
+   "file": "households/hh_rc_tobin_ellen.json",
+   "head": "rc_tobin_ellen",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_vieau_josette",
+   "file": "households/hh_rc_vieau_josette.json",
+   "head": "rc_vieau_josette",
+   "division": "north",
+   "persons": 7,
+   "grades": {
+    "reconstructed": 7
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_walsh_johanna",
+   "file": "households/hh_rc_walsh_johanna.json",
+   "head": "rc_walsh_johanna",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_whitcomb_lydia",
+   "file": "households/hh_rc_whitcomb_lydia.json",
+   "head": "rc_whitcomb_lydia",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_whitcomb_sarah",
+   "file": "households/hh_rc_whitcomb_sarah.json",
+   "head": "rc_whitcomb_sarah",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_esther",
+   "file": "households/hh_rc_wilcox_esther.json",
+   "head": "rc_wilcox_esther",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_harriet",
+   "file": "households/hh_rc_wilcox_harriet.json",
+   "head": "rc_wilcox_harriet",
+   "division": "north",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_maria",
+   "file": "households/hh_rc_wilcox_maria.json",
+   "head": "rc_wilcox_maria",
+   "division": "west",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_martha",
+   "file": "households/hh_rc_wilcox_martha.json",
+   "head": "rc_wilcox_martha",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_polly",
+   "file": "households/hh_rc_wilcox_polly.json",
+   "head": "rc_wilcox_polly",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_wilcox_sophronia",
+   "file": "households/hh_rc_wilcox_sophronia.json",
+   "head": "rc_wilcox_sophronia",
+   "division": "west",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_woodruff_eliza",
+   "file": "households/hh_rc_woodruff_eliza.json",
+   "head": "rc_woodruff_eliza",
+   "division": "north",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_woodruff_emily",
+   "file": "households/hh_rc_woodruff_emily.json",
+   "head": "rc_woodruff_emily",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_woodruff_lucy",
+   "file": "households/hh_rc_woodruff_lucy.json",
+   "head": "rc_woodruff_lucy",
+   "division": "south",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_woodruff_ruth",
+   "file": "households/hh_rc_woodruff_ruth.json",
+   "head": "rc_woodruff_ruth",
+   "division": "west",
+   "persons": 8,
+   "grades": {
+    "reconstructed": 8
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {

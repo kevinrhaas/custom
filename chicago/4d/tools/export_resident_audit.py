@@ -927,8 +927,17 @@ def cmd_self_test() -> bool:
                 if r["flag_no_source"] and r["grade"] != "reconstructed"), collective,
          "only the three collective household rows cite no source without being a "
          "reconstruction")
-    want(all(r["relationship"] != "head" for r in sample if r["flag_no_source"]), True,
-         "a sourceless row is never a head")
+    # ...AND A SOURCELESS ROW IS NEVER A HEAD THE SOURCES NAME. The clause was unqualified
+    # until T-1174, because until then every head in the layer was a person somebody had
+    # read: the reconstruction wrote people INTO households a source had already produced.
+    # `women_and_children` writes the household too — 124 women who head their own house and
+    # whom no roll printed — so a reconstructed head is now the expected shape rather than
+    # the defect. What the assertion is actually for is unchanged and is what it says here:
+    # a person this project claims to have READ, standing at the head of a household, with
+    # nothing cited under them.
+    want(all(r["relationship"] != "head" for r in sample
+             if r["flag_no_source"] and r["grade"] != "reconstructed"), True,
+         "a sourceless row is never a head the sources name")
 
     # T-0733. THE RULINGS. The flag now means "a conflict nobody has ruled on", so the
     # assertions are about the PINNING — a ruling that could drift off the conflict text

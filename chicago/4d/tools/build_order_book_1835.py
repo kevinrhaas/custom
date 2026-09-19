@@ -64,6 +64,7 @@ import argparse
 import copy
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -383,6 +384,7 @@ def known_layer(residents: dict) -> dict:
         "households_total": len(households),
         "households_present": 0,
         "households_uncertain": 0,
+        "households_reconstructed": 0,
         "persons_total": 0,
         "persons_present": 0,
         "persons_present_attested": 0,
@@ -403,9 +405,19 @@ def known_layer(residents: dict) -> dict:
             continue
         if presence != "present":
             continue
-        out["households_present"] += 1
         grades = hh.get("grades") or {}
         named = persons - int(grades.get("reconstructed") or 0)
+        # AND A RECONSTRUCTED HOUSEHOLD IS NOT KNOWN EITHER (T-1174). The paragraph above
+        # says why for a person; a household nobody is named in is the same thing one level
+        # up. `women_and_children` is the first stage to write a household rather than to
+        # draw into one, and while these counted as known its own quota fell by one for
+        # every house it made — so the second build of the same stage derived 65 houses
+        # where the first derived 124, and `--check` could never have held it. A wholly
+        # reconstructed house is the order being filled; `filled` is its counter.
+        if persons and named == 0:
+            out["households_reconstructed"] += 1
+            continue
+        out["households_present"] += 1
         out["persons_present"] += named
         out["persons_present_attested"] += int(grades.get("attested") or 0)
         out["persons_present_inferred"] += int(grades.get("inferred") or 0)
@@ -860,7 +872,16 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     structures = structure_buckets(data["inventory"], data["programme"], occ)
     ground = ground_buckets(data["programme"])
 
-    counted = {f["bucket"]: int(f.get("records") or 0) for f in fills}
+    # SUMMED, NOT KEYED. This was a dict comprehension over `fills` until T-1174, so two
+    # stages filling the SAME bucket kept only the last of them: `modelled_families` put
+    # 300 wives and children into the family buckets and `women_and_children` put 556 more
+    # into the same 24 of them, and the book printed 556 as though the first 300 had never
+    # happened. Worse, the `no_bucket_overfilled` invariant below was reading that same
+    # number, so the one gate that is supposed to refuse an overfilled bucket could not
+    # have seen an overfill made by two tickets between them.
+    counted = Counter()
+    for fill in fills:
+        counted[fill["bucket"]] += int(fill.get("records") or 0)
     families = []
     for key, title, lead, payload in (
         ("persons", "Persons", "Who the town still has to be given, by sex, age, division, "
@@ -1127,6 +1148,20 @@ def cmd_self_test() -> int:
                                 "records": (first["to_reconstruct"] or 0) + 1}], occ))
     fires("a fill that names no ticket",
           lambda: build(data, [{"bucket": first["key"], "records": 1}], occ))
+
+    # TWO TICKETS FILLING ONE BUCKET ARE ADDED, NOT OVERWRITTEN (T-1174). Both
+    # `modelled_families` and `women_and_children` fill the family buckets, and while this
+    # was a dict comprehension the second ticket's row simply replaced the first's — so a
+    # bucket could be filled to twice its quota and the overfill gate above would never
+    # have fired, because it was reading the same replaced number.
+    halves = [{"ticket": "T-1171", "bucket": first["key"], "records": 1},
+              {"ticket": "T-1174", "bucket": first["key"], "records": 2}]
+    assert build(data, halves, occ)["bucket_families"][0]["buckets"][0]["filled"] == 3
+    fires("two tickets overfilling one bucket between them",
+          lambda: build(data, [{"ticket": "T-1171", "bucket": first["key"],
+                                "records": first["to_reconstruct"] or 0},
+                               {"ticket": "T-1174", "bucket": first["key"],
+                                "records": 1}], occ))
 
     # EVERY BUCKET NAMES A TICKET, and every ticket named is in the reconstruction bands.
     for family in doc["bucket_families"]:

@@ -265,7 +265,11 @@ def counted_band_block(person: dict) -> dict:
 # below reads them as this pass's own and redraws them from the roll model, which throws
 # the spacing rule away and replaces a documented draw with an undocumented one. The two
 # stages are not disagreeing about a person: they are writing about different people.
-SELF_DESCRIBING_STAGES = ("modelled_families",)
+SELF_DESCRIBING_STAGES = ("modelled_families", "women_and_children")
+# `women_and_children` (T-1174) is here for the same reason: it writes the whole card, and
+# the sex and age of everybody on it are the draw the age pyramid was short of. Redrawing
+# them from the roll model would throw away the bucket they were drawn against and replace
+# a measured shortfall with an unmeasured one.
 
 
 def drawn_by_another_stage(person: dict) -> bool:
