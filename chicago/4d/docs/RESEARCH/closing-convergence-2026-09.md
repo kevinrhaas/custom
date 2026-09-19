@@ -15,9 +15,9 @@ The order is read out of `tools/derived_manifest.json`, which holds the whole de
 | # | member | rebuilt by | manifest step | files the lap may rebuild |
 |---|---|---|---|---|
 | 1 | `data/residents/index.json` and its `merged` redirect table | `tools/rebuild_resident_index.py` | 73 | 1 |
-| 2 | the 1835 sidecars, `data/sidecars/1835/` | `tools/compile_scene.py` | 118 | 1 |
-| 3 | the town census, `data/town_census.json` | `tools/town_census.py` | 136 | 1 |
-| 4 | the final resident audit, `chicago/reference/resident-research/final/audit/` | `tools/export_resident_audit.py` | 138 | 3 |
+| 2 | the 1835 sidecars, `data/sidecars/1835/` | `tools/compile_scene.py` | 119 | 1 |
+| 3 | the town census, `data/town_census.json` | `tools/town_census.py` | 137 | 1 |
+| 4 | the final resident audit, `chicago/reference/resident-research/final/audit/` | `tools/export_resident_audit.py` | 139 | 3 |
 | 5 | the published residents, `site/chicago/4d/data/residents/` | `tools/publish.sh` | **none** — see §2 | 0 |
 
 ## 2. What the manifest does not own
@@ -45,21 +45,21 @@ Baseline: `07605197356ccd8d8b4f547eccb2d1dc619ef06f` on `dev`, taken 2026-09-18 
 
 | measured | baseline | now | delta |
 |---|---:|---:|---:|
-| households in `index.json` | 1258 | 1382 | +124 |
-| household cards on disk | 1258 | 1382 | +124 |
-| persons in `index.json` | 1288 | 2144 | +856 |
+| households in `index.json` | 1258 | 1393 | +135 |
+| household cards on disk | 1258 | 1393 | +135 |
+| persons in `index.json` | 1288 | 2269 | +981 |
 | rows in the `merged` redirect table | 66 | 66 | 0 |
 | redirects that do not arrive | 0 | 0 | 0 |
 | persons graded `attested` | 410 | 410 | 0 |
 | persons graded `inferred` | 875 | 875 | 0 |
-| persons graded `reconstructed` | 3 | 859 | +856 |
+| persons graded `reconstructed` | 3 | 984 | +981 |
 | 1835 sidecar files | 391 | 391 | 0 |
-| people in the 1835 people sidecar | 1288 | 3028 | +1740 |
+| people in the 1835 people sidecar | 1288 | 3153 | +1865 |
 | buildings standing in the town census | 371 | 371 | 0 |
-| people housed in the town census | 34 | 56 | +22 |
-| households housed in the town census | 20 | 20 | 0 |
-| rows in the final resident audit | 1288 | 2144 | +856 |
-| published resident files in the mirror | 1336 | 2122 | +786 |
+| people housed in the town census | 34 | 181 | +147 |
+| households housed in the town census | 20 | 31 | +11 |
+| rows in the final resident audit | 1288 | 2269 | +981 |
+| published resident files in the mirror | 1336 | 2133 | +797 |
 
 ## 4. T-1144's banked acceptances, as deltas
 

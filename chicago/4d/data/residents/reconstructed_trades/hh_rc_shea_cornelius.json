@@ -1,25 +1,25 @@
 {
- "id": "hh_rc_keegan_dennis",
- "name": "The Keegan household — a trade the rosters never printed",
+ "id": "hh_rc_shea_cornelius",
+ "name": "The Shea household — a trade the rosters never printed",
  "division": "south",
- "head": "rc_keegan_dennis",
+ "head": "rc_shea_cornelius",
  "source_pass": "reconstructed_trade_household",
  "trade_household": {
   "ticket": "T-1347",
   "parent_ticket": "T-1173",
   "stage": "trade_households",
-  "bucket": "persons/male/20_29/south/family/trade",
-  "slot": "trade_households:persons/male/20_29/south/family/trade:labourer:044",
+  "bucket": "persons/male/30_39/south/family/trade",
+  "slot": "trade_households:persons/male/30_39/south/family/trade:labourer:027",
   "trade": "labourer",
   "stands_on": "The order book's `family/trade` bucket for this sex, band and division is short by the number of people this stage drew, and the 1839 trade table is the only per-trade share the corpus yields.",
   "withdrawn_if": "a source naming a real resident of this trade and division, or a re-cut of the order book that no longer orders this bucket; the retirement runs through --build, never by hand"
  },
  "household_owed": {
-  "size_drawn": 2,
+  "size_drawn": 5,
   "kin_seated": 1,
-  "seed": "trade_households:persons/male/20_29/south/family/trade:labourer:044:household_size",
+  "seed": "trade_households:persons/male/30_39/south/family/trade:labourer:027:household_size",
   "seated_by": "T-1174 (women and children), T-1175 (lodgers), T-1179 (converge)",
-  "note": "THE FAMILY THIS HEAD IS OWED, AND NOT SEATED HERE. The 1840 size histogram drew this house at 2 people. Its kin are `family/none` in the order book and that quota belongs to T-1174 and T-1171; seating them here would order the same people twice."
+  "note": "THE FAMILY THIS HEAD IS OWED, AND NOT SEATED HERE. The 1840 size histogram drew this house at 5 people. Its kin are `family/none` in the order book and that quota belongs to T-1174 and T-1171; seating them here would order the same people twice."
  },
  "arrival": {
   "value": null,
@@ -56,23 +56,23 @@
  },
  "persons": [
   {
-   "id": "rc_keegan_dennis",
-   "name": "Dennis Keegan",
+   "id": "rc_shea_cornelius",
+   "name": "Cornelius Shea",
    "relationship": "head",
    "grade": "reconstructed",
    "sex": "male",
    "age_band": {
-    "value": "20-29",
-    "low": 20,
-    "high": 29,
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
      "kind": "model",
      "id": "1835_reconstruction_order_book",
-     "note": "The bucket that ordered this person is 20_29; the band is the order, not a draw. Nothing here is a reading of anybody's age."
+     "note": "The bucket that ordered this person is 30_39; the band is the order, not a draw. Nothing here is a reading of anybody's age."
     },
-    "seed": "trade_households:persons/male/20_29/south/family/trade:labourer:044:age_band",
+    "seed": "trade_households:persons/male/30_39/south/family/trade:labourer:027:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -86,9 +86,9 @@
     "basis": {
      "kind": "model",
      "id": "fergus_1839_trade_table",
-     "note": "Dealt, not drawn. The order book ordered persons/male/20_29-class adults at a trade in the south division, and the 1839 directory's share of labourer over the trades this stage draws for decides how many of them work at it. The 1839 volume is four years after the scene and its shape is read back onto 1835 knowingly."
+     "note": "Dealt, not drawn. The order book ordered persons/male/30_39-class adults at a trade in the south division, and the 1839 directory's share of labourer over the trades this stage draws for decides how many of them work at it. The 1839 volume is four years after the scene and its shape is read back onto 1835 knowingly."
     },
-    "seed": "trade_households:persons/male/20_29/south/family/trade:labourer:044:trade_deal",
+    "seed": "trade_households:persons/male/30_39/south/family/trade:labourer:027:trade_deal",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a person of this trade in this division, which would spend this slot on a real name instead"
@@ -96,7 +96,7 @@
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
    "name_basis": {
-    "value": "Dennis Keegan",
+    "value": "Cornelius Shea",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -104,7 +104,7 @@
      "id": "1835_invented_name_pools",
      "note": "Both parts are drawn from the Irish pool, which is seeded from the attested residents of this town. The pool is chosen by the weighting the pools file carries for labourer."
     },
-    "seed": "trade_households:persons/male/20_29/south/family/trade:labourer:044:forename",
+    "seed": "trade_households:persons/male/30_39/south/family/trade:labourer:027:forename",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real person of this trade and division"
@@ -114,9 +114,9 @@
    "basis": {
     "kind": "model",
     "id": "1835_reconstruction_order_book",
-    "note": "The book's bucket persons/male/20_29/south/family/trade ordered this person: the town model's employed-persons figure, cut by sex, age band and division, less everyone the sources already name there."
+    "note": "The book's bucket persons/male/30_39/south/family/trade ordered this person: the town model's employed-persons figure, cut by sex, age band and division, less everyone the sources already name there."
    },
-   "seed": "trade_households:persons/male/20_29/south/family/trade:labourer:044:trade_deal",
+   "seed": "trade_households:persons/male/30_39/south/family/trade:labourer:027:trade_deal",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a resident of this trade, sex, age band and division, who would stand in this slot instead"

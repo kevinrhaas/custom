@@ -27,14 +27,14 @@
   "town_total_source": "andreas_1884_v1",
   "town_total_note": "The town census of November 1835 — four months after the scene date — counts 3,265 people in 398 dwellings (Andreas vol. 1, printed p. 180). Quoted as the town's recorded size, never as the scene's population on 1 July: it is the HIGH END of the town model's range for the scene date, and `scene.target` below is the figure the gate screen and the reconstruction programme both fill toward.",
   "scene": {
-   "persons": 1315,
-   "households": 560,
+   "persons": 1440,
+   "households": 571,
    "by_grade": {
     "attested": 133,
     "inferred": 324,
-    "reconstructed": 858
+    "reconstructed": 983
    },
-   "cards_total": 2144,
+   "cards_total": 2269,
    "cards_not_established": 829,
    "target": 2536,
    "target_low": 2353,

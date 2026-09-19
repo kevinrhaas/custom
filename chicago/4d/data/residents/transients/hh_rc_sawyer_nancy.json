@@ -1,8 +1,8 @@
 {
- "id": "hh_rc_ingalls_chauncey",
- "name": "The Ingalls party — a household of the summer's crowd",
+ "id": "hh_rc_sawyer_nancy",
+ "name": "The Sawyer party — a household of the summer's crowd",
  "division": "unplaced",
- "head": "rc_ingalls_chauncey",
+ "head": "rc_sawyer_nancy",
  "source_pass": "reconstructed_transient",
  "transient": {
   "ticket": "T-1353",
@@ -12,11 +12,11 @@
   "cohort_row": "immigrant families awaiting lots",
   "sleeping_class": "a_store_house_thrown_open",
   "sleeping_place": "a store house thrown open",
-  "slot": "transients:a_store_house_thrown_open:006",
+  "slot": "transients:a_store_house_thrown_open:010",
   "point_adopted": 384,
   "point_reading": "twice the 1843 rate",
   "class_quota": 51,
-  "ordinal_in_class": 6,
+  "ordinal_in_class": 10,
   "stands_on": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 persons and prints two candidate points without adopting one. This stage adopts 384 ('twice the 1843 rate'), reserves 77 slots for the land-sale purchasers the register names, and deals the remainder equally across the six sleeping-place classes the sources name and do not rank.",
   "withdrawn_if": "a source that ranks the sleeping-place classes, a re-reading of T-1352's bracket that adopts the other candidate point, or a source naming a real member of the crowd; the retirement runs through --build, never by hand"
  },
@@ -89,11 +89,11 @@
  },
  "persons": [
   {
-   "id": "rc_ingalls_chauncey",
-   "name": "Chauncey Ingalls",
+   "id": "rc_sawyer_nancy",
+   "name": "Nancy Sawyer",
    "relationship": "head",
    "grade": "reconstructed",
-   "sex": "male",
+   "sex": "female",
    "age_band": {
     "value": "20-29",
     "low": 20,
@@ -105,7 +105,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_store_house_thrown_open:006:head:rc_ingalls_chauncey:age_band",
+    "seed": "transients:a_store_house_thrown_open:010:head:rc_sawyer_nancy:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -119,7 +119,7 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "Chauncey Ingalls",
+    "value": "Nancy Sawyer",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -127,7 +127,7 @@
      "id": "1835_invented_name_pools",
      "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_store_house_thrown_open:006:head:rc_ingalls_chauncey:name",
+    "seed": "transients:a_store_house_thrown_open:010:head:rc_sawyer_nancy:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -139,7 +139,7 @@
     "id": "1835_transient_cohort",
     "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
    },
-   "seed": "transients:a_store_house_thrown_open:006:head:rc_ingalls_chauncey",
+   "seed": "transients:a_store_house_thrown_open:010:head:rc_sawyer_nancy",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
@@ -153,139 +153,11 @@
    "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
   },
   {
-   "id": "rc_ingalls_erastus",
-   "name": "Erastus Ingalls",
+   "id": "rc_sawyer_lydia",
+   "name": "Lydia Sawyer",
    "relationship": "household_member",
    "grade": "reconstructed",
-   "sex": "male",
-   "age_band": {
-    "value": "0-9",
-    "low": 0,
-    "high": 9,
-    "confidence": "reconstructed",
-    "tier": "reconstructed",
-    "basis": {
-     "kind": "model",
-     "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
-    },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_erastus:age_band",
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source that states this person's age or their birth year"
-    },
-    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
-   },
-   "occupation": {
-    "value": "none_recorded",
-    "confidence": "reconstructed",
-    "tier": "unknown",
-    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
-   },
-   "name_basis": {
-    "value": "Erastus Ingalls",
-    "confidence": "reconstructed",
-    "tier": "reconstructed",
-    "basis": {
-     "kind": "model",
-     "id": "1835_invented_name_pools",
-     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
-    },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_erastus:name",
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming a real visitor of this town in the summer of 1835"
-    },
-    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
-   },
-   "basis": {
-    "kind": "model",
-    "id": "1835_transient_cohort",
-    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
-   },
-   "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_erastus",
-   "replaceable_by": {
-    "kind": "person",
-    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
-   },
-   "reconstruction": {
-    "stage": "transients",
-    "community": "yankee",
-    "cohort_row": "immigrant families awaiting lots",
-    "sleeping_class": "a_store_house_thrown_open"
-   },
-   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
-  },
-  {
-   "id": "rc_ingalls_jared",
-   "name": "Jared Ingalls",
-   "relationship": "household_member",
-   "grade": "reconstructed",
-   "sex": "male",
-   "age_band": {
-    "value": "10-19",
-    "low": 10,
-    "high": 19,
-    "confidence": "reconstructed",
-    "tier": "reconstructed",
-    "basis": {
-     "kind": "model",
-     "id": "age_bands_1840",
-     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
-    },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_jared:age_band",
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source that states this person's age or their birth year"
-    },
-    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
-   },
-   "occupation": {
-    "value": "none_recorded",
-    "confidence": "reconstructed",
-    "tier": "unknown",
-    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
-   },
-   "name_basis": {
-    "value": "Jared Ingalls",
-    "confidence": "reconstructed",
-    "tier": "reconstructed",
-    "basis": {
-     "kind": "model",
-     "id": "1835_invented_name_pools",
-     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
-    },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_jared:name",
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming a real visitor of this town in the summer of 1835"
-    },
-    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
-   },
-   "basis": {
-    "kind": "model",
-    "id": "1835_transient_cohort",
-    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
-   },
-   "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_jared",
-   "replaceable_by": {
-    "kind": "person",
-    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
-   },
-   "reconstruction": {
-    "stage": "transients",
-    "community": "yankee",
-    "cohort_row": "immigrant families awaiting lots",
-    "sleeping_class": "a_store_house_thrown_open"
-   },
-   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
-  },
-  {
-   "id": "rc_ingalls_seth",
-   "name": "Seth Ingalls",
-   "relationship": "household_member",
-   "grade": "reconstructed",
-   "sex": "male",
+   "sex": "female",
    "age_band": {
     "value": "20-29",
     "low": 20,
@@ -297,7 +169,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_seth:age_band",
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_lydia:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -311,7 +183,7 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "Seth Ingalls",
+    "value": "Lydia Sawyer",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -319,7 +191,7 @@
      "id": "1835_invented_name_pools",
      "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_seth:name",
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_lydia:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -331,7 +203,7 @@
     "id": "1835_transient_cohort",
     "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
    },
-   "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_seth",
+   "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_lydia",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
@@ -345,11 +217,11 @@
    "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
   },
   {
-   "id": "rc_ingalls_john",
-   "name": "John Ingalls",
+   "id": "rc_sawyer_sarah",
+   "name": "Sarah Sawyer",
    "relationship": "household_member",
    "grade": "reconstructed",
-   "sex": "male",
+   "sex": "female",
    "age_band": {
     "value": "20-29",
     "low": 20,
@@ -361,7 +233,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_john:age_band",
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_sarah:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -375,7 +247,7 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "John Ingalls",
+    "value": "Sarah Sawyer",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -383,7 +255,7 @@
      "id": "1835_invented_name_pools",
      "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_john:name",
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_sarah:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -395,7 +267,135 @@
     "id": "1835_transient_cohort",
     "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
    },
-   "seed": "transients:a_store_house_thrown_open:006:household_member:rc_ingalls_john",
+   "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_sarah",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
+   },
+   "reconstruction": {
+    "stage": "transients",
+    "community": "yankee",
+    "cohort_row": "immigrant families awaiting lots",
+    "sleeping_class": "a_store_house_thrown_open"
+   },
+   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
+  },
+  {
+   "id": "rc_sawyer_joseph",
+   "name": "Joseph Sawyer",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
+    },
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_joseph:age_band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
+   },
+   "name_basis": {
+    "value": "Joseph Sawyer",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+    },
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_joseph:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a real visitor of this town in the summer of 1835"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_transient_cohort",
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
+   },
+   "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_joseph",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
+   },
+   "reconstruction": {
+    "stage": "transients",
+    "community": "yankee",
+    "cohort_row": "immigrant families awaiting lots",
+    "sleeping_class": "a_store_house_thrown_open"
+   },
+   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
+  },
+  {
+   "id": "rc_sawyer_elisha",
+   "name": "Elisha Sawyer",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "50+",
+    "low": 50,
+    "high": null,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
+    },
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_elisha:age_band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
+   },
+   "name_basis": {
+    "value": "Elisha Sawyer",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+    },
+    "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_elisha:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a real visitor of this town in the summer of 1835"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_transient_cohort",
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a store house thrown open' and so sleeping under a roof in the town."
+   },
+   "seed": "transients:a_store_house_thrown_open:010:household_member:rc_sawyer_elisha",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"

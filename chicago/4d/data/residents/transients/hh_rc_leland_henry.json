@@ -1,8 +1,8 @@
 {
- "id": "hh_rc_doyle_terence",
- "name": "The Doyle camp — a household of the summer's crowd",
+ "id": "hh_rc_leland_henry",
+ "name": "The Leland camp — a household of the summer's crowd",
  "division": "unplaced",
- "head": "rc_doyle_terence",
+ "head": "rc_leland_henry",
  "source_pass": "reconstructed_transient",
  "transient": {
   "ticket": "T-1353",
@@ -10,13 +10,13 @@
   "stage": "transients",
   "household_kind": "camp",
   "cohort_row": "immigrant families awaiting lots",
-  "sleeping_class": "a_tent_at_the_landing_place",
-  "sleeping_place": "a tent at the landing place",
-  "slot": "transients:a_tent_at_the_landing_place:012",
+  "sleeping_class": "the_open_sky_upon_the_wharves",
+  "sleeping_place": "the open sky upon the wharves",
+  "slot": "transients:the_open_sky_upon_the_wharves:007",
   "point_adopted": 384,
   "point_reading": "twice the 1843 rate",
   "class_quota": 51,
-  "ordinal_in_class": 12,
+  "ordinal_in_class": 7,
   "stands_on": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 persons and prints two candidate points without adopting one. This stage adopts 384 ('twice the 1843 rate'), reserves 77 slots for the land-sale purchasers the register names, and deals the remainder equally across the six sleeping-place classes the sources name and do not rank.",
   "withdrawn_if": "a source that ranks the sleeping-place classes, a re-reading of T-1352's bracket that adopts the other candidate point, or a source naming a real member of the crowd; the retirement runs through --build, never by hand"
  },
@@ -39,13 +39,13 @@
    "kind": "camp",
    "place_id": "the_landing_place",
    "resolves_to": "camp_ground_candidate",
-   "sleeping_class": "a_tent_at_the_landing_place",
+   "sleeping_class": "the_open_sky_upon_the_wharves",
    "tier": "reconstructed",
    "confidence": "conjectural",
    "basis": {
     "kind": "source",
     "id": "1835_camp_grounds",
-    "note": "The one ground a committed source puts people on. the American, 13 June 1835: “'Some build tents upon the spot they were landed from the boats'”"
+    "note": "The one ground a committed source puts people on. the American, 13 June 1835: “'who had else remained under the open sky upon the wharves'”"
    },
    "replaceable_by": {
     "kind": "place",
@@ -89,8 +89,8 @@
  },
  "persons": [
   {
-   "id": "rc_doyle_terence",
-   "name": "Terence Doyle",
+   "id": "rc_leland_henry",
+   "name": "Henry Leland",
    "relationship": "head",
    "grade": "reconstructed",
    "sex": "male",
@@ -105,7 +105,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:head:rc_doyle_terence:age_band",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:head:rc_leland_henry:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -119,15 +119,15 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "Terence Doyle",
+    "value": "Henry Leland",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
      "kind": "model",
      "id": "1835_invented_name_pools",
-     "note": "Both parts are drawn from the Irish pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:head:rc_doyle_terence:name",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:head:rc_leland_henry:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -137,24 +137,152 @@
    "basis": {
     "kind": "model",
     "id": "1835_transient_cohort",
-    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a tent at the landing place' and so sleeping in a camp at the landing place."
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'the open sky upon the wharves' and so sleeping in a camp at the landing place."
    },
-   "seed": "transients:a_tent_at_the_landing_place:012:head:rc_doyle_terence",
+   "seed": "transients:the_open_sky_upon_the_wharves:007:head:rc_leland_henry",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
    },
    "reconstruction": {
     "stage": "transients",
-    "community": "irish",
+    "community": "yankee",
     "cohort_row": "immigrant families awaiting lots",
-    "sleeping_class": "a_tent_at_the_landing_place"
+    "sleeping_class": "the_open_sky_upon_the_wharves"
    },
    "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
   },
   {
-   "id": "rc_doyle_mary",
-   "name": "Mary Doyle",
+   "id": "rc_leland_betsey",
+   "name": "Betsey Leland",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "40-49",
+    "low": 40,
+    "high": 49,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
+    },
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_betsey:age_band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
+   },
+   "name_basis": {
+    "value": "Betsey Leland",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+    },
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_betsey:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a real visitor of this town in the summer of 1835"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_transient_cohort",
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'the open sky upon the wharves' and so sleeping in a camp at the landing place."
+   },
+   "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_betsey",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
+   },
+   "reconstruction": {
+    "stage": "transients",
+    "community": "yankee",
+    "cohort_row": "immigrant families awaiting lots",
+    "sleeping_class": "the_open_sky_upon_the_wharves"
+   },
+   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
+  },
+  {
+   "id": "rc_leland_seth",
+   "name": "Seth Leland",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
+    },
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_seth:age_band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. This project writes no year it cannot read."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
+   },
+   "name_basis": {
+    "value": "Seth Leland",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+    },
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_seth:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a real visitor of this town in the summer of 1835"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The name exists so a reader can tell one drawn visitor from another, and it is checked against every name the layer already bears."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_transient_cohort",
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'the open sky upon the wharves' and so sleeping in a camp at the landing place."
+   },
+   "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_seth",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
+   },
+   "reconstruction": {
+    "stage": "transients",
+    "community": "yankee",
+    "cohort_row": "immigrant families awaiting lots",
+    "sleeping_class": "the_open_sky_upon_the_wharves"
+   },
+   "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
+  },
+  {
+   "id": "rc_leland_esther",
+   "name": "Esther Leland",
    "relationship": "household_member",
    "grade": "reconstructed",
    "sex": "female",
@@ -169,7 +297,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_mary:age_band",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_esther:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -183,15 +311,15 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "Mary Doyle",
+    "value": "Esther Leland",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
      "kind": "model",
      "id": "1835_invented_name_pools",
-     "note": "Both parts are drawn from the Irish pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_mary:name",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_esther:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -201,31 +329,31 @@
    "basis": {
     "kind": "model",
     "id": "1835_transient_cohort",
-    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a tent at the landing place' and so sleeping in a camp at the landing place."
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'the open sky upon the wharves' and so sleeping in a camp at the landing place."
    },
-   "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_mary",
+   "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_esther",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
    },
    "reconstruction": {
     "stage": "transients",
-    "community": "irish",
+    "community": "yankee",
     "cohort_row": "immigrant families awaiting lots",
-    "sleeping_class": "a_tent_at_the_landing_place"
+    "sleeping_class": "the_open_sky_upon_the_wharves"
    },
    "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
   },
   {
-   "id": "rc_doyle_catherine",
-   "name": "Catherine Doyle",
+   "id": "rc_leland_george",
+   "name": "George Leland",
    "relationship": "household_member",
    "grade": "reconstructed",
-   "sex": "female",
+   "sex": "male",
    "age_band": {
-    "value": "30-39",
-    "low": 30,
-    "high": 39,
+    "value": "0-9",
+    "low": 0,
+    "high": 9,
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -233,7 +361,7 @@
      "id": "age_bands_1840",
      "note": "Drawn from the 1840 Chicago schedule's free-white age columns, folded to the order book's six bands. Nothing here is a reading of anybody's age."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_catherine:age_band",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_george:age_band",
     "replaceable_by": {
      "kind": "person",
      "match": "a source that states this person's age or their birth year"
@@ -247,15 +375,15 @@
     "note": "NO TRADE IS DRAWN FOR A VISITOR. The occupation model counts the town's working people and this person is not one of them; a trade written here would be spent out of a quota that belongs to the residents."
    },
    "name_basis": {
-    "value": "Catherine Doyle",
+    "value": "George Leland",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
      "kind": "model",
      "id": "1835_invented_name_pools",
-     "note": "Both parts are drawn from the Irish pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
+     "note": "Both parts are drawn from the New England and New York pool, which is seeded from the attested residents of this town. The pool is chosen by the pools' own default weighting, restricted to the two eastern communities the emigrant trade of 1835 brought off the lake vessels."
     },
-    "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_catherine:name",
+    "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_george:name",
     "replaceable_by": {
      "kind": "person",
      "match": "a source naming a real visitor of this town in the summer of 1835"
@@ -265,18 +393,18 @@
    "basis": {
     "kind": "model",
     "id": "1835_transient_cohort",
-    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'a tent at the landing place' and so sleeping in a camp at the landing place."
+    "note": "T-1352 bounds the strangers of 1 July 1835 at 192 to 900 and prints two candidate points; this stage spends 384, the 'twice the 1843 rate' reading. This person is one of the 384 less the 77 the land-sale register names, dealt to the sleeping-place class 'the open sky upon the wharves' and so sleeping in a camp at the landing place."
    },
-   "seed": "transients:a_tent_at_the_landing_place:012:household_member:rc_doyle_catherine",
+   "seed": "transients:the_open_sky_upon_the_wharves:007:household_member:rc_leland_george",
    "replaceable_by": {
     "kind": "person",
     "match": "a source naming a real member of the summer crowd of 1835, or a re-reading of T-1352's bracket that no longer counts this person"
    },
    "reconstruction": {
     "stage": "transients",
-    "community": "irish",
+    "community": "yankee",
     "cohort_row": "immigrant families awaiting lots",
-    "sleeping_class": "a_tent_at_the_landing_place"
+    "sleeping_class": "the_open_sky_upon_the_wharves"
    },
    "note": "A VISITOR OF THE SEASON, NOT A RESIDENT. Counted apart from the town's own population, because the Chicago American counted them apart: it put the population at 2,500 to 3,000 and the strangers at 'some hundreds more'."
   }
