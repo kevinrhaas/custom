@@ -818,6 +818,15 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     # town census and every resident count read, and a visitor of the season must not move
     # any of them. The People view gets them so a visitor can see the crowd and filter it
     # away again; `transient` on the row is what makes that askable.
+    # T-1376, from T-1177. The men of the company the 1832 Black Hawk roll heads INDIAN.
+    # The same shape again, and here for one more reason than the three above: these are
+    # the town's OWN people — the country was theirs — and the town carried twenty men of
+    # the other company on that page and none of these. Every row is review_required and
+    # touches_removal and the card says so in its own words.
+    underdocumented_path = DATA / "reconstruction" / "1835_native_and_metis.json"
+    underdocumented_doc = load(underdocumented_path) if underdocumented_path.exists() else {}
+    underdocumented_rows_minted = underdocumented_doc.get("minted", [])
+
     transients_path = DATA / "reconstruction" / "1835_transient_persons.json"
     transients_doc = load(transients_path) if transients_path.exists() else {}
     transient_rows_minted = transients_doc.get("minted", [])
@@ -836,7 +845,8 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     community_vocab = (load(community_rules_path).get("vocabulary", [])
                        if community_rules_path.exists() else [])
 
-    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None):
+    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None,
+                underdocumented=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -902,6 +912,22 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "kin_seated_by": owed.get("seated_by"),
                 "replaced_by": (person.get("replaceable_by") or {}).get("match"),
             }
+        elif underdocumented is not None:
+            ud = hh.get("underdocumented") or {}
+            row["underdocumented"] = {
+                "ticket": ud.get("ticket"),
+                "sub_stage": ud.get("sub_stage"),
+                "class": ud.get("class"),
+                "name_as_read": ud.get("name_as_read"),
+                "as_printed": ud.get("as_printed"),
+                "company_as_printed": ud.get("company_as_printed"),
+                "place_of_enrollment_as_printed": ud.get("place_of_enrollment_as_printed"),
+                "stands_on": ud.get("stands_on"),
+                "note": ((hh.get("present_on_scene_date") or {}).get("basis") or {}).get("note"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
+            row["review_required"] = True
+            row["touches_removal"] = True
         elif transient is not None:
             tr = hh.get("transient") or {}
             lodged = (hh.get("lodged_at") or [{}])[0]
@@ -955,6 +981,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], trade=minted))
+
+    underdocumented_households = 0
+    for minted in underdocumented_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        underdocumented_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], underdocumented=minted))
 
     transient_households = 0
     for minted in transient_rows_minted:
@@ -1012,6 +1049,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     readmitted = [r for r in rows if r.get("readmission")]
     trade_heads = [r for r in rows if r.get("reconstructed_trade")]
     transients = [r for r in rows if r.get("transient")]
+    underdocumented = [r for r in rows if r.get("underdocumented")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -1067,6 +1105,18 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "reconstructed_trade_by_trade": {
                 t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
                 for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},
+            # T-1376. The men of the company the 1832 roll heads INDIAN, carded under the
+            # same licence that put twenty men of the other company on that page into the
+            # town. Counted WITH the residents and not apart: unlike the summer crowd,
+            # these are not visitors. Every one is held for the review AGENTS.md commits
+            # to, which is what `review_required` counts.
+            "underdocumented": len(underdocumented),
+            "underdocumented_households": underdocumented_households,
+            "underdocumented_review_required": sum(
+                1 for r in underdocumented if r.get("review_required")),
+            "underdocumented_by_sub_stage": {
+                k: sum(1 for r in underdocumented if r["underdocumented"]["sub_stage"] == k)
+                for k in sorted({r["underdocumented"]["sub_stage"] for r in underdocumented})},
             # T-1353. The summer crowd, counted APART. Every other figure in this block
             # counts the town's own people; these three count the visitors, and the
             # difference is the whole distinction the Chicago American drew when it put
