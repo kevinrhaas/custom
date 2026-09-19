@@ -1036,6 +1036,13 @@
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "seat_lodgers_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on the branch tree rewrote its twelve cards, its ledger and the order book's fills and changed no committed byte; the perturbation test says that is idempotence rather than inertia — hh_lodging_tremont_house_1.json was deleted, `--check` went red on it (\"data/residents/lodgers/ is not what this stage derives\"), `--build` restored it, and `git status` came back to exactly the lines it started on.",
+      "placed": "not yet — measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/structures/ through the lodging model AND data/residents/, which several reconstruction stages write. It has to sit after build_lodging_model_1835.py, which is pending for the same reason."
+    },
     "seat_michigan_st_tract.py": {
       "placement": "manifest",
       "write_mode": "--write",
