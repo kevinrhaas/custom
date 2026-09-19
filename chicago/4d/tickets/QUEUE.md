@@ -199,4 +199,3 @@ T-1345 — step_isolation exempts gitignored build products by a hand-kept path 
 T-1354 — The six documented departures from Chicago, read against present_on_scene_date: whether a man recorded leaving in 1835 was at the town on 1 July, each ruled with the removal beside the other sources rather than out of one volume
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
 T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
-
