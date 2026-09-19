@@ -1,42 +1,60 @@
 {
- "_doc": "T-0419. The band the re-centred South Water corridor opens, and what branch A would cost the plat grid. Written by tools/measure_corridor_strip.py --write-baseline; the fork is the owner's and this file only pins the figures it is asked about.",
- "tool": "tools/measure_corridor_strip.py",
- "reading": {
-  "streets": {
-   "south_water": {
-    "offset_m": 8.58,
-    "bands": {
-     "abandoned": {
-      "area_m2": 6132.2,
-      "dry_pct": 99.1,
-      "lots": 0,
-      "structures": [
-       "hogan_store",
-       "lasalle_slough_crossing",
-       "newberry_dole_warehouse",
-       "slough_log_bridge"
-      ]
-     },
-     "claimed": {
-      "area_m2": 6132.2,
-      "dry_pct": 46.0,
-      "lots": 0,
-      "structures": [
-       "dearborn_street_drawbridge"
-      ]
-     }
+  "_doc": "T-0419. The band the re-centred South Water corridor opens, and what branch A would cost the plat grid. Written by tools/measure_corridor_strip.py --write-baseline; the fork is the owner's and this file only pins the figures it is asked about.",
+  "_note": "T-1191, 2026-09-19: KINZIE STREET JOINS THIS TABLE, and no figure already in it moved. The corridor layer reached the north bank that day, so `control_offsets` could see Kinzie's committed control at `kinzie_canal` for the first time and returned a 2.91 m re-centring \u2014 the same derivation south_water has carried since T-0009, asked of a street it had never been asked of. The band it opens is 4,132.8 m2 wide and EMPTY: no lot and no structure stands in either half of it, abandoned or claimed, which is why this is a widening of the question rather than a change of answer. south_water's own numbers are byte-identical above and below the re-write.",
+  "reading": {
+    "counterfactual": {
+      "blocks_after": 18,
+      "blocks_lost": [
+        "blk_south_water_lasalle"
+      ],
+      "lots_after": 136,
+      "lots_recut": 32,
+      "roofs_on_lost_blocks": 18,
+      "roofs_on_moved_blocks": 53
+    },
+    "streets": {
+      "kinzie": {
+        "bands": {
+          "abandoned": {
+            "area_m2": 4132.8,
+            "dry_pct": 87.5,
+            "lots": 0,
+            "structures": []
+          },
+          "claimed": {
+            "area_m2": 4132.8,
+            "dry_pct": 88.3,
+            "lots": 0,
+            "structures": []
+          }
+        },
+        "offset_m": 2.91
+      },
+      "south_water": {
+        "bands": {
+          "abandoned": {
+            "area_m2": 6132.2,
+            "dry_pct": 99.1,
+            "lots": 0,
+            "structures": [
+              "hogan_store",
+              "lasalle_slough_crossing",
+              "newberry_dole_warehouse",
+              "slough_log_bridge"
+            ]
+          },
+          "claimed": {
+            "area_m2": 6132.2,
+            "dry_pct": 46.0,
+            "lots": 0,
+            "structures": [
+              "dearborn_street_drawbridge"
+            ]
+          }
+        },
+        "offset_m": 8.58
+      }
     }
-   }
   },
-  "counterfactual": {
-   "blocks_after": 18,
-   "lots_after": 136,
-   "lots_recut": 32,
-   "blocks_lost": [
-    "blk_south_water_lasalle"
-   ],
-   "roofs_on_moved_blocks": 53,
-   "roofs_on_lost_blocks": 18
-  }
- }
+  "tool": "tools/measure_corridor_strip.py"
 }

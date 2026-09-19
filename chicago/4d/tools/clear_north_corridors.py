@@ -16,7 +16,13 @@ asking a question about ground it did not cover:
   `inf_mason_dwelling_north` each carry a position note saying the centre was tested
   *"against the platted street corridors of the K7 block grid so that no invented
   building stands in the roadway"*. The K7 grid is nineteen South and West Division
-  blocks. All three stand on Kinzie Street's centreline.
+  blocks. All three stood on Kinzie Street's centreline. THEY ARE NOT THIS TOOL'S,
+  and the first pass of T-1191 moved them here by hand before noticing: they are
+  DERIVED by `tools/generate_inferred_households.py` out of the inferred-household
+  programme, and that pass has owned a `corridor_clearance` declaration since T-1227
+  precisely so a corridor can move one of its roofs without anybody hand-editing the
+  file it writes. All three now declare one, against `kinzie`, with their own reason.
+  What this tool owns is the sixty-roof North Division parcel and nothing else.
 
 THE RULE, and it is the whole tool. A body whose only claim to its coordinate is that
 the ground was free is moved the SHORTEST DISTANCE ALONG THE OFFENDING CORRIDOR'S OWN
@@ -66,23 +72,6 @@ MARGIN_M = 0.5
 # move, and stepping is the way to be sure the one returned is it.
 STEP_M = 0.1
 REACH_M = 60.0
-
-# The three inferred north-side dwellings whose position notes cite the K7 grid.
-INFERRED = ["inf_labourer_shanty_north_a", "inf_labourer_shanty_north_b",
-            "inf_mason_dwelling_north"]
-
-CLEARED_NOTE = (
-    " CLEARED OF A PLATTED CORRIDOR, 2026-09-19 (T-1191). The clearance test quoted "
-    "above was asked of the K7 block grid, which covers nineteen South and West "
-    "Division blocks and no north-bank street, so north of the river it passed by "
-    "covering no ground. T-1191 read the North Division's and Kinzie's Addition's "
-    "corridors into the same layer, and this footprint stood inside one. It was moved "
-    "the shortest distance along that corridor's own cross-axis that clears every "
-    "platted corridor by {margin} m — {delta} m, against the {uncertainty} m working "
-    "georeference uncertainty this placement already carries — by "
-    "tools/clear_north_corridors.py. Nothing else about the record moved, and nothing "
-    "here upgrades the placement: it is still free ground and nothing more."
-)
 
 
 def load(path: Path) -> dict:
@@ -194,33 +183,7 @@ def main() -> int:
         idx = idx_e if axis == "e" else idx_n
         row[idx] = round(float(row[idx]) + shift, 2)
 
-    # ---- the three inferred dwellings, in their own records ------------------------
-    datum = load(DATA / "datum.json")
-    origin_e, origin_n = float(datum["origin_utm_e"]), float(datum["origin_utm_n"])
-    record_edits: list[tuple[Path, dict]] = []
-    for sid in INFERRED:
-        path = STRUCTURES / f"{sid}.json"
-        record = load(path)
-        phase = record["phases"][0]
-        pos = phase["position"]
-        local_e = float(pos["utm_e"]) - origin_e
-        local_n = float(pos["utm_n"]) - origin_n
-        poly = polygon_at(phase["footprint"]["polygon"], local_e, local_n,
-                          float(pos.get("rotation_deg") or 0.0))
-        street, depth = worst(poly, lane_sets)
-        if street is None:
-            continue
-        axis = axis_of(street, lanes)
-        shift, _, _ = clear_offset(poly, axis, lane_sets)
-        moves.append((sid, street, depth, shift, abs(shift)))
-        key = "utm_e" if axis == "e" else "utm_n"
-        pos[key] = round(float(pos[key]) + shift, 3)
-        new_e = round(float(pos["utm_e"]) - origin_e)
-        new_n = round(float(pos["utm_n"]) - origin_n)
-        pos["symbolic_location"] = f"North Division, local ENU E {new_e} N {new_n}"
-        pos["note"] = pos["note"].rstrip() + CLEARED_NOTE.format(
-            margin=MARGIN_M, delta=f"{abs(shift):.1f}", uncertainty=20)
-        record_edits.append((path, record))
+    record_edits: list = []
 
     if not moves:
         print("every invented north-bank roof is clear of every platted corridor")
@@ -239,10 +202,7 @@ def main() -> int:
 
     RECIPE.write_text(json.dumps(recipe, indent=2, ensure_ascii=False) + "\n",
                       encoding="utf-8")
-    for path, record in record_edits:
-        path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
-                        encoding="utf-8")
-    print(f"  wrote {RECIPE.relative_to(ROOT)} and {len(record_edits)} structure record(s)")
+    print(f"  wrote {RECIPE.relative_to(ROOT)}")
     return 0
 
 
