@@ -41,6 +41,13 @@ the commit rather than shipping a town that says it is smaller than it is.
   the town's recorded size, not as the scene's population on 1 July, and the gate says
   "of roughly 3,265" for that reason.
 
+**And the people it counts APART.** T-1353 mints the summer crowd of 1835 — the strangers
+the Chicago American put OUTSIDE its own population estimate — as reconstructed visitors in
+`data/residents/transients/`. They are not residents and they do not touch either figure
+above: their cards carry no `lives_at`, they are not in the manifest this file joins, and
+the `transients` block below reports them on a row of their own. Chicago's own enumerator
+did the same thing in 1843, printing `Transient persons` as a separate line of his table.
+
     tools/town_census.py            regenerate data/town_census.json
     tools/town_census.py --check    fail if the committed file is not what the dataset
                                     re-derives
@@ -64,6 +71,57 @@ YEAR = "1835"
 TOWN_TOTAL_PEOPLE = 3265
 TOWN_TOTAL_DWELLINGS = 398
 TOWN_TOTAL_SOURCE = "andreas_1884_v1"
+
+# T-1353. The visitors, read from the ledger that mints them. Absent file, absent block:
+# this census reports what the dataset carries and never a figure typed here.
+TRANSIENTS = DATA / "reconstruction" / "1835_transient_persons.json"
+
+
+def transient_block() -> dict | None:
+    """The summer crowd, on its own row — or None while nothing has minted one.
+
+    Counted from the ledger and cross-checked against the cards, because the whole point
+    of the row is that these people are NOT in the resident join above: nothing else in
+    this file would notice if the two drifted apart.
+    """
+    if not TRANSIENTS.exists():
+        return None
+    ledger = json.loads(TRANSIENTS.read_text(encoding="utf-8"))
+    minted = ledger.get("minted") or []
+    on_disk = 0
+    housed = []
+    for row in minted:
+        path = DATA / "residents" / row["file"]
+        if not path.exists():
+            continue
+        card = json.loads(path.read_text(encoding="utf-8"))
+        on_disk += len(card.get("persons") or [])
+        if (card.get("lives_at") or {}).get("value"):
+            housed.append(card["id"])
+    totals = ledger.get("totals") or {}
+    point = ledger.get("the_point_adopted") or {}
+    return {
+        "persons": on_disk,
+        "households": len(minted),
+        "by_household_kind": totals.get("persons_by_household_kind", {}),
+        "point_adopted": point.get("persons"),
+        "point_reading": point.get("reading"),
+        "bracket": [192, 900],
+        "reserved_not_minted": totals.get("reserved_not_minted"),
+        "counted_in_people_housed": 0,
+        "claiming_a_residence": sorted(housed),
+        "basis": "Reconstructed visitors of the summer of 1835 (T-1353), bounded by "
+                 "data/reconstruction/1835_transient_cohort.json. They are NOT residents: "
+                 "no card here names a dwelling, none is in the resident manifest, and "
+                 "neither figure above moves when this one does.",
+        "why_apart": "The Chicago American of 13 June 1835 put the town's population at "
+                     "2,500 to 3,000 and the strangers at 'some hundreds more' — outside "
+                     "its own estimate. Chicago's own enumerator printed `Transient "
+                     "persons` as a row of its own in 1843. This row is that row.",
+        "reserved_note": "The land-sale purchasers the register NAMES and this layer "
+                         "cannot place. Slots held open, nobody drawn into them: a "
+                         "reconstruction may not stand in for a person a source names.",
+    }
 
 
 def group_entry_count(housed_ids: set[str]) -> int:
@@ -155,6 +213,7 @@ def census_document() -> dict:
                           "a group a source counts but does not name (see group_entries).",
             "dangling_lives_at": dangling,
         },
+        "transients": transient_block(),
     }
 
 
@@ -165,6 +224,12 @@ def main() -> int:
     args = parser.parse_args()
     census = census_document()
     text = json.dumps(census, indent=1, ensure_ascii=False) + "\n"
+    visitors = census.get("transients")
+    if visitors and visitors["claiming_a_residence"]:
+        print("TOWN CENSUS BROKEN APART\n  - a transient household claims a residence, "
+              "which would count a visitor of the season among the people housed: "
+              f"{', '.join(visitors['claiming_a_residence'])}")
+        return 1
     if census["people"]["dangling_lives_at"]:
         print("TOWN CENSUS BROKEN LINK\n  - a household's lives_at names a structure the "
               f"scene does not carry: {', '.join(census['people']['dangling_lives_at'])}")
@@ -181,11 +246,13 @@ def main() -> int:
             return 1
     else:
         OUT_PATH.write_text(text, encoding="utf-8")
+    visitors_line = ("" if not visitors else
+                     f", and {visitors['persons']} visitor(s) counted apart")
     print(f"{'verified' if args.check else 'generated'} the town census: "
           f"{census['buildings']['standing']} buildings standing of "
           f"{census['buildings']['target']}, "
           f"{census['people']['housed']} people housed of "
-          f"{census['people']['town_total']}")
+          f"{census['people']['town_total']}{visitors_line}")
     return 0
 
 

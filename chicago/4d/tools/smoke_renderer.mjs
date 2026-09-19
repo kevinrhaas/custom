@@ -11790,6 +11790,8 @@ for (const [label, viewport, touch] of [
       const rows = () => [...document.querySelectorAll('#people-results .person-row')];
       out.counts = { rows: rows().length, api: dir.people, file: pj.people?.length, stated: pj.counts?.people,
         manifest: manifest.counts?.persons, readmitted: pj.counts?.readmitted_persons ?? 0,
+        trades: pj.counts?.reconstructed_trade_heads ?? 0, transients: pj.counts?.transients ?? 0,
+        residents: pj.counts?.residents ?? 0,
         countText: document.getElementById('people-count')?.textContent ?? '' };
       out.search = { matched: dir.search('Beaubien'),
         mark: document.querySelector('#people-results [data-person-id="beaubien_mark"] .person-name')?.textContent.trim() ?? null,
@@ -11822,7 +11824,17 @@ for (const [label, viewport, touch] of [
       // nothing else — a drift either way is a card that reached the town by some path
       // this assertion does not know about.
       && people.counts.file === people.counts.stated
+      // T-1347 added the drawn trade heads and T-1353 the summer crowd, both written
+      // outside data/residents/households/ for the same reason the re-admissions are.
+      // The identity is the same identity: the directory lists the manifest's people plus
+      // every card the reconstruction minted, and nothing else has a path into it.
       && people.counts.stated === people.counts.manifest + people.counts.readmitted
+        + people.counts.trades + people.counts.transients
+      // T-1353. The visitors are counted apart from the town's own people, and the two
+      // rows must partition the directory exactly — a transient that also counts as a
+      // resident is the failure this cohort exists to make impossible.
+      && people.counts.residents + people.counts.transients === people.counts.stated
+      && people.counts.transients > 0
       && people.counts.manifest > 1000
       && new RegExp(`^${String(people.counts.stated).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
       JSON.stringify(people.counts));

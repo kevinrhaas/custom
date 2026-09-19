@@ -650,10 +650,16 @@ PERSON_EVIDENCE_KINDS = (
 #: flags are not exclusive — 85 civic-mint people also carry the projected
 #: subtype — so this is a precedence, weakest evidence first, and the filter in
 #: `people.js` reads the underlying flags rather than this word.
-HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected")
+#: `transient` is the exception to the precedence below rather than a rung on it: the
+#: other four grade how well the town knew a RESIDENT, and a visitor of the season is not
+#: one. It is decided by the household the row came from (T-1353), not by a person flag,
+#: so it is passed in rather than read off the person.
+HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected", "transient")
 
 
-def how_known(person: dict) -> str:
+def how_known(person: dict, transient: bool = False) -> str:
+    if transient:
+        return "transient"
     if person.get("letter_list_only"):
         return "letter_list"
     if person.get("civic_mint"):
@@ -806,7 +812,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     trades = load(trades_path) if trades_path.exists() else {}
     trade_rows_minted = trades.get("minted", [])
 
-    def row_for(hh, person, rel, ruling=None, minted=None, trade=None):
+    # T-1353. The summer crowd, and the one set of rows in this file that is NOT the town's
+    # own population. They live outside the mints' directory for the reason the two above
+    # do and for one more: a card in data/residents/households/ is a card the manifest, the
+    # town census and every resident count read, and a visitor of the season must not move
+    # any of them. The People view gets them so a visitor can see the crowd and filter it
+    # away again; `transient` on the row is what makes that askable.
+    transients_path = DATA / "reconstruction" / "1835_transient_persons.json"
+    transients_doc = load(transients_path) if transients_path.exists() else {}
+    transient_rows_minted = transients_doc.get("minted", [])
+
+    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -825,7 +841,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "letter_list_only": bool(person.get("letter_list_only")),
             "civic_mint": bool(person.get("civic_mint")),
             "resident_subtype": person.get("resident_subtype"),
-            "how_known": how_known(person),
+            "how_known": how_known(person, transient=transient is not None),
             "division": hh.get("division"),
             "arrival_year": arrival_year(arrival.get("value")),
             "arrival_precision": arrival.get("precision"),
@@ -869,6 +885,24 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "kin_seated_by": owed.get("seated_by"),
                 "replaced_by": (person.get("replaceable_by") or {}).get("match"),
             }
+        elif transient is not None:
+            tr = hh.get("transient") or {}
+            lodged = (hh.get("lodged_at") or [{}])[0]
+            row["transient"] = {
+                "ticket": tr.get("ticket"),
+                "household_kind": tr.get("household_kind"),
+                "cohort_row": tr.get("cohort_row"),
+                "sleeping_class": tr.get("sleeping_class"),
+                "sleeping_place": tr.get("sleeping_place"),
+                "point_adopted": tr.get("point_adopted"),
+                "point_reading": tr.get("point_reading"),
+                "lodged_at_kind": lodged.get("kind"),
+                "lodged_at_place": lodged.get("place_id"),
+                "lodged_at_resolves_to": lodged.get("resolves_to"),
+                "lodged_at_note": (lodged.get("basis") or {}).get("note"),
+                "stands_on": tr.get("stands_on"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
         return row
 
     rows: list[dict] = []
@@ -905,6 +939,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], trade=minted))
 
+    transient_households = 0
+    for minted in transient_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        transient_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], transient=minted))
+
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
     def tally(key):
@@ -923,16 +968,23 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                  for d in (vocab.get("divisions") or sorted(tally("division")))}
     presence = {p: sum(1 for r in rows if r["present"] == p)
                 for p in (vocab.get("presence") or sorted(tally("present")))}
+    # T-1353. `documented` is a statement about a RESIDENT's evidence, so the visitors are
+    # taken out of it rather than folded in: a summer crowd nobody named would otherwise
+    # have read as 307 more documented Chicagoans. They are counted on their own row.
+    resident_rows = [r for r in rows if not r.get("transient")]
     known = {
-        "documented": sum(1 for r in rows if not r["letter_list_only"] and not r["civic_mint"]
+        "documented": sum(1 for r in resident_rows if not r["letter_list_only"]
+                          and not r["civic_mint"]
                           and r["resident_subtype"] != "projected_resident"),
         "letter_list": sum(1 for r in rows if r["letter_list_only"]),
         "civic_mint": sum(1 for r in rows if r["civic_mint"]),
         "projected": sum(1 for r in rows if r["resident_subtype"] == "projected_resident"),
+        "transient": sum(1 for r in rows if r.get("transient")),
     }
     with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
     readmitted = [r for r in rows if r.get("readmission")]
     trade_heads = [r for r in rows if r.get("reconstructed_trade")]
+    transients = [r for r in rows if r.get("transient")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -982,6 +1034,23 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "reconstructed_trade_by_trade": {
                 t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
                 for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},
+            # T-1353. The summer crowd, counted APART. Every other figure in this block
+            # counts the town's own people; these three count the visitors, and the
+            # difference is the whole distinction the Chicago American drew when it put
+            # the population at 2,500 to 3,000 and the strangers at "some hundreds more".
+            "transients": len(transients),
+            "transient_households": transient_households,
+            "residents": len(rows) - len(transients),
+            "transient_point_adopted": (transients_doc.get("the_point_adopted") or {})
+                                        .get("persons"),
+            "transient_reserved_not_minted": (transients_doc.get("totals") or {})
+                                              .get("reserved_not_minted"),
+            "transient_by_household_kind": {
+                k: sum(1 for r in transients if r["transient"]["household_kind"] == k)
+                for k in sorted({r["transient"]["household_kind"] for r in transients})},
+            "transient_by_sleeping_class": {
+                c: sum(1 for r in transients if r["transient"]["sleeping_class"] == c)
+                for c in sorted({r["transient"]["sleeping_class"] for r in transients})},
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
