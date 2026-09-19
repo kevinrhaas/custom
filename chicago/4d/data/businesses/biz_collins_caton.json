@@ -35,6 +35,9 @@
         "chicago_democrat_1834_07_02#c016",
         "chicago_democrat_1834_08_13#c021",
         "chicago_democrat_1835_05_20#c014"
+      ],
+      "also_printed_as": [
+        "James H. Collins"
       ]
     },
     {
@@ -58,52 +61,9 @@
         "chicago_democrat_1834_07_02#c016",
         "chicago_democrat_1834_08_13#c021",
         "chicago_democrat_1835_05_20#c014"
-      ]
-    },
-    {
-      "name": "James H. Collins",
-      "person_id": "collins_j_h",
-      "register_person_id": "person_james_h_collins",
-      "role": "partner",
-      "from": "1834-01-28",
-      "to": "1835-05-20",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card collins_j_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_democrat_1834_01_28#c007",
-        "chicago_democrat_1834_02_04#c009",
-        "chicago_democrat_1834_02_11#c005",
-        "chicago_democrat_1834_03_04#c009",
-        "chicago_democrat_1834_04_01#c011",
-        "chicago_democrat_1834_06_04#c003",
-        "chicago_democrat_1834_06_18#c017",
-        "chicago_democrat_1834_07_02#c016",
-        "chicago_democrat_1834_08_13#c021",
-        "chicago_democrat_1835_05_20#c014"
-      ]
-    },
-    {
-      "name": "J. Dean Caton",
-      "person_id": "caton_john_dean",
-      "register_person_id": "person_j_dean_caton",
-      "role": "partner",
-      "from": "1834-01-28",
-      "to": "1835-05-20",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card caton_john_dean (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_democrat_1834_01_28#c007",
-        "chicago_democrat_1834_02_04#c009",
-        "chicago_democrat_1834_02_11#c005",
-        "chicago_democrat_1834_03_04#c009",
-        "chicago_democrat_1834_04_01#c011",
-        "chicago_democrat_1834_06_04#c003",
-        "chicago_democrat_1834_06_18#c017",
-        "chicago_democrat_1834_07_02#c016",
-        "chicago_democrat_1834_08_13#c021",
-        "chicago_democrat_1835_05_20#c014"
+      ],
+      "also_printed_as": [
+        "J. Dean Caton"
       ]
     }
   ],
@@ -119,7 +79,13 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. The landmark is another documented business (business_brewster_hogan_co), which places this one exactly as well as that one is placed.",
-      "limit_reason": "The register places this house against business_brewster_hogan_co and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against business_brewster_hogan_co and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "business",
+        "id": "biz_brewster_hogan_co",
+        "title": "Brewster, Hogan & Co.",
+        "streets": []
+      }
     }
   ],
   "dates": {
@@ -155,22 +121,8 @@
         "tier": "inferred"
       },
       {
-        "person_id": "caton_john_dean",
-        "name": "J. Dean Caton",
-        "role": "partner",
-        "community": "new_york",
-        "tier": "inferred"
-      },
-      {
         "person_id": "collins_j_h",
         "name": "J. H. Collins",
-        "role": "partner",
-        "community": "irish",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "collins_j_h",
-        "name": "James H. Collins",
         "role": "partner",
         "community": "irish",
         "tier": "reconstructed"

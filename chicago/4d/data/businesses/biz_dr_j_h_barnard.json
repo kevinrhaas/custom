@@ -24,7 +24,8 @@
       "claim_ids": [
         "chicago_american_1835_06_13#c009",
         "chicago_democrat_1835_06_04#c006"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "partners": [],
@@ -40,7 +41,13 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. The landmark is the committed structure new_york_house.",
-      "limit_reason": "The register places this house against new_york_house and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against new_york_house and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "structure",
+        "id": "new_york_house",
+        "title": "New York House",
+        "streets": []
+      }
     }
   ],
   "dates": {

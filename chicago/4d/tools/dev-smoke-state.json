@@ -3,6 +3,41 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 89,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 692,
+      "takenAt": "2026-09-19T17:22:57.039Z",
+      "ref": "steward/t-1182-anchors-and-partners",
+      "commit": "203e57864d2d",
+      "devCommit": "76d163e9e34f",
+      "treeHash": "sha256:e54b8a60728d0816",
+      "treeDirty": false,
+      "changelogHash": "sha256:419419c11e078661",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.4,
+          3.4,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d12b.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1126,38 +1161,6 @@
         ]
       },
       "source": "/tmp/smoke_m3.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 178,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 533,
-      "takenAt": "2026-09-19T02:04:58.505Z",
-      "ref": "steward/t-1178-transient-cohort",
-      "commit": "c7b45dbfd83c",
-      "devCommit": "4b6a4e7116a7",
-      "treeHash": "sha256:c024f141e0a0b6f7",
-      "treeDirty": false,
-      "changelogHash": "sha256:84485bafb0b9ce4b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.5,
-          3.4
-        ]
-      },
-      "source": "/tmp/sm_d2.txt"
     },
     {
       "viewport": "mobile",

@@ -598,6 +598,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "pinned_sources.py": {
+      "placement": "not_a_writer",
+      "write_mode": null,
+      "measured": "2026-09-19",
+      "finding": "Run bare it exits 0, prints the register's roll-up and writes nothing \u2014 measured on the working tree, byte-identical before and after. It declares no write flag: the only bytes it ever puts on disk are a region cache under /tmp, written by fetch_pinned AFTER the sha256 pin has passed, and never inside the repository. Gated with --check; a checker."
+    },
     "profile_population_1835.py": {
       "placement": "manifest",
       "write_mode": null,
