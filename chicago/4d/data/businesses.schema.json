@@ -21,8 +21,9 @@
       "type": "string",
       "enum": ["proprietor", "partner", "clerk", "journeyman", "apprentice", "servant",
                "boarder", "lodger", "bar_keeper", "hostler", "printer", "teacher",
-               "cook", "porter", "labourer", "household_member"],
-      "description": "Agrees with data/residents/index.json .vocabulary.relationships wherever a word appears in both, so a person's household role and their workplace role are the same word. The workplace-only additions (proprietor, bar_keeper, hostler, printer, teacher, cook, porter, labourer) are the roles T-1183's staffing model will fill."
+               "cook", "porter", "labourer", "household_member",
+               "postmaster", "land_office_register", "land_office_receiver", "county_clerk"],
+      "description": "Agrees with data/residents/index.json .vocabulary.relationships wherever a word appears in both, so a person's household role and their workplace role are the same word. The workplace-only additions (proprietor, bar_keeper, hostler, printer, teacher, cook, porter, labourer) are the roles T-1183's staffing model will fill. THE FOUR CIVIC OFFICES (T-1410) are not new words either: `postmaster`, `land_office_register`, `land_office_receiver` and `county_clerk` are already in .vocabulary.occupations, held there as what a man WAS, and a civic establishment needs them as what he DID at a place. One word for the office on the person and on the seat is the same rule this enum already follows for `clerk`."
     },
     "person": {
       "type": "object",
@@ -105,9 +106,9 @@
         "enum": ["store", "book_store", "druggist", "silversmith_jeweller", "tin_and_copper_manufactory",
                  "printing_office", "brewery", "steam_saw_mill", "iron_foundry", "storage_and_forwarding",
                  "tavern", "lottery_office", "bank", "church", "school", "lawyer", "physician",
-                 "lyceum_and_reading_room", "other", "not_stated"]
+                 "lyceum_and_reading_room", "civic", "other", "not_stated"]
       },
-      "description": "The census classes of data/research/newspapers/trade_class_rulings.json — the ONE taxonomy, so a business counts against the December 1835 State census without a second crosswalk. A house may hold more than one."
+      "description": "The census classes of data/research/newspapers/trade_class_rulings.json — the ONE taxonomy, so a business counts against the December 1835 State census without a second crosswalk. A house may hold more than one. `civic` (T-1410) is the one class here the census does NOT enumerate, and that is the point of it: the State count of late 1835 runs through the trades and never reaches the post office, the land office or the county's own rooms, so a civic establishment counts against no census line and the crosswalk does not compare it. It is kept out of `other` because `other` means *the register printed a trade this enumeration has no line for*, and these three were never in the register at all."
     },
     "trade": {"type": ["string", "null"], "description": "The printed trade, verbatim. Never replaced by the class."},
     "occupation": {"type": ["string", "null"], "description": "The finer trade from data/residents/index.json .vocabulary.occupations, where the register derived one."},

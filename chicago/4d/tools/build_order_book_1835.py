@@ -188,13 +188,20 @@ STRUCTURE_TICKETS = {
 }
 
 # Which business ticket owns a December 1835 trade-census class.
+#
+# T-1188 WAS SPLIT (T-1410, T-1411) and the three classes it owned went with the half
+# that owns them: the printing offices, the churches and the schools are T-1411's. The
+# other half, T-1410, owns the post office, the land office and the county's own rooms —
+# which the State census never enumerates, so it takes no class here at all and the book
+# orders nothing for it. A bucket whose `owning_ticket` names a ticket in state `split`
+# points at work nobody can claim, which is why this table moves with a split.
 BUSINESS_TICKETS = {
     "store": "T-1184",
     "book_store": "T-1184",
     "druggist": "T-1184",
     "silversmith_jeweller": "T-1185",
     "tin_and_copper_manufactory": "T-1185",
-    "printing_office": "T-1188",
+    "printing_office": "T-1411",
     "brewery": "T-1185",
     "steam_saw_mill": "T-1187",
     "iron_foundry": "T-1185",
@@ -202,8 +209,8 @@ BUSINESS_TICKETS = {
     "tavern": "T-1187",
     "lottery_office": "T-1182",
     "bank": "T-1182",
-    "church": "T-1188",
-    "school": "T-1188",
+    "church": "T-1411",
+    "school": "T-1411",
     "lawyer": "T-1186",
     "physician": "T-1186",
     "lyceum_and_reading_room": "T-1182",

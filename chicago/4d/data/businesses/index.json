@@ -3,13 +3,14 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 201,
+    "records": 204,
     "compiled_from_register": 196,
-    "authored": 5,
-    "present_at_scene_date": 184,
+    "authored": 8,
+    "present_at_scene_date": 187,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
+      "civic": 3,
       "druggist": 4,
       "iron_foundry": 1,
       "lawyer": 18,
@@ -28,34 +29,34 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 31,
-      "street_only": 63,
-      "unplaceable": 85
+      "street_only": 65,
+      "unplaceable": 86
     },
-    "named_people": 201,
-    "named_people_linked_to_a_town_card": 149,
+    "named_people": 205,
+    "named_people_linked_to_a_town_card": 153,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 22,
     "by_grade": {
-      "attested": 159,
+      "attested": 162,
       "inferred": 38,
       "reconstructed": 4
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 31,
-      "street_only": 63,
-      "unplaceable": 81
+      "street_only": 65,
+      "unplaceable": 82
     },
     "by_street": {
       "Canal Street": 1,
       "Dearborn Street": 24,
       "Kinzie Street": 1,
       "La Salle Street": 4,
-      "Lake Street": 14,
+      "Lake Street": 15,
       "Monroe Street": 1,
       "North Water Street": 2,
       "Randolph Street": 2,
-      "South Water Street": 39
+      "South Water Street": 40
     },
     "by_proprietor_community": {
       "british": 9,
@@ -64,7 +65,7 @@
       "new_york": 41,
       "other": 10,
       "southern": 5,
-      "unknown": 85,
+      "unknown": 88,
       "yankee": 48
     }
   },
@@ -144,7 +145,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 85
+        "count": 88
       }
     ]
   },
@@ -1480,6 +1481,52 @@
       "liberties": []
     },
     {
+      "id": "biz_chicago_post_office",
+      "file": "biz_chicago_post_office.json",
+      "name": "The Post Office at Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "civic"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the United States post office at Chicago",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John S. C. Hogan",
+          "person_id": "hogan_john_s_c",
+          "role": "postmaster",
+          "tier": "attested",
+          "from": "1832-11-02",
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "south_water",
+        "street": "South Water Street",
+        "tier": "attested",
+        "from": "1834-07",
+        "to": null,
+        "limit_reason": "THE BUILDING IS NOT MODELLED AND WOULD BE ALMOST ENTIRELY INVENTION. hogan_store's research note puts it about 100 m east of that building and says that nothing reached describes its construction, its size or its side of either street; docs/RESEARCH/hogan_store.md § 4 states the same refusal. AND THE CORNER ITSELF CARRIES A LIVE CONFLICT (T-0859): eight printings of Hogan's standing card, from 13 August 1834 through the issue of 1 July 1835, put his South Water store 'one door [… of] the Post Office', and one door is not four blocks from Franklin. The conflict is recorded and not resolved here; the street is what both readings agree on, so the street is as far as this location goes."
+      },
+      "locations": 1,
+      "opened": "1831-03-31",
+      "closed": null,
+      "dates_tier": "attested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "biz_chicago_soap_and_candle_manufactory",
       "file": "biz_chicago_soap_and_candle_manufactory.json",
       "name": "Chicago Soap and Candle Manufactory",
@@ -1701,6 +1748,52 @@
       },
       "locations": 1,
       "opened": "1834-01-28",
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_cook_county_offices",
+      "file": "biz_cook_county_offices.json",
+      "name": "The Cook County offices, in Richard J. Hamilton's own room",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "civic"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the county's offices — the clerk, the probate, the recording and the notary work of Cook County, all in one man's hands",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Richard Jones Hamilton",
+          "person_id": "hamilton_richard_j",
+          "role": "county_clerk",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "NO SOURCE REACHED NAMES THE ROOM. The county building is dated out of the scene and the log jail on the north-west corner of the square is a jail; nothing puts the clerk's desk at an address. The record stops at 'not on the square, and not in a building of the county's own'. THE TOWN'S OWN OFFICES STOP HERE TOO, and for a stronger reason than silence: the town of Chicago had no ground at all — its fire company had to ask the COUNTY for leave to build on the county's square, and the town polled its elections in taverns — so `chicago_town_hall` stands in data/exclusions.json as a kind guard with no date, and no town premises is written here or anywhere."
+      },
+      "locations": 1,
+      "opened": null,
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "unknown",
@@ -9981,6 +10074,61 @@
       "liberties": [
         "backdating_required"
       ]
+    },
+    {
+      "id": "biz_us_land_office_chicago",
+      "file": "biz_us_land_office_chicago.json",
+      "name": "The United States Land Office at Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "civic"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the United States land office for the Chicago district — register and receiver",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "James Whitlock",
+          "person_id": "whitlock_james",
+          "role": "land_office_register",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Edmund D Taylor",
+          "person_id": "taylor_edmund_d",
+          "role": "land_office_receiver",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "lake",
+        "street": "Lake Street",
+        "tier": "attested",
+        "from": null,
+        "to": null,
+        "limit_reason": "A STREET AND NO HOUSE, and the source says why in its own next breath: 'the office of the Registers and Receivers were usually at their private offices' (scan p. 313). Nothing reached describes a building, a size or a lot, and the civic dossier's enumeration is explicit that this is a public FUNCTION and not a public building — `us_land_office_1835` stands in data/exclusions.json as a kind guard so that no roof is ever dealt to it."
+      },
+      "locations": 1,
+      "opened": "1835-05",
+      "closed": null,
+      "dates_tier": "attested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_w_g_blanchard",
