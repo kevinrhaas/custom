@@ -184,15 +184,22 @@
     }
    ],
    "age_band": {
-    "value": "0-4",
-    "low": 0,
-    "high": 4,
-    "confidence": "inferred",
-    "tier": "inferred",
-    "sources": [
-     "fergus_1843_old_settler_death_notices"
-    ],
-    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "smith_george:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('smith_george:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
    },
    "sex": "male",
    "sex_basis": {
@@ -201,13 +208,20 @@
     "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'George' is read as male because 2 persons in this layer whose sex a source records bear it (dole_george_w, snow_george_w), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
    },
    "birth_year": {
-    "value": 1831,
-    "precision": "year",
-    "confidence": "inferred",
+    "value": null,
+    "precision": null,
+    "confidence": "reconstructed",
     "sources": [
      "fergus_1843_old_settler_death_notices"
     ],
-    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'Sept., 1888' and the age as 'a. 57¼'. An age of 57 years and 3 months means at least that and less than 57 years and 4 months, so the birth falls between 1831-05-02 and 1831-06-30: the birth year is 1831. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Smith, George Clinton ( dit Chas. G.), tailor, d. Sept., 1888, a. 57¼.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+    "refused_interval": [
+     1831,
+     1831
+    ],
+    "refused_because": "this card says the person holds the role coffee_house_keeper over the scene date, and the interval leaves them 4 in 1835 — under the 15 the 1840 schedule's own reading of a roll requires, which is the floor this project holds without a liberty",
+    "record_id": "fdn0609",
+    "as_read": "Smith, George Clinton ( dit Chas. G.), tailor, d. Sept., 1888, a. 57¼.",
+    "note": "A BIRTH INTERVAL THIS CARD REFUTES, AND SO NO BIRTH YEAR AT ALL (T-1179). An obituary matched to this name puts the birth in 1831, and that interval is NOT carried, because this card says the person holds the role coffee_house_keeper over the scene date, and the interval leaves them 4 in 1835 — under the 15 the 1840 schedule's own reading of a roll requires, which is the floor this project holds without a liberty. The match itself is the crosswalk's and is untouched — what is refused is spending its arithmetic into an age. The two readings cannot both stand, and the weaker one is the name match: the obituary list's own header admits it names citizens who arrived after 1843 and others merely prominently connected with Illinois history, while the evidence on this side is this person's own. The floor the refusal is taken at is the one data/reconstruction/1835_sex_age_model.json defends without a liberty — a roll naming a person in their own right names somebody 15 or over — so this pass refuses nothing that pass would have drawn. NOTHING IS ASSERTED IN ITS PLACE: the person's age band is drawn for them like anybody else's, and a source that states a birth retires this refusal."
    }
   }
  ],

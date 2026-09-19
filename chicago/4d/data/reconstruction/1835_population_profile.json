@@ -2314,14 +2314,14 @@
       ],
       [
        "inferred",
-       57,
-       "2.5%",
+       54,
+       "2.4%",
        "the band an inferred birth year or age puts them in"
       ],
       [
        "reconstructed",
-       2198,
-       "96.9%",
+       2201,
+       "97.0%",
        "DRAWN from the 1840 Chicago schedule's sex × age bands, conditioned on what the person is recorded doing, seeded by their own id — a band, never a year"
       ],
       [
@@ -2344,7 +2344,7 @@
      "rows": [
       [
        "0-4",
-       171,
+       170,
        "7.5%"
       ],
       [
@@ -2354,13 +2354,13 @@
       ],
       [
        "5-9",
-       25,
+       24,
        "1.1%"
       ],
       [
        "10-14",
-       23,
-       "1.0%"
+       21,
+       "0.9%"
       ],
       [
        "10-19",
@@ -2374,17 +2374,17 @@
       ],
       [
        "20-29",
-       803,
+       804,
        "35.4%"
       ],
       [
        "30-39",
-       450,
-       "19.8%"
+       452,
+       "19.9%"
       ],
       [
        "40-49",
-       136,
+       137,
        "6.0%"
       ],
       [
@@ -2740,19 +2740,19 @@
        "inferred"
       ],
       [
-       "Caleb Harrison",
-       10,
-       "inferred"
+       "Amasa Wright",
+       "-",
+       "unknown"
       ],
       [
-       "Amasa Wright",
-       7,
-       "inferred"
+       "Caleb Harrison",
+       "-",
+       "unknown"
       ],
       [
        "George Smith",
-       4,
-       "inferred"
+       "-",
+       "unknown"
       ]
      ],
      "note": ""
