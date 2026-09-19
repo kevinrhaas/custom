@@ -91,6 +91,22 @@ TRADE_CLASS = {
     "druggist": ["druggist"],
     "store": ["dry_goods_merchant", "grocer", "hardware_merchant", "merchant"],
     "book_store": [],
+    # T-1185, THE MECHANICS' SHOPS. The book gives this ticket four classes and owes it
+    # heads for two. `brewer` is the resident band's own word and the register's: the
+    # Chicago Brewery's occupation line reads `brewer`. `silversmith_jeweller` is one shop
+    # in this town and three words in two vocabularies — the register grades J. H. Mulford
+    # `jeweller` and advertises "Watches", "Clocks", "Silver Ware" and "Indian silver work"
+    # over one counter, and the resident band drew its head at `watchmaker`; all three
+    # names are listed so a re-cut of either vocabulary still finds the shop.
+    "brewery": ["brewer"],
+    "silversmith_jeweller": ["jeweller", "silversmith", "watchmaker"],
+    # AND TWO THE BOOK OWES NOTHING, which is a ruling and not an omission. The iron
+    # foundry stands at its census target (Dart & Co., castings) and the tin and copper
+    # trade stands ABOVE it — four printed houses against the December census's two. An
+    # empty list here says the class is mapped and draws no head; a class MISSING from
+    # this table is refused by name, and the two must not be confused.
+    "iron_foundry": [],
+    "tin_and_copper_manufactory": [],
 }
 
 # THE FACE A CLASS TAKES, by division, in the order a seeded deal reads them. From the
@@ -114,6 +130,23 @@ FACES = {
         "south": ["lake", "dearborn"],
         "north": ["kinzie"],
         "west": ["canal"],
+    },
+    # A BREWERY IS NOT A SHOP FRONT. It wants water, fuel and room for a yard, and the
+    # town's one attested brewery is a river house, not a Lake Street one. It takes the
+    # working banks — the North Water bank in the north division, which is where the
+    # register's heavy trades sit, the river front and the Market Street branch face in
+    # the south, West Water in the west — and never a retail street.
+    "brewery": {
+        "south": ["south_water", "market"],
+        "north": ["north_water", "kinzie"],
+        "west": ["west_water", "canal"],
+    },
+    # The silversmith and jeweller is a retail front: J. H. Mulford, the one house of the
+    # class the register prints, advertises from South Water Street.
+    "silversmith_jeweller": {
+        "south": ["south_water", "lake", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
     },
 }
 
@@ -153,6 +186,57 @@ STYLES = {
         ],
         "trade": "store",
         "occupation": None,
+    },
+    "brewery": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus — "
+             "'B. Jones, grocery and provision store', 'S. B. Cobb, saddle, harness and "
+             "trunk manufactory'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is the minority form and is attested — "
+             "'William F. Lyon, Wholesale Grocery Store', 'Frederick Thomas, drugs and "
+             "paints'"),
+        ],
+        "goods": [
+            ("brewery",
+             "the only word the corpus prints for this class: the register carries one "
+             "brewery, 'the Chicago Brewery', with no goods line under it, so the trade "
+             "word stands alone rather than a list being composed for it"),
+        ],
+        "trade": "brewing",
+        "occupation": "brewer",
+        # THE TIGHTER BOUND, STATED ON THE RECORD RATHER THAN ACTED ON.
+        "caveat": (
+            "A TIGHTER COUNT STANDS UNAPPLIED, AND THIS RECORD CARRIES IT. The book takes "
+            "its target from the December 1835 State census, which prints two breweries. "
+            "But the Chicago American of 15 August 1835 takes stock of the town six weeks "
+            "AFTER the scene date and counts 'one brewery, one furnace (just going up)' — "
+            "one, where December counts two. If the American is right for 1 July 1835 then "
+            "the town's second brewery arrived in the autumn and this house does not stand "
+            "at the scene date at all. That is the Sept-Dec 1835 crosswalk's ruling to make "
+            "and it has not made it: this bucket reads `compared_by_the_crosswalk: true` "
+            "and `crosswalk_note: null`. The house therefore stands on the book's quota, "
+            "with the count that would retire it printed here; a crosswalk that rules the "
+            "American in re-cuts the bucket and --build withdraws this record, which is "
+            "the only way it may ever go."),
+    },
+    "silversmith_jeweller": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus, and the "
+             "one attested house of this class signs by surname — 'J. H. Mulford'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is attested — 'Frederick Thomas, drugs and paints', "
+             "'William F. Lyon, Wholesale Grocery Store'"),
+        ],
+        "goods": [
+            ("watches, jewelry, engravings and fancy goods",
+             "J. H. Mulford's own trade line in the register — the one attested house of "
+             "the class, and the only goods line the corpus prints for it"),
+        ],
+        "trade": "watches, jewelry, engravings and fancy goods",
+        "occupation": "jeweller",
     },
 }
 
@@ -244,6 +328,16 @@ def record_for(group, bucket, head, ordinal, communities, streets):
     faces = FACES[cls][head["division"]]
     face = draw(slot + ":street_face", faces)
 
+    # A CLASS MAY CARRY A COUNT THAT ARGUES AGAINST ITS OWN BUCKET, and where it does the
+    # record says so in its own basis rather than in a document beside it: a reader holding
+    # the card holds the objection to it. `caveat` is optional and a class without one is
+    # written exactly as it was before this key existed.
+    basis_note = ("%s. The book leaves %d of this class to reconstruct and this is one of "
+                  "them. %s" % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
+                                style_basis))
+    if spec.get("caveat"):
+        basis_note += " " + spec["caveat"]
+
     proprietor = {
         "name": head["name"],
         "person_id": head["person_id"],
@@ -331,10 +425,7 @@ def record_for(group, bucket, head, ordinal, communities, streets):
             "basis": {
                 "kind": "model",
                 "id": "1835_reconstruction_order_book",
-                "note": ("%s. The book leaves %d of this class to reconstruct and this is "
-                         "one of them. %s"
-                         % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
-                            style_basis)),
+                "note": basis_note,
             },
             "withdrawn_if": (
                 "a source naming a real house of this class, or a re-cut of the order book "
@@ -524,7 +615,14 @@ def build(groups):
         if block.get("group") in built and path.stem not in {
                 r["id"] for r in built[block["group"]]}:
             path.unlink()
-    write(ledger({g: built.get(g, []) for g in built_groups()} | built), LEDGER)
+    # THE LEDGER COUNTS EVERY GROUP ON DISK, NOT JUST THIS ONE. A build of one group must
+    # still write the other groups' records into the ledger, and it must RE-DERIVE them to
+    # do it — the first cut carried `built.get(g, [])` here, which put an empty row under
+    # every group this run did not build, and --check (which re-derives all of them) then
+    # refused the file the build had just written. One group on disk hid it; the second
+    # found it.
+    standing = {g: build_group(g) for g in built_groups() if g not in built}
+    write(ledger(standing | built), LEDGER)
     write_fills(built)
     for group, records in sorted(built.items()):
         print("%s (%s): %d reconstructed business record(s)"
@@ -657,10 +755,37 @@ def self_test():
                 failures.append("%s: proprietor %s is not an adopted trade head"
                                 % (record["id"], person["person_id"]))
 
+    # 8. A class that carries a caveat prints it on every record it writes, and a class
+    #    that carries none is written exactly as it was before the key existed. The
+    #    brewery of T-1185 is the standing example: the Chicago American of 15 August 1835
+    #    counts one brewery where the December census counts two, and a reader holding the
+    #    card must hold that objection too.
+    mechanics = build_group("mechanics_shops", communities, streets, heads)
+    for record in mechanics:
+        cls = record["type"][0]
+        caveat = STYLES[cls].get("caveat")
+        note = record["reconstruction"]["basis"]["note"]
+        if caveat and caveat not in note:
+            failures.append("%s: the %s caveat is not on the record it qualifies"
+                            % (record["id"], cls))
+        if not caveat and "TIGHTER COUNT" in note:
+            failures.append("%s: an uncaveated class printed a caveat" % record["id"])
+    for record in records:
+        if "TIGHTER COUNT" in record["reconstruction"]["basis"]["note"]:
+            failures.append("%s: the caveat leaked onto a class that carries none"
+                            % record["id"])
+
+    # 9. An empty trade row is a RULING — the class is mapped and draws no head — and is
+    #    not the same thing as a class missing from the table, which is refused by name.
+    for cls in ("iron_foundry", "tin_and_copper_manufactory"):
+        if TRADE_CLASS.get(cls) != []:
+            failures.append("%s: the book owes T-1185 no houses of this class and the "
+                            "trade row should say so with an empty list" % cls)
+
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 7 assertions of the business reconstruction still fire")
+    print("OK: 9 assertions of the business reconstruction still fire")
     return 0
 
 

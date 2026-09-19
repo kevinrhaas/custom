@@ -12984,7 +12984,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 4 houses of trade. TWO are this entry's, each with an adopted keeper; the other two are **L255**'s Black-owned firms, which arrived in the same evening and which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 6 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, which arrived in the same evening; and two are **L257**'s mechanics' houses, the brewery and the jeweller's. This selector counts all six because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13195,4 +13195,67 @@ Related: **L93** (the institutional families refused to a block parcel by name),
 **T-0024**, the end rule **T-0023**, the frontage fabric **T-0022**, the density standard
 **T-0079**, the corridors **T-1191** and **T-1192** whose absence accounts for a third of the
 outliers, and the seating tickets **T-1198** and **T-1199**.
+**Recorded:** 2026-09-19.
+
+### L257 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
+**Scope:** `businesses.records[reconstructed]` — 6 houses of trade. TWO are this entry's, the
+mechanics' group; two are **L254**'s apothecaries and two **L255**'s Black-owned firms. The
+selector reads the whole layer, so the count is restated here rather than narrowed, and the
+register keeps saying how many reconstructed houses of trade the town carries in total
+
+**Decision:** `tools/reconstruct_businesses_1835.py --group mechanics_shops` (T-1185) writes
+**two** houses, the second group of the business reconstruction: *M. Quinn, brewery* on the
+North Water bank, kept by the reconstructed brewer Martin Quinn, and *L. Chevalier, watches,
+jewelry, engravings and fancy goods* on the Canal Street approach, kept by the reconstructed
+watchmaker Louis Chevalier. Both carry `provenance: reconstructed`, the order-book row that
+bought them, and the seed a reader can retype to redraw the style, the goods line and the face.
+The machinery is L254's and is not restated; what is new is this group's quota and one refusal.
+
+**Why these two and no others.** The order book gives T-1185 four classes and owes it houses in
+only two of them. The December 1835 State census prints **two breweries** and the register holds
+**one** — the Chicago Brewery — so one is short. It prints **two silversmiths and jewellers** and
+the register holds **one**, J. H. Mulford of South Water Street, so one is short. It prints
+**one iron foundry** and the register holds one, Dart & Co.'s castings, so none is short. And it
+prints **two tin and copper manufactories** where the register holds **four** — J. K. Botsford
+twice, W. Keeney, and a fourth whose proprietor was never recovered — so the town is already
+over the census on that trade and nothing is written for it. An empty trade row in the tool says
+*this class is mapped and draws no head*, which is a ruling; a class missing from the table is
+refused by name, which is a question. The two must not be confused and the tool's self-test now
+fires on the difference.
+
+**The brewery carries a count that argues against it, and says so.** The *Chicago American* of
+15 August 1835 takes stock of the town six weeks **after** the scene date — "There are now
+upward of fifty business houses, four large forwarding-houses, eight taverns, two printing
+offices, two book-stores, one steam saw-mill, **one brewery**, one furnace (just going up), and
+twenty-five mechanics' shops of all kinds" — and counts **one** brewery where the December
+census counts two. If the American is right for 1 July 1835 then the second brewery arrived in
+the autumn and *M. Quinn, brewery* does not stand at the scene date at all. That is a stronger
+bound than the one the book used, it is four months nearer the scene, and it is **not applied
+here**: the Sept–Dec 1835 crosswalk is T-1404's to run, the bucket reads
+`compared_by_the_crosswalk: true` with `crosswalk_note: null`, and a run that re-cut the book on
+its own reading of a newspaper would be making a ruling in the wrong place. So the house stands
+on the book's quota with the objection to it printed in its own
+`reconstruction.basis.note` — a reader holding the card holds the argument against the card —
+and a crosswalk that rules the American in re-cuts the bucket, at which point `--build`
+withdraws the record. That is the only way it may ever go.
+
+**Which way it is wrong if it is wrong.** For the brewery, toward one house too many, and the
+record names the source that would take it away. For the jeweller's, toward too few rather than
+too many: the census's two is the floor the book works from, and nothing is written for the
+mechanic trades the census does not enumerate as establishments — the smiths, coopers,
+wheelwrights, tailors and shoemakers of the ticket's title are **occupations** in this data, held
+by residents the trade-households stage already drew, and the American's twenty-five mechanics'
+shops is a roof count that T-1196 re-cuts and T-1199 seats. See
+`docs/RESEARCH/business-layer.md` § *the mechanics' shops of 1835*, where the census classes,
+the American's twenty-five and the thirty workshop roofs of the programme are set side by side
+and the bound that wins each row is named.
+
+**How to resolve:** a register, directory or deed naming a real brewer or jeweller in the town
+in 1835 retires the house in that slot; so does a crosswalk ruling that the class stood at its
+register count on 1 July. Each record says so in its `replaceable_by` and the retirement runs
+through `--build`, never by hand.
+
+Related: **L254** (the machinery, and the first group), **L255** (the two Black-owned firms the
+same selector counts), **L248** (the trade heads these houses adopt), tickets **T-1185**,
+**T-1184**, the crosswalk **T-1404**, the order book **T-1166**, the roof re-cut **T-1196**.
 **Recorded:** 2026-09-19.

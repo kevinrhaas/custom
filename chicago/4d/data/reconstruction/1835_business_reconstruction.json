@@ -7,8 +7,29 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 2,
+  "records": 4,
   "groups": {
+    "mechanics_shops": {
+      "ticket": "T-1185",
+      "title": "the mechanics' shops",
+      "records": 2,
+      "by_class": {
+        "brewery": 1,
+        "silversmith_jeweller": 1
+      },
+      "by_street": {
+        "Canal Street": 1,
+        "North Water Street": 1
+      },
+      "ids": [
+        "rcb_chevalier_silversmith_jeweller",
+        "rcb_quinn_brewery"
+      ],
+      "proprietors_adopted": [
+        "rc_chevalier_louis",
+        "rc_quinn_martin"
+      ]
+    },
     "stores_and_provisions": {
       "ticket": "T-1184",
       "title": "stores, book stores and the drug and provision trades",
