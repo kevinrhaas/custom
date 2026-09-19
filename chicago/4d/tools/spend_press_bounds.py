@@ -51,10 +51,14 @@ THE FOUR RULES THAT KEEP A ROW FROM SAYING MORE THAN IT CAN.
      EARLIER than the scene date corroborates and dates and never promotes, and a LATER one
      does not promote either.
 
-  4. A ROW CITES ITS CROSSWALK RULE AND DOES NOT TRANSCRIBE THE CLAIM. The register's
-     `action_note` is carried as the identity rule, and the claim's own prose stays in the
-     reading that authored it — the lesson T-1337 measured when St Mary's hand-written
-     merges imported stated kinship onto cards that were supposed to receive a date.
+  4. A ROW CITES ITS CROSSWALK RULE AND DOES NOT TRANSCRIBE IT, which is T-1337's rule 4
+     and was measured again here. The register's `action_note` names the resident CARD BY
+     ID — "data/residents/ already holds this person as mather_thomas" — and a residents
+     cohort unit's ledger key is that same bare id. Transcribed onto a card, eleven of
+     those notes closed eleven resident-research units as `asserted` off a press bound that
+     says nothing about them, which is the defect `TOKEN_BLIND_KEYS` was written for in the
+     other direction. So a row names the register, the gazetteer person and the action, and
+     the reason stays in the file that authored it.
 
 NO GRADE MOVES, NO IDENTITY REOPENS, NO PERSON IS MINTED, AND NO OTHER KEY IS TOUCHED.
 `--self-test` diffs a record through the applier and asserts the changed key set is
@@ -89,10 +93,9 @@ SCENE_DATE = "1835-07-01"
 CONFIDENCE = "inferred"
 BOUND_KIND = "print_appearance"
 
-# The rule of `tools/spend_remainder_rulings.py` whose units this pass is the answer to.
-# Reading the corpus off the RULE rather than off a list of ids means the two tools cannot
-# disagree about which units are in play.
-CORPUS_RULE = "a_dated_appearance_bounds_a_presence"
+# `tools/spend_remainder_rulings.py` OWNS THE TEST for what a dated press appearance is,
+# and this pass asks it rather than repeating it. Two tools splitting one corpus between
+# them can only stay agreed if one of them decides where the line falls.
 REMAINDER_TICKET = R.TICKET
 
 # The register actions, and what each one leaves this pass able to do. A new action is a
@@ -144,8 +147,7 @@ def corpus_units(root: Path = ROOT) -> list[dict]:
         if natural.get("ticket") != REMAINDER_TICKET:
             continue
         doc = docs.setdefault(unit["source_file"], load(root / unit["source_file"]))
-        rule, _ = R.rule_newspapers(unit, R.issue_date(doc))
-        if rule == CORPUS_RULE:
+        if R.is_dated_press_appearance(unit, R.issue_date(doc)):
             out.append(unit)
     return out
 
@@ -281,9 +283,10 @@ def rows(root: Path = ROOT) -> tuple[list, list]:
                     "confidence": CONFIDENCE,
                     "sources": [source_id],
                     "identity_rule": (
-                        "data/research/newspapers/register_1835.json — persons[] "
-                        "%s, action `enrich` onto %s: %s"
-                        % (person_id, target, reg["action_note"])),
+                        "data/research/newspapers/register_1835.json — persons[] %s, "
+                        "action `enrich` onto this card. The register states its own "
+                        "reason there and this row cites it rather than transcribing it."
+                        % person_id),
                     "note": (
                         "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. %s of %s "
                         "names %r in the claim read as %s, so the reading dates an "
@@ -542,8 +545,10 @@ def self_test() -> int:
     written, refused = rows()
     units = corpus_units()
 
-    ok("the corpus is the press units of the remainder rule and nothing else",
-       bool(units) and all(u["domain"] == "newspapers" for u in units))
+    ok("the corpus is the press units of the remainder register's own test and no others",
+       bool(units) and all(u["domain"] == "newspapers" for u in units)
+       and all(R.is_dated_press_appearance(u, u["record_key"].split("#")[0][-10:].replace("_", "-"))
+               for u in units))
     ok("the corpus does not move once the bounds are on the cards",
        {u["record_key"] for u in units} == {u["record_key"] for u in corpus_units()})
     ok("every derived bound is inferred and none is attested",
@@ -562,9 +567,19 @@ def self_test() -> int:
        all(len(str(b["identity_rule"] or "")) > 60 for b in bounds))
     ok("a bound cites the register and does not transcribe the claim",
        all("register_1835.json" in b["identity_rule"] and
-           str(b["identity_rule"]).count("action `enrich` onto") == 1 for b in bounds))
+           str(b["identity_rule"]).count("action `enrich`") == 1 for b in bounds))
     ok("every bound names its unit by the file-qualified key T-1342 made nameable",
        all("#" in b["record_id"] and b["record_id"].split("#")[0] for b in bounds))
+    # The test is the LEDGER'S OWN tokenisation and not a substring search: a gazetteer id
+    # such as `person_boardman_harry` contains a card id and names nothing, because
+    # `research_spend_ledger.UNIT_TOKEN` reads it as one token. What must not appear is the
+    # bare id, which is what a residents cohort unit's key is.
+    cards = {row["person_id"] for row in by_person}
+    printed_ids = {token for b in bounds
+                   for value in L.naming_strings(b)
+                   for token in L.UNIT_TOKEN.findall(value)}
+    ok("and no bound prints a resident card id, which would assert another corpus's units",
+       not (printed_ids & cards))
     ok("nothing is written off a register action other than `enrich`",
        all(ACTIONS[row["register_action"]] == "refuse" for row in refused)
        and bool(refused))

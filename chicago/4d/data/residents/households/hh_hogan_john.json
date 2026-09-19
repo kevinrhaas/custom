@@ -137,7 +137,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto hogan_john: data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-06-18 names '3. B. C. HOGAN' in the claim read as chicago_democrat_1834_06_18#c019, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -160,7 +160,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto hogan_john: data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-07-02 names 'JOHN S. C. HOGAN, P.M.' in the claim read as chicago_democrat_1834_07_02#c040, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -183,7 +183,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto hogan_john: data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-07-09 names 'JOHN S: C. HOGAN, P.M.' in the claim read as chicago_democrat_1834_07_09#c013, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -206,7 +206,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto hogan_john: data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_s_c_hogan, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-13 names 'S. C. Hogan, were elected T' in the claim read as chicago_democrat_1834_08_13#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -229,7 +229,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_s_c_hogan, action `enrich` onto hogan_john: data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_s_c_hogan, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-10-29 names 'no. SC. Hogav.' in the claim read as chicago_democrat_1834_10_29#c008, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],

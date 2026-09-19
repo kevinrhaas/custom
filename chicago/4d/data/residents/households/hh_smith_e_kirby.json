@@ -149,7 +149,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_e_kirby_smith, action `enrich` onto smith_e_kirby: data/residents/ already holds this person as smith_e_kirby (hh_smith_e_kirby, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_e_kirby_smith, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-03-25 names 'E. KIRBY SMITH, Le. & Post' in the claim read as chicago_democrat_1834_03_25#c002, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],

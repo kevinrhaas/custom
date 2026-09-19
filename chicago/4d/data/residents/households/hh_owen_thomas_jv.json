@@ -224,7 +224,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_thomas_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_thomas_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1833-12-24 names 'THOS. J. V. OWEN' in the claim read as chicago_democrat_1833_12_24#c006, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -247,7 +247,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_t_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_t_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-06-25 names 'TH. J. V. OWED' in the claim read as chicago_democrat_1834_06_25#c008, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -270,7 +270,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-07-02 names 'TH. J. V. OWEN,' in the claim read as chicago_democrat_1834_07_02#c056, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -293,7 +293,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-07-30 names 'TH. J. V. OWEN' in the claim read as chicago_democrat_1834_07_30#c003, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -316,7 +316,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-13 names 'rH. J. V. OWEN, Ind. Age' in the claim read as chicago_democrat_1834_08_13#c019, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -339,7 +339,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_th_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-20 names 'TH. J. V. OWEN, Ind' in the claim read as chicago_democrat_1834_08_20#c004, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     },
     {
@@ -362,7 +362,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_t_j_v_owen, action `enrich` onto owen_thomas_jv: data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_t_j_v_owen, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-11-19 names 'T. J, V. Owen' in the claim read as chicago_democrat_1834_11_19#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],

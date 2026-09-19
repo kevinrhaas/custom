@@ -274,7 +274,7 @@
      "sources": [
       "chicago_american_1835"
      ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_w_l_newberry, action `enrich` onto newberry_walter_loomis: data/residents/ already holds this person as newberry_walter_loomis (hh_newberry_walter_loomis, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates.",
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_w_l_newberry, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago American of 1835-06-08 names 'W, L. NEWHERR:' in the claim read as chicago_american_1835_06_08#c004, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],
