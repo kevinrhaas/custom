@@ -15,9 +15,9 @@
  },
  "not_a_reading": "Derived, never hand-edited. Every value is read off a committed field — a household's origin block or a reconstructed person's own pool community — and graded no higher than the field it came from. No source was read to write this file and nobody was minted.",
  "counts": {
-  "persons": 2634,
-  "households": 1872,
-  "known": 2436,
+  "persons": 2721,
+  "households": 1959,
+  "known": 2523,
   "unknown": 198,
   "by_community": {
    "yankee": 1182,
@@ -27,18 +27,19 @@
    "french_canadian": 126,
    "other": 123,
    "british": 97,
+   "native": 87,
    "southern": 63,
    "metis": 2
   },
   "by_tier": {
-   "reconstructed": 2377,
+   "reconstructed": 2464,
    "null": 198,
    "inferred": 56,
    "attested": 3
   },
   "by_rule": {
    "origin_region": 1262,
-   "reconstruction_community": 1167,
+   "reconstruction_community": 1254,
    "no_origin_recorded": 182,
    "origin_does_not_speak_for_this_person": 12,
    "stated_community": 7,
@@ -51,6 +52,7 @@
    "irish": 157,
    "other": 123,
    "british": 97,
+   "native": 87,
    "southern": 60,
    "french_canadian": 54,
    "metis": 2
@@ -151,6 +153,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "alex_la_frombois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "alexis_gagnier": {
    "value": "unknown",
@@ -312,6 +319,11 @@
    "tier": null,
    "rule": "no_origin_recorded"
   },
+  "as_ke_witt": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "asa_nc_doel": {
    "value": "british",
    "tier": "reconstructed",
@@ -441,6 +453,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "baptiste_de_roche": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "baptiste_l_tendre": {
    "value": "unknown",
@@ -1387,6 +1404,21 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "cau_be_nah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "cau_o_sett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "cee_bou_sunc": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "chadwick_joseph": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -1482,6 +1514,16 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "che_chalk_goes": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "chene_quaw": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "cheney_charles": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -1521,6 +1563,11 @@
    "value": "other",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "chippe_wai_se": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "chittenden_jesse": {
    "value": "yankee",
@@ -2237,6 +2284,16 @@
    "tier": null,
    "rule": "no_origin_recorded"
   },
+  "e_te_we_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "e_toe_won_gote": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "eager_hiram": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -2642,6 +2699,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "francis_bourbonnois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "francis_labaque": {
    "value": "unknown",
    "tier": null,
@@ -2751,6 +2813,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "george_forthier": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "george_m_gray": {
    "value": "unknown",
@@ -3887,6 +3954,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "joseph_chonier": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "joseph_kettlestrings": {
    "value": "unknown",
    "tier": null,
@@ -3896,6 +3968,11 @@
    "value": "unknown",
    "tier": null,
    "rule": "no_origin_recorded"
+  },
+  "joseph_la_frombois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "joseph_mayo": {
    "value": "unknown",
@@ -3941,6 +4018,41 @@
    "value": "unknown",
    "tier": null,
    "rule": "no_origin_recorded"
+  },
+  "kai_bai_squam": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "kai_shaw_kee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "kai_tau_ta_mo": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ke_o_quaw": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ke_wai_ke_too": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ke_wai_o_nock": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ke_way_quam": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "keeney_g_w": {
    "value": "other",
@@ -3996,6 +4108,11 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "kick_ke_yok": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "kidder_luther": {
    "value": "new_york",
@@ -4532,6 +4649,11 @@
    "tier": null,
    "rule": "no_origin_recorded"
   },
+  "ma_che_we_ta": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "mabbet_benjamin_f": {
    "value": "southern",
    "tier": "reconstructed",
@@ -4662,6 +4784,16 @@
    "tier": null,
    "rule": "no_origin_recorded"
   },
+  "mas_go": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "mas_quat": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "mason_matthias": {
    "value": "other",
    "tier": "reconstructed",
@@ -4696,6 +4828,21 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "mau_kai_tai_o_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "maub_biss": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "mauk_e_sett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "maxwell_philip": {
    "value": "new_york",
@@ -4752,6 +4899,31 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "me_kai_ta_be_nee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "me_kess": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "me_she_ke_to_no": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "me_shi_ke_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "me_tai_wa": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "meacham_mary": {
    "value": "southern",
    "tier": "reconstructed",
@@ -4787,10 +4959,30 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "mes_kee_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "messe_non_e_see": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "mewen_wm_b": {
    "value": "other",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "mex_e_ke_ne_bee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "mex_e_man": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "mfadin_james": {
    "value": "yankee",
@@ -4882,6 +5074,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "mitchel_ouillemett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "mitchell_henry": {
    "value": "other",
    "tier": "reconstructed",
@@ -4901,6 +5098,11 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "mon_ta_niss": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "monique_nadeau": {
    "value": "unknown",
@@ -5087,6 +5289,31 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "nau_con_ne_bec": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "nau_quay_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "naw_bai_kau": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ne_a_se_no": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "neen_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "neff_r_a": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -5126,6 +5353,11 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "no_sha_cum": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "noble_john": {
    "value": "british",
@@ -5282,6 +5514,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "pai_ta_ko_too": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "paige_b_r": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -5357,6 +5594,16 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "pat_e_quee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "pat_ti_co_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "patrick_wagon": {
    "value": "unknown",
    "tier": null,
@@ -5366,6 +5613,11 @@
    "value": "unknown",
    "tier": null,
    "rule": "no_origin_recorded"
+  },
+  "pay_co_je_bai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "paylor_john_o": {
    "value": "new_york",
@@ -5386,6 +5638,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "pe_so_tum": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "peacock_elijah": {
    "value": "southern",
@@ -5412,10 +5669,20 @@
    "tier": "inferred",
    "rule": "origin_region"
   },
+  "pee_way_tan": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "pennington_sack_f": {
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "perish_le_clair": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "perring_almon": {
    "value": "yankee",
@@ -5436,6 +5703,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "pet_wai_wai_o_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "peter_moore": {
    "value": "unknown",
@@ -5546,6 +5818,11 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "pow_she_tow": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "powell_geo_n": {
    "value": "yankee",
@@ -11832,6 +12109,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "sau_ke_ma": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "saunders_william_s": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -11841,6 +12123,11 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "saus_bock_skuk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "savage_david": {
    "value": "other",
@@ -11922,6 +12209,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "sha_tee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "shapley_major_l": {
    "value": "southern",
    "tier": "reconstructed",
@@ -11941,6 +12233,26 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "shaw_wa_no_quak": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "shaw_we": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "she_kauk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "she_na_ge_win": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "shearman_h_c": {
    "value": "new_york",
@@ -12012,6 +12324,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "show_men_raisin": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "sidney_roberts": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -12051,6 +12368,16 @@
    "value": "new_york",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "skaw_tai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "ske_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "skinner_e_f": {
    "value": "new_york",
@@ -12206,6 +12533,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "squaz_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "squire_george": {
    "value": "yankee",
@@ -12392,6 +12724,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "suck_ke_na_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "sunith_mil_on": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -12457,6 +12794,16 @@
    "tier": null,
    "rule": "no_origin_recorded"
   },
+  "taw_no_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "taw_taupe": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "taylor_anson_h": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -12491,6 +12838,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "te_kau_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "teal_william": {
    "value": "yankee",
@@ -12782,6 +13134,61 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "wa_ba_kai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wa_o_ya_ka_muck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wa_wa_ya_ton": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wab_be_mentoo": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wab_me_mic": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_bais_kuk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_sau": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_sau_e_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_sau_o_ke_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_sau_won_quat": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wai_wai_se_mau_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "walford_h": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -12842,6 +13249,11 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "wash_e_ocon": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "washburn_b_f": {
    "value": "new_york",
    "tier": "reconstructed",
@@ -12867,6 +13279,26 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
+  "wau_bon_e": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wau_bon_no_sai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "wau_kai_so": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "we_shay": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
   "wear_amy_c": {
    "value": "yankee",
    "tier": "reconstructed",
@@ -12886,6 +13318,11 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "ween_go": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "welch_michael_p": {
    "value": "new_york",
@@ -25562,6 +25999,615 @@
    "rule": "origin_region",
    "head": "ulrich_nicholas",
    "file": "households/hh_ulrich_nicholas.json"
+  },
+  "hh_um_alex_la_frombois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "alex_la_frombois",
+   "file": "underdocumented/hh_um_alex_la_frombois.json"
+  },
+  "hh_um_as_ke_witt": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "as_ke_witt",
+   "file": "underdocumented/hh_um_as_ke_witt.json"
+  },
+  "hh_um_baptiste_de_roche": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "baptiste_de_roche",
+   "file": "underdocumented/hh_um_baptiste_de_roche.json"
+  },
+  "hh_um_cau_be_nah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "cau_be_nah",
+   "file": "underdocumented/hh_um_cau_be_nah.json"
+  },
+  "hh_um_cau_o_sett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "cau_o_sett",
+   "file": "underdocumented/hh_um_cau_o_sett.json"
+  },
+  "hh_um_cee_bou_sunc": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "cee_bou_sunc",
+   "file": "underdocumented/hh_um_cee_bou_sunc.json"
+  },
+  "hh_um_che_chalk_goes": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "che_chalk_goes",
+   "file": "underdocumented/hh_um_che_chalk_goes.json"
+  },
+  "hh_um_chene_quaw": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "chene_quaw",
+   "file": "underdocumented/hh_um_chene_quaw.json"
+  },
+  "hh_um_chippe_wai_se": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "chippe_wai_se",
+   "file": "underdocumented/hh_um_chippe_wai_se.json"
+  },
+  "hh_um_e_te_we_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "e_te_we_ke_sick",
+   "file": "underdocumented/hh_um_e_te_we_ke_sick.json"
+  },
+  "hh_um_e_toe_won_gote": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "e_toe_won_gote",
+   "file": "underdocumented/hh_um_e_toe_won_gote.json"
+  },
+  "hh_um_francis_bourbonnois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "francis_bourbonnois",
+   "file": "underdocumented/hh_um_francis_bourbonnois.json"
+  },
+  "hh_um_george_forthier": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "george_forthier",
+   "file": "underdocumented/hh_um_george_forthier.json"
+  },
+  "hh_um_joseph_chonier": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "joseph_chonier",
+   "file": "underdocumented/hh_um_joseph_chonier.json"
+  },
+  "hh_um_joseph_la_frombois": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "joseph_la_frombois",
+   "file": "underdocumented/hh_um_joseph_la_frombois.json"
+  },
+  "hh_um_kai_bai_squam": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "kai_bai_squam",
+   "file": "underdocumented/hh_um_kai_bai_squam.json"
+  },
+  "hh_um_kai_shaw_kee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "kai_shaw_kee",
+   "file": "underdocumented/hh_um_kai_shaw_kee.json"
+  },
+  "hh_um_kai_tau_ta_mo": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "kai_tau_ta_mo",
+   "file": "underdocumented/hh_um_kai_tau_ta_mo.json"
+  },
+  "hh_um_ke_o_quaw": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ke_o_quaw",
+   "file": "underdocumented/hh_um_ke_o_quaw.json"
+  },
+  "hh_um_ke_wai_ke_too": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ke_wai_ke_too",
+   "file": "underdocumented/hh_um_ke_wai_ke_too.json"
+  },
+  "hh_um_ke_wai_o_nock": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ke_wai_o_nock",
+   "file": "underdocumented/hh_um_ke_wai_o_nock.json"
+  },
+  "hh_um_ke_way_quam": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ke_way_quam",
+   "file": "underdocumented/hh_um_ke_way_quam.json"
+  },
+  "hh_um_kick_ke_yok": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "kick_ke_yok",
+   "file": "underdocumented/hh_um_kick_ke_yok.json"
+  },
+  "hh_um_ma_che_we_ta": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ma_che_we_ta",
+   "file": "underdocumented/hh_um_ma_che_we_ta.json"
+  },
+  "hh_um_mas_go": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mas_go",
+   "file": "underdocumented/hh_um_mas_go.json"
+  },
+  "hh_um_mas_quat": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mas_quat",
+   "file": "underdocumented/hh_um_mas_quat.json"
+  },
+  "hh_um_mau_kai_tai_o_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mau_kai_tai_o_suck",
+   "file": "underdocumented/hh_um_mau_kai_tai_o_suck.json"
+  },
+  "hh_um_maub_biss": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "maub_biss",
+   "file": "underdocumented/hh_um_maub_biss.json"
+  },
+  "hh_um_mauk_e_sett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mauk_e_sett",
+   "file": "underdocumented/hh_um_mauk_e_sett.json"
+  },
+  "hh_um_me_kai_ta_be_nee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "me_kai_ta_be_nee",
+   "file": "underdocumented/hh_um_me_kai_ta_be_nee.json"
+  },
+  "hh_um_me_kess": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "me_kess",
+   "file": "underdocumented/hh_um_me_kess.json"
+  },
+  "hh_um_me_she_ke_to_no": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "me_she_ke_to_no",
+   "file": "underdocumented/hh_um_me_she_ke_to_no.json"
+  },
+  "hh_um_me_shi_ke_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "me_shi_ke_yah",
+   "file": "underdocumented/hh_um_me_shi_ke_yah.json"
+  },
+  "hh_um_me_tai_wa": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "me_tai_wa",
+   "file": "underdocumented/hh_um_me_tai_wa.json"
+  },
+  "hh_um_mes_kee_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mes_kee_suck",
+   "file": "underdocumented/hh_um_mes_kee_suck.json"
+  },
+  "hh_um_messe_non_e_see": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "messe_non_e_see",
+   "file": "underdocumented/hh_um_messe_non_e_see.json"
+  },
+  "hh_um_mex_e_ke_ne_bee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mex_e_ke_ne_bee",
+   "file": "underdocumented/hh_um_mex_e_ke_ne_bee.json"
+  },
+  "hh_um_mex_e_man": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mex_e_man",
+   "file": "underdocumented/hh_um_mex_e_man.json"
+  },
+  "hh_um_mitchel_ouillemett": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mitchel_ouillemett",
+   "file": "underdocumented/hh_um_mitchel_ouillemett.json"
+  },
+  "hh_um_mon_ta_niss": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "mon_ta_niss",
+   "file": "underdocumented/hh_um_mon_ta_niss.json"
+  },
+  "hh_um_nau_con_ne_bec": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "nau_con_ne_bec",
+   "file": "underdocumented/hh_um_nau_con_ne_bec.json"
+  },
+  "hh_um_nau_quay_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "nau_quay_suck",
+   "file": "underdocumented/hh_um_nau_quay_suck.json"
+  },
+  "hh_um_naw_bai_kau": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "naw_bai_kau",
+   "file": "underdocumented/hh_um_naw_bai_kau.json"
+  },
+  "hh_um_ne_a_se_no": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ne_a_se_no",
+   "file": "underdocumented/hh_um_ne_a_se_no.json"
+  },
+  "hh_um_neen_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "neen_ko",
+   "file": "underdocumented/hh_um_neen_ko.json"
+  },
+  "hh_um_no_sha_cum": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "no_sha_cum",
+   "file": "underdocumented/hh_um_no_sha_cum.json"
+  },
+  "hh_um_pai_ta_ko_too": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pai_ta_ko_too",
+   "file": "underdocumented/hh_um_pai_ta_ko_too.json"
+  },
+  "hh_um_pat_e_quee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pat_e_quee",
+   "file": "underdocumented/hh_um_pat_e_quee.json"
+  },
+  "hh_um_pat_ti_co_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pat_ti_co_suck",
+   "file": "underdocumented/hh_um_pat_ti_co_suck.json"
+  },
+  "hh_um_pay_co_je_bai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pay_co_je_bai",
+   "file": "underdocumented/hh_um_pay_co_je_bai.json"
+  },
+  "hh_um_pe_so_tum": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pe_so_tum",
+   "file": "underdocumented/hh_um_pe_so_tum.json"
+  },
+  "hh_um_pee_way_tan": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pee_way_tan",
+   "file": "underdocumented/hh_um_pee_way_tan.json"
+  },
+  "hh_um_perish_le_clair": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "perish_le_clair",
+   "file": "underdocumented/hh_um_perish_le_clair.json"
+  },
+  "hh_um_pet_wai_wai_o_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pet_wai_wai_o_ko",
+   "file": "underdocumented/hh_um_pet_wai_wai_o_ko.json"
+  },
+  "hh_um_pow_she_tow": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "pow_she_tow",
+   "file": "underdocumented/hh_um_pow_she_tow.json"
+  },
+  "hh_um_sau_ke_ma": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "sau_ke_ma",
+   "file": "underdocumented/hh_um_sau_ke_ma.json"
+  },
+  "hh_um_saus_bock_skuk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "saus_bock_skuk",
+   "file": "underdocumented/hh_um_saus_bock_skuk.json"
+  },
+  "hh_um_sha_tee": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "sha_tee",
+   "file": "underdocumented/hh_um_sha_tee.json"
+  },
+  "hh_um_shaw_wa_no_quak": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "shaw_wa_no_quak",
+   "file": "underdocumented/hh_um_shaw_wa_no_quak.json"
+  },
+  "hh_um_shaw_we": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "shaw_we",
+   "file": "underdocumented/hh_um_shaw_we.json"
+  },
+  "hh_um_she_kauk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "she_kauk",
+   "file": "underdocumented/hh_um_she_kauk.json"
+  },
+  "hh_um_she_na_ge_win": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "she_na_ge_win",
+   "file": "underdocumented/hh_um_she_na_ge_win.json"
+  },
+  "hh_um_show_men_raisin": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "show_men_raisin",
+   "file": "underdocumented/hh_um_show_men_raisin.json"
+  },
+  "hh_um_skaw_tai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "skaw_tai",
+   "file": "underdocumented/hh_um_skaw_tai.json"
+  },
+  "hh_um_ske_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ske_yah",
+   "file": "underdocumented/hh_um_ske_yah.json"
+  },
+  "hh_um_squaz_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "squaz_ke_sick",
+   "file": "underdocumented/hh_um_squaz_ke_sick.json"
+  },
+  "hh_um_suck_ke_na_ke_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "suck_ke_na_ke_sick",
+   "file": "underdocumented/hh_um_suck_ke_na_ke_sick.json"
+  },
+  "hh_um_taw_no_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "taw_no_ko",
+   "file": "underdocumented/hh_um_taw_no_ko.json"
+  },
+  "hh_um_taw_taupe": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "taw_taupe",
+   "file": "underdocumented/hh_um_taw_taupe.json"
+  },
+  "hh_um_te_kau_ko": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "te_kau_ko",
+   "file": "underdocumented/hh_um_te_kau_ko.json"
+  },
+  "hh_um_wa_ba_kai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wa_ba_kai",
+   "file": "underdocumented/hh_um_wa_ba_kai.json"
+  },
+  "hh_um_wa_o_ya_ka_muck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wa_o_ya_ka_muck",
+   "file": "underdocumented/hh_um_wa_o_ya_ka_muck.json"
+  },
+  "hh_um_wa_wa_ya_ton": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wa_wa_ya_ton",
+   "file": "underdocumented/hh_um_wa_wa_ya_ton.json"
+  },
+  "hh_um_wab_be_mentoo": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wab_be_mentoo",
+   "file": "underdocumented/hh_um_wab_be_mentoo.json"
+  },
+  "hh_um_wab_me_mic": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wab_me_mic",
+   "file": "underdocumented/hh_um_wab_me_mic.json"
+  },
+  "hh_um_wai_bais_kuk": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_bais_kuk",
+   "file": "underdocumented/hh_um_wai_bais_kuk.json"
+  },
+  "hh_um_wai_sau": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_sau",
+   "file": "underdocumented/hh_um_wai_sau.json"
+  },
+  "hh_um_wai_sau_e_suck": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_sau_e_suck",
+   "file": "underdocumented/hh_um_wai_sau_e_suck.json"
+  },
+  "hh_um_wai_sau_o_ke_yah": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_sau_o_ke_yah",
+   "file": "underdocumented/hh_um_wai_sau_o_ke_yah.json"
+  },
+  "hh_um_wai_sau_won_quat": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_sau_won_quat",
+   "file": "underdocumented/hh_um_wai_sau_won_quat.json"
+  },
+  "hh_um_wai_wai_se_mau_sick": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wai_wai_se_mau_sick",
+   "file": "underdocumented/hh_um_wai_wai_se_mau_sick.json"
+  },
+  "hh_um_wash_e_ocon": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wash_e_ocon",
+   "file": "underdocumented/hh_um_wash_e_ocon.json"
+  },
+  "hh_um_wau_bon_e": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wau_bon_e",
+   "file": "underdocumented/hh_um_wau_bon_e.json"
+  },
+  "hh_um_wau_bon_no_sai": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wau_bon_no_sai",
+   "file": "underdocumented/hh_um_wau_bon_no_sai.json"
+  },
+  "hh_um_wau_kai_so": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "wau_kai_so",
+   "file": "underdocumented/hh_um_wau_kai_so.json"
+  },
+  "hh_um_we_shay": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "we_shay",
+   "file": "underdocumented/hh_um_we_shay.json"
+  },
+  "hh_um_ween_go": {
+   "value": "native",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "ween_go",
+   "file": "underdocumented/hh_um_ween_go.json"
   },
   "hh_vale_john": {
    "value": "yankee",

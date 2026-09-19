@@ -35,19 +35,24 @@
   },
   "vocabulary": [
     {
+      "value": "native",
+      "label": "Native (nation not stated)",
+      "note": "THE SOURCE SAYS INDIAN AND SAYS NOTHING FURTHER. The Illinois State Archives roll of Black Hawk War enrollments at Chicago heads a company of ninety-four men INDIAN and distinguishes no nation among them; T-1376 cards those men and writes this term rather than choosing one of the three below for them. A card that later reaches a nation replaces it. Every person carrying it is review_required and touches_removal."
+    },
+    {
       "value": "potawatomi",
       "label": "Potawatomi",
-      "note": "The people whose country this was and whose removal was in progress on the scene date. No card carries it yet; T-1376 owns the reading."
+      "note": "A nation, written only where a source states it. T-1376 read the one roll this corpus holds that names Native people at Chicago in numbers and it states no nation, so no card carries this term yet; `native` above is what that roll supports."
     },
     {
       "value": "ottawa",
       "label": "Ottawa (Odawa)",
-      "note": "As above."
+      "note": "A nation, written only where a source states it. No card carries it: see `native` above for what the 1832 roll supports."
     },
     {
       "value": "ojibwe",
       "label": "Ojibwe",
-      "note": "As above."
+      "note": "A nation, written only where a source states it. No card carries it: see `native` above for what the 1832 roll supports."
     },
     {
       "value": "metis",

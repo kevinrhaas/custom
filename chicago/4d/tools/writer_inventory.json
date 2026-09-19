@@ -912,6 +912,12 @@
       "measured": "2026-09-19",
       "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 83 household cards and its ledger, changed no committed byte."
     },
+    "reconstruct_underdocumented.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 87 household cards and its ledger, changed no committed byte."
+    },
     "reconstruct_women_children.py": {
       "placement": "manifest",
       "write_mode": "--build",
