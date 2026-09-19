@@ -1,5 +1,17 @@
 # STATUS
 
+## Unreal delivery programme — owner request, 2026-09-18
+
+Nothing in the published scene changes in this ticket/documentation slice. T-1356
+tracks regular bundles (T-1357), repeatable local import (T-1358), the reported
+black-bar/static defect (T-1359), scenery parity beginning with streets (T-1360), and
+approved-host staging (T-1361). Existing T-0252 owns the shared export contract.
+The band is after South Through Time and before Loop Improvements. Engine/deployment
+children are blocked-tech and excluded from the general loop, with visible HOLD
+references. [Runbook](unreal/README.md) records the local prototype and its limits;
+streaming corruption, full walking, parity and remote delivery are NOT verified.
+
+
 ## T-0437 — sparse smoke checkout, 2026-09-17
 
 The bake smoke checkout selects only tools and `docs/SITE-BUDGET.md`, at the

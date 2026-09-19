@@ -35,7 +35,7 @@
 # looked like city work; they are band 6 now so the ordering says what it means.
 #   AND A RUN MAY NOT FALL INTO THEM. While any row in bands 1-5 is workable, that row is
 # the work. If the top is gated or every row is in flight, the run SAYS SO and stops — it
-# does not walk down to band 6, 7 or 8. That fall-through is how T-0467 and T-1154 were
+# does not walk down to bands 6–9. That fall-through is how T-0467 and T-1154 were
 # picked up out of the bottom of a 148-line queue on 2026-09-17 while the city waited.
 # TICKET BUDGET (T-1295, owner 2026-09-17: "I don't want too many tickets and not making
 # any progress"). `ticket.mjs new` REFUSES at 140 queue lines, and refuses a branch its
@@ -148,7 +148,22 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-# --- 8. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
+# --- 8. UNREAL DELIVERY — regular assets, renderer parity, reliable streaming
+# Programme: T-1356; docs/unreal/README.md. Owner-ranked here on 2026-09-18.
+# Remote-workable preparation (still subject to the city-first ordering above):
+T-1357 — Publish a versioned Chicago scene bundle from every successful scheduled asset bake
+T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
+# LOCAL / QUALIFIED UNREAL ONLY — NOT WORKABLE BY THE REMOTE WEB WORKER.
+# HOLD references below are comments, not claimable queue entries. Tickets are blocked-tech.
+# HOLD T-1359 — affected Mac/Unreal/browser access; may diagnose independently of bundles.
+# HOLD T-1358 — after T-1357 and current Unreal/GPU capability receipt.
+# HOLD T-1360 — after T-0252, T-1357, T-1358; Unreal visual/collision receipt required.
+# HOLD T-1361 — after T-1358/T-1359, approved licensed build runner, GPU host, budget and credentials.
+# Coordinator: unblock only when all dependencies AND current executor capability are proven;
+# immediately assign/claim on that eligible executor; otherwise retain blocked-tech.
+# Return unblocked work to this band in the displayed order; do not leave local work open
+# for the general loop. The held epic is a tracker, never a claimable task.
+# --- 9. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
@@ -162,7 +177,6 @@ T-0829 — A repeated string in a provenance or coverage list is the same merge 
 T-0239 — Nothing tests the party-line note's prose against the placement it describes
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0190 — A second street tier for the street edge, and the ceiling that refuses it
-T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
 T-0364 — Two byte-identical copies of changelog.js are 7.2 per cent of the published payload, and they grow on every release
@@ -170,7 +184,7 @@ T-0053 — A patched lit material silently inherits another layer's shader progr
 T-0371 — The lattice path's block rotation is dead code that measure_rank_bias.mjs's drift guard pins in place
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 T-0030 — A queue card in Manager reading tickets.json
-# --- 9. RESEARCH COMPLETION — remaining readings, identity epics, and deposit closeout
+# --- 10. RESEARCH COMPLETION — remaining readings, identity epics, and deposit closeout
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
