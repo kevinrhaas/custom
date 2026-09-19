@@ -113,3 +113,72 @@ that could have gated a conflicted branch, and the trade-off as recorded did not
 **Not T-1362.** That one is the lap skipping its re-derive when a branch is already current with
 the base — a branch that merges cleanly and is stale. This is a branch that does not merge at
 all. They meet only in that both leave a PR red or stuck with no automation able to move it.
+
+---
+
+## FINDING (2026-09-19, 3:00 PM CT): a SPLIT ticket stops the lap dead, and nothing says so
+
+A second way the queue deadlocks, unrelated to mergeability, measured today.
+
+`tools/ticket.mjs split` leaves the parent at `state: split`. That is not an open
+state. `tools/research_spend_ledger.py` holds every `unresolved` hand-off to an OPEN
+ticket:
+
+```
+if states.get(ticket) not in OPEN_TICKET_STATES:
+    faults.append(f"{where}: unresolved ticket {ticket!r} is missing or not open")
+```
+
+**T-1179 was split at 8:39 AM CT** into T-1392, T-1393 and T-1394. Five hand-offs
+across three registers still named it. That check runs inside `rederive.mjs --run`,
+and `.github/steward/pr-lap.sh` runs `--run` on every lap, so from 8:39 AM the lap
+failed on every pass:
+
+```
+rebuilding the derived layer against the merged inputs
+the derived-layer rebuild failed — left alone:
+   FAIL: ... unresolved ticket 'T-1179' is missing or not open   (×5)
+PR lap: pushed=0  already-current=0  left-alone=2
+```
+
+**The lap is the only thing that clears a `dirty` PR** (T-0857: GitHub's merge never
+runs this repo's merge drivers, so a branch that merges `dev` cleanly in a clone is
+reported conflicting by the platform). So a broken `--run` does not merely delay a
+rebuild — it removes the one mechanism that can unstick the queue. #1526, #1529 and
+#1533 sat `dirty` for six and a half hours behind it, and no amount of waiting would
+have cleared them.
+
+### The three ways this hid
+
+1. **The log shows only the first five failures**, all prefixed `newspapers:`. The
+   other four hand-offs — three in `civic/`, one in `land_sales/` — were never
+   printed, so a fix aimed at the visible file would have left the lap just as dead.
+2. **`validate.py --all` is green** throughout. This check lives in
+   `research_spend_ledger.py`, which the lap runs and a spot-check of the dataset
+   gate does not.
+3. **The PRs look exactly like the mergeability deadlock** above — `dirty`, no check
+   runs, owning runs finished — so the watch routine's liveness check clears them as
+   reportable and the diagnosis stops at the wrong cause. It did here, twice.
+
+### What actually fixes it
+
+Repointing the five hand-offs is the remedy, not the fix. The fix is that **a split
+must not orphan a hand-off**:
+
+- `ticket.mjs split` knows the parent and the children. It could repoint every
+  `unresolved` hand-off naming the parent, or refuse the split until they are
+  repointed — the same way it already refuses other unsafe states.
+- Failing that, the invariant should name the split's children in its own error, so
+  the next person reads `T-1179 was split into T-1392, T-1393, T-1394` instead of
+  `missing or not open`.
+- And the lap should say which check failed on the PR, not only in its own log. A
+  lap that gives up silently on every pass for six hours is indistinguishable from a
+  lap that has nothing to do.
+
+### Also corrected here
+
+The finding above this one presents the merge-driver cause as new. It is not:
+**T-0857** has it, and `pr-lap.sh` states it at the top of the file. What today's
+measurement adds is only that GitHub's `mergeable` can stay `null`/`unknown`
+indefinitely rather than merely stale — #1518 never resolved and merged fine when
+asked directly.

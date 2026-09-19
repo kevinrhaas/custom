@@ -90,19 +90,24 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # may only defer to work that is still going to happen.
 # T-1172 CLOSED on 2026-09-18 having re-admitted the roster, and on the rule stated
 # just above — a hand-off may only defer to work that is still going to happen — the
-# roster hand-off moves on with it. T-1179 converges the reconstructed resident layer
-# and is where a re-admitted name is finally reconciled; the re-admission itself is in
+# roster hand-off moves on with it.
+# AND A SPLIT CLOSES A TICKET TOO (2026-09-19). T-1179 was split into T-1392, T-1393 and
+# T-1394, leaving `state: split`, which is not an open state — so the same invariant fired
+# again, this time inside `rederive.mjs --run`, which the PR lap runs on every pass. The
+# lap stopped pushing and three PRs sat dirty with no gate able to run on them. T-1394 is
+# the heir: a direct child, open, and the closeout that makes the rebuild order a fixed
+# point over EVERY READER of the layer — the index, the sidecars and the town census a
+# re-admitted name is reconciled against. The re-admission itself is in
 # data/reconstruction/1835_readmissions.json and carries its own withdrawal rule.
-ROSTER = "T-1179"
+SPLIT_NOTE_TAIL = (
+    "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then.")
+
+ROSTER = "T-1394"
 ROSTER_SPENT = (
     " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
     "the reconstructed tier, under its own read name, in "
     "data/reconstruction/1835_readmissions.json — and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. The hand-off moves "
-    "to T-1179, the ticket that converges the reconstructed resident layer and is "
-    "where a re-admission is finally reconciled against the index, the sidecars "
-    "and the town census; the re-admission's own `withdrawn_if` clause is what "
-    "retires it before then.")
+    "the evidence, which is why this unit stays `unresolved`. " + SPLIT_NOTE_TAIL)
 
 LADDER = (
     "Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date "
