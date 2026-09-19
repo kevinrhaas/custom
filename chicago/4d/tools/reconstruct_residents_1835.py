@@ -49,6 +49,9 @@ HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 # directory precisely so a mint re-run stays byte-identical. The record contract still
 # reaches it: the layer this programme answers for is both directories, not one.
 READMITTED = ROOT / "data" / "residents" / "readmitted"
+# T-1347. The trade households are the same case one stage on: drawn heads, not readings,
+# so they live outside the mints' directory too and the contract reaches them here.
+MINTED_TRADES = ROOT / "data" / "residents" / "reconstructed_trades"
 RETIRED = ROOT / "data" / "reconstruction" / "1835_inferred_household_programme.json"
 NAME_POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 
@@ -181,7 +184,9 @@ def check_invented_name(where: str, person: dict, taken_names: set, error) -> No
 def read_layer():
     """(reconstructed persons as (where, person), names borne by real people)."""
     reconstructed, real_names = [], set()
-    paths = sorted(HOUSEHOLDS.glob("hh_*.json")) + sorted(READMITTED.glob("hh_*.json"))
+    paths = (sorted(HOUSEHOLDS.glob("hh_*.json"))
+             + sorted(READMITTED.glob("hh_*.json"))
+             + sorted(MINTED_TRADES.glob("hh_*.json")))
     for path in paths:
         try:
             rec = json.loads(path.read_text(encoding="utf-8"))
@@ -1091,6 +1096,16 @@ def _check_readmissions() -> int:
     return readmit_borderline_roster.check()
 
 
+def _build_trade_households() -> int:
+    import reconstruct_trade_households
+    return reconstruct_trade_households.build()
+
+
+def _check_trade_households() -> int:
+    import reconstruct_trade_households
+    return reconstruct_trade_households.check()
+
+
 def _build_women_and_children() -> int:
     import reconstruct_women_children
     return reconstruct_women_children.build()
@@ -1114,10 +1129,12 @@ STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
                   ARRIVAL_STAGE: _build_attribute_fill_arrival,
                   "modelled_families": _build_modelled_families,
                   "readmissions": _build_readmissions,
+                  "trade_households": _build_trade_households,
                   "women_and_children": _build_women_and_children}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
                   "modelled_families": _check_modelled_families,
                   "readmissions": _check_readmissions,
+                  "trade_households": _check_trade_households,
                   "women_and_children": _check_women_and_children}
 
 
