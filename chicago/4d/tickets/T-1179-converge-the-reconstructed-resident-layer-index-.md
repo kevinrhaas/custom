@@ -73,3 +73,47 @@ other gates were narrowed the same way by T-1314 and are the precedent for the s
 `profile_population_1835` (the refusal is now "no reconstructed person the programme cannot
 re-derive", not "none at all").
 
+
+---
+
+**Finding (T-1172's closeout read, 2026-09-19): the 1,223-vs-643 gap is a UNIT mismatch, and
+this ticket is where it resolves.** Recorded here because the owner asked whether the resident
+reconstruction was going to overshoot by design. It is not, and the answer was already written
+down in two places that are easy to read past.
+
+`data/reconstruction/1835_readmissions.json` states the tension and then disposes of it in the
+same object. `the_tension_this_leaves.what` is the alarming line — the order book models 643
+households and ruling 787 more cards present takes the layer to 1,223, "nearly twice the model".
+The two fields under it are the answer: the roster "is a licence on WHICH name a filler uses and
+never a quota", and **736 of the layer's households are letter-list CONTAINERS holding one
+person** — arguing for a person rather than for a dwelling. "A container is not a household in
+the model's sense, and the two counts are not yet in the same unit." So the gap is not 787
+surplus people; it is households and containers being counted against each other.
+
+Its `whose_it_is` names this ticket: T-1171 draws families into the heads (done) and **T-1179
+converges the layer against the model**. Neither could run before the presences were ruled,
+which is what T-1172's stage was for.
+
+The measurement on dev at 290cc65d9, for whoever picks this up:
+
+| | |
+|---|---|
+| cards in the layer (`persons_total`) | 1,588 — attested 410, inferred 875, reconstructed 303 |
+| established PRESENT on 1 Jul (`persons_present`) | 457 |
+| the model's target (`persons_target`) | 2,535 |
+| still to reconstruct | 2,081 |
+| households: layer / present / model | 1,258 / 436 / 643 |
+| letter-list containers inside that 1,258 | 736 |
+
+Note that `reconstructed: 303` has NOT moved for T-1172's 909 re-admissions, and that is by
+design rather than a lag: the stage writes to `data/residents/readmitted/` and declares
+`"not_into": "data/residents/households/ and data/residents/index.json"`;
+`tools/rebuild_resident_index.py` does not read that directory at all. 726 presence rulings and
+183 minted cards are on disk waiting for this convergence. Anyone reading the front screen or
+the index for "how far along is the reconstruction" is reading a number that the last stage
+deliberately did not touch.
+
+**See also T-1365**, filed the same day: the walk splash fills its bar toward 3,265 (the
+NOVEMBER 1835 census) while this programme fills toward 2,535, and counts all 1,588 cards
+against it rather than the 457 present. Acceptance 3 here owns the town census screen's final
+form, so T-1365 is the interim fix and may be folded into this ticket.

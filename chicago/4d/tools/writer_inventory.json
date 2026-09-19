@@ -842,11 +842,18 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 16s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "readmit_borderline_roster.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in 22s, wrote its outputs, changed no committed byte.",
+      "placed": "not yet — it reads the borderline roster and is read by everything that COUNTS people, so its slot is a measured pass rather than an append (T-1302's note above)."
+    },
     "rebuild_closing_set.py": {
       "placement": "manifest",
       "write_mode": "--build",
       "measured": "2026-09-18",
-      "finding": "Reproduces: `--build` rewrote docs/RESEARCH/closing-convergence-2026-09.md byte-for-byte and moved nothing else, on a tree the gate called clean. `--rebuild` is the heavier mode \u2014 it runs the five closing-set members out of the manifest first \u2014 and is not what the lap calls."
+      "finding": "Reproduces: `--build` rewrote docs/RESEARCH/closing-convergence-2026-09.md byte-for-byte and moved nothing else, on a tree the gate called clean. `--rebuild` is the heavier mode — it runs the five closing-set members out of the manifest first — and is not what the lap calls."
     },
     "rebuild_resident_index.py": {
       "placement": "manifest",

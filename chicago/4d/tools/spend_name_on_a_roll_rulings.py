@@ -88,7 +88,21 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # roster's single-source names, and T-1159 moved its 40 land-sale hand-offs there on the
 # same rule. Pointing at the closed ticket instead fails the ledger's invariant that a unit
 # may only defer to work that is still going to happen.
-ROSTER = "T-1172"
+# T-1172 CLOSED on 2026-09-18 having re-admitted the roster, and on the rule stated
+# just above — a hand-off may only defer to work that is still going to happen — the
+# roster hand-off moves on with it. T-1179 converges the reconstructed resident layer
+# and is where a re-admitted name is finally reconciled; the re-admission itself is in
+# data/reconstruction/1835_readmissions.json and carries its own withdrawal rule.
+ROSTER = "T-1179"
+ROSTER_SPENT = (
+    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
+    "the reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json — and that settles nothing about "
+    "the evidence, which is why this unit stays `unresolved`. The hand-off moves "
+    "to T-1179, the ticket that converges the reconstructed resident layer and is "
+    "where a re-admission is finally reconciled against the index, the sidecars "
+    "and the town census; the re-admission's own `withdrawn_if` clause is what "
+    "retires it before then.")
 
 LADDER = (
     "Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date "
@@ -132,7 +146,7 @@ CIVIC_RULES = {
             "roster's case exactly — it is the file that carries every such name with its "
             "source, its reason and its re-admission class, so that reconstruction names "
             "real people before it invents any. Nothing is minted here and no presence is "
-            "asserted; the name is handed on with the roll and date that carry it."),
+            "asserted; the name is handed on with the roll and date that carry it." + ROSTER_SPENT),
     },
     # T-1326 GAVE THESE EIGHT THEIR REAL ANSWER, and it is a refusal rather than a hand-off.
     # The rule was named `..._may_bound_a_rolled_mans_arrival` and handed the row to the
@@ -185,7 +199,7 @@ CIVIC_RULES = {
             "Chicago in 1832 and the town does not hold, so it goes to the borderline "
             "roster with its form stated as the reason no crosswalk could reach it. NOTHING "
             "IS INFERRED ABOUT WHO THIS PERSON WAS, and nothing about the 1835 town follows "
-            "from the row; the name is preserved exactly as the index prints it."),
+            "from the row; the name is preserved exactly as the index prints it." + ROSTER_SPENT),
     },
     "the_enrollment_names_a_man_the_rolls_do_not_carry": {
         "disposition": "unresolved",
@@ -197,7 +211,7 @@ CIVIC_RULES = {
             "not the residents layer, so this file may not say the town has no such person "
             "— it says only that the rolls do not reach him. That is a name read and "
             "withheld, and the borderline roster is where such a name is kept with its "
-            "source and its re-admission class."),
+            "source and its re-admission class." + ROSTER_SPENT),
     },
     "the_1884_history_is_later_evidence_about_the_town": {
         "disposition": "later_only",

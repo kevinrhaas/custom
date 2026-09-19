@@ -76,6 +76,19 @@ ATTENDANCE_ROLES = {"sponsor", "godfather", "godmother", "witness"}
 # The column headings a Chicago paper prints over its family news.
 FAMILY_COLUMN = re.compile(r"^\W{0,4}(MARRIED|Married|DIED|Died)\b")
 
+# T-1172 closed on 2026-09-18 having re-admitted the roster, so by this file's own
+# rule -- a hand-off names the OPEN ticket whose field owns the finding -- every
+# hand-off that pointed at it moves on rather than pointing at finished work.
+HANDED_ON = (
+    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
+    "the reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json -- and that settles nothing about "
+    "the evidence, which is why this unit stays `unresolved`. The hand-off moves to "
+    "T-1179, the ticket that converges the reconstructed resident layer and is where "
+    "a re-admission is finally reconciled against the index, the sidecars and the "
+    "town census; the re-admission's own `withdrawn_if` clause is what retires it "
+    "before then.")
+
 RULES = {
     # ---- residents ---------------------------------------------------------------
     "the_manifest_is_a_reservation_and_not_a_reading": {
@@ -393,7 +406,7 @@ RULES = {
         # finding, and a unit deferred to finished work fails the ledger's invariant
         # outright. T-1159 moved its 40 land-sale purchaser hand-offs to T-1172 for exactly
         # this reason and missed this one; it is moved here on the same rule.
-        "ticket": "T-1172",
+        "ticket": "T-1179",
         "statement": (
             "The unit's own `letter_list_only` field is true: the name's whole evidence is "
             "that a letter waited for it at the Chicago post office. Whether a letter-list "
@@ -404,8 +417,8 @@ RULES = {
             "read and withheld, with its source, its reason and its re-admission class, of "
             "which `letter-list-only` is one the ticket names. Handing the name to the "
             "roster records the withholding; it does not decide the residency. The hand-off "
-            "names T-1172, the ticket that re-admits the roster's single-source names, "
-            "because T-1159 closes with the roster it builds."),
+            "named T-1172, the ticket that re-admits the roster's single-source names, "
+            "because T-1159 closes with the roster it builds." + HANDED_ON),
     },
     "the_notice_names_a_firm": {
         "disposition": "unresolved",
