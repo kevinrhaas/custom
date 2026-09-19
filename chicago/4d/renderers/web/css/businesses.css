@@ -136,3 +136,13 @@
 .biz-dates { margin: 0 0 6px; font-size: 13px; }
 .biz-dates .grade-dot { margin-right: 6px; }
 .biz-review { color: var(--con); }
+
+/* A reconstructed house says so before it says anything else (T-1184). The lede of
+   "Why this house is here" carries the reconstructed grade's own colour, so a reader who
+   opened the card for a name sees the invention in the same glance as the name. */
+.biz-invented {
+  color: var(--con);
+  border-left: 2px solid var(--con);
+  padding-left: 9px;
+}
+.biz-invented b { color: inherit; }

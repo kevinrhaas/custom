@@ -882,6 +882,7 @@ def derive():
 
 
 def firm_record(fid, name, what, person_id, person_name, occupation, slot):
+    low, high = caton_count()
     return {
         "id": fid,
         "register_id": None,
@@ -968,6 +969,44 @@ def firm_record(fid, name, what, person_id, person_name, occupation, slot):
                            "a reconstructed Black-owned firm written where the corpus is "
                            "silent, and AGENTS.md's standard holds it for review before a "
                            "scene carrying it may be marked released."),
+        # WHAT BOUGHT THIS HOUSE — a DOCUMENTED FLOOR, not a quota row (owner, 2026-09-19).
+        # T-1184's contract asks every reconstructed business to name the order-book row
+        # that bought it. These two do not fill a modelled shortfall: they stand for a
+        # count the corpus makes directly, and the order book holds no barber or
+        # washing-and-ironing bucket at all — the programme that would mint one (T-1186)
+        # has not run. Naming a bucket here would either spend T-1186's quota before it
+        # runs or file documented evidence as an estimate, so compile_businesses.py takes
+        # the floor form instead and holds it to its own citation.
+        "reconstruction": {
+            "programme": "chicago_1835_resident_reconstruction",
+            "group": SUB_STAGE,
+            "ticket": TICKET,
+            "floor": {
+                "count": high,
+                "of": "free Black men resident at Chicago",
+                "as_of": "1833-08",
+                "sources": ["andreas_1884_v1"],
+                "note": FLOOR_RULE,
+                "why_a_firm_and_not_only_a_person": (
+                    "The floor is a count of PEOPLE. This record exists because one of "
+                    "them keeps a trade with a premises, and a trade with a premises is "
+                    "a firm — the trades are dealt under L255 and the firm follows the "
+                    "keeper. It is not an order against a shortfall in the business "
+                    "model, which is why it names no bucket."),
+            },
+            "seed": slot,
+            "basis": {
+                "kind": "rule",
+                "id": "the_1833_count_is_the_floor_of_the_1835_bracket",
+                "note": FLOOR_RULE,
+            },
+            "withdrawn_if": (
+                "a source naming a Black-owned business at Chicago in 1835 or the person "
+                "who kept one; a source naming a free Black resident at a trade, which "
+                "retires the trade liberty this firm stands on; or a re-cut of the "
+                "bracket that no longer puts the floor at the August 1833 count. The "
+                "retirement runs through --build, never by hand."),
+        },
     }
 
 
