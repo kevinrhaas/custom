@@ -172,6 +172,7 @@ PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from reconstructed_person import named_by_a_source  # noqa: E402
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from carry_stage_blocks import carry  # noqa: E402  (T-1169; a mint owns its record, a reconstruction stage owns its blocks)
@@ -1455,7 +1456,15 @@ def gate_problems(docs: dict, index: dict) -> list:
     mine = {p: d for p, d in docs.items() if minted_by(p, d, PASS_NAME, PREFIX)}
     for path, doc in sorted(mine.items()):
         where = doc.get("id") or path.stem
-        people = doc.get("persons") or []
+        # T-1171: THIS PASS'S OWN PEOPLE, not everybody standing on its cards. The
+        # reconstruction programme (T-1167) seats a drawn wife and children inside a
+        # household this pass minted, and every invariant below is about what THIS pass
+        # writes — a civic_mint flag, an evidence block, a source, a grade it may assign.
+        # Asserting them over a person another writer put there would make this gate
+        # refuse the card for something it did not do, and the sentence under it — "this
+        # pass mints households of one and never invents a family" — stays exactly true:
+        # it still mints one, and it still invents nobody.
+        people = named_by_a_source(doc.get("persons") or [])
         if len(people) != 1:
             problems.append(f"{where}: {len(people)} member(s); this pass mints households "
                             f"of one and never invents a family")

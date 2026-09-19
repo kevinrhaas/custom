@@ -1344,6 +1344,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       ${associationsHtml(person.associated_with, citationsById,
         'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
+      ${reconstructedHtml(person)}
       ${person.letter_list_only
         ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
       ${person.letter_list_only && (person.letter_list_returns || []).length
@@ -1412,6 +1413,48 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
+/**
+ * Why a reconstructed person is in the town, on their own row (T-1171).
+ *
+ * The attribute tiers reach a card through `claimRow` because they sit on a value. A
+ * RECONSTRUCTED PERSON has no value to hang the disclosure off — the person IS the drawn
+ * thing — so the same disclosure is printed about them: the stage of the programme that
+ * wrote them, the model row it drew from, the seed a reader can retype to redraw them and
+ * the evidence that would retire them. `basisHtml` takes the person record itself, which
+ * carries `basis`, `seed` and `replaceable_by` in exactly the shape it reads.
+ *
+ * A drawn person shipped to a browser looking like a found one is the misrepresentation
+ * this whole layer is against; a drawn person wearing the reconstructed swatch and opening
+ * on their own seed is the opposite.
+ */
+function reconstructedHtml(person) {
+  const rc = person && person.reconstruction;
+  if (!rc || typeof rc !== 'object') return '';
+  return `<dt>Why this person is in the town</dt><dd>${swatch('reconstructed')}Nobody a source
+    names. Drawn by the <code>${escapeHtml(String(rc.stage || ''))}</code> stage of the 1835
+    resident reconstruction programme${rc.ticket ? ` (${escapeHtml(String(rc.ticket))})` : ''}${
+    rc.community ? `, named from the ${escapeHtml(words(rc.community))} pool` : ''}.${
+    rc.review_required ? ' This reconstruction carries a standing review.' : ''}
+    ${basisHtml(person)}</dd>`;
+}
+
+/**
+ * The household block the modelled-families stage writes: what size the 1840 histogram
+ * drew this house at, how much of it is kin, and what the stage deliberately did not seat.
+ */
+function modelledFamilyHtml(block) {
+  if (!block || typeof block !== 'object') return '';
+  return `<dt>The family the household model drew</dt><dd>${swatch('reconstructed')}A
+    ${escapeHtml(words(block.household_type))} of ${escapeHtml(String(block.size_drawn))},
+    drawn at the head's own size band from the 1840 city's household histogram;
+    ${escapeHtml(String(block.kin_seated))} of them are seated here as kin.
+    <br><span class="res-why">Drawn by stage <code>${escapeHtml(String(block.stage))}</code>
+    of the 1835 resident reconstruction programme, ${escapeHtml(String(block.ticket))}.
+    ${escapeHtml(String(block.note || ''))}${
+    block.seed ? ` Redrawn with the seed <code>${escapeHtml(String(block.seed))}</code>.` : ''}
+    </span></dd>`;
+}
+
 export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
   agencies = null, withheldByPerson = new Map()) {
   // T-0632's block on the record: `directories.note` states what a later volume is
@@ -1436,6 +1479,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${associationsHtml(hh.associated_with, citationsById,
         'Where this household was, and when')}
       ${kinRows(hh, citationsById)}
+      ${modelledFamilyHtml(hh.modelled_family)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
            <code>AGENTS.md</code>. This record is published as research; nothing about the

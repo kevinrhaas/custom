@@ -133,14 +133,43 @@ def region_of(birthplace: str) -> str:
 # the five sections
 
 
+def named_arrivals(people: dict) -> dict:
+    """`by_arrival_year`, over the people the layer can name. Same rule as `named_people`:
+    a drawn person inherits the arrival of the household drawn around them, so counting
+    one here would feed the reconstruction's own output back into the floor it was
+    reconstructed against."""
+    out: dict = {}
+    for person in people.get("people") or []:
+        if person.get("grade") == "reconstructed":
+            continue
+        year = person.get("arrival_year")
+        if year is None:
+            continue
+        out[str(year)] = out.get(str(year), 0) + 1
+    return dict(sorted(out.items()))
+
+
+def named_people(counts: dict) -> int:
+    """How many people the layer can NAME: the attested and the inferred, and no more.
+
+    T-1171. This model is a model of the EVIDENCE, and the reconstruction it feeds draws
+    against it — so a reconstructed person counted here would come back round as a larger
+    layer, a higher population floor, a bigger quota and more people to draw, which is a
+    model reading its own output as a reading. `by_grade` keeps the three apart and this
+    is the sum the figures below mean when they say "the layer carries".
+    """
+    by_grade = counts["by_grade"]
+    return int(by_grade["attested"]) + int(by_grade["inferred"])
+
+
 def build_population(people: dict, census: dict, inventory: dict, comp: dict) -> dict:
     counts = people["counts"]
-    known = counts["people"]
+    known = named_people(counts)
     nov_people = census["people"]["town_total"]
     nov_dwellings = census["people"]["town_total_dwellings"]
     state_census = 3297  # bk_mose1_006, the State count of 1 Sept - Dec 1835
 
-    arrivals = counts["by_arrival_year"]
+    arrivals = named_arrivals(people)
     # THE FLOOR RESTS ON THIS DISTRIBUTION, so an empty or scene-blind one is a FAULT and
     # not a floor of zero. Without it the arithmetic silently returns the November ceiling
     # at both ends and the range stops being a range while still looking like one.
@@ -375,7 +404,7 @@ def build_households(comp: dict, census: dict, people: dict, inventory: dict, po
 
     counts = people["counts"]
     layer_households = counts["households"]
-    layer_people = counts["people"]
+    layer_people = named_people(counts)
 
     matrix = inventory["district_group_matrix"]
     figures = [
@@ -557,7 +586,7 @@ def build_lodging(inventory: dict, crosswalk: dict, comp: dict, pop: dict) -> di
 def build_arrival(people: dict, settlers: dict) -> dict:
     counts = people["counts"]
     arrivals = counts["by_arrival_year"]
-    known = counts["people"]
+    known = named_people(counts)
     by_year = {int(y): n for y, n in arrivals.items()}
     since_1833 = sum(n for y, n in by_year.items() if y >= 1833)
     before_1833 = known - since_1833
@@ -821,7 +850,12 @@ def cmd_self_test() -> int:
 
     # EVERY FIGURE NAMES A FILE. Strip the arrival distribution and the section that
     # rests on it cannot be built at all rather than quietly reporting zero.
-    a = list(copy.deepcopy(args)); a[0]["counts"]["by_arrival_year"] = {}
+    # T-1171: the distribution is counted off the people the layer can NAME, one row at a
+    # time, rather than off the sidecar's pre-aggregated tally — so stripping it means
+    # stripping the rows.
+    a = list(copy.deepcopy(args))
+    a[0]["counts"]["by_arrival_year"] = {}
+    a[0]["people"] = []
     try:
         build(*a)
         raise AssertionError("did not fire: an empty arrival distribution")
