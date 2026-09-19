@@ -882,6 +882,12 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "reconstruct_businesses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--group <group> --build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--group stores_and_provisions --build` on a clean tree in 1s, wrote its records, its ledger and the order book's fill, and changed no committed byte."
+    },
     "reconstruct_garrison_1835.py": {
       "placement": "manifest",
       "write_mode": "--build",
