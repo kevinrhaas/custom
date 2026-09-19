@@ -54,7 +54,7 @@ T-1172 — Re-admit the borderline roster as reconstructed residents under their
 T-1173 — Reconstruct the trade households the occupation model still wants after the known and re-admitted people are counted: labourers, carpenters, teamsters, sawyers, masons, boatmen, clerks and the rest, by division, each head named from the pools with a family per the household model
 T-1174 — Reconstruct the women and children the age pyramid still lacks after families are drawn: widow-headed households, laundresses, seamstresses, domestics and schoolmistresses, the boarding-house keepers' families and the children of the 1833–35 arrivals, to the population model's sex and age bands
 T-1175 — Fill the beds: boarders, lodgers, hotel guests, boarding-house keepers' households, the crews of the vessels in port and the hands at the works, seated in the named and reconstructed lodging places to the lodging model's capacities
-T-1176 — Reconstruct the Fort Dearborn garrison of 1 July 1835: the officers the sources name, the companies of the 5th Infantry to their strength, the surgeon, the sutler, the laundresses and soldiers' families, the Indian Agency establishment as attested — seated in the fort's roofs
+T-1349 — The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
 T-1177 — Reconstruct the under-documented cohorts within their evidence: the Native and Métis people, households and businesses in and around the town, the free Black residents, families and Black-owned businesses, and the Irish and German Catholic town the register implies — every one identified, tiered and reviewable
 T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded cohort: the land-sale visitors, the immigrants awaiting lots, the harbour-works gang and the crews ashore — who they were, how many, and where they slept (tents, wagons, floors, vessels) — for the camps the structure band will build
 # --- 3C. RECONSTRUCT RESIDENTS — converge
@@ -183,14 +183,8 @@ T-1273 — Write every committed home and workplace reconciliation row as an ass
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-1168: robinson_alexander, kimberly_edmund_s and maxwell_philip each carry a sourced birth date or age no field held when the reading was made, and both fields exist now
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1335 — Spend the kin the church registers, the papers' family columns and the completed resident enrichments state — the 166 units T-1320's book pass was never scoped for, plus the two book relatives it left unruled: ties written onto held cards, nobody minted
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1341 — ticket.mjs --check REPAIRS the mirror it is checking, so on any branch that adds a ticket the gate's queue step mutates tickets.json while the pool reads it — the T-0856 check-that-repairs fault, one tool over
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
