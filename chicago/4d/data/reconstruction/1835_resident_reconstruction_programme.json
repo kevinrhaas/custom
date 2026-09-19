@@ -267,17 +267,23 @@
   },
   {
    "key": "underdocumented",
-   "ticket": "T-1177",
+   "ticket": "T-1177 (T-1375 derived the community; T-1376 carded the Native and Metis men the 1832 roll names)",
    "title": "The under-documented cohorts, within their evidence",
    "writes": "reconstructed Native, Metis, free Black, Irish and German persons, households and businesses",
    "draws_from": [
     "by_division",
     "occupations"
    ],
-   "note": "THE ONLY STAGE that may write a Native or Metis reconstruction. Every record here carries review_required and touches_removal.",
-   "implemented": false,
+   "note": "THE ONLY STAGE that may write a Native or Metis reconstruction. Every record here carries review_required and touches_removal. A stage with more than one cohort in it is built a cohort at a time; `sub_stages` says which have run, and the writer re-derives every card of the ones that have.",
+   "implemented": true,
    "review_required": true,
-   "touches_removal": true
+   "touches_removal": true,
+   "written_by": "tools/reconstruct_underdocumented.py",
+   "sub_stages": {
+    "native_and_metis": "T-1376, BUILT. The company the 1832 Black Hawk roll heads INDIAN, carded under R3's own licence; the counted-but-unnamed remainder refused in writing for want of any count. data/reconstruction/1835_native_and_metis.json.",
+    "free_black": "T-1377, not yet built.",
+    "businesses_and_catholic_shares": "T-1378, not yet built."
+   }
   },
   {
    "key": "transients",

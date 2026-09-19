@@ -22,7 +22,7 @@ It is an adjudication over committed derived files — no page of any source is 
 | `recorded_town_count_november_1835` | **3,265** | Andreas prints the November 1835 town census as 3,265 people in 398 dwellings. Four months after the scene, so a ceiling on 1 July and never its population. |
 | `recorded_state_count_september_to_december_1835` | **3,297** | The Illinois State census returns 3,297 for Chicago. Two to five months after the scene, and a second ceiling that disagrees with the first by 32. |
 | `population_on_1_july_1835` | **2,353 – 3,265** (point reading **2,536**) | CEILING: the November count of 3,265, because the town grew through 1835 and did not shrink. FLOOR: 44.7% of the 1,285 people the layer carries give an arrival year of 1835, so about 1,458 of the November town arrived that year; spread evenly over an eight-month navigation season, 5 months of that cohort were still to come on 1 July. POINT READING: 2,536, which is the same arithmetic with half the cohort ashore by midsummer rather than three-eighths — the spring land-sale rush pulls arrivals earlier than a flat season does. |
-| `people_the_layer_can_name` | **1,285** | The resident layer carries 1,285 people — 410 attested, 875 inferred, 1,424 reconstructed. A count of the layer, not of the town. |
+| `people_the_layer_can_name` | **1,285** | The resident layer carries 1,285 people — 410 attested, 875 inferred, 1,436 reconstructed. A count of the layer, not of the town. |
 | `males_per_100_females` | **120.9 – 150** (point reading **146.8**) | The 1840 city returns 120.9 overall and 146.8 among those aged 20 and over. 1835 is five years earlier and rawer — more single men and fewer families — so the 1840 ratio is a FLOOR and the 1840 adult ratio is inside the range, not at the top of it. |
 | `share_under_ten` | **0.2 – 0.2702** | Children under ten are 27.0% of the 1840 city. A town with a higher adult sex ratio carries proportionally fewer of them, so 1840 is the CEILING here and the floor is set one fifth below it. |
 
@@ -40,8 +40,8 @@ It is an adjudication over committed derived files — no page of any source is 
 
 ### known by presence
 
-- **present** — 2552
-- **absent** — 59
+- **present** — 2546
+- **absent** — 77
 - **uncertain** — 98
 
 **Open questions.** These are recorded here and do not become tickets.
@@ -113,7 +113,7 @@ It is an adjudication over committed derived files — no page of any source is 
 | `people_per_dwelling_november_1835` | **8.204** | 3,265 people in 398 dwellings. Against a 1840 mean HOUSEHOLD of 5.015, the gap is the finding: in 1835 a dwelling held more than one household, and a roof programme that seats one family per roof undercounts the town. |
 | `households_on_1_july_1835` | **469 – 816** | This model's July population divided by household size: the low end takes the low population at the 1840 MEAN of 5.015, the high end the high population at the 1840 MEDIAN of 4.0. The distribution is long-tailed — one 1840 household in a hundred holds twenty-one people or more — so mean and median bracket it better than either alone. |
 | `household_size` | **4 – 5.015** | Median 4.0, mean 5.015 in the 1840 city; p75 is 6 and p99 is 21. Half the town lives in households of four or fewer and the tail is boarding houses, hotels and crews. |
-| `household_records_the_layer_carries` | **1,884** | 1,884 household records for 1,285 people — 0.68 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families. |
+| `household_records_the_layer_carries` | **1,959** | 1,959 household records for 1,285 people — 0.66 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families. |
 | `dwellings_the_programme_schedules` | **335 – 377** | The authored programme schedules 335 ordinary dwellings and 42 larger boarding houses. The November census counted 398 dwellings, so the programme's dwelling half sits below the recorded count and its boarding houses make up the difference. |
 
 **Not claiming.** This section supplies no member to any household and names nobody; it states the distribution a reconstructed family must be drawn from and nothing about which family.
@@ -203,8 +203,8 @@ It is an adjudication over committed derived files — no page of any source is 
 
 | Figure | Reading | Method |
 | --- | ---: | --- |
-| `arrived_in_the_three_years_before_the_scene` | **1.63** | 2,094 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -809 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less. |
-| `arrived_in_1835_itself` | **0.938** | 1,205 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below. |
+| `arrived_in_the_three_years_before_the_scene` | **0.959** | 1,232 of the 1,285 people the layer can NAME give an arrival year of 1833, 1834 or 1835; 53 give an earlier one, and no named person is left without a year. The town of 1 July 1835 is overwhelmingly three years old or less. DENOMINATOR: the named layer — the attested and the inferred — and not the whole one. A reconstructed person's arrival year is DRAWN from this section's own table, so counting it back into this share would be the model reading its own output as a reading. |
+| `arrived_in_1835_itself` | **0.447** | 574 of the same 1,285 named people. This is the figure the population floor is built on — `population_on_1_july_1835` divides this same cohort by this same denominator — and it is the one most exposed to the bias below. |
 | `born_in_new_york_state` | **0.386 – 0.743** | Of the 70 Old Settlers who registered an arrival at or before 1835 and gave a birthplace, 27 were born in New York State and 25 elsewhere in New England. The low end is New York alone, the high end New York and New England together — the Erie Canal corridor and its feeders, which is the origin story this town has. |
 | `born_abroad` | **0.1** | England and Ireland in the Old Settlers roll. A floor and not a share: the 1840 extract's foreign-born column reads zero in all 964 rows, which is a column that was not coded and not a count of none, so this project holds no measure of the town's foreign-born at all. |
 
@@ -214,21 +214,23 @@ It is an adjudication over committed derived files — no page of any source is 
 
 | year | people | share |
 | --- | --- | --- |
-| 1812 | 3 | 0.0023 |
-| 1816 | 3 | 0.0023 |
-| 1818 | 3 | 0.0023 |
-| 1820 | 1 | 0.0008 |
-| 1823 | 2 | 0.0016 |
-| 1824 | 5 | 0.0039 |
-| 1826 | 3 | 0.0023 |
-| 1827 | 2 | 0.0016 |
-| 1830 | 5 | 0.0039 |
-| 1831 | 22 | 0.0171 |
-| 1832 | 40 | 0.0311 |
-| 1833 | 225 | 0.1751 |
-| 1834 | 664 | 0.5167 |
-| 1835 | 1205 | 0.9377 |
-- **unit** — people the layer carries, by the arrival year it records
+| 1812 | 3 | 0.0014 |
+| 1816 | 3 | 0.0014 |
+| 1818 | 3 | 0.0014 |
+| 1820 | 1 | 0.0005 |
+| 1823 | 2 | 0.0009 |
+| 1824 | 5 | 0.0023 |
+| 1826 | 3 | 0.0014 |
+| 1827 | 2 | 0.0009 |
+| 1830 | 5 | 0.0023 |
+| 1831 | 22 | 0.0101 |
+| 1832 | 40 | 0.0183 |
+| 1833 | 225 | 0.1031 |
+| 1834 | 664 | 0.3042 |
+| 1835 | 1205 | 0.552 |
+- **not the figures denominator** — The FIGURES above divide by the named layer alone; this table does not, and the two are different populations on purpose (T-1364).
+- **rows total** — 2183
+- **unit** — people in the WHOLE compiled layer — named and reconstructed together — by the arrival year each one records, out of the 2,183 who record one at all
 
 ### birthplace of the old settlers who came by 1835
 
@@ -247,6 +249,8 @@ It is an adjudication over committed derived files — no page of any source is 
 **Open questions.** These are recorded here and do not become tickets.
 
 - The arrival distribution is of people the project can NAME, and the sources that name them — letter lists, voter rolls, the 1839 and 1843 directories — are themselves of 1834 and later, so a man who came in 1831 and left no notice is missing from it. The 1835 share is a ceiling on the true share.
+- THE FIGURES AND THE TABLE COUNT TWO DIFFERENT POPULATIONS, and saying so is the point of this note. Every figure divides by the NAMED layer — the attested and the inferred — because a reconstructed person's arrival year was drawn from this model and counting it back in would be the model reading its own output (the same rule `people_the_layer_can_name` states). The table below is the WHOLE compiled layer, because that is what the reconstruction's arrival stage reads: `reconstruct_residents_1835.py` draws each filled arrival from these rows. Until T-1364 the figures took the table's numerator over the figures' denominator, and the share read 1.605 with a complement of -777 people.
+- THAT TABLE IS STILL A CIRCLE, and this model cannot close it alone: the distribution the arrival stage draws from is computed over a layer that stage has already written into, so each pass re-reads its own last draw. Cutting the table to the named layer would redraw every arrival ever dealt, which is a rebuild and not a figure — recorded on T-1179, which owns the convergence rebuild order, and deliberately not done here.
 - The Old Settlers roll is a self-selected survivorship sample registered forty-four years later: it over-represents men who stayed, prospered and lived to 1879, and it holds no woman who married out of her registered name. Its birthplaces are the only origin distribution this project has and they are not the town's.
 - WHY people came is not modelled. The land sales, the canal commission and the harbour works are each a documented draw, but no committed source apportions the town between them and this model will not invent the split.
 

@@ -2447,6 +2447,25 @@ step "every transient re-derives, and none of them claims a residence" \
 
 selftest "...and a moved sleeping class, a named house and a seated visitor are refused" \
   python3 tools/reconstruct_transients_1835.py --self-test
+
+# T-1376, the `native_and_metis` half of stage `underdocumented` (T-1177) — the ONLY stage
+# of the programme licensed to write a Native or Metis person. The Illinois State Archives
+# roll of Black Hawk War enrollments at Chicago prints 134 men in two companies, forty
+# under G KERCHEVAL and ninety-four under a company it heads INDIAN; T-1172 was licensed to
+# spend the first and not the second, and the town carried twenty of Kercheval's and none
+# of the others. This stage cards them under the same licence and the same persistence
+# draw. The gate holds four things the record itself cannot: that every card re-derives
+# from its roster row, that every one carries review_required AND touches_removal AND says
+# in its own prose which subject it is held for (AGENTS.md's Indigenous-history rule, which
+# refuses a bare boolean), that every withheld row names a stated reason rather than being
+# silently dropped, and that the counted-but-unnamed remainder is still REFUSED in writing
+# — a later pass that quietly drew a population where no source holds a count would have to
+# delete that refusal to do it.
+step "every Native and Metis card re-derives, each held for review in its own words" \
+  python3 tools/reconstruct_underdocumented.py --check
+
+selftest "...and a written nation, an English initial and a shared syllable are refused" \
+  python3 tools/reconstruct_underdocumented.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at

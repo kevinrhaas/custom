@@ -1925,6 +1925,68 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 82,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 327,
+      "takenAt": "2026-09-19T11:07:34.286Z",
+      "ref": "steward/t-1376-native-metis-cohort",
+      "commit": "a1983a419d5f",
+      "devCommit": "17599f3dbd0b",
+      "treeHash": "sha256:ca3c88436069047e",
+      "treeDirty": false,
+      "changelogHash": "sha256:48062319cd511316",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 498,
+      "takenAt": "2026-09-19T11:07:34.080Z",
+      "ref": "steward/t-1376-native-metis-cohort",
+      "commit": "a1983a419d5f",
+      "devCommit": "17599f3dbd0b",
+      "treeHash": "sha256:ca3c88436069047e",
+      "treeDirty": false,
+      "changelogHash": "sha256:48062319cd511316",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d13.log"
     }
   ]
 }
