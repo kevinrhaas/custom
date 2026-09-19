@@ -63,6 +63,7 @@ const KNOWN_LABEL = {
   letter_list: 'letter list',
   civic_mint: 'civic record',
   projected: 'projected',
+  transient: 'a visitor',
 };
 /** What each evidence grade claims about a person, in the reader's terms. Three
  *  entries because there are three grades: `reconstructed` returned to this layer
@@ -80,6 +81,10 @@ const KNOWN_TITLE = {
   letter_list: 'Known only from the post office’s lists of uncalled-for letters — a name, and nothing else',
   civic_mint: 'Minted by the evidence consolidation from a poll, tax or muster list, or a contemporary paper',
   projected: 'A projected resident: documented once or twice and placed by nothing',
+  // T-1353. Not a rung on the four above: those grade how well the town knew a
+  // RESIDENT, and this person was not one. The town census counts them on a row of
+  // their own for the same reason.
+  transient: 'A visitor of the season, in the town on 1 July 1835 and not living in it \u2014 reconstructed within the bracket T-1352 measured, and counted apart from the residents',
 };
 
 /** The "Arrived" row's buckets. `arrival_year` is a bound for 1,318 of the 1,380
@@ -102,6 +107,7 @@ const KNOWN = {
   letter_list: (r) => !!r.letter_list_only,
   civic_mint: (r) => !!r.civic_mint,
   projected: (r) => r.resident_subtype === 'projected_resident',
+  transient: (r) => !!r.transient,
 };
 
 /**
@@ -155,7 +161,10 @@ function filterSpecs(people) {
     {
       key: 'known', label: 'How known',
       options: [['documented', 'documented'], ['letter_list', 'letter list only'],
-        ['civic_mint', 'civic record'], ['projected', 'projected resident']],
+        ['civic_mint', 'civic record'], ['projected', 'projected resident'],
+        // T-1353. The one pill here that is not about a resident's evidence: it is
+        // about whether this person lived in the town at all.
+        ['transient', 'a visitor of the season']],
       test: (v) => KNOWN[v] || (() => false),
     },
     // The three short questions share one line (`group`): two or three pills
@@ -611,6 +620,30 @@ export async function mountPeople({
       + `${rm.replaced_by ? ` <i>Retired by ${escapeHtml(rm.replaced_by)}.</i>` : ''}</p>`;
   }
 
+  /**
+   * The visitor, said on the card in words (T-1353).
+   *
+   * Four things a reader is owed and cannot get from a grade dot: that this person
+   * was in the town for the season and not living in it, which bracket they were
+   * drawn from and which point of it was spent, where they slept — at the rung the
+   * sources actually reach, which for a roofed party is the CLASS of place and not
+   * a house — and what would retire them.
+   */
+  function transientHtml(r) {
+    const t = r.transient;
+    if (!t) return '';
+    const where = t.lodged_at_kind === 'camp'
+      ? `They slept out: <b>${escapeHtml(t.sleeping_place ?? 'in a camp')}</b>. `
+        + 'The ground is a candidate and not a placement \u2014 no camp has been laid out yet.'
+      : `They slept under a roof in the town \u2014 <b>${escapeHtml(t.sleeping_place ?? 'indoors')}</b>. `
+        + 'No house is named: the lodging places\u2019 beds are dealt elsewhere, and a bed dealt twice is a bed invented once.';
+    return `<p class="people-card-transient"><b>A visitor of the season, not a resident.</b> `
+      + `One of the ${escapeHtml(String(t.point_adopted ?? ''))} strangers this project reads `
+      + `into 1 July 1835 \u2014 the \u201c${escapeHtml(t.point_reading ?? '')}\u201d reading of a bracket of 192 to 900. `
+      + `${where}`
+      + `${t.replaced_by ? ` <i>Retired by ${escapeHtml(t.replaced_by)}.</i>` : ''}</p>`;
+  }
+
   let openSeq = 0;
   /**
    * Open a person's card in place of the list. Resolves `true` once the household
@@ -640,6 +673,7 @@ export async function mountPeople({
       <div class="people-card-actions">${actionsHtml(r)}</div>
       <p class="people-card-what">${escapeHtml(knownTitle)}.</p>
       ${readmissionHtml(r)}
+      ${transientHtml(r)}
       <div class="people-card-body" aria-busy="true"><p class="legend-note">Loading the household record…</p></div>`;
     home.hidden = true;
     cardEl.hidden = false;

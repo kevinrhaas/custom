@@ -287,8 +287,9 @@
     "population",
     "lodging"
    ],
-   "note": "Land-sale visitors, immigrants awaiting lots, the harbour gang and crews ashore.",
-   "implemented": false
+   "note": "Land-sale visitors, immigrants awaiting lots, the harbour gang and crews ashore. T-1352 bounds the cohort and adopts no point; T-1353 adopts 384 and mints ONE row of it - the immigrant and land-seeking parties - refusing the crews and the works gang for want of a complement and a strength, and the named purchasers and the named travellers because a drawn person may not stand in for a person a source names.",
+   "implemented": true,
+   "built_by": "tools/reconstruct_transients_1835.py"
   },
   {
    "key": "converge",

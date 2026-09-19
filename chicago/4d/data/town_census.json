@@ -28,5 +28,25 @@
   "basis": "Person entries in households whose `lives_at` names a structure that resolves into the scene. A person counts when the building they live in stands, so this grows as the town builds out.",
   "floor_note": "A FLOOR, not an estimate: some entries counted here stand for a group a source counts but does not name (see group_entries).",
   "dangling_lives_at": []
+ },
+ "transients": {
+  "persons": 307,
+  "households": 83,
+  "by_household_kind": {
+   "camp": 102,
+   "party": 205
+  },
+  "point_adopted": 384,
+  "point_reading": "twice the 1843 rate",
+  "bracket": [
+   192,
+   900
+  ],
+  "reserved_not_minted": 77,
+  "counted_in_people_housed": 0,
+  "claiming_a_residence": [],
+  "basis": "Reconstructed visitors of the summer of 1835 (T-1353), bounded by data/reconstruction/1835_transient_cohort.json. They are NOT residents: no card here names a dwelling, none is in the resident manifest, and neither figure above moves when this one does.",
+  "why_apart": "The Chicago American of 13 June 1835 put the town's population at 2,500 to 3,000 and the strangers at 'some hundreds more' — outside its own estimate. Chicago's own enumerator printed `Transient persons` as a row of its own in 1843. This row is that row.",
+  "reserved_note": "The land-sale purchasers the register NAMES and this layer cannot place. Slots held open, nobody drawn into them: a reconstruction may not stand in for a person a source names."
  }
 }
