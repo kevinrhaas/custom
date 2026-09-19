@@ -1355,13 +1355,13 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build a885d2971 · Sep 18, 2026, 7:06 PM CT"
+        "- ../../site/chicago/4d/walk/index.html build c6fbdf225 · Sep 18, 2026, 7:11 PM CT"
       ]
     },
-    "/tmp/claude-0/wt1476/.github/chicago-4d-dev-preview.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-dev-preview.mjs": {
       "wrote": []
     },
-    "/tmp/claude-0/wt1476/.github/chicago-4d-url-check.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-url-check.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -1425,6 +1425,9 @@
       "wrote": []
     },
     "tools/build_survey_tracts.py": {
+      "wrote": []
+    },
+    "tools/build_trade_table_1839.py": {
       "wrote": []
     },
     "tools/carry_kinzie_west.py": {
@@ -2066,9 +2069,6 @@
     "tools/reconcile_665.py": {
       "wrote": []
     },
-    "tools/reconstruct_modelled_families.py": {
-      "wrote": []
-    },
     "tools/reconstruct_residents_1835.py": {
       "wrote": []
     },
@@ -2249,7 +2249,7 @@
         "site/chicago/4d/walk/js/changelog.js"
       ],
       "wrote_by": [
-        "/tmp/claude-0/wt1476/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
+        "/home/runner/work/polecat-platform/polecat-platform/custom/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
     "tools/surname_one_letter_away.py": {
