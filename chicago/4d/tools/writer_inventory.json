@@ -80,6 +80,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 15s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "build_trade_table_1839.py": {
+      "placement": "reproduces",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a clean tree rewrote its own output, data/research/directories/fergus_1839_trade_table.json, byte for byte and moved nothing else."
+    },
     "carry_kinzie_west.py": {
       "placement": "manifest",
       "write_mode": "--write",
