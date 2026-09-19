@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Forty tradesmen who had nowhere to work', kind: 'fix', ts: '',
+  { v: 994, title: 'Forty tradesmen who had nowhere to work', kind: 'fix', ts: '2026-09-19T22:35:55.431Z', date: 'Sep 19, 2026, 5:35 PM CT',
     items: [
       'Lemuel Brown was a blacksmith in this town in the summer of 1835, and this town had no smithy for him. Nor a shop for Joseph Meeker the carpenter, nor an office for Dr Egan, nor a tavern for Mark Beaubien. Forty-seven dated trades reached the first of July on people the business layer held no workplace for at all — named men, at named trades, with nowhere to carry them on.',
       'Forty houses of trade now stand for them. Each is graded an inference and says why on its own face: the source says the man followed the trade here, and that he followed it in a house of his own is this record’s reasoning rather than anybody’s printing. Nothing was promoted to attested and no address was invented.',
