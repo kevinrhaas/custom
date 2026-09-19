@@ -1,7 +1,7 @@
 ---
 id: T-1351
 title: ticket.mjs done gives the claim back on the assumption its PR merges in minutes, and when the PR cannot merge the ticket is claimable again while the work is invisible: T-1333 was claimed and built twice, 1h43m apart, both runs correct
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1485
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T00:53:20.192Z
 claimed_run: null
 ---
 
