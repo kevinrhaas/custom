@@ -12492,3 +12492,78 @@ row's ruling on its own.
 Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster
 **T-1159**, the programme **T-1167**.
 **Recorded:** 2026-09-19.
+
+### L247 — A hundred and twenty-four women keep a house nobody wrote down, and four hundred and thirty-two children and young people live in them
+
+**Decision:** stage `women_and_children` of the 1835 resident reconstruction programme
+(`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1174) writes 124 NEW
+female-headed households into `data/residents/households/` and 556 people in them — 124 women who
+head their own house, 194 sons, 151 daughters and 87 household members too old to be the head's
+children. Every one of them is graded `reconstructed`. The owner asked for them on 2026-09-17:
+*"a fair number of missing women and children."*
+
+**Scope:** `residents.persons[women_and_children]` — 556 people in 124 households this stage also
+writes, every one of them re-derivable from `tools/reconstruct_women_children.py --check`.
+
+**Why a new household and not a draw onto an existing one.** The rolls that name this town are a
+letter list, a voters' roll and a subscription, and they print men; the layer they produced holds
+15 women. L244's stage closed most of the gap inside the families of heads the sources leave
+standing alone, but it is keyed to a MALE head and says so in its own refusals — *"a woman heading
+her own household is the age pyramid's, T-1174."* The one household the sources are worst at
+recording is the house with no man in it, so there is no card to draw onto and this stage makes
+the card.
+
+**What is invented, stated plainly.** That these women were here at all; that each kept her own
+house; her age band; her trade or her lack of one; how many people were in the house and every
+one of their ages, sexes and forenames; and every surname, which unlike L244's is invented too,
+because nothing about this household is read. Names come from
+`data/reconstruction/1835_invented_name_pools.json` and step past every name a real person in this
+layer bears. Each person carries the stage that wrote them, the model row they were drawn from,
+the seed a reader can retype to redraw them, and the sentence that retires them.
+
+**What the model, not a source, decides.** THE FEMALE-TRADE TABLE, and it is the largest
+assumption here. The occupation model carries two tables — the December 1835 State census's
+establishment classes and the 1840 schedule's seven employment columns — and NEITHER counts a
+woman's work, so there is no row to draw from. The weights are the programme's own, written into
+`women_children_fill.female_trades` where a reader can argue with them: laundress 4, domestic 3,
+dressmaker 3, milliner 1, schoolteacher 1, and no trade at all 4. They produced 33 laundresses,
+22 dressmakers, 18 domestics, 12 milliners, 7 schoolteachers and 32 women with no trade recorded.
+Every term is the residents vocabulary's own and nothing here extends it. THE BAND DRAWN AGAINST
+THE GAP — a head's age band, and every other person's sex and band, is drawn weighted by how short
+the order book's bucket for that division still is. The buckets were cut from the population model,
+so drawing against the gap is drawing from the model; it is also the only draw that converges on
+the pyramid rather than near it, and that choice is this stage's. THE RESIDUAL SWEEP — when a
+division's women were all seated and its child buckets were still short, the remainder was seated
+one at a time across the houses already made: 49 in the south, 22 in the north, none in the west.
+The 1840 size histogram is a distribution over ALL households and these are the particular houses
+the pyramid is short of, so the drawn size is a floor here as it is in L244; the seated size
+distribution is printed against the 1840 share in
+`data/reconstruction/1835_women_children.json` with its largest gap at 0.0915 rather than claimed
+to match. THE UNCLAIMED RELATION — 87 people are older than the head's own band allows her to have
+borne, and the record says `household_member` and stops there. The model places older children out
+as apprentices and servants; which of the two any of these was is not claimed, because nothing
+here can tell.
+
+**What is NOT invented here.** No roof, no lot and no coordinate: `lives_at` and `works_at` are
+null on every card, because the ground is T-1191–T-1194's and T-1199 seats these households on it.
+No draw exceeds the quota — all 27 of this stage's buckets, 24 of persons and three of family
+dwellings, are counted into
+`data/reconstruction/1835_reconstruction_order_book.json`, and six children the west division's
+buckets would not take were refused rather than written. No Native or Métis reconstruction: that
+is T-1177's stage alone under AGENTS.md's Indigenous-history review. And no figure is drawn.
+
+**What it does not fix.** The counts are met and the shares are not. All 24 person buckets are
+filled exactly — `this_stage_s_buckets_left_short` is 0 — but those numbers were cut against the
+model's whole town of 2,535 people and the layer this stage hands on holds 1,315 of it. So the
+adult sex ratio moves from 340.2 men per 100 women to 161.4 against a model range of 120.9–150.0
+and does not reach it, and the share under ten reads 0.3145 against the model's 0.2–0.2702 —
+high, because the boarders and crews (T-1175), the garrison (T-1349), the under-documented cohorts
+(T-1177) and the transients (T-1178) are not written yet and they are overwhelmingly adult and
+male. The female-headed share, 148 of 560 present households, is printed with NOTHING to compare
+it against: the committed 1840 extract tallies a household's members by sex and age and records no
+sex for its head, so this project holds no measured share for this town in this decade. Every one
+of these numbers is printed in the stage's own ledger and says what it is rather than reading as a
+target reached; T-1179 converges the layer and re-runs the profile.
+
+Related: tickets **T-1174**, from **T-1167**; **L244** is the stage before it, **T-1161**'s town
+model and **T-1166**'s order book are the two files it draws against. **Recorded:** 2026-09-19.

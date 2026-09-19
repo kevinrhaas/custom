@@ -314,6 +314,20 @@ def _land_owner_count() -> int:
 # A scope may only name an enumeration written down HERE. The alternative — an
 # entry free to spell its own predicate — is a check marking its own homework:
 # whatever the prose selected would be exactly what the prose counted, for ever.
+def _women_children_person_count() -> int:
+    """People stage `women_and_children` wrote — T-1174's female-headed houses and everyone
+    in them. Counted off the records and off the stage key each person carries, for the
+    reason the count above gives: a scope that read another tool's number would be agreeing
+    with a second opinion rather than measuring its own size."""
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        n += sum(1 for p in doc.get("persons") or []
+                 if ((p.get("reconstruction") or {}) if isinstance(p.get("reconstruction"), dict)
+                     else {}).get("stage") == "women_and_children")
+    return n
+
+
 SCOPE_SOURCES = {
     "register_1835.businesses[survival_liberty_required]": (
         _register_survival_liberty_count,
@@ -343,6 +357,10 @@ SCOPE_SOURCES = {
         _modelled_family_person_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/reconstruct_modelled_families.py --check"),
+    "residents.persons[women_and_children]": (
+        _women_children_person_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/reconstruct_women_children.py --check"),
     "structures.land_owner[constructed_section_grid]": (
         _land_owner_count,
         "data/structures/*.json, themselves re-derived by "
