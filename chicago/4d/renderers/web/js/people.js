@@ -281,10 +281,16 @@ function filterSpecs(people) {
  *   the drawer head's title hook (hud.setTitle), when the lead passes one: the
  *   open card puts the person's name in the head with a back arrow, and the
  *   card's own back button steps aside (`has-head-back` on the section)
+ * @param {Map<string, object[]>|null} [o.firmsByPerson]
+ *   `firmCrosswalk(businesses/index.json).byPerson` — every firm a person holds a
+ *   role in. Null until the business index loads, and null is not the claim that
+ *   this person kept none: a card with no crosswalk simply prints no firms row.
+ * @param {(businessId: string) => void} [o.onBusiness]  open a firm's own card
  * @param {string[]} [o.problems]         the shared collector
  */
 export async function mountPeople({
-  mount, people, registry, dataBase, sceneId, onGoTo, onTitle = null, problems = [],
+  mount, people, registry, dataBase, sceneId, onGoTo, onTitle = null,
+  firmsByPerson = null, onBusiness = null, problems = [],
 } = {}) {
   const idle = { search() {}, open() { return Promise.resolve(false); }, close() {}, filter() {}, get state() { return null; } };
   if (!mount) return { people: 0, error: 'no mount', ...idle };
@@ -708,6 +714,37 @@ export async function mountPeople({
       + `${t.replaced_by ? ` <i>Retired by ${escapeHtml(t.replaced_by)}.</i>` : ''}</p>`;
   }
 
+  /**
+   * THE FIRMS THIS PERSON KEPT. Until now the crosswalk ran one way only: a firm's
+   * card named its proprietors and linked the 110 the town holds a card for, and
+   * the person's own card said nothing back. So a visitor who arrived at John Dean
+   * Caton from the directory could not learn that the register puts him in five
+   * houses; they had to go to Businesses and search his name, which is the one
+   * thing a card should spare them.
+   *
+   * Roles, not ownership: the row prints what the record says the person was to the
+   * firm — proprietor, partner, staff — with the dates where the record dates them,
+   * and the grade dot is the FIRM's, because that is what tapping opens.
+   */
+  function firmsHtml(personId) {
+    const firms = firmsByPerson?.get?.(personId) || [];
+    if (!firms.length || typeof onBusiness !== 'function') return '';
+    const rows = firms.map((f) => {
+      const sub = [words(f.role), f.trade, f.street || '',
+        f.present ? '' : 'not trading on 1 July'].filter(Boolean).join(' \u00b7 ');
+      return `<li><button type="button" class="people-firm" data-business="${escapeHtml(f.id)}">
+        <i class="grade-dot grade-${escapeHtml(f.grade)}" title="${escapeHtml(f.grade)}"></i>
+        <span class="person-main"><span class="person-name">${escapeHtml(f.name)}</span>
+          <small class="person-sub">${escapeHtml(sub)}</small></span>
+        <span class="people-firm-go" aria-hidden="true">\u203a</span></button></li>`;
+    }).join('');
+    return `<div class="people-firms">
+      <h4 class="people-card-h">${firms.length === 1 ? 'The firm the register puts them in'
+    : `The ${n(firms.length)} firms the register puts them in`}</h4>
+      <ul class="people-firm-list">${rows}</ul>
+    </div>`;
+  }
+
   let openSeq = 0;
   /**
    * Open a person's card in place of the list. Resolves `true` once the household
@@ -738,6 +775,7 @@ export async function mountPeople({
       <p class="people-card-what">${escapeHtml(knownTitle)}.</p>
       ${readmissionHtml(r)}
       ${transientHtml(r)}
+      ${firmsHtml(r.id)}
       <div class="people-card-body" aria-busy="true"><p class="legend-note">Loading the household record…</p></div>`;
     home.hidden = true;
     cardEl.hidden = false;
@@ -802,6 +840,8 @@ export async function mountPeople({
 
   cardEl.addEventListener('click', (ev) => {
     if (ev.target.closest('.people-back')) { state.lastOpened = state.open; close(); return; }
+    const firm = ev.target.closest('.people-firm');
+    if (firm) { onBusiness?.(firm.dataset.business); return; }
     const go = ev.target.closest('.people-go');
     if (go && state.open) {
       const r = byId.get(state.open);

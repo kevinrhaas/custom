@@ -933,20 +933,54 @@ function leadHtml(s, called, p) {
  * A row with no value is omitted rather than shown as "—", because a museum
  * label does not list what it does not know; the tables do that job.
  */
-function factsHtml(s) {
+/**
+ * THE FIRMS IN THIS ROOF, on the line that already says what the roof was FOR.
+ *
+ * A building card has always been able to say "store". It could not say WHOSE
+ * store, or open it: the business layer reached a visitor only through the
+ * Businesses directory, so somebody standing at Hogan's door had to leave the
+ * building, open the drawer and search a name they were already looking at. The
+ * Use row is where that question is asked, so the answer goes on the Use row.
+ *
+ * Only `premises` firms appear — a house the register puts IN this roof. The 26
+ * `anchored` houses name their landmark in prose and carry `structure_id: null`
+ * on every one of them, so this cannot yet say which houses stand against the
+ * Tremont House, and it does not guess (filed on T-1182). The grade dot is the
+ * FIRM's, not the building's, because the firm is what tapping opens.
+ *
+ * @param {object[]} firms  `firmCrosswalk().byStructure` for this record's id
+ * @param {boolean} fromSign  the visitor aimed at this building's signboard
+ */
+function firmChipsHtml(firms, fromSign) {
+  if (!firms?.length) return '';
+  const lead = fromSign
+    ? (firms.length === 1 ? 'The board hangs for' : 'The board hangs over')
+    : (firms.length === 1 ? 'The register puts one house here'
+      : `The register puts ${firms.length} houses here`);
+  return `<span class="pop-firms"${fromSign ? ' data-from-sign="yes"' : ''}>
+    <span class="pop-firms-lead">${escapeHtml(lead)}</span>${firms.map((f) => `<button type="button"
+      class="pop-firm" data-business="${escapeHtml(f.id)}"
+      title="${escapeHtml([f.trade, f.present ? 'trading on 1 July 1835' : 'not trading on 1 July 1835']
+    .filter(Boolean).join(' \u2014 '))}"><i class="grade-dot grade-${escapeHtml(f.grade)}"></i>${
+  escapeHtml(f.name)}</button>`).join('')}</span>`;
+}
+
+function factsHtml(s, firms = [], fromSign = false) {
   const attrs = s.attributes ?? {};
   const rows = [];
   // A value that will not fit half a column — the address, the ground's entry,
-  // a long keepers line — takes the whole row rather than wrapping to a sliver.
-  const row = (dt, dd, grade, what) => {
-    if (!dd) return;
-    const wide = String(dd).length > 28 ? ' fact-wide' : '';
-    rows.push(`<div class="fact${wide}"><dt>${escapeHtml(dt)}</dt><dd>${
-      withDot(dd, factDot(grade, what ?? dt.toLowerCase()))}</dd></div>`);
+  // a long keepers line, the firms in the roof — takes the whole row rather than
+  // wrapping to a sliver.
+  const row = (dt, dd, grade, what, extra = '') => {
+    if (!dd && !extra) return;
+    const wide = extra || String(dd).length > 28 ? ' fact-wide' : '';
+    const value = dd ? withDot(dd, factDot(grade, what ?? dt.toLowerCase())) : '';
+    rows.push(`<div class="fact${wide}"><dt>${escapeHtml(dt)}</dt><dd>${value}${extra}</dd></div>`);
   };
 
   row('Standing', standingWords(s.documented_range), s.documented_range?.confidence, 'standing');
-  row('Use', functionWords(attrs.function?.value), attrs.function?.confidence, 'use');
+  row('Use', functionWords(attrs.function?.value), attrs.function?.confidence, 'use',
+    firmChipsHtml(firms, fromSign));
   row('Built', builtWords(attrs),
     weaker(attrs.construction?.confidence, attrs.stories?.confidence), 'fabric');
   row('Roof', roofWords(attrs),
@@ -1108,7 +1142,7 @@ export const DOSSIER_BASE = 'https://github.com/kevinrhaas/custom/blob/main/chic
  * @param {object} opts
  * @param {string} opts.docBase  where a dossier is read — see DOSSIER_BASE
  */
-export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
+export function createPopup(root, { docBase = DOSSIER_BASE, onBusiness = null } = {}) {
   let currentId = null;
   /** Null until the derived list loads; never faked to an empty list. */
   let liberties = null;
@@ -1120,11 +1154,18 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
   /** Null until the compiled agency relation loads. Same rule as the liberties:
    *  null means "not loaded", which is not the claim that this house held none. */
   let agencies = null;
+  /** Null until the business index loads, and the same rule again: null is not
+   *  the claim that no firm traded here. */
+  let businessesByStructure = null;
   let currentRecord = null;
+  /** Whether the card on screen was opened by aiming at this building's signboard,
+   *  kept so a redraw (the liberties, the agencies) does not lose the fact. */
+  let currentFromSign = false;
 
   function close() {
     currentId = null;
     currentRecord = null;
+    currentFromSign = false;
     root.setAttribute('hidden', '');
     root.innerHTML = '';
     document.documentElement.classList.remove('card-open');
@@ -1132,6 +1173,8 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
 
   root.addEventListener('click', (e) => {
     if (e.target.closest('[data-close]')) { close(); return; }
+    const firm = e.target.closest('.pop-firm');
+    if (firm) { onBusiness?.(firm.dataset.business); return; }
     const tab = e.target.closest('[data-pop-tab]');
     if (tab) { selectPopTab(root, tab.dataset.popTab); return; }
     const toggle = e.target.closest('[data-toggle-note]');
@@ -1158,7 +1201,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setLiberties(list) {
       liberties = Array.isArray(list) ? list : null;
-      if (currentRecord) this.show(currentRecord);
+      if (currentRecord) this.show(currentRecord, { fromSign: currentFromSign });
     },
 
     /**
@@ -1170,7 +1213,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setOpenQuestions(list) {
       openQuestions = Array.isArray(list) ? list : null;
-      if (currentRecord) this.show(currentRecord);
+      if (currentRecord) this.show(currentRecord, { fromSign: currentFromSign });
     },
 
     /**
@@ -1182,7 +1225,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setOrdinanceLimits(limits) {
       ordinanceLimits = limits ?? null;
-      if (currentRecord) this.show(currentRecord);
+      if (currentRecord) this.show(currentRecord, { fromSign: currentFromSign });
     },
 
     /**
@@ -1194,15 +1237,37 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setAgencies(doc) {
       agencies = doc ?? null;
-      if (currentRecord) this.show(currentRecord);
+      if (currentRecord) this.show(currentRecord, { fromSign: currentFromSign });
     },
 
-    /** @param {object} record  a registry entry: { id, sidecar, ... } */
-    show(record) {
+    /**
+     * Hand the popup the structure-to-firms crosswalk once the business index
+     * loads, on exactly the terms the four handles above keep: a card already on
+     * screen is redrawn, because a building quietly showing no keeper the
+     * register knows is the failure that matters.
+     *
+     * @param {Map<string, object[]>|null} map  `firmCrosswalk().byStructure`
+     */
+    setBusinesses(map) {
+      businessesByStructure = map ?? null;
+      if (currentRecord) this.show(currentRecord, { fromSign: currentFromSign });
+    },
+
+    /**
+     * @param {object} record  a registry entry: { id, sidecar, ... }
+     * @param {object} [opts]
+     * @param {boolean} [opts.fromSign]  the visitor aimed at this building's
+     *   signboard rather than at the roof — a board is a firm's advertisement, so
+     *   the Use row leads with the firm it hangs for instead of making the visitor
+     *   work out that the board and the house are the same thing.
+     */
+    show(record, { fromSign = false } = {}) {
       if (!record?.sidecar) return false;
       const s = record.sidecar;
       currentId = record.id;
       currentRecord = record;
+      currentFromSign = !!fromSign;
+      const firms = businessesByStructure?.get?.(record.id) ?? [];
 
       const p = s.placement ?? {};
       // The position's own reasoning, on the row that shows the position. Every
@@ -1273,7 +1338,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       root.innerHTML = `
         ${headHtml(s, record, called, p, place)}
         ${leadHtml(s, called, p)}
-        ${factsHtml(s)}
+        ${factsHtml(s, firms, currentFromSign)}
         ${lodgingSection(s)}
         ${residentsSection(s)}
         ${agencySectionHtml(agencies, 'structure_id', record.id, escapeHtml)}
