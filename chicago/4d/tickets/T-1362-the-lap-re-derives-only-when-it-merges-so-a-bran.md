@@ -110,7 +110,44 @@ node    tools/audit_step_isolation.mjs      --check --quiet
 python3 tools/measure_layer_reads.py        --gate
 ```
 
-Run those, rebuild ONLY what they name, and re-check. The measurement:
+Run those, rebuild ONLY what they name, and re-check.
+
+**THAT LIST IS A STARTING POINT AND NOT THE LIST — corrected within the hour of writing it.**
+It covers the resident and derived-layer family, which is the family this ticket came out of. It
+does NOT cover the rest of the gate. Measured on #1518 immediately after this finding was first
+written: the eleven checks above found ONE stale thing, the closing set, and the repair was real
+— CI went from 5 red steps to 4. But the other four were never in the list at all, and they are a
+different family entirely:
+
+```
+* dataset (schema, provenance, date gates, licenses, staleness, publish)
+* the NA re-read of the north-side slough still lands on the committed centreline
+* the frontage works re-derive from the rule that chose their walls
+* West Water still stands one half-corridor off the bank, and the two refusals still hold
+```
+
+Terrain and dataset gates. Nothing in the eleven touches them, so running the list and declaring
+the branch repaired was wrong, and the claim "the entire failure was one stale file" was wrong
+with it.
+
+This is T-1179's corrected finding repeating itself one level up, and it should be read as the
+same rule: **the authority on what is stale is `tools/check.sh`, never a list somebody wrote
+down.** A list goes stale exactly the way the layer does, and a janitor built on eleven hardcoded
+checks will silently skip every family nobody thought of when it was written.
+
+So the implementable shape is not "run these eleven". It is:
+
+1. Run the gate, or the cheap subset when one is known, and READ WHAT IT NAMES.
+2. Rebuild what it names, using the tool the failure text itself prescribes — these gates state
+   their own remedy (`run --build`, `run --ledger-build`, `Run python3 tools/rebuild_closing_set.py
+   --rebuild`).
+3. Gate again. Repeat until it names nothing.
+
+The eleven remain useful as a FAST PATH — they are seconds against the gate's several minutes, and
+when they find the whole problem the repair is quick. They are a cheap first guess, never a
+verdict, and the branch is not repaired until the gate says so.
+
+The measurement, which stands:
 
 | PR | what was actually stale | blanket re-derive | check-first |
 |---|---|---|---|
@@ -124,9 +161,11 @@ difference between a repair that keeps up with the queue and one that cannot.
 
 **#1518 IS THIS TICKET, LIVE.** It sat red for nearly two hours, `mergeable_state` clean, ZERO
 commits behind dev — so the lap printed `already current — nothing to lap` and moved on, exactly
-as the acceptance above describes. Its entire failure was ONE stale file,
-`docs/RESEARCH/closing-convergence-2026-09.md`. Ten of the eleven checks read clean. Had the lap
-run the list and rebuilt the one thing it named, nobody would have had to look at that PR at all.
+as the acceptance above describes. One of its five failures was a stale
+`docs/RESEARCH/closing-convergence-2026-09.md`, which the eleven checks found and a rebuild
+cleared. The other four were terrain and dataset gates the eleven never look at, and they are why
+the correction above exists: the lap running this repair would have made #1518 BETTER without
+making it green, which is worth having and is not the same thing as fixing it.
 
 **Two cautions for whoever implements it:**
 
