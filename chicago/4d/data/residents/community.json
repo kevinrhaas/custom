@@ -15,9 +15,9 @@
  },
  "not_a_reading": "Derived, never hand-edited. Every value is read off a committed field — a household's origin block or a reconstructed person's own pool community — and graded no higher than the field it came from. No source was read to write this file and nobody was minted.",
  "counts": {
-  "persons": 2846,
-  "households": 1970,
-  "known": 2648,
+  "persons": 2861,
+  "households": 1977,
+  "known": 2663,
   "unknown": 198,
   "by_community": {
    "yankee": 1243,
@@ -29,16 +29,17 @@
    "british": 97,
    "native": 87,
    "southern": 63,
+   "free_black": 15,
    "metis": 2
   },
   "by_tier": {
-   "reconstructed": 2589,
+   "reconstructed": 2604,
    "null": 198,
    "inferred": 56,
    "attested": 3
   },
   "by_rule": {
-   "reconstruction_community": 1379,
+   "reconstruction_community": 1394,
    "origin_region": 1262,
    "no_origin_recorded": 182,
    "origin_does_not_speak_for_this_person": 12,
@@ -55,6 +56,7 @@
    "native": 87,
    "southern": 60,
    "french_canadian": 54,
+   "free_black": 7,
    "metis": 2
   }
  },
@@ -7731,6 +7733,81 @@
   },
   "rc_fairbanks_seth": {
    "value": "yankee",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_catherine": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_charles": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_hannah": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_jane": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_john": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_anderson_lucy": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_askie_benjamin": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_askie_james": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_askie_mary": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_askie_sarah": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_johnson_william": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_white_samuel": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_williams_harriet": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_williams_henry": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "rc_fb_williams_isaac": {
+   "value": "free_black",
    "tier": "reconstructed",
    "rule": "reconstruction_community"
   },
@@ -17594,6 +17671,55 @@
    "rule": "origin_region",
    "head": "fay_h_k",
    "file": "households/hh_fay_h_k.json"
+  },
+  "hh_fb_anderson_charles": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_anderson_charles",
+   "file": "underdocumented/hh_fb_anderson_charles.json"
+  },
+  "hh_fb_anderson_john": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_anderson_john",
+   "file": "underdocumented/hh_fb_anderson_john.json"
+  },
+  "hh_fb_askie_benjamin": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_askie_benjamin",
+   "file": "underdocumented/hh_fb_askie_benjamin.json"
+  },
+  "hh_fb_askie_james": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_askie_james",
+   "file": "underdocumented/hh_fb_askie_james.json"
+  },
+  "hh_fb_johnson_william": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_johnson_william",
+   "file": "underdocumented/hh_fb_johnson_william.json"
+  },
+  "hh_fb_white_samuel": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_white_samuel",
+   "file": "underdocumented/hh_fb_white_samuel.json"
+  },
+  "hh_fb_williams_isaac": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "rc_fb_williams_isaac",
+   "file": "underdocumented/hh_fb_williams_isaac.json"
   },
   "hh_felch_alaneon": {
    "value": "new_york",

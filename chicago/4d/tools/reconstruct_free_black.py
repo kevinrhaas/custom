@@ -378,18 +378,25 @@ def household_shapes(entirely: list) -> list:
     THE SAMPLE IS THREE HOUSEHOLDS AND THIS FILE SAYS SO EVERYWHERE IT IS USED. It is
     also the only reading of a free Black household in this town the corpus holds.
     """
-    shapes = []
+    shapes, set_aside = [], []
     for row in entirely:
         cells = row["cells"]
         men = sum(v for k, v in cells.items() if k.startswith("fc_m_") and "u10" not in k)
         women = sum(v for k, v in cells.items() if k.startswith("fc_f_") and "u10" not in k)
         children = sum(v for k, v in cells.items() if k.endswith("u10"))
-        shapes.append({
+        shape = {
             "page": row["page"], "line": row["line"], "as_read": row["as_read"],
             "adult_men": men, "adult_women": women, "children_under_10": children,
             "persons": row["free_coloured"],
-        })
-    return sorted(shapes, key=lambda s: (s["persons"], str(s["page"]), s["line"]))
+        }
+        # THE ONE HOUSEHOLD A MAN DOES NOT HEAD IS SET ASIDE, NOT DISCARDED. The floor
+        # this stage carries is a count of MEN — Caton's fee counts men before the county
+        # court — so every household written here is headed by one, and a shape with no
+        # adult man in it cannot be dealt to such a head without inventing the man the
+        # page does not show. It is recorded below so the omission is legible.
+        (shapes if men else set_aside).append(shape)
+    key = lambda s: (s["persons"], str(s["page"]), s["line"])
+    return sorted(shapes, key=key), sorted(set_aside, key=key)
 
 
 def attribute(value, note, basis=None, seed=None, replaceable=None, tier=None):
@@ -461,7 +468,7 @@ def person_record(pid, name, relationship, sex, slot_seed, occupation, occupatio
 def derive():
     low, high = caton_count()
     entirely, mixed, skipped = free_coloured_households()
-    shapes = household_shapes(entirely)
+    shapes, shapes_set_aside = household_shapes(entirely)
     stock = naming_stock()
     pools = load(POOLS)
     pool = next((c for c in pools["communities"] if c["id"] == POOL_ID), None)
@@ -608,6 +615,29 @@ def derive():
                       "figure is drawn (L1)."))
             persons.append(wife)
 
+        # A SECOND OR THIRD ADULT WOMAN UNDER THE SAME ROOF, where the schedule counts
+        # one. The page says how many stood there and says nothing about who they were,
+        # so neither does this: `household_member` and no kinship claimed.
+        for n in range(max(0, shape["adult_women"] - 1)):
+            oseed = f"{slot}:woman:{n + 2}"
+            ogiven = choose(oseed, given_female, surname)
+            used_given.add(ogiven.lower())
+            oname = f"{ogiven} {surname}"
+            used_names.add(oname.lower())
+            persons.append(person_record(
+                f"{PERSON_PREFIX}{surname.lower()}_{ogiven.lower()}", oname,
+                "household_member", "female", oseed,
+                attribute("none_recorded", "No source records an occupation for this "
+                                           "person.", tier="unknown"),
+                None, pool_note,
+                note=("RECONSTRUCTED, NOT FOUND. A second adult woman under this roof, "
+                      "because the 1840 household shape this card was dealt counts two "
+                      "and names neither. No kinship is claimed: sister, mother, "
+                      "sister-in-law, boarder or servant are all readings the schedule's "
+                      "tick marks cannot separate, and this project writes none of them. "
+                      "REVIEW REQUIRED, for the reason the head's card gives. No figure "
+                      "is drawn (L1).")))
+
         for n in range(shape["children_under_10"]):
             cseed = f"{slot}:child:{n + 1}"
             csex = "female" if unit(f"{cseed}:sex") < 0.5 else "male"
@@ -698,8 +728,19 @@ def derive():
         }
         cards[hid] = card
         minted.append({
-            "household": hid, "head": pid, "name": name, "trade": trade,
-            "shape": shape, "persons": len(persons), "slot": slot,
+            "household_id": hid,
+            "person_id": pid,
+            "name": name,
+            # The key every consumer of a `minted` list reads — tools/derive_person_community.py
+            # walks the reconstruction records by it to find the cards they wrote.
+            "file": f"underdocumented/{hid}.json",
+            "trade": trade,
+            "community": COMMUNITY,
+            "review_required": True,
+            "touches_removal": False,
+            "household_shape": shape,
+            "persons": len(persons),
+            "slot": slot,
         })
         if trade == "barber":
             firms[f"{FIRM_PREFIX}barbers_shop"] = firm_record(
@@ -771,6 +812,17 @@ def derive():
             "entirely_free_coloured": entirely,
             "free_coloured_within_a_white_household": mixed,
             "shapes_drawn_from": shapes,
+            "shapes_set_aside_because_no_adult_man_stands_in_them": {
+                "shapes": shapes_set_aside,
+                "why": ("The floor this stage carries counts MEN — Caton's fee counts men "
+                        "before the Court of County Commissioners — so every household "
+                        "written here is headed by one. The 1840 reading shows a "
+                        "free Black household headed by a woman, and dealing that shape "
+                        "to a male head would invent the man the page does not show. "
+                        "The woman-headed household of this town is real and is NOT "
+                        "written here; it is left for a stage whose unit is a household "
+                        "rather than a count of men."),
+            },
             "the_sample_is_small_and_this_file_says_so": (
                 f"{len(shapes)} household(s). It is also every reading of a free Black "
                 f"household this corpus holds."),
@@ -805,7 +857,9 @@ def derive():
             "persons": sum(len(c["persons"]) for c in cards.values()),
             "adult_men": heads,
             "adult_women": sum(1 for c in cards.values() for p in c["persons"]
-                               if p["relationship"] == "wife"),
+                               if p["relationship"] in ("wife", "household_member")),
+            "of_those_wives": sum(1 for c in cards.values() for p in c["persons"]
+                                  if p["relationship"] == "wife"),
             "children": sum(1 for c in cards.values() for p in c["persons"]
                             if p["relationship"] == "child"),
             "firms": len(firms),
@@ -1041,7 +1095,8 @@ def report() -> int:
     print(f"  pool    {record['the_naming_stock']['surnames']}")
     c = record["counts"]
     print(f"  wrote   {c['households']} household(s), {c['persons']} person(s) "
-          f"({c['adult_men']} men, {c['adult_women']} women, {c['children']} children), "
+          f"({c['adult_men']} men, {c['adult_women']} women of whom "
+          f"{c['of_those_wives']} are wives, {c['children']} children), "
           f"{c['firms']} firm(s)")
     for m in record["minted"]:
         print(f"    {m['name']:24} {m['trade']:12} {m['persons']} person(s)")
@@ -1118,12 +1173,20 @@ def self_test() -> int:
          all(c["origin"]["value"] is None for c in cards.values()))
     case("the cohort stands at or above the floor",
          record["counts"]["adult_men"] >= low)
+    case("and every person written is accounted for by a relationship",
+         record["counts"]["persons"] == (record["counts"]["adult_men"]
+                                         + record["counts"]["adult_women"]
+                                         + record["counts"]["children"]))
     case("and below the ceiling the 1840 share carries back",
          record["counts"]["persons"]
          <= record["the_bracket"]["ceiling"]["persons_at_the_same_share"])
     case("every household shape came off an entirely free-coloured 1840 household",
-         all(m["shape"]["page"] in {r["page"] for r in entirely}
+         all(m["household_shape"]["page"] in {r["page"] for r in entirely}
              for m in record["minted"]))
+    case("and every card holds exactly as many people as its shape counts",
+         all(m["persons"] == m["household_shape"]["persons"] for m in record["minted"]))
+    case("every shape dealt has an adult man in it, because the floor counts men",
+         all(m["household_shape"]["adult_men"] >= 1 for m in record["minted"]))
     case("each firm reads its community off the keeper it names",
          all(f["proprietor_community"]["value"] == COMMUNITY
              and [r["person_id"] for r in f["proprietor_community"]["from"]]
@@ -1137,7 +1200,7 @@ def self_test() -> int:
     if failures:
         print(f"  {len(failures)} case(s) failed")
         return 1
-    print(f"  ok    23 rule(s) hold")
+    print(f"  ok    26 rule(s) hold")
     return 0
 
 

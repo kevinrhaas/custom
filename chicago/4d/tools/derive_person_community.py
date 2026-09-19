@@ -100,7 +100,7 @@ def household_files(rules) -> list[tuple[str, Path]]:
     for entry in index.get("households", []):
         out.append((entry["file"], RESIDENTS / entry["file"]))
     for name in ("1835_readmissions.json", "1835_trade_households.json",
-                 "1835_native_and_metis.json"):
+                 "1835_native_and_metis.json", "1835_free_black.json"):
         path = DATA / "reconstruction" / name
         if not path.exists():
             continue

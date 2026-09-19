@@ -13,13 +13,13 @@
   "slot": "free_black:floor:005",
   "stands_on": "THE FLOOR OF THE 1835 BRACKET, CARRIED FORWARD WHOLE. Caton's fee in August 1833 counts six or seven free coloured men at Chicago, each of them before the Court of County Commissioners for the certificate of freedom the Illinois black law made the condition of a lawful residence. The 1840 census counts fifty-three free coloured persons in the same town. No monotone path between those two readings passes below the 1833 count on 1 July 1835, so the count is carried and not drawn against a persistence rate — the subject here is a COUNT, and a count does not leave town.",
   "household_shape": {
-   "page": "33SQ-GYYJ-LV",
-   "line": 19,
-   "as_read": "Mrs. Nan[?]y H. Jackson",
-   "adult_men": 0,
+   "page": "33SQ-GYYJ-97P",
+   "line": 10,
+   "as_read": "Joseph L. Williams",
+   "adult_men": 1,
    "adult_women": 1,
    "children_under_10": 1,
-   "persons": 2
+   "persons": 3
   },
   "withdrawn_if": "a source naming the free Black residents of Chicago in 1835 — the Court of County Commissioners' certificates of freedom above all — which would replace this whole cohort with the men it stands for; or a re-cut of the bracket that no longer puts the floor at this count. The retirement runs through --build, never by hand"
  },

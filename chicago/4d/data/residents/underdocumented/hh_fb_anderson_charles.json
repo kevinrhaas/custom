@@ -184,6 +184,62 @@
     "andreas_1884_v1"
    ],
    "note": "RECONSTRUCTED, NOT FOUND. She fills the adult woman of the household shape this card was dealt — one of the three entirely free-coloured households the 1840 Chicago schedule enumerates, which is every reading of a free Black household this corpus holds. REVIEW REQUIRED, for the reason the head's card gives. No figure is drawn (L1)."
+  },
+  {
+   "id": "rc_fb_anderson_lucy",
+   "name": "Lucy Anderson",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "sex_basis": {
+    "value": "female",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "note": "The shape this person fills is sexed by the 1840 schedule's own free-coloured columns, which count men and women separately. The sex is the shape's, not a draw made over this person."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "No source records an occupation for this person."
+   },
+   "name_basis": {
+    "value": "Lucy Anderson",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The surname is one of the 5 the 1840 Chicago schedule prints on lines the borderline roster classes R6_native_metis_black on its own `community_term_in_the_reading` rule — the only free Black naming this corpus holds. The given name is the town's own stock: every given name the schedule prints in that block is already borne by a real person of this town, so this pool invents surnames' company and not a second naming tradition."
+    },
+    "seed": "free_black:floor:006:woman:2:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "any source naming a free Black resident of Chicago on or before 1 July 1835"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. No source names this person. The surname is drawn from the six the 1840 schedule prints in its free-coloured block and the given name from the town's own stock; no draw may reproduce a printed reading, and none may take a name a real person of this layer bears."
+   },
+   "basis": {
+    "kind": "rule",
+    "id": "the_1833_count_is_the_floor_of_the_1835_bracket",
+    "note": "THE FLOOR OF THE 1835 BRACKET, CARRIED FORWARD WHOLE. Caton's fee in August 1833 counts six or seven free coloured men at Chicago, each of them before the Court of County Commissioners for the certificate of freedom the Illinois black law made the condition of a lawful residence. The 1840 census counts fifty-three free coloured persons in the same town. No monotone path between those two readings passes below the 1833 count on 1 July 1835, so the count is carried and not drawn against a persistence rate — the subject here is a COUNT, and a count does not leave town."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago inside the window — the 1833 certificates of freedom themselves would retire this whole cohort and name the men it stands for"
+   },
+   "reconstruction": {
+    "stage": "underdocumented",
+    "sub_stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true
+   },
+   "resident_subtype": "underdocumented_resident",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "RECONSTRUCTED, NOT FOUND. A second adult woman under this roof, because the 1840 household shape this card was dealt counts two and names neither. No kinship is claimed: sister, mother, sister-in-law, boarder or servant are all readings the schedule's tick marks cannot separate, and this project writes none of them. REVIEW REQUIRED, for the reason the head's card gives. No figure is drawn (L1)."
   }
  ],
  "touches_removal": false,

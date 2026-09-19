@@ -146,15 +146,6 @@
     "persons": 1
    },
    {
-    "page": "33SQ-GYYJ-LV",
-    "line": 19,
-    "as_read": "Mrs. Nan[?]y H. Jackson",
-    "adult_men": 0,
-    "adult_women": 1,
-    "children_under_10": 1,
-    "persons": 2
-   },
-   {
     "page": "33SQ-GYYJ-97P",
     "line": 10,
     "as_read": "Joseph L. Williams",
@@ -173,7 +164,21 @@
     "persons": 3
    }
   ],
-  "the_sample_is_small_and_this_file_says_so": "4 household(s). It is also every reading of a free Black household this corpus holds.",
+  "shapes_set_aside_because_no_adult_man_stands_in_them": {
+   "shapes": [
+    {
+     "page": "33SQ-GYYJ-LV",
+     "line": 19,
+     "as_read": "Mrs. Nan[?]y H. Jackson",
+     "adult_men": 0,
+     "adult_women": 1,
+     "children_under_10": 1,
+     "persons": 2
+    }
+   ],
+   "why": "The floor this stage carries counts MEN — Caton's fee counts men before the Court of County Commissioners — so every household written here is headed by one. The 1840 reading shows a free Black household headed by a woman, and dealing that shape to a male head would invent the man the page does not show. The woman-headed household of this town is real and is NOT written here; it is left for a stage whose unit is a household rather than a count of men."
+  },
+  "the_sample_is_small_and_this_file_says_so": "3 household(s). It is also every reading of a free Black household this corpus holds.",
   "the_recapitulation_leaf_is_excluded": {
    "pages": [
     "33SQ-GYYJ-PW"
@@ -292,20 +297,25 @@
  },
  "counts": {
   "households": 7,
-  "persons": 13,
+  "persons": 15,
   "adult_men": 7,
-  "adult_women": 4,
+  "adult_women": 6,
+  "of_those_wives": 4,
   "children": 2,
   "firms": 2,
   "surnames_available": 5
  },
  "minted": [
   {
-   "household": "hh_fb_anderson_john",
-   "head": "rc_fb_anderson_john",
+   "household_id": "hh_fb_anderson_john",
+   "person_id": "rc_fb_anderson_john",
    "name": "John Anderson",
+   "file": "underdocumented/hh_fb_anderson_john.json",
    "trade": "barber",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-97P",
     "line": 11,
     "as_read": "Sam[l] Anderson",
@@ -314,15 +324,19 @@
     "children_under_10": 0,
     "persons": 3
    },
-   "persons": 2,
+   "persons": 3,
    "slot": "free_black:floor:001"
   },
   {
-   "household": "hh_fb_askie_benjamin",
-   "head": "rc_fb_askie_benjamin",
+   "household_id": "hh_fb_askie_benjamin",
+   "person_id": "rc_fb_askie_benjamin",
    "name": "Benjamin Askie",
+   "file": "underdocumented/hh_fb_askie_benjamin.json",
    "trade": "cook",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-RY",
     "line": 13,
     "as_read": "[?]. [K]. Bul[l]",
@@ -335,11 +349,15 @@
    "slot": "free_black:floor:002"
   },
   {
-   "household": "hh_fb_johnson_william",
-   "head": "rc_fb_johnson_william",
+   "household_id": "hh_fb_johnson_william",
+   "person_id": "rc_fb_johnson_william",
    "name": "William Johnson",
+   "file": "underdocumented/hh_fb_johnson_william.json",
    "trade": "waiter",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-RY",
     "line": 13,
     "as_read": "[?]. [K]. Bul[l]",
@@ -352,11 +370,15 @@
    "slot": "free_black:floor:003"
   },
   {
-   "household": "hh_fb_white_samuel",
-   "head": "rc_fb_white_samuel",
+   "household_id": "hh_fb_white_samuel",
+   "person_id": "rc_fb_white_samuel",
    "name": "Samuel White",
+   "file": "underdocumented/hh_fb_white_samuel.json",
    "trade": "drayman",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-RY",
     "line": 13,
     "as_read": "[?]. [K]. Bul[l]",
@@ -369,28 +391,36 @@
    "slot": "free_black:floor:004"
   },
   {
-   "household": "hh_fb_williams_isaac",
-   "head": "rc_fb_williams_isaac",
+   "household_id": "hh_fb_williams_isaac",
+   "person_id": "rc_fb_williams_isaac",
    "name": "Isaac Williams",
+   "file": "underdocumented/hh_fb_williams_isaac.json",
    "trade": "labourer",
-   "shape": {
-    "page": "33SQ-GYYJ-LV",
-    "line": 19,
-    "as_read": "Mrs. Nan[?]y H. Jackson",
-    "adult_men": 0,
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
+    "page": "33SQ-GYYJ-97P",
+    "line": 10,
+    "as_read": "Joseph L. Williams",
+    "adult_men": 1,
     "adult_women": 1,
     "children_under_10": 1,
-    "persons": 2
+    "persons": 3
    },
    "persons": 3,
    "slot": "free_black:floor:005"
   },
   {
-   "household": "hh_fb_anderson_charles",
-   "head": "rc_fb_anderson_charles",
+   "household_id": "hh_fb_anderson_charles",
+   "person_id": "rc_fb_anderson_charles",
    "name": "Charles Anderson",
+   "file": "underdocumented/hh_fb_anderson_charles.json",
    "trade": "whitewasher",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-97P",
     "line": 11,
     "as_read": "Sam[l] Anderson",
@@ -399,15 +429,19 @@
     "children_under_10": 0,
     "persons": 3
    },
-   "persons": 2,
+   "persons": 3,
    "slot": "free_black:floor:006"
   },
   {
-   "household": "hh_fb_askie_james",
-   "head": "rc_fb_askie_james",
+   "household_id": "hh_fb_askie_james",
+   "person_id": "rc_fb_askie_james",
    "name": "James Askie",
+   "file": "underdocumented/hh_fb_askie_james.json",
    "trade": "sawyer",
-   "shape": {
+   "community": "free_black",
+   "review_required": true,
+   "touches_removal": false,
+   "household_shape": {
     "page": "33SQ-GYYJ-97P",
     "line": 10,
     "as_read": "Joseph L. Williams",
