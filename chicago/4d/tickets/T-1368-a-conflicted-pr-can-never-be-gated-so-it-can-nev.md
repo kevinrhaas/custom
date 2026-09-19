@@ -42,11 +42,28 @@ Nothing in that loop advances. The PR sits at zero checks for as long as it is l
 |---|---|---|---|
 | #1495 | T-1172 | 12, five "NOT the manifest's to clear" | hand-resolved; merge-ready merged it **within two minutes** of the push |
 | #1497 | T-1174 | 136, 118 of them resident household cards | hand-resolved; merge-ready merged it at 04:33:48Z |
-| #1499 | T-1343 | (open at filing) | `dirty`, zero check runs |
 
-The two that were cleared merged themselves almost immediately afterwards. That is the proof
-that the rest of the automation is sound: the ONLY thing missing was a gate run, and the only
-way to get one was a human resolving conflicts.
+Both merged themselves almost immediately after the push — #1495 within two minutes. That is
+the proof that the rest of the automation is sound: the ONLY thing missing was a gate run, and
+the only way to get one was a person resolving conflicts.
+
+**AND THE SHAPE ALONE DOES NOT IDENTIFY IT — corrected at filing, 2026-09-19.** This ticket was
+first written citing THREE instances. The third, #1499 (T-1343), was `dirty` with zero check
+runs and looked identical to the other two. It was not the deadlock: its steward run was still
+going, and it went on to rebase onto `dev` twice, re-derive on each rebase, push, and clear
+itself. It reached `blocked` with a gate running, entirely without hands. Counting it was wrong
+and the table above is the corrected one.
+
+So `dirty` + zero check runs is the SYMPTOM and not the diagnosis. A PR mid-run looks exactly
+like a PR nothing will ever touch again. The distinguishing fact is whether the run that owns
+the ticket is still alive: read `claim/t-NNNN` for the branch's ticket, take the `run:` URL out
+of the marker body, and ask GitHub whether that run is still `in_progress`. #1499's was — its
+`Run steward` step had been going 1h49m and it had opened the PR mid-run. A marker that no
+longer exists means no run holds the ticket, which is the same answer as a finished one.
+
+This matters twice over: anything that acts on the symptom will "fix" PRs that were about to fix
+themselves, and colliding with a live run costs more than waiting — measured on #1495, where the
+owning run's own convergence was better than the mechanical merge that raced it.
 
 **Where it came from, and the part that matters.** The gate's push trigger is filtered:
 
@@ -84,6 +101,11 @@ that could have gated a conflicted branch, and the trade-off as recorded did not
 4. Demonstrated on a reconstruction of the deadlock — a branch conflicted against `dev` with an
    open PR — not asserted from the workflow files. Show the zero-check state before and whatever
    the fix produces after.
+4b. **Whatever acts does not act on a PR whose run is still alive.** The check is the one above:
+   the branch's `claim/t-NNNN` marker names its run, and a run still `in_progress` means the PR
+   is being worked, not stuck. A fix that labels, comments on, dispatches a gate for or
+   otherwise touches a mid-run PR is a fault of this ticket, because #1499 proves such a PR
+   commonly resolves itself.
 5. The hand-resolution path stays available and documented. Some conflicts genuinely need a
    person (118 resident cards carrying drawn values did), and the goal is that such a PR is
    VISIBLE and gateable, never that no PR ever needs hands.
