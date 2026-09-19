@@ -4291,6 +4291,23 @@ step "the business layer re-derives, and every register row has a record" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/compile_businesses.py --self-test
 
+# T-1184, the first group of the business reconstruction band. The December 1835 State
+# census counts classes the newspaper register does not hold — four druggists against two
+# — and the order book turns each of those gaps into a quota with the ticket that owes it.
+# This writes the houses that fill them: a period firm style dealt from the forms the
+# register itself prints, a `street_only` face that claims no lot and no roof, and a
+# proprietor ADOPTED from the resident band's reconstructed trade heads rather than minted,
+# so the two bands fill one quota instead of ordering the same druggist twice. What the
+# gate holds: that every record re-derives from its seed string, that the order book's
+# `filled` counter carries this build's fill, that no invented style collides with one the
+# register prints, and that no reconstructed house cites a source. A hand-edited record
+# fails here; docs/LIBERTIES.md § L254 carries the invention.
+step "every reconstructed business re-derives, and no invented style is a printed one" \
+  python3 tools/reconstruct_businesses_1835.py --check
+
+selftest "…and an unmapped class, a quota past its heads and a borrowed style are refused" \
+  python3 tools/reconstruct_businesses_1835.py --self-test
+
 # And what the town DOES with the register's `street_only` businesses (T-0354). The owner
 # ruled on 2026-08-29 that a business the paper places on a platted street and nothing
 # narrower adopts a reconstructed roof already standing on that street face;

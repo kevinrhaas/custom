@@ -207,6 +207,29 @@ def _register_backdating_liberty_count() -> int:
                if b.get("present_at_scene_date") and b.get("backdating_liberty_required"))
 
 
+BUSINESSES_AUTHORED = ROOT / "data" / "businesses" / "authored"
+
+
+def _reconstructed_business_count() -> int:
+    """Houses of trade nobody named, written to fill a count the census leaves short.
+
+    Counted off the records themselves rather than off the business index, because the
+    index is derived from them and a liberty that counted a derivation would be checking
+    the compiler rather than the invention. `provenance` as well as the block, for the
+    reason the register counts above assert two fields: a reconstruction that ever lost
+    its `reconstruction` block would be a record with no writer, and this count must not
+    quietly narrow when that happens — tools/compile_businesses.py refuses it instead.
+    """
+    if not BUSINESSES_AUTHORED.is_dir():
+        return 0
+    n = 0
+    for path in sorted(BUSINESSES_AUTHORED.glob("*.json")):
+        doc = json.loads(path.read_text())
+        if doc.get("provenance") == "reconstructed" and doc.get("reconstruction"):
+            n += 1
+    return n
+
+
 RESIDENTS_HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 
@@ -351,6 +374,10 @@ SCOPE_SOURCES = {
         _register_backdating_liberty_count,
         "data/research/newspapers/register_1835.json, itself re-derived by "
         "tools/compile_register.py --check"),
+    "businesses.records[reconstructed]": (
+        _reconstructed_business_count,
+        "data/businesses/authored/*.json, themselves re-derived by "
+        "tools/reconstruct_businesses_1835.py --check"),
     "residents.persons[letter_list_only]": (
         _letter_list_person_count,
         "data/residents/households/*.json, themselves re-derived by "
