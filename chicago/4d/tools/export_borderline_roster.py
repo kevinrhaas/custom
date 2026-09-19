@@ -629,17 +629,23 @@ def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
     # 11. Inside the window, no card, withheld: the roster's whole reason for existing.
     if in_window(date):
         if disposition == "asserted":
-            # T-1367. The ledger closed this CLAIM because another name in it reached a
-            # card. This name reached none, so the town never got it and it is as withheld
-            # as any refusal — said in its own words so the file cannot be read as claiming
-            # the ledger weighed this person and withheld them.
+            # T-1367. The ledger closed this CLAIM, not this NAME: a claim is asserted by
+            # one of the names it prints reaching one card, and the rest of the reading
+            # closes with it. This name is on no card, so the town never got it and it is
+            # as withheld as any refusal — said in its own words, so the file cannot be
+            # read as claiming the ledger weighed this person and withheld them.
+            #
+            # WHAT IT DOES NOT SAY is that the spend went to a different PERSON. This
+            # roster keys the layer by name, and a crosswalk merge can join a read name to
+            # a card spelt otherwise — the Baptist catalogue's 'Martin D. Harmon' is
+            # hh_harmon_m_d, and stands here all the same. T-1379 owns that finer grain.
             return out("R2_in_window_single_source",
-                       ("in_window_spent_on_another_name",
-                        "A dated appearance inside the window under a read name, carried "
-                        "on no card. The ledger closed the unit `asserted`, but the claim "
-                        "is the ledger's unit and the assertion was another name in the "
-                        "same reading reaching another card; nothing was spent on this "
-                        "one."),
+                       ("in_window_unspent_inside_an_asserted_claim",
+                        "A dated appearance inside the window under a read name that no "
+                        "card in this layer carries. The ledger closed the unit "
+                        "`asserted`, but the claim is the ledger's unit and an assertion "
+                        "closes the whole reading: being inside a spent claim is not "
+                        "being spent."),
                        describes_date=date)
         return out("R2_in_window_single_source",
                    ("in_window_read_and_withheld",
@@ -780,7 +786,8 @@ def asserted_onto(led: dict) -> str | None:
         return None
     where = target.get("field_path") or "a field"
     return (f"The ledger closed this unit `asserted` onto {target.get('id')} "
-            f"{where}; that spend named a different person in this reading.")
+            f"{where}. The claim is the ledger's unit, so the whole reading closed with "
+            f"that one spend.")
 
 
 def ledger_rows(root: Path, layer: dict) -> tuple[list[dict], list[dict], int]:
@@ -1166,14 +1173,13 @@ def self_test() -> int:
 
     # 6. T-1367: an asserted unit's UNCARRIED names are still offered, and the row says
     #    why in its own words rather than borrowing a refusal the ledger never made.
-    spent_on_another = [r for r in doc["rows"]
-                        if r.get("rule") == "in_window_spent_on_another_name"]
-    expect("an asserted unit's withheld names reach the roster",
-           bool(spent_on_another))
-    expect("every spent-on-another row comes off an asserted unit",
-           all(r["ledger_disposition"] == "asserted" for r in spent_on_another))
-    expect("a spent-on-another row is carried by no card",
-           not any(r.get("existing_household_id") for r in spent_on_another))
+    unspent = [r for r in doc["rows"]
+               if r.get("rule") == "in_window_unspent_inside_an_asserted_claim"]
+    expect("an asserted unit's withheld names reach the roster", bool(unspent))
+    expect("every unspent-inside-an-assertion row comes off an asserted unit",
+           all(r["ledger_disposition"] == "asserted" for r in unspent))
+    expect("an unspent-inside-an-assertion row is carried by no card",
+           not any(r.get("existing_household_id") for r in unspent))
     expect("no asserted unit borrows the withheld-by-the-ledger rule",
            not any(r.get("ledger_disposition") == "asserted"
                    and r.get("rule") == "in_window_read_and_withheld"

@@ -79,8 +79,8 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible/surname_only_and_unmatched` | 258 |
 | `R0_ineligible/undated_reading` | 267 |
 | `R1_in_window_uncertain/card_presence_is_uncertain` | 805 |
-| `R2_in_window_single_source/in_window_read_and_withheld` | 196 |
-| `R2_in_window_single_source/in_window_spent_on_another_name` | 147 |
+| `R2_in_window_single_source/in_window_read_and_withheld` | 184 |
+| `R2_in_window_single_source/in_window_unspent_inside_an_asserted_claim` | 159 |
 | `R3_1834_return_or_muster/blackhawk_muster_1832_at_chicago` | 30 |
 | `R4_surname_only_census/census_1830_crosswalk_refused_on_surname_only` | 63 |
 | `R4_surname_only_census/census_1840_head_surname_matches` | 348 |
@@ -107,11 +107,11 @@ Five rows of each class, in the roster's own order, with the reason each name wa
 
 | name as read | dated | source | why it was withheld |
 |---|---|---|---|
-| Rev. Allan B. Freeman | 1833 | `bk_mose1_005` | A dated appearance inside the window under a read name, carried on no card. The ledger closed the unit `asserted`, but the claim is the ledger's unit and the assertion was another name in the same reading reaching another card; nothing w… |
-| Rev. Allen B. Freeman | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
-| Betsey Crane | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
+| Rev. Allan B. Freeman | 1833 | `bk_mose1_005` | A dated appearance inside the window under a read name that no card in this layer carries. The ledger closed the unit `asserted`, but the claim is the ledger's unit and an assertion closes the whole reading: being inside a spent claim is… |
+| Rev. Allen B. Freeman | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name that no card in this layer carries. The ledger closed the unit `asserted`, but the claim is the ledger's unit and an assertion closes the whole reading: being inside a spent claim is… |
+| Betsey Crane | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name that no card in this layer carries. The ledger closed the unit `asserted`, but the claim is the ledger's unit and an assertion closes the whole reading: being inside a spent claim is… |
 | Billy Caldwell | 1833 | `bk_fer_024` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
-| Charles Cleaver | 1833 | `bk_mose1_005` | A dated appearance inside the window under a read name, carried on no card. The ledger closed the unit `asserted`, but the claim is the ledger's unit and the assertion was another name in the same reading reaching another card; nothing w… |
+| Charles Cleaver | 1833 | `bk_mose1_005` | A dated appearance inside the window under a read name that no card in this layer carries. The ledger closed the unit `asserted`, but the claim is the ledger's unit and an assertion closes the whole reading: being inside a spent claim is… |
 
 ### `R3_1834_return_or_muster` — 30 rows
 

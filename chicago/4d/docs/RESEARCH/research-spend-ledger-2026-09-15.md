@@ -18,7 +18,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 
 | Domain | Asserted | Later only | Outside Chicago | Aggregate only | Refused | Unresolved | Total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| books | 20 | 79 | 0 | 54 | 80 | 70 | 303 |
+| books | 21 | 79 | 0 | 54 | 79 | 70 | 303 |
 | census_1830 | 14 | 0 | 0 | 0 | 190 | 0 | 204 |
 | census_1840 | 0 | 1,080 | 0 | 0 | 0 | 0 | 1,080 |
 | church | 21 | 1,428 | 63 | 5 | 82 | 148 | 1,747 |
@@ -30,7 +30,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | newspapers | 114 | 57 | 0 | 121 | 36 | 861 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
 | residents | 24 | 7 | 0 | 0 | 982 | 67 | 1,080 |
-| **Total** | **798** | **12,574** | **109** | **185** | **8,671** | **1,356** | **23,693** |
+| **Total** | **799** | **12,574** | **109** | **185** | **8,670** | **1,356** | **23,693** |
 
 ## Second-hop preservation
 
