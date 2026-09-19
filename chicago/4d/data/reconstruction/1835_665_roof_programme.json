@@ -24,19 +24,19 @@
    "weight": "A block's weight is the mean of its four faces' class shares, read off data/streets/1835.json. Re-class a street there and every block on it re-weights in the same commit.",
    "trade_share_by_class": {
     "light": {
-     "n": 22,
-     "trade": 1,
-     "share": 0.0455
+     "n": 14,
+     "trade": 9,
+     "share": 0.6429
     },
     "ordinary": {
-     "n": 22,
-     "trade": 10,
-     "share": 0.4545
+     "n": 43,
+     "trade": 12,
+     "share": 0.2791
     },
     "principal": {
-     "n": 33,
-     "trade": 23,
-     "share": 0.697
+     "n": 20,
+     "trade": 13,
+     "share": 0.65
     }
    },
    "moved": [
@@ -44,11 +44,11 @@
      "district": "south",
      "blocks": 4,
      "trade_roofs": 5,
-     "blocks_redealt": 4,
+     "blocks_redealt": 3,
      "quota": {
-      "blk_south_water_franklin": 1,
+      "blk_south_water_franklin": 0,
       "blk_south_water_wells": 0,
-      "blk_south_water_dearborn": 0,
+      "blk_south_water_dearborn": 1,
       "blk_south_water_market": 4
      }
     }
@@ -363,14 +363,14 @@
    "roofs": 4,
    "families": {
     "A3": 1,
-    "C2": 1,
     "D3": 1,
-    "D4": 1
+    "D4": 1,
+    "D5": 1
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.5758,
-   "trade_roofs": 1,
+   "frontage_weight": 0.4645,
+   "trade_roofs": 0,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
   },
@@ -397,11 +397,11 @@
     "A4": 1,
     "D1": 1,
     "D2": 1,
-    "D5": 1
+    "D6": 1
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.5758,
+   "frontage_weight": 0.4645,
    "trade_roofs": 0,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
@@ -477,14 +477,14 @@
    "roofs": 4,
    "families": {
     "A1": 1,
-    "D6": 1,
+    "C2": 1,
     "D7": 1,
     "H1": 1
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.4735,
-   "trade_roofs": 0,
+   "frontage_weight": 0.5555,
+   "trade_roofs": 1,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
   },
@@ -894,7 +894,7 @@
    },
    "principal": 21,
    "ancillary": 6,
-   "frontage_weight": 0.6364,
+   "frontage_weight": 0.5573,
    "trade_roofs": 4,
    "lot_ceiling_principal": 7,
    "row_lots_required": 7

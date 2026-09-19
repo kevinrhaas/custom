@@ -126,6 +126,60 @@ def prune(doc, paths: list[str]):
     return out
 
 
+def graft(derived, tree, paths: list[str]):
+    """`derived`, with every listed path taken from `tree` instead.
+
+    The other half of `prune`, and the reason it exists is T-1191. A pass that OWNS a
+    record but may not write it has no way to land a correction: the households pass
+    refuses `--write` outright, because writing regenerates the whole record and that
+    reverses the owner's T-0489 retirement of the resident population. So for as long
+    as that refusal has stood, the only way to move a roof the pass owns has been to
+    hand-edit the file the pass derives — which is the exact fault T-1227 was written
+    to stop, and it produced a programme and a record that disagreed for a fortnight.
+
+    This is the operation the refusal was missing: keep the derivation for the fields
+    the pass still owns, and keep the TREE for the withheld ones, so a correction can
+    land without a ruling being undone. A withheld path absent from the tree is removed
+    from the result rather than defaulted, because absence there is itself the ruling.
+    """
+    out = json.loads(json.dumps(derived))
+
+    def carry(dst, src, steps):
+        step, rest = steps[0], steps[1:]
+        if step == "[]":
+            if isinstance(dst, list) and isinstance(src, list):
+                for d, s_ in zip(dst, src):
+                    carry(d, s_, rest)
+            return
+        if not isinstance(dst, dict):
+            return
+        if not rest:
+            if isinstance(src, dict) and step in src:
+                dst[step] = json.loads(json.dumps(src[step]))
+            else:
+                dst.pop(step, None)
+            return
+        carry(dst.get(step), src.get(step) if isinstance(src, dict) else None, rest)
+
+    for path in paths:
+        if path == "*":
+            return json.loads(json.dumps(tree))
+        carry(out, tree, _steps(path))
+    return out
+
+
+def withheld_paths(pass_id: str) -> dict[str, list[str]]:
+    """Per structure id, the paths the settlement withholds from `pass_id`."""
+    spec = settlement()["passes"][pass_id]
+    out: dict[str, list[str]] = {}
+    for block in spec["withdrawn"]:
+        for sid in block.get("applies_to", []):
+            out.setdefault(sid, []).extend(block["paths"])
+    for block in spec["reassigned"]:
+        out.setdefault(block["structure"], []).extend(block["paths"])
+    return out
+
+
 def differences(disk, derived, where: str) -> list[str]:
     """Every leaf that differs, named by its path. Order-preserving, deduped by path."""
     out = []
@@ -194,12 +248,7 @@ def check_households_pass(derived: dict[pathlib.Path, str]) -> list[str]:
     """`generate_inferred_households.py --check`: the 38 structure records it owns."""
     spec = settlement()["passes"]["tools/generate_inferred_households.py"]
     owned = spec["still_owns"]["data/structures"]
-    withheld: dict[str, list[str]] = {}
-    for block in spec["withdrawn"]:
-        for sid in block.get("applies_to", []):
-            withheld.setdefault(sid, []).extend(block["paths"])
-    for block in spec["reassigned"]:
-        withheld.setdefault(block["structure"], []).extend(block["paths"])
+    withheld = withheld_paths("tools/generate_inferred_households.py")
 
     drift: list[str] = []
     for sid in owned["ids"]:

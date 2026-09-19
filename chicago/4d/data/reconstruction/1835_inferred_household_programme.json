@@ -2036,6 +2036,11 @@
         18
       ],
       "rotation_deg": 0,
+      "corridor_clearance": {
+        "street": "kinzie",
+        "clear_m": 0.5,
+        "why": "T-1191 read the north bank's platted corridors into the corridor layer on 2026-09-19. Until that day tools/plat_corridors.py returned nothing north of the main stem — one pair of street lists in tools/generate_plat_lots.py decided both which streets a BLOCK may be cut between and which streets a BUILDING may be reported standing in, and the North Division could not have the first, so it was denied the second. This building's own position note said its centre had been tested “against the platted street corridors of the K7 block grid so that no invented building stands in the roadway”; the K7 grid is nineteen South and West Division blocks and no north-bank street, so north of the river that test passed by covering no ground. Nothing moved and nothing was re-fitted: this building has stood on Kinzie Street's centreline since it was raised, and the first thing able to see it was the corridor. An invented placement has nothing to encroach with, so the corridor wins. 0.5 m is T-0827's margin, kept."
+      },
       "anchor_shift_steps": 0,
       "function": "dwelling",
       "occupation": "labourer",
@@ -2056,6 +2061,11 @@
         18
       ],
       "rotation_deg": 0,
+      "corridor_clearance": {
+        "street": "kinzie",
+        "clear_m": 0.5,
+        "why": "T-1191 read the north bank's platted corridors into the corridor layer on 2026-09-19. Until that day tools/plat_corridors.py returned nothing north of the main stem — one pair of street lists in tools/generate_plat_lots.py decided both which streets a BLOCK may be cut between and which streets a BUILDING may be reported standing in, and the North Division could not have the first, so it was denied the second. This building's own position note said its centre had been tested “against the platted street corridors of the K7 block grid so that no invented building stands in the roadway”; the K7 grid is nineteen South and West Division blocks and no north-bank street, so north of the river that test passed by covering no ground. Nothing moved and nothing was re-fitted: this building has stood on Kinzie Street's centreline since it was raised, and the first thing able to see it was the corridor. An invented placement has nothing to encroach with, so the corridor wins. 0.5 m is T-0827's margin, kept."
+      },
       "anchor_shift_steps": 0,
       "function": "dwelling",
       "occupation": "labourer",
@@ -2096,6 +2106,11 @@
         24
       ],
       "rotation_deg": 0,
+      "corridor_clearance": {
+        "street": "kinzie",
+        "clear_m": 0.5,
+        "why": "T-1191 read the north bank's platted corridors into the corridor layer on 2026-09-19. Until that day tools/plat_corridors.py returned nothing north of the main stem — one pair of street lists in tools/generate_plat_lots.py decided both which streets a BLOCK may be cut between and which streets a BUILDING may be reported standing in, and the North Division could not have the first, so it was denied the second. This building's own position note said its centre had been tested “against the platted street corridors of the K7 block grid so that no invented building stands in the roadway”; the K7 grid is nineteen South and West Division blocks and no north-bank street, so north of the river that test passed by covering no ground. Nothing moved and nothing was re-fitted: this building has stood on Kinzie Street's centreline since it was raised, and the first thing able to see it was the corridor. An invented placement has nothing to encroach with, so the corridor wins. 0.5 m is T-0827's margin, kept."
+      },
       "anchor_shift_steps": 0,
       "function": "dwelling",
       "occupation": "mason",

@@ -103,20 +103,33 @@ NS_STREETS = ["clinton", "canal", "market", "franklin", "wells", "lasalle", "cla
 # Addition's corridor is 2.2 m narrower than the Original Town's and one town-wide
 # half-width would have drawn the Addition's roadways over its own lot lines.
 #
-# NORTH WATER STREET IS DELIBERATELY NOT HERE. It is the one north-bank street whose
-# line is derived from the river bank rather than from a platted rule
-# (`tools/derive_north_water.py`), it bends through 26 vertices, and T-0447 records
-# that the plat does not give it the ground it runs on. Offsetting that polyline by
-# half a module would invent a rectangle the sheet does not draw. The north-bank
-# frontage rule stays `tools/measure_north_bank_frontage.py`, unchanged.
-#
-# WABANSIA AND THE WEST DIVISION ARE NOT HERE EITHER: they are T-1192's ground.
-NORTH_EW_STREETS = ["kinzie", "michigan_north", "illinois_north", "indiana_north",
-                    "ohio_north", "ontario_north", "erie_north", "huron_north",
-                    "superior_north"]
-NORTH_NS_STREETS = ["wolcott", "market_north", "franklin_north", "wells_north",
-                    "lasalle_north", "clark_north", "dearborn_north",
-                    "cass", "rush", "pine", "sand"]
+# NORTH WATER STREET IS DELIBERATELY NOT IN THE LAYER, and neither is Wabansia, and
+# the control file says so in its own `not_in_the_corridor_layer` block with the
+# reason per street. The short of it: North Water's line is cut from the river bank
+# rather than from a platted rule, so offsetting it by half a module would invent a
+# rectangle no sheet draws; Wabansia and the West Division are T-1192's ground.
+def _north_bank_axes() -> tuple[list[str], list[str]]:
+    """The north-bank corridor streets, by axis, READ OUT OF THE CONTROL FILE.
+
+    No street id is written here, which is the same principle
+    `plat_corridors.control_offsets` states for its refusals: a street acquires or
+    loses a corridor by what the control says, not by being named in a tool. The
+    tiers, their sheets, their widths, the streets excluded and why, and the alley
+    finding are all in `data/traces/street_control.json` § `north_bank`.
+    """
+    # json directly rather than `load`, which this module defines further down: the
+    # constants below are module-level because `plat_corridors` imports them as such.
+    control = json.loads((DATA / "traces" / "street_control.json").read_text(
+        encoding="utf-8"))
+    ew: list[str] = []
+    ns: list[str] = []
+    for tier in (control.get("north_bank") or {}).get("tiers", {}).values():
+        ew += list(tier.get("axis", {}).get("ew") or [])
+        ns += list(tier.get("axis", {}).get("ns") or [])
+    return ew, ns
+
+
+NORTH_EW_STREETS, NORTH_NS_STREETS = _north_bank_axes()
 
 # What `corridor_rings` covers, and therefore what `plat_corridors.intrusion` can
 # report. A superset of the block lists above, never a substitute for them.
