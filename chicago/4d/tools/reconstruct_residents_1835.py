@@ -1110,15 +1110,27 @@ def _build_attribute_fill_arrival() -> int:
     return cmd_build_arrival(load_programme())
 
 
+def _build_garrison() -> int:
+    import reconstruct_garrison_1835
+    return reconstruct_garrison_1835.build(write=True)
+
+
+def _check_garrison() -> int:
+    import reconstruct_garrison_1835
+    return reconstruct_garrison_1835.check()
+
+
 STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
                   ARRIVAL_STAGE: _build_attribute_fill_arrival,
                   "modelled_families": _build_modelled_families,
                   "readmissions": _build_readmissions,
-                  "women_and_children": _build_women_and_children}
+                  "women_and_children": _build_women_and_children,
+                  "garrison": _build_garrison}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
                   "modelled_families": _check_modelled_families,
                   "readmissions": _check_readmissions,
-                  "women_and_children": _check_women_and_children}
+                  "women_and_children": _check_women_and_children,
+                  "garrison": _check_garrison}
 
 
 # --------------------------------------------------------------------------

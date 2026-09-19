@@ -14,20 +14,20 @@
   "data/town_census.json"
  ],
  "counts": {
-  "persons": 2144,
-  "households": 1382,
+  "persons": 2269,
+  "households": 1393,
   "by_grade": {
    "attested": 410,
    "inferred": 875,
-   "reconstructed": 859
+   "reconstructed": 984
   },
   "reconstructed_answering_no_stage": 0,
-  "persons_with_a_sex": 2138,
+  "persons_with_a_sex": 2263,
   "persons_with_a_dated_age": 64,
   "persons_with_a_role": 327,
-  "households_naming_an_origin": 1382,
-  "households_naming_a_reason": 1382,
-  "households_naming_a_lives_at": 20
+  "households_naming_an_origin": 1393,
+  "households_naming_a_reason": 1393,
+  "households_naming_a_lives_at": 31
  },
  "vocabulary": {
   "age_bands": [
@@ -190,7 +190,7 @@
   {
    "id": "headcount",
    "title": "Headcount",
-   "lead": "2144 person entries in 1382 households. The town census of November 1835 counts 3,265 people in 398 dwellings, so this layer is the part of the town the sources name and no more.",
+   "lead": "2269 person entries in 1393 households. The town census of November 1835 counts 3,265 people in 398 dwellings, so this layer is the part of the town the sources name and no more.",
    "tables": [
     {
      "title": "Persons by grade",
@@ -204,21 +204,21 @@
       [
        "attested",
        410,
-       "19.1%"
+       "18.1%"
       ],
       [
        "inferred",
        875,
-       "40.8%"
+       "38.6%"
       ],
       [
        "reconstructed",
-       859,
-       "40.1%"
+       984,
+       "43.4%"
       ],
       [
        "TOTAL",
-       2144,
+       2269,
        "100.0%"
       ]
      ],
@@ -236,7 +236,7 @@
       [
        "south",
        117,
-       "8.5%"
+       "8.4%"
       ],
       [
        "north",
@@ -250,8 +250,8 @@
       ],
       [
        "fort",
-       2,
-       "0.1%"
+       13,
+       "0.9%"
       ],
       [
        "outside_town",
@@ -261,7 +261,7 @@
       [
        "unplaced",
        1186,
-       "85.8%"
+       "85.1%"
       ]
      ],
      "note": ""
@@ -277,8 +277,8 @@
      "rows": [
       [
        "present",
-       560,
-       "40.5%"
+       571,
+       "41.0%"
       ],
       [
        "absent",
@@ -288,7 +288,7 @@
       [
        "uncertain",
        820,
-       "59.3%"
+       "58.9%"
       ]
      ],
      "note": ""
@@ -676,6 +676,12 @@
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
       ],
       [
+       "hh_rc_cavanagh_edward",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
        "hh_rc_chapin_clarissa",
        "arrival",
        "1835-07-01",
@@ -880,6 +886,12 @@
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
       ],
       [
+       "hh_rc_duffy_martin",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
        "hh_rc_dufresne_therese",
        "arrival",
        "1835-07-01",
@@ -914,6 +926,12 @@
        "present_on_scene_date",
        "present",
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
+      ],
+      [
+       "hh_rc_eastman_james",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
       ],
       [
        "hh_rc_fairbanks_amanda",
@@ -1070,6 +1088,18 @@
        "present_on_scene_date",
        "present",
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
+      ],
+      [
+       "hh_rc_garrison_company_1",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
+       "hh_rc_garrison_company_2",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
       ],
       [
        "hh_rc_gilbert_abigail",
@@ -1370,6 +1400,12 @@
        "present_on_scene_date",
        "present",
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
+      ],
+      [
+       "hh_rc_metcalf_david",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
       ],
       [
        "hh_rc_murphy_bridget",
@@ -1684,6 +1720,18 @@
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
       ],
       [
+       "hh_rc_shea_martin",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
+       "hh_rc_sheldon_erastus",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
        "hh_rc_sheldon_lucy",
        "arrival",
        "1835-07-01",
@@ -1754,6 +1802,12 @@
        "present_on_scene_date",
        "present",
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
+      ],
+      [
+       "hh_rc_sullivan_thomas",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
       ],
       [
        "hh_rc_thayer_amanda",
@@ -1828,6 +1882,12 @@
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
       ],
       [
+       "hh_rc_tobin_patrick",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
+      ],
+      [
        "hh_rc_vieau_josette",
        "arrival",
        "1835-07-01",
@@ -1850,6 +1910,12 @@
        "present_on_scene_date",
        "present",
        "PRESENCE IS THE HYPOTHESIS, not a finding about anybody"
+      ],
+      [
+       "hh_rc_walsh_owen",
+       "arrival",
+       "1835-07-01",
+       "A BOUND THE HYPOTHESIS CARRIES, NOT A READING"
       ],
       [
        "hh_rc_whitcomb_lydia",
@@ -2024,13 +2090,13 @@
     }
    ],
    "notes": [
-    "No PERSON carries the `reconstructed` grade (859) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 286 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+    "No PERSON carries the `reconstructed` grade (984) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 297 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
    ]
   },
   {
    "id": "sex",
    "title": "Sex",
-   "lead": "2138 of 2144 persons (99.7%) carry a sex, AT THREE DIFFERENT TIERS and the table below is the only honest way to read them together: 961 because a source records it, 590 read off a gendered title, a period contraction or a forename that stands in one sex's naming only, and 587 DRAWN at the male rate measured on the roll the person was named off. A drawn sex is not evidence about that person and never becomes any; the 6 left are collective descriptions that name nobody.",
+   "lead": "2263 of 2269 persons (99.7%) carry a sex, AT THREE DIFFERENT TIERS and the table below is the only honest way to read them together: 1086 because a source records it, 590 read off a gendered title, a period contraction or a forename that stands in one sex's naming only, and 587 DRAWN at the male rate measured on the roll the person was named off. A drawn sex is not evidence about that person and never becomes any; the 6 left are collective descriptions that name nobody.",
    "tables": [
     {
      "title": "Sex by the rule that says so",
@@ -2049,9 +2115,9 @@
      "rows": [
       [
        "male",
-       1543,
-       "72.0%",
-       429,
+       1651,
+       "72.8%",
+       537,
        0,
        32,
        531,
@@ -2060,9 +2126,9 @@
       ],
       [
        "female",
-       595,
-       "27.8%",
-       532,
+       612,
+       "27.0%",
+       549,
        0,
        0,
        27,
@@ -2095,8 +2161,8 @@
      "rows": [
       [
        "recorded",
-       961,
-       "44.8%",
+       1086,
+       "47.9%",
        "a source records the sex on the card, and no pass had to read it"
       ],
       [
@@ -2108,19 +2174,19 @@
       [
        "inferred_contraction",
        32,
-       "1.5%",
+       "1.4%",
        "the name is a period contraction every attested expansion of which is one sex's"
       ],
       [
        "inferred_forename",
        558,
-       "26.0%",
+       "24.6%",
        "the forename stands in exactly one sex's naming and in no other (T-1303's derived table, which refuses a name its own evidence splits)"
       ],
       [
        "reconstructed_from_the_roll",
        587,
-       "27.4%",
+       "25.9%",
        "DRAWN at the male rate measured on the roll this person was named off, seeded by their own id (T-1304) — never evidence about this person"
       ],
       [
@@ -2140,7 +2206,7 @@
   {
    "id": "age",
    "title": "Age",
-   "lead": "64 of 2144 persons carry a year or an age off a source; 511 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage — and 1569 carry nothing that bears on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and the tier table below says which of the three it stands on. The bands are the 1840 Chicago schedule's and a drawn one is never turned into a year. THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the rolls name, overwhelmingly adult men, and the women and children the pyramid lacks are T-1174's brief.",
+   "lead": "64 of 2269 persons carry a year or an age off a source; 622 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage — and 1583 carry nothing that bears on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and the tier table below says which of the three it stands on. The bands are the 1840 Chicago schedule's and a drawn one is never turned into a year. THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the rolls name, overwhelmingly adult men, and the women and children the pyramid lacks are T-1174's brief.",
    "tables": [
     {
      "title": "Age bands",
@@ -2155,7 +2221,7 @@
       [
        "birth_year_known",
        64,
-       "3.0%",
+       "2.8%",
        "a source gives the year, however loosely"
       ],
       [
@@ -2167,13 +2233,13 @@
       [
        "adult_by_civic_list",
        192,
-       "9.0%",
+       "8.5%",
        "an adult: a voter, a taxpayer or a man of militia age"
       ],
       [
        "adult_by_role",
-       304,
-       "14.2%",
+       415,
+       "18.3%",
        "an adult: a trade, profession or office is not held by a child"
       ],
       [
@@ -2190,8 +2256,8 @@
       ],
       [
        "unknown",
-       1569,
-       "73.2%",
+       1583,
+       "69.8%",
        "nothing on the card bears on age at all"
       ]
      ],
@@ -2216,13 +2282,13 @@
       [
        "inferred",
        57,
-       "2.7%",
+       "2.5%",
        "the band an inferred birth year or age puts them in"
       ],
       [
        "reconstructed",
-       2073,
-       "96.7%",
+       2198,
+       "96.9%",
        "DRAWN from the 1840 Chicago schedule's sex × age bands, conditioned on what the person is recorded doing, seeded by their own id — a band, never a year"
       ],
       [
@@ -2246,52 +2312,52 @@
       [
        "0-4",
        171,
-       "8.0%"
+       "7.5%"
       ],
       [
        "0-9",
-       217,
-       "10.1%"
+       222,
+       "9.8%"
       ],
       [
        "5-9",
        25,
-       "1.2%"
+       "1.1%"
       ],
       [
        "10-14",
        23,
-       "1.1%"
+       "1.0%"
       ],
       [
        "10-19",
-       215,
-       "10.0%"
+       238,
+       "10.5%"
       ],
       [
        "15-19",
        110,
-       "5.1%"
+       "4.8%"
       ],
       [
        "20-29",
-       738,
-       "34.4%"
+       803,
+       "35.4%"
       ],
       [
        "30-39",
-       418,
-       "19.5%"
+       450,
+       "19.8%"
       ],
       [
        "40-49",
        136,
-       "6.3%"
+       "6.0%"
       ],
       [
        "50-59",
        43,
-       "2.0%"
+       "1.9%"
       ],
       [
        "50+",
@@ -2666,7 +2732,7 @@
   {
    "id": "origin_and_arrival",
    "title": "Origin and arrival",
-   "lead": "Every household carries an arrival block and 95.4% of them (1319) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1382 households name an origin and 1382 a reason for coming.",
+   "lead": "Every household carries an arrival block and 95.5% of them (1330) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1393 households name an origin and 1393 a reason for coming.",
    "tables": [
     {
      "title": "The three axes, by tier",
@@ -2683,29 +2749,29 @@
      "rows": [
       [
        "origin (state or country)",
-       1382,
+       1393,
        "100.0%",
        11,
        41,
-       1330,
+       1341,
        0
       ],
       [
        "arrival date or bound",
-       1382,
+       1393,
        "100.0%",
        51,
        1203,
-       128,
+       139,
        0
       ],
       [
        "reason for coming",
-       1382,
+       1393,
        "100.0%",
        12,
        13,
-       1357,
+       1368,
        0
       ]
      ],
@@ -2722,8 +2788,8 @@
      "rows": [
       [
        "not_later_than",
-       1319,
-       "95.4%"
+       1330,
+       "95.5%"
       ],
       [
        "year",
@@ -2829,7 +2895,7 @@
       ],
       [
        "season_not_apportioned",
-       1237,
+       1248,
        "the arrival season's draws, with no source apportioning the town between them"
       ],
       [
@@ -3625,6 +3691,54 @@
        "reconstructed"
       ],
       [
+       "A married soldier's household of the first company — Edward Cavanagh, Honora Duffy and their children",
+       "season_not_apportioned",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Martin Duffy, Catherine Walsh and their children",
+       "season_not_apportioned",
+       "The trading post, the fort and the country trade — the town before the boom",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Patrick Tobin, Margaret Cavanagh and their children",
+       "season_not_apportioned",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Thomas Sullivan, Margaret McGuire and their children",
+       "season_not_apportioned",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Erastus Sheldon, Lucy Dickinson and their children",
+       "season_not_apportioned",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — James Eastman, Maria Wadsworth and their children",
+       "season_not_apportioned",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Martin Shea, Johanna Tobin and their children",
+       "season_not_apportioned",
+       "The trading post, the fort and the country trade — the town before the boom",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Owen Walsh, Margaret Doyle and their children",
+       "season_not_apportioned",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "reconstructed"
+      ],
+      [
        "Reconstructed household — Abigail Gilbert, a woman keeping her own house in the north division",
        "season_not_apportioned",
        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
@@ -3633,19 +3747,19 @@
       [
        "Reconstructed household — Abigail Ingalls, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Alice Dolan, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Alice Fitzgerald, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3657,19 +3771,19 @@
       [
        "Reconstructed household — Almira Crandall, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Almira Dickinson, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Almira Fisk, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -3693,7 +3807,7 @@
       [
        "Reconstructed household — Amanda Fairbanks, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -3711,37 +3825,37 @@
       [
        "Reconstructed household — Angelique Laframboise, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Anna Fisk, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Anna Thayer, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "Reconstructed household — Betsey Bacon, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Betsey Barnes, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Bridget Hayes, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -3753,7 +3867,7 @@
       [
        "Reconstructed household — Bridget Nolan, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -3765,7 +3879,7 @@
       [
        "Reconstructed household — Bridget Shea, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3789,13 +3903,13 @@
       [
        "Reconstructed household — Clarissa Chapin, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "Reconstructed household — Clarissa Cobb, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -3807,13 +3921,13 @@
       [
        "Reconstructed household — Clarissa Hale, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Clarissa Lyman, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3837,19 +3951,19 @@
       [
        "Reconstructed household — Ellen Carroll, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Ellen Doyle, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Ellen Gallagher, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -3861,49 +3975,49 @@
       [
        "Reconstructed household — Ellen Ryan, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "Reconstructed household — Ellen Tobin, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Emily Barnes, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Emily Eastman, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Emily Woodruff, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Esther Barnes, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "Reconstructed household — Esther Eastman, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "Reconstructed household — Esther Fisk, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3921,13 +4035,13 @@
       [
        "Reconstructed household — Harriet Chapin, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "Reconstructed household — Harriet Wilcox, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3939,7 +4053,7 @@
       [
        "Reconstructed household — Honora Kelly, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3951,7 +4065,7 @@
       [
        "Reconstructed household — Honora Nolan, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -3987,13 +4101,13 @@
       [
        "Reconstructed household — Josette Vieau, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Lucy Sheldon, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4017,13 +4131,13 @@
       [
        "Reconstructed household — Margaret Hayes, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Margaret Murphy, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4047,7 +4161,7 @@
       [
        "Reconstructed household — Martha Cobb, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4071,7 +4185,7 @@
       [
        "Reconstructed household — Mary Burke, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4083,7 +4197,7 @@
       [
        "Reconstructed household — Mary Gilbert, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4107,13 +4221,13 @@
       [
        "Reconstructed household — Nancy Nash, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Phebe Bacon, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4125,31 +4239,31 @@
       [
        "Reconstructed household — Polly Cobb, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Polly Crandall, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Polly Newell, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "Reconstructed household — Polly Wilcox, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "Reconstructed household — Rhoda Nichols, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4173,7 +4287,7 @@
       [
        "Reconstructed household — Sarah Whitcomb, a woman keeping her own house in the south division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -4185,19 +4299,19 @@
       [
        "Reconstructed household — Susan Barnes, a woman keeping her own house in the west division",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "Reconstructed household — Therese Dufresne, a woman keeping her own house in the north division",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Abbot household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4215,7 +4329,7 @@
       [
        "The Abell household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4233,7 +4347,7 @@
       [
        "The Adains household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4257,7 +4371,7 @@
       [
        "The Aiker household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4275,7 +4389,7 @@
       [
        "The Albert household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4299,7 +4413,7 @@
       [
        "The Allen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -4323,13 +4437,13 @@
       [
        "The Alling household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Allison household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4359,7 +4473,7 @@
       [
        "The Andrews household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4383,7 +4497,7 @@
       [
        "The Anstin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4395,25 +4509,25 @@
       [
        "The Archer household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Archer household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Archibald household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Arrasmith household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4431,7 +4545,7 @@
       [
        "The Ashbaugh household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4443,7 +4557,7 @@
       [
        "The Avery household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -4455,7 +4569,7 @@
       [
        "The Ayres household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4485,13 +4599,13 @@
       [
        "The Bailey household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Bailly household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -4509,7 +4623,7 @@
       [
        "The Bakwith household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -4521,7 +4635,7 @@
       [
        "The Ballantine household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4533,13 +4647,13 @@
       [
        "The Ballard household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Ballingale household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4563,7 +4677,7 @@
       [
        "The Baptist household — a name the town's own records carry",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4599,7 +4713,7 @@
       [
        "The Barney household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4641,7 +4755,7 @@
       [
        "The Bartlett household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -4653,7 +4767,7 @@
       [
        "The Bates household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -4665,13 +4779,13 @@
       [
        "The Baxter household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Beach household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4713,13 +4827,13 @@
       [
        "The Bebee household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Beddlecome household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4737,7 +4851,7 @@
       [
        "The Beeson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4773,7 +4887,7 @@
       [
        "The Benediet household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4815,7 +4929,7 @@
       [
        "The Benubien household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -4827,13 +4941,13 @@
       [
        "The Berry household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Bertholf household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4851,7 +4965,7 @@
       [
        "The Biakie household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4887,7 +5001,7 @@
       [
        "The Blake household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4923,13 +5037,13 @@
       [
        "The Bloget household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Blood household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -4941,7 +5055,7 @@
       [
        "The Boardman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -4971,13 +5085,13 @@
       [
        "The Boles household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Bomgarten household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5007,7 +5121,7 @@
       [
        "The Bostwick household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5019,25 +5133,25 @@
       [
        "The Bourassa household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Bourque household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Bourrassa household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Bowen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5073,13 +5187,13 @@
       [
        "The Bradley household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Bradstreet household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5097,7 +5211,7 @@
       [
        "The Bread household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5151,13 +5265,13 @@
       [
        "The Bristol household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Britain household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5175,7 +5289,7 @@
       [
        "The Brookes household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5187,7 +5301,7 @@
       [
        "The Brooks household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -5247,13 +5361,13 @@
       [
        "The Bulkley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Bullen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5265,7 +5379,7 @@
       [
        "The Burbee household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5319,7 +5433,7 @@
       [
        "The Burton household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5331,7 +5445,7 @@
       [
        "The Bush household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5349,7 +5463,7 @@
       [
        "The Byam household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5385,7 +5499,7 @@
       [
        "The Campbell household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5439,25 +5553,25 @@
       [
        "The Carter household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Cary household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Case household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Cass household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5475,25 +5589,25 @@
       [
        "The Catton household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Chadwick household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Chamberlain household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Chambers household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5535,7 +5649,7 @@
       [
        "The Chappel household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5553,7 +5667,7 @@
       [
        "The Charles household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5589,7 +5703,7 @@
       [
        "The Chesnut household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5625,7 +5739,7 @@
       [
        "The Chipman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5655,7 +5769,7 @@
       [
        "The Clapp household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5733,7 +5847,7 @@
       [
        "The Clizbe household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5757,7 +5871,7 @@
       [
        "The Codding household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5781,13 +5895,13 @@
       [
        "The Comstock household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Conant household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5805,7 +5919,7 @@
       [
        "The Conkiin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5817,7 +5931,7 @@
       [
        "The Conter household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5853,7 +5967,7 @@
       [
        "The Cooley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5865,13 +5979,13 @@
       [
        "The Covalt household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Covell household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -5883,13 +5997,13 @@
       [
        "The Crane household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Crawford household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5907,7 +6021,7 @@
       [
        "The Crull household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -5919,7 +6033,7 @@
       [
        "The Curtenius household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -5973,13 +6087,13 @@
       [
        "The Dalton household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Damels household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6015,13 +6129,13 @@
       [
        "The Davenport household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The David household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6033,7 +6147,7 @@
       [
        "The Davis household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6051,7 +6165,7 @@
       [
        "The Day household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6093,13 +6207,13 @@
       [
        "The Dement household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Demotte household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6111,7 +6225,7 @@
       [
        "The Dewey household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6135,7 +6249,7 @@
       [
        "The Dilbee household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6231,7 +6345,7 @@
       [
        "The Douglas household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6291,7 +6405,7 @@
       [
        "The Dudley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6303,7 +6417,7 @@
       [
        "The Dunn household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6345,7 +6459,7 @@
       [
        "The Early household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6363,7 +6477,7 @@
       [
        "The Eldridge household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6375,19 +6489,19 @@
       [
        "The Elijah household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Elisha household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Elizabeth household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6417,7 +6531,7 @@
       [
        "The Evans household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6465,13 +6579,13 @@
       [
        "The Falker household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Falsh household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6501,13 +6615,13 @@
       [
        "The Felch household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Fell household — documented at Chicago, no trade printed, unplaced in the town",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6543,7 +6657,7 @@
       [
        "The Filliams household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6579,7 +6693,7 @@
       [
        "The Fitzlugh household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6603,13 +6717,13 @@
       [
        "The Folliott household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Food household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6633,13 +6747,13 @@
       [
        "The Force household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Forceman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6711,7 +6825,7 @@
       [
        "The Freeman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6735,7 +6849,7 @@
       [
        "The Gabbs household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6759,13 +6873,13 @@
       [
        "The Gardner household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Gariner household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6783,13 +6897,13 @@
       [
        "The Gibbs household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Gifford household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6801,7 +6915,7 @@
       [
        "The Gilman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6813,13 +6927,13 @@
       [
        "The Gleason household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Glen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -6831,7 +6945,7 @@
       [
        "The Godfrey household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6891,7 +7005,7 @@
       [
        "The Gould household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -6921,7 +7035,7 @@
       [
        "The Green household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -6963,7 +7077,7 @@
       [
        "The Gunn household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -6975,7 +7089,7 @@
       [
        "The Haighs household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7053,13 +7167,13 @@
       [
        "The Harriet household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Harris household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7071,13 +7185,13 @@
       [
        "The Hart household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Hartman household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -7101,7 +7215,7 @@
       [
        "The Hateh household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -7143,7 +7257,7 @@
       [
        "The Helen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7167,7 +7281,7 @@
       [
        "The Hezekiah household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -7185,13 +7299,13 @@
       [
        "The Hickok household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Hill household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -7203,13 +7317,13 @@
       [
        "The Hinton household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Hobson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7233,7 +7347,7 @@
       [
        "The Hogue household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7251,7 +7365,7 @@
       [
        "The Holcomb household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7269,7 +7383,7 @@
       [
        "The Holliday household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7281,19 +7395,19 @@
       [
        "The Holsman household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Hon household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Hooibrook household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7311,7 +7425,7 @@
       [
        "The Horr household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7329,13 +7443,13 @@
       [
        "The How household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Howard household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7347,7 +7461,7 @@
       [
        "The Howell household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -7377,7 +7491,7 @@
       [
        "The Hubbard household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7407,25 +7521,25 @@
       [
        "The Hugunin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Hull household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Humphrey household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Hunt household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7509,19 +7623,19 @@
       [
        "The Intmore household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Inven household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Ira household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7545,13 +7659,13 @@
       [
        "The Jacob household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Jaines household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7569,13 +7683,13 @@
       [
        "The Janea household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Jenks household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7587,7 +7701,7 @@
       [
        "The Jeris household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7605,13 +7719,13 @@
       [
        "The Johnson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Johnson household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7635,7 +7749,7 @@
       [
        "The Jolin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7647,7 +7761,7 @@
       [
        "The Jonathan household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7689,25 +7803,25 @@
       [
        "The Jordan household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Joseph household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Josepit household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Joter household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7731,7 +7845,7 @@
       [
        "The Kennicott household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -7767,13 +7881,13 @@
       [
        "The Keys household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Kidder household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7839,7 +7953,7 @@
       [
        "The King household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7881,7 +7995,7 @@
       [
        "The Kirby household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7893,13 +8007,13 @@
       [
        "The Kittridge household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Knaggs household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7911,7 +8025,7 @@
       [
        "The Knapp household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7929,13 +8043,13 @@
       [
        "The Knight household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Knowles household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -7947,7 +8061,7 @@
       [
        "The Kooken household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -7959,13 +8073,13 @@
       [
        "The Kulozjcky household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Kurcheval household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -8007,7 +8121,7 @@
       [
        "The Lamb household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -8025,7 +8139,7 @@
       [
        "The Lapsley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8193,7 +8307,7 @@
       [
        "The Loomis household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8205,13 +8319,13 @@
       [
        "The Lorenzo household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Loring household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8241,7 +8355,7 @@
       [
        "The Lovering household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8253,7 +8367,7 @@
       [
        "The Loyell household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8283,7 +8397,7 @@
       [
        "The Luke household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8295,7 +8409,7 @@
       [
        "The Lyon household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8313,7 +8427,7 @@
       [
        "The Mackie household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -8337,13 +8451,13 @@
       [
        "The Malone household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Markle household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8367,7 +8481,7 @@
       [
        "The Martin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8385,7 +8499,7 @@
       [
        "The Mason household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8433,7 +8547,7 @@
       [
        "The Mcburney household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8499,25 +8613,25 @@
       [
        "The Merrill household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Merrill household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Mewen household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Mfadin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8559,7 +8673,7 @@
       [
        "The Mills household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8577,13 +8691,13 @@
       [
        "The Milow household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Minard household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8607,7 +8721,7 @@
       [
        "The Mitchell household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8619,7 +8733,7 @@
       [
        "The Mkelly household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8631,7 +8745,7 @@
       [
        "The Montgomery household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -8679,7 +8793,7 @@
       [
        "The Morris household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -8781,7 +8895,7 @@
       [
        "The Murry household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8817,13 +8931,13 @@
       [
        "The Neleh household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Nelson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8841,13 +8955,13 @@
       [
        "The Newton household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Nicole household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -8907,7 +9021,7 @@
       [
        "The Oakley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -8937,7 +9051,7 @@
       [
        "The Orinsbey household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9003,13 +9117,13 @@
       [
        "The Paige household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Paine household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9033,7 +9147,7 @@
       [
        "The Panster household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9051,7 +9165,7 @@
       [
        "The Parker household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9093,13 +9207,13 @@
       [
        "The Paylor household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Payne household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -9141,7 +9255,7 @@
       [
        "The Perry household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9177,7 +9291,7 @@
       [
        "The Phomas household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -9189,19 +9303,19 @@
       [
        "The Pinedale household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Pixby household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Pixley household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9279,7 +9393,7 @@
       [
        "The Preston household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9309,25 +9423,25 @@
       [
        "The Purner household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Puttle household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Ranwin household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Rathburn household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
@@ -9357,7 +9471,7 @@
       [
        "The Reeder household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9369,7 +9483,7 @@
       [
        "The Regera household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9387,7 +9501,7 @@
       [
        "The Reuben household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9411,13 +9525,13 @@
       [
        "The Richard household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Richards household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9459,13 +9573,13 @@
       [
        "The Ritchey household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Roberson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -9483,7 +9597,7 @@
       [
        "The Robes household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -9507,7 +9621,7 @@
       [
        "The Rogers household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9561,19 +9675,19 @@
       [
        "The Rue household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
       [
        "The Russel household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Russell household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9597,7 +9711,7 @@
       [
        "The Sacket household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9651,7 +9765,7 @@
       [
        "The Santord household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9705,13 +9819,13 @@
       [
        "The Schermerhorn household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Schernerborn household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9729,13 +9843,13 @@
       [
        "The Sct household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Selden household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9747,7 +9861,7 @@
       [
        "The Seston household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9771,13 +9885,13 @@
       [
        "The Shattick household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Shatttuck household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9801,7 +9915,7 @@
       [
        "The Sheff household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -9837,7 +9951,7 @@
       [
        "The Shielde household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -9861,19 +9975,19 @@
       [
        "The Shoup household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
        "The Sidney household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Silas household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -9897,13 +10011,13 @@
       [
        "The Simpaon household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Simpson household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -9963,7 +10077,7 @@
       [
        "The Smith household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -10029,7 +10143,7 @@
       [
        "The Spence household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10053,7 +10167,7 @@
       [
        "The Sprague household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10071,7 +10185,7 @@
       [
        "The Squire household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10101,7 +10215,7 @@
       [
        "The Starkweather household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -10113,7 +10227,7 @@
       [
        "The Stater household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10125,7 +10239,7 @@
       [
        "The Steel household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10161,7 +10275,7 @@
       [
        "The Steward household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10209,13 +10323,13 @@
       [
        "The Stold household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Story household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10239,7 +10353,7 @@
       [
        "The Strode household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10257,7 +10371,7 @@
       [
        "The Sunith household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10269,7 +10383,7 @@
       [
        "The Swapp household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10329,7 +10443,7 @@
       [
        "The Tensenring household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10365,7 +10479,7 @@
       [
        "The Timothv household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10377,13 +10491,13 @@
       [
        "The Titcomb household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Titur household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10449,7 +10563,7 @@
       [
        "The Tucker household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10479,7 +10593,7 @@
       [
        "The Vale household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10539,7 +10653,7 @@
       [
        "The Vasseur household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10581,13 +10695,13 @@
       [
        "The Villame household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Volk household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10659,7 +10773,7 @@
       [
        "The Warren household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10671,13 +10785,13 @@
       [
        "The Washington household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Waters household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10737,13 +10851,13 @@
       [
        "The Welsh household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Welsh household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10833,7 +10947,7 @@
       [
        "The Wilden household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10845,13 +10959,13 @@
       [
        "The William H. Adams evidence household — confirmed 1835 voter, unplaced",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The William household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -10887,13 +11001,13 @@
       [
        "The Wilton household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
        "The Win household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10953,7 +11067,7 @@
       [
        "The Wood household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10965,7 +11079,7 @@
       [
        "The Woods household — a name from the post office's letter lists",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -11013,13 +11127,13 @@
       [
        "The Wright household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
        "The Wright household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -11044,6 +11158,24 @@
        "The Zearly household — a name from the post office's letter lists",
        "season_not_apportioned",
        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+       "reconstructed"
+      ],
+      [
+       "The first company of the 5th Infantry — the men in barracks",
+       "season_not_apportioned",
+       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
+       "reconstructed"
+      ],
+      [
+       "The post sutler's household — David Metcalf",
+       "season_not_apportioned",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+       "reconstructed"
+      ],
+      [
+       "The second company of the 5th Infantry — the men in barracks",
+       "season_not_apportioned",
+       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -11183,7 +11315,7 @@
   {
    "id": "roles",
    "title": "Roles — plural and dated",
-   "lead": "327 of 2144 persons carry at least one role and 173 carry two or more. 160 of the 687 roles in the layer reach 1 July 1835; the other 527 are printed against the name in a later volume and say so.",
+   "lead": "327 of 2269 persons carry at least one role and 173 carry two or more. 160 of the 687 roles in the layer reach 1 July 1835; the other 527 are printed against the name in a later volume and say so.",
    "tables": [
     {
      "title": "Persons by number of roles",
@@ -11196,23 +11328,23 @@
      "rows": [
       [
        "0",
-       1817,
-       "84.7%"
+       1942,
+       "85.6%"
       ],
       [
        "1",
        154,
-       "7.2%"
+       "6.8%"
       ],
       [
        "2 or more",
        67,
-       "3.1%"
+       "3.0%"
       ],
       [
        "3 or more",
        67,
-       "3.1%"
+       "3.0%"
       ],
       [
        "4 or more",
@@ -11292,7 +11424,7 @@
       ],
       [
        "reconstructed",
-       92
+       203
       ]
      ],
      "note": ""
@@ -11306,8 +11438,12 @@
      "aligns": "lr",
      "rows": [
       [
+       "soldier",
+       102
+      ],
+      [
        "laundress",
-       33
+       41
       ],
       [
        "dressmaker",
@@ -11546,6 +11682,10 @@
        1
       ],
       [
+       "sutler",
+       1
+      ],
+      [
        "tailor",
        1
       ],
@@ -11565,7 +11705,7 @@
   {
    "id": "households",
    "title": "Household composition",
-   "lead": "1161 of 1382 households (84.0%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 221 households name a second person; 194 heads read as women.",
+   "lead": "1162 of 1393 households (83.4%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 231 households name a second person; 194 heads read as women.",
    "tables": [
     {
      "title": "Persons in the household",
@@ -11578,32 +11718,32 @@
      "rows": [
       [
        "1",
-       1161,
-       "84.0%"
+       1162,
+       "83.4%"
       ],
       [
        "2",
-       44,
+       45,
        "3.2%"
       ],
       [
        "3",
-       37,
-       "2.7%"
+       40,
+       "2.9%"
       ],
       [
        "4",
-       36,
-       "2.6%"
+       38,
+       "2.7%"
       ],
       [
        "5",
-       33,
+       34,
        "2.4%"
       ],
       [
        "6",
-       40,
+       41,
        "2.9%"
       ],
       [
@@ -11620,6 +11760,11 @@
        "9",
        4,
        "0.3%"
+      ],
+      [
+       "47",
+       2,
+       "0.1%"
       ]
      ],
      "note": ""
@@ -11635,28 +11780,33 @@
      "rows": [
       [
        "head",
-       1382,
-       "64.5%"
+       1393,
+       "61.4%"
       ],
       [
        "son",
        294,
-       "13.7%"
+       "13.0%"
       ],
       [
        "daughter",
        270,
-       "12.6%"
+       "11.9%"
       ],
       [
        "household_member",
-       94,
-       "4.4%"
+       186,
+       "8.2%"
       ],
       [
        "wife",
-       93,
-       "4.3%"
+       101,
+       "4.5%"
+      ],
+      [
+       "child",
+       16,
+       "0.7%"
       ],
       [
        "partner",
@@ -11667,11 +11817,6 @@
        "brother",
        4,
        "0.2%"
-      ],
-      [
-       "child",
-       2,
-       "0.1%"
       ]
      ],
      "note": ""
@@ -11756,7 +11901,7 @@
   {
    "id": "lodging",
    "title": "Lodging",
-   "lead": "20 of 1382 households name a place they live. The town census counts 398 dwellings for 3,265 people — eight to a dwelling — so the beds are where this layer is thinnest, and T-1175 is the ticket that fills them.",
+   "lead": "31 of 1393 households name a place they live. The town census counts 398 dwellings for 3,265 people — eight to a dwelling — so the beds are where this layer is thinnest, and T-1175 is the ticket that fills them.",
    "tables": [
     {
      "title": "Where a household is lodged",
@@ -11770,7 +11915,12 @@
       [
        "no lives_at at all",
        1362,
-       "98.6%"
+       "97.8%"
+      ],
+      [
+       "the fort",
+       13,
+       "0.9%"
       ],
       [
        "a dwelling or a place of business",
@@ -11781,11 +11931,6 @@
        "a house of entertainment",
        8,
        "0.6%"
-      ],
-      [
-       "the fort",
-       2,
-       "0.1%"
       ]
      ],
      "note": ""
@@ -11928,6 +12073,62 @@
        "inferred"
       ],
       [
+       "A married soldier's household of the first company — Edward Cavanagh, Honora Duffy and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Martin Duffy, Catherine Walsh and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Patrick Tobin, Margaret Cavanagh and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the first company — Thomas Sullivan, Margaret McGuire and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Erastus Sheldon, Lucy Dickinson and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — James Eastman, Maria Wadsworth and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Martin Shea, Johanna Tobin and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "A married soldier's household of the second company — Owen Walsh, Margaret Doyle and their children",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
        "The commandant's household",
        "fort_dearborn_commandants_quarters",
        "commanding officers quarters",
@@ -11935,11 +12136,32 @@
        "attested"
       ],
       [
+       "The first company of the 5th Infantry — the men in barracks",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
+      ],
+      [
        "The post surgeon's household",
        "fort_dearborn_officers_quarters",
        "officers quarters",
        "the fort",
        "inferred"
+      ],
+      [
+       "The post sutler's household — David Metcalf",
+       "fort_dearborn_sutlers_store",
+       "sutlers store",
+       "the fort",
+       "reconstructed"
+      ],
+      [
+       "The second company of the 5th Infantry — the men in barracks",
+       "fort_dearborn_barracks",
+       "enlisted mens barracks",
+       "the fort",
+       "reconstructed"
       ]
      ],
      "note": ""
@@ -11953,7 +12175,7 @@
   {
    "id": "buildings",
    "title": "Where they meet the buildings",
-   "lead": "56 persons resolve into a dwelling that stands in the scene, in 20 households; 1362 households have no dwelling. 371 roofs stand against a programme of 668.",
+   "lead": "181 persons resolve into a dwelling that stands in the scene, in 31 households; 1362 households have no dwelling. 371 roofs stand against a programme of 668.",
    "tables": [
     {
      "title": "Households by division and seating",
@@ -11989,8 +12211,8 @@
       ],
       [
        "fort",
-       2,
-       2,
+       13,
+       13,
        1,
        0
       ],
@@ -12010,8 +12232,8 @@
       ],
       [
        "TOTAL",
-       1382,
-       20,
+       1393,
+       31,
        50,
        1362
       ]
@@ -12047,13 +12269,13 @@
     }
    ],
    "notes": [
-    "1186 of 1382 households are `unplaced` — not in any division. A person without a division cannot be housed, which is why the division axis and the lodging axis fail together."
+    "1186 of 1393 households are `unplaced` — not in any division. A person without a division cannot be housed, which is why the division axis and the lodging axis fail together."
    ]
   },
   {
    "id": "community",
    "title": "Composition and types",
-   "lead": "What KINDS of people the sources show, counted only where a source says so. 0 of 2144 persons carry no community signal at all: the post-office returns that mint most of this layer print a name and a town and nothing else. Every row below is a source speaking, not a reading of a surname.",
+   "lead": "What KINDS of people the sources show, counted only where a source says so. 0 of 2269 persons carry no community signal at all: the post-office returns that mint most of this layer print a name and a town and nothing else. Every row below is a source speaking, not a reading of a surname.",
    "tables": [
     {
      "title": "Community signals on the card",
@@ -12066,13 +12288,13 @@
      "rows": [
       [
        "a source states where they came from",
-       2144,
+       2269,
        "100.0%"
       ],
       [
        "named in the Catholic register",
        32,
-       "1.5%"
+       "1.4%"
       ],
       [
        "named in a record that touches removal",
@@ -12287,6 +12509,11 @@
        "reconstructed"
       ],
       [
+       "Abner Lyman",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Abner Smith",
        "New England",
        "reconstructed"
@@ -12399,6 +12626,11 @@
       [
        "Alanson Sweet",
        "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Alanson Wadsworth",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -12722,6 +12954,11 @@
        "reconstructed"
       ],
       [
+       "Alvah Lyman",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Alvah Rice",
        "New England",
        "reconstructed"
@@ -12817,6 +13054,11 @@
        "reconstructed"
       ],
       [
+       "Amos Barnes",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Amos Blood",
        "New York State",
        "reconstructed"
@@ -12837,6 +13079,16 @@
        "reconstructed"
       ],
       [
+       "Amos Dickinson",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Amos Fisk",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Amos Foster",
        "New York State",
        "reconstructed"
@@ -12854,6 +13106,11 @@
       [
        "Amos Rathburn",
        "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Amos Sheldon",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -13487,6 +13744,11 @@
        "reconstructed"
       ],
       [
+       "Bridget Keegan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Bridget Lynch",
        "New England",
        "reconstructed"
@@ -13549,6 +13811,11 @@
       [
        "Bryan Reed",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Bryan Tobin",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -13782,6 +14049,11 @@
        "reconstructed"
       ],
       [
+       "Catherine Walsh",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Charl Benubien",
        "New York State",
        "reconstructed"
@@ -13917,6 +14189,11 @@
        "reconstructed"
       ],
       [
+       "Charles Stiles",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Charles T. Richards",
        "New York State",
        "reconstructed"
@@ -13969,6 +14246,16 @@
       [
        "Chas. H. Chapman",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Chauncey Bacon",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Chauncey Dickinson",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -14162,6 +14449,16 @@
        "reconstructed"
       ],
       [
+       "Cornelius Duffy",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Gallagher",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Cornelius Mccarthy",
        "The Mid-Atlantic states",
        "reconstructed"
@@ -14184,6 +14481,21 @@
       [
        "Cornelius Reed",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Sullivan",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Tobin",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Walsh",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -14267,6 +14579,11 @@
        "reconstructed"
       ],
       [
+       "Daniel Flynn",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Daniel Hasslen",
        "New England",
        "reconstructed"
@@ -14284,6 +14601,11 @@
       [
        "Daniel I. Fitzlugh",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Daniel Mahoney",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -14407,6 +14729,11 @@
        "reconstructed"
       ],
       [
+       "David Fisk",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "David Groover",
        "New York State",
        "reconstructed"
@@ -14445,6 +14772,11 @@
        "David McKee",
        "Virginia",
        "inferred"
+      ],
+      [
+       "David Metcalf",
+       "New England",
+       "reconstructed"
       ],
       [
        "David Muggs",
@@ -14507,8 +14839,28 @@
        "reconstructed"
       ],
       [
+       "Dennis Doyle",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Dennis Duffy",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Dennis Gallagher",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Dennis Hayes",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Dennis Keegan",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -14722,6 +15074,11 @@
        "reconstructed"
       ],
       [
+       "Edward Cavanagh",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Edward Dalton",
        "New York State",
        "reconstructed"
@@ -14747,6 +15104,11 @@
        "reconstructed"
       ],
       [
+       "Edward Gallagher",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Edward H. Haddock",
        "New York State",
        "reconstructed"
@@ -14759,6 +15121,11 @@
       [
        "Edward Kripes",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Edward Mahoney",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -14777,6 +15144,11 @@
        "reconstructed"
       ],
       [
+       "Edward Quinn",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Edward Richards Allen",
        "New England",
        "reconstructed"
@@ -14784,6 +15156,11 @@
       [
        "Edward Ryan",
        "England",
+       "reconstructed"
+      ],
+      [
+       "Edward Shea",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -14852,6 +15229,16 @@
        "inferred"
       ],
       [
+       "Eli Bardwell",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Eli Barnes",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Eli Benn",
        "New England",
        "reconstructed"
@@ -14884,6 +15271,11 @@
       [
        "Eli Lyman",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Eli Stebbins",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -14942,7 +15334,17 @@
        "reconstructed"
       ],
       [
+       "Elisha Bardwell",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Elisha Bradley",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Elisha Eastman",
        "The Mid-Atlantic states",
        "reconstructed"
       ],
@@ -15029,6 +15431,11 @@
       [
        "Eliza Pearsons",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Eliza Sawyer",
+       "England",
        "reconstructed"
       ],
       [
@@ -15272,6 +15679,16 @@
        "inferred"
       ],
       [
+       "Erastus Nichols",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Erastus Sheldon",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Erastus Tucker",
        "New England",
        "reconstructed"
@@ -15392,6 +15809,11 @@
        "reconstructed"
       ],
       [
+       "Ezra Stiles",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Ezra Stow",
        "New York State",
        "reconstructed"
@@ -15399,6 +15821,11 @@
       [
        "Ezra Thayer",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Ezra Wadsworth",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -15689,6 +16116,11 @@
       [
        "George M Brooks",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "George Metcalf",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -16067,6 +16499,11 @@
        "reconstructed"
       ],
       [
+       "Harvey Fairbanks",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Harvey Fisk",
        "New England",
        "reconstructed"
@@ -16102,6 +16539,11 @@
        "reconstructed"
       ],
       [
+       "Henry Chapin",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Henry Cobb",
        "New York State",
        "reconstructed"
@@ -16109,6 +16551,11 @@
       [
        "Henry Courtney",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Henry Eastman",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -16157,6 +16604,11 @@
        "reconstructed"
       ],
       [
+       "Henry Parmelee",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Henry Reeder",
        "England",
        "reconstructed"
@@ -16184,6 +16636,11 @@
       [
        "Henry S. Vyekoff",
        "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Henry Stebbins",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -16357,6 +16814,16 @@
        "reconstructed"
       ],
       [
+       "Honora Donnelly",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Honora Duffy",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Honora Fitzgerald",
        "New York State",
        "reconstructed"
@@ -16383,6 +16850,11 @@
       ],
       [
        "Honora Mahoney",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Honora McCarthy",
        "New York State",
        "reconstructed"
       ],
@@ -16422,6 +16894,11 @@
        "reconstructed"
       ],
       [
+       "Honora Sullivan",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Honora Taylor",
        "Virginia.",
        "inferred"
@@ -16454,6 +16931,11 @@
       [
        "Horace Curtiss",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Horace Eastman",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -16497,8 +16979,18 @@
        "reconstructed"
       ],
       [
+       "Hugh Gallagher",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Hugh Handy",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Hugh Hayes",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -16609,6 +17101,11 @@
       [
        "Ira Saymore",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Ira Wadsworth",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -16992,6 +17489,11 @@
        "reconstructed"
       ],
       [
+       "James Corrigan",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "James Couch",
        "New York.",
        "inferred"
@@ -17007,8 +17509,18 @@
        "reconstructed"
       ],
       [
+       "James Donnelly",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "James Dowd",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "James Eastman",
+       "Ireland",
        "reconstructed"
       ],
       [
@@ -17074,6 +17586,11 @@
       [
        "James H. Woodworth",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "James Hayes",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -17174,6 +17691,11 @@
       [
        "James Panster",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "James Parmelee",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -17289,6 +17811,11 @@
       [
        "Jared Hastings",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Jared Kellogg",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -17487,6 +18014,11 @@
        "reconstructed"
       ],
       [
+       "Johanna Tobin",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Johanna Walsh",
        "New York State",
        "reconstructed"
@@ -17647,6 +18179,11 @@
        "reconstructed"
       ],
       [
+       "John Doyle",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "John Fitzsimmons",
        "New England",
        "reconstructed"
@@ -17732,6 +18269,11 @@
        "inferred"
       ],
       [
+       "John Kelly",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "John Kilpatrick",
        "New England",
        "reconstructed"
@@ -17799,6 +18341,11 @@
       [
        "John M. Purner",
        "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "John McCarthy",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -18447,14 +18994,39 @@
        "reconstructed"
       ],
       [
+       "Lemuel Crandall",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Lemuel Fairbanks",
        "England",
+       "reconstructed"
+      ],
+      [
+       "Lemuel Fisk",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Lemuel Hastings",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
        "Lemuel Kinzie",
        "Detroit",
        "inferred"
+      ],
+      [
+       "Lemuel Leland",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Lemuel Metcalf",
+       "The Southern states",
+       "reconstructed"
       ],
       [
        "Lemuel Noble",
@@ -18502,6 +19074,11 @@
        "reconstructed"
       ],
       [
+       "Levi Barnes",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Levi Blake",
        "New England",
        "reconstructed"
@@ -18519,6 +19096,21 @@
       [
        "Levi Gorton",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Levi Lyman",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Levi Nash",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Levi Newell",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -18672,6 +19264,11 @@
        "reconstructed"
       ],
       [
+       "Lucy Dickinson",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Lucy Gilbert",
        "New York State",
        "reconstructed"
@@ -18734,6 +19331,11 @@
       [
        "Luther Gilbert",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Luther Hastings",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -18957,13 +19559,33 @@
        "reconstructed"
       ],
       [
+       "Margaret Cavanagh",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Margaret Connor",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Margaret Corrigan",
        "New York State",
        "reconstructed"
       ],
       [
        "Margaret Dolan",
        "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Margaret Donnelly",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Margaret Doyle",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -18982,6 +19604,11 @@
        "reconstructed"
       ],
       [
+       "Margaret Kelly",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Margaret Lynch",
        "New England",
        "reconstructed"
@@ -18989,6 +19616,11 @@
       [
        "Margaret Mahoney",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Margaret McGuire",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -19089,6 +19721,11 @@
       [
        "Maria Thayer",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Maria Wadsworth",
+       "Ireland",
        "reconstructed"
       ],
       [
@@ -19222,6 +19859,11 @@
        "reconstructed"
       ],
       [
+       "Martin Cavanagh",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Martin Cleland",
        "Chautauqua, New York",
        "inferred"
@@ -19229,6 +19871,26 @@
       [
        "Martin Connor",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Martin Corrigan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Martin Duffy",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Martin Hayes",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Martin Lynch",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -19242,8 +19904,18 @@
        "reconstructed"
       ],
       [
+       "Martin Shea",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Martin Sullivan",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Martin Tobin",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -19328,6 +20000,11 @@
       ],
       [
        "Mary Ingalls",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Mary Kelly",
        "New York State",
        "reconstructed"
       ],
@@ -19557,6 +20234,16 @@
        "reconstructed"
       ],
       [
+       "Michael Connor",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Michael Donnelly",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Michael Doyle",
        "England",
        "reconstructed"
@@ -19584,6 +20271,11 @@
       [
        "Michael Lynch",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Michael McCarthy",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -19877,6 +20569,11 @@
        "reconstructed"
       ],
       [
+       "Nathaniel Eastman",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Nathaniel Fairbanks",
        "New England",
        "reconstructed"
@@ -19892,8 +20589,18 @@
        "reconstructed"
       ],
       [
+       "Nathaniel Lyman",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Nathaniel Nash",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Nathaniel Nichols",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -20042,8 +20749,18 @@
        "reconstructed"
       ],
       [
+       "Orrin Fairbanks",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Orrin Gilbert",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Orrin Hastings",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -20112,6 +20829,16 @@
        "reconstructed"
       ],
       [
+       "Otis Nichols",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Otis Whitcomb",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Owen Dolan",
        "West of the Alleghenies",
        "reconstructed"
@@ -20127,7 +20854,22 @@
        "reconstructed"
       ],
       [
+       "Owen Keegan",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Owen Mahoney",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Owen Thomas",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Owen Walsh",
        "New York State",
        "reconstructed"
       ],
@@ -20242,8 +20984,18 @@
        "reconstructed"
       ],
       [
+       "Patrick Quinn",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Patrick Robert",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Patrick Tobin",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -20717,6 +21469,11 @@
        "reconstructed"
       ],
       [
+       "Reuben Fairbanks",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Reuben Farnsworth",
        "Ireland",
        "reconstructed"
@@ -20724,6 +21481,11 @@
       [
        "Reuben Fisk",
        "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Reuben Ingalls",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -21007,6 +21769,11 @@
        "reconstructed"
       ],
       [
+       "Rufus Sawyer",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Rufus Stebbins",
        "New York State",
        "reconstructed"
@@ -21234,6 +22001,11 @@
       [
        "Samuel Miller",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Samuel Nash",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -21477,6 +22249,11 @@
        "inferred"
       ],
       [
+       "Silas Dickinson",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
        "Silas Fairbanks",
        "New England",
        "reconstructed"
@@ -21494,6 +22271,11 @@
       [
        "Silas Hogan",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Silas Kellogg",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -21777,13 +22559,48 @@
        "reconstructed"
       ],
       [
+       "Terence Cavanagh",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Terence Doyle",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Terence Flynn",
        "England",
        "reconstructed"
       ],
       [
+       "Terence Gallagher",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Terence Keegan",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Terence Kelly",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Terence Mahoney",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Terence Nolan",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Terence Reilly",
+       "The Southern states",
        "reconstructed"
       ],
       [
@@ -21942,6 +22759,11 @@
        "reconstructed"
       ],
       [
+       "Thomas Gallagher",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
        "Thomas Hartzell",
        "New England",
        "reconstructed"
@@ -22024,6 +22846,16 @@
       [
        "Thomas S. Hyde",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Thomas Shea",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Thomas Sullivan",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -22332,6 +23164,16 @@
        "reconstructed"
       ],
       [
+       "Willard Leland",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Willard Newell",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Willard Thayer",
        "New York State",
        "reconstructed"
@@ -22374,6 +23216,11 @@
       [
        "William B Noble",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "William Bacon",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [

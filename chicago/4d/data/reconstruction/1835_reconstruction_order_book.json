@@ -26,11 +26,11 @@
     "real_names_first": "The roster (T-1159) offers every name the corpus printed and withheld. It is a licence on WHICH name a filler uses and never a quota, so it is counted against its ticket rather than smeared across cells that cannot hold it."
   },
   "known_layer": {
-    "households_total": 1382,
+    "households_total": 1393,
     "households_present": 436,
     "households_uncertain": 820,
-    "households_reconstructed": 124,
-    "persons_total": 2144,
+    "households_reconstructed": 135,
+    "persons_total": 2269,
     "persons_present": 457,
     "persons_present_attested": 133,
     "persons_present_inferred": 324,
