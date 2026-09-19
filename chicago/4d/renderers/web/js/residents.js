@@ -1292,6 +1292,35 @@ function reconstructionHtml(person) {
     ${basisHtml(person)}</dd>`;
 }
 
+/**
+ * A BIRTH INTERVAL THE CARD REFUTED (T-1179).
+ *
+ * `tools/spend_person_sex_age.py` spends an obituary's arithmetic into a `birth_year`,
+ * and until T-1179 it spent it without ever reading the rest of the card. George Smith
+ * advertised the Exchange Coffee House in the Democrat through 1834 and 1835 and his
+ * card said he was born in 1831, so the town held a coffee-house keeper of four.
+ *
+ * The match is not withdrawn and no age is put in its place — the refusal is of the
+ * SPEND, and the block that records it lives in `birth_year` like any other, asserting
+ * no value. It takes the Born row rather than leaving it blank, because a card that
+ * simply stopped printing a birth year would tell a reader nothing about the obituary
+ * still sitting further down the same card. The `unknown` chip is the right one: after
+ * the refusal this project asserts no birth year for the person at all.
+ */
+function birthRefusedHtml(block, citationsById) {
+  const cites = (block.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const [from, to] = block.refused_interval || [];
+  const years = from === to ? `${from}` : `${from} or ${to}`;
+  return `<dt>Born</dt>
+    <dd>${swatch('unknown')}${tierWord('unknown')}not recorded — an obituary matched to
+      this name puts the birth in ${escapeHtml(years)}, and this card refuses it
+      <br><span class="res-why">${escapeHtml(block.note || '')}</span>${
+      block.as_read ? `<br><span class="res-why">The page reads <q>${
+        escapeHtml(String(block.as_read))}</q>, record ${
+        escapeHtml(String(block.record_id ?? ''))}.</span>` : ''}${
+      cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
@@ -1331,7 +1360,9 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         ? claimRow('Sex', words(basis.value), basis, citationsById)
         : row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
-      ${claimRow('Born', bornYears(born), born, citationsById)}
+      ${born && born.refused_because
+        ? birthRefusedHtml(born, citationsById)
+        : claimRow('Born', bornYears(born), born, citationsById)}
       ${claimRow('Age band on 1 July 1835', bandYears(person.age_band),
         person.age_band, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
