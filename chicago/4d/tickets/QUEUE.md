@@ -213,4 +213,3 @@ T-1345 — step_isolation exempts gitignored build products by a hand-kept path 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1354 — The six documented departures from Chicago, read against present_on_scene_date: whether a man recorded leaving in 1835 was at the town on 1 July, each ruled with the removal beside the other sources rather than out of one volume
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
-
