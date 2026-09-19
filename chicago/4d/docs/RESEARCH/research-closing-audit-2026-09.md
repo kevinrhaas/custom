@@ -12,8 +12,8 @@ Registered reading units: **23,693**, as of 2026-09-15. Unclassified: **0**. Ass
 | asserted | 829 |
 | later_only | 12,568 |
 | outside_chicago | 109 |
-| refused | 8,634 |
-| unresolved | 1,380 |
+| refused | 8,635 |
+| unresolved | 1,379 |
 
 Every asserted unit names the record and field it wrote to. Grouped by the layer that file belongs to:
 
@@ -33,11 +33,11 @@ Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then `python
 
 | Measure | Count |
 | --- | ---: |
-| Persons | 1,288 |
+| Persons | 1,588 |
 | Households | 1,258 |
 | Persons graded `attested` | 410 |
 | Persons graded `inferred` | 875 |
-| Persons graded `reconstructed` | 3 |
+| Persons graded `reconstructed` | 303 |
 | Letter-list-only names | 736 |
 | Projected residents | 721 |
 | Merged away | 66 |
@@ -123,7 +123,6 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | T-1198 | 270 | open | yes |
 | T-1299 | 1 | open | yes |
 | T-1315 | 3 | open | yes |
-| T-1334 | 1 | open | yes |
 | T-1335 | 168 | open | yes |
 | T-1338 | 128 | open | yes |
 

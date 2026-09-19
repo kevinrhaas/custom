@@ -228,7 +228,9 @@
         {
           "record_id": "bk_mose1_as_028",
           "printed": "Pothier, Joseph",
-          "why": "No Pothier in data/residents/. AND THIS ONE IS A HOLE RATHER THAN AN EXPECTED ABSENCE: hh_mckee_david.json quotes Andreas naming 'Joseph Porthier as striker' at the Indian agency in the same sentence as McKee and Caldwell, both of whom this pass merges. One letter separates Porthier from Pothier and the project holds a card for neither."
+          "why": "No Pothier in data/residents/. AND THIS ONE IS A HOLE RATHER THAN AN EXPECTED ABSENCE: hh_mckee_david.json quotes Andreas naming 'Joseph Porthier as striker' at the Indian agency in the same sentence as McKee and Caldwell, both of whom this pass merges. One letter separates Porthier from Pothier and the project holds a card for neither.",
+          "superseded_by": "T-1334",
+          "superseded_note": "THIS ABSENCE IS WITHDRAWN AND ITS TEXT IS LEFT STANDING. 'The project holds a card for neither' was not true when it was written — hh_porthier_joseph.json has stood in data/residents/ since 2026-08-13 — and the row is now merged into that card under this file's `merges`, on the volume's own index joining its two spellings. The prose above is left exactly as T-0961 wrote it, because editing an authored reasoning field to tidy a finding is the retroactive smoothing this project refuses; the pointer is the correction."
         },
         {
           "record_id": "bk_mose1_as_033",
@@ -236,6 +238,17 @@
           "why": "No See in data/residents/, of any forename."
         }
       ]
+    },
+    {
+      "pass": "T-1334",
+      "what": "One row of the LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 re-ruled: bk_mose1_as_028, 'Pothier, Joseph'. T-0961 filed it under that pass's `absences` on the ground that 'the project holds a card for neither' spelling, and named it the one absence that was A HOLE RATHER THAN AN EXPECTED ABSENCE. The ground was not true when it was written: hh_porthier_joseph.json has stood in data/residents/ since 2026-08-13, a month before that pass ran. The pass searched the surname the row prints and a one-letter difference is exactly what its own `does_not_follow` says the candidate test behind it cannot see — the same blind spot that hid Madore/Medore Beaubien, Clybourn/Clybourne and Russel/Russell E. Heacock, filed as T-1002.",
+      "readings_examined": 1,
+      "residents_examined": 1,
+      "merges": 1,
+      "refusals": 0,
+      "detail": "In this file, as one merge, beside the twelve T-0961 made from the same table.",
+      "the_rule_this_pass_worked_to": "T-0961's, borrowed intact rather than reinvented: a merge is upheld only where the town's own record carries something the ROW can be checked against BEYOND a bare name. What is different here is that THE SOURCE ITSELF JOINS THE TWO SPELLINGS — this volume's own index gathers its Pothier pages and its Porthier page under one heading — so the identification is the compiler's and the reader is only reading it. That is the answer T-1334 owed to the question of whether a one-letter identity can be written as a rule a crosswalk can apply: it can, WHERE THE SOURCE MAKES IT, and joining two names by eye remains refused.",
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS, and nobody was minted. One consequence is visible and deliberately not drawn: hh_porthier_joseph.json's `arrival` is 1830, `reconstructed`, and says of itself '1830 is the earliest year this project can argue and it cites nothing' — this row dates the arrival to 1823 and prints a nativity, and writing either is an attribute change on a resident record. It belongs to the pass that owns dated arrivals and nativities out of the books corpus, which the spend ruling on this unit hands it to — T-1340, since T-1317 split on 2026-09-18."
     },
     {
       "pass": "T-1340",
@@ -687,6 +700,23 @@
       "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it. AND ONE CONSEQUENCE IS DELIBERATELY NOT DRAWN. hh_clark_john_k.json's bound falls AFTER the scene date and this row is evidence he was at Chicago from 1817 — which would move that card from 'named after the scene' to 'named before it'. Moving a bound is a resident-record edit and a second demonstration, and a tier-3 compilation of 1895 is the weakest evidence in the building for doing it. Proposed in T-0961 and not made.",
       "pass": "T-0961",
       "record_id": "bk_mose1_as_008"
+    },
+    {
+      "into": "Joseph Porthier",
+      "from": "Pothier, Joseph",
+      "rule": "THE TWO SPELLINGS THIS RULE JOINS ARE 'Pothier, Joseph', as the table prints it, and 'Joseph Porthier', as the residents layer holds it. The table's row reads 'Pothier,  Joseph French 1823 Voted  in  1826'. This project's resident record is 'Joseph Porthier', striker to the government blacksmith at the Indian agency at Chicago, graded attested. ONE LETTER SEPARATES THE TWO SPELLINGS, AND THIS VOLUME JOINS THEM ITSELF — which is the whole of why this merge is upheld where a one-letter join by eye is refused. Moses and Kirkland print both spellings, of one man, inside one book: printed page 72 has 'The same year came also Joseph Porthier, a Frenchman, McKee's assistant, who also built a house on the North Side'; printed page 76 prints 'Joseph Pothier' in the LIST OF VOTERS AT THE ELECTION OF 1826, three names above 'David McKee'; printed page 85 prints 'Joseph Pothier' again in the list of voters at the 1830 election; and the volume's own INDEX carries one heading for all of it, 'Porthier, Joseph, 72, 76, 85, 89.' The compiler of 1895 made the identification between his own two spellings and this ruling reads it rather than inventing it. THREE THINGS AGREE BEYOND THE NAME, and each of them is a cell of the row. The NATIVITY cell, French, agrees with page 72's 'a Frenchman' and with hh_porthier_joseph.json's own note, which places the man in the Porthier family the 1833 treaty schedule names — 'Victoire Porthier and her children, $700' — and whom Andreas treats with the Mirandeaus as part of the French and mixed-descent community at Chicago. The YEAR cell, 1823, is page 72's 'The same year': the year of David McKee's arrival, which the sentence immediately above dates 'May 31, 1822, or '23' and which bk_mose1_as_025 merges into hh_mckee_david.json. And the REMARKS cell, 'Voted in 1826', is the list on page 76 that prints the name — a civic act this project can open and read, not a claim about one. THE TRADE IS THE FOURTH AGREEMENT and the strongest: page 72's 'McKee's assistant' is Andreas's agency establishment under Col. Owen, 'David McKee as blacksmith, and Joseph Porthier as striker', which is the occupation hh_porthier_joseph.json already carries attested out of Andreas. A common-name coincidence would have to reach four agreements and the source's own index.",
+      "evidence": [
+        "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_028 — 'Pothier, Joseph', French, 1823, 'Voted in 1826'",
+        "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt line 9981 — printed page 72, 'came also Joseph Porthier, a Frenchman, McKee's assistant'",
+        "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt lines 10513 and 10524 — printed page 76, the footnote 'List of voters at the election of 1826' and 'Joseph Pothier' three names above 'David McKee' in it",
+        "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt line 11655 — printed page 85, 'Joseph Pothier' in the 1830 list of voters",
+        "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt line 133477 — the volume's index, 'Porthier, Joseph, 72, 76, 85, 89.', one heading over both spellings",
+        "data/residents/households/hh_porthier_joseph.json — persons[0] (porthier_joseph, Joseph Porthier, blacksmith, attested), the occupation note quoting Andreas's agency roster, and the person note quoting the 1833 treaty schedule",
+        "data/research/books/crosswalk.json merges — bk_mose1_as_025 into David McKee, the same sentence's other man, merged by T-0961 out of this same table"
+      ],
+      "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE, and nobody is minted. It is an identity statement inside the research layer. The row describes 1823 and 1826, nine to twelve years before the scene date, and under the ladder ratified 2026-09-03 a pre-scene arrival and a pre-scene poll corroborate an identity and date it and never place a person. Where it matters most the card is untouched: hh_porthier_joseph.json reads `present_on_scene_date: absent` on a dated February-March 1835 migration to Milwaukee (T-0478, Pioneer History of Milwaukee), and this merge neither weakens that nor argues with it. The arrival and the nativity the row carries ARE fillable and are deliberately not filled here; they are handed on in the spend ruling on this unit, to T-1340, which owns the books corpus's dated arrivals since T-1317 split on 2026-09-18.",
+      "pass": "T-1334",
+      "record_id": "bk_mose1_as_028"
     },
     {
       "into": "Philo Carpenter",

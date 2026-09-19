@@ -226,6 +226,24 @@ def _letter_list_person_count() -> int:
     return n
 
 
+def _modelled_family_person_count() -> int:
+    """People the household model drew for a head the sources leave standing alone.
+
+    Counted off the household RECORDS and off the stage key each of them carries, for the
+    same reason the letter-list count is: a scope that read a number another tool derived
+    would be agreeing with a second opinion rather than measuring. T-1171's stage is the
+    first thing in this project to write a person, so the liberty that admits it has to be
+    able to restate its own size.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        n += sum(1 for p in doc.get("persons") or []
+                 if ((p.get("reconstruction") or {}) if isinstance(p.get("reconstruction"), dict)
+                     else {}).get("stage") == "modelled_families")
+    return n
+
+
 def _civic_mint_person_count() -> int:
     """People the town holds because its own civic, church, press, book and census
     records name them, minted by tools/mint_civic_residents.py (T-0514).
@@ -321,6 +339,10 @@ SCOPE_SOURCES = {
         _back_projected_residence_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/back_project_residences.py --check"),
+    "residents.persons[modelled_families]": (
+        _modelled_family_person_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/reconstruct_modelled_families.py --check"),
     "structures.land_owner[constructed_section_grid]": (
         _land_owner_count,
         "data/structures/*.json, themselves re-derived by "
