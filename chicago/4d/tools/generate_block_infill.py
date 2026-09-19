@@ -56,6 +56,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 # T-E2's refused ground is resolved from the committed traces rather than stored, so the
 # generator asks the same command the gate does instead of keeping its own copy.
 from band_notes import split_notes  # noqa: E402
+from placement_policy_1835 import constant  # noqa: E402
 from measure_no_build_ground import inside as point_in_ring  # noqa: E402
 from measure_no_build_ground import region_ring as no_build_ring  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel — over all fourteen
@@ -934,11 +935,17 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
 # two readings agree — the store takes Randolph either way — so nothing that stands moves
 # on account of the ranking, and that agreement is why the question could be settled at
 # all rather than being settled on the block where it first bites.
-NON_DWELLING_LETTERS = "CFTWI"
+#
+# BOTH LETTER SETS COME FROM THE PLACEMENT POLICY SINCE T-1195. They were typed here, and
+# under other names in measure_face_rule and measure_frontage_fabric, and three copies of
+# one reading is how a reading drifts. `data/reconstruction/1835_placement_policy.json`
+# holds them with the clause each one serves; its assertion 5 reads these two lines.
+NON_DWELLING_LETTERS = "".join(constant("non_dwelling_letters"))
 
 # The letters the documented record puts a zero on for light streets, re-derivable with
-# `tools/measure_face_rule.py`: stores 0 of 15, warehouses 0 of 9, workshops 0 of 7.
-LIGHT_STREET_ZERO = "CFW"
+# `tools/measure_face_rule.py`: stores 0 of 15, warehouses 0 of 9, workshops 0 of 7. The
+# same three the policy calls the trade letters.
+LIGHT_STREET_ZERO = "".join(constant("trade_letters"))
 
 # The traffic classes data/streets/1835.json authors, worst to best.
 TRAFFIC_RANK = {"light": 0, "ordinary": 1, "principal": 2}

@@ -12982,3 +12982,45 @@ Related: **L246** (the re-admissions and the rate that prices them), **L214** (w
 letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-cut
 **T-1196**, the convergence **T-1179**.
 **Recorded:** 2026-09-19.
+
+---
+
+### L254 — Seven of the twelve placement clauses are reasoned rather than read, and the four that carry the most future roofs are the thinnest
+
+**Decision:** `data/reconstruction/1835_placement_policy.json` (T-1195) writes down, as twelve
+clauses, where this project will seat every reconstructed building it has not yet built. Eight
+clauses are tagged `documented` and cite the records behind them. **Four are tagged `inferred`** —
+`professional_row`, `merchant_and_professional_dwellings`, `tradesman_dwellings` and
+`labourer_dwellings` — and each states its reasoning in place of a source. Those four cover
+**C1, H1, H2, D1–D7**: between them, the great majority of the 668-roof programme.
+
+**Why it is a liberty and not a gap.** The documented record of July 1835 is 93 roofs, and the
+reconciliation credits a family to 77 of them. Fifteen are dwellings. Fifteen dwellings cannot
+establish where 337 dwellings stood, and the policy does not pretend otherwise: the dwelling
+clauses are arguments from what the town's own attested houses do, from the lot prices the
+land-sale register records, and from the block parcels' own arrangement notes — not readings of
+a sheet. `merchant_and_professional_dwellings` is the weakest of the four and says so: the town
+holds **one** documented H roof, Cobweb Castle, and Cobweb Castle is the clause's own outlier,
+standing on the north side on ground the plat had not reached. A clause whose only witness
+contradicts it is a hypothesis with a tier on it.
+
+**What is NOT taken here.** No roof moves — T-1195 writes one file and never a structure. No
+confidence is upgraded: every clause keeps the tier its evidence earns, and the policy's own
+assertion 2 refuses a `documented` clause with no record behind it and an `inferred` one with no
+reasoning. The outliers are not corrected, they are recorded: 22 of the 77 documented roofs
+stand against every clause of their own family letter, each with a written reason, and
+assertion 3 refuses a new outlier nobody has explained.
+
+**Consequence.** Every building T-1198 through T-1214 seats on a dwelling clause inherits this
+tier. A visitor reading a reconstructed cottage's card should understand its POSITION to be
+reasoned at the same strength as its fabric, which is to say: the kind of house is argued from
+the occupation and lodging models, and the street it stands on is argued from this file. Where a
+later source narrows one of the four — a directory, a tax list, a recollection that places a
+trade on a street — the clause should be re-tiered and the roofs it seated re-examined, not left
+standing on a liberty that has been overtaken.
+
+Related: **L93** (the institutional families refused to a block parcel by name), the face rule
+**T-0024**, the end rule **T-0023**, the frontage fabric **T-0022**, the density standard
+**T-0079**, the corridors **T-1191** and **T-1192** whose absence accounts for a third of the
+outliers, and the seating tickets **T-1198** and **T-1199**.
+**Recorded:** 2026-09-19.

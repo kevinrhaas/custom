@@ -115,12 +115,16 @@ sys.path.insert(0, str(ROOT / "tools"))
 from measure_frontage_fabric import (  # noqa: E402
     STREET_LINE_M, census, documented_families, street_traffic,
 )
+from placement_policy_1835 import constant  # noqa: E402
 
 # The family letters that are not a dwelling. `A` is excluded on purpose: a yard building
 # is placed by the ancillary clause — off the block alley, behind its own principal roof —
 # which is a rule about the LOT and not about the street, and it long predates this one.
-NON_DWELLING = "CFTWI"
-COMMERCIAL = "C"
+# Both letters are held by `data/reconstruction/1835_placement_policy.json` since T-1195,
+# which is also where the clause each one serves is written down; its assertion 5 reads
+# these two lines and fails if either takes a literal back.
+NON_DWELLING = "".join(constant("non_dwelling_letters"))
+COMMERCIAL = constant("commercial_letter")
 CLASSES = ("principal", "ordinary", "light")
 
 # The block parcels' own prefix. The face rule is their rule; see the docstring.
