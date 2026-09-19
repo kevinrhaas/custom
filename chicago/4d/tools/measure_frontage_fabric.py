@@ -111,12 +111,17 @@ sys.path.insert(0, str(ROOT / "tools"))
 from generate_plat_lots import point_in_polygon, point_to_ring_m  # noqa: E402
 from measure_corridor_intrusion import is_street_furniture  # noqa: E402
 from measure_street_frontage import layer_of, layer_of_record  # noqa: E402
+from placement_policy_1835 import constant  # noqa: E402
 from plat_corridors import corridors, sampled  # noqa: E402
 
 # The empty gap in the setback distribution, at its midpoint. See the docstring; run
 # --setbacks to re-derive it. A building at or inside this stands ON the street line;
 # anything further back stands in the block behind it.
-STREET_LINE_M = 2.71
+#
+# IT IS NO LONGER TYPED HERE. T-1195 moved the five numbers three modules had each
+# re-typed into `data/reconstruction/1835_placement_policy.json`, and that file's own
+# assertion 5 reads this line: put a literal back and the gate names the module.
+STREET_LINE_M = constant("street_line_m")
 
 # The construction classes this census reads. `construction` is a committed form value on
 # 344 phases and is the field the archetypes build walls from, so the material a visitor
@@ -269,8 +274,9 @@ def failures(result: dict) -> list[str]:
 # C stores and mixed use, F warehouses and freight, W workshops. T (inns and taverns) is
 # NOT one of them — a tavern is a trade but the schedule's T families are lodging, and the
 # South Water row the owner's plate draws is stores and a warehouse. Both readings are
-# printed by --trade so the choice can be checked rather than taken on trust.
-TRADE_LETTERS = ("C", "F", "W")
+# printed by --trade so the choice can be checked rather than taken on trust. Held by the
+# placement policy since T-1195 — see STREET_LINE_M above.
+TRADE_LETTERS = tuple(constant("trade_letters"))
 
 
 def street_traffic() -> dict[str, str]:

@@ -1424,6 +1424,23 @@ step "no block parcel stands a non-dwelling where the documented record puts non
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_face_rule.py --self-test
 
+# The face rule, the end rule and the frontage fabric were three modules each holding a
+# piece of one policy and each re-typing its numbers — five of them, under seven names,
+# across four files. T-1195 wrote the policy down: twelve clauses saying who lived and
+# worked where, each with its tier and the documented records behind it, and the five
+# numbers in one place that the four modules now import. The clause text is authored in
+# the module; every count, street class and setback printed beside a clause is re-read
+# from the committed tree on every run, which is what --check compares. Five assertions:
+# no clause cites a record this tree does not hold; a `documented` clause has evidence
+# and an inferred one has its reasoning; every outlier is explained AND every explanation
+# still has its outlier; no family letter is left without a seat rule; and no module has
+# taken its own copy of a shared constant back. No roof moves — this reads.
+step "the placement policy still re-derives, and nothing re-typed its constants" \
+  python3 tools/placement_policy_1835.py --check --quiet
+
+selftest "…and its five assertions still fire when broken" \
+  python3 tools/placement_policy_1835.py --self-test
+
 # A dwelling nobody named is a count-unit toward a documented aggregate; a PUBLIC
 # building nobody named is the claim that an institution stood here and left no record
 # at all. ROADMAP T-I3 enumerated them: on 1835-07-01 the town's public buildings with a

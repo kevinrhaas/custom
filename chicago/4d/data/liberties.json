@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 255,
+  "count": 256,
   "liberties": [
     {
       "id": "L1",
@@ -15206,6 +15206,25 @@
         {
           "label": "What would retire it",
           "text": "the Court of County Commissioners' certificates of freedom of August 1833 would retire the **whole cohort** and name the men it stands for — they are the single most valuable unread document this entry can point at. Any source naming a free Black resident of Chicago on or before 1 July 1835 retires a card. Any source naming a free Black resident at a trade retires the trade liberty. Any source naming a Black-owned business retires a firm. A re-cut of the bracket that no longer puts the floor at the 1833 count retires the cohort's size through `--build`, never by hand. And the review is **not retired, it is held open**: all 15 cards and both firms carry `review_required`, which blocks a scene from being marked `released`. Related: **L246** (the re-admission band), **L247**, **L248**, **L249**, **L250** (the Native and Métis sub-stage beside this one) and **L252** (the same programme's other bands), tickets **T-1377**, **T-1177**, **T-1375** (the community attribute this writes into), **T-1378** (the proprietor community the firms are filterable by), **T-1179** (which converges the layer and is owed the free Black residents who lived under somebody else's roof), the roster **T-1159**, the programme **T-1167**. `docs/RESEARCH/black_chicago_1835.md` lists every source read and every refusal. **A note on what bought these two firms (owner, 2026-09-19).** T-1184 asks every reconstructed business to name the order-book row that bought it. These two name a DOCUMENTED FLOOR instead, and the rule was widened to take one. They fill no modelled shortfall — they stand for the count above — and the order book holds no barber or washing-and-ironing bucket at all, because the programme that would mint one (**T-1186**) has not run. The two ways out under the old rule were to spend T-1186's quota before it runs, or to file documented evidence as an estimate; the owner took neither. A floor carries its own citation — the count, what is counted, the date, the sources and the argument that reaches the scene date — and `tools/compile_businesses.py` refuses a record that names both forms, neither, or a floor nothing states."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-19."
+        }
+      ]
+    },
+    {
+      "id": "L256",
+      "title": "Seven of the twelve placement clauses are reasoned rather than read, and the four that carry the most future roofs are the thinnest",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`data/reconstruction/1835_placement_policy.json` (T-1195) writes down, as twelve clauses, where this project will seat every reconstructed building it has not yet built. Eight clauses are tagged `documented` and cite the records behind them. **Four are tagged `inferred`** — `professional_row`, `merchant_and_professional_dwellings`, `tradesman_dwellings` and `labourer_dwellings` — and each states its reasoning in place of a source. Those four cover **C1, H1, H2, D1–D7**: between them, the great majority of the 668-roof programme. **Why it is a liberty and not a gap.** The documented record of July 1835 is 93 roofs, and the reconciliation credits a family to 77 of them. Fifteen are dwellings. Fifteen dwellings cannot establish where 337 dwellings stood, and the policy does not pretend otherwise: the dwelling clauses are arguments from what the town's own attested houses do, from the lot prices the land-sale register records, and from the block parcels' own arrangement notes — not readings of a sheet. `merchant_and_professional_dwellings` is the weakest of the four and says so: the town holds **one** documented H roof, Cobweb Castle, and Cobweb Castle is the clause's own outlier, standing on the north side on ground the plat had not reached. A clause whose only witness contradicts it is a hypothesis with a tier on it. **What is NOT taken here.** No roof moves — T-1195 writes one file and never a structure. No confidence is upgraded: every clause keeps the tier its evidence earns, and the policy's own assertion 2 refuses a `documented` clause with no record behind it and an `inferred` one with no reasoning. The outliers are not corrected, they are recorded: 22 of the 77 documented roofs stand against every clause of their own family letter, each with a written reason, and assertion 3 refuses a new outlier nobody has explained. **Consequence.** Every building T-1198 through T-1214 seats on a dwelling clause inherits this tier. A visitor reading a reconstructed cottage's card should understand its POSITION to be reasoned at the same strength as its fabric, which is to say: the kind of house is argued from the occupation and lodging models, and the street it stands on is argued from this file. Where a later source narrows one of the four — a directory, a tax list, a recollection that places a trade on a street — the clause should be re-tiered and the roofs it seated re-examined, not left standing on a liberty that has been overtaken. Related: **L93** (the institutional families refused to a block parcel by name), the face rule **T-0024**, the end rule **T-0023**, the frontage fabric **T-0022**, the density standard **T-0079**, the corridors **T-1191** and **T-1192** whose absence accounts for a third of the outliers, and the seating tickets **T-1198** and **T-1199**."
         },
         {
           "label": "Recorded",
