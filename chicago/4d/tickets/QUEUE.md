@@ -56,7 +56,6 @@ T-1378 — proprietor_community on every business and the Businesses view's filt
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 T-1382 — The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it
-T-1365 — The walk splash cites the November 1835 town census as the 1 July population: 1,588 cards read against 3,265, where the source file says that number is never the scene's population and only 457 of the cards are present
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1364 — The town model's arrival share is a count over the wrong denominator: it reads 1.605 of the town arriving in 1833-35 and -777 arriving before, because it divides every person's arrival year by the NAMED layer's 1,285
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card

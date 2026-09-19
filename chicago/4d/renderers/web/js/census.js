@@ -22,6 +22,24 @@
  * T-0490's readers; it no longer reaches the card, because a parenthesis inside the
  * inferred count read as a fourth grade.
  *
+ * T-1365 kept that ladder and fixed what its second rung COUNTED. Both ends of the
+ * people row were the wrong population:
+ *
+ *   the denominator was 3,265, the town census of NOVEMBER 1835, which
+ *   `town_census.json`'s own `town_total_note` forbids reading as the scene's
+ *   population and which the town model has since resolved to a point of 2,536 within
+ *   2,353–3,265 — so the front screen filled toward a bound the reconstruction
+ *   programme had already resolved, and the two quoted different towns;
+ *
+ *   the numerator was every card in the residents index, and most of those people are
+ *   not established in Chicago on 1 July at all — a name waiting on a post-office
+ *   letter list is a card, not a resident of that Tuesday. 829 of 2,144 are cards.
+ *
+ * So the row now reads the SAME population at both ends, out of `people.scene`: the
+ * residents the layer records present on the scene date, graded as before, filling
+ * toward the model's point for that date. The cards the project holds are still said —
+ * as cards, on their own line, which is what they are. `people housed` is unmoved.
+ *
  * FAIL SOFT, ALWAYS. Either source may be absent while a branch is being built. Show the
  * rows that can be read and never turn a census nicety into a page error on the first
  * screen a visitor sees.
@@ -78,7 +96,6 @@ export async function mountGateCensus({ dataBase, root }) {
   const standing = Number(census?.buildings?.standing);
   const target = Number(census?.buildings?.target);
   const housed = Number(census?.people?.housed);
-  const town = Number(census?.people?.town_total);
 
   // Row one: the roofs. One segment, because a building either stands or it does not.
   if (Number.isFinite(standing)) {
@@ -98,19 +115,36 @@ export async function mountGateCensus({ dataBase, root }) {
     aria.push(`${group(standing)} buildings standing${of ? ` ${of}` : ''}`);
   }
 
+  // The scene block is the T-1365 population: both ends of the row, counted the same
+  // way, out of the derived census. The residents manifest stays the fallback for the
+  // grades when the census cannot be read at all — fail soft, always — but a fallback
+  // row carries NO denominator, because the only total in reach there is the November
+  // count and quoting it is the defect this ticket exists to fix.
+  const scene = census?.people?.scene;
   const counts = residents?.counts || {};
-  const named = Number(counts.persons);
-  const grades = counts.by_grade || {};
+  const sceneGrades = scene?.by_grade;
+  const named = Number(scene ? scene.persons : counts.persons);
+  const grades = sceneGrades || counts.by_grade || {};
   const attested = Number(grades.attested);
   const inferred = Number(grades.inferred);
   const reconstructed = Number(grades.reconstructed);
+  const modelled = Number(scene?.target);
+  const cardsHeld = Number(scene?.cards_total);
+  const cardsUnestablished = Number(scene?.cards_not_established);
+  // The tooltip on the "of roughly N" line carries the model's own note and method, so a
+  // visitor who wants to know where 2,536 came from can read it without leaving the gate.
+  const ofTitle = [scene?.target_note, scene?.target_method].filter(Boolean).join(' — ')
+    || census?.people?.town_total_note;
 
   // Row two: the people, the same shape. The bar's three segments are the grades in
   // the order they are earned, so the visitor sees the named count as a portion of the
   // town filling from the best-evidenced end. Reconstructed is listed in the key even
   // at zero: it is the work still to do, and a key that hid it would hide that.
   if (Number.isFinite(named)) {
-    const of = Number.isFinite(town) ? `of roughly ${group(town)} who lived here` : '';
+    const rowLabel = scene ? 'residents in the town' : 'named on a card';
+    const of = Number.isFinite(modelled)
+      ? `of roughly ${group(modelled)} here on 1 July 1835`
+      : '';
     const key = [
       ['att', attested, 'attested'],
       ['inf', inferred, 'inferred'],
@@ -120,13 +154,13 @@ export async function mountGateCensus({ dataBase, root }) {
       `<section class="gc-row"${titleAttr(residents?._doc)}>`
       + '<p class="gc-head">'
       + `<b class="gc-n">${group(named)}</b>`
-      + '<span class="gc-l">named residents</span></p>'
-      + (Number.isFinite(town)
+      + `<span class="gc-l">${rowLabel}</span></p>`
+      + (Number.isFinite(modelled)
         ? '<div class="gc-bar">'
-          + key.map(([k, n]) => `<i class="gc-seg gc-seg-${k}" style="width:${pct(n, town)}"></i>`).join('')
+          + key.map(([k, n]) => `<i class="gc-seg gc-seg-${k}" style="width:${pct(n, modelled)}"></i>`).join('')
           + '</div>'
         : '')
-      + (of ? `<p class="gc-of"${titleAttr(census?.people?.town_total_note)}>${of}</p>` : '')
+      + (of ? `<p class="gc-of"${titleAttr(ofTitle)}>${of}</p>` : '')
       + (key.length
         ? `<ul class="gc-key">${key.map(([k, n, label]) =>
           `<li><i class="gc-sw gc-sw-${k}"></i>${group(n)} ${label}</li>`).join('')}</ul>`
@@ -135,12 +169,24 @@ export async function mountGateCensus({ dataBase, root }) {
         ? `<p class="gc-note"${titleAttr(census?.people?.basis)}>`
           + `${group(housed)} of them are placed in a building that stands</p>`
         : '')
+      // The cards the layer holds without establishing the person in the town that day.
+      // They were the numerator until T-1365 and they are still worth saying — as what
+      // they are, one line down, never as residents.
+      + (Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0
+        ? `<p class="gc-note"${titleAttr(scene?.basis)}>`
+          + `${group(cardsHeld)} cards are held in all; ${group(cardsUnestablished)} name `
+          + 'someone not yet established here on that day</p>'
+        : '')
       + '</section>',
     );
-    aria.push(`${group(named)} named residents${of ? ` ${of}` : ''}`
-      + (key.length ? `: ${key.map(([, n, label]) => `${group(n)} ${label}`).join(', ')}` : ''));
+    aria.push(`${group(named)} ${rowLabel}${of ? ` ${of}` : ''}`
+      + (key.length ? `: ${key.map(([, n, name]) => `${group(n)} ${name}`).join(', ')}` : ''));
     if (Number.isFinite(housed)) {
       aria.push(`${group(housed)} of them are placed in a building that stands`);
+    }
+    if (Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0) {
+      aria.push(`${group(cardsHeld)} cards are held in all; ${group(cardsUnestablished)} name `
+        + 'someone not yet established here on that day');
     }
   } else if (Number.isFinite(housed)) {
     // The residents manifest could not be read, so there is no named count to hang the
