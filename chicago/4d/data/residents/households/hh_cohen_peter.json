@@ -13,7 +13,7 @@
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1824,
+  "value": 1833,
   "confidence": "reconstructed",
   "tier": "reconstructed",
   "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1833-11-26 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
@@ -85,6 +85,15 @@
    "chicago_democrat_1833_11_26"
   ],
   "note": "THE WINDOW ANSWERED A QUESTION THIS BLOCK RECORDED AS OPEN. It read `uncertain` on the reasoning that he was 'documented in the town in November 1833 and not followed by anything reached to 1835' — and the run of the paper does follow him there. The Chicago Democrat of 8 July 1835 prints his own signed advertisement: '[New] and cheap Goods, [AT] HIS OLD STAND. [The sub]scriber is now opening a large and [genera]l assortment of [Dry] Goods, Groceries, [Boots, Shoes,] Clothing and Miscellaneous Arti-[cles]. […] PETER COHEN.' That is seven days after the scene date and at the OLD STAND, so the premises the 1833 copy locates at the east end of South Water were his continuously enough for him to call them old in July 1835. INFERRED AND NOT ATTESTED, because the printing is seven days late: a man opening goods on 8 July was in the town on 1 July, and that last step is the reconstruction's and not the paper's. Found by T-0872's audit of standing 1835 trades."
+ },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 6,
+  "kin_seated": 6,
+  "seed": "hh_cohen_peter:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  },
  "persons": [
   {
@@ -231,6 +240,326 @@
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('cohen_peter:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
    }
+  },
+  {
+   "id": "rc_cohen_peter_wife",
+   "name": "Harriet Cohen",
+   "relationship": "wife",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white females 30 under 40'. Never above the head's own band: the spacing rule of the household model, which the 1840 adult sex ratio argues for and no source states."
+    },
+    "seed": "hh_cohen_peter:wife_age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. The schedule counts in five- and ten-year columns and this project writes no year it cannot read, because a year drawn out of a decadal band would print as a record of a birth."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No trade is drawn for a reconstructed kin member. The occupation model is spent on heads and on the trades the town is short of (T-1173); a wife's and a child's work in an 1835 household is real and unrecorded, and this project will not invent a column for it."
+   },
+   "name_basis": {
+    "value": "Harriet Cohen",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The forename is drawn from the New England and New York pool; the surname is the head's own."
+    },
+    "seed": "hh_cohen_peter:wife_forename",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a member of Peter Cohen's family"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. The surname is the head's own, as his card prints it; the forename is drawn from the New England and New York pool, which is seeded from the attested residents of this town and not from a story about who lived here. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "size_histogram_1840",
+    "note": "The household model drew this house at 6 people from the 1840 city's size histogram, at the head's own band and not at the mean. A house of 6 with a head of 30 and over is a married house, and this is its wife."
+   },
+   "seed": "hh_cohen_peter:household_size",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming this head's family"
+   },
+   "reconstruction": {
+    "programme": "1835_resident_reconstruction",
+    "stage": "modelled_families",
+    "ticket": "T-1171",
+    "community": "yankee",
+    "review_required": false
+   },
+   "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the household model says the head kept a house of this size, and the whole of what is claimed is that: a wife of that house, of this sex and in this age band, drawn from the 1840 Chicago schedule and reproducible from the seed printed above. A source naming this head's family retires them. No figure is drawn (L1)."
+  },
+  {
+   "id": "rc_cohen_peter_child_1",
+   "name": "Rufus Cohen",
+   "relationship": "son",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "10-14",
+    "low": 10,
+    "high": 14,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 10 under 15'. Capped at 10 years: nobody is born after 1835-07-01, and no child of this house is older than the marriage the head's own age band allows."
+    },
+    "seed": "hh_cohen_peter:child_1_age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. The schedule counts in five- and ten-year columns and this project writes no year it cannot read, because a year drawn out of a decadal band would print as a record of a birth."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No trade is drawn for a reconstructed kin member. The occupation model is spent on heads and on the trades the town is short of (T-1173); a wife's and a child's work in an 1835 household is real and unrecorded, and this project will not invent a column for it."
+   },
+   "name_basis": {
+    "value": "Rufus Cohen",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The forename is drawn from the New England and New York pool; the surname is the head's own."
+    },
+    "seed": "hh_cohen_peter:child_1_forename",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a member of Peter Cohen's family"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. The surname is the head's own, as his card prints it; the forename is drawn from the New England and New York pool, which is seeded from the attested residents of this town and not from a story about who lived here. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "size_histogram_1840",
+    "note": "The household model drew this house at 6 people; the head and his wife seated, 4 of them are children."
+   },
+   "seed": "hh_cohen_peter:household_size",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming this head's family"
+   },
+   "reconstruction": {
+    "programme": "1835_resident_reconstruction",
+    "stage": "modelled_families",
+    "ticket": "T-1171",
+    "community": "yankee",
+    "review_required": false
+   },
+   "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the household model says the head kept a house of this size, and the whole of what is claimed is that: a son of that house, of this sex and in this age band, drawn from the 1840 Chicago schedule and reproducible from the seed printed above. A source naming this head's family retires them. No figure is drawn (L1)."
+  },
+  {
+   "id": "rc_cohen_peter_child_2",
+   "name": "Emily Cohen",
+   "relationship": "daughter",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "0-4",
+    "low": 0,
+    "high": 4,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males Under 5'. Capped at 10 years: nobody is born after 1835-07-01, and no child of this house is older than the marriage the head's own age band allows."
+    },
+    "seed": "hh_cohen_peter:child_2_age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. The schedule counts in five- and ten-year columns and this project writes no year it cannot read, because a year drawn out of a decadal band would print as a record of a birth."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No trade is drawn for a reconstructed kin member. The occupation model is spent on heads and on the trades the town is short of (T-1173); a wife's and a child's work in an 1835 household is real and unrecorded, and this project will not invent a column for it."
+   },
+   "name_basis": {
+    "value": "Emily Cohen",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The forename is drawn from the New England and New York pool; the surname is the head's own."
+    },
+    "seed": "hh_cohen_peter:child_2_forename",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a member of Peter Cohen's family"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. The surname is the head's own, as his card prints it; the forename is drawn from the New England and New York pool, which is seeded from the attested residents of this town and not from a story about who lived here. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "size_histogram_1840",
+    "note": "The household model drew this house at 6 people; the head and his wife seated, 4 of them are children."
+   },
+   "seed": "hh_cohen_peter:household_size",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming this head's family"
+   },
+   "reconstruction": {
+    "programme": "1835_resident_reconstruction",
+    "stage": "modelled_families",
+    "ticket": "T-1171",
+    "community": "yankee",
+    "review_required": false
+   },
+   "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the household model says the head kept a house of this size, and the whole of what is claimed is that: a daughter of that house, of this sex and in this age band, drawn from the 1840 Chicago schedule and reproducible from the seed printed above. A source naming this head's family retires them. No figure is drawn (L1)."
+  },
+  {
+   "id": "rc_cohen_peter_child_3",
+   "name": "Rhoda Cohen",
+   "relationship": "daughter",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "0-4",
+    "low": 0,
+    "high": 4,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white females Under 5'. Capped at 10 years: nobody is born after 1835-07-01, and no child of this house is older than the marriage the head's own age band allows."
+    },
+    "seed": "hh_cohen_peter:child_3_age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. The schedule counts in five- and ten-year columns and this project writes no year it cannot read, because a year drawn out of a decadal band would print as a record of a birth."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No trade is drawn for a reconstructed kin member. The occupation model is spent on heads and on the trades the town is short of (T-1173); a wife's and a child's work in an 1835 household is real and unrecorded, and this project will not invent a column for it."
+   },
+   "name_basis": {
+    "value": "Rhoda Cohen",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The forename is drawn from the New England and New York pool; the surname is the head's own."
+    },
+    "seed": "hh_cohen_peter:child_3_forename",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a member of Peter Cohen's family"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. The surname is the head's own, as his card prints it; the forename is drawn from the New England and New York pool, which is seeded from the attested residents of this town and not from a story about who lived here. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "size_histogram_1840",
+    "note": "The household model drew this house at 6 people; the head and his wife seated, 4 of them are children."
+   },
+   "seed": "hh_cohen_peter:household_size",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming this head's family"
+   },
+   "reconstruction": {
+    "programme": "1835_resident_reconstruction",
+    "stage": "modelled_families",
+    "ticket": "T-1171",
+    "community": "yankee",
+    "review_required": false
+   },
+   "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the household model says the head kept a house of this size, and the whole of what is claimed is that: a daughter of that house, of this sex and in this age band, drawn from the 1840 Chicago schedule and reproducible from the seed printed above. A source naming this head's family retires them. No figure is drawn (L1)."
+  },
+  {
+   "id": "rc_cohen_peter_child_4",
+   "name": "Benjamin Cohen",
+   "relationship": "son",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "5-9",
+    "low": 5,
+    "high": 9,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 5 under 10'. Capped at 10 years: nobody is born after 1835-07-01, and no child of this house is older than the marriage the head's own age band allows."
+    },
+    "seed": "hh_cohen_peter:child_4_age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. The schedule counts in five- and ten-year columns and this project writes no year it cannot read, because a year drawn out of a decadal band would print as a record of a birth."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "No trade is drawn for a reconstructed kin member. The occupation model is spent on heads and on the trades the town is short of (T-1173); a wife's and a child's work in an 1835 household is real and unrecorded, and this project will not invent a column for it."
+   },
+   "name_basis": {
+    "value": "Benjamin Cohen",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "The forename is drawn from the New England and New York pool; the surname is the head's own."
+    },
+    "seed": "hh_cohen_peter:child_4_forename",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a member of Peter Cohen's family"
+    },
+    "note": "AN INVENTED NAME, AND IT IS NEVER EVIDENCE. The surname is the head's own, as his card prints it; the forename is drawn from the New England and New York pool, which is seeded from the attested residents of this town and not from a story about who lived here. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "size_histogram_1840",
+    "note": "The household model drew this house at 6 people; the head and his wife seated, 4 of them are children."
+   },
+   "seed": "hh_cohen_peter:household_size",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming this head's family"
+   },
+   "reconstruction": {
+    "programme": "1835_resident_reconstruction",
+    "stage": "modelled_families",
+    "ticket": "T-1171",
+    "community": "yankee",
+    "review_required": false
+   },
+   "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the household model says the head kept a house of this size, and the whole of what is claimed is that: a son of that house, of this sex and in this age band, drawn from the 1840 Chicago schedule and reproducible from the seed printed above. A source naming this head's family retires them. No figure is drawn (L1)."
   }
  ],
  "touches_removal": false,

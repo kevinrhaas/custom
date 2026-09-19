@@ -1066,6 +1066,16 @@ def _check_attribute_fill_sex_age() -> int:
     return reconstruct_sex_age.check()
 
 
+def _build_modelled_families() -> int:
+    import reconstruct_modelled_families
+    return reconstruct_modelled_families.build()
+
+
+def _check_modelled_families() -> int:
+    import reconstruct_modelled_families
+    return reconstruct_modelled_families.check()
+
+
 # T-1169's arrival fill predates this table and lives in this module rather than one of
 # its own -- it writes three attribute blocks and no person, which is not the thousand
 # lines the rule above is about. It registers here all the same: the table is what
@@ -1076,8 +1086,10 @@ def _build_attribute_fill_arrival() -> int:
 
 
 STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
-                  ARRIVAL_STAGE: _build_attribute_fill_arrival}
-STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age}
+                  ARRIVAL_STAGE: _build_attribute_fill_arrival,
+                  "modelled_families": _build_modelled_families}
+STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
+                  "modelled_families": _check_modelled_families}
 
 
 # --------------------------------------------------------------------------

@@ -49,6 +49,10 @@ import json
 import re
 import sys
 import shutil
+from pathlib import Path as _ToolsPath
+
+sys.path.insert(0, str(_ToolsPath(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
 import tempfile
 from pathlib import Path
 
@@ -284,6 +288,11 @@ def town_people():
     for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
         for person in doc.get("persons") or []:
+            # T-1171: a person the reconstruction programme DREW is not a name any source printed.
+            # Matching one to a printed name would be this project reading its own invention
+            # back as evidence. reconstructed_person.py holds the rule.
+            if is_reconstructed(person):
+                continue
             name = str(person.get("name") or "").strip()
             parts = name_parts(name)
             if not parts:
