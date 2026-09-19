@@ -43,6 +43,15 @@
 # the file. Filing is free and working is not — add a finding to the ticket it was found in
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
+# --- 0. BLOCKING THE QUEUE (owner, 2026-09-19). Measured the same day: FOUR open PRs
+# --- all read `dirty` to GitHub and ALL FOUR had zero real conflicts under a local merge.
+# --- GitHub judges mergeability WITHOUT this repo's merge drivers, so any PR touching
+# --- QUEUE.md, changelog.js or a derived file looks conflicted to it — and a dirty PR gets
+# --- no pull_request gate, so it can never become clean on its own. Every merge into dev
+# --- re-arms it on every other PR. The steward's custom lane and janitor are PAUSED
+# --- (polecat-platform focus.json) because hands were the only remedy left.
+T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
+
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
@@ -213,7 +222,6 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
 T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
-T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.

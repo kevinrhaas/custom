@@ -113,3 +113,71 @@ that could have gated a conflicted branch, and the trade-off as recorded did not
 **Not T-1362.** That one is the lap skipping its re-derive when a branch is already current with
 the base — a branch that merges cleanly and is stale. This is a branch that does not merge at
 all. They meet only in that both leave a PR red or stuck with no automation able to move it.
+
+---
+
+## FINDING (2026-09-19, while landing the T-1397 queue): the cause is the MERGE DRIVERS
+
+The ticket above reads `dirty` as "a conflicted PR". Measured today across four open
+PRs — #1518, #1521, #1526, #1529 — **that is not what `dirty` means here**:
+
+```
+steward/t-1372-hulls-in-port             GitHub: dirty    real conflicts: 0
+steward/t-1377-free-black-1835           GitHub: dirty    real conflicts: 0
+steward/t-1394-resident-closeout         GitHub: dirty    real conflicts: 0
+steward/t-1183-business-staffing-model   GitHub: dirty    real conflicts: 0
+```
+
+All four merged **cleanly** locally. `git merge origin/dev` on each printed the
+drivers doing their job — `merge-queue: QUEUE.md reconciled`, `merge-changelog:
+1 entry of ours placed on top of 986 from theirs`, `merge-smoke-state: 60 ours +
+5 new from theirs` — and left zero conflicted paths.
+
+**GitHub does not have those drivers.** `.gitattributes` registers them, but a merge
+driver is local git config: it is configured by the checkout, not carried in the
+repository. GitHub's mergeability probe runs a plain three-way merge, so every PR
+that touches `QUEUE.md`, `renderers/web/js/changelog.js`, `tools/dev-smoke-state.json`
+or any of the other driver-managed files is reported `dirty` **by construction** —
+and those are exactly the files a branch and `dev` both always touch.
+
+So the deadlock is not rare and it is not about conflicts:
+
+1. a PR is opened, `dev` moves once, and GitHub calls it `dirty`;
+2. `dirty` means no merge ref, so no `pull_request` gate ever runs;
+3. `merge-ready.sh` takes only `clean`, so it will not touch it;
+4. the lap CAN clear it — a pushed merge commit makes the branch a descendant of
+   `dev`, which GitHub can see without any driver — but the next merge into `dev`
+   re-arms it on every other open PR.
+
+**Confirmed both directions on #1518 today.** At `b75254dc1` (a lap onto
+`4509d5ac1`) GitHub said `mergeable: False, dirty`. `dev` moved to `918c43d1d`;
+re-lapped to `b974e0393` and GitHub said `mergeable: True, blocked` with the gate
+running. The lap commit is the whole difference.
+
+### What this means for the fix
+
+The remedy in acceptance is "resolve by hand", and that is treating the symptom.
+The cheap structural options, in the order they are worth measuring:
+
+- **Lap on `dev` movement, not on a schedule.** The lap already knows how to clear
+  this; it just does not run at the moment `dev` moves. A push to `dev` that laps
+  every open PR would keep the whole queue `clean` continuously. Cost: one lap per
+  open PR per merge, which is the thing to measure before building.
+- **Shrink what the drivers own.** `QUEUE.md` and `changelog.js` conflict on every
+  merge because every branch appends to them. T-0937 and T-0938 already took the
+  board and the mirror off the PR surface; T-1355 asks the same question for the
+  four derived research reports. Anything taken off the PR surface stops
+  manufacturing a false `dirty`.
+- **Do not rely on `mergeable_state` alone.** `merge-ready.sh` could test
+  mergeability the way this finding did — a real merge in a scratch worktree — and
+  merge a PR that GitHub calls `dirty` but git does not. That inverts the deadlock:
+  the driver-managed files stop being a reason a PR cannot land.
+
+### The cost, measured
+
+Four PRs, all green or greenable, none merged in the ~90 minutes this took. `dev`
+moved twice under the laps (#1528, #1531) and invalidated all four, each costing
+~8 minutes of re-derive plus a CI round. The owner paused the steward's `custom`
+lane and the janitor (polecat-platform `focus.json`, 2026-09-19) because hands were
+the only remedy left — which is the clearest statement of this ticket's cost there
+is going to be.
