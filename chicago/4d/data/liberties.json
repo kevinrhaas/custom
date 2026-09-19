@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 245,
+  "count": 246,
   "liberties": [
     {
       "id": "L1",
@@ -14910,6 +14910,29 @@
         {
           "label": "How to resolve",
           "text": "any committed source that counts the strangers at Chicago in the summer of 1835 retires the band whole — a land-office return of attendance, the Chief Engineer's 1835 report for the works gang, or a crew list. Until then the gate keeps it honest: `--check` re-derives every figure and holds each quoted sentence to the words the corpus carries, so a re-extraction that drops \"some hundreds more\" fails rather than leaving the band standing on a sentence that is no longer there. Related: ticket **T-1352**, piece 1 of **T-1178**; stage `transients` of **T-1167**'s programme; `docs/RESEARCH/1835_transient_cohort.md`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-19."
+        }
+      ]
+    },
+    {
+      "id": "L246",
+      "title": "820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction programme (T-1167) spends four of its seven classes and re-admits **820** of them: **734** cards whose presence on 1 July 1835 the research left `uncertain` are given a **second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new cards are minted under read names the town carried on no row — 19 from a single in-window appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own biography dates an arrival before the scene. **117** offered rows are withheld, each with its reason: 37 because a card already in the layer shares the surname and first given initial — the discriminator this project's own directory crosswalks match on — 41 because the row carries no readable date at all, and 39 because T-1144's reading of the row shows its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day before it. A lag nothing measures is not a lag a persistence rate may be applied to. **What is invented, exactly.** Two things and no more. First, **that these people were in Chicago on 1 July 1835**, which no source says of any of them — that is what \"withheld\" meant. Second, **the rate at which a person the corpus names stops being found in Chicago**, because nothing measures it. Everything else — the names, the readings, the dates, the sources — is the corpus's own, and every re-admitted record prints the name as read beside the name as rendered. **What bounds the rate.** Three of this project's crosswalks count how many of the SAME 1,280-person layer a later Chicago volume still names: Fergus 1839 (164), Fergus 1843 (136) and Norris 1844 (112). How much of the town each volume covers is unknown and that unknown multiplies all three counts alike, so it cancels out of the SLOPE of `ln(matched)` against time and does not cancel out of any one level. A least-squares line through the three gives **λ = 0.06784 a year** — a 93.4 % chance of still being in the town a year later — and `persistence(L) = exp(-λL)` prices a card whose evidence stops L years before the scene. Each ruling carries the seed that redraws it (`<household_id>:persistence`), so the whole draw re-derives on demand. **Which way it is wrong if it is wrong, said rather than corrected.** The steady-coverage assumption is load-bearing and is the one most likely to fail: Fergus 1839 is a list first set up from memory in 1839 and completed in 1876, and the other two are ordinary printed directories. If coverage GREW across the three volumes, the observed fall is shallower than the real one, λ is too small, and this stage re-admits **too many** people rather than too few. Published persistence studies of frontier towns read nearer 0.15–0.25 a year than 0.068. That is stated here instead of corrected for, because correcting it would mean choosing a number rather than measuring one. **What is NOT done here.** No refusal is overturned. Every ledger disposition, grade, rung and inferred or attested value in the research layer is untouched, and the inferred `uncertain` each ruling stands beside is kept on the card and printed beside the reconstruction in the People view. The re-admissions are written to `data/reconstruction/1835_readmissions.json` and `data/residents/readmitted/`, outside the directory the mint writers re-derive, so a mint re-run is still byte-identical and nothing here can be mistaken for research. R4 (a family for a head the town already holds) is T-1170's and R6 (the Native, Métis and Black cohorts, which carry their own review) is T-1177's; neither is spent here. **What it leaves open.** The order book models 643 households in the town and the layer now reads 1,133 present. The two counts are not in the same unit — 736 of the layer's households are letter-list CONTAINERS holding one person and arguing for a person rather than a dwelling — and reconciling them is T-1171's and T-1179's."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a measured out-migration or persistence rate for Chicago in the 1830s, or a fourth later horizon that bends the fitted line, replaces the model. Any source that follows one of these people past 1 July 1835, or places them elsewhere on it, retires that row's ruling on its own. Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster **T-1159**, the programme **T-1167**."
         },
         {
           "label": "Recorded",

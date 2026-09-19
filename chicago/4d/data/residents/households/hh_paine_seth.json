@@ -44,7 +44,7 @@
   "basis": {
    "kind": "rule",
    "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1830) is the only thing about it this value rests on."
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1832) is the only thing about it this value rests on."
   },
   "replaceable_by": {
    "kind": "person",

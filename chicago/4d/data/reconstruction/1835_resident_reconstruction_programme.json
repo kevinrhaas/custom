@@ -204,9 +204,10 @@
    "draws_from": [
     "known_named"
    ],
-   "note": "These are not invented names and do not take an rc_ id. Each carries its evidence limit and its reopen rule.",
-   "implemented": false,
-   "uses_name_pools": false
+   "note": "These are not invented names and do not take an rc_ id. Each carries its evidence limit and its reopen rule. Written into data/residents/readmitted/ and data/reconstruction/1835_readmissions.json, NOT into the mints’ data/residents/households/, so a mint re-run stays byte-identical; tools/compile_scene.py overlays them onto the scene.",
+   "implemented": true,
+   "uses_name_pools": false,
+   "built_by": "tools/readmit_borderline_roster.py"
   },
   {
    "key": "trade_households",

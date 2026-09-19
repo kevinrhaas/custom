@@ -787,6 +787,70 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     def value_of(block):
         return block.get("value") if isinstance(block, dict) else block
 
+    # T-1172. The re-admissions of the borderline roster are a RECONSTRUCTION and live
+    # outside the mints' directory on purpose (tools/readmit_borderline_roster.py says
+    # why), so the scene is where the two meet: a ruling re-prices the `present` of a
+    # card the research left `uncertain`, and a minted card joins the town as its own
+    # row. Nothing here reaches back into data/residents/households/ — the inferred
+    # value the ruling stands beside travels with the row so a reader sees both.
+    readmissions_path = DATA / "reconstruction" / "1835_readmissions.json"
+    readmissions = load(readmissions_path) if readmissions_path.exists() else {}
+    ruling_for = {r["household_id"]: r for r in readmissions.get("presence_rulings", [])}
+    minted_rows = readmissions.get("minted", [])
+
+    def row_for(hh, person, rel, ruling=None, minted=None):
+        occ = person.get("occupation") or {}
+        occ_value = occ.get("value")
+        arrival = hh.get("arrival") or {}
+        lives = hh.get("lives_at") or {}
+        works = hh.get("works_at") or {}
+        present = (hh.get("present_on_scene_date") or {}).get("value")
+        row = {
+            "id": person.get("id"),
+            "name": person.get("name"),
+            "household": hh.get("id"),
+            "household_name": hh.get("name"),
+            "file": rel,
+            "relationship": person.get("relationship"),
+            "grade": person.get("grade"),
+            "occupation": None if occ_value in (None, "", "none_recorded") else occ_value,
+            "letter_list_only": bool(person.get("letter_list_only")),
+            "civic_mint": bool(person.get("civic_mint")),
+            "resident_subtype": person.get("resident_subtype"),
+            "how_known": how_known(person),
+            "division": hh.get("division"),
+            "arrival_year": arrival_year(arrival.get("value")),
+            "arrival_precision": arrival.get("precision"),
+            "present": present,
+            "lives_at": lives.get("value"),
+            "works_at": works.get("value"),
+            **role_row_view(person),
+        }
+        if ruling is not None:
+            block = ruling["present_on_scene_date"]
+            row["present"] = block["value"]
+            row["readmission"] = {
+                "class": ruling["class"],
+                "kind": "presence_ruled",
+                "stood_at": ruling["the_inferred_value_this_stands_beside"],
+                "persistence": ruling["persistence"],
+                "years_before_the_scene": ruling["years_before_the_scene"],
+                "seed": ruling["seed"],
+                "note": block["basis"]["note"],
+                "replaced_by": block["replaceable_by"]["match"],
+            }
+        elif minted is not None:
+            rm = hh.get("readmission") or {}
+            row["readmission"] = {
+                "class": rm.get("class"),
+                "kind": "card_minted",
+                "name_as_read": rm.get("name_as_read"),
+                "stands_on": rm.get("stands_on"),
+                "note": ((hh.get("present_on_scene_date") or {}).get("basis") or {}).get("note"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
+        return row
+
     rows: list[dict] = []
     households = 0
     for entry in index.get("households", []):
@@ -796,36 +860,19 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             continue
         hh = load(path)
         households += 1
-        arrival = hh.get("arrival") or {}
-        lives = hh.get("lives_at") or {}
-        works = hh.get("works_at") or {}
         for person in hh.get("persons", []) or []:
-            occ = person.get("occupation") or {}
-            occ_value = occ.get("value")
-            returns = sorted(str(d) for d in (person.get("letter_list_returns") or []))
-            age = person.get("age_on_scene_date") or {}
-            born = person.get("birth_year") or {}
-            rows.append({
-                "id": person.get("id"),
-                "name": person.get("name"),
-                "household": hh.get("id"),
-                "household_name": hh.get("name"),
-                "file": rel,
-                "relationship": person.get("relationship"),
-                "grade": person.get("grade"),
-                "occupation": None if occ_value in (None, "", "none_recorded") else occ_value,
-                "letter_list_only": bool(person.get("letter_list_only")),
-                "civic_mint": bool(person.get("civic_mint")),
-                "resident_subtype": person.get("resident_subtype"),
-                "how_known": how_known(person),
-                "division": hh.get("division"),
-                "arrival_year": arrival_year(arrival.get("value")),
-                "arrival_precision": arrival.get("precision"),
-                "present": (hh.get("present_on_scene_date") or {}).get("value"),
-                "lives_at": lives.get("value"),
-                "works_at": works.get("value"),
-                **role_row_view(person),
-            })
+            rows.append(row_for(hh, person, rel, ruling=ruling_for.get(hh.get("id"))))
+
+    readmitted_households = 0
+    for minted in minted_rows:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        readmitted_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], minted=minted))
 
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
@@ -853,6 +900,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         "projected": sum(1 for r in rows if r["resident_subtype"] == "projected_resident"),
     }
     with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
+    readmitted = [r for r in rows if r.get("readmission")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -881,6 +929,20 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "with_a_role_at_scene_date": sum(1 for r in rows if r.get("roles_at_scene_date")),
             "with_every_role_off_scene_date": sum(
                 1 for r in rows if r.get("roles") and not r.get("roles_at_scene_date")),
+            "readmitted": len(readmitted),
+            "readmitted_households": readmitted_households,
+            # The persons the re-admission MINTED, which is exactly the number by which
+            # this file's people count exceeds data/residents/index.json's. The manifest
+            # is derived from the mints' directory and cannot see a reconstruction, so the
+            # two are meant to differ by this and by nothing else.
+            "readmitted_persons": sum(
+                1 for r in readmitted if r["readmission"]["kind"] == "card_minted"),
+            "readmitted_by_kind": {
+                kind: sum(1 for r in readmitted if r["readmission"]["kind"] == kind)
+                for kind in ("presence_ruled", "card_minted")},
+            "readmitted_by_class": {
+                cls: sum(1 for r in readmitted if r["readmission"]["class"] == cls)
+                for cls in sorted({r["readmission"]["class"] for r in readmitted})},
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
