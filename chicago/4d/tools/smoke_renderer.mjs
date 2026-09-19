@@ -2109,9 +2109,15 @@ for (const [label, viewport, touch] of [
         data: window.__chicago4d.census,
       };
     });
-    // The people row's figure is not on the harness handle, so it is read off the
-    // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
-    // this run is serving, which is the same file the page fetched.
+    // T-1365: BOTH ENDS OF THE PEOPLE ROW ARE THE SCENE POPULATION. The row used to
+    // read every card in the residents index against the November 1835 town census —
+    // two different populations, one of which `town_census.json` forbids reading as the
+    // scene's, in a sentence that said "who lived here". The figures now come out of
+    // `people.scene`, which counts the residents the layer records present on 1 July
+    // against the town model's point for that day, and the cards the project holds are
+    // said one line down as cards. The residents index is still read, to assert what the
+    // card must NOT be showing.
+    const scene = gateCensus.data?.people?.scene || null;
     let residentCounts = null;
     try {
       residentCounts = JSON.parse(
@@ -2120,7 +2126,7 @@ for (const [label, viewport, touch] of [
     } catch { residentCounts = null; }
     const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, residentCounts?.persons]
+    const want = [gateCensus.data?.buildings?.standing, scene?.persons]
       .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
@@ -2131,7 +2137,7 @@ for (const [label, viewport, touch] of [
     // Each numerator carries a bar it is a portion of, and the people bar carries the
     // three grades as segments of the town total — a key alone would let the bar rot.
     const housed = Number(gateCensus.data?.people?.housed);
-    const byGrade = residentCounts?.by_grade || {};
+    const byGrade = scene?.by_grade || {};
     const gradeWant = ['attested', 'inferred', 'reconstructed']
       .filter((g) => Number.isFinite(Number(byGrade[g])));
     check(`${label}: both rows carry a completeness bar, the people bar graded`,
@@ -2143,10 +2149,24 @@ for (const [label, viewport, touch] of [
     // The placement figure survives as a note under the people row, in the committed
     // data's own number, and never again as a share of the town.
     check(`${label}: people housed reads as placement, under the people row`,
-      Number.isFinite(housed) && gateCensus.note.length === 1
+      Number.isFinite(housed) && gateCensus.note.length === 2
       && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
       && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
       `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-1365's second note: the cards the layer holds without establishing the person in
+    // the town that day. These were the people row's numerator and are now stated as
+    // what they are. The check is that the CARD COUNT is not the RESIDENT COUNT — if the
+    // two ever collapse back into one figure the defect has returned.
+    check(`${label}: the cards the layer holds are stated as cards, not as residents`,
+      Number.isFinite(Number(scene?.cards_total))
+      && Number.isFinite(Number(scene?.cards_not_established))
+      && gateCensus.note[1]
+        === `${grouped(scene.cards_total)} cards are held in all; `
+          + `${grouped(scene.cards_not_established)} name someone not yet established `
+          + 'here on that day'
+      && Number(scene.cards_total) === Number(residentCounts?.persons)
+      && !gateCensus.text.includes('who lived here'),
+      `note=${JSON.stringify(gateCensus.note)} scene=${JSON.stringify(scene)}`);
     // T-0782's two strikes, asserted as absences. `structures` was the ready line's
     // record count, which contradicted the buildings figure below it.
     check(`${label}: the card drops the projected count and the structures line`,
@@ -2154,14 +2174,24 @@ for (const [label, viewport, touch] of [
       && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
       `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
-    // buildings are counted against the programme's target and the people
-    // against the town's own recorded size, both quoted out of the same file.
+    // buildings are counted against the programme's target and the people against the
+    // town model's point for the scene date, both quoted out of the same file. T-1365
+    // moved the second one off the November count, so the November count is asserted
+    // ABSENT from the card in the same breath — a bar filling toward 3,265 is the
+    // regression, and it is invisible to every other check here.
     check(`${label}: the gate names both denominators`,
       Number.isFinite(gateCensus.data?.buildings?.target)
-      && Number.isFinite(gateCensus.data?.people?.town_total)
+      && Number.isFinite(Number(scene?.target))
       && gateCensus.text.includes(grouped(gateCensus.data.buildings.target))
-      && gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
+      && gateCensus.text.includes(`roughly ${grouped(scene.target)}`),
       gateCensus.text);
+    check(`${label}: the people bar fills toward the scene's population, not November's`,
+      Number.isFinite(Number(scene?.target))
+      && Number.isFinite(Number(gateCensus.data?.people?.town_total))
+      && Number(scene.target) !== Number(gateCensus.data.people.town_total)
+      && !gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`)
+      && !gateCensus.aria.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
+      `target=${scene?.target} november=${gateCensus.data?.people?.town_total} card=${gateCensus.text}`);
 
     // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
     // A bridge's local y = 0 is the design water surface, not the ground, so

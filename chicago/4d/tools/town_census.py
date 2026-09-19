@@ -37,9 +37,22 @@ the commit rather than shipping a town that says it is smaller than it is.
   probably several, so the figure is a FLOOR on the people this dataset houses, never a
   population estimate. `group_entries` carries the count so a reader can see the seam.
 * The town's own total is 3,265 people in 398 dwellings — Andreas vol. 1, printed p. 180,
-  the town census of **November** 1835, four months after the scene date. It is quoted as
-  the town's recorded size, not as the scene's population on 1 July, and the gate says
-  "of roughly 3,265" for that reason.
+  the town census of **November** 1835, four months after the scene date. It is the town's
+  recorded size and never the scene's population on 1 July; it stays in this file as the
+  record it is, and the gate does NOT fill toward it (T-1365). What the gate fills toward
+  is `people.scene`, below.
+
+**`people.scene`, and why the gate needed it (T-1365).** The gate read `1,588 named
+residents of roughly 3,265 who lived here`, and neither half of that sentence was sound.
+The DENOMINATOR was the November count, which the note in this very file forbids reading
+as the scene's population, and which the town model has since resolved to a point of 2,536
+within 2,353–3,265 — so the front screen and the reconstruction programme were filling
+toward two different towns. The NUMERATOR was every card in the residents index, most of
+which are people the project has not established in Chicago on 1 July at all: a name on a
+post-office letter list is a card, not a resident of that Tuesday. `people.scene` counts
+the two ends the same way — persons in households recorded `present` on the scene date,
+against the model's point for that date — and carries `cards_total` beside them so the
+cards the layer holds are still stated, as cards.
 
 **And the people it counts APART.** T-1353 mints the summer crowd of 1835 — the strangers
 the Chicago American put OUTSIDE its own population estimate — as reconstructed visitors in
@@ -123,6 +136,32 @@ def transient_block() -> dict | None:
                          "reconstruction may not stand in for a person a source names.",
     }
 
+# The town model's own figure for the scene date. The gate fills its people bar toward
+# THIS and never toward the November count (T-1365): 3,265 is the high end of this
+# figure's range, and `town_total_note` in this very file forbids reading it as the
+# population on 1 July. The point, the range and the method all come out of the model,
+# so the screen and the reconstruction programme cannot fill toward two different towns.
+TOWN_MODEL_PATH = DATA / "reconstruction" / "1835_town_model.json"
+SCENE_POPULATION_FIGURE = "population_on_1_july_1835"
+
+
+def scene_population_figure() -> dict:
+    """The town model's `population_on_1_july_1835` — point, range and method.
+
+    A read, like everything else here. The figure is a MODEL and says so (`is_a_count`
+    is false); what matters for the gate is that its point is the same number the
+    reconstruction order book quotas against, and that its range is carried beside the
+    point so the tooltip can say what the bar is a portion of.
+    """
+    model = json.loads(TOWN_MODEL_PATH.read_text(encoding="utf-8"))
+    for section in model.get("sections", []):
+        for figure in section.get("figures", []):
+            if figure.get("figure") == SCENE_POPULATION_FIGURE:
+                return figure
+    raise SystemExit(
+        f"TOWN CENSUS: the town model carries no `{SCENE_POPULATION_FIGURE}` figure, and "
+        "the gate screen's people bar is a portion of it. Rebuild the town model.")
+
 
 def group_entry_count(housed_ids: set[str]) -> int:
     """Person entries inside the housed set that stand for a GROUP, not an individual.
@@ -168,6 +207,32 @@ def census_document() -> dict:
     dangling = sorted(h["lives_at"] for h in residents["households"]
                       if h.get("lives_at") and h["lives_at"] not in in_scene)
 
+    # THE PEOPLE THE PROJECT HAS ESTABLISHED IN THE TOWN ON THE SCENE DATE, which is the
+    # only population a figure for 1 July can be a portion of. The test is the order
+    # book's Rule 3 and is the household's own `present_on_scene_date`: a card the layer
+    # holds because a letter was waiting at the post office for that name is NOT a person
+    # established in Chicago on 1 July, and 829 of them are not. All three grades count
+    # here — unlike the order book's `known`, which excludes the reconstructed because
+    # they are the order being filled; the gate is not filling an order, it is saying how
+    # much of the town it can show you, and a reconstructed resident is shown.
+    scene_persons = 0
+    scene_households = 0
+    scene_grades = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    for h in residents["households"]:
+        if h.get("present_on_scene_date") != "present":
+            continue
+        scene_households += 1
+        scene_persons += int(h.get("persons") or 0)
+        for grade, n in (h.get("grades") or {}).items():
+            if grade in scene_grades:
+                scene_grades[grade] += int(n or 0)
+    cards_total = int(residents["counts"]["persons"])
+
+    figure = scene_population_figure()
+    point = int(figure["point"])
+    low = int(figure["low"])
+    high = int(figure["high"])
+
     return {
         "$schema_note": "DERIVED — regenerate with tools/town_census.py; tools/check.sh "
                         "re-derives it. Do not hand-edit: both figures are functions of "
@@ -181,6 +246,7 @@ def census_document() -> dict:
             f"data/sidecars/{YEAR}/index.json",
             "data/residents/index.json",
             "data/residents/households/",
+            "data/reconstruction/1835_town_model.json",
         ],
         "buildings": {
             "standing": roofs["min"],
@@ -205,7 +271,32 @@ def census_document() -> dict:
             "town_total_note": "The town census of November 1835 — four months after the "
                                "scene date — counts 3,265 people in 398 dwellings "
                                "(Andreas vol. 1, printed p. 180). Quoted as the town's "
-                               "recorded size, never as the scene's population on 1 July.",
+                               "recorded size, never as the scene's population on 1 July: "
+                               "it is the HIGH END of the town model's range for the scene "
+                               "date, and `scene.target` below is the figure the gate "
+                               "screen and the reconstruction programme both fill toward.",
+            "scene": {
+                "persons": scene_persons,
+                "households": scene_households,
+                "by_grade": scene_grades,
+                "cards_total": cards_total,
+                "cards_not_established": cards_total - scene_persons,
+                "target": point,
+                "target_low": low,
+                "target_high": high,
+                "target_figure": SCENE_POPULATION_FIGURE,
+                "target_source": "data/reconstruction/1835_town_model.json",
+                "target_method": figure["method"],
+                "target_note": f"The town model's point reading for 1 July 1835 within "
+                               f"{low:,}–{high:,}, and the same number the "
+                               f"reconstruction order book quotas against. The November "
+                               f"count of {TOWN_TOTAL_PEOPLE:,} is this range's high end, "
+                               f"four months later, and is not what the scene holds.",
+                "basis": "Persons in households the layer records `present` on the scene "
+                         "date — the order book's Rule 3. A card the layer holds "
+                         "without establishing the person in Chicago on 1 July is not "
+                         "counted here; `cards_not_established` is how many those are.",
+            },
             "basis": "Person entries in households whose `lives_at` names a structure "
                      "that resolves into the scene. A person counts when the building "
                      "they live in stands, so this grows as the town builds out.",
@@ -234,6 +325,23 @@ def main() -> int:
         print("TOWN CENSUS BROKEN LINK\n  - a household's lives_at names a structure the "
               f"scene does not carry: {', '.join(census['people']['dangling_lives_at'])}")
         return 1
+    # THE GATE THE SCREEN NEEDS (T-1365). The gate card fills a bar of established
+    # residents toward `scene.target`, so a target outside its own range, or a count of
+    # residents that has overrun the town it is a portion of, is a bar that lies. Both
+    # are cheap to check and neither can be noticed by eye on a splash screen.
+    scene = census["people"]["scene"]
+    if not scene["target_low"] <= scene["target"] <= scene["target_high"]:
+        print("TOWN CENSUS BAD TARGET\n  - the town model's point for the scene date "
+              f"({scene['target']:,}) is outside its own range "
+              f"{scene['target_low']:,}-{scene['target_high']:,}, and the gate screen "
+              "fills a bar toward it.")
+        return 1
+    if scene["persons"] > scene["target_high"]:
+        print("TOWN CENSUS OVERRUN\n  - the layer establishes "
+              f"{scene['persons']:,} people in the town on the scene date, more than the "
+              f"town model's own ceiling of {scene['target_high']:,}. One of the two is "
+              "wrong and the gate screen shows both.")
+        return 1
     if args.check:
         if not OUT_PATH.exists():
             print(f"TOWN CENSUS DRIFT\n  - {OUT_PATH.relative_to(ROOT)} is missing")
@@ -251,8 +359,9 @@ def main() -> int:
     print(f"{'verified' if args.check else 'generated'} the town census: "
           f"{census['buildings']['standing']} buildings standing of "
           f"{census['buildings']['target']}, "
-          f"{census['people']['housed']} people housed of "
-          f"{census['people']['town_total']}{visitors_line}")
+          f"{scene['persons']} residents established in the town of "
+          f"{scene['target']} modelled, "
+          f"{census['people']['housed']} of them housed{visitors_line}")
     return 0
 
 
