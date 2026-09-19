@@ -417,11 +417,20 @@ EPIC_PIECES = {
     # can reach it now is a civic CLAIM and not a name on a roll at all — Andreas on how the
     # town got its water by cart from the foot of Randolph Street — and it was being read as
     # an assertion about George W. Dole's reason for coming, because its id is `c013` and so
-    # is the Democrat claim that card cites. It is a claim unit freed by the same fix as the
-    # 48 press ones, so it is owned with them. (It cannot simply fall to the remainder
-    # register below: `spend_remainder_rulings.py` rules four domains and refuses civic by
-    # name, and dropping this entry hands it 24 civic claims it will not rule.)
-    "civic": ("T-1343", "The claim-corpus spend owns this unasserted civic claim."),
+    # is the Democrat claim that card cites. It was owned with the press claims by T-1343,
+    # which was the ticket that could reach it.
+    # AND T-1343 HAS SPENT ITS CORPUS, so the pointer moves again rather than going quiet
+    # with the ticket. It cannot simply fall to the default below: `spend_remainder_rulings`
+    # rules four domains and refuses civic by name, and dropping this entry hands it 24
+    # civic claims it will not rule. What the one unit that reaches it actually says is that
+    # the town bought its water from a CART TRADE — "private enterprise reaped a comfortable
+    # little financial harvest in the operation of water carts", five to ten cents the
+    # barrel, according to competition — which is an in-window trade this project holds no
+    # business record for, and raising one for exactly that is T-1182's acceptance in its
+    # own words. It is the same routing `PLACE_AND_ENTERPRISE` gives an enterprise claim one
+    # comment below, reached from the civic corpus instead of the press.
+    "civic": ("T-1182", "The business audit owns this unasserted civic claim: a trade the "
+                        "town ran that no business record carries."),
     "census_1830": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
     "directories": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
 }

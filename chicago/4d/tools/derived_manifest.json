@@ -1081,6 +1081,36 @@
       ]
     },
     {
+      "why": "THE STAGE AFTER IT, AND IT HAS TO RUN AFTER IT. Listed 2026-09-19 with T-1174. Stage `women_and_children` draws against what the order book still wants, and `modelled_families` above fills the same 24 family buckets first — run in the other order the second stage would draw into quota the first one is about to take. It writes the female-headed households the naming sources never produced and the 556 people in them; measured 2026-09-19, a repeat `--build` on a settled tree changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/reconstruct_women_children.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_women_children.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/reconstruct_women_children.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "THE TRADE HOUSEHOLDS THE ORDER BOOK ORDERS (T-1347, of T-1173). It reads the order book's twenty-four `family/trade` buckets, the Fergus 1839 trade table, the town model's census comparison and size histogram and the invented name pools, and writes 308 reconstructed heads into data/residents/reconstructed_trades/ plus its own ledger. It FOLLOWS the order book because the book is its quota and it carries its own fills back into it, and it follows the two stages above because all three draw against the same book. It PRECEDES compile_scene.py because the scene overlays these cards onto the People directory. PLACED BY LAYER, as the steps around it are, and not by a measured dependency: the honest test is the first time a change to the order book or the trade table fails to propagate here. WRITES, BUT DOES NOT CLAIM, ITS OUTPUTS — `resolves` stays empty for the same reason it is empty on the steps beside it.",
+      "command": [
+        "python3",
+        "tools/reconstruct_trade_households.py",
+        "--build"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/reconstruct_trade_households.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
       "command": [
         "python3",

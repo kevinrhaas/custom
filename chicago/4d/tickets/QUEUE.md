@@ -47,18 +47,16 @@
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1367 — Spend the Baptist catalogue of 19 October 1833 onto Willard Jones, Nathaniel Carpenter and M D Harmon without dropping the twelve other names it prints off the borderline roster
-T-1343 — Spend the 128 press notices onto the cards they name, on identifications a committed newspapers-to-residents crosswalk makes, and refuse in writing the ones it cannot make
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
-T-1347 — Write the trade households the occupation model wants: reconstructed heads drawn per trade and division against the order book's trade buckets, each named from the pools with a family per the household model
-T-1174 — Reconstruct the women and children the age pyramid still lacks after families are drawn: widow-headed households, laundresses, seamstresses, domestics and schoolmistresses, the boarding-house keepers' families and the children of the 1833–35 arrivals, to the population model's sex and age bands
 T-1175 — Fill the beds: boarders, lodgers, hotel guests, boarding-house keepers' households, the crews of the vessels in port and the hands at the works, seated in the named and reconstructed lodging places to the lodging model's capacities
 T-1349 — The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
 T-1177 — Reconstruct the under-documented cohorts within their evidence: the Native and Métis people, households and businesses in and around the town, the free Black residents, families and Black-owned businesses, and the Irish and German Catholic town the register implies — every one identified, tiered and reviewable
 T-1353 — Mint the bounded transient cohort as reconstructed persons in camp, crew and party households, counted apart from the residents in the town census and filterable in the People view
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
-T-1365 — The walk splash cites the November 1835 town census as the 1 July population: 1,588 cards read against 3,265, where the source file says that number is never the scene's population and only 457 of the cards are present
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
+T-1365 — The walk splash cites the November 1835 town census as the 1 July population: 1,588 cards read against 3,265, where the source file says that number is never the scene's population and only 457 of the cards are present
+T-1364 — The town model's arrival share is a count over the wrong denominator: it reads 1.605 of the town arriving in 1833-35 and -777 arriving before, because it divides every person's arrival year by the NAMED layer's 1,285
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
@@ -222,4 +220,6 @@ T-1362 — The lap re-derives only when it merges, so a branch already current w
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
 T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
+T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset

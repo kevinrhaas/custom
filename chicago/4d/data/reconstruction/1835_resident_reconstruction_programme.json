@@ -69,7 +69,8 @@
    "lodging": "data/reconstruction/1835_town_model.json#lodging_and_institutions.tables.lodging_and_institutional_roofs",
    "arrival": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer",
    "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835",
-   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white"
+   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white",
+   "trade_table_1839": "data/research/directories/fergus_1839_trade_table.json#rows"
   },
   "order_book": {
    "file": "data/reconstruction/1835_reconstruction_order_book.json",
@@ -211,29 +212,34 @@
   },
   {
    "key": "trade_households",
-   "ticket": "T-1173",
+   "ticket": "T-1173 (T-1346 read the trade table; T-1347 drew the heads)",
    "title": "The trade households the occupation model still wants",
-   "writes": "reconstructed heads and their households, by division",
+   "writes": "new reconstructed HEADS, each in their own household, in data/residents/reconstructed_trades/",
    "draws_from": [
     "occupations",
-    "employment_shape",
-    "by_division"
+    "household_size",
+    "trade_table_1839"
    ],
    "note": "Counted after the known and re-admitted people, against the order book's quota.",
-   "implemented": false
+   "implemented": true,
+   "built_by": "tools/reconstruct_trade_households.py",
+   "community": "the weighting the name pools carry for the drawn trade; the general documented stock where they carry none",
+   "method": "The order book's twenty-four `family/trade` buckets are the quota: 308 heads by sex, age band and division. Each sex's heads are dealt across the trades by largest remainder on the Fergus 1839 trade table's printed shares (T-1346), capped where the December 1835 State census counts a class one person keeps, and the refusals and the rounding remainder fall to the residual trade — day labour for the men, domestic service for the women. A trade is then spread across the bands in proportion to what the book ordered: the seniority rule T-1173 sketched is REFUSED in writing, because the 1839 table carries no ages and the 1840 schedule carries no trades. No arrival is drawn: the arrival model's distribution is computed over the compiled scene and the scene carries these cards, so writing one here would move the table that drew it and re-derive the research layer's own arrival fills — T-1169 owns that block and T-1179 joins these cards to the tree it runs over. No kin is seated; the family the 1840 size histogram owes each head is written onto the card as `household_owed` and seated by T-1174 and T-1179, whose quota it is."
   },
   {
    "key": "women_and_children",
    "ticket": "T-1174",
    "title": "The women and children the age pyramid still lacks",
-   "writes": "reconstructed persons and widow-headed households",
+   "writes": "reconstructed female-headed households and the people in them",
    "draws_from": [
     "sex_ratio",
     "under_ten",
     "household_size"
    ],
    "note": "Run after families are drawn, so the pyramid is measured against what the town already holds rather than against an empty layer.",
-   "implemented": false
+   "implemented": true,
+   "recipe": "women_children_fill",
+   "built_by": "tools/reconstruct_women_children.py"
   },
   {
    "key": "lodgers",
@@ -530,5 +536,71 @@
    }
   ],
   "the_refusal_every_reason_carries": "Which of these draws brought this household is not recorded, and no committed source apportions the town between them."
+ },
+ "women_children_fill": {
+  "_doc": "T-1174, stage `women_and_children`. The recipe for the women and children the age pyramid still lacks once the families of T-1171 and T-1314 are drawn. It writes NEW female-headed households and the people in them, and it is the only stage that may. WHY A NEW HOUSEHOLD AND NOT A DRAW ONTO AN EXISTING ONE: the sources under-record exactly the house that has no male head, so there is no card to draw onto. A rule keyed to male heads - which is what `modelled_families` is, and it says so in its own refusals - cannot create a widow's house, and T-1171 hands every woman heading her own household to this stage by name.",
+  "writes": [
+   "household",
+   "persons"
+  ],
+  "id_scheme": "hh_rc_<surname>_<given> for the household; rc_<surname>_<given> for the head and rc_<surname>_<given>_<slot> for everyone else in it",
+  "the_quota_is_the_order_book": "The 24 `persons/*/*/*/family/none` buckets the book gives T-1174, and the `households/family_dwelling/<division>` buckets it gives the family dwellings. A draw that would pass either REFUSES instead, and the refusals are counted and printed.",
+  "the_head": {
+   "who": "a woman who heads her own household - the widow, the deserted wife, the single woman keeping her own roof. The 1840 schedule counts her family and never her trade, and the 1835 town's own naming sources (a letter list, a voters' roll, a subscription) do not print her at all.",
+   "age_band": "drawn from the female adult bands the order book still wants IN HER OWN DIVISION, weighted by how short each band is. The buckets were cut from the population model, so drawing against what they still want IS drawing from the model - and it is the only draw that converges on the pyramid rather than near it.",
+   "trade": "drawn from `female_trades` below."
+  },
+  "female_trades": {
+   "_doc": "WHAT THIS TABLE IS AND IS NOT. The occupation model carries two tables - the December 1835 State census's ESTABLISHMENT classes and the 1840 schedule's seven employment COLUMNS - and neither counts a woman's work. There is no female-trade row in the model to draw from, and this stage may not open a reading to make one (the programme's `spends_research_does_not_start_more`). So the weights below are an ASSUMPTION of this stage, stated here where a reader can argue with it, graded `reconstructed` on every record that carries one, and entered in docs/LIBERTIES.md. Every term is the residents vocabulary's own; nothing here extends it.",
+   "not_here": {
+    "boarding_house_keeper": "The order book counts a boarding house as its own household type - `households/boarding_house/<division>`, 18 of them - and gives them to T-1175 with their beds. A keeper drawn here would be the same woman ordered twice.",
+    "seamstress_and_schoolmistress": "The vocabulary's words for these are `dressmaker` and `schoolteacher`; the trades are here under those names."
+   },
+   "rows": [
+    {
+     "trade": "laundress",
+     "weight": 4,
+     "why": "Washing is the work open to a woman with no capital and a house to keep, and the layer already carries a laundry as a structure (inf_laundry_north). The weight is an assumption; no source counts the town's washerwomen."
+    },
+    {
+     "trade": "domestic",
+     "weight": 3,
+     "why": "Service in another household. A woman heading her own roof and going out to service is the commonest way a widow's house was kept; the name pools already carry a `domestic` weighting for the same reason."
+    },
+    {
+     "trade": "dressmaker",
+     "weight": 3,
+     "why": "Sewing, taken in. Elmira Fowler is attested at the Democrat of 5 November 1834 as dress maker, milliner, and Mrs H. Sherman keeps a shop; the trade is documented in this town and only its frequency is drawn."
+    },
+    {
+     "trade": "milliner",
+     "weight": 1,
+     "why": "The finer half of the same trade, and rarer: it wants a stock and a front."
+    },
+    {
+     "trade": "schoolteacher",
+     "weight": 1,
+     "why": "The State census counts seven schools and the layer staffs them thinly. A schoolmistress keeping a house of her own is the form that took."
+    },
+    {
+     "trade": "none_recorded",
+     "weight": 4,
+     "why": "A quarter of these women get NO trade, on purpose. A widow with grown children, a pension, a lot or a brother in the town need not have been in a trade at all, and a model that gave every one of them an occupation would print a column the sources never had."
+    }
+   ]
+  },
+  "the_household": {
+   "size": "drawn from the 1840 size histogram cut to 1-8, the same row and the same cut `modelled_families` draws at. The head is one of that size; the rest are drawn from the child buckets her division still wants.",
+   "who_the_rest_are": "a son or a daughter where the head is old enough to be their parent - the same cap `modelled_families` uses, twenty years - and a `household_member` where she is not. The model places older children out as apprentices and servants, and this record claims only that such a person lived in this house: WHICH of the two they were is not claimed, because nothing here can tell.",
+   "the_residual_sweep": "When a division's women are all seated and its child buckets are still short, the remaining children are seated one at a time across the households this stage already made, in creation order, until the buckets clear. The 1840 histogram is a distribution over ALL households and these are the particular houses the pyramid is short of, so the drawn size is a FLOOR here as it is in T-1171. Every residual child says so in its own basis, and the printed size distribution is measured against the 1840 share rather than claimed to match it."
+  },
+  "refuses": [
+   "a division whose women buckets are already full - it makes no household there",
+   "a child the division's buckets will not take",
+   "a household past the `households/family_dwelling/<division>` quota",
+   "an invented name a real person in this layer already bears",
+   "a native, metis or indigenous community - that is T-1177's stage alone"
+  ],
+  "seats_nobody": "No lot, no roof, no structure. `lives_at` and `works_at` are null and T-1199 seats these households on the ground T-1191-T-1194 extends."
  }
 }

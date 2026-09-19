@@ -886,6 +886,19 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "reconstruct_trade_households.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a tree the gate called clean rewrote its 308 cards and its ledger and changed no committed byte."
+    },
+    "reconstruct_women_children.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 124 cards and 556 people from their seeds. In the manifest directly after `modelled_families`, which fills the same order-book buckets and has to go first.",
+      "placed": "by stage order, 2026-09-19 — it draws against the quota the stage above it spends"
+    },
     "refuse_reconstructed_grade.py": {
       "placement": "not_a_writer",
       "write_mode": null,
@@ -1119,6 +1132,13 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "spend_press_bounds.py": {
+      "placement": "pending",
+      "write_mode": "(bare)",
+      "measured": "2026-09-19",
+      "finding": "Reproduces, and it is a REAL writer rather than a silent no-op. It declares no write flag at all (--check, --report, --self-test only) and writes on its BARE run, which is the shape of its sibling spend_appearance_bounds.py. Measured by perturbation, not by a content diff: `_t1343_probe` was added to data/research/press_bounds_1835.json, `--check` went red on it (\"does not re-derive\"), the bare run restored the file, and git came back clean.",
+      "placed": "NOT PLACED. It reproduces, so it is pending rather than not_derivable, and it is counted out loud on every run instead of sitting silently outside the layer — the mechanism T-1302 batch 1 exists for. Placing it is a measured pass of its own; this branch has no evidence about its slot."
     },
     "spend_remainder_rulings.py": {
       "placement": "manifest",

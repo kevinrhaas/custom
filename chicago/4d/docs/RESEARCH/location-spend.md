@@ -35,7 +35,7 @@ Unchanged by this pass and restated because it is the other half of the axis T-1
 | structure | 20 |
 | lot | 0 |
 | face | 0 |
-| division | 52 |
+| division | 176 |
 | none | 1186 |
 
 ## The four retentions

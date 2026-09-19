@@ -4762,8 +4762,13 @@ RESIDENT_SCENE_DATE = "1835-07-01"
 # re-admitted by the reconstruction programme under their own read name. It is a pass
 # and not a mint, which is why it is named here rather than given an id prefix - the
 # id scheme marks an INVENTED person (`rc_`), and a re-admitted one is not invented.
+# `reconstructed_women_children` is T-1174's, and it is the first pass to write a
+# HOUSEHOLD nobody is named in. Like the re-admission above it is a pass and not a mint,
+# but for the opposite reason: every person on one of its cards is invented and carries the
+# `rc_` id that says so, and the pass name is what says which stage of the reconstruction
+# programme made the card.
 RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list", "civic",
-                          "reconstructed_readmission")
+                          "reconstructed_readmission", "reconstructed_women_children")
 
 # The per-domain evidence blocks tools/mint_civic_residents.py writes onto a person
 # (T-0514). Each row is a READING: the list it came from, the transcription as read,
@@ -4953,9 +4958,27 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
                                  f"roles[] - the view keys describe a derivation that is "
                                  f"not there. Run tools/derive_resident_roles.py --write")
         if occ.get("value") not in (None, "", "none_recorded"):
-            rep.error(where, f"occupation '{occ.get('value')}' stands with no roles[] "
-                             f"behind it. The trade IS role evidence and owes a dated "
-                             f"row; tools/derive_resident_roles.py writes it")
+            # A RECONSTRUCTED TRADE IS NOT A READING, SO IT OWES NO ROLE (T-1174). The rule
+            # above is about a trade somebody READ: a role row carries the source, the date
+            # and the bound that reading rests on, and a reader of a card is owed all three.
+            # A trade the population model DREW has none of them, and a role row written for
+            # one would have to cite a source that does not exist — which is the single
+            # thing docs/LIBERTIES.md refuses outright. What such a block owes instead is
+            # the reconstruction contract: the model row it was drawn from, the seed that
+            # redraws it, and the evidence that would retire it. That is asserted here
+            # rather than waved through, so exempting the role does not exempt the working.
+            if occ.get("confidence") == "reconstructed":
+                for key in ("tier", "basis", "seed", "replaceable_by"):
+                    if key in (None, "") or occ.get(key) in (None, ""):
+                        rep.error(where, f"occupation '{occ.get('value')}' is graded "
+                                         f"reconstructed and carries no {key}. A drawn "
+                                         f"trade owes no dated role and owes its working "
+                                         f"instead: the model row, the seed that redraws "
+                                         f"it and what would retire it")
+            else:
+                rep.error(where, f"occupation '{occ.get('value')}' stands with no roles[] "
+                                 f"behind it. The trade IS role evidence and owes a dated "
+                                 f"row; tools/derive_resident_roles.py writes it")
         return
     if not isinstance(roles, list) or not roles:
         rep.error(where, "roles is present and is not a non-empty list. An empty roles "

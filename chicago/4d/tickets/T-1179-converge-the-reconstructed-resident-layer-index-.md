@@ -117,3 +117,58 @@ deliberately did not touch.
 NOVEMBER 1835 census) while this programme fills toward 2,535, and counts all 1,588 cards
 against it rather than the 457 present. Acceptance 3 here owns the town census screen's final
 form, so T-1365 is the interim fix and may be folded into this ticket.
+
+**Finding (T-1174's merge, 2026-09-19): rebuild the MODEL before the stages that draw from
+it, and verify the fixed point against `rederive.mjs --run`, not against the stage checks.**
+Learned by getting it wrong twice while clearing #1497, and recorded because this ticket has to
+do the same convergence for the whole band.
+
+#1497 merged dev with 136 conflicts, 118 of them resident household cards carrying drawn values
+the two sides disagreed on (`arrival_year` 1832 against 1835 on the same household). They were
+not hand-picked: `reconstruct_residents_1835.py --check` names the remedy itself — "a draw that
+cannot be reproduced is not a reconstruction. Run --stage attribute_fill_arrival --build" — so
+dev was taken as the base and the programme re-ran its own draws.
+
+**The wrong order cost four passes and was still red.** Rebuilding only the stages —
+`attribute_fill_arrival`, then `readmissions`, then `women_and_children`, then the order book —
+reached a state where `reconstruct_residents_1835.py --check` exited 0 on every stage. The gate
+then failed FIVE steps:
+
+```
+* the reconstruction programme answers for every reconstructed resident
+* every re-admission re-derives, and no refusal it stands beside has moved
+* the 1835 town model re-derives, and every figure is bounded and says what it rests on
+* the 1835 population profile re-derives from the resident layer, on every axis
+* the 1835 reconstruction order book re-derives, and no bucket is overfilled
+```
+
+The cause is the T-1314 finding above, read forwards: the model is re-derived FROM the layer the
+stages write into, so a stage rebuild moves the model, and every stage that draws from the model
+is then drawing from one that predates its own rebuild. The first pass never rebuilt
+`tools/model_town_1835.py` at all. Each stage agreed with itself, which is why the stage checks
+were green — a stage's `--check` cannot see that its own input is stale.
+
+**The right order converges in ONE pass:**
+
+```
+python3 tools/model_town_1835.py --build
+python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival  --build
+python3 tools/reconstruct_residents_1835.py --stage readmissions            --build
+python3 tools/reconstruct_residents_1835.py --stage women_and_children      --build
+python3 tools/profile_population_1835.py --build
+python3 tools/build_order_book_1835.py --build
+```
+
+Then all four of `reconstruct_residents_1835.py --check`, `model_town_1835.py --check`,
+`profile_population_1835.py --check` and `build_order_book_1835.py --check` exit 0 — **and still
+exit 0 after `node tools/rederive.mjs --run`**, which is the test that matters and the one this
+ticket's acceptance 1 is written around. A fixed point that the full derived-layer rebuild undoes
+is not a fixed point; the stage checks alone will not tell you which you have.
+
+Acceptance 1 lists the `--check` commands but not an ORDER for the builds, and the order is the
+whole difference between one pass and an oscillation. Whoever works this should write it down
+where the programme can be run from, not leave it to be rediscovered.
+
+State after that merge, for the next reader: the population profile covers 2,144 persons against
+the model's 2,535 target; 900 re-admissions and 124 female-headed households (556 people — 124
+women and 432 others) are built and gated, and none of them reaches `index.json` yet.
