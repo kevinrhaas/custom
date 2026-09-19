@@ -834,7 +834,7 @@
       "placement": "manifest",
       "write_mode": "--build",
       "measured": "2026-09-18",
-      "finding": "Reproduces: `--build` rewrote docs/RESEARCH/closing-convergence-2026-09.md byte-for-byte and moved nothing else, on a tree the gate called clean. `--rebuild` is the heavier mode \u2014 it runs the five closing-set members out of the manifest first \u2014 and is not what the lap calls."
+      "finding": "Reproduces: `--build` rewrote docs/RESEARCH/closing-convergence-2026-09.md byte-for-byte and moved nothing else, on a tree the gate called clean. `--rebuild` is the heavier mode — it runs the five closing-set members out of the manifest first — and is not what the lap calls."
     },
     "rebuild_resident_index.py": {
       "placement": "manifest",
@@ -866,6 +866,13 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "reconstruct_women_children.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 124 cards and 556 people from their seeds. In the manifest directly after `modelled_families`, which fills the same order-book buckets and has to go first.",
+      "placed": "by stage order, 2026-09-19 — it draws against the quota the stage above it spends"
     },
     "refuse_reconstructed_grade.py": {
       "placement": "not_a_writer",

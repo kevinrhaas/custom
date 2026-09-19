@@ -3,7 +3,7 @@
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
   "measured": "2026-09-19",
   "gate_verdict": "CHECK FAIL",
-  "declared_steps": 509,
+  "declared_steps": 513,
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
@@ -971,6 +971,130 @@
         "site/chicago/4d/data/residents/households/hh_ranwin_o.json",
         "site/chicago/4d/data/residents/households/hh_rathburn_amos.json",
         "site/chicago/4d/data/residents/households/hh_ray_russell.json",
+        "site/chicago/4d/data/residents/households/hh_rc_bacon_betsey.json",
+        "site/chicago/4d/data/residents/households/hh_rc_bacon_phebe.json",
+        "site/chicago/4d/data/residents/households/hh_rc_bardwell_phebe.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_betsey.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_emily.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_esther.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_nancy.json",
+        "site/chicago/4d/data/residents/households/hh_rc_barnes_susan.json",
+        "site/chicago/4d/data/residents/households/hh_rc_burke_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_carroll_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_carroll_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_carroll_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_chapin_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_chapin_harriet.json",
+        "site/chicago/4d/data/residents/households/hh_rc_chevalier_angelique.json",
+        "site/chicago/4d/data/residents/households/hh_rc_cobb_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_cobb_martha.json",
+        "site/chicago/4d/data/residents/households/hh_rc_cobb_polly.json",
+        "site/chicago/4d/data/residents/households/hh_rc_connor_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_corrigan_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_crandall_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_crandall_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_crandall_polly.json",
+        "site/chicago/4d/data/residents/households/hh_rc_dickinson_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_dickinson_harriet.json",
+        "site/chicago/4d/data/residents/households/hh_rc_dolan_alice.json",
+        "site/chicago/4d/data/residents/households/hh_rc_dolan_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_doyle_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_duffy_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_dufresne_therese.json",
+        "site/chicago/4d/data/residents/households/hh_rc_eastman_emily.json",
+        "site/chicago/4d/data/residents/households/hh_rc_eastman_esther.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fairbanks_amanda.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fairbanks_lydia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fairbanks_polly.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fisk_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fisk_anna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fisk_eliza.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fisk_esther.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fitzgerald_alice.json",
+        "site/chicago/4d/data/residents/households/hh_rc_fitzgerald_honora.json",
+        "site/chicago/4d/data/residents/households/hh_rc_flynn_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_flynn_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gagnier_therese.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gallagher_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gilbert_abigail.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gilbert_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gilbert_hannah.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gilbert_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_gilbert_ruth.json",
+        "site/chicago/4d/data/residents/households/hh_rc_hale_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_hale_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_hastings_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_hayes_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_hayes_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_ingalls_abigail.json",
+        "site/chicago/4d/data/residents/households/hh_rc_ingalls_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_kelly_honora.json",
+        "site/chicago/4d/data/residents/households/hh_rc_laframboise_angelique.json",
+        "site/chicago/4d/data/residents/households/hh_rc_laframboise_archange.json",
+        "site/chicago/4d/data/residents/households/hh_rc_lecuyer_archange.json",
+        "site/chicago/4d/data/residents/households/hh_rc_lecuyer_madeleine.json",
+        "site/chicago/4d/data/residents/households/hh_rc_leland_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_lyman_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_lyman_ruth.json",
+        "site/chicago/4d/data/residents/households/hh_rc_lynch_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_mahoney_catherine.json",
+        "site/chicago/4d/data/residents/households/hh_rc_mahoney_honora.json",
+        "site/chicago/4d/data/residents/households/hh_rc_mccarthy_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_mcguire_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_murphy_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_murphy_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nash_martha.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nash_nancy.json",
+        "site/chicago/4d/data/residents/households/hh_rc_newell_hannah.json",
+        "site/chicago/4d/data/residents/households/hh_rc_newell_polly.json",
+        "site/chicago/4d/data/residents/households/hh_rc_newell_ruth.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nichols_martha.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nichols_rhoda.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nolan_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nolan_honora.json",
+        "site/chicago/4d/data/residents/households/hh_rc_nolan_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_parmelee_maria.json",
+        "site/chicago/4d/data/residents/households/hh_rc_pelletier_josette.json",
+        "site/chicago/4d/data/residents/households/hh_rc_pothier_victoire.json",
+        "site/chicago/4d/data/residents/households/hh_rc_pratt_lydia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_quinn_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_reilly_catherine.json",
+        "site/chicago/4d/data/residents/households/hh_rc_rice_lydia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_ryan_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_ryan_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_ryan_mary.json",
+        "site/chicago/4d/data/residents/households/hh_rc_sawyer_ruth.json",
+        "site/chicago/4d/data/residents/households/hh_rc_sawyer_sophronia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_shea_bridget.json",
+        "site/chicago/4d/data/residents/households/hh_rc_shea_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_sheldon_lucy.json",
+        "site/chicago/4d/data/residents/households/hh_rc_stebbins_clarissa.json",
+        "site/chicago/4d/data/residents/households/hh_rc_stebbins_maria.json",
+        "site/chicago/4d/data/residents/households/hh_rc_stiles_almira.json",
+        "site/chicago/4d/data/residents/households/hh_rc_stiles_esther.json",
+        "site/chicago/4d/data/residents/households/hh_rc_sullivan_margaret.json",
+        "site/chicago/4d/data/residents/households/hh_rc_thayer_amanda.json",
+        "site/chicago/4d/data/residents/households/hh_rc_thayer_anna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_thayer_hannah.json",
+        "site/chicago/4d/data/residents/households/hh_rc_thayer_maria.json",
+        "site/chicago/4d/data/residents/households/hh_rc_thayer_sarah.json",
+        "site/chicago/4d/data/residents/households/hh_rc_tobin_ellen.json",
+        "site/chicago/4d/data/residents/households/hh_rc_vieau_josette.json",
+        "site/chicago/4d/data/residents/households/hh_rc_walsh_johanna.json",
+        "site/chicago/4d/data/residents/households/hh_rc_whitcomb_lydia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_whitcomb_sarah.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_esther.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_harriet.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_maria.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_martha.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_polly.json",
+        "site/chicago/4d/data/residents/households/hh_rc_wilcox_sophronia.json",
+        "site/chicago/4d/data/residents/households/hh_rc_woodruff_eliza.json",
+        "site/chicago/4d/data/residents/households/hh_rc_woodruff_emily.json",
+        "site/chicago/4d/data/residents/households/hh_rc_woodruff_lucy.json",
+        "site/chicago/4d/data/residents/households/hh_rc_woodruff_ruth.json",
         "site/chicago/4d/data/residents/households/hh_reed_s_w.json",
         "site/chicago/4d/data/residents/households/hh_reed_thomas.json",
         "site/chicago/4d/data/residents/households/hh_reed_william.json",
@@ -1361,13 +1485,13 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build a885d2971 · Sep 18, 2026, 7:06 PM CT"
+        "- ../../site/chicago/4d/walk/index.html build 284ada6d6 · Sep 18, 2026, 10:01 PM CT"
       ]
     },
-    "/tmp/claude-0/wt1476/.github/chicago-4d-dev-preview.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-dev-preview.mjs": {
       "wrote": []
     },
-    "/tmp/claude-0/wt1476/.github/chicago-4d-url-check.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-url-check.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -2084,6 +2208,9 @@
     "tools/reconstruct_sex_age.py": {
       "wrote": []
     },
+    "tools/reconstruct_women_children.py": {
+      "wrote": []
+    },
     "tools/rederive.mjs": {
       "wrote": []
     },
@@ -2258,7 +2385,7 @@
         "site/chicago/4d/walk/js/changelog.js"
       ],
       "wrote_by": [
-        "/tmp/claude-0/wt1476/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
+        "/home/runner/work/polecat-platform/polecat-platform/custom/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
     "tools/surname_one_letter_away.py": {
@@ -2328,14 +2455,7 @@
       "wrote": []
     },
     "tools/ticket.mjs": {
-      "wrote": [
-        "chicago/4d/tickets/BOARD.md",
-        "chicago/4d/tickets/tickets.json",
-        "site/chicago/4d/tickets.json"
-      ],
-      "wrote_by": [
-        "/tmp/claude-0/wtdev/chicago/4d/tools/ticket.mjs check"
-      ]
+      "wrote": []
     },
     "tools/tiebreak.py": {
       "wrote": []
