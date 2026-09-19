@@ -2394,6 +2394,9 @@
     "tools/reconstruct_sex_age.py": {
       "wrote": []
     },
+    "tools/reconstruct_trade_households.py": {
+      "wrote": []
+    },
     "tools/reconstruct_women_children.py": {
       "wrote": []
     },

@@ -893,6 +893,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "reconstruct_trade_households.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a tree the gate called clean rewrote its 308 cards and its ledger and changed no committed byte."
+    },
     "reconstruct_women_children.py": {
       "placement": "manifest",
       "write_mode": "--build",

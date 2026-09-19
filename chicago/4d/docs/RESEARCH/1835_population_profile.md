@@ -2064,7 +2064,7 @@ Every household carries an arrival block and 95.4% of them (1319) hold a `not_la
 | The post surgeon's household | 1 | inferred |
 | The presbytery household at St Mary's | 1 | inferred |
 
-*The index's own relationship vocabulary offers 18 terms; the layer uses 8 of them. Servant, apprentice, journeyman, boarder, lodger and clerk are all at zero — the whole of T-1171, T-1173 and T-1175.*
+*The index's own relationship vocabulary offers 18 terms; the layer uses 8 of them. Servant, apprentice, journeyman, boarder, lodger and clerk are all at zero — the whole of T-1171, T-1347 and T-1175.*
 
 ## Lodging
 
@@ -4309,8 +4309,8 @@ Every axis above is a count of the KNOWN layer. This is the list of what it is m
 | bucket | the ticket that owns it |
 |---|---|
 | the women and children of the households the returns name | T-1170, T-1171, T-1174 |
-| servants, apprentices, journeymen and clerks | T-1171, T-1173, T-1189 |
-| the labouring trades: labourers, carpenters, teamsters, sawyers, boatmen | T-1173 |
+| servants, apprentices, journeymen and clerks | T-1171, T-1183, T-1189 |
+| the labouring trades: labourers, carpenters, teamsters, sawyers, boatmen | T-1347 |
 | boarders, lodgers and hotel guests, and the beds they filled | T-1175 |
 | the Fort Dearborn garrison below officer rank, and soldiers' families | T-1176 |
 | the Native, Métis, free Black, Irish and German town the register implies | T-1177 |
