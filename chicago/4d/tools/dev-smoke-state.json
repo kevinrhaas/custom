@@ -1987,6 +1987,133 @@
         ]
       },
       "source": "/tmp/smoke-d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 71,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3153,\"file\":3153,\"stated\":3153,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2846,\"countText\":\"3,153 people in 1,970 households\\n        · 736 known only from the letter lists\\n        · 269 with a known address\"}",
+        "desktop 1280x800: the tavern-keeper pill narrows the list to tavern keepers — {\"all\":3153,\"matched\":8,\"pressed\":\"\",\"offTrade\":[],\"rows\":8,\"cleared\":3153}"
+      ],
+      "wallSeconds": 160,
+      "takenAt": "2026-09-19T12:19:18.649Z",
+      "ref": "steward/t-1349-garrison-companies",
+      "commit": "49147ef7e0cd",
+      "devCommit": "3c1a0dfed5a5",
+      "treeHash": "sha256:297e2afd55ad2544",
+      "treeDirty": false,
+      "changelogHash": "sha256:6b0cc1953ccadb7d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.1,
+          3.4,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 126,
+      "takenAt": "2026-09-19T12:19:18.585Z",
+      "ref": "steward/t-1349-garrison-companies",
+      "commit": "49147ef7e0cd",
+      "devCommit": "3c1a0dfed5a5",
+      "treeHash": "sha256:297e2afd55ad2544",
+      "treeDirty": false,
+      "changelogHash": "sha256:6b0cc1953ccadb7d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.1,
+          3.4,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 219,
+      "takenAt": "2026-09-19T12:19:18.518Z",
+      "ref": "steward/t-1349-garrison-companies",
+      "commit": "49147ef7e0cd",
+      "devCommit": "3c1a0dfed5a5",
+      "treeHash": "sha256:297e2afd55ad2544",
+      "treeDirty": false,
+      "changelogHash": "sha256:6b0cc1953ccadb7d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.1,
+          3.4,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 84,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 166,
+      "takenAt": "2026-09-19T12:19:18.451Z",
+      "ref": "steward/t-1349-garrison-companies",
+      "commit": "49147ef7e0cd",
+      "devCommit": "3c1a0dfed5a5",
+      "treeHash": "sha256:297e2afd55ad2544",
+      "treeDirty": false,
+      "changelogHash": "sha256:6b0cc1953ccadb7d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.1,
+          3.4,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
     }
   ]
 }

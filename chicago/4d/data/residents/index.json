@@ -157,6 +157,7 @@
    "stove_dealer",
    "sub_agent",
    "surveyor",
+   "sutler",
    "tailor",
    "tanner",
    "tavern_keeper",
@@ -405,12 +406,12 @@
   ]
  },
  "counts": {
-  "households": 1382,
-  "persons": 2144,
+  "households": 1393,
+  "persons": 2269,
   "by_grade": {
    "attested": 410,
    "inferred": 875,
-   "reconstructed": 859
+   "reconstructed": 984
   },
   "letter_list_only": 736,
   "projected_residents": 721,
@@ -15341,6 +15342,20 @@
    "review_required": false
   },
   {
+   "id": "hh_rc_cavanagh_edward",
+   "file": "households/hh_rc_cavanagh_edward.json",
+   "head": "rc_cavanagh_edward",
+   "division": "fort",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_rc_chapin_clarissa",
    "file": "households/hh_rc_chapin_clarissa.json",
    "head": "rc_chapin_clarissa",
@@ -15579,6 +15594,20 @@
    "review_required": false
   },
   {
+   "id": "hh_rc_duffy_martin",
+   "file": "households/hh_rc_duffy_martin.json",
+   "head": "rc_duffy_martin",
+   "division": "fort",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_rc_dufresne_therese",
    "file": "households/hh_rc_dufresne_therese.json",
    "head": "rc_dufresne_therese",
@@ -15616,6 +15645,20 @@
     "reconstructed": 3
    },
    "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_eastman_james",
+   "file": "households/hh_rc_eastman_james.json",
+   "head": "rc_eastman_james",
+   "division": "fort",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": "fort_dearborn_barracks",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
@@ -15798,6 +15841,34 @@
     "reconstructed": 6
    },
    "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_garrison_company_1",
+   "file": "households/hh_rc_garrison_company_1.json",
+   "head": "rc_parmelee_james",
+   "division": "fort",
+   "persons": 47,
+   "grades": {
+    "reconstructed": 47
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_garrison_company_2",
+   "file": "households/hh_rc_garrison_company_2.json",
+   "head": "rc_crandall_lemuel",
+   "division": "fort",
+   "persons": 47,
+   "grades": {
+    "reconstructed": 47
+   },
+   "lives_at": "fort_dearborn_barracks",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
@@ -16148,6 +16219,20 @@
     "reconstructed": 1
    },
    "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_metcalf_david",
+   "file": "households/hh_rc_metcalf_david.json",
+   "head": "rc_metcalf_david",
+   "division": "fort",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "fort_dearborn_sutlers_store",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
@@ -16517,6 +16602,34 @@
    "review_required": false
   },
   {
+   "id": "hh_rc_shea_martin",
+   "file": "households/hh_rc_shea_martin.json",
+   "head": "rc_shea_martin",
+   "division": "fort",
+   "persons": 6,
+   "grades": {
+    "reconstructed": 6
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sheldon_erastus",
+   "file": "households/hh_rc_sheldon_erastus.json",
+   "head": "rc_sheldon_erastus",
+   "division": "fort",
+   "persons": 3,
+   "grades": {
+    "reconstructed": 3
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_rc_sheldon_lucy",
    "file": "households/hh_rc_sheldon_lucy.json",
    "head": "rc_sheldon_lucy",
@@ -16596,6 +16709,20 @@
     "reconstructed": 4
    },
    "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_sullivan_thomas",
+   "file": "households/hh_rc_sullivan_thomas.json",
+   "head": "rc_sullivan_thomas",
+   "division": "fort",
+   "persons": 5,
+   "grades": {
+    "reconstructed": 5
+   },
+   "lives_at": "fort_dearborn_barracks",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
@@ -16685,6 +16812,20 @@
    "review_required": false
   },
   {
+   "id": "hh_rc_tobin_patrick",
+   "file": "households/hh_rc_tobin_patrick.json",
+   "head": "rc_tobin_patrick",
+   "division": "fort",
+   "persons": 2,
+   "grades": {
+    "reconstructed": 2
+   },
+   "lives_at": "fort_dearborn_barracks",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_rc_vieau_josette",
    "file": "households/hh_rc_vieau_josette.json",
    "head": "rc_vieau_josette",
@@ -16708,6 +16849,20 @@
     "reconstructed": 6
    },
    "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_rc_walsh_owen",
+   "file": "households/hh_rc_walsh_owen.json",
+   "head": "rc_walsh_owen",
+   "division": "fort",
+   "persons": 4,
+   "grades": {
+    "reconstructed": 4
+   },
+   "lives_at": "fort_dearborn_barracks",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

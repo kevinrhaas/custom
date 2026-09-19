@@ -256,14 +256,16 @@
   },
   {
    "key": "garrison",
-   "ticket": "T-1176",
+   "ticket": "T-1176 (T-1348 ruled the officers; T-1349 returned the companies)",
    "title": "The Fort Dearborn garrison of 1 July 1835",
-   "writes": "attested officers where named; reconstructed rank and file, families and agency staff",
+   "writes": "reconstructed rank and file, the laundress allowance, soldiers’ families and the sutler; NO officer is invented",
    "draws_from": [
     "by_division"
    ],
-   "note": "The fort is its own division in the lodging table and is seated in the fort's roofs.",
-   "implemented": false
+   "note": "The fort is its own division in the lodging table and is seated in the fort's roofs. The establishment is READ from the Act of 2 March 1821 § 2 and the company count carried forward from Andreas's 1833 reading; no muster roll or post return for mid-1835 has been reached, so the strength is a CEILING. T-1348 ruled every officer this layer can place at the post, so this stage invents none. The Indian Agency establishment of the parent's ask is in neither child and is filed separately.",
+   "implemented": true,
+   "recipe": "garrison_fill",
+   "built_by": "tools/reconstruct_garrison_1835.py"
   },
   {
    "key": "underdocumented",
@@ -610,5 +612,95 @@
    "a native, metis or indigenous community - that is T-1177's stage alone"
   ],
   "seats_nobody": "No lot, no roof, no structure. `lives_at` and `works_at` are null and T-1199 seats these households on the ground T-1191-T-1194 extends."
+ },
+ "garrison_fill": {
+  "_doc": "STAGE `garrison` (T-1349, piece 2 of T-1176). The one recipe tools/reconstruct_garrison_1835.py reads. The fort is the one division the order book refuses to apportion — 'a return to be read' — so this recipe is not a share of a town model at all: it is a statute, a company count and two regulations, and every number below names the source it is read from.",
+  "writes": "two company cards at fort_dearborn_barracks, eight married-soldier households (four to a company), and one sutler at fort_dearborn_sutlers_store",
+  "id_scheme": {
+   "company_household": "hh_rc_garrison_company_<n>",
+   "married_household": "hh_rc_<surname>_<given> of the soldier",
+   "sutler_household": "hh_rc_<surname>_<given> of the sutler",
+   "person": "rc_<surname>_<given>, the programme's own"
+  },
+  "establishment": {
+   "source": "us_statutes_1821_army_peace_establishment",
+   "locator": "3 Stat. 615 § 2",
+   "quoted": "each of which shall consist of one captain, one first lieutenant, one second lieutenant, three sergeants, four corporals, two musicians, and forty-two privates",
+   "per_company_all_ranks": 54,
+   "per_company_enlisted": 51,
+   "note": "The law of the peace establishment on the scene date. AN ESTABLISHMENT IS A CEILING, not a return of present-for-duty, and the ledger says so on every figure it carries."
+  },
+  "companies": {
+   "number": 2,
+   "regiment": "5th Infantry",
+   "confidence": "reconstructed",
+   "source": "andreas_1884_v1",
+   "via": "docs/RESEARCH/fort_dearborn.md § 2",
+   "note": "Two companies of U.S. infantry at the post in 1833 and nothing later; the post held continuously June 1832 to 29 December 1836. A 1833 reading carried forward to 1835, and graded as one."
+  },
+  "officers": {
+   "written": 0,
+   "refusal": "NO OFFICER IS INVENTED. T-1348 adjudicated every officer this layer can place at Chicago in the scene window, admitted one and refused eleven. Minting six company officers under invented names would put commissioned officers of the United States Army into this town that no source has, in the part of the layer a reader is likeliest to take for a finding."
+  },
+  "enlistment_band": {
+   "source": "us_army_general_regulations_1835",
+   "locator": "Recruiting Service art. 19",
+   "quoted": "All free white male persons, above the age of 18, and under 35 years … may be enlisted. This regulation, so far as it respects the height and age of the recruit, shall not extend to musicians, or to those soldiers who may re-enlist into the service.",
+   "draw": "uniform over 18-35, banded on the order book's cut, weighted by the eligible years falling in each band",
+   "seed_bucket": "enlistment_band",
+   "exemptions": {
+    "sergeant": "a re-enlisted man, exempt from the age limit, so drawn across the serving ages",
+    "musician": "exempt from the age limit, so drawn young; the regulation states no other bound and neither does the record"
+   }
+  },
+  "recruiting_communities": {
+   "_doc": "Which pool a soldier's name is drawn from. The parent ticket names the Army's recruiting communities as Irish, German and Yankee; the name pools carry no German community, and that gap is STATED rather than filled from another pool. The draw between the two that exist is EVEN: nothing this project holds measures the shares, and a weighting would be a story about who enlisted.",
+   "basis": "even",
+   "rows": [
+    {
+     "community": "yankee",
+     "weight": 1
+    },
+    {
+     "community": "irish",
+     "weight": 1
+    }
+   ],
+   "refuses": "A REVIEWED COMMUNITY MAY NOT BE DRAWN HERE. Art. 19 enlisted 'free white male persons' and no others — the Army's own colour bar, recorded as a fact about the institution — and AGENTS.md's Indigenous-history review confines Native, Métis and free Black reconstruction to T-1177 in any case."
+  },
+  "laundresses": {
+   "per_company": 4,
+   "source": "us_army_general_regulations_1835",
+   "what_the_regulations_say": "They quarter the washerwomen of a company inside the men's own allowance (art. 31), pay them at a rate the council of administration fixes (art. 30) and settle their accounts against the soldier's pay (arts. 27, 29) — and refer throughout to 'the authorized number of washerwomen' WITHOUT PRINTING IT.",
+   "the_one_proportion_they_do_print": "Art. 82 allows straw for washerwomen 'in the proportion of one to every seventeen persons', which over this establishment gives six rather than eight.",
+   "note": "FOUR A COMPANY IS THIS PROJECT'S OWN FIGURE, carried from T-1349's instruction and graded reconstructed. It is not what the one regulation that prints a proportion would give; the divergence is stated rather than resolved, and docs/LIBERTIES.md carries it.",
+   "written_as": "the wife of a soldier of the same company, because an unattached woman resident at a post is the stronger of the two claims and no source supports either"
+  },
+  "soldiers_families": {
+   "model_row": "household_size",
+   "table": "households_and_families.size_histogram_1840",
+   "cut": "sizes 2 to 6",
+   "draw": "the drawn size less the soldier and his wife is the number of children",
+   "seed_bucket": "household_size",
+   "the_liberty": "THE HISTOGRAM IS CIVILIAN. Nothing this project holds counts the families of a frontier garrison, so a civilian town's distribution stands in for one and the cut to 2-6 is this stage's own. docs/LIBERTIES.md carries it."
+  },
+  "sutler": {
+   "written": 1,
+   "seated_at": "fort_dearborn_sutlers_store",
+   "note": "The building is attested with an attested function and its own record states that who held the sutlership on 1835-07-01 was not established. One man fills the function; no family, partners or stock are claimed, and Andreas's sutler of about 1830 is five years early and is not reused."
+  },
+  "seats": {
+   "company": "fort_dearborn_barracks",
+   "married": "fort_dearborn_barracks",
+   "sutler": "fort_dearborn_sutlers_store",
+   "note": "UNLIKE THE CIVILIAN STAGES, THIS ONE SEATS. The fort's roofs are in the record already and the barracks carries an occupants block naming these men in the abstract; no coordinate is invented. The married households are the weakest line — no plan of married quarters at Chicago has been reached and the card says so."
+  },
+  "the_quartering_check": {
+   "source": "us_army_general_regulations_1835",
+   "locator": "Quarter Master's Department art. 31",
+   "quoted": "To every six non-commissioned officers, musicians, privates, and servants, including the authorized number of washerwomen, two hundred and twenty-five square feet of room, at posts above the 38th degree of north latitude",
+   "run_against": "the committed footprint of fort_dearborn_barracks",
+   "acts_on_nothing": "The check is REPORTED and not applied. It can come out short, and on one floor it does; the ledger states the three readings that survive and picks none."
+  }
  }
 }

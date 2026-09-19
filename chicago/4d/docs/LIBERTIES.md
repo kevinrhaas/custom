@@ -12778,7 +12778,68 @@ the roster **T-1159**, the programme **T-1167**.
 
 **Recorded:** 2026-09-19.
 
-### L251 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
+### L251 — A hundred and two soldiers, eight laundresses, fourteen children and a sutler stand at a post whose roll nobody has read
+
+**Decision:** stage `garrison` of the 1835 resident reconstruction programme
+(`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1349) writes 11 households
+and 125 people into `division: fort` — two company cards and eight married-soldier households at
+`fort_dearborn_barracks`, and the sutler at `fort_dearborn_sutlers_store`. Every one of them is
+graded `reconstructed`. The order book had refused to apportion the fort at all: *"NOT
+APPORTIONED. The garrison of 1 July 1835 is a return to be read."* This is that return.
+
+**Scope:** `residents.persons[garrison]` — 125 people in 11 households this stage also writes,
+every one of them re-derivable from `tools/reconstruct_garrison_1835.py --check`.
+
+**What is READ and not invented.** The establishment: the Act of 2 March 1821 § 2 (3 Stat. 615)
+fixes an infantry company at one captain, one first lieutenant, one second lieutenant, three
+sergeants, four corporals, two musicians and forty-two privates, and that was the law on the
+scene date. The enlistment window: the Army's own General Regulations of 1835, Recruiting Service
+art. 19, *"above the age of 18, and under 35 years"*, with its printed exemptions for musicians
+and re-enlisted men. The post being held on 1 July 1835: `docs/RESEARCH/fort_dearborn.md`. The
+two buildings: both are `attested` structures with `attested` functions, and the barracks already
+carried an occupants block reading *"enlisted men of the 5th Infantry garrison"* — which is the
+reason this stage SEATS where the civilian stages seat nobody. No coordinate is invented.
+
+**What is invented, stated plainly.** That two companies were still the post's strength in 1835 —
+Andreas gives two in 1833 and nothing later, so the count is a reading carried forward two years.
+That the companies stood AT establishment — no muster roll, post return, descriptive book or
+monthly return for Fort Dearborn in 1835 has been read by this project, and frontier companies
+stood below establishment as a matter of course, so 108 all ranks is a CEILING and the ledger
+says so on every figure. That four washerwomen a company is the allowance — the Regulations
+quarter them, pay them and settle their accounts while referring throughout to *"the authorized
+number"* WITHOUT PRINTING IT, and the only proportion they do print (art. 82, one to seventeen
+persons) would give six rather than eight; four a company is T-1349's own instruction and is
+carried as one. That each laundress was a soldier's wife rather than an unattached woman at the
+post — the weaker of the two claims, chosen for that reason. How many children each family held,
+drawn from the 1840 schedule's household-size histogram cut to sizes 2–6: **that histogram is
+civilian**, nothing this project holds counts a frontier garrison's families, and the cut is this
+stage's own. Every name, drawn from `data/reconstruction/1835_invented_name_pools.json`. And the
+married households' seat at the barracks, which is the weakest line in the stage: no plan of
+married quarters at Chicago has been reached, a hut outside the palisade is where such families
+often were, and this project does not draw a structure to house its own inference.
+
+**What is refused.** No officer is invented — the establishment gives the two companies six
+commissioned officers and none is written, because T-1348 has already ruled every officer this
+layer can place at the post and inventing six more would put commissioned officers of the United
+States Army into this town that no source has. No reviewed community is drawn: art. 19 enlisted
+*"free white male persons"* and no others, which is the Army's colour bar recorded as a fact about
+the institution, and the Native, Métis and free Black reconstruction is T-1177's under AGENTS.md's
+review. And no drawn soldier bears a family name any attested or inferred person of this town
+bears — a hundred men over thirty-six surnames made the town's one real Tuttle ambiguous to
+`mint_civic_residents.py` on the first run, and an invention that changes how a source is READ has
+become evidence.
+
+**The check this stage runs and does not act on.** Quarter Master's Department art. 31 allows 225
+square feet to every six enlisted men and washerwomen at posts above the 38th parallel. The
+barracks' committed footprint is 3,265 sq ft, which quarters 84 on one floor against the 110 this
+establishment would put in it — short by 26. Three readings survive (more than one floor; a short
+footprint, which the record already invites at ±20 %; or companies below establishment, the
+likeliest), and the stage picks none. Nothing was reduced to fit.
+
+Related: tickets **T-1349**, from **T-1176** and **T-1167**; **T-1348** is the officers' half of
+the same parent; **L247** is the stage above it in the programme. **Recorded:** 2026-09-19.
+
+### L252 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
 
 **Decision:** `tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night
 capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each
