@@ -3,6 +3,77 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 89,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 692,
+      "takenAt": "2026-09-19T17:22:07.597Z",
+      "ref": "steward/t-1182-anchors-and-partners",
+      "commit": "918ebfcbb415",
+      "devCommit": "a69af8c84c5f",
+      "treeHash": "sha256:b29ea6185daeb75d",
+      "treeDirty": false,
+      "changelogHash": "sha256:205e56c06fc47470",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          4,
+          4.2
+        ]
+      },
+      "source": "/tmp/smoke-d12b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 88,
+      "failed": 3,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]",
+        "desktop 1280x800: a person's card names every firm the register puts them in — {\"head\":\"The 4 firms the register puts them in\",\"ids\":[\"biz_collins_caton\",\"biz_j_d_caton_attorney_and_counsellor_at_law\",\"biz_john_dean_caton\",\"biz_john_dean_caton_attorney_and_counsellor_at_law\"],\"sub\":\"partner · attorneys and counsellors at law, and solicitors in chancery · South Water Street\",\"dots\":4,\"wanted\":[\"biz_collins_caton\",\"biz_j_d_caton_attorney_and_counsellor_at_law\",\"biz_john_dean_caton\",\"biz_john_dean_caton_attorney_and_counsellor_at_law\"],\"printings\":4}"
+      ],
+      "wallSeconds": 700,
+      "takenAt": "2026-09-19T17:10:24.926Z",
+      "ref": "steward/t-1182-anchors-and-partners",
+      "commit": "918ebfcbb415",
+      "devCommit": "a69af8c84c5f",
+      "treeHash": "sha256:b29ea6185daeb75d",
+      "treeDirty": false,
+      "changelogHash": "sha256:205e56c06fc47470",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.5,
+          3.7,
+          4.2
+        ]
+      },
+      "source": "/tmp/smoke-d12.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "3",
       "parts": [
         3
@@ -1122,71 +1193,6 @@
         ]
       },
       "source": "/tmp/s_d.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 178,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 311,
-      "takenAt": "2026-09-19T01:18:34.905Z",
-      "ref": "steward/t-1173-trade-households",
-      "commit": "243b6c34ae8c",
-      "devCommit": "67edda510aef",
-      "treeHash": "sha256:3c2b9d73c6b4b54d",
-      "treeDirty": false,
-      "changelogHash": "sha256:5f41c59ddd8726e6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.7,
-          3.6
-        ]
-      },
-      "source": "/tmp/s_m.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 91,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 186,
-      "takenAt": "2026-09-19T00:40:16.414Z",
-      "ref": "steward/t-1340-books-arrival-lists",
-      "commit": "b9607e5d3ee0",
-      "devCommit": "c4cd1926439b",
-      "treeHash": "sha256:6e1b9172046e7f2a",
-      "treeDirty": false,
-      "changelogHash": "sha256:9dd026bdb8a2ef39",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.4,
-          3.7,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "desktop",
