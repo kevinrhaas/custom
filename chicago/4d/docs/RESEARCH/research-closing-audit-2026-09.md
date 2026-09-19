@@ -123,10 +123,9 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | T-1198 | 270 | open | yes |
 | T-1299 | 1 | open | yes |
 | T-1315 | 3 | open | yes |
-| T-1334 | 1 | open | yes |
 | T-1335 | 168 | open | yes |
 | T-1338 | 128 | open | yes |
-| T-1340 | 7 | open | yes |
+| T-1340 | 8 | open | yes |
 
 Reproduce: `python3 tools/measure_research_spend.py --check`.
 
