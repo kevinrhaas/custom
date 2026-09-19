@@ -218,12 +218,24 @@ function gradeChip(grade) {
  * arithmetic share as something a source said. It is the weakest claim under the
  * number, which is the rule the rest of this card already follows.
  *
- * AND IT SAYS THAT NOBODY IS IN THEM. An empty bed count on a card that lists
- * residents below would otherwise read as a house standing empty; it is a house
- * whose lodgers have not been written yet, which is a different statement and the
- * honest one. A row with no beds at all — the Lake House, still going up — prints
- * its reason instead of its number, because a lodging place silent about its
- * capacity reads as an oversight rather than as a finding.
+ * AND IT SAYS WHO IS IN THEM (T-1385). This card used to end on the sentence
+ * "Nobody is seated in these beds yet", which was true for one day. T-1371 then
+ * slept 122 people in these fifteen houses and the sentence stayed, so the
+ * Tremont's twelve beds held twelve people and its card said the house was empty
+ * — the one failure mode this section was built to avoid, arriving from the other
+ * direction. The occupancy line is compiled from that stage's own ledger and
+ * keeps the four ways into a bed apart, because a person the sources house here,
+ * a person seated here for want of a roof, and a lodger drawn for an empty bed
+ * are three different claims and one number would read as a census of all three.
+ *
+ * AN EMPTY BED IS PRINTED WITH ITS REASON OR NOT AT ALL. The two houses standing
+ * short are short because no committed record gives their division and a drawn
+ * lodger has to come out of a division's bucket; the ledger's refusal is shown
+ * verbatim. "5 beds empty" alone would read as a finding about 1835.
+ *
+ * A row with no beds at all — the Lake House, still going up — prints its reason
+ * instead of its number, because a lodging place silent about its capacity reads
+ * as an oversight rather than as a finding.
  */
 function lodgingSection(s) {
   const l = s.lodging;
@@ -245,10 +257,27 @@ function lodgingSection(s) {
            : ''}</p>
        ${noteToggle(l.replaceable_by)}`;
 
+  const o = l.occupancy;
+  const occupancy = !o ? '' : `
+    <p class="lodge-who">
+      <span class="lodge-n">${o.people}</span>
+      <span class="lodge-when">slept here on this card</span>
+      ${o.empty ? `<span class="lodge-sep">·</span>
+        <span class="lodge-n lodge-short">${o.empty}</span>
+        <span class="lodge-when">${o.empty === 1 ? 'bed' : 'beds'} empty</span>` : ''}
+    </p>
+    <p class="lodge-basis">${escapeHtml(o.statement)}</p>
+    ${o.empty_note ? `<p class="lodge-empty">${escapeHtml(o.empty_note)}</p>` : ''}
+    ${o.keeper_persons
+      ? `<p class="lodge-basis">The keeper's own household stands at ${o.keeper_persons}
+           ${o.keeper_persons === 1 ? 'person' : 'people'}.${
+             o.keeper_owed ? ` ${escapeHtml(o.keeper_owed)}` : ''}</p>`
+      : (o.keeper_owed ? `<p class="lodge-empty">${escapeHtml(o.keeper_owed)}</p>` : '')}`;
+
   return `<section class="pop-sec pop-lodging">
     <h3>How many slept here</h3>
     ${body}
-    <p class="lodge-empty">${escapeHtml(l.seats_nobody)}</p>
+    ${occupancy}
   </section>`;
 }
 

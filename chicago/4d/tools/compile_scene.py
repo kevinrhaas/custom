@@ -1700,6 +1700,82 @@ def compile_streets(scene_id: str, target_date: str,
     return doc.get("surface_standard", ""), out
 
 
+def compile_lodging_occupancy() -> dict[str, dict]:
+    """structure_id -> who is on this card tonight, and what the empty beds are.
+
+    T-1385, out of T-1372. T-1370 gave fifteen lodging places a bed count and
+    T-1371 slept 122 people in them, and the card in front of a visitor said
+    neither: it printed the beds under a flat sentence reading "Nobody is seated
+    in these beds yet. Who slept here is T-1371." That sentence outlived the
+    ticket it named by a day and then it was simply false — the Tremont's twelve
+    beds had twelve people in them and the card still said the house was empty.
+
+    THE LEDGER IS THE ONLY SOURCE OF THE NUMBERS. `1835_lodgers_seated.json` is
+    re-derived by `tools/seat_lodgers_1835.py --check` in `tools/check.sh`, so
+    every figure carried here is a committed quantity; this function adds no
+    arithmetic of its own beyond one subtraction the ledger's own refusals
+    already state the answer to.
+
+    AND THE FOUR WAYS INTO A BED ARE KEPT APART, because they are four different
+    strengths of claim about the same house. Somebody the residents layer already
+    housed here is evidence about this roof. Somebody SEATED here from elsewhere
+    in the layer is a real person the sources do not place — the seat is the
+    invention, not the person. A lodger DRAWN for an empty bed is a claim about a
+    ratio and about nobody. A minted keeper is a roof this project raised being
+    given somebody to keep it. A single occupancy figure would flatten all four
+    into a number a reader would take for a census.
+
+    AN EMPTY BED IS NAMED OR IT IS NOT PRINTED AS EMPTY. Two houses stand short —
+    the New York House and the Sauganash — and the ledger's own refusal says why
+    in both cases: no committed record gives their division, and a person drawn
+    into a lodging house has to be ordered out of the order book's bucket for
+    one. That refusal travels onto the card verbatim, because "8 beds empty" with
+    no reason beside it reads as a finding about 1835 rather than about us.
+    """
+    path = DATA / "reconstruction" / "1835_lodgers_seated.json"
+    if not path.exists():
+        return {}
+    ledger = load(path)
+    keeper_for = {k["place"]: k for k in ledger.get("keepers", [])}
+    refusal_for = {r["place"]: r for r in ledger.get("refusals", []) if r.get("place")}
+
+    out: dict[str, dict] = {}
+    for house in ledger.get("houses", []):
+        beds = house["beds_ordinary"]
+        people = house["occupancy_after"]
+        empty = max(0, beds - people)
+        how = []
+        if house["occupied_before"]:
+            how.append(f"{house['occupied_before']} the residents layer already "
+                       f"housed here")
+        if house["seated"]:
+            how.append(f"{len(house['seated'])} seated here from elsewhere in the "
+                       f"layer, where no source gives them a roof")
+        if house["minted_lodgers"]:
+            how.append(f"{house['minted_lodgers']} drawn against the order book's "
+                       f"lodging buckets for beds that were standing empty")
+        if house["minted_keeper"]:
+            how.append("a keeper drawn for a roof this programme raised")
+        statement = (f"{people} on this card against an ordinary night's {beds} beds"
+                     + (": " + ", ".join(how) + "." if how else "."))
+
+        keeper = keeper_for.get(house["id"]) or {}
+        out[house["id"]] = {
+            "people": people,
+            "beds_ordinary": beds,
+            "empty": empty,
+            "statement": statement,
+            # The ledger's refusal, verbatim where it made one. Never a sentence
+            # of this compiler's own: an unexplained empty bed is a question, and
+            # answering it here would be answering it with nothing.
+            "empty_note": (refusal_for.get(house["id"], {}).get("note", "")
+                           if empty else ""),
+            "keeper_persons": keeper.get("persons_on_the_keeper_s_card", 0),
+            "keeper_owed": keeper.get("owed_by") or "",
+        }
+    return out
+
+
 def compile_lodging() -> dict[str, dict]:
     """structure_id -> how many people that lodging place could sleep.
 
@@ -1724,6 +1800,7 @@ def compile_lodging() -> dict[str, dict]:
         return {}
     model = load(path)
     figures = model["the_figures_this_model_does_not_move"]
+    occupancy = compile_lodging_occupancy()
     out: dict[str, dict] = {}
     for place in model["places"]:
         out[place["id"]] = {
@@ -1740,7 +1817,10 @@ def compile_lodging() -> dict[str, dict]:
             # time it was compiled under the model file's own word for it.
             "note": place["basis"],
             "replaceable_by": place["replaceable_by"],
-            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+            # T-1385. Who is actually in them, from T-1371's ledger. `None` where
+            # the stage never reached this house, which the renderer prints as the
+            # silence it is rather than as an empty house.
+            "occupancy": occupancy.get(place["id"]),
         }
     # The rows the model carries WITHOUT beds, and the reason on each. A building
     # that reaches the card saying nothing about its lodging reads as an oversight;
@@ -1756,7 +1836,10 @@ def compile_lodging() -> dict[str, dict]:
             "confidence": "reconstructed",
             "note": row["why_no_beds"],
             "replaceable_by": "",
-            "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371.",
+            # No beds to fill, so no occupancy to state: `note` above already says
+            # why this row carries no number, and a second sentence about nobody
+            # sleeping in beds that do not exist would read as a finding.
+            "occupancy": None,
         }
     return out
 
@@ -1832,9 +1915,106 @@ def compile_residents() -> dict[str, list[dict]]:
                 } for person in hh.get("persons", [])],
                 "research_note": hh.get("research_note", ""),
             })
+    overlay_lodgers(out)
     for households in out.values():
         households.sort(key=lambda h: h["household"])
     return out
+
+
+def overlay_lodgers(out: dict[str, list[dict]]) -> None:
+    """Put T-1371's boarders on the building card that holds their bed (T-1385).
+
+    THE HOUSEHOLDS THE MANIFEST CANNOT CARRY. `compile_residents` walks
+    `data/residents/index.json`, and that manifest is a summary of
+    `data/residents/households/` and nothing else, by `rebuild_resident_index.py`'s
+    own rule. The reconstruction programme therefore writes its people BESIDE that
+    directory — `readmitted/`, `reconstructed_trades/`, `lodgers/` — so the mint
+    writers can re-derive the research cards without the reconstruction being
+    rewritten under them. The consequence for the card was that 75 drawn lodgers
+    and 5 drawn keepers existed in the dataset, reached the People view, and were
+    invisible on the one surface where a visitor meets a resident: the house they
+    slept in. `compile_people` already overlays these rows for its own directory;
+    this is the same overlay for the building card.
+
+    TWO OVERLAYS OUT OF ONE LEDGER, and they are not the same claim.
+
+      * A CONTAINER CARD per house, holding the people this stage drew for its
+        empty beds. It is not a family and it says so on the card, in the record's
+        own words — `data/residents/` cannot hold a person outside a household and
+        the people who boarded in one house were not kin.
+      * A SEAT, for somebody the layer already holds whom no source gives a roof.
+        The seat writes nothing into the research card (that directory is
+        re-derived), so it is carried here exactly as T-1172's presence rulings
+        are. The person is real; the roof over them is the invention, and the
+        block says which is which rather than letting the reader assume.
+
+    A LODGER'S TRADE IS NOT PRINTED WHERE THE STAGE REFUSED TO DRAW ONE. The
+    drawn lodgers carry `occupation: none_recorded`, which is that refusal in the
+    vocabulary's own word — T-1371 wrote it down: "No lodger gets a trade; that is
+    a different table." Rendered as a trade it would read as "none recorded" in
+    the slot where every other person on the card shows work, i.e. as a fact about
+    an 1835 lodger instead of about this project's stages. It is dropped, and the
+    relationship carries the row.
+    """
+    path = DATA / "reconstruction" / "1835_lodgers_seated.json"
+    if not path.exists():
+        return
+    ledger = load(path)
+
+    def trade(value: str) -> str:
+        return "" if value in (None, "", "none_recorded") else value
+
+    for minted in ledger.get("minted", []):
+        card_path = DATA / "residents" / minted["file"]
+        if not card_path.exists():
+            continue
+        hh = load(card_path)
+        lodging = hh.get("lodging_household") or {}
+        out.setdefault(minted["place"], []).append({
+            "household": hh["id"],
+            "name": hh["name"],
+            "division": hh.get("division", ""),
+            "relation": "lodged here",
+            "why": ((hh.get("lives_at") or {}).get("basis") or {}).get("note", ""),
+            "sources": [],
+            "basis": lodging.get("note", ""),
+            "persons": [{
+                "name": person.get("name", ""),
+                "relationship": person.get("relationship", ""),
+                "grade": person.get("grade", "reconstructed"),
+                "occupation": trade((person.get("occupation") or {}).get("value", "")),
+                "note": person.get("note", ""),
+            } for person in hh.get("persons", [])],
+            "research_note": hh.get("research_note", ""),
+        })
+
+    grades: dict[str, dict[str, str]] = {}
+    for seat in ledger.get("seats", []):
+        card_path = DATA / "residents" / seat["file"]
+        if seat["file"] not in grades:
+            card = load(card_path) if card_path.exists() else {}
+            grades[seat["file"]] = {person.get("id"): person.get("grade", "reconstructed")
+                                    for person in card.get("persons", [])}
+        out.setdefault(seat["place"], []).append({
+            "household": seat["household"],
+            "name": seat["name"],
+            "division": "",
+            "relation": "lodged here",
+            "why": (seat.get("basis") or {}).get("note", ""),
+            "sources": [],
+            "basis": ("SEATED HERE, NOT RECORDED HERE. This person is one the residents "
+                      "layer already holds and no source says where they slept; the bed "
+                      "is the invention and the person is not. Their own card carries "
+                      "their evidence and is not touched by the seat."),
+            "persons": [{
+                "name": seat["name"],
+                "relationship": seat.get("relationship", ""),
+                "grade": grades[seat["file"]].get(seat["person"], "reconstructed"),
+                "occupation": trade(seat.get("trade", "")),
+                "note": "",
+            }],
+            "research_note": "",
+        })
 
 
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:

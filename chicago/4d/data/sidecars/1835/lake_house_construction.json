@@ -172,6 +172,6 @@
     "confidence": "reconstructed",
     "note": "The record's own function says this building was still going up on 1835-07-01. A house that was not open held nobody, and giving it a capacity would put beds in a building site.",
     "replaceable_by": "",
-    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+    "occupancy": null
   }
 }
