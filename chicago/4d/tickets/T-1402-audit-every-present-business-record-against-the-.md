@@ -1,7 +1,7 @@
 ---
 id: T-1402
 title: Audit every present business record against the research: proprietors and partners adjudicated against identity.json, dates honouring opening_announced and dissolved, type = its census class, goods, and every place the research names as a plural locations[] with its limit class — with the field x grade reconciliation table, the report and its --check gate
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1182
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 12:58:10 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35459507637
 ---
 
 Audit every present business record against the research: proprietors and partners adjudicated against identity.json, dates honouring opening_announced and dissolved, type = its census class, goods, and every place the research names as a plural locations[] with its limit class — with the field x grade reconciliation table, the report and its --check gate.
