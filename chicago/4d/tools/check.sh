@@ -4364,6 +4364,35 @@ step "the 1835 lodging model re-derives, and no house sleeps more than 1840 saw"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_lodging_model_1835.py --self-test
 
+# T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
+# THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
+# ordinary-night capacity of 135 between them and seated nobody; thirty people stood on
+# their cards, eight keepers and their families. This stage fills the ordinary-night
+# figure: the solitary heads T-1171 and T-1173 already drew are seated first, the short
+# beds are drawn against the order book's own `lodging` buckets, and a roof THIS programme
+# raised as a lodging place is given a keeper at the trade its own `function` states.
+#
+# WHY A GATE. Every person here is a draw over a quota two other derived files own, and
+# both of them move: the lodging model re-apportions whenever a structure record changes
+# its floor area, and the order book re-cuts whenever the known layer does. Left ungated,
+# a card written once would go on reading as this stage's output long after the stage
+# stopped producing it. `--check` re-derives every card and the ledger byte for byte,
+# holds the order book's fills to the ledger's own, and refuses a house sleeping more
+# people than the 1840 enumerator ever saw or a person seated in two houses at once.
+#
+# The refusal worth knowing is the one that leaves beds empty. A person drawn into a
+# lodging house has to be ordered out of the book's bucket for a DIVISION, and
+# `data/structures/*.json` carries no division field at all — the residents layer's own
+# households are where a named house's division comes from. The New York House and the
+# Sauganash Hotel have none attached, so this stage mints nobody into them and says so
+# rather than guessing a division to spend a bucket on. Thirteen ordinary-night beds
+# stand empty at the end of it and the ledger names every one.
+step "the boarders re-derive, and no house sleeps more than the 1840 enumerator saw" \
+  python3 tools/seat_lodgers_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/seat_lodgers_1835.py --self-test
+
 # T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
 # town` sits in the book above with no target and no quota, because the town model bounds
 # the town's RESIDENTS and the land-sale crowd, the immigrants awaiting lots, the harbour

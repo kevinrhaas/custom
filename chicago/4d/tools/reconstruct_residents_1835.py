@@ -52,6 +52,7 @@ READMITTED = ROOT / "data" / "residents" / "readmitted"
 # T-1347. The trade households are the same case one stage on: drawn heads, not readings,
 # so they live outside the mints' directory too and the contract reaches them here.
 MINTED_TRADES = ROOT / "data" / "residents" / "reconstructed_trades"
+MINTED_LODGERS = ROOT / "data" / "residents" / "lodgers"
 RETIRED = ROOT / "data" / "reconstruction" / "1835_inferred_household_programme.json"
 NAME_POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 
@@ -186,7 +187,8 @@ def read_layer():
     reconstructed, real_names = [], set()
     paths = (sorted(HOUSEHOLDS.glob("hh_*.json"))
              + sorted(READMITTED.glob("hh_*.json"))
-             + sorted(MINTED_TRADES.glob("hh_*.json")))
+             + sorted(MINTED_TRADES.glob("hh_*.json"))
+             + sorted(MINTED_LODGERS.glob("hh_*.json")))
     for path in paths:
         try:
             rec = json.loads(path.read_text(encoding="utf-8"))
@@ -1106,6 +1108,16 @@ def _check_trade_households() -> int:
     return reconstruct_trade_households.check()
 
 
+def _build_lodgers() -> int:
+    import seat_lodgers_1835
+    return seat_lodgers_1835.build()
+
+
+def _check_lodgers() -> int:
+    import seat_lodgers_1835
+    return seat_lodgers_1835.check()
+
+
 def _build_women_and_children() -> int:
     import reconstruct_women_children
     return reconstruct_women_children.build()
@@ -1130,12 +1142,14 @@ STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
                   "modelled_families": _build_modelled_families,
                   "readmissions": _build_readmissions,
                   "trade_households": _build_trade_households,
-                  "women_and_children": _build_women_and_children}
+                  "women_and_children": _build_women_and_children,
+                  "lodgers": _build_lodgers}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
                   "modelled_families": _check_modelled_families,
                   "readmissions": _check_readmissions,
                   "trade_households": _check_trade_households,
-                  "women_and_children": _check_women_and_children}
+                  "women_and_children": _check_women_and_children,
+                  "lodgers": _check_lodgers}
 
 
 # --------------------------------------------------------------------------

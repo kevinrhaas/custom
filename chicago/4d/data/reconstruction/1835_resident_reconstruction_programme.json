@@ -243,15 +243,16 @@
   },
   {
    "key": "lodgers",
-   "ticket": "T-1175",
+   "ticket": "T-1175 (T-1370 modelled the beds; T-1371 seated the boarders)",
    "title": "Boarders, lodgers, guests and crews, seated in the lodging places",
    "writes": "reconstructed persons with a lodging seat",
    "draws_from": [
     "lodging",
     "sex_ratio"
    ],
-   "note": "The surplus adult men the 1840 sex ratio implies are boarders, not husbands.",
-   "implemented": false
+   "note": "The surplus adult men the 1840 sex ratio implies are boarders, not husbands. T-1370 gave every lodging place a capacity and seated nobody; T-1371 fills the ordinary-night figure of the fifteen BUILT houses — the solitary heads T-1171 and T-1173 already drew are seated first, the short beds are drawn against the book's `lodging` buckets, and a roof this programme raised itself is given a keeper. The crews of the vessels in port and the hands at the works are T-1372's, and so is the house card that prints who lived there.",
+   "implemented": true,
+   "built_by": "tools/seat_lodgers_1835.py"
   },
   {
    "key": "garrison",
