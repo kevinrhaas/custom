@@ -1,0 +1,535 @@
+{
+ "id": "hh_fb_magie_samuel",
+ "name": "The Magie household — free Black Chicago, at the floor of its bracket",
+ "division": "unplaced",
+ "head": "fb_magie_samuel",
+ "source_pass": "reconstructed_free_black_household",
+ "free_black_household": {
+  "ticket": "T-1377",
+  "parent_ticket": "T-1177",
+  "stage": "free_black",
+  "slot": "free_black:household:004",
+  "composition_vector": {
+   "familysearch_id": "33S7-9YYJ-2T",
+   "printed_page": 221,
+   "line": 12,
+   "head_as_read_in_1840": "George White",
+   "free_coloured_persons": 6,
+   "bands": [
+    {
+     "sex": "male",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "male",
+     "band": "36 under 55",
+     "persons": 1
+    },
+    {
+     "sex": "male",
+     "band": "55 under 100",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "36 under 55",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "55 under 100",
+     "persons": 1
+    }
+   ],
+   "what_is_carried": "The SHAPE only — how many people, of which sex, in which band. No name, no age of any individual, no industry mark and no identity crosses from 1840 into this household."
+  },
+  "stands_on": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people.",
+  "withdrawn_if": "a reading that names Chicago's free Black residents of 1835, or a re-cut of the bracket that no longer leaves room for this household; the retirement runs through --build, never by hand"
+ },
+ "kin_owed": {
+  "note": "NO KIN TIE IS CLAIMED. The schedule of 1840 records no relationships at all, so everybody below the head is `household_member` and this stage writes no wife, no son and no daughter. The families of this cohort are owed to T-1170 and T-1171 exactly as every other household's are.",
+  "seated_by": "T-1170 (named families), T-1171 (modelled families), T-1179 (converge)"
+ },
+ "arrival": {
+  "value": null,
+  "confidence": "reconstructed",
+  "tier": "unknown",
+  "note": "NOT DRAWN HERE. T-1169 owns the arrival fill, and the circle the trade households name holds here too: the arrival model is computed over the compiled scene and the scene carries these cards. One bound is on the record already — six men were at Chicago in August 1833, two years before the scene — and T-1169 is where it is spent.",
+  "seated_by": "T-1169 (the arrival fill), T-1179 (converge)"
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "tier": "unknown",
+  "note": "Not seated. T-1199 seats the reconstructed households on the lot grid by the placement policy, and nothing in this corpus says where Chicago's free Black residents lived in 1835. The division is `unplaced` and stays unplaced until it does."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "reconstructed",
+  "tier": "unknown",
+  "note": "Not seated. T-1189 staffs the businesses; the one firm this stage mints carries its keeper by id."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "reconstructed",
+  "tier": "reconstructed",
+  "basis": {
+   "kind": "rule",
+   "id": "free_black_bracket_1835",
+   "note": "Ordered by the bracket, not argued person by person: six free coloured men were certificated free at Chicago in August 1833 and the town's free Black population of 1840 scales back to 28 on the scene date. This household is one of the six the bracket carries."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a re-cut bracket that no longer carries this household"
+  }
+ },
+ "persons": [
+  {
+   "id": "fb_magie_samuel_m01",
+   "name": "A woman of this household, 55-99 (reconstructed, unnamed)",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "55-99",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:01:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 55,
+    "high": 99
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "NOT DEALT. The 1840 schedule marks an industry against a HOUSEHOLD and names only its head, so a trade for anybody else here would be invented whole. T-1189 staffs the businesses and T-1174 owns the women's employments."
+    },
+    "seed": "free_black:household:004:person:01:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "A woman of this household, 55-99 (reconstructed, unnamed)",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "NOT NAMED, AND THE REASON IS THE SOURCE'S OWN SHAPE. The 1840 schedule names the head and COUNTS everybody else. A name here would invent the person and their relation to the head in one stroke, so this record carries a designation, a sex and a band, and nothing else."
+    },
+    "seed": "free_black:household:004:person:01:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:01",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_member",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  },
+  {
+   "id": "fb_magie_samuel",
+   "name": "Samuel Magie",
+   "relationship": "head",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "55-99",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:02:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 55,
+    "high": 99
+   },
+   "occupation": {
+    "value": "labourer",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "An EVEN DEAL over the employments T-1177 names that this layer's occupation vocabulary actually carries. No source ranks them for this town, so an even deal is the only apportionment that adds no ranking the record does not carry. The 1840 industry column marks the one Black-headed Chicago household this corpus can reach in MANUFACTURES AND TRADES rather than in service, which is why the men's table is labour and carriage and not domestic work."
+    },
+    "seed": "free_black:household:004:person:02:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "Samuel Magie",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "Drawn from the free_black pool, whose seed is the four Black-headed households of the 1840 Cook County sheets and whose extension excludes every surname that seed and this town's attested residents bear."
+    },
+    "seed": "free_black:household:004:person:02:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:02",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_head",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  },
+  {
+   "id": "fb_magie_samuel_m03",
+   "name": "A woman of this household, 36-54 (reconstructed, unnamed)",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "36-54",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:03:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 36,
+    "high": 54
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "NOT DEALT. The 1840 schedule marks an industry against a HOUSEHOLD and names only its head, so a trade for anybody else here would be invented whole. T-1189 staffs the businesses and T-1174 owns the women's employments."
+    },
+    "seed": "free_black:household:004:person:03:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "A woman of this household, 36-54 (reconstructed, unnamed)",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "NOT NAMED, AND THE REASON IS THE SOURCE'S OWN SHAPE. The 1840 schedule names the head and COUNTS everybody else. A name here would invent the person and their relation to the head in one stroke, so this record carries a designation, a sex and a band, and nothing else."
+    },
+    "seed": "free_black:household:004:person:03:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:03",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_member",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  },
+  {
+   "id": "fb_magie_samuel_m04",
+   "name": "A man of this household, 36-54 (reconstructed, unnamed)",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "36-54",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:04:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 36,
+    "high": 54
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "NOT DEALT. The 1840 schedule marks an industry against a HOUSEHOLD and names only its head, so a trade for anybody else here would be invented whole. T-1189 staffs the businesses and T-1174 owns the women's employments."
+    },
+    "seed": "free_black:household:004:person:04:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "A man of this household, 36-54 (reconstructed, unnamed)",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "NOT NAMED, AND THE REASON IS THE SOURCE'S OWN SHAPE. The 1840 schedule names the head and COUNTS everybody else. A name here would invent the person and their relation to the head in one stroke, so this record carries a designation, a sex and a band, and nothing else."
+    },
+    "seed": "free_black:household:004:person:04:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:04",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_member",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  },
+  {
+   "id": "fb_magie_samuel_m05",
+   "name": "A girl of this household, 0-9 (reconstructed, unnamed)",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "age_band": {
+    "value": "0-9",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:05:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 0,
+    "high": 9
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "NOT DEALT. The 1840 schedule marks an industry against a HOUSEHOLD and names only its head, so a trade for anybody else here would be invented whole. T-1189 staffs the businesses and T-1174 owns the women's employments."
+    },
+    "seed": "free_black:household:004:person:05:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "A girl of this household, 0-9 (reconstructed, unnamed)",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "NOT NAMED, AND THE REASON IS THE SOURCE'S OWN SHAPE. The 1840 schedule names the head and COUNTS everybody else. A name here would invent the person and their relation to the head in one stroke, so this record carries a designation, a sex and a band, and nothing else."
+    },
+    "seed": "free_black:household:004:person:05:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:05",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_member",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  },
+  {
+   "id": "fb_magie_samuel_m06",
+   "name": "A boy of this household, 0-9 (reconstructed, unnamed)",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "male",
+   "age_band": {
+    "value": "0-9",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "census_1840_free_coloured_bands",
+     "note": "The 1840 schedule's own band, carried from the composition stock's vector (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T). A band, never a year: this project writes no age it cannot read."
+    },
+    "seed": "free_black:household:004:person:06:band",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age or their birth year"
+    },
+    "low": 0,
+    "high": 9
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_black_chicago",
+     "note": "NOT DEALT. The 1840 schedule marks an industry against a HOUSEHOLD and names only its head, so a trade for anybody else here would be invented whole. T-1189 staffs the businesses and T-1174 owns the women's employments."
+    },
+    "seed": "free_black:household:004:person:06:trade",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town at a trade"
+    }
+   },
+   "name_basis": {
+    "value": "A boy of this household, 0-9 (reconstructed, unnamed)",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "1835_invented_name_pools",
+     "note": "NOT NAMED, AND THE REASON IS THE SOURCE'S OWN SHAPE. The 1840 schedule names the head and COUNTS everybody else. A name here would invent the person and their relation to the head in one stroke, so this record carries a designation, a sex and a band, and nothing else."
+    },
+    "seed": "free_black:household:004:person:06:name",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming a free Black resident of this town"
+    }
+   },
+   "basis": {
+    "kind": "model",
+    "id": "1835_black_chicago",
+    "note": "Caton's six certificates of freedom, August 1833, are the cohort's floor, and this is one of the six households the bracket's ceiling leaves room for. The SHAPE is the band vector of a Black-headed Chicago household of 1840 (printed page 221, line 12, FamilySearch image 33S7-9YYJ-2T), dealt here as a structure and never as its people."
+   },
+   "seed": "free_black:household:004:person:06",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source naming a free Black resident of Chicago in 1835, who would stand in this slot instead"
+   },
+   "reconstruction": {
+    "stage": "free_black",
+    "programme": "chicago_1835_resident_reconstruction",
+    "community": "free_black",
+    "review_required": true,
+    "review_owed_to": "A reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort it reconstructs."
+   },
+   "resident_subtype": "reconstructed_free_black_member",
+   "note": "RECONSTRUCTED, NOT FOUND. No source names this person. What is claimed is what the bracket carries: that free Black Chicagoans lived in this town on 1 July 1835 — six men of them certificated free before the county court in August 1833 — and that their households were shaped like the Black-headed households Chicago's own enumerator counted five years later. Every value is reproducible from the seeds printed beside it. No figure is drawn (L1)."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": true,
+ "research_note": "WRITTEN BY tools/reconstruct_black_chicago_1835.py (T-1377, of T-1177), the `free_black` stage of the 1835 resident reconstruction programme. This file is NOT research and is not a mint output: data/residents/households/ is re-derived by the mint writers and data/residents/index.json is derived from that directory, so a reconstruction lives here instead and is overlaid onto the scene by tools/compile_scene.py. docs/RESEARCH/black_chicago_1835.md is the page and docs/LIBERTIES.md carries the invention."
+}

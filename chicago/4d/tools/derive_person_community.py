@@ -86,15 +86,16 @@ def household_files(rules) -> list[tuple[str, Path]]:
     """Every household the scene compiles, in the three places they live.
 
     The mints' own directory (data/residents/index.json), the re-admissions T-1172 minted
-    outside it, and the trade households T-1347 drew. compile_scene.py walks exactly these
-    three and this pass must walk the same town or the People view would carry rows this
-    file has never seen.
+    outside it, the trade households T-1347 drew, and the free Black cohort T-1377 minted.
+    compile_scene.py walks exactly these four and this pass must walk the same town or the
+    People view would carry rows this file has never seen.
     """
     out: list[tuple[str, Path]] = []
     index = load(RESIDENTS / "index.json")
     for entry in index.get("households", []):
         out.append((entry["file"], RESIDENTS / entry["file"]))
-    for name in ("1835_readmissions.json", "1835_trade_households.json"):
+    for name in ("1835_readmissions.json", "1835_trade_households.json",
+                 "1835_black_chicago.json"):
         path = DATA / "reconstruction" / name
         if not path.exists():
             continue
@@ -272,12 +273,20 @@ def self_test(doc: dict, rules: dict) -> None:
     assert not [p for p, r in persons.items() if r["value"] == "french_colonial"], \
         "the french_colonial pool name reached a person row"
 
-    # No cohort this pass is forbidden to write has been written.
-    for forbidden in ("free_black", "german", "potawatomi", "ottawa", "ojibwe"):
+    # No cohort this pass is forbidden to write has been written. T-1377 mints the free
+    # Black cohort, so `free_black` is now a value the layer carries — but only ever on a
+    # card that carries the pool community itself. This pass still reads no source for it:
+    # an origin sentence may not make anybody free_black, which is the rule the line below
+    # holds now that the value exists.
+    free_black = [p for p, r in persons.items() if r["value"] == "free_black"]
+    assert all(persons[p]["rule"] == "reconstruction_community" for p in free_black), \
+        "a free_black value that no reconstructed card carries"
+    for forbidden in ("german", "potawatomi", "ottawa", "ojibwe"):
         assert not [p for p, r in persons.items() if r["value"] == forbidden], \
             f"{forbidden} was assigned by a pass that reads no sources"
 
-    print(f"self-test ok — {len(persons)} people, {len(metis)} of stated descent")
+    print(f"self-test ok — {len(persons)} people, {len(metis)} of stated descent, "
+          f"{len(free_black)} of the free Black cohort")
 
 
 def main() -> int:

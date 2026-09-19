@@ -812,6 +812,14 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     trades = load(trades_path) if trades_path.exists() else {}
     trade_rows_minted = trades.get("minted", [])
 
+    # T-1377, of T-1177. The free Black households of 1835, drawn to the floor of a bracket
+    # whose ends are a dated count of certificates and a later census. They are RESIDENTS —
+    # the town's own people, counted in every tally below — and they live outside the mints'
+    # directory for the reason the two above do. Every person carries `review_required`.
+    black_chicago_path = DATA / "reconstruction" / "1835_black_chicago.json"
+    black_chicago = load(black_chicago_path) if black_chicago_path.exists() else {}
+    free_black_rows_minted = black_chicago.get("minted", [])
+
     # T-1353. The summer crowd, and the one set of rows in this file that is NOT the town's
     # own population. They live outside the mints' directory for the reason the two above
     # do and for one more: a card in data/residents/households/ is a card the manifest, the
@@ -836,7 +844,8 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     community_vocab = (load(community_rules_path).get("vocabulary", [])
                        if community_rules_path.exists() else [])
 
-    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None):
+    def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None,
+                free_black=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -902,6 +911,19 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "kin_seated_by": owed.get("seated_by"),
                 "replaced_by": (person.get("replaceable_by") or {}).get("match"),
             }
+        elif free_black is not None:
+            fb = hh.get("free_black_household") or {}
+            vector = fb.get("composition_vector") or {}
+            row["free_black_cohort"] = {
+                "ticket": fb.get("ticket"),
+                "stage": fb.get("stage"),
+                "composition_vector": "%s, printed page %s line %s"
+                                      % (vector.get("familysearch_id"),
+                                         vector.get("printed_page"), vector.get("line")),
+                "stands_on": fb.get("stands_on"),
+                "review_required": bool(hh.get("review_required")),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
         elif transient is not None:
             tr = hh.get("transient") or {}
             lodged = (hh.get("lodged_at") or [{}])[0]
@@ -955,6 +977,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], trade=minted))
+
+    free_black_households = 0
+    for minted in free_black_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        free_black_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], free_black=minted))
 
     transient_households = 0
     for minted in transient_rows_minted:
@@ -1012,6 +1045,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     readmitted = [r for r in rows if r.get("readmission")]
     trade_heads = [r for r in rows if r.get("reconstructed_trade")]
     transients = [r for r in rows if r.get("transient")]
+    free_black_people = [r for r in rows if r.get("free_black_cohort")]
 
     emit(outdir / "people.json", {
         "scene": scene_id,
@@ -1067,6 +1101,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "reconstructed_trade_by_trade": {
                 t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
                 for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},
+            # T-1377. The free Black cohort, drawn to the floor of its bracket. Residents,
+            # counted in every figure above, and reported here so a reader can ask how many
+            # of the town's people this reconstruction had to draw for want of a name.
+            "free_black_persons": len(free_black_people),
+            "free_black_households": free_black_households,
+            "free_black_review_required": sum(
+                1 for r in free_black_people if r["free_black_cohort"]["review_required"]),
+            "free_black_bracket": {
+                "floor": (black_chicago.get("totals") or {}).get("floor_persons"),
+                "ceiling": (black_chicago.get("totals") or {}).get("ceiling_persons"),
+            },
             # T-1353. The summer crowd, counted APART. Every other figure in this block
             # counts the town's own people; these three count the visitors, and the
             # difference is the whole distinction the Chicago American drew when it put

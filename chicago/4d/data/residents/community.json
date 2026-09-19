@@ -15,9 +15,9 @@
  },
  "not_a_reading": "Derived, never hand-edited. Every value is read off a committed field — a household's origin block or a reconstructed person's own pool community — and graded no higher than the field it came from. No source was read to write this file and nobody was minted.",
  "counts": {
-  "persons": 2634,
-  "households": 1872,
-  "known": 2436,
+  "persons": 2662,
+  "households": 1878,
+  "known": 2464,
   "unknown": 198,
   "by_community": {
    "yankee": 1182,
@@ -28,17 +28,18 @@
    "other": 123,
    "british": 97,
    "southern": 63,
+   "free_black": 28,
    "metis": 2
   },
   "by_tier": {
-   "reconstructed": 2377,
+   "reconstructed": 2405,
    "null": 198,
    "inferred": 56,
    "attested": 3
   },
   "by_rule": {
    "origin_region": 1262,
-   "reconstruction_community": 1167,
+   "reconstruction_community": 1195,
    "no_origin_recorded": 182,
    "origin_does_not_speak_for_this_person": 12,
    "stated_community": 7,
@@ -53,6 +54,7 @@
    "british": 97,
    "southern": 60,
    "french_canadian": 54,
+   "free_black": 6,
    "metis": 2
   }
  },
@@ -2451,6 +2453,146 @@
    "value": "yankee",
    "tier": "reconstructed",
    "rule": "origin_region"
+  },
+  "fb_brand_luther": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_brand_luther_m02": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_brand_luther_m03": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_brand_luther_m04": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_brand_luther_m05": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_brand_luther_m06": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_haines_susan": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_haines_susan_m02": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_haines_susan_m03": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_haines_susan_m04": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel_m01": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel_m03": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel_m04": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel_m05": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_magie_samuel_m06": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mccloud_lydia": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mccloud_lydia_m02": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mchale_hannah": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mchale_hannah_m02": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mchale_hannah_m03": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_mchale_hannah_m04": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey_m02": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey_m03": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey_m04": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey_m05": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
+  },
+  "fb_whitman_chauncey_m06": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community"
   },
   "felch_alaneon": {
    "value": "new_york",
@@ -16532,6 +16674,48 @@
    "rule": "origin_region",
    "head": "fay_h_k",
    "file": "households/hh_fay_h_k.json"
+  },
+  "hh_fb_brand_luther": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_brand_luther",
+   "file": "black_chicago/hh_fb_brand_luther.json"
+  },
+  "hh_fb_haines_susan": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_haines_susan",
+   "file": "black_chicago/hh_fb_haines_susan.json"
+  },
+  "hh_fb_magie_samuel": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_magie_samuel",
+   "file": "black_chicago/hh_fb_magie_samuel.json"
+  },
+  "hh_fb_mccloud_lydia": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_mccloud_lydia",
+   "file": "black_chicago/hh_fb_mccloud_lydia.json"
+  },
+  "hh_fb_mchale_hannah": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_mchale_hannah",
+   "file": "black_chicago/hh_fb_mchale_hannah.json"
+  },
+  "hh_fb_whitman_chauncey": {
+   "value": "free_black",
+   "tier": "reconstructed",
+   "rule": "reconstruction_community",
+   "head": "fb_whitman_chauncey",
+   "file": "black_chicago/hh_fb_whitman_chauncey.json"
   },
   "hh_felch_alaneon": {
    "value": "new_york",

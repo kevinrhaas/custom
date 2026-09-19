@@ -1,0 +1,56 @@
+{
+ "id": "rcb_whitman_boarding_house",
+ "register_id": null,
+ "name": "Whitman's boarding house",
+ "provenance": "reconstructed",
+ "type": [
+  "other"
+ ],
+ "trade": null,
+ "occupation": "boarding_house_keeper",
+ "goods": [],
+ "firm_styles": [],
+ "proprietors": [
+  {
+   "name": "Chauncey Whitman",
+   "person_id": "fb_whitman_chauncey",
+   "role": "proprietor",
+   "tier": "reconstructed",
+   "basis": "The head of the one drawn household of this cohort that carries more than one adult man. A house of lodging men is the reading its composition vector allows and a family is not, so its head keeps it. Nobody is named by any source: the keeper is a reconstructed person of the free_black stage and this record is graded with them."
+  }
+ ],
+ "partners": [],
+ "staff": [],
+ "locations": [
+  {
+   "kind": "unplaceable",
+   "structure_id": null,
+   "street_id": null,
+   "face": null,
+   "primary": true,
+   "tier": "reconstructed",
+   "basis": "Nothing in this corpus says where Chicago's free Black residents lived or kept house in 1835.",
+   "limit_reason": "No source places this house. T-1199 seats the reconstructed households and T-1187 owns the boarding-house programme; a coordinate written here would be invented twice over."
+  }
+ ],
+ "dates": {
+  "opened": null,
+  "closed": null,
+  "precision": "unbounded",
+  "tier": "reconstructed",
+  "basis": "Undated. The cohort's own floor is dated — six free coloured men certificated at Chicago in August 1833 — but nothing dates a house."
+ },
+ "present_at_scene_date": true,
+ "exclusion": null,
+ "exclusion_note": null,
+ "proprietor_community": "black",
+ "customers": [],
+ "sources": [],
+ "claim_ids": [],
+ "liberties": {
+  "survival_required": false,
+  "backdating_required": false
+ },
+ "review_required": true,
+ "replaceable_by": "A source naming a boarding house kept by a free Black Chicagoan in 1835, or a re-cut of the lodging programme (T-1187) that orders this house differently."
+}

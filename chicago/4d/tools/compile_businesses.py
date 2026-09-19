@@ -90,9 +90,28 @@ def person_ids(residents_dir=None):
     The index lists HEADS, and a proprietor is routinely not one — Archibald Clybourn
     heads a household and the clerk in his market does not — so the ids come from the
     household files themselves rather than from the index's summary rows.
+
+    T-1377. The reconstructed cohorts live OUTSIDE the mints' directory — the re-admissions,
+    the trade households and the free Black cohort each mint their cards under their own
+    folder and are overlaid onto the scene by compile_scene.py — so a link to one of them
+    dangles here unless this walks them too. It walks the same town compile_scene.py does,
+    for the same reason: a reconstructed keeper of a reconstructed house is a person this
+    layer holds, and a record that names them must be able to say so.
     """
     root = Path(residents_dir or RESIDENTS)
     ids = set()
+    for name in ("1835_readmissions.json", "1835_trade_households.json",
+                 "1835_black_chicago.json"):
+        ledger = root.parent / "reconstruction" / name
+        if not ledger.exists():
+            continue
+        for minted in load_json(ledger).get("minted", []):
+            path = root / minted["file"]
+            if not path.exists():
+                continue
+            for person in load_json(path).get("persons", []) or []:
+                if person.get("id"):
+                    ids.add(person["id"])
     for path in sorted(root.glob("households/*.json")) + sorted(root.glob("merged/*.json")):
         doc = load_json(path)
         record = doc.get("superseded_record", doc)

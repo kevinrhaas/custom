@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 196,
+    "records": 197,
     "compiled_from_register": 196,
-    "authored": 0,
-    "present_at_scene_date": 179,
+    "authored": 1,
+    "present_at_scene_date": 180,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
@@ -14,7 +14,7 @@
       "iron_foundry": 1,
       "lawyer": 18,
       "not_stated": 5,
-      "other": 79,
+      "other": 80,
       "physician": 3,
       "printing_office": 3,
       "school": 7,
@@ -29,21 +29,22 @@
       "anchored": 26,
       "premises": 30,
       "street_only": 61,
-      "unplaceable": 83
+      "unplaceable": 84
     },
-    "named_people": 209,
-    "named_people_linked_to_a_town_card": 157,
+    "named_people": 210,
+    "named_people_linked_to_a_town_card": 158,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 21,
     "by_grade": {
       "attested": 158,
-      "inferred": 38
+      "inferred": 38,
+      "reconstructed": 1
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 30,
       "street_only": 61,
-      "unplaceable": 79
+      "unplaceable": 80
     },
     "by_street": {
       "Canal Street": 1,
@@ -10168,6 +10169,49 @@
       "dates_tier": "inferred",
       "proprietor_community": "unattested",
       "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_whitman_boarding_house",
+      "file": "rcb_whitman_boarding_house.json",
+      "name": "Whitman's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": null,
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Chauncey Whitman",
+          "person_id": "fb_whitman_chauncey",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house. T-1199 seats the reconstructed households and T-1187 owns the boarding-house programme; a coordinate written here would be invented twice over."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "black",
+      "review_required": true,
       "liberties": []
     }
   ],

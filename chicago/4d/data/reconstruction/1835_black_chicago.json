@@ -1,0 +1,758 @@
+{
+ "id": "1835_black_chicago",
+ "ticket": "T-1377",
+ "parent_ticket": "T-1177",
+ "stage": "free_black",
+ "generated_by": "tools/reconstruct_black_chicago_1835.py --build",
+ "_doc": "T-1377, stage `free_black` — the free Black town of 1835, to the low end of its bracket.\n\n    python3 tools/reconstruct_black_chicago_1835.py --build      draw them, write the cards\n    python3 tools/reconstruct_black_chicago_1835.py --check      re-derive and refuse drift\n    python3 tools/reconstruct_black_chicago_1835.py --report     who was drawn, and against what\n    python3 tools/reconstruct_black_chicago_1835.py --self-test  the rules, each refusing its own case\n\nWHAT THIS STAGE IS. The owner, 2026-09-17: \"it is also very important that we keep and\ncapture and identify the black owned businesses and residents and family households.\"\nUntil now this reconstruction held not one free Black resident. The only trace it carried\nwas a sentence in a white lawyer's card — John Dean Caton, August 1833, defending \"six or\nseven free coloured men\" before the Court of County Commissioners and obtaining\ncertificates of freedom for them, his fee a dollar from each. Six or seven men, named by\nnobody, two years before the scene, in a town this project has otherwise read down to the\nname of the man who shod the horses.\n\nTHE BRACKET, AND ITS TWO ENDS.\n\n  FLOOR — 6 persons. Caton's six. The lower of \"six or seven\", because this project takes\n  the lower of a source's own pair. They are ATTESTED as a count and unnamed as people:\n  a dated proceeding of a court of record, in a card already in the layer.\n\n  CEILING — 28 persons. The Sixth Census counts 53 free coloured persons at Chicago on\n  1 June 1840 (data/research/census_1840/composition_1840.json, from the full-count\n  extract; the bands are printed there and this file re-reads them). Scaled back to the\n  town of 1 July 1835 by the town model's own population point of 2,536 against the 1840\n  city, that share is 28 persons at the lower of the two available 1840 denominators and\n  30 at the higher. This stage takes 28. The scaling is the invented step and it is named:\n  a population that grew from about 2,500 to about 4,500 in five years did not grow\n  uniformly across its communities, and nothing in this corpus says how the free Black\n  share moved. The ceiling is a ceiling, not an estimate of anybody.\n\n  WHAT LIES BETWEEN — this stage mints 28, in six households, and 28 IS THE CEILING. That\n  is not a figure chosen to fill the bracket: the deal takes one household for each of the\n  floor's six men, deals the composition stock below to them in the sheets' own order, and\n  stops the moment the ceiling would be passed. Six households of 6, 4, 2, 6, 6 and 4 come\n  to 28 exactly, and the arithmetic is a coincidence of the stock rather than a target. It\n  is stated here because a mint that lands on its own ceiling should be read as what it is:\n  the model has no room left for a free Black Chicagoan this cohort has not counted, and a\n  reading that finds one retires a drawn household rather than joining it. The floor is met\n  by the draw rather than forced onto it — the dealt composition seats six adult men, which\n  is what the certificates counted.\n\nTHE COMPOSITION STOCK — CHICAGO'S OWN BLACK HOUSEHOLDS, FIVE YEARS ON. Sixty-three sheets\nof the 1840 Cook County enumeration are read into data/research/census_1840/pages/. Seven\nof their households carry a mark in the free coloured columns; four of those carry NO free\nwhite person at all, which is to say they were Black-headed households, and their band\nvectors are the only measured structure of a Black household in this place that this corpus\nholds. This stage deals those four vectors, in the order the sheets print them, cycled, to\nsix households. Two of the four are headed by a woman, and the cohort inherits that.\n\n  A vector is a household's SHAPE, never its people. Nothing about George White, Oliver\n  Henson, John Johnson or the woman the sheet writes as \"Eliza As[?]ie\" is carried into a\n  drawn household: not their names, not their ages as individuals, not the industry their\n  household was marked in. They lived in 1840 and this scene is 1835; a source that names a\n  person may never be spent on somebody drawn.\n\nTHE NAMES, AND WHAT IS REFUSED. The heads are named; nobody else is. The four Black-headed\nhouseholds of 1840 show ordinary Anglo-American naming — White, Henson, Johnson; George,\nOliver, John, Eliza — the same stock as their white neighbours, and that is the whole of\nwhat this corpus attests about how free Black Chicagoans were named. So the pool extends\nthat stock rather than inventing a distinct naming, and it excludes three sets of names:\nevery surname the four attested households bear (a drawn head must not read as the 1840\nfamily's kin), every surname the town's own attested residents bear (nor as a documented\nwhite family's kin), and every full name anywhere in the layer. Inside a household, nobody\nis named at all: the 1840 sheet names the head and counts the rest, so a name for a woman\nor a child here would invent the person AND their relation to the head in one stroke. They\ncarry a designation, their sex and their band, and the ticket that would name them.\n\nWHAT THIS STAGE DOES NOT CLAIM. No kin tie: the schedule of 1840 records no relationships\nand none is written here, so every member below the head is `household_member` and the\nfamilies of this cohort are owed to T-1170/T-1171 like everybody else's. No residence:\nT-1199 seats reconstructed households. No arrival: T-1169 owns it, and the circle the trade\nhouseholds name applies here too. Every person carries `review_required`, because the\ncohort tickets are reviewable by the communities they reconstruct before this scene is\nreleased, and every value carries the reading that would retire it.\n\nTHE TRADES. The one occupational fact this corpus holds about a Black-headed Chicago\nhousehold is the industry column of the 1840 continuation sheet paired to printed page 219,\nwhich marks the Henson household in MANUFACTURES AND TRADES — not in service. It is not\ncarried into any drawn household; it is why the trade deal below may not be all-service.\nThe deal is even over the trades this layer's own vocabulary carries for the employments\nT-1177 names — labourer and teamster for a man, laundress and domestic for a woman — and\n`barber`, `cook` and `whitewasher` are REFUSED rather than smuggled in under a near term:\nthis layer's occupation vocabulary has no word for any of them, and inventing one here\nwould put a trade into the town's census of trades that nothing ordered.\n\nTHE ONE FIRM. A drawn household that carries more than one adult man is a house where men\nlodged, and the largest such household's head keeps it. One, and not one per vector that\nqualifies: T-1187 owns how many boarding houses the town had against the 42-roof\nprogramme, and a cohort may not order more of them than its own evidence carries.\n\nEVERY VALUE IS REPRODUCIBLE. Nothing is random: each value comes from `blake2s(seed)` over\na seed string printed on the record beside it. Re-running `--build` on the same inputs\nwrites the same bytes, and `--check` is what proves it.",
+ "the_attested_traces": [
+  {
+   "trace": "the certificates of freedom, August 1833",
+   "says": "In August 1833 he defended six or seven free coloured men before the Court of County Commissioners and obtained certificates of freedom for them, his fee a dollar from each.",
+   "source": "data/residents/households/hh_caton_john_dean.json",
+   "what_it_carries": "A dated count of six or seven free coloured men at Chicago before a court of record, two years before the scene. It names none of them and gives no household, no trade and no place of residence."
+  },
+  {
+   "trace": "the free coloured households of the 1840 Cook County sheets",
+   "says": "7 households in the sheets read here carry a free coloured person, 21 persons in all; 4 of those households carry no free white person and are Black-headed.",
+   "source": "data/research/census_1840/pages/",
+   "rows": [
+    {
+     "familysearch_id": "33S7-9YYJ-9RG",
+     "printed_page": 210,
+     "line": 10,
+     "head_as_read": "[?]. S. Sherman",
+     "free_coloured_persons": 1,
+     "free_white_persons": 9,
+     "black_headed": false,
+     "vector": [
+      {
+       "sex": "female",
+       "band": "36 under 55",
+       "persons": 1
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYJ-9WF",
+     "printed_page": 215,
+     "line": 5,
+     "head_as_read": "Geo. Seyman[?]",
+     "free_coloured_persons": 1,
+     "free_white_persons": 9,
+     "black_headed": false,
+     "vector": [
+      {
+       "sex": "male",
+       "band": "36 under 55",
+       "persons": 1
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYJ-9WF",
+     "printed_page": 215,
+     "line": 29,
+     "head_as_read": "John Johnson",
+     "free_coloured_persons": 6,
+     "free_white_persons": 0,
+     "black_headed": true,
+     "vector": [
+      {
+       "sex": "male",
+       "band": "10 under 24",
+       "persons": 2
+      },
+      {
+       "sex": "male",
+       "band": "24 under 36",
+       "persons": 1
+      },
+      {
+       "sex": "male",
+       "band": "36 under 55",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "24 under 36",
+       "persons": 2
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYJ-DD",
+     "printed_page": 216,
+     "line": 8,
+     "head_as_read": "Eliza As[?]ie",
+     "free_coloured_persons": 4,
+     "free_white_persons": 0,
+     "black_headed": true,
+     "vector": [
+      {
+       "sex": "male",
+       "band": "under 10",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "under 10",
+       "persons": 2
+      },
+      {
+       "sex": "female",
+       "band": "24 under 36",
+       "persons": 1
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYJ-9K3",
+     "printed_page": 219,
+     "line": 25,
+     "head_as_read": "Oliver Henson",
+     "free_coloured_persons": 2,
+     "free_white_persons": 0,
+     "black_headed": true,
+     "vector": [
+      {
+       "sex": "male",
+       "band": "under 10",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "24 under 36",
+       "persons": 1
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYJ-2T",
+     "printed_page": 221,
+     "line": 12,
+     "head_as_read": "George White",
+     "free_coloured_persons": 6,
+     "free_white_persons": 0,
+     "black_headed": true,
+     "vector": [
+      {
+       "sex": "male",
+       "band": "under 10",
+       "persons": 1
+      },
+      {
+       "sex": "male",
+       "band": "36 under 55",
+       "persons": 1
+      },
+      {
+       "sex": "male",
+       "band": "55 under 100",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "under 10",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "36 under 55",
+       "persons": 1
+      },
+      {
+       "sex": "female",
+       "band": "55 under 100",
+       "persons": 1
+      }
+     ]
+    },
+    {
+     "familysearch_id": "33S7-9YYN-3CDH",
+     "printed_page": 239,
+     "line": 15,
+     "head_as_read": "Sherman W. Parr",
+     "free_coloured_persons": 1,
+     "free_white_persons": 4,
+     "black_headed": false,
+     "vector": [
+      {
+       "sex": "female",
+       "band": "10 under 24",
+       "persons": 1
+      }
+     ]
+    }
+   ],
+   "what_it_carries": "Five years after the scene: names of heads, band vectors, and nothing about 1835. It is the composition stock and the name pool's seed, and it is never evidence of presence."
+  },
+  {
+   "trace": "the industry column, printed page 219",
+   "says": "The continuation sheet paired to printed page 219 marks the Henson household — Black-headed, line 25 — in MANUFACTURES AND TRADES.",
+   "source": "data/research/census_1840/pages/33S7-9YYJ-24.json",
+   "what_it_carries": "The one occupational fact this corpus holds about a Black-headed Chicago household. It is not carried into any drawn household; it is why the trade deal may not be all-service. The pairing is T-0642's; the left sheet's own cells sum to 2 against the continuation's TOTAL of 3 for that line, a residual recorded on the page file and not resolved here.",
+   "reachable_for": "1 of the 4 Black-headed households — the other three sit on left sheets whose continuations are unpaired."
+  },
+  {
+   "trace": "the count of 1840",
+   "says": "53 free coloured persons at Chicago on 1 June 1840, in the bands printed in the bracket below.",
+   "source": "data/research/census_1840/composition_1840.json",
+   "what_it_carries": "The ceiling's numerator. A count of 1840 and of nothing else."
+  }
+ ],
+ "the_bracket": {
+  "floor_persons": 6,
+  "floor_is": "The six of Caton's 'six or seven', August 1833 — the lower of the source's own pair, as this project takes every such pair.",
+  "ceiling_persons": 28,
+  "ceiling_is": "The 53 free coloured persons the Sixth Census counts at Chicago on 1 June 1840, scaled back to the town model's population point for 1 July 1835 (2536) at the LOWER of the two 1840 denominators. The scaling is this file's one invented step.",
+  "population_on_1_july_1835": 2536,
+  "free_coloured_persons_1840": 53,
+  "scalings": [
+   {
+    "denominator": "the extract's enumerated persons",
+    "persons_1840": 4834,
+    "free_coloured_share": 0.01096,
+    "scaled_to_1835": 27.8
+   },
+   {
+    "denominator": "the census's own city population",
+    "persons_1840": 4470,
+    "free_coloured_share": 0.01186,
+    "scaled_to_1835": 30.1
+   }
+  ],
+  "bands_1840": [
+   {
+    "band": "free coloured males under 10",
+    "ipums_variable": "nbmlt10",
+    "persons": 9
+   },
+   {
+    "band": "free coloured males 10 under 24",
+    "ipums_variable": "nbm10",
+    "persons": 5
+   },
+   {
+    "band": "free coloured males 24 under 36",
+    "ipums_variable": "nbm24",
+    "persons": 16
+   },
+   {
+    "band": "free coloured males 36 under 55",
+    "ipums_variable": "nbm36",
+    "persons": 2
+   },
+   {
+    "band": "free coloured males 55 under 100",
+    "ipums_variable": "nbm55",
+    "persons": 2
+   },
+   {
+    "band": "free coloured males 100 and over",
+    "ipums_variable": "nbm100",
+    "persons": 0
+   },
+   {
+    "band": "free coloured females under 10",
+    "ipums_variable": "nbflt10",
+    "persons": 7
+   },
+   {
+    "band": "free coloured females 10 under 24",
+    "ipums_variable": "nbf10",
+    "persons": 2
+   },
+   {
+    "band": "free coloured females 24 under 36",
+    "ipums_variable": "nbf24",
+    "persons": 7
+   },
+   {
+    "band": "free coloured females 36 under 55",
+    "ipums_variable": "nbf36",
+    "persons": 2
+   },
+   {
+    "band": "free coloured females 55 under 100",
+    "ipums_variable": "nbf55",
+    "persons": 1
+   },
+   {
+    "band": "free coloured females 100 and over",
+    "ipums_variable": "nbf100",
+    "persons": 0
+   }
+  ]
+ },
+ "the_pool": {
+  "id": "free_black",
+  "label": "Free Black Chicago",
+  "seeded_from": [
+   {
+    "head_as_read": "John Johnson",
+    "familysearch_id": "33S7-9YYJ-9WF",
+    "printed_page": 215,
+    "line": 29,
+    "free_coloured_persons": 6
+   },
+   {
+    "head_as_read": "Eliza As[?]ie",
+    "familysearch_id": "33S7-9YYJ-DD",
+    "printed_page": 216,
+    "line": 8,
+    "free_coloured_persons": 4
+   },
+   {
+    "head_as_read": "Oliver Henson",
+    "familysearch_id": "33S7-9YYJ-9K3",
+    "printed_page": 219,
+    "line": 25,
+    "free_coloured_persons": 2
+   },
+   {
+    "head_as_read": "George White",
+    "familysearch_id": "33S7-9YYJ-2T",
+    "printed_page": 221,
+    "line": 12,
+    "free_coloured_persons": 6
+   }
+  ],
+  "seed_surnames": [
+   "Henson",
+   "Johnson",
+   "White"
+  ],
+  "seed_given_names": [
+   "Eliza",
+   "George",
+   "John",
+   "Oliver"
+  ],
+  "what_the_seed_shows": "Four Black-headed households at Chicago in 1840 bearing ordinary Anglo-American names — the same naming stock as their white neighbours. That is the whole of what this corpus attests about how free Black Chicagoans were named, and it is what licenses the extension below.",
+  "extension_rule": "SURNAMES from the 1840 Cook County sheets themselves — the naming of this place in this decade, written by its own enumerator — MINUS every surname the 1835 resident layer already carries and MINUS the four Black-headed households' own. FORENAMES from the ordinary Anglo-American given names the pools file carries, by sex, which is what the seed's four heads show. No drawn full name may equal a name anywhere in the layer and no two heads share a surname. The subtractions are the point: a drawn head must read as neither the 1840 family's kin nor a documented white family's.",
+  "not_a_distinct_naming": "No separate 'Black' name list is invented here and none is cited, because inventing one would be a claim about this community's naming that no source in this corpus makes, and the seed says the opposite.",
+  "sources": [
+   "census_1840_chicago_familysearch_images"
+  ],
+  "surname_stock": [
+   "Alford",
+   "Atwood",
+   "Ball",
+   "Benjamin",
+   "Black",
+   "Bliss",
+   "Bottsford",
+   "Boyd",
+   "Brady",
+   "Brand",
+   "Breckenridge",
+   "Briggs",
+   "Brinckerhoff",
+   "Brock",
+   "Butler",
+   "Cage",
+   "Carle",
+   "Carney",
+   "Cassady",
+   "Cleaver",
+   "Coghlen",
+   "Colvin",
+   "Coney",
+   "Connel",
+   "Coughlin",
+   "Covington",
+   "Cranford",
+   "Crosby",
+   "Cunliff",
+   "Cunningham",
+   "Cushing",
+   "Dade",
+   "Davidson",
+   "DeWolf",
+   "Diversey",
+   "Duff",
+   "Dwyer",
+   "Edmunds",
+   "Edwards",
+   "Ellis",
+   "Ellison",
+   "Emerson",
+   "Fairchild",
+   "Feltman",
+   "Ferris",
+   "Finke",
+   "Fleming",
+   "Fogarty",
+   "Fordham",
+   "Fox",
+   "Frank",
+   "Gill",
+   "Golden",
+   "Goodall",
+   "Goodman",
+   "Greenwood",
+   "Gregg",
+   "Guthrie",
+   "Haight",
+   "Haines",
+   "Hancock",
+   "Hazel",
+   "Heald",
+   "Higgins",
+   "Hogane",
+   "Jacobs",
+   "Judd",
+   "Kenney",
+   "Kimberley",
+   "Kiser",
+   "Kittle",
+   "Ladd",
+   "Luebke",
+   "Magie",
+   "Mandell",
+   "Mann",
+   "Mayfield",
+   "McBride",
+   "McCarty",
+   "McCloud",
+   "McCormick",
+   "McCraw",
+   "McDaniel",
+   "McDonall",
+   "McGuyre",
+   "McHale",
+   "McHenry",
+   "McHugh",
+   "McKibb",
+   "McNeal",
+   "Mead",
+   "Merritt",
+   "Milliken",
+   "Miltimore",
+   "Mullen",
+   "Murphey",
+   "Neudorf",
+   "O'Brien",
+   "O'Bryan",
+   "O'Neil",
+   "Oaks",
+   "Osdel",
+   "Patrick",
+   "Patterson",
+   "Peirce",
+   "Prall",
+   "Prindle",
+   "Rankin",
+   "Rathbone",
+   "Raymond",
+   "Regan",
+   "Reynalds",
+   "Roby",
+   "Rogan",
+   "Rossiter",
+   "Roth",
+   "Rouse",
+   "Sadler",
+   "Saltonstall",
+   "Sexton",
+   "Shelby",
+   "Shelley",
+   "Shepard",
+   "Shields",
+   "Sollitt",
+   "Stone",
+   "Thurber",
+   "Wagner",
+   "Watts",
+   "Wentworth",
+   "Whitman",
+   "Wilhelmson",
+   "Willard",
+   "Willemin",
+   "Witham",
+   "Wraight"
+  ],
+  "surname_stock_is": "Every surname the 1840 Cook County sheets read here carry at a name confidence above `low`, less every surname the 1835 resident layer already holds and less the four Black-headed households' own — 136 names.",
+  "given_name_stock_is": "The ordinary Anglo-American forenames of data/reconstruction/1835_invented_name_pools.json, by sex, which is what the seed's own four heads show."
+ },
+ "the_composition_stock": [
+  {
+   "familysearch_id": "33S7-9YYJ-9WF",
+   "printed_page": 215,
+   "line": 29,
+   "head_as_read": "John Johnson",
+   "free_coloured_persons": 6,
+   "free_white_persons": 0,
+   "black_headed": true,
+   "vector": [
+    {
+     "sex": "male",
+     "band": "10 under 24",
+     "persons": 2
+    },
+    {
+     "sex": "male",
+     "band": "24 under 36",
+     "persons": 1
+    },
+    {
+     "sex": "male",
+     "band": "36 under 55",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "24 under 36",
+     "persons": 2
+    }
+   ]
+  },
+  {
+   "familysearch_id": "33S7-9YYJ-DD",
+   "printed_page": 216,
+   "line": 8,
+   "head_as_read": "Eliza As[?]ie",
+   "free_coloured_persons": 4,
+   "free_white_persons": 0,
+   "black_headed": true,
+   "vector": [
+    {
+     "sex": "male",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "under 10",
+     "persons": 2
+    },
+    {
+     "sex": "female",
+     "band": "24 under 36",
+     "persons": 1
+    }
+   ]
+  },
+  {
+   "familysearch_id": "33S7-9YYJ-9K3",
+   "printed_page": 219,
+   "line": 25,
+   "head_as_read": "Oliver Henson",
+   "free_coloured_persons": 2,
+   "free_white_persons": 0,
+   "black_headed": true,
+   "vector": [
+    {
+     "sex": "male",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "24 under 36",
+     "persons": 1
+    }
+   ]
+  },
+  {
+   "familysearch_id": "33S7-9YYJ-2T",
+   "printed_page": 221,
+   "line": 12,
+   "head_as_read": "George White",
+   "free_coloured_persons": 6,
+   "free_white_persons": 0,
+   "black_headed": true,
+   "vector": [
+    {
+     "sex": "male",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "male",
+     "band": "36 under 55",
+     "persons": 1
+    },
+    {
+     "sex": "male",
+     "band": "55 under 100",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "under 10",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "36 under 55",
+     "persons": 1
+    },
+    {
+     "sex": "female",
+     "band": "55 under 100",
+     "persons": 1
+    }
+   ]
+  }
+ ],
+ "the_deal": [
+  {
+   "household": "hh_fb_whitman_chauncey",
+   "head": "fb_whitman_chauncey",
+   "persons": 6,
+   "vector_from": "33S7-9YYJ-9WF",
+   "printed_page": 215,
+   "line": 29,
+   "trade": "boarding_house_keeper"
+  },
+  {
+   "household": "hh_fb_haines_susan",
+   "head": "fb_haines_susan",
+   "persons": 4,
+   "vector_from": "33S7-9YYJ-DD",
+   "printed_page": 216,
+   "line": 8,
+   "trade": "laundress"
+  },
+  {
+   "household": "hh_fb_mccloud_lydia",
+   "head": "fb_mccloud_lydia",
+   "persons": 2,
+   "vector_from": "33S7-9YYJ-9K3",
+   "printed_page": 219,
+   "line": 25,
+   "trade": "laundress"
+  },
+  {
+   "household": "hh_fb_magie_samuel",
+   "head": "fb_magie_samuel",
+   "persons": 6,
+   "vector_from": "33S7-9YYJ-2T",
+   "printed_page": 221,
+   "line": 12,
+   "trade": "labourer"
+  },
+  {
+   "household": "hh_fb_brand_luther",
+   "head": "fb_brand_luther",
+   "persons": 6,
+   "vector_from": "33S7-9YYJ-9WF",
+   "printed_page": 215,
+   "line": 29,
+   "trade": "labourer"
+  },
+  {
+   "household": "hh_fb_mchale_hannah",
+   "head": "fb_mchale_hannah",
+   "persons": 4,
+   "vector_from": "33S7-9YYJ-DD",
+   "printed_page": 216,
+   "line": 8,
+   "trade": "laundress"
+  }
+ ],
+ "the_refusals": [
+  {
+   "refused": "a name for anybody but a head",
+   "why": "The 1840 schedule names the head and counts the rest. A name here would invent the person and their relation to the head at once."
+  },
+  {
+   "refused": "a kin tie of any kind",
+   "why": "The schedule records no relationships. Every member is `household_member` and the families are owed to T-1170/T-1171."
+  },
+  {
+   "refused": "the trades barber, cook, whitewasher and drayman",
+   "why": {
+    "barber": "no term in data/residents/index.json's occupation vocabulary; `barber_surgeon` is a different trade and is not it",
+    "cook": "no term in the vocabulary, and `domestic` is a household's servant rather than a cook by trade",
+    "whitewasher": "no term in the vocabulary, and no committed source puts the trade in this town at all",
+    "drayman": "no term; `teamster` is the vocabulary's word for the work and is what the deal uses"
+   }
+  },
+  {
+   "refused": "a second boarding house",
+   "why": "T-1187 owns how many boarding houses the town had against the 42-roof programme. This cohort mints one and orders no more."
+  },
+  {
+   "refused": "any identity, age or industry mark carried from 1840 into 1835",
+   "why": "A source that names a person may never be spent on somebody drawn. The vectors carry shape and nothing else."
+  },
+  {
+   "refused": "a residence, a division and an arrival year",
+   "why": "Nothing in this corpus says where Chicago's free Black residents lived in 1835. T-1199 seats them, T-1169 dates them, and `unplaced` is the honest division until then."
+  }
+ ],
+ "totals": {
+  "households_minted": 6,
+  "persons_minted": 28,
+  "adult_men_seated": 6,
+  "floor_persons": 6,
+  "ceiling_persons": 28,
+  "inside_the_bracket": true,
+  "floor_met_by_the_draw": true,
+  "firms_minted": 1
+ },
+ "minted": [
+  {
+   "file": "black_chicago/hh_fb_whitman_chauncey.json",
+   "household": "hh_fb_whitman_chauncey",
+   "head": "fb_whitman_chauncey",
+   "persons": 6,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  },
+  {
+   "file": "black_chicago/hh_fb_haines_susan.json",
+   "household": "hh_fb_haines_susan",
+   "head": "fb_haines_susan",
+   "persons": 4,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  },
+  {
+   "file": "black_chicago/hh_fb_mccloud_lydia.json",
+   "household": "hh_fb_mccloud_lydia",
+   "head": "fb_mccloud_lydia",
+   "persons": 2,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  },
+  {
+   "file": "black_chicago/hh_fb_magie_samuel.json",
+   "household": "hh_fb_magie_samuel",
+   "head": "fb_magie_samuel",
+   "persons": 6,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  },
+  {
+   "file": "black_chicago/hh_fb_brand_luther.json",
+   "household": "hh_fb_brand_luther",
+   "head": "fb_brand_luther",
+   "persons": 6,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  },
+  {
+   "file": "black_chicago/hh_fb_mchale_hannah.json",
+   "household": "hh_fb_mchale_hannah",
+   "head": "fb_mchale_hannah",
+   "persons": 4,
+   "stage": "free_black",
+   "community": "free_black",
+   "review_required": true
+  }
+ ],
+ "firm": {
+  "file": "authored/rcb_whitman_boarding_house.json",
+  "id": "rcb_whitman_boarding_house",
+  "keeper": "fb_whitman_chauncey"
+ }
+}

@@ -2447,6 +2447,24 @@ step "every transient re-derives, and none of them claims a residence" \
 
 selftest "...and a moved sleeping class, a named house and a seated visitor are refused" \
   python3 tools/reconstruct_transients_1835.py --self-test
+
+# T-1377, stage `free_black` of the same programme, and the first cohort ticket of T-1177 to
+# land. The town held one sentence about its free Black residents — Caton's six or seven
+# certificated men of August 1833 — and a count of 53 printed five years after the scene, and
+# not one person. This stage mints six households and 28 people between those two figures.
+# What the gate below holds is the part a reconstruction of an under-documented cohort can
+# most easily get wrong: that the mint stays inside its own bracket and that the floor is met
+# by the draw rather than forced onto it; that no drawn head bears a name, or even a surname,
+# that the layer or the 1840 households the pool is seeded from already bear; that NOBODY
+# below a head is named at all, because the schedule those household shapes come from names
+# heads and counts everybody else; that no card claims a kin tie or a residence; that every
+# person carries `community: free_black`, `review_required` and a seed; and that the refused
+# trades — the ones this layer's vocabulary has no word for — never reach a card.
+step "the free Black cohort re-derives, stays inside its bracket, and names only its heads" \
+  python3 tools/reconstruct_black_chicago_1835.py --check
+
+selftest "...and a borrowed name, a named dependant, a kin tie and a refused trade are all refused" \
+  python3 tools/reconstruct_black_chicago_1835.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at

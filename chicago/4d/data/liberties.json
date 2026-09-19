@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 249,
+  "count": 250,
   "liberties": [
     {
       "id": "L1",
@@ -15022,6 +15022,37 @@
         {
           "label": "How to resolve",
           "text": "a source that ranks the six sleeping-place classes, or gives any one of them a count, retires the equal deal whole. A source naming a real member of the crowd retires the slot it stands in. A re-reading of the bracket that adopts the other candidate point re-cuts every figure here, through `--build` and never by hand. Related: **L245** (the bracket this spends), **L246**, **L247** and **L248** (the same programme's re-admission, women-and-children and trade bands), tickets **T-1353**, **T-1352**, **T-1178**, **T-1372** (which is owed the crews), **T-1214** (which places the camps), the programme **T-1167**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-19."
+        }
+      ]
+    },
+    {
+      "id": "L250",
+      "title": "Chicago's free Black town of 1835 is minted at six households and twenty-eight people, the floor counted by a court and the ceiling scaled back from 1840",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`tools/reconstruct_black_chicago_1835.py` (T-1377, of T-1177) mints **six households and twenty-eight reconstructed persons** in `data/residents/black_chicago/`, each carrying `community: free_black` and `review_required`, and **one** reconstructed boarding house in `data/businesses/authored/`. The bracket they sit in has a **floor of six** — the \"six or seven free coloured men\" John Dean Caton defended before the Court of County Commissioners in August 1833, obtaining certificates of freedom for them — and a **ceiling of 28**, the 53 free coloured persons the Sixth Census counts at Chicago in 1840 scaled back to the town model's population point for 1 July 1835. The mint lands on the ceiling exactly."
+        },
+        {
+          "label": "Why",
+          "text": "because the owner asked for it in terms — \"it is also very important that we keep and capture and identify the black owned businesses and residents and family households\" — and because until this entry the reconstruction held not one free Black resident in a town where a court of record had certificated six free men two years before the scene. A count nobody spends is a town that reads as white."
+        },
+        {
+          "label": "What is invented, exactly",
+          "text": "three things. (1) **The scaling.** 53 persons of 1840 over the 1840 town, applied to the 1835 town, is the ceiling; a population that grew from about 2,500 to about 4,500 in five years did not grow uniformly across its communities and nothing here says how this share moved. The lower of the two available 1840 denominators is taken. (2) **The trade deal.** Labourer and teamster for a man, laundress and domestic for a woman, dealt evenly because no source ranks them for this town — bounded on one side by the one occupational fact this corpus holds, the 1840 continuation sheet's MANUFACTURES AND TRADES mark against the Black-headed Henson household, which is why the deal is not all-service. (3) **The lodging rule.** A drawn household carrying more than one adult man is read as a house where men lodged, and its head keeps it; one such house is minted and no more, because T-1187 owns the boarding-house programme. **What is NOT invented, and this is the half that matters.** The household *shapes* are measured: the band vectors of the four Black-headed households in the 1840 Cook County sheets this project has read, dealt in the sheets' own printed order and carried as **shape only** — no name, no individual's age, no industry mark and no identity crosses from 1840 into 1835. The **surname stock** is the 1840 sheets' own heads, less every reading marked `name_confidence: low`, less every surname the 1835 layer already carries, less the four Black-headed households' own: 136 names of this place in this decade. The **forenames** are the ordinary Anglo-American given names the pools file already holds, because the seed's own four heads — George White, Oliver Henson, John Johnson, Eliza — show that naming and no other. **No separate \"Black\" name list is invented and none is cited**, which is the one thing a reconstruction of this cohort could most easily get wrong. **What this deliberately does NOT do.** It names **nobody below a head**: the 1840 schedule names heads and counts everybody else, and a name here would invent the person and their relation to the head at once. It claims **no kin tie** — every member is `household_member`, and the families are owed to T-1170/T-1171 like everybody else's. It writes **no residence and no division**: nothing says where Chicago's free Black residents lived, and `unplaced` is the honest answer until T-1199 seats them. It writes **no arrival year**. It calls nobody a **former slave**: a certificate of freedom is evidence that a court demanded proof, not evidence of where a man was born. And it invents **no trade the layer has no word for** — `barber`, `cook`, `whitewasher` and `drayman` are refused and handed to T-1182/T-1378 as a vocabulary finding rather than smuggled in under a near term."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Illinois registers of negroes and mulattoes for Cook County, or the county commissioners' record of the August 1833 certificates, would NAME the six men — and a name retires a drawn head outright. An 1835 State census return carrying the free coloured column would replace the scaled ceiling with a count. A newspaper notice naming a free Black resident or a Black-owned firm retires the slot it stands in. Every card carries the seed that redraws it, and every retirement runs through `--build`, never by hand. **The review this cohort is owed** is on every record: a reading by Black Chicago historians or community organisations before this scene is marked released, as T-1177 asks of every under-documented cohort. `review_required` blocks release and the gate asserts it. Related: **L249** (the same shape one cohort over), **L246**, **L247**, **L248**; `docs/RESEARCH/black_chicago_1835.md` is the page and `data/reconstruction/1835_black_chicago.json` the ledger."
         },
         {
           "label": "Recorded",
