@@ -133,10 +133,15 @@ def self_test() -> int:
         if not cond:
             failures.append(label)
 
-    civic, land = OWNED
+    # T-1343 ADDED A THIRD AND FOURTH OWNER, so the fixtures name the two they exercise
+    # rather than unpacking the tuple — the point of every case below is that a pass
+    # rewrites ITS OWN group, and that is the same argument at two owners or at twenty.
+    civic, land = OWNED[0], OWNED[1]
+    press = OWNED[2]
     c1 = {"record_id": "poll_1835_001", "sources": [civic]}
     l1 = {"record_id": "ls0959", "sources": [land]}
     l2 = {"record_id": "ls0960", "sources": [land]}
+    p1 = {"record_id": "chicago_democrat_1834_12_03#c014", "sources": [press]}
     stray = {"record_id": "x", "sources": ["somebody_elses_volume"]}
 
     ok("a row is owned by the single source it cites", owner_of(c1) == civic)
@@ -157,6 +162,12 @@ def self_test() -> int:
        merge({BLOCK: [stray, c1]}, land, [l1]) == [c1, l1, stray])
     ok("`mine` sees only the caller's rows",
        mine({BLOCK: [c1, l1, l2, stray]}, land) == [l1, l2])
+    ok("a third owner writing its group leaves the first two alone",
+       merge({BLOCK: [c1, l1, l2]}, press, [p1]) == [c1, l1, l2, p1])
+    ok("…and an earlier owner rewriting its group does not move the third's",
+       merge({BLOCK: [c1, l1, l2, p1]}, civic, [c1]) == [c1, l1, l2, p1])
+    ok("every owned source names exactly one owner",
+       len(dict(OWNERS)) == len(OWNERS) == len(OWNED))
 
     card = {"id": "p", "grade": "projected", "sources": ["s"], "note": "n"}
     ok("the first write lands in the slot after `sources`, not at the end",
