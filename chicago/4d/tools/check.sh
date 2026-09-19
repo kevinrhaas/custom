@@ -2350,6 +2350,22 @@ step "every mint that re-derives a household carries the blocks it does not own"
 selftest "...and its own assertions still fire when broken" \
   python3 tools/carry_stage_blocks.py --self-test
 
+# T-1350, the other half of that ownership and the opposite failure. A mint derives
+# `arrival` as a not_later_than BOUND off its register, which is right until a reading
+# says more than the register can — Moses and Kirkland's list of the spring of 1833
+# names men the town's paper does not print for another year. Such a reading used to
+# be written onto the card by hand and then REVERTED by the next --build without a
+# word; T-1340 watched six of its rulings go that way and wrote the failure down. The
+# ledger below is how one reaches a card the mints own, and the gate is what keeps it
+# from becoming a way to write any date anywhere: no identity is made there, no reading
+# is invented there, a supersession must be EARLIER than the bound it replaces, and the
+# grade ceiling is the source's.
+step "every ruled reading that supersedes a derived arrival bound is joined and earlier" \
+  python3 tools/supersede_arrival.py --check
+
+selftest "...and each of its four refusals still fires on its own case" \
+  python3 tools/supersede_arrival.py --self-test
+
 # T-1171, stage `modelled_families` of that programme, and the first one to write a
 # PERSON rather than an attribute block. 94 heads the sources leave standing alone get
 # the wife and children the household model says they kept, drawn at the head's own size
@@ -2394,6 +2410,24 @@ step "the women and children re-derive from the pyramid the order book still wan
 
 selftest "...and every rule that decides who is drawn refuses its own case" \
   python3 tools/reconstruct_women_children.py --self-test
+
+# T-1347 (of T-1173), stage `trade_households` of the same programme. The order book's
+# twenty-four `family/trade` buckets ordered 308 adults at a trade that nobody printed;
+# this stage draws them as heads of their own households, deals each a trade from the
+# Fergus 1839 table's shares (T-1346), caps a trade at the December 1835 State census
+# where that census counts a class one person keeps, and puts the refusals and the
+# rounding remainder into the residual — day labour and domestic service, the work the
+# record cannot see. What the gate below holds: that all 308 re-derive from their seeds,
+# that every bucket is filled to its order and no further, that no trade outside the
+# controlled vocabulary reaches a person, and that no kin is seated here — the family each
+# head is owed is written as `household_owed` and seated by T-1174, whose quota it is.
+# `reconstruct_residents_1835.py --check` above holds each drawn person to the record
+# contract, which is the other half. A hand-edited card fails here.
+step "every trade household re-derives, and every bucket the book ordered is filled" \
+  python3 tools/reconstruct_trade_households.py --check
+
+selftest "...and a seniority rule, an over-ceiling trade and a borrowed name are refused" \
+  python3 tools/reconstruct_trade_households.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at

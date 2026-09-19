@@ -2394,6 +2394,9 @@
     "tools/reconstruct_sex_age.py": {
       "wrote": []
     },
+    "tools/reconstruct_trade_households.py": {
+      "wrote": []
+    },
     "tools/reconstruct_women_children.py": {
       "wrote": []
     },
@@ -2576,6 +2579,9 @@
       "wrote_by": [
         "/home/runner/work/polecat-platform/polecat-platform/custom-repo/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
+    },
+    "tools/supersede_arrival.py": {
+      "wrote": []
     },
     "tools/surname_one_letter_away.py": {
       "wrote": []
