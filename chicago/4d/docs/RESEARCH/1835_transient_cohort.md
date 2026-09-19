@@ -4,6 +4,7 @@
 
 Derived file: `data/reconstruction/1835_transient_cohort.json`  
 Candidate grounds: `data/reconstruction/1835_camp_grounds.json` (authored)  
+Hulls in port: `data/reconstruction/1835_vessels_in_port.json` (authored) — seated to the reach, carrying nobody  
 Built and gated by: `tools/model_transients_1835.py --build | --check | --self-test`  
 Spent by: T-1353, which mints the cohort, and T-1214, which places the camps
 
@@ -64,7 +65,7 @@ It is an adjudication over committed claim records and committed derived files �
 
 | Figure | Reading | Method |
 | --- | ---: | --- |
-| `vessels_lying_at_chicago_on_1_july_1835` | **4 – 6** | The Marine Journal of the Chicago American, 4 July 1835, three days after the scene. 6 vessels had arrived on 27, 28 and 29 June and were not entered as cleared before 1 July; two of them, the Philips and the Jesse Smith, cleared on the day itself, so 4 lay at Chicago at nightfall. THE MODEL COUNTS VESSELS AND NOT MEN: no committed source gives the crew of a Great Lakes schooner of 1835, and multiplying a hull by a guessed complement would turn a reading into an invention. |
+| `vessels_lying_at_chicago_on_1_july_1835` | **4 – 6** | The Marine Journal of the Chicago American, 4 July 1835, three days after the scene. 6 vessels had arrived on 27, 28 and 29 June and were not entered as cleared before 1 July; two of them, the Philips and the Jesse Smith, cleared on the day itself, so 4 lay at Chicago at nightfall. The hulls are SEATED — 6 records in data/reconstruction/1835_vessels_in_port.json, each with the master, last port and cargo the column prints and a mooring that resolves to the reach and never to a deck — and this figure is re-derived from them. THE MODEL COUNTS VESSELS AND NOT MEN: no committed source gives the crew of a Great Lakes schooner of 1835, and multiplying a hull by a guessed complement would turn a reading into an invention. |
 | `named_land_sale_purchasers_still_owed_a_bed` | **77 – 109** | The same measurement as the size section's floor, carried here as the one row of the composition that has a number at all. Every other row below is bounded by nothing committed and says so. |
 
 **Not claiming.** This section apportions nobody between its rows and no row here is a quota.
@@ -76,26 +77,26 @@ It is an adjudication over committed claim records and committed derived files �
 | land-sale visitors and their agents | floor only | the register's own purchasers, 26-27 June 1835 | draining — the Democrat of 1 July says the sale has passed |
 | immigrant families awaiting lots | no | the American, 13 June 1835: 'men, women and children just landed from the vessels', 'the unsheltered emigrants' | still landing — vessels in with passengers 28, 29 June, 2, 3 July |
 | the harbour-works gang | no | the federal harbour improvement was at work through 1835; no committed source gives its strength in any month | at work |
-| crews ashore | hulls only | the Marine Journal of 4 July 1835 | 4 to 6 vessels in port |
+| crews ashore | hulls only | the Marine Journal of 4 July 1835, seated hull by hull in data/reconstruction/1835_vessels_in_port.json | 4 to 6 vessels in port, named and mastered; nobody aboard |
 | travellers of business and of state | no | the Democrat of 1 July 1835 names Lewis Cass, Secretary of War, arrived on the 29th in the steamer Michigan, 'among the numerous visitors to Chicago' | present |
 - **unit** — rows of the cohort — `bounded` says whether anything committed sets a size
 
 ### the port on the scene date
 
-| arrived | vessel | rig | cleared 1 July |
-| --- | --- | --- | --- |
-| 1835-06-27 | Jesse Smith | schooner | yes |
-| 1835-06-27 | Philips | schooner | yes |
-| 1835-06-28 | Llewelling | schooner | no |
-| 1835-06-28 | Hiram | schooner | no |
-| 1835-06-29 | Whig | schooner | no |
-| 1835-06-29 | an unnamed steamboat | steamboat | no |
-- **unit** — vessels, from the Marine Journal of 4 July 1835
+| arrived | vessel | rig | master | from | cargo | cleared 1 July |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1835-06-27 | Jesse Smith | schooner | Drurian | Green Bay | lumber | yes |
+| 1835-06-27 | Philips | schooner | Howe | Milwaukee | not stated | yes |
+| 1835-06-28 | Llewelling | schooner | Clark | cut from the column | passengers | no |
+| 1835-06-28 | Hiram | schooner | Rathbourn | Michigan | lumber | no |
+| 1835-06-29 | Whig | schooner | Day | cut from the column | merchandize | no |
+| 1835-06-29 | an unnamed steamboat | steamboat | not read | cut from the column | passengers | no |
+- **unit** — vessels, from the Marine Journal of 4 July 1835, re-derived from the seated hulls in data/reconstruction/1835_vessels_in_port.json
 
 **Open questions.** These are recorded here and do not become tickets.
 
 - Four of the five rows have no size and this model does not give them one. The harbour works were the largest employer in the town and their 1835 strength is not in any file this project holds; the Chief Engineer's annual report for 1835 would settle it and is named in docs/research/01-terrain-hydrology as the thing to find.
-- A crew complement for an 1830s lake schooner would turn the port reading into a number of men. This model refuses to supply one from general knowledge, and T-1353 must either find a source or seat no crews.
+- A crew complement for an 1830s lake schooner would turn the port reading into a number of men. This model refuses to supply one from general knowledge; T-1353 seated no crews, and T-1372 seated the hulls and left them empty. Everything but the number is now in place — the vessels file names the hulls and the transient cards carry a `lodged_at` rung of kind `vessel` — so an enrolment return, a shipping article or a marine list that prints hands as well as hulls would finish it without anything being unpicked.
 - The steamboat that arrived on 29 June is unnamed in the extraction; the Democrat of 1 July has Lewis Cass arriving that day in the steamer Michigan, and the American has the Michigan clearing on the 26th. The likeliest reading is that the two entries are the same vessel returned, and the model neither merges them nor claims they are distinct.
 
 ## 3. Where they slept
@@ -143,17 +144,20 @@ It is an adjudication over committed claim records and committed derived files �
 - **write a person.** T-1353 mints the cohort; this file bounds it, and `--self-test` refuses a build that names a record;
 - **inflate the residents.** A transient is in the town and not of it, and the town census must go on reporting the two apart;
 - **place a camp.** The candidate grounds are offered to T-1214, which may refuse every one of them;
+- **man a hull.** The vessels file seats the hulls and `--self-test` refuses one that acquires a crew or a berth;
 - **pick the point reading for T-1353.** Two candidates are printed with their arguments and neither is adopted here.
 
 ## Inputs
 
 - `data/reconstruction/1835_camp_grounds.json`
+- `data/reconstruction/1835_vessels_in_port.json`
 - `data/reconstruction/1835_town_model.json`
 - `data/research/directories/claims/fergus_1843_civic.json`
 - `data/research/directories/claims/norris_1844_town_findings.json`
 - `data/research/land_sales/entries.json`
 - `data/research/land_sales/resident_crosswalk.json`
 - `data/research/newspapers/extracted/chicago_american_1835_06_13.json`
+- `data/research/newspapers/extracted/chicago_american_1835_06_20.json`
 - `data/research/newspapers/extracted/chicago_american_1835_07_04.json`
 - `data/research/newspapers/extracted/chicago_democrat_1835_06_17.json`
 - `data/research/newspapers/extracted/chicago_democrat_1835_07_01.json`
