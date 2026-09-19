@@ -42,6 +42,13 @@ BLOCK = "dated_bounds"
 OWNERS = (
     ("chicago_voter_lists_1833_1835_irad", "tools/spend_civic_roll_bounds.py"),
     ("isa_public_domain_land_tract_sales", "tools/spend_land_sale_bounds.py"),
+    # T-1343 IS ONE PASS AND TWO OWNERS, because the town printed two papers and a row is
+    # owned by the source it cites. `tools/spend_press_bounds.py` writes both groups and
+    # replaces each of them whole; splitting them here rather than giving the pass one
+    # synthetic "press" source keeps the rule above literally true — one source id, one
+    # owner — and keeps the Democrat's rows and the American's in a stated order.
+    ("chicago_democrat_1833_1835", "tools/spend_press_bounds.py"),
+    ("chicago_american_1835", "tools/spend_press_bounds.py"),
 )
 OWNED = tuple(source for source, _ in OWNERS)
 

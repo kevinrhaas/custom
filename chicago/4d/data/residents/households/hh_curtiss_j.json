@@ -117,6 +117,54 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
+   "dated_bounds": [
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1835_06_17#c002",
+     "claim_kind": "event",
+     "as_printed": "J. CURTISS",
+     "role": "secretary, and of the committee of seven",
+     "locator": "chicago_democrat_1835_06_17 page 2 column 5",
+     "describes_date": "1835-06-17",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1835-06-17",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_curtiss, action `enrich` onto curtiss_j: data/residents/ already holds this person as curtiss_j (hh_curtiss_j, attested) — the documented pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1835-06-17 names 'J. CURTISS' in the claim read as chicago_democrat_1835_06_17#c002, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    },
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1835_07_01#c011",
+     "claim_kind": "event",
+     "as_printed": "J. Curtiss, Esq",
+     "role": "delegate",
+     "locator": "chicago_democrat_1835_07_01 page 3 column 2",
+     "describes_date": "1835-07-01",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1835-07-01",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_curtiss, action `enrich` onto curtiss_j: data/residents/ already holds this person as curtiss_j (hh_curtiss_j, attested) — the documented pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1835-07-01 names 'J. Curtiss, Esq' in the claim read as chicago_democrat_1835_07_01#c011, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'J. CURTISS' and 'J. CURTISS,' and 'J. Curtiss, Esq' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 5 August 1835, column 17; the Democrat of 20 May 1835, column 9; the Democrat of 17 June 1835, column 2; the Democrat of 1 July 1835, column 11. The corpus associates the name with South Water Street, Chicago; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `attorney` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "resident_research": {
     "programme": "resident-research-2026",

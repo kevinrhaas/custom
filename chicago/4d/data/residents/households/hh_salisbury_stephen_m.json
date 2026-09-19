@@ -122,6 +122,31 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
+   "dated_bounds": [
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1833_11_26#c031",
+     "claim_kind": "person",
+     "as_printed": "Stephen M. Salesbuc",
+     "role": "mentioned",
+     "locator": "chicago_democrat_1833_11_26 page 3 column 6",
+     "describes_date": "1833-11-26",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1833-11-26",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_salisbury_stephen_m, action `enrich` onto salisbury_stephen_m: data/residents/ already holds this person as salisbury_stephen_m (hh_salisbury_stephen_m, attested) — the documented pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1833-11-26 names 'Stephen M. Salesbuc' in the claim read as chicago_democrat_1833_11_26#c031, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'Stephen M. Salesbuc' and 'Stephen M. Salisbury' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the Democrat of 26 November 1833, column 31; the Democrat of 3 December 1833, column 7. The corpus associates the name with the Dupage; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `justice_of_the_peace` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "press_evidence": [
     {

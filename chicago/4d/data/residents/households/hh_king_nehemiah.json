@@ -130,6 +130,54 @@
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
    ],
+   "dated_bounds": [
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1834_08_06#c001",
+     "claim_kind": "event",
+     "as_printed": "miah King.",
+     "role": "candidate for Representative to the General Assembly",
+     "locator": "chicago_democrat_1834_08_06 page 3 column 1",
+     "describes_date": "1834-08-06",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-08-06",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_nehemiah_king, action `enrich` onto king_nehemiah: data/residents/ already holds this person as king_nehemiah (hh_king_nehemiah, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-06 names 'miah King.' in the claim read as chicago_democrat_1834_08_06#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    },
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1834_08_13#c005",
+     "claim_kind": "event",
+     "as_printed": "Nehemiah King,",
+     "role": "candidate for Representative to the General Assembly",
+     "locator": "chicago_democrat_1834_08_13 page 2 column 5",
+     "describes_date": "1834-08-13",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-08-13",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_nehemiah_king, action `enrich` onto king_nehemiah: data/residents/ already holds this person as king_nehemiah (hh_king_nehemiah, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-13 names 'Nehemiah King,' in the claim read as chicago_democrat_1834_08_13#c005, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 6 August 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). T-1004 — A SECOND MAN'S ENTRY CAME OFF THIS CARD. Norris's 1844 directory line `King, N. clerk, at T. King's, house 12 Lake st` was crossed onto this person and is now ruled off him in data/residents/card_conflation_rulings.json. The initial `N.` was attached to Nehemiah because he is the one full King forename the town holds a CARD for — a fact about the rest of the town, not evidence about the reading — while the entry's own qualifier expands it: Fergus 1839 prints `King, Nathaniel, clerk, Tuthill King`, the same trade under the same employer, five years earlier and in full. Where a page supplies the expansion the page decides. Nehemiah's own reading, the Chicago Democrat of 6 August 1834, gives no trade and no employer and so answers nothing on the other side. Nathaniel King is printed in 1839 and 1844 and nowhere in the scene window, so he holds no card here; the two lines are a lead for a later pass. FERGUS 1839'S FORT DEARBORN ADDITION LOT SALE — JUNE 1839 EVIDENCE, NEVER AN 1835 FACT. This person bid at the sale of the Fort Dearborn Addition, 10-24 June 1839, printed in Fergus' Chicago Directory for 1839 at pages 47-49. The bidder is printed as “N. King”. 1 lot row, $400 in all: block 8 lot 24 at $400 (f1839_lot0135, printed page 48). The sale table's own shorthand, recorded and not flattened: 1 carries the block number forward from the last row that printed one. What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds. No trade, no address in the town of 1835, no household and no house. The block and lot are the only location on the page, they are ground platted in 1839 out of the garrison's reservation, and they place nobody in the town of 1835. Identity by the crosswalk's own rule: Surname 'King' folds to the same string as the bidder's, and the given name of both begins N. (data/research/directories/fergus_1839_lots_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a lot sale four years after the scene date is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "press_evidence": [
     {
