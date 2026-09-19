@@ -288,6 +288,7 @@ def load(root: Path = ROOT) -> dict:
         "composition": root / "data" / "research" / "census_1840" / "composition_1840.json",
         "residents": root / "data" / "residents" / "index.json",
         "register": root / "data" / "research" / "newspapers" / "register_1835.json",
+        "presence_rulings": root / "data" / "reconstruction" / "1835_presence_rulings.json",
     }
     out = {}
     for key, path in paths.items():
@@ -949,6 +950,41 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
                                 "across cells that cannot hold it.",
         },
         "known_layer": known,
+        # THE POPULATION THE RULINGS PUT IN THE TOWN (T-1386), stated beside `known_layer`
+        # and deliberately NOT summed into it. `known_layer` counts what the resident
+        # INDEX records `present`, and the index is a summary of the household directory
+        # and nothing else (T-0715); the 827 people the research left `uncertain` are ruled
+        # into the town by a ruling layer outside those cards, so the two are different
+        # reads and the book says both rather than averaging them.
+        #
+        # WHY THE QUOTAS ARE NOT RE-CUT HERE. Every bucket's `to_reconstruct` is
+        # `target - known`, and 983 reconstructed people have already been drawn against
+        # the quotas `known` gives today. Adding 826 named people to `known` shrinks those
+        # quotas under work already done, which the `no_bucket_overfilled` invariant would
+        # refuse — correctly, because the answer is to retire or re-family the surplus and
+        # that is T-1196's re-cut of the programme and T-1197's re-audit of the anonymous
+        # roofs, not a side effect of a presence ruling. T-1179 converges the layer over
+        # both. What this block owes the book is the FIGURE and the delta, so the next
+        # stage re-cuts from a number rather than rediscovering it.
+        "population_ruled_in": {
+            "ticket": "T-1386",
+            "source": "data/reconstruction/1835_presence_rulings.json",
+            "persons_ruled_present": int(
+                (data["presence_rulings"].get("counts") or {}).get("persons_ruled") or 0),
+            "households_ruled_present": int(
+                (data["presence_rulings"].get("counts") or {}).get("households_ruled") or 0),
+            "by_presence_tier": (data["presence_rulings"].get("counts") or {}
+                                 ).get("persons_by_tier") or {},
+            "by_residence_grade": (data["presence_rulings"].get("counts") or {}
+                                   ).get("persons_by_residence_grade") or {},
+            "persons_known_today": known["persons_present"],
+            "persons_known_if_the_rulings_are_summed_in": known["persons_present"] + sum(
+                int(n or 0) for grade, n in
+                ((data["presence_rulings"].get("counts") or {}).get(
+                    "persons_by_residence_grade") or {}).items()
+                if grade in ("attested", "inferred")),
+            "what_re_cuts_the_quotas": ["T-1196", "T-1197", "T-1179"],
+        },
         "roster_offered": {
             "total": int(data["roster"].get("counts", {}).get("offered") or 0),
             "by_class": offered,
