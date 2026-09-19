@@ -173,6 +173,40 @@ State after that merge, for the next reader: the population profile covers 2,144
 the model's 2,535 target; 900 re-admissions and 124 female-headed households (556 people — 124
 women and 432 others) are built and gated, and none of them reaches `index.json` yet.
 
+**Finding (T-1349's merge, 2026-09-19): a new stage's invented NAMES can move the stages
+above it and, worse, can move a research pass.** Stage `garrison` drew 125 people over the
+sixty-five surnames the pools hold. Two things broke, and both are this ticket's to
+generalise:
+
+* `reconstruct_women_children.py` redrew 43 of its own cards, because its `real_names()`
+  folds every name in the layer including `rc_` ones — so a stage BELOW it in the programme
+  changed what it steps past. A later stage should not be able to move an earlier one.
+* `mint_civic_residents.py` minted a 393rd civic person where dev mints 392, because six
+  invented Tuttles standing beside the town's one real Tuttle made `id_tuttle_james_b`
+  unresolvable. **An invention that changes how a source is READ has become evidence.**
+
+T-1349 fixed both from its own side with one refusal — *a drawn soldier may not bear a
+family name any attested or inferred person of this town bears* — and with it in force the
+civic mint returns to 392 and `women_and_children` redraws nothing. Forty-nine of the
+sixty-five pool surnames are free of the named layer, which is enough for 125 people and
+will not be enough forever: **T-1173's trade households and T-1175's lodgers draw hundreds
+more over the same pools.** The refusal is written generally enough to lift into the
+programme, and the convergence this ticket owns is where that decision belongs.
+
+The rebuild order recorded above still holds, with one insertion — stage `garrison` goes
+AFTER `women_and_children`, which is its position in the programme's `stages` array:
+
+```
+python3 tools/model_town_1835.py --build
+python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival  --build
+python3 tools/reconstruct_residents_1835.py --stage readmissions            --build
+python3 tools/reconstruct_residents_1835.py --stage women_and_children      --build
+python3 tools/reconstruct_garrison_1835.py                                  --build
+python3 tools/rebuild_resident_index.py --write
+python3 tools/profile_population_1835.py --build
+python3 tools/build_order_book_1835.py --build
+```
+
 **Correction (2026-09-19, same night): the set is SIX tools, and a fixed list is the wrong
 shape of answer.** The finding above names four builds in an order and reads as though the
 order is the whole of it. It is not, and the list was wrong three times in one evening. Each
@@ -195,6 +229,7 @@ python3 tools/model_town_1835.py          --build
 python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival --build
 python3 tools/reconstruct_residents_1835.py --stage readmissions           --build
 python3 tools/reconstruct_residents_1835.py --stage women_and_children     --build
+python3 tools/reconstruct_garrison_1835.py                                 --build
 python3 tools/profile_population_1835.py  --build
 python3 tools/build_order_book_1835.py    --build
 python3 tools/model_transients_1835.py    --build
@@ -226,3 +261,42 @@ Acceptance 1 of this ticket is a fixed point over exactly this set. It lists the
 commands and, as written, neither the order nor the method. Whoever works it should fix that in
 the acceptance itself rather than trusting this finding, which will also be out of date the
 moment another reader of the layer is added.
+
+---
+
+**FINDING from T-1364, 2026-09-19 — the arrival table is a circle, and only a rebuild can
+open it.**
+
+T-1364 fixed the two `arrival_and_origin` FIGURES, which counted the whole compiled layer
+over a denominator that excluded every reconstructed person in it. The share read 1.63 and
+its complement read -809. Both figures now divide the named layer by the named layer, which
+is the rule `build_population` already applied to the population floor.
+
+**The TABLE under them was deliberately left alone, and this ticket is why.**
+`arrival_and_origin.tables.arrival_year_of_the_known_layer` is named for the known layer and
+is computed over the WHOLE compiled layer, reconstructed people included — and
+`tools/reconstruct_residents_1835.py` (`arrival_fill_plan`, `plan_household`) draws every
+filled arrival year out of its `year`/`people` columns. So the distribution the arrival
+stage draws from is computed over a layer that same stage has already written into: each
+pass re-reads its own last draw, and the more people the reconstruction adds, the more the
+table is a picture of the reconstruction rather than of the evidence.
+
+Cutting the table to the named layer is therefore **not a figure change**: it redraws every
+arrival ever dealt, on every card the arrival stage owns, and then moves the model those
+cards are counted back into. That is a rebuild in this ticket's own sequence, in this
+ticket's own order, and it is exactly the class of change the "rebuilding only what the
+check names never converges" trap above is about. It is recorded here rather than done on a
+figures ticket.
+
+What T-1364 did leave in place for it:
+
+- The table's `unit` now says on its face that it is the whole compiled layer, and a
+  `not_the_figures_denominator` line says the figures above do not share its denominator.
+  Its `share` column divides by the table's own total, so the column sums to 1 instead of
+  dividing a whole-layer count by a named-layer one.
+- `model_town_1835.py --self-test` carries a guard that refuses the build if the arrival
+  numerator ever outruns its denominator again. A rebuild that re-cuts the table will trip
+  nothing; a rebuild that re-crosses the two populations will.
+
+**Links:** T-1364 · `tools/model_town_1835.py` § `build_arrival` ·
+`tools/reconstruct_residents_1835.py` § `arrival_fill_plan`.

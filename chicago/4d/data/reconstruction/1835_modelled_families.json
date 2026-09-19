@@ -12,11 +12,11 @@
  "children": 216,
  "refused_by_eligibility": {
   "a letter-list mint argues for a person and not for a household": 312,
-  "a source already names, counts or rules on this household's family": 131,
+  "a source already names, counts or rules on this household's family": 141,
   "a woman heading her own household is the age pyramid's, T-1174": 3,
   "presence on the scene date is not settled (T-1172's roster holds it)": 822,
   "the fort and the country outside the town are not this stage's": 3,
-  "the head is not a person the sources name": 10,
+  "the head is not a person the sources name": 11,
   "the head is not an adult the household model seats as a husband": 9,
   "the head's own trade says he kept no wife": 1,
   "the household carries a standing review, and only T-1177's stage may reconstruct within one": 2
@@ -520,14 +520,14 @@
  },
  "measurement": {
   "the_town_the_book_counts": "present households only",
-  "people_before_this_stage": 1015,
-  "people_after_this_stage": 1315,
+  "people_before_this_stage": 1140,
+  "people_after_this_stage": 1440,
   "adults_after_this_stage": {
-   "male": 381,
-   "female": 236
+   "male": 470,
+   "female": 244
   },
-  "adult_sex_ratio_before": 250.7,
-  "adult_sex_ratio_after": 161.4,
+  "adult_sex_ratio_before": 293.8,
+  "adult_sex_ratio_after": 192.6,
   "the_model_s_range": [
    120.9,
    150.0
@@ -535,12 +535,12 @@
   "inside_the_model_s_range": false,
   "what_closes_it": "T-1174 draws the 855 women and children the pyramid still lacks; T-1179 converges the layer and re-runs the profile.",
   "age_pyramid_after": {
-   "10_19": 279,
-   "20_29": 318,
-   "30_39": 199,
+   "10_19": 302,
+   "20_29": 383,
+   "30_39": 231,
    "40_49": 63,
    "50_plus": 37,
-   "under_10": 411
+   "under_10": 416
   },
   "household_size_1840_share": {
    "1": 0.0742,
