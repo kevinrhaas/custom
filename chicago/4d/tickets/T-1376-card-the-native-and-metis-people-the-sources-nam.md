@@ -1,7 +1,7 @@
 ---
 id: T-1376
 title: Card the Native and Metis people the sources name and reconstruct the counted-but-unnamed remainder within a stated bracket — every record review_required and touches_removal, with docs/RESEARCH/native_and_metis_1835.md listing every source read and the review still owed
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1177
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1511
 claimed_by: run 9/19/2026, 4:46:52 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T11:07:56.769Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35435483206
 ---
 
