@@ -20,10 +20,27 @@ changed by this tool: it reads the ledger and the resident layer and writes one 
 table. Every row says what reconstruction MAY do with it, and the `R0_ineligible` class
 says `never`.
 
-THE ACCOUNTING RULE. Every non-asserted ledger unit is either (a) the origin of one or more
-roster rows or (b) listed under `not_a_person_unit` with the reason it names no candidate.
-No unit is silently dropped, and `--check` re-derives the whole table, so a unit that starts
-naming a person tomorrow cannot vanish from this file quietly.
+THE ACCOUNTING RULE. EVERY ledger unit is either (a) the origin of one or more roster rows
+or (b) listed under `not_a_person_unit` with the reason it names no candidate. No unit is
+silently dropped, and `--check` re-derives the whole table, so a unit that starts naming a
+person tomorrow cannot vanish from this file quietly.
+
+AND THE UNIT OF WITHHOLDING IS THE NAME, NOT THE CLAIM (T-1367). Until this ticket the rule
+above read "every NON-ASSERTED unit", and an `asserted` unit was skipped whole. But the
+research ledger's unit is the CLAIM, and a claim that prints fourteen names is asserted the
+moment ONE of them reaches a card — so the other thirteen left this file without a word,
+carried off by a spend that never touched them. That is the opposite of what this roster
+says it is: a name the corpus printed and no card carries is a withheld name whether or not
+some OTHER name in the same paragraph was spent. Measured on this branch, 2026-09-19: 798
+asserted units hid 148 such names, 147 of them R2 and one R6 — nine of them off Moses and
+Kirkland's spring-1833 list, which T-1366 had asserted the day before while recording in
+`arrival_supersessions.json` that no name would move. They had already moved.
+
+So asserted units are read like any other. Their names that a card carries fall to R0 under
+the rules that already say so; their names that no card carries stay offered, under a rule
+of their own that says the unit was spent on somebody else. This is what let T-1367 spend
+the Baptist catalogue of 19 October 1833 onto three cards without dropping the twelve names
+it reaches nobody with.
 """
 from __future__ import annotations
 
@@ -611,6 +628,19 @@ def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
 
     # 11. Inside the window, no card, withheld: the roster's whole reason for existing.
     if in_window(date):
+        if disposition == "asserted":
+            # T-1367. The ledger closed this CLAIM because another name in it reached a
+            # card. This name reached none, so the town never got it and it is as withheld
+            # as any refusal — said in its own words so the file cannot be read as claiming
+            # the ledger weighed this person and withheld them.
+            return out("R2_in_window_single_source",
+                       ("in_window_spent_on_another_name",
+                        "A dated appearance inside the window under a read name, carried "
+                        "on no card. The ledger closed the unit `asserted`, but the claim "
+                        "is the ledger's unit and the assertion was another name in the "
+                        "same reading reaching another card; nothing was spent on this "
+                        "one."),
+                       describes_date=date)
         return out("R2_in_window_single_source",
                    ("in_window_read_and_withheld",
                     "A dated appearance inside the window under a read name, withheld "
@@ -738,6 +768,21 @@ def card_rows(layer: dict) -> list[dict]:
     return rows
 
 
+def asserted_onto(led: dict) -> str | None:
+    """What an `asserted` ledger row says, for a file whose other rows all say something.
+
+    A naturally asserted unit carries a `target` and no prose: the ledger had nothing to
+    explain, because the spend explains itself. T-1367 puts those units on the roster, so
+    the column that every other row fills has to be filled here too.
+    """
+    target = led.get("target")
+    if not isinstance(target, dict):
+        return None
+    where = target.get("field_path") or "a field"
+    return (f"The ledger closed this unit `asserted` onto {target.get('id')} "
+            f"{where}; that spend named a different person in this reading.")
+
+
 def ledger_rows(root: Path, layer: dict) -> tuple[list[dict], list[dict], int]:
     registry = ledger_tool.read_json(ledger_tool.REGISTRY)
     units, faults = ledger_tool.extract_units(root, registry)
@@ -751,8 +796,11 @@ def ledger_rows(root: Path, layer: dict) -> tuple[list[dict], list[dict], int]:
     considered = 0
     for unit in units:
         led = led_by_id.get(unit["unit_id"])
-        if led is None or led.get("disposition") == "asserted":
+        if led is None:
             continue
+        # T-1367: an `asserted` unit is NOT skipped. The ledger's unit is the claim and a
+        # claim is asserted by one name reaching one card; the names beside it are still
+        # withheld, and dropping them here made a spend silently delete evidenced people.
         considered += 1
         names, reason = candidate_names(unit, rulings_1830)
         if not names:
@@ -776,7 +824,8 @@ def ledger_rows(root: Path, layer: dict) -> tuple[list[dict], list[dict], int]:
                 "domain": unit["domain"],
                 "source_file": unit["source_file"],
                 "ledger_disposition": led.get("disposition"),
-                "ledger_reason": led.get("reason") or led.get("evidence") or led.get("rule"),
+                "ledger_reason": (led.get("reason") or led.get("evidence")
+                                  or led.get("rule") or asserted_onto(led)),
                 "existing_household_id": verdict.pop("existing_household_id", None),
                 "presence_today": verdict.pop("presence_today", None),
                 **verdict,
@@ -1114,6 +1163,29 @@ def self_test() -> int:
     expect("every R6 row names its community", all(r.get("community") for r in r6))
     expect("every Native/Métis row is review_required",
            all(r.get("review_required") for r in r6 if r.get("community") == "native_or_metis"))
+
+    # 6. T-1367: an asserted unit's UNCARRIED names are still offered, and the row says
+    #    why in its own words rather than borrowing a refusal the ledger never made.
+    spent_on_another = [r for r in doc["rows"]
+                        if r.get("rule") == "in_window_spent_on_another_name"]
+    expect("an asserted unit's withheld names reach the roster",
+           bool(spent_on_another))
+    expect("every spent-on-another row comes off an asserted unit",
+           all(r["ledger_disposition"] == "asserted" for r in spent_on_another))
+    expect("a spent-on-another row is carried by no card",
+           not any(r.get("existing_household_id") for r in spent_on_another))
+    expect("no asserted unit borrows the withheld-by-the-ledger rule",
+           not any(r.get("ledger_disposition") == "asserted"
+                   and r.get("rule") == "in_window_read_and_withheld"
+                   for r in every_row(doc)))
+    expect("every asserted row states what the ledger spent the claim on",
+           all(r.get("ledger_reason") for r in every_row(doc)
+               if r.get("ledger_disposition") == "asserted"))
+    # The Baptist catalogue of 19 October 1833 is the ticket's own case: fourteen names,
+    # spent on three cards, and the rest must still be here.
+    baptist = [r for r in every_row(doc) if r.get("claim_or_record_id") == "bk_mose2_010"]
+    expect("the Baptist catalogue keeps every name it prints on the roster",
+           len(baptist) >= 12)
 
     for line in failures:
         print(f"SELF-TEST FAILED: {line}")
