@@ -54,7 +54,10 @@ T-1179 — Converge the reconstructed resident layer: index, sidecars, town cens
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1386 — The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
-T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
+T-1388 — Rule the business layer's identity: the register's compiled records hold houses printed twice under different styles, and each colliding group is one house or two, ruled from the sources, declared in identity.json, carried by the compiler and re-counted in the census crosswalk
+T-1389 — Complete every present business record against the research: proprietors, partners, firm styles, goods, dates, census class and every location including the secondary premises, with a reconciliation table of field by filled-attested / filled-inferred / empty-with-its-reason, gated and reported
+T-1390 — A workplace for every in-window tradesman: an inferred firm in data/businesses/authored/ for each person whose roles reach the scene date with a premises trade and no business, no_fixed_premises for the trades that carry none, and the physicians' and lawyers' offices the research already names, until scene_window_trade_audit reads zero
+T-1391 — Every person's other significant locations as associated_with[]: civic offices and where they sat, church membership and office, agency holdings, land purchased and schools taught, each with kind, place, dates, tier and source, counts before and after
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
 T-1184 — Reconstruct the missing stores and provision trades: dry goods, groceries, hardware, drug, book and provision houses, packers and the market, to the order book's quota, each with a period firm style, a reconstructed proprietor household and a location class
 T-1185 — Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
@@ -231,4 +234,3 @@ T-1380 — A squash merge dropped a shipped release note and re-used its version
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
-
