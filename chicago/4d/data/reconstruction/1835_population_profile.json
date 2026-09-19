@@ -27,7 +27,9 @@
   "persons_with_a_role": 327,
   "households_naming_an_origin": 1393,
   "households_naming_a_reason": 1393,
-  "households_naming_a_lives_at": 31
+  "households_naming_a_lives_at": 31,
+  "axes_answered_by_every_person": 6,
+  "persons_answering_every_axis": 850
  },
  "vocabulary": {
   "age_bands": [
@@ -2091,6 +2093,265 @@
    ],
    "notes": [
     "No PERSON carries the `reconstructed` grade (984) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 297 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+   ]
+  },
+  {
+   "id": "completeness",
+   "title": "Per-attribute completeness",
+   "lead": "THE NINE QUESTIONS ASKED OF EVERY ONE OF THE 2269 PEOPLE, TOGETHER. 6 of the nine axes leave nobody unanswered. Sex leaves 6 and age band 7 — the collective rows, \"the rest of the Beaubien household, unnamed\" and their kind, which name nobody and so can carry neither; every one of them is named below. Division leaves 1412, the people of the 1186 households no source puts on a side of the river, and that is the layer's largest remaining hole: T-1198 seats the households the evidence places and T-1199 the reconstructed ones, and until they run this column cannot read zero without inventing ground. 850 people are answered on all nine. Two axes answer in a bare string that carries no confidence anywhere on the card — they are counted under \"stated, no tier written\" and not under a tier, because a value with no tier is not a value at a tier.",
+   "tables": [
+    {
+     "title": "Every person, every attribute",
+     "headers": [
+      "attribute",
+      "carried by",
+      "answered",
+      "share",
+      "attested",
+      "inferred",
+      "reconstructed",
+      "stated, no tier written",
+      "not answered"
+     ],
+     "aligns": "llrrrrrrr",
+     "rows": [
+      [
+       "sex",
+       "person",
+       2263,
+       "99.7%",
+       1086,
+       590,
+       587,
+       0,
+       6
+      ],
+      [
+       "age band",
+       "person",
+       2262,
+       "99.7%",
+       7,
+       54,
+       2201,
+       0,
+       7
+      ],
+      [
+       "arrival",
+       "household",
+       2269,
+       "100.0%",
+       127,
+       1449,
+       693,
+       0,
+       0
+      ],
+      [
+       "origin",
+       "household",
+       2269,
+       "100.0%",
+       24,
+       84,
+       2161,
+       0,
+       0
+      ],
+      [
+       "reason for coming",
+       "household",
+       2269,
+       "100.0%",
+       33,
+       28,
+       2208,
+       0,
+       0
+      ],
+      [
+       "a role, or a stated reason for having none",
+       "person",
+       2269,
+       "100.0%",
+       254,
+       73,
+       1942,
+       0,
+       0
+      ],
+      [
+       "presence on the scene date",
+       "household",
+       2269,
+       "100.0%",
+       59,
+       1514,
+       696,
+       0,
+       0
+      ],
+      [
+       "division",
+       "household",
+       857,
+       "37.8%",
+       0,
+       0,
+       0,
+       857,
+       1412
+      ],
+      [
+       "household relationship",
+       "person",
+       2269,
+       "100.0%",
+       0,
+       0,
+       0,
+       2269,
+       0
+      ]
+     ],
+     "note": "The tier columns and \"not answered\" sum to 2269 on every row. \"stated, no tier written\" is `division` and `relationship`, which the index's vocabulary lists as controlled terms and no card grades."
+    },
+    {
+     "title": "A role, or a stated reason for having none",
+     "headers": [
+      "what the card carries",
+      "persons",
+      "share"
+     ],
+     "aligns": "lrr",
+     "rows": [
+      [
+       "a role, dated and sourced",
+       327,
+       "14.4%"
+      ],
+      [
+       "an occupation, undated",
+       203,
+       "8.9%"
+      ],
+      [
+       "a stated reason for having none",
+       1739,
+       "76.6%"
+      ],
+      [
+       "nothing",
+       0,
+       "0.0%"
+      ]
+     ],
+     "note": "A stated absence is an answer and it is not a trade. The note on those 1739 cards says why the sources record no occupation — a list of uncalled-for letters prints a name and no trade; the sources of 1835 name the occupations of heads and almost never those of wives, children or the people counted with them."
+    },
+    {
+     "title": "The person rows that answer nothing",
+     "headers": [
+      "person",
+      "as the card names them",
+      "household",
+      "axes left unanswered",
+      "what the card gives as the reason"
+     ],
+     "aligns": "lllll",
+     "rows": [
+      [
+       "beaubien_household_unnamed",
+       "The rest of the Beaubien household, unnamed",
+       "hh_beaubien_jean_baptiste",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ],
+      [
+       "beaubien_mark_household",
+       "Mark Beaubien's family, unnamed",
+       "hh_beaubien_mark",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ],
+      [
+       "harmon_daughter_burley",
+       "The Harmon daughter later known as Mrs A. G. Burley",
+       "hh_harmon_elijah_d",
+       "age band",
+       "The card refuses an age band as a COLLECTIVE description naming nobody, and this row names one woman — Andreas's informant, seated as a daughter and carrying one sex."
+      ],
+      [
+       "heacock_household_unnamed",
+       "Heacock's wife and children, unnamed",
+       "hh_heacock_russel_e",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ],
+      [
+       "owen_household_unnamed",
+       "Owen's household, unnamed",
+       "hh_owen_thomas_jv",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ],
+      [
+       "robinson_household_unnamed",
+       "The rest of the Robinson household, unnamed",
+       "hh_robinson_alexander",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ],
+      [
+       "temple_children_four",
+       "The four Temple children",
+       "hh_temple_john_t",
+       "sex, age band",
+       "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
+      ]
+     ],
+     "note": "Named rather than summed away, which is the whole of this section. One of them, `harmon_daughter_burley`, carries a reason its own card contradicts: the refusal is written for a collective row and she is one named woman. The refusal's effect is right and its reason is wrong; the fix belongs to the pass that writes the note."
+    },
+    {
+     "title": "The unplaced, by the roll they were minted off",
+     "headers": [
+      "roll",
+      "persons",
+      "share of the unplaced"
+     ],
+     "aligns": "lrr",
+     "rows": [
+      [
+       "letter_list",
+       743,
+       "52.6%"
+      ],
+      [
+       "civic",
+       569,
+       "40.3%"
+      ],
+      [
+       "documented",
+       72,
+       "5.1%"
+      ],
+      [
+       "unclaimed",
+       18,
+       "1.3%"
+      ],
+      [
+       "placed",
+       10,
+       "0.7%"
+      ]
+     ],
+     "note": "1412 persons in households standing `unplaced`. `unplaced` is a term in the index's own division vocabulary and it is a statement — the sources do not place this household — but it is not a division, so this section counts it unanswered."
+    }
+   ],
+   "notes": [
+    "Every count here is re-derived from the cards by `--build`; `--check` refuses a hand-edit. The axes are the nine T-1393 names and the tool refuses a rebuild whose answered and unanswered rows do not sum to the layer's persons on each of them."
    ]
   },
   {
