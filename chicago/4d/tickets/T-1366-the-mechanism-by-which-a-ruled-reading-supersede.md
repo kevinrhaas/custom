@@ -1,7 +1,7 @@
 ---
 id: T-1366
 title: The mechanism by which a ruled reading supersedes a mint's derived arrival bound, spent on the three spring-1833 arrivals of Botsford, Eli B Williams and Hibbard Porter
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1350
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1502
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T05:06:08.238Z
 claimed_run: null
 ---
 

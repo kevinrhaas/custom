@@ -46,7 +46,6 @@
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
-T-1366 — The mechanism by which a ruled reading supersedes a mint's derived arrival bound, spent on the three spring-1833 arrivals of Botsford, Eli B Williams and Hibbard Porter
 T-1367 — Spend the Baptist catalogue of 19 October 1833 onto Willard Jones, Nathaniel Carpenter and M D Harmon without dropping the twelve other names it prints off the borderline roster
 T-1343 — Spend the 128 press notices onto the cards they name, on identifications a committed newspapers-to-residents crosswalk makes, and refuse in writing the ones it cannot make
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
