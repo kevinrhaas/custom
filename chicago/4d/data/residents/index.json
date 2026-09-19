@@ -56,7 +56,8 @@
    "structure",
    "street",
    "face",
-   "division"
+   "division",
+   "tract"
   ],
   "occupations": [
    "army_officer",
