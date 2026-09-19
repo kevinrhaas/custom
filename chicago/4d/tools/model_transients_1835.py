@@ -60,7 +60,7 @@ SALE_MONTH = "1835-06"
 
 # "Strangers, to the a[mo]unt of some hundreds more" — the American of 13 June 1835.
 # A PHRASE IS NOT A NUMBER, and turning this one into a band is the largest liberty in
-# this file (docs/LIBERTIES.md L244). Two hundred is the least a plural of hundreds can
+# this file (docs/LIBERTIES.md L245). Two hundred is the least a plural of hundreds can
 # carry; nine hundred is the most, because an editor with a thousand strangers in his
 # streets writes "a thousand" and this one did not.
 SOME_HUNDREDS = (200, 900)
@@ -329,7 +329,7 @@ def build_size(town, entries, crosswalk, fergus, norris, amer_0613, dem_0701) ->
                "is the least a plural of hundreds can carry and "
                f"{SOME_HUNDREDS[1]} the most, because an editor with a thousand strangers "
                "in his streets writes 'a thousand'. Turning the phrase into a band is a "
-               "liberty and is recorded as docs/LIBERTIES.md L244.",
+               "liberty and is recorded as docs/LIBERTIES.md L245.",
                ["chicago_american_1835_06_13"],
                ["data/research/newspapers/extracted/chicago_american_1835_06_13.json"]),
         figure("transient_persons_counted_at_chicago_1843", t43, t43,
