@@ -64,7 +64,10 @@ those words. Three conditionings, each naming what it assumes:
     schedule counts a child as a tally inside a household and never as a correspondent,
     and 15 rather than 20 because an apprentice or a journeyman is on a trade roll.
   * `dependent_child_under_15` - the register calls the person an infant or a baptised
-    child, or the household calls them a son, a daughter or a child.
+    child, or the household calls them a son, a daughter or a child AND the card names
+    them nowhere in their own right. A kinship word is not an age (T-1179): a grown man
+    in his father's house is still that household's son, so evidence of a roll, a press
+    appearance or a trade of the person's own is read before the word is.
 
 A COLLECTIVE DESCRIPTION IS STILL REFUSED. "The four Temple children" is a row about
 four people and has no sex and no band of its own. Six such rows get an explicit
@@ -307,10 +310,38 @@ def collective(person: dict) -> bool:
     return why == "a_group_not_a_person"
 
 
+def named_in_their_own_right(person: dict) -> bool:
+    """The card names this person on a roll, in the press, or at a trade of their own.
+
+    Exactly what `named_on_a_roll_15_and_over` is about, read off the card rather than
+    off the word a household happens to use for somebody.
+    """
+    if person.get("roles"):
+        return True
+    for entry in person.get("civic_evidence") or []:
+        if str(entry.get("list") or "").startswith(("poll_", "tax_", "muster_")):
+            return True
+    return any(person.get(key) for key in
+               ("press_evidence", "book_evidence", "letter_list_returns"))
+
+
 def conditioning_of(person: dict) -> str:
     church = person.get("church_evidence") or []
     if any((e.get("locator") or "") in ("infant", "baptised", "child") for e in church):
         return "dependent_child_under_15"
+    # A KINSHIP WORD IS NOT AN AGE (T-1179). `relationship: son` says whose son a person
+    # is and nothing about how old he is - a grown man living in his father's house is
+    # still the household's son, and this project has one. John S. Wright kept a store on
+    # South Water Street, stands in the press over the scene date and carries an attested
+    # role of clerk; because his father's card calls him a son he was drawn out of the
+    # schedule's 10-14 column, and the town's best-known young booster was eleven years
+    # old. The conditioning's own words are the argument against the order it was tested
+    # in - it assumes "nothing beyond what the record already says", and the record also
+    # says he holds a trade. So evidence the person was named in their own right is read
+    # FIRST, and the kinship word answers only for the children it is the only word for.
+    if named_in_their_own_right(person):
+        return ("civic_list_20_and_over" if age_band_of(person) == "adult_by_civic_list"
+                else "named_on_a_roll_15_and_over")
     if str(person.get("relationship") or "").lower() in CHILD_RELATIONSHIPS:
         return "dependent_child_under_15"
     if age_band_of(person) == "adult_by_civic_list":
