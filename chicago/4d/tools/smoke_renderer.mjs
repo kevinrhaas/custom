@@ -12031,9 +12031,14 @@ for (const [label, viewport, touch] of [
         .filter((b) => b.where?.kind === 'premises' && b.where.structure_id)
         .map((b) => b.where.structure_id));
       return {
-        // John Dean Caton holds five of these houses, which is the fact about the
-        // town that no card said before this.
+        // John Dean Caton holds four of these houses, which is the fact about the
+        // town that no card said before this…
         person: of('caton_john_dean'),
+        // …and the register names him FIVE times, because Collins & Caton prints
+        // him under two styles. One printing is not one partnership, so the card
+        // must list four rows and not five.
+        printings: idx.businesses.reduce((t, b) => t
+          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean').length, 0),
         roof: idx.businesses.filter((b) => b.where?.kind === 'premises'
           && b.where.structure_id === 'temple_lake_st_building').map((b) => b.id).sort(),
         // …and a roof the register puts no house in must say nothing at all,
@@ -12077,8 +12082,9 @@ for (const [label, viewport, touch] of [
       && personFirms.ids.join(',') === wanted.person.join(',')
       && personFirms.dots === personFirms.ids.length
       && new RegExp(`^The ${wanted.person.length} firms`).test(personFirms.head)
-      && personFirms.sub.length > 0,
-      JSON.stringify({ ...personFirms, wanted: wanted.person }));
+      && personFirms.sub.length > 0
+      && wanted.printings > wanted.person.length,
+      JSON.stringify({ ...personFirms, wanted: wanted.person, printings: wanted.printings }));
     check(`${label}: tapping one opens that firm's own card in Businesses`,
       landedFromPerson.tab === 'businesses' && landedFromPerson.shown
       && wanted.person.includes(landedFromPerson.id)

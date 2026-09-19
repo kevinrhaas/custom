@@ -730,7 +730,7 @@ export async function mountPeople({
     const firms = firmsByPerson?.get?.(personId) || [];
     if (!firms.length || typeof onBusiness !== 'function') return '';
     const rows = firms.map((f) => {
-      const sub = [words(f.role), f.trade, f.street || '',
+      const sub = [f.roles.map(words).join(' and '), f.trade, f.street || '',
         f.present ? '' : 'not trading on 1 July'].filter(Boolean).join(' \u00b7 ');
       return `<li><button type="button" class="people-firm" data-business="${escapeHtml(f.id)}">
         <i class="grade-dot grade-${escapeHtml(f.grade)}" title="${escapeHtml(f.grade)}"></i>

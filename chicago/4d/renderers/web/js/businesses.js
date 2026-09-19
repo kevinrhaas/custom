@@ -105,10 +105,27 @@ export function firmCrosswalk(index) {
       present: !!r.present_at_scene_date,
       opened: r.opened || null,
     };
+    // ONE ROW A FIRM, NOT ONE ROW A PRINTING. Twelve person-firm pairs in this
+    // layer are named twice on the same record, because the register prints the
+    // same man under two styles — "J. D. Caton" and "J. Dean Caton" are one
+    // partner of Collins & Caton, not two. A card that listed both would be
+    // counting the register's typography as the town's partners, so the roles
+    // fold onto one entry and the firm is listed once.
+    const seen = new Map();
     for (const p of (r.people || [])) {
-      push(byPerson, p.person_id, {
-        ...firm, role: p.role || 'proprietor', tier: p.tier || null, from: p.from || null, to: p.to || null,
-      });
+      if (!p.person_id) continue;
+      const key = `${p.person_id}\u0000${r.id}`;
+      const had = seen.get(key);
+      if (had) {
+        if (p.role && !had.roles.includes(p.role)) had.roles.push(p.role);
+        continue;
+      }
+      const entry = {
+        ...firm, roles: [p.role || 'proprietor'], tier: p.tier || null,
+        from: p.from || null, to: p.to || null,
+      };
+      seen.set(key, entry);
+      push(byPerson, p.person_id, entry);
     }
     if (r.where?.kind === 'premises') push(byStructure, r.where.structure_id, firm);
   }
