@@ -12839,3 +12839,75 @@ likeliest), and the stage picks none. Nothing was reduced to fit.
 Related: tickets **T-1349**, from **T-1176** and **T-1167**; **T-1348** is the officers' half of
 the same parent; **L247** is the stage above it in the programme. **Recorded:** 2026-09-19.
 
+### L252 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
+
+**Decision:** `tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night
+capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each
+is an invention of a different size. (1) It **seats seventeen people the layer already
+holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew
+at a household size of one — into a named or reconstructed lodging house, writing
+`lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints
+seventy of them as boarders and lodgers** nobody names, drawn against the order book's own
+`household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this
+programme itself raised as a lodging place, at the trade that roof's own `function`
+states. Nothing is hand-authored: every value comes from a seed a reader can retype, and
+`--check` re-derives all twelve cards and the ledger byte for byte.
+
+**Why:** because T-1370 counted 135 ordinary-night beds across those fifteen houses and
+found thirty people in them — eight keepers and their families, and not one boarder. The
+town model's own caution says where the rest of the town's surplus men were: "Households
+drawn symmetrically break the adult sex ratio… the surplus men are boarders and lodgers,
+not husbands." A dataset that models 468–1,232 beds and sleeps nobody in them is not
+cautious, it is silent; a visitor walks into the Tremont House and meets Ira Couch and his
+brother in a twelve-bed hotel. The 1840 household tail that priced those beds is the same
+tail this stage spends.
+
+**What is invented, exactly.** Three things. (1) **That a particular named resident slept
+in a particular house.** Philo Carpenter, John Bates jr and Alexander Fullerton are
+documented Chicagoans whose households the model drew as solitary and to whom no source
+gives a roof; this stage puts them in the Tremont House because the mix T-1175 states
+puts professionals there. That is a claim about a real person, it is written at
+`reconstructed` and never above it, and the seat lives in this stage's ledger rather than
+in the research card, so a source that says where they lived retires it without a merge.
+(2) **Seventy people who did not exist.** Names from the pools, an age band the bucket
+set, a bed the lodging model counted, and no trade at all. (3) **Five keepers** of five
+invented houses, whose trade is read off the building and not dealt.
+
+**What this deliberately does NOT do.** It **mints nobody into a house whose division
+nothing states**: `data/structures/*.json` carries no division field, a lodger has to be
+ordered out of a bucket for a division, and the New York House and the Sauganash Hotel
+have no household attached to give them one — so thirteen ordinary-night beds stand empty
+at the end of this stage and the ledger names every one of them rather than guessing a
+division to spend a bucket on. It gives **no named house a keeper**: who kept the New York
+House in 1835 is a research question, and a reconstructed proprietor inside a documented
+building would be an answer the sources never gave. It deals **no trade onto a lodger** —
+that is T-1173's machinery and the 1839 shares are its table — and it draws **no child**,
+because the 156 people under ten the book orders into lodging households are keepers'
+families and not boarders. And it draws **no keeper's family**, despite the ticket's own
+title saying "with each keeper's own household complete": the kin of a household are
+`family/none` in the order book and that quota is T-1171's and T-1174's, so the shortfall
+is STATED per house in the ledger's `keepers` table, with the ticket that owes it. Piece 1
+of this same parent refused the staffing model in its own title for the same reason
+(L-none; T-1370 named T-1183), and this is that refusal made a second time.
+
+**What it leaves open.** The 37 boarding houses the roof programme schedules and has not
+built are 333 ordinary beds with no roof over them; they cannot be slept in until T-1196
+re-derives the programme and T-1187 raises the houses. The crews of the vessels in port
+and the gang at the pier works are T-1372, piece 3 of this parent, and so is the house
+card that prints who lived there. These cards are outside
+`data/residents/households/` and therefore outside `data/residents/index.json`, for the
+reason T-1172's re-admissions and T-1347's trade heads are; they join the town in
+`data/sidecars/1835/people.json`, which now counts 2,701 people against the manifest's
+1,588. T-1179 converges the trees.
+
+**How to resolve:** a source naming anybody who lodged in one of these houses in 1835
+retires the bed it stands in — each card says so. A source that says where one of the
+seventeen seated people actually slept retires the seat without touching their card. A
+re-cut lodging model that gives a house a smaller ordinary-night figure retires the
+surplus through `--build`, never by hand.
+
+Related: **L245**, **L246**, **L247**, **L248** and **L249** (the same programme's
+transient, re-admission, women-and-children and trade bands), tickets **T-1371**, **T-1370**,
+**T-1175**, the lodging model **T-1370**, the order book **T-1166**, the town model
+**T-1161**, the programme **T-1167**.
+**Recorded:** 2026-09-19.

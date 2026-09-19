@@ -808,6 +808,16 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     # book ordered, living outside the mints' directory for the reason the re-admissions
     # do, and joining the town here as their own rows. Nothing here reaches back into
     # data/residents/households/ either.
+    # T-1371, stage `lodgers`. Two overlays out of one ledger: the CARDS the stage minted
+    # (a container per lodging house, holding the people drawn into its beds) and the
+    # SEATS it gave people the layer already holds. A seat writes nothing into a research
+    # card — `data/residents/households/` is re-derived by the mint writers — so the seat
+    # is carried here, the same way T-1172's presence rulings are.
+    lodgers_path = DATA / "reconstruction" / "1835_lodgers_seated.json"
+    lodgers = load(lodgers_path) if lodgers_path.exists() else {}
+    lodger_rows_minted = lodgers.get("minted", [])
+    seat_for = {s["person"]: s for s in lodgers.get("seats", [])}
+
     trades_path = DATA / "reconstruction" / "1835_trade_households.json"
     trades = load(trades_path) if trades_path.exists() else {}
     trade_rows_minted = trades.get("minted", [])
@@ -846,7 +856,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                        if community_rules_path.exists() else [])
 
     def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None,
-                underdocumented=None):
+                lodging=None, underdocumented=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
         arrival = hh.get("arrival") or {}
@@ -877,6 +887,32 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "works_at": works.get("value"),
             **role_row_view(person),
         }
+        seat = seat_for.get(person.get("id"))
+        if seat is not None and not row["lives_at"]:
+            # THE SEAT IS THE ONLY PLACE THIS PERSON IS GIVEN A ROOF, and it is written
+            # at `reconstructed` over a card that says nothing. A seat never overwrites a
+            # roof the sources give — the test above is the whole of that rule.
+            row["lives_at"] = seat["place"]
+            row["lodging_seat"] = {
+                "place": seat["place"],
+                "place_name": seat["place_name"],
+                "relationship": seat["relationship"],
+                "group": seat["group"],
+                "drawn_solitary_by": seat["drawn_solitary_by"],
+                "note": seat["basis"]["note"],
+                "replaced_by": seat["replaceable_by"]["match"],
+            }
+        if lodging is not None:
+            lh = hh.get("lodging_household") or {}
+            row["lodging_household"] = {
+                "ticket": lh.get("ticket"),
+                "place": lh.get("place"),
+                "place_name": lh.get("place_name"),
+                "beds_ordinary": lh.get("beds_ordinary"),
+                "beds_crowded": lh.get("beds_crowded"),
+                "stands_on": lh.get("stands_on"),
+                "replaced_by": (person.get("replaceable_by") or {}).get("match"),
+            }
         if ruling is not None:
             block = ruling["present_on_scene_date"]
             row["present"] = block["value"]
@@ -981,6 +1017,17 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], trade=minted))
+
+    lodging_households = 0
+    for minted in lodger_rows_minted:
+        path = DATA / "residents" / minted["file"]
+        if not path.exists():
+            continue
+        hh = load(path)
+        lodging_households += 1
+        households += 1
+        for person in hh.get("persons", []) or []:
+            rows.append(row_for(hh, person, minted["file"], lodging=minted))
 
     underdocumented_households = 0
     for minted in underdocumented_rows_minted:
@@ -1102,6 +1149,8 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             # households. Like the re-admissions, they are invisible to the manifest.
             "reconstructed_trade_heads": len(trade_heads),
             "reconstructed_trade_households": trade_households,
+            "reconstructed_lodging_households": lodging_households,
+            "lodging_seats": sum(1 for r in rows if r.get("lodging_seat")),
             "reconstructed_trade_by_trade": {
                 t: sum(1 for r in trade_heads if r["reconstructed_trade"]["trade"] == t)
                 for t in sorted({r["reconstructed_trade"]["trade"] for r in trade_heads})},

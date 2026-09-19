@@ -1423,6 +1423,18 @@
         "site/chicago/4d/data/residents/kin_readings.json",
         "site/chicago/4d/data/residents/kin_rulings.json",
         "site/chicago/4d/data/residents/kin_survey.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_brown_boarding_house.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_exchange_coffee_house.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_mansion_house.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_recon_1835_north_h1_007.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_recon_1835_north_h2_030.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_recon_1835_north_h3_045.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_recon_1835_north_t1_028.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_recon_1835_west_006.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_steamboat_hotel.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_tremont_house_1.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_western_hotel.json",
+        "site/chicago/4d/data/residents/lodgers/hh_lodging_wolf_point_tavern.json",
         "site/chicago/4d/data/residents/merged/hh_adams_william.json",
         "site/chicago/4d/data/residents/merged/hh_allen_james.json",
         "site/chicago/4d/data/residents/merged/hh_allen_lieut.json",
@@ -2978,6 +2990,9 @@
       "wrote": []
     },
     "tools/seat_kinzie_addition_streets.py": {
+      "wrote": []
+    },
+    "tools/seat_lodgers_1835.py": {
       "wrote": []
     },
     "tools/seat_michigan_st_tract.py": {

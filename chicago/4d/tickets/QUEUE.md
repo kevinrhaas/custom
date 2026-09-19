@@ -47,7 +47,6 @@
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
-T-1371 — Seat the boarders: the single men the household model marked boarding, and new reconstructed lodgers, into the lodging places to their capacities, with each keeper's own household complete
 T-1372 — Crews, the works gang and the guest lists: the vessels in port and the pier-works hands seated, and every lodging card printing who lived there
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 T-1378 — proprietor_community on every business and the Businesses view's filter: the Indian-trade houses and interpreters as a business class, the Black-owned firms filterable, and the Irish and German Catholic shares checked against the model rather than minted again
@@ -227,3 +226,4 @@ T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are writ
 T-1379 — The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
 T-1380 — A squash merge dropped a shipped release note and re-used its version: v971 named 'Six dates that would not stick' on dev at 06:06 and names 'How many people each tavern and boarding house could sleep' at 06:31, and the first entry is gone from the file the launcher and Manager parse
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
+
