@@ -203,8 +203,8 @@ It is an adjudication over committed derived files — no page of any source is 
 
 | Figure | Reading | Method |
 | --- | ---: | --- |
-| `arrived_in_the_three_years_before_the_scene` | **1.727** | 2,219 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -934 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less. |
-| `arrived_in_1835_itself` | **1.035** | 1,330 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below. |
+| `arrived_in_the_three_years_before_the_scene` | **0.959** | 1,232 of the 1,285 people the layer can NAME give an arrival year of 1833, 1834 or 1835; 53 give an earlier one, and no named person is left without a year. The town of 1 July 1835 is overwhelmingly three years old or less. DENOMINATOR: the named layer — the attested and the inferred — and not the whole one. A reconstructed person's arrival year is DRAWN from this section's own table, so counting it back into this share would be the model reading its own output as a reading. |
+| `arrived_in_1835_itself` | **0.447** | 574 of the same 1,285 named people. This is the figure the population floor is built on — `population_on_1_july_1835` divides this same cohort by this same denominator — and it is the one most exposed to the bias below. |
 | `born_in_new_york_state` | **0.386 – 0.743** | Of the 70 Old Settlers who registered an arrival at or before 1835 and gave a birthplace, 27 were born in New York State and 25 elsewhere in New England. The low end is New York alone, the high end New York and New England together — the Erie Canal corridor and its feeders, which is the origin story this town has. |
 | `born_abroad` | **0.1** | England and Ireland in the Old Settlers roll. A floor and not a share: the 1840 extract's foreign-born column reads zero in all 964 rows, which is a column that was not coded and not a count of none, so this project holds no measure of the town's foreign-born at all. |
 
@@ -214,21 +214,23 @@ It is an adjudication over committed derived files — no page of any source is 
 
 | year | people | share |
 | --- | --- | --- |
-| 1812 | 3 | 0.0023 |
-| 1816 | 3 | 0.0023 |
-| 1818 | 3 | 0.0023 |
-| 1820 | 1 | 0.0008 |
-| 1823 | 2 | 0.0016 |
-| 1824 | 5 | 0.0039 |
-| 1826 | 3 | 0.0023 |
-| 1827 | 2 | 0.0016 |
-| 1830 | 5 | 0.0039 |
-| 1831 | 22 | 0.0171 |
-| 1832 | 40 | 0.0311 |
-| 1833 | 225 | 0.1751 |
-| 1834 | 664 | 0.5167 |
-| 1835 | 1330 | 1.035 |
-- **unit** — people the layer carries, by the arrival year it records
+| 1812 | 3 | 0.0013 |
+| 1816 | 3 | 0.0013 |
+| 1818 | 3 | 0.0013 |
+| 1820 | 1 | 0.0004 |
+| 1823 | 2 | 0.0009 |
+| 1824 | 5 | 0.0022 |
+| 1826 | 3 | 0.0013 |
+| 1827 | 2 | 0.0009 |
+| 1830 | 5 | 0.0022 |
+| 1831 | 22 | 0.0095 |
+| 1832 | 40 | 0.0173 |
+| 1833 | 225 | 0.0975 |
+| 1834 | 664 | 0.2877 |
+| 1835 | 1330 | 0.5763 |
+- **not the figures denominator** — The FIGURES above divide by the named layer alone; this table does not, and the two are different populations on purpose (T-1364).
+- **rows total** — 2308
+- **unit** — people in the WHOLE compiled layer — named and reconstructed together — by the arrival year each one records, out of the 2,308 who record one at all
 
 ### birthplace of the old settlers who came by 1835
 
@@ -247,6 +249,8 @@ It is an adjudication over committed derived files — no page of any source is 
 **Open questions.** These are recorded here and do not become tickets.
 
 - The arrival distribution is of people the project can NAME, and the sources that name them — letter lists, voter rolls, the 1839 and 1843 directories — are themselves of 1834 and later, so a man who came in 1831 and left no notice is missing from it. The 1835 share is a ceiling on the true share.
+- THE FIGURES AND THE TABLE COUNT TWO DIFFERENT POPULATIONS, and saying so is the point of this note. Every figure divides by the NAMED layer — the attested and the inferred — because a reconstructed person's arrival year was drawn from this model and counting it back in would be the model reading its own output (the same rule `people_the_layer_can_name` states). The table below is the WHOLE compiled layer, because that is what the reconstruction's arrival stage reads: `reconstruct_residents_1835.py` draws each filled arrival from these rows. Until T-1364 the figures took the table's numerator over the figures' denominator, and the share read 1.605 with a complement of -777 people.
+- THAT TABLE IS STILL A CIRCLE, and this model cannot close it alone: the distribution the arrival stage draws from is computed over a layer that stage has already written into, so each pass re-reads its own last draw. Cutting the table to the named layer would redraw every arrival ever dealt, which is a rebuild and not a figure — recorded on T-1179, which owns the convergence rebuild order, and deliberately not done here.
 - The Old Settlers roll is a self-selected survivorship sample registered forty-four years later: it over-represents men who stayed, prospered and lived to 1879, and it holds no woman who married out of her registered name. Its birthplaces are the only origin distribution this project has and they are not the town's.
 - WHY people came is not modelled. The land sales, the canal commission and the harbour works are each a documented draw, but no committed source apportions the town between them and this model will not invent the split.
 

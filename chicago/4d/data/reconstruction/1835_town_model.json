@@ -785,11 +785,11 @@
       "figures": [
         {
           "figure": "arrived_in_the_three_years_before_the_scene",
-          "low": 1.727,
-          "high": 1.727,
+          "low": 0.959,
+          "high": 0.959,
           "point": null,
           "is_a_count": true,
-          "method": "2,219 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -934 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
+          "method": "1,232 of the 1,285 people the layer can NAME give an arrival year of 1833, 1834 or 1835; 53 give an earlier one, and no named person is left without a year. The town of 1 July 1835 is overwhelmingly three years old or less. DENOMINATOR: the named layer — the attested and the inferred — and not the whole one. A reconstructed person's arrival year is DRAWN from this section's own table, so counting it back into this share would be the model reading its own output as a reading.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -797,11 +797,11 @@
         },
         {
           "figure": "arrived_in_1835_itself",
-          "low": 1.035,
-          "high": 1.035,
+          "low": 0.447,
+          "high": 0.447,
           "point": null,
           "is_a_count": true,
-          "method": "1,330 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below.",
+          "method": "574 of the same 1,285 named people. This is the figure the population floor is built on — `population_on_1_july_1835` divides this same cohort by this same denominator — and it is the one most exposed to the bias below.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -839,82 +839,86 @@
       "not_claiming": "This section dates and places nobody: it is a distribution over cohorts and an arrival year on a card is still that card's own evidence.",
       "open_questions": [
         "The arrival distribution is of people the project can NAME, and the sources that name them — letter lists, voter rolls, the 1839 and 1843 directories — are themselves of 1834 and later, so a man who came in 1831 and left no notice is missing from it. The 1835 share is a ceiling on the true share.",
+        "THE FIGURES AND THE TABLE COUNT TWO DIFFERENT POPULATIONS, and saying so is the point of this note. Every figure divides by the NAMED layer — the attested and the inferred — because a reconstructed person's arrival year was drawn from this model and counting it back in would be the model reading its own output (the same rule `people_the_layer_can_name` states). The table below is the WHOLE compiled layer, because that is what the reconstruction's arrival stage reads: `reconstruct_residents_1835.py` draws each filled arrival from these rows. Until T-1364 the figures took the table's numerator over the figures' denominator, and the share read 1.605 with a complement of -777 people.",
+        "THAT TABLE IS STILL A CIRCLE, and this model cannot close it alone: the distribution the arrival stage draws from is computed over a layer that stage has already written into, so each pass re-reads its own last draw. Cutting the table to the named layer would redraw every arrival ever dealt, which is a rebuild and not a figure — recorded on T-1179, which owns the convergence rebuild order, and deliberately not done here.",
         "The Old Settlers roll is a self-selected survivorship sample registered forty-four years later: it over-represents men who stayed, prospered and lived to 1879, and it holds no woman who married out of her registered name. Its birthplaces are the only origin distribution this project has and they are not the town's.",
         "WHY people came is not modelled. The land sales, the canal commission and the harbour works are each a documented draw, but no committed source apportions the town between them and this model will not invent the split."
       ],
       "tables": {
         "arrival_year_of_the_known_layer": {
-          "unit": "people the layer carries, by the arrival year it records",
+          "unit": "people in the WHOLE compiled layer — named and reconstructed together — by the arrival year each one records, out of the 2,308 who record one at all",
+          "not_the_figures_denominator": "The FIGURES above divide by the named layer alone; this table does not, and the two are different populations on purpose (T-1364).",
+          "rows_total": 2308,
           "rows": [
             {
               "year": 1812,
               "people": 3,
-              "share": 0.0023
+              "share": 0.0013
             },
             {
               "year": 1816,
               "people": 3,
-              "share": 0.0023
+              "share": 0.0013
             },
             {
               "year": 1818,
               "people": 3,
-              "share": 0.0023
+              "share": 0.0013
             },
             {
               "year": 1820,
               "people": 1,
-              "share": 0.0008
+              "share": 0.0004
             },
             {
               "year": 1823,
               "people": 2,
-              "share": 0.0016
+              "share": 0.0009
             },
             {
               "year": 1824,
               "people": 5,
-              "share": 0.0039
+              "share": 0.0022
             },
             {
               "year": 1826,
               "people": 3,
-              "share": 0.0023
+              "share": 0.0013
             },
             {
               "year": 1827,
               "people": 2,
-              "share": 0.0016
+              "share": 0.0009
             },
             {
               "year": 1830,
               "people": 5,
-              "share": 0.0039
+              "share": 0.0022
             },
             {
               "year": 1831,
               "people": 22,
-              "share": 0.0171
+              "share": 0.0095
             },
             {
               "year": 1832,
               "people": 40,
-              "share": 0.0311
+              "share": 0.0173
             },
             {
               "year": 1833,
               "people": 225,
-              "share": 0.1751
+              "share": 0.0975
             },
             {
               "year": 1834,
               "people": 664,
-              "share": 0.5167
+              "share": 0.2877
             },
             {
               "year": 1835,
               "people": 1330,
-              "share": 1.035
+              "share": 0.5763
             }
           ]
         },
