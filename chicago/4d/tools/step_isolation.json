@@ -2203,6 +2203,9 @@
     "tools/associations.py": {
       "wrote": []
     },
+    "tools/audit_businesses.py": {
+      "wrote": []
+    },
     "tools/audit_check_gates.py": {
       "wrote": []
     },
@@ -2906,6 +2909,9 @@
       "wrote": []
     },
     "tools/reconstruct_businesses_1835.py": {
+      "wrote": []
+    },
+    "tools/reconstruct_free_black.py": {
       "wrote": []
     },
     "tools/reconstruct_garrison_1835.py": {

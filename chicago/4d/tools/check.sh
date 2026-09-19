@@ -2526,6 +2526,28 @@ step "every Native and Metis card re-derives, each held for review in its own wo
 selftest "...and a written nation, an English initial and a shared syllable are refused" \
   python3 tools/reconstruct_underdocumented.py --self-test
 
+# T-1377, the `free_black` sub-stage of the same stage, and the answer to the emptiest row
+# T-1375 printed: of 2,626 people the layer could give a community, the ones reading
+# `free_black` were NOBODY. The corpus counts the free Black town of Chicago twice and
+# names it never — Caton's six or seven free coloured men before the Court of County
+# Commissioners in August 1833, and the 1840 census's fifty-three free coloured persons —
+# so this stage writes the FLOOR of that bracket and says on every card that it is a
+# reconstruction. The gate holds what the record cannot vouch for itself: that the floor is
+# parsed out of the Caton card rather than typed into the tool, that the cohort stands at
+# or above it and below the ceiling the 1840 share carries back, that the name pool's
+# surnames are still exactly the ones the roster's R6 `black` rows print, that no drawn
+# name reproduces a printed reading OR its surname-and-initial key (which is how a draw
+# would quietly back-project one of the six people those surnames come from), and that
+# every card carries review_required with its own sentence. The recapitulation leaf is
+# excluded by name: fifteen of its lines carry free-coloured cells and not one is a
+# household, and a reader who counted them would read this town as holding five times the
+# free Black households it does.
+step "the free Black cohort re-derives, at or above the floor of its bracket" \
+  python3 tools/reconstruct_free_black.py --check
+
+selftest "...and a back-projected name, a drifted pool and the recapitulation leaf are refused" \
+  python3 tools/reconstruct_free_black.py --self-test
+
 # T-1349, stage `garrison` of the same programme, and the only one that is not a share of a
 # town model at all. The order book refuses to apportion the fort — "NOT APPORTIONED. The
 # garrison of 1 July 1835 is a return to be read" — so this stage reads it: the Act of 2
@@ -4330,6 +4352,19 @@ step "the business layer re-derives, and every register row has a record" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/compile_businesses.py --self-test
+
+# T-1402, of T-1182. AND WHETHER THE DERIVATION SAYS WHAT THE RESEARCH SAYS. The step
+# above asserts one thing — that a rebuild reproduces what is committed — and it is
+# silent on whether the layer honours the rulings it was built out of. identity.json
+# rules that two printed spellings are one house or one man, trade_class_rulings.json
+# rules the December 1835 census class of every trade, and the register brackets four
+# houses that moved. This reads all 196 records back against those, field by field, and
+# refuses the report it derives if anyone hand-edits it or a ruling stops being honoured.
+step "the business audit re-derives, and every identity ruling still holds" \
+  python3 tools/audit_businesses.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/audit_businesses.py --self-test
 
 # T-1184, the first group of the business reconstruction band. The December 1835 State
 # census counts classes the newspaper register does not hold — four druggists against two
