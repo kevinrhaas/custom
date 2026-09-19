@@ -61,5 +61,20 @@ A household follows its head's workplace where the policy says trades lived at t
 **Stop condition:** every known person has a place on the map at the honest rung, and the build
 tickets know which lot to raise a roof on for whom.
 
+**THE FORT'S OFFICERS ARE ALREADY RULED ON (T-1348, 2026-09-19).** This sweep does not have
+to re-adjudicate them. `docs/RESEARCH/fort_dearborn_garrison_1835.md` tests every card in the
+layer that carries a rank or a military role against three clauses and returns one seat and
+eleven refusals: **`allen_lieut_james` seats at `fort_dearborn_officers_quarters`, division
+`fort`, `inferred`**, on the same argument `hh_maxwell_philip` already carries — a commissioned
+officer of the United States Army, printed at Chicago on both sides of the scene date, lodged
+in the building this dataset holds for the post's subordinate officers. The other eleven
+(`baxley_j_m`, `jamison_l_t`, `green_j`, `smith_e_kirby`, `thompson_lieut_j_l`, `wilcox_d`,
+`carpenter_nathaniel`, `morin_william_w`, `kirne_e`, `beaubien_jean_baptiste`,
+`jackson_samuel`) do **not** go to the fort, each for a clause the memo states. T-1348 could
+not write the seat itself: `hh_allen_lieut_james` is mint output and the mints derive
+`division` and `lives_at`, so the seat is this sweep's to deal — which is what
+`mint_civic_residents.py` says in its own refusal, *"the placement sweep does that, once the
+resident list is complete"*.
+
 **Links:** T-1147 · T-1195 · T-1194 · T-0251 · T-0305 · T-0386 · T-1087 ·
 `docs/STREET-FACE-ADOPTION.md` · `docs/ADDRESS-BACK-PROJECTION.md` · `docs/RESIDENCE-BACK-PROJECTION.md`.
