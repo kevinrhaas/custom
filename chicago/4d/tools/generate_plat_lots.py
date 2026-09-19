@@ -68,12 +68,60 @@ LOT_FRONTAGE_FT = 80.0
 MAX_PITCH_M = 200.0
 
 # Ordered north to south, and west to east. Restricted to the South and West Division
-# grid on purpose: the north-side streets (Kinzie, North Water, Wolcott, Michigan) are
-# the ones ROADMAP § S9 still records as owing control, and a block generated between
-# two lines that are not yet fixed would look exactly like one that is.
+# grid on purpose: these are the streets a BLOCK may be generated between, and a block
+# generated between two lines that are not yet fixed would look exactly like one that is.
+# The north-side streets are NOT here and T-1194 is the ticket that would add them: the
+# plat draws seven numbered blocks in the North Division and one of them, block 6, is
+# drawn across the slough (T-0452 § 4).
 EW_STREETS = ["south_water", "lake", "randolph", "washington"]
 NS_STREETS = ["clinton", "canal", "market", "franklin", "wells", "lasalle", "clark",
               "dearborn", "state"]
+
+# --------------------------------------------------------------- the corridor layer
+#
+# T-1191. A CORRIDOR IS NOT A BLOCK, and until 2026-09-19 this file could not say so:
+# one pair of lists decided both which streets a block may be cut between AND which
+# streets a building may be reported standing in, so the north bank had neither. That
+# is why `plat_corridors.corridors()` returned nothing north of the river and why the
+# comment above used to give the block rule as the reason for the corridor gap.
+#
+# The two questions have different evidence bars. Cutting a block needs BOTH bounding
+# lines fixed and the ground between them read. Asking whether a point is in a platted
+# roadway needs only that one street's own corridor be read off a sheet — which the
+# north bank's are, and have been since T-0451 and T-1060:
+#
+#   * the Thompson North Division tier — the plat letters the figure 80 at the head of
+#     every one of its six corridors, on the Kinzie line, and nothing else
+#     (`data/traces/thompson_north_division_streets.json` § lettering); the same sheet's
+#     own fit returns an 80 ft corridor as 45.6 px = 24.4 m against the platted 24.384
+#     (`docs/RESEARCH/north_division_streets.md` § 3);
+#   * Kinzie's Addition — 22.17 m, read corridor by corridor off Wright's 1834 survey
+#     and scaled against the Original Town's corridors on the same sheet
+#     (`data/traces/kinzie_addition_street_grid.json` § control_summary).
+#
+# Each record carries its own `corridor_width_m` and this module uses it, because the
+# Addition's corridor is 2.2 m narrower than the Original Town's and one town-wide
+# half-width would have drawn the Addition's roadways over its own lot lines.
+#
+# NORTH WATER STREET IS DELIBERATELY NOT HERE. It is the one north-bank street whose
+# line is derived from the river bank rather than from a platted rule
+# (`tools/derive_north_water.py`), it bends through 26 vertices, and T-0447 records
+# that the plat does not give it the ground it runs on. Offsetting that polyline by
+# half a module would invent a rectangle the sheet does not draw. The north-bank
+# frontage rule stays `tools/measure_north_bank_frontage.py`, unchanged.
+#
+# WABANSIA AND THE WEST DIVISION ARE NOT HERE EITHER: they are T-1192's ground.
+NORTH_EW_STREETS = ["kinzie", "michigan_north", "illinois_north", "indiana_north",
+                    "ohio_north", "ontario_north", "erie_north", "huron_north",
+                    "superior_north"]
+NORTH_NS_STREETS = ["wolcott", "market_north", "franklin_north", "wells_north",
+                    "lasalle_north", "clark_north", "dearborn_north",
+                    "cass", "rush", "pine", "sand"]
+
+# What `corridor_rings` covers, and therefore what `plat_corridors.intrusion` can
+# report. A superset of the block lists above, never a substitute for them.
+CORRIDOR_EW = EW_STREETS + NORTH_EW_STREETS
+CORRIDOR_NS = NS_STREETS + NORTH_NS_STREETS
 
 SOURCE_IDS = ["thompson_plat_1830", "hathaway_1834", "wright_1834", "osm_streets_2026"]
 
@@ -416,9 +464,19 @@ def rounded(points, places: int = 2):
 # ---------------------------------------------------------------- the grid itself
 
 def street_lines(streets: dict) -> dict:
+    """Every committed centreline, with the corridor width its own record declares.
+
+    T-1191 added `corridor_m`. The layer's top-level `corridor_width_m` is the Original
+    Town's 80 ft module and stays the default, so every street that does not declare one
+    reads exactly as it did; Kinzie's Addition and the Michigan Street tract declare
+    narrower and wider ones off Wright's sheet and are now measured at those widths
+    rather than at the town's.
+    """
+    default = float(streets.get("corridor_width_m", 24.384))
     lines = {}
     for street in streets["streets"]:
         points = [(float(e), float(n)) for e, n in street["path_local_enu_m"]]
+        corridor = float(street.get("corridor_width_m", default))
         lines[street["id"]] = {
             "id": street["id"],
             "name": street["name_1835"],
@@ -426,23 +484,32 @@ def street_lines(streets: dict) -> dict:
             "mean_e": sum(p[0] for p in points) / len(points),
             "mean_n": sum(p[1] for p in points) / len(points),
             "confidence": street.get("geometry_confidence", "reconstructed"),
+            "corridor_m": corridor,
+            "half_width_m": corridor / 2.0,
         }
     return lines
+
+
+def _half_width(street: dict, fallback: float) -> float:
+    """A street's own half corridor, or the module's where the record declares none."""
+    value = street.get("half_width_m")
+    return fallback if value is None else float(value)
 
 
 def block_edges(lines: dict, half_width: float) -> dict:
     """Both platted edges of every street: the block faces the corridor is cut between."""
     edges = {}
     for street_id, street in lines.items():
+        own = _half_width(street, half_width)
         if street_id in EW_STREETS:
             edges[street_id] = {
-                "south": offset_polyline(street["points"], half_width, (0.0, -1.0)),
-                "north": offset_polyline(street["points"], half_width, (0.0, 1.0)),
+                "south": offset_polyline(street["points"], own, (0.0, -1.0)),
+                "north": offset_polyline(street["points"], own, (0.0, 1.0)),
             }
         elif street_id in NS_STREETS:
             edges[street_id] = {
-                "east": offset_polyline(street["points"], half_width, (1.0, 0.0)),
-                "west": offset_polyline(street["points"], half_width, (-1.0, 0.0)),
+                "east": offset_polyline(street["points"], own, (1.0, 0.0)),
+                "west": offset_polyline(street["points"], own, (-1.0, 0.0)),
             }
     return edges
 
@@ -921,21 +988,27 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
 # ---------------------------------------------------------------- the cross-check
 
 def corridor_rings(lines: dict, half_width: float) -> dict:
-    """The platted corridor of every grid street, as a closed ring.
+    """The platted corridor of every street in the corridor layer, as a closed ring.
 
     A corridor is only as long as the centreline this project has committed, so a
     building beyond a street's drawn end is not reported as standing in it.
+
+    Since T-1191 the layer is `CORRIDOR_EW`/`CORRIDOR_NS` — the block grid plus the
+    north bank — and each ring is cut at the street's OWN corridor width, so Kinzie's
+    Addition's 22.17 m corridors are not drawn as the Original Town's 24.384 m ones.
+    `half_width` remains the fallback for records that declare no width of their own.
     """
     rings = {}
     for street_id, street in lines.items():
-        if street_id in EW_STREETS:
+        if street_id in CORRIDOR_EW:
             left, right = (0.0, 1.0), (0.0, -1.0)
-        elif street_id in NS_STREETS:
+        elif street_id in CORRIDOR_NS:
             left, right = (-1.0, 0.0), (1.0, 0.0)
         else:
             continue
-        a = offset_polyline(street["points"], half_width, left)
-        b = offset_polyline(street["points"], half_width, right)
+        own = _half_width(street, half_width)
+        a = offset_polyline(street["points"], own, left)
+        b = offset_polyline(street["points"], own, right)
         rings[street_id] = a + list(reversed(b))
     return rings
 
