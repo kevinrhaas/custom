@@ -48,7 +48,6 @@
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 T-1371 — Seat the boarders: the single men the household model marked boarding, and new reconstructed lodgers, into the lodging places to their capacities, with each keeper's own household complete
-T-1384 — The vessels in port seated: the hulls the Marine Journal enters at Chicago across the scene date, each with her master, last port and cargo, moored to the reach and carrying nobody
 T-1385 — Every lodging card printing who lived there, and the crews and the harbour-works gang seated once a committed source gives a complement and a strength
 T-1349 — The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md

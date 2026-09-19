@@ -1,7 +1,7 @@
 ---
 id: T-1384
 title: The vessels in port seated: the hulls the Marine Journal enters at Chicago across the scene date, each with her master, last port and cargo, moored to the reach and carrying nobody
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1372
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1518
 claimed_by: run 9/19/2026, 7:43:04 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T13:10:11.921Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35443021089
 ---
 
