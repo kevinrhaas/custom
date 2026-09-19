@@ -1,0 +1,82 @@
+{
+ "id": "rcb_fb_barbers_shop",
+ "register_id": null,
+ "name": "John Anderson, barber",
+ "provenance": "reconstructed",
+ "type": [
+  "other"
+ ],
+ "trade": "A barber's shop kept by a free Black resident of the town",
+ "occupation": "barber",
+ "goods": [],
+ "firm_styles": [],
+ "proprietors": [
+  {
+   "name": "John Anderson",
+   "person_id": "rc_fb_anderson_john",
+   "register_person_id": null,
+   "role": "proprietor",
+   "from": null,
+   "to": null,
+   "tier": "reconstructed",
+   "basis": "RECONSTRUCTED, NOT FOUND. No source names a Black-owned business at Chicago in 1835 or names anybody who kept one. This firm exists because its keeper does: the free Black cohort T-1377 writes to the floor of the 1833-1840 bracket is dealt trades, and a trade with a premises is a firm. Written by tools/reconstruct_free_black.py from slot free_black:floor:001.",
+   "source_id": null,
+   "claim_ids": []
+  }
+ ],
+ "partners": [],
+ "staff": [],
+ "locations": [
+  {
+   "kind": "unplaceable",
+   "structure_id": null,
+   "street_id": null,
+   "face": null,
+   "primary": true,
+   "from": null,
+   "to": null,
+   "tier": "reconstructed",
+   "basis": "Unplaceable, and not for want of looking. No reading in this corpus puts a free Black household or business on any street of this town, so the record carries its limit rather than a guess.",
+   "limit_reason": "Nothing places this house. The cohort it belongs to is unplaced for the same reason — no reading puts a free Black household or business on any street of this town — and T-1199 seats the reconstructed layer when the placement policy is written."
+  }
+ ],
+ "dates": {
+  "opened": null,
+  "closed": null,
+  "precision": "unbounded",
+  "tier": "reconstructed",
+  "basis": "No opening and no closing. The firm is reconstructed onto the scene date and carries no date it cannot read."
+ },
+ "evidence": {
+  "first_issue": null,
+  "last_issue": null,
+  "copy_dates": []
+ },
+ "present_at_scene_date": true,
+ "exclusion": null,
+ "exclusion_note": null,
+ "proprietor_community": {
+  "value": "free_black",
+  "tier": "reconstructed",
+  "rule": "proprietors_agree",
+  "basis": "The one keeper this record names is a reconstructed free Black resident and the card says so. A house is not its keeper, so the reading is an inference about the house and is capped there — and under that, at the tier of the person it is read off, which is a reconstruction.",
+  "from": [
+   {
+    "person_id": "rc_fb_anderson_john",
+    "name": "John Anderson",
+    "role": "proprietor",
+    "community": "free_black",
+    "tier": "reconstructed"
+   }
+  ]
+ },
+ "customers": [],
+ "sources": [],
+ "claim_ids": [],
+ "liberties": {
+  "survival_required": false,
+  "backdating_required": false
+ },
+ "review_required": true,
+ "replaceable_by": "Any source naming a Black-owned business at Chicago in 1835, or naming the person who kept one. REVIEW REQUIRED: this is a reconstructed Black-owned firm written where the corpus is silent, and AGENTS.md's standard holds it for review before a scene carrying it may be marked released."
+}

@@ -1137,13 +1137,20 @@ def _check_transients() -> int:
 
 
 def _build_underdocumented() -> int:
+    """Stage `underdocumented` is built A COHORT AT A TIME, and the stage's own note in
+    the programme says so. Both sub-stages run here, so the stage dispatch stays the one
+    way to build it however many cohorts it grows."""
     import reconstruct_underdocumented
-    return reconstruct_underdocumented.build()
+    import reconstruct_free_black
+    return (reconstruct_underdocumented.build()
+            or reconstruct_free_black.build())
 
 
 def _check_underdocumented() -> int:
     import reconstruct_underdocumented
-    return reconstruct_underdocumented.check()
+    import reconstruct_free_black
+    return (reconstruct_underdocumented.check()
+            or reconstruct_free_black.check())
 
 
 def _build_women_and_children() -> int:
