@@ -7,9 +7,10 @@
   "value": "1832",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'Alanson Sweet, 1832' - year precision, the roster's shortest entry.",
+  "note": "'Alanson Sweet, 1832' - year precision, the roster's shortest entry. THE COMPILER'S 1832 LIST AGREES AND IS COARSER. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 89 (claim bk_mose1_001) names this man among those who came through Chicago in 1832 and decided to remain. A YEAR AND NOT A MONTH, from an 1895 compilation, so it corroborates this field and does not move it. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here). THE COMPILER GIVES HIM NO STATE, AND THE SILENCE IS PART OF THE READING: the sentence attaches Massachusetts, New York and Vermont to the men before him and closes with a bare \"and Alanson Sweet\". This card's `origin` therefore stays as the drawn region it was; nothing here replaces it.",
   "precision": "year"
  },
  "party_size_on_arrival": {

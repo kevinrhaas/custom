@@ -8,9 +8,10 @@
   "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
-   "baptisthistoryhomepage"
+   "baptisthistoryhomepage",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'Arrived early in July, 1833' (Andreas); the Baptist history transcription independently puts him at Chicago 'about 4 July 1833'. Recorded at not_later_than precision on the second source's date, because 'early in July' is a week and not a day.",
+  "note": "'Arrived early in July, 1833' (Andreas); the Baptist history transcription independently puts him at Chicago 'about 4 July 1833'. Recorded at not_later_than precision on the second source's date, because 'early in July' is a week and not a day. THE COMPILER'S SEASON SITS JUST OUTSIDE THIS BOUND AND DOES NOT MOVE IT. Moses and Kirkland vol. 1, printed page 90 (claim bk_mose1_005), names Dr. John T. Temple among the arrivals of the spring of 1833; this field is not_later_than 4 July 1833, on Andreas's \"Arrived early in July, 1833\" and the Baptist history's \"about 4 July 1833\" agreeing independently. Spring ends before either. TWO INDEPENDENT READINGS AT A WEEK'S PRECISION OUTWEIGH ONE SEASONAL LIST AT SIXTY YEARS' REMOVE, and the difference is small enough to be the compiler rounding a July arrival into the season of the men he lists it with. Recorded, not adopted. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here).",
   "precision": "not_later_than"
  },
  "arrival_year": {

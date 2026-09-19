@@ -7,9 +7,10 @@
   "value": "1833-10-01",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v2"
   ],
-  "note": "'In the fall of 1833' - season precision, carried as the first day of the season this project reads as autumn. The MONTH is not evidence.",
+  "note": "'In the fall of 1833' - season precision, carried as the first day of the season this project reads as autumn. The MONTH is not evidence. A DATED PRESENCE IN THE TOWN, AND NOT AN ARRIVAL. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 348 (claim bk_mose2_018; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) names the eleven gentlemen who organised the first Episcopal congregation in the city in 1834, eight of them its vestry. This man is among them, so he was at Chicago in 1834. THE YEAR IS LATER THAN THIS FIELD AND THEREFORE BOUNDS NOTHING: it corroborates a man already here and is recorded for that. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here). The compiler writes \"Dr. William B. Egan\" and this layer holds Dr William Bradshaw Egan — given name, both initials and the title agreeing.",
   "precision": "season"
  },
  "party_size_on_arrival": {
