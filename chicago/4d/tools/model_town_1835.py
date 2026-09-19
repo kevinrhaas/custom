@@ -585,11 +585,28 @@ def build_lodging(inventory: dict, crosswalk: dict, comp: dict, pop: dict) -> di
 
 def build_arrival(people: dict, settlers: dict) -> dict:
     counts = people["counts"]
-    arrivals = counts["by_arrival_year"]
     known = named_people(counts)
-    by_year = {int(y): n for y, n in arrivals.items()}
-    since_1833 = sum(n for y, n in by_year.items() if y >= 1833)
-    before_1833 = known - since_1833
+    # THE WHOLE LAYER, and the TABLE below is the only thing that may read it. It is what
+    # the reconstruction's arrival stage draws against, so re-cutting it re-draws every
+    # card it ever dealt; see this section's notes for why that circle is a ticket of its
+    # own and not a line here.
+    by_year = {int(y): n for y, n in counts["by_arrival_year"].items()}
+    # THE NAMED LAYER, and every FIGURE below divides by it. T-1364: the two figures read
+    # `by_year` over `known`, which is a count of the whole compiled layer over a
+    # denominator that excludes every reconstructed person in it. The share passed 1 the
+    # moment T-1171 drew a layer bigger than the evidence, and the complement it printed
+    # went negative — "only -809 came before 1833", which tells a reader nothing except
+    # that something is wrong. `named_arrivals` is the same rule `build_population`
+    # already applies to the population floor, so the two sections now count the same
+    # cohort over the same denominator instead of two different ones.
+    named_by_year = {int(y): n for y, n in named_arrivals(people).items()}
+    dated = sum(named_by_year.values())
+    since_1833 = sum(n for y, n in named_by_year.items() if y >= 1833)
+    before_1833 = dated - since_1833
+    undated = known - dated
+    if since_1833 > known:
+        raise Fault("more named people arrived in 1833-35 than the layer can name, so "
+                    "the arrival share is over the wrong denominator again (T-1364)")
 
     pre36 = [p for p in settlers["people"] if p.get("arrival_at_or_before_1835")]
     regions = Counter(region_of(p.get("birthplace_as_read")) for p in pre36)
@@ -601,14 +618,22 @@ def build_arrival(people: dict, settlers: dict) -> dict:
     figures = [
         figure("arrived_in_the_three_years_before_the_scene",
                round(since_1833 / known, 3), round(since_1833 / known, 3),
-               f"{since_1833:,} of the {known:,} people the layer carries give an arrival "
-               f"year of 1833, 1834 or 1835; only {before_1833} came before 1833. The town "
-               "of 1 July 1835 is overwhelmingly three years old or less.",
+               f"{since_1833:,} of the {known:,} people the layer can NAME give an arrival "
+               f"year of 1833, 1834 or 1835; {before_1833:,} give an earlier one"
+               + (f" and {undated:,} give none at all" if undated else
+                  ", and no named person is left without a year")
+               + ". The town of 1 July 1835 is overwhelmingly three years old or less. "
+               "DENOMINATOR: the named layer — the attested and the inferred — and not "
+               "the whole one. A reconstructed person's arrival year is DRAWN from this "
+               "section's own table, so counting it back into this share would be the "
+               "model reading its own output as a reading.",
                [], ["data/sidecars/1835/people.json"]),
-        figure("arrived_in_1835_itself", round(by_year.get(1835, 0) / known, 3),
-               round(by_year.get(1835, 0) / known, 3),
-               f"{by_year.get(1835, 0):,} of {known:,}. This is the figure the population "
-               "floor is built on, and it is the one most exposed to the bias below.",
+        figure("arrived_in_1835_itself", round(named_by_year.get(1835, 0) / known, 3),
+               round(named_by_year.get(1835, 0) / known, 3),
+               f"{named_by_year.get(1835, 0):,} of the same {known:,} named people. This "
+               "is the figure the population floor is built on — `population_on_1_july_1835` "
+               "divides this same cohort by this same denominator — and it is the one most "
+               "exposed to the bias below.",
                [], ["data/sidecars/1835/people.json"]),
         figure("born_in_new_york_state", round(ny / given, 3) if given else 0.0,
                round((ny + ne) / given, 3) if given else 0.0,
@@ -634,9 +659,16 @@ def build_arrival(people: dict, settlers: dict) -> dict:
 
     tables = {
         "arrival_year_of_the_known_layer": {
-            "unit": "people the layer carries, by the arrival year it records",
+            "unit": "people in the WHOLE compiled layer — named and reconstructed together "
+                    "— by the arrival year each one records, out of the "
+                    f"{sum(by_year.values()):,} who record one at all",
+            "not_the_figures_denominator": "The FIGURES above divide by the named layer "
+                                           "alone; this table does not, and the two are "
+                                           "different populations on purpose (T-1364).",
+            "rows_total": sum(by_year.values()),
             "rows": [{"year": y, "people": by_year[y],
-                      "share": round(by_year[y] / known, 4)} for y in sorted(by_year)],
+                      "share": round(by_year[y] / sum(by_year.values()), 4)}
+                     for y in sorted(by_year)],
         },
         "birthplace_of_the_old_settlers_who_came_by_1835": {
             "unit": "rows of the Calumet Club rolls whose arrival is at or before 1835",
@@ -655,6 +687,21 @@ def build_arrival(people: dict, settlers: dict) -> dict:
             "name them — letter lists, voter rolls, the 1839 and 1843 directories — are "
             "themselves of 1834 and later, so a man who came in 1831 and left no notice is "
             "missing from it. The 1835 share is a ceiling on the true share.",
+            "THE FIGURES AND THE TABLE COUNT TWO DIFFERENT POPULATIONS, and saying so is the "
+            "point of this note. Every figure divides by the NAMED layer — the attested and "
+            "the inferred — because a reconstructed person's arrival year was drawn from "
+            "this model and counting it back in would be the model reading its own output "
+            "(the same rule `people_the_layer_can_name` states). The table below is the "
+            "WHOLE compiled layer, because that is what the reconstruction's arrival stage "
+            "reads: `reconstruct_residents_1835.py` draws each filled arrival from these "
+            "rows. Until T-1364 the figures took the table's numerator over the figures' "
+            "denominator, and the share read 1.605 with a complement of -777 people.",
+            "THAT TABLE IS STILL A CIRCLE, and this model cannot close it alone: the "
+            "distribution the arrival stage draws from is computed over a layer that stage "
+            "has already written into, so each pass re-reads its own last draw. Cutting the "
+            "table to the named layer would redraw every arrival ever dealt, which is a "
+            "rebuild and not a figure — recorded on T-1179, which owns the convergence "
+            "rebuild order, and deliberately not done here.",
             "The Old Settlers roll is a self-selected survivorship sample registered forty-four "
             "years later: it over-represents men who stayed, prospered and lived to 1879, and "
             "it holds no woman who married out of her registered name. Its birthplaces are the "
@@ -862,6 +909,20 @@ def cmd_self_test() -> int:
     except (Fault, ZeroDivisionError, ValueError):
         fired += 1
         print("   fires: an empty arrival distribution")
+
+    # T-1364: AN ARRIVAL SHARE'S NUMERATOR AND DENOMINATOR ARE ONE POPULATION. The
+    # section is built on its own so the guard is tested for the reason it exists and
+    # not for the population floor inverting first. Shrink the named layer below the
+    # named arrivals already counted in it and the share would pass 1 and print a
+    # negative complement, which is exactly what "only -777 came before 1833" was.
+    a = copy.deepcopy(args[0])
+    a["counts"]["by_grade"] = {"attested": 1, "inferred": 1, "reconstructed": 0}
+    try:
+        build_arrival(a, copy.deepcopy(args[5]))
+        raise AssertionError("did not fire: an arrival share over the wrong denominator")
+    except Fault:
+        fired += 1
+        print("   fires: an arrival share over the wrong denominator")
 
     # A POINT READING OUTSIDE ITS OWN RANGE. The half-ashore reading must sit between
     # the floor and the ceiling; a season shorter than the months already ashore

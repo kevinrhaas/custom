@@ -226,3 +226,42 @@ Acceptance 1 of this ticket is a fixed point over exactly this set. It lists the
 commands and, as written, neither the order nor the method. Whoever works it should fix that in
 the acceptance itself rather than trusting this finding, which will also be out of date the
 moment another reader of the layer is added.
+
+---
+
+**FINDING from T-1364, 2026-09-19 — the arrival table is a circle, and only a rebuild can
+open it.**
+
+T-1364 fixed the two `arrival_and_origin` FIGURES, which counted the whole compiled layer
+over a denominator that excluded every reconstructed person in it. The share read 1.63 and
+its complement read -809. Both figures now divide the named layer by the named layer, which
+is the rule `build_population` already applied to the population floor.
+
+**The TABLE under them was deliberately left alone, and this ticket is why.**
+`arrival_and_origin.tables.arrival_year_of_the_known_layer` is named for the known layer and
+is computed over the WHOLE compiled layer, reconstructed people included — and
+`tools/reconstruct_residents_1835.py` (`arrival_fill_plan`, `plan_household`) draws every
+filled arrival year out of its `year`/`people` columns. So the distribution the arrival
+stage draws from is computed over a layer that same stage has already written into: each
+pass re-reads its own last draw, and the more people the reconstruction adds, the more the
+table is a picture of the reconstruction rather than of the evidence.
+
+Cutting the table to the named layer is therefore **not a figure change**: it redraws every
+arrival ever dealt, on every card the arrival stage owns, and then moves the model those
+cards are counted back into. That is a rebuild in this ticket's own sequence, in this
+ticket's own order, and it is exactly the class of change the "rebuilding only what the
+check names never converges" trap above is about. It is recorded here rather than done on a
+figures ticket.
+
+What T-1364 did leave in place for it:
+
+- The table's `unit` now says on its face that it is the whole compiled layer, and a
+  `not_the_figures_denominator` line says the figures above do not share its denominator.
+  Its `share` column divides by the table's own total, so the column sums to 1 instead of
+  dividing a whole-layer count by a named-layer one.
+- `model_town_1835.py --self-test` carries a guard that refuses the build if the arrival
+  numerator ever outruns its denominator again. A rebuild that re-cuts the table will trip
+  nothing; a rebuild that re-crosses the two populations will.
+
+**Links:** T-1364 · `tools/model_town_1835.py` § `build_arrival` ·
+`tools/reconstruct_residents_1835.py` § `arrival_fill_plan`.
