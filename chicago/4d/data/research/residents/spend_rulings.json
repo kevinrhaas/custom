@@ -42,8 +42,8 @@
     },
     "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
       "disposition": "unresolved",
-      "ticket": "T-1333",
-      "statement": "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from Chicago -- a removal, a migration to another town, a prospecting journey that ended somewhere else -- for a person this town holds a card for. T-1330 read all thirty arrival-and-origin enrichments one at a time and these six name a going rather than a coming. No field on a resident card carries a departure: the only thing a removal bears on is `present_on_scene_date`, and whether a man documented as leaving in 1835 was at Chicago on 1 July of that year is exactly the question T-1144 owns -- \"no false Chicago resident, and no 1835 claim above its dated evidence\". It is handed there and asserted nowhere: this pass does not move a presence, because a removal read out of one volume without the others beside it is how a layer loses a resident it had evidence for."
+      "ticket": "T-1354",
+      "statement": "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from Chicago -- a removal, a migration to another town, a prospecting journey that ended somewhere else -- for a person this town holds a card for. T-1330 read all thirty arrival-and-origin enrichments one at a time and these six name a going rather than a coming. No field on a resident card carries a departure: the only thing a removal bears on is `present_on_scene_date`, and whether a man documented as leaving in 1835 was at Chicago on 1 July of that year is the question T-1144 asked -- \"no false Chicago resident, and no 1835 claim above its dated evidence\" -- which neither child of its split banked. T-1354 owns it. It is handed there and asserted nowhere: this pass does not move a presence, because a removal read out of one volume without the others beside it is how a layer loses a resident it had evidence for."
     },
     "the_enrichment_names_a_landholding_no_field_carries": {
       "disposition": "unresolved",
