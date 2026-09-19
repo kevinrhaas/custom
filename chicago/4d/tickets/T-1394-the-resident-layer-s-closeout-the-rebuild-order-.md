@@ -1,7 +1,7 @@
 ---
 id: T-1394
 title: The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1179
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 10:48:13 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35452789948
 ---
 
 The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier.
