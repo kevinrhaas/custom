@@ -1131,6 +1131,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "supersede_arrival.py": {
+      "placement": "not_a_writer",
+      "write_mode": "(none declared)",
+      "measured": "2026-09-19",
+      "finding": "Not a writer: it is a module the four resident mints import, plus --check, --report and --self-test. Run BARE it printed its usage, exited 2 and moved no byte at all — `git status --porcelain` identical before and after. The writing it causes is the mints' own, through `supersede(carry(doc))`, and their rows here already answer for it."
+    },
     "survey_stated_kin.py": {
       "placement": "manifest",
       "write_mode": null,

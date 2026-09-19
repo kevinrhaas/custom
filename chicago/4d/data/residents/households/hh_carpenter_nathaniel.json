@@ -5,23 +5,24 @@
  "head": "carpenter_nathaniel",
  "source_pass": "civic",
  "arrival": {
-  "value": "1834-01-14",
+  "value": "1833-10-19",
   "confidence": "inferred",
   "sources": [
+   "moses_kirkland_history_of_chicago_v2",
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "A DATED PRESENCE IN THE SETTLEMENT, NOT AN ARRIVAL — AND IT IS EARLIER THAN THE REGISTER'S OWN BOUND. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) prints the catalogue of the fourteen Baptists present at the organization of the First Baptist society: \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise.\" This person is named in that catalogue, so they were at Chicago on 19 October 1833 and the bound moves back to that day. IT IS STILL A BOUND AND STILL NOT A COMING: the catalogue says where a man stood on one day and says nothing whatever about when he got there, so the precision stays not_later_than. THE READING ITSELF WARNS THAT THIS IS NOT PHILO: its notes say `carpenter` \"here is Nathaniel and not Philo\", and the forename is the whole of what separates the three Carpenters this project holds — Philo, Nathaniel and Abel B. The crosswalk writes that refusal down as explicitly as the merge, so the surname cannot make the pairing again. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came.",
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1834,
+  "value": 1833,
   "confidence": "reconstructed",
   "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1834-01-14 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
+  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1833-10-19 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
   "basis": {
    "kind": "model",
    "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1834."
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1833."
   },
   "seed": "hh_carpenter_nathaniel:arrival_year",
   "replaceable_by": {
@@ -53,14 +54,14 @@
   "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
+  "value": "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
   "confidence": "reconstructed",
   "tier": "reconstructed",
   "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
   "basis": {
    "kind": "rule",
    "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1834) is the only thing about it this value rests on."
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1833) is the only thing about it this value rests on."
   },
   "replaceable_by": {
    "kind": "person",
@@ -118,7 +119,7 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A DATED PRESENCE IN THE SETTLEMENT, NOT AN ARRIVAL — AND IT IS EARLIER THAN THE REGISTER'S OWN BOUND. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) prints the catalogue of the fourteen Baptists present at the organization of the First Baptist society: \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise.\" This person is named in that catalogue, so they were at Chicago on 19 October 1833 and the bound moves back to that day. IT IS STILL A BOUND AND STILL NOT A COMING: the catalogue says where a man stood on one day and says nothing whatever about when he got there, so the precision stays not_later_than. THE READING ITSELF WARNS THAT THIS IS NOT PHILO: its notes say `carpenter` \"here is Nathaniel and not Philo\", and the forename is the whole of what separates the three Carpenters this project holds — Philo, Nathaniel and Abel B. The crosswalk writes that refusal down as explicitly as the merge, so the surname cannot make the pairing again. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came. No figure is drawn (L1).",
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",
