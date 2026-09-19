@@ -80,6 +80,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "build_staffing_model_1835.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a clean tree rewrote its own two outputs and `git status` reported nothing moved. T-1183; listed in tools/derived_manifest.json after the order book."
+    },
     "build_survey_tracts.py": {
       "placement": "manifest",
       "write_mode": "--build",
