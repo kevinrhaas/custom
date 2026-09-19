@@ -1322,6 +1322,21 @@
       ]
     },
     {
+      "why": "T-1375, from T-1177. The `community` of every person, derived off what the layer already says — a household's `origin` block, or a reconstructed person's own name-pool community — and graded no higher than the field it came from. PLACED AFTER derive_resident_roles.py AND BEFORE compile_scene.py because that is the order its inputs and its consumer impose: every card writer above it may change an `origin`, and the People view's rows and community filter are built out of this file by compile_scene. Its output is a single enumerated file with no other writer, so the manifest can own it outright and the lap settles a conflict there by rebuilding. A rebuild is also the ONLY correct resolution: two branches that both add residents produce two partial community tables, and merging them would leave a table that matches neither tree.",
+      "command": [
+        "python3",
+        "tools/derive_person_community.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/residents/community.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/derive_person_community.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The business location spend — evidence reach apart from model seat, with four retentions a gate holds (T-1239). It keys on resident identities, so anything that moves a card moves its counts: it went red on the T-1155 splitter change and had to be rebuilt by hand because it was gated and unlisted.",
       "command": [
         "python3",
