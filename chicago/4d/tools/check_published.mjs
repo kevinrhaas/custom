@@ -64,6 +64,7 @@ const COPIES = [
   ['data/frontage/', 'data/frontage/'],
   ['data/flora/', 'data/flora/'],
   ['data/fauna/', 'data/fauna/'],
+  ['data/businesses/', 'data/businesses/'],
 ];
 
 /**

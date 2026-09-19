@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1282 rows and 45 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1588 rows and 45 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -21,27 +21,27 @@ no grade moves. Every cell is copied or counted from a committed record.
 
 ## Coverage
 
-Each line is *how many of the 1282 people carry at least one record of that kind*.
+Each line is *how many of the 1588 people carry at least one record of that kind*.
 
-| coverage | of 1282 | % | what counts |
+| coverage | of 1588 | % | what counts |
 | --- | ---: | ---: | --- |
-| identities | **1279** | 99.8% | a name with at least one source id anywhere on the card |
-| occupations | **127** | 9.9% | an occupation that is not `none_recorded` |
-| household membership | **44** | 3.4% | recorded inside a household of two or more people |
-| kinship | **14** | 1.1% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
-| property / address | **76** | 5.9% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **302** | 23.6% | a poll book, tax list, muster roll, treaty payment or other public record |
-| census linkage | **47** | 3.7% | an 1840 census row bridged to this person |
+| identities | **1282** | 80.7% | a name with at least one source id anywhere on the card |
+| occupations | **127** | 8.0% | an occupation that is not `none_recorded` |
+| household membership | **437** | 27.5% | recorded inside a household of two or more people |
+| kinship | **318** | 20.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
+| property / address | **144** | 9.1% | the household resolves a `lives_at` or a `works_at` |
+| voter / civic evidence | **302** | 19.0% | a poll book, tax list, muster roll, treaty payment or other public record |
+| census linkage | **47** | 3.0% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 455 | 35.5% |
-| `two_or_more_sources_one_category` | 13 | 1.0% |
-| `one_source` | 247 | 19.3% |
-| `the_letter_lists_alone` | 564 | 44.0% |
-| `no_source` | 3 | 0.2% |
+| `corroborated_across_categories` | 455 | 28.7% |
+| `two_or_more_sources_one_category` | 13 | 0.8% |
+| `one_source` | 250 | 15.7% |
+| `the_letter_lists_alone` | 564 | 35.5% |
+| `no_source` | 306 | 19.3% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
 record agree; two newspaper notices of the same name are
@@ -55,9 +55,9 @@ record agree; two newspaper notices of the same name are
 | civic | 302 |
 | census | 47 |
 | church | 40 |
-| book | 253 |
+| book | 256 |
 | directory | 225 |
-| secondary | 80 |
+| secondary | 81 |
 
 The category of a source id is the audit's one judgement, and it is a written
 table in the tool rather than a heuristic: census, directory, church and civic
@@ -118,6 +118,7 @@ secondary). A source id no rule reaches stops the build.
 | `early_illinois_barrows_school` | book | book |
 | `elgin_history_gifford` | secondary | website |
 | `encyclopedia_chicago_biographical_index_d` | secondary | website |
+| `encyclopedia_chicago_biographical_p` | secondary | website |
 | `encyclopedia_chicago_frederick_thomas` | secondary | website |
 | `encyclopedia_chicago_medical_pharmaceutical` | secondary | website |
 | `fergus_1843_old_settler_death_notices` | book | book |
@@ -132,6 +133,7 @@ secondary). A source id no rule reaches stops the build.
 | `hubbard_autobiography_1911` | book | book |
 | `illinois_courts_caton_biography` | secondary | website |
 | `indiana_absalom_reel_1834` | secondary | website |
+| `ingale_early_chicago_reminiscence` | secondary | website |
 | `jsp_illinois_statutes_gale_imprint` | secondary | website |
 | `kane_geneva_andrew_miles` | secondary | website |
 | `kane_history_geneva_edward_trimble` | book | book |
@@ -148,6 +150,7 @@ secondary). A source id no rule reaches stops the build.
 | `michigan_frederick_curtenius` | secondary | website |
 | `michigan_hh_comstock_history` | secondary | website |
 | `migenweb_clark_albee_grand_haven` | secondary | website |
+| `moses_kirkland_history_of_chicago_v1` | book | book |
 | `mower_history_alanson_vaughan` | book | book |
 | `nps_bailly_homestead` | secondary | website |
 | `nwchicago_elijah_wentworth` | secondary | website |
@@ -234,7 +237,7 @@ secondary). A source id no rule reaches stops the build.
 | T-0509 | 76 |
 | T-0510 | 75 |
 | **reviewed** | **836** |
-| **not yet reviewed** | **446** |
+| **not yet reviewed** | **752** |
 
 | research outcome | people |
 | --- | ---: |
@@ -248,7 +251,7 @@ secondary). A source id no rule reaches stops the build.
 ## The conflicts, and what was ruled on them
 
 Under **T-0733**. The ledgers record a conflict against a candidate for **95**
-of the 1282 people. Before T-0733 nothing ruled on any of them, and a conflict
+of the 1588 people. Before T-0733 nothing ruled on any of them, and a conflict
 that is recorded and never adjudicated reads, to anybody downstream, exactly like
 a conflict nobody found. `data/research/residents/conflict_rulings.json` is the
 adjudication: a verdict, the conflict text it was made against, and the record
@@ -322,16 +325,16 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1235 | no 1840 census row is bridged to this person |
-| no address | 1206 | neither `lives_at` nor `works_at` resolves |
-| unplaced | 1186 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 811 | one source id on the card and no second category to check it against |
+| no census linkage | 1541 | no 1840 census row is bridged to this person |
+| no address | 1444 | neither `lives_at` nor `works_at` resolves |
+| unplaced | 1412 | the household carries division `unplaced`: in the town, on no lot |
+| rests on one source | 814 | one source id on the card and no second category to check it against |
+| no research row | 752 | no cohort ticket has reviewed this person; the programme reached 836 of 1588 |
 | rests on the letter lists alone | 564 | known only from the post office's uncalled-for lists |
-| no research row | 446 | no cohort ticket has reviewed this person; the programme reached 836 of 1282 |
+| no source of their own | 306 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 | candidate identity open | 118 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 95 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
 | standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |
-| no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 | conflicting evidence, unruled | 0 | the ledger records a conflict against a candidate and no ruling in `data/research/residents/conflict_rulings.json` reaches it (T-0733) |
 
 ## Reading the table

@@ -223,6 +223,15 @@ AMBIGUOUS_LEAVES = frozenset({
     # view really does read a role's claim id (T-1255) it declares the expression and
     # never reaches here.
     "claim",
+    # T-1313's `persons[].stated_family.statement`. `statement` is a word this renderer
+    # already owns twice over: `orderbook.js` prints `d.statement` and `i.statement` off
+    # the reconstruction order book's own disagreement rows, which are not a resident
+    # layer figure at all. A bare-name scan attributed that read to the marker the
+    # stated-family pass writes, and called an unread provenance key a phantom. Same
+    # shape as the four above and the same narrowing rather than an exemption: qualified
+    # by its data parent, so the day a card really does print which STATEMENT seated a
+    # wife it declares `stated_family.statement` and never reaches here.
+    "statement",
     # T-1144's `present_on_scene_date.last_dated_appearance.record`. `record` is a word
     # this renderer has used from the start for the thing a popup is showing —
     # `hit.record`, `z.record`, `task.record.id`, `boat.record` — none of which is a
@@ -524,6 +533,10 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
+    # The third chip. It was absent from this map for as long as the tally was zero
+    # everywhere; T-1314 put people back under the grade and `gradeChips` has always
+    # drawn all three from one expression.
+    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -581,6 +594,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # covers them all because one line does.
     "arrival.value": ("shown", "(hh.arrival || {}).value"),
     "arrival.precision": ("shown", "words((hh.arrival || {}).precision)"),
+    # T-1169. The year the household is CARRIED at, beside the bound its arrival block
+    # holds: for 1,196 households `arrival` is a `not_later_than` and says only that
+    # somebody was here by a date. Its own row on the card, its own claim block.
+    "arrival_year.value": ("shown", "(hh.arrival_year || {}).value"),
+    "arrival_year.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.note": ("shown", "escapeHtml(block.note)"),
     "party_size_on_arrival.value": ("shown", "party && party.value"),
     "origin.value": ("shown", "(hh.origin || {}).value"),
     "reason_for_coming.value": ("shown", "(hh.reason_for_coming || {}).value"),
@@ -627,6 +646,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-1158's own fields, on the three claims T-1169's stage fills. `tier` drives the
+    # chip through the same `tierOf` line the confidences above name; the rest are read
+    # in `basisHtml`, which opens a disclosure under any invented value saying whether
+    # it was DRAWN from a model or ARGUED from a rule, printing the seed that redraws
+    # it and the evidence that would retire it. `replaceable_by.kind` and
+    # `written_by_stage` are NOT read — the first is the shape of the replacement
+    # record and the second is the build's own bookkeeping — and they stay banked.
+    "arrival_year.tier": ("shown", "tierOf(block) || block.confidence"),
+    "origin.tier": ("shown", "tierOf(block) || block.confidence"),
+    "reason_for_coming.tier": ("shown", "tierOf(block) || block.confidence"),
+    "arrival_year.basis.kind": ("shown", "basis.kind === 'model'"),
+    "origin.basis.kind": ("shown", "basis.kind === 'model'"),
+    "reason_for_coming.basis.kind": ("shown", "basis.kind === 'model'"),
+    "arrival_year.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "origin.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "arrival_year.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "origin.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "reason_for_coming.replaceable_by.match": (
+        "shown", "escapeHtml(String(rep.match || ''))"),
     # T-0597. The kinship rows, which are the first claim on this layer to point at
     # ANOTHER record. Each of the four link fields is named at its own call site in
     # `kinRows` — the person the tie belongs to here, the term, the far household and
@@ -770,7 +808,62 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.seed": ("shown", "escapeHtml(String(block.seed))"),
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. `name_basis` comes back to this layer with the drawn people: the row
+    # "How this person is named" is a graded claim block like `age_band` above it, and
+    # `claimRow` prints every part of one — the value, the tier chip, the model the
+    # forename was drawn from, the seed that redraws it and the source that would retire
+    # it. It reads through the same expressions because it is the same renderer.
+    "persons[].name_basis.value": ("shown", "claimRow('How this person is named', named && named.value, named, citationsById)"),
+    "persons[].name_basis.tier": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].name_basis.basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].name_basis.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].name_basis.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].name_basis.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. …and the household block beside them: what size the 1840 histogram drew
+    # this house at, and how much of that size is kin rather than the servants and lodgers
+    # later stages seat. `modelledFamilyHtml` prints all of it.
+    "modelled_family.stage": ("shown", "escapeHtml(String(block.stage))"),
+    "modelled_family.ticket": ("shown", "escapeHtml(String(block.ticket))"),
+    "modelled_family.household_type": ("shown", "escapeHtml(words(block.household_type))"),
+    "modelled_family.size_drawn": ("shown", "escapeHtml(String(block.size_drawn))"),
+    "modelled_family.kin_seated": ("shown", "escapeHtml(String(block.kin_seated))"),
+    "modelled_family.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "modelled_family.note": ("shown", "escapeHtml(String(block.note || ''))"),
+    # T-1171. A RECONSTRUCTED PERSON IS THE DRAWN THING, so the disclosure the attribute
+    # tiers hang off a value is printed about the person instead: the stage that wrote
+    # them, the model row, the seed a reader can retype and what would retire them.
+    # `reconstructedHtml` passes the person record straight to `basisHtml`, which is why
+    # `basis`, `seed` and `replaceable_by` read through the same expressions the blocks do.
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.ticket": ("shown", "escapeHtml(String(rc.ticket))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(words(rc.community))"),
+    "persons[].reconstruction.review_required": (
+        "shown", "rc.review_required ? ' This reconstruction carries a standing review.'"),
+    "persons[].basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].basis.id": ("shown", "escapeHtml(String(basis.id || ''))"),
+    "persons[].basis.note": ("shown", "escapeHtml(String(basis.note || ''))"),
+    "persons[].seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    # T-1314. What a RECONSTRUCTED person owes the reader, on their own card:
+    # `reconstructionHtml` says which stage of the programme wrote them and what
+    # counted them, and hands the basis, the seed that redraws a model draw and the
+    # replacement rule to `basisHtml` — the same three parts a reconstructed ATTRIBUTE
+    # already showed, rather than a second vocabulary for the same idea.
+    "persons[].basis.kind": ("shown", "const drawn = basis.kind === 'model'"),
+    "persons[].seed": ("shown", "drawn && block.seed"),
+    "persons[].replaceable_by.kind": ("shown", "const rep = block.replaceable_by"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.programme": (
+        "shown", "escapeHtml(String(rc.programme || 'the reconstruction programme'))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(String(rc.community))"),
+    "persons[].reconstruction.counted_by": ("shown", "escapeHtml(String(rc.counted_by))"),
+    "persons[].reconstruction.band_1840": ("shown", "escapeHtml(String(rc.band_1840))"),
+    "persons[].reconstruction.age_on_scene_date.low": ("shown", "`${age.low} or older`"),
+    "persons[].reconstruction.age_on_scene_date.high": (
+        "shown", "age.high === null || age.high === undefined"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
     # for as long as it was unread a letter-list name and a documented tradesman
@@ -1141,6 +1234,71 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
+    # -------------------------------------------------------------------------
+    # T-1320 reads the book corpus for kinship. A kin row it writes or corroborates names
+    # the book claim behind it, so `--check` can hold the row to a live ruling and a row
+    # that outlived its ruling goes red. It is a foreign key into
+    # data/research/books/kin_rulings.json and data/research/books/claims/*.json, in the
+    # same class as `stated_family.statement` below.
+    "residents/household:kin[].book_kin": (
+        "The id of the book claim this kin row was read out of — a foreign key into "
+        "data/research/books/claims/ and the ruling that answers it. It is what makes "
+        "the write re-derivable and what lets the gate notice a tie that lost its "
+        "reading; it states nothing about either person. What a visitor judges the "
+        "relationship by is on the row already and is read there: the relation, the "
+        "confidence, the sources and the note that quotes the sentence."
+    ),
+    # -------------------------------------------------------------------------
+    # T-1313 seated the three relatives T-1170's reading ruled `write`, and every seated
+    # person carries the marker that makes the write re-derivable. Six keys, none of them
+    # a figure about a person: one names the pass, one the ticket, one resolves the read
+    # statement, one is a matcher's normalised copy of `relationship`, one is the source's
+    # own wording kept for audit, one is the field the sentence was read out of. The
+    # evidence a visitor judges these three women by — grade, sources, note, relationship
+    # — is on the card already and is read there. Same class as `source_pass`.
+    "residents/household:persons[].stated_family.pass": (
+        "The stated-family pass's own bookkeeping — which pass wrote this person, so "
+        "`--build` can lift its whole output back out and re-derive it rather than "
+        "appending to it. That re-derivability is the reason the key exists: a "
+        "verdict re-read from `write` to `no_seat` has to take somebody back OUT of "
+        "the town, and a pass that cannot find its own writes cannot do that. It is a "
+        "fact about the tool, not about the woman on the card."
+    ),
+    "residents/household:persons[].stated_family.ticket": (
+        "Which ticket seated this person. Repository provenance of the same class as "
+        "`source_pass` — useful to a reader of the JSON and to the run that has to "
+        "audit a pass, and not part of what a visitor judges the record by. What the "
+        "visitor needs is the evidence, and the card already shows it: the grade, the "
+        "sources and the note that says what the source does NOT say."
+    ),
+    "residents/household:persons[].stated_family.statement": (
+        "The id of the read statement this seat came from — a foreign key into the "
+        "derived reading in docs/RESEARCH/stated-families-2026-09.md and into the "
+        "verdict table in data/residents/stated_family_rulings.json. It resolves a "
+        "row; it states nothing about the person. The claim it resolves to reaches "
+        "the visitor as the note and the sources on this person's own row."
+    ),
+    "residents/household:persons[].stated_family.relation": (
+        "The normalised relation word the reading matched on — `wife`, `daughter`. "
+        "The poorer of two copies: the person's own `relationship` is what the card "
+        "prints, it is the field every other resident carries, and it is authored for "
+        "a reader rather than for a matcher. Showing this one instead would be "
+        "showing less, which is the ruling this table already makes about "
+        "`households[].present_on_scene_date`."
+    ),
+    "residents/household:persons[].stated_family.as_read": (
+        "The source's words for the relative, kept verbatim so the match can be "
+        "audited against the page — 'Welthyan Loomis', 'Mrs A. G. Burley'. Where it "
+        "differs from the name on the card that difference is a finding, and it "
+        "belongs in the note, which is where it is written and where the visitor "
+        "reads it. Un-banks the day a card prints the reading beside the name."
+    ),
+    "residents/household:persons[].stated_family.read_from": (
+        "Which field of which record the statement was read out of — the pass's audit "
+        "trail back to the sentence. File-and-field routing, the same class of key as "
+        "`record_file`, and it names a location in this repository rather than "
+        "anything about 1835."
+    ),
     # T-1238's two closed sets, re-authored HERE by T-1255 because they were written
     # straight into layer_reads_baseline.json and nowhere else — the same mistake
     # `flora/zone:woody_stratum.measured_from` below records, and `--update` deletes a
@@ -1222,6 +1380,47 @@ REFUSALS: dict[str, str] = {
         "where the evidence that made them projected is beside the label. A bare total "
         "with nothing beside it was the poorer of the two copies. The field stays in the "
         "manifest because the mint tools derive it and validate.py holds it."),
+    # -------------------------------------------------------------------------
+    # RECOVERED BY T-1313, which needed `--update` to bank six keys and found that
+    # running it would have deleted these five. They were written straight into
+    # layer_reads_baseline.json and never into this table — the SAME mistake
+    # `flora/zone:woody_stratum.measured_from` above records against itself, repeated on
+    # T-1304's profile vocabulary. `--update` rebuilds the bank from the measurement and
+    # re-attaches a refusal only if it is HERE, so the first re-derivation drops every
+    # one of them silently. A stated refusal is a judgement somebody made; this table is
+    # the only place one may be authored, and these are moved into it verbatim.
+    "residents/manifest:vocabulary.age_bands[].age_band": (
+        "The closed set of age bands tools/profile_population_1835.py sorts every "
+        "person into, and the rule that assigns each one. The band a person falls in "
+        "is a DERIVATION over their card, not a field on it, so the browser meets it "
+        "in the profile document the panel renders "
+        "(data/reconstruction/1835_population_profile.json) and never here. This copy "
+        "is the definition the generator is held to, and it un-banks the day a card "
+        "starts carrying its own band."
+    ),
+    "residents/manifest:vocabulary.age_bands[].means": (
+        "The plain-English meaning of an age band. Published beside the band for the "
+        "same reason and read the same way — off the profile document, where the "
+        "panel prints it — never out of the manifest."
+    ),
+    "residents/manifest:vocabulary.age_bands[].rule": (
+        "The exact test that puts a person in an age band. It is a statement about "
+        "the generator, which is what makes it worth shipping beside the layer; no "
+        "renderer re-implements it, because a second implementation of a derivation "
+        "rule is a second answer to the same question."
+    ),
+    "residents/manifest:vocabulary.reasons_for_coming[].means": (
+        "What a reason term means, published beside it so a reader of the layer can "
+        "check the sorting without the tool. Read off the profile document by the "
+        "panel, never out of the manifest."
+    ),
+    "residents/manifest:vocabulary.reasons_for_coming[].term": (
+        "The closed set of reasons a household may state for coming to Chicago. A "
+        "household record carries its reason as PROSE and the term is the derivation "
+        "over it, so the panel prints the term out of the profile document; a card "
+        "printing the LIST would be printing the schema rather than anything about "
+        "the town."
+    ),
     # -------------------------------------------------------------------------
     # T-1233 ruled on the 83 unread resident paths: 63 were wired to the card in the
     # same commit, `_merged_doc` was classified as prose, and these twelve are refused
@@ -1888,7 +2087,7 @@ def main() -> int:
             "entries": {k: ({**state["unread"][k], "refused_because": REFUSALS[k]}
                              if k in REFUSALS else state["unread"][k])
                         for k in sorted(state["unread"])},
-        }, indent=2) + "\n", encoding="utf-8")
+        }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"wrote {BASELINE.relative_to(ROOT)} ({len(state['unread'])} entries)")
         return 0
 

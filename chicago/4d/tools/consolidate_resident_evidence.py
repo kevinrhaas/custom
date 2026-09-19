@@ -60,6 +60,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
 import resolve_place_vocabulary  # noqa: E402  (T-1049 — the corpus that says where a place is)
 
 RESEARCH = ROOT / "data" / "research"
@@ -755,6 +756,10 @@ def read_town():
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue
         for person in doc["persons"]:
+            # T-1171: a drawn person is not an APPEARANCE. Nothing printed their name, so
+            # an identity built on one would be this layer corroborating its own invention.
+            if is_reconstructed(person):
+                continue
             if not person.get("id"):
                 continue
             entry = appearance(
@@ -1781,7 +1786,7 @@ def _load_town_grades():
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue
         for person in doc["persons"]:
-            if person.get("id"):
+            if person.get("id") and not is_reconstructed(person):
                 TOWN_GRADES[person["id"]] = person
 
 
@@ -1898,6 +1903,11 @@ def ladder_coverage(master, proposal):
         if not isinstance(doc, dict) or not isinstance(doc.get("persons"), list):
             continue
         for person in doc["persons"]:
+            # T-1171: the ladder grades people the SOURCES name. A drawn person has no
+            # evidence for a rung to weigh and no grade a rung could check, so they are
+            # not a record this coverage is silent about — they are not its subject.
+            if is_reconstructed(person):
+                continue
             person_id = person.get("id")
             if not person_id:
                 continue

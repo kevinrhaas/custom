@@ -122,8 +122,10 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+from reconstructed_person import is_reconstructed  # noqa: E402
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from carry_stage_blocks import carry  # noqa: E402  (T-1169; a mint owns its record, a reconstruction stage owns its blocks)
 from refuse_reconstructed_grade import refuse_texts  # noqa: E402  (T-1144; reconstruction begins at T-1167, never in a mint)
 from identity_master_guard import (  # noqa: E402  (T-0843)
     IdentityGuard, blind_person_ids, refusal as guard_refusal,
@@ -780,6 +782,12 @@ def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX)
         if skip_prefix and minted_by(path, doc, "letter_list", skip_prefix):
             continue
         for person in doc.get("persons") or []:
+            # AN INVENTED NAME NEVER SPENDS A SURNAME. A reconstructed wife carries her
+            # head's family name by construction, so she can only ever re-assert a
+            # surname the town already holds — but a later stage drawing a name from the
+            # pools could otherwise make the town's own invention refuse a real mint.
+            if is_reconstructed(person):
+                continue
             fam = surname(person.get("name") or "")
             if fam:
                 known.add(fam)
@@ -811,6 +819,11 @@ def outside_holders(docs: dict) -> dict[str, list[str]]:
         if minted_by(path, doc, "letter_list", PREFIX):
             continue
         for person in doc.get("persons") or []:
+            # …and never NAMES one either: a collision block that offered an invented
+            # wife as the holder of a family name would print this dataset's own
+            # reconstruction back to a reader as the evidence against a mint.
+            if is_reconstructed(person):
+                continue
             fam = surname(person.get("name") or "")
             if fam:
                 out.setdefault(fam, []).append(f"{person['name']} ({path.stem})")
@@ -1263,7 +1276,10 @@ def build(preload: dict | None = None):
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
-        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
+        # T-1169. The record is this pass's; the blocks a reconstruction stage
+        # marked are that stage's, and are carried through rather than derived
+        # away. See tools/carry_stage_blocks.py for why both passes are right.
+        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(carry(doc), 1)
 
     # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
     # keep every other row verbatim, so a household no pass owned could be regraded

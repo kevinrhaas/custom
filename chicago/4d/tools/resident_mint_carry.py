@@ -27,6 +27,9 @@ from functools import lru_cache
 import pathlib
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 
@@ -152,6 +155,15 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         kin = doc.pop("kin")
         _insert_after(doc, "kin", kin, "present_on_scene_date")
 
+    # T-1171: and so does the block a reconstruction stage writes about the household it
+    # drew a family for. It is carried by the loop above, which appends what it does not
+    # recognise to the END of the card — and the end is where `spend_old_settlers` pops
+    # and re-appends its own trailing key, so a block left there would move under that
+    # pass and read as drift on both sides.
+    if "modelled_family" in doc:
+        block = doc.pop("modelled_family")
+        _insert_after(doc, "modelled_family", block, "present_on_scene_date")
+
     by_id = {person.get("id"): person for person in prior.get("persons") or []}
     for person in doc.get("persons") or []:
         old = by_id.get(person.get("id")) or {}
@@ -188,6 +200,33 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             if key not in person and key not in owned:
                 person[key] = value
 
+        # T-1326: THE ROLL BOUNDS SIT BESIDE THE SOURCES THEY CITE, NOT AT THE END.
+        # `tools/spend_civic_roll_bounds.py` writes `persons[].dated_bounds[]` after every
+        # mint has run, and the loop above would carry it back in at the tail of whichever
+        # mint happened to rebuild this person. That is not where the pass puts it, and two
+        # gates measure the difference byte for byte rather than semantically —
+        # `spend_person_sex_age.py --check` and `reconstruct_sex_age.py`, which pop `sex`,
+        # `sex_basis`, `age_band` and `birth_year` and re-append them, so a block at the
+        # tail lands before those keys on the next re-derivation and reads as drift on 235
+        # cards. The slot is the one the pass itself writes: immediately after `sources`,
+        # because the block is evidence and belongs beside the sources it cites.
+        bounds = old.get("dated_bounds")
+        if bounds is not None and "dated_bounds" not in owned:
+            person.pop("dated_bounds", None)
+            _insert_after(person, "dated_bounds", bounds, "sources")
+
+        # T-1337: AND THE SAME FOR THE SECOND EVIDENCE BLOCK, IN A FIXED ORDER BEHIND THE
+        # FIRST. `tools/spend_appearance_bounds.py` writes `persons[].appearance_bounds[]`
+        # — the 1830 schedule lines and St Mary's register appearances — and it puts the
+        # block after `dated_bounds` where the card carries one, precisely so two passes
+        # writing evidence beside the same `sources` cannot disagree about which comes
+        # first and report drift by turns. Carrying it back in at the tail would undo that.
+        appearances = old.get("appearance_bounds")
+        if appearances is not None and "appearance_bounds" not in owned:
+            person.pop("appearance_bounds", None)
+            _insert_after(person, "appearance_bounds", appearances,
+                          "dated_bounds" if "dated_bounds" in person else "sources")
+
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
         if pointer is not None and isinstance(person.get("occupation"), dict):
@@ -212,6 +251,25 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         person["sources"] = sorted(
             derived_sources | (prior_sources - (retracted - derived_sources)))
         person["note"] = carry_note(person.get("note") or "", old.get("note") or "")
+
+    # T-1171: A WHOLE PERSON A RECONSTRUCTION STAGE WROTE.
+    # Everything above carries a foreign FIELD onto a person the mint re-derives. The
+    # reconstruction programme (T-1167) writes foreign PEOPLE — a wife and children drawn
+    # from the household model and seated inside a card a mint owns — and a mint that
+    # rebuilds its card whole would delete them, silently, on the next --build. They are
+    # carried in the order the stage wrote them, after the mint's own, so a mint's --check
+    # stays a byte comparison.
+    #
+    # THE CONDITION IS THE PROGRAMME'S CLAIM, not the grade: `reconstruction.stage` names
+    # the stage that can re-derive this person. A `reconstructed` person no stage claims is
+    # what `refuse_reconstructed_grade` exists to refuse, and carrying one here would put
+    # it back after that refusal had removed it.
+    held = {person.get("id") for person in doc.get("persons") or []}
+    carried = [person for person in prior.get("persons") or []
+               if person.get("id") not in held
+               and is_reconstructed(person)]
+    if carried:
+        doc["persons"] = (doc.get("persons") or []) + carried
     return doc
 
 
@@ -236,6 +294,21 @@ def self_test() -> int:
     want("an unchanged derivation stays byte-identical",
          carry_note(old_derived, old_derived + "  " + foreign, (marker,))
          == old_derived + "  " + foreign)
+    reconstructed = {"id": "rc_x_wife", "grade": "reconstructed",
+                     "reconstruction": {"stage": "modelled_families"}}
+    loose = {"id": "rc_y", "grade": "reconstructed"}
+    carried = carry_resident_mint(
+        {"id": "hh_x", "persons": [{"id": "x", "grade": "attested"}]},
+        {"id": "hh_x", "persons": [{"id": "x", "grade": "attested"}, reconstructed, loose]})
+    want("a person a reconstruction stage wrote survives a mint's rebuild",
+         [p["id"] for p in carried["persons"]] == ["x", "rc_x_wife"])
+    kept = carry_resident_mint(
+        {"id": "hh_x", "persons": [{"id": "rc_x_wife", "grade": "inferred"}]},
+        {"id": "hh_x", "persons": [reconstructed]})
+    want("a mint that now derives that id keeps its own person and does not double it",
+         [p["id"] for p in kept["persons"]] == ["rc_x_wife"]
+         and kept["persons"][0]["grade"] == "inferred")
+
     want("an unmarked suffix is not guessed after the derivation changes",
          carry_note(changed, old_derived + " an unmarked suffix", (marker,)) == changed)
 

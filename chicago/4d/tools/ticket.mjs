@@ -874,6 +874,81 @@ function releaseClaimLock(id) {
   return r.ok;
 }
 
+// ---------------------------------------------------------------------------
+// T-1287. AN ID IS RESERVED ON THE REMOTE BEFORE IT IS USED, NOT SCANNED FOR.
+//
+// `nextIdNum` reads the highest id on every origin ref and adds one. That scan
+// works — measured 2026-09-18, 1,066 refs in 8 s, and it correctly reports ids
+// sitting on other runs' branches. It is still not enough, and the reason is not
+// that it misses anything:
+//
+//   A MINTED ID IS INVISIBLE TO EVERY OTHER RUN UNTIL THE BRANCH IS PUSHED.
+//
+// Measured the same day. This session renumbered a ticket to T-1324 and pushed
+// twenty minutes later; #1455 minted AND MERGED its own T-1324 inside that
+// window. No scan could have seen the first — it existed only on one disk. Five
+// collisions that day, and the fifth was created by a careful attempt to dodge
+// the fourth by picking an id above everything visible. "Above everything
+// visible" is read-then-write, and any run minting in between wins the race.
+//
+// So minting takes a lock, exactly as claiming a ticket does (T-1145's marker
+// branches, which are a real compare-and-swap and have held since). Push an
+// empty commit to `refs/heads/idlock/t-NNNN` with a lease saying THE REF MUST
+// NOT EXIST; git rejects the loser atomically, and the loser tries the next
+// number. Two runs minting in the same second get different ids, whatever either
+// of them can see.
+//
+// OFFLINE STILL MINTS. A sandbox with no remote, and the test suite, must be able
+// to file a ticket — so an unreachable origin falls back to the scan with a
+// warning that says exactly what was given up. A REJECTION is different from an
+// unreachable remote and is never treated as one.
+const idLockBranch = (id) => `idlock/${id.toLowerCase()}`;
+
+function reserveIdNum(startAt, count = 1) {
+  const taken = [];
+  let n = startAt;
+  let attempts = 0;
+  while (taken.length < count && attempts < 40) {
+    attempts += 1;
+    const id = idOf(n);
+    const ref = `refs/heads/${idLockBranch(id)}`;
+    const commit = claimCommit(id, 'mint', null);
+    if (!commit) { return { ids: null, why: 'could not write a lock commit' }; }
+    const push = gitTry(['push', 'origin', `${commit}:${ref}`, `--force-with-lease=${ref}:`]);
+    // A PUSH THAT CHANGED NOTHING NEVER RESERVED ANYTHING, whatever its exit status —
+    // the same guard `takeClaimLock` carries, and for a worse failure. Two runs that
+    // build a parentless empty-tree commit with the same forced identity in the same
+    // second produce the SAME SHA, and git answers the second `Everything up-to-date`,
+    // exit 0. `claimCommit`'s nonce should make that unreachable; the guard stays
+    // because if it ever is reached the loser is told it holds an id another run holds
+    // too, which is exactly the collision this whole mechanism exists to stop.
+    if (push.ok && /Everything up-to-date/i.test(push.err || '')) {
+      return { ids: null, why: 'the reservation push changed nothing' };
+    }
+    if (push.ok) { taken.push(id); n += 1; continue; }
+    if (isRefRejection(push.err)) { n += 1; continue; }   // somebody holds it — step past
+    return { ids: null, why: (push.err || '').trim().split('\n').filter(Boolean).pop() || 'push failed' };
+  }
+  if (taken.length < count) return { ids: null, why: `no free id found in ${attempts} attempts` };
+  return { ids: taken };
+}
+
+/**
+ * `count` consecutive-ish ids, reserved on the remote where another run can see
+ * them. Falls back to the local+remote scan when the remote cannot be reached,
+ * and says so, because a mint that fails is worse than a mint that races.
+ */
+function mintIds(tickets, count = 1) {
+  const start = nextIdNum(tickets);
+  const got = reserveIdNum(start, count);
+  if (got.ids) return got.ids;
+  console.warn(`  NOTE: the id lock could not be taken — ${got.why}.`);
+  console.warn('        Falling back to the highest id this clone can SEE, which is a race:');
+  console.warn('        another run minting right now cannot see this id until the branch is');
+  console.warn('        pushed, and may take it too (T-1287). Push early if you can.');
+  return Array.from({ length: count }, (_, i) => idOf(start + i));
+}
+
 function find(tickets, id) {
   const t = tickets.find((x) => x.id === id);
   if (!t) { console.error(`no ticket ${id}`); process.exit(1); }
@@ -1228,6 +1303,42 @@ const flag = (name) => { const i = args.indexOf(`--${name}`); return i < 0 ? nul
 const has = (name) => args.includes(`--${name}`);
 const tickets = loadAll();
 
+// CLOSING THE LAST CHILD OF A SPLIT KILLS THE PARENT, AND NOTHING SAID SO.
+//
+// A split parent counts as live work only while a child is still open (`split_live`);
+// close the last one and the parent is spent, and every research unit that defers to
+// it by id is stranded exactly as it would be behind a done ticket (T-1237). The
+// ledger refuses those units, so the re-derivation fails — but it fails on the
+// MERGE, in a tool the closing PR never runs, long after the author has stopped
+// looking. The author cannot see it on their own branch either: there the parent
+// still has an open child, which is the one they are closing.
+//
+// Three times on 2026-09-18: #1452 closed T-1313 and stranded nine units on T-1170;
+// #1454 closed T-1311 and stranded seven on T-1180. Each cost a full re-derive to
+// discover and a merge round to repair.
+//
+// This does not refuse the close — the close is usually right, and what the stranded
+// units need is a new owner, which is a judgement. It says so at the moment the
+// author can still act on it, and names what to look for.
+function warnIfThisClosedASplit(closed, all) {
+  const parentId = closed.parent;
+  if (!parentId) return;
+  const parent = all.find((t) => t.id === parentId);
+  if (!parent || parent.state !== 'split') return;
+  const siblings = all.filter((t) => t.parent === parentId);
+  const live = siblings.filter((t) => WORKABLE.includes(t.state));
+  if (live.length) return;
+  console.log('');
+  console.log(`  NOTE: ${closed.id} was the last open child of ${parentId}, which is `
+    + `\`split\`. A split parent whose children have all closed is SPENT WORK, and any`);
+  console.log('  research unit that defers to it by id is now stranded (T-1237). That fails');
+  console.log('  the re-derivation, in a tool this PR does not run — so check it here:');
+  console.log('');
+  console.log(`      grep -rn '"${parentId}"' chicago/4d/tools/*.py chicago/4d/data/research/spend_rulings.json`);
+  console.log('');
+  console.log('  Anything that hands units to it needs a LIVE owner before this merges.');
+}
+
 switch (cmd) {
   /**
    * THE BUDGET (T-1295). Filing is free and working is not, so an unbudgeted `new` is the
@@ -1297,7 +1408,7 @@ switch (cmd) {
       console.error('also clears the ceiling, and `prune` drops any line whose work has finished.');
       process.exit(1);
     }
-    const id = idOf(nextIdNum(tickets));
+    const [id] = mintIds(tickets);
     const t = {
       file: path.join(DIR, `${id}-${slugOf(title)}.md`),
       id, title, state: 'open',
@@ -1403,8 +1514,34 @@ switch (cmd) {
     t.state = 'done'; t.closed = today(); t.closed_at = nowIso(); t.pr = flag('pr');
     if (!t.pr) { console.error('done needs --pr N — the closing PR is the receipt'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} done (PR #${t.pr}) — removed from QUEUE`);
+    warnIfThisClosedASplit(t, loadAll());
     break;
   }
   case 'block': {
@@ -1413,7 +1550,32 @@ switch (cmd) {
     t.blocked_on = flag('on');
     if (!t.blocked_on) { console.error('block needs --on "the question or the missing thing"'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} → ${t.state}`);
     break;
   }
@@ -1428,7 +1590,32 @@ switch (cmd) {
     const t = find(tickets, args[0]);
     t.state = 'withdrawn'; t.closed = today(); t.closed_at = nowIso(); t.blocked_on = flag('why') ?? t.blocked_on;
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} withdrawn`);
     break;
   }
@@ -1456,7 +1643,7 @@ switch (cmd) {
     // owner had ranked higher (T-0217). `queueIndexOf` resolves the line by id
     // AND label, so the line that moves is the one written from THIS file.
     const { i: line, byLabel } = queueIndexOf(old, t.title);
-    t.id = idOf(nextIdNum(tickets));
+    [t.id] = mintIds(tickets);
     const dest = path.join(DIR, `${t.id}-${slugOf(t.title)}.md`);
     writeTicket(t); renameSync(t.file, dest); t.file = dest;
     if (line >= 0) queueReplaceAt(line, [`${t.id} — ${t.title}`]);
@@ -1482,11 +1669,10 @@ switch (cmd) {
       console.error(`usage: ticket.mjs split ${t.id} "first piece" "second piece" [...]`);
       process.exit(1);
     }
-    let next = nextIdNum(tickets) - 1;
+    const minted = mintIds(tickets, titles.length);
     const rows = [];
     titles.forEach((title, n) => {
-      next += 1;
-      const id = idOf(next);
+      const id = minted[n];
       const child = {
         file: path.join(DIR, `${id}-${slugOf(title)}.md`),
         id, title, state: 'open', epic: t.epic, requested_by: t.requested_by,
@@ -1644,10 +1830,28 @@ switch (cmd) {
     const mineIds = new Set(mine.map(queueId).filter(Boolean));
     const out = [...mine];
     const restored = [];
+    const skipped = [];
+    // …AND A LINE THE BRANCH CLOSED IS NOT A LINE THE BRANCH LOST.
+    //
+    // The base's queue is the base's view of what is open. A branch that CLOSES a
+    // ticket removes its line, and to this reconcile that is indistinguishable from
+    // the loss it exists to repair — so it put the line back, and `check` then failed
+    // the branch for queueing a ticket the same branch had marked done. Measured on
+    // #1454 (T-1311): reconcile restored two lines, one genuinely lost and one the PR
+    // had just closed. The branch's own ticket files are the authority on state here,
+    // exactly as they are for `check`, so a base line whose ticket is no longer
+    // workable is reported and left out rather than restored.
+    const workable = new Set(tickets.filter((t) => WORKABLE.includes(t.state)).map((t) => t.id));
     let prev = null;
     for (const line of baseLines) {
       const id = queueId(line);
       if (!id) continue;
+      if (!mineIds.has(id) && !workable.has(id)) {
+        const t = tickets.find((x) => x.id === id);
+        skipped.push(`${id} (${t ? t.state : 'no ticket file'})`);
+        prev = id;
+        continue;
+      }
       if (!mineIds.has(id)) {
         const at = prev === null ? -1 : out.findIndex((l) => queueId(l) === prev);
         if (at >= 0) { out.splice(at + 1, 0, line); restored.push(`${id} (after ${prev})`); }
@@ -1660,6 +1864,11 @@ switch (cmd) {
       prev = id;
     }
     const lost = restored.length;
+    if (skipped.length) {
+      console.log(`queue reconcile: ${skipped.length} line(s) of the base were NOT restored — `
+        + 'this branch closed them:');
+      for (const row of skipped) console.log(`  ${row}`);
+    }
 
     // AND THE LABEL FOLLOWS THE TICKET, because `check` already rules that it does:
     // "the ticket wins; rewrite the line as …". A title edited on the base while a branch
@@ -1918,6 +2127,47 @@ switch (cmd) {
       if (!stale.length) console.log('\nnothing stale to sweep');
     } else if (stale.length) {
       console.log(`\n${stale.length} older than ${RUN_HOURS}h — \`ticket.mjs claims --sweep\` deletes those.`);
+    }
+
+    // T-1287's id locks are a different animal and are swept by a different rule.
+    // A claim is a LEASE — it expires with the run, and age is what makes it stale.
+    // An id reservation is not a lease: it says an id is spoken for, and it has to
+    // hold from the minute a run mints until the ticket reaches `dev`, which may be
+    // hours and several merges later. Age would delete it exactly when it is still
+    // doing its job. So the rule is possession: once the ticket IS on the base, the
+    // ticket file is the reservation and the marker is litter.
+    const idLocks = remoteBranches().filter((b) => /^idlock\/t-\d{4}$/.test(b.name));
+    if (idLocks.length) {
+      // TWO WAYS A RESERVATION STOPS BEING ONE, and only the first was obvious.
+      //
+      //   landed    — the tree carries the ticket, so the ticket file IS the
+      //               reservation and the marker is litter.
+      //   abandoned — no tree anywhere carries it and the marker is older than a
+      //               run. The mint never became a ticket: a run died between
+      //               reserving and writing, or somebody probed the mechanism.
+      //               Swept by AGE here because possession can never arrive —
+      //               without this an abandoned lock is litter for ever, and it
+      //               also burns the id, since the next mint steps past a held ref.
+      const idOfLock = (b) => b.name.replace(/^idlock\//, '').toUpperCase();
+      const landed = idLocks.filter((b) => tickets.some((t) => t.id === idOfLock(b)));
+      const abandoned = idLocks.filter((b) => {
+        if (tickets.some((t) => t.id === idOfLock(b))) return false;
+        const age = branchAgeHours(b.sha);
+        return age !== null && age > RUN_HOURS;
+      });
+      console.log(`\nID LOCKS — ${idLocks.length} held, ${landed.length} landed, ${abandoned.length} abandoned`);
+      if (has('sweep')) {
+        for (const b of [...landed, ...abandoned]) {
+          const ok = gitTry(['push', 'origin', '--delete', b.name]).ok;
+          console.log(`  ${ok ? 'deleted' : 'could not delete'} ${b.name}`);
+        }
+        if (!landed.length && !abandoned.length) {
+          console.log('  nothing to sweep — every reservation is still in flight');
+        }
+      } else if (landed.length || abandoned.length) {
+        console.log(`  \`ticket.mjs claims --sweep\` deletes the ${landed.length + abandoned.length} `
+          + 'that are no longer reserving anything.');
+      }
     }
     break;
   }

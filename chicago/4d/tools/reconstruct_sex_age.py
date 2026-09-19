@@ -223,10 +223,63 @@ def ours_age(block) -> bool:
     return isinstance(block, dict)
 
 
+def counted_band_block(person: dict) -> dict:
+    """The `age_band` of somebody a census column already counted, not drawn (T-1314)."""
+    age = (person.get("reconstruction") or {}).get("age_on_scene_date") or {}
+    low, high = age.get("low"), age.get("high")
+    span = f"{low} or older" if high is None else f"{low}-{high}"
+    stage = (person.get("reconstruction") or {}).get("stage")
+    band = (person.get("reconstruction") or {}).get("band_1840")
+    return {
+        "value": span,
+        "confidence": RECONSTRUCTED,
+        "tier": RECONSTRUCTED,
+        "note": (f"READ OFF A COUNT, NOT DRAWN. The `{stage}` stage wrote this person from a "
+                 f"census column - \u201c{band}\u201d - and the band back-projects to {span} "
+                 f"on the scene date. This pass draws an age only where nothing dates one, and "
+                 f"a tally in an age column dates one."),
+        "basis": {
+            "kind": "rule",
+            "id": "counted_by_a_census_column",
+            "note": (f"ARGUED, NOT DRAWN. The `{stage}` stage wrote this person BECAUSE the "
+                     f"1840 schedule tallies them in \u201c{band}\u201d; that column is the "
+                     f"only thing said about their age, and five years off it is the whole "
+                     f"derivation. No model row is consulted and nothing is drawn, so this "
+                     f"block carries no seed."),
+        },
+        "replaceable_by": {
+            "kind": "person",
+            "match": ("a source that states this person's age, their birth year, or an "
+                      "interval either can be read out of"),
+        },
+    }
+
+
+# A STAGE THAT BRINGS ITS OWN SEX AND AGE IS NOT ONE THIS PASS FILLS (T-1171).
+#
+# This pass draws for a person the sources named and left undescribed. Stage
+# `modelled_families` writes people no source names at all, and it writes them WITH a
+# sex and an age band of its own - the wife drawn from the 1840 female adult columns and
+# never above her husband's band, the child capped by the marriage his band allows. Both
+# blocks carry `basis.id: age_bands_1840`, so without this exemption the ownership test
+# below reads them as this pass's own and redraws them from the roll model, which throws
+# the spacing rule away and replaces a documented draw with an undocumented one. The two
+# stages are not disagreeing about a person: they are writing about different people.
+SELF_DESCRIBING_STAGES = ("modelled_families",)
+
+
+def drawn_by_another_stage(person: dict) -> bool:
+    """A reconstructed person whose own stage already settled their sex and age."""
+    stage = (person.get("reconstruction") or {}).get("stage")
+    return stage in SELF_DESCRIBING_STAGES
+
+
 def without_this_pass(card: dict) -> dict:
     """The card as it stood before this pass ever ran. The basis of `--check`."""
     out = json.loads(json.dumps(card))
     for person in out.get("persons") or []:
+        if drawn_by_another_stage(person):
+            continue
         if ours_sex(person.get("sex_basis")):
             person.pop("sex_basis", None)
             person.pop("sex", None)
@@ -267,6 +320,11 @@ def measure(base: dict) -> dict:
         roll = roll_of(card)
         for person in card.get("persons") or []:
             if collective(person):
+                continue
+            # A DRAW IS NEVER EVIDENCE, WHOEVER DREW IT. The sex another reconstruction
+            # stage drew is as much a draw as one of this pass's, so it is kept out of the
+            # rate for the same reason `base` strips this pass's own fills.
+            if drawn_by_another_stage(person):
                 continue
             if person.get("sex"):
                 settled[roll] += 1
@@ -575,6 +633,19 @@ def fill(base: dict) -> tuple:
         roll = roll_of(card)
         for person in card.get("persons") or []:
             pid = str(person.get("id") or "")
+            # A PERSON A CENSUS BAND ALREADY DATES IS NOT ONE TO DRAW AN AGE FOR (T-1314).
+            # The `named_families` stage writes people the 1840 schedule COUNTS in an age
+            # column, and carries the band it back-projects to on the record. Drawing an
+            # age band for them out of the population model would put a draw beside a
+            # reading of the same person and let the weaker one win a coin toss.
+            if drawn_by_another_stage(person):
+                counts["age_read"]["another_stage_drew_them"] += 1
+                continue
+            if (person.get("reconstruction") or {}).get("age_on_scene_date"):
+                person["age_band"] = counted_band_block(person)
+                counts["age_read"][roll] += 1
+                settle_order(person)
+                continue
             if collective(person):
                 if not person.get("sex"):
                     person["sex_basis"] = refusal_block("sex")

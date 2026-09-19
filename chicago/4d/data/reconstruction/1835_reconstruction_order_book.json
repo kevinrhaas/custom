@@ -29,14 +29,14 @@
     "households_total": 1258,
     "households_present": 436,
     "households_uncertain": 820,
-    "persons_total": 1282,
-    "persons_present": 456,
+    "persons_total": 1588,
+    "persons_present": 457,
     "persons_present_attested": 133,
-    "persons_present_inferred": 323,
+    "persons_present_inferred": 324,
     "persons_present_by_division": {
       "south": 50,
       "west": 6,
-      "north": 10,
+      "north": 11,
       "fort": 2
     },
     "households_present_by_division": {
@@ -51,14 +51,14 @@
     "households_with_a_works_at": 36
   },
   "roster_offered": {
-    "total": 1490,
+    "total": 1666,
     "by_class": {
-      "R1_in_window_uncertain": 814,
-      "R2_in_window_single_source": 40,
-      "R3_1834_return_or_muster": 28,
-      "R4_surname_only_census": 424,
+      "R1_in_window_uncertain": 805,
+      "R2_in_window_single_source": 216,
+      "R3_1834_return_or_muster": 30,
+      "R4_surname_only_census": 423,
       "R5_later_only_backprojectable": 55,
-      "R6_native_metis_black": 129
+      "R6_native_metis_black": 137
     },
     "tickets": {
       "R1_in_window_uncertain": "T-1172",
@@ -70,12 +70,12 @@
     }
   },
   "totals": {
-    "persons_target": 2556,
-    "persons_known": 456,
-    "persons_to_reconstruct": 2102,
-    "households_target": 645,
+    "persons_target": 2535,
+    "persons_known": 457,
+    "persons_to_reconstruct": 2081,
+    "households_target": 643,
     "households_known": 436,
-    "households_to_reconstruct": 211,
+    "households_to_reconstruct": 209,
     "businesses_target": 120,
     "businesses_known": 118,
     "businesses_to_reconstruct": 24,
@@ -89,14 +89,14 @@
       "title": "Persons",
       "lead": "Who the town still has to be given, by sex, age, division, household and trade.",
       "summary": {
-        "town_target": 2556,
-        "town_target_basis": "the model's own point within 2,379-3,265",
+        "town_target": 2535,
+        "town_target_basis": "the model's own point within 2,352-3,265",
         "town_target_range": [
-          2379,
+          2352,
           3265
         ],
-        "employed_target": 508,
-        "employed_basis": "the midpoint of the model's 428-588, rounded half up",
+        "employed_target": 506,
+        "employed_basis": "the midpoint of the model's 423-588, rounded half up",
         "lodging_share": 0.26,
         "lodging_share_range": [
           0.143,
@@ -117,7 +117,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 26,
-          "filled": 0,
+          "filled": 3,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -147,11 +147,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 77,
+          "target": 76,
           "known_attested": 4,
           "known_inferred": 11,
-          "to_reconstruct": 62,
-          "filled": 0,
+          "to_reconstruct": 61,
+          "filled": 7,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -236,7 +236,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 28,
-          "filled": 0,
+          "filled": 20,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -300,11 +300,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 82,
+          "target": 81,
           "known_attested": 4,
           "known_inferred": 11,
-          "to_reconstruct": 67,
-          "filled": 0,
+          "to_reconstruct": 66,
+          "filled": 38,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -372,7 +372,7 @@
           "known_attested": 1,
           "known_inferred": 4,
           "to_reconstruct": 25,
-          "filled": 0,
+          "filled": 9,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -385,10 +385,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 5,
+          "target": 6,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 4,
+          "to_reconstruct": 5,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -402,10 +402,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 11,
+          "target": 10,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 10,
+          "to_reconstruct": 9,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -440,7 +440,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 13,
-          "filled": 0,
+          "filled": 3,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -470,10 +470,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 6,
+          "target": 5,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 5,
+          "to_reconstruct": 4,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -504,11 +504,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 39,
+          "target": 38,
           "known_attested": 2,
           "known_inferred": 5,
-          "to_reconstruct": 32,
-          "filled": 0,
+          "to_reconstruct": 31,
+          "filled": 11,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -538,10 +538,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 14,
+          "target": 13,
           "known_attested": 1,
           "known_inferred": 2,
-          "to_reconstruct": 11,
+          "to_reconstruct": 10,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -555,10 +555,10 @@
             "household_type": "family",
             "trade": "trade"
           },
-          "target": 8,
+          "target": 7,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 7,
+          "to_reconstruct": 6,
           "filled": 0,
           "owning_ticket": "T-1173",
           "basis": "an adult at a trade"
@@ -576,7 +576,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 12,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -708,11 +708,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 15,
+          "target": 14,
           "known_attested": 1,
           "known_inferred": 2,
-          "to_reconstruct": 12,
-          "filled": 0,
+          "to_reconstruct": 11,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -916,7 +916,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 8,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1035,7 +1035,7 @@
           "known_attested": 3,
           "known_inferred": 6,
           "to_reconstruct": 46,
-          "filled": 0,
+          "filled": 30,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1048,10 +1048,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 20,
+          "target": 19,
           "known_attested": 1,
           "known_inferred": 2,
-          "to_reconstruct": 17,
+          "to_reconstruct": 16,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1065,11 +1065,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 133,
+          "target": 132,
           "known_attested": 7,
           "known_inferred": 18,
-          "to_reconstruct": 108,
-          "filled": 0,
+          "to_reconstruct": 107,
+          "filled": 54,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1082,10 +1082,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 47,
+          "target": 46,
           "known_attested": 3,
           "known_inferred": 6,
-          "to_reconstruct": 38,
+          "to_reconstruct": 37,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1100,10 +1100,10 @@
             "trade": "none"
           },
           "target": 49,
-          "known_attested": 2,
+          "known_attested": 3,
           "known_inferred": 6,
-          "to_reconstruct": 41,
-          "filled": 0,
+          "to_reconstruct": 40,
+          "filled": 23,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1137,7 +1137,7 @@
           "known_attested": 2,
           "known_inferred": 5,
           "to_reconstruct": 30,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1167,11 +1167,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 89,
+          "target": 88,
           "known_attested": 5,
           "known_inferred": 12,
-          "to_reconstruct": 72,
-          "filled": 0,
+          "to_reconstruct": 71,
+          "filled": 5,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1201,11 +1201,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 33,
+          "target": 32,
           "known_attested": 2,
           "known_inferred": 4,
-          "to_reconstruct": 27,
-          "filled": 0,
+          "to_reconstruct": 26,
+          "filled": 6,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1218,10 +1218,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 12,
+          "target": 11,
           "known_attested": 1,
           "known_inferred": 1,
-          "to_reconstruct": 10,
+          "to_reconstruct": 9,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1235,8 +1235,8 @@
             "household_type": "family",
             "trade": "trade"
           },
-          "target": 31,
-          "known_attested": 2,
+          "target": 30,
+          "known_attested": 1,
           "known_inferred": 4,
           "to_reconstruct": 25,
           "filled": 0,
@@ -1303,9 +1303,9 @@
             "household_type": "family",
             "trade": "trade"
           },
-          "target": 74,
+          "target": 73,
           "known_attested": 4,
-          "known_inferred": 10,
+          "known_inferred": 9,
           "to_reconstruct": 60,
           "filled": 0,
           "owning_ticket": "T-1173",
@@ -1320,10 +1320,10 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 140,
+          "target": 139,
           "known_attested": 8,
           "known_inferred": 18,
-          "to_reconstruct": 114,
+          "to_reconstruct": 113,
           "filled": 0,
           "owning_ticket": "T-1171",
           "basis": "otherwise: a family drawn from the household model"
@@ -1356,8 +1356,8 @@
           },
           "target": 49,
           "known_attested": 3,
-          "known_inferred": 6,
-          "to_reconstruct": 40,
+          "known_inferred": 7,
+          "to_reconstruct": 39,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1388,8 +1388,8 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 52,
-          "known_attested": 3,
+          "target": 51,
+          "known_attested": 2,
           "known_inferred": 6,
           "to_reconstruct": 43,
           "filled": 0,
@@ -1524,10 +1524,10 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 82,
+          "target": 81,
           "known_attested": 4,
           "known_inferred": 11,
-          "to_reconstruct": 67,
+          "to_reconstruct": 66,
           "filled": 0,
           "owning_ticket": "T-1171",
           "basis": "otherwise: a family drawn from the household model"
@@ -1898,10 +1898,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 2,
+          "target": 1,
           "known_attested": 0,
           "known_inferred": 0,
-          "to_reconstruct": 2,
+          "to_reconstruct": 1,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -2051,11 +2051,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 62,
+          "target": 61,
           "known_attested": 3,
           "known_inferred": 7,
-          "to_reconstruct": 52,
-          "filled": 0,
+          "to_reconstruct": 51,
+          "filled": 24,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -2070,8 +2070,8 @@
           },
           "target": 22,
           "known_attested": 1,
-          "known_inferred": 2,
-          "to_reconstruct": 19,
+          "known_inferred": 3,
+          "to_reconstruct": 18,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -2085,11 +2085,11 @@
             "household_type": "family",
             "trade": "none"
           },
-          "target": 149,
+          "target": 148,
           "known_attested": 8,
           "known_inferred": 20,
-          "to_reconstruct": 121,
-          "filled": 0,
+          "to_reconstruct": 120,
+          "filled": 39,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -2123,7 +2123,7 @@
           "known_attested": 3,
           "known_inferred": 6,
           "to_reconstruct": 46,
-          "filled": 0,
+          "filled": 23,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -2185,10 +2185,10 @@
       "title": "Households",
       "lead": "The households the model wants, by kind and division.",
       "summary": {
-        "households_target": 645,
-        "households_target_basis": "the midpoint of the model's 474-816, rounded half up",
+        "households_target": 643,
+        "households_target_basis": "the midpoint of the model's 469-816, rounded half up",
         "households_target_range": [
-          474,
+          469,
           816
         ],
         "known_present": 436,
@@ -2201,12 +2201,12 @@
             "household_type": "boarding_house",
             "division": "north"
           },
-          "target": 12,
+          "target": 11,
           "known": 8,
-          "to_reconstruct": 4,
+          "to_reconstruct": 3,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own boarding_house roof count in the north division"
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the north division"
         },
         {
           "key": "households/boarding_house/south",
@@ -2219,7 +2219,7 @@
           "to_reconstruct": 12,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own boarding_house roof count in the south division"
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the south division"
         },
         {
           "key": "households/boarding_house/west",
@@ -2232,7 +2232,7 @@
           "to_reconstruct": 3,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own boarding_house roof count in the west division"
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the west division"
         },
         {
           "key": "households/family_dwelling/north",
@@ -2245,7 +2245,7 @@
           "to_reconstruct": 41,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own family_dwelling roof count in the north division"
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the north division"
         },
         {
           "key": "households/family_dwelling/south",
@@ -2254,11 +2254,11 @@
             "division": "south"
           },
           "target": 253,
-          "known": 175,
-          "to_reconstruct": 78,
+          "known": 176,
+          "to_reconstruct": 77,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own family_dwelling roof count in the south division"
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the south division"
         },
         {
           "key": "households/family_dwelling/west",
@@ -2271,7 +2271,7 @@
           "to_reconstruct": 39,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own family_dwelling roof count in the west division"
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the west division"
         },
         {
           "key": "households/inn_tavern/north",
@@ -2284,7 +2284,7 @@
           "to_reconstruct": 1,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own inn_tavern roof count in the north division"
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the north division"
         },
         {
           "key": "households/inn_tavern/south",
@@ -2297,7 +2297,7 @@
           "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own inn_tavern roof count in the south division"
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the south division"
         },
         {
           "key": "households/inn_tavern/west",
@@ -2310,7 +2310,7 @@
           "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1175",
-          "basis": "the model's 645 households apportioned on the inventory's own inn_tavern roof count in the west division"
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the west division"
         },
         {
           "key": "households/institutional/north",
@@ -2323,7 +2323,7 @@
           "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1188",
-          "basis": "the model's 645 households apportioned on the inventory's own institutional roof count in the north division"
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the north division"
         },
         {
           "key": "households/institutional/south",
@@ -2336,7 +2336,7 @@
           "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1188",
-          "basis": "the model's 645 households apportioned on the inventory's own institutional roof count in the south division"
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the south division"
         },
         {
           "key": "households/institutional/west",
@@ -2349,7 +2349,7 @@
           "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1188",
-          "basis": "the model's 645 households apportioned on the inventory's own institutional roof count in the west division"
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the west division"
         },
         {
           "key": "households/store_residence/north",
@@ -2362,7 +2362,7 @@
           "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own store_residence roof count in the north division"
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the north division"
         },
         {
           "key": "households/store_residence/south",
@@ -2370,12 +2370,12 @@
             "household_type": "store_residence",
             "division": "south"
           },
-          "target": 61,
-          "known": 42,
+          "target": 60,
+          "known": 41,
           "to_reconstruct": 19,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own store_residence roof count in the south division"
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the south division"
         },
         {
           "key": "households/store_residence/west",
@@ -2388,7 +2388,7 @@
           "to_reconstruct": 4,
           "filled": 0,
           "owning_ticket": "T-1171",
-          "basis": "the model's 645 households apportioned on the inventory's own store_residence roof count in the west division"
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the west division"
         },
         {
           "key": "households/garrison/fort",
@@ -3430,10 +3430,10 @@
     {
       "id": "households_against_dwellings",
       "owning_ticket": "T-1196",
-      "model": 645,
+      "model": 643,
       "programme": 335,
-      "delta": 310,
-      "statement": "The household model wants 645 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many."
+      "delta": 308,
+      "statement": "The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many."
     },
     {
       "id": "boarding_houses",
@@ -3462,10 +3462,10 @@
     {
       "id": "people_per_roof",
       "owning_ticket": "T-1196",
-      "model": 2556,
+      "model": 2535,
       "programme": 668,
       "delta": 0,
-      "statement": "2,556 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
+      "statement": "2,535 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
     }
   ],
   "invariants": [
@@ -3497,7 +3497,7 @@
       "id": "dwellings_ratio_within_its_bracket",
       "owning_ticket": "T-1215",
       "statement": "The town census's people-per-dwelling ratio is met within the model's bracket.",
-      "measured_now": "the book orders 2,556 people into 645 households."
+      "measured_now": "the book orders 2,535 people into 643 households."
     },
     {
       "id": "no_bucket_overfilled",
@@ -3506,5 +3506,139 @@
       "measured_now": "enforced by --check on every gate run."
     }
   ],
-  "fills": []
+  "fills": [
+    {
+      "bucket": "persons/female/10_19/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 3,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/10_19/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 7,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 20,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 38,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 9,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 3,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 11,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/40_49/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/50_plus/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 30,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 54,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 23,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 2,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 5,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 6,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 24,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 39,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 23,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    }
+  ]
 }

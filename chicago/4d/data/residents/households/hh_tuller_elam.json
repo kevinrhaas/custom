@@ -13,20 +13,44 @@
   "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 January 1834 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1834-01-28, 27 days later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1834-01-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A STATED YEAR, WHERE THE FIELD HELD A DRAW. The same county biography says the family of tuller_elam reached Chicago in July 1833. The year drawn by the arrival stage read 1833 as well, so the value does not move — what moves is that it is now a reading with a source behind it rather than a figure taken from a distribution. The MONTH is stated by the source and is not written into this field, which carries a year; the household's own `arrival` block holds its separate bound of 1834-01-01 from the Chicago Democrat and is untouched, because a bound and an arrival are two claims. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this.",
+  "sources": [
+   "whiteside_elam_tuller"
+  ]
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Connecticut",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A SOURCE, WHERE THE FIELD HELD A DRAW. The completed resident-research pass on tuller_elam read a county biography as saying that Elam Tuller's family reached Chicago in July 1833 and as identifying his Connecticut origin and his farmer, mechanic and steam-engine manufacturing background. The block this replaces read “The Mid-Atlantic states”, drawn from the Old Settlers birthplace sample and resting on nothing about this household.",
+  "sources": [
+   "whiteside_elam_tuller"
+  ]
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
   "confidence": "reconstructed",
-  "note": "Not attested."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_arrival_cohort",
+   "note": "arrival_fill.cohort_reasons — the household's arrival year (1834) is the only thing about it this value rests on."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,

@@ -384,7 +384,11 @@ EPIC_PIECES = {
 # divides by what the unit describes rather than by which domain read it, because an
 # enterprise claim and a place claim are absorbed by different bands.
 PLACE_AND_ENTERPRISE = {
-    "business": ("T-1180", "The authored business layer owns this unasserted enterprise claim."),
+    # WAS T-1180 UNTIL T-1311 CLOSED ON 2026-09-18.
+    # That ticket split into T-1310 (the business record layer) and T-1311 (the structure-function vocabulary), and with the second of the two done the parent is spent work a unit cannot defer to (T-1237).
+    # T-1310 BUILT the layer -- 196 firms with a tier on every field -- so what is left for these notices is not building it but reconciling them against it, which is T-1182's field: audit every attested and inferred business against the research, its proprietors, partners, dates and premises.
+    #
+    "business": ("T-1182", "The business audit owns this unasserted enterprise claim."),
     "building": ("T-1198", "The seating pass owns this unasserted place claim."),
     "street": ("T-1198", "The seating pass owns this unasserted place claim."),
     "infrastructure": ("T-1198", "The seating pass owns this unasserted place claim."),
@@ -475,7 +479,57 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
 # reason, and a note on every single unit it closes. It is consulted ONLY where the
 # derivation ends in `unresolved`, so a ruling can never overturn an assertion, a
 # later_only or a refusal the reading itself carries — the readings stay in charge.
-RULING_DISPOSITIONS = {"refused", "later_only", "outside_chicago", "aggregate_only", "unresolved"}
+RULING_DISPOSITIONS = {"refused", "later_only", "outside_chicago", "aggregate_only", "unresolved",
+                       "asserted"}
+
+# A RULING MAY SAY `asserted`, AND IT IS THE ONLY DISPOSITION THAT MUST PROVE ITSELF (T-1330).
+# The derivation above closes a unit as `asserted` on one test: a source-bearing structured
+# field on a resident card NAMES the unit's record id AND cites a source the unit itself
+# lists. That test cannot see the spend this project most wants to make -- a finding that
+# brings a NEW volume and writes what it says onto the card -- because the new volume is by
+# definition not among the sources the reading already carried. Nine of T-1330's thirty
+# enrichments are exactly that: Peck's Providence birth out of the Chicago History Museum's
+# encyclopedia, Hugunin's 17 August 1833 arrival out of the Old Settlers proceedings, each
+# replacing a value the arrival stage had DRAWN from a distribution. Left to the derivation
+# they read `unresolved` for ever, and the register's only way to close them would be to call
+# a written assertion `refused`, which would understate the spend in the one direction a
+# ledger must never be wrong in.
+#
+# So a ruling may assert, and a ruling that asserts must NAME THE FIELD: `wrote` on the
+# ruling row, a LIST of `{"file": <path under data/residents/>, "field": <key>}` because a
+# finding can fill two of them at once. The checks below are
+# the whole of the licence -- the file exists, the field is there, it is `attested`,
+# `inferred` or `documented`, it cites at least one source, and it names the unit's own
+# record id. A row that cannot show all five is a fault and not an assertion, which keeps
+# `asserted` something a register has to earn rather than something it can declare.
+def asserted_ruling_faults(root: Path, unit_id: str, record_id: str, row: dict) -> list[str]:
+    wrote = row.get("wrote")
+    where = f"a ruling asserts {unit_id} and"
+    if not isinstance(wrote, list) or not wrote:
+        return [f"{where} names no field it was written into"]
+    faults = []
+    for named in wrote:
+        if not isinstance(named, dict) or not named.get("file") or not named.get("field"):
+            faults.append(f"{where} one of the fields it names is not a file and a key")
+            continue
+        path = root / str(named["file"])
+        if not path.exists():
+            faults.append(f"{where} names {named['file']}, which is not a file")
+            continue
+        doc = read_json(path)
+        block = doc.get(str(named["field"])) if isinstance(doc, dict) else None
+        at = f"{named['file']}#{named['field']}"
+        if not isinstance(block, dict):
+            faults.append(f"{where} names {at}, which carries no block")
+            continue
+        if block.get("confidence") not in STRUCTURED_CONFIDENCE:
+            faults.append(f"{where} {at} is not attested, inferred or documented")
+        if not cited_sources(block):
+            faults.append(f"{where} {at} cites no source")
+        if record_id not in json.dumps(block, ensure_ascii=False):
+            faults.append(f"{where} {at} does not say {record_id}")
+    return faults
+
 
 
 def ruling_registers(root: Path) -> list[Path]:
@@ -592,7 +646,21 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]],
     rule = rulings["rules"][ruling["rule"]]
     said = f"{rule['statement']} THIS UNIT: {ruling['note']}"
     row = {"disposition": rule["disposition"], "ruling": ruling["rule"]}
-    if rule["disposition"] == "refused":
+    if rule["disposition"] == "asserted":
+        # The document's `target` is ONE field, in the shape `natural_disposition` builds,
+        # so every reader downstream sees an assertion of the kind it already knows. The
+        # whole list stays beside it: a finding that filled two fields says both, and
+        # `asserted_ruling_faults` re-reads every one.
+        wrote = [w for w in (ruling.get("wrote") or []) if isinstance(w, dict)]
+        if wrote:
+            first = wrote[0]
+            row["target"] = {"kind": "resident_record",
+                             "id": Path(str(first.get("file"))).stem,
+                             "file": first.get("file"),
+                             "field_path": "/" + pointer_part(str(first.get("field")))}
+            row["wrote"] = wrote
+        row["reason"] = said
+    elif rule["disposition"] == "refused":
         row["rule"] = ruling["rule"]
         row["evidence"] = said
     elif rule["disposition"] == "unresolved":
@@ -619,6 +687,10 @@ def build_document(root: Path = ROOT) -> tuple[dict, list[str]]:
         row = {k: unit[k] for k in (
             "unit_id", "domain", "source_file", "source_pointer", "source_record_id")}
         row.update(classify(root, unit, targets, rulings, fired))
+        if row.get("disposition") == "asserted" and row.get("ruling"):
+            faults.extend(asserted_ruling_faults(
+                root, unit["unit_id"], unit["source_record_id"],
+                rulings["by_unit"][unit["unit_id"]]))
         rows.append(row)
     faults.extend(ruling_coverage_faults(rulings, known, fired))
     by_domain = defaultdict(Counter)

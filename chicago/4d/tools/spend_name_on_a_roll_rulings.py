@@ -65,11 +65,23 @@ BLACKHAWK_CROSSWALK = ROOT / "data/research/civic/blackhawk_war_crosswalk.json"
 CENSUS_RECORDS = ROOT / "data/research/census_1830/records/schedule_chicago_1830.json"
 CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 
-# The arrival pass takes every bound a roll can put on a person the town holds; the
-# borderline roster takes every name a roll carries that the town does not hold. Both are
-# open tickets with exactly that field, and a hand-off is not a spend: when either closes,
+# The borderline roster takes every name a roll carries that the town does not hold. It is
+# an open ticket with exactly that field, and a hand-off is not a spend: when it closes,
 # these registers go red and the units come back for a real answer. That is the point.
-ARRIVAL = "T-1169"
+#
+# THERE IS NO ARRIVAL POINTER LEFT IN THIS FILE, and the history of the one that stood
+# here is the reason to say so. It was T-1169, then T-1318, then T-1318's child T-1329,
+# each rename forced by the same rule — a split ticket is not an open one, the rule that
+# went red on 61 units when T-1146 was split and on 3,384 when T-1236 was. Two passes
+# ended it rather than renaming it again. T-1326 asserted the town's own poll and tax
+# rolls onto the cards the crosswalk names, and T-1337 did the same for the 14 matched
+# 1830 schedule lines: `tools/spend_appearance_bounds.py` writes each onto its person as
+# `persons[].appearance_bounds[]`, so those units close `asserted` and `still_open()`
+# drops them before this register is built. The one row left over — the single
+# surname-variant candidate — is now REFUSED here under its own rule instead of being
+# handed to a fifth arrival ticket, because a candidate is a rival still standing and
+# "wait for somebody to decide" is not a disposition, it is a deferral wearing one.
+#
 # NOT T-1159: that ticket CLOSES with the roster it builds, and the comment above is the
 # reason this matters — "when either closes, these registers go red and the units come back
 # for a real answer". The real answer for a roster name is T-1172, which re-admits the
@@ -99,33 +111,19 @@ LADDER = (
     "either. ")
 
 CIVIC_RULES = {
-    "the_poll_book_bounds_a_held_residents_presence": {
-        "disposition": "unresolved",
-        "ticket": ARRIVAL,
-        "statement": (
-            "A poll list records a man who presented himself and voted at a town election, "
-            "so the entry does place a body in Chicago on the day the list was taken. The "
-            "voter crosswalk matches this entry to a person the town already holds, on "
-            "surname and on forenames agreeing initial for initial. " + LADDER +
-            "What the entry therefore gives is a BOUND on that person's presence — he was "
-            "here by this date — and drawing an arrival from a bound is the arrival pass's "
-            "work, with the other dated appearances of the same man in front of it. The "
-            "unit is handed on unasserted; no card is edited, no confidence moves, and the "
-            "identity the crosswalk made is neither re-opened nor strengthened here."),
-    },
-    "the_1833_tax_roll_bounds_property_and_not_presence": {
-        "disposition": "unresolved",
-        "ticket": ARRIVAL,
-        "statement": (
-            "The entry stands on the 1833 TAX list, and this domain's own reading has "
-            "already ruled what that list is: 'THE 1833 TAX LIST OF THE TOWN OF CHICAGO IS "
-            "A PROPERTY ROLL AND NOT A CHECK ON RESIDENCE' (claims/town_findings_voter_"
-            "lists.json v005), settled out of the list's own membership. A man may be "
-            "taxed on a town lot he does not live on, so the roll bounds his PROPERTY in "
-            "the town and not his body in it. The crosswalk matches the entry to a person "
-            "the town holds; the unit is handed to the arrival pass with that limit stated, "
-            "so the bound is weighed for what it is rather than read as a residence."),
-    },
+    # THE TWO RULES THAT USED TO STAND HERE ARE GONE BECAUSE THE UNITS ARE SPENT (T-1326).
+    # `the_poll_book_bounds_a_held_residents_presence` and
+    # `the_1833_tax_roll_bounds_property_and_not_presence` handed all 292 matched entries
+    # of the 1833-1835 poll and tax lists to an arrival pass. T-1326 ran that pass:
+    # tools/spend_civic_roll_bounds.py writes every matched entry onto the person the
+    # crosswalk named, under `persons[].dated_bounds[]`, at `inferred`, with the roll as
+    # its source, `bounds: "property"` and `here_by: null` on a tax row (T-1117) and
+    # `covers_scene_date: false` on all of them. `research_spend_ledger.natural_disposition`
+    # now closes those units `asserted` before this register is consulted, `still_open()`
+    # drops them, and `self_test` refuses a rule that never fires — so keeping the two
+    # statements would be keeping a hand-off to work that has happened, which is the exact
+    # thing this file's own doc says a ruling may not be. `voter_rule` returns no rule for
+    # a matched row for the same reason, and says where the row went instead.
     "a_roll_agreeing_on_surname_alone_is_never_a_merge": {
         "disposition": "refused",
         "statement": (
@@ -150,18 +148,34 @@ CIVIC_RULES = {
             "real people before it invents any. Nothing is minted here and no presence is "
             "asserted; the name is handed on with the roll and date that carry it." + ROSTER_SPENT),
     },
-    "the_1832_enrollment_may_bound_a_rolled_mans_arrival": {
-        "disposition": "unresolved",
-        "ticket": ARRIVAL,
+    # T-1326 GAVE THESE EIGHT THEIR REAL ANSWER, and it is a refusal rather than a hand-off.
+    # The rule was named `..._may_bound_a_rolled_mans_arrival` and handed the row to the
+    # arrival pass, which is where it sat for as long as there was an arrival pass to hand
+    # it to. But the hand-off was never going to be collectable: the bound it describes is
+    # conditional on an identity NOBODY HAS MADE, and no pass may make it, because the
+    # crosswalk that read the corpus declined to. A unit deferred to a judgement the
+    # project has ruled out of scope is not deferred, it is refused — so it says so.
+    "the_enrollment_corroborates_a_name_and_no_card_may_rest_on_it": {
+        "disposition": "refused",
         "statement": (
             "The Black Hawk War index enrolls this man AT CHICAGO in 1832, and the "
             "crosswalk finds one reading on the 1833-1835 poll and tax lists that agrees "
             "with him initial for initial. The crosswalk is explicit that this is "
-            "corroboration and not an identity: the same NAME stands on both, and whether "
-            "it is the same MAN it does not say. " + LADDER + "So the enrollment cannot "
-            "assert a residence; what it can do, IF the identity holds, is push that man's "
-            "presence at Chicago back to 1832, three years before the scene. That is a "
-            "candidate bound and the arrival pass owns it, with the identity still open."),
+            "corroboration and not an identity — 'the same NAME stands on both; whether it "
+            "is the same MAN is a judgement this pass does not make' — and the join it "
+            "offers is to a ROLL ENTRY, not to a person: reaching a card means chaining "
+            "that unmade identity onto the second name agreement the voter crosswalk made. "
+            + LADDER + "Two chained name agreements, neither of them an identification a "
+            "source states, cannot put a bound on a townsman's card without inventing the "
+            "identity in the middle, and this project does not upgrade a confidence to "
+            "make something look better evidenced. The enrollment is therefore refused as "
+            "a person unit and kept where it was read, in "
+            "data/research/civic/blackhawk_war_crosswalk.json with its `corroborated` "
+            "outcome intact. WHAT WOULD REOPEN IT: a source that identifies the enrolled "
+            "man with the man on the rolls — a muster roll giving a residence, a pension "
+            "file, a company officer's list beside a town office — at which point the 1832 "
+            "enrollment becomes a real bound pushing that person's presence back three "
+            "years before the scene, and the crosswalk is re-adjudicated first."),
     },
     "an_ambiguous_enrollment_agreement_is_never_a_merge": {
         "disposition": "refused",
@@ -245,30 +259,33 @@ CIVIC_RULES = {
 }
 
 CENSUS_RULES = {
-    "the_1830_line_bounds_a_held_residents_presence": {
-        "disposition": "unresolved",
-        "ticket": ARRIVAL,
-        "statement": (
-            "The 1830 schedule enters this head of family in the enumerator's division "
-            "headed 'Peoria & Putnam Counties & Territory attached', and the resident "
-            "crosswalk finds a person in the town whose surname AND given name both agree. "
-            "The crosswalk carries that agreement as EARLIER EVIDENCE and says in terms "
-            "that it grades nothing on its own. " + LADDER + "What the line gives is a "
-            "bound — this person was in the district in the summer of 1830, five years "
-            "before the scene — and the arrival pass draws arrivals from bounds. The unit "
-            "is handed on unasserted and the identity is neither re-opened nor hardened."),
-    },
+    # THE RULE THAT USED TO STAND HERE IS GONE BECAUSE THE UNITS ARE SPENT (T-1337).
+    # `the_1830_line_bounds_a_held_residents_presence` handed all 14 matched lines of the
+    # 1830 Peoria & Putnam division to an arrival pass. T-1337 ran that pass:
+    # tools/spend_appearance_bounds.py writes each matched line onto the person the
+    # resident crosswalk named, under `persons[].appearance_bounds[]`, at `inferred`,
+    # `bound_kind: "district_presence"` with `here_by: null` — the division never writes
+    # the word Chicago and a district is not the town — and `covers_scene_date: false`.
+    # `research_spend_ledger.natural_disposition` now closes those 14 `asserted` before
+    # this register is consulted, `still_open()` drops them, and `self_test` refuses a rule
+    # that never fires, so keeping the statement would be keeping a hand-off to work that
+    # has happened. `census_rule` returns no rule for a matched line for the same reason,
+    # and says where the line went instead.
     "the_1830_surname_variant_is_a_candidate_and_not_a_merge": {
-        "disposition": "unresolved",
-        "ticket": ARRIVAL,
+        "disposition": "refused",
         "statement": (
             "The given names agree and the surnames differ only by a silent terminal e or a "
             "doubled consonant, and the crosswalk is explicit that this is a CANDIDATE and "
-            "never a merge. This file does not make the identification either. What it does "
-            "is carry the row forward with the identity still open, because IF the "
-            "identification is made the 1830 line becomes a bound on that person's presence "
-            "and the arrival pass is where a bound is weighed. Nothing is upgraded, and the "
-            "candidate remains a candidate."),
+            "never a merge. This file does not make the identification either, and as of "
+            "T-1337 it no longer hands the row to an arrival pass to make: a candidate is "
+            "a rival still standing, this project's standing rule is that an identity is "
+            "not promoted by being written down a second time, and a fifth successive "
+            "deferral is not a disposition. The row is REFUSED as a person unit, and the "
+            "refusal states its own reopen rule — IF the identification is made, by "
+            "T-0513 with the rest of the evidence in front of it, the 1830 line becomes a "
+            "bound on that person's presence and tools/spend_appearance_bounds.py writes "
+            "it the way it writes the other 14. Nothing is upgraded, nobody is minted, and "
+            "the candidate remains a candidate in the crosswalk that declared it."),
     },
     "the_1830_line_names_the_garrison_and_not_a_person": {
         "disposition": "refused",
@@ -452,16 +469,14 @@ def voter_rule(row: dict, entry: dict, lists: dict) -> tuple[str, str]:
     seen = f"{row.get('as_read')!r} read as {row.get('normalized')!r}"
     where = f"{title}, entry {row['locator'].get('entry')} ({when})"
     if outcome == "matched":
-        held = (f"The crosswalk joins it to {entry['matched_resident']} in household "
-                f"{entry['household_id']}: {entry.get('discriminator') or entry.get('rule')}")
-        if entry["list"] == "tax_1833":
-            return "the_1833_tax_roll_bounds_property_and_not_presence", (
-                f"{where} enters {seen}. {held}. The roll is the town's property list of "
-                f"1833, so what it bounds is this man's taxable standing in Chicago and "
-                f"not his body in it.")
-        return "the_poll_book_bounds_a_held_residents_presence", (
-            f"{where} enters {seen}, a man who voted at a town election on that day. "
-            f"{held}. The date bounds that person's presence and is handed on unasserted.")
+        # SPENT, NOT RULED (T-1326). A matched entry is written onto the card the crosswalk
+        # names by tools/spend_civic_roll_bounds.py and closes `asserted`, so this register
+        # states nothing about it: a ruling on a unit something else already closed reads as
+        # work done and is not, and `research_spend_ledger.ruling_coverage_faults` fails it.
+        return None, (
+            f"{where} enters {seen}. The crosswalk joins it to "
+            f"{entry['matched_resident']} in household {entry['household_id']}, and "
+            f"tools/spend_civic_roll_bounds.py has written that bound onto the card.")
     if outcome == "candidate":
         rivals = ", ".join(str(r) for r in (entry.get("rivals") or [])) or "no single bearer"
         return "a_roll_agreeing_on_surname_alone_is_never_a_merge", (
@@ -481,7 +496,7 @@ def blackhawk_rule(row: dict, entry: dict) -> tuple[str, str]:
              f"{row['locator'].get('entry')} of 134 — company {company}, rank {rank}")
     if outcome == "corroborated":
         agrees = ", ".join(f"{v['record_id']} {v['as_read']!r}" for v in entry.get("voter_entries") or [])
-        return "the_1832_enrollment_may_bound_a_rolled_mans_arrival", (
+        return "the_enrollment_corroborates_a_name_and_no_card_may_rest_on_it", (
             f"{where} — enrolls {seen}. One reading on the 1833-1835 rolls agrees initial "
             f"for initial ({agrees}): {entry.get('rule')}")
     if outcome == "ambiguous":
@@ -504,9 +519,15 @@ def census_rule(row: dict, outcome: str, entry: dict) -> tuple[str, str]:
              f"{row['locator'].get('entry')}, in the division headed 'Peoria & Putnam "
              f"Counties & Territory attached'")
     if outcome == "earlier_evidence":
-        return "the_1830_line_bounds_a_held_residents_presence", (
-            f"{where}, enters {seen}. {entry.get('rule')} The household is "
-            f"{entry.get('household')}.")
+        # SPENT, NOT RULED (T-1337). A matched line is written onto the card the resident
+        # crosswalk names by tools/spend_appearance_bounds.py and closes `asserted`, so
+        # this register states nothing about it: a ruling on a unit something else already
+        # closed reads as work done and is not, and
+        # `research_spend_ledger.ruling_coverage_faults` fails it.
+        return None, (
+            f"{where}, enters {seen}. The crosswalk joins it to the town person "
+            f"{entry.get('town_name')!r} in household {entry.get('household')}, and "
+            f"tools/spend_appearance_bounds.py has written that bound onto the card.")
     if outcome == "surname_variant_candidate":
         return "the_1830_surname_variant_is_a_candidate_and_not_a_merge", (
             f"{where}, enters {seen}. {entry.get('rule')} The household weighed was "
@@ -528,6 +549,8 @@ def civic_rulings() -> list[dict]:
     by_record = {e["record_id"]: e for e in read_json(VOTER_CROSSWALK)["entries"]}
     for row in voters["records"]:
         rule, note = voter_rule(row, by_record[row["id"]], lists)
+        if rule is None:                      # spent on a card; see voter_rule
+            continue
         rulings.append({"unit": unit_id("civic", VOTER_RECORDS, "records", row["id"]),
                         "rule": rule, "note": note})
     enrollments = read_json(BLACKHAWK_RECORDS)
@@ -551,6 +574,8 @@ def census_rulings() -> list[dict]:
     for row in read_json(CENSUS_RECORDS)["records"]:
         outcome, entry = outcome_of[row["id"]]
         rule, note = census_rule(row, outcome, entry)
+        if rule is None:                      # spent on a card; see census_rule
+            continue
         rulings.append({"unit": unit_id("census_1830", CENSUS_RECORDS, "records", row["id"]),
                         "rule": rule, "note": note})
     rulings.extend(claim_rulings("census_1830", "census_1830", CENSUS_CLAIM_RULES))
@@ -667,10 +692,16 @@ def self_test() -> int:
         entry.update(kw)
         return voter_rule(row, entry, lists)
 
-    held("a poll entry matched to a resident", voter("matched"),
-         "the_poll_book_bounds_a_held_residents_presence")
-    held("a tax entry matched to a resident", voter("matched", "tax_1833"),
-         "the_1833_tax_roll_bounds_property_and_not_presence")
+    for label, list_id in (("a poll entry matched to a resident", "poll_1834"),
+                           ("a tax entry matched to a resident", "tax_1833")):
+        rule, note = voter("matched", list_id)
+        if rule is not None:
+            failures.append(f"{label}: is ruled here and it is spent on a card "
+                            f"(fell under {rule!r})")
+        elif "spend_civic_roll_bounds" not in note:
+            failures.append(f"{label}: is unruled and does not say where it went instead")
+        else:
+            print(f"  rules: {label} -> spent by tools/spend_civic_roll_bounds.py")
     held("a candidate on the rolls", voter("candidate"),
          "a_roll_agreeing_on_surname_alone_is_never_a_merge")
     held("a roll name the town does not hold", voter("unmatched"),
@@ -688,7 +719,7 @@ def self_test() -> int:
         return blackhawk_rule(row, entry)
 
     held("a corroborated 1832 enrollment", enrollment("corroborated"),
-         "the_1832_enrollment_may_bound_a_rolled_mans_arrival")
+         "the_enrollment_corroborates_a_name_and_no_card_may_rest_on_it")
     held("an ambiguous 1832 enrollment", enrollment("ambiguous"),
          "an_ambiguous_enrollment_agreement_is_never_a_merge")
     held("an enrollment printed without a surname", enrollment("no_surname", company="INDIAN",
@@ -699,8 +730,19 @@ def self_test() -> int:
 
     crow = {"id": "x", "as_read": "John Doe", "normalized": "JOHN DOE",
             "locator": {"image": "n576", "entry": 1}}
+    crule, cnote = census_rule(crow, "earlier_evidence",
+                               {"rule": "stated by the crosswalk", "town_name": "John Doe",
+                                "household": "hh_doe_john"})
+    if crule is not None:
+        failures.append("an 1830 matched line: is ruled here and it is spent on a card "
+                        f"(fell under {crule!r})")
+    elif "spend_appearance_bounds" not in cnote:
+        failures.append("an 1830 matched line: is unruled and does not say where it went "
+                        "instead")
+    else:
+        print("  rules: an 1830 matched line -> spent by tools/spend_appearance_bounds.py")
+
     for outcome, want in (
-            ("earlier_evidence", "the_1830_line_bounds_a_held_residents_presence"),
             ("surname_variant_candidate", "the_1830_surname_variant_is_a_candidate_and_not_a_merge"),
             ("not_a_person", "the_1830_line_names_the_garrison_and_not_a_person"),
             ("refused_surname_only", "the_1830_surname_only_match_was_refused_in_the_crosswalk"),

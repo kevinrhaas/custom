@@ -38,6 +38,12 @@ source "$_check_tools/check_harness.sh"
 step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-0938)" \
   bash tools/publish.sh
 
+# THE ONE ORDERING THIS GATE HAS, and under CHECK_JOBS>1 it has to be said out loud.
+# Everything below reads the mirror the step above writes, so the pool may not start
+# any of it until that publish has finished. `check_flush` is the barrier: it drains
+# what is queued and returns, and it is a no-op on the serial path.
+check_flush
+
 # T-0763. The gate's own OUTPUT is a gate. 114 of the steps below prove a derivation by
 # breaking it and require its assertions to fire, so a green run prints dozens of lines
 # that read exactly like a broken gate — and three tickets (T-0745, and the misreports in
@@ -322,6 +328,25 @@ step "no committed list carries the same id twice" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/check_unique_ids.py --self-test
+
+# THE STRUCTURE FUNCTION VOCABULARY IS CLOSED (T-1311). `function.value` was a free
+# string and 384 records had spelled it 109 ways — three of them the same word twice
+# (`blacksmith_shop` and `blacksmith shop`, `store_residence` and `store-residence`,
+# two spellings of the cooper/wheelwright shop). The signage rule, the yard goods,
+# the street-edge furniture and the register's occupation crosswalk all match this
+# value EXACTLY, so a second spelling is a trade those rules cannot see: closing the
+# vocabulary gave nine anonymous roofs a WRITTEN refusal apiece in three derived
+# layers that had simply not noticed them. `data/structures.schema.json` carries the
+# vocabulary and validate.py refuses a value outside it; this asks the two questions
+# the schema cannot — that every committed value is its own canonical form under the
+# folding rule, and that no OTHER copy of the vocabulary has gone stale against it
+# (the signage rule's trade names, the card's FUNCTION_WORDS, where `store-residence`
+# sat as an unreachable branch for as long as the free string existed).
+step "every structure function is a term of the closed vocabulary" \
+  python3 tools/normalise_structure_function.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/normalise_structure_function.py --self-test
 
 # THE QUEUE'S MERGE DRIVER. QUEUE.md is reconciled by tools/merge-queue.mjs —
 # ours' order, theirs' closes and theirs' new tickets — because a text merge of
@@ -666,7 +691,19 @@ selftest "…and its own assertions still fire when broken" \
 # found 18 such households by hand. This re-derives every row and every derived
 # count from data/residents/households/*.json and fails if the committed file is not
 # what the derivation produces.
-step "the residents manifest re-derives from the household cards" \
+#
+# T-1144 acceptance 6 put the REDIRECT TABLE under the same rule. `merged` is one
+# row per card folded onto another, it is the only way a retired id resolves, and
+# it was the one list here nobody re-derived - so it had drifted both ways:
+# `hh_vanderbogart_h` (T-0842) had a record and no row, so the id resolved to
+# nothing while its own note said the table redirected it, and
+# `hh_blanchard_gantry` was carried under `C7` after T-0993 minted `C8` for that
+# fold, naming a reader the compound-surname rule for a middle-name argument. Both
+# are now derived from data/residents/merged/*.json, and on top of the tally this
+# refuses a redirect that does not ARRIVE - a target that is not a live card, a
+# person in no card, a redirect onto another retired card, a retired id shadowing a
+# live one - because a table can re-derive perfectly and still be a dead end.
+step "the residents manifest re-derives from the household cards and the retired records" \
   python3 tools/rebuild_resident_index.py --check
 
 # T-0871. It was the only re-derivation gate in this tree whose own assertions had
@@ -2099,6 +2136,31 @@ step "a split keeps its claim, and the queue drops only finished work and regain
 step "every gated writer is in the derived manifest, or exempted in writing" \
   node tools/audit_manifest_coverage.mjs
 
+# T-1339, and it sits beside the writer coverage above because it is the same argument one
+# question over. That gate asks WHICH TOOLS WRITE; this one asks WHICH OF THEM WRITE WHILE
+# THE GATE IS RUNNING, which is a different failure with a worse signature.
+#
+# check.sh runs its steps in a job pool over ONE working tree (T-1289). A step that mutates
+# that tree is read by whatever runs beside it, so the gate reports red on a tree that is
+# green — four PRs went red that way on 2026-09-18 before the cause was found, and every one
+# of them looked like a defect in the branch. T-1336 fixed the six self-tests responsible and
+# put a retry behind them, which keeps the VERDICT correct; it does not stop the seventh
+# being written, and TWO OF THE SIX carried comments claiming they already worked on a copy.
+#
+# So the answer is a measurement and not a convention, exactly as T-1302 answered "which
+# tools write?" with a measured inventory rather than a pattern over the source. The slow
+# half is tools/measure_step_isolation.mjs --build (one instrumented gate run); this reads
+# what it wrote and costs milliseconds. An unmeasured step fails here, because an empty file
+# would otherwise read as proof.
+step "no gate step writes the live tree, and every one of them has been measured" \
+  node tools/audit_step_isolation.mjs --check --quiet
+
+selftest "…and it refuses an unmeasured step as well as a mutating one" \
+  node tools/audit_step_isolation.mjs --self-test
+
+selftest "…and the measurement's own readers still parse what check.sh declares" \
+  node tools/measure_step_isolation.mjs --self-test
+
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
 # T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to
@@ -2252,6 +2314,34 @@ step "the reconstruction programme answers for every reconstructed resident" \
 
 selftest "...and each rule of the record contract refuses its own mutation" \
   python3 tools/reconstruct_residents_1835.py --self-test
+
+# T-1169. Two kinds of writer now touch data/residents/households/*.json: four mints
+# that re-derive the whole record from their registers, and the reconstruction
+# programme's stages, which write attribute blocks onto records the mints own. Each
+# mint's --check compares the file it derives byte for byte, so the first stage to
+# write anything put three of them into drift on 1,247 files. Ownership is PER
+# ATTRIBUTE — the grain T-1158 already cut — and this asserts the wiring that makes it
+# so: a mint that stops carrying would delete a stage's work on its next --build, and
+# nothing else here would notice until the values were gone.
+step "every mint that re-derives a household carries the blocks it does not own" \
+  python3 tools/carry_stage_blocks.py --check
+
+selftest "...and its own assertions still fire when broken" \
+  python3 tools/carry_stage_blocks.py --self-test
+
+# T-1171, stage `modelled_families` of that programme, and the first one to write a
+# PERSON rather than an attribute block. 94 heads the sources leave standing alone get
+# the wife and children the household model says they kept, drawn at the head's own size
+# band off the 1840 city's histogram, seeded on the household id, and counted into the
+# order book — which refuses a draw rather than overfill a bucket. The stage's own
+# --check strips its people out of the committed layer, draws them again and refuses a
+# differing byte; `reconstruct_residents_1835.py --check` above holds each of them to the
+# record contract, which is the other half.
+step "the modelled families re-derive from the household model and the order book" \
+  python3 tools/reconstruct_modelled_families.py --check
+
+selftest "...and every rule that decides who gets a family refuses its own case" \
+  python3 tools/reconstruct_modelled_families.py --self-test
 
 # T-1172, stage `readmissions` of that programme. The borderline roster (T-1159) holds
 # every name the corpus PRINTED and the research WITHHELD; this stage spends four of its
@@ -2637,6 +2727,22 @@ step "the remainder rulings re-derive from their five corpora (T-1298)" \
 
 selftest "…and each of its rules still fires, and hands on only to live work" \
   python3 tools/spend_remainder_rulings.py --self-test
+
+# T-1330. THE SPEND ITSELF, where the two steps above only ROUTE. Thirty of T-1301's
+# `corroborated_enrichment` findings named an arrival, an origin, a departure or a dated
+# appearance, and they had been handed from arrival ticket to arrival ticket without being
+# read against the cards they name. Nine of them retire a value the arrival stage DREW —
+# an origin region taken from the Old Settlers birthplace sample, an arrival year drawn
+# from a distribution truncated at the household's bound — and the block that replaces one
+# carries no `written_by_stage` mark, which is how reconstruct_residents_1835.py's
+# `writable()` yields the field. So two gates have to agree here and this is the first of
+# them: the blocks re-derive from the adjudication, and the adjudication still covers every
+# unit the ruling register hands this pass, in both directions.
+step "the enrichment arrival and origin spend re-derives onto its nine cards (T-1330)" \
+  python3 tools/spend_enrichment_arrivals.py --check
+
+selftest "…and its citation, naming and retirement rules still fire when broken" \
+  python3 tools/spend_enrichment_arrivals.py --self-test
 
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
@@ -3298,6 +3404,57 @@ step "…and the 1833-1835 rolls' matched rulings are on the cards they name" \
 selftest "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_civic_voter_lists.py --self-test
 
+# T-1326. THE PASS ABOVE PUT THOSE RULINGS ON A CARD AND NOTHING COULD COUNT THEM. It writes
+# a paragraph into `persons[].note`, and `tools/research_spend_ledger.py` reads a unit as
+# SPENT only where a structured node carrying `attested`/`inferred` and a source names it —
+# a person node carries `grade`, not `confidence` — so all 292 matched roll entries went on
+# reading `unresolved` while the evidence sat on the cards. This pass writes the same
+# rulings as `persons[].dated_bounds[]`: one row per entry, `inferred` because every
+# identity in that crosswalk is a name agreement, `covers_scene_date: false` because an
+# earlier source never promotes, and `bound_kind: "property"` with `here_by: null` on a tax
+# row, which is T-1117's standing ruling held in a field instead of in prose.
+step "…and each of those rulings is a bound on the card, not only a paragraph" \
+  python3 tools/spend_civic_roll_bounds.py --check
+
+selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
+  python3 tools/spend_civic_roll_bounds.py --self-test
+
+# T-1337. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
+# the town's press — and only ten of them sat on a card in any form, so an identification
+# had to already stand before a bound could be written. Two did: the resident crosswalk's
+# 14 matched 1830 lines and the baptismal crosswalk's 13 merged register appearances. This
+# pass writes those 27 as `persons[].appearance_bounds[]`; an 1830 row bounds presence in a
+# DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
+# Chicago), and three register appearances are dated after 1 July 1835, so they date an
+# appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
+# registers, and the 128 press units went to T-1338 with the id collision that blocks them.
+step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
+  python3 tools/spend_appearance_bounds.py --check
+
+selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
+  python3 tools/spend_appearance_bounds.py --self-test
+
+# T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
+# land-sale purchaser units and could not close 313 of them: the tract was entered on or
+# before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
+# card this town holds. It handed them to this ticket and said of itself that a hand-off is
+# not a spend. This pass is the spend, and it writes into `persons[].dated_bounds[]` rather
+# than inventing a second shape for a dated appearance — so the block now has two owners and
+# `tools/dated_bounds_block.py` is the rule that keeps them from wiping each other. It is
+# gated in four directions: a bound that stops reaching its card, a card carrying a bound off
+# a purchase the crosswalk never upheld, a drifted ledger, and — the one that is not about
+# this pass at all — the ruling register STILL ruling the 313, which
+# `research_spend_ledger.ruling_coverage_faults` fails as work that reads done and is not.
+step "…and the 313 upheld land-sale purchases are bounds on the cards they name (T-1332)" \
+  python3 tools/spend_land_sale_bounds.py --check
+
+selftest "…and a purchase is a dated appearance, never a residence, and never a Chicago presence" \
+  python3 tools/spend_land_sale_bounds.py --self-test
+
+selftest "…and two owners of one block replace their own rows and nobody else's" \
+  python3 tools/dated_bounds_block.py --self-test
+
 # T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
 # Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
 # had matched 101 entries to people this town holds, and the second hop could not even see
@@ -3398,6 +3555,19 @@ step "every family member the sources name is ruled on, and the ruled writes are
 
 selftest "…and an unruled statement, a lost write and a stale report all still fire" \
   python3 tools/spend_stated_families.py --self-test
+
+# T-1320. Both passes above read the CARDS. Neither has ever read data/research/books/ —
+# nine committed books, 267 adjudicated claims — for the kinship the books state, so a
+# book sentence only reached a card when somebody happened to quote it onto one. This
+# pass reads them, resolves both ends through the books' own crosswalk and by nothing
+# else, and answers every claim that states kinship in
+# data/research/books/kin_rulings.json. It mints nobody: a relative who was never in this
+# scene is EVIDENCE and not structure, which is validate.py's own rule for a kin row.
+step "every kinship the book corpus states is ruled on, and the ruled ties are on the cards" \
+  python3 tools/spend_book_kin.py --check
+
+selftest "…and a half brother flattened to a brother, a one-sided tie and a lost claim all still fire" \
+  python3 tools/spend_book_kin.py --self-test
 
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and
@@ -3993,6 +4163,28 @@ step "the location spend re-derives: no placement past its evidence, four retent
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
+
+# T-1144 acceptance 7, and the owner asked for it in those words on 2026-09-17: the
+# convergence report must NAME, per person, which of the plural roles[] and which home,
+# work and other locations reach 1 July 1835, so the sign-off reads coverage per axis off
+# one table instead of re-deriving it. The two axes were both already counted in aggregate
+# and neither could be asked about a PERSON without walking 1,258 household files and
+# joining 1,705 reconciliation rows by hand.
+#
+# Gated here rather than higher up because every input it copies is gated ABOVE it — the
+# roles at the roles step, the home/work/later rows at the reconciliation and spend steps
+# just above, the premises on the business register's own present_at_scene_date. This table
+# re-decides none of them: it copies each reach flag from the derivation that owns it, which
+# is why a drift here means one of those layers moved and this join was not rebuilt with it.
+# The self-test holds each rule over a fixture and proves it moves when its input moves,
+# including the one that is easy to get wrong in the safe-looking direction: a `no_claim`
+# home row is a STATED ABSENCE, not a failed placement, and reading the 1,186 of them as
+# `limited` would turn the reconciliation's honesty into a manufactured gap.
+step "every person says which roles and which places reach the scene date" \
+  python3 tools/report_convergence_coverage.py --check --quiet
+
+selftest "…and each of those rules moves when its input moves" \
+  python3 tools/report_convergence_coverage.py --self-test
 
 # T-1160. THE PROFILE OF THE KNOWN POPULATION, held to the layer it is read from.
 #

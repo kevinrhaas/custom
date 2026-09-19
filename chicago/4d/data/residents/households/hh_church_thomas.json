@@ -5,9 +5,12 @@
  "head": "church_thomas",
  "arrival": {
   "value": "1834",
-  "confidence": "reconstructed",
-  "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
-  "precision": "year"
+  "confidence": "inferred",
+  "precision": "year",
+  "sources": [
+   "ingale_early_chicago_reminiscence"
+  ],
+  "note": "A SOURCE, WHERE THIS PROJECT HAD A GUESS. The block this replaces said so itself — “NOT ATTESTED … 1834 is the earliest year that reading supports and it is a guess”, argued from the date of the store he built rather than from anything about the man. The completed resident-research pass on church_thomas read a published early-Chicago reminiscence as saying that Thomas Church arrived in 1834 and describing his Lake Street building activity. The year does not move; what moves is that it is now a reading with a source, at `inferred` because a reminiscence corroborates an uncommon name, a migration year and a merchant setting without proving the identity. This is the one `arrival` block this pass touches and it qualifies on the stated rule: reconstructed, and citing no source. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this."
  },
  "party_size_on_arrival": {
   "value": null,
@@ -15,14 +18,37 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
+  "value": "New England",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
+  "basis": {
+   "kind": "model",
+   "id": "origin",
+   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
+  },
+  "seed": "hh_church_thomas:origin_region",
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says where this household came from"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": null,
+  "value": "A store for the traffic of a town filling up",
   "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "tier": "reconstructed",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as merchant, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "basis": {
+   "kind": "rule",
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_store_for_the_traffic — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a source that says why this household came, or a committed source that apportions the town's arrivals between the land sales, the canal and the harbour works"
+  },
+  "written_by_stage": "attribute_fill_arrival"
  },
  "lives_at": {
   "value": null,
