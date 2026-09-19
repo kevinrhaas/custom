@@ -1,7 +1,7 @@
 ---
 id: T-1403
 title: Black-owned and Native or Metis-run businesses identified at the tier the evidence supports, so the Businesses view lists them on one filter and T-1177 reconstructs above an attested floor
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1182
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-19
+pr: 1538
+claimed_by: run 9/19/2026, 4:08:41 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T22:07:53.623Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35469360801
 ---
 
 Black-owned and Native or Metis-run businesses identified at the tier the evidence supports, so the Businesses view lists them on one filter and T-1177 reconstructs above an attested floor.

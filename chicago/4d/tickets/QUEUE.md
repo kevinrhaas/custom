@@ -55,7 +55,6 @@
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1403 — Black-owned and Native or Metis-run businesses identified at the tier the evidence supports, so the Businesses view lists them on one filter and T-1177 reconstructs above an attested floor
 T-1404 — A business for every in-window trade and no_fixed_premises for the trades that carry none, with the physicians' and lawyers' census gaps worked from the research first, the Sept-Dec 1835 crosswalk re-run, and what remains short written to the order book for T-1186
 T-1405 — Persons' other significant locations as associated_with[]: civic seats held, church membership and office, agencies held, land purchased and schools taught, each with kind, place, dates, tier and source — counts before and after
 T-1185 — Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
