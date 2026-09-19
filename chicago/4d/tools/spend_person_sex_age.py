@@ -60,6 +60,19 @@ WHAT IT REFUSES, and why the refusals are the point.
      an adult; it does not say when they were born. The franchise's own age rule is not
      in any source record this project holds, so no year is derived from one. That is a
      finding for T-1304, and it is written into the ticket rather than into a card.
+  * AND AN ADULT STATUS THE INTERVAL CONTRADICTS REFUSES THE INTERVAL (T-1179). The rule
+     above is about DERIVING a year and is unchanged; this is its converse, which is a
+     different statement and was missing. An obituary matched to a name by that name
+     alone put George Smith four years old on the scene date while his own advertisements
+     had him keeping the Exchange Coffee House through 1834 and 1835. Where an obituary's
+     interval leaves a person under the 15 that any roll naming them in their own right
+     requires, the SPEND is refused: the `birth_year` block written in its place asserts
+     no year at all and carries `refused_because`. The crosswalk's match is not withdrawn
+     and no age is asserted instead. Where the interval clears 15 and misses only the franchise's 20 — a
+     floor this project admits it invented — nothing is struck out: the year is carried
+     with `contradicted_by_the_card` beside it, which is T-1146's disposition and the one
+     the letter-list ruling settled on. A man's own age about himself is only ever
+     flagged, never refused.
   * NO `age_on_scene_date` OVER A BAND. Every interval this pass writes spans two birth
      years, so an age on 1 July 1835 spans three. Stating one would invent a precision
      the source does not have.
@@ -118,6 +131,52 @@ REGISTRY_SOURCE = "calumet_club_early_chicago_1879"
 # The roll that prints an age, and the day it was signed. Only one of the old-settler
 # rolls carries `age_1879_as_read`, and the arithmetic below turns on its date.
 REGISTRY_ROLL = "registry_1879_05_27"
+
+# WHAT THE CARD ALREADY SAYS ABOUT THIS PERSON'S AGE, and it is a FLOOR rather than a
+# year (T-1179). The refusals above say that no age may be derived from an adult status:
+# a poll list does not record a birth. The converse is not the same statement and is the
+# one this pass had been missing — an adult status cannot GIVE a birth year, but it can
+# REFUTE one. George Smith advertised the Exchange Coffee House in the Democrat of 5
+# November 1834 and again on 20 May 1835, and this pass spent an obituary onto his card
+# that put him four years old on the scene date. Both readings cannot stand, and nothing
+# in the tree noticed, because each pass only ever checked its own half.
+#
+# TWO FLOORS, AND THEY DO DIFFERENT THINGS, because the project does not hold them with
+# the same conviction. Both are stated in data/reconstruction/1835_sex_age_model.json as
+# conditionings on the age DRAW, and that file is candid about which is which:
+#
+#   * 15 at the date of any roll that names a person in their own right. The 1840
+#     schedule "counts a child as a tally inside a household and never as a
+#     correspondent", and the model takes 15 rather than 20 precisely so that an
+#     apprentice or a journeyman on a trade roll is not excluded. This is the floor the
+#     project defends in its own words, and an interval that puts a person UNDER it is
+#     REFUSED: a name match cannot make a correspondent, a taxpayer or a coffee-house
+#     keeper into a child of five.
+#
+#   * 20 on a poll, a tax list or a muster roll — the franchise's line. The model says of
+#     it, in capitals, that THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE, and carries it
+#     under the liberty L-rc-age-conditioning. A floor this project admits it invented may
+#     not be used to strike out evidence. So an interval that clears 15 and misses 20 is
+#     not refused; it is CARRIED, with the disagreement written beside it, which is the
+#     disposition T-1146 calls `contradicted` and the one the letter-list ruling settled
+#     on: the pass says a collision instead of acting on it.
+#
+# AND A MAN'S OWN AGE ABOUT HIMSELF IS NEVER REFUSED, only ever flagged. Rule 4 above is
+# a recollection by the person; rule 3 is an obituary matched to a name. Only the second
+# is weak in the way a refusal answers.
+#
+# A refusal WRITES NOTHING ONTO THE PERSON except the refusal: the interval is not
+# narrowed, no age is asserted, and the crosswalk's match is left exactly where
+# tools/spend_old_settlers.py put it. What is refused is the SPEND, and the card says so
+# in its own words so that a reader meets the disagreement rather than one side of it.
+REFUSAL_FLOOR = 15
+FRANCHISE_FLOOR = 20
+CIVIC_LIST_PREFIXES = ("poll_", "tax_", "muster_")
+
+# A roll the layer was minted off that names a person IN THEIR OWN RIGHT. A church
+# register is deliberately absent: it names infants, which is the one roll whose entries
+# are evidence of the opposite.
+OWN_RIGHT_KEYS = ("press_evidence", "book_evidence", "letter_list_returns")
 REGISTRY_DAY = "27 May 1879"
 
 # Rule 1. A title is a statement about the person; a rank is a guess about the period.
@@ -532,6 +591,111 @@ def spells_a_forename(given) -> bool:
     return False
 
 
+def list_year(name: str):
+    """The year a civic list is OF, read off its own name. None where it does not say."""
+    match = re.search(r"(18\d\d)\b", str(name or ""))
+    return int(match.group(1)) if match else None
+
+
+def age_floors(person: dict) -> list:
+    """Every floor the card's OWN evidence puts under this person's age, with its reason.
+
+    Each row is `(year, floor, why)`: at `year` this person was at least `floor` years
+    old, because of `why`. Nothing here asserts a birth year — see the note beside
+    REFUSAL_FLOOR — and nothing here reads a value this pass or any other one drew.
+    """
+    out = []
+    for entry in person.get("civic_evidence") or []:
+        name = str(entry.get("list") or "")
+        year = list_year(name)
+        if year and name.startswith(CIVIC_LIST_PREFIXES):
+            out.append((year, FRANCHISE_FLOOR, "stands on %s" % name))
+    for key in OWN_RIGHT_KEYS:
+        if person.get(key):
+            out.append((int(SCENE_DATE[:4]), REFUSAL_FLOOR,
+                        "is named in their own right in the %s on this card"
+                        % key.replace("_", " ")))
+    for role in person.get("roles") or []:
+        if not role.get("covers_scene_date"):
+            continue
+        out.append((int(SCENE_DATE[:4]), REFUSAL_FLOOR,
+                    "holds the role %s over the scene date"
+                    % (role.get("role") or role.get("as_printed") or "this card records")))
+    return sorted(out)
+
+
+def against_the_card(person: dict, row: dict) -> tuple:
+    """`(refusal, contradiction)` — what the card's own evidence says about this interval.
+
+    Both are taken at the interval's OLDEST reading, `earliest`, the year that makes the
+    person as old as the arithmetic allows: a verdict here is about the whole interval and
+    not merely about its unlucky end.
+    """
+    refusal = contradiction = None
+    for year, floor, why in age_floors(person):
+        age = year - row["earliest"]
+        said = ("this card says the person %s, and the interval leaves them %d in %d"
+                % (why, age, year))
+        if age < REFUSAL_FLOOR and refusal is None:
+            refusal = ("%s — under the 15 the 1840 schedule's own reading of a roll "
+                       "requires, which is the floor this project holds without a liberty"
+                       % said)
+        elif age < floor and contradiction is None:
+            contradiction = ("%s — under the %d a poll, tax or muster list is drawn at. "
+                             "That floor is the franchise's line and no source states it, "
+                             "so it is set beside this interval and not used to strike it "
+                             "out." % (said, floor))
+    return refusal, contradiction
+
+
+def refusal_block(source: str, row: dict, why: str) -> dict:
+    """The `birth_year` block a refused interval leaves: one that asserts NO year.
+
+    It is the same key and the same shape as a spent interval on purpose. A refusal that
+    invented a key of its own would sort differently on the card, render through nothing
+    the rest of the layer already has, and — measured the hard way on T-1179 — oscillate
+    against the draw stage that writes an age band into the same person. `value: null`
+    under `confidence: "reconstructed"` is this layer's own idiom for a block that asserts
+    nothing (T-1158), and it is what makes the card print the `not recorded` chip rather
+    than the hatched one that would say this project made a birth year up.
+    """
+    return {
+        "value": None,
+        "precision": None,
+        "confidence": "reconstructed",
+        "sources": [DEATHS_SOURCE if source == "death_notice" else REGISTRY_SOURCE],
+        "refused_interval": [row["earliest"], row["latest"]],
+        "refused_because": why,
+        "record_id": row.get("record_id"),
+        "as_read": row.get("as_read"),
+        "note": (
+            "A BIRTH INTERVAL THIS CARD REFUTES, AND SO NO BIRTH YEAR AT ALL (T-1179). An "
+            "obituary matched to this name puts the birth in %s, and that interval is NOT "
+            "carried, because %s. The match itself is the crosswalk's and is untouched — "
+            "what is refused is spending its arithmetic into an age. The two readings "
+            "cannot both stand, and the weaker one is the name match: the obituary list's "
+            "own header admits it names citizens who arrived after 1843 and others merely "
+            "prominently connected with Illinois history, while the evidence on this side "
+            "is this person's own. The floor the refusal is taken at is the one "
+            "data/reconstruction/1835_sex_age_model.json defends without a liberty — a "
+            "roll naming a person in their own right names somebody 15 or over — so this "
+            "pass refuses nothing that pass would have drawn. NOTHING IS ASSERTED IN ITS "
+            "PLACE: the person's age band is drawn for them like anybody else's, and a "
+            "source that states a birth retires this refusal."
+            % ("%d" % row["earliest"] if row["earliest"] == row["latest"]
+               else "%d or %d" % (row["earliest"], row["latest"]), why)),
+    }
+
+
+def contradiction_note(why: str) -> str:
+    return (
+        "AND THE CARD DOES NOT AGREE WITH IT (T-1179). %s The interval is carried anyway, "
+        "because the floor it misses is one this project invented and says so — the model "
+        "carries it under the liberty L-rc-age-conditioning — and a floor nobody can cite "
+        "may not strike out a reading. Both are printed so that a reader meets the "
+        "disagreement rather than one side of it." % (why[0].upper() + why[1:]))
+
+
 def death_notice_births(cards: dict) -> dict:
     """person id -> the death-notice interval this pass may spend, and why."""
     out = {}
@@ -642,10 +806,27 @@ def apply_to(card: dict, table: dict, lookup: dict, deaths: dict, registry: dict
             # matched to him by name. Where both stand, the note of the one written says
             # nothing about the other — the two are separate readings and the card keeps
             # the stronger.
+            source, row = None, None
             if pid in registry:
-                person["birth_year"] = birth_block("registry", registry[pid])
+                source, row = "registry", registry[pid]
             elif pid in deaths and not deaths[pid]["thin"]:
-                person["birth_year"] = birth_block("death_notice", deaths[pid])
+                source, row = "death_notice", deaths[pid]
+            if row:
+                refusal, contradiction = against_the_card(person, row)
+                if refusal and source == "death_notice":
+                    person["birth_year"] = refusal_block(source, row, refusal)
+                else:
+                    block = birth_block(source, row)
+                    # A refusal that could not be taken — rule 4's own recollection — is
+                    # still a disagreement, and is carried as one rather than dropped.
+                    said = contradiction or refusal
+                    if said:
+                        # ONE HOME FOR THE SENTENCE. It is not folded into `note`: the
+                        # card renders this field as a line of its own under the Born
+                        # row, and a disagreement a reader only meets by opening a
+                        # paragraph is one the card has not really said.
+                        block["contradicted_by_the_card"] = contradiction_note(said)
+                    person["birth_year"] = block
     return out
 
 
@@ -675,23 +856,43 @@ def tally(cards: dict, fresh: dict, table: dict, lookup: dict,
     # settles — into a number about a different pass's work.
     drawn = lambda p: (p.get("sex_basis") or {}).get("confidence") == "reconstructed"
     with_sex = sum(1 for _h, p in persons(fresh) if p.get("sex") and not drawn(p))
-    with_birth = sum(1 for _h, p in persons(fresh) if p.get("birth_year"))
+    # A REFUSAL IS NOT A BIRTH YEAR. It lives in the same key and asserts nothing, so a
+    # count of `birth_year` blocks would read three people into the headline who are
+    # exactly the three this pass declined to date.
+    carried = lambda p: (p.get("birth_year") or {}).get("value") is not None
+    with_birth = sum(1 for _h, p in persons(fresh) if carried(p))
     total = sum(1 for _ in persons(cards))
     return {
         "persons": total,
         "sex_before": sum(1 for _h, p in persons(cards) if p.get("sex") and not drawn(p)),
         "sex_after": with_sex,
-        "birth_year_before": sum(1 for _h, p in persons(cards) if p.get("birth_year")),
+        "birth_year_before": sum(1 for _h, p in persons(cards) if carried(p)),
         "birth_year_after": with_birth,
         "sex_written_by_rule": dict(sorted(sex_rules.items())),
         "sex_not_written_by_reason": dict(sorted(refusals.items())),
         "birth_year_from_the_calumet_registry": sum(
             1 for _h, p in persons(fresh)
-            if (p.get("birth_year") or {}).get("sources") == [REGISTRY_SOURCE]),
+            if carried(p) and (p.get("birth_year") or {}).get("sources") == [REGISTRY_SOURCE]),
         "birth_year_from_a_death_notice": sum(
             1 for _h, p in persons(fresh)
-            if (p.get("birth_year") or {}).get("sources") == [DEATHS_SOURCE]),
+            if carried(p) and (p.get("birth_year") or {}).get("sources") == [DEATHS_SOURCE]),
         "death_notice_intervals_refused_as_thin": sum(1 for r in deaths.values() if r["thin"]),
+        # T-1179. A match the CARD refutes, counted apart from a match that is merely
+        # thin: the first is a disagreement between two readings of one person and the
+        # second is a weak identification. A reader who conflates them learns nothing
+        # about either.
+        "intervals_refused_because_the_card_refutes_them": sum(
+            1 for _h, p in persons(fresh)
+            if (p.get("birth_year") or {}).get("refused_because")),
+        "refused_because_the_card_refutes_them": sorted(
+            p["id"] for _h, p in persons(fresh)
+            if (p.get("birth_year") or {}).get("refused_because")),
+        "intervals_carried_with_the_card_contradicting_them": sum(
+            1 for _h, p in persons(fresh)
+            if (p.get("birth_year") or {}).get("contradicted_by_the_card")),
+        "carried_with_the_card_contradicting_them": sorted(
+            p["id"] for _h, p in persons(fresh)
+            if (p.get("birth_year") or {}).get("contradicted_by_the_card")),
         "still_without_a_sex": total - with_sex,
         "still_without_a_birth_year": total - with_birth,
     }
@@ -847,6 +1048,42 @@ def self_test() -> int:
     want("a refused name never fires",
          not ({r["forename"] for r in table["refused"]} & set(lookup)))
 
+    # T-1179. THE CARD'S OWN EVIDENCE AGAINST THE INTERVAL, proved by breaking it: the
+    # two floors do different things, and a fixture that only exercised the refusal would
+    # not notice the day somebody promotes the franchise line into one.
+    interval = {"earliest": 1831, "latest": 1831, "arithmetic": "a.", "as_read": "x",
+                "record_id": "fdn0001", "thin": False}
+    keeper = {"id": "t", "name": "Test Person",
+              "roles": [{"role": "coffee_house_keeper", "covers_scene_date": True}]}
+    voter = {"id": "t", "name": "Test Person",
+             "civic_evidence": [{"list": "poll_1835"}]}
+    infant = {"id": "t", "name": "Test Person",
+              "church_evidence": [{"locator": "infant"}]}
+    refusal, contra = against_the_card(keeper, interval)
+    want("a trade over the scene date refuses a birth year that makes it a child of four",
+         refusal and "coffee_house_keeper" in refusal and contra is None)
+    refusal, contra = against_the_card(voter, {**interval, "earliest": 1820, "latest": 1820})
+    want("a poll list is a CONTRADICTION and never a refusal at 15",
+         refusal is None and contra and "not used to strike it out" in contra)
+    refusal, _ = against_the_card(voter, {**interval, "earliest": 1825, "latest": 1825})
+    want("a poll list still refuses a child of ten", refusal and "in 1835" in refusal)
+    refusal, contra = against_the_card(infant, interval)
+    want("a baptismal entry is never read as an adult status",
+         refusal is None and contra is None)
+    want("an interval is judged at its oldest reading",
+         against_the_card(voter, {"earliest": 1815, "latest": 1816})[0] is None)
+    want("a refusal asserts no year and says why",
+         refusal_block("death_notice", interval, "because")["value"] is None
+         and refusal_block("death_notice", interval, "because")["refused_because"])
+    want("a man's own age about himself is never refused",
+         not any((p.get("birth_year") or {}).get("refused_because")
+                 for _h, p in persons(fresh)
+                 if (p.get("birth_year") or {}).get("sources") == [REGISTRY_SOURCE]))
+    want("the three the layer refuses today are on the card and in the ledger",
+         sorted(p["id"] for _h, p in persons(fresh)
+                if (p.get("birth_year") or {}).get("refused_because"))
+         == ["harrison_caleb", "smith_george", "wright_amasa"])
+
     # Rule: this pass only ever fills an absence, and writes exactly two person keys.
     before_keys, after_keys = set(), set()
     for hid in cards:
@@ -883,12 +1120,24 @@ def self_test() -> int:
                  and basis["value"] == person["sex"])
         born = person.get("birth_year")
         if born and born.get("sources") in ([DEATHS_SOURCE], [REGISTRY_SOURCE]):
-            want("a written birth year states how wide its arithmetic left it (%s)"
-                 % person["id"],
-                 born["confidence"] == "inferred" and born["note"].strip()
-                 and ((born["precision"] == "band"
-                       and born["band"] == [born["value"], born["value"] + 1])
-                      or (born["precision"] == "year" and "band" not in born)))
+            # T-1179: a refusal lives in this key and asserts nothing, so the arithmetic
+            # assertion is about the blocks that CARRY a year. The refusals have their own
+            # assertion under it — narrowing one without adding the other is how a rule
+            # stops being held.
+            if born.get("refused_because"):
+                want("a refused birth year asserts no year and says why (%s)"
+                     % person["id"],
+                     born["value"] is None and born["precision"] is None
+                     and born["confidence"] == "reconstructed"
+                     and born["note"].strip() and born["refused_because"].strip()
+                     and len(born["refused_interval"]) == 2)
+            else:
+                want("a written birth year states how wide its arithmetic left it (%s)"
+                     % person["id"],
+                     born["confidence"] == "inferred" and born["note"].strip()
+                     and ((born["precision"] == "band"
+                           and born["band"] == [born["value"], born["value"] + 1])
+                          or (born["precision"] == "year" and "band" not in born)))
 
     # Rule 3's refusal is real and is counted.
     thin = [pid for pid, r in deaths.items() if r["thin"]]
@@ -907,7 +1156,8 @@ def self_test() -> int:
         born = person.get("birth_year")
         if ours_birth(born):
             want("only this pass cites a roll for a birth year (%s)" % person["id"],
-                 born.get("precision") in ("year", "band"))
+                 born.get("precision") in ("year", "band")
+                 or (born.get("precision") is None and born.get("refused_because")))
     want("a biographied birth year is never mistaken for this pass's",
          all(not ours_birth(p.get("birth_year"))
              for _h, p in persons(without_this_pass_all(committed))))

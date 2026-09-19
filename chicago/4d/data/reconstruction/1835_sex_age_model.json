@@ -350,13 +350,13 @@
    "placed": 2
   },
   "age_drawn": {
-   "named_on_a_roll_15_and_over": 1020,
+   "named_on_a_roll_15_and_over": 1024,
    "civic_list_20_and_over": 192,
-   "dependent_child_under_15": 2
+   "dependent_child_under_15": 1
   },
   "age_read": {
    "another_stage_drew_them": 981,
-   "birth_year": 64,
+   "birth_year": 61,
    "unclaimed": 3
   },
   "age_refused": {
@@ -367,15 +367,14 @@
    "female": 36
   },
   "drawn_band_is": {
-   "20-29": 591,
-   "30-39": 339,
+   "20-29": 592,
+   "30-39": 341,
    "15-19": 106,
-   "40-49": 112,
+   "40-49": 113,
    "50-59": 41,
    "70-79": 8,
    "60-69": 15,
-   "5-9": 1,
-   "10-14": 1
+   "5-9": 1
   }
  }
 }

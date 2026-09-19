@@ -12011,6 +12011,121 @@ for (const [label, viewport, touch] of [
       && biz.card.locations > 0 && biz.card.printings,
       JSON.stringify(biz.card));
 
+    // T-1325: THE WAY INTO A FIRM FROM WHERE THE VISITOR ALREADY IS. The directory
+    // above is the way in for somebody who came looking for a firm by name. It was
+    // the ONLY way in, which meant a visitor standing at Temple's Lake Street
+    // building — three of the register's houses under one roof — had to leave the
+    // building, open the drawer and search a name they were already looking at.
+    // Two crosswalks close that: the person's own card names every firm the
+    // register puts them in, and the building card's Use row names every firm the
+    // register puts in that roof. Both are read off `businesses/index.json`, so
+    // the counts asserted here are the FILE's and never typed.
+    await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
+    await clickChrome('.panel-tab[data-tab="people"]');
+    const wanted = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const idx = await (await fetch(new URL('businesses/index.json', api.dataBase))).json();
+      const of = (id) => idx.businesses
+        .filter((b) => (b.people || []).some((p) => p.person_id === id)).map((b) => b.id).sort();
+      const roofs = new Set(idx.businesses
+        .filter((b) => b.where?.kind === 'premises' && b.where.structure_id)
+        .map((b) => b.where.structure_id));
+      return {
+        // John Dean Caton holds four of these houses, which is the fact about the
+        // town that no card said before this…
+        person: of('caton_john_dean'),
+        // …and the register names him FIVE times, because Collins & Caton prints
+        // him under two styles. One printing is not one partnership, so the card
+        // must list four rows and not five.
+        printings: idx.businesses.reduce((t, b) => t
+          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean').length, 0),
+        roof: idx.businesses.filter((b) => b.where?.kind === 'premises'
+          && b.where.structure_id === 'temple_lake_st_building').map((b) => b.id).sort(),
+        // …and a roof the register puts no house in must say nothing at all,
+        // because an empty Use row is a claim.
+        empty: [...api.registry.keys()].find((id) => !roofs.has(id)) ?? null,
+      };
+    });
+    const personFirms = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      await api.people.open('caton_john_dean');
+      const card = document.getElementById('people-card');
+      const rows = [...card.querySelectorAll('.people-firm')];
+      return {
+        head: card.querySelector('.people-firms .people-card-h')?.textContent.trim() ?? '',
+        ids: rows.map((r) => r.dataset.business).sort(),
+        sub: rows[0]?.querySelector('.person-sub')?.textContent.trim() ?? '',
+        dots: rows.filter((r) => r.querySelector('.grade-dot')).length,
+      };
+    });
+    // …and it is a real control, not a line of text: clicked the way a visitor
+    // clicks it, through the hit test that proves nothing covers it.
+    await clickChrome('.people-firm');
+    const landedFromPerson = await page.evaluate(async () => {
+      const card = document.getElementById('businesses-card');
+      for (let i = 0; i < 60 && card.querySelector('[aria-busy="true"]'); i++) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      const out = {
+        tab: document.querySelector('.panel-tab[aria-selected="true"]')?.dataset.tab ?? null,
+        id: window.__chicago4d.businesses.state?.open ?? null,
+        shown: card.checkVisibility(),
+        name: card.querySelector('.people-card-name')?.textContent.trim() ?? '',
+        locations: card.querySelectorAll('.biz-loc').length,
+      };
+      window.__chicago4d.businesses.close();
+      window.__chicago4d.people.close();
+      return out;
+    });
+    check(`${label}: a person's card names every firm the register puts them in`,
+      personFirms.ids.length === wanted.person.length && wanted.person.length >= 3
+      && personFirms.ids.join(',') === wanted.person.join(',')
+      && personFirms.dots === personFirms.ids.length
+      && new RegExp(`^The ${wanted.person.length} firms`).test(personFirms.head)
+      && personFirms.sub.length > 0
+      && wanted.printings > wanted.person.length,
+      JSON.stringify({ ...personFirms, wanted: wanted.person, printings: wanted.printings }));
+    check(`${label}: tapping one opens that firm's own card in Businesses`,
+      landedFromPerson.tab === 'businesses' && landedFromPerson.shown
+      && wanted.person.includes(landedFromPerson.id)
+      && landedFromPerson.name.length > 0 && landedFromPerson.locations > 0,
+      JSON.stringify(landedFromPerson));
+
+    // …and the same crosswalk the other way, on the building card's Use row.
+    const roofFirms = await page.evaluate((ids) => {
+      const api = window.__chicago4d;
+      api.hud.setPanel(false);
+      api.pick('temple_lake_st_building');
+      const pop = document.getElementById('popup');
+      const chips = [...pop.querySelectorAll('.pop-firm')];
+      const out = {
+        onUseRow: !!pop.querySelector('.fact dt')
+          && [...pop.querySelectorAll('.fact')].some((f) => /^Use$/.test(f.querySelector('dt')?.textContent ?? '')
+            && f.querySelector('.pop-firm')),
+        ids: chips.map((c) => c.dataset.business).sort(),
+        lead: pop.querySelector('.pop-firms-lead')?.textContent.trim() ?? '',
+        // The board a visitor aims at is the firm's own advertisement, so a card
+        // opened from one leads with the house rather than the roof.
+        fromSign: null, signLead: '', empty: null,
+      };
+      api.popup.show(api.registry.get('temple_lake_st_building'), { fromSign: true });
+      out.fromSign = !!document.querySelector('#popup .pop-firms[data-from-sign]');
+      out.signLead = document.querySelector('#popup .pop-firms-lead')?.textContent.trim() ?? '';
+      api.pick(ids.empty);
+      out.empty = document.querySelectorAll('#popup .pop-firm').length;
+      api.popup.close();
+      return out;
+    }, wanted);
+    check(`${label}: a building card's Use row names the firms the register puts in that roof`,
+      roofFirms.onUseRow && roofFirms.ids.length === wanted.roof.length && wanted.roof.length === 3
+      && roofFirms.ids.join(',') === wanted.roof.join(',')
+      && roofFirms.lead === 'The register puts 3 houses here'
+      && roofFirms.empty === 0,
+      JSON.stringify({ ...roofFirms, wanted: wanted.roof }));
+    check(`${label}: a card opened from a signboard leads with the firm the board hangs for`,
+      roofFirms.fromSign === true && /^The board hangs/.test(roofFirms.signLead),
+      JSON.stringify({ fromSign: roofFirms.fromSign, signLead: roofFirms.signLead }));
+
     // T-0710: the Evidence hub — nine tiles whose counts are their mounts'
     // entries, a topic that searches, and a way back. The eighth is T-1160's
     // population profile, whose "entries" are the axes it is profiled on; the

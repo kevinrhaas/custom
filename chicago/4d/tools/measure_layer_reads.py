@@ -974,6 +974,24 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].birth_year.confidence": ("shown", "tierOf(block) || block.confidence"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
     "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
+    # T-1392 (of T-1179). A birth interval the card itself refutes is not spent, and the
+    # block that records the refusal lives in this same key asserting no year. Every one
+    # of its figures reaches the Born row through `birthRefusedHtml`: a reader who is told
+    # only "not recorded" learns nothing about the obituary still printed further down the
+    # same card, so the interval, the page it was read off and the reason are all shown.
+    "persons[].birth_year.refused_interval": (
+        "shown", "const [from, to] = block.refused_interval || [];"),
+    "persons[].birth_year.refused_because": (
+        "shown", "born && born.refused_because"),
+    "persons[].birth_year.record_id": (
+        "shown", "escapeHtml(String(block.record_id ?? ''))"),
+    "persons[].birth_year.as_read": (
+        "shown", "escapeHtml(String(block.as_read))"),
+    # And the weaker verdict — an interval that misses only the franchise's invented line
+    # — is CARRIED, with the disagreement folded into the note the Born row already
+    # prints. The field is the machine-readable half of that sentence.
+    "persons[].birth_year.contradicted_by_the_card": (
+        "shown", "born && born.contradicted_by_the_card"),
     # T-0491. The 1840 identity bridge, on the three people that carry one. PR #670
     # attached it and declared nothing, so twenty-four figures reached a browser
     # unread — which is the exact shape this census exists to catch, and the cheap

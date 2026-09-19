@@ -1,7 +1,7 @@
 ---
 id: T-1179
 title: Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-19
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 8:26:57 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T13:39:47.837Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35445442831
 ---
 
 The closeout of the resident band, the way T-1144 closes the spend. After it, the owner's
