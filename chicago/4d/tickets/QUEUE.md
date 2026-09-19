@@ -203,3 +203,4 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
+T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
