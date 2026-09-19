@@ -7,7 +7,7 @@
     "a_ground_reading_describes_the_site_not_a_record": 16,
     "a_town_reading_with_no_record_to_write": 6,
     "the_market_and_the_port_in_aggregate": 5,
-    "the_reading_is_earlier_than_the_scene_and_does_not_reach_it": 35
+    "the_reading_is_earlier_than_the_scene_and_does_not_reach_it": 37
   },
   "rules": {
     "a_ground_reading_describes_the_site_not_a_record": {
@@ -324,6 +324,11 @@
       "note": "moses_kirkland_history_of_chicago_v1 bk_mose1_020: a civic reading dated 7 October 1835 — THREE MONTHS AND SIX DAYS AFTER the scene …, in the window and naming no record this layer holds. It reads: “On 7 October 1835 the trustees determined to buy two fire-hooks with chains and ropes, two sixteen-foot ladders, four axes and four hand-saws, at a cost of $29.63. On the same date the \"Pioneer\" Hook …”"
     },
     {
+      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010",
+      "rule": "the_reading_is_earlier_than_the_scene_and_does_not_reach_it",
+      "note": "moses_kirkland_history_of_chicago_v2 bk_mose2_010: a person reading whose own describes_date is “19 October 1833 — BEFORE the scene date of 1835-07-01”, earlier than the scene date. It reads: “At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new …”"
+    },
+    {
       "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_012",
       "rule": "a_ground_reading_describes_the_site_not_a_record",
       "note": "moses_kirkland_history_of_chicago_v2 bk_mose2_012: a landscape reading dated Freeman died of typhoid fever in December 1834 (line 34267 of the same passage), so the burial and the fence are December 1834 or shortly after — BEFORE the scene date of 1835-07-01. It reads: “Rev. Allen B. Freeman was buried in a little burial ground near the north branch on the west side, on what was at that time an open prairie. A modest headboard marked his grave, which was surrounded …”"
@@ -332,6 +337,11 @@
       "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_019",
       "rule": "the_reading_is_earlier_than_the_scene_and_does_not_reach_it",
       "note": "moses_kirkland_history_of_chicago_v2 bk_mose2_019: a event reading whose own describes_date is “October 1833 — BEFORE the scene date of 1835-07-01”, earlier than the scene date. It reads: “In October 1833 the Chicago school section was sold under the administration of Richard J. Hamilton, in compliance with a petition of three-fourths of the legal voters of the township, realizing …”"
+    },
+    {
+      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_020",
+      "rule": "the_reading_is_earlier_than_the_scene_and_does_not_reach_it",
+      "note": "moses_kirkland_history_of_chicago_v2 bk_mose2_020: a person reading whose own describes_date is “1834 for the arrangement; Collins's arrival in Chicago is …”, earlier than the scene date. It reads: “James H. Collins came to Illinois in 1833 and settled on a pre-emption claim at Holderman's grove, some sixty or seventy miles southwest of Chicago. In 1834 his former student Caton found him in …”"
     },
     {
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_008",

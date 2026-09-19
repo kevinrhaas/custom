@@ -16,6 +16,16 @@
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 1 July 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "THE MAN'S OWN RECOLLECTION, NOT A CONTEMPORARY RECORD. He registered at the Calumet Club on the roll of 1879 and gave 1833, Sept. as his date of coming to Chicago — forty-four years after the fact. The roll's own `arrival_year_basis` says it dates the claim and does not prove it, so the year is carried at `inferred` and the household's `arrival` block keeps the bound the contemporary evidence sets.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
+ },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",

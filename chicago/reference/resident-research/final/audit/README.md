@@ -55,7 +55,7 @@ record agree; two newspaper notices of the same name are
 | civic | 302 |
 | census | 47 |
 | church | 40 |
-| book | 257 |
+| book | 256 |
 | directory | 225 |
 | secondary | 81 |
 

@@ -49,6 +49,7 @@
 T-1333 — The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
 T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
 T-1340 — Spend the books' arrival and presence lists: the 1832 and spring-1833 arrival lists, the Baptist fourteen of 1833 and the Episcopal eleven of 1834, each name first ruled against the residents layer by the crosswalk's own join rules
+T-1350 — The four resident mints derive `arrival` from the registers they read and silently revert a reading pass that supersedes one: seven ruled book findings — the spring-1833 arrivals of Botsford, Williams and Hibbard Porter and the Baptist presence of 19 October 1833 for Willard Jones, Nathaniel Carpenter and Martin D. Harmon — cannot reach the cards the crosswalk has already joined them to
 T-1338 — Spend the 128 press notices onto the cards they name, once a newspaper claim unit carries a file-qualified ledger id: the 22 raw claim ids these units share would close 937 other units as asserted
 T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
@@ -189,4 +190,3 @@ T-1335 — Spend the kin the church registers, the papers' family columns and th
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
 T-1339 — A step that mutates the working tree cannot be caught by a convention: hold what every gate step WRITES as a measurement, and refuse an unmeasured one
 T-1341 — ticket.mjs --check REPAIRS the mirror it is checking, so on any branch that adds a ticket the gate's queue step mutates tickets.json while the pool reads it — the T-0856 check-that-repairs fault, one tool over
-

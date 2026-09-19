@@ -5,14 +5,23 @@
  "head": "botsford_j_k",
  "source_pass": "documented",
  "arrival": {
-  "value": "1833-03-01",
+  "value": "1834-02-18",
   "confidence": "inferred",
   "sources": [
-   "chicago_democrat_1833_1835",
-   "moses_kirkland_history_of_chicago_v1"
+   "chicago_democrat_1833_1835"
   ],
-  "note": "THE SPRING OF 1833, FROM THE COMPILER'S LIST OF THAT SEASON'S ARRIVALS. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005; data/research/books/claims/moses_kirkland_history_of_chicago_v1.json): \"Among the new arrivals in the spring of 1833 are the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter and Rev. Allan B. Freeman.\" Season precision, carried at 1833-03-01, the first day this project reads a season at (hh_pearsons_hiram, hh_blodgett_tyler_k). THE LIST SAYS \"AMONG\", SO IT IS A ROLL OF EXAMPLES AND NOT A REGISTER: it can date the men it names and it can never be read to exclude anybody it leaves out. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). The card read 1834-02-18 at `inferred`, a bound from the Democrat and not an arrival — its own note said \"nothing reached says when they came\". The compiler's list names John K. Botsford among the spring arrivals of 1833. THE LAYER HOLDS HIM AS `J. K. Botsford` AND THE JOIN IS ON BOTH INITIALS: John K. is J. K. initial for initial, the surname is uncommon, the town is the same and the trade agrees — this card is a documented grocer and the compiler's man is in the town's commercial life from the same season. A single shared initial would not have carried it. PRIOR NOTE, KEPT: A BOUND FROM THE PAPER, NOT AN ARRIVAL. The corpus first prints this person at the Democrat of 10 September 1834, column 15, so they are in the town's paper by 1834-02-18 and at no stated time before it; nothing reached says when they came. Last printed 1834-12-03.",
-  "precision": "season"
+  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. The corpus first prints this person at the Democrat of 10 September 1834, column 15, so they are in the town's paper by 1834-02-18 and at no stated time before it; nothing reached says when they came. Last printed 1834-12-03.",
+  "precision": "not_later_than"
+ },
+ "arrival_year": {
+  "value": 1833,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "THE MAN'S OWN RECOLLECTION, NOT A CONTEMPORARY RECORD. He registered at the Calumet Club on the roll of 1879 and gave 1833, as his date of coming to Chicago — forty-four years after the fact. The roll's own `arrival_year_basis` says it dates the claim and does not prove it, so the year is carried at `inferred` and the household's `arrival` block keeps the bound the contemporary evidence sets.",
+  "sources": [
+   "calumet_club_early_chicago_1879"
+  ],
+  "written_by_stage": "attribute_fill_arrival"
  },
  "party_size_on_arrival": {
   "value": null,
