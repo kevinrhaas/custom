@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The directory had lost its tavern keepers, physicians and lawyers', kind: 'fix', ts: '',
+  { v: 977, title: 'The directory had lost its tavern keepers, physicians and lawyers', kind: 'fix', ts: '2026-09-19T11:34:39.954Z', date: 'Sep 19, 2026, 6:34 AM CT',
     items: [
       'The People list lets you narrow the town by trade, and the row of trades it offers is the ten commonest ones. That was a fair thing to offer while the list held the 457 residents this project can name from sources. It stopped being fair the moment the reconstruction began filling the town out: 308 people were drawn to hold the trades the occupation census says this town needed, and 307 more were minted as the strangers of that summer, and nine of the ten trades on offer became that draw — 76 domestics, 40 boarding-house keepers, 26 labourers, 26 clerks.',
       'Which meant the trades a reader actually comes here to look for were the ones pushed off. Tavern keeper stood 78th of 83 trades with no pill at all, and this town has eight of them read off its own records, Mark Beaubien of the Sauganash among them. So the directory could not be asked for the tavern keepers, the physicians or the lawyers of 1835 — the very trades where the answer is a list of real names rather than a count of people we drew.',
