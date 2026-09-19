@@ -55,6 +55,7 @@ T-1177 — Reconstruct the under-documented cohorts within their evidence: the N
 T-1353 — Mint the bounded transient cohort as reconstructed persons in camp, crew and party households, counted apart from the residents in the town census and filterable in the People view
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
+T-1382 — The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it
 T-1365 — The walk splash cites the November 1835 town census as the 1 July population: 1,588 cards read against 3,265, where the source file says that number is never the scene's population and only 457 of the cards are present
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1364 — The town model's arrival share is a count over the wrong denominator: it reads 1.605 of the town arriving in 1833-35 and -777 arriving before, because it divides every person's arrival year by the NAMED layer's 1,285
@@ -228,4 +229,3 @@ T-1363 — rederive.mjs --run does not converge in one pass when the town model 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
 T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are written outside data/residents/households/, so the People directory counts them and the manifest cannot, and the smoke's count assertion only knows to add the re-admitted
-
