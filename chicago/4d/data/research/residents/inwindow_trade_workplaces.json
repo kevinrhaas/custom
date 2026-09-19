@@ -8,18 +8,17 @@
  "scene_date": "1835-07-01",
  "counts": {
   "already_holds_a_workplace": 68,
-  "held": 4,
+  "held": 5,
   "no_premises": 36,
   "not_ruled": 5,
-  "raise": 47,
-  "houses_raised": 40,
+  "raise": 46,
+  "houses_raised": 39,
   "houses_seated_on_a_committed_structure": 15
  },
  "houses_by_census_class": {
   "iron_foundry": 1,
   "other": 17,
   "physician": 5,
-  "silversmith_jeweller": 1,
   "storage_and_forwarding": 1,
   "store": 8,
   "tavern": 8
@@ -378,20 +377,6 @@
     "hall_benjamin"
    ],
    "seated_at": "miller_tannery",
-   "sources": [
-    "andreas_1884_v1"
-   ]
-  },
-  {
-   "business_id": "biz_mulford_e_h_watchmaker",
-   "occupation": "watchmaker",
-   "census_classes": [
-    "silversmith_jeweller"
-   ],
-   "keepers": [
-    "mulford_e_h"
-   ],
-   "seated_at": null,
    "sources": [
     "andreas_1884_v1"
    ]
@@ -862,6 +847,7 @@
    "role": "auctioneer",
    "register_house": "biz_j_bates_jr_auction_store",
    "printed_as": "J. Bates jr.",
+   "held_by": "the_surname_test",
    "owed_to": "T-1182 clause 1"
   },
   {
@@ -870,6 +856,7 @@
    "role": "merchant",
    "register_house": "biz_brewster_hogan_co",
    "printed_as": "Hogan",
+   "held_by": "the_surname_test",
    "owed_to": "T-1182 clause 1"
   },
   {
@@ -878,7 +865,17 @@
    "role": "merchant",
    "register_house": "biz_hubbard_co",
    "printed_as": "Hubbard",
+   "held_by": "the_surname_test",
    "owed_to": "T-1182 clause 1"
+  },
+  {
+   "person_id": "mulford_e_h",
+   "name": "E. H. Mulford",
+   "role": "watchmaker",
+   "register_house": "data/research/books/trade_census_1835_spend_rulings.json#open_questions",
+   "printed_as": "an open identity question: mulford_one_letter",
+   "held_by": "identity_holds",
+   "owed_to": "T-1007's open question"
   },
   {
    "person_id": "taylor_william_h",
@@ -886,6 +883,7 @@
    "role": "shoemaker",
    "register_house": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
    "printed_as": "[uncertain: …] Taylor",
+   "held_by": "the_surname_test",
    "owed_to": "T-1182 clause 1"
   }
  ],
@@ -1073,9 +1071,9 @@
     "class": "silversmith_jeweller",
     "census_count": 2,
     "town_before_T-1404": 1,
-    "raised_here": 1,
-    "town_after_T-1404": 2,
-    "still_short": 0,
+    "raised_here": 0,
+    "town_after_T-1404": 1,
+    "still_short": 1,
     "documented_zero": false,
     "owed_to": null
    },

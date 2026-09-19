@@ -18,6 +18,16 @@
  ],
  "census_classes": "data/research/newspapers/trade_class_rulings.json — the ONE taxonomy, so a raised house counts against the December 1835 State census without a second crosswalk.",
  "identity_rule": "A CANDIDATE WHOSE SURNAME ALREADY STANDS IN THE REGISTER AT HIS OWN TRADE IS HELD, NOT RAISED. 52 keepers printed in the register carry `person_id: null` — the register could not match the printed name to a town card — so raising a house for a man the paper may already have printed would double him. Where an unlinked keeper shares this person's surname AND the house the register prints names this person's own occupation, no record is written and the pair is reported for the identity ruling T-1182 clause 1 owns. A different trade under the same surname is a different house and is raised.",
+ "identity_holds_rule": "AND A HOLD MAY BE RULED BY HAND, where the surname test cannot see the collision. `identity_holds` names a person and a trade this project has an OPEN identity question about; no house is raised and the question is carried on the ledger row. Raising one would answer the question by building — the thing the question was written to refuse.",
+ "identity_holds": [
+  {
+   "person_id": "mulford_e_h",
+   "occupation": "watchmaker",
+   "question": "mulford_one_letter",
+   "where": "data/research/books/trade_census_1835_spend_rulings.json#open_questions",
+   "basis": "Are E. H. Mulford, watch-maker off Andreas, and J. H. Mulford, the register's dealer in watches, jewelry, engravings and fancy goods, one man? T-1007 holds that open and says why: merging them would close a census gap by arithmetic. Raising E. H. Mulford a shop of his own SPLITS them by arithmetic instead, which is the same move in the other direction. The surname test does not catch it — the register prints the trade as `watches, jewelry, engravings and fancy goods` and the card says `watchmaker` — so the hold is ruled here by hand."
+  }
+ ],
  "rulings": [
   {
    "occupation": "army_officer",

@@ -35,7 +35,11 @@ WHAT IT REFUSES TO DO.
     card. Where an unlinked keeper shares a candidate's surname AND the house the register
     prints names that candidate's own occupation, the candidate is HELD and reported for
     the identity ruling T-1182 clause 1 owns. A different trade under the same surname is
-    a different house and is raised.
+    a different house and is raised. A collision the surname test cannot see — the
+    register prints a trade in words the card does not use — is ruled by hand in the
+    rulings' `identity_holds`, and E. H. Mulford the watchmaker is the one such hold
+    today: T-1007 leaves it open whether he and the register's J. H. Mulford are one man,
+    and raising him a shop would answer that by building.
 
   * IT WILL NOT RAISE TWO HOUSES WHERE THE EVIDENCE STANDS ONE. Rufus Brown and Mrs Rufus
     Brown both keep a boarding house in window and they keep the SAME boarding house; the
@@ -106,6 +110,16 @@ def load_json(path: Path):
 
 def dumps(doc) -> str:
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
+
+
+def identity_holds() -> dict[tuple, dict]:
+    """The holds a hand ruling makes, where the surname test cannot see the collision."""
+    out = {}
+    for row in load_json(RULINGS).get("identity_holds") or []:
+        if not str(row.get("basis") or "").strip() or not row.get("question"):
+            raise Fault("an identity hold with no question or no basis: %r" % row)
+        out[(row["person_id"], row["occupation"])] = row
+    return out
 
 
 def rulings() -> dict:
@@ -187,7 +201,8 @@ def held_by_the_register(person: dict, occupation: str, unlinked: list[dict]) ->
 
 # ------------------------------------------------------------------------- the candidates
 
-def candidates(ruled: dict, linked: set[str], unlinked: list[dict]) -> dict:
+def candidates(ruled: dict, linked: set[str], unlinked: list[dict],
+               holds: dict | None = None) -> dict:
     """Every scene-date role, sorted into what this clause does with it."""
     raise_, no_premises, held, not_ruled, already = [], [], [], [], []
     for folder, card in cards():
@@ -234,6 +249,17 @@ def candidates(ruled: dict, linked: set[str], unlinked: list[dict]) -> dict:
                     continue
                 row["census_class"] = ruling["census_class"]
                 row["signage_function"] = ruling["signage_function"]
+                ruled_hold = (holds or {}).get((person["id"], role["role"]))
+                if ruled_hold:
+                    row["held_against"] = {
+                        "business_id": ruled_hold.get("where"),
+                        "name": "an open identity question: %s" % ruled_hold["question"],
+                        "occupation": role["role"],
+                        "trade": ruled_hold["basis"],
+                    }
+                    row["held_by"] = "identity_holds"
+                    held.append(row)
+                    continue
                 clash = held_by_the_register(person, role["role"], unlinked)
                 if clash:
                     row["held_against"] = clash
@@ -544,7 +570,8 @@ def ledger(state: dict, built: list[dict]) -> dict:
             "person_id": r["person_id"], "name": r["name"], "role": r["role"],
             "register_house": r["held_against"]["business_id"],
             "printed_as": r["held_against"]["name"],
-            "owed_to": "T-1182 clause 1",
+            "held_by": r.get("held_by") or "the_surname_test",
+            "owed_to": "T-1007's open question" if r.get("held_by") else "T-1182 clause 1",
         } for r in state["held"]],
         "not_ruled_into_the_vocabulary": [{
             "person_id": r["person_id"], "name": r["name"], "as_printed": r["as_printed"],
@@ -568,7 +595,7 @@ def derive() -> tuple[dict, list[dict], dict]:
     ruled = rulings()
     records = business_records()
     linked, unlinked = keepers(records)
-    state = candidates(ruled, linked, unlinked)
+    state = candidates(ruled, linked, unlinked, identity_holds())
     communities = person_communities()
     cards_by_id = {card["id"]: card for _, card in cards()}
     functions = structure_functions()

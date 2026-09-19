@@ -140,15 +140,14 @@
       "census_line": "two silversmiths and jewellers",
       "census_count": 2,
       "compared": true,
-      "town_records_in_town": 2,
-      "town_records_at_scene_date": 2,
+      "town_records_in_town": 1,
+      "town_records_at_scene_date": 1,
       "town_records_outside_town": 0,
       "business_ids": [
-        "biz_mulford_e_h_watchmaker",
         "business_j_h_mulford"
       ],
-      "delta": 0,
-      "outcome": "town_matches_census",
+      "delta": -1,
+      "outcome": "town_holds_fewer_than_the_census_counted",
       "note": null
     },
     {
@@ -561,15 +560,15 @@
   ],
   "totals": {
     "businesses_in_register": 196,
-    "authored_records_counted": 40,
-    "businesses_counted": 236,
-    "in_town": 233,
+    "authored_records_counted": 39,
+    "businesses_counted": 235,
+    "in_town": 232,
     "outside_town": 3,
-    "at_scene_date": 220,
+    "at_scene_date": 219,
     "carrying_no_enumerated_class": 90,
     "not_stated": 5,
     "census_enumerated_total": 118,
-    "town_enumerated_total_at_scene_date": 142
+    "town_enumerated_total_at_scene_date": 141
   },
   "classes_the_town_holds_nothing_for": [
     "bank",
@@ -907,18 +906,6 @@
       "scope": "in_town",
       "ruled_by": "authored_record",
       "basis": "AUTHORED, NOT PRINTED. `biz_miller_john_tanner` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "biz_mulford_e_h_watchmaker",
-      "name": "E. H. Mulford, watchmaker",
-      "trade": "watchmaker",
-      "classes": [
-        "silversmith_jeweller"
-      ],
-      "scope": "in_town",
-      "ruled_by": "authored_record",
-      "basis": "AUTHORED, NOT PRINTED. `biz_mulford_e_h_watchmaker` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
       "built_at_scene_date": true
     },
     {

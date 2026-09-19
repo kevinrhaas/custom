@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 240,
+    "records": 239,
     "compiled_from_register": 196,
-    "authored": 44,
-    "present_at_scene_date": 223,
+    "authored": 43,
+    "present_at_scene_date": 222,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
@@ -18,7 +18,7 @@
       "physician": 8,
       "printing_office": 3,
       "school": 7,
-      "silversmith_jeweller": 2,
+      "silversmith_jeweller": 1,
       "steam_saw_mill": 4,
       "storage_and_forwarding": 9,
       "store": 75,
@@ -29,22 +29,22 @@
       "anchored": 26,
       "premises": 45,
       "street_only": 63,
-      "unplaceable": 110
+      "unplaceable": 109
     },
-    "named_people": 245,
-    "named_people_linked_to_a_town_card": 193,
+    "named_people": 244,
+    "named_people_linked_to_a_town_card": 192,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 33,
     "by_grade": {
       "attested": 158,
-      "inferred": 78,
+      "inferred": 77,
       "reconstructed": 4
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 45,
       "street_only": 63,
-      "unplaceable": 106
+      "unplaceable": 105
     },
     "by_street": {
       "Canal Street": 1,
@@ -58,7 +58,7 @@
       "South Water Street": 39
     },
     "by_proprietor_community": {
-      "british": 12,
+      "british": 11,
       "free_black": 2,
       "french_canadian": 2,
       "irish": 2,
@@ -131,7 +131,7 @@
       {
         "value": "british",
         "label": "British",
-        "count": 12
+        "count": 11
       },
       {
         "value": "southern",
@@ -7997,52 +7997,6 @@
       "liberties": [
         "survival_required"
       ]
-    },
-    {
-      "id": "biz_mulford_e_h_watchmaker",
-      "file": "biz_mulford_e_h_watchmaker.json",
-      "name": "E. H. Mulford, watchmaker",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "silversmith_jeweller"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "watchmaker",
-      "occupation": "watchmaker",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "E. H. Mulford",
-          "person_id": "mulford_e_h",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "unplaceable",
-        "structure_id": null,
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "british",
-      "proprietor_community_tier": "reconstructed",
-      "review_required": false,
-      "liberties": []
     },
     {
       "id": "biz_murphy_john_tavern_keeper",

@@ -27,13 +27,6 @@
       "not_reached": 1,
       "spent_from_resident_cards": [
         {
-          "key": "kimberly_edmund_s",
-          "name": "Dr Edmund Stoughton Kimberly",
-          "person_id": "kimberly_edmund_s",
-          "establishment": "Pruyne & Kimberly's drug store",
-          "basis": "SPENT HERE, ON TWO LINES. Kimberly moved to Chicago in 1832 and practised medicine; he was also the other half of the town's second drug store. The census counts physicians and druggists separately and a man may stand on both lines — the drug store is one establishment and is counted once."
-        },
-        {
           "key": "pruyne_peter",
           "name": "Peter Pruyne",
           "person_id": "pruyne_peter",
@@ -121,49 +114,13 @@
       "census_count": 14,
       "unit": "person",
       "unit_basis": "As for the lawyers: the line counts men.",
-      "register_records": 3,
+      "register_records": 8,
       "named_practitioners": 7,
       "named_establishments": 7,
       "held_in_the_counted_unit": 8,
       "unnamed_records_held": 1,
       "not_reached": 6,
-      "spent_from_resident_cards": [
-        {
-          "key": "egan_william_b",
-          "name": "Dr William Bradshaw Egan",
-          "person_id": "egan_william_b",
-          "establishment": "Dr Egan's practice",
-          "basis": "SPENT HERE. One of the eight physicians Andreas counts at the close of 1833, trained in Lancashire and Dublin, on a resident card since long before this ticket — and carrying no business record, because he never advertised. The census counts him and the register never could."
-        },
-        {
-          "key": "harmon_elijah_d",
-          "name": "Dr Elijah Dewey Harmon",
-          "person_id": "harmon_elijah_d",
-          "establishment": "Dr Harmon's practice",
-          "basis": "SPENT HERE. 'The Father of Medicine in Chicago' in Andreas's phrase, arrived May 1830. His card's presence on the scene date is `uncertain` and this file does not change that."
-        },
-        {
-          "key": "goodhue_josiah_c",
-          "name": "Dr. Josiah C. Goodhue",
-          "person_id": "inf_physician_south_01",
-          "establishment": "Dr Goodhue's practice",
-          "basis": "SPENT HERE. Read as physician out of the Democrat of 4 February 1834, column 1."
-        },
-        {
-          "key": "kimberly_edmund_s",
-          "name": "Dr Edmund Stoughton Kimberly",
-          "person_id": "kimberly_edmund_s",
-          "establishment": "Pruyne & Kimberly's drug store",
-          "basis": "SPENT HERE, ON TWO LINES. Kimberly moved to Chicago in 1832 and practised medicine; he was also the other half of the town's second drug store. The census counts physicians and druggists separately and a man may stand on both lines — the drug store is one establishment and is counted once."
-        },
-        {
-          "key": "temple_john_t",
-          "name": "Dr John Taylor Temple",
-          "person_id": "temple_john_t",
-          "establishment": "Dr Temple's practice",
-          "basis": "SPENT HERE. One of the eight physicians Andreas counts at the close of 1833; he performed the town's first autopsy."
-        }
-      ],
+      "spent_from_resident_cards": [],
       "practitioner_keys": [
         "barnard_j_h",
         "austin_w_g",
@@ -313,8 +270,8 @@
     "held_after_the_spend": 26,
     "not_reached": 18,
     "practitioners_ruled": 25,
-    "class_rows_spent_from_resident_cards": 7,
-    "people_spent_from_resident_cards": 6,
+    "class_rows_spent_from_resident_cards": 1,
+    "people_spent_from_resident_cards": 1,
     "institutions_recorded": 2,
     "documented_absences": 2,
     "refusals": 4
