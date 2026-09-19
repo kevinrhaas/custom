@@ -40,6 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compile_gazetteer import ROOT, RESEARCH  # noqa: E402
 
 BUSINESSES = ROOT / "data" / "businesses"
+AUTHORED = BUSINESSES / "authored"
 IDENTITY = RESEARCH / "identity.json"
 REGISTER = RESEARCH / "register_1835.json"
 RULINGS = RESEARCH / "trade_class_rulings.json"
@@ -87,8 +88,22 @@ FIELDS = [
 
 
 def load_records():
+    """The COMPILED layer, which is what this audit is about.
+
+    `data/businesses/authored/` holds what a human or a reconstruction pass wrote — T-1184's
+    druggists today — and those are deliberately NOT audited here. They are not compiled
+    from the register, so identity.json's merges, the register's date fields and its anchor
+    brackets say nothing about them, and every assertion below would be measuring the wrong
+    thing. Their own gate is `reconstruct_businesses_1835.py --check`. What this audit owes
+    them is a COUNT, printed in the report, so the scope is stated rather than assumed and a
+    layer that grows past this tool cannot do it silently.
+    """
     return [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(BUSINESSES.glob("biz_*.json"))]
+
+
+def authored_records():
+    return sorted(p.stem for p in AUTHORED.glob("*.json"))
 
 
 # ------------------------------------------------------------------ the field table
@@ -313,6 +328,19 @@ def render(records, identity, register, rulings):
     w("brackets — and states, field by field, how well each is evidenced and what stands empty.")
     w("It makes no ruling of its own: where the evidence stops, it says where, and hands the gap")
     w("to the ticket that owns it.")
+    w("")
+    authored = authored_records()
+    w("**Scope: the compiled layer only.** `data/businesses/authored/` holds %d record(s) that"
+      % len(authored))
+    if authored:
+        w("a human or a reconstruction pass wrote — %s — and they are not audited here."
+          % ", ".join("`%s`" % a for a in authored))
+    else:
+        w("a human or a reconstruction pass wrote, and they would not be audited here.")
+    w("They are not compiled from the register, so identity.json's merges, the register's date")
+    w("fields and its anchor brackets say nothing about them and every measurement below would")
+    w("be measuring the wrong thing. Their gate is `reconstruct_businesses_1835.py --check`.")
+    w("The count is printed so that a layer growing past this tool cannot do it silently.")
     w("")
 
     w("## 1. Field × grade")

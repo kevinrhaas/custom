@@ -3,14 +3,14 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 196,
+    "records": 198,
     "compiled_from_register": 196,
-    "authored": 0,
-    "present_at_scene_date": 179,
+    "authored": 2,
+    "present_at_scene_date": 181,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
-      "druggist": 2,
+      "druggist": 4,
       "iron_foundry": 1,
       "lawyer": 18,
       "not_stated": 5,
@@ -28,26 +28,28 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
+      "street_only": 63,
       "unplaceable": 83
     },
-    "named_people": 196,
-    "named_people_linked_to_a_town_card": 144,
+    "named_people": 198,
+    "named_people_linked_to_a_town_card": 146,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 21,
     "by_grade": {
       "attested": 158,
-      "inferred": 38
+      "inferred": 38,
+      "reconstructed": 2
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
+      "street_only": 63,
       "unplaceable": 79
     },
     "by_street": {
       "Canal Street": 1,
-      "Dearborn Street": 23,
+      "Dearborn Street": 24,
+      "Kinzie Street": 1,
       "La Salle Street": 4,
       "Lake Street": 14,
       "Monroe Street": 1,
@@ -61,7 +63,7 @@
       "other": 10,
       "southern": 5,
       "unknown": 85,
-      "yankee": 46
+      "yankee": 48
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -105,7 +107,7 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 46
+        "count": 48
       },
       {
         "value": "new_york",
@@ -10905,6 +10907,102 @@
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_crandall_druggist",
+      "file": "rcb_crandall_druggist.json",
+      "name": "B. Crandall, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Crandall",
+          "person_id": "rc_crandall_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_metcalf_druggist",
+      "file": "rcb_metcalf_druggist.json",
+      "name": "Nathaniel Metcalf, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Nathaniel Metcalf",
+          "person_id": "rc_metcalf_nathaniel",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "kinzie",
+        "street": "Kinzie Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []

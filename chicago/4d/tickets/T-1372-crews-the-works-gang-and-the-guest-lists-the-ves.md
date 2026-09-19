@@ -1,7 +1,7 @@
 ---
 id: T-1372
 title: Crews, the works gang and the guest lists: the vessels in port and the pier-works hands seated, and every lodging card printing who lived there
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1175
 opened: 2026-09-19
-closed: null
+closed: 2026-09-19
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 7:35:20 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T12:42:53.191Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35443021089
 ---
 
 Crews, the works gang and the guest lists: the vessels in port and the pier-works hands seated, and every lodging card printing who lived there.

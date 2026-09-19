@@ -10,6 +10,13 @@ brackets — and states, field by field, how well each is evidenced and what sta
 It makes no ruling of its own: where the evidence stops, it says where, and hands the gap
 to the ticket that owns it.
 
+**Scope: the compiled layer only.** `data/businesses/authored/` holds 2 record(s) that
+a human or a reconstruction pass wrote — `rcb_crandall_druggist`, `rcb_metcalf_druggist` — and they are not audited here.
+They are not compiled from the register, so identity.json's merges, the register's date
+fields and its anchor brackets say nothing about them and every measurement below would
+be measuring the wrong thing. Their gate is `reconstruct_businesses_1835.py --check`.
+The count is printed so that a layer growing past this tool cannot do it silently.
+
 ## 1. Field × grade
 
 `rows` grades every row of a list by its own `tier`; `block` reads one `tier` off the
