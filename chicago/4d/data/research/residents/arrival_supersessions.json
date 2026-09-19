@@ -1,6 +1,6 @@
 {
  "schema": "arrival_supersessions/1",
- "_doc": "T-1350. The ruled readings that supersede the `arrival` bound a mint derives, and the only way one can reach a card the mints own. Read tools/supersede_arrival.py for the four refusals that govern this file; `--check` applies every one of them to every entry and check.sh runs it. IN SHORT: no identity is made here (an entry spends a merge a crosswalk already committed, and names it), no reading is invented here (an entry names a claim id that exists, in a source this project registers), a supersession must be EARLIER than the bound it replaces, and the grade ceiling is the source's. `supersedes` banks the derived bound the ruling was made against: if a mint later derives a different one the ruling stands on evidence that has moved, and the build stops rather than overwriting the new bound with the old ruling. THE SIX ENTRIES BELOW ARE T-1340's SEVEN RULED FINDINGS LESS ONE: J. H. Collins is the seventh and needs no entry, because the compiler prints his coming undated and there was never a value to move.",
+ "_doc": "T-1350. The ruled readings that supersede the `arrival` bound a mint derives, and the only way one can reach a card the mints own. Read tools/supersede_arrival.py for the four refusals that govern this file; `--check` applies every one of them to every entry and check.sh runs it. IN SHORT: no identity is made here (an entry spends a merge a crosswalk already committed, and names it), no reading is invented here (an entry names a claim id that exists, in a source this project registers), a supersession must be EARLIER than the bound it replaces, and the grade ceiling is the source's. `supersedes` banks the derived bound the ruling was made against: if a mint later derives a different one the ruling stands on evidence that has moved, and the build stops rather than overwriting the new bound with the old ruling. THE THREE ENTRIES BELOW ARE THE SPRING-1833 HALF of T-1340's seven ruled findings. The Baptist-catalogue half (bk_mose2_010, for Willard Jones, Nathaniel Carpenter and M D Harmon) is NOT here and is T-1352's, because spending it costs more than it pays today: the research ledger's unit is the CLAIM, so one card citing bk_mose2_010 asserts the whole fourteen-name catalogue, and the twelve names it reaches nobody with fall off data/reconstruction/1835_borderline_roster.json. Ten of those twelve are people T-1172 re-admitted as reconstructed residents, measured on this branch 2026-09-19: Allen B. and Hannah C. Freeman, Ebenezer and Betsey Crane, John K. Sargent, Lucinda Jackson, Peter Moore, Peter Warden, Samantha Harmon and Susanna Rice. A supersession that deletes ten evidenced people to date three is not one this project makes. bk_mose1_005 has no such cost and is spent here: hh_kimball_walter already cites it, so the unit was asserted before this ledger existed and no name moves off the roster. J. H. Collins, T-1340's seventh finding, needs no entry at all — the compiler prints his coming undated and there was never a value to move.",
  "entries": [
   {
    "household": "hh_botsford_j_k",
@@ -94,94 +94,6 @@
     ],
     "note": "THE SPRING OF 1833, FROM THE COMPILER'S LIST OF THAT SEASON'S ARRIVALS. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 90 (claim bk_mose1_005; data/research/books/claims/moses_kirkland_history_of_chicago_v1.json): \"Among the new arrivals in the spring of 1833 are the names of John Dean Caton, John K. Botsford, Silas B. Cobb, Charles Cleaver, Walter Kimball, H. W. Knickerbocker, Ezekiel Morrison, Asahel Pierce, Hibbard Porter, Stephen Rexford, Henry Whitehead, Eli B. Williams, Dr. John T. Temple, Rev. Jeremiah Porter and Rev. Allan B. Freeman.\" Season precision, carried at 1833-03-01, the first day this project reads a season at (hh_pearsons_hiram, hh_blodgett_tyler_k, hh_kimball_walter, minted off this same list). THE LIST SAYS \"AMONG\", SO IT IS A ROLL OF EXAMPLES AND NOT A REGISTER: it can date the men it names and it can never be read to exclude anybody it leaves out. THE SAME SENTENCE NAMES REV. JEREMIAH PORTER SEPARATELY, which is what keeps the two Porter households apart: this project holds Hibbard Porter, Rev. Jeremiah Porter and Eliza Chappel Porter, and a bare \"Porter\" would have reached none of them. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). THE REGISTER'S BOUND IS NOT LOST, IT IS SUBSUMED, and the gain here is the largest of the three: the register could bound this man no earlier than the scene date itself, and the compiler's list puts him in the town two years and four months before it. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 1 July 1835 and nothing says when they came.",
     "precision": "season"
-   }
-  },
-  {
-   "household": "hh_jones_willard",
-   "kind": "presence",
-   "ruled_by": "T-1340",
-   "spent_by": "T-1350",
-   "claim": {
-    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v2.json",
-    "id": "bk_mose2_010"
-   },
-   "crosswalk": {
-    "file": "data/research/books/crosswalk.json",
-    "into": "Willard Jones",
-    "from": "Willard Jones"
-   },
-   "supersedes": {
-    "value": "1833-12-31",
-    "precision": "not_later_than"
-   },
-   "arrival": {
-    "value": "1833-10-19",
-    "confidence": "inferred",
-    "sources": [
-     "moses_kirkland_history_of_chicago_v2",
-     "chicago_voter_lists_1833_1835_irad"
-    ],
-    "note": "A DATED PRESENCE IN THE SETTLEMENT, NOT AN ARRIVAL — AND IT IS EARLIER THAN THE REGISTER'S OWN BOUND. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) prints the catalogue of the fourteen Baptists present at the organization of the First Baptist society: \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise.\" This person is named in that catalogue, so they were at Chicago on 19 October 1833 and the bound moves back to that day. IT IS STILL A BOUND AND STILL NOT A COMING: the catalogue says where a man stood on one day and says nothing whatever about when he got there, so the precision stays not_later_than. THE FORENAME IS THE ENTIRE JOIN AND IT IS ENOUGH: this project holds six Joneses — Benjamin, D E, High Es, M, Willard and William — and \"Willard\" reaches exactly one; the reading's own notes flag that `jones` here \"is Willard and not William\". THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). AND IT DOES NOT MOVE present_on_scene_date, WHICH STAYS `uncertain`: a man standing in the settlement in October 1833 is not thereby standing in it on 1 July 1835, and the 1833 tax list that carried this name is a property roll and not a residence check (T-1117). This field gained a harder, earlier bound; the question of the scene date is untouched. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. tax_1833 stands against this person's name by 31 December 1833 and nothing says when they came.",
-    "precision": "not_later_than"
-   }
-  },
-  {
-   "household": "hh_carpenter_nathaniel",
-   "kind": "presence",
-   "ruled_by": "T-1340",
-   "spent_by": "T-1350",
-   "claim": {
-    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v2.json",
-    "id": "bk_mose2_010"
-   },
-   "crosswalk": {
-    "file": "data/research/books/crosswalk.json",
-    "into": "Nathaniel Carpenter",
-    "from": "Nathaniel Carpenter"
-   },
-   "supersedes": {
-    "value": "1834-01-14",
-    "precision": "not_later_than"
-   },
-   "arrival": {
-    "value": "1833-10-19",
-    "confidence": "inferred",
-    "sources": [
-     "moses_kirkland_history_of_chicago_v2",
-     "chicago_democrat_1833_1835"
-    ],
-    "note": "A DATED PRESENCE IN THE SETTLEMENT, NOT AN ARRIVAL — AND IT IS EARLIER THAN THE REGISTER'S OWN BOUND. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) prints the catalogue of the fourteen Baptists present at the organization of the First Baptist society: \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise.\" This person is named in that catalogue, so they were at Chicago on 19 October 1833 and the bound moves back to that day. IT IS STILL A BOUND AND STILL NOT A COMING: the catalogue says where a man stood on one day and says nothing whatever about when he got there, so the precision stays not_later_than. THE READING ITSELF WARNS THAT THIS IS NOT PHILO: its notes say `carpenter` \"here is Nathaniel and not Philo\", and the forename is the whole of what separates the three Carpenters this project holds — Philo, Nathaniel and Abel B. The crosswalk writes that refusal down as explicitly as the merge, so the surname cannot make the pairing again. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 14 January 1834 and nothing says when they came.",
-    "precision": "not_later_than"
-   }
-  },
-  {
-   "household": "hh_harmon_m_d",
-   "kind": "presence",
-   "ruled_by": "T-1340",
-   "spent_by": "T-1350",
-   "claim": {
-    "file": "data/research/books/claims/moses_kirkland_history_of_chicago_v2.json",
-    "id": "bk_mose2_010"
-   },
-   "crosswalk": {
-    "file": "data/research/books/crosswalk.json",
-    "into": "M D Harmon",
-    "from": "Martin D. Harmon"
-   },
-   "supersedes": {
-    "value": "1833-12-17",
-    "precision": "not_later_than"
-   },
-   "arrival": {
-    "value": "1833-10-19",
-    "confidence": "inferred",
-    "sources": [
-     "moses_kirkland_history_of_chicago_v2",
-     "chicago_democrat_1833_1835",
-     "chicago_voter_lists_1833_1835_irad"
-    ],
-    "note": "A DATED PRESENCE IN THE SETTLEMENT, NOT AN ARRIVAL — AND IT IS EARLIER THAN THE REGISTER'S OWN BOUND. Moses and Kirkland, History of Chicago, Illinois, vol. 2 (1895), printed page 294 (claim bk_mose2_010; data/research/books/claims/moses_kirkland_history_of_chicago_v2.json) prints the catalogue of the fourteen Baptists present at the organization of the First Baptist society: \"At the date of the organization of the First Baptist society, October 19, 1833, there were twenty-five Baptists in the settlement, fourteen of whom were present and connected themselves with the new enterprise.\" This person is named in that catalogue, so they were at Chicago on 19 October 1833 and the bound moves back to that day. IT IS STILL A BOUND AND STILL NOT A COMING: the catalogue says where a man stood on one day and says nothing whatever about when he got there, so the precision stays not_later_than. BOTH INITIALS AGREE IN ORDER against six Harmons in this project — Charles Loomis, Isaac Dewey, Dr Elijah Dewey, Welthyan Loomis, a bare D Harmon and M D — and M followed by D fits one of them; the bare \"D Harmon\" is not reached by a name whose first initial is M. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact, crediting Andreas and Hurlbut on the pages read here; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` however plainly it is printed (the rule T-1322 set for the settlers table, kept here). THE CATALOGUE ALSO NAMES SAMANTHA HARMON beside him, a woman this layer does not hold, and she is not seated on this card: a kinship the compiler does not state is not one this project may infer. PRIOR NOTE, KEPT: A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 17 December 1833 and nothing says when they came.",
-    "precision": "not_later_than"
    }
   }
  ]

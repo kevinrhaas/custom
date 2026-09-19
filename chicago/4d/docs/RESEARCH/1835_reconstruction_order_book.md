@@ -3,11 +3,11 @@
 > DERIVED from `data/reconstruction/1835_reconstruction_order_book.json`. Regenerate with
 > `tools/build_order_book_1835.py --build`; `tools/check.sh` re-derives both. Do not hand-edit.
 
-**T-1166.** Known minus model, per bucket, with the ticket that owns filling it. The town converges to **2,535 people** in **643 households**, working **120 enumerated businesses**, under **668 roofs**.
+**T-1166.** Known minus model, per bucket, with the ticket that owns filling it. The town converges to **2,536 people** in **643 households**, working **120 enumerated businesses**, under **668 roofs**.
 
 | | target | known | to reconstruct |
 |---|---:|---:|---:|
-| Persons | 2,535 | 457 | 2,081 |
+| Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
 | Businesses (enumerated classes) | 120 | 118 | 24 |
 | Roofs | 668 | 384 | 297 |
@@ -23,12 +23,12 @@
 
 ## Real names before invented ones
 
-The roster offers 1,649 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,637 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
 | `R1_in_window_uncertain` | 805 | T-1172 |
-| `R2_in_window_single_source` | 199 | T-1172 |
+| `R2_in_window_single_source` | 187 | T-1172 |
 | `R3_1834_return_or_muster` | 30 | T-1172 |
 | `R4_surname_only_census` | 423 | T-1170 |
 | `R5_later_only_backprojectable` | 55 | T-1172 |
@@ -38,11 +38,11 @@ The roster offers 1,649 names the corpus printed and this project withheld. Each
 
 Who the town still has to be given, by sex, age, division, household and trade.
 
-- `town_target`: 2,535
-- `town_target_basis`: the model's own point within 2,352-3,265
-- `town_target_range`: 2352, 3265
+- `town_target`: 2,536
+- `town_target_basis`: the model's own point within 2,353-3,265
+- `town_target_range`: 2353, 3265
 - `employed_target`: 506
-- `employed_basis`: the midpoint of the model's 423-588, rounded half up
+- `employed_basis`: the midpoint of the model's 424-588, rounded half up
 - `lodging_share`: 0.26
 - `lodging_share_range`: 0.143, 0.377
 
@@ -69,7 +69,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/female/30_39/north/family/trade` | 8 | 2 | 6 | 0 | T-1173 |
 | `persons/female/30_39/north/family/none` | 16 | 3 | 13 | 3 | T-1174 |
 | `persons/female/30_39/north/lodging/trade` | 3 | 0 | 3 | 0 | T-1175 |
-| `persons/female/30_39/north/lodging/none` | 5 | 1 | 4 | 0 | T-1175 |
+| `persons/female/30_39/north/lodging/none` | 6 | 1 | 5 | 0 | T-1175 |
 | `persons/female/30_39/south/family/trade` | 20 | 4 | 16 | 0 | T-1173 |
 | `persons/female/30_39/south/family/none` | 38 | 7 | 31 | 11 | T-1174 |
 | `persons/female/30_39/south/lodging/trade` | 7 | 1 | 6 | 0 | T-1175 |
@@ -304,7 +304,7 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 | **boarding_houses** — The lodging model and the programme agree on the larger boarding houses. | 42 | 42 | +0 |
 | **inns_and_taverns** — The model reads 8-10 inns and taverns; the programme schedules 10. | 10 | 10 | +0 |
 | **institutional_and_public** — The model reads 9-19 institutional and public roofs; the programme schedules 9. | 19 | 9 | +10 |
-| **people_per_roof** — 2,535 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,535 | 668 | +0 |
+| **people_per_roof** — 2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,536 | 668 | +0 |
 
 ## The invariants the convergence tickets assert
 
@@ -312,5 +312,5 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 - **every_working_person_has_a_workplace** (T-1189) — Every person carrying a trade, profession or employment has a workplace, or a stated `no fixed workplace`. *Now:* 36 of 436 present households name a works_at.
 - **every_business_has_staff** (T-1189) — Every business — attested, inferred or reconstructed — carries the staff T-1183's model implies for its kind. *Now:* not yet measurable: the authored business layer is T-1180.
 - **every_structure_occupied_or_its_use_stated** (T-1197) — Every standing roof carries an occupant or a stated use. *Now:* 260 of 384 standing records carry no occupants block.
-- **dwellings_ratio_within_its_bracket** (T-1215) — The town census's people-per-dwelling ratio is met within the model's bracket. *Now:* the book orders 2,535 people into 643 households.
+- **dwellings_ratio_within_its_bracket** (T-1215) — The town census's people-per-dwelling ratio is met within the model's bracket. *Now:* the book orders 2,536 people into 643 households.
 - **no_bucket_overfilled** (T-1166) — No bucket's `filled` exceeds its `to_reconstruct`; a filler that bypasses the book is red in check.sh. *Now:* enforced by --check on every gate run.

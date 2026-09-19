@@ -1,7 +1,7 @@
 ---
 id: T-1350
 title: The four resident mints derive `arrival` from the registers they read and silently revert a reading pass that supersedes one: seven ruled book findings — the spring-1833 arrivals of Botsford, Williams and Hibbard Porter and the Baptist presence of 19 October 1833 for Willard Jones, Nathaniel Carpenter and Martin D. Harmon — cannot reach the cards the crosswalk has already joined them to
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: run 9/18/2026, 9:40:43 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T04:31:45.591Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35416184380
 ---
 

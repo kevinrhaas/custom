@@ -37,9 +37,9 @@ Each line is *how many of the 1588 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 457 | 28.8% |
-| `two_or_more_sources_one_category` | 12 | 0.8% |
-| `one_source` | 249 | 15.7% |
+| `corroborated_across_categories` | 455 | 28.7% |
+| `two_or_more_sources_one_category` | 13 | 0.8% |
+| `one_source` | 250 | 15.7% |
 | `the_letter_lists_alone` | 564 | 35.5% |
 | `no_source` | 306 | 19.3% |
 
@@ -55,7 +55,7 @@ record agree; two newspaper notices of the same name are
 | civic | 302 |
 | census | 47 |
 | church | 40 |
-| book | 259 |
+| book | 256 |
 | directory | 225 |
 | secondary | 81 |
 
@@ -329,7 +329,7 @@ defect in this export.
 | no census linkage | 1541 | no 1840 census row is bridged to this person |
 | no address | 1444 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1412 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 813 | one source id on the card and no second category to check it against |
+| rests on one source | 814 | one source id on the card and no second category to check it against |
 | no research row | 752 | no cohort ticket has reviewed this person; the programme reached 836 of 1588 |
 | rests on the letter lists alone | 564 | known only from the post office's uncalled-for lists |
 | no source of their own | 306 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |

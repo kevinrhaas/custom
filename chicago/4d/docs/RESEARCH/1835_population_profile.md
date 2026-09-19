@@ -574,7 +574,7 @@ Every household carries an arrival block and 94.8% of them (1192) hold a `not_la
 | The Carli household — a name the town's own records carry | season_not_apportioned | The trading post, the fort and the country trade — the town before the boom | reconstructed |
 | The Carli household — a name the town's own records carry | season_not_apportioned | The 1834 season: the harbour works, the opening of the bar and the trade that followed them | reconstructed |
 | The Carpenter household — a name the town's own records carry | season_not_apportioned | The 1834 season: the harbour works, the opening of the bar and the trade that followed them | reconstructed |
-| The Carpenter household — a name the town's own records carry | season_not_apportioned | The trading post, the fort and the country trade — the town before the boom | reconstructed |
+| The Carpenter household — a name the town's own records carry | season_not_apportioned | The 1834 season: the harbour works, the opening of the bar and the trade that followed them | reconstructed |
 | The Carroll household — a name the town's own records carry | season_not_apportioned | The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated | reconstructed |
 | The Carter household — a name from the post office's letter lists | season_not_apportioned | The 1834 season: the harbour works, the opening of the bar and the trade that followed them | reconstructed |
 | The Cary household — a name from the post office's letter lists | season_not_apportioned | The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated | reconstructed |
