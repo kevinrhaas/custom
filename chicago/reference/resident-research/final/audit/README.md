@@ -37,9 +37,9 @@ Each line is *how many of the 2144 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 455 | 21.2% |
-| `two_or_more_sources_one_category` | 13 | 0.6% |
-| `one_source` | 250 | 11.7% |
+| `corroborated_across_categories` | 457 | 21.3% |
+| `two_or_more_sources_one_category` | 12 | 0.6% |
+| `one_source` | 249 | 11.6% |
 | `the_letter_lists_alone` | 564 | 26.3% |
 | `no_source` | 862 | 40.2% |
 
@@ -55,7 +55,7 @@ record agree; two newspaper notices of the same name are
 | civic | 302 |
 | census | 47 |
 | church | 40 |
-| book | 256 |
+| book | 259 |
 | directory | 225 |
 | secondary | 81 |
 
@@ -331,7 +331,7 @@ defect in this export.
 | unplaced | 1412 | the household carries division `unplaced`: in the town, on no lot |
 | no research row | 1308 | no cohort ticket has reviewed this person; the programme reached 836 of 2144 |
 | no source of their own | 862 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
-| rests on one source | 814 | one source id on the card and no second category to check it against |
+| rests on one source | 813 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 564 | known only from the post office's uncalled-for lists |
 | candidate identity open | 118 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 95 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

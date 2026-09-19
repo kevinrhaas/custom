@@ -139,6 +139,20 @@ function filterSpecs(people) {
       options: (people.vocabulary?.divisions || []).map((v) => [v, words(v)]),
       test: (v) => (r) => r.division === v,
     },
+    // T-1375, from T-1177. The community each person belonged to, read off what the
+    // layer already says — a household's origin block, or a reconstructed person's own
+    // name-pool community — and never graded better than the field it came from. The
+    // pills are in the vocabulary's own order, not by count, and the ones no card
+    // carries yet (Potawatomi, Ottawa, Ojibwe, free Black, German) are left off until a
+    // reading puts somebody behind them. `Unknown` IS a pill: it is the honest answer
+    // for 190 of these people and a filter that hid it would make the town read better
+    // than its evidence.
+    {
+      key: 'community', label: 'Community',
+      options: (people.vocabulary?.communities || []).filter((c) => c.count > 0)
+        .map((c) => [c.value, c.label]),
+      test: (v) => (r) => r.community === v,
+    },
     {
       key: 'arrived', label: 'Arrived',
       options: ARRIVED.map(([v, label]) => [v, label]),
@@ -258,8 +272,10 @@ export async function mountPeople({
   const byId = new Map(rows.map((r) => [r.id, r]));
   const counts = people.counts || {};
   const specs = filterSpecs(people);
+  const COMMUNITY_LABEL = new Map(
+    (people.vocabulary?.communities || []).map((c) => [c.value, c.label]));
 
-  // On a phone the seven filter rows would sit between the search box and the
+  // On a phone the eight filter rows would sit between the search box and the
   // first row of the list, so they start folded there and open on demand; a
   // desktop drawer shows them always. The count on the toggle says how many
   // are active while folded.
@@ -471,9 +487,16 @@ export async function mountPeople({
     return off.year ? `${words(off.word)} ${off.year}` : words(off.word);
   }
 
+  /** The community label on a LIST row, printed only where the layer knows one. */
+  function communityText(r) {
+    if (!r.community || r.community === 'unknown') return '';
+    return COMMUNITY_LABEL.get(r.community) || words(r.community);
+  }
+
   function rowHtml(r) {
     const sub = [
       tradeText(r),
+      communityText(r),
       r.division ? `${words(r.division)}${r.division === 'unplaced' ? '' : ' division'}` : '',
       arrivalText(r),
     ].filter(Boolean).join(' · ');

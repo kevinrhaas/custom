@@ -2272,6 +2272,9 @@
     "tools/derive_north_water.py": {
       "wrote": []
     },
+    "tools/derive_person_community.py": {
+      "wrote": []
+    },
     "tools/derive_presence_evidence_leg.py": {
       "wrote": []
     },

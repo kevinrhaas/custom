@@ -2515,6 +2515,20 @@ step "resident roles re-derive, and the 1835 view is the roles that reach it" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/derive_resident_roles.py --self-test
 
+# T-1375, from T-1177. A `community` on every person, derived off what the layer already
+# says — a household's origin block, or a reconstructed person's own name-pool community
+# — and graded no higher than the field it was read from. The step that matters here is
+# the COVERAGE one inside the tool: every distinct `origin.value` in data/residents/ must
+# be accounted for exactly once in data/residents/community_rules.json, as a stated
+# community, as a region, or as explicitly unreadable. A new origin string that nobody has
+# decided the meaning of would otherwise fall silently to `unknown`, which is the one
+# failure this pass exists to make impossible — so it makes the gate red instead.
+step "every person's community re-derives, and every origin string is accounted for" \
+  python3 tools/derive_person_community.py --check
+
+selftest "…and its refusals still fire (no tier above inferred off a place, no cohort it may not write)" \
+  python3 tools/derive_person_community.py --self-test
+
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
 # new household rewrote up to 73 of the 113 invented names — a diff in which the

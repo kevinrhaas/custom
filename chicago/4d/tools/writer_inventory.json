@@ -275,6 +275,13 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "derive_person_community.py": {
+      "placement": "manifest",
+      "write_mode": "(bare)",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `(bare)` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
+      "placed": "by layer, 2026-09-19 — after the card writers that may change an `origin` and before compile_scene, which builds the People view out of its output; see the manifest step"
+    },
     "derive_presence_evidence_leg.py": {
       "placement": "manifest",
       "write_mode": "--write",

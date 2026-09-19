@@ -822,6 +822,20 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     transients_doc = load(transients_path) if transients_path.exists() else {}
     transient_rows_minted = transients_doc.get("minted", [])
 
+    # T-1375, from T-1177. The community every person belongs to, derived by
+    # tools/derive_person_community.py off what the layer already says — a household's
+    # origin block, or a reconstructed person's own name-pool community — and graded no
+    # higher than the field it was read from. The row carries the tier and the rule that
+    # fired beside the value, because `yankee` inferred from "New England" and `metis`
+    # stated by a parentage sentence are not the same kind of claim and the card says so.
+    # The vocabulary is the rules file's, in the rules file's order, so the filter's pills
+    # read in a stated order rather than by count.
+    community_path = DATA / "residents" / "community.json"
+    community_rules_path = DATA / "residents" / "community_rules.json"
+    community = load(community_path).get("persons", {}) if community_path.exists() else {}
+    community_vocab = (load(community_rules_path).get("vocabulary", [])
+                       if community_rules_path.exists() else [])
+
     def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None):
         occ = person.get("occupation") or {}
         occ_value = occ.get("value")
@@ -846,6 +860,9 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "arrival_year": arrival_year(arrival.get("value")),
             "arrival_precision": arrival.get("precision"),
             "present": present,
+            "community": (community.get(person.get("id")) or {}).get("value"),
+            "community_tier": (community.get(person.get("id")) or {}).get("tier"),
+            "community_rule": (community.get(person.get("id")) or {}).get("rule"),
             "lives_at": lives.get("value"),
             "works_at": works.get("value"),
             **role_row_view(person),
@@ -971,6 +988,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         return dict(sorted(counts.items(), key=lambda kv: str(kv[0])))
 
     occupations = tally("occupation")
+    communities = tally("community")
     by_grade = {g: sum(1 for r in resident_rows if r["grade"] == g)
                 for g in (vocab.get("grades") or ["attested", "inferred", "reconstructed"])}
     divisions = {d: sum(1 for r in resident_rows if r["division"] == d)
@@ -1017,9 +1035,14 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "with_lives_at": sum(1 for r in resident_rows if r["lives_at"]),
             "with_works_at": sum(1 for r in resident_rows if r["works_at"]),
             "with_occupation": sum(1 for r in resident_rows if r["occupation"]),
+            "by_community": {v["value"]: communities.get(v["value"], 0)
+                             for v in community_vocab},
+            "community_known": sum(1 for r in resident_rows
+                                   if r["community"] not in (None, "unknown")),
             "with_roles": sum(1 for r in resident_rows if r.get("roles")),
             "roles": sum(r.get("roles", 0) for r in resident_rows),
-            "with_a_role_at_scene_date": sum(1 for r in resident_rows if r.get("roles_at_scene_date")),
+            "with_a_role_at_scene_date": sum(1 for r in resident_rows
+                                             if r.get("roles_at_scene_date")),
             "with_every_role_off_scene_date": sum(
                 1 for r in resident_rows
                 if r.get("roles") and not r.get("roles_at_scene_date")),
@@ -1064,6 +1087,9 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
+            "communities": [{"value": v["value"], "label": v["label"],
+                             "count": communities.get(v["value"], 0)}
+                            for v in community_vocab],
             "divisions": list(vocab.get("divisions") or divisions.keys()),
             "grades": list(vocab.get("grades") or by_grade.keys()),
             "presence": list(vocab.get("presence") or presence.keys()),
