@@ -379,6 +379,14 @@
     "confidence": "inferred",
     "note": "The town model puts an inn or tavern at 9 people on an ordinary night and 35 when full, from the 1840 household tail (p90 and max of 964 Chicago households). This building takes the share of its class's total that its 186 m² of enclosed floor (93 m² × 2 storeys) is of the class's floor area.",
     "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
-    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+    "occupancy": {
+      "people": 8,
+      "beds_ordinary": 8,
+      "empty": 0,
+      "statement": "8 on this card against an ordinary night's 8 beds: 8 the residents layer already housed here.",
+      "empty_note": "",
+      "keeper_persons": 8,
+      "keeper_owed": ""
+    }
   }
 }

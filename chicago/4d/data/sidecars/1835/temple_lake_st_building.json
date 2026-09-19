@@ -247,6 +247,6 @@
     "confidence": "reconstructed",
     "note": "Lodging the roof programme does not schedule and the town model's bed bracket does not count. Recorded so T-1371 knows the rooms are here; not apportioned, because apportioning it would spend beds the programme allotted to a boarding house somewhere else.",
     "replaceable_by": "",
-    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+    "occupancy": null
   }
 }
