@@ -1,7 +1,7 @@
 ---
 id: T-1382
 title: The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-19
+pr: 1512
+claimed_by: run 9/19/2026, 5:41:35 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T11:23:46.435Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35437831768
 ---
 
 The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it.

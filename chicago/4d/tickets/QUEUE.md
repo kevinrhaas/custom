@@ -52,7 +52,6 @@ T-1377 — The free Black residents, families and Black-owned businesses of 1835
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 T-1386 — The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
-T-1382 — The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
@@ -229,3 +228,4 @@ T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are writ
 T-1379 — The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
 T-1380 — A squash merge dropped a shipped release note and re-used its version: v971 named 'Six dates that would not stick' on dev at 06:06 and names 'How many people each tavern and boarding house could sleep' at 06:31, and the first entry is gone from the file the launcher and Manager parse
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
+

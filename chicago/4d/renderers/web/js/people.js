@@ -122,10 +122,68 @@ const ROLE_FILTERS = {
   none: (r) => !(r.roles || 0),
 };
 
+/** How many pills the Trade row offers out of each of its two rankings (T-1382). */
+const TRADE_PILLS_EVIDENCED = 8;
+const TRADE_PILLS_TOWN = 6;
+
+/**
+ * The Trade row's offer, and the rule that decides it (T-1382).
+ *
+ * The row used to be `slice(0, 10)` over the whole layer's trade counts, which
+ * was a fair cut while the layer was the 457 residents the sources name. The
+ * reconstruction changed what that sentence counts: T-1347 drew 308 trade heads
+ * and T-1353 minted the summer's visitors, and the ten commonest trades became
+ * almost entirely that draw — 57 domestics, 38 boarding-house keepers, 26
+ * labourers, 26 clerks. `tavern_keeper` fell to rank 78 of 83 and had no pill at
+ * all, so the directory could not be asked for this town's tavern keepers, its
+ * physicians or its lawyers: the trades a reader actually looks for were exactly
+ * the ones the reconstruction buried, and they are the ones this project can
+ * name people in.
+ *
+ * So the offer is cut from TWO rankings rather than one, and the evidence goes
+ * first:
+ *   - the eight commonest trades counted over the people the layer's evidence
+ *     carries — grade `attested` or `inferred`, which is every person read off a
+ *     source rather than minted to fill a model;
+ *   - the six commonest trades of the town as a whole, so the numerous
+ *     reconstructed groups (domestics, boarding-house keepers, labourers,
+ *     clerks) keep a pill of their own.
+ *
+ * Deduped, evidenced first, so a reconstruction pass can ADD a pill and can
+ * never take away one the sources attest — which is the property the bare count
+ * cut did not have. Counting the two rankings separately is also why no
+ * threshold has to be invented: neither list is a judgement about how many
+ * people a trade needs, only about which trades the two populations are
+ * commonest in. The whole vocabulary stays reachable in `more trades…`.
+ */
+function tradeOffer(people) {
+  const rows = people.people || [];
+  const total = new Map();
+  const evidenced = new Map();
+  for (const r of rows) {
+    const trade = r.occupation;
+    if (!trade) continue;
+    total.set(trade, (total.get(trade) || 0) + 1);
+    if (r.grade === 'attested' || r.grade === 'inferred') evidenced.set(trade, (evidenced.get(trade) || 0) + 1);
+  }
+  const rank = (counts) => [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([v]) => v);
+  const offer = rank(evidenced).slice(0, TRADE_PILLS_EVIDENCED);
+  for (const trade of rank(total).slice(0, TRADE_PILLS_TOWN)) if (!offer.includes(trade)) offer.push(trade);
+  return offer;
+}
+
 function filterSpecs(people) {
   const occCounts = new Map((people.vocabulary?.occupations || []).map((o) => [o.value, o.count]));
-  const topTrades = [...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .slice(0, 10).map(([v]) => v);
+  // The sidecar's own rows are what the offer is counted over, because the
+  // vocabulary carries one total per trade and the rule needs the evidenced
+  // count as well. With no rows to count (a payload that carries the vocabulary
+  // alone) the old count cut is still the honest answer.
+  const topTrades = tradeOffer(people);
+  if (!topTrades.length) {
+    topTrades.push(...[...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 10).map(([v]) => v));
+  }
   const grades = (people.vocabulary?.grades || []).filter((g) => (people.counts?.by_grade || {})[g] > 0);
   return [
     {
@@ -388,12 +446,18 @@ export async function mountPeople({
         return `<div class="people-frow people-frow-toggle" data-row="${spec.key}">${label}
           <div class="pills">${pill(spec.key, v, text, countOf(v), current === v)}</div></div>`;
       }
-      const inTop = spec.options.some(([v]) => v === current);
+      // A value chosen out of `more` — or set by the API, or by a link — is not in
+      // the offer, and before T-1382 the row then showed no pressed pill at all:
+      // the drawer said "All" while the list was narrowed. It gets a pill of its
+      // own at the end of the row, so the row always shows what it is filtered by.
+      const offered = current === '' || spec.options.some(([v]) => v === current);
+      const extra = offered ? '' : pill(spec.key, current, words(current), countOf(current), true);
       const pills = pill(spec.key, '', 'All', pool.length, current === '')
-        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('');
+        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('')
+        + extra;
       const more = spec.more
         ? `<select class="people-more-select" id="people-occupation" aria-label="More trades">
-            <option value=""${current === '' || inTop ? ' selected' : ''}>more trades…</option>${
+            <option value=""${offered ? ' selected' : ''}>more trades…</option>${
           spec.more.map(([v, text]) => `<option value="${escapeHtml(v)}"${current === v ? ' selected' : ''}>${
             escapeHtml(text)} (${countOf(v)})</option>`).join('')}</select>`
         : '';

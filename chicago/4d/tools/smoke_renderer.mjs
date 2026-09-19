@@ -11828,6 +11828,14 @@ for (const [label, viewport, touch] of [
         note: document.getElementById('people-result-note')?.textContent ?? '' };
       dir.search('');
       const all = dir.state?.matched;
+      // T-1382. What the Trade row OFFERS, read before anything is filtered: the
+      // pills are the offer itself, and the bug was in the offer rather than in
+      // `dir.filter()`, which returned the 8 tavern keepers all along.
+      // Scoped to `#people-filters`: the Businesses view's own Trade row reuses
+      // these classes under `#businesses-filters`, and an unscoped selector reads
+      // the two rows as one.
+      out.offer = [...document.querySelectorAll('#people-filters .people-frow[data-row="occupation"] .pill')]
+        .map((p) => p.dataset.value).filter(Boolean);
       out.pill = { all, matched: dir.filter('occupation', 'tavern_keeper'),
         pressed: document.querySelector('.pill[data-filter="occupation"][aria-pressed="true"]')?.dataset.value,
         offTrade: rows().filter((r) => !/^tavern keeper/.test(r.querySelector('.person-sub')?.textContent.trim() ?? ''))
@@ -11872,6 +11880,18 @@ for (const [label, viewport, touch] of [
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
       && /Beaubien/.test(people.search.note),
       JSON.stringify(people.search));
+    // T-1382. The offer, not just the filter. A `slice(0, 10)` over the whole
+    // layer's trade counts let a reconstruction pass push a DOCUMENTED trade off
+    // the row — 308 drawn trade heads took nine of the ten pills and the town's
+    // tavern keepers, physicians and lawyers lost theirs. The offer is cut from
+    // the evidenced layer's commonest trades AND the town's, so this asserts both
+    // halves: the trades a reader looks for and this project can name people in,
+    // and the numerous reconstructed groups. Bounded, because a row that offers
+    // all 83 trades is not an offer.
+    check(`${label}: the Trade row offers the documented trades AND the town's commonest`,
+      ['tavern_keeper', 'physician', 'attorney', 'domestic', 'labourer'].every((t) => people.offer.includes(t))
+      && people.offer.length >= 10 && people.offer.length <= 16,
+      `${people.offer.length} pill(s): [${people.offer.join(', ')}]`);
     check(`${label}: the tavern-keeper pill narrows the list to tavern keepers`,
       people.pill.matched > 0 && people.pill.matched < people.pill.all && people.pill.rows === people.pill.matched
       && !people.pill.offTrade.length && people.pill.pressed === 'tavern_keeper' && people.pill.cleared === people.pill.all,
