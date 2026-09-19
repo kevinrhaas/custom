@@ -1,7 +1,7 @@
 ---
 id: T-1333
 title: The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1144
 opened: 2026-09-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-18
+pr: 1480
+claimed_by: run 9/18/2026, 5:45:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T23:15:11.985Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35402702816
 ---
 
 The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings.
