@@ -3,18 +3,18 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 196,
+    "records": 200,
     "compiled_from_register": 196,
-    "authored": 0,
-    "present_at_scene_date": 179,
+    "authored": 4,
+    "present_at_scene_date": 183,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
-      "druggist": 2,
+      "druggist": 4,
       "iron_foundry": 1,
       "lawyer": 18,
       "not_stated": 5,
-      "other": 79,
+      "other": 81,
       "physician": 3,
       "printing_office": 3,
       "school": 7,
@@ -28,26 +28,28 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
-      "unplaceable": 83
+      "street_only": 63,
+      "unplaceable": 85
     },
-    "named_people": 196,
-    "named_people_linked_to_a_town_card": 144,
+    "named_people": 200,
+    "named_people_linked_to_a_town_card": 148,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 21,
     "by_grade": {
       "attested": 158,
-      "inferred": 38
+      "inferred": 38,
+      "reconstructed": 4
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 30,
-      "street_only": 61,
-      "unplaceable": 79
+      "street_only": 63,
+      "unplaceable": 81
     },
     "by_street": {
       "Canal Street": 1,
-      "Dearborn Street": 23,
+      "Dearborn Street": 24,
+      "Kinzie Street": 1,
       "La Salle Street": 4,
       "Lake Street": 14,
       "Monroe Street": 1,
@@ -57,11 +59,12 @@
     },
     "by_proprietor_community": {
       "british": 9,
+      "free_black": 2,
       "new_york": 41,
       "other": 10,
       "southern": 5,
       "unknown": 85,
-      "yankee": 46
+      "yankee": 48
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -100,12 +103,12 @@
       {
         "value": "free_black",
         "label": "Free Black",
-        "count": 0
+        "count": 2
       },
       {
         "value": "yankee",
         "label": "New England",
-        "count": 46
+        "count": 48
       },
       {
         "value": "new_york",
@@ -3362,7 +3365,7 @@
         "street_id": "dearborn",
         "street": "Dearborn Street",
         "tier": "inferred",
-        "from": "1833-12-17",
+        "from": "1835-05-20",
         "to": null,
         "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
       },
@@ -10905,6 +10908,194 @@
       "closed": null,
       "dates_tier": "inferred",
       "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_crandall_druggist",
+      "file": "rcb_crandall_druggist.json",
+      "name": "B. Crandall, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Crandall",
+          "person_id": "rc_crandall_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_fb_barbers_shop",
+      "file": "rcb_fb_barbers_shop.json",
+      "name": "Benjamin Anderson, barber",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "A barber's shop kept by a free Black resident of the town",
+      "occupation": "barber",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Anderson",
+          "person_id": "rc_fb_anderson_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "Nothing places this house. The cohort it belongs to is unplaced for the same reason — no reading puts a free Black household or business on any street of this town — and T-1199 seats the reconstructed layer when the placement policy is written."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "free_black",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": true,
+      "liberties": []
+    },
+    {
+      "id": "rcb_fb_washing_and_ironing",
+      "file": "rcb_fb_washing_and_ironing.json",
+      "name": "Eliza Anderson, washing and ironing",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "A washing and ironing establishment kept by a free Black woman of the town",
+      "occupation": "laundress",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Eliza Anderson",
+          "person_id": "rc_fb_anderson_eliza",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "unplaceable",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "Nothing places this house. The cohort it belongs to is unplaced for the same reason — no reading puts a free Black household or business on any street of this town — and T-1199 seats the reconstructed layer when the placement policy is written."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "free_black",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": true,
+      "liberties": []
+    },
+    {
+      "id": "rcb_metcalf_druggist",
+      "file": "rcb_metcalf_druggist.json",
+      "name": "Nathaniel Metcalf, drugs, medicines and dye stuffs",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "druggist and apothecary",
+      "occupation": "druggist",
+      "goods": [
+        "drugs, medicines and dye stuffs"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Nathaniel Metcalf",
+          "person_id": "rc_metcalf_nathaniel",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "kinzie",
+        "street": "Kinzie Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []

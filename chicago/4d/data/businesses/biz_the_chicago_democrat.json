@@ -90,11 +90,11 @@
       "street_id": null,
       "face": null,
       "primary": false,
-      "from": "1834-12-03",
-      "to": "1835-08-05",
+      "from": "1835-08-05",
+      "to": null,
       "tier": "inferred",
-      "basis": "An earlier anchor for this house, printed as “the corner of South Water and Clark streets” and superseded by “Jones & King's hardware store”.",
-      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated."
+      "basis": "The later of this house's two printed anchors, set as “Jones & King's hardware store”; the register makes “the corner of South Water and Clark streets” the siting at the scene date.",
+      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated. First printed 1835-08-05, which is after the scene date, so the register keeps the earlier anchor live and this siting is recorded without being made the premises."
     }
   ],
   "dates": {

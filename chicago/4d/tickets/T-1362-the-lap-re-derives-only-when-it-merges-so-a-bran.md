@@ -177,3 +177,38 @@ making it green, which is worth having and is not the same thing as fixing it.
 2. Rebuild what the check names, then re-run the WHOLE relevant sequence rather than just that
    step — T-1179's corrected finding, for the same reason: the check names the stage that is
    stale, and the cycle can run through a stage it does not name.
+
+---
+
+## FINDING (T-1397, 2026-09-19): the lap still pushes regenerations no gate has seen
+
+T-1397 closed ONE way the lap's `rederive.mjs --run` could commit a wrong answer —
+an unpinned network read inside a manifest step, where a library's re-encode of a
+scan silently re-traced the Chicago River onto every branch the lap touched. The
+generator is pinned now, so for that class there is nothing to commit: the tool
+refuses and `--run` fails, and the lap aborts and leaves the branch alone.
+
+**That is the cause, not the shape.** T-1397's acceptance 3 asked for more than it
+got, and this is the part left standing:
+
+> The lap does not commit regenerated files that the gate has not passed. Its own
+> note says "gating is CI's — every push above re-runs the gate", and that is what
+> leaves a red branch behind with nothing to roll it back.
+
+`.github/steward/pr-lap.sh` still commits and pushes whatever `rederive.mjs --run`,
+`compile_scene.py --all`, `ticket.mjs board` and `publish.sh` produce, and discovers
+afterwards — from CI, on the branch, in front of whoever owns the PR — whether the
+result is green. The lap dropped its pre-push gate on purpose (~15 minutes against
+~19 seconds, and the comment in the script argues the trade honestly), so the answer
+is not "put `check.sh` back".
+
+What is missing is a **cheap** shape-check between regenerating and pushing: the
+regeneration touched N files, and some subset of the gate's steps own those files.
+`tools/derived_manifest.json` already knows which step owns what, and
+`rederive.mjs --resolvable` already answers a related question for the conflict path.
+Running only the owning steps' `--check` would have caught the terrain fossil in
+seconds on the lap that minted it, instead of two PRs later on a human's morning.
+
+This is worth measuring before it is worth building: how long do the owning checks
+take for a typical lap's file set? If it is seconds, the lap should not push without
+them.

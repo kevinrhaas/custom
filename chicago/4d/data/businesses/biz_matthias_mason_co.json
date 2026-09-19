@@ -71,11 +71,11 @@
       "street_id": null,
       "face": null,
       "primary": false,
-      "from": "1834-06-11",
-      "to": "1834-09-10",
+      "from": "1833-11-26",
+      "to": "1834-06-11",
       "tier": "inferred",
-      "basis": "An earlier anchor for this house, printed as “Graves' Tavern” and superseded by “the Tremont House”.",
-      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated."
+      "basis": "The earlier of this house's two printed anchors, set as “Graves' Tavern”; the register makes “the Tremont House” the siting at the scene date.",
+      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated. Printed through 1834-06-11; the anchor that supersedes it is first printed 1834-09-10, so the move falls between those two issues and the corpus dates it no closer."
     }
   ],
   "dates": {

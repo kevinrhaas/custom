@@ -6,6 +6,21 @@ printed by `python3 tools/derive_person_community.py --report`, off
 household records and `data/residents/community_rules.json`. Nothing here is a reading
 of a source: no source was opened to write this file and nobody was minted.
 
+## The figures below are T-1375's own run, and two of its empty rows have since been filled
+
+**Addendum, 2026-09-19.** This page is the snapshot T-1375 printed on the day it derived
+the attribute, and it is kept as that. Two of the five empty rows it ends on have since
+been written, by the tickets it names:
+
+| row | on this page | today |
+|---|---:|---:|
+| `native` | 0 (2 people carried the value by an origin sentence) | **87** — T-1376 carded the company the 1832 Chicago roll heads INDIAN |
+| `free_black` | 0 | **15** — T-1377 wrote the free Black town to the FLOOR of its bracket: Caton's six or seven free coloured men of August 1833 below, the 1840 census's 53 free coloured persons carried back above. `docs/RESEARCH/black_chicago_1835.md` |
+
+`german` is still nobody, and the Irish 341 are still what T-1378 checked against the
+model. Everything else below stands as printed; re-run
+`python3 tools/derive_person_community.py --report` for the current table.
+
 ## Read this before the table
 
 **Half of this distribution is the reconstruction programme's own shares, handed back.**

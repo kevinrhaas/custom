@@ -3,6 +3,176 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 283,
+      "takenAt": "2026-09-19T18:55:00.421Z",
+      "ref": "steward/t-1402-business-audit",
+      "commit": "36edb8c5fe16",
+      "devCommit": "8b37b685a67c",
+      "treeHash": "sha256:92b26dc4a0257252",
+      "treeDirty": false,
+      "changelogHash": "sha256:4782228dcc402ed3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.3,
+          4
+        ]
+      },
+      "source": "/tmp/smoke_d12b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 281,
+      "takenAt": "2026-09-19T18:45:26.838Z",
+      "ref": "steward/t-1402-business-audit",
+      "commit": "7fb750d34983",
+      "devCommit": "8b37b685a67c",
+      "treeHash": "sha256:92b26dc4a0257252",
+      "treeDirty": true,
+      "changelogHash": "sha256:d054a4e804bc5aa3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 142,
+      "takenAt": "2026-09-19T18:45:26.756Z",
+      "ref": "steward/t-1402-business-audit",
+      "commit": "7fb750d34983",
+      "devCommit": "8b37b685a67c",
+      "treeHash": "sha256:92b26dc4a0257252",
+      "treeDirty": true,
+      "changelogHash": "sha256:d054a4e804bc5aa3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_m12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 90,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
+        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
+      ],
+      "wallSeconds": 733,
+      "takenAt": "2026-09-19T18:45:26.667Z",
+      "ref": "steward/t-1402-business-audit",
+      "commit": "7fb750d34983",
+      "devCommit": "8b37b685a67c",
+      "treeHash": "sha256:92b26dc4a0257252",
+      "treeDirty": true,
+      "changelogHash": "sha256:d054a4e804bc5aa3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_m3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 376,
+      "takenAt": "2026-09-19T17:52:50.652Z",
+      "ref": "steward/t-1184-stores-provision-trades",
+      "commit": "b4350f7e7c99",
+      "devCommit": "7d328c3f19b1",
+      "treeHash": "sha256:2052aac77c804580",
+      "treeDirty": false,
+      "changelogHash": "sha256:120d98dfaa899989",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.6,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke2-d12.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "11-12",
       "parts": [
         11,
@@ -1001,166 +1171,6 @@
         ]
       },
       "source": "/tmp/sm13b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 90,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 338,
-      "takenAt": "2026-09-19T02:10:43.465Z",
-      "ref": "steward/t-1178-transient-cohort",
-      "commit": "c7b45dbfd83c",
-      "devCommit": "4b6a4e7116a7",
-      "treeHash": "sha256:c024f141e0a0b6f7",
-      "treeDirty": false,
-      "changelogHash": "sha256:84485bafb0b9ce4b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.7,
-          3.8
-        ]
-      },
-      "source": "/tmp/sm_m3b.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 82,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 310,
-      "takenAt": "2026-09-19T02:10:39.574Z",
-      "ref": "steward/t-1172-readmit-borderline-roster",
-      "commit": "256d33d5ec25",
-      "devCommit": "c14d8e6177c4",
-      "treeHash": "sha256:235c43779d59d1e3",
-      "treeDirty": false,
-      "changelogHash": "sha256:8b7854a0bd12da81",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.4,
-          3.9
-        ]
-      },
-      "source": "/tmp/smoke_d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 115,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 272,
-      "takenAt": "2026-09-19T02:10:39.479Z",
-      "ref": "steward/t-1172-readmit-borderline-roster",
-      "commit": "256d33d5ec25",
-      "devCommit": "c14d8e6177c4",
-      "treeHash": "sha256:235c43779d59d1e3",
-      "treeDirty": false,
-      "changelogHash": "sha256:8b7854a0bd12da81",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.4,
-          3.9
-        ]
-      },
-      "source": "/tmp/smoke_m13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 115,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 483,
-      "takenAt": "2026-09-19T02:10:39.382Z",
-      "ref": "steward/t-1172-readmit-borderline-roster",
-      "commit": "256d33d5ec25",
-      "devCommit": "c14d8e6177c4",
-      "treeHash": "sha256:235c43779d59d1e3",
-      "treeDirty": false,
-      "changelogHash": "sha256:8b7854a0bd12da81",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.4,
-          3.9
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 91,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 83,
-      "takenAt": "2026-09-19T02:04:58.579Z",
-      "ref": "steward/t-1178-transient-cohort",
-      "commit": "c7b45dbfd83c",
-      "devCommit": "4b6a4e7116a7",
-      "treeHash": "sha256:c024f141e0a0b6f7",
-      "treeDirty": false,
-      "changelogHash": "sha256:84485bafb0b9ce4b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.5,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke_m3.txt"
     },
     {
       "viewport": "mobile",
