@@ -946,15 +946,24 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             continue
         hh = load(path)
         transient_households += 1
-        households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], transient=minted))
 
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
+    # T-1353. EVERY TALLY BELOW COUNTS THE TOWN'S OWN PEOPLE, and the visitors are counted
+    # on rows of their own. The distinction is not decorative: `by_grade`, `by_presence`,
+    # `households` and `by_arrival_year` are read straight by tools/model_town_1835.py,
+    # which is the model the reconstruction order book is cut from, so folding 307 visitors
+    # into them would have the town order houses, trades and families for people who were
+    # going home on the next boat. The `people` count and the row list below carry
+    # everybody, because the directory lists everybody; `residents` and `transients`
+    # partition it.
+    resident_rows = [r for r in rows if not r.get("transient")]
+
     def tally(key):
         counts: dict = {}
-        for r in rows:
+        for r in resident_rows:
             v = r.get(key)
             if v is None:
                 continue
@@ -962,26 +971,26 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         return dict(sorted(counts.items(), key=lambda kv: str(kv[0])))
 
     occupations = tally("occupation")
-    by_grade = {g: sum(1 for r in rows if r["grade"] == g)
+    by_grade = {g: sum(1 for r in resident_rows if r["grade"] == g)
                 for g in (vocab.get("grades") or ["attested", "inferred", "reconstructed"])}
-    divisions = {d: sum(1 for r in rows if r["division"] == d)
+    divisions = {d: sum(1 for r in resident_rows if r["division"] == d)
                  for d in (vocab.get("divisions") or sorted(tally("division")))}
-    presence = {p: sum(1 for r in rows if r["present"] == p)
+    presence = {p: sum(1 for r in resident_rows if r["present"] == p)
                 for p in (vocab.get("presence") or sorted(tally("present")))}
-    # T-1353. `documented` is a statement about a RESIDENT's evidence, so the visitors are
-    # taken out of it rather than folded in: a summer crowd nobody named would otherwise
-    # have read as 307 more documented Chicagoans. They are counted on their own row.
-    resident_rows = [r for r in rows if not r.get("transient")]
+    # `documented` is a statement about a RESIDENT's evidence, so the visitors are taken
+    # out of it rather than folded in: a summer crowd nobody named would otherwise have
+    # read as 307 more documented Chicagoans. They are counted on their own row.
     known = {
         "documented": sum(1 for r in resident_rows if not r["letter_list_only"]
                           and not r["civic_mint"]
                           and r["resident_subtype"] != "projected_resident"),
-        "letter_list": sum(1 for r in rows if r["letter_list_only"]),
-        "civic_mint": sum(1 for r in rows if r["civic_mint"]),
-        "projected": sum(1 for r in rows if r["resident_subtype"] == "projected_resident"),
-        "transient": sum(1 for r in rows if r.get("transient")),
+        "letter_list": sum(1 for r in resident_rows if r["letter_list_only"]),
+        "civic_mint": sum(1 for r in resident_rows if r["civic_mint"]),
+        "projected": sum(1 for r in resident_rows
+                         if r["resident_subtype"] == "projected_resident"),
+        "transient": len(rows) - len(resident_rows),
     }
-    with_address = sum(1 for r in rows if r["lives_at"] or r["works_at"])
+    with_address = sum(1 for r in resident_rows if r["lives_at"] or r["works_at"])
     readmitted = [r for r in rows if r.get("readmission")]
     trade_heads = [r for r in rows if r.get("reconstructed_trade")]
     transients = [r for r in rows if r.get("transient")]
@@ -1005,14 +1014,15 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "by_presence": presence,
             "by_arrival_year": {str(k): v for k, v in sorted(tally("arrival_year").items())},
             "with_address": with_address,
-            "with_lives_at": sum(1 for r in rows if r["lives_at"]),
-            "with_works_at": sum(1 for r in rows if r["works_at"]),
-            "with_occupation": sum(1 for r in rows if r["occupation"]),
-            "with_roles": sum(1 for r in rows if r.get("roles")),
-            "roles": sum(r.get("roles", 0) for r in rows),
-            "with_a_role_at_scene_date": sum(1 for r in rows if r.get("roles_at_scene_date")),
+            "with_lives_at": sum(1 for r in resident_rows if r["lives_at"]),
+            "with_works_at": sum(1 for r in resident_rows if r["works_at"]),
+            "with_occupation": sum(1 for r in resident_rows if r["occupation"]),
+            "with_roles": sum(1 for r in resident_rows if r.get("roles")),
+            "roles": sum(r.get("roles", 0) for r in resident_rows),
+            "with_a_role_at_scene_date": sum(1 for r in resident_rows if r.get("roles_at_scene_date")),
             "with_every_role_off_scene_date": sum(
-                1 for r in rows if r.get("roles") and not r.get("roles_at_scene_date")),
+                1 for r in resident_rows
+                if r.get("roles") and not r.get("roles_at_scene_date")),
             "readmitted": len(readmitted),
             "readmitted_households": readmitted_households,
             # The persons the re-admission MINTED, which is exactly the number by which
