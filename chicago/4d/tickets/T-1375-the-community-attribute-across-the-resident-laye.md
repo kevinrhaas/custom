@@ -1,7 +1,7 @@
 ---
 id: T-1375
 title: The community attribute across the resident layer: the closed vocabulary, a tiered community on every person and household derived from the evidence the layer already holds, the People view's community filter, and the shares table printed against the town model
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1177
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1507
 claimed_by: run 9/19/2026, 1:51:01 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T08:27:31.589Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35427481265
 ---
 
