@@ -2317,6 +2317,37 @@
         ]
       },
       "source": "/tmp/sm_m2.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 266,
+      "takenAt": "2026-09-19T02:49:02.269Z",
+      "ref": "steward/t-1172-readmit-borderline-roster",
+      "commit": "a5b5542bee6a",
+      "devCommit": "875e2834b81b",
+      "treeHash": "sha256:c2ecadfd0ea411b7",
+      "treeDirty": false,
+      "changelogHash": "sha256:646add90dc73cacd",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4,
+          3.5
+        ]
+      },
+      "source": "/tmp/sm13b.log"
     }
   ]
 }
