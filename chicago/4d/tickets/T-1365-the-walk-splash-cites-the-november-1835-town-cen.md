@@ -1,7 +1,7 @@
 ---
 id: T-1365
 title: The walk splash cites the November 1835 town census as the 1 July population: 1,588 cards read against 3,265, where the source file says that number is never the scene's population and only 457 of the cards are present
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1510
 claimed_by: run 9/19/2026, 3:50:48 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T10:15:38.160Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35432948183
 ---
 
