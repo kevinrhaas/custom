@@ -788,9 +788,13 @@ def ledger_document(p: dict) -> dict:
              "why": "T-1352 records 4 to 6 hulls lying at Chicago on the scene date and no "
                     "committed source in this corpus gives a crew complement for an 1830s "
                     "lake schooner. Without one a crew is a number invented whole, so the "
-                    "hulls carry nobody.",
-             "owed_to": "T-1372, which seats the crews, and which cannot until a source "
-                        "gives a complement"},
+                    "hulls carry nobody. T-1372 has since SEATED those hulls — "
+                    "data/reconstruction/1835_vessels_in_port.json names each one, her "
+                    "master, her last port and her cargo, and moors her to the reach — and "
+                    "left every one of them empty.",
+             "owed_to": "a committed source that gives an 1830s Great Lakes schooner its "
+                        "complement. The hulls are seated and the `lodged_at` rung of kind "
+                        "`vessel` is gated and read; only the number is missing"},
             {"row": "the harbour-works gang",
              "slots_reserved": 0,
              "why": "The federal harbour improvement was at work through 1835 and no "
