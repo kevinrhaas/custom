@@ -72,7 +72,7 @@
  "counts": {
   "offered": {
    "R1_in_window_uncertain": 805,
-   "R2_in_window_single_source": 199,
+   "R2_in_window_single_source": 196,
    "R3_1834_return_or_muster": 30,
    "R5_later_only_backprojectable": 55
   },
@@ -84,7 +84,7 @@
   },
   "withheld": {
    "R1_in_window_uncertain": 79,
-   "R2_in_window_single_source": 89,
+   "R2_in_window_single_source": 86,
    "R3_1834_return_or_muster": 10,
    "R5_later_only_backprojectable": 11
   },
@@ -24744,13 +24744,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1833_05_3_mother#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Josette Vieau",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1833_05_5_sponsor#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Elozina[?] Bailly",
@@ -24782,13 +24775,6 @@
    "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1833_08_5_godmother#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Monique Nadeau",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1833_10_5_godmother#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Josette Vieau",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -25090,13 +25076,6 @@
    "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_24_5_godmother#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Thérèse Laframboise",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1835_01_5_sponsor#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Mary Murphy",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
