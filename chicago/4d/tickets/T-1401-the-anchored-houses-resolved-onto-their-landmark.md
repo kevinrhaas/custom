@@ -1,7 +1,7 @@
 ---
 id: T-1401
 title: The anchored houses resolved onto their landmark, and the register's double-printed partners folded: every anchored location carries the id of the structure or firm it stands against, and a partner the register styles two ways is one partner on the firm's own card
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1182
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1528
 claimed_by: run 9/19/2026, 11:07:55 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T17:22:13.998Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35453633099
 ---
 
