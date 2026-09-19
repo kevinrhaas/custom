@@ -66,11 +66,7 @@ HANDED_ON = (
     " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
     "the reconstructed tier, under its own read name, in "
     "data/reconstruction/1835_readmissions.json — and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. The hand-off moves "
-    "to T-1179, the ticket that converges the reconstructed resident layer and is "
-    "where a re-admission is finally reconciled against the index, the sidecars "
-    "and the town census; the re-admission's own `withdrawn_if` clause is what "
-    "retires it before then.")
+    "the evidence, which is why this unit stays `unresolved`. " + "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then.")
 
 RULES = {
     "the_purchaser_is_a_corporate_body": {
@@ -136,7 +132,10 @@ RULES = {
         # names as reconstructed residents under their own read names. This file's own
         # doc calls for exactly this: a hand-off names the OPEN ticket whose field owns
         # the finding, and that ticket closing turns the file red.
-        "ticket": "T-1179",
+        # T-1179 was SPLIT on 2026-09-19 (T-1392/T-1393/T-1394), and a split ticket is
+        # not open, so the ledger's invariant refused it and the PR lap stopped pushing.
+        # T-1394 is the open heir that reconciles a re-admission against the layer.
+        "ticket": "T-1394",
         "statement": (
             "The tract was entered on or before 1 July 1835, the register's Residence "
             "column reads COOK, and no upheld crosswalk join puts this purchaser on a card "
