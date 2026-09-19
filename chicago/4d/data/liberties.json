@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 244,
+  "count": 245,
   "liberties": [
     {
       "id": "L1",
@@ -14795,7 +14795,7 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
-      "recorded": "2026-09-18",
+      "recorded": null,
       "revised": null,
       "fields": [
         {
@@ -14821,10 +14821,6 @@
         {
           "label": "How to resolve",
           "text": "any source naming a member of the Murphy or Adams household at or before 1 July 1835 retires the person it names — that is each record's own `replaceable_by`. Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**."
-        },
-        {
-          "label": "Recorded",
-          "text": "2026-09-18."
         }
       ]
     },
@@ -14871,6 +14867,29 @@
         {
           "label": "Scope",
           "text": "`residents.persons[modelled_families]` — 300 people in 89 households, every one of them re-derivable from `tools/reconstruct_modelled_families.py --check`. **What is invented, stated plainly.** That these men were married at all; how many children each had; every child's age band and sex; every forename. The surname is the head's own, the forename is drawn from `data/reconstruction/1835_invented_name_pools.json`, and no source names a single one of these people. Each carries `grade: reconstructed`, the stage that wrote them, the model row they were drawn from, the seed a reader can retype to redraw them, and the sentence that retires them: *a source naming this head's family*. **What the model, not a source, decides.** THE SPACING RULE — a wife is drawn from the 1840 female adult columns and never above her husband's own band. The 1840 city returned 146.8 men per 100 women aged twenty and over and the surplus is young unmarried men, so a wife older than her husband's decade is the shape the schedule least supports; no source states this and it is an assumption of the model. THE CHILD CAP — no child is older than the marriage the head's own age band allows, and none is born after 1 July 1835; the first is arithmetic on a drawn band, not a reading. THE DIVISION — 1,186 of the 1,258 household records say `unplaced`, so a drawn person is allocated to a division bucket of the order book by a seeded draw on the model's own by-division shares. That allocation is a LEDGER ACT: it writes no division onto any person or card, and the household goes on saying its place is unknown. **What is NOT invented here.** No draw exceeds the quota: every drawn person is counted into a bucket of `data/reconstruction/1835_reconstruction_order_book.json` and a bucket at its `to_reconstruct` REFUSES the draw instead of overfilling. No servant, apprentice, journeyman or lodger is seated — the drawn size is a floor on the house and the record says so, because the staffing model is T-1183's and the lodger is T-1175's. Eight refusals keep the stage off evidence it must not touch, and the build counts every one of them: an unsettled presence on the scene date (822, T-1172's roster), a letter-list mint (312, whose own gate proves no record there ever gained a second member), a household a source already names, counts or rules on (17, T-1313's and T-1314's), a head the household model does not seat as a husband (9), the fort and the country outside the town (3, T-1176's), a woman heading her own household (3, the age pyramid's and so T-1174's), a household under a standing review (2, T-1177's alone under AGENTS.md's Indigenous-history review), and a head whose own trade says he kept no wife (1) — which is what stopped this stage giving Father St Cyr a family. **What it does not fix.** The layer's adult sex ratio moves from 1,360.7 men per 100 women to 340.2 and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: the women the age pyramid still lacks are 855 people in T-1174's buckets. The measurement is printed against the model in `data/reconstruction/1835_modelled_families.json` and says so rather than reading as a target reached. Related: tickets **T-1171**, from **T-1167**; **T-1161**'s town model and **T-1166**'s order book are the two files it draws against."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-18."
+        }
+      ]
+    },
+    {
+      "id": "L245",
+      "title": "820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-18",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction programme (T-1167) spends four of its seven classes and re-admits **820** of them: **734** cards whose presence on 1 July 1835 the research left `uncertain` are given a **second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new cards are minted under read names the town carried on no row — 19 from a single in-window appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own biography dates an arrival before the scene. **117** offered rows are withheld, each with its reason: 37 because a card already in the layer shares the surname and first given initial — the discriminator this project's own directory crosswalks match on — 41 because the row carries no readable date at all, and 39 because T-1144's reading of the row shows its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day before it. A lag nothing measures is not a lag a persistence rate may be applied to. **What is invented, exactly.** Two things and no more. First, **that these people were in Chicago on 1 July 1835**, which no source says of any of them — that is what \"withheld\" meant. Second, **the rate at which a person the corpus names stops being found in Chicago**, because nothing measures it. Everything else — the names, the readings, the dates, the sources — is the corpus's own, and every re-admitted record prints the name as read beside the name as rendered. **What bounds the rate.** Three of this project's crosswalks count how many of the SAME 1,280-person layer a later Chicago volume still names: Fergus 1839 (164), Fergus 1843 (136) and Norris 1844 (112). How much of the town each volume covers is unknown and that unknown multiplies all three counts alike, so it cancels out of the SLOPE of `ln(matched)` against time and does not cancel out of any one level. A least-squares line through the three gives **λ = 0.06784 a year** — a 93.4 % chance of still being in the town a year later — and `persistence(L) = exp(-λL)` prices a card whose evidence stops L years before the scene. Each ruling carries the seed that redraws it (`<household_id>:persistence`), so the whole draw re-derives on demand. **Which way it is wrong if it is wrong, said rather than corrected.** The steady-coverage assumption is load-bearing and is the one most likely to fail: Fergus 1839 is a list first set up from memory in 1839 and completed in 1876, and the other two are ordinary printed directories. If coverage GREW across the three volumes, the observed fall is shallower than the real one, λ is too small, and this stage re-admits **too many** people rather than too few. Published persistence studies of frontier towns read nearer 0.15–0.25 a year than 0.068. That is stated here instead of corrected for, because correcting it would mean choosing a number rather than measuring one. **What is NOT done here.** No refusal is overturned. Every ledger disposition, grade, rung and inferred or attested value in the research layer is untouched, and the inferred `uncertain` each ruling stands beside is kept on the card and printed beside the reconstruction in the People view. The re-admissions are written to `data/reconstruction/1835_readmissions.json` and `data/residents/readmitted/`, outside the directory the mint writers re-derive, so a mint re-run is still byte-identical and nothing here can be mistaken for research. R4 (a family for a head the town already holds) is T-1170's and R6 (the Native, Métis and Black cohorts, which carry their own review) is T-1177's; neither is spent here. **What it leaves open.** The order book models 643 households in the town and the layer now reads 1,133 present. The two counts are not in the same unit — 736 of the layer's households are letter-list CONTAINERS holding one person and arguing for a person rather than a dwelling — and reconciling them is T-1171's and T-1179's."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a measured out-migration or persistence rate for Chicago in the 1830s, or a fourth later horizon that bends the fitted line, replaces the model. Any source that follows one of these people past 1 July 1835, or places them elsewhere on it, retires that row's ruling on its own. Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster **T-1159**, the programme **T-1167**."
         },
         {
           "label": "Recorded",
