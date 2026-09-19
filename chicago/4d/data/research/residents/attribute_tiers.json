@@ -26,11 +26,11 @@
   },
   "counts": {
     "cards": 1382,
-    "blocks": 17787,
-    "tiers_written_on_the_card": 7716,
+    "blocks": 17784,
+    "tiers_written_on_the_card": 7713,
     "by_tier": {
       "attested": 590,
-      "inferred": 3318,
+      "inferred": 3315,
       "reconstructed": 7878,
       "unknown": 6001
     },
@@ -43,7 +43,7 @@
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 23,
+        "inferred": 20,
         "reconstructed": 1298,
         "unknown": 0
       },

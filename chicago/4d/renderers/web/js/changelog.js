@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Six dates that would not stick', kind: 'fix', ts: '',
+  { v: 971, title: 'Six dates that would not stick', kind: 'fix', ts: '2026-09-19T06:06:11.774Z', date: 'Sep 19, 2026, 1:06 AM CT',
     items: [
       'Last night\u2019s release ended on an admission: six findings had been ruled and could not be written. Three of them are written now \u2014 Botsford, Eli B. Williams and Hibbard Porter belonged to the spring of 1833, and their cards say so. Those cards are generated from the town\u2019s newspaper and civic registers, the generator rebuilds the arrival date every time it runs, and a date written by hand used to be dropped without complaint.',
       'What was wrong was not the six dates but the shape of the thing. A register can only say a man was here BY some day \u2014 a poll list prints a name, never a coming \u2014 so the generator writes every arrival as a bound, and it is right to. A compiler\u2019s list of who arrived that spring says something a register cannot, and nothing let it reach a card the generator owned. Something does now: a ledger, each entry naming the reading, its page, the identification that joins it to the card, and the bound it replaces.',
