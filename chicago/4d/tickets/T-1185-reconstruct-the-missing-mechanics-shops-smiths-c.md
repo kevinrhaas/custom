@@ -1,7 +1,7 @@
 ---
 id: T-1185
 title: Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-16
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 5:20:38 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35472821496
 ---
 
 Second group of T-1184's tool. The *American* of August 1835 counted "twenty-five
