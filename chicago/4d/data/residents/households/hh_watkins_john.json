@@ -229,7 +229,19 @@
      "fergus_1843_old_settler_death_notices"
     ],
     "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'March 1, 1887' and the age as 'aged 85'. An age of 85 completed years means at least 85 and less than 86, so the birth falls between 1801-03-02 and 1802-03-01: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Watkins, John, died, Joliet, Will Co.. Ill., March 1, 1887, aged 85.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
-   }
+   },
+   "associated_with": [
+    {
+     "kind": "school",
+     "place_or_structure_id": "north_side_school_1833",
+     "resolves_to": "structure",
+     "from": "1835",
+     "to": null,
+     "tier": "attested",
+     "source_id": "andreas_1884_v1",
+     "note": "THE 1835 USE IS ATTESTED, AND IT IS THE ONLY TEACHING IN THIS LAYER THAT IS. `data/structures/north_side_school_1833.json` carries Andreas at full text: 'John Watkins was THEN teaching what had become a public school on the North Side, on the river bank just east of Clark Street, in the building erected by Colonels Hamilton and Owen.' THE GRAIN IS THE YEAR AND NOT THE DAY — Andreas adds his own limit, 'Mr. Watkins taught as late as 1835, but the exact date of his retirement is not known' — so `from` is 1835 and `to` is null rather than the scene date. HIS EARLIER SCHOOL IS NOT WRITTEN AS A SECOND ROW: `watkins_school_house` and this record both carry 'the Watkins school-house' among their aka, and until that overlap is ruled on, one man taught in two records and only one of them is attested for the year of the scene."
+    }
+   ]
   },
   {
    "id": "rc_watkins_john_wife",

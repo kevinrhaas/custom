@@ -362,7 +362,29 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('pruyne_peter:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   }
+   },
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-25",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0321 — to this purchaser, read as 'PRUYNE P', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.82 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'PRUYNE P matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    },
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-24",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 2 row(s) — ls0323, ls0324 — to this purchaser, read as 'PRUYNE PETER', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 6.96 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'PRUYNE PETER matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ]
   },
   {
    "id": "kimberly_edmund_s",
@@ -689,7 +711,19 @@
      "history_medicine_chicago_kimberly_maxwell"
     ],
     "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
-   }
+   },
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-25",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0263 — to this purchaser, read as 'KIMBERLEY EDMUND S', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.82 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-1001 on 2026-09-10 by the rule 'KIMBERLEY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 1 person of this surname, and the forename agrees in full. The surname reaches him through a ruled card merge and not off his card: the town held kimberley_ed until data/residents/card_merge_rulings.json folded it onto this person, and the register's spelling is the one that card carried.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ]
   }
  ],
  "touches_removal": false,

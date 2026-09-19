@@ -296,7 +296,19 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('harmon_charles_l:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   }
+   },
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0227 — to this purchaser, read as 'HARMON CHARLES L', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.6 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'HARMON CHARLES L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 6 people of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ]
   },
   {
    "id": "harmon_isaac_d",
@@ -676,7 +688,19 @@
     ],
     "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'April 9, 1886' and the age as 'aged 72'. An age of 72 completed years means at least 72 and less than 73, so the birth falls between 1813-04-10 and 1814-04-09: the birth year is 1813 or 1814. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Harmon, Isaac Dewey, died April 9, 1886, aged 72.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent.",
     "contradicted_by_the_card": "AND THE CARD DOES NOT AGREE WITH IT (T-1179). This card says the person stands on muster_1832, and the interval leaves them 19 in 1832 — under the 20 a poll, tax or muster list is drawn at. That floor is the franchise's line and no source states it, so it is set beside this interval and not used to strike it out. The interval is carried anyway, because the floor it misses is one this project invented and says so — the model carries it under the liberty L-rc-age-conditioning — and a floor nobody can cite may not strike out a reading. Both are printed so that a reader meets the disagreement rather than one side of it."
-   }
+   },
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0229 — to this purchaser, read as 'HARMON ISAAC D', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.6 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 6 people of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ]
   }
  ],
  "touches_removal": false,
