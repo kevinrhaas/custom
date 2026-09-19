@@ -1,7 +1,7 @@
 ---
 id: T-1392
 title: Every age in the town answers to the person's own evidence: a roll, a trade or a press appearance is read before the kinship word a household happens to use, and an obituary's birth interval the card refutes is refused rather than spent
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1179
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1520
 claimed_by: run 9/19/2026, 8:39:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T14:24:17.985Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35445442831
 ---
 
