@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The families the town must have had, drawn and marked as drawn', kind: 'change', ts: '',
+  { v: 961, title: 'The families the town must have had, drawn and marked as drawn', kind: 'change', ts: '2026-09-19T00:26:19.770Z', date: 'Sep 18, 2026, 7:26 PM CT',
     items: [
       'Eighty-nine men in this town stood alone on their own household record \u2014 a name, a trade, a street, and nobody else under the roof. That is almost never what an 1835 household was. It is what the SOURCES were: a voter roll, a subscription, a newspaper notice names the man and never his wife, so the record kept the man and the house stayed empty around him.',
       'Those eighty-nine households now hold a family: 84 wives and 216 children, 300 people no source names and none of whom is presented as found. Every one of them is marked reconstructed on the card, says which stage of the rebuilding drew them, and carries the seed a reader can retype to draw them again \u2014 and the sentence that would retire them, which is simply a source naming this head\u2019s family.',
