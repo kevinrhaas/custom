@@ -278,8 +278,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 16 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
   },
   {
-   "id": "rc_crandall_sophronia",
-   "name": "Sophronia Crandall",
+   "id": "rc_crandall_mary",
+   "name": "Mary Crandall",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "female",
@@ -302,7 +302,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Sophronia Crandall",
+    "value": "Mary Crandall",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -662,8 +662,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 16 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
   },
   {
-   "id": "rc_keegan_patrick",
-   "name": "Patrick Keegan",
+   "id": "rc_keegan_michael",
+   "name": "Michael Keegan",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "male",
@@ -686,7 +686,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Patrick Keegan",
+    "value": "Michael Keegan",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {

@@ -167,7 +167,7 @@
    "seated": [
     "rc_stiles_abigail"
    ],
-   "minted_keeper": "rc_newell_eliza",
+   "minted_keeper": "rc_newell_lydia",
    "minted_lodgers": 8,
    "occupancy_after": 10,
    "inside_its_band": true,
@@ -216,7 +216,7 @@
    "seated": [
     "rc_lyman_george"
    ],
-   "minted_keeper": "rc_kellogg_abner",
+   "minted_keeper": "rc_kellogg_luther",
    "minted_lodgers": 7,
    "occupancy_after": 9,
    "inside_its_band": true,
@@ -875,7 +875,7 @@
   {
    "place": "recon_1835_north_h2_030",
    "name": "Reconstructed H2 medium boarding house #030",
-   "keeper": "rc_newell_eliza",
+   "keeper": "rc_newell_lydia",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
@@ -889,7 +889,7 @@
   {
    "place": "recon_1835_north_t1_028",
    "name": "Reconstructed T1 small inn or tavern #028",
-   "keeper": "rc_kellogg_abner",
+   "keeper": "rc_kellogg_luther",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },

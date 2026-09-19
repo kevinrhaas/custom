@@ -236,6 +236,34 @@ def pools() -> dict:
     return load(POOLS)
 
 
+def sibling_directories() -> list:
+    """Every directory of `data/residents/` that holds household cards, EXCEPT this
+    stage's own.
+
+    NAMED DIRECTORIES WERE NOT ENOUGH, and the gate said so. This read
+    `(HOUSEHOLDS, READMITTED, TRADES)` until T-1353's transient cohort landed on `dev`
+    between this branch's first build and its merge: `data/residents/transients/` did not
+    exist when the list was written, so twelve lodgers were drawn with names and ids that
+    stage had already spent, and `no committed list carries the same id twice` went red on
+    `data/sidecars/1835/people.json`. A hard-coded list of sibling stages is a list that
+    goes stale every time the programme grows a stage, which is every few days.
+
+    So the directories are DISCOVERED. Any stage that writes `hh_*.json` under
+    `data/residents/` is stepped past from the moment its cards exist, without this tool
+    being told about it. The one directory left out is this stage's own, because a build
+    that read its own previous answer as a spent name would draw a different person on the
+    second run and `--check` would call that drift.
+
+    The deference runs one way and that is deliberate: a stage already merged owns its
+    names, and this one moves around them. The reverse — teaching every earlier stage to
+    read `lodgers/` — would invalidate cards that are already committed and gated.
+    """
+    if not RESIDENTS.exists():
+        return []
+    return [d for d in sorted(RESIDENTS.iterdir())
+            if d.is_dir() and d != MINTED and any(d.glob("hh_*.json"))]
+
+
 def cards_in(directory: Path) -> list:
     if not directory.exists():
         return []
@@ -253,7 +281,7 @@ def layer() -> tuple:
     directories, because T-1347 draws from the same pools.
     """
     all_names, real, ids = set(), set(), set()
-    for directory in (HOUSEHOLDS, READMITTED, TRADES):
+    for directory in sibling_directories():
         for _, card in cards_in(directory):
             for person in card.get("persons") or []:
                 name = " ".join(str(person.get("name") or "").split()).lower()

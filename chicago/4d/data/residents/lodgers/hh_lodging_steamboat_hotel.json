@@ -69,8 +69,8 @@
  },
  "persons": [
   {
-   "id": "rc_kellogg_esther",
-   "name": "Esther Kellogg",
+   "id": "rc_kellogg_polly",
+   "name": "Polly Kellogg",
    "relationship": "lodger",
    "grade": "reconstructed",
    "sex": "female",
@@ -93,7 +93,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Esther Kellogg",
+    "value": "Polly Kellogg",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {

@@ -2,7 +2,7 @@
  "id": "hh_lodging_recon_1835_north_t1_028",
  "name": "The lodgers of Reconstructed T1 small inn or tavern #028",
  "division": "north",
- "head": "rc_kellogg_abner",
+ "head": "rc_kellogg_luther",
  "source_pass": "reconstructed_lodging_household",
  "lodging_household": {
   "ticket": "T-1371",
@@ -71,8 +71,8 @@
  },
  "persons": [
   {
-   "id": "rc_kellogg_abner",
-   "name": "Abner Kellogg",
+   "id": "rc_kellogg_luther",
+   "name": "Luther Kellogg",
    "relationship": "head",
    "grade": "reconstructed",
    "sex": "male",
@@ -95,7 +95,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Abner Kellogg",
+    "value": "Luther Kellogg",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
