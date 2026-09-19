@@ -43,12 +43,6 @@
 # the file. Filing is free and working is not — add a finding to the ticket it was found in
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
-# --- 0. BLOCKING THE QUEUE (owner, 2026-09-19). This row is first because nothing else
-# --- merges past it: the terrain fossil rides every branch the lap touches, so #1521 and
-# --- #1518 sit red on the same four gates and merge-ready will not take either. Clear it
-# --- and the queue drains; leave it and each new lap mints another red PR.
-T-1397 — The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
-
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)

@@ -1,7 +1,7 @@
 ---
 id: T-1397
 title: The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1530
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T17:42:42.270Z
 claimed_run: null
 ---
 
