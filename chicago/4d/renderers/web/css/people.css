@@ -414,3 +414,34 @@
 [data-theme="light"] .pill[aria-pressed="true"]:not([data-value=""]):hover {
   color: #fff;
 }
+
+/* THE FIRMS A PERSON KEPT (T-1325). A block on the person's card, between what
+   kind of person they are and the household record below: one row a firm, the
+   same three-column grid as a directory row so a firm reads exactly like the
+   list it opens into, with a chevron saying it goes somewhere. The card is the
+   only place these appear, so they carry no separate name styles — `.person-main`,
+   `.person-name` and `.person-sub` above are the row's, and this reuses them. */
+.people-firms { margin: 0 0 14px; }
+.people-firm-list { margin: 0; padding: 0; list-style: none; }
+.people-firm {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 12px 6px 11px;
+  border: 0;
+  border-bottom: 1px solid var(--edge);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .12s;
+}
+.people-firm-list li:last-child .people-firm { border-bottom: 0; }
+.people-firm:hover { background: var(--step); }
+.people-firm:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.people-firm-go { color: var(--accent); font-size: 17px; line-height: 1; }

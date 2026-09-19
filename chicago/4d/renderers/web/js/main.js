@@ -56,7 +56,7 @@ import { mountLiberties } from './liberties.js';
 import { createRouter } from './route.js';
 import { createTravel } from './travel.js';
 import { mountPeople } from './people.js';
-import { mountBusinesses } from './businesses.js';
+import { firmCrosswalk, mountBusinesses } from './businesses.js';
 import { createEvidenceHub } from './evidence.js';
 
 const VERSION = '0.1.0';
@@ -1462,7 +1462,11 @@ async function boot() {
   // tier, because the relative one resolved only in the source tree — the tree
   // nobody visits — and 404'd on the deployed site and its preview alike
   // (ROADMAP K26, popup.js DOSSIER_BASE).
-  const popup = createPopup(popupRoot);
+  // …and one hook out of it: a firm named on a building card opens the firm's
+  // own card in the drawer (T-1325). Late-bound on purpose — `openBusiness` is
+  // declared with the business index, several hundred lines below, and only ever
+  // runs on a tap.
+  const popup = createPopup(popupRoot, { onBusiness: (id) => openBusiness(id) });
   const navigation = createNavigation({
     root: hudRoot, terrain, registry: loaded.registry, streets,
   });
@@ -1659,6 +1663,31 @@ async function boot() {
     sceneId: loaded.scene.id ?? YEAR,
     problems,
   });
+  // The town's FIRMS, read BEFORE the two directories that now cross-reference
+  // them (T-1325). The index is one file and the crosswalk is one fold of it; a
+  // person's card and a building's card both ask it the same two questions, so
+  // neither is allowed to fold 196 rows for itself.
+  api.businessIndex = await (async () => {
+    try {
+      const res = await fetch(new URL('businesses/index.json', bases.dataBase), { cache: 'no-cache' });
+      if (res.ok) return res.json();
+      problems.push(`businesses: businesses/index.json ${res.status} — no firm is listed in Businesses`);
+    } catch (err) {
+      problems.push(`businesses: ${err.message} — no firm is listed in Businesses`);
+    }
+    return null;
+  })();
+  const firms = firmCrosswalk(api.businessIndex);
+  // A firm chip on a building card opens the firm in the drawer. Declared once
+  // here, used by the popup and by both directories, so every route into a
+  // business card lands the same way.
+  const openBusiness = (businessId) => {
+    hud.setPanel(true);
+    hud.selectTab('businesses');
+    api.businesses?.open?.(businessId);
+  };
+  popup.setBusinesses(firms.byStructure);
+
   // …and the same people as a DIRECTORY: one row a person, searchable and
   // filterable, with the way to the building they lived or worked at.
   api.people = await mountPeople({
@@ -1670,6 +1699,10 @@ async function boot() {
     onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
     // The drawer's head shows the person's name with a back control while a card is open.
     onTitle: (text, onBack) => hud.setTitle(text, onBack),
+    // …and the firms the register puts them in, which the business layer knew
+    // about them and their own card never said (T-1325).
+    firmsByPerson: firms.byPerson,
+    onBusiness: openBusiness,
     problems,
   });
 
@@ -1680,16 +1713,6 @@ async function boot() {
   // thing this project will not do to make them visible is invent a building for
   // them. So they get a directory and a card: every firm findable by trade,
   // street, grade and how far the record could place it, and every limit printed.
-  api.businessIndex = await (async () => {
-    try {
-      const res = await fetch(new URL('businesses/index.json', bases.dataBase), { cache: 'no-cache' });
-      if (res.ok) return res.json();
-      problems.push(`businesses: businesses/index.json ${res.status} — no firm is listed in Businesses`);
-    } catch (err) {
-      problems.push(`businesses: ${err.message} — no firm is listed in Businesses`);
-    }
-    return null;
-  })();
   api.businesses = await mountBusinesses({
     mount: document.getElementById('businesses-directory'),
     index: api.businessIndex,
@@ -1908,7 +1931,11 @@ async function boot() {
     const board = signage.pickAt(ndc, camera);
     if (board && (!hit || board.distance < hit.distance)) {
       const record = loaded.registry.get(board.id);
-      if (record) hit = { ...board, record };
+      // `fromSign` rides along so the card can lead with the firm the board
+      // advertises rather than the roof behind it (T-1325). A later layer that
+      // wins the ray — the goods at the door, the walk underfoot — replaces the
+      // hit and the flag with it, which is right: that aim was not at the board.
+      if (record) hit = { ...board, record, fromSign: true };
     }
     /**
      * And so can a barrel at a shop door, which is where a visitor's crosshair
@@ -1972,7 +1999,7 @@ async function boot() {
       hud.say('Nothing there — aim at a building');
       return null;
     }
-    popup.show(hit.record);
+    popup.show(hit.record, { fromSign: !!hit.fromSign });
     return hit;
   }
 

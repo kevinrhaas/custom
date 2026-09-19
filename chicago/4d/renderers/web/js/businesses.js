@@ -54,6 +54,91 @@ function fold(s) {
 
 const n = (x) => Number(x || 0).toLocaleString('en-GB');
 
+/**
+ * THE CROSSWALK, BOTH WAYS — the index folded once so the three places a visitor
+ * ALREADY IS can reach a firm's card without opening the directory at all.
+ *
+ * The directory is the way in for somebody who came looking for a firm. It is
+ * the wrong way in for the visitor standing under a board, reading a building's
+ * card, or reading the card of the man who kept the place: they are already at
+ * the firm and the town made them go and find it by name. So the same two
+ * questions — WHICH FIRMS DOES THIS PERSON HOLD A ROLE IN, and WHICH FIRMS DOES
+ * THE REGISTER PUT IN THIS ROOF — are answered once, here, off the compiled
+ * index, and `people.js` and `popup.js` share the answer instead of each folding
+ * 196 rows their own way.
+ *
+ * `byPerson` reads each row's `people[]`, which `compile_businesses.index_people`
+ * flattens from proprietors, partners and staff. 157 of those roles name a
+ * person, 110 of them a person the town holds a card for, and 36 of those hold
+ * more than one firm — John Dean Caton holds five, which is a fact about the town
+ * that no card said until this.
+ *
+ * `byStructure` reads each row's PRIMARY location, which is the only one in this
+ * layer that resolves to a structure at all: no record carries a second address
+ * on a different roof today, and 22 roofs carry the 30 firms with premises. It
+ * deliberately does NOT try to answer for the 26 `anchored` houses — their
+ * landmark is named in the limit_reason's prose and `structure_id` is null on
+ * every one of them, so the Tremont House cannot yet say which houses the
+ * register stands against it. That is a finding filed on T-1182, not something
+ * to guess at by reading a sentence.
+ *
+ * @param {object|null} index  the compiled `businesses/index.json`
+ * @returns {{byPerson: Map<string, object[]>, byStructure: Map<string, object[]>}}
+ */
+export function firmCrosswalk(index) {
+  const byPerson = new Map();
+  const byStructure = new Map();
+  const push = (map, key, value) => {
+    if (!key) return;
+    const list = map.get(key);
+    if (list) list.push(value);
+    else map.set(key, [value]);
+  };
+  for (const r of (index?.businesses || [])) {
+    const firm = {
+      id: r.id,
+      name: r.name,
+      grade: r.grade,
+      trade: r.trade || (r.occupation ? words(r.occupation) : ''),
+      kind: r.where?.kind || null,
+      street: r.where?.street || null,
+      present: !!r.present_at_scene_date,
+      opened: r.opened || null,
+    };
+    // ONE ROW A FIRM, NOT ONE ROW A PRINTING. Twelve person-firm pairs in this
+    // layer are named twice on the same record, because the register prints the
+    // same man under two styles — "J. D. Caton" and "J. Dean Caton" are one
+    // partner of Collins & Caton, not two. A card that listed both would be
+    // counting the register's typography as the town's partners, so the roles
+    // fold onto one entry and the firm is listed once.
+    const seen = new Map();
+    for (const p of (r.people || [])) {
+      if (!p.person_id) continue;
+      const key = `${p.person_id}\u0000${r.id}`;
+      const had = seen.get(key);
+      if (had) {
+        if (p.role && !had.roles.includes(p.role)) had.roles.push(p.role);
+        continue;
+      }
+      const entry = {
+        ...firm, roles: [p.role || 'proprietor'], tier: p.tier || null,
+        from: p.from || null, to: p.to || null,
+      };
+      seen.set(key, entry);
+      push(byPerson, p.person_id, entry);
+    }
+    if (r.where?.kind === 'premises') push(byStructure, r.where.structure_id, firm);
+  }
+  // A roof with three firms and a man with five want a settled order, and the one
+  // the town can defend is the record's: what a source attests first, then by name.
+  const rank = { attested: 0, inferred: 1, reconstructed: 2 };
+  const sort = (list) => list.sort((a, b) => (rank[a.grade] ?? 3) - (rank[b.grade] ?? 3)
+    || a.name.localeCompare(b.name));
+  for (const list of byPerson.values()) sort(list);
+  for (const list of byStructure.values()) sort(list);
+  return { byPerson, byStructure };
+}
+
 /** How far the record could place a house, in the visitor's words. The order is
  *  the ladder: a roof, a landmark, a street, nothing. */
 const PLACE = {
