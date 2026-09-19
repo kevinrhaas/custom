@@ -47,7 +47,6 @@
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1333 — The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
-T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
 T-1350 — The four resident mints derive `arrival` from the registers they read and silently revert a reading pass that supersedes one: seven ruled book findings — the spring-1833 arrivals of Botsford, Williams and Hibbard Porter and the Baptist presence of 19 October 1833 for Willard Jones, Nathaniel Carpenter and Martin D. Harmon — cannot reach the cards the crosswalk has already joined them to
 T-1338 — Spend the 128 press notices onto the cards they name, once a newspaper claim unit carries a file-qualified ledger id: the 22 raw claim ids these units share would close 937 other units as asserted
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
@@ -198,4 +197,3 @@ T-1341 — ticket.mjs --check REPAIRS the mirror it is checking, so on any branc
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1344 — Splitting a ticket that has a live branch puts two runs on one acceptance: the in-flight run retargets onto a child while the child also enters the queue for a fresh claim, and neither claim contends with the other
 T-1345 — step_isolation exempts gitignored build products by a hand-kept path list, when git check-ignore can classify them: a write to an ignored path is a build product and a write to a tracked one is a tree mutation, and the gate should ask rather than be told
-
