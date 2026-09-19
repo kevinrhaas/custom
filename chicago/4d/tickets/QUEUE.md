@@ -194,4 +194,3 @@ T-1341 — ticket.mjs --check REPAIRS the mirror it is checking, so on any branc
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1344 — Splitting a ticket that has a live branch puts two runs on one acceptance: the in-flight run retargets onto a child while the child also enters the queue for a fresh claim, and neither claim contends with the other
 T-1345 — step_isolation exempts gitignored build products by a hand-kept path list, when git check-ignore can classify them: a write to an ignored path is a build product and a write to a tracked one is a tree mutation, and the gate should ask rather than be told
-

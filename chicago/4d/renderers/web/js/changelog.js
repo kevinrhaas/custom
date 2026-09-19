@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The label on a newspaper reading now says which newspaper', kind: 'fix', ts: '',
+  { v: 963, title: 'The label on a newspaper reading now says which newspaper', kind: 'fix', ts: '2026-09-19T01:07:18.524Z', date: 'Sep 18, 2026, 8:07 PM CT',
     items: [
       'A reading taken out of the Chicago press is filed here under a short label like \u201Cc007\u201D \u2014 the seventh thing read out of one issue. Fifty-five of the held issues have a seventh thing. Last week\u2019s release said so and held the press readings back for it, and the reason given was that writing such a label onto somebody\u2019s card would mark hundreds of unrelated readings as spent. That was the right worry aimed one week late: it had already happened.',
       'Three cards cite a newspaper reading by name in their own prose, and each cites exactly one. Between them they were marking a hundred and forty-two readings as spent. Mrs C. Taylor\u2019s card cites a notice printed on 19 August 1835 and was closing seventy-four of them; George W. Dole\u2019s cites two of the Democrat\u2019s advertisements and was closing seventy-one more \u2014 one of which is not a newspaper at all, but Andreas on how this town got its water, by cart from the foot of Randolph Street, before there was a waterworks.',
