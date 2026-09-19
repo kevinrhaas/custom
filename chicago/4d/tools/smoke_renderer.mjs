@@ -2117,7 +2117,18 @@ for (const [label, viewport, touch] of [
     // against the town model's point for that day, and the cards the project holds are
     // said one line down as cards. The residents index is still read, to assert what the
     // card must NOT be showing.
+    //
+    // T-1386: THE HEADLINE IS THE POPULATION, AND THE STRICTER FIGURE IS KEPT BESIDE IT.
+    // `scene.persons` counts the people a record ESTABLISHES here on 1 July and is the
+    // strictest reading the layer supports; it left 827 people the project had already
+    // attested or inferred outside the town on an unadjudicated `uncertain`, which is not
+    // the town's population. Those are ruled in now, so the row's numerator is
+    // `scene.population.persons` and the established count moved to a note under the bar.
+    // Both are asserted, figure for figure, out of the same file the page fetched — and
+    // the established figure is asserted to be SMALLER than the population, because the
+    // day the two collapse into one number one of them has stopped being computed.
     const scene = gateCensus.data?.people?.scene || null;
+    const population = scene?.population || null;
     let residentCounts = null;
     try {
       residentCounts = JSON.parse(
@@ -2126,7 +2137,8 @@ for (const [label, viewport, touch] of [
     } catch { residentCounts = null; }
     const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, scene?.persons]
+    const want = [gateCensus.data?.buildings?.standing,
+      population ? population.persons : scene?.persons]
       .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
@@ -2137,7 +2149,7 @@ for (const [label, viewport, touch] of [
     // Each numerator carries a bar it is a portion of, and the people bar carries the
     // three grades as segments of the town total — a key alone would let the bar rot.
     const housed = Number(gateCensus.data?.people?.housed);
-    const byGrade = scene?.by_grade || {};
+    const byGrade = population?.by_grade || scene?.by_grade || {};
     const gradeWant = ['attested', 'inferred', 'reconstructed']
       .filter((g) => Number.isFinite(Number(byGrade[g])));
     check(`${label}: both rows carry a completeness bar, the people bar graded`,
@@ -2149,22 +2161,50 @@ for (const [label, viewport, touch] of [
     // The placement figure survives as a note under the people row, in the committed
     // data's own number, and never again as a share of the town.
     check(`${label}: people housed reads as placement, under the people row`,
-      Number.isFinite(housed) && gateCensus.note.length === 2
+      Number.isFinite(housed) && gateCensus.note.length === (population ? 3 : 2)
       && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
       && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
       `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-1386. The two measures the project needs, on the card at once: the population is
+    // the headline and the stricter established figure is the line under the bar, with the
+    // count ruled in beside it. Asserted as the committed data's own numbers AND as an
+    // inequality, because a population equal to the established count is the defect this
+    // ticket fixed coming back.
+    check(`${label}: the established figure survives under the population, and is smaller`,
+      !population || (Number.isFinite(Number(population.established))
+        && Number.isFinite(Number(population.ruled_in))
+        && Number(population.established) + Number(population.ruled_in)
+          === Number(population.persons)
+        && Number(population.established) < Number(population.persons)
+        && gateCensus.note[1]
+          === `${grouped(population.established)} of them are established here by a record `
+            + `dated across that day; ${grouped(population.ruled_in)} are ruled into the `
+            + 'town on their own evidence'
+        && gateCensus.aria.includes(`${grouped(population.ruled_in)} are ruled into the town`)),
+      `note=${JSON.stringify(gateCensus.note)} population=${JSON.stringify(population)}`);
     // T-1365's second note: the cards the layer holds without establishing the person in
     // the town that day. These were the people row's numerator and are now stated as
     // what they are. The check is that the CARD COUNT is not the RESIDENT COUNT — if the
     // two ever collapse back into one figure the defect has returned.
+    // T-1386 changed WHAT the residue is. It was 829 cards nobody had adjudicated; it is
+    // now the people a source places OUTSIDE the town, and two is the whole of it. The
+    // card still says how many cards the layer holds in all, still out of the residents
+    // manifest, and the sentence it says it in is asserted so the residue cannot silently
+    // go back to being a heap of unruled cards.
     check(`${label}: the cards the layer holds are stated as cards, not as residents`,
       Number.isFinite(Number(scene?.cards_total))
-      && Number.isFinite(Number(scene?.cards_not_established))
-      && gateCensus.note[1]
-        === `${grouped(scene.cards_total)} cards are held in all; `
-          + `${grouped(scene.cards_not_established)} name someone not yet established `
-          + 'here on that day'
       && Number(scene.cards_total) === Number(residentCounts?.persons)
+      && (population
+        ? (Number.isFinite(Number(population.absent_on_evidence))
+          && gateCensus.note[2]
+            === `${grouped(scene.cards_total)} cards are held in all; `
+              + `${grouped(population.absent_on_evidence)} name someone a source places `
+              + 'outside the town that day')
+        : (Number.isFinite(Number(scene?.cards_not_established))
+          && gateCensus.note[1]
+            === `${grouped(scene.cards_total)} cards are held in all; `
+              + `${grouped(scene.cards_not_established)} name someone not yet established `
+              + 'here on that day'))
       && !gateCensus.text.includes('who lived here'),
       `note=${JSON.stringify(gateCensus.note)} scene=${JSON.stringify(scene)}`);
     // T-0782's two strikes, asserted as absences. `structures` was the ready line's
@@ -12037,8 +12077,19 @@ for (const [label, viewport, touch] of [
         // …and the register names him FIVE times, because Collins & Caton prints
         // him under two styles. One printing is not one partnership, so the card
         // must list four rows and not five.
+        //
+        // THE FOLD MOVED INTO THE DATA (T-1401) and this count had to follow it.
+        // It used to read the index's rows, which is where the fifth printing sat:
+        // "J. D. Caton" and "J. Dean Caton" were two entries on biz_collins_caton,
+        // and five rows against four firms is what made this assertion bite. The
+        // compiler folds them on `person_id` now and keeps the styles on
+        // `also_printed_as[]`, so the fifth printing is still in the file and still
+        // counted here — it is simply no longer a second partner. Counting rows
+        // alone would have quietly left this clause asserting 4 > 4, which is to
+        // say asserting nothing at all.
         printings: idx.businesses.reduce((t, b) => t
-          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean').length, 0),
+          + (b.people || []).filter((q) => q.person_id === 'caton_john_dean')
+            .reduce((n, q) => n + 1 + (q.also_printed_as || []).length, 0), 0),
         roof: idx.businesses.filter((b) => b.where?.kind === 'premises'
           && b.where.structure_id === 'temple_lake_st_building').map((b) => b.id).sort(),
         // …and a roof the register puts no house in must say nothing at all,

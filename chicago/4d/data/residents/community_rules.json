@@ -67,7 +67,7 @@
     {
       "value": "free_black",
       "label": "Free Black",
-      "note": "No card carries it yet. Caton's 1833 defence of 'six or seven free coloured men' is the layer's only trace and T-1377 owns the reading."
+      "note": "T-1377 wrote it. Caton's 1833 defence of 'six or seven free coloured men' is the FLOOR of the bracket and the 1840 census's 53 free coloured persons the ceiling; the `free_black` sub-stage of stage `underdocumented` writes the floor \u2014 7 households, 13 people, 2 firms, every one reconstructed and review_required. Nobody carrying this value is a person a source names, and the head-room to the ceiling is deliberately left open. docs/RESEARCH/black_chicago_1835.md."
     },
     {
       "value": "yankee",

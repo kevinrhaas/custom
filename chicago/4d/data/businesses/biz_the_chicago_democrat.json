@@ -37,7 +37,8 @@
         "chicago_democrat_1834_10_08#c005",
         "chicago_democrat_1834_12_03#c023",
         "chicago_democrat_1835_08_05#c026"
-      ]
+      ],
+      "also_printed_as": []
     },
     {
       "name": "Calhoun, J.",
@@ -56,7 +57,8 @@
         "chicago_democrat_1834_10_08#c005",
         "chicago_democrat_1834_12_03#c023",
         "chicago_democrat_1835_08_05#c026"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "staff": [],
@@ -71,7 +73,16 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. A crossing of two platted streets: clark and south_water.",
-      "limit_reason": "The register places this house against clark+south_water and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against clark+south_water and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "corner",
+        "id": null,
+        "title": "Clark Street and South Water Street",
+        "streets": [
+          "clark",
+          "south_water"
+        ]
+      }
     },
     {
       "kind": "unplaceable",
@@ -79,11 +90,11 @@
       "street_id": null,
       "face": null,
       "primary": false,
-      "from": "1834-12-03",
-      "to": "1835-08-05",
+      "from": "1835-08-05",
+      "to": null,
       "tier": "inferred",
-      "basis": "An earlier anchor for this house, printed as “the corner of South Water and Clark streets” and superseded by “Jones & King's hardware store”.",
-      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated."
+      "basis": "The later of this house's two printed anchors, set as “Jones & King's hardware store”; the register makes “the corner of South Water and Clark streets” the siting at the scene date.",
+      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated. First printed 1835-08-05, which is after the scene date, so the register keeps the earlier anchor live and this siting is recorded without being made the premises."
     }
   ],
   "dates": {

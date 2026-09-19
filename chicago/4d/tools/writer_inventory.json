@@ -34,6 +34,13 @@
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "audit_businesses.py": {
+      "placement": "manifest",
+      "write_mode": "--write",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--write` on a clean tree, wrote its report and changed no committed byte.",
+      "placed": "by layer, 2026-09-19 — after compile_businesses.py, whose output it reads"
+    },
     "audit_scene_window_trades.py": {
       "placement": "manifest",
       "write_mode": "--write",
@@ -604,6 +611,18 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "pinned_sources.py": {
+      "placement": "not_a_writer",
+      "write_mode": null,
+      "measured": "2026-09-19",
+      "finding": "Run bare it exits 0, prints the register's roll-up and writes nothing — measured on the working tree, byte-identical before and after. It declares no write flag: the only bytes it ever puts on disk are a region cache under /tmp, written by fetch_pinned AFTER the sha256 pin has passed, and never inside the repository. Gated with --check; a checker."
+    },
+    "placement_policy_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_placement_policy.json and moved no committed byte (git reported 0 changed paths). Left `pending` rather than appended to the derived manifest: it reads the structure census, the street classes and the roof reconciliation, so its slot in the dependency order is its own measured pass."
+    },
     "profile_population_1835.py": {
       "placement": "manifest",
       "write_mode": null,
@@ -887,6 +906,18 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "reconstruct_businesses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--group <group> --build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--group stores_and_provisions --build` on a clean tree in 1s, wrote its records, its ledger and the order book's fill, and changed no committed byte."
+    },
+    "reconstruct_free_black.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 7 household cards, its 2 authored firm records and its ledger, changed no committed byte. Measured again through tools/measure_step_isolation.mjs --tool, which reports both gated commands writing nothing in-tree."
     },
     "reconstruct_garrison_1835.py": {
       "placement": "manifest",

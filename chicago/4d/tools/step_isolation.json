@@ -2203,6 +2203,9 @@
     "tools/associations.py": {
       "wrote": []
     },
+    "tools/audit_businesses.py": {
+      "wrote": []
+    },
     "tools/audit_check_gates.py": {
       "wrote": []
     },
@@ -2770,6 +2773,12 @@
     "tools/old_settlers.py": {
       "wrote": []
     },
+    "tools/pinned_sources.py": {
+      "wrote": []
+    },
+    "tools/placement_policy_1835.py": {
+      "wrote": []
+    },
     "tools/printed_twice.py": {
       "wrote": []
     },
@@ -2902,6 +2911,12 @@
     "tools/reconcile_665.py": {
       "wrote": []
     },
+    "tools/reconstruct_businesses_1835.py": {
+      "wrote": []
+    },
+    "tools/reconstruct_free_black.py": {
+      "wrote": []
+    },
     "tools/reconstruct_garrison_1835.py": {
       "wrote": []
     },
@@ -2984,6 +2999,9 @@
       "wrote": []
     },
     "tools/rule_newberry_leads.py": {
+      "wrote": []
+    },
+    "tools/rule_presence_1835.py": {
       "wrote": []
     },
     "tools/sauganash_apex_lines.py": {

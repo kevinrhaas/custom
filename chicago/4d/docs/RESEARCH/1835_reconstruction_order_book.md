@@ -217,7 +217,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/book_store` | 2 | 2 | 0 | 0 | T-1184 |
 | `businesses/brewery` | 2 | 1 | 1 | 0 | T-1185 |
 | `businesses/church` | 5 | 0 | 5 | 0 | T-1188 |
-| `businesses/druggist` | 4 | 2 | 2 | 0 | T-1184 |
+| `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
 | `businesses/iron_foundry` | 1 | 1 | 0 | 0 | T-1185 |
 | `businesses/lawyer` | 22 | 18 | 4 | 0 | T-1186 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |

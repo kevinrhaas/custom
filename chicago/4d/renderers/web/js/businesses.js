@@ -68,19 +68,28 @@ const n = (x) => Number(x || 0).toLocaleString('en-GB');
  * 196 rows their own way.
  *
  * `byPerson` reads each row's `people[]`, which `compile_businesses.index_people`
- * flattens from proprietors, partners and staff. 157 of those roles name a
- * person, 110 of them a person the town holds a card for, and 36 of those hold
- * more than one firm — John Dean Caton holds five, which is a fact about the town
- * that no card said until this.
+ * flattens from proprietors, partners and staff. 144 of those 196 roles name a
+ * person the town holds a card for, 110 distinct people between them, and 27 of
+ * those hold more than one firm — John Dean Caton holds four, which is a fact
+ * about the town that no card said until this.
  *
- * `byStructure` reads each row's PRIMARY location, which is the only one in this
- * layer that resolves to a structure at all: no record carries a second address
- * on a different roof today, and 22 roofs carry the 30 firms with premises. It
- * deliberately does NOT try to answer for the 26 `anchored` houses — their
- * landmark is named in the limit_reason's prose and `structure_id` is null on
- * every one of them, so the Tremont House cannot yet say which houses the
- * register stands against it. That is a finding filed on T-1182, not something
- * to guess at by reading a sentence.
+ * Those counts fell in T-1401 and nothing left the layer: the register printed
+ * thirteen of these roles twice, under a second style of the same person's name,
+ * and the compiler folds them onto one row now (`also_printed_as` keeps the
+ * styles). The fold used to happen here, over an index that double-counted.
+ *
+ * `byStructure` reads each row's PRIMARY location and answers with TWO relations,
+ * because a roof holds houses two ways. `in` is a premises — the register puts the
+ * firm in this building — and 22 roofs carry the 30 firms with one. `against` is an
+ * `anchored` house: no roof of its own, and the paper sites it by this one. Until
+ * T-1401 the second was unanswerable, because the landmark lived only inside
+ * `limit_reason`'s sentence and `structure_id` was null on all 26; the compiler now
+ * resolves the register's own `action_target` onto `where.anchor`, so the Tremont
+ * House names the four houses standing against it and nothing here reads a sentence.
+ *
+ * Seven of the 26 anchor against another FIRM and four against a street crossing.
+ * Neither is a roof, so neither joins this map — the business card prints them, and
+ * the firm-to-firm one offers the other firm's card.
  *
  * @param {object|null} index  the compiled `businesses/index.json`
  * @returns {{byPerson: Map<string, object[]>, byStructure: Map<string, object[]>}}
@@ -105,12 +114,12 @@ export function firmCrosswalk(index) {
       present: !!r.present_at_scene_date,
       opened: r.opened || null,
     };
-    // ONE ROW A FIRM, NOT ONE ROW A PRINTING. Twelve person-firm pairs in this
-    // layer are named twice on the same record, because the register prints the
-    // same man under two styles — "J. D. Caton" and "J. Dean Caton" are one
-    // partner of Collins & Caton, not two. A card that listed both would be
-    // counting the register's typography as the town's partners, so the roles
-    // fold onto one entry and the firm is listed once.
+    // ONE ROW A FIRM, NOT ONE ROW A PRINTING. The twelve person-firm pairs the
+    // register printed under two styles fold in the DATA now (T-1401), so this
+    // sees one row each where it used to see two. It still folds, for the reason
+    // it was written: a record may legitimately name one person in two ROLES —
+    // proprietor and staff of the same house — and the directory lists a firm
+    // once under a person whatever the register called them that week.
     const seen = new Map();
     for (const p of (r.people || [])) {
       if (!p.person_id) continue;
@@ -127,12 +136,18 @@ export function firmCrosswalk(index) {
       seen.set(key, entry);
       push(byPerson, p.person_id, entry);
     }
-    if (r.where?.kind === 'premises') push(byStructure, r.where.structure_id, firm);
+    if (r.where?.kind === 'premises') push(byStructure, r.where.structure_id, { ...firm, relation: 'in' });
+    else if (r.where?.kind === 'anchored' && r.where.anchor?.kind === 'structure') {
+      push(byStructure, r.where.anchor.id, { ...firm, relation: 'against' });
+    }
   }
   // A roof with three firms and a man with five want a settled order, and the one
   // the town can defend is the record's: what a source attests first, then by name.
   const rank = { attested: 0, inferred: 1, reconstructed: 2 };
-  const sort = (list) => list.sort((a, b) => (rank[a.grade] ?? 3) - (rank[b.grade] ?? 3)
+  // Houses IN the roof before houses standing AGAINST it — the card asks the two
+  // questions in that order — then what a source attests first, then by name.
+  const sort = (list) => list.sort((a, b) => (a.relation === 'against') - (b.relation === 'against')
+    || (rank[a.grade] ?? 3) - (rank[b.grade] ?? 3)
     || a.name.localeCompare(b.name));
   for (const list of byPerson.values()) sort(list);
   for (const list of byStructure.values()) sort(list);
@@ -277,7 +292,7 @@ export async function mountBusinesses({
     // looking for "Harmon" or for "crockery" is asking the same list one question.
     _text: fold([r.name, ...(r.firm_styles || []), ...(r.goods || []), r.trade,
       r.occupation ? words(r.occupation) : '', ...r.type.map((t) => words(t)),
-      r.where?.street || '', ...(r.people || []).map((p) => p.name)].join(' ')),
+      r.where?.street || '', ...(r.people || []).flatMap((p) => [p.name, ...(p.also_printed_as || [])])].join(' ')),
   }));
   const byId = new Map(rows.map((r) => [r.id, r]));
   const specs = filterSpecs(rows, counts, index.vocabulary);
@@ -459,7 +474,7 @@ export async function mountBusinesses({
     if (!p) return '';
     if (p.kind === 'premises' && p.structure_id) return buildingTitle(p.structure_id) || p.street || 'a roof of its own';
     if (p.street) return p.street;
-    if (p.kind === 'anchored' && p.structure_id) return `by ${buildingTitle(p.structure_id) || words(p.structure_id)}`;
+    if (p.kind === 'anchored' && p.anchor) return `by ${p.anchor.title}`;
     return '';
   }
 
@@ -543,17 +558,28 @@ export async function mountBusinesses({
     const kind = loc.kind || 'unplaceable';
     const [label, why] = PLACE[kind] || [words(kind), ''];
     const title = loc.structure_id ? buildingTitle(loc.structure_id) : null;
+    // The anchor is the landmark, never the house's own roof, so it is read off
+    // `anchor` and the `go` button below still keys on `structure_id` alone.
+    const anchor = kind === 'anchored' ? loc.anchor : null;
     const where = kind === 'premises' && title ? title
-      : kind === 'anchored' && title ? `by ${title}`
+      : anchor ? `by ${anchor.title}`
         : loc.street_id ? words(loc.street_id) : 'nowhere the register could name';
     const dates = loc.from || loc.to
       ? `<span class="biz-when">${escapeHtml(day(loc.from))} – ${loc.to ? escapeHtml(day(loc.to)) : 'no close recorded'}</span>`
       : '';
-    const go = loc.structure_id && registry?.has?.(loc.structure_id)
-      ? `<button type="button" class="people-go biz-go" data-structure="${escapeHtml(loc.structure_id)}">
-          <span class="people-go-verb">Go to ${kind === 'premises' ? 'the premises' : 'the landmark'}</span>
-          <span class="people-go-title">${escapeHtml(title || words(loc.structure_id))}</span></button>`
-      : '';
+    // Three ways out of a location, and only the first two are a place on the ground:
+    // its own roof, the roof it stands against, or the card of the firm it stands
+    // against. A corner anchor offers none — two streets are not somewhere to stand.
+    const landmark = anchor?.kind === 'structure' ? anchor.id : null;
+    const goTo = loc.structure_id || landmark;
+    const go = goTo && registry?.has?.(goTo)
+      ? `<button type="button" class="people-go biz-go" data-structure="${escapeHtml(goTo)}">
+          <span class="people-go-verb">Go to ${loc.structure_id ? 'the premises' : 'the landmark'}</span>
+          <span class="people-go-title">${escapeHtml(title || anchor?.title || words(goTo))}</span></button>`
+      : anchor?.kind === 'business'
+        ? `<button type="button" class="link biz-anchor-firm" data-business="${escapeHtml(anchor.id)}">
+            The house it stands by: ${escapeHtml(anchor.title)}</button>`
+        : '';
     return `<li class="biz-loc${loc.primary ? ' is-primary' : ''}">
       <p class="biz-loc-head"><i class="grade-dot grade-${escapeHtml(loc.tier || 'inferred')}"></i>
         <b>${escapeHtml(where)}</b>
@@ -566,8 +592,13 @@ export async function mountBusinesses({
   }
 
   /** One person the record names. The link is offered only where the town holds a
-   *  card for them — 157 of 209 — and the rest are named without one, which is
-   *  itself a reading: the register printed a name the resident layer never met. */
+   *  card for them — 144 of 196 — and the rest are named without one, which is
+   *  itself a reading: the register printed a name the resident layer never met.
+   *
+   *  A man the paper printed under two styles is ONE partner here (T-1401 folds
+   *  them on `person_id` in the data), and the styles he was printed under are
+   *  shown beside him rather than dropped: the typography is the evidence that the
+   *  fold was a fold and not a deletion. */
   function personHtml(p) {
     const dates = p.from ? ` <span class="biz-when">${escapeHtml(day(p.from))}${p.to ? ` – ${escapeHtml(day(p.to))}` : ''}</span>` : '';
     const name = p.person_id && onPerson
@@ -575,7 +606,10 @@ export async function mountBusinesses({
       : `<b>${escapeHtml(p.name || 'unnamed')}</b>`;
     return `<li><i class="grade-dot grade-${escapeHtml(p.tier || 'inferred')}" title="${escapeHtml(p.tier || '')}"></i>
       ${name} <span class="biz-role">${escapeHtml(words(p.role || 'proprietor'))}</span>${dates}${
-      p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}</li>`;
+      p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}${
+      (p.also_printed_as || []).length
+        ? `<span class="biz-styles" title="The same person, printed another way in the same papers">also printed ${
+          p.also_printed_as.map((s) => escapeHtml(s)).join(', ')}</span>` : ''}</li>`;
   }
 
   /** What community the house is read as, and the whole of what it was read off.
@@ -594,6 +628,28 @@ export async function mountBusinesses({
         <b>${escapeHtml(label)}</b>${block.tier ? ` <span class="biz-role">${escapeHtml(block.tier)}</span>` : ''}</p>
       <p class="legend-note">${escapeHtml(block.basis || '')}</p>
       ${people ? `<ul class="biz-people">${people}</ul>` : ''}`;
+  }
+
+  /** WHY A HOUSE NOBODY NAMED IS IN THE TOWN (T-1184). A reconstructed firm has no
+   *  printings to show — that is the whole of what makes it reconstructed — so the card
+   *  prints its ORDER instead: the census line that counts more of its class than the
+   *  register holds, the bucket of the reconstruction order book that bought it, the seed
+   *  a reader can retype to redraw its style and its face, and what retires it. A grade
+   *  dot a reader cannot unpick is a claim; this is the unpicking. */
+  function reconstructionHtml(block) {
+    if (!block || typeof block !== 'object') return '';
+    const basis = block.basis || {};
+    return `<h4 class="people-card-h">Why this house is here</h4>
+      <p class="legend-note biz-invented"><b>Nobody named this firm.</b> It stands in the town
+        because a count the town demonstrably needed was short, and it is written down as an
+        invention rather than as a finding.</p>
+      ${basis.note ? `<p class="legend-note">${escapeHtml(basis.note)}</p>` : ''}
+      <ul class="biz-claims">
+        <li>ordered by <code>${escapeHtml(block.bucket || '')}</code> of the 1835 reconstruction order book</li>
+        <li>written by <code>${escapeHtml(block.group || '')}</code> (${escapeHtml(block.ticket || '')})</li>
+        <li>redraw it from the seed <code>${escapeHtml(block.seed || '')}</code></li>
+      </ul>
+      ${block.withdrawn_if ? `<p class="legend-note">Withdrawn if ${escapeHtml(block.withdrawn_if)}.</p>` : ''}`;
   }
 
   function recordHtml(rec, row) {
@@ -621,7 +677,12 @@ export async function mountBusinesses({
         ? `<h4 class="people-card-h">What it sold</h4><p class="biz-goods">${
           rec.goods.map((g) => `<span class="biz-good">${escapeHtml(g)}</span>`).join('')}</p>`
         : '',
-      `<h4 class="people-card-h">The printings that attest it</h4>
+      // The printings, OR the order — never both, and never neither. A reconstructed
+      // house has no first issue and no last, and a card that printed 'First printed —'
+      // over one would be offering a silence as a date.
+      rec.reconstruction
+        ? reconstructionHtml(rec.reconstruction)
+        : `<h4 class="people-card-h">The printings that attest it</h4>
        <p class="legend-note">First printed ${escapeHtml(day(ev.first_issue))}, last ${escapeHtml(day(ev.last_issue))}${
   (rec.claim_ids || []).length ? ` · ${n(rec.claim_ids.length)} claim${rec.claim_ids.length === 1 ? '' : 's'}` : ''}.</p>
        ${(rec.claim_ids || []).length ? `<ul class="biz-claims">${rec.claim_ids.map((c) => `<li><code>${escapeHtml(c)}</code></li>`).join('')}</ul>` : ''}`,
@@ -700,6 +761,11 @@ export async function mountBusinesses({
     if (ev.target.closest('.people-back')) { state.lastOpened = state.open; close(); return; }
     const go = ev.target.closest('.biz-go');
     if (go) { onGoTo?.({ kind: 'structure', id: go.dataset.structure }); return; }
+    // A house anchored against ANOTHER HOUSE — seven of the 26 — opens that one's
+    // card, which is the only way out this location has: the landmark is a firm and
+    // not a roof, so there is nowhere on the ground to send the visitor.
+    const firm = ev.target.closest('.biz-anchor-firm');
+    if (firm) { open(firm.dataset.business); return; }
     const person = ev.target.closest('.biz-person');
     if (person) onPerson?.(person.dataset.person);
   });

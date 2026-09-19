@@ -45,6 +45,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MODEL = ROOT / "data" / "reconstruction" / "1835_transient_cohort.json"
 REPORT = ROOT / "docs" / "RESEARCH" / "1835_transient_cohort.md"
 CAMPS = ROOT / "data" / "reconstruction" / "1835_camp_grounds.json"
+VESSELS = ROOT / "data" / "reconstruction" / "1835_vessels_in_port.json"
 
 TOWN_MODEL = ROOT / "data" / "reconstruction" / "1835_town_model.json"
 ENTRIES = ROOT / "data" / "research" / "land_sales" / "entries.json"
@@ -70,25 +71,19 @@ SOME_HUNDREDS = (200, 900)
 # transitory persons". Held to that wording by the guard in `build_size`.
 NORRIS_1843_WITH_TRANSIENTS = 8500
 
-# The Marine Journal of the Chicago American, 4 July 1835 (claim c008), READ ONCE and
-# held to its own text by `guard_port_reading` below: change the extraction and the
-# gate fails rather than the table going quietly stale.
-PORT_ARRIVED = [
-    ("1835-06-27", "Jesse Smith", "schooner"),
-    ("1835-06-27", "Philips", "schooner"),
-    ("1835-06-28", "Llewelling", "schooner"),
-    ("1835-06-28", "Hiram", "schooner"),
-    ("1835-06-29", "Whig", "schooner"),
-    ("1835-06-29", "an unnamed steamboat", "steamboat"),
-]
-PORT_CLEARED = [
-    ("1835-06-26", "St. Joseph", "schooner"),
-    ("1835-06-26", "Michigan", "steamboat"),
-    ("1835-07-01", "Philips", "schooner"),
-    ("1835-07-01", "Jesse Smith", "schooner"),
-]
+# The Marine Journal of the Chicago American, 4 July 1835 (claim c008). The reading used
+# to be a pair of lists typed into this file, under a comment promising a `guard_port_
+# reading` that was never written: the hulls' names, masters, cargoes and last ports had
+# nowhere to live, and nothing held the constants to the extraction. T-1372 moved the
+# reading to `data/reconstruction/1835_vessels_in_port.json`, where each hull is a record
+# with its own provenance, and `check_vessels` below is the guard the comment promised —
+# every entry is held to the column's own words, so a re-extraction that drops them fails
+# the gate instead of leaving the table quietly stale.
 
 CAMP_CONFIDENCE = ("documented", "inferred", "conjectural")
+VESSEL_CONFIDENCE = CAMP_CONFIDENCE
+VESSEL_EVENTS = ("arrived", "cleared")
+NO_COORDINATE = ("coordinates", "polygon", "vertices", "local_enu_m")
 
 
 class Fault(Exception):
@@ -176,7 +171,9 @@ def load(root: Path = ROOT):
             read_json(PAPERS / "chicago_democrat_1835_06_17.json"),
             read_json(PAPERS / "chicago_democrat_1835_07_01.json"),
             read_json(PAPERS / "chicago_american_1835_07_04.json"),
-            read_json(CAMPS), BROWN.read_text(encoding="utf-8") if BROWN.exists() else "")
+            read_json(PAPERS / "chicago_american_1835_06_20.json"),
+            read_json(CAMPS), BROWN.read_text(encoding="utf-8") if BROWN.exists() else "",
+            read_json(VESSELS))
 
 
 # ---------------------------------------------------------------------------
@@ -208,14 +205,116 @@ def sale_crowd(entries: dict, crosswalk: dict) -> dict:
     }
 
 
-def port_on_the_scene_date() -> dict:
-    """Arrived 27-29 June and not cleared before the scene date."""
-    cleared_before = {n for d, n, _ in PORT_CLEARED if d < SCENE_DATE}
-    cleared_on = {n for d, n, _ in PORT_CLEARED if d == SCENE_DATE}
-    in_port = [(d, n, k) for d, n, k in PORT_ARRIVED if n not in cleared_before]
-    still_at_nightfall = [(d, n, k) for d, n, k in in_port if n not in cleared_on]
-    return {"in_port": in_port, "still_at_nightfall": still_at_nightfall,
+def port_on_the_scene_date(vessels: dict) -> dict:
+    """In on or before the scene date, not cleared before it — one row per HULL.
+
+    A hull entered inbound twice is one hull, which is what makes six arrivals out of
+    the column's seven inbound lines. Nothing is hard-coded here: the window and the
+    dedup rule are the authored file's own, stated in `the_counting_window` and
+    `the_dedup_rule`, and `check_vessels` holds every entry to the extraction.
+    """
+    in_port, at_nightfall, cleared_on = [], [], []
+    for v in vessels.get("vessels") or []:
+        arrivals = sorted(e["date"] for e in v["entries"] if e["event"] == "arrived"
+                          and e["date"] <= SCENE_DATE)
+        clearances = [e["date"] for e in v["entries"] if e["event"] == "cleared"]
+        if not arrivals or any(d < SCENE_DATE for d in clearances):
+            continue
+        first = next(e for e in v["entries"]
+                     if e["event"] == "arrived" and e["date"] == arrivals[0])
+        row = (arrivals[0], v["display_name"], v["rig"],
+               (v.get("master") or {}).get("surname"), first.get("port"),
+               first.get("cargo"))
+        in_port.append(row)
+        if SCENE_DATE in clearances:
+            cleared_on.append(v["display_name"])
+        else:
+            at_nightfall.append(row)
+    if not in_port:
+        raise Fault("the port reading puts no hull at Chicago on the scene date, so the "
+                    "composition has nothing to count")
+    return {"in_port": in_port, "still_at_nightfall": at_nightfall,
             "cleared_on_the_day": sorted(cleared_on)}
+
+
+# ---------------------------------------------------------------------------
+# the vessels file, validated rather than generated — the guard the old constants'
+# comment promised and never had
+
+
+def check_vessels(vessels: dict, journal: str, corroborant: str) -> dict:
+    """Hold every hull to the shipping column's own words, and to the refusals."""
+    rows = vessels.get("vessels") or []
+    if not rows:
+        raise Fault("the vessels file enters no hull, so the port reading counts nothing")
+    reach = vessels.get("the_reach_they_lay_in") or {}
+    if reach.get("confidence") not in VESSEL_CONFIDENCE:
+        raise Fault(f"the reach the hulls lay in is graded '{reach.get('confidence')}', "
+                    f"which is not one of {list(VESSEL_CONFIDENCE)}")
+    refs = reach.get("resolves_from") or []
+    if not refs:
+        raise Fault("the reach names no committed geometry to resolve from, so a hull "
+                    "would have to be moored by hand")
+    for ref in refs:
+        if not (ROOT / ref).exists():
+            raise Fault(f"the reach resolves from '{ref}', which is not in the tree")
+    if (vessels.get("the_crew_this_file_refuses") or {}).get("complement") is not None:
+        raise Fault("the vessels file has acquired a crew complement — no committed source "
+                    "in this corpus gives one, and a hull multiplied by a guess is an "
+                    "invention. Cite the source in the file before the refusal is lifted")
+
+    seen = set()
+    for v in rows + (vessels.get("entered_but_outside_the_window") or []):
+        vid = v.get("id")
+        if not vid or vid in seen:
+            raise Fault(f"vessel '{vid}' has no id or repeats one")
+        seen.add(vid)
+        for lat in NO_COORDINATE:
+            if lat in v:
+                raise Fault(f"vessel '{vid}' authors '{lat}' — this file authors no "
+                            f"coordinate and every hull seats to the reach")
+        if v.get("berth") is not None:
+            raise Fault(f"vessel '{vid}' claims a berth. No committed source gives one of "
+                        f"these hulls a landing; a berth read off a cargo is a mooring "
+                        f"invented whole")
+        if v.get("crew") is not None:
+            raise Fault(f"vessel '{vid}' carries a crew. T-1352 priced this row 'hulls "
+                        f"only' and no source has changed that")
+
+    documented = 0
+    for v in rows:
+        vid = v["id"]
+        if v.get("confidence") not in VESSEL_CONFIDENCE:
+            raise Fault(f"vessel '{vid}' is graded '{v.get('confidence')}', which is not "
+                        f"one of {list(VESSEL_CONFIDENCE)}")
+        if v["confidence"] == "documented":
+            documented += 1
+            if not v.get("claim_ids"):
+                raise Fault(f"vessel '{vid}' is graded documented and cites no claim — "
+                            f"only a shipping column that enters her may carry that grade")
+        entries = v.get("entries") or []
+        if not entries:
+            raise Fault(f"vessel '{vid}' is entered on no line of any column")
+        for e in entries:
+            if e.get("event") not in VESSEL_EVENTS:
+                raise Fault(f"vessel '{vid}' carries an event '{e.get('event')}', which is "
+                            f"not one of {list(VESSEL_EVENTS)}")
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e.get("date") or ""):
+                raise Fault(f"vessel '{vid}' carries an undated line")
+            says(journal, e["verbatim"], f"the Marine Journal of 4 July 1835, for '{vid}'")
+        master = (v.get("master") or {}).get("surname")
+        if master and v.get("corroborated_by"):
+            says(corroborant, master,
+                 f"the Marine Journal of 20 June 1835, which '{vid}' cites as corroboration")
+
+    for v in vessels.get("entered_but_outside_the_window") or []:
+        if not (v.get("why_outside") or "").strip():
+            raise Fault(f"vessel '{v['id']}' is held outside the window and does not say why")
+        says(journal, v["verbatim"],
+             f"the Marine Journal of 4 July 1835, for '{v['id']}'")
+
+    return {"hulls": len(rows), "documented": documented,
+            "outside_the_window": len(vessels.get("entered_but_outside_the_window") or [])}
 
 
 # ---------------------------------------------------------------------------
@@ -469,7 +568,7 @@ def build_size(town, entries, crosswalk, fergus, norris, amer_0613, dem_0701) ->
                    questions, tables)
 
 
-def build_composition(sale: dict, port: dict) -> dict:
+def build_composition(sale: dict, port: dict, vessel_stats: dict) -> dict:
     in_port = port["in_port"]
     at_nightfall = port["still_at_nightfall"]
     figures = [
@@ -478,12 +577,17 @@ def build_composition(sale: dict, port: dict) -> dict:
                f"the scene. {len(in_port)} vessels had arrived on 27, 28 and 29 June and "
                "were not entered as cleared before 1 July; two of them, the Philips and the "
                "Jesse Smith, cleared on the day itself, so "
-               f"{len(at_nightfall)} lay at Chicago at nightfall. THE MODEL COUNTS VESSELS "
-               "AND NOT MEN: no committed source gives the crew of a Great Lakes schooner "
-               "of 1835, and multiplying a hull by a guessed complement would turn a "
-               "reading into an invention.",
+               f"{len(at_nightfall)} lay at Chicago at nightfall. The hulls are SEATED — "
+               f"{vessel_stats['hulls']} records in "
+               "data/reconstruction/1835_vessels_in_port.json, each with the master, last "
+               "port and cargo the column prints and a mooring that resolves to the reach "
+               "and never to a deck — and this figure is re-derived from them. THE MODEL "
+               "COUNTS VESSELS AND NOT MEN: no committed source gives the crew of a Great "
+               "Lakes schooner of 1835, and multiplying a hull by a guessed complement "
+               "would turn a reading into an invention.",
                ["chicago_american_1835_07_04"],
-               ["data/research/newspapers/extracted/chicago_american_1835_07_04.json"]),
+               ["data/reconstruction/1835_vessels_in_port.json",
+                "data/research/newspapers/extracted/chicago_american_1835_07_04.json"]),
         figure("named_land_sale_purchasers_still_owed_a_bed",
                sale["sale_day_not_in_the_layer"], sale["june_not_in_the_layer"],
                "The same measurement as the size section's floor, carried here as the one "
@@ -513,8 +617,10 @@ def build_composition(sale: dict, port: dict) -> dict:
                  "at the scene date": "at work"},
                 {"row": "crews ashore",
                  "bounded": "hulls only",
-                 "evidence": "the Marine Journal of 4 July 1835",
-                 "at the scene date": "4 to 6 vessels in port"},
+                 "evidence": "the Marine Journal of 4 July 1835, seated hull by hull in "
+                             "data/reconstruction/1835_vessels_in_port.json",
+                 "at the scene date": f"{len(at_nightfall)} to {len(in_port)} vessels in "
+                                      f"port, named and mastered; nobody aboard"},
                 {"row": "travellers of business and of state",
                  "bounded": "no",
                  "evidence": "the Democrat of 1 July 1835 names Lewis Cass, Secretary of "
@@ -524,10 +630,13 @@ def build_composition(sale: dict, port: dict) -> dict:
             ],
         },
         "the_port_on_the_scene_date": {
-            "unit": "vessels, from the Marine Journal of 4 July 1835",
-            "rows": [{"arrived": d, "vessel": n, "rig": k,
-                      "cleared 1 July": "yes" if (d, n, k) not in at_nightfall else "no"}
-                     for d, n, k in in_port],
+            "unit": "vessels, from the Marine Journal of 4 July 1835, re-derived from the "
+                    "seated hulls in data/reconstruction/1835_vessels_in_port.json",
+            "rows": [{"arrived": r[0], "vessel": r[1], "rig": r[2],
+                      "master": r[3] or "not read", "from": r[4] or "cut from the column",
+                      "cargo": r[5] or "not stated",
+                      "cleared 1 July": "no" if r in at_nightfall else "yes"}
+                     for r in in_port],
         },
     }
     questions = [
@@ -536,8 +645,12 @@ def build_composition(sale: dict, port: dict) -> dict:
         "in any file this project holds; the Chief Engineer's annual report for 1835 would "
         "settle it and is named in docs/research/01-terrain-hydrology as the thing to find.",
         "A crew complement for an 1830s lake schooner would turn the port reading into a "
-        "number of men. This model refuses to supply one from general knowledge, and T-1353 "
-        "must either find a source or seat no crews.",
+        "number of men. This model refuses to supply one from general knowledge; T-1353 "
+        "seated no crews, and T-1372 seated the hulls and left them empty. Everything but "
+        "the number is now in place — the vessels file names the hulls and the transient "
+        "cards carry a `lodged_at` rung of kind `vessel` — so an enrolment return, a "
+        "shipping article or a marine list that prints hands as well as hulls would finish "
+        "it without anything being unpicked.",
         "The steamboat that arrived on 29 June is unnamed in the extraction; the Democrat "
         "of 1 July has Lewis Cass arriving that day in the steamer Michigan, and the "
         "American has the Michigan clearing on the 26th. The likeliest reading is that the "
@@ -624,7 +737,7 @@ def build_sleeping(camps: dict, camp_stats: dict, brown_text: str) -> dict:
 
 
 def build(town, entries, crosswalk, fergus, norris, amer_0613, dem_0617, dem_0701,
-          amer_0704, camps, brown_text) -> dict:
+          amer_0704, amer_0620, camps, brown_text, vessels) -> dict:
     says(claim(dem_0617, "c001", "the Democrat of 17 June 1835")["normalized"],
          "immense congregation of strangers", "the Democrat of 17 June 1835")
     says(claim(dem_0701, "c009", "the Democrat of 1 July 1835")["normalized"],
@@ -633,11 +746,13 @@ def build(town, entries, crosswalk, fergus, norris, amer_0613, dem_0617, dem_070
     for needle in ("June 27", "June 28", "CLEARED", "Jesse Smith", "Llewelling", "Whig"):
         says(journal, needle, "the Marine Journal of 4 July 1835")
 
+    corroborant = claim(amer_0620, "c012", "the American of 20 June 1835")["normalized"]
     camp_stats = check_camps(camps)
+    vessel_stats = check_vessels(vessels, journal, corroborant)
     sale = sale_crowd(entries, crosswalk)
     sections = [
         build_size(town, entries, crosswalk, fergus, norris, amer_0613, dem_0701),
-        build_composition(sale, port_on_the_scene_date()),
+        build_composition(sale, port_on_the_scene_date(vessels), vessel_stats),
         build_sleeping(camps, camp_stats, brown_text),
     ]
     return {
@@ -662,12 +777,14 @@ def build(town, entries, crosswalk, fergus, norris, amer_0613, dem_0617, dem_070
                      "is the answer.",
         "inputs": [
             "data/reconstruction/1835_camp_grounds.json",
+            "data/reconstruction/1835_vessels_in_port.json",
             "data/reconstruction/1835_town_model.json",
             "data/research/directories/claims/fergus_1843_civic.json",
             "data/research/directories/claims/norris_1844_town_findings.json",
             "data/research/land_sales/entries.json",
             "data/research/land_sales/resident_crosswalk.json",
             "data/research/newspapers/extracted/chicago_american_1835_06_13.json",
+            "data/research/newspapers/extracted/chicago_american_1835_06_20.json",
             "data/research/newspapers/extracted/chicago_american_1835_07_04.json",
             "data/research/newspapers/extracted/chicago_democrat_1835_06_17.json",
             "data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
@@ -696,6 +813,8 @@ def report_text(doc: dict) -> str:
            "with its method and its comparanda, and no person written.", "",
            "Derived file: `data/reconstruction/1835_transient_cohort.json`  ",
            "Candidate grounds: `data/reconstruction/1835_camp_grounds.json` (authored)  ",
+           "Hulls in port: `data/reconstruction/1835_vessels_in_port.json` (authored) — "
+           "seated to the reach, carrying nobody  ",
            f"Built and gated by: `{doc['generated_by'].replace(' --build', '')} "
            "--build | --check | --self-test`  ",
            f"Spent by: {doc['spent_by']}", "", "---", "",
@@ -737,6 +856,8 @@ def report_text(doc: dict) -> str:
             "town census must go on reporting the two apart;",
             "- **place a camp.** The candidate grounds are offered to T-1214, which may "
             "refuse every one of them;",
+            "- **man a hull.** The vessels file seats the hulls and `--self-test` refuses "
+            "one that acquires a crew or a berth;",
             "- **pick the point reading for T-1353.** Two candidates are printed with their "
             "arguments and neither is adopted here.",
             "", "## Inputs", ""]
@@ -837,17 +958,50 @@ def cmd_self_test() -> int:
 
     # THE CAMP GROUNDS FILE AUTHORS NO COORDINATE, and a candidate graded `documented`
     # must cite the source that says people slept there.
-    a = list(copy.deepcopy(args)); a[9]["candidates"][0]["claim_ids"] = []
+    a = list(copy.deepcopy(args)); a[10]["candidates"][0]["claim_ids"] = []
     _fires(a, "a camp ground graded documented that cites no claim")
-    a = list(copy.deepcopy(args)); a[9]["candidates"][1]["confidence"] = "certain"
+    a = list(copy.deepcopy(args)); a[10]["candidates"][1]["confidence"] = "certain"
     _fires(a, "a camp ground graded outside the vocabulary")
-    a = list(copy.deepcopy(args)); a[9]["candidates"][1]["polygon"] = [[0, 0]]
+    a = list(copy.deepcopy(args)); a[10]["candidates"][1]["polygon"] = [[0, 0]]
     _fires(a, "a camp ground that authors its own polygon")
     a = list(copy.deepcopy(args))
-    a[9]["candidates"][2]["resolves_from"] = ["data/nothing/at/all.json"]
+    a[10]["candidates"][2]["resolves_from"] = ["data/nothing/at/all.json"]
     _fires(a, "a camp ground resolving from a file that is not in the tree")
-    a = list(copy.deepcopy(args)); a[9]["candidates"] = []
+    a = list(copy.deepcopy(args)); a[10]["candidates"] = []
     _fires(a, "a camp grounds file that offers no candidate")
+
+    # THE HULLS ARE SEATED AND EMPTY. The port reading is a count of vessels, and the two
+    # ways it could quietly become a count of men — a complement on the file, a crew on a
+    # hull — are the first two guards here. The rest hold the reading to the column.
+    a = list(copy.deepcopy(args))
+    a[12]["the_crew_this_file_refuses"]["complement"] = 7
+    _fires(a, "a vessels file that has acquired a crew complement")
+    a = list(copy.deepcopy(args)); a[12]["vessels"][0]["crew"] = 7
+    _fires(a, "a hull that carries a crew")
+    a = list(copy.deepcopy(args)); a[12]["vessels"][0]["berth"] = "newberry_dole_landing"
+    _fires(a, "a hull moored to a landing no source gives it")
+    a = list(copy.deepcopy(args))
+    a[12]["vessels"][0]["local_enu_m"] = [0, 0]
+    _fires(a, "a hull that authors its own coordinate")
+    a = list(copy.deepcopy(args))
+    a[12]["vessels"][0]["entries"][0]["verbatim"] = "Schr Jesse Smith, Drurian, from Buffalo"
+    _fires(a, "a hull entered on words the shipping column does not carry")
+    a = list(copy.deepcopy(args))
+    a[12]["vessels"][2]["master"]["surname"] = "Clarkson"
+    _fires(a, "a master the corroborating column of 20 June does not name")
+    a = list(copy.deepcopy(args)); a[12]["vessels"][0]["claim_ids"] = []
+    _fires(a, "a hull graded documented that cites no claim")
+    a = list(copy.deepcopy(args)); a[12]["vessels"][0]["entries"][0]["date"] = "27 June"
+    _fires(a, "a hull entered on an undated line")
+    a = list(copy.deepcopy(args)); a[12]["vessels"] = []
+    _fires(a, "a vessels file that enters no hull")
+    a = list(copy.deepcopy(args))
+    a[12]["the_reach_they_lay_in"]["resolves_from"] = ["data/nothing/at/all.json"]
+    _fires(a, "a reach resolving from a file that is not in the tree")
+    a = list(copy.deepcopy(args))
+    for v in a[12]["vessels"]:
+        v["entries"] = [e for e in v["entries"] if e["event"] != "arrived"]
+    _fires(a, "a port reading that puts no hull at Chicago on the scene date")
 
     # THE TOWN MODEL IS THE DENOMINATOR. Lose its July figure and the bracket has
     # nothing to be a fraction of.
@@ -887,6 +1041,15 @@ def cmd_self_test() -> int:
 
     doc = build(*args)
     assert len(doc["sections"]) == 3, doc["sections"]
+
+    # THE PORT FIGURE IS RE-DERIVED FROM THE SEATED HULLS. Retire one and the figure must
+    # move with it, which is what says the reading is read and not remembered.
+    port = _fig(doc["sections"][1], "vessels_lying_at_chicago_on_1_july_1835")
+    a = list(copy.deepcopy(args)); a[12]["vessels"] = a[12]["vessels"][:-1]
+    moved = _fig(build(*a)["sections"][1], "vessels_lying_at_chicago_on_1_july_1835")
+    assert moved["high"] == port["high"] - 1, (moved, port)
+    fired += 1
+    print("   fires: the port figure follows the hulls rather than a typed constant")
 
     # THE HEADLINE HAS NO POINT READING, and that is a decision this gate protects:
     # a later hand adding one would be adopting a number this model refused to pick.

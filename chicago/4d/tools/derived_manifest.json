@@ -1388,6 +1388,22 @@
       ]
     },
     {
+      "why": "THE PRESENCE RULINGS (T-1386): the 827 people the research left `uncertain` ruled into the town, each at the tier its own dated readings reach. AFTER every writer that can change a card's `present_on_scene_date` or its evidence blocks — the mints, the spends, the carries and the evidence leg — because the ruling is derived from those blocks and from nothing else. BEFORE everything that counts the town: profile_population_1835.py, build_order_book_1835.py and town_census.py all read this file, and the gate screen reads the census. Placed by layer and reasoned from what it reads, like its neighbours; the honest test is the first time a card's evidence moves and this fails to follow, which `--check` turns into a red gate.",
+      "command": [
+        "python3",
+        "tools/rule_presence_1835.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_presence_rulings.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/rule_presence_1835.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The known population profiled on ten axes (T-1160). It also writes the age-band and reason vocabulary into data/residents/index.json, which rebuild_resident_index.py owns — measured 2026-09-18: running that rebuild AFTER this changes nothing, so the order between them is free, and index.json stays listed against the index step alone rather than twice. MUST RUN BEFORE model_town_1835.py, which reads that vocabulary.",
       "command": [
         "python3",
@@ -1554,6 +1570,22 @@
       "verify": [
         "python3",
         "tools/compile_businesses.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The business layer read back against the research it is compiled from, so it follows the compile step above it. PLACED BY LAYER, like its neighbours: it reads data/businesses/ and the three research files, and writes only its own report.",
+      "command": [
+        "python3",
+        "tools/audit_businesses.py",
+        "--write"
+      ],
+      "resolves": [
+        "chicago/4d/docs/RESEARCH/business-audit-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/audit_businesses.py",
         "--check"
       ]
     },

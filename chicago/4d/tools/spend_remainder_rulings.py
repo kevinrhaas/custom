@@ -83,11 +83,13 @@ HANDED_ON = (
     " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
     "the reconstructed tier, under its own read name, in "
     "data/reconstruction/1835_readmissions.json -- and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. The hand-off moves to "
-    "T-1179, the ticket that converges the reconstructed resident layer and is where "
-    "a re-admission is finally reconciled against the index, the sidecars and the "
-    "town census; the re-admission's own `withdrawn_if` clause is what retires it "
-    "before then.")
+    "the evidence, which is why this unit stays `unresolved`. The hand-off moved to "
+    "T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so by "
+    "this register's own rule it moves again -- to T-1394, the closeout that makes the "
+    "rebuild order a fixed point over every reader of the layer, which is where a "
+    "re-admission is finally reconciled against the index, the sidecars and the town "
+    "census; the re-admission's own `withdrawn_if` clause is what retires it before "
+    "then.")
 
 RULES = {
     # ---- residents ---------------------------------------------------------------
@@ -406,7 +408,24 @@ RULES = {
         # finding, and a unit deferred to finished work fails the ledger's invariant
         # outright. T-1159 moved its 40 land-sale purchaser hand-offs to T-1172 for exactly
         # this reason and missed this one; it is moved here on the same rule.
-        "ticket": "T-1179",
+        #
+        # AND A SPLIT CLOSES A TICKET TOO (2026-09-19). T-1179 was split into T-1392,
+        # T-1393 and T-1394, which leaves `state: split` -- not an open state -- so
+        # research_spend_ledger.py's invariant fired on five units at once:
+        #
+        #   FAIL: ... unresolved ticket 'T-1179' is missing or not open
+        #
+        # That is not cosmetic. The failure is inside `rederive.mjs --run`, which
+        # .github/steward/pr-lap.sh runs on every lap, so the lap stopped pushing
+        # ("the derived-layer rebuild failed -- left alone", pushed=0 left-alone=2) and
+        # three PRs sat dirty with no gate able to run on them. A hand-off pointing at a
+        # split ticket blocks the whole queue, not just this file.
+        #
+        # T-1394 is the heir: a direct child of T-1179, open, and the one that makes the
+        # rebuild order a fixed point over EVERY READER of the layer -- the index, the
+        # sidecars and the town census a re-admission is reconciled against. T-1392 and
+        # T-1393 are done, and T-1215 converges the TOWN a band later, not this layer.
+        "ticket": "T-1394",
         "statement": (
             "The unit's own `letter_list_only` field is true: the name's whole evidence is "
             "that a letter waited for it at the Chicago post office. Whether a letter-list "

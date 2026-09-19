@@ -76,6 +76,7 @@ AUTHORED = BUSINESSES / "authored"
 INDEX = BUSINESSES / "index.json"
 SCHEMA = ROOT / "data" / "businesses.schema.json"
 STREETS = ROOT / "data" / "streets" / "1835.json"
+STRUCTURES = ROOT / "data" / "structures"
 
 REGISTER_PREFIX = "business_"
 ID_PREFIX = "biz_"
@@ -85,21 +86,38 @@ GRADES = ("attested", "inferred", "reconstructed")
 
 # ---------------------------------------------------------------- reading the town
 
+# Every directory under data/residents/ that holds CARDS. The research mints re-derive
+# `households/`, so the reconstruction programme writes its people beside it instead —
+# `readmitted/` (T-1172), `reconstructed_trades/` (T-1347), `lodgers/` (T-1371), and
+# `transients/` when it lands — and tools/compile_scene.py overlays all of them onto the
+# scene. tools/reconstruct_underdocumented.py already reads the set this way.
+RESIDENT_CARD_DIRS = ("households", "merged", "readmitted", "reconstructed_trades",
+                      "lodgers", "transients", "underdocumented")
+
+
 def person_ids(residents_dir=None):
     """Every person id the resident layer holds, so a link can be refused when it dangles.
 
     The index lists HEADS, and a proprietor is routinely not one — Archibald Clybourn
     heads a household and the clerk in his market does not — so the ids come from the
     household files themselves rather than from the index's summary rows.
+
+    AND THE RECONSTRUCTION'S CARDS COUNT (T-1184). A reconstructed business adopts a
+    reconstructed trade head as its proprietor rather than minting a person of its own —
+    the head's card says so itself — and a link to a card this layer really holds is not
+    a dangling link merely because the card sits outside `households/`. Reading the whole
+    set here only ever LOOSENS the refusal below, and it loosens it onto people the scene
+    already carries.
     """
     root = Path(residents_dir or RESIDENTS)
     ids = set()
-    for path in sorted(root.glob("households/*.json")) + sorted(root.glob("merged/*.json")):
-        doc = load_json(path)
-        record = doc.get("superseded_record", doc)
-        for person in record.get("persons", []) or []:
-            if person.get("id"):
-                ids.add(person["id"])
+    for folder in RESIDENT_CARD_DIRS:
+        for path in sorted(root.glob("%s/*.json" % folder)):
+            doc = load_json(path)
+            record = doc.get("superseded_record", doc)
+            for person in record.get("persons", []) or []:
+                if person.get("id"):
+                    ids.add(person["id"])
     return ids
 
 
@@ -292,10 +310,121 @@ def person_entry(name, role, register_person, town_ids, evidence, claim_ids):
                          "not date the partnership.",
         "source_id": "chicago_newspapers_1833_1835",
         "claim_ids": list(claim_ids),
+        # The other styles the paper printed this same person under, folded onto this
+        # row by `fold_printed_styles`. Empty on all but the twelve it folds.
+        "also_printed_as": [],
     }
 
 
-def locations_for(entry, gaz):
+def structure_titles():
+    """`structure_id` -> the name the town gives that roof, for a card to print.
+
+    The committed structures are the only place that mapping lives. A landmark the
+    town does not hold is not a landmark this layer may name, so a miss here is a
+    refusal in `anchor_of` and never a null quietly carried forward.
+    """
+    out = {}
+    for path in sorted(STRUCTURES.glob("*.json")):
+        doc = load_json(path)
+        if doc.get("id"):
+            out[doc["id"]] = doc.get("name") or doc["id"]
+    return out
+
+
+def anchor_of(target, structures, businesses, streets):
+    """THE LANDMARK, AS AN ID — the register's own `action_target`, resolved.
+
+    All 26 `new_building` rows anchor against something the town holds, and until
+    T-1401 that something reached the record only inside `limit_reason`'s sentence
+    ("…places this house against tremont_house_1…"). A sentence is not a crosswalk:
+    the Tremont House's card could not say which four houses stand against it, and
+    the Businesses view's `anchored` branch rendered a landmark title no record
+    supplied. So the target is resolved HERE, off the register's field, and the
+    prose is left to go on saying the same thing in words.
+
+    Three kinds, and the register already distinguishes them:
+      * `structure` — a committed roof (`tremont_house_1`, `mansion_house`), 15 rows
+      * `business`  — another house in this layer (`business_newberry_dole`), 7 rows
+      * `corner`    — a crossing of two platted streets (`dearborn+lake`), 4 rows
+
+    NOTHING HERE PLACES THE HOUSE. `structure_id` stays null on an anchored location
+    because the house has no roof of its own; the anchor says what it stood next to,
+    which is exactly as far as the register went.
+    """
+    if not target:
+        return None
+    if "+" in target:
+        parts = target.split("+")
+        missing = [s for s in parts if s not in streets]
+        if missing:
+            raise ValueError("anchor corner %r names street(s) the 1835 corridors do not "
+                             "hold: %s" % (target, ", ".join(missing)))
+        return {
+            "kind": "corner",
+            "id": None,
+            "title": " and ".join(streets[s] for s in parts),
+            "streets": list(parts),
+        }
+    if target.startswith(REGISTER_PREFIX):
+        if target not in businesses:
+            raise ValueError("anchor %r names no business in the register" % target)
+        return {
+            "kind": "business",
+            "id": record_id(target),
+            "title": businesses[target],
+            "streets": [],
+        }
+    if target not in structures:
+        raise ValueError("anchor %r names no committed structure; a landmark this town "
+                         "does not hold is not one this layer may print" % target)
+    return {
+        "kind": "structure",
+        "id": target,
+        "title": structures[target],
+        "streets": [],
+    }
+
+
+def fold_printed_styles(people):
+    """ONE ROW A PARTNER, NOT ONE ROW A PRINTING.
+
+    Twelve person-firm pairs in this layer were named twice on the same record,
+    because the register prints the same man under two styles and the gazetteer reads
+    each style as a proprietor string: "J. D. Caton" and "J. Dean Caton" are one
+    partner of Collins & Caton, not two, and Giles Spring was three. Left folded only
+    in the renderer (T-1325), the firm's OWN card still printed both, which is the
+    register's typography read as the town's partnership.
+
+    So the fold happens in the DATA, on `person_id` — the identity claim the register
+    itself made — and never on the name. A printing the resident layer holds no card
+    for cannot be folded onto anything and is left exactly as printed; two men who
+    really are two are two ids and stay two rows.
+
+    THE TYPOGRAPHY IS EVIDENCE AND IS NOT DELETED. The styles the paper used are kept
+    on `also_printed_as[]` in the order they were read, and the claims of every
+    folded printing are carried onto the surviving row, so nothing a source said is
+    lost by the fold — only counted once.
+    """
+    out, by_person = [], {}
+    for person in people:
+        pid = person.get("person_id")
+        if not pid:
+            out.append(person)
+            continue
+        kept = by_person.get((pid, person.get("role")))
+        if kept is None:
+            by_person[(pid, person.get("role"))] = person
+            out.append(person)
+            continue
+        if person.get("name") and person["name"] not in kept["also_printed_as"]:
+            kept["also_printed_as"].append(person["name"])
+        for claim in person.get("claim_ids") or []:
+            if claim not in kept["claim_ids"]:
+                kept["claim_ids"].append(claim)
+    return out
+
+
+def locations_for(entry, gaz, anchors=None):
     """The register's action, restated as places and as the limits on places."""
     action = entry["action"]
     target = entry.get("action_target")
@@ -337,6 +466,7 @@ def locations_for(entry, gaz):
             "limit_reason": ("The register places this house against %s and the town holds no roof "
                              "of its own for it (action: new_building), so the anchor is as far as "
                              "the reading goes." % (target or "a landmark it names")),
+            "anchor": anchor_of(target, *anchors) if anchors else None,
         })
     elif action == "street_only":
         out.append({
@@ -365,26 +495,92 @@ def locations_for(entry, gaz):
             "limit_reason": note or "The paper gives no anchor.",
         })
 
-    # A HOUSE THAT MOVED. Four of the register's businesses print one anchor and later
-    # another. The earlier siting is a real dated location and is kept as one, unplaced:
-    # the `from` anchor is prose the register never resolved to an id, so the record says
-    # where the paper put it and says that it could not be resolved. T-1182 audits dated
-    # relocations with the sources in front of it.
-    for change in ((entry.get("anchor_change") or {}).get("changes") or []):
+    # A HOUSE THAT MOVED (T-1402, of T-1182, audited with the sources in front of it).
+    # Four of the register's businesses print one anchor and later another. The siting the
+    # register did NOT make live is a real dated location and is kept as one, unplaced: it
+    # is prose the register never resolved to an id, so the record says where the paper put
+    # it and says that it could not be resolved.
+    #
+    # WHAT THE REGISTER'S TWO DATES ARE, because reading them the other way was the defect
+    # this ticket found. A `changes` row brackets the MOVE: `after` is the last issue that
+    # sets the old anchor and `before` is the first that sets the new one, so the address
+    # changed somewhere in between and the corpus can say no more than that. The pair is
+    # NOT the span of either siting — and it was being written onto the secondary row as
+    # `from: after, to: before`, which dated the superseded address to exactly the window
+    # in which it was being superseded, and carried it up to and including the first
+    # printing of its replacement. Giles Spring's office read "Franklin and South Water,
+    # 1834-11-26 to 1835-05-20" when 1834-11-26 is the LAST printing of that address and
+    # 1835-05-20 the first of the Tremont House one.
+    #
+    # So each siting is dated by its own printings: the earlier one runs from the record's
+    # first issue to `after`, the later one from `before` and is not closed.
+    #
+    # AND WHICH SIDE IS WHICH IS THE REGISTER'S RULING, NOT AN ASSUMPTION. `live_anchor`
+    # names the anchor the register made the scene-date siting, by its own rule (the last
+    # anchor first printed on or before the scene date). Usually that is the change's `to`
+    # and the secondary row is the earlier siting. For business_the_chicago_democrat it is
+    # the change's `from`: the move to Jones & King's is first printed 1835-08-05, after
+    # the scene date, so the corner stays live and the LATER siting is the secondary row.
+    # Reading every change as "earlier" put the corner on that record twice — once live,
+    # once as its own predecessor — and left the move to Jones & King's nowhere on it.
+    first_issue = (entry.get("evidence") or {}).get("first_issue")
+    change_block = entry.get("anchor_change") or {}
+    live_anchor = change_block.get("live_anchor")
+    for change in (change_block.get("changes") or []):
+        if live_anchor == change.get("to"):
+            side, other = "earlier", change.get("from")
+            loc_from, loc_to = first_issue, change.get("after")
+            limit = ("A prose anchor the register did not resolve to a committed id; kept because "
+                     "the house moved and the move is dated. Printed through %s; the anchor that "
+                     "supersedes it is first printed %s, so the move falls between those two "
+                     "issues and the corpus dates it no closer."
+                     % (change.get("after"), change.get("before")))
+        elif live_anchor == change.get("from"):
+            side, other = "later", change.get("to")
+            loc_from, loc_to = change.get("before"), None
+            limit = ("A prose anchor the register did not resolve to a committed id; kept because "
+                     "the house moved and the move is dated. First printed %s, which is after the "
+                     "scene date, so the register keeps the earlier anchor live and this siting is "
+                     "recorded without being made the premises." % (change.get("before"),))
+        else:
+            # The register's live anchor is neither side of its own change. That is a
+            # register this compiler cannot read, and a refusal is the only honest answer:
+            # guessing a direction would be publishing an adjudication nobody made.
+            raise SystemExit(
+                "%s: live_anchor %r is neither side of the change %r -> %r"
+                % (entry["id"], live_anchor, change.get("from"), change.get("to")))
         out.append({
             "kind": "unplaceable",
             "structure_id": None,
             "street_id": None,
             "face": None,
             "primary": False,
-            "from": change.get("after"),
-            "to": change.get("before"),
+            "from": loc_from,
+            "to": loc_to,
             "tier": "inferred",
-            "basis": ("An earlier anchor for this house, printed as “%s” and superseded by "
-                      "“%s”." % (change.get("from"), change.get("to"))),
-            "limit_reason": ("A prose anchor the register did not resolve to a committed id; kept "
-                             "because the house moved and the move is dated."),
+            "basis": ("The %s of this house's two printed anchors, set as “%s”; the register "
+                      "makes “%s” the siting at the scene date."
+                      % (side, other, live_anchor)),
+            "limit_reason": limit,
         })
+        # AND THE LIVE ROW MAY NOT CLAIM A DATE ITS ANCHOR WAS NOT PRINTED ON. Where the
+        # move happened before the scene date, the live anchor's own first printing is
+        # `before`, not the record's first issue — that earlier issue set the address this
+        # house had LEFT. Giles Spring's card read "the Tremont House from 1833-12-17"
+        # when the Tremont House address is first printed 1835-05-20.
+        #
+        # ONLY ON AN `anchored` ROW, because only an anchored row IS the anchor. A
+        # `premises` row is the register's match onto a committed structure's own
+        # occupants line and a `street_only` row is a street — neither is dated by which
+        # landmark the advertisement named, and both of the ones here are unmoved by the
+        # change: Matthias Mason's shop is matched on `mason_blacksmith_shop`'s occupants,
+        # and the Democrat's printing office is in South Water street on both sides of its
+        # move. Re-dating those would be asserting a vacancy no source states.
+        if side == "earlier" and out[0]["kind"] == "anchored" and out[0].get("from") == first_issue:
+            out[0]["from"] = change.get("before")
+            out[0]["basis"] = (out[0]["basis"].rstrip() + " This house moved: the anchor above is "
+                               "first printed %s, and “%s” is what the paper set before it."
+                               % (change.get("before"), other)).strip()
     return out
 
 
@@ -424,7 +620,7 @@ def dates_for(entry):
     }
 
 
-def compile_record(entry, gaz, register_persons, town_ids, communities):
+def compile_record(entry, gaz, register_persons, town_ids, communities, anchors=None):
     """One register business, restated as a record."""
     by_name = register_persons
     evidence = entry.get("evidence") or {}
@@ -437,6 +633,7 @@ def compile_record(entry, gaz, register_persons, town_ids, communities):
         role = "proprietor" if sole else "partner"
         person = person_entry(name, role, by_name.get(name), town_ids, evidence, claims)
         (proprietors if sole else partners).append(person)
+    proprietors, partners = fold_printed_styles(proprietors), fold_printed_styles(partners)
 
     classes = list(gaz.get("trade_classes") or []) or ["not_stated"]
 
@@ -456,7 +653,7 @@ def compile_record(entry, gaz, register_persons, town_ids, communities):
         # of the register and not an omission: T-1183 rules the staffing model and
         # T-1189 fills this from it.
         "staff": [],
-        "locations": locations_for(entry, gaz),
+        "locations": locations_for(entry, gaz, anchors),
         "dates": dates_for(entry),
         "evidence": {
             "first_issue": evidence.get("first_issue"),
@@ -489,12 +686,16 @@ def compile_all(register, gazetteer, town_ids, communities):
     by_name = {}
     for person in register["persons"]:
         by_name.setdefault(person["name"], person)
+    # The three id spaces a landmark can live in, read once for all 196 rows.
+    anchors = (structure_titles(),
+               {e["id"]: e["name"] for e in register["businesses"]},
+               street_names())
     records = []
     for entry in register["businesses"]:
         gaz = gaz_by_id.get(entry["id"])
         if gaz is None:
             raise ValueError("register business %s has no gazetteer row" % entry["id"])
-        records.append(compile_record(entry, gaz, by_name, town_ids, communities))
+        records.append(compile_record(entry, gaz, by_name, town_ids, communities, anchors))
     records.sort(key=lambda r: r["id"])
     return records
 
@@ -573,6 +774,10 @@ def primary_location(record, streets):
     return {
         "kind": loc.get("kind"),
         "structure_id": loc.get("structure_id"),
+        # The landmark an `anchored` row stands against — a structure, another firm
+        # or a street crossing. Null on every other kind, and never a premises: a
+        # house anchored against the Tremont House has no roof of its own.
+        "anchor": loc.get("anchor"),
         "street_id": street_id,
         "street": streets.get(street_id) if street_id else None,
         "tier": loc.get("tier"),
@@ -599,6 +804,11 @@ def index_people(record):
                 "tier": person.get("tier"),
                 "from": person.get("from"),
                 "to": person.get("to"),
+                # The styles folded onto this row, carried so the directory's search
+                # still answers the query a reader typed off the paper: "James H.
+                # Collins" is not on any record's `name` any more and must still
+                # find Collins & Caton.
+                "also_printed_as": list(person.get("also_printed_as") or []),
             })
     return out
 
@@ -794,8 +1004,90 @@ def semantic_problems(records, town_ids=None):
                 bad.append("%s: a %s location states no limit_reason" % (rid, loc["kind"]))
             if loc["kind"] == "premises" and not loc.get("structure_id"):
                 bad.append("%s: a premises location names no structure" % rid)
+            # AN ANCHOR IS AN ID OR IT IS NOTHING (T-1401). An `anchored` location
+            # whose landmark lives only in `limit_reason`'s sentence is unreachable
+            # from the roof it stands against, which is the whole finding this rule
+            # closes. And the anchor must not be mistaken for a roof of the house's
+            # own: the register gave it none, and `structure_id` says so.
+            if loc["kind"] == "anchored":
+                anchor = loc.get("anchor")
+                if not isinstance(anchor, dict):
+                    bad.append("%s: an anchored location names no anchor" % rid)
+                elif anchor["kind"] == "corner":
+                    if len(anchor.get("streets") or []) != 2:
+                        bad.append("%s: an anchor corner names %d street(s), not two"
+                                   % (rid, len(anchor.get("streets") or [])))
+                elif not anchor.get("id"):
+                    bad.append("%s: an anchor of kind %r resolves to no id"
+                               % (rid, anchor["kind"]))
+                if loc.get("structure_id"):
+                    bad.append("%s: an anchored location carries a structure_id; the "
+                               "landmark is not the house's own roof" % rid)
             if loc["tier"] not in GRADES:
                 bad.append("%s: location tier %r is off the ladder" % (rid, loc["tier"]))
+
+        # A RECONSTRUCTED HOUSE SAYS WHERE IT CAME FROM, OR IT IS NOT ONE (T-1184). The
+        # `reconstruction` block is the business layer's half of the contract T-1158 put on
+        # every reconstructed value: what bought the house, the group and ticket that wrote
+        # it, the seed a reader retypes to redraw it, and what retires it. The block belongs
+        # to reconstructions and to nothing else — a compiled or an audited record carrying
+        # one would be claiming a writer it does not have.
+        #
+        # AND THERE ARE TWO WAYS A HOUSE CAN BE BOUGHT (owner, 2026-09-19; widened from
+        # T-1184's single form for T-1377). The first is a QUOTA ROW: the order book counts
+        # a shortfall against the register and leaves N of a class to reconstruct, and the
+        # record names the `bucket` and the `slot` it took. That is the whole of the
+        # business reconstruction programme and it assumes a modelled shortfall exists.
+        #
+        # The second is a DOCUMENTED FLOOR, and T-1377 is the case that showed the first
+        # form does not cover everything. Its two Black-owned firms do not fill a shortfall:
+        # they stand for a count the corpus makes DIRECTLY — Andreas's six or seven
+        # certificates of freedom obtained at Chicago in August 1833, read against the 1840
+        # schedule's free-coloured share — and the order book holds no barber or
+        # washing-and-ironing bucket at all, because the programme that would mint one
+        # (T-1186) has not run. Under the single form the only ways to pass were to spend
+        # another programme's quota before it runs, or to file documented evidence as an
+        # estimate. Both are worse than widening the rule.
+        #
+        # So the block must state EXACTLY ONE of the two, and say which. A record naming
+        # both is claiming a quota row and a floor for the same house; a record naming
+        # neither is the original fault this check exists to catch.
+        block = record.get("reconstruction")
+        if record["provenance"] == "reconstructed" and not block:
+            bad.append("%s: reconstructed and carries no reconstruction block, so nothing "
+                       "says what bought it — a quota row (bucket + slot) or a documented "
+                       "floor" % rid)
+        elif block:
+            quota = bool(block.get("bucket") or block.get("slot"))
+            floor = bool(block.get("floor"))
+            if quota and floor:
+                bad.append("%s: the reconstruction block names an order-book row AND a "
+                           "documented floor; a house is bought once" % rid)
+            elif not quota and not floor:
+                bad.append("%s: the reconstruction block names neither an order-book row "
+                           "(bucket + slot) nor a documented floor" % rid)
+            elif quota and not (block.get("bucket") and block.get("slot")):
+                bad.append("%s: a quota row names a bucket and a slot, and this one names "
+                           "only %s" % (rid, "a bucket" if block.get("bucket") else "a slot"))
+            elif floor:
+                # A floor carries its own evidence, because nothing upstream counted it.
+                f = block["floor"]
+                if not isinstance(f, dict):
+                    bad.append("%s: the documented floor is not a block" % rid)
+                else:
+                    if not isinstance(f.get("count"), int) or f["count"] < 1:
+                        bad.append("%s: the documented floor states no count" % rid)
+                    if not (f.get("sources") or []):
+                        bad.append("%s: the documented floor cites no source; a floor that "
+                                   "nothing states is an estimate" % rid)
+                    if not (f.get("note") or "").strip():
+                        bad.append("%s: the documented floor argues no basis" % rid)
+        if record.get("reconstruction") and record["provenance"] != "reconstructed":
+            bad.append("%s: carries a reconstruction block and is provenance %r"
+                       % (rid, record["provenance"]))
+        if record["provenance"] == "reconstructed" and (record["sources"] or record["claim_ids"]):
+            bad.append("%s: reconstructed and cites a source; the evidence is for the NEED "
+                       "and it is argued in the basis" % rid)
 
         if record["dates"]["tier"] == "attested" and record["dates"]["precision"] != "exact":
             bad.append("%s: dates are attested at precision %r; an attested opening is exact"
@@ -971,11 +1263,89 @@ def self_test():
     expect("a tier off the ladder",
            mutate(lambda d: d["locations"][0].update(tier="probable")), "off the ladder", ids)
 
+    # T-1401 — an anchored location's landmark must be an id, and must not be read
+    # as a roof of the house's own.
+    def anchored(doc, **over):
+        doc["locations"][0].update(
+            kind="anchored", structure_id=None,
+            limit_reason="the register places this house against a landmark",
+            anchor={"kind": "structure", "id": "fixture_landmark",
+                    "title": "A landmark", "streets": []})
+        doc["locations"][0]["anchor"].update(over.pop("anchor", None) or {})
+        doc["locations"][0].update(over)
+
+    clean_anchor = mutate(lambda d: anchored(d))
+    if semantic_problems(clean_anchor, ids):
+        failures.append("a resolved anchor is refused: %r" % semantic_problems(clean_anchor, ids))
+
+    def anchor_missing(doc):
+        anchored(doc)
+        doc["locations"][0]["anchor"] = None
+    expect("an anchored location with no anchor", mutate(anchor_missing),
+           "names no anchor", ids)
+
+    expect("an anchor that resolves to no id",
+           mutate(lambda d: anchored(d, anchor={"id": None})), "resolves to no id", ids)
+
+    expect("an anchor corner naming one street",
+           mutate(lambda d: anchored(d, anchor={"kind": "corner", "id": None,
+                                                "streets": ["lake"]})),
+           "names 1 street(s), not two", ids)
+
+    expect("an anchored location carrying a roof of its own",
+           mutate(lambda d: anchored(d, structure_id="fixture_store")),
+           "the landmark is not the house's own roof", ids)
+
     expect("an attested opening that is not exact",
            mutate(lambda d: d["dates"].update(precision="not_later_than")),
            "an attested opening is exact", ids)
 
     expect("no census class", mutate(lambda d: d.update(type=[])), "no census class", ids)
+
+    expect("a reconstruction with nothing behind it",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[])),
+           "carries no reconstruction block", ids)
+
+    # THE WIDENED RULE HOLDS BOTH WAYS (owner, 2026-09-19). A reconstructed house is
+    # bought by a quota row OR by a documented floor, and the check has to refuse the
+    # three ways that can go wrong — neither, both, and a floor with nothing behind it.
+    # Without these the widening would be a hole rather than a second door.
+    expect("a reconstruction naming neither a quota row nor a floor",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"programme": "x", "group": "g",
+                                                     "ticket": "T-0001", "seed": "s"})),
+           "names neither an order-book row", ids)
+
+    expect("a reconstruction naming a quota row AND a floor",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"bucket": "b", "slot": "s",
+                                                     "floor": {"count": 1}})),
+           "a house is bought once", ids)
+
+    expect("half a quota row",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"bucket": "b"})),
+           "names a bucket and a slot", ids)
+
+    expect("a floor that cites nothing",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"floor": {"count": 7, "note": "n",
+                                                               "sources": []}})),
+           "cites no source", ids)
+
+    expect("a floor with no count",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"floor": {"sources": ["s"], "note": "n"}})),
+           "states no count", ids)
+
+    expect("a compiled record claiming a reconstruction",
+           mutate(lambda d: d.update(reconstruction={"programme": "x"})),
+           "carries a reconstruction block", ids)
+
+    expect("a reconstructed house citing a source",
+           mutate(lambda d: d.update(provenance="reconstructed",
+                                     reconstruction={"programme": "x"})),
+           "reconstructed and cites a source", ids)
 
     expect("a community off the vocabulary",
            mutate(lambda d: d["proprietor_community"].update(value="anglo_american")),

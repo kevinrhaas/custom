@@ -25,8 +25,9 @@ register's exclusion and its reason.
 |---|---:|
 | records | 196 |
 | present at the scene date | 179 |
-| named proprietors and partners | 209 |
-| …linked to a card the resident layer already holds | 157 |
+| named proprietors and partners | 196 |
+| …linked to a card the resident layer already holds | 144 |
+| …the distinct people those links reach | 110 |
 | households whose `works_at` now resolves to a business | 21 of 50 |
 
 By census class — the classes of `trade_class_rulings.json`, which is the one taxonomy, so a
@@ -54,7 +55,16 @@ without an argument.
 
 A record a human means to author goes in `data/businesses/authored/`, which the compiler
 reads, validates and carries into the index untouched. That directory is where T-1182's
-inferred-by-audit firms and T-1184's reconstructions will be written. It is empty today.
+inferred-by-audit firms are written, and where the reconstruction band's `rcb_…` records
+already are: **2 today**, both druggists, written by
+`tools/reconstruct_businesses_1835.py --build` against the reconstruction order book's own
+quota and re-derived by its `--check`. A reconstructed record carries
+`provenance: "reconstructed"` and a `reconstruction` block — the order-book bucket that
+bought it, the group and ticket that wrote it, the seed that redraws every drawn value on
+it, and what retires it — and the compiler refuses one without it, refuses a compiled
+record that claims one, and refuses any reconstructed record that cites a source. See
+`docs/RESEARCH/business-naming-1835.md` for the style guide and `docs/LIBERTIES.md § L254`
+for the invention.
 
 ## The id, and why it is not the one T-1180 named
 
@@ -77,9 +87,18 @@ printed name is attested: the paper prints it. Whether that printed name is *the
 as a card in `data/residents/` is a different claim, and it is the register's:
 
 - where the register matched the name to a card, `person_id` carries that card's id and the
-  basis names the action that made the match — **157 of 209**;
+  basis names the action that made the match — **144 of 196**;
 - where it did not, `person_id` is **null** and the basis says the town holds no card for
-  them under an id this record can name — **52 of 209**.
+  them under an id this record can name — **52 of 196**.
+
+Those denominators were 209 until T-1401. Thirteen of the printings were a SECOND STYLE of a
+person the same record already named — "J. D. Caton" and "J. Dean Caton" are one partner of
+Collins & Caton, and Giles Spring was printed three ways — so the layer was counting the
+register's typography as the town's partners. `compile_businesses.fold_printed_styles` folds
+them on `person_id`, never on the name, and the styles are kept on `also_printed_as[]`: the
+fold removes a second COUNT of one man and no evidence at all. Twelve pairs, thirteen
+printings, and the 52 names the resident layer holds no card for are untouched — a printing
+that resolves to nobody cannot be folded onto anybody.
 
 A null there is a finding, not a gap to be filled by guessing. It is also the queue for
 T-1189, which staffs every business with real persons.
@@ -108,6 +127,33 @@ the register's reason:
 So *how many of the town's businesses can we actually place?* is a query now, not a
 re-reading. The four houses that moved keep their earlier siting as a second, dated,
 non-primary location rather than losing it to the current one.
+
+### The anchor is an id (T-1401)
+
+`anchored` is the one kind that names something and could not reach it. The landmark lived
+only inside `limit_reason`'s sentence — *"The register places this house against
+`tremont_house_1`…"* — so the Tremont House's own card could not say which houses stood
+against it, and the Businesses view's `anchored` branch rendered a landmark title no record
+supplied. Parsing that sentence for an id would have been a reading made by a regular
+expression, and the crosswalk rightly refused it.
+
+The register had the id all along, in its own `action_target` field. `compile_businesses.anchor_of`
+resolves it there, and every anchored location carries an `anchor` block — `kind`, `id`,
+`title`, and the two street ids of a corner. All 26 resolve:
+
+| anchor kind | n | example |
+|---|---:|---|
+| `structure` | 15 | Andrews & Eells, against `tremont_house_1` |
+| `business` | 7 | Collins & Caton, against `business_brewster_hogan_co` |
+| `corner` | 4 | Russell E. Heacock, at Franklin and Lake |
+
+A landmark the town does not hold is a REFUSAL in the compiler, not a null carried forward,
+and the same is true of a `business_` id the register does not carry.
+
+**The anchor is not a premises, and nothing may read it as one.** `structure_id` stays null
+on all 26: the anchor says what the house stood next to, which is exactly as far as the
+register went. The gate says so both ways — an anchored location with no resolved anchor is
+refused, and one carrying a `structure_id` is refused as well.
 
 ## What this layer does NOT do
 

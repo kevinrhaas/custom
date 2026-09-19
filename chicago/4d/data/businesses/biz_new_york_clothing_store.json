@@ -32,7 +32,8 @@
         "chicago_american_1835_06_08#c014",
         "chicago_american_1835_06_20#c007",
         "chicago_american_1835_07_04#c003"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "partners": [],
@@ -48,7 +49,13 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. The landmark is the committed structure tremont_house_1.",
-      "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "structure",
+        "id": "tremont_house_1",
+        "title": "Tremont House (the first)",
+        "streets": []
+      }
     }
   ],
   "dates": {
