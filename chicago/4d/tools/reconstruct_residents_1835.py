@@ -56,6 +56,7 @@ MINTED_TRADES = ROOT / "data" / "residents" / "reconstructed_trades"
 # directory for a further reason of its own: these people are NOT residents, and a card in
 # `households/` is a card the manifest, the town census and the resident counts all read.
 TRANSIENTS = ROOT / "data" / "residents" / "transients"
+UNDERDOCUMENTED = ROOT / "data" / "residents" / "underdocumented"
 RETIRED = ROOT / "data" / "reconstruction" / "1835_inferred_household_programme.json"
 NAME_POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 
@@ -63,7 +64,8 @@ RECONSTRUCTED = "reconstructed"
 # The stage that alone may write a Native or Metis reconstruction (owner, 2026-09-17).
 UNDERDOCUMENTED_STAGE = "underdocumented"
 # Communities whose reconstruction is confined to that stage and carries the review.
-REVIEWED_COMMUNITIES = ("native", "potawatomi", "metis", "métis", "indigenous")
+REVIEWED_COMMUNITIES = ("native", "potawatomi", "ottawa", "ojibwe", "metis",
+                        "métis", "indigenous")
 # The id a reconstructed person's own record must wear, so a grep finds every invention.
 INVENTED_PERSON_PREFIX = "rc_"
 READMISSION_PASS = "reconstructed_readmission"
@@ -191,7 +193,8 @@ def read_layer():
     paths = (sorted(HOUSEHOLDS.glob("hh_*.json"))
              + sorted(READMITTED.glob("hh_*.json"))
              + sorted(MINTED_TRADES.glob("hh_*.json"))
-             + sorted(TRANSIENTS.glob("hh_*.json")))
+             + sorted(TRANSIENTS.glob("hh_*.json"))
+             + sorted(UNDERDOCUMENTED.glob("hh_*.json")))
     for path in paths:
         try:
             rec = json.loads(path.read_text(encoding="utf-8"))
@@ -1121,6 +1124,16 @@ def _check_transients() -> int:
     return reconstruct_transients_1835.check()
 
 
+def _build_underdocumented() -> int:
+    import reconstruct_underdocumented
+    return reconstruct_underdocumented.build()
+
+
+def _check_underdocumented() -> int:
+    import reconstruct_underdocumented
+    return reconstruct_underdocumented.check()
+
+
 def _build_women_and_children() -> int:
     import reconstruct_women_children
     return reconstruct_women_children.build()
@@ -1146,13 +1159,15 @@ STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
                   "readmissions": _build_readmissions,
                   "trade_households": _build_trade_households,
                   "women_and_children": _build_women_and_children,
-                  "transients": _build_transients}
+                  "transients": _build_transients,
+                  UNDERDOCUMENTED_STAGE: _build_underdocumented}
 STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
                   "modelled_families": _check_modelled_families,
                   "readmissions": _check_readmissions,
                   "trade_households": _check_trade_households,
                   "women_and_children": _check_women_and_children,
-                  "transients": _check_transients}
+                  "transients": _check_transients,
+                  UNDERDOCUMENTED_STAGE: _check_underdocumented}
 
 
 # --------------------------------------------------------------------------
