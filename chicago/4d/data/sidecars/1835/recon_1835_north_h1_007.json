@@ -138,7 +138,69 @@
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Assigned from the H1 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
     }
   },
-  "residents": [],
+  "residents": [
+    {
+      "household": "hh_lodging_recon_1835_north_h1_007",
+      "name": "The lodgers of Reconstructed H1 small boarding house #007",
+      "division": "north",
+      "relation": "lodged here",
+      "why": "THE BED IS THE CLAIM. The lodging model puts 7 people in this house on an ordinary night and 17 when it was full, apportioned from the town model's own bracket. These people are here because the beds are, and for no other reason.",
+      "sources": [],
+      "basis": "A CONTAINER, NOT A FAMILY. `data/residents/` cannot carry a person outside a household, and the people who boarded in one house were not kin. This record holds the beds of one house and claims no relation between the people in them beyond the roof.",
+      "persons": [
+        {
+          "name": "Esther Bardwell",
+          "relationship": "head",
+          "grade": "reconstructed",
+          "occupation": "boarding_house_keeper",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
+        },
+        {
+          "name": "Esther Kellogg",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        },
+        {
+          "name": "Sophronia Tuttle",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        },
+        {
+          "name": "Amanda Fisk",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        },
+        {
+          "name": "Dennis Quinn",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        },
+        {
+          "name": "John Stiles",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        },
+        {
+          "name": "Horace Stiles",
+          "relationship": "boarder",
+          "grade": "reconstructed",
+          "occupation": "",
+          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 7 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
+        }
+      ],
+      "research_note": "WRITTEN BY tools/seat_lodgers_1835.py (T-1371, of T-1175), the `lodgers` stage of the 1835 resident reconstruction programme. This file is NOT research and is not a mint output: data/residents/households/ is re-derived by the mint writers and data/residents/index.json is derived from that directory, so a reconstruction lives here instead and is overlaid onto the scene by tools/compile_scene.py. docs/LIBERTIES.md carries the invention."
+    }
+  ],
   "citations": [
     {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
@@ -185,6 +247,14 @@
     "confidence": "reconstructed",
     "note": "The town model puts a boarding house at 9 people on an ordinary night and 21 when full, from the 1840 household tail (p90 and p99 of 964 Chicago households). This building takes the share of its class's total that its 119 m² of enclosed floor (79 m² × 1.5 storeys) is of the class's floor area.",
     "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright.",
-    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+    "occupancy": {
+      "people": 7,
+      "beds_ordinary": 7,
+      "empty": 0,
+      "statement": "7 on this card against an ordinary night's 7 beds: 6 drawn against the order book's lodging buckets for beds that were standing empty, a keeper drawn for a roof this programme raised.",
+      "empty_note": "",
+      "keeper_persons": 1,
+      "keeper_owed": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
+    }
   }
 }

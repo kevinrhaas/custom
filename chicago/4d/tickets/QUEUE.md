@@ -53,7 +53,6 @@
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
-T-1385 — Every lodging card printing who lived there, and the crews and the harbour-works gang seated once a committed source gives a complement and a strength
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1403 — Black-owned and Native or Metis-run businesses identified at the tier the evidence supports, so the Businesses view lists them on one filter and T-1177 reconstructs above an attested floor
