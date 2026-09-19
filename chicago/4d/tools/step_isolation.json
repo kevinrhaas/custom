@@ -7,6 +7,12 @@
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
+    },
+    "chicago/4d/tickets/BOARD.md": {
+      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and `ticket.mjs check` writes them only when the mirror is STALE (T-1341) — so this row appears or vanishes with the tree the measurement was taken on, which is the conditional-writer limit T-1339 records. Classifying ignored paths by `git check-ignore` instead of this hand-kept list is T-1345."
+    },
+    "chicago/4d/tickets/tickets.json": {
+      "reason": "GITIGNORED GENERATED ARTIFACT, not committed state. T-0937 made BOARD.md, tickets.json and the site mirror untracked precisely because they were the most-conflicting files in the repository — a run's first act is `ticket.mjs claim`, which rewrites all three before any work is done. A gate step regenerating them is rebuilding a build product, the same category as the site/ mirror. RESIDUAL CAVEAT, stated rather than glossed: they are still shared state a concurrent step can read mid-write, and `ticket.mjs check` writes them only when the mirror is STALE (T-1341) — so this row appears or vanishes with the tree the measurement was taken on, which is the conditional-writer limit T-1339 records. Classifying ignored paths by `git check-ignore` instead of this hand-kept list is T-1345."
     }
   },
   "tools": {
@@ -2319,7 +2325,14 @@
       "wrote": []
     },
     "tools/ticket.mjs": {
-      "wrote": []
+      "wrote": [
+        "chicago/4d/tickets/BOARD.md",
+        "chicago/4d/tickets/tickets.json",
+        "site/chicago/4d/tickets.json"
+      ],
+      "wrote_by": [
+        "/tmp/claude-0/wtdev/chicago/4d/tools/ticket.mjs check"
+      ]
     },
     "tools/tiebreak.py": {
       "wrote": []
