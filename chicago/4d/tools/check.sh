@@ -2466,6 +2466,27 @@ step "every Native and Metis card re-derives, each held for review in its own wo
 
 selftest "...and a written nation, an English initial and a shared syllable are refused" \
   python3 tools/reconstruct_underdocumented.py --self-test
+
+# T-1349, stage `garrison` of the same programme, and the only one that is not a share of a
+# town model at all. The order book refuses to apportion the fort — "NOT APPORTIONED. The
+# garrison of 1 July 1835 is a return to be read" — so this stage reads it: the Act of 2
+# March 1821 § 2 for what a company of infantry consisted of, Andreas for how many companies
+# stood at the post, and the Army's own General Regulations of 1835 for the recruiting window
+# every age is drawn inside. It writes 125 people in 11 households and SEATS them, which the
+# civilian stages cannot: the fort's roofs are in the record already and the barracks card
+# carried these men in the abstract before it carried them by name.
+#
+# The four refusals are asserted rather than trusted, and the fourth is the one this stage
+# learned the hard way: a hundred men over thirty-six surnames made the town's one real
+# Tuttle ambiguous to the civic mint's resolver, which minted a person it had always refused.
+# An invention that changes how a source is READ has become evidence, so a drawn soldier may
+# bear no family name a named resident bears. --check rebuilds every card and the return
+# beside them and refuses a differing byte on the keys this stage owns.
+step "the garrison re-derives from the establishment, and the return matches the cards" \
+  python3 tools/reconstruct_garrison_1835.py --check
+
+selftest "...and the establishment, the enlistment window and all four refusals still fire" \
+  python3 tools/reconstruct_garrison_1835.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
@@ -4415,6 +4436,35 @@ step "the 1835 lodging model re-derives, and no house sleeps more than 1840 saw"
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_lodging_model_1835.py --self-test
+
+# T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
+# THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
+# ordinary-night capacity of 135 between them and seated nobody; thirty people stood on
+# their cards, eight keepers and their families. This stage fills the ordinary-night
+# figure: the solitary heads T-1171 and T-1173 already drew are seated first, the short
+# beds are drawn against the order book's own `lodging` buckets, and a roof THIS programme
+# raised as a lodging place is given a keeper at the trade its own `function` states.
+#
+# WHY A GATE. Every person here is a draw over a quota two other derived files own, and
+# both of them move: the lodging model re-apportions whenever a structure record changes
+# its floor area, and the order book re-cuts whenever the known layer does. Left ungated,
+# a card written once would go on reading as this stage's output long after the stage
+# stopped producing it. `--check` re-derives every card and the ledger byte for byte,
+# holds the order book's fills to the ledger's own, and refuses a house sleeping more
+# people than the 1840 enumerator ever saw or a person seated in two houses at once.
+#
+# The refusal worth knowing is the one that leaves beds empty. A person drawn into a
+# lodging house has to be ordered out of the book's bucket for a DIVISION, and
+# `data/structures/*.json` carries no division field at all — the residents layer's own
+# households are where a named house's division comes from. The New York House and the
+# Sauganash Hotel have none attached, so this stage mints nobody into them and says so
+# rather than guessing a division to spend a bucket on. Thirteen ordinary-night beds
+# stand empty at the end of it and the ledger names every one.
+step "the boarders re-derive, and no house sleeps more than the 1840 enumerator saw" \
+  python3 tools/seat_lodgers_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/seat_lodgers_1835.py --self-test
 
 # T-1352, piece 1 of T-1178. THE ROW THE ORDER BOOK CANNOT APPORTION. `persons/transient/
 # town` sits in the book above with no target and no quota, because the town model bounds

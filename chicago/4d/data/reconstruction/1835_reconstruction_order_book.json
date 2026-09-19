@@ -26,11 +26,11 @@
     "real_names_first": "The roster (T-1159) offers every name the corpus printed and withheld. It is a licence on WHICH name a filler uses and never a quota, so it is counted against its ticket rather than smeared across cells that cannot hold it."
   },
   "known_layer": {
-    "households_total": 1382,
+    "households_total": 1393,
     "households_present": 436,
     "households_uncertain": 820,
-    "households_reconstructed": 124,
-    "persons_total": 2144,
+    "households_reconstructed": 135,
+    "persons_total": 2269,
     "persons_present": 457,
     "persons_present_attested": 133,
     "persons_present_inferred": 324,
@@ -135,7 +135,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 9,
-          "filled": 0,
+          "filled": 5,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -169,7 +169,7 @@
           "known_attested": 1,
           "known_inferred": 4,
           "to_reconstruct": 22,
-          "filled": 0,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -203,7 +203,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 8,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -254,7 +254,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 5,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -271,7 +271,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 10,
-          "filled": 0,
+          "filled": 5,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -339,7 +339,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 23,
-          "filled": 0,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -407,7 +407,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 9,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -458,7 +458,7 @@
           "known_attested": 0,
           "known_inferred": 0,
           "to_reconstruct": 3,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -475,7 +475,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 5,
-          "filled": 0,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -543,7 +543,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 10,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1155,7 +1155,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 11,
-          "filled": 0,
+          "filled": 6,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1189,7 +1189,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 25,
-          "filled": 0,
+          "filled": 6,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1223,7 +1223,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 9,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1274,7 +1274,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 9,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1291,7 +1291,7 @@
           "known_attested": 1,
           "known_inferred": 3,
           "to_reconstruct": 16,
-          "filled": 0,
+          "filled": 8,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1359,7 +1359,7 @@
           "known_attested": 3,
           "known_inferred": 7,
           "to_reconstruct": 39,
-          "filled": 0,
+          "filled": 7,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1410,7 +1410,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 9,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1427,7 +1427,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 15,
-          "filled": 0,
+          "filled": 3,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1495,7 +1495,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 10,
-          "filled": 0,
+          "filled": 5,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1563,7 +1563,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 23,
-          "filled": 0,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1631,7 +1631,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 10,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1767,7 +1767,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 8,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -3508,6 +3508,160 @@
     }
   ],
   "fills": [
+    {
+      "bucket": "persons/female/10_19/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 5,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/10_19/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 4,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/10_19/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 5,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/north/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 2,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 4,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 2,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 4,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/north/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 2,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 6,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 6,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/20_29/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 8,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/20_29/north/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/20_29/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 7,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/20_29/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 3,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/20_29/west/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/30_39/north/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 5,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/30_39/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 4,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/30_39/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 2,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/male/40_49/south/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
     {
       "bucket": "persons/female/10_19/north/family/none",
       "ticket": "T-1171",

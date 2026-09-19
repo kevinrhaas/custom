@@ -63,28 +63,82 @@
       "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
     },
     "residents/household:arrival_year.replaceable_by.kind": {
-      "records": 1298
+      "records": 1309
     },
     "residents/household:arrival_year.written_by_stage": {
-      "records": 1313
+      "records": 1324
     },
     "residents/household:division": {
-      "records": 1382,
+      "records": 1393,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
+    "residents/household:garrison.company": {
+      "records": 10
+    },
+    "residents/household:garrison.establishment_enlisted": {
+      "records": 2
+    },
+    "residents/household:garrison.formation": {
+      "records": 11
+    },
+    "residents/household:garrison.household_type": {
+      "records": 11
+    },
+    "residents/household:garrison.in_barracks": {
+      "records": 2
+    },
+    "residents/household:garrison.married_households": {
+      "records": 2
+    },
+    "residents/household:garrison.married_out_of_barracks": {
+      "records": 2
+    },
+    "residents/household:garrison.officers_not_written": {
+      "records": 2
+    },
+    "residents/household:garrison.regiment": {
+      "records": 11
+    },
+    "residents/household:garrison.seated": {
+      "records": 9
+    },
+    "residents/household:garrison.seed": {
+      "records": 8
+    },
+    "residents/household:garrison.size_drawn": {
+      "records": 8
+    },
+    "residents/household:garrison.stage": {
+      "records": 11
+    },
+    "residents/household:garrison.ticket": {
+      "records": 11
+    },
     "residents/household:head": {
-      "records": 1382,
+      "records": 1393,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:kin[].book_kin": {
       "records": 4,
       "refused_because": "The id of the book claim this kin row was read out of — a foreign key into data/research/books/claims/ and the ruling that answers it. It is what makes the write re-derivable and what lets the gate notice a tie that lost its reading; it states nothing about either person. What a visitor judges the relationship by is on the row already and is read there: the relation, the confidence, the sources and the note that quotes the sentence."
     },
+    "residents/household:lives_at.basis.kind": {
+      "records": 11
+    },
+    "residents/household:lives_at.replaceable_by.kind": {
+      "records": 11
+    },
+    "residents/household:lives_at.replaceable_by.match": {
+      "records": 11
+    },
+    "residents/household:lives_at.tier": {
+      "records": 11
+    },
     "residents/household:origin.replaceable_by.kind": {
-      "records": 1329
+      "records": 1340
     },
     "residents/household:origin.written_by_stage": {
-      "records": 1350
+      "records": 1361
     },
     "residents/household:persons[].appearance_bounds[].as_read": {
       "records": 27
@@ -195,22 +249,22 @@
       "records": 225
     },
     "residents/household:persons[].occupation.basis.kind": {
-      "records": 92
+      "records": 203
     },
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
     },
     "residents/household:persons[].occupation.replaceable_by.kind": {
-      "records": 92
+      "records": 203
     },
     "residents/household:persons[].occupation.replaceable_by.match": {
-      "records": 92
+      "records": 203
     },
     "residents/household:persons[].occupation.seed": {
       "records": 92
     },
     "residents/household:persons[].occupation.tier": {
-      "records": 92
+      "records": 203
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.ticket": {
       "records": 6
@@ -220,6 +274,12 @@
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.verdict": {
       "records": 6
+    },
+    "residents/household:persons[].reconstruction.company": {
+      "records": 124
+    },
+    "residents/household:persons[].reconstruction.rank": {
+      "records": 102
     },
     "residents/household:persons[].roles[].claim": {
       "records": 420
@@ -257,6 +317,9 @@
       "records": 3,
       "refused_because": "Which ticket seated this person. Repository provenance of the same class as `source_pass` — useful to a reader of the JSON and to the run that has to audit a pass, and not part of what a visitor judges the record by. What the visitor needs is the evidence, and the card already shows it: the grade, the sources and the note that says what the source does NOT say."
     },
+    "residents/household:present_on_scene_date.basis.kind": {
+      "records": 11
+    },
     "residents/household:present_on_scene_date.last_dated_appearance.person": {
       "records": 776,
       "refused_because": "A foreign key into `persons[].id` — which person of the household the leg was read on. It is there so the derivation and the roster can be audited against the card, and the card already names every person of the household on their own rows; printing the id beside the date would say nothing a reader can use."
@@ -265,14 +328,23 @@
       "records": 348,
       "refused_because": "The `record_id` or locator of the evidence block the leg came from — an audit pointer, null on the 383 legs read off a post-office return, which carries no per-return record. The card shows the SOURCE the block cites, which is the part a reader can follow; an internal row id is not."
     },
+    "residents/household:present_on_scene_date.replaceable_by.kind": {
+      "records": 11
+    },
+    "residents/household:present_on_scene_date.replaceable_by.match": {
+      "records": 11
+    },
+    "residents/household:present_on_scene_date.tier": {
+      "records": 11
+    },
     "residents/household:reason_for_coming.replaceable_by.kind": {
-      "records": 1357
+      "records": 1368
     },
     "residents/household:reason_for_coming.written_by_stage": {
-      "records": 1357
+      "records": 1368
     },
     "residents/household:source_pass": {
-      "records": 1303,
+      "records": 1314,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows — grade, letter_list_only, sources — is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
     },
     "residents/household:women_children.head_trade": {
@@ -322,11 +394,11 @@
       "refused_because": "Bookkeeping about an OPERATION, not a figure about the town: how many reconstructed cards the synthesis of 2 September 2026 removed. The town it describes no longer exists in this tree, so a visitor has nothing to hold it against; `by_grade.reconstructed` — which reads 0 — is the fact about the layer, and the removal itself is docs/LIBERTIES.md's business."
     },
     "residents/manifest:households[].head": {
-      "records": 1382,
+      "records": 1393,
       "refused_because": "A foreign key into `persons[].id`, not a figure — it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 1382,
+      "records": 1393,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its value, its confidence, its reasoning and its sources — and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
