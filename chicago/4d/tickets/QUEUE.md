@@ -50,7 +50,6 @@
 T-1385 — Every lodging card printing who lived there, and the crews and the harbour-works gang seated once a committed source gives a complement and a strength
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 # --- 3C. RECONSTRUCT RESIDENTS — converge
-T-1393 — Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
@@ -212,6 +211,7 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
 T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
+T-1397 — The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
 T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
@@ -227,3 +227,8 @@ T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are writ
 T-1379 — The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
 T-1380 — A squash merge dropped a shipped release note and re-used its version: v971 named 'Six dates that would not stick' on dev at 06:06 and names 'How many people each tavern and boarding house could sleep' at 06:31, and the first entry is gone from the file the launcher and Manager parse
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
+T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand
