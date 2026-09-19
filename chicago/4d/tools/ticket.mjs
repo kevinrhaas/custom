@@ -1514,7 +1514,32 @@ switch (cmd) {
     t.state = 'done'; t.closed = today(); t.closed_at = nowIso(); t.pr = flag('pr');
     if (!t.pr) { console.error('done needs --pr N — the closing PR is the receipt'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} done (PR #${t.pr}) — removed from QUEUE`);
     warnIfThisClosedASplit(t, loadAll());
     break;
@@ -1525,7 +1550,32 @@ switch (cmd) {
     t.blocked_on = flag('on');
     if (!t.blocked_on) { console.error('block needs --on "the question or the missing thing"'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} → ${t.state}`);
     break;
   }
@@ -1540,7 +1590,32 @@ switch (cmd) {
     const t = find(tickets, args[0]);
     t.state = 'withdrawn'; t.closed = today(); t.closed_at = nowIso(); t.blocked_on = flag('why') ?? t.blocked_on;
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
-    releaseClaimLock(t.id);
+    // THE CLAIM IS KEPT, AND COLLECTED BY AGE (T-1351). This used to give the marker
+    // back here. The reasoning left behind by T-1145 — which moved `split` off the
+    // handback for the same fault — said why `done` was left alone: "`done` and
+    // `withdraw` end a run: rule 7 has its PR merging minutes later, so the window
+    // where `dev` disagrees is short."
+    //
+    // THE WINDOW IS NOT SHORT WHEN THE PR CANNOT MERGE, and on 2026-09-18 that cost
+    // two runs on T-1333:
+    //
+    //   21:02:57  run 35389718070 claims T-1333, works it, runs `done --pr 1477`,
+    //             and the release here deletes claim/t-1333 while #1477 is unmerged
+    //   22:10     #1477 opens and cannot gate — it is `dirty`, and GitHub builds no
+    //             merge commit for a conflicted PR, so no check ever runs
+    //   22:45:27  run 35402702816 reads `dev`, where T-1333 is still `open` because
+    //             #1477 has not landed, finds no lock, and claims the same ticket
+    //   23:15     #1480 opens: a second, independent implementation of one acceptance
+    //
+    // Both claims were legitimate — 1h42m apart, well inside RUN_HOURS — and both runs
+    // were correct by every rule as written. A run cannot know when its PR merges, so
+    // any handback here is a bet on that interval, and it is lost exactly when the
+    // queue is congested and a duplicate is most expensive.
+    //
+    // So the marker outlives the run and `claims --sweep` collects it by age, which is
+    // what RUN_HOURS is for and where `split` has stood since T-1145. The cost is
+    // stated rather than hidden: an abandoned PR holds its ticket for up to three
+    // hours instead of being re-offered at once.
     console.log(`${t.id} withdrawn`);
     break;
   }
