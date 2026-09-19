@@ -1,7 +1,7 @@
 ---
 id: T-1346
 title: The 1839 directory's trade table: every Fergus 1839 entry's printed trade counted against the controlled vocabulary, with its refusals and the 1840 industry columns beside it — the per-trade share T-1162's withdrawal left the programme without
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1173
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1488
 claimed_by: run 9/18/2026, 6:54:10 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T01:27:22.503Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35406958128
 ---
 
