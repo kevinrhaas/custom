@@ -2378,6 +2378,24 @@ step "every re-admission re-derives, and no refusal it stands beside has moved" 
 
 selftest "...and a guessed date, a borrowed name and a rising persistence curve are refused" \
   python3 tools/readmit_borderline_roster.py --self-test
+
+# T-1347 (of T-1173), stage `trade_households` of the same programme. The order book's
+# twenty-four `family/trade` buckets ordered 308 adults at a trade that nobody printed;
+# this stage draws them as heads of their own households, deals each a trade from the
+# Fergus 1839 table's shares (T-1346), caps a trade at the December 1835 State census
+# where that census counts a class one person keeps, and puts the refusals and the
+# rounding remainder into the residual — day labour and domestic service, the work the
+# record cannot see. What the gate below holds: that all 308 re-derive from their seeds,
+# that every bucket is filled to its order and no further, that no trade outside the
+# controlled vocabulary reaches a person, and that no kin is seated here — the family each
+# head is owed is written as `household_owed` and seated by T-1174, whose quota it is.
+# `reconstruct_residents_1835.py --check` above holds each drawn person to the record
+# contract, which is the other half. A hand-edited card fails here.
+step "every trade household re-derives, and every bucket the book ordered is filled" \
+  python3 tools/reconstruct_trade_households.py --check
+
+selftest "...and a seniority rule, an over-ceiling trade and a borrowed name are refused" \
+  python3 tools/reconstruct_trade_households.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at

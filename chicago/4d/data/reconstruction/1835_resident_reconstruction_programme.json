@@ -69,7 +69,8 @@
    "lodging": "data/reconstruction/1835_town_model.json#lodging_and_institutions.tables.lodging_and_institutional_roofs",
    "arrival": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer",
    "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835",
-   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white"
+   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white",
+   "trade_table_1839": "data/research/directories/fergus_1839_trade_table.json#rows"
   },
   "order_book": {
    "file": "data/reconstruction/1835_reconstruction_order_book.json",
@@ -211,16 +212,19 @@
   },
   {
    "key": "trade_households",
-   "ticket": "T-1173",
+   "ticket": "T-1173 (T-1346 read the trade table; T-1347 drew the heads)",
    "title": "The trade households the occupation model still wants",
-   "writes": "reconstructed heads and their households, by division",
+   "writes": "new reconstructed HEADS, each in their own household, in data/residents/reconstructed_trades/",
    "draws_from": [
     "occupations",
-    "employment_shape",
-    "by_division"
+    "household_size",
+    "trade_table_1839"
    ],
    "note": "Counted after the known and re-admitted people, against the order book's quota.",
-   "implemented": false
+   "implemented": true,
+   "built_by": "tools/reconstruct_trade_households.py",
+   "community": "the weighting the name pools carry for the drawn trade; the general documented stock where they carry none",
+   "method": "The order book's twenty-four `family/trade` buckets are the quota: 308 heads by sex, age band and division. Each sex's heads are dealt across the trades by largest remainder on the Fergus 1839 trade table's printed shares (T-1346), capped where the December 1835 State census counts a class one person keeps, and the refusals and the rounding remainder fall to the residual trade — day labour for the men, domestic service for the women. A trade is then spread across the bands in proportion to what the book ordered: the seniority rule T-1173 sketched is REFUSED in writing, because the 1839 table carries no ages and the 1840 schedule carries no trades. No arrival is drawn: the arrival model's distribution is computed over the compiled scene and the scene carries these cards, so writing one here would move the table that drew it and re-derive the research layer's own arrival fills — T-1169 owns that block and T-1179 joins these cards to the tree it runs over. No kin is seated; the family the 1840 size histogram owes each head is written onto the card as `household_owed` and seated by T-1174 and T-1179, whose quota it is."
   },
   {
    "key": "women_and_children",

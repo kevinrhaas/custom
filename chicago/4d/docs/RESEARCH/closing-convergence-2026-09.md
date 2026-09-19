@@ -15,9 +15,9 @@ The order is read out of `tools/derived_manifest.json`, which holds the whole de
 | # | member | rebuilt by | manifest step | files the lap may rebuild |
 |---|---|---|---|---|
 | 1 | `data/residents/index.json` and its `merged` redirect table | `tools/rebuild_resident_index.py` | 73 | 1 |
-| 2 | the 1835 sidecars, `data/sidecars/1835/` | `tools/compile_scene.py` | 115 | 1 |
-| 3 | the town census, `data/town_census.json` | `tools/town_census.py` | 133 | 1 |
-| 4 | the final resident audit, `chicago/reference/resident-research/final/audit/` | `tools/export_resident_audit.py` | 135 | 3 |
+| 2 | the 1835 sidecars, `data/sidecars/1835/` | `tools/compile_scene.py` | 116 | 1 |
+| 3 | the town census, `data/town_census.json` | `tools/town_census.py` | 134 | 1 |
+| 4 | the final resident audit, `chicago/reference/resident-research/final/audit/` | `tools/export_resident_audit.py` | 136 | 3 |
 | 5 | the published residents, `site/chicago/4d/data/residents/` | `tools/publish.sh` | **none** — see §2 | 0 |
 
 ## 2. What the manifest does not own
@@ -54,12 +54,12 @@ Baseline: `07605197356ccd8d8b4f547eccb2d1dc619ef06f` on `dev`, taken 2026-09-18 
 | persons graded `inferred` | 875 | 875 | 0 |
 | persons graded `reconstructed` | 3 | 303 | +300 |
 | 1835 sidecar files | 391 | 391 | 0 |
-| people in the 1835 people sidecar | 1288 | 1771 | +483 |
+| people in the 1835 people sidecar | 1288 | 2079 | +791 |
 | buildings standing in the town census | 371 | 371 | 0 |
 | people housed in the town census | 34 | 56 | +22 |
 | households housed in the town census | 20 | 20 | 0 |
 | rows in the final resident audit | 1288 | 1588 | +300 |
-| published resident files in the mirror | 1336 | 1519 | +183 |
+| published resident files in the mirror | 1336 | 1827 | +491 |
 
 ## 4. T-1144's banked acceptances, as deltas
 

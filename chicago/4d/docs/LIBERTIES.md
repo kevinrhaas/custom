@@ -12492,3 +12492,67 @@ row's ruling on its own.
 Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster
 **T-1159**, the programme **T-1167**.
 **Recorded:** 2026-09-19.
+
+### L247 — 308 people are given a trade the town needed and no roster printed, and their shares come from a directory four years late
+
+**Decision:** `tools/reconstruct_trade_households.py` (T-1347, of T-1173) writes 308
+reconstructed heads into `data/residents/reconstructed_trades/`, one per person the
+reconstruction order book counts the town of 1 July 1835 short of in its twenty-four
+`family/trade` buckets — 197 men and 111 women, by sex, age band and division. Each is a
+head of their own household, carries an invented name from the pools, an age band the
+bucket set, and **a trade dealt from the Fergus
+1839 directory's printed shares** (T-1346's table: 1,377 mapped entries over 88 trades).
+
+**Why:** because the order book is the quota and the quota was empty. The town model reads
+1835 Chicago as employing around 506 people and the rosters this project can read name 457
+residents in total; the men who dug the harbour, drove the drays and framed the balloon
+houses, and the women who kept the boarding houses and washed and sewed for the town, were
+not written down by a letter list or a subscription roll. The choice is between a town
+whose working people are only the ones somebody happened to print, and a town whose
+working people are modelled, counted and labelled as modelled. This project takes the
+second and says so on every card.
+
+**What is invented, exactly:** three things, and no more. (1) That the 1839 trade shape is
+the best available 1839-minus-four reading of who worked at what — the volume is Fergus's
+1876 completion of a list that, in its compiler's own words, "was never written", and it
+describes a town three times the size. (2) That the work the record cannot see is day
+labour for the men and domestic service for the women: neither is an establishment, so
+neither is enumerated by a census that counts stores and shops, and both are where this
+model puts the rounding remainder and everything a census ceiling refuses. (3) The names,
+which are drawn from the invented name pools and checked against every real name in the
+layer. Nothing else: the age band is the order book's own axis, the division is the
+bucket's, and each value carries the seed that redraws it.
+
+**What this deliberately does NOT do.** It writes **no seniority rule**: T-1173 sketched
+"labourers young, master tradesmen older" and this stage refuses it, because the 1839 table
+carries no ages and the 1840 schedule carries no trades, so nothing in this corpus prices
+the association — each trade is spread across the bands in proportion to what the book
+ordered, and the master/journeyman split belongs to T-1183. It writes **no arrival**: the arrival model's own distribution is computed over the
+compiled scene, and the scene carries these cards, so an arrival written here would move the
+very table that drew it — and the research layer's arrival fills (T-1169) re-derive from
+that table, so 1,440 research cards would move with it. T-1169 owns the block and T-1179
+joins these cards to the tree it runs over. It seats **no kin**: every head
+is owed the family the 1840 size histogram drew for them, that size and its seed are
+written onto the card as `household_owed`, and the people themselves are `family/none` in
+the order book, which is T-1174's and T-1171's quota — drawing them here would order the
+same women and children twice. And it draws **no trade past its ceiling**: where the
+December 1835 State census counts a class one person keeps, the town model's
+`against_the_state_census` table sets the bound, and a class the town already matches draws
+nobody — which is why 50 of the 111 women fall to domestic service rather than adding
+school and tavern keepers the census says the town already had.
+
+**What it leaves open.** These cards are outside `data/residents/households/` and therefore
+outside `data/residents/index.json`, for the reason T-1172's re-admissions are: the mint
+writers re-derive that directory and a reconstruction that is not a reading must not move
+under them. They join the town in `data/sidecars/1835/people.json`, which is why that file
+now counts 2,079 people against the manifest's 1,588. `roles[]` does not reach them either;
+T-1179 converges the two trees.
+
+**How to resolve:** a source naming a real resident of one of these trades in one of these
+divisions retires the slot it stands in — the card says which. A per-trade reading of an
+1835 or 1836 source, rather than the 1839 volume, replaces the shares whole.
+
+Related: **L245** and **L246** (the same programme's transient and re-admission bands),
+tickets **T-1347**, **T-1346**, **T-1173**, the order book **T-1166**, the town model
+**T-1161**, the programme **T-1167**.
+**Recorded:** 2026-09-19.
