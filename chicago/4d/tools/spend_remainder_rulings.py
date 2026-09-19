@@ -169,7 +169,18 @@ RULES = {
     },
     "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1144",
+        # T-1144 SPLIT ON 2026-09-18 AND THIS LINE WAS LEFT POINTING AT THE PARENT.
+        # The split (#1471) found the one deferral it was looking for — the
+        # `identity_open_one_letter_apart` ruling in data/research/spend_rulings.json —
+        # and repointed it to T-1334. It did not find this one, which had been added
+        # hours earlier by T-1330's arrival-and-origin pass, so `dev` went red on the
+        # ledger ratchet and every branch that merged dev inherited the strand.
+        #
+        # T-1333 is the child that owns it. The statement below names the question as
+        # "no false Chicago resident, and no 1835 claim above its dated evidence", and
+        # those are T-1144's acceptances 3 and 5, which the split banked into T-1333 to
+        # be stated as measured deltas by the closing rebuild.
+        "ticket": "T-1333",
         "statement": (
             "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from "
             "Chicago -- a removal, a migration to another town, a prospecting journey that "
