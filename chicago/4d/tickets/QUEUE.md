@@ -49,7 +49,6 @@
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 T-1371 — Seat the boarders: the single men the household model marked boarding, and new reconstructed lodgers, into the lodging places to their capacities, with each keeper's own household complete
 T-1372 — Crews, the works gang and the guest lists: the vessels in port and the pier-works hands seated, and every lodging card printing who lived there
-T-1349 — The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 T-1378 — proprietor_community on every business and the Businesses view's filter: the Indian-trade houses and interpreters as a business class, the Black-owned firms filterable, and the Irish and German Catholic shares checked against the model rather than minted again
 # --- 3C. RECONSTRUCT RESIDENTS — converge

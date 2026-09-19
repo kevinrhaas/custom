@@ -1,7 +1,7 @@
 ---
 id: T-1349
 title: The companies of the 5th Infantry to their strength: the 1835 establishment read from a stated source, the enlisted men, the four laundresses a company, the soldiers' families and the sutler written as programme stage `garrison` and seated in the barracks by company, with the population model's garrison row reconciled
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1176
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1515
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T12:20:19.313Z
 claimed_run: null
 ---
 
