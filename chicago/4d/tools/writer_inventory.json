@@ -931,7 +931,13 @@
       "measured": "2026-09-19",
       "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 83 household cards and its ledger, changed no committed byte."
     },
-    "reconstruct_underdocumented.py": {
+    "reconstruct_free_black.py": {
+    "placement": "pending",
+    "write_mode": "--build",
+    "measured": "2026-09-19",
+    "finding": "Reproduces: ran `--build` on a clean tree in under 1s, rewrote its 7 household cards, its 2 authored firm records and its ledger, changed no committed byte. Measured again through tools/measure_step_isolation.mjs --tool, which reports both gated commands writing nothing in-tree."
+  },
+  "reconstruct_underdocumented.py": {
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-19",

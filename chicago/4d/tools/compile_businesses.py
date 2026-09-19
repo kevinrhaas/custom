@@ -92,7 +92,7 @@ GRADES = ("attested", "inferred", "reconstructed")
 # `transients/` when it lands — and tools/compile_scene.py overlays all of them onto the
 # scene. tools/reconstruct_underdocumented.py already reads the set this way.
 RESIDENT_CARD_DIRS = ("households", "merged", "readmitted", "reconstructed_trades",
-                      "lodgers", "transients")
+                      "lodgers", "transients", "underdocumented")
 
 
 def person_ids(residents_dir=None):
@@ -962,13 +962,60 @@ def semantic_problems(records, town_ids=None):
 
         # A RECONSTRUCTED HOUSE SAYS WHERE IT CAME FROM, OR IT IS NOT ONE (T-1184). The
         # `reconstruction` block is the business layer's half of the contract T-1158 put on
-        # every reconstructed value: the order-book row that bought the house, the group
-        # and ticket that wrote it, the seed a reader retypes to redraw it, and what
-        # retires it. The block belongs to reconstructions and to nothing else — a compiled
-        # or an audited record carrying one would be claiming a writer it does not have.
-        if record["provenance"] == "reconstructed" and not record.get("reconstruction"):
+        # every reconstructed value: what bought the house, the group and ticket that wrote
+        # it, the seed a reader retypes to redraw it, and what retires it. The block belongs
+        # to reconstructions and to nothing else — a compiled or an audited record carrying
+        # one would be claiming a writer it does not have.
+        #
+        # AND THERE ARE TWO WAYS A HOUSE CAN BE BOUGHT (owner, 2026-09-19; widened from
+        # T-1184's single form for T-1377). The first is a QUOTA ROW: the order book counts
+        # a shortfall against the register and leaves N of a class to reconstruct, and the
+        # record names the `bucket` and the `slot` it took. That is the whole of the
+        # business reconstruction programme and it assumes a modelled shortfall exists.
+        #
+        # The second is a DOCUMENTED FLOOR, and T-1377 is the case that showed the first
+        # form does not cover everything. Its two Black-owned firms do not fill a shortfall:
+        # they stand for a count the corpus makes DIRECTLY — Andreas's six or seven
+        # certificates of freedom obtained at Chicago in August 1833, read against the 1840
+        # schedule's free-coloured share — and the order book holds no barber or
+        # washing-and-ironing bucket at all, because the programme that would mint one
+        # (T-1186) has not run. Under the single form the only ways to pass were to spend
+        # another programme's quota before it runs, or to file documented evidence as an
+        # estimate. Both are worse than widening the rule.
+        #
+        # So the block must state EXACTLY ONE of the two, and say which. A record naming
+        # both is claiming a quota row and a floor for the same house; a record naming
+        # neither is the original fault this check exists to catch.
+        block = record.get("reconstruction")
+        if record["provenance"] == "reconstructed" and not block:
             bad.append("%s: reconstructed and carries no reconstruction block, so nothing "
-                       "says which order-book row bought it" % rid)
+                       "says what bought it — a quota row (bucket + slot) or a documented "
+                       "floor" % rid)
+        elif block:
+            quota = bool(block.get("bucket") or block.get("slot"))
+            floor = bool(block.get("floor"))
+            if quota and floor:
+                bad.append("%s: the reconstruction block names an order-book row AND a "
+                           "documented floor; a house is bought once" % rid)
+            elif not quota and not floor:
+                bad.append("%s: the reconstruction block names neither an order-book row "
+                           "(bucket + slot) nor a documented floor" % rid)
+            elif quota and not (block.get("bucket") and block.get("slot")):
+                bad.append("%s: a quota row names a bucket and a slot, and this one names "
+                           "only %s" % (rid, "a bucket" if block.get("bucket") else "a slot"))
+            elif floor:
+                # A floor carries its own evidence, because nothing upstream counted it.
+                f = block["floor"]
+                if not isinstance(f, dict):
+                    bad.append("%s: the documented floor is not a block" % rid)
+                else:
+                    if not isinstance(f.get("count"), int) or f["count"] < 1:
+                        bad.append("%s: the documented floor states no count" % rid)
+                    if not (f.get("sources") or []):
+                        bad.append("%s: the documented floor cites no source; a floor that "
+                                   "nothing states is an estimate" % rid)
+                    if not (f.get("note") or "").strip():
+                        bad.append("%s: the documented floor argues no basis" % rid)
         if record.get("reconstruction") and record["provenance"] != "reconstructed":
             bad.append("%s: carries a reconstruction block and is provenance %r"
                        % (rid, record["provenance"]))
@@ -1192,6 +1239,38 @@ def self_test():
     expect("a reconstruction with nothing behind it",
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[])),
            "carries no reconstruction block", ids)
+
+    # THE WIDENED RULE HOLDS BOTH WAYS (owner, 2026-09-19). A reconstructed house is
+    # bought by a quota row OR by a documented floor, and the check has to refuse the
+    # three ways that can go wrong — neither, both, and a floor with nothing behind it.
+    # Without these the widening would be a hole rather than a second door.
+    expect("a reconstruction naming neither a quota row nor a floor",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"programme": "x", "group": "g",
+                                                     "ticket": "T-0001", "seed": "s"})),
+           "names neither an order-book row", ids)
+
+    expect("a reconstruction naming a quota row AND a floor",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"bucket": "b", "slot": "s",
+                                                     "floor": {"count": 1}})),
+           "a house is bought once", ids)
+
+    expect("half a quota row",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"bucket": "b"})),
+           "names a bucket and a slot", ids)
+
+    expect("a floor that cites nothing",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"floor": {"count": 7, "note": "n",
+                                                               "sources": []}})),
+           "cites no source", ids)
+
+    expect("a floor with no count",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"floor": {"sources": ["s"], "note": "n"}})),
+           "states no count", ids)
 
     expect("a compiled record claiming a reconstruction",
            mutate(lambda d: d.update(reconstruction={"programme": "x"})),

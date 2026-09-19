@@ -197,9 +197,9 @@
       "description": "What evidence would retire this record or this reading — the standing instruction to the next researcher."},
     "reconstruction": {
       "type": "object",
-      "required": ["programme", "group", "ticket", "bucket", "slot", "seed", "basis", "withdrawn_if"],
+      "required": ["programme", "group", "ticket", "seed", "basis", "withdrawn_if"],
       "additionalProperties": false,
-      "description": "PRESENT ON A RECONSTRUCTED HOUSE AND ON NOTHING ELSE (T-1184). The contract the reconstruction programme puts on a reconstructed PERSON, asked of a firm: which order-book row bought this house, which group of which programme wrote it, the seed string a reader can retype to redraw every drawn value on it, and what retires it. A record carrying `provenance: \"reconstructed\"` and no block here cannot say where it came from; tools/reconstruct_businesses_1835.py --check re-derives every one of them from the seed and refuses a hand edit.",
+      "description": "PRESENT ON A RECONSTRUCTED HOUSE AND ON NOTHING ELSE (T-1184). The contract the reconstruction programme puts on a reconstructed PERSON, asked of a firm: WHAT BOUGHT THIS HOUSE, which group of which programme wrote it, the seed string a reader can retype to redraw every drawn value on it, and what retires it. A record carrying `provenance: \"reconstructed\"` and no block here cannot say where it came from. TWO ways a house is bought, and a record states exactly one: a QUOTA ROW (`bucket` + `slot`), where the order book counted a shortfall against the register; or a DOCUMENTED FLOOR (`floor`), where the corpus states the count directly and no bucket exists to name — T-1377's Black-owned firms stand on Andreas's 1833 certificates of freedom, and the programme that would mint a barber bucket (T-1186) has not run (owner, 2026-09-19). tools/compile_businesses.py refuses a record naming both or neither and holds a floor to its own count, sources and argument; tools/reconstruct_businesses_1835.py --check re-derives every quota row from its seed and refuses a hand edit.",
       "properties": {
         "programme": {"type": "string",
           "description": "The writing programme's id — `chicago_1835_business_reconstruction`."},
@@ -211,6 +211,21 @@
           "description": "The order-book bucket key that ordered this house."},
         "slot": {"type": "string",
           "description": "The slot within that bucket. Stable across builds because the book's order is, which is what makes the seed reproducible."},
+        "floor": {"type": "object",
+          "description": "A DOCUMENTED FLOOR, in place of a quota row: a count the corpus makes directly, which this house stands for. It carries its own evidence, because nothing upstream counted it — there is no order-book row to point at.",
+          "required": ["count", "of", "as_of", "sources", "note"],
+          "additionalProperties": false,
+          "properties": {
+            "count": {"type": "integer", "minimum": 1,
+              "description": "The floor the sources state."},
+            "of": {"type": "string", "description": "What is counted."},
+            "as_of": {"type": "string", "description": "The date the reading is of."},
+            "sources": {"type": "array", "minItems": 1, "items": {"type": "string"},
+              "description": "Source ids. A floor nothing states is an estimate, not a floor."},
+            "note": {"type": "string",
+              "description": "The argument that carries the count to the scene date."},
+            "why_a_firm_and_not_only_a_person": {"type": "string",
+              "description": "Why the floor buys a FIRM and not only the person it counts."}}},
         "seed": {"type": "string",
           "description": "The seed STRING every drawn value on this record hashes with blake2s — a reader can retype it and redraw the firm style, the goods line and the street face."},
         "basis": {
