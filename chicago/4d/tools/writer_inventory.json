@@ -208,6 +208,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "converge_resident_layer.py": {
+     "placement": "not_a_writer",
+     "write_mode": "--run, which writes no byte of its own",
+     "measured": "2026-09-19",
+     "finding": "Measured on dev at 3845cb41c, at its fixed point. `--check` and `--self-test` write nothing and read only tools/check.sh and the order file. `--run` is a write mode only by proxy: it executes the thirteen build commands the order names, every one of which already has a row here, and writes nothing itself. Run on that clean tree it reached the fixed point in one pass in 43 s and git reported no committed byte moved, which is the measurement \u2014 the order is idempotent where the tree already satisfies it. Recorded not_a_writer so the audit stops reporting it; it is a driver, and the bytes belong to the rows it drives."
+    },
     "crosswalk_census_1840_heads.py": {
       "placement": "not_derivable",
       "write_mode": "--build",
@@ -887,7 +893,7 @@
       "write_mode": "--build",
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 11 cards, 125 people and the return in data/reconstruction/1835_garrison.json from their seeds. In the manifest directly after `women_and_children`.",
-      "placed": "by stage order, 2026-09-19 \u2014 its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
+      "placed": "by stage order, 2026-09-19 — its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
     },
     "reconstruct_modelled_families.py": {
       "placement": "manifest",
@@ -1021,6 +1027,13 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "rule_presence_1835.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` re-derives data/reconstruction/1835_presence_rulings.json byte-for-byte from the household directory and T-1172's persistence model, and `--check` is a gate in tools/check.sh.",
+      "placed": "by layer, 2026-09-19 — after every writer that can move a card's presence or its evidence blocks, before everything that counts the town; see the manifest step"
     },
     "school_section_sale.py": {
       "placement": "manifest",
