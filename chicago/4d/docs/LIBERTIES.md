@@ -12251,7 +12251,6 @@ anybody in `data/residents/` is graded `reconstructed`.
 **How to resolve:** any source naming a member of the Murphy or Adams household at or before
 1 July 1835 retires the person it names — that is each record's own `replaceable_by`.
 Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**.
-
 **Recorded:** 2026-09-18.
 
 ### L243 — Every household in the town now says where it came from and why, and 3,629 of those statements were made here rather than read
@@ -12426,6 +12425,7 @@ sentence that is no longer there.
 
 Related: ticket **T-1352**, piece 1 of **T-1178**; stage `transients` of **T-1167**'s programme;
 `docs/RESEARCH/1835_transient_cohort.md`.
+**Recorded:** 2026-09-19.
 
 ### L246 — 820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
 

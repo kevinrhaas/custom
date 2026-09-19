@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nine hundred names the research withheld are offered back to the town', kind: 'feature', ts: '',
+  { v: 967, title: 'Nine hundred names the research withheld are offered back to the town', kind: 'feature', ts: '2026-09-19T02:53:27.146Z', date: 'Sep 18, 2026, 9:53 PM CT',
     items: [
       'This town has been keeping a list of people it would not let in. Names the sources printed \u2014 on a post-office list, a land-sale entry, a militia muster, an old settler\u2019s roll \u2014 that the research read and set aside, because one appearance is not proof a person was here on the first of July 1835. Of the 1,089 the list offered this stage, 909 are now in the town.',
       'Most are people the town already held with a question mark over them: 726 cards whose presence on the scene date nobody could settle. They now carry a second, reconstructed answer beside the unsettled one \u2014 689 present, 37 not \u2014 and the card shows both. The research\u2019s own verdict is not overwritten, and it is not quietly outranked either.',
