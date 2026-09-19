@@ -39,9 +39,9 @@
   "north_side_slough_recheck": {
     "stations": 45,
     "paired": 41,
-    "median_departure_m": 1.43,
-    "max_departure_m": 8.29,
-    "median_stroke_separation_m": 13.2,
+    "median_departure_m": 1.78,
+    "max_departure_m": 8.03,
+    "median_stroke_separation_m": 13.02,
     "stroke_separation_range_m": [
       6.96,
       22.83

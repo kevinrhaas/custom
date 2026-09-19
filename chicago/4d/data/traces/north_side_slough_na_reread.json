@@ -712,9 +712,9 @@
  "identity": {
   "against": "north_side_slough (data/terrain/epochs/e1834_harbor_cut/hydrology.geojson)",
   "stations": 36,
-  "median_departure_m": 1.25,
-  "max_departure_m": 17.87,
-  "min_departure_m": 0.16,
+  "median_departure_m": 1.54,
+  "max_departure_m": 17.91,
+  "min_departure_m": 0.04,
   "this_reading_affine_rms_m": 16.19,
   "slough_record_vertex_uncertainty_m": 20,
   "verdict": "the same feature, read twice"
@@ -753,7 +753,7 @@
  "length_m": 263.9,
  "m_per_px": 0.70582,
  "findings": [
-  "The same ink as `north_side_slough`. This reading's sheet stations fall a median 1.25 m from that committed centreline (max 17.87 m) \u2014 two scans, two registrations, two tracers, inside either one's stated uncertainty. The project has held this feature as water since before T-1075 asked what the line was.",
+  "The same ink as `north_side_slough`. This reading's sheet stations fall a median 1.54 m from that committed centreline (max 17.91 m) \u2014 two scans, two registrations, two tracers, inside either one's stated uncertainty. The project has held this feature as water since before T-1075 asked what the line was.",
   "The line ENDS at Michigan Street. Both strokes stop inside that street's corridor, short of its north rule; the tract's north tier is ruled across with nothing in it. T-1075's premise that it runs north THROUGH the tract is not what the sheet draws \u2014 and the slough record says the watercourse ends at Michigan Street.",
   "It is not a platted street: it curves, and it cuts diagonally across platted blocks and lot lines in the North Division tier and in the tract's south tier. That argues against a STREET and not for a road: a plat ruled over a watercourse is the ordinary case.",
   "The drawn corridor averages 12.35 m between stroke centres (sd 2.69 m, 7.16-18.78 m), against 13.02 m measured on the same strokes by T-0795's independent sweep. A hand-drawn double line on a manuscript sheet carries no surveyed width, and none is taken from it \u2014 the slough record's own 7.1 m is measured from the bank wash, not from these strokes.",
