@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 200,
+    "records": 201,
     "compiled_from_register": 196,
-    "authored": 4,
-    "present_at_scene_date": 183,
+    "authored": 5,
+    "present_at_scene_date": 184,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
@@ -21,28 +21,28 @@
       "silversmith_jeweller": 1,
       "steam_saw_mill": 4,
       "storage_and_forwarding": 8,
-      "store": 67,
+      "store": 68,
       "tavern": 9,
       "tin_and_copper_manufactory": 4
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 30,
+      "premises": 31,
       "street_only": 63,
       "unplaceable": 85
     },
-    "named_people": 200,
-    "named_people_linked_to_a_town_card": 148,
+    "named_people": 201,
+    "named_people_linked_to_a_town_card": 149,
     "works_at_households": 50,
-    "works_at_households_resolving_to_a_business": 21,
+    "works_at_households_resolving_to_a_business": 22,
     "by_grade": {
-      "attested": 158,
+      "attested": 159,
       "inferred": 38,
       "reconstructed": 4
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 30,
+      "premises": 31,
       "street_only": 63,
       "unplaceable": 81
     },
@@ -60,6 +60,7 @@
     "by_proprietor_community": {
       "british": 9,
       "free_black": 2,
+      "metis": 1,
       "new_york": 41,
       "other": 10,
       "southern": 5,
@@ -93,7 +94,7 @@
       {
         "value": "metis",
         "label": "Metis",
-        "count": 0
+        "count": 1
       },
       {
         "value": "french_canadian",
@@ -7761,6 +7762,54 @@
       ]
     },
     {
+      "id": "biz_robinson_trading_house_wolf_point",
+      "file": "biz_robinson_trading_house_wolf_point.json",
+      "name": "Alexander Robinson's store or trading-house at Wolf Point",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the country trade at the forks — a store or trading-house",
+      "occupation": "trader",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Alexander Robinson (Che-che-pin-qua)",
+          "person_id": "robinson_alexander",
+          "role": "proprietor",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "robinson_caldwell_cabins",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "metis",
+      "proprietor_community_tier": "inferred",
+      "review_required": true,
+      "liberties": [
+        "survival_required"
+      ]
+    },
+    {
       "id": "biz_rockwell_cabinet_furniture_warehouse",
       "file": "biz_rockwell_cabinet_furniture_warehouse.json",
       "name": "Rockwell, cabinet furniture warehouse",
@@ -11392,7 +11441,9 @@
       "household_id": "hh_robinson_alexander",
       "head": "robinson_alexander",
       "structure_id": "robinson_caldwell_cabins",
-      "business_ids": []
+      "business_ids": [
+        "biz_robinson_trading_house_wolf_point"
+      ]
     },
     {
       "household_id": "hh_sproat_grenville",
