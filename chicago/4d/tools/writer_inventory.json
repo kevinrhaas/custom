@@ -598,6 +598,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "placement_policy_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_placement_policy.json and moved no committed byte (git reported 0 changed paths). Left `pending` rather than appended to the derived manifest: it reads the structure census, the street classes and the roof reconciliation, so its slot in the dependency order is its own measured pass."
+    },
     "profile_population_1835.py": {
       "placement": "manifest",
       "write_mode": null,
