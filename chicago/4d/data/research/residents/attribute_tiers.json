@@ -5443,19 +5443,18 @@
       },
       "values": 1298,
       "by_value": {
-        "1834": 531,
-        "1835": 406,
-        "1833": 253,
-        "1832": 50,
-        "1831": 31,
+        "1834": 527,
+        "1835": 405,
+        "1833": 262,
+        "1832": 49,
+        "1831": 30,
         "1824": 7,
         "1830": 5,
-        "1816": 3,
-        "1820": 3,
-        "1812": 2,
-        "1818": 2,
-        "1823": 2,
+        "1812": 4,
+        "1818": 3,
+        "1820": 2,
         "1827": 2,
+        "1816": 1,
         "1826": 1
       },
       "a_seed": "hh_abbot_8_g:arrival_year",
@@ -6464,10 +6463,10 @@
       },
       "values": 1237,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 502,
-        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 390,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 244,
-        "The trading post, the fort and the country trade — the town before the boom": 101
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 494,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 389,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 256,
+        "The trading post, the fort and the country trade — the town before the boom": 98
       },
       "a_seed": null,
       "a_card": "hh_abbot_8_g"
