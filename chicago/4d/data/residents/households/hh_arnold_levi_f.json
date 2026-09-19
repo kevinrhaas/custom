@@ -169,6 +169,18 @@
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "civic_seat",
+     "place_or_structure_id": "south_water_and_franklin_corner",
+     "resolves_to": "face",
+     "from": "1834",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "andreas_1884_v1",
+     "note": "THE POST OFFICE OF 1835 IS A CORNER AND NOT A ROOF. `civic_public_buildings_1835.md` § 4 has the mail taken at a store and no post office building in the town; `data/structures/hogan_store.json` — the obvious wrong answer, and the building the walkthrough's `first_post_office` anchor stands at — states the limit itself: 'NOT THE POST OFFICE AT THE SCENE DATE ... Andreas has the office removed to near the corner of Franklin and South Water, where it stayed through Hogan's term.' So the row reaches the corner of two committed corridors and stops there. The word 'near' is the source's own and is why this is a face and not a lot, and the date is the removal's 'about July 1834', kept at the year because 'about' is the source's word too. The row places the OFFICE; the holder's own tenure is what his `roles[]` block dates. THE OFFICE HERE IS POSTMASTER, carried on this person's roles[] block from 1833-11 to 1835-08 at attested confidence; this row states where that office SAT and inherits neither its dates nor its tier."
+    }
+   ],
    "age_band": {
     "value": "15-19",
     "low": 15,
@@ -192,19 +204,7 @@
     "value": "male",
     "confidence": "inferred",
     "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Levi' is read as male because it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
-   },
-   "associated_with": [
-    {
-     "kind": "civic_seat",
-     "place_or_structure_id": "south_water_and_franklin_corner",
-     "resolves_to": "face",
-     "from": "1834",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "andreas_1884_v1",
-     "note": "THE POST OFFICE OF 1835 IS A CORNER AND NOT A ROOF. `civic_public_buildings_1835.md` § 4 has the mail taken at a store and no post office building in the town; `data/structures/hogan_store.json` — the obvious wrong answer, and the building the walkthrough's `first_post_office` anchor stands at — states the limit itself: 'NOT THE POST OFFICE AT THE SCENE DATE ... Andreas has the office removed to near the corner of Franklin and South Water, where it stayed through Hogan's term.' So the row reaches the corner of two committed corridors and stops there. The word 'near' is the source's own and is why this is a face and not a lot, and the date is the removal's 'about July 1834', kept at the year because 'about' is the source's word too. The row places the OFFICE; the holder's own tenure is what his `roles[]` block dates. THE OFFICE HERE IS POSTMASTER, carried on this person's roles[] block from 1833-11 to 1835-08 at attested confidence; this row states where that office SAT and inherits neither its dates nor its tier."
-    }
-   ]
+   }
   }
  ],
  "touches_removal": false,

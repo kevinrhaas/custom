@@ -87,6 +87,18 @@
    "relationship": "head",
    "grade": "attested",
    "ladder_rule": "G1b",
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-25",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0262 — to this purchaser, read as 'KIMBALL WALTER', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.86 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'KIMBALL WALTER matches W. Kimball: the forename names W. Kimball of the 1 person of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "occupation": {
     "value": "none_recorded",
@@ -235,19 +247,7 @@
      "calumet_club_early_chicago_1879"
     ],
     "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 69: \"Kimball, Walter, | 1833, Sept. | Rome, N.Y. | 69 | Chicago.\". An age of 69 completed years given on that day means the birth falls after 27 May 1809 and on or before 27 May 1810, so the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS2A), in data/research/old_settlers/people.json."
-   },
-   "associated_with": [
-    {
-     "kind": "land_purchased",
-     "place_or_structure_id": "school_section",
-     "resolves_to": "tract",
-     "from": "1833-10-25",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "isa_public_domain_land_tract_sales",
-     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0262 — to this purchaser, read as 'KIMBALL WALTER', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 2.86 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'KIMBALL WALTER matches W. Kimball: the forename names W. Kimball of the 1 person of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
-    }
-   ]
+   }
   }
  ],
  "touches_removal": false,

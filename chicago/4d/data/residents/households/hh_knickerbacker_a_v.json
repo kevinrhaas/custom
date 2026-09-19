@@ -235,6 +235,18 @@
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1844. SYNONYM-FOLDED (T-1254): the same source prints this role as grocery and provisions as well, and one source asserting one role over one bound is one row."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 2 row(s) — ls0272, ls0273 — to this purchaser, read as 'KNICKERBACKER ABRM V', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 5.12 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'KNICKERBACKER ABRM V matches A V Knickerbacker: the forename names A V Knickerbacker of the 1 person of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "sex_basis": {
     "value": "male",
@@ -269,19 +281,7 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('knickerbacker_a_v:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   },
-   "associated_with": [
-    {
-     "kind": "land_purchased",
-     "place_or_structure_id": "school_section",
-     "resolves_to": "tract",
-     "from": "1833-10-22",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "isa_public_domain_land_tract_sales",
-     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 2 row(s) — ls0272, ls0273 — to this purchaser, read as 'KNICKERBACKER ABRM V', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 5.12 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'KNICKERBACKER ABRM V matches A V Knickerbacker: the forename names A V Knickerbacker of the 1 person of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
-    }
-   ]
+   }
   },
   {
    "id": "rc_knickerbacker_a_v_wife",

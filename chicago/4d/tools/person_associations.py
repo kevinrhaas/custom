@@ -649,6 +649,43 @@ def render(p: dict) -> str:
 
 # --------------------------------------------------------------------------
 
+# The tail `reconstruct_sex_age.settle_order` owns, in the order it writes it.
+# Those blocks are moved to the END of a person by TWO passes that re-derive this
+# layer, and both prove themselves by rebuilding a card and comparing it byte for
+# byte. A new key appended after them reads as drift on an ordering alone — which
+# is exactly what happened the first time these rows were written, on 70 cards.
+SETTLED_TAIL = ("age_band", "sex", "sex_basis", "birth_year")
+
+
+def place_rows(person: dict, rows: list) -> None:
+    """Write `associated_with` IN FRONT OF the tail the sex/age passes re-order.
+
+    `reconstruct_sex_age.settle_order` pops `age_band`, then a sex it inferred,
+    then a birth year it drew, so each lands at the end of the person; its
+    `--check` strips this pass's blocks, derives them again and compares the
+    JSON text. Appending anything after that tail makes the committed card and
+    the derived one differ by position and by nothing else.
+
+    THE TAIL'S OWN ORDER IS LEFT EXACTLY AS IT LIES. Which of those four keys
+    that pass moves depends on the card — a sex it did not infer and a birth
+    year it did not draw stay where they were — so re-emitting them in a fixed
+    order is its own drift, on 44 cards. This inserts in front of the first of
+    them and touches nothing else.
+    """
+    out = {}
+    placed = False
+    for k, v in list(person.items()):
+        if not placed and k in SETTLED_TAIL:
+            out["associated_with"] = rows
+            placed = True
+        if k != "associated_with":
+            out[k] = v
+    if not placed:
+        out["associated_with"] = rows
+    person.clear()
+    person.update(out)
+
+
 def apply_to_cards(proposal) -> int:
     """Append the proposed rows to the person records. Returns files written."""
     written = 0
@@ -663,7 +700,7 @@ def apply_to_cards(proposal) -> int:
             add = [r for r in rows if key(r) not in have]
             if not add:
                 continue
-            person["associated_with"] = existing + add
+            place_rows(person, existing + add)
             changed = True
         if changed:
             path.write_text(json.dumps(h, indent=1, ensure_ascii=False) + "\n")

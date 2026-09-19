@@ -440,6 +440,18 @@
      "rule": "G2b"
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 13 row(s) — ls0099, ls0100, ls0101, ls0102, ls0103, ls0104, ls0105, ls0106, ls0107, ls0108, ls0109, ls0110, ls0111 — to this purchaser, read as 'BRONSON ARTHUR', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 37.82 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'BRONSON ARTHUR matches Arthur Bronson: the forename names Arthur Bronson of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "sex_basis": {
     "value": "male",
@@ -474,19 +486,7 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('bronson_arthur:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   },
-   "associated_with": [
-    {
-     "kind": "land_purchased",
-     "place_or_structure_id": "school_section",
-     "resolves_to": "tract",
-     "from": "1833-10-22",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "isa_public_domain_land_tract_sales",
-     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 13 row(s) — ls0099, ls0100, ls0101, ls0102, ls0103, ls0104, ls0105, ls0106, ls0107, ls0108, ls0109, ls0110, ls0111 — to this purchaser, read as 'BRONSON ARTHUR', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 37.82 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'BRONSON ARTHUR matches Arthur Bronson: the forename names Arthur Bronson of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
-    }
-   ]
+   }
   }
  ],
  "touches_removal": false,

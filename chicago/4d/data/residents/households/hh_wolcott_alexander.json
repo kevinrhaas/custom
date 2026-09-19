@@ -437,6 +437,18 @@
      "note": "A TRADE PRINTED IN THE 1843 DIRECTORY, 8 years after the scene, carried here by its crosswalk (T-1254, by tools/derive_resident_roles.py). It is NOT a claim about 1835-07-01 and never becomes one: back-projecting a later volume onto the scene is the defect T-1145 exists to refuse. `place` is the address or place of business the record states in its own column; a firm named only inside the printed line stays in `as_printed` for the business band to rule on."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "canal_section_9_remainder",
+     "resolves_to": "tract",
+     "from": "1830-09-29",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0056 — to this purchaser, read as 'WOLCOTT ALEXANDER', sorted onto canal_section_9_remainder by tools/sort_land_sales_onto_tracts.py and covering about 80.0 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'WOLCOTT ALEXANDER matches Alexander Wolcott: the forename names Alexander Wolcott of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "age_band": {
     "value": "20-29",
     "low": 20,
@@ -467,19 +479,7 @@
     ],
     "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 64: \"Wolcott, Alexander, | 1834, June 4, | Middletown, Conn. | 64 | Chicago.\". An age of 64 completed years given on that day means the birth falls after 27 May 1814 and on or before 27 May 1815, so the birth year is 1814 or 1815. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS1), in data/research/old_settlers/people.json.",
     "contradicted_by_the_card": "AND THE CARD DOES NOT AGREE WITH IT (T-1179). This card says the person stands on tax_1833, and the interval leaves them 19 in 1833 — under the 20 a poll, tax or muster list is drawn at. That floor is the franchise's line and no source states it, so it is set beside this interval and not used to strike it out. The interval is carried anyway, because the floor it misses is one this project invented and says so — the model carries it under the liberty L-rc-age-conditioning — and a floor nobody can cite may not strike out a reading. Both are printed so that a reader meets the disagreement rather than one side of it."
-   },
-   "associated_with": [
-    {
-     "kind": "land_purchased",
-     "place_or_structure_id": "canal_section_9_remainder",
-     "resolves_to": "tract",
-     "from": "1830-09-29",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "isa_public_domain_land_tract_sales",
-     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 1 row(s) — ls0056 — to this purchaser, read as 'WOLCOTT ALEXANDER', sorted onto canal_section_9_remainder by tools/sort_land_sales_onto_tracts.py and covering about 80.0 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'WOLCOTT ALEXANDER matches Alexander Wolcott: the forename names Alexander Wolcott of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
-    }
-   ]
+   }
   }
  ],
  "touches_removal": false,

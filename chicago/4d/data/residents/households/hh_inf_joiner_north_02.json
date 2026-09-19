@@ -373,6 +373,18 @@
      "against_merge": "THE MIDDLE NAMES ARE BOTH PRINTED AND THEY DISAGREE. Every Reed reading sets W or 'James W.'; the Reid card reads 'J. Chester Reid' in the post-office return of 2 July 1834 (#c031). Chester against W is not a spelling, an abbreviation or an absence — it is a different name at the same position — so C9's first condition, that nothing but the one letter stands between the cards, is false and D7, which exists for pairs that fail only C9's demonstration, is not available either. C4's merge over a contradicted middle initial is confined to manuscript lists a copyist mis-set and does not reach a full middle name. The town besides holds reed_s_w, reed_thomas and reed_william. D10."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-25",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 3 row(s) — ls0325, ls0326, ls0327 — to this purchaser, read as 'REED JAMES W', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 8.72 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'REED JAMES W matches J. W. Reed: the forename names J. W. Reed of the 4 people of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "sex_basis": {
     "value": "male",
@@ -407,19 +419,7 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('inf_joiner_north_02:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   },
-   "associated_with": [
-    {
-     "kind": "land_purchased",
-     "place_or_structure_id": "school_section",
-     "resolves_to": "tract",
-     "from": "1833-10-25",
-     "to": null,
-     "tier": "inferred",
-     "source_id": "isa_public_domain_land_tract_sales",
-     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 3 row(s) — ls0325, ls0326, ls0327 — to this purchaser, read as 'REED JAMES W', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 8.72 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'REED JAMES W matches J. W. Reed: the forename names J. W. Reed of the 4 people of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
-    }
-   ]
+   }
   },
   {
    "id": "rc_inf_joiner_north_02_wife",

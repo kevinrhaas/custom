@@ -128,6 +128,18 @@
      "rule": "G2c"
     }
    ],
+   "associated_with": [
+    {
+     "kind": "church",
+     "place_or_structure_id": "st_marys_church",
+     "resolves_to": "structure",
+     "from": "1834-06",
+     "to": "1834-06",
+     "tier": "attested",
+     "source_id": "st_cyr_register_ichr_v4",
+     "note": "THE REGISTER NAMES HIM AT A PARISH ACT, AND THAT IS THE WHOLE OF THE CLAIM. Father St. Cyr's register carries this person as parent in st_cyr_death_01_2, dated 1834-06 and tied to this card by the church crosswalk's rule G2c. `st_marys_church` is his church, which the structure record states — 'St. Cyr selected the lot in 1833 and ... was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window'. THIS IS NOT A MEMBERSHIP ROW: being a witness, a party or a decedent at a Catholic act is what the register states, and the dates are the act's own, which is why `from` and `to` are the same day and the row is not carried forward to the scene date."
+    }
+   ],
    "sex": "male",
    "sex_basis": {
     "value": "male",
@@ -162,19 +174,7 @@
      "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('colewell_m:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
-   },
-   "associated_with": [
-    {
-     "kind": "church",
-     "place_or_structure_id": "st_marys_church",
-     "resolves_to": "structure",
-     "from": "1834-06",
-     "to": "1834-06",
-     "tier": "attested",
-     "source_id": "st_cyr_register_ichr_v4",
-     "note": "THE REGISTER NAMES HIM AT A PARISH ACT, AND THAT IS THE WHOLE OF THE CLAIM. Father St. Cyr's register carries this person as parent in st_cyr_death_01_2, dated 1834-06 and tied to this card by the church crosswalk's rule G2c. `st_marys_church` is his church, which the structure record states — 'St. Cyr selected the lot in 1833 and ... was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window'. THIS IS NOT A MEMBERSHIP ROW: being a witness, a party or a decedent at a Catholic act is what the register states, and the dates are the act's own, which is why `from` and `to` are the same day and the row is not carried forward to the scene date."
-    }
-   ]
+   }
   }
  ],
  "touches_removal": false,
