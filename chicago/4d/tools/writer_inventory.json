@@ -34,6 +34,13 @@
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "audit_businesses.py": {
+      "placement": "manifest",
+      "write_mode": "--write",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--write` on a clean tree, wrote its report and changed no committed byte.",
+      "placed": "by layer, 2026-09-19 — after compile_businesses.py, whose output it reads"
+    },
     "audit_scene_window_trades.py": {
       "placement": "manifest",
       "write_mode": "--write",
@@ -602,7 +609,7 @@
       "placement": "not_a_writer",
       "write_mode": null,
       "measured": "2026-09-19",
-      "finding": "Run bare it exits 0, prints the register's roll-up and writes nothing \u2014 measured on the working tree, byte-identical before and after. It declares no write flag: the only bytes it ever puts on disk are a region cache under /tmp, written by fetch_pinned AFTER the sha256 pin has passed, and never inside the repository. Gated with --check; a checker."
+      "finding": "Run bare it exits 0, prints the register's roll-up and writes nothing — measured on the working tree, byte-identical before and after. It declares no write flag: the only bytes it ever puts on disk are a region cache under /tmp, written by fetch_pinned AFTER the sha256 pin has passed, and never inside the repository. Gated with --check; a checker."
     },
     "profile_population_1835.py": {
       "placement": "manifest",
