@@ -3,7 +3,7 @@
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
   "measured": "2026-09-19",
   "gate_verdict": "CHECK FAIL",
-  "declared_steps": 529,
+  "declared_steps": 533,
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
@@ -21,8 +21,16 @@
     },
     "-": {
       "wrote": [
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_brand_luther.json",
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_haines_susan.json",
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_magie_samuel.json",
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_mccloud_lydia.json",
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_mchale_hannah.json",
+        "site/chicago/4d/data/residents/black_chicago/hh_fb_whitman_chauncey.json",
         "site/chicago/4d/data/residents/card_conflation_rulings.json",
         "site/chicago/4d/data/residents/card_merge_rulings.json",
+        "site/chicago/4d/data/residents/community.json",
+        "site/chicago/4d/data/residents/community_rules.json",
         "site/chicago/4d/data/residents/directories.json",
         "site/chicago/4d/data/residents/households/hh_abbot_8_g.json",
         "site/chicago/4d/data/residents/households/hh_abbott_constant.json",
@@ -1481,7 +1489,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_a_l_osborn.json",
         "site/chicago/4d/data/residents/readmitted/hh_abram_gale.json",
         "site/chicago/4d/data/residents/readmitted/hh_alexis_gagnier.json",
-        "site/chicago/4d/data/residents/readmitted/hh_allen_b_freeman.json",
+        "site/chicago/4d/data/residents/readmitted/hh_allan_b_freeman.json",
         "site/chicago/4d/data/residents/readmitted/hh_alonzo_huntington.json",
         "site/chicago/4d/data/residents/readmitted/hh_andrew_bouchard.json",
         "site/chicago/4d/data/residents/readmitted/hh_ansel_chipmon.json",
@@ -1517,6 +1525,8 @@
         "site/chicago/4d/data/residents/readmitted/hh_david_wade.json",
         "site/chicago/4d/data/residents/readmitted/hh_e_d_harmon.json",
         "site/chicago/4d/data/residents/readmitted/hh_ebenezer_crane.json",
+        "site/chicago/4d/data/residents/readmitted/hh_edmund_s_kimberley.json",
+        "site/chicago/4d/data/residents/readmitted/hh_edmund_s_kimberly.json",
         "site/chicago/4d/data/residents/readmitted/hh_edward_h_hadduck.json",
         "site/chicago/4d/data/residents/readmitted/hh_edward_k_rodgers.json",
         "site/chicago/4d/data/residents/readmitted/hh_edward_manierre.json",
@@ -1524,8 +1534,8 @@
         "site/chicago/4d/data/residents/readmitted/hh_eleazer_w_densmore.json",
         "site/chicago/4d/data/residents/readmitted/hh_elijah_sen_wentworth.json",
         "site/chicago/4d/data/residents/readmitted/hh_elisabeth_coslet.json",
-        "site/chicago/4d/data/residents/readmitted/hh_ephriam_morrison.json",
         "site/chicago/4d/data/residents/readmitted/hh_esther_bailly.json",
+        "site/chicago/4d/data/residents/readmitted/hh_ezekiel_morrison.json",
         "site/chicago/4d/data/residents/readmitted/hh_ezra_bond.json",
         "site/chicago/4d/data/residents/readmitted/hh_fran_ois_laframboise.json",
         "site/chicago/4d/data/residents/readmitted/hh_fran_ois_tranche.json",
@@ -1536,6 +1546,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_george_m_gray.json",
         "site/chicago/4d/data/residents/readmitted/hh_godfrey_coslet.json",
         "site/chicago/4d/data/residents/readmitted/hh_grant_goodrich.json",
+        "site/chicago/4d/data/residents/readmitted/hh_gurtrey_blanchard.json",
         "site/chicago/4d/data/residents/readmitted/hh_gwinthlean_whistler.json",
         "site/chicago/4d/data/residents/readmitted/hh_h_w_knickerbocker.json",
         "site/chicago/4d/data/residents/readmitted/hh_hannah_c_freeman.json",
@@ -1553,6 +1564,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_j_young_scammon.json",
         "site/chicago/4d/data/residents/readmitted/hh_jacob_benninger.json",
         "site/chicago/4d/data/residents/readmitted/hh_jacob_jolly.json",
+        "site/chicago/4d/data/residents/readmitted/hh_jacob_russell.json",
         "site/chicago/4d/data/residents/readmitted/hh_jacob_sherrill.json",
         "site/chicago/4d/data/residents/readmitted/hh_jacquette_peltier.json",
         "site/chicago/4d/data/residents/readmitted/hh_james_b_bradwell.json",
@@ -1576,6 +1588,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_john_k_sargent.json",
         "site/chicago/4d/data/residents/readmitted/hh_john_l_hanchett.json",
         "site/chicago/4d/data/residents/readmitted/hh_john_t_kingston.json",
+        "site/chicago/4d/data/residents/readmitted/hh_john_t_temple.json",
         "site/chicago/4d/data/residents/readmitted/hh_john_welch.json",
         "site/chicago/4d/data/residents/readmitted/hh_john_whistler.json",
         "site/chicago/4d/data/residents/readmitted/hh_john_wode.json",
@@ -1615,6 +1628,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_norman_clarke.json",
         "site/chicago/4d/data/residents/readmitted/hh_o_waichiquoi.json",
         "site/chicago/4d/data/residents/readmitted/hh_one_of_daughters_of_m_colewell.json",
+        "site/chicago/4d/data/residents/readmitted/hh_palmer_dyer.json",
         "site/chicago/4d/data/residents/readmitted/hh_patrick_wagon.json",
         "site/chicago/4d/data/residents/readmitted/hh_patrick_welch.json",
         "site/chicago/4d/data/residents/readmitted/hh_peter_moore.json",
@@ -1645,11 +1659,13 @@
         "site/chicago/4d/data/residents/readmitted/hh_thomas_drummond.json",
         "site/chicago/4d/data/residents/readmitted/hh_thomas_forester.json",
         "site/chicago/4d/data/residents/readmitted/hh_victoire_madera.json",
+        "site/chicago/4d/data/residents/readmitted/hh_william_b_egan.json",
         "site/chicago/4d/data/residents/readmitted/hh_william_bond.json",
         "site/chicago/4d/data/residents/readmitted/hh_william_bourque_burke.json",
         "site/chicago/4d/data/residents/readmitted/hh_william_dird.json",
         "site/chicago/4d/data/residents/readmitted/hh_william_g_powers.json",
         "site/chicago/4d/data/residents/readmitted/hh_william_hickling.json",
+        "site/chicago/4d/data/residents/readmitted/hh_william_pettit.json",
         "site/chicago/4d/data/residents/readmitted/hh_willis_scott.json",
         "site/chicago/4d/data/residents/readmitted/hh_zebiah_w_wentworth.json",
         "site/chicago/4d/data/residents/reconstructed_trades/hh_rc_bacon_otis.json",
@@ -2050,13 +2066,13 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build f59129c25 · Sep 19, 2026, 3:46 AM CT"
+        "- ../../site/chicago/4d/walk/index.html build 22abd3e8f · Sep 19, 2026, 5:54 AM CT"
       ]
     },
-    "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-dev-preview.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-dev-preview.mjs": {
       "wrote": []
     },
-    "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-url-check.mjs": {
+    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-url-check.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -2779,6 +2795,9 @@
     "tools/reconcile_665.py": {
       "wrote": []
     },
+    "tools/reconstruct_black_chicago_1835.py": {
+      "wrote": []
+    },
     "tools/reconstruct_modelled_families.py": {
       "wrote": []
     },
@@ -2974,7 +2993,7 @@
         "site/chicago/4d/walk/js/changelog.js"
       ],
       "wrote_by": [
-        "/home/runner/work/polecat-platform/polecat-platform/custom-repo/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
+        "/home/runner/work/polecat-platform/polecat-platform/custom/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
     "tools/supersede_arrival.py": {
