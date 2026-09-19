@@ -76,11 +76,63 @@
       "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
+    "residents/household:kin[].book_kin": {
+      "records": 4,
+      "refused_because": "The id of the book claim this kin row was read out of — a foreign key into data/research/books/claims/ and the ruling that answers it. It is what makes the write re-derivable and what lets the gate notice a tie that lost its reading; it states nothing about either person. What a visitor judges the relationship by is on the row already and is read there: the relation, the confidence, the sources and the note that quotes the sentence."
+    },
     "residents/household:origin.replaceable_by.kind": {
       "records": 1214
     },
     "residents/household:origin.written_by_stage": {
       "records": 1235
+    },
+    "residents/household:persons[].appearance_bounds[].as_read": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].bound_kind": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].corpus": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].covers_scene_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].date_confidence": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].describes_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].here_by": {
+      "records": 10
+    },
+    "residents/household:persons[].appearance_bounds[].identity_rule": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].identity_rule_source": {
+      "records": 13
+    },
+    "residents/household:persons[].appearance_bounds[].locator": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].precision": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].reaches": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].record_id": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].role": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].side_of_scene_date": {
+      "records": 27
+    },
+    "residents/household:persons[].appearance_bounds[].source_title": {
+      "records": 27
     },
     "residents/household:persons[].dated_bounds[].as_read": {
       "records": 292

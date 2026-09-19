@@ -2136,6 +2136,31 @@ step "a split keeps its claim, and the queue drops only finished work and regain
 step "every gated writer is in the derived manifest, or exempted in writing" \
   node tools/audit_manifest_coverage.mjs
 
+# T-1339, and it sits beside the writer coverage above because it is the same argument one
+# question over. That gate asks WHICH TOOLS WRITE; this one asks WHICH OF THEM WRITE WHILE
+# THE GATE IS RUNNING, which is a different failure with a worse signature.
+#
+# check.sh runs its steps in a job pool over ONE working tree (T-1289). A step that mutates
+# that tree is read by whatever runs beside it, so the gate reports red on a tree that is
+# green — four PRs went red that way on 2026-09-18 before the cause was found, and every one
+# of them looked like a defect in the branch. T-1336 fixed the six self-tests responsible and
+# put a retry behind them, which keeps the VERDICT correct; it does not stop the seventh
+# being written, and TWO OF THE SIX carried comments claiming they already worked on a copy.
+#
+# So the answer is a measurement and not a convention, exactly as T-1302 answered "which
+# tools write?" with a measured inventory rather than a pattern over the source. The slow
+# half is tools/measure_step_isolation.mjs --build (one instrumented gate run); this reads
+# what it wrote and costs milliseconds. An unmeasured step fails here, because an empty file
+# would otherwise read as proof.
+step "no gate step writes the live tree, and every one of them has been measured" \
+  node tools/audit_step_isolation.mjs --check --quiet
+
+selftest "…and it refuses an unmeasured step as well as a mutating one" \
+  node tools/audit_step_isolation.mjs --self-test
+
+selftest "…and the measurement's own readers still parse what check.sh declares" \
+  node tools/measure_step_isolation.mjs --self-test
+
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
 # T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to
@@ -3380,6 +3405,22 @@ step "…and each of those rulings is a bound on the card, not only a paragraph"
 selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
   python3 tools/spend_civic_roll_bounds.py --self-test
 
+# T-1337. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
+# the town's press — and only ten of them sat on a card in any form, so an identification
+# had to already stand before a bound could be written. Two did: the resident crosswalk's
+# 14 matched 1830 lines and the baptismal crosswalk's 13 merged register appearances. This
+# pass writes those 27 as `persons[].appearance_bounds[]`; an 1830 row bounds presence in a
+# DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
+# Chicago), and three register appearances are dated after 1 July 1835, so they date an
+# appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
+# registers, and the 128 press units went to T-1338 with the id collision that blocks them.
+step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
+  python3 tools/spend_appearance_bounds.py --check
+
+selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
+  python3 tools/spend_appearance_bounds.py --self-test
+
 # T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
 # land-sale purchaser units and could not close 313 of them: the tract was entered on or
 # before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
@@ -3500,6 +3541,19 @@ step "every family member the sources name is ruled on, and the ruled writes are
 
 selftest "…and an unruled statement, a lost write and a stale report all still fire" \
   python3 tools/spend_stated_families.py --self-test
+
+# T-1320. Both passes above read the CARDS. Neither has ever read data/research/books/ —
+# nine committed books, 267 adjudicated claims — for the kinship the books state, so a
+# book sentence only reached a card when somebody happened to quote it onto one. This
+# pass reads them, resolves both ends through the books' own crosswalk and by nothing
+# else, and answers every claim that states kinship in
+# data/research/books/kin_rulings.json. It mints nobody: a relative who was never in this
+# scene is EVIDENCE and not structure, which is validate.py's own rule for a kin row.
+step "every kinship the book corpus states is ruled on, and the ruled ties are on the cards" \
+  python3 tools/spend_book_kin.py --check
+
+selftest "…and a half brother flattened to a brother, a one-sided tie and a lost claim all still fire" \
+  python3 tools/spend_book_kin.py --self-test
 
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and

@@ -831,22 +831,6 @@
       ]
     },
     {
-      "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
-      "command": [
-        "python3",
-        "tools/synthesize_resident_research.py"
-      ],
-      "resolves": [
-        "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
-        "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
-      ],
-      "verify": [
-        "python3",
-        "tools/synthesize_resident_research.py",
-        "--check"
-      ]
-    },
-    {
       "why": "The cross-domain consolidation reads every crosswalk above, so it runs after all of them.",
       "command": [
         "python3",
@@ -1020,6 +1004,36 @@
       ]
     },
     {
+      "why": "T-1320 reads the BOOK corpus for kinship and writes kin rows onto household cards, so it belongs beside the other card writers: after the index is rebuilt and before anything downstream counts the town. It resolves no conflict — a household card is written by several passes and re-running this one to clear a conflict would take another pass's writes down with it — so `resolves` is empty and the step runs only to keep the tree consistent. IT REPRODUCES: the build appends a note only when the sentence is not already there and sorts `sources` and `book_kin`, so `--build` on the committed tree writes the same bytes back, measured twice on a clean checkout before this entry was added.",
+      "command": [
+        "python3",
+        "tools/spend_book_kin.py",
+        "--build"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/spend_book_kin.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1169's arrival fill: arrival year, origin and reason on 1,258 households.",
+      "command": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
+        "--stage",
+        "attribute_fill_arrival",
+        "--build"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/reconstruct_residents_1835.py",
+        "--check"
+      ]
+    },
+    {
       "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1304's drawn sex and age bands, each seeded by the person's own id.",
       "command": [
         "python3",
@@ -1067,18 +1081,18 @@
       ]
     },
     {
-      "why": "A RECONSTRUCTION STAGE WRITES CARDS, so it belongs where the other card writers are: after the index is rebuilt and before anything counts the town. Listed 2026-09-18 because outside the manifest there is NO hand order that converges — measured on #1452: build the stage, all three `--check`s green, run the 50-step manifest, and two of the three are red again, because the manifest's own card writers move their inputs. Run them after instead and every counter downstream is stale. That is a two-cycle, not a step somebody forgot. T-1169's arrival fill: arrival year, origin and reason on 1,258 households. MOVED BELOW `modelled_families` on 2026-09-18 (T-1171), measured: built above it, `--check` reported all 1,233 arrival draws un-re-derivable after the manifest finished, and building it again at the end made them green with nothing else moving. The stage draws against rates measured over the whole resident layer, and `modelled_families` adds 300 people to that layer, so it has to read the layer the card writers leave behind rather than the one they started from.",
+      "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
       "command": [
         "python3",
-        "tools/reconstruct_residents_1835.py",
-        "--stage",
-        "attribute_fill_arrival",
-        "--build"
+        "tools/synthesize_resident_research.py"
       ],
-      "resolves": [],
+      "resolves": [
+        "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
+        "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
+      ],
       "verify": [
         "python3",
-        "tools/reconstruct_residents_1835.py",
+        "tools/synthesize_resident_research.py",
         "--check"
       ]
     },

@@ -27,24 +27,24 @@
   "counts": {
     "cards": 1258,
     "blocks": 15128,
-    "tiers_written_on_the_card": 6147,
+    "tiers_written_on_the_card": 6143,
     "by_tier": {
       "attested": 591,
-      "inferred": 3310,
-      "reconstructed": 6062,
+      "inferred": 3316,
+      "reconstructed": 6056,
       "unknown": 5165
     },
     "by_attribute": {
       "arrival": {
         "attested": 52,
-        "inferred": 1201,
-        "reconstructed": 5,
+        "inferred": 1202,
+        "reconstructed": 4,
         "unknown": 0
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 23,
-        "reconstructed": 1175,
+        "inferred": 24,
+        "reconstructed": 1174,
         "unknown": 0
       },
       "directories.people[].address_later": {
@@ -85,8 +85,8 @@
       },
       "origin": {
         "attested": 11,
-        "inferred": 35,
-        "reconstructed": 1212,
+        "inferred": 39,
+        "reconstructed": 1208,
         "unknown": 0
       },
       "party_size_on_arrival": {
@@ -172,7 +172,6 @@
       "address_back_projection": 18,
       "arrival_bound_from_the_record": 1,
       "arrival_earliest_year_forced": 3,
-      "arrival_uncited_literature": 1,
       "inferred_household_hypothesis": 5,
       "origin_uncited_literature": 1,
       "residence_back_projection": 10
@@ -191,24 +190,6 @@
         "kind": "rule",
         "id": "arrival_bound_from_the_record",
         "note": "Not an arrival date. The evidence bears only that the person was at Chicago at some point in the year, so the value is the last day that evidence can reach, at `not_later_than` precision — a bound rather than a date."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
-      }
-    },
-    {
-      "card": "hh_beaubien_mark",
-      "attribute": "arrival",
-      "value": "1826",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
-      "precision": "year",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_uncited_literature",
-        "note": "The year is the figure in general circulation in the Chicago literature and no passage this project holds gives it, so it is carried as a conjecture that cites nothing."
       },
       "replaceable_by": {
         "kind": "person",
@@ -1120,18 +1101,19 @@
         "kind": "person",
         "match": "a dated source that says which year this household came to Chicago"
       },
-      "values": 1175,
+      "values": 1174,
       "by_value": {
         "1834": 587,
-        "1833": 283,
+        "1833": 282,
         "1835": 207,
         "1832": 56,
-        "1831": 20,
+        "1831": 17,
         "1823": 5,
-        "1830": 4,
+        "1824": 4,
         "1812": 3,
         "1820": 3,
         "1827": 3,
+        "1830": 3,
         "1816": 2,
         "1818": 1,
         "1826": 1
@@ -1149,11 +1131,11 @@
         "kind": "person",
         "match": "a source that says where this household came from"
       },
-      "values": 1201,
+      "values": 1197,
       "by_value": {
-        "New York State": 492,
-        "New England": 421,
-        "The Mid-Atlantic states": 107,
+        "New York State": 490,
+        "New England": 420,
+        "The Mid-Atlantic states": 106,
         "England": 94,
         "The Southern states": 53,
         "Ireland": 19,
