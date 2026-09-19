@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A brewery that may not have existed yet, and says so itself', kind: 'feature', ts: '',
+  { v: 996, title: 'A brewery that may not have existed yet, and says so itself', kind: 'feature', ts: '2026-09-19T23:33:09.528Z', date: 'Sep 19, 2026, 6:33 PM CT',
     items: [
       'The December 1835 state census counted two breweries in Chicago. The newspapers name one. It counted two silversmiths and jewellers; the newspapers name one, J. H. Mulford, who sold watches, clocks, spectacles and Indian silver work over the same counter. So two houses of trade have been added: a brewery on the North Water bank kept by Martin Quinn, and a jeweller\u2019s on the Canal Street approach kept by Louis Chevalier.',
       'Neither man is new and neither was invented for the job. Both were already living here as reconstructed tradesmen, and their cards said in advance that this would happen to them \u2014 a brewer needs a brewery, and the town should not end up with two of each because two different passes each drew their own.',
