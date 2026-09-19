@@ -1,7 +1,7 @@
 ---
 id: T-1367
 title: Spend the Baptist catalogue of 19 October 1833 onto Willard Jones, Nathaniel Carpenter and M D Harmon without dropping the twelve other names it prints off the borderline roster
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1350
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1506
 claimed_by: run 9/19/2026, 1:35:40 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T08:01:21.529Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35426889554
 ---
 
