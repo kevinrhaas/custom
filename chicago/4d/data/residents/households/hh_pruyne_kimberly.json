@@ -8,9 +8,10 @@
   "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
-   "history_medicine_chicago_kimberly_maxwell"
+   "history_medicine_chicago_kimberly_maxwell",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Kimberly's year is independently stated as 1832. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town.",
+  "note": "Kimberly's year is independently stated as 1832. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town. THE COMPILER'S 1832 LIST AGREES AND IS COARSER. Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed page 89 (claim bk_mose1_001) names this man among those who came through Chicago in 1832 and decided to remain. A YEAR AND NOT A MONTH, from an 1895 compilation, so it corroborates this field and does not move it. THE GRADE CEILING IS THE SOURCE'S AND NOT THIS FIELD'S. Moses and Kirkland, History of Chicago, Illinois (1895) is a compiler sixty years after the fact; every claim taken off it is transcription_mediated and none is scan_verified, so nothing drawn from it is graded above `inferred` (the rule T-1322 set for the settlers table, kept here). THE MAN NAMED IS THE PARTNER AND NOT THE HEAD: the compiler writes \"Dr. E. S. Kimberly ... of Vermont\", which is Dr Edmund Stoughton Kimberly, initial for initial, and this household's 1832 is already Kimberly's year — its own note says Pruyne's arrival is dated only by his shop, \"early in 1833\", and the household takes the earlier of the two. HIS VERMONT NATIVITY IS RECORDED HERE AND IS DELIBERATELY NOT WRITTEN INTO `origin`: Peter Pruyne is the head of this household, the field is the household's, and moving it to one partner's stated state would put Kimberly's answer under Pruyne's name. A later run that splits the partnership should carry Vermont to Kimberly.",
   "precision": "year"
  },
  "party_size_on_arrival": {

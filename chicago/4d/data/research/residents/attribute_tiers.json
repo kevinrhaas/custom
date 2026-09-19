@@ -26,24 +26,24 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 15128,
-    "tiers_written_on_the_card": 6143,
+    "blocks": 15127,
+    "tiers_written_on_the_card": 6140,
     "by_tier": {
-      "attested": 591,
-      "inferred": 3316,
-      "reconstructed": 6056,
+      "attested": 590,
+      "inferred": 3318,
+      "reconstructed": 6054,
       "unknown": 5165
     },
     "by_attribute": {
       "arrival": {
-        "attested": 52,
-        "inferred": 1202,
+        "attested": 51,
+        "inferred": 1203,
         "reconstructed": 4,
         "unknown": 0
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 24,
+        "inferred": 23,
         "reconstructed": 1174,
         "unknown": 0
       },
@@ -85,8 +85,8 @@
       },
       "origin": {
         "attested": 11,
-        "inferred": 39,
-        "reconstructed": 1208,
+        "inferred": 41,
+        "reconstructed": 1206,
         "unknown": 0
       },
       "party_size_on_arrival": {
@@ -1131,9 +1131,9 @@
         "kind": "person",
         "match": "a source that says where this household came from"
       },
-      "values": 1197,
+      "values": 1195,
       "by_value": {
-        "New York State": 490,
+        "New York State": 488,
         "New England": 420,
         "The Mid-Atlantic states": 106,
         "England": 94,

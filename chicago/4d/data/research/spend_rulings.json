@@ -19,11 +19,6 @@
       "disposition": "refused",
       "statement": "The books crosswalk has already refused this row by name, under this domain's standing rule that a merge needs a rule naming both spellings verbatim and that a surname-only merge is always a refusal. The ledger now carries that refusal instead of reading the row as work nobody has looked at."
     },
-    "handed_to_the_arrival_pass": {
-      "disposition": "unresolved",
-      "ticket": "T-1340",
-      "statement": "The unit's person content is a dated arrival, a nativity or a dated presence that bounds one, for people this town holds. Filling it here, one book at a time and without the other sources beside it, is how a layer acquires an arrival date it cannot defend. THE HANDOFF HAS MOVED THREE TIMES AND THIS ENTRY IS THE THIRD CORRECTION: T-1169 to T-1312, T-1312 by domain to T-1316, and T-1316 split into T-1317/T-1318/T-1319 on 2026-09-18. The line went on naming T-1313 through all of it, which is a DIFFERENT ticket — the family-seating piece of T-1170 — and a ledger whose owner is the wrong open ticket reads as spent while pointing at work that will never touch these units. T-1317 then split again: T-1322 read the twelve merged rows of the pre-1830 settlers table and Hubbard's two contradicting removal years and spent or refused every one of them, and T-1340 has what is left — the seven prose units below, which are LISTS of named people whose joins to this layer the books crosswalk has not ruled, so each name must be ruled before any of it can be spent. A closed ticket cannot own unresolved units, so the line hands on to live work rather than reading as spent. THE CHILD WAS MINTED T-1323 AND RENUMBERED T-1340 ON THE SAME DAY, for exactly the reason the entry above already records: `split` mints from the local max, another branch had already taken T-1323 for the population profile's lodging test, and two branches splitting at once each get it right alone and wrong together."
-    },
     "handed_to_the_family_pass": {
       "disposition": "unresolved",
       "ticket": "T-1335",
@@ -169,49 +164,14 @@
       "note": "St. Cyr permitted to remain at Chicago, having been sent by Bishop Rosati in 1833. The crosswalk's merge says his record is not edited: the arrival is already graded attested at year precision off Andreas, so a 1921 digest repeating it adds nothing the card does not hold at least as well."
     },
     {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_001",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "An arrival YEAR of 1832 for eight named men — Philo Carpenter, John S. Wright, T. W. Goodrich, Hamilton Barnes, Dr. Philip Maxwell, Dr. E. S. Kimberly, George W. Snow and Alanson Sweet. A year and not a month, from an 1895 compilation, and the arrival pass owns which of them it can carry."
-    },
-    {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_005",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "Arrivals in the SPRING of 1833 for fifteen named men, which is finer than most arrival evidence this project holds. The list says 'among', so it is not a register and is not exhaustive."
-    },
-    {
       "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_012",
       "rule": "handed_to_the_family_pass",
       "note": "John Dean Caton married Laura Adelaide, daughter of Jacob Sherrill, in 1835 — the year only. The scene date sits inside it and the sentence cannot say which side, so the marriage is a family fact for the pass that draws spouses and not an 1835 household of two."
     },
     {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_013",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "Philo Carpenter organised a Sunday school on 19 August 1832 'within a month after his arrival', which closes his arrival to within a month before that day. It is an inference on the book's own wording and the normalized reading says so."
-    },
-    {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_005",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "John Dean Caton arrived in 1833, agreeing with volume 1's spring-1833 list, and brought the first suit in any court of record in Cook county. An arrival year for a man this layer holds."
-    },
-    {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "Fourteen named people present at the organisation of the First Baptist society on 19 October 1833, with a denominator of twenty-five Baptists in the settlement. A dated presence is the bound an arrival takes, and the arrival pass owns the bound."
-    },
-    {
       "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_011",
       "rule": "earlier_evidence_adds_no_1835_fact",
       "note": "The Rev. Allen B. Freeman and his wife Hannah C. arrived at Chicago on 16 August 1833 — an arrival to the day, for a man the same volume says died of typhoid in December 1834. Neither of them is in the town of 1 July 1835 and no arrival is carried onto a card that does not exist."
-    },
-    {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "Eleven named men organising the first Episcopal congregation in 1834, eight of them serving as its vestry. A dated presence in the town a year before the scene, and the bound belongs to the arrival pass; 'Dr. Clark' is a surname and reaches nobody."
-    },
-    {
-      "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_020",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "James H. Collins, whom this layer holds as J. H. Collins, agreed in 1834 to come to Chicago when his frozen feet mended, and the compiler never says when he came. The arrival pass owns an arrival the source leaves open; it may not be closed by assuming it."
     },
     {
       "unit": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_021",
@@ -297,11 +257,6 @@
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_027",
       "rule": "pre_1830_settler_roster",
       "note": "Ouilmette, Antoine — the layer holds no Ouilmette. On the nativity cell, see the Laframboise rows: it is the compiler's classification and not a birthplace."
-    },
-    {
-      "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_028",
-      "rule": "handed_to_the_arrival_pass",
-      "note": "Pothier, Joseph — THE IDENTITY IS SETTLED AND THE ARRIVAL IS NOT. This unit waited under `identity_open_one_letter_apart` because the read name stood one letter from 'Joseph Porthier' in the residents layer and no rule named both spellings. T-1334 wrote that rule: data/research/books/crosswalk.json now carries a merge of 'Pothier, Joseph' into 'Joseph Porthier', upheld not on the one-letter likeness but on Moses and Kirkland's own index, which gathers its Pothier pages and its Porthier page under the single heading 'Porthier, Joseph, 72, 76, 85, 89.' — plus four agreements in the row's own cells, the trade among them. What is left of the unit is what the row says and the card does not: a dated arrival of 1823 and a nativity of French, for a person this town holds whose `arrival` is 1830, reconstructed, and says of itself that it cites nothing. That is a books-corpus dated arrival onto a card this town holds, which is what `handed_to_the_arrival_pass` is for; the rule carries the current owner, and it is T-1340 since T-1317 split on 2026-09-18. Nothing on any resident record was edited to reach this and nobody was minted; the man is `absent` on the scene date on a dated 1835 migration to Milwaukee and stays so."
     },
     {
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_030",
