@@ -161,6 +161,11 @@ def gated_layer_rederivations(order):
     layer = order["the_layer"]
     out = []
     for name in names:
+        # This file is the ORDER, not a step in it, and it matches its own filter on
+        # the flag names it greps for. Left in, it would demand that the order name
+        # itself — which the first run of this gate duly reported.
+        if name == pathlib.Path(__file__).stem:
+            continue
         src = TOOLS / (name + ".py")
         if not src.exists():
             continue
