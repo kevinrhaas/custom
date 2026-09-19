@@ -3729,6 +3729,20 @@ step "Fergus's 1839 directory rebuilds from its committed text" \
 selftest "…and the seven repaired surnames in it still read off their witnesses" \
   python3 tools/read_fergus_1839.py --self-test
 
+step "…and the trade table counted off it rebuilds too" \
+  python3 tools/build_trade_table_1839.py --check
+
+# T-1346. The table is a PRIOR the reconstruction will draw a head's trade from, so
+# the rules that build it are load-bearing in a way a share never looks. Its own
+# assertions pin the four that would be invisible if they broke: the slot is cut at
+# the first comma so an employer never becomes a trade, the scan's five broken
+# trades are repaired by name, a bare house-word is the trade while a house carrying
+# a proper name is not, and mapped + refused still equals the entries with a printed
+# trade — a normaliser that silently drops what it cannot read is how a share becomes
+# a fiction.
+selftest "…and the trade table's own reading rules still fire" \
+  python3 tools/build_trade_table_1839.py --self-test
+
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839.py --check
 

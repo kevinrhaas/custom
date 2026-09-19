@@ -2030,6 +2030,70 @@
         ]
       },
       "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 178,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 565,
+      "takenAt": "2026-09-19T01:18:34.983Z",
+      "ref": "steward/t-1173-trade-households",
+      "commit": "243b6c34ae8c",
+      "devCommit": "67edda510aef",
+      "treeHash": "sha256:3c2b9d73c6b4b54d",
+      "treeDirty": false,
+      "changelogHash": "sha256:5f41c59ddd8726e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.7,
+          3.6
+        ]
+      },
+      "source": "/tmp/s_d.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 178,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 311,
+      "takenAt": "2026-09-19T01:18:34.905Z",
+      "ref": "steward/t-1173-trade-households",
+      "commit": "243b6c34ae8c",
+      "devCommit": "67edda510aef",
+      "treeHash": "sha256:3c2b9d73c6b4b54d",
+      "treeDirty": false,
+      "changelogHash": "sha256:5f41c59ddd8726e6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.7,
+          3.6
+        ]
+      },
+      "source": "/tmp/s_m.log"
     }
   ]
 }
