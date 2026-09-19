@@ -1,7 +1,7 @@
 ---
 id: T-1348
 title: The officers' quarters are occupied by name: every U.S. Army officer this layer places at Chicago in the scene window adjudicated against the post, the ones the evidence can seat put in the quarters the dossier assigns, the ones it cannot said so and left — so the building that reads 'subordinate officers of the garrison' names them
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1176
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1486
 claimed_by: run 9/18/2026, 6:58:51 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T00:29:14.214Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35407285744
 ---
 
