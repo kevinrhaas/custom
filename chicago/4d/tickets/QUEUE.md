@@ -187,3 +187,4 @@ T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-11
 T-1335 — Spend the kin the church registers, the papers' family columns and the completed resident enrichments state — the 166 units T-1320's book pass was never scoped for, plus the two book relatives it left unruled: ties written onto held cards, nobody minted
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
 T-1341 — ticket.mjs --check REPAIRS the mirror it is checking, so on any branch that adds a ticket the gate's queue step mutates tickets.json while the pool reads it — the T-0856 check-that-repairs fault, one tool over
+T-1351 — ticket.mjs done gives the claim back on the assumption its PR merges in minutes, and when the PR cannot merge the ticket is claimable again while the work is invisible: T-1333 was claimed and built twice, 1h43m apart, both runs correct
