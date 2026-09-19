@@ -36,58 +36,10 @@
         "chicago_democrat_1834_11_26#c009",
         "chicago_democrat_1835_05_20#c022",
         "chicago_democrat_1835_08_05#c019"
-      ]
-    },
-    {
-      "name": "Spring, G.",
-      "person_id": "spring_giles",
-      "register_person_id": "person_spring_g",
-      "role": "partner",
-      "from": "1833-12-17",
-      "to": "1835-08-05",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card spring_giles (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_democrat_1833_12_17#c004",
-        "chicago_democrat_1834_01_28#c006",
-        "chicago_democrat_1834_03_04#c030",
-        "chicago_democrat_1834_05_28#c009",
-        "chicago_democrat_1834_06_11#c004",
-        "chicago_democrat_1834_07_09#c021",
-        "chicago_democrat_1834_08_20#c003",
-        "chicago_democrat_1834_09_03#c015",
-        "chicago_democrat_1834_10_15#c002",
-        "chicago_democrat_1834_11_12#c008",
-        "chicago_democrat_1834_11_26#c009",
-        "chicago_democrat_1835_05_20#c022",
-        "chicago_democrat_1835_08_05#c019"
-      ]
-    },
-    {
-      "name": "Giles Spring",
-      "person_id": "spring_giles",
-      "register_person_id": "person_giles_spring",
-      "role": "partner",
-      "from": "1833-12-17",
-      "to": "1835-08-05",
-      "tier": "attested",
-      "basis": "The register matches the printed name to the town card spring_giles (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-      "source_id": "chicago_newspapers_1833_1835",
-      "claim_ids": [
-        "chicago_democrat_1833_12_17#c004",
-        "chicago_democrat_1834_01_28#c006",
-        "chicago_democrat_1834_03_04#c030",
-        "chicago_democrat_1834_05_28#c009",
-        "chicago_democrat_1834_06_11#c004",
-        "chicago_democrat_1834_07_09#c021",
-        "chicago_democrat_1834_08_20#c003",
-        "chicago_democrat_1834_09_03#c015",
-        "chicago_democrat_1834_10_15#c002",
-        "chicago_democrat_1834_11_12#c008",
-        "chicago_democrat_1834_11_26#c009",
-        "chicago_democrat_1835_05_20#c022",
-        "chicago_democrat_1835_08_05#c019"
+      ],
+      "also_printed_as": [
+        "Spring, G.",
+        "Giles Spring"
       ]
     }
   ],
@@ -103,7 +55,13 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. The landmark is the committed structure tremont_house_1.",
-      "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "structure",
+        "id": "tremont_house_1",
+        "title": "Tremont House (the first)",
+        "streets": []
+      }
     },
     {
       "kind": "unplaceable",
@@ -140,25 +98,11 @@
     "value": "new_york",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 3 keeper(s) this record names and the resident layer holds a card for all read new_york: G. Spring (new_york), Spring, G. (new_york), Giles Spring (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read new_york: G. Spring (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "spring_giles",
         "name": "G. Spring",
-        "role": "partner",
-        "community": "new_york",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "spring_giles",
-        "name": "Spring, G.",
-        "role": "partner",
-        "community": "new_york",
-        "tier": "reconstructed"
-      },
-      {
-        "person_id": "spring_giles",
-        "name": "Giles Spring",
         "role": "partner",
         "community": "new_york",
         "tier": "reconstructed"

@@ -2767,6 +2767,9 @@
     "tools/old_settlers.py": {
       "wrote": []
     },
+    "tools/pinned_sources.py": {
+      "wrote": []
+    },
     "tools/printed_twice.py": {
       "wrote": []
     },
@@ -2984,6 +2987,9 @@
       "wrote": []
     },
     "tools/rule_newberry_leads.py": {
+      "wrote": []
+    },
+    "tools/rule_presence_1835.py": {
       "wrote": []
     },
     "tools/sauganash_apex_lines.py": {

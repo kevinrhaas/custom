@@ -598,6 +598,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 1s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "pinned_sources.py": {
+      "placement": "not_a_writer",
+      "write_mode": null,
+      "measured": "2026-09-19",
+      "finding": "Run bare it exits 0, prints the register's roll-up and writes nothing \u2014 measured on the working tree, byte-identical before and after. It declares no write flag: the only bytes it ever puts on disk are a region cache under /tmp, written by fetch_pinned AFTER the sha256 pin has passed, and never inside the repository. Gated with --check; a checker."
+    },
     "profile_population_1835.py": {
       "placement": "manifest",
       "write_mode": null,
@@ -887,7 +893,7 @@
       "write_mode": "--build",
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 11 cards, 125 people and the return in data/reconstruction/1835_garrison.json from their seeds. In the manifest directly after `women_and_children`.",
-      "placed": "by stage order, 2026-09-19 \u2014 its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
+      "placed": "by stage order, 2026-09-19 — its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
     },
     "reconstruct_modelled_families.py": {
       "placement": "manifest",
@@ -1027,6 +1033,13 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "rule_presence_1835.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` re-derives data/reconstruction/1835_presence_rulings.json byte-for-byte from the household directory and T-1172's persistence model, and `--check` is a gate in tools/check.sh.",
+      "placed": "by layer, 2026-09-19 — after every writer that can move a card's presence or its evidence blocks, before everything that counts the town; see the manifest step"
     },
     "school_section_sale.py": {
       "placement": "manifest",

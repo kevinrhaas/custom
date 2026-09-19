@@ -256,6 +256,9 @@
   letter-spacing: .06em;
   text-transform: uppercase;
 }
+/* The second lead is the anchored group, and it needs air: the two questions a
+   roof answers — what is IN it, what stands BY it — must not read as one list. */
+.pop-firms-lead:not(:first-child) { margin-top: 6px; }
 .pop-firms[data-from-sign] .pop-firms-lead { color: var(--accent); }
 .pop-firm {
   display: inline-flex;

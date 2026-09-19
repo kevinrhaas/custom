@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 253,
+  "count": 254,
   "liberties": [
     {
       "id": "L1",
@@ -15126,6 +15126,29 @@
     },
     {
       "id": "L253",
+      "title": "827 people the project had already read are ruled into the town's population, and 679 of them are carried there by a rule rather than by a record",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-19",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "of the 2,269 people the resident layer carries, **827** stood outside the town's population on `present_on_scene_date: uncertain` — **276** of them graded `attested`, **550** `inferred`, one reconstructed — while **983 of the 984** the project itself RECONSTRUCTED were ruled `present`, because the reconstruction stages rule a presence as they mint one. The layer believed in the people it made up and was undecided about the people it had read, and no standard of evidentiary caution produces that ordering: it was an artefact of which code path happened to write a presence. All 827 are now ruled **present** on 1 July 1835, one at a time, and the town's population reads **2,267** of a modelled 2,536. The owner set the rule, 2026-09-19: *\"if they are attested that's ideal if we know them already\"*, and *\"I want a full population of the city to work from.\"* **What is invented, exactly.** One thing, on 679 of the 827: **that a person the corpus stops naming before 1 July 1835 was still in the town on it.** No source says so of any of them, and no source says otherwise either — none of the 827 has a dated appearance elsewhere, and the two cards that do (Joseph Porthier's documented departure, T-1354, and one inferred card) stay out and say why. Nobody is invented here: this stage adds no name and every row names a person the layer already held. **The tier is derived from each card's own dated readings, never from its class,** because a blanket flip to `present` would put an undeclared claim on 276 cards and that is the fault the ruling exists to prevent. Each ruling reaches the first of four legs its card supports, read out of the same structured blocks `derive_presence_evidence_leg.py` reads and never out of prose: **61** people are `attested` — a dated reading of them covers 1 July 1835 itself; **87** are `inferred` — a cited source's own span runs through the day (55), or the corpus reads them at Chicago on both sides of it (32); **679** are `reconstructed` — the corpus stops before the day, and what carries the presence is the project's own standing rule with the persistence model pricing it. 142 rulings therefore land ABOVE the blanket `reconstructed` tier T-1172's R1 leg gave every one of them, which is the measure of the fix: a presence tier is a claim about one day and is not the card's residence grade, so a card graded `attested` whose last reading falls a year before the scene keeps its attested residence and takes a reconstructed presence. **Nothing is drawn.** T-1172 drew against `persistence(L) = exp(−0.06784·L)` and ruled 37 cards `absent` on the losing side of the draw; this stage does not draw. An absence with no evidence under it is not a finding, and two evidenced absences are the shape of a correct exclusion where 827 unadjudicated ones are not. The persistence figure is carried as what it is — the share of this layer a later Chicago volume still names, at this card's lag — so `basis.kind` is `rule` and a rule owes no seed. **Which way it is wrong if it is wrong.** The 679 carried rulings are the exposure, and they are wrong in the direction of a town that is too FULL: if the real out-migration rate is the 0.15–0.25 a year published studies of frontier towns read rather than the 0.068 this project measured, more of these people had left than the file implies. That is said rather than corrected for, exactly as L246 says it, because correcting it would mean choosing a number instead of measuring one — and the ruling would not change if it were corrected, only the price beside it, because what puts these people in the town is the rule and not the model. **What is NOT done here.** No refusal is overturned and no card is edited: the inferred `uncertain` the research wrote stays on every one of the 820 household records, because that directory is derived and a ruling is not a mint output. The ruling lives in `data/reconstruction/1835_presence_rulings.json` and the four consumers the ticket names read it — the town census (which now carries both figures, each with the question it answers), the population profile, the order book and the gate screen. The order book states the new population and does NOT re-cut its quotas against it: 983 reconstructed people have already been drawn against today's quotas, and shrinking them under work already done is T-1196's re-cut of the roof programme and T-1197's re-audit of the anonymous roofs, with T-1179 converging over both."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any source that places one of these 827 outside Chicago on 1 July 1835, or dates a departure before it, retires that row's ruling on its own — each ruling says so in its `replaceable_by`. A source that follows one of the 679 past the scene date moves them off the carried leg and onto a read one, and `--check` re-derives the tier the day the reading lands. Related: **L246** (the re-admissions and the rate that prices them), **L214** (what a letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-cut **T-1196**, the convergence **T-1179**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-19."
+        }
+      ]
+    },
+    {
+      "id": "L254",
       "title": "Fifteen free Black residents and two Black-owned firms stand for a count the corpus makes twice and a name it never prints",
       "section": "per_subject",
       "subjects": [],
