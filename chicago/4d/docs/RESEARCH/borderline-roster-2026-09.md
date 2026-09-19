@@ -10,8 +10,8 @@ The research spend was, correctly, conservative. This page does not overturn one
 
 | | count |
 |---|---:|
-| rows | 14507 |
-| ledger units considered (every non-`asserted` unit) | 23006 |
+| rows | 14493 |
+| ledger units considered (every non-`asserted` unit) | 23005 |
 | of those, units naming no person | 9380 |
 
 ## By class
@@ -19,19 +19,19 @@ The research spend was, correctly, conservative. This page does not overturn one
 | class | rows | who | what reconstruction may do |
 |---|---:|---|---|
 | `R1_in_window_uncertain` | 805 | A card exists, its source is inside the window, and its presence on 1 July 1835 is `uncertain`. | Fix presence `present` at tier `reconstructed`, basis = the dated appearance plus the population model's persistence rate. |
-| `R2_in_window_single_source` | 199 | One appearance inside the window, no card, the ledger withheld it as a single source or on insufficient identity. | Mint a reconstructed resident under the read name. |
+| `R2_in_window_single_source` | 187 | One appearance inside the window, no card, the ledger withheld it as a single source or on insufficient identity. | Mint a reconstructed resident under the read name. |
 | `R3_1834_return_or_muster` | 30 | A name on the 1 April 1834 post-office return (T-1153) or the 1832 Black Hawk muster enrolled at Chicago, with no 1835 corroboration and no card. | Mint reconstructed, presence bounded by the persistence rate. |
 | `R4_surname_only_census` | 423 | A census reading that gives a surname this town already holds and no person of its own — the 1830 surname-only refusals and the 1840 heads. | May supply a FAMILY (spouse and child bands) to an existing head at `reconstructed`. Never a new head. |
 | `R5_later_only_backprojectable` | 55 | A later-only name — the 1839 directory, the 1840 census, the old-settler rolls — whose own biography dates an arrival before 1 July 1835. | Mint reconstructed with arrival at the biography's date. |
 | `R6_native_metis_black` | 137 | A Native, Métis or free Black person a source names in or near the town inside the window, whatever the ledger disposition. | Mint at the ladder's grade the evidence allows, else `reconstructed`. Always `review_required` for Native and Métis rows; `community` set. Owned by T-1177. |
-| `R0_ineligible` | 12858 | Outside Chicago, the Bear Creek marriages (T-1129), the declared `researched_not_resident` names, post-scene arrivals with nothing to back-project from, and names this town already carries. | Never. |
+| `R0_ineligible` | 12856 | Outside Chicago, the Bear Creek marriages (T-1129), the declared `researched_not_resident` names, post-scene arrivals with nothing to back-project from, and names this town already carries. | Never. |
 
 ## By class and domain
 
 | class | domain | rows |
 |---|---|---:|
 | `R1_in_window_uncertain` | `residents_layer` | 805 |
-| `R2_in_window_single_source` | `books` | 20 |
+| `R2_in_window_single_source` | `books` | 8 |
 | `R2_in_window_single_source` | `church` | 140 |
 | `R2_in_window_single_source` | `land_sales` | 39 |
 | `R3_1834_return_or_muster` | `civic` | 30 |
@@ -44,7 +44,7 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R6_native_metis_black` | `directories` | 4 |
 | `R6_native_metis_black` | `old_settlers` | 7 |
 | `R6_native_metis_black` | `residents_layer` | 15 |
-| `R0_ineligible` | `books` | 89 |
+| `R0_ineligible` | `books` | 87 |
 | `R0_ineligible` | `census_1830` | 122 |
 | `R0_ineligible` | `census_1840` | 670 |
 | `R0_ineligible` | `church` | 1588 |
@@ -60,7 +60,7 @@ The research spend was, correctly, conservative. This page does not overturn one
 | class / rule | rows |
 |---|---:|
 | `R0_ineligible/already_carried_as_present` | 820 |
-| `R0_ineligible/carried_by_the_cards_own_row` | 830 |
+| `R0_ineligible/carried_by_the_cards_own_row` | 828 |
 | `R0_ineligible/earlier_than_the_window` | 125 |
 | `R0_ineligible/later_only_and_not_backprojectable` | 9992 |
 | `R0_ineligible/ledger_a_sale_is_never_a_residence` | 413 |
@@ -79,7 +79,7 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible/surname_only_and_unmatched` | 260 |
 | `R0_ineligible/undated_reading` | 203 |
 | `R1_in_window_uncertain/card_presence_is_uncertain` | 805 |
-| `R2_in_window_single_source/in_window_read_and_withheld` | 199 |
+| `R2_in_window_single_source/in_window_read_and_withheld` | 187 |
 | `R3_1834_return_or_muster/blackhawk_muster_1832_at_chicago` | 30 |
 | `R4_surname_only_census/census_1830_crosswalk_refused_on_surname_only` | 63 |
 | `R4_surname_only_census/census_1840_head_surname_matches` | 334 |
@@ -102,15 +102,15 @@ Five rows of each class, in the roster's own order, with the reason each name wa
 | A Filer | 1835 (a window over the scene date, so no day before it) | `hh_filer_a` | The layer holds this household and no source follows it to 1 July 1835, so its presence stands `uncertain`. Reconstruction may fix it `present` at tier `reconstructed` against the persistence rate. |
 | A. M. Wing | 1834-07-02 | `hh_wing_a_m` | The layer holds this household and no source follows it to 1 July 1835, so its presence stands `uncertain`. Reconstruction may fix it `present` at tier `reconstructed` against the persistence rate. |
 
-### `R2_in_window_single_source` — 199 rows
+### `R2_in_window_single_source` — 187 rows
 
 | name as read | dated | source | why it was withheld |
 |---|---|---|---|
-| Rev. Allen B. Freeman | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
-| Betsey Crane | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
 | Billy Caldwell | 1833 | `bk_fer_024` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
-| Ebenezer Crane | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
-| Hannah C. Freeman | 1833 | `bk_mose2_010` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
+| Jacob Sherrill | 1835 | `bk_mose1_012` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
+| James H. Collins | 1834 | `bk_mose2_020` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
+| John D. Caton | 1834 | `bk_mose2_020` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
+| Justin Butterfield | 1834 | `bk_mose2_020` | A dated appearance inside the window under a read name, withheld from the town for want of corroboration or identity, and carried on no card. |
 
 ### `R3_1834_return_or_muster` — 30 rows
 

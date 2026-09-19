@@ -26,11 +26,11 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 15127,
-    "tiers_written_on_the_card": 6140,
+    "blocks": 15124,
+    "tiers_written_on_the_card": 6137,
     "by_tier": {
       "attested": 590,
-      "inferred": 3318,
+      "inferred": 3315,
       "reconstructed": 6054,
       "unknown": 5165
     },
@@ -43,7 +43,7 @@
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 23,
+        "inferred": 20,
         "reconstructed": 1174,
         "unknown": 0
       },
@@ -1103,8 +1103,8 @@
       },
       "values": 1174,
       "by_value": {
-        "1834": 587,
-        "1833": 282,
+        "1834": 586,
+        "1833": 283,
         "1835": 207,
         "1832": 56,
         "1831": 17,
@@ -1551,8 +1551,8 @@
       },
       "values": 1142,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 571,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 269,
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 570,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 270,
         "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 203,
         "The trading post, the fort and the country trade — the town before the boom": 99
       },
