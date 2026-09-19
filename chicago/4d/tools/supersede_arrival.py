@@ -17,6 +17,16 @@ without a word. T-1340 spent fifty-two book rulings onto the layer, watched seve
 them fail to reach the cards the crosswalk had already joined them to, and wrote the
 failure down rather than leaving it as a silence. This is the mechanism it wanted.
 
+AND SPENDING A READING HAS A PRICE THE LEDGER CHARGES BY THE CLAIM (T-1367). A card that
+cites a claim id asserts that claim in `research_spend_ledger`, and the ledger's unit is
+the WHOLE claim — so citing a fourteen-name catalogue on three cards marks all fourteen
+names spent, and the eleven it reached nobody with fall off
+`data/reconstruction/1835_borderline_roster.json`. Measured on this branch, 2026-09-19:
+spending bk_mose2_010 that way dropped ten people T-1172 had re-admitted the day before.
+So an entry here is cheap only where the claim is already asserted, which bk_mose1_005 is
+(hh_kimball_walter cites it). Before adding one, run `readmit_borderline_roster.py
+--check` and look at what leaves the roster. T-1367 owns the finer grain.
+
 WHAT IT IS. A committed ledger — `data/research/residents/arrival_supersessions.json`
 — naming, per household, the reading that supersedes the mint's bound, the crosswalk
 merge that joins that reading to this card, the derived bound AS IT STOOD when the

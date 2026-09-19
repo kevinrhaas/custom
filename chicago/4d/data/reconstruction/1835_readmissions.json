@@ -72,26 +72,26 @@
  "counts": {
   "offered": {
    "R1_in_window_uncertain": 805,
-   "R2_in_window_single_source": 187,
+   "R2_in_window_single_source": 199,
    "R3_1834_return_or_muster": 30,
    "R5_later_only_backprojectable": 55
   },
   "readmitted": {
    "R1_in_window_uncertain": 726,
-   "R2_in_window_single_source": 109,
+   "R2_in_window_single_source": 119,
    "R3_1834_return_or_muster": 20,
    "R5_later_only_backprojectable": 44
   },
   "withheld": {
    "R1_in_window_uncertain": 79,
-   "R2_in_window_single_source": 78,
+   "R2_in_window_single_source": 80,
    "R3_1834_return_or_muster": 10,
    "R5_later_only_backprojectable": 11
   },
   "presence_ruled_present": 689,
   "presence_ruled_absent": 37,
-  "cards_minted": 173,
-  "minted_present": 157
+  "cards_minted": 183,
+  "minted_present": 164
  },
  "the_tension_this_leaves": {
   "what": "The order book (T-1166) models 643 households in the town on 1 July 1835 and the layer carries 436 present today. Ruling 787 more cards present takes that to 1,223, which is nearly twice the model.",
@@ -20514,6 +20514,216 @@
    }
   },
   {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#0",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_allen_b_freeman",
+   "person_id": "allen_b_freeman",
+   "name_as_read": "Rev. Allen B. Freeman",
+   "name": "Allen B. Freeman",
+   "file": "readmitted/hh_allen_b_freeman.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_allen_b_freeman:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#1",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_hannah_c_freeman",
+   "person_id": "hannah_c_freeman",
+   "name_as_read": "Hannah C. Freeman",
+   "name": "Hannah C. Freeman",
+   "file": "readmitted/hh_hannah_c_freeman.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_hannah_c_freeman:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#10",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_betsey_crane",
+   "person_id": "betsey_crane",
+   "name_as_read": "Betsey Crane",
+   "name": "Betsey Crane",
+   "file": "readmitted/hh_betsey_crane.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_betsey_crane:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#11",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_susanna_rice",
+   "person_id": "susanna_rice",
+   "name_as_read": "Susanna Rice",
+   "name": "Susanna Rice",
+   "file": "readmitted/hh_susanna_rice.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_susanna_rice:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#12",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_samantha_harmon",
+   "person_id": "samantha_harmon",
+   "name_as_read": "Samantha Harmon",
+   "name": "Samantha Harmon",
+   "file": "readmitted/hh_samantha_harmon.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_samantha_harmon:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#13",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_lucinda_jackson",
+   "person_id": "lucinda_jackson",
+   "name_as_read": "Lucinda Jackson",
+   "name": "Lucinda Jackson",
+   "file": "readmitted/hh_lucinda_jackson.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "absent",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_lucinda_jackson:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#4",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_peter_moore",
+   "person_id": "peter_moore",
+   "name_as_read": "Peter Moore",
+   "name": "Peter Moore",
+   "file": "readmitted/hh_peter_moore.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_peter_moore:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#6",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_john_k_sargent",
+   "person_id": "john_k_sargent",
+   "name_as_read": "John K. Sargent",
+   "name": "John K. Sargent",
+   "file": "readmitted/hh_john_k_sargent.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "absent",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_john_k_sargent:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#7",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_peter_warden",
+   "person_id": "peter_warden",
+   "name_as_read": "Peter Warden",
+   "name": "Peter Warden",
+   "file": "readmitted/hh_peter_warden.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "present",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_peter_warden:persistence"
+   }
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#9",
+   "class": "R2_in_window_single_source",
+   "rule": "readmission_r2_single_source_read_name",
+   "household_id": "hh_ebenezer_crane",
+   "person_id": "ebenezer_crane",
+   "name_as_read": "Ebenezer Crane",
+   "name": "Ebenezer Crane",
+   "file": "readmitted/hh_ebenezer_crane.json",
+   "sources": [
+    "moses_kirkland_history_of_chicago_v2"
+   ],
+   "dated_evidence": "1833",
+   "dated_evidence_read_as": "1833-01-01",
+   "present_on_scene_date": {
+    "value": "absent",
+    "persistence": 0.8443,
+    "years_before_the_scene": 2.4942,
+    "seed": "hh_ebenezer_crane:persistence"
+   }
+  },
+  {
    "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_020#2",
    "class": "R2_in_window_single_source",
    "rule": "readmission_r2_single_source_read_name",
@@ -24068,6 +24278,20 @@
    "row_id": "books:data/research/books/claims/fergus_26_29_second_half.json#claims/bk_fer2_042#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Silas Wooster Sherman",
+   "reason": "a_card_of_that_name_already_stands",
+   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#2",
+   "class": "R2_in_window_single_source",
+   "name_as_read": "S. T. Jackson",
+   "reason": "a_card_of_that_name_already_stands",
+   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
+  },
+  {
+   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#3",
+   "class": "R2_in_window_single_source",
+   "name_as_read": "Martin D. Harmon",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
