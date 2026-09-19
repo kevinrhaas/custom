@@ -506,19 +506,29 @@ RULES = {
         # issues each carry, so a bound naming one would close 937 other units of this
         # corpus as `asserted`. That measurement is T-1338, which owns them and has to
         # give a claim unit a file-qualified id before it can spend one.
-        "ticket": "T-1338",
+        # AND T-1338 WAS SPLIT ON THE MEASUREMENT IT WAS MADE TO TAKE. The id collision was
+        # not a hazard ahead of the spend: 142 units were closed `asserted` on it already,
+        # off three resident cards that had each cited exactly ONE claim. Repairing that is
+        # a demonstration of its own and is T-1342 (done); the spend it unblocks is T-1343,
+        # which holds this corpus. The pointer moves with the corpus for the third time and
+        # for the same stated reason -- a hand-off names the piece that holds the units, not
+        # a split parent.
+        "ticket": "T-1343",
         "statement": (
             "The unit puts a named person at Chicago on a dated day in the town's PRINT "
             "and states nothing else about them. A dated appearance BOUNDS a presence and "
             "is never itself a presence, and the earliest dated appearance is the bound "
             "the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 "
-            "and T-1329 through their splits, and T-1338 now. This ruling hands the date "
+            "and T-1329 and T-1338 through their splits, and T-1343 now. This ruling hands "
+            "the date "
             "on and writes nothing: it does not decide that a named party is a resident, "
             "that a name is a person rather than a firm, or that it is the individual a "
             "card of that name already holds. The register half of this rule is gone, "
             "spent by T-1337 or refused by the four rules below; what is left here is the "
-            "press, and T-1338 states in its title the id collision that has to be fixed "
-            "before a press claim can name a card at all."),
+            "press. T-1342 has since made a press claim NAMEABLE -- the ledger key is the "
+            "issue file's stem and the claim id joined by `#`, which is the form the "
+            "resident cards' own notes already wrote -- so what is left for T-1343 is the "
+            "identification this rule still refuses to make."),
     },
     # ---- T-1337: THE REGISTER APPEARANCES THE CROSSWALKS DID NOT IDENTIFY ------------
     #
@@ -977,7 +987,10 @@ def mine(root: Path = ROOT) -> list[dict]:
     units, faults = L.extract_units(root, registry)
     if faults:
         raise SystemExit("the reading registry is faulted: " + "; ".join(faults[:5]))
-    targets = L.target_index(root, {unit["source_record_id"] for unit in units})
+    # T-1342: the index is keyed on the unit's `record_key`, not its raw id, or a
+    # file-local claim number reaches every issue that prints it and this register
+    # rules a unit a resident card had already closed.
+    targets = L.target_index(root, {unit["record_key"] for unit in units})
     already = {row["unit"] for row in read_json(HAND_AUTHORED).get("rulings") or []}
     out = []
     for unit in units:
