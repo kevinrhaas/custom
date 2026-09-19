@@ -11831,7 +11831,10 @@ for (const [label, viewport, touch] of [
       // T-1382. What the Trade row OFFERS, read before anything is filtered: the
       // pills are the offer itself, and the bug was in the offer rather than in
       // `dir.filter()`, which returned the 8 tavern keepers all along.
-      out.offer = [...document.querySelectorAll('.people-frow[data-row="occupation"] .pill')]
+      // Scoped to `#people-filters`: the Businesses view's own Trade row reuses
+      // these classes under `#businesses-filters`, and an unscoped selector reads
+      // the two rows as one.
+      out.offer = [...document.querySelectorAll('#people-filters .people-frow[data-row="occupation"] .pill')]
         .map((p) => p.dataset.value).filter(Boolean);
       out.pill = { all, matched: dir.filter('occupation', 'tavern_keeper'),
         pressed: document.querySelector('.pill[data-filter="occupation"][aria-pressed="true"]')?.dataset.value,
