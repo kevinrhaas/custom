@@ -85,3 +85,56 @@ it there, and this is the case it left behind.
 5. The lap's output distinguishes the two outcomes. `already current — nothing to lap`
    must stop meaning both "current and clean" and "current and stale", or the next
    occurrence is just as invisible as this one.
+
+**Finding (2026-09-19, six PRs cleared by hand): CHECK BEFORE REBUILDING — it is what makes this
+fix cheap enough to run on every PR on every lap.** The acceptance above asks the lap to
+re-derive a branch it is already current with. The obvious implementation is
+`rederive.mjs --run`, and that is the expensive answer: ~10 minutes of rebuilding on a tree that
+usually needs none of it. Measured the hard way while clearing #1495, #1497, #1499, #1502, #1512
+and #1518.
+
+**The cheap answer is to ask first.** Every gate this family of staleness breaks has a `--check`
+that answers in seconds:
+
+```
+python3 tools/reconstruct_residents_1835.py --check      # the reconstruct stages
+python3 tools/model_town_1835.py            --check
+python3 tools/profile_population_1835.py    --check
+python3 tools/build_order_book_1835.py      --check
+python3 tools/model_transients_1835.py      --check
+python3 tools/migrate_attribute_tiers.py    --check
+node    tools/rederive.mjs                  --check      # the derived manifest
+python3 tools/rebuild_closing_set.py        --check
+node    tools/check-changelog.mjs
+node    tools/audit_step_isolation.mjs      --check --quiet
+python3 tools/measure_layer_reads.py        --gate
+```
+
+Run those, rebuild ONLY what they name, and re-check. The measurement:
+
+| PR | what was actually stale | blanket re-derive | check-first |
+|---|---|---|---|
+| #1518 | the closing-set report, nothing else | ~10 min | **under 2 min** |
+| #1512 (5th lap) | the changelog stamp, nothing else | ~15 min | **under 1 min** |
+| #1512 (laps 1–4) | — | ~15 min each, **lost the race to dev every time** | — |
+
+#1512's first four laps each re-derived the whole layer and were overtaken by dev before they
+could merge; the fifth checked first, found only an unstamped changelog, and landed. That is the
+difference between a repair that keeps up with the queue and one that cannot.
+
+**#1518 IS THIS TICKET, LIVE.** It sat red for nearly two hours, `mergeable_state` clean, ZERO
+commits behind dev — so the lap printed `already current — nothing to lap` and moved on, exactly
+as the acceptance above describes. Its entire failure was ONE stale file,
+`docs/RESEARCH/closing-convergence-2026-09.md`. Ten of the eleven checks read clean. Had the lap
+run the list and rebuilt the one thing it named, nobody would have had to look at that PR at all.
+
+**Two cautions for whoever implements it:**
+
+1. The closing set is the usual culprit and it is stale for an ordering reason, not a merge one:
+   `rebuild_closing_set.py` is the LAST step of the derived manifest, and anything that writes
+   `site/` afterwards — `stamp-changelog.mjs` mirrors the changelog there — moves a member it
+   measures. So rebuild the closing set AFTER the stamp, not before, or it is stale again
+   immediately.
+2. Rebuild what the check names, then re-run the WHOLE relevant sequence rather than just that
+   step — T-1179's corrected finding, for the same reason: the check names the stage that is
+   stale, and the cycle can run through a stage it does not name.
