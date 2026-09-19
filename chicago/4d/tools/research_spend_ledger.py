@@ -120,6 +120,35 @@ def raw_identifier(row: dict, source_pointer: str) -> str:
     return source_pointer
 
 
+# A LEDGER KEY HAS TO BE UNIQUE ACROSS THE CORPUS, AND A CLAIM ID IS NOT (T-1338).
+# `target_index` is one dictionary over every reading unit in the project, and until this
+# ticket its key was the row's own `source_record_id`. For a person id or a land-sale
+# certificate that is a name the whole corpus agrees on. For a newspaper claim it is
+# `c004` -- a POSITION in the extraction of ONE issue, which 55 issue files each print --
+# so a resident card naming `c004` was read as naming every one of them. It was not a
+# hazard waiting to happen: 145 units were closed `asserted` on it the day this ticket
+# was taken, off three cards that had each cited exactly one claim. `hh_taylor_c`'s
+# arrival cites `chicago_democrat_1835_08_19#c007` and closed 74; `hh_dole_george_w`'s
+# reason_for_coming cites `chicago_democrat_1834_04_01#c013` and `chicago_democrat_
+# 1835_07_01#c015` and closed 71 between them, one of which was not even a newspaper.
+# A ledger that overstates its own spend is wrong in the direction it must never be wrong
+# in, and the 128 press units this ticket's parent left cannot be spent one at a time
+# until a bound can name ONE claim.
+#
+# The key is therefore the source file's stem and the row's id, joined by `#` -- the form
+# the cards' own prose had been writing all along. Which containers need it is DECLARED in
+# domains.json rather than guessed, because the two cases are genuinely different and no
+# shape tells them apart: `residents` people ids repeat across the pass cohorts and mean
+# the same man each time, and `newspapers` claim ids repeat and mean nothing outside their
+# own file. `record_id_scope_faults` below refuses an undeclared repeat, so the next corpus
+# that reuses an id has to say which kind it is instead of quietly joining the first case.
+def record_key(source_file: str, raw_id: str, file_local: bool) -> str:
+    """The unit's key in the target index: file-qualified where the id is file-local."""
+    if not file_local:
+        return raw_id
+    return f"{Path(source_file).stem}#{raw_id}"
+
+
 def extract_units(root: Path, registry: dict) -> tuple[list[dict], list[str]]:
     """Return every registered reading unit and every registry fault.
 
@@ -164,6 +193,14 @@ def extract_units(root: Path, registry: dict) -> tuple[list[dict], list[str]]:
                 if containers == "$declared" and (
                         "crosswalk" in path.name or doc.get("not_a_reading")):
                     continue
+                file_local = pattern.get("file_local_containers")
+                if file_local is None:
+                    file_local = []
+                if not isinstance(file_local, list) or not all(
+                        isinstance(c, str) for c in file_local):
+                    faults.append(
+                        f"{domain} {glob}: file_local_containers must be a list of container names")
+                    file_local = []
                 use = declared_containers(doc) if containers == "$declared" else containers
                 if not isinstance(use, list) or not all(isinstance(c, str) for c in use):
                     faults.append(f"{domain} {glob}: containers must be a list or $declared")
@@ -204,6 +241,8 @@ def extract_units(root: Path, registry: dict) -> tuple[list[dict], list[str]]:
                             "source_file": rel,
                             "source_pointer": pointer,
                             "source_record_id": raw_id,
+                            "record_key": record_key(rel, raw_id, container in file_local),
+                            "file_local_id": container in file_local,
                             "source_ids": sorted(set(source_ids)),
                             "record": row,
                         })
@@ -267,8 +306,17 @@ def cited_sources(node) -> set[str]:
     return found
 
 
-def target_index(root: Path, raw_ids: set[str]) -> dict[str, list[dict]]:
-    """Index source-bearing structured resident assertions by the unit ids they name."""
+# `#` JOINS THE TWO HALVES OF A FILE-QUALIFIED KEY AND IS NOT A WORD CHARACTER, so the
+# token pattern has to reach across it or a card naming `chicago_democrat_1835_08_19#c007`
+# would be read as naming the file and the bare claim and never the pair. Both readings are
+# kept: the joined token is offered whole AND split, so nothing a global id used to match
+# stops matching. What changed is on the other side -- a file-local raw id is no longer a
+# key at all, so the bare `c007` half now finds nothing to join.
+UNIT_TOKEN = re.compile(r"[A-Za-z0-9_.:#-]+")
+
+
+def target_index(root: Path, keys: set[str]) -> dict[str, list[dict]]:
+    """Index source-bearing structured resident assertions by the unit keys they name."""
     found = defaultdict(list)
 
     def walk(node, parts, root_id, rel):
@@ -278,11 +326,14 @@ def target_index(root: Path, raw_ids: set[str]) -> dict[str, list[dict]]:
             if sources_here:
                 tokens = set()
                 for value in naming_strings(node):
-                    if value in raw_ids:
+                    if value in keys:
                         tokens.add(value)
-                    tokens.update(t for t in re.findall(r"[A-Za-z0-9_.:-]+", value) if t in raw_ids)
-                for raw_id in tokens:
-                    found[raw_id].append({
+                    for token in UNIT_TOKEN.findall(value):
+                        if token in keys:
+                            tokens.add(token)
+                        tokens.update(part for part in token.split("#") if part in keys)
+                for key in tokens:
+                    found[key].append({
                         "kind": "resident_record",
                         "id": root_id,
                         "file": rel,
@@ -348,7 +399,16 @@ def resident_finding(root: Path, unit: dict) -> dict | None:
 # the piece that actually has that corpus to spend.
 EPIC_PIECES = {
     "land_sales": ("T-1296", "The land-sale ruling piece owns this unasserted unit."),
-    "civic": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
+    # THE CIVIC POINTER WAS AIMED AT DONE WORK, and nothing noticed because nothing reached
+    # it: T-1297 closed, and zero units cited it on the day T-1342 was taken. The one that
+    # can reach it now is a civic CLAIM and not a name on a roll at all — Andreas on how the
+    # town got its water by cart from the foot of Randolph Street — and it was being read as
+    # an assertion about George W. Dole's reason for coming, because its id is `c013` and so
+    # is the Democrat claim that card cites. It is a claim unit freed by the same fix as the
+    # 48 press ones, so it is owned with them. (It cannot simply fall to the remainder
+    # register below: `spend_remainder_rulings.py` rules four domains and refuses civic by
+    # name, and dropping this entry hands it 24 civic claims it will not rule.)
+    "civic": ("T-1343", "The claim-corpus spend owns this unasserted civic claim."),
     "census_1830": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
     "directories": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
 }
@@ -413,7 +473,7 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
                         "reason": "The resident research pass has not completed this reserved person."}
         # The pilot is a reservation without a committed findings file; positive
         # pass findings that have no exact structured target also remain owned here.
-        candidates = targets.get(unit["source_record_id"], [])
+        candidates = targets.get(unit["record_key"], [])
         for target in candidates:
             if not unit["source_ids"] or set(unit["source_ids"]) & set(target["sources"]):
                 target = {k: v for k, v in target.items() if k != "sources"}
@@ -443,7 +503,7 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
         return {"disposition": "aggregate_only",
                 "reason": "The committed reading explicitly says it is not a town finding."}
 
-    for target in targets.get(unit["source_record_id"], []):
+    for target in targets.get(unit["record_key"], []):
         if not unit["source_ids"] or set(unit["source_ids"]) & set(target["sources"]):
             target = {k: v for k, v in target.items() if k != "sources"}
             return {"disposition": "asserted", "target": target}
@@ -489,6 +549,9 @@ RULING_DISPOSITIONS = {"refused", "later_only", "outside_chicago", "aggregate_on
 # `inferred` or `documented`, it cites at least one source, and it names the unit's own
 # record id. A row that cannot show all five is a fault and not an assertion, which keeps
 # `asserted` something a register has to earn rather than something it can declare.
+# THE RULING'S PROOF NAMES THE SAME KEY THE DERIVATION DOES (T-1338). `record_id` here is
+# the unit's `record_key`, so a ruling that asserts a file-local unit has to show the
+# FILE-QUALIFIED id on the card. A bare `c004` proved nothing about which issue was read.
 def asserted_ruling_faults(root: Path, unit_id: str, record_id: str, row: dict) -> list[str]:
     wrote = row.get("wrote")
     where = f"a ruling asserts {unit_id} and"
@@ -517,6 +580,49 @@ def asserted_ruling_faults(root: Path, unit_id: str, record_id: str, row: dict) 
             faults.append(f"{where} {at} does not say {record_id}")
     return faults
 
+
+
+# AN UNDECLARED REPEAT IS THE DEFECT, NOT THE REPEAT (T-1338). Two corpora reuse a row id
+# across their own files and they mean opposite things by it: a `residents` pass cohort
+# names the same man in four passes, and a `newspapers` issue numbers its claims from
+# `c001` with no reference to any other issue. Nothing in the id tells them apart -- both
+# are short strings printed more than once -- so the file that registers the corpus has to
+# say which it is. The absence of a declaration used to read exactly like the global case
+# and was silently taken as one, which is how 145 assertions were made off a claim number.
+# A corpus whose ids repeat and which says nothing is therefore a fault here, in the shape
+# the rest of this project already uses for a judgement nobody has recorded.
+def record_id_scope_faults(units: list[dict], registry: dict) -> list[str]:
+    """Refuse a container whose ids repeat across files and which declares neither scope."""
+    files_by_raw = defaultdict(set)
+    for unit in units:
+        files_by_raw[unit["source_record_id"]].add(unit["source_file"])
+    repeated = {raw for raw, files in files_by_raw.items() if len(files) > 1}
+    seen = defaultdict(set)
+    for unit in units:
+        if unit["source_record_id"] in repeated:
+            container = unit["unit_id"].split("#", 1)[1].rsplit("/", 1)[0]
+            seen[(unit["domain"], container)].add(unit["source_record_id"])
+    declared = {}
+    for entry in registry.get("domains") or []:
+        domain = entry.get("id")
+        for pattern in entry.get("ledger_units") or []:
+            for key, scope in (("file_local_containers", "file_local"),
+                               ("global_containers", "global")):
+                for container in pattern.get(key) or []:
+                    declared[(domain, container)] = scope
+    faults = []
+    for (domain, container), ids in sorted(seen.items()):
+        if (domain, container) not in declared:
+            faults.append(
+                f"data/research/domains.json does not say whether {domain} {container} record "
+                f"ids are file-local or global, and {len(ids)} of them are printed in more "
+                f"than one file: declare file_local_containers or global_containers")
+    for (domain, container), scope in sorted(declared.items()):
+        if scope == "global" and (domain, container) not in seen:
+            faults.append(
+                f"data/research/domains.json declares {domain} {container} record ids global "
+                f"because they repeat, and no id of theirs repeats any more")
+    return faults
 
 
 def ruling_registers(root: Path) -> list[Path]:
@@ -663,8 +769,8 @@ def build_document(root: Path = ROOT) -> tuple[dict, list[str]]:
     if not isinstance(registry, dict):
         return {}, ["data/research/domains.json is missing or unreadable"]
     units, faults = extract_units(root, registry)
-    ids = {unit["source_record_id"] for unit in units}
-    targets = target_index(root, ids)
+    faults.extend(record_id_scope_faults(units, registry))
+    targets = target_index(root, {unit["record_key"] for unit in units})
     rulings, ruling_faults = read_rulings(root)
     faults.extend(ruling_faults)
     known = {unit["unit_id"] for unit in units}
@@ -673,10 +779,14 @@ def build_document(root: Path = ROOT) -> tuple[dict, list[str]]:
     for unit in units:
         row = {k: unit[k] for k in (
             "unit_id", "domain", "source_file", "source_pointer", "source_record_id")}
+        # Carried only where it differs from the raw id, so the document itself says which
+        # readings are keyed file-locally and a reader can see the population at a glance.
+        if unit["record_key"] != unit["source_record_id"]:
+            row["record_key"] = unit["record_key"]
         row.update(classify(root, unit, targets, rulings, fired))
         if row.get("disposition") == "asserted" and row.get("ruling"):
             faults.extend(asserted_ruling_faults(
-                root, unit["unit_id"], unit["source_record_id"],
+                root, unit["unit_id"], unit["record_key"],
                 rulings["by_unit"][unit["unit_id"]]))
         rows.append(row)
     faults.extend(ruling_coverage_faults(rulings, known, fired))
@@ -955,6 +1065,55 @@ def self_test() -> int:
         else:
             print("  holds: a field that carries the reading is still a target")
 
+        # T-1342: THE FILE-LOCAL KEY, over the exact shape that made 142 false assertions —
+        # two issue files each carrying a claim `c007`, and one card citing one of them.
+        registry = {"domains": [{"id": "press", "path": "data/research/press/", "ledger_units": [
+            {"glob": "extracted/*.json", "containers": ["claims"],
+             "file_local_containers": ["claims"]}]}]}
+        for issue in ("gazette_1835_06_08", "gazette_1835_08_19"):
+            write_json(root / f"data/research/press/extracted/{issue}.json",
+                       {"claims": [{"id": "c007", "normalized": "Mrs C. Taylor"}]})
+        write_json(root / "data/residents/hh_press.json", {"id": "hh_press", "arrival": {
+            "value": "1835-08-10", "confidence": "inferred", "sources": ["press_source"],
+            "note": "The notice is over the copy date (gazette_1835_08_19#c007)."}})
+        units, unit_faults = extract_units(root, registry)
+        keys = {unit["record_key"] for unit in units}
+        index = target_index(root, keys)
+        hit = {unit["unit_id"] for unit in units
+               if natural_disposition(root, unit, index).get("disposition") == "asserted"}
+        pattern_faults = [f for f in unit_faults if "press" in f and "unregistered" not in f]
+        if pattern_faults:
+            failures.append(f"the file-local fixture did not extract: {pattern_faults!r}")
+        elif len(hit) != 1 or "gazette_1835_08_19" not in next(iter(hit)):
+            failures.append(
+                f"a card citing one claim closed {len(hit)} unit(s), not the one it named: {hit!r}")
+        else:
+            print("  holds: a card naming one file-qualified claim closes that claim alone")
+        bare = copy.deepcopy(read_json(root / "data/residents/hh_press.json"))
+        bare["arrival"]["note"] = "The notice is over the copy date (c007)."
+        write_json(root / "data/residents/hh_press.json", bare)
+        index = target_index(root, keys)
+        if any(natural_disposition(root, unit, index).get("disposition") == "asserted"
+               for unit in units):
+            failures.append("a bare file-local id still closed a unit")
+        else:
+            print("  fires: a bare claim number names no file-local unit at all")
+        undeclared = copy.deepcopy(registry)
+        undeclared["domains"][0]["ledger_units"][0].pop("file_local_containers")
+        got = record_id_scope_faults(extract_units(root, undeclared)[0], undeclared)
+        if not any("does not say whether" in fault for fault in got):
+            failures.append(f"an undeclared repeated record id did not fire: {got!r}")
+        else:
+            print("  fires: a repeated record id whose scope the registry does not declare")
+        declared_global = copy.deepcopy(registry)
+        declared_global["domains"][0]["ledger_units"][0] = {
+            "glob": "extracted/*.json", "containers": ["claims"], "global_containers": ["notes"]}
+        got = record_id_scope_faults(extract_units(root, declared_global)[0], declared_global)
+        if not any("repeats any more" in fault for fault in got):
+            failures.append(f"a dead global declaration did not fire: {got!r}")
+        else:
+            print("  fires: a global declaration for a container whose ids no longer repeat")
+
         duplicate = {"units": [base, copy.deepcopy(base)], "unit_count": 2,
                      "totals": {name: (2 if name == "asserted" else 0) for name in DISPOSITIONS}}
         got = validate_document(duplicate, root, {})
@@ -964,5 +1123,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 15 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 19 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0

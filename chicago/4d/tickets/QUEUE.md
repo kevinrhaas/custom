@@ -47,7 +47,7 @@
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1350 — The four resident mints derive `arrival` from the registers they read and silently revert a reading pass that supersedes one: seven ruled book findings — the spring-1833 arrivals of Botsford, Williams and Hibbard Porter and the Baptist presence of 19 October 1833 for Willard Jones, Nathaniel Carpenter and Martin D. Harmon — cannot reach the cards the crosswalk has already joined them to
-T-1338 — Spend the 128 press notices onto the cards they name, once a newspaper claim unit carries a file-qualified ledger id: the 22 raw claim ids these units share would close 937 other units as asserted
+T-1343 — Spend the 128 press notices onto the cards they name, on identifications a committed newspapers-to-residents crosswalk makes, and refuse in writing the ones it cannot make
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 T-1347 — Write the trade households the occupation model wants: reconstructed heads drawn per trade and division against the order book's trade buckets, each named from the pools with a family per the household model
@@ -200,3 +200,7 @@ T-1345 — step_isolation exempts gitignored build products by a hand-kept path 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1354 — The six documented departures from Chicago, read against present_on_scene_date: whether a man recorded leaving in 1835 was at the town on 1 July, each ruled with the removal beside the other sources rather than out of one volume
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
