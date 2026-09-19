@@ -173,6 +173,40 @@ State after that merge, for the next reader: the population profile covers 2,144
 the model's 2,535 target; 900 re-admissions and 124 female-headed households (556 people — 124
 women and 432 others) are built and gated, and none of them reaches `index.json` yet.
 
+**Finding (T-1349's merge, 2026-09-19): a new stage's invented NAMES can move the stages
+above it and, worse, can move a research pass.** Stage `garrison` drew 125 people over the
+sixty-five surnames the pools hold. Two things broke, and both are this ticket's to
+generalise:
+
+* `reconstruct_women_children.py` redrew 43 of its own cards, because its `real_names()`
+  folds every name in the layer including `rc_` ones — so a stage BELOW it in the programme
+  changed what it steps past. A later stage should not be able to move an earlier one.
+* `mint_civic_residents.py` minted a 393rd civic person where dev mints 392, because six
+  invented Tuttles standing beside the town's one real Tuttle made `id_tuttle_james_b`
+  unresolvable. **An invention that changes how a source is READ has become evidence.**
+
+T-1349 fixed both from its own side with one refusal — *a drawn soldier may not bear a
+family name any attested or inferred person of this town bears* — and with it in force the
+civic mint returns to 392 and `women_and_children` redraws nothing. Forty-nine of the
+sixty-five pool surnames are free of the named layer, which is enough for 125 people and
+will not be enough forever: **T-1173's trade households and T-1175's lodgers draw hundreds
+more over the same pools.** The refusal is written generally enough to lift into the
+programme, and the convergence this ticket owns is where that decision belongs.
+
+The rebuild order recorded above still holds, with one insertion — stage `garrison` goes
+AFTER `women_and_children`, which is its position in the programme's `stages` array:
+
+```
+python3 tools/model_town_1835.py --build
+python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival  --build
+python3 tools/reconstruct_residents_1835.py --stage readmissions            --build
+python3 tools/reconstruct_residents_1835.py --stage women_and_children      --build
+python3 tools/reconstruct_garrison_1835.py                                  --build
+python3 tools/rebuild_resident_index.py --write
+python3 tools/profile_population_1835.py --build
+python3 tools/build_order_book_1835.py --build
+```
+
 **Correction (2026-09-19, same night): the set is SIX tools, and a fixed list is the wrong
 shape of answer.** The finding above names four builds in an order and reads as though the
 order is the whole of it. It is not, and the list was wrong three times in one evening. Each
@@ -195,6 +229,7 @@ python3 tools/model_town_1835.py          --build
 python3 tools/reconstruct_residents_1835.py --stage attribute_fill_arrival --build
 python3 tools/reconstruct_residents_1835.py --stage readmissions           --build
 python3 tools/reconstruct_residents_1835.py --stage women_and_children     --build
+python3 tools/reconstruct_garrison_1835.py                                 --build
 python3 tools/profile_population_1835.py  --build
 python3 tools/build_order_book_1835.py    --build
 python3 tools/model_transients_1835.py    --build

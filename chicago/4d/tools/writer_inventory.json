@@ -882,6 +882,13 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "reconstruct_garrison_1835.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 11 cards, 125 people and the return in data/reconstruction/1835_garrison.json from their seeds. In the manifest directly after `women_and_children`.",
+      "placed": "by stage order, 2026-09-19 \u2014 its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
+    },
     "reconstruct_modelled_families.py": {
       "placement": "manifest",
       "write_mode": null,
