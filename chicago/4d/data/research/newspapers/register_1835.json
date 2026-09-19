@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1189,
       "persons": 2685,
-      "businesses": 196
+      "businesses": 189
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,33 +16,33 @@
   },
   "counts": {
     "businesses": {
-      "total": 196,
-      "present_at_scene_date": 179,
+      "total": 189,
+      "present_at_scene_date": 172,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 61,
+        "new_building": 23,
+        "street_only": 57,
         "unplaceable": 79
       },
       "by_placement_class": {
         "corner": 16,
         "none": 62,
-        "relative": 101,
+        "relative": 94,
         "street_only": 17
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 61,
+        "new_building": 23,
+        "street_only": 57,
         "unplaceable": 62
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 95,
-      "backdating_liberty_required": 26,
+      "survival_liberty_required": 94,
+      "backdating_liberty_required": 21,
       "dissolved_after_scene_date": 1
     },
     "persons": {
@@ -3378,10 +3378,12 @@
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "occupation": "attorney",
       "proprietors": [
-        "Henry Moore"
+        "Henry Moore",
+        "Moore, Henry"
       ],
       "partners": [
-        "Henry Moore"
+        "Henry Moore",
+        "Moore, Henry"
       ],
       "firm_styles": [],
       "street": null,
@@ -3389,7 +3391,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-04",
-        "last_issue": "1835-07-04"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -3412,48 +3414,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "No street the model holds. The anchor \"John H. Kinzie's new building\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_henry_moore_attorney_counsellor_at_law",
-      "business_record_id": "biz_henry_moore_attorney_counsellor_at_law",
-      "name": "Henry Moore, Attorney & Counsellor at Law",
-      "trade": "law",
-      "occupation": "attorney",
-      "proprietors": [
-        "Moore, Henry"
-      ],
-      "partners": [
-        "Moore, Henry"
-      ],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
-        "last_issue": "1835-08-05"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "structure",
-        "target": "jh_kinzie_forwarding_store",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure jh_kinzie_forwarding_store."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "jh_kinzie_forwarding_store",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure jh_kinzie_forwarding_store."
     },
     {
       "id": "business_hiram_everts_high_school_for_young_gentlemen",
@@ -3818,10 +3778,12 @@
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "occupation": "attorney",
       "proprietors": [
-        "J. Curtiss"
+        "J. Curtiss",
+        "Curtiss, J."
       ],
       "partners": [
-        "J. Curtiss"
+        "J. Curtiss",
+        "Curtiss, J."
       ],
       "firm_styles": [],
       "street": "South Water Street",
@@ -3829,7 +3791,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-05-20",
-        "last_issue": "1835-07-01"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -3852,48 +3814,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Placeable against the committed town. The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
-    },
-    {
-      "id": "business_j_curtiss_attorney_and_counsellor_at_law",
-      "business_record_id": "biz_j_curtiss_attorney_and_counsellor_at_law",
-      "name": "J. Curtiss, Attorney and Counsellor at Law",
-      "trade": "law",
-      "occupation": "attorney",
-      "proprietors": [
-        "Curtiss, J."
-      ],
-      "partners": [
-        "Curtiss, J."
-      ],
-      "firm_styles": [],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
-        "last_issue": "1835-08-05"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"Jones, King & Co.'s store\" names nothing the committed town holds."
     },
     {
       "id": "business_j_d_caton_attorney_and_counsellor_at_law",
@@ -4988,10 +4908,12 @@
       "trade": "deputy surveyor of Cook County",
       "occupation": "surveyor",
       "proprietors": [
-        "L. G. Curtiss"
+        "L. G. Curtiss",
+        "Curtiss, L. G."
       ],
       "partners": [
-        "L. G. Curtiss"
+        "L. G. Curtiss",
+        "Curtiss, L. G."
       ],
       "firm_styles": [],
       "street": null,
@@ -4999,48 +4921,6 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-07-22",
-        "last_issue": "1835-07-29"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "structure",
-        "target": "mansion_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure mansion_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "mansion_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
-    },
-    {
-      "id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
-      "business_record_id": "biz_l_g_curtiss_deputy_surveyor_of_cook_county",
-      "name": "L. G. Curtiss, Deputy Surveyor of Cook County",
-      "trade": "land surveying",
-      "occupation": "surveyor",
-      "proprietors": [
-        "Curtiss, L. G."
-      ],
-      "partners": [
-        "Curtiss, L. G."
-      ],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
@@ -6526,11 +6406,13 @@
       "occupation": "attorney",
       "proprietors": [
         "S. Abell",
-        "Abell"
+        "Abell",
+        "Abell, S."
       ],
       "partners": [
         "S. Abell",
-        "Abell"
+        "Abell",
+        "Abell, S."
       ],
       "firm_styles": [],
       "street": "Dearborn Street",
@@ -6538,7 +6420,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-24",
-        "last_issue": "1835-08-01"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -6561,48 +6443,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the \"Eagle Coffee House\"' names nothing the committed town holds."
-    },
-    {
-      "id": "business_s_abell_attorney_counsellor_at_law",
-      "business_record_id": "biz_s_abell_attorney_counsellor_at_law",
-      "name": "S. Abell, Attorney & Counsellor at Law",
-      "trade": "law",
-      "occupation": "attorney",
-      "proprietors": [
-        "Abell, S."
-      ],
-      "partners": [
-        "Abell, S."
-      ],
-      "firm_styles": [],
-      "street": "Dearborn Street",
-      "street_id": "dearborn",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
-        "last_issue": "1835-08-05"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor 'the Eagle Coffee House' names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
     },
     {
       "id": "business_s_b_cobb_saddle_harness_and_trunk_manufactory",
@@ -8585,10 +8425,12 @@
       "trade": "auction and commission house",
       "occupation": "auctioneer",
       "proprietors": [
-        "W. Montgomery"
+        "W. Montgomery",
+        "Montgomery, W."
       ],
       "partners": [
-        "W. Montgomery"
+        "W. Montgomery",
+        "Montgomery, W."
       ],
       "firm_styles": [],
       "street": "South Water Street",
@@ -8596,7 +8438,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-07-08",
-        "last_issue": "1835-07-29"
+        "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -8610,6 +8452,14 @@
           "iso": "1835-07-06",
           "verbatim": "has taken David Carver's Old Stand, South Water-Street, for the purpose of transacting the above business",
           "note": "'Has taken' over a dateline of 6 July 1835: the stand was taken on or before that day, never after it. The fuller printing of the same copy in this issue ('New Establishment', page 3 columns 5-6) says his first public sale falls on 'the 1st day of July', which is the scene date."
+        },
+        {
+          "claim": "chicago_democrat_1835_08_05#c009",
+          "issue": "1835-08-05",
+          "dating": "effected",
+          "iso": "1835-07-06",
+          "verbatim": "ha[s] taken David Car[ver]'s O[l]d Stand, [S]out[h] Water Street",
+          "note": "The reprint of the 8 July notice under the fuller firm style, carrying the same 6 July 1835 dateline."
         }
       ],
       "survival_liberty_required": false,
@@ -8628,57 +8478,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's Old Stand\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_w_montgomery_auction_and_commission_house",
-      "business_record_id": "biz_w_montgomery_auction_and_commission_house",
-      "name": "W. Montgomery, Auction and Commission House",
-      "trade": "auction and commission",
-      "occupation": "auctioneer",
-      "proprietors": [
-        "Montgomery, W."
-      ],
-      "partners": [
-        "Montgomery, W."
-      ],
-      "firm_styles": [],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
-        "last_issue": "1835-08-05"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [
-        {
-          "claim": "chicago_democrat_1835_08_05#c009",
-          "issue": "1835-08-05",
-          "dating": "effected",
-          "iso": "1835-07-06",
-          "verbatim": "ha[s] taken David Car[ver]'s O[l]d Stand, [S]out[h] Water Street",
-          "note": "The reprint of the 8 July notice under the fuller firm style, carrying the same 6 July 1835 dateline."
-        }
-      ],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": true,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"David Carver's old stand\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
     },
     {
       "id": "business_w_reed",
@@ -8854,65 +8653,25 @@
       "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet. No action; the record is kept so the exclusion can be argued with."
     },
     {
-      "id": "business_wm_h_kennicott",
-      "business_record_id": "biz_wm_h_kennicott",
-      "name": "Wm. H. Kennicott",
-      "trade": "surgeon dentistry",
-      "occupation": "dentist",
-      "proprietors": [
-        "Wm. H. Kennicott"
-      ],
-      "partners": [
-        "Wm. H. Kennicott"
-      ],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-06-18",
-        "last_issue": "1834-07-16"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "business",
-        "target": null,
-        "streets": null,
-        "via": "business_eagle_tavern",
-        "note": "The landmark is another documented business (business_eagle_tavern), which places this one exactly as well as that one is placed."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "business_eagle_tavern",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is another documented business (business_eagle_tavern), which places this one exactly as well as that one is placed."
-    },
-    {
       "id": "business_wm_h_kennicott_surgeon_dentist",
       "business_record_id": "biz_wm_h_kennicott_surgeon_dentist",
       "name": "Wm. H. Kennicott, Surgeon Dentist",
       "trade": "dentistry",
       "occupation": "dentist",
       "proprietors": [
-        "Kennicott, Wm. H."
+        "Kennicott, Wm. H.",
+        "Wm. H. Kennicott"
       ],
       "partners": [
-        "Kennicott, Wm. H."
+        "Kennicott, Wm. H.",
+        "Wm. H. Kennicott"
       ],
       "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1835-06-24",
+        "first_issue": "1834-06-18",
         "last_issue": "1835-08-19"
       },
       "present_at_scene_date": true,
@@ -8944,10 +8703,12 @@
       "trade": "boot, shoe and leather store, wholesale and retail, and boots and shoes made to order",
       "occupation": "shoemaker",
       "proprietors": [
-        "Wm. H. Taylor"
+        "Wm. H. Taylor",
+        "Taylor, Wm. H."
       ],
       "partners": [
-        "Wm. H. Taylor"
+        "Wm. H. Taylor",
+        "Taylor, Wm. H."
       ],
       "firm_styles": [],
       "street": "Dearborn Street",
@@ -8955,48 +8716,6 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-05-20",
-        "last_issue": "1835-05-20"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_wm_h_taylor_boot_shoe_leather_store",
-      "business_record_id": "biz_wm_h_taylor_boot_shoe_leather_store",
-      "name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
-      "trade": "boot, shoe and leather store",
-      "occupation": "shoemaker",
-      "proprietors": [
-        "Taylor, Wm. H."
-      ],
-      "partners": [
-        "Taylor, Wm. H."
-      ],
-      "firm_styles": [],
-      "street": "Dearborn Street",
-      "street_id": "dearborn",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-08-05",
         "last_issue": "1835-08-05"
       },
       "present_at_scene_date": true,
@@ -9020,7 +8739,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "The anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
+        "note": "The anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -9028,7 +8747,7 @@
       "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Newberry & Dole's Store\" names nothing the committed town holds."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor \"Messrs. Newberry & Dole's Store\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_hogue_co",

@@ -19,8 +19,8 @@
       "census_line": "forty-four stores (dry goods, hardware and groceries)",
       "census_count": 44,
       "compared": true,
-      "town_records_in_town": 64,
-      "town_records_at_scene_date": 59,
+      "town_records_in_town": 63,
+      "town_records_at_scene_date": 58,
       "town_records_outside_town": 3,
       "business_ids": [
         "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
@@ -85,10 +85,9 @@
         "business_william_clay",
         "business_william_f_lyon_wholesale_grocery_store",
         "business_wm_h_taylor",
-        "business_wm_h_taylor_boot_shoe_leather_store",
         "business_wm_hogue_co"
       ],
-      "delta": 15,
+      "delta": 14,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)"
     },
@@ -345,8 +344,8 @@
       "census_line": "twenty-two lawyers",
       "census_count": 22,
       "compared": true,
-      "town_records_in_town": 18,
-      "town_records_at_scene_date": 18,
+      "town_records_in_town": 15,
+      "town_records_at_scene_date": 15,
       "town_records_outside_town": 0,
       "business_ids": [
         "business_collins_caton",
@@ -356,19 +355,16 @@
         "business_g_spring",
         "business_h_c_bennett",
         "business_henry_moore",
-        "business_henry_moore_attorney_counsellor_at_law",
         "business_j_curtiss",
-        "business_j_curtiss_attorney_and_counsellor_at_law",
         "business_j_d_caton_attorney_and_counsellor_at_law",
         "business_james_grant",
         "business_john_dean_caton",
         "business_john_dean_caton_attorney_and_counsellor_at_law",
         "business_r_stewart_attorney",
         "business_russell_e_heacock",
-        "business_s_abell_attorney_and_counsellor",
-        "business_s_abell_attorney_counsellor_at_law"
+        "business_s_abell_attorney_and_counsellor"
       ],
-      "delta": -4,
+      "delta": -7,
       "outcome": "town_holds_fewer_than_the_census_counted",
       "note": null
     },
@@ -410,8 +406,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 78,
-      "town_records_at_scene_date": 72,
+      "town_records_in_town": 75,
+      "town_records_at_scene_date": 69,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -448,7 +444,6 @@
         "business_john_bates_jr",
         "business_kercheval_hamilton",
         "business_l_g_curtiss",
-        "business_l_g_curtiss_deputy_surveyor_of_cook_county",
         "business_l_w_montgomery_boot_and_shoe_maker",
         "business_lathrop_johnson_co_livery",
         "business_marsh_simons",
@@ -485,11 +480,9 @@
         "business_unnamed_house_and_land_agent",
         "business_w_g_blanchard",
         "business_w_montgomery",
-        "business_w_montgomery_auction_and_commission_house",
         "business_w_reed",
         "business_whitehead_co",
         "business_william_clay",
-        "business_wm_h_kennicott",
         "business_wm_h_kennicott_surgeon_dentist",
         "business_wm_h_taylor"
       ],
@@ -519,14 +512,14 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 196,
-    "in_town": 193,
+    "businesses_in_register": 189,
+    "in_town": 186,
     "outside_town": 3,
-    "at_scene_date": 180,
-    "carrying_no_enumerated_class": 73,
+    "at_scene_date": 173,
+    "carrying_no_enumerated_class": 70,
     "not_stated": 5,
     "census_enumerated_total": 118,
-    "town_enumerated_total_at_scene_date": 118
+    "town_enumerated_total_at_scene_date": 114
   },
   "classes_the_town_holds_nothing_for": [
     "bank",
@@ -1412,18 +1405,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_henry_moore_attorney_counsellor_at_law",
-      "name": "Henry Moore, Attorney & Counsellor at Law",
-      "trade": "law",
-      "classes": [
-        "lawyer"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the printed trade is the practice of law",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_hiram_everts_high_school_for_young_gentlemen",
       "name": "Hiram Everts, High School for Young Gentlemen",
       "trade": "school",
@@ -1529,18 +1510,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "an attorney's practice; chancery practice is the same man's",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
-      "name": "J. Curtiss, Attorney and Counsellor at Law",
-      "trade": "law",
-      "classes": [
-        "lawyer"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the printed trade is the practice of law",
       "built_at_scene_date": true
     },
     {
@@ -1837,18 +1806,6 @@
       "business_id": "business_l_g_curtiss",
       "name": "L. G. Curtiss",
       "trade": "deputy surveyor of Cook County",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a service the enumeration counts nowhere (B2)",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
-      "name": "L. G. Curtiss, Deputy Surveyor of Cook County",
-      "trade": "land surveying",
       "classes": [
         "other"
       ],
@@ -2230,18 +2187,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "conveyancing is an attorney's own work and is not a second trade",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_s_abell_attorney_counsellor_at_law",
-      "name": "S. Abell, Attorney & Counsellor at Law",
-      "trade": "law",
-      "classes": [
-        "lawyer"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the printed trade is the practice of law",
       "built_at_scene_date": true
     },
     {
@@ -2790,18 +2735,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_w_montgomery_auction_and_commission_house",
-      "name": "W. Montgomery, Auction and Commission House",
-      "trade": "auction and commission",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "auction and commission business is a service the enumeration counts nowhere (B2)",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_w_reed",
       "name": "W. Reed",
       "trade": "cabinet making",
@@ -2851,18 +2784,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_wm_h_kennicott",
-      "name": "Wm. H. Kennicott",
-      "trade": "surgeon dentistry",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the enumeration counts physicians and names no dentist (B2)",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_wm_h_kennicott_surgeon_dentist",
       "name": "Wm. H. Kennicott, Surgeon Dentist",
       "trade": "dentistry",
@@ -2885,18 +2806,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "a store, and a making trade the census counts nowhere (B3)",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_wm_h_taylor_boot_shoe_leather_store",
-      "name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
-      "trade": "boot, shoe and leather store",
-      "classes": [
-        "store"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the printed word is store; the census's parenthetical is a gloss, not a restriction (B5)",
       "built_at_scene_date": true
     },
     {

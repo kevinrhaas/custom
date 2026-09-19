@@ -2539,6 +2539,21 @@ step "no standing 1835 trade is cited only to a volume about another year" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/audit_scene_window_trades.py --self-test
 
+# T-1388 (of T-1182). THE SAME SHAPE, ONE LAYER OVER: a question the corpus cannot ask.
+# `compile_gazetteer.py` answers "one house or two?" three ways and gates all three, but
+# it only ever ASKS about two records whose trading STYLES name the same partner surname.
+# 146 of the present records name no partner at all — the register's name for them is
+# descriptive, "a new auction and commission room, South Water Street" — so they never
+# enter a group and their identity is never put in question. This groups on the other
+# half, the PEOPLE the register read off the notices, and names every pair nobody has
+# ruled. Its ledger may only fall, for the same reason as the step above: a new business
+# record landing beside one the town already holds must be adjudicated, not arrive silent.
+step "every business pair one surname puts together has been ruled on, or is named as unruled" \
+  python3 tools/audit_business_identity.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/audit_business_identity.py --self-test
+
 # T-1229 (of T-1145). THE SINGULAR FIELD THE TWO STEPS ABOVE ARE ARGUING OVER IS NOW A
 # VIEW. `persons[].roles[]` is canonical — a controlled role, the kind of role it is, the
 # bound its evidence permits, how it was dated, a confidence and its sources — and

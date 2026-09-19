@@ -91,7 +91,7 @@
       "census_count": 22,
       "unit": "person",
       "unit_basis": "'Lawyers' and 'physicians' are the two lines of the enumeration that count PEOPLE and not premises, which is why the register's record count cannot be set against them directly: nineteen lawyer records are fourteen men, five of them second printings of one office.",
-      "register_records": 18,
+      "register_records": 15,
       "named_practitioners": 13,
       "named_establishments": 13,
       "held_in_the_counted_unit": 13,

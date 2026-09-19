@@ -10,24 +10,41 @@
   "occupation": "surveyor",
   "goods": [],
   "firm_styles": [],
-  "proprietors": [
+  "proprietors": [],
+  "partners": [
     {
       "name": "L. G. Curtiss",
       "person_id": "curtiss_l_g",
       "register_person_id": "person_l_g_curtiss",
-      "role": "proprietor",
+      "role": "partner",
       "from": "1835-07-22",
-      "to": "1835-07-29",
+      "to": "1835-08-05",
       "tier": "attested",
       "basis": "The register matches the printed name to the town card curtiss_l_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1835_07_22#c012",
-        "chicago_democrat_1835_07_29#c015"
+        "chicago_democrat_1835_07_29#c015",
+        "chicago_democrat_1835_08_05#c011"
+      ]
+    },
+    {
+      "name": "Curtiss, L. G.",
+      "person_id": "curtiss_l_g",
+      "register_person_id": "person_curtiss_l_g",
+      "role": "partner",
+      "from": "1835-07-22",
+      "to": "1835-08-05",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card curtiss_l_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_07_22#c012",
+        "chicago_democrat_1835_07_29#c015",
+        "chicago_democrat_1835_08_05#c011"
       ]
     }
   ],
-  "partners": [],
   "staff": [],
   "locations": [
     {
@@ -52,7 +69,7 @@
   },
   "evidence": {
     "first_issue": "1835-07-22",
-    "last_issue": "1835-07-29",
+    "last_issue": "1835-08-05",
     "copy_dates": []
   },
   "present_at_scene_date": true,
@@ -62,12 +79,19 @@
     "value": "new_york",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read new_york: L. G. Curtiss (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read new_york: L. G. Curtiss (new_york), Curtiss, L. G. (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "curtiss_l_g",
         "name": "L. G. Curtiss",
-        "role": "proprietor",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "curtiss_l_g",
+        "name": "Curtiss, L. G.",
+        "role": "partner",
         "community": "new_york",
         "tier": "reconstructed"
       }
@@ -79,7 +103,8 @@
   ],
   "claim_ids": [
     "chicago_democrat_1835_07_22#c012",
-    "chicago_democrat_1835_07_29#c015"
+    "chicago_democrat_1835_07_29#c015",
+    "chicago_democrat_1835_08_05#c011"
   ],
   "liberties": {
     "survival_required": false,

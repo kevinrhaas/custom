@@ -174,11 +174,11 @@
         },
         {
           "figure": "establishments_in_the_compared_classes",
-          "low": 118,
+          "low": 114,
           "high": 118,
           "point": null,
-          "is_a_count": true,
-          "method": "The register holds 118 records at the scene date across the compared classes and the census counted 118 two to five months later — THE SAME NUMBER, which is a coincidence and not an agreement: 8 classes are short and 5 are over, and they cancel. A total that matches while its rows do not is the strongest argument in this model for reading the census BY CLASS and never as a population of shops.",
+          "is_a_count": false,
+          "method": "The register holds 114 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -192,7 +192,7 @@
           "high": 8,
           "point": null,
           "is_a_count": true,
-          "method": "8 compared classes hold fewer records than the census counted, 22 establishments short in total; 5 hold more, which is the register counting NOTICES where the census counted houses.",
+          "method": "8 compared classes hold fewer records than the census counted, 25 establishments short in total; 5 hold more, which is the register counting NOTICES where the census counted houses.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -250,8 +250,8 @@
               "class": "lawyer",
               "census_line": "twenty-two lawyers",
               "census_count": 22,
-              "town_at_scene_date": 18,
-              "delta": -4,
+              "town_at_scene_date": 15,
+              "delta": -7,
               "outcome": "town_holds_fewer_than_the_census_counted"
             },
             {
@@ -370,8 +370,8 @@
               "class": "store",
               "census_line": "forty-four stores (dry goods, hardware and groceries)",
               "census_count": 44,
-              "town_at_scene_date": 59,
-              "delta": 15,
+              "town_at_scene_date": 58,
+              "delta": 14,
               "outcome": "town_holds_more_than_the_census_counted"
             }
           ]

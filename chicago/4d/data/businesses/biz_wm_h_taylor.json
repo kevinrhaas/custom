@@ -10,36 +10,55 @@
   "trade": "boot, shoe and leather store, wholesale and retail, and boots and shoes made to order",
   "occupation": "shoemaker",
   "goods": [
+    "boots",
     "calf boots",
     "children's boots and shoes",
     "coarse shoes",
     "fine shoes",
+    "infant's bootees",
     "infants' bootees",
     "ladies' gaiter, prunella and morocco boots",
     "men's coarse boots",
     "men's fine boots",
     "prunella, kid and seal shoes",
+    "shoes",
     "sole leather",
     "upper leather"
   ],
   "firm_styles": [],
-  "proprietors": [
+  "proprietors": [],
+  "partners": [
     {
       "name": "Wm. H. Taylor",
       "person_id": "taylor_william",
       "register_person_id": "person_wm_h_taylor",
-      "role": "proprietor",
+      "role": "partner",
       "from": "1835-05-20",
-      "to": "1835-05-20",
+      "to": "1835-08-05",
       "tier": "attested",
       "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
-        "chicago_democrat_1835_05_20#c020"
+        "chicago_democrat_1835_05_20#c020",
+        "chicago_democrat_1835_08_05#c024"
+      ]
+    },
+    {
+      "name": "Taylor, Wm. H.",
+      "person_id": "taylor_william",
+      "register_person_id": "person_taylor_wm_h",
+      "role": "partner",
+      "from": "1835-05-20",
+      "to": "1835-08-05",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_05_20#c020",
+        "chicago_democrat_1835_08_05#c024"
       ]
     }
   ],
-  "partners": [],
   "staff": [],
   "locations": [
     {
@@ -56,15 +75,15 @@
     }
   ],
   "dates": {
-    "opened": "1835-05-20",
+    "opened": "1834-07-08",
     "closed": null,
-    "precision": "not_later_than",
-    "tier": "inferred",
-    "basis": "No opening is announced. The first printing, 1835-05-20, is the bound: the house was trading by then and the record does not say when it began."
+    "precision": "exact",
+    "tier": "attested",
+    "basis": "The paper announces the opening: chicago_democrat_1835_08_05#c024 (1834-07-08)."
   },
   "evidence": {
     "first_issue": "1835-05-20",
-    "last_issue": "1835-05-20",
+    "last_issue": "1835-08-05",
     "copy_dates": [
       "1834-07-08"
     ]
@@ -76,12 +95,19 @@
     "value": "yankee",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read yankee: Wm. H. Taylor (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read yankee: Wm. H. Taylor (yankee), Taylor, Wm. H. (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
         "person_id": "taylor_william",
         "name": "Wm. H. Taylor",
-        "role": "proprietor",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "taylor_william",
+        "name": "Taylor, Wm. H.",
+        "role": "partner",
         "community": "yankee",
         "tier": "reconstructed"
       }
@@ -92,7 +118,8 @@
     "chicago_newspapers_1833_1835"
   ],
   "claim_ids": [
-    "chicago_democrat_1835_05_20#c020"
+    "chicago_democrat_1835_05_20#c020",
+    "chicago_democrat_1835_08_05#c024"
   ],
   "liberties": {
     "survival_required": false,

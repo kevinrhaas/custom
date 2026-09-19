@@ -1,0 +1,1335 @@
+{
+ "schema": "business_identity_pairs/1",
+ "generated_by": "tools/audit_business_identity.py",
+ "_doc": "Pairs of register businesses whose notices name the same PERSON as proprietor or partner, and which identity.json has not ruled on — no firm_merge, no refused_firm_merge, no premises_relation. Each is the question 'one house or two?' standing unanswered. The count may only fall: `--check` fails on a pair that has appeared.",
+ "counts": {
+  "businesses": 189,
+  "undeclared_pairs": 63,
+  "surnames": 25
+ },
+ "pairs": [
+  {
+   "surname": "abbott",
+   "a": {
+    "id": "biz_pierce_abbott",
+    "name": "Pierce & Abbott",
+    "occupation": "blacksmith",
+    "street": null,
+    "first_issue": "1834-02-04",
+    "last_issue": "1834-06-11",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_the_new_blacksmith_shop_opposite_the_chicago_hotel",
+    "name": "the new blacksmith shop opposite the Chicago Hotel",
+    "occupation": "blacksmith",
+    "street": null,
+    "first_issue": "1833-12-10",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "bates",
+   "a": {
+    "id": "biz_j_bates_jr_auction_store",
+    "name": "J. Bates jr., Auction Store",
+    "occupation": "auctioneer",
+    "street": null,
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-08-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_bates_jr",
+    "name": "John Bates, Jr.",
+    "occupation": "auctioneer",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-06-11",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "botsford",
+   "a": {
+    "id": "biz_j_k_botsford",
+    "name": "J. K. Botsford",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-02-18",
+    "last_issue": "1834-12-03",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_j_k_botsford_tin_sheet_iron_and_copper_factory",
+    "name": "J. K. Botsford, Tin, Sheet Iron and Copper Factory",
+    "occupation": "tinsmith",
+    "street": "Lake Street",
+    "first_issue": "1834-08-13",
+    "last_issue": "1834-08-13",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_brown_painter",
+    "name": "Brown, painter",
+    "occupation": "painter",
+    "street": "Randolph Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-08-15",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_j_b_brown_dearborn_street_grocery",
+    "name": "J. B. Brown, Dearborn Street grocery",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_brown_painter",
+    "name": "Brown, painter",
+    "occupation": "painter",
+    "street": "Randolph Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-08-15",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_russell_brown",
+    "name": "Russell & Brown",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_brown_painter",
+    "name": "Brown, painter",
+    "occupation": "painter",
+    "street": "Randolph Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-08-15",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_tuttle_brown",
+    "name": "Tuttle & Brown",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-25",
+    "present_at_scene_date": false
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_j_b_brown_dearborn_street_grocery",
+    "name": "J. B. Brown, Dearborn Street grocery",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_russell_brown",
+    "name": "Russell & Brown",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_j_b_brown_dearborn_street_grocery",
+    "name": "J. B. Brown, Dearborn Street grocery",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_tuttle_brown",
+    "name": "Tuttle & Brown",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-25",
+    "present_at_scene_date": false
+   }
+  },
+  {
+   "surname": "brown",
+   "a": {
+    "id": "biz_russell_brown",
+    "name": "Russell & Brown",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_tuttle_brown",
+    "name": "Tuttle & Brown",
+    "occupation": "grocer",
+    "street": "Dearborn Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-25",
+    "present_at_scene_date": false
+   }
+  },
+  {
+   "surname": "carli",
+   "a": {
+    "id": "biz_eagle_tavern",
+    "name": "Eagle Tavern",
+    "occupation": "hotel_keeper",
+    "street": null,
+    "first_issue": "1834-06-18",
+    "last_issue": "1834-09-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_p_s_carli_eagle_tavern",
+    "name": "P. S. Carli, Eagle Tavern",
+    "occupation": "harness_maker",
+    "street": null,
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "carver",
+   "a": {
+    "id": "biz_d_carver_co",
+    "name": "D. Carver & Co.",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1834-09-10",
+    "last_issue": "1834-09-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_david_carver",
+    "name": "David Carver",
+    "occupation": "lumber_merchant",
+    "street": "South Water Street",
+    "first_issue": "1833-12-03",
+    "last_issue": "1835-07-29",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "carver",
+   "a": {
+    "id": "biz_d_carver_co",
+    "name": "D. Carver & Co.",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1834-09-10",
+    "last_issue": "1834-09-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834",
+    "name": "the lumber yard and warehouse announced for the opening of navigation, 1834",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1833-12-31",
+    "last_issue": "1834-01-28",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "carver",
+   "a": {
+    "id": "biz_david_carver",
+    "name": "David Carver",
+    "occupation": "lumber_merchant",
+    "street": "South Water Street",
+    "first_issue": "1833-12-03",
+    "last_issue": "1835-07-29",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834",
+    "name": "the lumber yard and warehouse announced for the opening of navigation, 1834",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1833-12-31",
+    "last_issue": "1834-01-28",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "caton",
+   "a": {
+    "id": "biz_collins_caton",
+    "name": "Collins & Caton",
+    "occupation": "attorney",
+    "street": "South Water Street",
+    "first_issue": "1834-01-28",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_j_d_caton_attorney_and_counsellor_at_law",
+    "name": "J. D. Caton, attorney and counsellor at law",
+    "occupation": "attorney",
+    "street": "South Water Street",
+    "first_issue": "1833-12-17",
+    "last_issue": "1833-12-17",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "caton",
+   "a": {
+    "id": "biz_collins_caton",
+    "name": "Collins & Caton",
+    "occupation": "attorney",
+    "street": "South Water Street",
+    "first_issue": "1834-01-28",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_dean_caton",
+    "name": "John Dean Caton",
+    "occupation": "attorney",
+    "street": "Dearborn Street",
+    "first_issue": "1835-07-22",
+    "last_issue": "1835-07-29",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "caton",
+   "a": {
+    "id": "biz_collins_caton",
+    "name": "Collins & Caton",
+    "occupation": "attorney",
+    "street": "South Water Street",
+    "first_issue": "1834-01-28",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_dean_caton_attorney_and_counsellor_at_law",
+    "name": "John Dean Caton, Attorney and Counsellor at Law",
+    "occupation": "attorney",
+    "street": "Lake Street",
+    "first_issue": "1835-08-19",
+    "last_issue": "1835-08-19",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "caton",
+   "a": {
+    "id": "biz_j_d_caton_attorney_and_counsellor_at_law",
+    "name": "J. D. Caton, attorney and counsellor at law",
+    "occupation": "attorney",
+    "street": "South Water Street",
+    "first_issue": "1833-12-17",
+    "last_issue": "1833-12-17",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_dean_caton_attorney_and_counsellor_at_law",
+    "name": "John Dean Caton, Attorney and Counsellor at Law",
+    "occupation": "attorney",
+    "street": "Lake Street",
+    "first_issue": "1835-08-19",
+    "last_issue": "1835-08-19",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "caton",
+   "a": {
+    "id": "biz_john_dean_caton",
+    "name": "John Dean Caton",
+    "occupation": "attorney",
+    "street": "Dearborn Street",
+    "first_issue": "1835-07-22",
+    "last_issue": "1835-07-29",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_dean_caton_attorney_and_counsellor_at_law",
+    "name": "John Dean Caton, Attorney and Counsellor at Law",
+    "occupation": "attorney",
+    "street": "Lake Street",
+    "first_issue": "1835-08-19",
+    "last_issue": "1835-08-19",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "cobb",
+   "a": {
+    "id": "biz_goss_cobb",
+    "name": "Goss & Cobb",
+    "occupation": null,
+    "street": "Lake Street",
+    "first_issue": "1833-11-26",
+    "last_issue": "1835-06-13",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_s_b_cobb_saddle_harness_and_trunk_manufactory",
+    "name": "S. B. Cobb, saddle, harness and trunk manufactory",
+    "occupation": "harness_maker",
+    "street": "Lake Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-07-11",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "cohen",
+   "a": {
+    "id": "biz_peter_cohen",
+    "name": "Peter Cohen",
+    "occupation": "clothier",
+    "street": "South Water Street",
+    "first_issue": "1833-11-26",
+    "last_issue": "1835-07-08",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_peter_cohen_s_store",
+    "name": "Peter Cohen's store",
+    "occupation": "merchant",
+    "street": "South Water Street",
+    "first_issue": "1834-01-07",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "deacon",
+   "a": {
+    "id": "biz_deacon_mccaleb",
+    "name": "Deacon & McCaleb",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1834-07-23",
+    "last_issue": "1834-07-23",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_e_p_deacon",
+    "name": "E. P. Deacon",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1834-07-23",
+    "last_issue": "1834-07-23",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "elston",
+   "a": {
+    "id": "biz_chicago_soap_and_candle_manufactory",
+    "name": "Chicago Soap and Candle Manufactory",
+    "occupation": "soap_and_candle_maker",
+    "street": null,
+    "first_issue": "1834-01-07",
+    "last_issue": "1834-04-08",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_daniel_elston_co",
+    "name": "Daniel Elston & [Co.]",
+    "occupation": "soap_and_candle_maker",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "graves",
+   "a": {
+    "id": "biz_chicago_bakery",
+    "name": "Chicago Bakery",
+    "occupation": "baker",
+    "street": "South Water Street",
+    "first_issue": "1834-04-01",
+    "last_issue": "1834-09-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_d_graves",
+    "name": "D. Graves",
+    "occupation": "baker",
+    "street": "South Water Street",
+    "first_issue": "1834-03-25",
+    "last_issue": "1834-12-10",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "hogan",
+   "a": {
+    "id": "biz_brewster_hogan_co",
+    "name": "Brewster, Hogan & Co.",
+    "occupation": "forwarding_and_commission",
+    "street": "South Water Street",
+    "first_issue": "1833-12-03",
+    "last_issue": "1834-06-11",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_j_s_c_hogan",
+    "name": "J. S. C. Hogan",
+    "occupation": "postmaster",
+    "street": "South Water Street",
+    "first_issue": "1834-03-25",
+    "last_issue": "1835-07-01",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "jones",
+   "a": {
+    "id": "biz_b_jones_grocery_and_provision_store",
+    "name": "B. Jones, grocery and provision store",
+    "occupation": "grocer",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-03-04",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_jones_king",
+    "name": "Jones & King",
+    "occupation": "stove_dealer",
+    "street": "Water Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-12-03",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "jones",
+   "a": {
+    "id": "biz_b_jones_grocery_and_provision_store",
+    "name": "B. Jones, grocery and provision store",
+    "occupation": "grocer",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-03-04",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_jones_king_co",
+    "name": "Jones, King & Co.",
+    "occupation": "hardware_merchant",
+    "street": "South Water Street",
+    "first_issue": "1835-05-27",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "jones",
+   "a": {
+    "id": "biz_b_jones_storage_and_forwarding",
+    "name": "B. Jones, storage and forwarding",
+    "occupation": "forwarding_and_commission",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1833-11-26",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_jones_king",
+    "name": "Jones & King",
+    "occupation": "stove_dealer",
+    "street": "Water Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-12-03",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "jones",
+   "a": {
+    "id": "biz_b_jones_storage_and_forwarding",
+    "name": "B. Jones, storage and forwarding",
+    "occupation": "forwarding_and_commission",
+    "street": null,
+    "first_issue": "1833-11-26",
+    "last_issue": "1833-11-26",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_jones_king_co",
+    "name": "Jones, King & Co.",
+    "occupation": "hardware_merchant",
+    "street": "South Water Street",
+    "first_issue": "1835-05-27",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "kimball",
+   "a": {
+    "id": "biz_w_kimball",
+    "name": "W. Kimball",
+    "occupation": "dry_goods_merchant",
+    "street": "South Water Street",
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-06-04",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_w_kimball_s_new_store",
+    "name": "W. Kimball's New Store",
+    "occupation": "dry_goods_merchant",
+    "street": "South Water Street",
+    "first_issue": "1833-12-10",
+    "last_issue": "1834-01-21",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "king",
+   "a": {
+    "id": "biz_jones_king",
+    "name": "Jones & King",
+    "occupation": "stove_dealer",
+    "street": "Water Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-12-03",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_new_york_clothing_store",
+    "name": "New York Clothing Store",
+    "occupation": "clothier",
+    "street": "Dearborn Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-07-04",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "king",
+   "a": {
+    "id": "biz_jones_king_co",
+    "name": "Jones, King & Co.",
+    "occupation": "hardware_merchant",
+    "street": "South Water Street",
+    "first_issue": "1835-05-27",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_new_york_clothing_store",
+    "name": "New York Clothing Store",
+    "occupation": "clothier",
+    "street": "Dearborn Street",
+    "first_issue": "1835-06-08",
+    "last_issue": "1835-07-04",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "kinzie",
+   "a": {
+    "id": "biz_j_h_kinzie_merchant",
+    "name": "J. H. Kinzie, merchant",
+    "occupation": "lumber_merchant",
+    "street": null,
+    "first_issue": "1835-06-20",
+    "last_issue": "1835-06-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_john_h_kinzie",
+    "name": "John H. Kinzie",
+    "occupation": "forwarding_and_commission",
+    "street": null,
+    "first_issue": "1834-04-16",
+    "last_issue": "1835-07-29",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "laird",
+   "a": {
+    "id": "biz_g_w_w_laird",
+    "name": "G. W. & W. Laird",
+    "occupation": "merchant",
+    "street": null,
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_geo_w_laird_naper_s_settlement",
+    "name": "Geo. W. Laird, Naper's Settlement",
+    "occupation": "merchant",
+    "street": null,
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "montgomery",
+   "a": {
+    "id": "biz_l_w_montgomery_boot_and_shoe_maker",
+    "name": "L. W. Montgomery, boot and shoe maker",
+    "occupation": "shoemaker",
+    "street": "South Water Street",
+    "first_issue": "1833-12-17",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_montgomery_auction_and_commission_house",
+    "name": "Montgomery, auction and commission house",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-24",
+    "last_issue": "1835-06-24",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "montgomery",
+   "a": {
+    "id": "biz_l_w_montgomery_boot_and_shoe_maker",
+    "name": "L. W. Montgomery, boot and shoe maker",
+    "occupation": "shoemaker",
+    "street": "South Water Street",
+    "first_issue": "1833-12-17",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_a_new_auction_and_commission_room_south_water_street",
+    "name": "a new auction and commission room, South Water Street",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-27",
+    "last_issue": "1835-07-25",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "montgomery",
+   "a": {
+    "id": "biz_montgomery_auction_and_commission_house",
+    "name": "Montgomery, auction and commission house",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-24",
+    "last_issue": "1835-06-24",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_w_montgomery",
+    "name": "W. Montgomery",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-07-08",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "montgomery",
+   "a": {
+    "id": "biz_montgomery_auction_and_commission_house",
+    "name": "Montgomery, auction and commission house",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-24",
+    "last_issue": "1835-06-24",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_a_new_auction_and_commission_room_south_water_street",
+    "name": "a new auction and commission room, South Water Street",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-27",
+    "last_issue": "1835-07-25",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "montgomery",
+   "a": {
+    "id": "biz_w_montgomery",
+    "name": "W. Montgomery",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-07-08",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_a_new_auction_and_commission_room_south_water_street",
+    "name": "a new auction and commission room, South Water Street",
+    "occupation": "auctioneer",
+    "street": "South Water Street",
+    "first_issue": "1835-06-27",
+    "last_issue": "1835-07-25",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "pierce",
+   "a": {
+    "id": "biz_pierce_abbott",
+    "name": "Pierce & Abbott",
+    "occupation": "blacksmith",
+    "street": null,
+    "first_issue": "1834-02-04",
+    "last_issue": "1834-06-11",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_pierce_french",
+    "name": "Pierce & French",
+    "occupation": "blacksmith",
+    "street": "Canal Street",
+    "first_issue": "1834-06-25",
+    "last_issue": "1834-12-17",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "pierce",
+   "a": {
+    "id": "biz_pierce_french",
+    "name": "Pierce & French",
+    "occupation": "blacksmith",
+    "street": "Canal Street",
+    "first_issue": "1834-06-25",
+    "last_issue": "1834-12-17",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_the_new_blacksmith_shop_opposite_the_chicago_hotel",
+    "name": "the new blacksmith shop opposite the Chicago Hotel",
+    "occupation": "blacksmith",
+    "street": null,
+    "first_issue": "1833-12-10",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "russell",
+   "a": {
+    "id": "biz_russell_brown",
+    "name": "Russell & Brown",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-05-20",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_russell_clift",
+    "name": "Russell & Clift",
+    "occupation": "bookseller",
+    "street": "Water Street",
+    "first_issue": "1834-08-27",
+    "last_issue": "1835-08-29",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "simons",
+   "a": {
+    "id": "biz_marsh_simons",
+    "name": "Marsh & Simons",
+    "occupation": "provision_dealer",
+    "street": null,
+    "first_issue": "1834-08-13",
+    "last_issue": "1834-08-13",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_the_boston_market",
+    "name": "The Boston Market",
+    "occupation": "provision_dealer",
+    "street": null,
+    "first_issue": "1834-08-13",
+    "last_issue": "1834-08-13",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_charles_taylor",
+    "name": "Charles Taylor",
+    "occupation": "clothier",
+    "street": "South Water Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-04",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_taylor_handy",
+    "name": "Taylor & Handy",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "present_at_scene_date": false
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_charles_taylor",
+    "name": "Charles Taylor",
+    "occupation": "clothier",
+    "street": "South Water Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-04",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_w_h_taylor",
+    "name": "[W. H.] Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_charles_taylor",
+    "name": "Charles Taylor",
+    "occupation": "clothier",
+    "street": "South Water Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-04",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-07-16",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_charles_taylor",
+    "name": "Charles Taylor",
+    "occupation": "clothier",
+    "street": "South Water Street",
+    "first_issue": "1834-06-04",
+    "last_issue": "1834-06-04",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_taylor_handy",
+    "name": "Taylor & Handy",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_wm_h_taylor",
+    "name": "Wm. H. Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_taylor_handy",
+    "name": "Taylor & Handy",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_w_h_taylor",
+    "name": "[W. H.] Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_taylor_handy",
+    "name": "Taylor & Handy",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-07-16",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_taylor_handy",
+    "name": "Taylor & Handy",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-18",
+    "last_issue": "1834-03-18",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_wm_h_taylor",
+    "name": "Wm. H. Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_w_h_taylor",
+    "name": "[W. H.] Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_wm_h_taylor",
+    "name": "Wm. H. Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-07-16",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_wm_h_taylor",
+    "name": "Wm. H. Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1835-05-20",
+    "last_issue": "1835-08-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_w_h_taylor",
+    "name": "[W. H.] Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-07-16",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_w_h_taylor",
+    "name": "[W. H.] Taylor",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-11-05",
+    "last_issue": "1834-11-05",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "taylor",
+   "a": {
+    "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-07-16",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+    "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+    "occupation": "shoemaker",
+    "street": "Dearborn Street",
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wellmaker",
+   "a": {
+    "id": "biz_j_wellmaker_co",
+    "name": "J. Wellmaker & Co.",
+    "occupation": null,
+    "street": null,
+    "first_issue": "1834-03-04",
+    "last_issue": "1834-04-08",
+    "present_at_scene_date": false
+   },
+   "b": {
+    "id": "biz_the_man_trap",
+    "name": "the Man Trap",
+    "occupation": "baker",
+    "street": null,
+    "first_issue": "1833-12-10",
+    "last_issue": "1834-03-04",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth",
+    "name": "E. Wentworth",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-12-10",
+    "last_issue": "1834-12-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_public_house_on_flag_creek",
+    "name": "E. Wentworth's public house on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-04-08",
+    "last_issue": "1834-04-08",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth",
+    "name": "E. Wentworth",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-12-10",
+    "last_issue": "1834-12-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_tavern_on_flag_creek",
+    "name": "E. Wentworth's tavern on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1833-12-17",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth",
+    "name": "E. Wentworth",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-12-10",
+    "last_issue": "1834-12-10",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_tavern_flag_creek",
+    "name": "E. Wentworth's tavern, Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth_s_public_house_on_flag_creek",
+    "name": "E. Wentworth's public house on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-04-08",
+    "last_issue": "1834-04-08",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_tavern_on_flag_creek",
+    "name": "E. Wentworth's tavern on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1833-12-17",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth_s_public_house_on_flag_creek",
+    "name": "E. Wentworth's public house on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-04-08",
+    "last_issue": "1834-04-08",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_tavern_flag_creek",
+    "name": "E. Wentworth's tavern, Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  },
+  {
+   "surname": "wentworth",
+   "a": {
+    "id": "biz_e_wentworth_s_tavern_on_flag_creek",
+    "name": "E. Wentworth's tavern on Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1833-12-17",
+    "last_issue": "1834-01-07",
+    "present_at_scene_date": true
+   },
+   "b": {
+    "id": "biz_e_wentworth_s_tavern_flag_creek",
+    "name": "E. Wentworth's tavern, Flag Creek",
+    "occupation": "tavern_keeper",
+    "street": null,
+    "first_issue": "1834-07-02",
+    "last_issue": "1834-07-02",
+    "present_at_scene_date": true
+   }
+  }
+ ]
+}

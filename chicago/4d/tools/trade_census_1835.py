@@ -91,6 +91,16 @@ def classify(gazetteer: dict, rulings: dict) -> list:
     seen_trades = set()
     for biz in gazetteer["businesses"]:
         trade = biz.get("trade")
+        # A TRADE A MERGE DEMOTED IS STILL A READING THE CORPUS CARRIES (T-1388).
+        # `compile_gazetteer.py` keeps every trade string either side of a firm merge
+        # printed, in `trade_variants`, "so the merge cannot quietly narrow what the
+        # papers said" — only one of them can be the surviving record's `trade`. Counted
+        # off the primary alone, the orphan check below then reads the demoted string as
+        # a ruling that has outlived its reading and fails the gate. It has not: the
+        # printing is still in the corpus and the ruling still describes it. Measured on
+        # the 5 August 1835 merges, which demoted 'land surveying' behind 'deputy
+        # surveyor of Cook County' and 'surgeon dentistry' behind 'dentistry'.
+        seen_trades.update(t for t in (biz.get("trade_variants") or []) if t in by_trade)
         override = overrides.get(biz["id"])
         if trade:
             ruling = by_trade.get(trade)

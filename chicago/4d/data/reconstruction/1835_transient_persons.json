@@ -232,16 +232,16 @@
    "persons": 5
   },
   {
-   "id": "hh_rc_leland_samuel",
-   "file": "transients/hh_rc_leland_samuel.json",
+   "id": "hh_rc_leland_william",
+   "file": "transients/hh_rc_leland_william.json",
    "household_kind": "party",
    "sleeping_class": "a_room_in_a_public_house",
    "slot": "transients:a_room_in_a_public_house:012",
    "persons": 4
   },
   {
-   "id": "hh_rc_hale_luther",
-   "file": "transients/hh_rc_hale_luther.json",
+   "id": "hh_rc_hale_harvey",
+   "file": "transients/hh_rc_hale_harvey.json",
    "household_kind": "party",
    "sleeping_class": "a_room_in_a_public_house",
    "slot": "transients:a_room_in_a_public_house:013",
@@ -320,8 +320,8 @@
    "persons": 8
   },
   {
-   "id": "hh_rc_keegan_hugh",
-   "file": "transients/hh_rc_keegan_hugh.json",
+   "id": "hh_rc_keegan_daniel",
+   "file": "transients/hh_rc_keegan_daniel.json",
    "household_kind": "party",
    "sleeping_class": "the_floor_of_that_room",
    "slot": "transients:the_floor_of_that_room:010",
@@ -512,8 +512,8 @@
    "persons": 7
   },
   {
-   "id": "hh_rc_ingalls_erastus",
-   "file": "transients/hh_rc_ingalls_erastus.json",
+   "id": "hh_rc_ingalls_chauncey",
+   "file": "transients/hh_rc_ingalls_chauncey.json",
    "household_kind": "party",
    "sleeping_class": "a_store_house_thrown_open",
    "slot": "transients:a_store_house_thrown_open:006",
@@ -528,8 +528,8 @@
    "persons": 2
   },
   {
-   "id": "hh_rc_hale_harvey",
-   "file": "transients/hh_rc_hale_harvey.json",
+   "id": "hh_rc_hale_warren",
+   "file": "transients/hh_rc_hale_warren.json",
    "household_kind": "party",
    "sleeping_class": "a_store_house_thrown_open",
    "slot": "transients:a_store_house_thrown_open:008",
@@ -592,8 +592,8 @@
    "persons": 4
   },
   {
-   "id": "hh_rc_kellogg_willard",
-   "file": "transients/hh_rc_kellogg_willard.json",
+   "id": "hh_rc_kellogg_alvah",
+   "file": "transients/hh_rc_kellogg_alvah.json",
    "household_kind": "camp",
    "sleeping_class": "the_open_sky_upon_the_wharves",
    "slot": "transients:the_open_sky_upon_the_wharves:002",
@@ -616,8 +616,8 @@
    "persons": 1
   },
   {
-   "id": "hh_rc_gilbert_william",
-   "file": "transients/hh_rc_gilbert_william.json",
+   "id": "hh_rc_gilbert_samuel",
+   "file": "transients/hh_rc_gilbert_samuel.json",
    "household_kind": "camp",
    "sleeping_class": "the_open_sky_upon_the_wharves",
    "slot": "transients:the_open_sky_upon_the_wharves:005",
@@ -632,8 +632,8 @@
    "persons": 4
   },
   {
-   "id": "hh_rc_leland_henry",
-   "file": "transients/hh_rc_leland_henry.json",
+   "id": "hh_rc_leland_benjamin",
+   "file": "transients/hh_rc_leland_benjamin.json",
    "household_kind": "camp",
    "sleeping_class": "the_open_sky_upon_the_wharves",
    "slot": "transients:the_open_sky_upon_the_wharves:007",
@@ -752,8 +752,8 @@
    "persons": 5
   },
   {
-   "id": "hh_rc_chapin_asa",
-   "file": "transients/hh_rc_chapin_asa.json",
+   "id": "hh_rc_chapin_amos",
+   "file": "transients/hh_rc_chapin_amos.json",
    "household_kind": "camp",
    "sleeping_class": "a_tent_at_the_landing_place",
    "slot": "transients:a_tent_at_the_landing_place:009",

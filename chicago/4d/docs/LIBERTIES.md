@@ -10085,14 +10085,14 @@ ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The reg
 already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 95 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 94 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-09-12, **55** of the 95 do —
-17 enrich a house already standing, 16 ask for a new building, 22 take a street face — and
+visitor can see. Measured on the register as it stands on 2026-09-19, **54** of the 94 do —
+17 enrich a house already standing, 15 ask for a new building, 22 take a street face — and
 **40** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
 judged one house, and it is a dated reading rather than a standing claim; the 95 is the
 number this entry is held to and the number the gate re-derives. It has now moved six
@@ -11662,14 +11662,19 @@ year and a day before the scene date. The proxy had excluded from the July town 
 demonstrably stood in it. What is left after that reading is made everywhere it can be made
 is this class: documented houses whose standing on 1 July 1835 rests on ruling 3 — a
 documented business is built at the scene date unless contradicted — and on nothing else.
-**Scope:** `register_1835.businesses[backdating_liberty_required]` — 26 businesses, enumerated
+**Scope:** `register_1835.businesses[backdating_liberty_required]` — 21 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number cannot drift from the register
 without `check.sh` saying so, which is the point of writing it down. **It is a measurement and
 not the figure this entry's ticket quoted:** T-0404 was filed at *33* on 2026-08-29, before the
 flag it names was computed; the register's own summary has read 30 (T-0356, which minted it),
-then 28 (T-0402), 27 (T-0340) and 26 (T-0413). Every one of those movements is an identity
-pass judging two printed styles to be one house — not one business leaving Chicago.
+then 28 (T-0402), 27 (T-0340), 26 (T-0413) and 21 (T-1388). Every one of those movements is an
+identity pass judging two printed styles to be one house — not one business leaving Chicago.
+T-1388 is the largest of them and the plainest: the Chicago Democrat of 5 August 1835 printed
+the town's standing advertising block whole, and seven of its cards were second records for
+men the register already carried. A card restated is not a house founded, so the backdating
+this liberty covers was being claimed five times over for houses whose first printing the
+register had all along.
 **How the class is bounded, and how it is cleared.** 27 businesses stand in the July town whose
 first surviving issue postdates the scene date. **One** of them owes no liberty, and the
 mechanism is the one that makes the other 26 honest: an opening notice dated on or before

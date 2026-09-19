@@ -75,21 +75,21 @@ The business layer today is the newspaper-derived register; T-1180 authors the r
 
 | Measure | Count |
 | --- | ---: |
-| Register records | 196 |
-| Present at the scene date | 179 |
-| Naming a proprietor | 151 |
-| Naming a partner | 139 |
-| Naming a street | 94 |
-| Requiring a survival liberty | 95 |
-| Requiring a backdating liberty | 26 |
+| Register records | 189 |
+| Present at the scene date | 172 |
+| Naming a proprietor | 144 |
+| Naming a partner | 132 |
+| Naming a street | 90 |
+| Requiring a survival liberty | 94 |
+| Requiring a backdating liberty | 21 |
 
 The location limit of every firm present at the scene date — how far its evidence places it:
 
 | Location limit | Businesses |
 | --- | ---: |
 | enrich_existing | 30 |
-| new_building | 26 |
-| street_only | 61 |
+| new_building | 23 |
+| street_only | 57 |
 | unplaceable | 62 |
 
 Reproduce: `python3 tools/compile_register.py --check`.
@@ -117,7 +117,7 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1179 | 266 | open | yes |
-| T-1182 | 601 | open | yes |
+| T-1182 | 601 | split_live | yes |
 | T-1188 | 12 | open | yes |
 | T-1198 | 298 | open | yes |
 | T-1299 | 1 | open | yes |
@@ -130,8 +130,8 @@ Reproduce: `python3 tools/measure_research_spend.py --check`.
 ## 7. The gaps, stated
 
 1. **No unit-level ledger entry reaches the business or structure layers.** 799 asserted units land on residents and households and 0 on businesses and structures. Closing it means an authored business record (T-1180) and a seat on the ground (T-1198) for a claim to be asserted ONTO.
-2. **28 of the 179 firms standing on 1 July 1835 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits this and T-1189 staffs it.
-3. **62 firms are unplaceable and 61 reach a street and no further.** Those 123 are the location limits the research preserved rather than guessed past; T-1198 seats what can be seated and the rest stay limits.
+2. **28 of the 172 firms standing on 1 July 1835 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits this and T-1189 staffs it.
+3. **62 firms are unplaceable and 57 reach a street and no further.** Those 119 are the location limits the research preserved rather than guessed past; T-1198 seats what can be seated and the rest stay limits.
 4. **1,362 of 1,393 households have no `lives_at`.** Most are letter-list-only names (736) whose whole evidence is that a letter waited for them; where they live is T-1159's roster question, not a hole in the reading.
 5. **975 structure attributes are `reconstructed` against 16 attested and 164 inferred.** That is the honest shape of a town of which the sources describe a few dozen buildings; the grade says so on every value.
 

@@ -319,15 +319,22 @@ EXPECTED_GUARDS = {
     "T-0251": {"note_names_the_ticket": True, "note_carries_the_measurement": True,
                "physicians_office_committed": True},
     "T-0305": {"saddlery_on_the_watch_list": True},
+    # T-1388 TOOK ONE MONTGOMERY ENTRY OUT OF THIS LIST, and took nothing off the
+    # ground. 'W. Montgomery, Auction and Commission House' was the Democrat's 5 August
+    # 1835 setting of the card 'W. Montgomery' already carries — same auctioneer, same
+    # South Water Street, same stand taken from David Carver — and identity.json now
+    # merges the two. The retention this guard holds is UNCHANGED by that: every
+    # Montgomery record the register still carries is still street_only on South Water,
+    # which is the thing T-0386 asked to be told about if it ever stopped being true.
+    # Three entries where there were four, because one of the four was the other's
+    # second printing.
     "T-0386": {"montgomery_entries": ["business_l_w_montgomery_boot_and_shoe_maker",
                                       "business_montgomery_auction_and_commission_house",
-                                      "business_w_montgomery",
-                                      "business_w_montgomery_auction_and_commission_house"],
+                                      "business_w_montgomery"],
                "still_street_only_on_south_water":
                    ["business_l_w_montgomery_boot_and_shoe_maker",
                     "business_montgomery_auction_and_commission_house",
-                    "business_w_montgomery",
-                    "business_w_montgomery_auction_and_commission_house"],
+                    "business_w_montgomery"],
                "carver_structures": []},
     "T-1087": {"wabansia": ["undecided", "B4"],
                "kinzies_addition": ["undecided", "B4"],

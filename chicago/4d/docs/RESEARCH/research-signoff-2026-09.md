@@ -44,7 +44,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1182 | 601 | open | yes |
+| T-1182 | 601 | split_live | yes |
 | T-1198 | 298 | open | yes |
 | T-1179 | 266 | open | yes |
 | T-1335 | 169 | open | yes |
@@ -120,26 +120,26 @@ Reproduce: `python3 tools/derive_resident_roles.py --check`.
 
 | Measure | Count |
 | --- | ---: |
-| Register records | 196 |
-| Standing on 1835-07-01 | 179 |
-| Naming a proprietor | 151 |
-| Naming a partner | 139 |
-| Naming a street | 94 |
+| Register records | 189 |
+| Standing on 1835-07-01 | 172 |
+| Naming a proprietor | 144 |
+| Naming a partner | 132 |
+| Naming a street | 90 |
 
 The location limit is how far a firm's own evidence places it, published and then adjudicated. A limit is a preserved refusal, not a hole:
 
 | Published limit | Businesses |
 | --- | ---: |
-| `street_only` | 61 |
-| `structure` | 56 |
+| `street_only` | 57 |
+| `structure` | 53 |
 | `unplaceable` | 62 |
 
 | Adjudicated grade | Businesses |
 | --- | ---: |
 | `street_only_adopted` | 40 |
-| `street_only_unseated` | 21 |
-| `structure_committed` | 45 |
-| `structure_pending` | 11 |
+| `street_only_unseated` | 17 |
+| `structure_committed` | 43 |
+| `structure_pending` | 10 |
 | `unplaceable` | 62 |
 
 Businesses whose published limit moved during the spend: **0** — the spend seated what the evidence already reached and promoted nothing, so there is no firm to name here and no source to name it on. Seats a later reading may displace: **40**.
@@ -172,11 +172,11 @@ Home and work first, read off the household records:
 | `none` | 1,186 |
 | `structure` | 31 |
 
-Then every location claim the research makes, reconciled: **1,840** rows, each carrying a disposition, a date precision and — where it stops short — the clause that stops it.
+Then every location claim the research makes, reconciled: **1,833** rows, each carrying a disposition, a date precision and — where it stops short — the clause that stops it.
 
 | Claim kind | Rows |
 | --- | ---: |
-| `business_location` | 179 |
+| `business_location` | 172 |
 | `home` | 1,393 |
 | `later_home_address` | 56 |
 | `later_workplace_address` | 162 |
@@ -184,10 +184,10 @@ Then every location claim the research makes, reconciled: **1,840** rows, each c
 
 | Disposition | Rows |
 | --- | ---: |
-| `limited` | 299 |
+| `limited` | 295 |
 | `no_claim` | 1,186 |
 | `refused` | 190 |
-| `resolved` | 165 |
+| `resolved` | 162 |
 
 Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. Rows called resolved that resolve onto nothing: **0** (C7). This is the answer to *how many attested location facts sit in prose with no structured target*: none — every claim in the corpus is a row here, and a row that could not be placed says so with its reason rather than being dropped or guessed past.
 
@@ -263,8 +263,8 @@ Reproduce: `node --check renderers/web/js/residents.js` and read the card blocks
 
 None of these is a condition above, and that is a judgement rather than an oversight: each names something 1835 did not write down, or a contract question about a tool, and neither kind is closed by reading more of what this project already holds.
 
-1. **28 of the 179 firms standing on 1835-07-01 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits it; T-1189 staffs it.
-2. **61 firms reach a street and 62 reach nowhere.** Those limits are preserved refusals; T-1198 seats what can be seated and the rest stay limits.
+1. **28 of the 172 firms standing on 1835-07-01 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits it; T-1189 staffs it.
+2. **57 firms reach a street and 62 reach nowhere.** Those limits are preserved refusals; T-1198 seats what can be seated and the rest stay limits.
 3. **1,362 of 1,393 households have no `lives_at`, and 1,186 sit in no seating class.** Most are post-office-list names whose whole evidence is that a letter waited for them. T-1172 rules on their re-admission; T-1199 seats them.
 4. **1,942 of 2,269 persons carry no dated role, and 189 carry only roles dated away from the scene date.** The town's trades come from newspapers, directories and registers, and those name the men who advertised. T-1173 reconstructs the trade households the occupation model still wants.
 5. **Only 7 `associated_with` rows exist.** The plural, dated location row is the agreed shape (T-1147) and the renderer already reads it, but the migration off the singular `lives_at`/`works_at` pair has barely begun: T-1273 writes the committed reconciliations as association rows, T-1274 retires the pair. Until then the reconciliation table above, not the card, is where a person's second address is legible — which is why C7 measures the table.

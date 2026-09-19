@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
-| Businesses (enumerated classes) | 120 | 118 | 24 |
+| Businesses (enumerated classes) | 120 | 114 | 27 |
 | Roofs | 668 | 384 | 297 |
 
 ## The rules this book adds
@@ -51,7 +51,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/female/10_19/north/family/none` | 32 | 6 | 26 | 26 | T-1174 |
 | `persons/female/10_19/north/lodging/none` | 11 | 2 | 9 | 5 | T-1175 |
 | `persons/female/10_19/south/family/none` | 76 | 15 | 61 | 61 | T-1174 |
-| `persons/female/10_19/south/lodging/none` | 27 | 5 | 22 | 4 | T-1175 |
+| `persons/female/10_19/south/lodging/none` | 27 | 5 | 22 | 3 | T-1175 |
 | `persons/female/10_19/west/family/none` | 28 | 4 | 24 | 24 | T-1174 |
 | `persons/female/10_19/west/lodging/none` | 10 | 2 | 8 | 1 | T-1175 |
 | `persons/female/20_29/north/family/trade` | 18 | 3 | 15 | 15 | T-1347 |
@@ -133,7 +133,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/male/30_39/south/family/trade` | 43 | 8 | 35 | 35 | T-1347 |
 | `persons/male/30_39/south/family/none` | 81 | 15 | 66 | 0 | T-1171 |
 | `persons/male/30_39/south/lodging/trade` | 15 | 3 | 12 | 0 | T-1175 |
-| `persons/male/30_39/south/lodging/none` | 29 | 6 | 23 | 4 | T-1175 |
+| `persons/male/30_39/south/lodging/none` | 29 | 6 | 23 | 3 | T-1175 |
 | `persons/male/30_39/west/family/trade` | 16 | 3 | 13 | 13 | T-1347 |
 | `persons/male/30_39/west/family/none` | 30 | 5 | 25 | 0 | T-1171 |
 | `persons/male/30_39/west/lodging/trade` | 5 | 1 | 4 | 0 | T-1175 |
@@ -204,10 +204,10 @@ The households the model wants, by kind and division.
 
 The December 1835 State census set against the register the town already holds.
 
-- `register_total`: 196
-- `at_scene_date`: 180
+- `register_total`: 189
+- `at_scene_date`: 173
 - `census_enumerated_total`: 118
-- `register_businesses_read`: 196
+- `register_businesses_read`: 189
 - `division_note`: EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.
 - `staffing_note`: The STAFF each business implies is T-1183's model and is not guessed at here; T-1189 staffs them from it.
 
@@ -219,7 +219,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/church` | 5 | 0 | 5 | 0 | T-1188 |
 | `businesses/druggist` | 4 | 2 | 2 | 0 | T-1184 |
 | `businesses/iron_foundry` | 1 | 1 | 0 | 0 | T-1185 |
-| `businesses/lawyer` | 22 | 18 | 4 | 0 | T-1186 |
+| `businesses/lawyer` | 22 | 15 | 7 | 0 | T-1186 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/lyceum_and_reading_room` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/physician` | 14 | 3 | 11 | 0 | T-1186 |
@@ -228,7 +228,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/silversmith_jeweller` | 2 | 1 | 1 | 0 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
 | `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
-| `businesses/store` | 44 | 59 | 0 | 0 | T-1184 |
+| `businesses/store` | 44 | 58 | 0 | 0 | T-1184 |
 | `businesses/tavern` | 8 | 8 | 0 | 0 | T-1187 |
 | `businesses/tin_and_copper_manufactory` | 2 | 4 | 0 | 0 | T-1185 |
 
