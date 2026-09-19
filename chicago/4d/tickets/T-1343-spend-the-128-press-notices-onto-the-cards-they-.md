@@ -1,7 +1,7 @@
 ---
 id: T-1343
 title: Spend the 128 press notices onto the cards they name, on identifications a committed newspapers-to-residents crosswalk makes, and refuse in writing the ones it cannot make
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1338
 opened: 2026-09-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 9:54:27 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35416872113
 ---
 
 Spend the 128 press notices onto the cards they name, on identifications a committed newspapers-to-residents crosswalk makes, and refuse in writing the ones it cannot make.
