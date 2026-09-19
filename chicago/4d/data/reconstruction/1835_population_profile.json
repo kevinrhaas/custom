@@ -2666,7 +2666,7 @@
   {
    "id": "origin_and_arrival",
    "title": "Origin and arrival",
-   "lead": "Every household carries an arrival block and 95.4% of them (1319) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1382 households name an origin and 1382 a reason for coming.",
+   "lead": "Every household carries an arrival block and 95.2% of them (1316) hold a `not_later_than` BOUND rather than an arrival: somebody was writing to that name at Chicago by a date, and nothing says when they came. Only 1382 households name an origin and 1382 a reason for coming.",
    "tables": [
     {
      "title": "The three axes, by tier",
@@ -2722,8 +2722,8 @@
      "rows": [
       [
        "not_later_than",
-       1319,
-       "95.4%"
+       1316,
+       "95.2%"
       ],
       [
        "year",
@@ -2732,8 +2732,8 @@
       ],
       [
        "season",
-       6,
-       "0.4%"
+       9,
+       "0.7%"
       ],
       [
        "month",
