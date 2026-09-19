@@ -1,7 +1,7 @@
 ---
 id: T-1386
 title: The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1523
 claimed_by: run 9/19/2026, 9:39:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T15:44:22.904Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35449200132
 ---
 
