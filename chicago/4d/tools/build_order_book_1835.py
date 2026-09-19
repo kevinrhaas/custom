@@ -117,7 +117,10 @@ PERSON_TICKET_RULES = (
     ("fort division", lambda a: a["division"] == "fort", "T-1176"),
     ("the transient cohort", lambda a: a["household_type"] == "transient", "T-1178"),
     ("a bed rather than a household", lambda a: a["household_type"] == "lodging", "T-1175"),
-    ("an adult at a trade", lambda a: a["trade"] == "trade", "T-1173"),
+    # T-1347 repointed this off its split parent. T-1173 was the epic; it split into
+    # T-1346 (read the 1839 trade table) and T-1347 (draw the heads), and a bucket whose
+    # owning ticket is a SPLIT parent names nobody who can act on it (T-1237).
+    ("an adult at a trade", lambda a: a["trade"] == "trade", "T-1347"),
     ("a woman or a person under twenty", lambda a: a["sex"] == "female" or a["age_band"] in ("under_10", "10_19"), "T-1174"),
     ("otherwise: a family drawn from the household model", lambda a: True, "T-1171"),
 )
@@ -1120,7 +1123,7 @@ def cmd_self_test() -> int:
     doc = build(data, [], occ)
     first = doc["bucket_families"][0]["buckets"][0]
     fires("a bucket filled past its quota",
-          lambda: build(data, [{"ticket": "T-1173", "bucket": first["key"],
+          lambda: build(data, [{"ticket": "T-1347", "bucket": first["key"],
                                 "records": (first["to_reconstruct"] or 0) + 1}], occ))
     fires("a fill that names no ticket",
           lambda: build(data, [{"bucket": first["key"], "records": 1}], occ))
