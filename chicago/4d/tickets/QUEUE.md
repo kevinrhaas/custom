@@ -232,4 +232,3 @@ T-1383 — The two women the St Mary's priest wrote down as Indigenous are the o
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
 T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand
-
