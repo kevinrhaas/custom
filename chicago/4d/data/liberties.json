@@ -14795,7 +14795,7 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
-      "recorded": null,
+      "recorded": "2026-09-18",
       "revised": null,
       "fields": [
         {
@@ -14821,6 +14821,10 @@
         {
           "label": "How to resolve",
           "text": "any source naming a member of the Murphy or Adams household at or before 1 July 1835 retires the person it names — that is each record's own `replaceable_by`. Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-18."
         }
       ]
     },
@@ -14880,7 +14884,7 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
-      "recorded": "2026-09-18",
+      "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
@@ -14893,7 +14897,7 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-09-18."
+          "text": "2026-09-19."
         }
       ]
     },

@@ -830,6 +830,13 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 16s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "readmit_borderline_roster.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a clean tree in 22s, wrote its outputs, changed no committed byte.",
+      "placed": "not yet — it writes data/reconstruction/1835_readmissions.json and data/residents/readmitted/*.json, and it reads the borderline roster, the resident layer and three directory crosswalks. Its slot is after the roster export and before anything that COUNTS people; ordering is its own measured pass (T-1302's note above) and is not appended blind here."
+    },
     "rebuild_resident_index.py": {
       "placement": "manifest",
       "write_mode": null,

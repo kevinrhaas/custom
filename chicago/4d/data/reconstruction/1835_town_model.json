@@ -77,7 +77,7 @@
           "high": 1285,
           "point": null,
           "is_a_count": true,
-          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 303 reconstructed. A count of the layer, not of the town.",
+          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 492 reconstructed. A count of the layer, not of the town.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -148,9 +148,9 @@
           ]
         },
         "known_by_presence": {
-          "present": 759,
-          "absent": 2,
-          "uncertain": 827
+          "present": 1617,
+          "absent": 62,
+          "uncertain": 98
         }
       }
     },
@@ -475,11 +475,11 @@
         },
         {
           "figure": "household_records_the_layer_carries",
-          "low": 1258,
-          "high": 1258,
+          "low": 1447,
+          "high": 1447,
           "point": null,
           "is_a_count": true,
-          "method": "1,258 household records for 1,285 people — 1.02 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families.",
+          "method": "1,447 household records for 1,285 people — 0.89 people per record. The layer mints a letter-list or civic name as its own household, so it holds MORE household shells than the town had households. That is a property of the mint, not a reading of the town, and the order book must not count them as families.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -785,11 +785,11 @@
       "figures": [
         {
           "figure": "arrived_in_the_three_years_before_the_scene",
-          "low": 1.172,
-          "high": 1.172,
+          "low": 1.197,
+          "high": 1.197,
           "point": null,
           "is_a_count": true,
-          "method": "1,506 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -221 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
+          "method": "1,538 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -253 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -797,11 +797,11 @@
         },
         {
           "figure": "arrived_in_1835_itself",
-          "low": 0.495,
-          "high": 0.495,
+          "low": 0.51,
+          "high": 0.51,
           "point": null,
           "is_a_count": true,
-          "method": "636 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below.",
+          "method": "655 of 1,285. This is the figure the population floor is built on, and it is the one most exposed to the bias below.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -878,8 +878,8 @@
             },
             {
               "year": 1826,
-              "people": 2,
-              "share": 0.0016
+              "people": 3,
+              "share": 0.0023
             },
             {
               "year": 1827,
@@ -893,28 +893,28 @@
             },
             {
               "year": 1831,
-              "people": 19,
-              "share": 0.0148
+              "people": 22,
+              "share": 0.0171
             },
             {
               "year": 1832,
-              "people": 37,
-              "share": 0.0288
+              "people": 40,
+              "share": 0.0311
             },
             {
               "year": 1833,
-              "people": 212,
-              "share": 0.165
+              "people": 215,
+              "share": 0.1673
             },
             {
               "year": 1834,
-              "people": 658,
-              "share": 0.5121
+              "people": 668,
+              "share": 0.5198
             },
             {
               "year": 1835,
-              "people": 636,
-              "share": 0.4949
+              "people": 655,
+              "share": 0.5097
             }
           ]
         },

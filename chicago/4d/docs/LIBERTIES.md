@@ -12251,6 +12251,9 @@ anybody in `data/residents/` is graded `reconstructed`.
 **How to resolve:** any source naming a member of the Murphy or Adams household at or before
 1 July 1835 retires the person it names — that is each record's own `replaceable_by`.
 Related: ticket **T-1314**, piece 3 of **T-1170**; programme **T-1167**.
+
+**Recorded:** 2026-09-18.
+
 ### L243 — Every household in the town now says where it came from and why, and 3,629 of those statements were made here rather than read
 
 **Decision:** stage `attribute_fill_arrival` of the 1835 resident reconstruction programme
@@ -12439,4 +12442,4 @@ row's ruling on its own.
 
 Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster
 **T-1159**, the programme **T-1167**.
-**Recorded:** 2026-09-18.
+**Recorded:** 2026-09-19.

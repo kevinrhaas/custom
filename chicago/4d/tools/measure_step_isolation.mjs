@@ -3,6 +3,7 @@
  * measure_step_isolation.mjs — what every gate step WRITES, measured rather than assumed.
  *
  *   node tools/measure_step_isolation.mjs --build     run the gate instrumented, write the file
+ *   node tools/measure_step_isolation.mjs --only <tool>  measure ONE tool's own gate steps
  *   node tools/measure_step_isolation.mjs --self-test prove the reader's own assertions fire
  *
  * WHY THIS EXISTS (T-1339, out of T-1336). check.sh runs its steps in a job pool over ONE
@@ -144,6 +145,69 @@ function build() {
   return 0;
 }
 
+
+// --only <tool> — MEASURE ONE TOOL, for the run that adds it (T-1172, 2026-09-19).
+//
+// `--build` is the honest measurement and stays the one that writes the whole file. It
+// runs the gate SERIALLY so a write is attributable, and that is ~16 minutes on this
+// tree — over the 600 s foreground ceiling a steward run has, which is T-1316. So a run
+// that adds a gate step could not measure the step it was adding, and the only ways
+// left were to hand-write a row (a guess wearing a measurement's clothes) or to leave
+// the coverage gate red.
+//
+// This measures the SAME WAY on a smaller set: it takes the commands check.sh itself
+// declares for the named tool, runs each under the same probe env, and merges the row
+// into the existing file. What it does NOT do is re-measure anybody else — every other
+// row keeps the date and the paths its own run measured, and `measured_rows` records
+// which rows were taken this way so the file never claims a whole-gate run it did not
+// have. The next `--build` overwrites all of it from one instrumented gate, which is
+// the state this file wants to be in.
+function buildOnly(tool) {
+  if (!tool) { console.error('usage: measure_step_isolation.mjs --only <tools/x.py>'); return 2; }
+  const steps = declaredSteps(fs.readFileSync(path.join(APP, 'tools', 'check.sh'), 'utf8'));
+  const mine = steps.filter((s) => toolOf(s.command) === tool);
+  if (!mine.length) { console.error(`no gate step runs ${tool} — check.sh declares none`); return 1; }
+
+  const jsonl = fs.mkdtempSync('/tmp/c4d-iso-') + '/probe.jsonl';
+  fs.writeFileSync(jsonl, '');
+  const env = {
+    ...process.env,
+    ISOLATION_ROOT: ROOT,
+    ISOLATION_OUT: jsonl,
+    PYTHONPATH: PROBE + (process.env.PYTHONPATH ? ':' + process.env.PYTHONPATH : ''),
+    NODE_OPTIONS: `--require ${path.join(PROBE, 'node_probe.js')}` + (process.env.NODE_OPTIONS ? ' ' + process.env.NODE_OPTIONS : ''),
+  };
+  for (const s of mine) {
+    console.log(`running ${s.kind}: ${s.command}`);
+    const r = spawnSync('bash', ['-c', s.command], { cwd: APP, env, encoding: 'utf8', maxBuffer: 1 << 28 });
+    if (r.status !== 0) { console.error(`  ^ exited ${r.status} — measure it on a tree where it passes`); return 1; }
+  }
+
+  const wrote = new Set(); const by = new Set();
+  for (const line of fs.readFileSync(jsonl, 'utf8').split('\n')) {
+    if (!line.trim()) continue;
+    let d; try { d = JSON.parse(line); } catch { continue; }
+    const argv0 = (d.argv || [])[0] || '';
+    if (!argv0.includes(tool)) continue;
+    for (const w of d.wrote || []) wrote.add(w);
+    if ((d.wrote || []).length) by.add((d.argv || []).join(' ').trim());
+  }
+
+  const doc = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+  doc.tools[tool] = { wrote: [...wrote].sort() };
+  if (by.size) doc.tools[tool].wrote_by = [...by].sort();
+  doc.tools = Object.fromEntries(Object.keys(doc.tools).sort().map((k) => [k, doc.tools[k]]));
+  doc.declared_steps = steps.length;
+  doc.measured_rows = { ...(doc.measured_rows || {}), [tool]: new Date().toISOString().slice(0, 10) };
+  fs.writeFileSync(OUT, JSON.stringify(doc, null, 2) + '\n');
+
+  const ex = Object.keys(doc.exempt || {});
+  const live = [...wrote].filter((w) => !ex.some((p) => w.startsWith(p)));
+  console.log(`\nmerged ${tool} into ${path.relative(ROOT, OUT)} — ${mine.length} step(s), ${wrote.size} path(s) written`);
+  console.log(live.length ? `  WRITES LIVE  ${live.slice(0, 3).join(', ')}` : '  it wrote nothing in the live tree');
+  return 0;
+}
+
 function selfTest() {
   let bad = 0;
   const ok = (c, m) => { console.log(`   ${c ? 'ok  ' : 'FAIL'}  ${m}`); if (!c) bad++; };
@@ -182,6 +246,7 @@ const isEntry = process.argv[1] && path.resolve(process.argv[1]) === path.resolv
 const arg = isEntry ? process.argv[2] : null;
 if (isEntry) {
 if (arg === '--build') process.exit(build());
+else if (arg === '--only') process.exit(buildOnly(process.argv[3]));
 else if (arg === '--self-test') process.exit(selfTest());
-else { console.error('usage: measure_step_isolation.mjs --build | --self-test'); process.exit(2); }
+else { console.error('usage: measure_step_isolation.mjs --build | --only <tool> | --self-test'); process.exit(2); }
 }
