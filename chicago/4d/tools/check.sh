@@ -3472,6 +3472,23 @@ step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards
 selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
   python3 tools/spend_appearance_bounds.py --self-test
 
+# T-1343. AND THE THIRD CORPUS OF T-1329, WHICH WAITED ON A NAME RATHER THAN AN IDENTITY.
+# The press units could not be spent while a newspaper claim's ledger id was its bare
+# `c004` — 55 held issues each print one, so a bound naming it would have closed 937 other
+# units of this corpus as `asserted`. T-1342 gave a claim a file-qualified key and this
+# pass spends what that unblocked: 111 of the 147 units whose only content is a named
+# person on a dated day, written as `persons[].dated_bounds[]` through the shared block,
+# two owners for the two papers. The identification is the committed register's
+# (`register_1835.json`, `action: enrich`) and is never re-made here; `here_by` is null on
+# every row, because a name in the town's print is not a body in the town. The other 36 are
+# refused by name in the ruling register, and the ledger's own `ruling_coverage_faults`
+# fails a ruling on one of the 111 as work that reads done and is not.
+step "…and the 111 identified press appearances are bounds on the 148 cards they name (T-1343)" \
+  python3 tools/spend_press_bounds.py --check --quiet
+
+selftest "…and a name in print is never a presence, and no card the register did not enrich is touched" \
+  python3 tools/spend_press_bounds.py --self-test
+
 # T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
 # land-sale purchaser units and could not close 313 of them: the tract was entered on or
 # before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
