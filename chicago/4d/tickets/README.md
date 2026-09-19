@@ -386,3 +386,15 @@ closed on or after 2026-09-04 are required to carry `closed_at`.
 Body: the ask in plain words, the acceptance clause, and links (ROADMAP box,
 PRs, evidence images). Keep it under a screen — depth belongs in the ROADMAP box
 or the PR, and the What's-New length lesson applies to tickets too.
+
+## Unreal execution holds (owner, 2026-09-18)
+
+The Unreal band sits after South Through Time and before Loop Improvements. Its
+remote preparation rows are normal queue entries. Engine/host work is blocked-tech
+and represented there by commented HOLD references, not bare queue ids. The existing
+workable/claim checks enforce the state. Do not unblock those tickets merely because
+an upstream ticket closes: verify the CURRENT worker has the engine, toolchain, GPU
+and local/host access named in the ticket. The generic remote web worker is ineligible.
+A coordinator opens and immediately assigns/claims a ready local ticket; otherwise
+leave it held. Return it to its reserved band, not the unblock command's default queue
+foot. See [the environment contract](../docs/unreal/README.md).
