@@ -1,7 +1,7 @@
 ---
 id: T-1187
 title: Reconstruct the missing lodging, river and transport businesses: boarding houses to the 42-roof programme, the inns the lodging model wants, forwarding and warehouse hands, the ferries, drays and livery, the lumber yards, the pier-works gang and the vessels in port
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-16
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 5:54:24 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35473935108
 ---
 
 Fourth group of T-1184's tool, driven by T-1164 as well as the order book.
