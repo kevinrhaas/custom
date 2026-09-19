@@ -4767,8 +4767,15 @@ RESIDENT_SCENE_DATE = "1835-07-01"
 # but for the opposite reason: every person on one of its cards is invented and carries the
 # `rc_` id that says so, and the pass name is what says which stage of the reconstruction
 # programme made the card.
+# `reconstructed_garrison` is T-1349's, stage `garrison` of the same programme. It writes
+# households nobody is named in, like the one above, and differs in what its cards are
+# ARGUED from: not a share of a town model but a statute, a company count and the Army's
+# own regulations. Its cards are also the first of the reconstruction to be SEATED — the
+# fort's roofs are in the record already — which is why they carry a `lives_at` where
+# T-1174's carry null.
 RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list", "civic",
-                          "reconstructed_readmission", "reconstructed_women_children")
+                          "reconstructed_readmission", "reconstructed_women_children",
+                          "reconstructed_garrison")
 
 # The per-domain evidence blocks tools/mint_civic_residents.py writes onto a person
 # (T-0514). Each row is a READING: the list it came from, the transcription as read,
@@ -4968,7 +4975,21 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
             # redraws it, and the evidence that would retire it. That is asserted here
             # rather than waved through, so exempting the role does not exempt the working.
             if occ.get("confidence") == "reconstructed":
-                for key in ("tier", "basis", "seed", "replaceable_by"):
+                # A TRADE ARGUED FROM A RULE CARRIES NO SEED, BECAUSE NOTHING WAS DRAWN
+                # (T-1349). The programme's own person contract says exactly this —
+                # `reconstruct_residents_1835.check_reconstructed_person` refuses a seed on
+                # a `basis.kind == "rule"` person — and a garrison soldier's trade is that
+                # case: the Act of 2 March 1821 fixes what a company of infantry consisted
+                # of, so the trade follows from the establishment rather than from a draw
+                # over a model row. Demanding a seed there would make the record claim a
+                # draw it never made, which is the same misrepresentation this clause
+                # exists to prevent, pointed the other way. The rule id and the replacement
+                # are still owed, and still asserted.
+                argued = (occ.get("basis") or {}).get("kind") == "rule" \
+                    if isinstance(occ.get("basis"), dict) else False
+                owed = ("tier", "basis", "replaceable_by") if argued \
+                    else ("tier", "basis", "seed", "replaceable_by")
+                for key in owed:
                     if key in (None, "") or occ.get(key) in (None, ""):
                         rep.error(where, f"occupation '{occ.get('value')}' is graded "
                                          f"reconstructed and carries no {key}. A drawn "
