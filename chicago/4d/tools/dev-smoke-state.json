@@ -3,6 +3,40 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 90,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
+        "desktop 1280x800: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
+      ],
+      "wallSeconds": 1880,
+      "takenAt": "2026-09-19T10:07:29.183Z",
+      "ref": "steward/t-1371-seat-the-boarders",
+      "commit": "ee43798edd78",
+      "devCommit": "d18bac521077",
+      "treeHash": "sha256:9fce498d2aa74ca6",
+      "treeDirty": false,
+      "changelogHash": "sha256:1219bfc3c165b444",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.1,
+          0.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12",
       "parts": [
         12
@@ -1148,42 +1182,6 @@
       "source": "/tmp/smoke_d13.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "1-3",
-      "parts": [
-        1,
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 237,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the invented-name programme left nothing behind on this layer — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04, name_basis present: false",
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 414,
-      "takenAt": "2026-09-18T19:35:07.372Z",
-      "ref": "steward/t-1329-schedule-register-press",
-      "commit": "5045bcf70398",
-      "devCommit": "a2f4e043e250",
-      "treeHash": "sha256:1aae04b9522bba3a",
-      "treeDirty": false,
-      "changelogHash": "sha256:ae63ab9fc0fb9ae1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.1,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke_dev_m13.log"
-    },
-    {
       "viewport": "desktop",
       "stage": "2-3",
       "parts": [
@@ -1931,202 +1929,6 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-3",
-      "parts": [
-        1,
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 240,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 209,
-      "takenAt": "2026-09-18T19:04:19.234Z",
-      "ref": "steward/t-1327-reconstruction-contract-smoke",
-      "commit": "2c73a1237b8d",
-      "devCommit": "a2f4e043e250",
-      "treeHash": "sha256:f77e5be50331544f",
-      "treeDirty": true,
-      "changelogHash": "sha256:8d11c6c8ea73ca43",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          3.5,
-          2
-        ]
-      },
-      "source": "/tmp/smoke-mobile-13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-3",
-      "parts": [
-        1,
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 237,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the invented-name programme left nothing behind on this layer — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04, name_basis present: false",
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 301,
-      "takenAt": "2026-09-18T18:23:35.591Z",
-      "ref": "steward/t-1320-book-kin-ties",
-      "commit": "e5be1fdb48bf",
-      "devCommit": "c8349f5af68d",
-      "treeHash": "sha256:dfc34e278afaf7f4",
-      "treeDirty": false,
-      "changelogHash": "sha256:f8b7beca26aec14b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.3,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke_m13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 114,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 355,
-      "takenAt": "2026-09-18T18:18:26.204Z",
-      "ref": "steward/t-1320-book-kin-ties",
-      "commit": "e5be1fdb48bf",
-      "devCommit": "c8349f5af68d",
-      "treeHash": "sha256:dfc34e278afaf7f4",
-      "treeDirty": false,
-      "changelogHash": "sha256:f8b7beca26aec14b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.1,
-          3
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 177,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 420,
-      "takenAt": "2026-09-18T18:16:29.007Z",
-      "ref": "steward/t-1319-land-sale-enrichment-units",
-      "commit": "2de50beba211",
-      "devCommit": "a2f4e043e250",
-      "treeHash": "sha256:fa16f6d086bab985",
-      "treeDirty": false,
-      "changelogHash": "sha256:0c1c03662468771b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.2,
-          4,
-          3.1
-        ]
-      },
-      "source": "/tmp/smoke-m13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 73,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 253,
-      "takenAt": "2026-09-18T18:12:23.942Z",
-      "ref": "steward/t-1320-book-kin-ties",
-      "commit": "e5be1fdb48bf",
-      "devCommit": "c8349f5af68d",
-      "treeHash": "sha256:dfc34e278afaf7f4",
-      "treeDirty": false,
-      "changelogHash": "sha256:f8b7beca26aec14b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          3.5,
-          2.4
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 114,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 467,
-      "takenAt": "2026-09-18T18:09:03.825Z",
-      "ref": "steward/t-1319-land-sale-enrichment-units",
-      "commit": "649e30b1e526",
-      "devCommit": "a2f4e043e250",
-      "treeHash": "sha256:fa16f6d086bab985",
-      "treeDirty": false,
-      "changelogHash": "sha256:0c1c03662468771b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.8,
-          2.5
-        ]
-      },
-      "source": "/tmp/smoke-d13.log"
     }
   ]
 }
