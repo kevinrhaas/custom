@@ -2,7 +2,7 @@
  "id": "hh_lodging_recon_1835_north_h3_045",
  "name": "The lodgers of Reconstructed H3 large boarding house #045",
  "division": "north",
- "head": "rc_cavanagh_margaret",
+ "head": "rc_cavanagh_ellen",
  "source_pass": "reconstructed_lodging_household",
  "lodging_household": {
   "ticket": "T-1371",
@@ -19,7 +19,7 @@
    "smith_william",
    "rc_flynn_owen",
    "rc_gilbert_nancy",
-   "rc_mccarthy_honora",
+   "rc_mccarthy_ellen",
    "rc_shea_mary"
   ],
   "minted_here": 10,
@@ -76,8 +76,8 @@
  },
  "persons": [
   {
-   "id": "rc_cavanagh_margaret",
-   "name": "Margaret Cavanagh",
+   "id": "rc_cavanagh_ellen",
+   "name": "Ellen Cavanagh",
    "relationship": "head",
    "grade": "reconstructed",
    "sex": "female",
@@ -100,7 +100,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Margaret Cavanagh",
+    "value": "Ellen Cavanagh",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -150,8 +150,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
   },
   {
-   "id": "rc_kelly_catherine",
-   "name": "Catherine Kelly",
+   "id": "rc_kelly_johanna",
+   "name": "Johanna Kelly",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "female",
@@ -174,7 +174,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Catherine Kelly",
+    "value": "Johanna Kelly",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -470,8 +470,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 16 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
   },
   {
-   "id": "rc_bardwell_eli",
-   "name": "Eli Bardwell",
+   "id": "rc_bardwell_reuben",
+   "name": "Reuben Bardwell",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "male",
@@ -494,7 +494,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Eli Bardwell",
+    "value": "Reuben Bardwell",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {

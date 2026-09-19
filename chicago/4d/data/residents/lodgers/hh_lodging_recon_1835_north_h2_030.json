@@ -145,8 +145,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
   },
   {
-   "id": "rc_mcguire_alice",
-   "name": "Alice McGuire",
+   "id": "rc_mcguire_bridget",
+   "name": "Bridget McGuire",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "female",
@@ -169,7 +169,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Alice McGuire",
+    "value": "Bridget McGuire",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
@@ -593,8 +593,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 10 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a boarder. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
   },
   {
-   "id": "rc_lyman_reuben",
-   "name": "Reuben Lyman",
+   "id": "rc_lyman_hiram",
+   "name": "Hiram Lyman",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "male",
@@ -617,7 +617,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Reuben Lyman",
+    "value": "Hiram Lyman",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {

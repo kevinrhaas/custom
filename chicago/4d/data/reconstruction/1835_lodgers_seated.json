@@ -191,10 +191,10 @@
     "smith_william",
     "rc_flynn_owen",
     "rc_gilbert_nancy",
-    "rc_mccarthy_honora",
+    "rc_mccarthy_ellen",
     "rc_shea_mary"
    ],
-   "minted_keeper": "rc_cavanagh_margaret",
+   "minted_keeper": "rc_cavanagh_ellen",
    "minted_lodgers": 9,
    "occupancy_after": 16,
    "inside_its_band": true,
@@ -257,7 +257,7 @@
    "keeper_persons": 0,
    "seated": [
     "rc_brady_hugh",
-    "rc_hayes_hugh"
+    "rc_hayes_patrick"
    ],
    "minted_keeper": null,
    "minted_lodgers": 0,
@@ -599,10 +599,10 @@
    }
   },
   {
-   "person": "rc_hayes_hugh",
-   "name": "Hugh Hayes",
-   "household": "hh_rc_hayes_hugh",
-   "file": "reconstructed_trades/hh_rc_hayes_hugh.json",
+   "person": "rc_hayes_patrick",
+   "name": "Patrick Hayes",
+   "household": "hh_rc_hayes_patrick",
+   "file": "reconstructed_trades/hh_rc_hayes_patrick.json",
    "drawn_solitary_by": "T-1173",
    "drawn_solitary_in_stage": "trade_households",
    "trade": "dry_goods_merchant",
@@ -643,10 +643,10 @@
    }
   },
   {
-   "person": "rc_mccarthy_honora",
-   "name": "Honora McCarthy",
-   "household": "hh_rc_mccarthy_honora",
-   "file": "reconstructed_trades/hh_rc_mccarthy_honora.json",
+   "person": "rc_mccarthy_ellen",
+   "name": "Ellen McCarthy",
+   "household": "hh_rc_mccarthy_ellen",
+   "file": "reconstructed_trades/hh_rc_mccarthy_ellen.json",
    "drawn_solitary_by": "T-1173",
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
@@ -882,7 +882,7 @@
   {
    "place": "recon_1835_north_h3_045",
    "name": "Reconstructed H3 large boarding house #045",
-   "keeper": "rc_cavanagh_margaret",
+   "keeper": "rc_cavanagh_ellen",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },

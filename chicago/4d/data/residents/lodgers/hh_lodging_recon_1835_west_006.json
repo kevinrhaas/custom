@@ -143,8 +143,8 @@
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
   },
   {
-   "id": "rc_dickinson_lucy",
-   "name": "Lucy Dickinson",
+   "id": "rc_dickinson_eliza",
+   "name": "Eliza Dickinson",
    "relationship": "boarder",
    "grade": "reconstructed",
    "sex": "female",
@@ -167,7 +167,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Lucy Dickinson",
+    "value": "Eliza Dickinson",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
