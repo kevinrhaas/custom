@@ -73,7 +73,28 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_08_13#c008 (notice, 1834-08-13).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (southern, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "marsh_silvester",
+        "name": "Silvester Marsh",
+        "role": "partner",
+        "community": "southern",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "simons_e",
+        "name": "Edward Simons",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

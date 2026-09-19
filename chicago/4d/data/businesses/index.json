@@ -54,7 +54,95 @@
       "North Water Street": 2,
       "Randolph Street": 2,
       "South Water Street": 39
+    },
+    "by_proprietor_community": {
+      "british": 9,
+      "new_york": 41,
+      "other": 10,
+      "southern": 5,
+      "unknown": 85,
+      "yankee": 46
     }
+  },
+  "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
+  "vocabulary": {
+    "communities": [
+      {
+        "value": "native",
+        "label": "Native (nation not stated)",
+        "count": 0
+      },
+      {
+        "value": "potawatomi",
+        "label": "Potawatomi",
+        "count": 0
+      },
+      {
+        "value": "ottawa",
+        "label": "Ottawa (Odawa)",
+        "count": 0
+      },
+      {
+        "value": "ojibwe",
+        "label": "Ojibwe",
+        "count": 0
+      },
+      {
+        "value": "metis",
+        "label": "Metis",
+        "count": 0
+      },
+      {
+        "value": "french_canadian",
+        "label": "French Canadian",
+        "count": 0
+      },
+      {
+        "value": "free_black",
+        "label": "Free Black",
+        "count": 0
+      },
+      {
+        "value": "yankee",
+        "label": "New England",
+        "count": 46
+      },
+      {
+        "value": "new_york",
+        "label": "New York State",
+        "count": 41
+      },
+      {
+        "value": "irish",
+        "label": "Irish",
+        "count": 0
+      },
+      {
+        "value": "german",
+        "label": "German",
+        "count": 0
+      },
+      {
+        "value": "british",
+        "label": "British",
+        "count": 9
+      },
+      {
+        "value": "southern",
+        "label": "Southern",
+        "count": 5
+      },
+      {
+        "value": "other",
+        "label": "Other",
+        "count": 10
+      },
+      {
+        "value": "unknown",
+        "label": "Unknown",
+        "count": 85
+      }
+    ]
   },
   "_businesses_doc": "THE DIRECTORY'S ROWS. Each carries what the Businesses list, its filters and its counts read — the card fetches the record itself and prints the rest. `grade` is the firm's own, not any one row's: attested where any of who-ran-it, where-it-stood or when-it-opened is attested, reconstructed where every one of them is, inferred otherwise. `place` is the PRIMARY location; `locations` says how many the record holds. The layer states no division for a business — street is as near as the record goes.",
   "businesses": [
@@ -93,7 +181,8 @@
       "opened": "1835-08-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -144,7 +233,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -192,7 +282,8 @@
       "opened": "1834-03-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -244,7 +335,8 @@
       "opened": "1834-12-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -289,7 +381,8 @@
       "opened": "1835-08-22",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -330,7 +423,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -378,7 +472,8 @@
       "opened": "1835-06-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -421,7 +516,8 @@
       "opened": "1835-06-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -455,7 +551,8 @@
       "opened": "1834-02-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -500,7 +597,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -537,7 +635,8 @@
       "opened": "1835-06-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -579,7 +678,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -617,7 +717,8 @@
       "opened": "1834-10-29",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -669,7 +770,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -714,7 +816,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -762,7 +865,8 @@
       "opened": "1835-06-24",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -846,7 +950,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -904,7 +1009,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -947,7 +1053,8 @@
       "opened": "1835-06-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -992,7 +1099,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1036,7 +1144,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1075,7 +1184,8 @@
       "opened": "1835-06-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -1118,7 +1228,8 @@
       "opened": "1835-08-17",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1162,7 +1273,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1201,7 +1313,8 @@
       "opened": "1834-04-23",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1250,7 +1363,8 @@
       "opened": "1834-04-01",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1302,7 +1416,8 @@
       "opened": "1834-01-07",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1352,7 +1467,8 @@
       "opened": "1834-01-07",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1400,7 +1516,8 @@
       "opened": "1835-05-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -1455,7 +1572,8 @@
       "opened": "1834-05-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1526,7 +1644,8 @@
       "opened": "1834-01-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -1579,7 +1698,8 @@
       "opened": "1834-11-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1615,7 +1735,8 @@
       "opened": "1835-07-22",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -1668,7 +1789,8 @@
       "opened": "1835-07-22",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -1707,7 +1829,8 @@
       "opened": "1835-08-14",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -1752,7 +1875,8 @@
       "opened": "1834-09-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1805,7 +1929,8 @@
       "opened": "1834-03-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1858,7 +1983,8 @@
       "opened": "1835-05-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -1903,7 +2029,8 @@
       "opened": "1834-06-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1972,7 +2099,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2011,7 +2139,8 @@
       "opened": "1835-07-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -2079,7 +2208,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -2133,7 +2263,8 @@
       "opened": "1834-07-23",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -2176,7 +2307,8 @@
       "opened": "1835-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -2229,7 +2361,8 @@
       "opened": "1835-08-07",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -2279,7 +2412,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2327,7 +2461,8 @@
       "opened": "1834-07-23",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2374,7 +2509,8 @@
       "opened": "1834-03-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2423,7 +2559,8 @@
       "opened": "1834-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2471,7 +2608,8 @@
       "opened": "1834-04-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2519,7 +2657,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2568,7 +2707,8 @@
       "opened": "1833-12-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2621,7 +2761,8 @@
       "opened": "1834-04-16",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -2668,7 +2809,8 @@
       "opened": "1834-06-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2713,7 +2855,8 @@
       "opened": "1835-07-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -2758,7 +2901,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -2811,7 +2955,8 @@
       "opened": "1834-11-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2859,7 +3004,8 @@
       "opened": "1834-03-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -2920,7 +3066,8 @@
       "opened": "1835-06-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -2961,7 +3108,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3006,7 +3154,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -3049,7 +3198,8 @@
       "opened": "1834-10-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3110,7 +3260,8 @@
       "opened": "1833-12-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -3163,7 +3314,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -3208,7 +3360,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3253,7 +3406,8 @@
       "opened": "1835-08-10",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -3337,7 +3491,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": []
     },
@@ -3380,7 +3535,8 @@
       "opened": "1834-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3434,7 +3590,8 @@
       "opened": "1834-05-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3533,7 +3690,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -3576,7 +3734,8 @@
       "opened": "1835-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -3619,7 +3778,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -3664,7 +3824,8 @@
       "opened": "1835-08-10",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -3707,7 +3868,8 @@
       "opened": "1834-02-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3804,7 +3966,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -3847,7 +4010,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3892,7 +4056,8 @@
       "opened": "1834-11-19",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -3954,7 +4119,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4007,7 +4173,8 @@
       "opened": "1834-07-16",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4052,7 +4219,8 @@
       "opened": "1835-08-19",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -4097,7 +4265,8 @@
       "opened": "1835-05-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -4140,7 +4309,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -4185,7 +4355,8 @@
       "opened": "1833-12-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4234,7 +4405,8 @@
       "opened": "1835-06-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -4303,7 +4475,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -4397,7 +4570,8 @@
       "opened": "1834-02-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4449,7 +4623,8 @@
       "opened": "1834-08-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4556,7 +4731,8 @@
       "opened": "1834-09-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -4652,7 +4828,8 @@
       "opened": "1834-03-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -4703,7 +4880,8 @@
       "opened": "1834-03-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -4751,7 +4929,8 @@
       "opened": "1835-07-11",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -4796,7 +4975,8 @@
       "opened": "1835-06-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": []
     },
@@ -4853,7 +5033,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -4898,7 +5079,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -4941,7 +5123,8 @@
       "opened": "1835-07-22",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -4986,7 +5169,8 @@
       "opened": "1835-08-19",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -5059,7 +5243,8 @@
       "opened": "1834-04-16",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -5118,7 +5303,8 @@
       "opened": "1835-06-10",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -5161,7 +5347,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5209,7 +5396,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5309,7 +5497,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5402,7 +5591,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5508,7 +5698,8 @@
       "opened": "1835-05-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -5559,7 +5750,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5600,7 +5792,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5642,7 +5835,8 @@
       "opened": "1834-06-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5687,7 +5881,8 @@
       "opened": "1835-07-22",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -5732,7 +5927,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -5785,7 +5981,8 @@
       "opened": "1833-12-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -5828,7 +6025,8 @@
       "opened": "1835-06-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -5868,7 +6066,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5991,7 +6190,8 @@
       "opened": "1835-06-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -6042,7 +6242,8 @@
       "opened": "1834-08-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -6097,7 +6298,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6142,7 +6344,8 @@
       "opened": "1834-07-23",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6191,7 +6394,8 @@
       "opened": "1835-06-24",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -6234,7 +6438,8 @@
       "opened": "1834-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6279,7 +6484,8 @@
       "opened": "1834-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6331,7 +6537,8 @@
       "opened": "1835-06-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": []
     },
@@ -6405,7 +6612,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -6441,7 +6649,8 @@
       "opened": "1834-08-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6489,7 +6698,8 @@
       "opened": "1835-06-17",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -6569,7 +6779,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6699,7 +6910,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -6747,7 +6959,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6806,7 +7019,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -6849,7 +7063,8 @@
       "opened": "1834-01-07",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6930,7 +7145,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": []
     },
@@ -6987,7 +7203,8 @@
       "opened": "1834-02-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -7046,7 +7263,8 @@
       "opened": "1834-06-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7095,7 +7313,8 @@
       "opened": "1834-02-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7140,7 +7359,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7185,7 +7405,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7223,7 +7444,8 @@
       "opened": "1834-09-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7279,7 +7501,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -7330,7 +7553,8 @@
       "opened": "1835-05-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7399,7 +7623,8 @@
       "opened": "1834-08-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7443,7 +7668,8 @@
       "opened": "1835-05-27",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7494,7 +7720,8 @@
       "opened": "1835-06-24",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7537,7 +7764,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -7582,7 +7810,8 @@
       "opened": "1835-06-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -7625,7 +7854,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -7694,7 +7924,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7739,7 +7970,8 @@
       "opened": "1834-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -7793,7 +8025,8 @@
       "opened": "1835-08-12",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -7846,7 +8079,8 @@
       "opened": "1835-08-18",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -7891,7 +8125,8 @@
       "opened": "1835-06-08",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -7942,7 +8177,8 @@
       "opened": "1834-03-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -7985,7 +8221,8 @@
       "opened": "1834-08-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8030,7 +8267,8 @@
       "opened": "1833-12-03",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8069,7 +8307,8 @@
       "opened": "1835-08-22",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -8105,7 +8344,8 @@
       "opened": "1834-08-06",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8150,7 +8390,8 @@
       "opened": "1835-06-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -8209,7 +8450,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -8243,7 +8485,8 @@
       "opened": "1835-07-27",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -8282,7 +8525,8 @@
       "opened": "1834-04-01",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8333,7 +8577,8 @@
       "opened": "1833-12-31",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "other",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8384,7 +8629,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8440,7 +8686,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8487,7 +8734,8 @@
       "opened": "1834-04-01",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8533,7 +8781,8 @@
       "opened": "1834-11-12",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8569,7 +8818,8 @@
       "opened": "1834-01-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8614,7 +8864,8 @@
       "opened": "1834-07-23",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8654,7 +8905,8 @@
       "opened": "1834-02-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8694,7 +8946,8 @@
       "opened": "1835-05-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -8754,7 +9007,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -8800,7 +9054,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8848,7 +9103,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8886,7 +9142,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8935,7 +9192,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -8971,7 +9229,8 @@
       "opened": "1834-07-09",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9007,7 +9266,8 @@
       "opened": "1834-07-02",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9057,7 +9317,8 @@
       "opened": "1834-07-16",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9093,7 +9354,8 @@
       "opened": "1834-05-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9130,7 +9392,8 @@
       "opened": "1834-05-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9166,7 +9429,8 @@
       "opened": "1834-05-14",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9210,7 +9474,8 @@
       "opened": "1835-08-12",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -9255,7 +9520,8 @@
       "opened": "1835-08-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -9308,7 +9574,8 @@
       "opened": "1834-05-21",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9344,7 +9611,8 @@
       "opened": "1834-05-28",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9394,7 +9662,8 @@
       "opened": "1834-11-05",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9448,7 +9717,8 @@
       "opened": "1834-05-07",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9524,7 +9794,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9583,7 +9854,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9628,7 +9900,8 @@
       "opened": "1835-07-06",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -9673,7 +9946,8 @@
       "opened": "1835-07-06",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "backdating_required"
@@ -9718,7 +9992,8 @@
       "opened": "1834-03-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9754,7 +10029,8 @@
       "opened": "1834-08-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9802,7 +10078,8 @@
       "opened": "1834-06-04",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9852,7 +10129,8 @@
       "opened": "1835-09-01",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "british",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -9895,7 +10173,8 @@
       "opened": "1834-06-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -9942,7 +10221,8 @@
       "opened": "1835-06-24",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -9998,7 +10278,8 @@
       "opened": "1835-05-20",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -10049,7 +10330,8 @@
       "opened": "1834-07-08",
       "closed": null,
       "dates_tier": "attested",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -10119,7 +10401,8 @@
       "opened": "1834-09-03",
       "closed": "1835-07-29",
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -10166,7 +10449,8 @@
       "opened": "1835-06-13",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unattested",
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     }

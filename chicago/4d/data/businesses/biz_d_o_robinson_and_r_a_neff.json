@@ -73,7 +73,28 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "yankee",
+    "tier": "reconstructed",
+    "rule": "proprietors_agree",
+    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read yankee: R. A. Neff (yankee), D. O. Robinson (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "from": [
+      {
+        "person_id": "neff_r_a",
+        "name": "R. A. Neff",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "robinson_d_o",
+        "name": "D. O. Robinson",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

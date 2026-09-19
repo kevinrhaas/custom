@@ -75,7 +75,28 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_07_02#c049 (notice, 1834-07-02).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (southern, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "laird_george_w",
+        "name": "G. W. Laird",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "laird_william",
+        "name": "William Laird",
+        "role": "partner",
+        "community": "southern",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

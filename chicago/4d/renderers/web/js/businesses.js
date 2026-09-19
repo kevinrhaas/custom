@@ -88,7 +88,7 @@ function day(d) {
 
 /** The filter rows, declared as data so the per-pill count pass can drop one row
  *  at a time — the same shape people.js uses, for the same reason. */
-function filterSpecs(rows, counts) {
+function filterSpecs(rows, counts, vocabulary) {
   const tally = (get) => {
     const c = new Map();
     for (const r of rows) for (const v of [].concat(get(r) ?? [])) if (v) c.set(v, (c.get(v) || 0) + 1);
@@ -100,6 +100,15 @@ function filterSpecs(rows, counts) {
   const topTypes = [...types.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 6);
   const topTrades = [...trades.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8);
   const grades = ['attested', 'inferred', 'reconstructed'].filter((g) => (counts.by_grade || {})[g] > 0);
+  // T-1378, from T-1177. The community of the house, read off the keepers its own
+  // record names and their cards in the resident layer — never off a surname. The pills
+  // stand in the vocabulary's order rather than by count, as the People view's do, and a
+  // term no house carries is left off until a reading puts somebody behind it: today
+  // that is Irish, German, free Black, Metis, French Canadian and all four Native terms.
+  // `Unknown` IS a pill. It is the answer for 85 of these 196 houses — the register
+  // names nobody the town holds a card for, or names nobody at all — and a filter that
+  // hid it would let the directory read as though the town's trade were settled.
+  const communities = (vocabulary?.communities || []).filter((c) => c.count > 0);
   return [
     {
       key: 'type', label: 'Kind',
@@ -123,6 +132,11 @@ function filterSpecs(rows, counts) {
       key: 'place', label: 'How far it is placed',
       options: Object.keys(PLACE).map((v) => [v, PLACE[v][0]]),
       test: (v) => (r) => r.where?.kind === v,
+    },
+    {
+      key: 'community', label: 'Community',
+      options: communities.map((c) => [c.value, c.label]),
+      test: (v) => (r) => (r.proprietor_community || 'unknown') === v,
     },
     {
       key: 'grade', label: 'Grade', group: 'facts',
@@ -181,7 +195,9 @@ export async function mountBusinesses({
       r.where?.street || '', ...(r.people || []).map((p) => p.name)].join(' ')),
   }));
   const byId = new Map(rows.map((r) => [r.id, r]));
-  const specs = filterSpecs(rows, counts);
+  const specs = filterSpecs(rows, counts, index.vocabulary);
+  const COMMUNITY_LABEL = new Map(
+    (index.vocabulary?.communities || []).map((c) => [c.value, c.label]));
 
   const compact = typeof matchMedia === 'function' ? matchMedia('(max-width: 620px)') : null;
   const state = {
@@ -362,9 +378,18 @@ export async function mountBusinesses({
     return '';
   }
 
+  /** The community label on a LIST row, printed only where the layer reads one —
+   *  the same rule people.js uses, so a house and its keeper read alike. */
+  function communityText(r) {
+    const v = r.proprietor_community;
+    if (!v || v === 'unknown') return '';
+    return COMMUNITY_LABEL.get(v) || words(v);
+  }
+
   function rowHtml(r) {
     const sub = [
       r.trade || (r.occupation ? words(r.occupation) : ''),
+      communityText(r),
       whereText(r),
       r.opened ? `from ${String(r.opened).slice(0, 4)}` : '',
     ].filter(Boolean).join(' · ');
@@ -468,6 +493,24 @@ export async function mountBusinesses({
       p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}</li>`;
   }
 
+  /** What community the house is read as, and the whole of what it was read off.
+   *  A silence prints too, and says WHICH silence it was: the register named nobody the
+   *  town cards, or it named them and the resident layer knows no community for them. */
+  function communityHtml(block) {
+    if (!block || typeof block !== 'object') return '';
+    const label = block.value === 'unknown' ? 'Not read'
+      : (COMMUNITY_LABEL.get(block.value) || words(block.value));
+    const people = (block.from || []).map((f) => `<li>
+      <i class="grade-dot grade-${escapeHtml(f.tier || 'reconstructed')}" title="${escapeHtml(f.tier || '')}"></i>
+      ${escapeHtml(f.name || f.person_id)} <span class="biz-role">${
+  escapeHtml(COMMUNITY_LABEL.get(f.community) || words(f.community))}</span></li>`).join('');
+    return `<h4 class="people-card-h">The community it is read as</h4>
+      <p class="biz-dates">${block.tier ? `<i class="grade-dot grade-${escapeHtml(block.tier)}"></i>` : ''}
+        <b>${escapeHtml(label)}</b>${block.tier ? ` <span class="biz-role">${escapeHtml(block.tier)}</span>` : ''}</p>
+      <p class="legend-note">${escapeHtml(block.basis || '')}</p>
+      ${people ? `<ul class="biz-people">${people}</ul>` : ''}`;
+  }
+
   function recordHtml(rec, row) {
     const people = [
       ...(rec.proprietors || []).map((p) => ({ ...p, role: p.role || 'proprietor' })),
@@ -481,6 +524,7 @@ export async function mountBusinesses({
         ? `<h4 class="people-card-h">Who kept it</h4><ul class="biz-people">${people.map(personHtml).join('')}</ul>`
         : '<h4 class="people-card-h">Who kept it</h4><p class="legend-note">The printings name nobody. '
           + 'A house with no keeper on its record is a reading about the register, not about the town.</p>',
+      communityHtml(rec.proprietor_community),
       `<h4 class="people-card-h">Where it stood</h4><ul class="biz-locs">${
         (rec.locations || []).map(locationHtml).join('') || '<li class="legend-note">No location on the record.</li>'}</ul>`,
       `<h4 class="people-card-h">When</h4>

@@ -127,9 +127,40 @@
     "exclusion": {"type": ["string", "null"], "description": "The register's exclusion, if the house is not in the July 1835 town."},
     "exclusion_note": {"type": ["string", "null"]},
     "proprietor_community": {
-      "type": ["string", "null"],
-      "enum": [null, "anglo_american", "french_canadian", "metis", "native", "black", "irish", "german", "other", "unattested"],
-      "description": "The community vocabulary shared with the resident layer (T-1158/T-1177), so the Indian trade and the Black-owned businesses are identifiable on one field rather than by reading names. `unattested` where no source speaks; never inferred from a surname alone."
+      "type": "object",
+      "required": ["value", "tier", "rule", "basis", "from"],
+      "additionalProperties": false,
+      "description": "DERIVED FROM THE PEOPLE THE RECORD NAMES, never from a surname (T-1378, from T-1177). The vocabulary is now literally the resident layer's — data/residents/community_rules.json — rather than a second list that said it was shared and was not: that one folded New England, New York, British and Southern into one `anglo_american` and said `black` where the resident layer says `free_black`. Every record read `unattested` under it, so ending the divergence cost no record a reading. One set of terms for a house and for its keeper is what makes the Indian trade, the Metis houses and the Black-owned firms identifiable on one field. `unknown` is the honest answer where no keeper on the record carries a community, and it is a pill in the Businesses view rather than a hidden row.",
+      "properties": {
+        "value": { "enum": ["native", "potawatomi", "ottawa", "ojibwe", "metis", "french_canadian", "free_black", "yankee", "new_york", "irish", "german", "british", "southern", "other", "unknown"] },
+        "tier": {
+          "type": ["string", "null"],
+          "enum": [null, "inferred", "reconstructed"],
+          "description": "The weakest of the contributing keepers' own tiers, CAPPED AT `inferred`: a person's community is evidence about the person, and a house is not its keeper. Null where the value is `unknown`."
+        },
+        "rule": {
+          "type": "string",
+          "enum": ["proprietors_agree", "proprietors_disagree", "no_community_on_the_people_named", "no_person_linked"],
+          "description": "Which of the four cases fired. Two of them are silences and are told apart on purpose: `no_community_on_the_people_named` is a gap in the resident layer, `no_person_linked` a gap in the register."
+        },
+        "basis": { "type": "string", "minLength": 1 },
+        "from": {
+          "type": "array",
+          "description": "Every proprietor or partner the resident layer holds a card for, with the community that card carries — the whole of what the value was read off. Staff are not read: a clerk's community is evidence about the clerk, not about the house that employed him.",
+          "items": {
+            "type": "object",
+            "required": ["person_id", "name", "role", "community", "tier"],
+            "additionalProperties": false,
+            "properties": {
+              "person_id": { "type": "string" },
+              "name": { "type": ["string", "null"] },
+              "role": { "type": ["string", "null"] },
+              "community": { "enum": ["native", "potawatomi", "ottawa", "ojibwe", "metis", "french_canadian", "free_black", "yankee", "new_york", "irish", "german", "british", "southern", "other", "unknown"] },
+              "tier": { "type": ["string", "null"], "enum": [null, "attested", "inferred", "reconstructed"] }
+            }
+          }
+        }
+      }
     },
     "customers": {"type": "array", "items": {"type": "string"}},
     "sources": {"type": "array", "items": {"type": "string"}},

@@ -97,7 +97,21 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "no_community_on_the_people_named",
+    "basis": "This record names 1 person/people the resident layer holds a card for and the layer knows no community for any of them. The silence is in the resident layer, not in the register.",
+    "from": [
+      {
+        "person_id": "kinzie_james",
+        "name": "John H. Kinzie",
+        "role": "proprietor",
+        "community": "unknown",
+        "tier": null
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"
