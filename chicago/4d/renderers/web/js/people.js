@@ -122,10 +122,68 @@ const ROLE_FILTERS = {
   none: (r) => !(r.roles || 0),
 };
 
+/** How many pills the Trade row offers out of each of its two rankings (T-1382). */
+const TRADE_PILLS_EVIDENCED = 8;
+const TRADE_PILLS_TOWN = 6;
+
+/**
+ * The Trade row's offer, and the rule that decides it (T-1382).
+ *
+ * The row used to be `slice(0, 10)` over the whole layer's trade counts, which
+ * was a fair cut while the layer was the 457 residents the sources name. The
+ * reconstruction changed what that sentence counts: T-1347 drew 308 trade heads
+ * and T-1353 minted the summer's visitors, and the ten commonest trades became
+ * almost entirely that draw — 57 domestics, 38 boarding-house keepers, 26
+ * labourers, 26 clerks. `tavern_keeper` fell to rank 78 of 83 and had no pill at
+ * all, so the directory could not be asked for this town's tavern keepers, its
+ * physicians or its lawyers: the trades a reader actually looks for were exactly
+ * the ones the reconstruction buried, and they are the ones this project can
+ * name people in.
+ *
+ * So the offer is cut from TWO rankings rather than one, and the evidence goes
+ * first:
+ *   - the eight commonest trades counted over the people the layer's evidence
+ *     carries — grade `attested` or `inferred`, which is every person read off a
+ *     source rather than minted to fill a model;
+ *   - the six commonest trades of the town as a whole, so the numerous
+ *     reconstructed groups (domestics, boarding-house keepers, labourers,
+ *     clerks) keep a pill of their own.
+ *
+ * Deduped, evidenced first, so a reconstruction pass can ADD a pill and can
+ * never take away one the sources attest — which is the property the bare count
+ * cut did not have. Counting the two rankings separately is also why no
+ * threshold has to be invented: neither list is a judgement about how many
+ * people a trade needs, only about which trades the two populations are
+ * commonest in. The whole vocabulary stays reachable in `more trades…`.
+ */
+function tradeOffer(people) {
+  const rows = people.people || [];
+  const total = new Map();
+  const evidenced = new Map();
+  for (const r of rows) {
+    const trade = r.occupation;
+    if (!trade) continue;
+    total.set(trade, (total.get(trade) || 0) + 1);
+    if (r.grade === 'attested' || r.grade === 'inferred') evidenced.set(trade, (evidenced.get(trade) || 0) + 1);
+  }
+  const rank = (counts) => [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([v]) => v);
+  const offer = rank(evidenced).slice(0, TRADE_PILLS_EVIDENCED);
+  for (const trade of rank(total).slice(0, TRADE_PILLS_TOWN)) if (!offer.includes(trade)) offer.push(trade);
+  return offer;
+}
+
 function filterSpecs(people) {
   const occCounts = new Map((people.vocabulary?.occupations || []).map((o) => [o.value, o.count]));
-  const topTrades = [...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .slice(0, 10).map(([v]) => v);
+  // The sidecar's own rows are what the offer is counted over, because the
+  // vocabulary carries one total per trade and the rule needs the evidenced
+  // count as well. With no rows to count (a payload that carries the vocabulary
+  // alone) the old count cut is still the honest answer.
+  const topTrades = tradeOffer(people);
+  if (!topTrades.length) {
+    topTrades.push(...[...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 10).map(([v]) => v));
+  }
   const grades = (people.vocabulary?.grades || []).filter((g) => (people.counts?.by_grade || {})[g] > 0);
   return [
     {
@@ -223,10 +281,16 @@ function filterSpecs(people) {
  *   the drawer head's title hook (hud.setTitle), when the lead passes one: the
  *   open card puts the person's name in the head with a back arrow, and the
  *   card's own back button steps aside (`has-head-back` on the section)
+ * @param {Map<string, object[]>|null} [o.firmsByPerson]
+ *   `firmCrosswalk(businesses/index.json).byPerson` — every firm a person holds a
+ *   role in. Null until the business index loads, and null is not the claim that
+ *   this person kept none: a card with no crosswalk simply prints no firms row.
+ * @param {(businessId: string) => void} [o.onBusiness]  open a firm's own card
  * @param {string[]} [o.problems]         the shared collector
  */
 export async function mountPeople({
-  mount, people, registry, dataBase, sceneId, onGoTo, onTitle = null, problems = [],
+  mount, people, registry, dataBase, sceneId, onGoTo, onTitle = null,
+  firmsByPerson = null, onBusiness = null, problems = [],
 } = {}) {
   const idle = { search() {}, open() { return Promise.resolve(false); }, close() {}, filter() {}, get state() { return null; } };
   if (!mount) return { people: 0, error: 'no mount', ...idle };
@@ -388,12 +452,18 @@ export async function mountPeople({
         return `<div class="people-frow people-frow-toggle" data-row="${spec.key}">${label}
           <div class="pills">${pill(spec.key, v, text, countOf(v), current === v)}</div></div>`;
       }
-      const inTop = spec.options.some(([v]) => v === current);
+      // A value chosen out of `more` — or set by the API, or by a link — is not in
+      // the offer, and before T-1382 the row then showed no pressed pill at all:
+      // the drawer said "All" while the list was narrowed. It gets a pill of its
+      // own at the end of the row, so the row always shows what it is filtered by.
+      const offered = current === '' || spec.options.some(([v]) => v === current);
+      const extra = offered ? '' : pill(spec.key, current, words(current), countOf(current), true);
       const pills = pill(spec.key, '', 'All', pool.length, current === '')
-        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('');
+        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('')
+        + extra;
       const more = spec.more
         ? `<select class="people-more-select" id="people-occupation" aria-label="More trades">
-            <option value=""${current === '' || inTop ? ' selected' : ''}>more trades…</option>${
+            <option value=""${offered ? ' selected' : ''}>more trades…</option>${
           spec.more.map(([v, text]) => `<option value="${escapeHtml(v)}"${current === v ? ' selected' : ''}>${
             escapeHtml(text)} (${countOf(v)})</option>`).join('')}</select>`
         : '';
@@ -644,6 +714,37 @@ export async function mountPeople({
       + `${t.replaced_by ? ` <i>Retired by ${escapeHtml(t.replaced_by)}.</i>` : ''}</p>`;
   }
 
+  /**
+   * THE FIRMS THIS PERSON KEPT. Until now the crosswalk ran one way only: a firm's
+   * card named its proprietors and linked the 110 the town holds a card for, and
+   * the person's own card said nothing back. So a visitor who arrived at John Dean
+   * Caton from the directory could not learn that the register puts him in five
+   * houses; they had to go to Businesses and search his name, which is the one
+   * thing a card should spare them.
+   *
+   * Roles, not ownership: the row prints what the record says the person was to the
+   * firm — proprietor, partner, staff — with the dates where the record dates them,
+   * and the grade dot is the FIRM's, because that is what tapping opens.
+   */
+  function firmsHtml(personId) {
+    const firms = firmsByPerson?.get?.(personId) || [];
+    if (!firms.length || typeof onBusiness !== 'function') return '';
+    const rows = firms.map((f) => {
+      const sub = [f.roles.map(words).join(' and '), f.trade, f.street || '',
+        f.present ? '' : 'not trading on 1 July'].filter(Boolean).join(' \u00b7 ');
+      return `<li><button type="button" class="people-firm" data-business="${escapeHtml(f.id)}">
+        <i class="grade-dot grade-${escapeHtml(f.grade)}" title="${escapeHtml(f.grade)}"></i>
+        <span class="person-main"><span class="person-name">${escapeHtml(f.name)}</span>
+          <small class="person-sub">${escapeHtml(sub)}</small></span>
+        <span class="people-firm-go" aria-hidden="true">\u203a</span></button></li>`;
+    }).join('');
+    return `<div class="people-firms">
+      <h4 class="people-card-h">${firms.length === 1 ? 'The firm the register puts them in'
+    : `The ${n(firms.length)} firms the register puts them in`}</h4>
+      <ul class="people-firm-list">${rows}</ul>
+    </div>`;
+  }
+
   let openSeq = 0;
   /**
    * Open a person's card in place of the list. Resolves `true` once the household
@@ -674,6 +775,7 @@ export async function mountPeople({
       <p class="people-card-what">${escapeHtml(knownTitle)}.</p>
       ${readmissionHtml(r)}
       ${transientHtml(r)}
+      ${firmsHtml(r.id)}
       <div class="people-card-body" aria-busy="true"><p class="legend-note">Loading the household record…</p></div>`;
     home.hidden = true;
     cardEl.hidden = false;
@@ -738,6 +840,8 @@ export async function mountPeople({
 
   cardEl.addEventListener('click', (ev) => {
     if (ev.target.closest('.people-back')) { state.lastOpened = state.open; close(); return; }
+    const firm = ev.target.closest('.people-firm');
+    if (firm) { onBusiness?.(firm.dataset.business); return; }
     const go = ev.target.closest('.people-go');
     if (go && state.open) {
       const r = byId.get(state.open);

@@ -77,3 +77,29 @@ assert against that.
 
 Re-measured on this branch at `sha256:f8037d0f341c23d0`, desktop part 12: the same two
 failures and no others, with parts 13 at both viewports green (115 passed, 0 failed each).
+
+## And a FOURTH term is now missing (T-1325's run, 2026-09-19)
+
+The assertion has since been taught about the trade heads and the transients, and it is
+red again for the same reason one layer later. Measured on a clean `origin/dev`
+(3c1a0dfe) worktree, published, `SMOKE_VIEWPORT=mobile SMOKE_STAGE=12` — and identically
+at desktop on a branch over it, so it is not a viewport:
+
+```
+FAIL 390x780: the People directory lists the town, and its count is the file's and the manifest's
+     — {"stated":3028,"manifest":2144,"readmitted":182,"trades":308,"transients":307}
+```
+
+2,144 + 182 + 308 + 307 = **2,941** against 3,028. The shortfall is **87** — exactly the
+men T-1376 (#1511, merged 11:28 UTC) carded from the company the 1832 Chicago roll heads
+INDIAN, written to `data/reconstruction/1835_native_and_metis.json` and so outside
+`data/residents/households/` like the three layers before it.
+
+This is the third time the same identity has gone stale on the same mechanism, which is
+the finding: the check enumerates off-manifest layers by hand, so every new cohort is a
+silent red until someone adds a term. The fix that ends it is a term DERIVED from what
+the directory actually holds — the compiled people rows already carry `resident_subtype`
+and `how_known` — rather than a fourth constant beside the other three.
+
+`tools/dev-smoke-state.mjs ask --viewport mobile --stage 12` has part 12 last passing at
+2026-09-19T02:04Z, with eleven commits landed on dev since.

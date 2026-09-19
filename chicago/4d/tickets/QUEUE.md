@@ -52,10 +52,8 @@ T-1377 — The free Black residents, families and Black-owned businesses of 1835
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1393 — Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
-T-1386 — The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
-T-1382 — The People view's Trade filter offers only the ten commonest trades, and the 308 reconstructed trade heads pushed the town's tavern keepers, physicians and lawyers off it
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
+T-1386 — The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
 T-1184 — Reconstruct the missing stores and provision trades: dry goods, groceries, hardware, drug, book and provision houses, packers and the market, to the order book's quota, each with a period firm style, a reconstructed proprietor household and a location class
@@ -223,6 +221,7 @@ T-1363 — rederive.mjs --run does not converge in one pass when the town model 
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
 T-1374 — The Indian Agency establishment of 1835: the agent, sub-agent, interpreter and agency blacksmith as the sources name them, and the Native and Metis employees and families the records only count, through T-1177's review rules
 T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
 T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are written outside data/residents/households/, so the People directory counts them and the manifest cannot, and the smoke's count assertion only knows to add the re-admitted
