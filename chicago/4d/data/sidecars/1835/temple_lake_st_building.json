@@ -236,5 +236,17 @@
   ],
   "research_note": "CATON'S ATTIC IS THE POINT. It is the only account in this corpus of what an educated newcomer actually did for money and where he slept in the town's first summer, and it makes this building a lodging as well as an office - which is exactly the mixed use the reconstruction schedule's C-family roofs are for.",
   "research_doc": "",
-  "review_required": false
+  "review_required": false,
+  "lodging": {
+    "class": null,
+    "beds_ordinary": null,
+    "beds_crowded": null,
+    "ceiling": 35,
+    "clamped_at_1840_maximum": false,
+    "enclosed_floor_m2": null,
+    "confidence": "reconstructed",
+    "note": "Lodging the roof programme does not schedule and the town model's bed bracket does not count. Recorded so T-1371 knows the rooms are here; not apportioned, because apportioning it would spend beds the programme allotted to a boarding house somewhere else.",
+    "replaceable_by": "",
+    "seats_nobody": "Nobody is seated in these beds yet. Who slept here is T-1371."
+  }
 }

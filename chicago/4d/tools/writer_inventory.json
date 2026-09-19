@@ -66,6 +66,13 @@
       "measured": "2026-09-18",
       "finding": "Cannot rebuild: --build raises on a clean tree (traceback, exit 1)."
     },
+    "build_lodging_model_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: ran `--build` on a staged tree in 0s, wrote its two outputs and changed no committed byte.",
+      "placed": "not yet — measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/structures/, which several reconstruction stages write"
+    },
     "build_order_book_1835.py": {
       "placement": "manifest",
       "write_mode": "--build",
