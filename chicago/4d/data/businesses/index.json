@@ -10459,7 +10459,7 @@
     {
       "id": "rcb_fb_barbers_shop",
       "file": "rcb_fb_barbers_shop.json",
-      "name": "John Anderson, barber",
+      "name": "Benjamin Anderson, barber",
       "register_id": null,
       "provenance": "reconstructed",
       "type": [
@@ -10473,8 +10473,8 @@
       "firm_styles": [],
       "people": [
         {
-          "name": "John Anderson",
-          "person_id": "rc_fb_anderson_john",
+          "name": "Benjamin Anderson",
+          "person_id": "rc_fb_anderson_benjamin",
           "role": "proprietor",
           "tier": "reconstructed",
           "from": null,
@@ -10503,7 +10503,7 @@
     {
       "id": "rcb_fb_washing_and_ironing",
       "file": "rcb_fb_washing_and_ironing.json",
-      "name": "Catherine Anderson, washing and ironing",
+      "name": "Eliza Anderson, washing and ironing",
       "register_id": null,
       "provenance": "reconstructed",
       "type": [
@@ -10517,8 +10517,8 @@
       "firm_styles": [],
       "people": [
         {
-          "name": "Catherine Anderson",
-          "person_id": "rc_fb_anderson_catherine",
+          "name": "Eliza Anderson",
+          "person_id": "rc_fb_anderson_eliza",
           "role": "proprietor",
           "tier": "reconstructed",
           "from": null,

@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The free Black town of 1835 is in this town at last', kind: 'feature', ts: '',
+  { v: 984, title: 'The free Black town of 1835 is in this town at last', kind: 'feature', ts: '2026-09-19T14:46:44.565Z', date: 'Sep 19, 2026, 9:46 AM CT',
     items: [
       'Until today you could filter the People list by community and the answer under \u201CFree Black\u201D was nobody. Not a gap in the filter \u2014 a gap in the town. Fifteen people now stand there: seven households, two of them keeping a firm, a barber\u2019s shop and a washing and ironing house.',
       'Nobody here is a person a source names, and every card says so on its face. This corpus counts the free Black town of Chicago twice and names it never. In August 1833 the young lawyer John Dean Caton defended \u201Csix or seven free coloured men\u201D before the Court of County Commissioners and got them their certificates of freedom \u2014 the paper Illinois law made the condition of living here at all \u2014 at a dollar a man. In 1840 the census counts fifty-three free coloured persons in a town of 4,834. Between those two numbers there is silence.',
