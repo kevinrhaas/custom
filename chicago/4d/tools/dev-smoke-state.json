@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 84,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 317,
+      "takenAt": "2026-09-19T16:44:11.410Z",
+      "ref": "steward/t-1394-resident-closeout",
+      "commit": "f069bced6f73",
+      "devCommit": "a69af8c84c5f",
+      "treeHash": "sha256:0a51804aefc2e229",
+      "treeDirty": false,
+      "changelogHash": "sha256:ccc6f627d0b27ad5",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.9,
+          3.7,
+          3.1
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "3",
       "parts": [
         3
@@ -1154,39 +1185,6 @@
         ]
       },
       "source": "/tmp/s_m.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 91,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 186,
-      "takenAt": "2026-09-19T00:40:16.414Z",
-      "ref": "steward/t-1340-books-arrival-lists",
-      "commit": "b9607e5d3ee0",
-      "devCommit": "c4cd1926439b",
-      "treeHash": "sha256:6e1b9172046e7f2a",
-      "treeDirty": false,
-      "changelogHash": "sha256:9dd026bdb8a2ef39",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.4,
-          3.7,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_d3.log"
     },
     {
       "viewport": "desktop",

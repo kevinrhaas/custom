@@ -1,7 +1,7 @@
 ---
 id: T-1398
 title: The rebuild order made executable and gated as a fixed point: the converge stage runs every reader of the resident layer in the order that converges in one pass, and check.sh refuses a tree that is not at the fixed point
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1394
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1526
 claimed_by: run 9/19/2026, 11:02:36 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T16:44:16.221Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35452789948
 ---
 

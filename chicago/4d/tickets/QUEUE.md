@@ -51,7 +51,6 @@ T-1372 — Crews, the works gang and the guest lists: the vessels in port and th
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1393 — Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
-T-1398 — The rebuild order made executable and gated as a fixed point: the converge stage runs every reader of the resident layer in the order that converges in one pass, and check.sh refuses a tree that is not at the fixed point
 T-1399 — One liberty entry per reconstruction stage, with the counts the compiler agrees with, and the research doc's final tables by tier
 T-1400 — The People view's tier filter and its transient, garrison and reconstructed pills
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
