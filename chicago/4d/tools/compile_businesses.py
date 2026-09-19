@@ -495,26 +495,92 @@ def locations_for(entry, gaz, anchors=None):
             "limit_reason": note or "The paper gives no anchor.",
         })
 
-    # A HOUSE THAT MOVED. Four of the register's businesses print one anchor and later
-    # another. The earlier siting is a real dated location and is kept as one, unplaced:
-    # the `from` anchor is prose the register never resolved to an id, so the record says
-    # where the paper put it and says that it could not be resolved. T-1182 audits dated
-    # relocations with the sources in front of it.
-    for change in ((entry.get("anchor_change") or {}).get("changes") or []):
+    # A HOUSE THAT MOVED (T-1402, of T-1182, audited with the sources in front of it).
+    # Four of the register's businesses print one anchor and later another. The siting the
+    # register did NOT make live is a real dated location and is kept as one, unplaced: it
+    # is prose the register never resolved to an id, so the record says where the paper put
+    # it and says that it could not be resolved.
+    #
+    # WHAT THE REGISTER'S TWO DATES ARE, because reading them the other way was the defect
+    # this ticket found. A `changes` row brackets the MOVE: `after` is the last issue that
+    # sets the old anchor and `before` is the first that sets the new one, so the address
+    # changed somewhere in between and the corpus can say no more than that. The pair is
+    # NOT the span of either siting — and it was being written onto the secondary row as
+    # `from: after, to: before`, which dated the superseded address to exactly the window
+    # in which it was being superseded, and carried it up to and including the first
+    # printing of its replacement. Giles Spring's office read "Franklin and South Water,
+    # 1834-11-26 to 1835-05-20" when 1834-11-26 is the LAST printing of that address and
+    # 1835-05-20 the first of the Tremont House one.
+    #
+    # So each siting is dated by its own printings: the earlier one runs from the record's
+    # first issue to `after`, the later one from `before` and is not closed.
+    #
+    # AND WHICH SIDE IS WHICH IS THE REGISTER'S RULING, NOT AN ASSUMPTION. `live_anchor`
+    # names the anchor the register made the scene-date siting, by its own rule (the last
+    # anchor first printed on or before the scene date). Usually that is the change's `to`
+    # and the secondary row is the earlier siting. For business_the_chicago_democrat it is
+    # the change's `from`: the move to Jones & King's is first printed 1835-08-05, after
+    # the scene date, so the corner stays live and the LATER siting is the secondary row.
+    # Reading every change as "earlier" put the corner on that record twice — once live,
+    # once as its own predecessor — and left the move to Jones & King's nowhere on it.
+    first_issue = (entry.get("evidence") or {}).get("first_issue")
+    change_block = entry.get("anchor_change") or {}
+    live_anchor = change_block.get("live_anchor")
+    for change in (change_block.get("changes") or []):
+        if live_anchor == change.get("to"):
+            side, other = "earlier", change.get("from")
+            loc_from, loc_to = first_issue, change.get("after")
+            limit = ("A prose anchor the register did not resolve to a committed id; kept because "
+                     "the house moved and the move is dated. Printed through %s; the anchor that "
+                     "supersedes it is first printed %s, so the move falls between those two "
+                     "issues and the corpus dates it no closer."
+                     % (change.get("after"), change.get("before")))
+        elif live_anchor == change.get("from"):
+            side, other = "later", change.get("to")
+            loc_from, loc_to = change.get("before"), None
+            limit = ("A prose anchor the register did not resolve to a committed id; kept because "
+                     "the house moved and the move is dated. First printed %s, which is after the "
+                     "scene date, so the register keeps the earlier anchor live and this siting is "
+                     "recorded without being made the premises." % (change.get("before"),))
+        else:
+            # The register's live anchor is neither side of its own change. That is a
+            # register this compiler cannot read, and a refusal is the only honest answer:
+            # guessing a direction would be publishing an adjudication nobody made.
+            raise SystemExit(
+                "%s: live_anchor %r is neither side of the change %r -> %r"
+                % (entry["id"], live_anchor, change.get("from"), change.get("to")))
         out.append({
             "kind": "unplaceable",
             "structure_id": None,
             "street_id": None,
             "face": None,
             "primary": False,
-            "from": change.get("after"),
-            "to": change.get("before"),
+            "from": loc_from,
+            "to": loc_to,
             "tier": "inferred",
-            "basis": ("An earlier anchor for this house, printed as “%s” and superseded by "
-                      "“%s”." % (change.get("from"), change.get("to"))),
-            "limit_reason": ("A prose anchor the register did not resolve to a committed id; kept "
-                             "because the house moved and the move is dated."),
+            "basis": ("The %s of this house's two printed anchors, set as “%s”; the register "
+                      "makes “%s” the siting at the scene date."
+                      % (side, other, live_anchor)),
+            "limit_reason": limit,
         })
+        # AND THE LIVE ROW MAY NOT CLAIM A DATE ITS ANCHOR WAS NOT PRINTED ON. Where the
+        # move happened before the scene date, the live anchor's own first printing is
+        # `before`, not the record's first issue — that earlier issue set the address this
+        # house had LEFT. Giles Spring's card read "the Tremont House from 1833-12-17"
+        # when the Tremont House address is first printed 1835-05-20.
+        #
+        # ONLY ON AN `anchored` ROW, because only an anchored row IS the anchor. A
+        # `premises` row is the register's match onto a committed structure's own
+        # occupants line and a `street_only` row is a street — neither is dated by which
+        # landmark the advertisement named, and both of the ones here are unmoved by the
+        # change: Matthias Mason's shop is matched on `mason_blacksmith_shop`'s occupants,
+        # and the Democrat's printing office is in South Water street on both sides of its
+        # move. Re-dating those would be asserting a vacancy no source states.
+        if side == "earlier" and out[0]["kind"] == "anchored" and out[0].get("from") == first_issue:
+            out[0]["from"] = change.get("before")
+            out[0]["basis"] = (out[0]["basis"].rstrip() + " This house moved: the anchor above is "
+                               "first printed %s, and “%s” is what the paper set before it."
+                               % (change.get("before"), other)).strip()
     return out
 
 

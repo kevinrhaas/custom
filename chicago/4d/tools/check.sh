@@ -4336,6 +4336,19 @@ step "the business layer re-derives, and every register row has a record" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/compile_businesses.py --self-test
 
+# T-1402, of T-1182. AND WHETHER THE DERIVATION SAYS WHAT THE RESEARCH SAYS. The step
+# above asserts one thing — that a rebuild reproduces what is committed — and it is
+# silent on whether the layer honours the rulings it was built out of. identity.json
+# rules that two printed spellings are one house or one man, trade_class_rulings.json
+# rules the December 1835 census class of every trade, and the register brackets four
+# houses that moved. This reads all 196 records back against those, field by field, and
+# refuses the report it derives if anyone hand-edits it or a ruling stops being honoured.
+step "the business audit re-derives, and every identity ruling still holds" \
+  python3 tools/audit_businesses.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/audit_businesses.py --self-test
+
 # T-1184, the first group of the business reconstruction band. The December 1835 State
 # census counts classes the newspaper register does not hold — four druggists against two
 # — and the order book turns each of those gaps into a quota with the ticket that owes it.
