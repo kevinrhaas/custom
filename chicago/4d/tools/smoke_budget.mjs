@@ -258,6 +258,14 @@ const COVERAGE = [
   // hub check and overflow-measured in PART 13 alongside the profile it subtracts from.
   ['renderers/web/js/orderbook.js', [12, 13], 'what the town still owes, bucket by bucket'],
   ['data/reconstruction/1835_reconstruction_order_book.json', [12, 13], 'the quota the panel renders'],
+  // T-1401. The business layer reaches a visitor on TWO surfaces and no others: the
+  // building card's Use row, which names the firms in this roof and (since T-1401) the
+  // anchored ones sited against it, and the Businesses directory itself, which part 12
+  // searches, filters and opens a card from. Mapped on arrival — unmapped, every diff
+  // touching a business record priced the whole gate, and the 196 records move together.
+  ['renderers/web/js/businesses.js', [3, 12], 'the firms directory, and the crosswalk the card reads'],
+  ['data/businesses/', [3, 12], 'the compiled business records and their index'],
+  ['data/businesses.schema.json', [3, 12], 'the shape those records are refused against'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
   ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],

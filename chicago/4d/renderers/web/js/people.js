@@ -718,7 +718,7 @@ export async function mountPeople({
    * THE FIRMS THIS PERSON KEPT. Until now the crosswalk ran one way only: a firm's
    * card named its proprietors and linked the 110 the town holds a card for, and
    * the person's own card said nothing back. So a visitor who arrived at John Dean
-   * Caton from the directory could not learn that the register puts him in five
+   * Caton from the directory could not learn that the register puts him in four
    * houses; they had to go to Businesses and search his name, which is the one
    * thing a card should spare them.
    *

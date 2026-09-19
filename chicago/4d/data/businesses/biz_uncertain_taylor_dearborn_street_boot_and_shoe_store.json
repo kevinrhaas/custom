@@ -27,7 +27,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_09#c019"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "partners": [],
@@ -43,7 +44,13 @@
       "to": null,
       "tier": "inferred",
       "basis": "Placeable against the committed town. The landmark is another documented business (business_newberry_dole), which places this one exactly as well as that one is placed.",
-      "limit_reason": "The register places this house against business_newberry_dole and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+      "limit_reason": "The register places this house against business_newberry_dole and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes.",
+      "anchor": {
+        "kind": "business",
+        "id": "biz_newberry_dole",
+        "title": "Newberry & Dole",
+        "streets": []
+      }
     }
   ],
   "dates": {

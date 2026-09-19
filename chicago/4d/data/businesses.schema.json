@@ -40,7 +40,24 @@
         "tier": {"$ref": "#/$defs/tier"},
         "basis": {"type": "string", "minLength": 1},
         "source_id": {"type": ["string", "null"]},
-        "claim_ids": {"type": "array", "items": {"type": "string"}}
+        "claim_ids": {"type": "array", "items": {"type": "string"}},
+        "also_printed_as": {"type": "array", "items": {"type": "string"},
+          "description": "The OTHER styles the same paper printed this same person under, folded onto this row by compile_businesses.fold_printed_styles on `person_id` \u2014 never on the name. \"J. D. Caton\" and \"J. Dean Caton\" are one partner of Collins & Caton, and Giles Spring was printed three ways. The typography is evidence and is kept here rather than deleted; what the fold removes is only the second COUNT of one man. Empty on every row but the twelve the register double-printed."}
+      }
+    },
+    "anchor": {
+      "type": ["object", "null"],
+      "required": ["kind", "id", "title", "streets"],
+      "additionalProperties": false,
+      "description": "THE LANDMARK AN `anchored` LOCATION STANDS AGAINST, as an id rather than as a sentence. The register's `action_target`, resolved by compile_businesses.anchor_of: a committed structure (15), another house in this layer (7), or a crossing of two platted streets (4). It does NOT place the house \u2014 `structure_id` stays null on an anchored location, because the anchor is what the house stood next to and a roof of its own is precisely what the register could not give it.",
+      "properties": {
+        "kind": {"type": "string", "enum": ["structure", "business", "corner"]},
+        "id": {"type": ["string", "null"], "pattern": "^[a-z0-9_]+$",
+          "description": "A committed structure id or a `biz_` id. Null on a corner, which names two streets and no one thing."},
+        "title": {"type": "string", "minLength": 1,
+          "description": "What a card prints: the roof's name, the firm's name, or the two street names joined."},
+        "streets": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "description": "The two street ids of a corner; empty otherwise."}
       }
     },
     "location": {
@@ -62,7 +79,8 @@
         "tier": {"$ref": "#/$defs/tier"},
         "basis": {"type": "string", "minLength": 1},
         "limit_reason": {"type": ["string", "null"],
-          "description": "Required on `street_only` and `unplaceable`: WHY the record stops where it does, in the register's own words."}
+          "description": "Required on `street_only` and `unplaceable`: WHY the record stops where it does, in the register's own words."},
+        "anchor": {"$ref": "#/$defs/anchor"}
       }
     }
   },

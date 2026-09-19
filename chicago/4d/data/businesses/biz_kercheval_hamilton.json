@@ -24,7 +24,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_09#c029"
-      ]
+      ],
+      "also_printed_as": []
     },
     {
       "name": "Rich'd J. Hamilton",
@@ -38,7 +39,8 @@
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_09#c029"
-      ]
+      ],
+      "also_printed_as": []
     }
   ],
   "staff": [],
