@@ -43,6 +43,12 @@
 # the file. Filing is free and working is not — add a finding to the ticket it was found in
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
+# --- 0. BLOCKING THE QUEUE (owner, 2026-09-19). This row is first because nothing else
+# --- merges past it: the terrain fossil rides every branch the lap touches, so #1521 and
+# --- #1518 sit red on the same four gates and merge-ready will not take either. Clear it
+# --- and the queue drains; leave it and each new lap mints another red PR.
+T-1397 — The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
+
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
@@ -52,7 +58,10 @@ T-1377 — The free Black residents, families and Black-owned businesses of 1835
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
+T-1402 — Audit every present business record against the research: proprietors and partners adjudicated against identity.json, dates honouring opening_announced and dissolved, type = its census class, goods, and every place the research names as a plural locations[] with its limit class — with the field x grade reconciliation table, the report and its --check gate
+T-1403 — Black-owned and Native or Metis-run businesses identified at the tier the evidence supports, so the Businesses view lists them on one filter and T-1177 reconstructs above an attested floor
+T-1404 — A business for every in-window trade and no_fixed_premises for the trades that carry none, with the physicians' and lawyers' census gaps worked from the research first, the Sept-Dec 1835 crosswalk re-run, and what remains short written to the order book for T-1186
+T-1405 — Persons' other significant locations as associated_with[]: civic seats held, church membership and office, agencies held, land purchased and schools taught, each with kind, place, dates, tier and source — counts before and after
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
 T-1184 — Reconstruct the missing stores and provision trades: dry goods, groceries, hardware, drug, book and provision houses, packers and the market, to the order book's quota, each with a period firm style, a reconstructed proprietor household and a location class
 T-1185 — Reconstruct the missing mechanics' shops: smiths, carpenters and joiners, coopers, wheelwrights and wagon makers, tailors, shoemakers, tanners, saddlers, tinners, masons, painters, bakers and butchers, to the twenty-five mechanics' shops and the occupation model's quota
@@ -211,7 +220,6 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
 T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
-T-1397 — The lap leaves a terrain divergence on every branch it laps: two unrelated PRs carry a byte-identical river, hydrology and landings diff against dev and fail the same four terrain gates, and neither side re-derives back to the other
 T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
