@@ -59,7 +59,7 @@ minting.
 
 | | the resident layer | the business layer |
 |---|---:|---:|
-| Irish | 341 people, 13.5% of 2,523 with a community | **0 houses** |
+| Irish | 405 people, 15.3% of the 2,648 with a community | **0 houses** |
 | German | 0 people | **0 houses** |
 | free Black | 0 people | **0 houses** |
 | Native and Metis | 89 people | **0 houses** |
@@ -69,9 +69,9 @@ minting.
 missing.** Two of the eight firms whose partners do not agree are part-Irish — Collins &
 Caton (Irish, New York) and Brewster, Hogan & Co. (Irish, New England) — and the rule
 refuses to hand either of them to one community on list order. Those are the only two
-Irish traces in the whole business layer. The 341 Irish of the resident layer are 312
-draws from a name pool and 29 households whose origin names Ireland, and almost none of
-them keep a house the newspapers printed: the register is an advertising record of the
+Irish traces in the whole business layer. The 405 Irish of the resident layer are
+overwhelmingly draws from a name pool, against a few dozen households whose origin names
+Ireland, and almost none of them keep a house the newspapers printed: the register is an advertising record of the
 merchant class, so what it measures is who could afford a notice.
 
 **German reads zero on both sides, so there is nothing here to check against.** The
