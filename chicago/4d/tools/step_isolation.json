@@ -2066,6 +2066,9 @@
     "tools/read_wright_legend_swatches.py": {
       "wrote": []
     },
+    "tools/rebuild_closing_set.py": {
+      "wrote": []
+    },
     "tools/rebuild_resident_index.py": {
       "wrote": []
     },
