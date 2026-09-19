@@ -85,3 +85,28 @@ stage's drawn sexes out of the male rate it measures off the town's rolls. A com
 infantry is male by the statute that constitutes it, so leaving `garrison` off that list
 moved the measured male share of every roll by a hundred men nobody read off a roll. Fixed
 in this PR, with the reason beside it.
+
+---
+
+**SALVAGED, 2026-09-19.** The run that did this work pushed four commits to
+`steward/t-1349-garrison-companies` at 07:35 UTC and died before it could open a pull
+request, so `inflight` filed the branch under RECOVERABLE — work nobody can see, on a
+ticket the queue still offers. This run read the branch instead of rebuilding it, merged
+four hours of `dev` into it (T-1353, T-1365, T-1376) and re-derived the layer on top.
+
+**What the merge cost, and it is the shape T-1179 predicts.** 124 files conflicted, 110 of
+them `data/residents/households/hh_*.json` — the derived cards T-1282 records the lap
+cannot resolve. Every one was taken from `dev` and re-derived rather than hand-merged; the
+only conflicts settled by hand were the five sources (`check.sh`, `derived_manifest.json`,
+`reconstruct_residents_1835.py`, `LIBERTIES.md`, `changelog.js`) and three tickets. Two
+things had to move with the town rather than with the branch: the garrison's liberty is
+**L251** now, because `dev` minted L248-L250 while this branch was orphaned, and the
+release note went back to `v: null` for the stamp tool to assign — the branch had
+hand-written v970 and `dev` is at v976.
+
+**One stage below had to redraw, and only one.** Stage `transients` (T-1353) draws its
+invented names over the same pools, and it sits AFTER `garrison` in the programme, so the
+125 soldiers moved 25 of its cards. Re-running the stage settled it. Nothing above
+`garrison` moved — the refusal this stage carries (no drawn soldier bears a family name a
+named resident bears) is what keeps `women_and_children` and the civic mint still, and it
+held across a four-hour-newer town.
