@@ -1,7 +1,7 @@
 ---
 id: T-1347
 title: Write the trade households the occupation model wants: reconstructed heads drawn per trade and division against the order book's trade buckets, each named from the pools with a family per the household model
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1173
 opened: 2026-09-18
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 10:53:40 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35419656305
 ---
 
 Write the trade households the occupation model wants: reconstructed heads drawn per trade and division against the order book's trade buckets, each named from the pools with a family per the household model.
