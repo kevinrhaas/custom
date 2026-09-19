@@ -1,7 +1,7 @@
 ---
 id: T-1364
 title: The town model's arrival share is a count over the wrong denominator: it reads 1.605 of the town arriving in 1833-35 and -777 arriving before, because it divides every person's arrival year by the NAMED layer's 1,285
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1514
 claimed_by: run 9/19/2026, 6:30:17 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-19T12:08:21.106Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35440034547
 ---
 
