@@ -2394,6 +2394,22 @@ step "every re-admission re-derives, and no refusal it stands beside has moved" 
 
 selftest "...and a guessed date, a borrowed name and a rising persistence curve are refused" \
   python3 tools/readmit_borderline_roster.py --self-test
+
+# T-1174, stage `women_and_children` of the same programme, and the first one to write a
+# HOUSEHOLD rather than to draw into one. The rolls that name this town print men, so the
+# house with no man in it is the record the sources never made and the stage above — which
+# is keyed to a male head and says so in its own refusals — cannot create. This one writes
+# 124 female-headed households and the 556 people in them, drawing each head's band and
+# each other person's sex and band against the shortfall the order book still carries in
+# that division, so the draw converges on the population model's pyramid rather than near
+# it. Its --check rebuilds the whole set from the model files and refuses a differing byte
+# on the keys it owns; the keys another stage wrote are that stage's to prove, which is
+# why it compares an owned view rather than the card.
+step "the women and children re-derive from the pyramid the order book still wants" \
+  python3 tools/reconstruct_women_children.py --check
+
+selftest "...and every rule that decides who is drawn refuses its own case" \
+  python3 tools/reconstruct_women_children.py --self-test
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at

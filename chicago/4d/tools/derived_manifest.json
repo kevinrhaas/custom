@@ -1081,6 +1081,22 @@
       ]
     },
     {
+      "why": "THE STAGE AFTER IT, AND IT HAS TO RUN AFTER IT. Listed 2026-09-19 with T-1174. Stage `women_and_children` draws against what the order book still wants, and `modelled_families` above fills the same 24 family buckets first — run in the other order the second stage would draw into quota the first one is about to take. It writes the female-headed households the naming sources never produced and the 556 people in them; measured 2026-09-19, a repeat `--build` on a settled tree changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/reconstruct_women_children.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_women_children.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/reconstruct_women_children.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
       "command": [
         "python3",

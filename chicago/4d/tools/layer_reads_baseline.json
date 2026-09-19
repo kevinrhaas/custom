@@ -63,17 +63,17 @@
       "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
     },
     "residents/household:arrival_year.replaceable_by.kind": {
-      "records": 1182
+      "records": 1298
     },
     "residents/household:arrival_year.written_by_stage": {
-      "records": 1198
+      "records": 1314
     },
     "residents/household:division": {
-      "records": 1258,
+      "records": 1382,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 1258,
+      "records": 1382,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:kin[].book_kin": {
@@ -81,10 +81,10 @@
       "refused_because": "The id of the book claim this kin row was read out of — a foreign key into data/research/books/claims/ and the ruling that answers it. It is what makes the write re-derivable and what lets the gate notice a tie that lost its reading; it states nothing about either person. What a visitor judges the relationship by is on the row already and is read there: the relation, the confidence, the sources and the note that quotes the sentence."
     },
     "residents/household:origin.replaceable_by.kind": {
-      "records": 1214
+      "records": 1331
     },
     "residents/household:origin.written_by_stage": {
-      "records": 1235
+      "records": 1352
     },
     "residents/household:persons[].appearance_bounds[].as_read": {
       "records": 27
@@ -135,49 +135,64 @@
       "records": 27
     },
     "residents/household:persons[].dated_bounds[].as_read": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].bound_kind": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].covers_scene_date": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].date_confidence": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].describes_date": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].here_by": {
       "records": 202
     },
     "residents/household:persons[].dated_bounds[].identity_discriminator": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].identity_rule": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].list": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].list_title": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].locator": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].precision": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].reaches": {
-      "records": 292
+      "records": 605
     },
     "residents/household:persons[].dated_bounds[].record_id": {
-      "records": 292
+      "records": 605
+    },
+    "residents/household:persons[].occupation.basis.kind": {
+      "records": 92
     },
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
+    },
+    "residents/household:persons[].occupation.replaceable_by.kind": {
+      "records": 92
+    },
+    "residents/household:persons[].occupation.replaceable_by.match": {
+      "records": 92
+    },
+    "residents/household:persons[].occupation.seed": {
+      "records": 92
+    },
+    "residents/household:persons[].occupation.tier": {
+      "records": 92
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.ticket": {
       "records": 6
@@ -233,14 +248,41 @@
       "refused_because": "The `record_id` or locator of the evidence block the leg came from — an audit pointer, null on the 383 legs read off a post-office return, which carries no per-return record. The card shows the SOURCE the block cites, which is the part a reader can follow; an internal row id is not."
     },
     "residents/household:reason_for_coming.replaceable_by.kind": {
-      "records": 1233
+      "records": 1357
     },
     "residents/household:reason_for_coming.written_by_stage": {
-      "records": 1233
+      "records": 1357
     },
     "residents/household:source_pass": {
-      "records": 1179,
+      "records": 1303,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows — grade, letter_list_only, sources — is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
+    },
+    "residents/household:women_children.head_trade": {
+      "records": 124
+    },
+    "residents/household:women_children.head_trade_seed": {
+      "records": 124
+    },
+    "residents/household:women_children.household_type": {
+      "records": 124
+    },
+    "residents/household:women_children.seated": {
+      "records": 124
+    },
+    "residents/household:women_children.seated_beyond_the_draw": {
+      "records": 124
+    },
+    "residents/household:women_children.seed": {
+      "records": 124
+    },
+    "residents/household:women_children.size_drawn": {
+      "records": 124
+    },
+    "residents/household:women_children.stage": {
+      "records": 124
+    },
+    "residents/household:women_children.ticket": {
+      "records": 124
     },
     "residents/manifest:_roles_doc": {
       "records": 1
@@ -262,11 +304,11 @@
       "refused_because": "Bookkeeping about an OPERATION, not a figure about the town: how many reconstructed cards the synthesis of 2 September 2026 removed. The town it describes no longer exists in this tree, so a visitor has nothing to hold it against; `by_grade.reconstructed` — which reads 0 — is the fact about the layer, and the removal itself is docs/LIBERTIES.md's business."
     },
     "residents/manifest:households[].head": {
-      "records": 1258,
+      "records": 1382,
       "refused_because": "A foreign key into `persons[].id`, not a figure — it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 1258,
+      "records": 1382,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its value, its confidence, its reasoning and its sources — and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
@@ -274,35 +316,35 @@
       "refused_because": "The flat copy of a person-level subtype. `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected sits beside the label; the household's boolean carries none of it. The identical ruling T-0782 made about `counts.projected_residents`, one level down."
     },
     "residents/manifest:merged[].cluster": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The same flat copy of the cluster name, refused for the same reason."
     },
     "residents/manifest:merged[].household": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The same foreign key at household scope, refused for the same reason."
     },
     "residents/manifest:merged[].merged_into_household": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The other end of the same redirect at household scope."
     },
     "residents/manifest:merged[].merged_into_person": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The other end of the same redirect. It resolves an id and states nothing about a person."
     },
     "residents/manifest:merged[].person": {
-      "records": 65,
+      "records": 66,
       "refused_because": "T-0839's redirect table, keyed by foreign key. `person` and the three ids beside it name which card was folded into which; they are how a crosswalk resolves a stale id, not a figure about anybody. The fold itself now reaches the visitor on the surviving person's own card, from the record's `merged_from` block, with the rule and the reasoning that made it."
     },
     "residents/manifest:merged[].record_file": {
-      "records": 65,
+      "records": 66,
       "refused_because": "File routing — where the folded record is kept whole under data/residents/merged/. The same class of key as `file`, which this census strips as machinery wherever it is not nested inside a table."
     },
     "residents/manifest:merged[].rule": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The manifest's flat copy of the fold's rule. The RECORD's `merged_from[].rule` is what residents.js shows, beside the cluster, the ticket and the note that says what the union of the cards means. Showing the manifest's bare copy would be showing less, which is the ruling this table already makes about `households[].present_on_scene_date`."
     },
     "residents/manifest:merged[].ticket": {
-      "records": 65,
+      "records": 66,
       "refused_because": "The same flat copy of the ticket, refused for the same reason."
     },
     "residents/manifest:vocabulary.age_bands[].age_band": {
