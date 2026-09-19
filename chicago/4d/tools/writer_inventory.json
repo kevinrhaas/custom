@@ -887,7 +887,7 @@
       "write_mode": "--build",
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 11 cards, 125 people and the return in data/reconstruction/1835_garrison.json from their seeds. In the manifest directly after `women_and_children`.",
-      "placed": "by stage order, 2026-09-19 \u2014 its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
+      "placed": "by stage order, 2026-09-19 — its invented names must step past that stage's, and measured in the other order 43 of that stage's cards redraw"
     },
     "reconstruct_modelled_families.py": {
       "placement": "manifest",
@@ -1021,6 +1021,13 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "rule_presence_1835.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-19",
+      "finding": "Reproduces: `--build` re-derives data/reconstruction/1835_presence_rulings.json byte-for-byte from the household directory and T-1172's persistence model, and `--check` is a gate in tools/check.sh.",
+      "placed": "by layer, 2026-09-19 — after every writer that can move a card's presence or its evidence blocks, before everything that counts the town; see the manifest step"
     },
     "school_section_sale.py": {
       "placement": "manifest",

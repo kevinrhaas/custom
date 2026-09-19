@@ -40,6 +40,18 @@
  * toward the model's point for that date. The cards the project holds are still said —
  * as cards, on their own line, which is what they are. `people housed` is unmoved.
  *
+ * T-1386 changed WHICH of two real figures the rung shows, and made the card say which
+ * question its number answers. `people.scene.persons` counts the people a record
+ * ESTABLISHES here on 1 July, and that is the strictest reading the layer supports — but
+ * it is not the town's population, because it left 827 people the project has attested or
+ * inferred evidence for outside the town on an unadjudicated `uncertain`. The owner's rule
+ * is that an attested person is the ideal case, so those 827 are now RULED into the town
+ * one at a time, each at the tier its own dated readings reach, and the rung shows
+ * `people.scene.population` — 2,267 of a modelled 2,536. The established figure is not
+ * overwritten: it keeps its own line under the bar, because they are two real measures and
+ * the project needs both. Each figure carries its own `question` string from the census as
+ * its tooltip, so a visitor can read what they are looking at without leaving the gate.
+ *
  * FAIL SOFT, ALWAYS. Either source may be absent while a branch is being built. Show the
  * rows that can be read and never turn a census nicety into a page error on the first
  * screen a visitor sees.
@@ -122,8 +134,15 @@ export async function mountGateCensus({ dataBase, root }) {
   // count and quoting it is the defect this ticket exists to fix.
   const scene = census?.people?.scene;
   const counts = residents?.counts || {};
-  const sceneGrades = scene?.by_grade;
-  const named = Number(scene ? scene.persons : counts.persons);
+  // THE POPULATION (T-1386) is the figure the rung shows when the census carries it; the
+  // established count stays in `scene.persons` and gets its own line below. Fail soft:
+  // a census written before T-1386 has no `population` block and the row falls back to
+  // the established figure, then to the manifest's cards, exactly as it did before.
+  const population = scene?.population;
+  const sceneGrades = population?.by_grade || scene?.by_grade;
+  const named = Number(population ? population.persons : (scene ? scene.persons : counts.persons));
+  const established = Number(population?.established);
+  const ruledIn = Number(population?.ruled_in);
   const grades = sceneGrades || counts.by_grade || {};
   const attested = Number(grades.attested);
   const inferred = Number(grades.inferred);
@@ -141,7 +160,10 @@ export async function mountGateCensus({ dataBase, root }) {
   // town filling from the best-evidenced end. Reconstructed is listed in the key even
   // at zero: it is the work still to do, and a key that hid it would hide that.
   if (Number.isFinite(named)) {
-    const rowLabel = scene ? 'residents in the town' : 'named on a card';
+    const rowLabel = population ? 'people in the town'
+      : (scene ? 'residents in the town' : 'named on a card');
+    // WHICH QUESTION THIS NUMBER ANSWERS, in the census's own words.
+    const namedTitle = population?.question || residents?._doc;
     const of = Number.isFinite(modelled)
       ? `of roughly ${group(modelled)} here on 1 July 1835`
       : '';
@@ -151,7 +173,7 @@ export async function mountGateCensus({ dataBase, root }) {
       ['rec', reconstructed, 'reconstructed'],
     ].filter(([, n]) => Number.isFinite(n));
     rows.push(
-      `<section class="gc-row"${titleAttr(residents?._doc)}>`
+      `<section class="gc-row"${titleAttr(namedTitle)}>`
       + '<p class="gc-head">'
       + `<b class="gc-n">${group(named)}</b>`
       + `<span class="gc-l">${rowLabel}</span></p>`
@@ -169,13 +191,30 @@ export async function mountGateCensus({ dataBase, root }) {
         ? `<p class="gc-note"${titleAttr(census?.people?.basis)}>`
           + `${group(housed)} of them are placed in a building that stands</p>`
         : '')
+      // THE OTHER REAL MEASURE, kept rather than overwritten (T-1386): how many of these
+      // people a record establishes here on the day itself, and how many are carried into
+      // the town by their own evidence under the ruling. The tooltip is the census's own
+      // question string for the stricter figure.
+      + (Number.isFinite(established) && Number.isFinite(ruledIn)
+        ? `<p class="gc-note"${titleAttr(scene?.question)}>`
+          + `${group(established)} of them are established here by a record dated across `
+          + `that day; ${group(ruledIn)} are ruled into the town on their own evidence</p>`
+        : '')
       // The cards the layer holds without establishing the person in the town that day.
       // They were the numerator until T-1365 and they are still worth saying — as what
       // they are, one line down, never as residents.
-      + (Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0
+      + (!population && Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0
         ? `<p class="gc-note"${titleAttr(scene?.basis)}>`
           + `${group(cardsHeld)} cards are held in all; ${group(cardsUnestablished)} name `
           + 'someone not yet established here on that day</p>'
+        : '')
+      // Under the ruling the residue is not a heap of unadjudicated cards but the people
+      // the sources place OUTSIDE the town, and two is the whole of it.
+      + (population && Number.isFinite(cardsHeld) && Number(population.absent_on_evidence) > 0
+        ? `<p class="gc-note"${titleAttr(population?.basis)}>`
+          + `${group(cardsHeld)} cards are held in all; `
+          + `${group(Number(population.absent_on_evidence))} name someone a source places `
+          + 'outside the town that day</p>'
         : '')
       + '</section>',
     );
@@ -184,9 +223,18 @@ export async function mountGateCensus({ dataBase, root }) {
     if (Number.isFinite(housed)) {
       aria.push(`${group(housed)} of them are placed in a building that stands`);
     }
-    if (Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0) {
+    if (Number.isFinite(established) && Number.isFinite(ruledIn)) {
+      aria.push(`${group(established)} of them are established here by a record dated `
+        + `across that day; ${group(ruledIn)} are ruled into the town on their own evidence`);
+    }
+    if (!population && Number.isFinite(cardsHeld) && Number.isFinite(cardsUnestablished) && cardsUnestablished > 0) {
       aria.push(`${group(cardsHeld)} cards are held in all; ${group(cardsUnestablished)} name `
         + 'someone not yet established here on that day');
+    }
+    if (population && Number.isFinite(cardsHeld) && Number(population.absent_on_evidence) > 0) {
+      aria.push(`${group(cardsHeld)} cards are held in all; `
+        + `${group(Number(population.absent_on_evidence))} name someone a source places `
+        + 'outside the town that day');
     }
   } else if (Number.isFinite(housed)) {
     // The residents manifest could not be read, so there is no named count to hang the
