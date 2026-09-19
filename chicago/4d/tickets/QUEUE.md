@@ -50,7 +50,8 @@
 T-1385 — Every lodging card printing who lived there, and the crews and the harbour-works gang seated once a committed source gives a complement and a strength
 T-1377 — The free Black residents, families and Black-owned businesses of 1835 to the low end of the bracket at least: households, trades, firms and a name pool cited to attested Illinois free Black naming, with docs/RESEARCH/black_chicago_1835.md
 # --- 3C. RECONSTRUCT RESIDENTS — converge
-T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
+T-1393 — Per-attribute completeness, and the model met: every person carries sex, age band, arrival, origin, reason, a role or a stated reason for having none, presence, division and household relationship — each at a tier — and the profile's unknown columns read zero or name the rows the sources contradict
+T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 T-1386 — The town's population must carry the people we already know: 276 of 410 attested residents sit outside it on an unruled 'uncertain', not on evidence of absence, and the owner's rule is that an attested person is the ideal case
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
@@ -227,3 +228,4 @@ T-1373 — Dev is red at desktop part 12: T-1347's 308 trade households are writ
 T-1379 — The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
 T-1380 — A squash merge dropped a shipped release note and re-used its version: v971 named 'Six dates that would not stick' on dev at 06:06 and names 'How many people each tavern and boarding house could sleep' at 06:31, and the first entry is gone from the file the launcher and Manager parse
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
+
