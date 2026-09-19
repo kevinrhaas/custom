@@ -107,6 +107,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
 
 from compile_gazetteer import (  # noqa: E402  — the identity policy has one home
     REPO, ROOT, RESEARCH, GAZETTEER,
@@ -638,6 +639,11 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     for path in sorted(Path(residents_dir, "households").glob("*.json")):
         d = load_json(path)
         for p in d.get("persons", []):
+            # T-1171: a person the reconstruction programme DREW is not a name any source printed.
+            # Matching one to a printed name would be this project reading its own invention
+            # back as evidence. reconstructed_person.py holds the rule.
+            if is_reconstructed(p):
+                continue
             occ = p.get("occupation")
             town["residents"].append({
                 "household": d["id"],

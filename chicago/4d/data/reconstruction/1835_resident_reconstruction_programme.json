@@ -192,8 +192,9 @@
     "head_rule",
     "sex_ratio"
    ],
-   "note": "Drawn at the head's own size band, never at the mean — the head_rule row says why.",
-   "implemented": false
+   "note": "Drawn at the head's own size band, never at the mean - the head_rule row says why. tools/reconstruct_modelled_families.py draws the KIN CORE only: a wife and children, for a head whose household record is present on the scene date, holds him alone, and is not a letter-list mint. The servant, the apprentice and the journeyman a house of this size also held are priced by T-1183 and seated by T-1173; the lodger is T-1175's. Every draw is seeded on the household id and counted into the order book, which refuses the draw rather than overfill a bucket.",
+   "implemented": true,
+   "built_by": "tools/reconstruct_modelled_families.py"
   },
   {
    "key": "readmissions",

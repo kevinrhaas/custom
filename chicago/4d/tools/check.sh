@@ -2328,6 +2328,21 @@ step "every mint that re-derives a household carries the blocks it does not own"
 
 selftest "...and its own assertions still fire when broken" \
   python3 tools/carry_stage_blocks.py --self-test
+
+# T-1171, stage `modelled_families` of that programme, and the first one to write a
+# PERSON rather than an attribute block. 94 heads the sources leave standing alone get
+# the wife and children the household model says they kept, drawn at the head's own size
+# band off the 1840 city's histogram, seeded on the household id, and counted into the
+# order book — which refuses a draw rather than overfill a bucket. The stage's own
+# --check strips its people out of the committed layer, draws them again and refuses a
+# differing byte; `reconstruct_residents_1835.py --check` above holds each of them to the
+# record contract, which is the other half.
+step "the modelled families re-derive from the household model and the order book" \
+  python3 tools/reconstruct_modelled_families.py --check
+
+selftest "...and every rule that decides who gets a family refuses its own case" \
+  python3 tools/reconstruct_modelled_families.py --self-test
+
 # T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
 # scale. 593 people carried no sex after T-1303 had read every title and forename the
 # evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
