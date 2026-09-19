@@ -55,7 +55,16 @@ without an argument.
 
 A record a human means to author goes in `data/businesses/authored/`, which the compiler
 reads, validates and carries into the index untouched. That directory is where T-1182's
-inferred-by-audit firms and T-1184's reconstructions will be written. It is empty today.
+inferred-by-audit firms are written, and where the reconstruction band's `rcb_…` records
+already are: **2 today**, both druggists, written by
+`tools/reconstruct_businesses_1835.py --build` against the reconstruction order book's own
+quota and re-derived by its `--check`. A reconstructed record carries
+`provenance: "reconstructed"` and a `reconstruction` block — the order-book bucket that
+bought it, the group and ticket that wrote it, the seed that redraws every drawn value on
+it, and what retires it — and the compiler refuses one without it, refuses a compiled
+record that claims one, and refuses any reconstructed record that cites a source. See
+`docs/RESEARCH/business-naming-1835.md` for the style guide and `docs/LIBERTIES.md § L254`
+for the invention.
 
 ## The id, and why it is not the one T-1180 named
 

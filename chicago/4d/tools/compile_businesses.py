@@ -86,21 +86,38 @@ GRADES = ("attested", "inferred", "reconstructed")
 
 # ---------------------------------------------------------------- reading the town
 
+# Every directory under data/residents/ that holds CARDS. The research mints re-derive
+# `households/`, so the reconstruction programme writes its people beside it instead —
+# `readmitted/` (T-1172), `reconstructed_trades/` (T-1347), `lodgers/` (T-1371), and
+# `transients/` when it lands — and tools/compile_scene.py overlays all of them onto the
+# scene. tools/reconstruct_underdocumented.py already reads the set this way.
+RESIDENT_CARD_DIRS = ("households", "merged", "readmitted", "reconstructed_trades",
+                      "lodgers", "transients")
+
+
 def person_ids(residents_dir=None):
     """Every person id the resident layer holds, so a link can be refused when it dangles.
 
     The index lists HEADS, and a proprietor is routinely not one — Archibald Clybourn
     heads a household and the clerk in his market does not — so the ids come from the
     household files themselves rather than from the index's summary rows.
+
+    AND THE RECONSTRUCTION'S CARDS COUNT (T-1184). A reconstructed business adopts a
+    reconstructed trade head as its proprietor rather than minting a person of its own —
+    the head's card says so itself — and a link to a card this layer really holds is not
+    a dangling link merely because the card sits outside `households/`. Reading the whole
+    set here only ever LOOSENS the refusal below, and it loosens it onto people the scene
+    already carries.
     """
     root = Path(residents_dir or RESIDENTS)
     ids = set()
-    for path in sorted(root.glob("households/*.json")) + sorted(root.glob("merged/*.json")):
-        doc = load_json(path)
-        record = doc.get("superseded_record", doc)
-        for person in record.get("persons", []) or []:
-            if person.get("id"):
-                ids.add(person["id"])
+    for folder in RESIDENT_CARD_DIRS:
+        for path in sorted(root.glob("%s/*.json" % folder)):
+            doc = load_json(path)
+            record = doc.get("superseded_record", doc)
+            for person in record.get("persons", []) or []:
+                if person.get("id"):
+                    ids.add(person["id"])
     return ids
 
 
@@ -943,6 +960,22 @@ def semantic_problems(records, town_ids=None):
             if loc["tier"] not in GRADES:
                 bad.append("%s: location tier %r is off the ladder" % (rid, loc["tier"]))
 
+        # A RECONSTRUCTED HOUSE SAYS WHERE IT CAME FROM, OR IT IS NOT ONE (T-1184). The
+        # `reconstruction` block is the business layer's half of the contract T-1158 put on
+        # every reconstructed value: the order-book row that bought the house, the group
+        # and ticket that wrote it, the seed a reader retypes to redraw it, and what
+        # retires it. The block belongs to reconstructions and to nothing else — a compiled
+        # or an audited record carrying one would be claiming a writer it does not have.
+        if record["provenance"] == "reconstructed" and not record.get("reconstruction"):
+            bad.append("%s: reconstructed and carries no reconstruction block, so nothing "
+                       "says which order-book row bought it" % rid)
+        if record.get("reconstruction") and record["provenance"] != "reconstructed":
+            bad.append("%s: carries a reconstruction block and is provenance %r"
+                       % (rid, record["provenance"]))
+        if record["provenance"] == "reconstructed" and (record["sources"] or record["claim_ids"]):
+            bad.append("%s: reconstructed and cites a source; the evidence is for the NEED "
+                       "and it is argued in the basis" % rid)
+
         if record["dates"]["tier"] == "attested" and record["dates"]["precision"] != "exact":
             bad.append("%s: dates are attested at precision %r; an attested opening is exact"
                        % (rid, record["dates"]["precision"]))
@@ -1155,6 +1188,19 @@ def self_test():
            "an attested opening is exact", ids)
 
     expect("no census class", mutate(lambda d: d.update(type=[])), "no census class", ids)
+
+    expect("a reconstruction with nothing behind it",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[])),
+           "carries no reconstruction block", ids)
+
+    expect("a compiled record claiming a reconstruction",
+           mutate(lambda d: d.update(reconstruction={"programme": "x"})),
+           "carries a reconstruction block", ids)
+
+    expect("a reconstructed house citing a source",
+           mutate(lambda d: d.update(provenance="reconstructed",
+                                     reconstruction={"programme": "x"})),
+           "reconstructed and cites a source", ids)
 
     expect("a community off the vocabulary",
            mutate(lambda d: d["proprietor_community"].update(value="anglo_american")),
