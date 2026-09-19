@@ -103,9 +103,72 @@ that resolves to nobody cannot be folded onto anybody.
 A null there is a finding, not a gap to be filled by guessing. It is also the queue for
 T-1189, which staffs every business with real persons.
 
-`proprietor_community` is `unattested` on all 196, and stays that way until a source speaks.
-Reading a community off a surname is exactly the move the resident layer refuses; T-1177 is
-where the Native, Métis, Black, Irish and German businesses are identified from evidence.
+## The community of a house, and where it is read from
+
+`proprietor_community` stood at the literal string `unattested` on all 196 from the day the
+layer was compiled. T-1378 ended that by reading it off the PEOPLE a record names — each
+keeper's own card in `data/residents/community.json`, which is itself derived off household
+origin blocks and reconstruction name pools — and never off a surname, which is exactly the
+move the resident layer refuses. The sentence that used to stand here said the field was
+still `unattested`; T-1401 found it eighteen days stale and T-1403 rewrites it with the
+measurement beside it.
+
+**The distribution, on all 201 records:**
+
+| community | n | community | n |
+|---|---:|---|---:|
+| *unknown* | 85 | british | 9 |
+| yankee | 48 | southern | 5 |
+| new_york | 41 | free Black | 2 |
+| other | 10 | Métis | 1 |
+
+And the rule that produced each: `proprietors_agree` 116, `no_person_linked` 73,
+`proprietors_disagree` 8, `no_community_on_the_people_named` 4. The 73 are the register
+naming nobody the town holds a card for, or naming nobody at all — they are the queue for
+T-1189, not a gap to be closed by reading letters in a name.
+
+### Black-owned, and Native or Métis-run — the attested floor (T-1403)
+
+The parent's clause 5 asks that every house whose proprietor the sources place in either
+community carry the field at the tier the evidence supports, so the Businesses view lists
+them on one filter and T-1177 reconstructs **above an attested floor**. This is what the
+corpus gives, and the floor is low because the corpus is thin, not because the town was.
+
+- **Métis — one house, and it is attested.** Andreas, of Alexander Robinson
+  (Che-che-pin-qua): "During the latter part of his residence in Chicago, he lived at Wolf
+  Point, where he had a store or trading-house." Behind it stand his tavern licence of 8
+  June 1830 and the county clerk's 1831 permits to sell goods — to Robinson, John B.
+  Beaubien and Madore B. Beaubien. His card already read `metis` at `attested` on his own
+  origin sentence ("his father a Scots trader, his mother an Ottawa woman"), and the
+  register never held the house because he never advertised: the register is a reading of
+  newspaper notices, and the country trade at the forks did not take them.
+  `data/businesses/authored/biz_robinson_trading_house_wolf_point.json` is that house —
+  authored, not reconstructed, and nothing in it is invented. Its premises is `inferred` on
+  `robinson_caldwell_cabins`, the only Wolf Point building this dataset attaches to him and
+  the same structure the household's own `works_at` names; its dates are unbounded because
+  "the latter part of his residence" is a position in a life and not a year; and it carries
+  `review_required` for the reason its household and its structure do.
+- **Native (all four terms) — none, and the silence is about the register.** No house in the
+  layer is kept by anybody the resident layer reads in the Potawatomi, Ottawa, Ojibwe or
+  unspecified-Native terms. The one name the clause points at is **the interpreter**: Billy
+  Caldwell (Sauganash), `metis` at `attested`, interpreter to the United States Indian
+  agency under Col. T. J. V. Owen. An agency post is an employment and not a house he kept,
+  so it is not a `proprietor_community` on anything — it belongs to **T-1188**, which raises
+  the civic establishments as businesses with staff, and the agency is where Caldwell,
+  David McKee the blacksmith and Joseph Porthier the striker are seated.
+- **Free Black — no attested house at all; the floor is zero.** `black_chicago_1835.md` is
+  the whole of the reading, and its finding is that the corpus counts the free Black town of
+  Chicago twice — Caton's fee in August 1833, the 1840 census — and **names it never**, not
+  one advertisement, not one directory line, not one roll. So the two houses that carry
+  `free_black` are both T-1377's reconstructed firms, `rcb_fb_barbers_shop` and
+  `rcb_fb_washing_and_ironing`, standing above a floor of nothing. That is the honest state
+  and it is not a defect to be corrected upward.
+
+One line the count does not print: a `metis` reading of **1** is a statement about the
+register, not about the forks. The French Canadian and Métis families of Wolf Point traded,
+kept taverns and held permits; what this layer holds is the one of them a book names keeping
+a house. T-1177 reconstructs above these floors, and the floors are what it must not sink
+below.
 
 ## The limits are data now
 
