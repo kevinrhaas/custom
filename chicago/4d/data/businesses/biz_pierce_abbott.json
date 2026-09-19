@@ -86,7 +86,28 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_06_11#c003 (business, 1834-06-11).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (new_york, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "abbott_titus_h",
+        "name": "Titus H. Abbott",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "pierce_asahel",
+        "name": "Asahel Pierce",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "inferred"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

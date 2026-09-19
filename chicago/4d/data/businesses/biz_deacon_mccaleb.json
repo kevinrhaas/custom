@@ -76,7 +76,13 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "no_person_linked",
+    "basis": "This record names nobody the resident layer holds a card for, so there is no person to read a community off. The silence is in the register.",
+    "from": []
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

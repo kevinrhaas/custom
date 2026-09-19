@@ -141,7 +141,42 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (irish, new_york), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "caton_john_dean",
+        "name": "J. D. Caton",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "inferred"
+      },
+      {
+        "person_id": "caton_john_dean",
+        "name": "J. Dean Caton",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "inferred"
+      },
+      {
+        "person_id": "collins_j_h",
+        "name": "J. H. Collins",
+        "role": "partner",
+        "community": "irish",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "collins_j_h",
+        "name": "James H. Collins",
+        "role": "partner",
+        "community": "irish",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

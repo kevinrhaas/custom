@@ -4,6 +4,7 @@
     tools/compile_businesses.py --build       rewrite the compiled records
     tools/compile_businesses.py --check       the gate
     tools/compile_businesses.py --self-test   the gate's assertions still fire
+    tools/compile_businesses.py --community-report   the shares of docs/RESEARCH/business_community_1835.md
 
 T-1310, of T-1180. THERE WAS NOWHERE TO WRITE A BUSINESS DOWN. The business layer was
 three DERIVED files — the newspaper claims, gazetteer.json, register_1835.json — and a
@@ -100,6 +101,140 @@ def person_ids(residents_dir=None):
             if person.get("id"):
                 ids.add(person["id"])
     return ids
+
+
+def person_communities(residents_dir=None):
+    """The community of every person, exactly as derive_person_community.py left it.
+
+    T-1378, from T-1177. `proprietor_community` stood at the literal string "unattested"
+    on all 196 records from the day the layer was compiled, and the comment beside it
+    said what it was waiting for: NEVER INFERRED FROM A SURNAME. This is the reading that
+    does not have to be. data/residents/community.json is a committed derivation off the
+    household `origin` blocks and the reconstruction name pools — a claim about a person,
+    made once, in one place — so a house can be read off the PEOPLE its record names
+    rather than off the letters in their names.
+    """
+    path = Path(residents_dir or RESIDENTS) / "community.json"
+    if not path.exists():
+        raise SystemExit("data/residents/community.json is missing; it is what this layer "
+                         "reads a proprietor's community from — run "
+                         "tools/derive_person_community.py first")
+    return load_json(path).get("persons") or {}
+
+
+def community_vocabulary():
+    """The closed vocabulary, from the resident layer's own rules file.
+
+    ONE VOCABULARY, NOT TWO. The schema used to carry a second list of its own
+    (`anglo_american`, `black`, ...) whose description already claimed to be "shared with
+    the resident layer", and it was not: the resident layer separates New England, New
+    York, British and Southern where that list said `anglo_american`, and says
+    `free_black` where it said `black`. Nothing was ever written in the schema's terms —
+    every record read `unattested` — so the divergence cost no record a rewrite, and
+    T-1378 ends it by reading the terms from where they are decided.
+    """
+    rules = load_json(RESIDENTS / "community_rules.json")
+    return [(v["value"], v["label"]) for v in rules["vocabulary"]]
+
+
+def weaker(a, b):
+    """The weaker of two tiers — the ladder derive_person_community.py caps on."""
+    if a not in GRADES:
+        return b
+    if b not in GRADES:
+        return a
+    return GRADES[max(GRADES.index(a), GRADES.index(b))]
+
+
+def derive_proprietor_community(proprietors, partners, communities):
+    """The community of a house, read off the people its own record names.
+
+    THE RULE, and what each half of it refuses.
+
+      `proprietors_agree` — every proprietor and partner the resident layer holds a card
+        for carries the same community, and that is the house's. The tier is the WEAKEST
+        of theirs, CAPPED AT `inferred`: a person's community is evidence about the
+        PERSON, and a house is not its keeper, so reading one onto the other is an
+        inference about the house however attested the keeper's own card.
+
+      `proprietors_disagree` — two keepers, two communities, and nothing in the record
+        chooses between them. `unknown`, with every one of them named in `from`, so the
+        disagreement is printed on the card instead of being settled by list order.
+
+      `no_community_on_the_people_named` — the house names people the layer holds cards
+        for and knows no community for any of them. `no_person_linked` — it names nobody
+        the layer holds, or nobody at all. Both answer `unknown` and they are told apart
+        because they are different silences: the first is a gap in the resident layer,
+        the second in the register.
+
+    STAFF ARE NOT READ. A clerk's community is evidence about the clerk, not about the
+    house that employed him. (`staff` is empty on every compiled record today — the
+    papers name owners and almost never a clerk — so this is a rule written before it can
+    bite, not a filter over anything.)
+    """
+    named = list(proprietors) + list(partners)
+    rows = []
+    for person in named:
+        pid = person.get("person_id")
+        if not pid:
+            continue
+        held = communities.get(pid) or {}
+        rows.append({
+            "person_id": pid,
+            "name": person.get("name"),
+            "role": person.get("role"),
+            "community": held.get("value") or "unknown",
+            "tier": held.get("tier"),
+        })
+    rows.sort(key=lambda r: (r["person_id"], r["role"] or ""))
+
+    speaking = [r for r in rows if r["community"] != "unknown"]
+    values = sorted({r["community"] for r in speaking})
+
+    if len(values) == 1:
+        tier = None
+        for row in speaking:
+            tier = weaker(tier, row["tier"]) if tier else (row["tier"] or "inferred")
+        tier = weaker(tier or "inferred", "inferred")
+        who = ", ".join("%s (%s)" % (r["name"], r["community"]) for r in speaking)
+        return {
+            "value": values[0],
+            "tier": tier,
+            "rule": "proprietors_agree",
+            "basis": ("The %d keeper(s) this record names and the resident layer holds a card "
+                      "for all read %s: %s. A house is not its keeper, so the reading is an "
+                      "inference about the house and is capped there."
+                      % (len(speaking), values[0], who)),
+            "from": rows,
+        }
+    if len(values) > 1:
+        return {
+            "value": "unknown",
+            "tier": None,
+            "rule": "proprietors_disagree",
+            "basis": ("The keepers this record names do not read as one community (%s), and "
+                      "nothing in the record chooses between them. Each is named above."
+                      % ", ".join(values)),
+            "from": rows,
+        }
+    if rows:
+        return {
+            "value": "unknown",
+            "tier": None,
+            "rule": "no_community_on_the_people_named",
+            "basis": ("This record names %d person/people the resident layer holds a card for "
+                      "and the layer knows no community for any of them. The silence is in the "
+                      "resident layer, not in the register." % len(rows)),
+            "from": rows,
+        }
+    return {
+        "value": "unknown",
+        "tier": None,
+        "rule": "no_person_linked",
+        "basis": ("This record names nobody the resident layer holds a card for, so there is "
+                  "no person to read a community off. The silence is in the register."),
+        "from": [],
+    }
 
 
 def works_at_rows(residents_dir=None):
@@ -289,7 +424,7 @@ def dates_for(entry):
     }
 
 
-def compile_record(entry, gaz, register_persons, town_ids):
+def compile_record(entry, gaz, register_persons, town_ids, communities):
     """One register business, restated as a record."""
     by_name = register_persons
     evidence = entry.get("evidence") or {}
@@ -333,8 +468,9 @@ def compile_record(entry, gaz, register_persons, town_ids):
         "exclusion_note": entry.get("exclusion_note"),
         # NEVER INFERRED FROM A SURNAME. The community of a proprietor is a claim about a
         # person, and the register carries no such claim; reading one off a name is the
-        # exact move the resident layer refuses. T-1177 fills this where a source speaks.
-        "proprietor_community": "unattested",
+        # exact move the resident layer refuses. T-1378 fills it from the one place that
+        # claim IS made — data/residents/community.json — and from nowhere else.
+        "proprietor_community": derive_proprietor_community(proprietors, partners, communities),
         "customers": [],
         "sources": ["chicago_newspapers_1833_1835"],
         "claim_ids": claims,
@@ -348,7 +484,7 @@ def compile_record(entry, gaz, register_persons, town_ids):
     }
 
 
-def compile_all(register, gazetteer, town_ids):
+def compile_all(register, gazetteer, town_ids, communities):
     gaz_by_id = {b["id"]: b for b in gazetteer["businesses"]}
     by_name = {}
     for person in register["persons"]:
@@ -358,7 +494,7 @@ def compile_all(register, gazetteer, town_ids):
         gaz = gaz_by_id.get(entry["id"])
         if gaz is None:
             raise ValueError("register business %s has no gazetteer row" % entry["id"])
-        records.append(compile_record(entry, gaz, by_name, town_ids))
+        records.append(compile_record(entry, gaz, by_name, town_ids, communities))
     records.sort(key=lambda r: r["id"])
     return records
 
@@ -489,7 +625,11 @@ def index_row(record, streets):
         "opened": record["dates"].get("opened"),
         "closed": record["dates"].get("closed"),
         "dates_tier": record["dates"].get("tier"),
-        "proprietor_community": record.get("proprietor_community"),
+        # THE VALUE AND ITS TIER, not the whole block: the list filters and counts on
+        # the value, the pill greys on the tier, and the card fetches the record for the
+        # rule, the basis and the keepers it was read off.
+        "proprietor_community": (record.get("proprietor_community") or {}).get("value"),
+        "proprietor_community_tier": (record.get("proprietor_community") or {}).get("tier"),
         "review_required": bool(record.get("review_required")),
         "liberties": sorted(k for k, v in (record.get("liberties") or {}).items() if v),
     }
@@ -516,6 +656,7 @@ def build_index(records, authored, rows):
     # unplaceable earlier address. The directory files a firm once, so it needs
     # the count of FIRMS — 83 unplaceable locations are 79 unplaceable houses.
     counts_by_where = {}
+    counts_by_community = {}
     streets = street_names()
     directory = [index_row(r, streets) for r in sorted(everything, key=lambda r: r["id"])]
     for row in directory:
@@ -526,6 +667,8 @@ def build_index(records, authored, rows):
         kind = (row["where"] or {}).get("kind")
         if kind:
             counts_by_where[kind] = counts_by_where.get(kind, 0) + 1
+        community = row.get("proprietor_community") or "unknown"
+        counts_by_community[community] = counts_by_community.get(community, 0) + 1
     walk = crosswalk(everything, rows)
     return {
         "schema": 1,
@@ -548,6 +691,20 @@ def build_index(records, authored, rows):
             "by_grade": dict(sorted(counts_by_grade.items())),
             "by_where_kind": dict(sorted(counts_by_where.items())),
             "by_street": dict(sorted(counts_by_street.items())),
+            "by_proprietor_community": dict(sorted(counts_by_community.items())),
+        },
+        "_vocabulary_doc": ("THE CLOSED VOCABULARY, and it is the resident layer's — "
+                            "data/residents/community_rules.json, one list for people and for "
+                            "the houses they kept. The rows with a zero count are the point and "
+                            "are shipped anyway: a term nobody carries is a measurement of this "
+                            "layer, not a gap in this file. The Businesses view offers a pill "
+                            "only where the count is above zero."),
+        "vocabulary": {
+            "communities": [
+                {"value": value, "label": label,
+                 "count": counts_by_community.get(value, 0)}
+                for value, label in community_vocabulary()
+            ],
         },
         "_businesses_doc": ("THE DIRECTORY'S ROWS. Each carries what the Businesses list, its "
                             "filters and its counts read — the card fetches the record itself "
@@ -579,7 +736,7 @@ def compiled_docs(residents_dir=None):
     register = load_json(REGISTER)
     gazetteer = load_json(GAZETTEER)
     town_ids = person_ids(residents_dir)
-    records = compile_all(register, gazetteer, town_ids)
+    records = compile_all(register, gazetteer, town_ids, person_communities(residents_dir))
     authored = read_authored()
     return records, authored, build_index(records, authored, works_at_rows(residents_dir))
 
@@ -610,6 +767,7 @@ def build():
 def semantic_problems(records, town_ids=None):
     """The rules a JSON schema cannot state. Every one of these is a --self-test case."""
     town_ids = town_ids if town_ids is not None else person_ids()
+    vocab = {value for value, _ in community_vocabulary()}
     bad = []
     seen = set()
     for record in records:
@@ -644,6 +802,32 @@ def semantic_problems(records, town_ids=None):
                        % (rid, record["dates"]["precision"]))
         if not record["type"]:
             bad.append("%s: no census class" % rid)
+
+        # THE COMMUNITY IS READ OFF PEOPLE OR IT IS NOT READ. Four rules, and the third
+        # is the one this field exists for: the value must be a community every
+        # contributing keeper actually carries, so no reading can arrive from anywhere
+        # but the cards named in `from` — least of all from a surname.
+        block = record.get("proprietor_community")
+        if not isinstance(block, dict):
+            bad.append("%s: proprietor_community is not a derived block" % rid)
+        else:
+            value = block.get("value")
+            sources = block.get("from") or []
+            speaking = {r.get("community") for r in sources if r.get("community") != "unknown"}
+            if value not in vocab:
+                bad.append("%s: proprietor_community %r is off the vocabulary" % (rid, value))
+            if not (block.get("basis") or "").strip():
+                bad.append("%s: proprietor_community states no basis" % rid)
+            if value != "unknown" and speaking != {value}:
+                bad.append("%s: proprietor_community reads %r and the keepers it names read %s"
+                           % (rid, value, sorted(speaking) or "nobody"))
+            if value != "unknown" and block.get("tier") == "attested":
+                bad.append("%s: proprietor_community is attested; a house is not its keeper, so "
+                           "the reading is capped at inferred" % rid)
+            for row in sources:
+                if row.get("person_id") not in town_ids:
+                    bad.append("%s: proprietor_community reads off %s, which the resident layer "
+                               "does not hold" % (rid, row.get("person_id")))
     return bad
 
 
@@ -738,7 +922,13 @@ def self_test():
                   "tier": "attested", "basis": "announced"},
         "evidence": {"first_issue": "1835-01-01", "last_issue": "1835-06-01", "copy_dates": []},
         "present_at_scene_date": True, "exclusion": None, "exclusion_note": None,
-        "proprietor_community": "unattested", "customers": [],
+        "proprietor_community": {
+            "value": "yankee", "tier": "inferred", "rule": "proprietors_agree",
+            "basis": "the one keeper the layer cards reads yankee",
+            "from": [{"person_id": "fixture_a", "name": "A. Fixture", "role": "proprietor",
+                      "community": "yankee", "tier": "inferred"}],
+        },
+        "customers": [],
         "sources": ["chicago_newspapers_1833_1835"], "claim_ids": ["c001"],
         "liberties": {"survival_required": False, "backdating_required": False},
         "review_required": False, "replaceable_by": "a directory",
@@ -786,6 +976,26 @@ def self_test():
            "an attested opening is exact", ids)
 
     expect("no census class", mutate(lambda d: d.update(type=[])), "no census class", ids)
+
+    expect("a community off the vocabulary",
+           mutate(lambda d: d["proprietor_community"].update(value="anglo_american")),
+           "off the vocabulary", ids)
+
+    expect("a community no named keeper carries",
+           mutate(lambda d: d["proprietor_community"].update(value="irish")),
+           "the keepers it names read", ids)
+
+    expect("a community read off nobody",
+           mutate(lambda d: d["proprietor_community"].update(**{"from": []})),
+           "the keepers it names read", ids)
+
+    expect("a community graded attested",
+           mutate(lambda d: d["proprietor_community"].update(tier="attested")),
+           "a house is not its keeper", ids)
+
+    expect("a community read off a person the town does not hold",
+           mutate(lambda d: d["proprietor_community"]["from"][0].update(person_id="fixture_ghost")),
+           "which the resident layer does not hold", ids)
 
     def duplicate(doc):
         pass
@@ -838,7 +1048,53 @@ def self_test():
         print("  FAIL  " + failure, file=sys.stderr)
     if failures:
         return 1
-    print("self-test: %d assertion(s) fire when broken, and the compile is deterministic" % 11)
+    print("self-test: %d assertion(s) fire when broken, and the compile is deterministic" % 16)
+    return 0
+
+
+def community_report():
+    """Every figure docs/RESEARCH/business_community_1835.md prints, printed here.
+
+    NOTHING ON THAT PAGE IS HAND-COUNTED. It is the same discipline
+    docs/RESEARCH/community_shares_1835.md holds itself to, and for the same reason: a
+    share nobody can re-derive is a share nobody can check.
+    """
+    records, authored, index = compiled_docs()
+    everything = records + authored
+    total = len(everything)
+    by_value = index["counts"]["by_proprietor_community"]
+    by_rule, by_tier = {}, {}
+    disagreeing = []
+    for record in everything:
+        block = record["proprietor_community"]
+        by_rule[block["rule"]] = by_rule.get(block["rule"], 0) + 1
+        key = block["tier"] or "—"
+        by_tier[key] = by_tier.get(key, 0) + 1
+        if block["rule"] == "proprietors_disagree":
+            disagreeing.append((record["name"],
+                                sorted({r["community"] for r in block["from"]
+                                        if r["community"] != "unknown"})))
+    known = total - by_value.get("unknown", 0)
+    print("%d business record(s); %d read a community, %d do not" % (total, known, total - known))
+    print()
+    print("| community | houses | of all %d | of the %d read |" % (total, known))
+    print("|---|---:|---:|---:|")
+    for value, label in community_vocabulary():
+        count = by_value.get(value, 0)
+        if value == "unknown":
+            continue
+        print("| %s (`%s`) | %d | %.1f%% | %.1f%% |"
+              % (label, value, count, 100.0 * count / total,
+                 100.0 * count / known if known else 0.0))
+    print("| **unknown** | **%d** | **%.1f%%** | — |"
+          % (by_value.get("unknown", 0), 100.0 * by_value.get("unknown", 0) / total))
+    print()
+    print("by rule: %s" % dict(sorted(by_rule.items())))
+    print("by tier: %s" % dict(sorted(by_tier.items())))
+    print()
+    print("the %d houses whose keepers do not agree:" % len(disagreeing))
+    for name, values in sorted(disagreeing):
+        print("  %-28s %s" % (name, ", ".join(values)))
     return 0
 
 
@@ -847,11 +1103,14 @@ def main(argv=None):
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--community-report", action="store_true")
     args = ap.parse_args(argv)
     if args.build:
         return build()
     if args.self_test:
         return self_test()
+    if args.community_report:
+        return community_report()
     bad = check()
     for problem in bad:
         print("  FAIL  " + problem, file=sys.stderr)

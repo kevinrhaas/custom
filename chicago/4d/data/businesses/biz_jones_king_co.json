@@ -165,7 +165,49 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (new_york, other, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "clarke_h_b",
+        "name": "H. B. Clarke",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "jones_william",
+        "name": "William Jones",
+        "role": "partner",
+        "community": "other",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "jones_william",
+        "name": "Jones, William",
+        "role": "partner",
+        "community": "other",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "king_byram",
+        "name": "Byram King",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "king_byram",
+        "name": "King, Byram",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

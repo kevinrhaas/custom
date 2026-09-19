@@ -85,7 +85,28 @@
   "present_at_scene_date": false,
   "exclusion": "contradicted_before_scene_date",
   "exclusion_note": "Contradicted on or before the scene date by chicago_democrat_1834_06_25#c006 (business, 1834-06-25).",
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "proprietors_disagree",
+    "basis": "The keepers this record names do not read as one community (new_york, yankee), and nothing in the record chooses between them. Each is named above.",
+    "from": [
+      {
+        "person_id": "brown_william_h",
+        "name": "Wm. H. Brown",
+        "role": "partner",
+        "community": "new_york",
+        "tier": "reconstructed"
+      },
+      {
+        "person_id": "tuttle_j_b",
+        "name": "J. B. Tuttle",
+        "role": "partner",
+        "community": "yankee",
+        "tier": "reconstructed"
+      }
+    ]
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"

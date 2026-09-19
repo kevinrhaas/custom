@@ -55,7 +55,13 @@
   "present_at_scene_date": true,
   "exclusion": null,
   "exclusion_note": null,
-  "proprietor_community": "unattested",
+  "proprietor_community": {
+    "value": "unknown",
+    "tier": null,
+    "rule": "no_person_linked",
+    "basis": "This record names nobody the resident layer holds a card for, so there is no person to read a community off. The silence is in the register.",
+    "from": []
+  },
   "customers": [],
   "sources": [
     "chicago_newspapers_1833_1835"
