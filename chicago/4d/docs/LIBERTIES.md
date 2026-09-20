@@ -13534,3 +13534,42 @@ adopt), the naming guide `docs/RESEARCH/business-naming-1835.md`, and the succes
 **T-1425** (the pier works and the vessels in port), **T-1189** (their staff) and **T-1199**
 (their seats).
 **Recorded:** 2026-09-20.
+
+### L261 — At the top of Wright's sheet the field carries the North Branch to the box wall, because a survey's edge is not a river's end
+
+**Decision:** in `data/terrain/epochs/e1834_harbor_cut/terrain_spec.json`, the new block
+`northern_branch` continues the **North Branch** north of the last row its traced polygon
+covers — N +1079.21 — between the row's crossings of the two bank runs the spec already
+carries to the wall (`trace_carries`: `north_branch_west_bank`, `north_branch_east_bank`), to
+the box's north wall at N +1120. **40.79 m of channel, about 45.4 m wide.** Water is written
+`conjectural` everywhere in this field, so no vertex of it claims more than a continuation is
+worth.
+
+**Why it was needed now and not before.** This is L239's fault at the other end of the same
+corpus, and T-1416 is what exposed it. `north_branch_wabansia`'s polygon closes on the line
+Wright ruled across the top of his sheet; its own note in the spec has always said that edge
+"is the edge of a survey and not the end of a river". While the box's west wall stood at
+E −320 the branch left the modelled ground through the WEST wall at about N +700 and that
+northern edge lay 160 m outside the box, so nothing had to answer for it. T-1416 carried the
+wall to E −705 — the easting T-1415 derived for the West Division's 35 held placements — and
+brought the whole traced reach inside. Left alone, the field would have stood **a plug of dry
+West Division prairie across the head of a channel, 40 m short of a wall a visitor can walk
+to**, between two banks that do reach the wall. That is worse than the southern fault L239
+records: that one invented a coast, this one would have dammed a river.
+
+**Why held between the banks and not extrapolated from the ring.** The same answer
+`trace_carries` gives and for the same reason: a bearing is a claim about where a line bends
+past the sheet, and the corpus does not hold one. The rule is stated PER ROW from the two
+traced BANKS, so it cannot drift away from the trace it extends, and the carries run at each
+tip's own easting — which makes the carried channel **45.39 m** wide against **45.4 m** of
+traced channel on the polygon's own last row. It is silent below N +1079.21, so it moves no
+sample the field had already committed.
+
+**Which way it is wrong if it is wrong.** Toward too LITTLE river. The rule stops at the box
+wall, which is itself a survey line and not a river end; the North Branch runs on north for
+miles and this project does not model it. And it claims no bed of its own: the channel's
+depth comes from the same reach profile the traced reach below it uses.
+
+**Related:** **L239** (the identical decision at the south end, since resolved by a second
+sheet), the west wall's derivation **T-1415**, this regeneration **T-1416**, and **T-1417**,
+which takes the West Division streets off the old E −320 clip. **Recorded:** 2026-09-20.

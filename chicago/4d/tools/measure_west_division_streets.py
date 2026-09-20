@@ -18,17 +18,23 @@ The three do not get the same answer, and the reason is the modelled ground:
    the placement, and the note on the record says what would move it (any wharf
    strip between the kerb and the water, whose width no source reached gives).
 
-2. **Jefferson and Des Plaines are refused, and the refusal is a measurement.**
-   Both survive on the ground and their surviving control is already committed —
+2. **Jefferson and Des Plaines were refused by the ground, AND THAT REFUSAL HAS
+   BEEN ANSWERED — they are still not drawn, for a different reason now.** Both
+   survive on the ground and their surviving control is already committed —
    `fulton`'s note carries the OpenStreetMap intersections T-0446 fitted it to,
    Jefferson at local east -401.04 and Des Plaines at -524.88. The modelled ground
-   ends at local east -320.0 (`heightfield.json`, `box_local_enu_m.e`). Both lines
-   lie WEST of that edge over their whole length. A street drawn there would hang
-   off the end of the terrain, and the plat gate that already refuses a block for
-   exactly this reason (`measure_southern_ground.py`) is the same rule. So they are
-   refused with the number that refuses them, and the refusal names what would
-   reverse it: extending the terrain box west, which is the same parcel that holds
+   ended at local east -320.0 and both lines lay WEST of that edge over their whole
+   length; a street drawn there would have hung off the end of the terrain, so they
+   were refused with the number that refused them, and the refusal named what would
+   reverse it: extending the terrain box west, which is the same parcel that held
    35 of the West Division's 55 recipe roofs (ROADMAP K15, LIBERTIES L90).
+
+   T-1416 extended it. The wall stands at local east -705.0 and both lines are
+   inside it by 304 m and 180 m. What the seating of them now waits on is T-1417,
+   which takes the West Division streets off the E -320 clip and releases the 35
+   held slots; nothing about the ground refuses them any more. The assertions below
+   say exactly that, so the day the streets are drawn this module fails rather than
+   going quiet.
 
 3. **What the seating says about the module, which is the finding.** T-0444 derived
    a 458 ft West Division module and measured the committed `clinton -> canal` gap
@@ -64,7 +70,12 @@ MODULE_FT = 458.0
 # committed note, where T-0446 recorded the OpenStreetMap nodes it fitted that
 # tier to; they are quoted here rather than re-fetched so this module reads
 # committed files only.
-OFF_THE_GROUND = {
+#
+# Named NOT_YET_DRAWN and no longer OFF_THE_GROUND since T-1416 carried the west
+# wall to E -705: both lines stand on modelled ground now, and a constant that
+# still called them off it would be the module asserting the opposite of what it
+# measures. T-1417 owes the seating.
+NOT_YET_DRAWN = {
     "jefferson": (-401.04, "262247424"),
     "des_plaines": (-524.88, "258966841"),
 }
@@ -393,11 +404,12 @@ def report(d):
         print(f"   {sid:26s} {conf:13s} nearest corner {near:6.2f} m from the bank, "
               f"furthest {far:6.2f} m")
     print()
-    print("== 3. jefferson and des_plaines — refused by the modelled ground")
+    print("== 3. jefferson and des_plaines — on the ground since T-1416, still undrawn")
     print(f"   the heightfield's west edge is local east {d['box_e'][0]:.1f} m")
-    for sid, (e, node) in OFF_THE_GROUND.items():
+    for sid, (e, node) in NOT_YET_DRAWN.items():
         print(f"   {sid:12s} surviving control at east {e:8.2f} "
-              f"(OSM node {node}) — {d['box_e'][0] - e:6.1f} m past the edge")
+              f"(OSM node {node}) — {e - d['box_e'][0]:6.1f} m inside the wall, "
+              f"not committed; T-1417 owes the seating")
     print()
     print("== 4. the module the seating measures")
     print(f"   the plat's module (T-0444): {MODULE_FT:.0f} ft = {MODULE_FT * FT:.2f} m")
@@ -472,12 +484,13 @@ def self_test(quiet=False):
           max(d["clearances"]) - d["corridor"] / 2 < 0.15)
 
     box_w = d["box_e"][0]
-    for sid, (e, _node) in OFF_THE_GROUND.items():
-        check(f"{sid} is west of the modelled ground's edge and is refused",
-              e < box_w)
+    for sid, (e, _node) in NOT_YET_DRAWN.items():
+        check(f"{sid} stands on modelled ground now — {e:.2f} against a wall at "
+              f"{box_w:.1f} — so the ground no longer refuses it (T-1416)",
+              e > box_w)
         check(f"{sid} is not committed to data/streets/1835.json", sid not in st)
     check("the two refused streets are the only West Division lines still absent",
-          sorted(s for s in WEST_NS if s not in st) == sorted(OFF_THE_GROUND))
+          sorted(s for s in WEST_NS if s not in st) == sorted(NOT_YET_DRAWN))
 
     if d["modules"]:
         mean_ft = sum(m[3] for m in d["modules"]) / len(d["modules"]) / FT
