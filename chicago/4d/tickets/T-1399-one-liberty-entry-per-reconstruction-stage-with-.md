@@ -1,7 +1,7 @@
 ---
 id: T-1399
 title: One liberty entry per reconstruction stage, with the counts the compiler agrees with, and the research doc's final tables by tier
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1394
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1546
 claimed_by: run 9/19/2026, 10:09:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T03:49:56.674Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35485578847
 ---
 
