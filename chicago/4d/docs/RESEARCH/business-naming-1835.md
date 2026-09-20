@@ -123,8 +123,41 @@ house takes — which is why one prints an initial and one a forename. The face 
 `street_only` limit, not a premises: no lot, no roof, no coordinate. See
 **docs/LIBERTIES.md § L254**.
 
+## Worked: the four boarding houses of 1835, and the honorific that is not dealt
+
+A boarding house signs by **form 5, the keeper's possessive**, and by nothing else. It is
+the form this town's own lodging houses take — *Miss Bayne's Boarding and Day School* in
+the register, *Rufus Brown's Boarding House* on the one boarding house the structure layer
+names — and the seed deals between the possessive in full and the possessive with the
+forename cut, exactly as *Ingersoll's tavern stand* and *Stuart's confectionary and
+perfumery* print it.
+
+| | reconstructed house | adopted keeper | seat |
+|---|---|---|---|
+| north | *Bardwell's boarding house* | `rc_bardwell_esther` | `recon_1835_north_h1_007` |
+| north | *Newell's boarding house* | `rc_newell_lydia` | `recon_1835_north_h2_030` |
+| north | *Ellen Cavanagh's boarding house* | `rc_cavanagh_ellen` | `recon_1835_north_h3_045` |
+| west | *Martin Fitzgerald's boarding house* | `rc_fitzgerald_martin` | `recon_1835_west_006` |
+
+Two things are different here from the druggists above, and both follow from the same fact:
+**the building came first**. The seat is a `premises` and not a street face, because the
+roof is what bought the house — the census enumerates taverns and never boarding houses, so
+no shortfall of this class can be counted and there is no order-book row to spend. And the
+keeper is adopted from the **lodgers** stage rather than from the trade heads: T-1371 drew
+these four as the keepers of roofs it was putting people into, and their cards already read
+`boarding_house_keeper`.
+
+**No honorific is dealt, ever.** Three of the four keepers are women, and the register
+prints both *Mrs. H. Sherman* and *Miss Bayne's* — so the form is available and attested.
+It is refused anyway, because both forms assert a marital status and these cards carry
+none: the stage minted them as solitary keepers and nothing in the layer says whether they
+were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inventing a
+husband to make a shopfront read well. The possessive stands on the name alone, which
+asserts only what the card holds. See **docs/LIBERTIES.md § L257**.
+
 ---
 
 Related: the order book **docs/RESEARCH/1835_reconstruction_order_book.md**, the trade heads
-**docs/RESEARCH/1835_trade_households.md**, the business layer
-**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1173**, **T-1166**.
+**docs/RESEARCH/1835_trade_households.md**, the lodging model
+**data/reconstruction/1835_lodging_model.json**, the business layer
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1408**, **T-1173**, **T-1166**.
