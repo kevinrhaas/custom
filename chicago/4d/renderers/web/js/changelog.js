@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The West Division gets its own block', kind: 'feature', ts: '',
+  { v: 1035, title: 'The West Division gets its own block', kind: 'feature', ts: '2026-09-20T19:52:30.398Z', date: 'Sep 20, 2026, 2:52 PM CT',
     items: [
       'Everything drawn west of the South Branch until today amounted to two blocks, and both were cut as though they were downtown blocks. Nine of the West Division\u2019s own stand now, between Fulton, Lake, Randolph and Washington on one axis and Des Plaines, Jefferson, Clinton, Canal and West Water on the other \u2014 the tier lines the sheet rules them between.',
       'They are not downtown blocks. The Original Town block is four lots to a face of about 320 feet, with an alley across it east to west. The West Division block is the other way about: two columns of lots backing onto a north-south alley, each lot 180 feet deep and 75 and three-fifths feet on the front, five rows down. The plat prints all three figures and they close \u2014 180 + 18 + 180 is 378, and five lots of 75 3/5 is 378 exactly. The town\u2019s eighty-foot lot carried west would have mis-sized every line over there by four and a half feet.',
