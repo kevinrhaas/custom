@@ -212,9 +212,17 @@ BUSINESS_TICKETS = {
     # FINISHED CLASSES, HANDED ON RATHER THAN LEFT POINTING AT A SPENT TICKET (T-1422).
     # T-1411 and both its children are closed and neither row orders anything: the press
     # reads 2 against the census's 2 once the Democrat's two notices are ruled one house,
-    # and the churches are `compared: false` by T-0988's ruling. What is left for both is
-    # that the finished count PRINTS, which is T-1190's own sentence.
-    "printing_office": "T-1190",
+    # and the churches are `compared: false` by T-0988's ruling. What was left for both was
+    # that the finished count PRINTS, which was T-1190's own sentence.
+    #
+    # AND T-1442 PRINTED IT (docs/RESEARCH/business-layer-final-2026-09.md, 2026-09-20),
+    # which spends T-1190: its three pieces all closed, so the parent is finished work and
+    # a row pointing at it points at a ticket nobody can claim. These three rows have no
+    # work left of their own — each orders nought, and the church row orders nought BECAUSE
+    # the crosswalk declines to compare it. They are handed to T-1215, the closing
+    # convergence, because the last thing any business row is still owed is to be reconciled
+    # in the completion report that ticket opens; nothing smaller is left to own them.
+    "printing_office": "T-1215",
     "brewery": "T-1185",
     "steam_saw_mill": "T-1187",
     "iron_foundry": "T-1185",
@@ -225,15 +233,16 @@ BUSINESS_TICKETS = {
     # BOTH PARENTS SPLIT ON 2026-09-20 and each row follows its own heir.
     # T-1188 split, so the civic rows move to T-1411, the churches, schools and press
     # as establishments — this branch's own reassignment.
-    "church": "T-1190",
+    "church": "T-1215",
     # THE SCHOOLS ARE READ AT THE SCENE DATE NOW (T-1428, 2026-09-20). The crosswalk used
     # to count seven at 1 July because it read the gazetteer's `built_at_scene_date`; the
     # register says two of those seven had not opened, so it holds five, and the two the
     # census counted in the autumn are named and dated as opening in August. Both halves
     # moved together — the crosswalk reads `present_at_scene_date` and the book holds an
     # explained shortfall apart from a quota — so this row orders nothing and says why.
-    # What is left for it is the same as the churches': the finished count PRINTS, T-1190.
-    "school": "T-1190",
+    # What was left for it was the same as the churches': the finished count PRINTS, and
+    # T-1442 printed it, so this row follows the two above to T-1215.
+    "school": "T-1215",
     # T-1186 was split on 2026-09-20 when the unit ruling below turned out to be a
     # demonstration of its own; T-1418 is the piece that owns these two rows and T-1419
     # the services, which the census enumerates nowhere and which therefore own no bucket.
@@ -776,6 +785,18 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
         if ticket is None:
             raise Fault(f"no ticket owns the business class {name!r}")
         zero = name in documented_zero
+        # A CLASS THE CROSSWALK DECLINED TO COMPARE IS NOT A QUOTA (T-1442). `compared:
+        # false` is a ruling ABOUT THE CLASS and not a silence in it: T-0988 holds that a
+        # church is a structure and not a trade, so the December figure and the register's
+        # congregations are not two sides of one subtraction and the difference between
+        # them is not a hole. The book cut the quota anyway until this closeout — target 5
+        # minus known 4 ordered a fifth church, against `docs/RESEARCH/business-layer.md`,
+        # which had already ruled in writing that "the census counts five and the town
+        # holds four, and the fifth is not invented" and said what a fifth would need: a
+        # source naming it, and none reached does. So the row is still CARRIED, with both
+        # figures on it and its ticket beside them — a class dropped from the book is a
+        # class nothing answers for — and it simply orders nothing and says why.
+        not_compared = not zero and not bool(row.get("compared"))
         # A CLASS THE CENSUS COUNTS IN MEN IS ORDERED IN MEN, and to the scene date's
         # bracket rather than to the December return. Both halves of the row move
         # together — the target to the bracket's low end and `known` to the men the
@@ -797,7 +818,21 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
                           "for rather than a hole to fill; the book orders "
                           f"{max(0, target - known - explained)} and not "
                           f"{max(0, target - known)}")
+            if not_compared:
+                basis += (". The crosswalk does not COMPARE this class — "
+                          f"{row.get('note') or 'compared: false'} — so the difference is not a "
+                          "shortfall and the book orders nothing against it. The row is carried "
+                          "with both figures so the class still has a ticket answering for it")
         else:
+            if not_compared:
+                # A bracket IS a comparison — it sets the class's scene-date target from its
+                # census figure. A class the crosswalk declines to compare cannot also carry
+                # one, and the book refuses the contradiction rather than picking a winner.
+                raise Fault(
+                    f"{name!r} carries a scene-date bracket cut from its census figure, and the "
+                    "crosswalk declines to compare the class. A bracket is a comparison, so "
+                    "those two rulings contradict. Rule the class compared, or take it off the "
+                    "bracket list in data/research/books/trade_census_1835_spend.json.")
             target = bracket["low"]
             known = bracket["held_in_the_counted_unit"]
             basis = (f"the December 1835 State census prints {census_count} — a line that counts "
@@ -823,7 +858,8 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
             "scene_bracket": bracket,
             "target": 0 if zero else target,
             "known": known,
-            "to_reconstruct": 0 if zero else max(0, target - known - explained),
+            "to_reconstruct": 0 if (zero or not_compared)
+                              else max(0, target - known - explained),
             "records_opening_after_scene_date": explained,
             "filled": 0,
             "owning_ticket": ticket,
@@ -993,7 +1029,11 @@ def programme_deltas(model: dict, inventory: dict, programme: dict,
     return out
 
 
-def invariants(known: dict, persons: dict, households: dict, structures: dict) -> list[dict]:
+def invariants(known: dict, persons: dict, households: dict, structures: dict,
+               business_buckets_: list[dict]) -> list[dict]:
+    uncompared_classes = sum(1 for b in business_buckets_
+                             if not b.get("compared_by_the_crosswalk"))
+    business_class_count = len(business_buckets_)
     return [
         {"id": "every_person_housed", "owning_ticket": "T-1215",
          "statement": "Every person in the layer — attested, inferred or reconstructed — is a "
@@ -1017,6 +1057,13 @@ def invariants(known: dict, persons: dict, households: dict, structures: dict) -
          "statement": "The town census's people-per-dwelling ratio is met within the model's bracket.",
          "measured_now": f"the book orders {persons['town_target']:,} people into "
                          f"{households['households_target']:,} households."},
+        {"id": "an_uncompared_class_orders_nothing", "owning_ticket": "T-1442",
+         "statement": "A trade-census class the crosswalk rules `compared: false` carries its "
+                      "figures but orders no reconstruction: the difference between a census "
+                      "line and the register is only a shortfall where the crosswalk has ruled "
+                      "the two comparable.",
+         "measured_now": f"carried uncompared: {uncompared_classes} of {business_class_count} "
+                         "enumerated business classes, each ordering nought."},
         {"id": "no_bucket_overfilled", "owning_ticket": "T-1166",
          "statement": "No bucket's `filled` exceeds its `to_reconstruct`; a filler that bypasses "
                       "the book is red in check.sh.",
@@ -1175,7 +1222,8 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
         "bucket_families": families,
         "programme_deltas": programme_deltas(data["model"], data["inventory"],
                                              data["programme"], persons, households),
-        "invariants": invariants(known, persons, households, structures),
+        "invariants": invariants(known, persons, households, structures,
+                                 families[2]["buckets"]),
         "fills": fills,
     }
     if len(doc["bucket_families"]) != 5:
@@ -1378,6 +1426,35 @@ def cmd_self_test() -> int:
     assert school["records_opening_after_scene_date"] == 2, school
     assert school["to_reconstruct"] == 0, school
     assert "opening announced" in school["basis"].lower(), school["basis"]
+
+    # A CLASS THE CROSSWALK DECLINES TO COMPARE ORDERS NOTHING (T-1442). The December
+    # census prints five churches and the register holds four, but T-0988 rules a church a
+    # structure and not a trade and the crosswalk row is `compared: false`, so the two
+    # figures are not the sides of one subtraction. The book used to cut a quota of one
+    # from them and the Businesses family could therefore never read full. It must carry
+    # the row with both figures and order NOUGHT, and say which ruling stopped it.
+    church = next(b for b in doc["bucket_families"][2]["buckets"]
+                  if b["key"] == "businesses/church")
+    assert church["census_count"] == 5 and church["known"] == 4, church
+    assert church["compared_by_the_crosswalk"] is False, church
+    assert church["to_reconstruct"] == 0, church
+    assert "does not COMPARE" in church["basis"], church["basis"]
+
+    # …AND A ROW THE CROSSWALK RULES COMPARABLE STILL ORDERS ITS SHORTFALL, so the guard
+    # above cannot be read as a blanket amnesty for every business row.
+    compared_shortfall = next(b for b in doc["bucket_families"][2]["buckets"]
+                              if b["key"] == "businesses/druggist")
+    assert compared_shortfall["to_reconstruct"] == 2, compared_shortfall
+
+    # …AND A BRACKET ON AN UNCOMPARED CLASS IS A CONTRADICTION, not a quota in men that
+    # slips past the guard because it is cut on the other branch.
+    unruled = copy.deepcopy(data)
+    for row in unruled["crosswalk"]["classes"]:
+        if row["class"] == "lawyer":
+            row["compared"] = False
+    fires("a bracket is a comparison, so those two rulings contradict",
+          lambda: business_buckets(unruled["crosswalk"], unruled["register"],
+                                   unruled["trade_spend"], unruled["model"]))
 
     # AND THE BOOK REFUSES A CROSSWALK THAT CANNOT TELL IT WHICH IS WHICH, rather than
     # reading a missing key as a zero and quietly ordering the invention again.
