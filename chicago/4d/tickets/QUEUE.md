@@ -56,7 +56,7 @@
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1422 — The seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated
 T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
-T-1409 — The river and transport trades: the forwarding and warehouse gap beyond the attested four, the drays and livery, the lumber yards, the pier-works contractor and his gang, and the vessels in port on 1 July with their masters
+T-1425 — The pier-works contractor and his gang, and the vessels in port on 1 July with their masters
 T-1189 — Staff every business — attested, inferred and reconstructed — with real persons: attested partners and clerks first, then the reconstructed residents, then new reconstructed staff to the staffing model, so every working person has a workplace and every workplace its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
 T-1423 — The re-admitted names' hand-off outlived the ticket that carried it: 325 unresolved research units name T-1394, whose closeout is spent, so they need a live owner for the evidence question T-1179's reconciliation never settled
@@ -234,3 +234,4 @@ T-1412 — The United States Indian Agency at Chicago as a civic establishment: 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
+
