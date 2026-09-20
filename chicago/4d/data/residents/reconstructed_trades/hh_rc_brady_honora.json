@@ -95,6 +95,30 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
+   "employment": {
+    "kind": "keeps_their_own_house",
+    "trade": "boarding_house_keeper",
+    "premises": "own_premises",
+    "division_of_the_person": "north",
+    "business_id": null,
+    "business_name": null,
+    "role": null,
+    "tier": "reconstructed",
+    "seed": "rc_brady_honora:employment",
+    "ticket": "T-1433",
+    "parent_ticket": "T-1189",
+    "classes": [],
+    "basis": {
+     "kind": "rule",
+     "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
+     "note": "The premises ruling: lodging is sold to arrivals who have to find the door — PUBLIC_TRADES `boarding_house`; the December census counts no boarding houses, so the class is `other`. The staffing model employs this trade in no class of house either, so there is not even somebody else's counter to stand behind. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
+    },
+    "replaceable_by": {
+     "kind": "business",
+     "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
+    },
+    "chosen_by": []
+   },
    "name_basis": {
     "value": "Honora Brady",
     "confidence": "reconstructed",

@@ -4632,6 +4632,29 @@ step "the 1835 staffing join re-derives, and holds from both ends" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/staff_businesses_1835.py --self-test
 
+# T-1433, piece 2 of T-1189. THE STAFFING JOIN, RECONSTRUCTED HALF. The join above
+# carried across every workplace a SOURCE names and said so: 144 rows, 110 cards, and
+# the rest left standing. The rest is 524 people — the residents this project drew,
+# each given a trade by the town model and not one of them given anywhere to follow it.
+# This seats the ones the model can seat and states, for every one it cannot, the reason
+# in the words of the ruling that decided it: a house of the trade with no room in its
+# band, a keeper owed premises of their own, a soldier at a post the layer holds no
+# establishment record for, a trade `premises_rulings.json` has never ruled on.
+#
+# WHY A GATE. Every block is a draw over two derived files that move — the staffing
+# model re-cuts whenever a business record changes its occupation, and the business
+# layer recompiles from the register — so a card written once would go on reading as
+# this pass's output long after the pass stopped producing it. `--check` re-derives
+# every block and the report byte for byte, refuses a card carrying a seat it is not
+# owed and a seated card that has lost one, and refuses the failure that matters: a
+# house holding more reconstructed hands in a role than the staffing model's own high
+# end for it, which would be people invented here by a pass that invents nobody.
+step "the 1835 reconstructed seating re-derives, and staffs no house past its band" \
+  python3 tools/seat_reconstructed_trades_1835.py --check
+
+selftest "…and each of its five assertions still fires when broken" \
+  python3 tools/seat_reconstructed_trades_1835.py --self-test
+
 # T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
 # THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
 # ordinary-night capacity of 135 between them and seated nobody; thirty people stood on

@@ -1381,6 +1381,56 @@ function workplacesHtml(rows, citationsById) {
 }
 
 
+/**
+ * WHERE A RECONSTRUCTED TRADE WAS FOLLOWED, OR WHY NOWHERE (T-1433, piece 2 of T-1189).
+ *
+ * The row above prints the houses a SOURCE names this person in. This one is the other
+ * half of the town: 524 residents this project reconstructed, each given a trade by the
+ * town model and, until now, nowhere to follow it. `tools/seat_reconstructed_trades_1835.py`
+ * seats the ones the staffing model can seat and states, for every one it cannot, the
+ * reason in the words of the ruling that decided it.
+ *
+ * IT IS DRAWN AND IT SAYS SO, EVERY TIME. The chip is the `reconstructed` hatch, the
+ * block carries the seed it was drawn from, and `chosen_by` names which term of the
+ * order rule actually decided the seat — because two of the three terms the rule states
+ * are inert against the layer as it stands, and a card that hid that would be claiming
+ * a precision the data does not have.
+ */
+function employmentHtml(employment) {
+  const e = employment;
+  if (!e) return '';
+  const basis = e.basis && e.basis.note ? e.basis.note : '';
+  const drawn = {
+    seated: 'Seated by the staffing model',
+    class_held_no_house: 'No house of this kind has room',
+    keeps_their_own_house: 'Owed a house of their own',
+    no_employer_named: 'No employer can be named',
+    no_ruling: 'No ruling on this trade yet',
+  }[e.kind] || e.kind;
+  const term = {
+    division_match: 'the house stands in their own division',
+    nearest: 'it is the nearest house of the trade to where they live',
+    seeded_draw: 'a seeded draw — no division and no distance separated the candidates',
+  };
+  const how = (e.chosen_by || []).map((t) => term[t] || t).join('; ');
+  return `<dt>Where this reconstructed trade was followed</dt>
+    <dd>${swatch('reconstructed')}${tierWord('reconstructed')}<span class="res-chip res-research">${
+  escapeHtml(drawn)}</span>
+      ${e.business_id ? `<br><b>${escapeHtml(e.business_name || e.business_id)}</b>${
+        e.role ? `<span class="res-role">${escapeHtml(words(e.role))}</span>` : ''}` : ''}
+      ${how ? `<br><span class="res-why">Chosen because ${escapeHtml(how)}${
+        e.candidates_considered ? ` — ${e.candidates_considered} house${
+          e.candidates_considered === 1 ? '' : 's'} of the trade were open to them` : ''}.</span>` : ''}
+      ${basis ? `<br><span class="res-why">${escapeHtml(basis)}</span>` : ''}
+      ${e.replaceable_by && e.replaceable_by.match
+    ? `<br><span class="res-why">Withdrawn by ${escapeHtml(e.replaceable_by.match)}.</span>` : ''}
+      <br><span class="res-why">Drawn, not read. No source places this person at work
+        anywhere; the seat is a pointer at a house the business layer already holds,
+        reproducible from the seed <code>${escapeHtml(e.seed || '')}</code>. Nothing is
+        written onto the house itself until the staffing shortfall is minted.</span></dd>`;
+}
+
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
@@ -1436,6 +1486,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${rolesHtml(roles, citationsById)}
       ${workplacesHtml(person.workplaces, citationsById)}
+      ${employmentHtml(person.employment)}
       ${associationsHtml(person.associated_with, citationsById,
         'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}

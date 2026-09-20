@@ -240,6 +240,21 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             _insert_after(person, "workplaces", workplaces,
                           "occupation" if "occupation" in person else "roles")
 
+        # T-1433: AND THE FOURTH FIXED SLOT, BEHIND THE THIRD FOR THE SAME REASON.
+        # `tools/seat_reconstructed_trades_1835.py` writes `persons[].employment` — the
+        # house a RECONSTRUCTED trade-holder is seated at, or the stated reason there is
+        # none — after every mint has run, and it puts the block immediately after
+        # `workplaces` where the card has one and after `occupation` where it does not:
+        # what a source named first, what this project drew second. Carried back in at
+        # the tail it would land behind the keys `spend_person_sex_age.py` and
+        # `reconstruct_sex_age.py` pop and re-append, and read as drift on 524 cards.
+        employment = old.get("employment")
+        if employment is not None and "employment" not in owned:
+            person.pop("employment", None)
+            _insert_after(person, "employment", employment,
+                          "workplaces" if "workplaces" in person
+                          else ("occupation" if "occupation" in person else "roles"))
+
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
         if pointer is not None and isinstance(person.get("occupation"), dict):

@@ -95,6 +95,33 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
+   "employment": {
+    "kind": "seated",
+    "trade": "labourer",
+    "premises": "no_fixed_premises",
+    "division_of_the_person": "south",
+    "business_id": "biz_j_wright_merchant",
+    "business_name": "J. Wright, merchant",
+    "role": "labourer",
+    "tier": "reconstructed",
+    "seed": "rc_keegan_bryan:employment",
+    "ticket": "T-1433",
+    "parent_ticket": "T-1189",
+    "establishment_class": "lumber_yard",
+    "basis": {
+     "kind": "model",
+     "id": "1835_business_staffing_model#lumber_yard.labourer",
+     "note": "The staffing model puts 2 of this role in a lumber yard at the typical band and 3 at the high end, on period_convention. A yard is piled and loaded by hand. Analogue: the forwarding houses above, whose warehouse labour this model prices the same way. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
+    },
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source naming where this person worked, which retires the draw"
+    },
+    "chosen_by": [
+     "seeded_draw"
+    ],
+    "candidates_considered": 63
+   },
    "name_basis": {
     "value": "Bryan Keegan",
     "confidence": "reconstructed",

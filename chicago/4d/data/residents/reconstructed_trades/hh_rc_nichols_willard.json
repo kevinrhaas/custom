@@ -95,6 +95,32 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
+   "employment": {
+    "kind": "class_held_no_house",
+    "trade": "blacksmith",
+    "premises": "own_premises",
+    "division_of_the_person": "south",
+    "business_id": null,
+    "business_name": null,
+    "role": null,
+    "tier": "reconstructed",
+    "seed": "rc_nichols_willard:employment",
+    "ticket": "T-1433",
+    "parent_ticket": "T-1189",
+    "classes": [
+     "smithy"
+    ],
+    "basis": {
+     "kind": "rule",
+     "id": "the_class_that_employs_this_trade_holds_no_room",
+     "note": "The staffing model employs this trade in smithy, and the business layer holds no house of that kind trading on 1835-07-01 with room left in its band. A house may take no more hands in a role than the model's own `count_high` for it, so the overflow is a town owed more houses and not a shop with more hands in it than the model allows."
+    },
+    "replaceable_by": {
+     "kind": "business",
+     "match": "a house of this class raised or read into the layer, after which this person seats at it"
+    },
+    "chosen_by": []
+   },
    "name_basis": {
     "value": "Willard Nichols",
     "confidence": "reconstructed",

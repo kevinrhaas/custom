@@ -91,6 +91,29 @@
     },
     "note": "DEALT, NOT READ. The trade is dealt round the seven this stage carries, in the order the slot falls, so it is reproducible from the seed above and from nothing else. No source gives this person a trade and none gives any Black person at Chicago one before 1840."
    },
+   "employment": {
+    "kind": "no_ruling",
+    "trade": "waiter",
+    "premises": null,
+    "division_of_the_person": "unplaced",
+    "business_id": null,
+    "business_name": null,
+    "role": null,
+    "tier": "reconstructed",
+    "seed": "rc_fb_johnson_david:employment",
+    "ticket": "T-1433",
+    "parent_ticket": "T-1189",
+    "basis": {
+     "kind": "rule",
+     "id": "premises_rulings_has_not_ruled_on_this_trade",
+     "note": "data/businesses/rulings/premises_rulings.json rules, trade by trade, whether a trade implied premises of its own. It has no ruling for this one, so this pass does not know whether this person kept a house or worked in somebody else's, and it will not decide that by seating them. T-1404 owns the ruling table."
+    },
+    "replaceable_by": {
+     "kind": "ruling",
+     "match": "a premises ruling for this trade, after which this block re-derives to a seat or to a stated absence"
+    },
+    "chosen_by": []
+   },
    "name_basis": {
     "value": "David Johnson",
     "confidence": "reconstructed",
