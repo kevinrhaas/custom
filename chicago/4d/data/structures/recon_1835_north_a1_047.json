@@ -158,7 +158,7 @@
     ],
     "date_purchased": "1831-05-07",
     "type_of_sale": "federal land sale (cash entry)",
-    "margin_m": 38.7,
+    "margin_m": 39.3,
     "generated_by": "tools/resolve_land_tracts.py --build"
   }
 }

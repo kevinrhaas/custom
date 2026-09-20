@@ -8582,7 +8582,7 @@ record, and the gate now forces the target, the district row and the town total 
 consciously rather than quietly.
 
 Related: **L93** (the anonymous civic roof this project refused to build, and the one anonymous I2
-it keeps) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**,
+it kept until T-1445 re-dealt that roof into a dwelling and T-1480 carried it out) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**,
 **T-I3(a)**.
 **Recorded:** 2026-08-27.
 
@@ -12860,13 +12860,14 @@ is an invention of a different size. (1) It **seats seventeen people the layer a
 holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew
 at a household size of one — into a named or reconstructed lodging house, writing
 `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints
-seventy of them as boarders and lodgers** nobody names, drawn against the order book's own
-`household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this
+the rest of them as boarders and lodgers** nobody names, drawn against the order
+book's own `household_type: lodging` buckets. (3) It **mints a keeper** for each roof this
 programme itself raised as a lodging place, at the trade that roof's own `function`
-states. Nothing is hand-authored: every value comes from a seed a reader can retype, and
+states. The two counts are re-derived rather than stated here, because the house list they
+are drawn from moves whenever the roof programme is re-dealt — as T-1480 re-dealt it. Nothing is hand-authored: every value comes from a seed a reader can retype, and
 `--check` re-derives all twelve cards and the ledger byte for byte.
 
-**Scope:** `residents.persons[lodgers]` — 75 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
+**Scope:** `residents.persons[lodgers]` — 84 people in 13 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. It read 75 in 12 until T-1480: the redeal made `recon_1835_north_h2_045` an H2 rather than an H3 and `recon_1835_north_h2_022` and `recon_1835_north_h2_028` boarding houses at all, so the lodging model apportioned one more house and the capacity that came with it. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
 
 **Why:** because T-1370 counted 135 ordinary-night beds across those fifteen houses and
 found thirty people in them — eight keepers and their families, and not one boarder. The

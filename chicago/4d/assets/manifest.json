@@ -2250,33 +2250,6 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_a5_049"
     },
-    "recon_1835_north_c1_020__inferred_1835.glb": {
-      "archetype": "frame_storefront",
-      "baked_ao": false,
-      "bytes": 47928,
-      "inputs_sha256": "1298c58425c07f2d2764a7f8cba68ebf2b1b868f8847a374d6f6ba21f9b92518",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_d3_020"
-    },
-    "recon_1835_north_c1_047__inferred_1835.glb": {
-      "archetype": "frame_storefront",
-      "baked_ao": false,
-      "bytes": 49484,
-      "inputs_sha256": "7a3b17429e5aee02b8256214df1cd017a25feb36bcbfbf803cd03009ccee2518",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_a1_047"
-    },
-    "recon_1835_north_c2_027__inferred_1835.glb": {
-      "archetype": "frame_storefront",
-      "baked_ao": false,
-      "bytes": 51044,
-      "inputs_sha256": "21fbd7ced6bcda9f4e29ea573904d0852e555db6ef3a71104c2e807232a3d5b6",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_d6_027"
-    },
     "recon_1835_north_d1_001__inferred_1835.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -2460,8 +2433,8 @@
     "recon_1835_north_d4_012__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 30780,
-      "inputs_sha256": "0ad9d2b8fee810255a28e4afcce7ee8757eac69c4acc56a13b1461c1b393168a",
+      "bytes": 27036,
+      "inputs_sha256": "871b901f681487eaf111536b346e6d664a7a1f9fc406c2645300e781ac8d797d",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_d4_012"
@@ -2532,8 +2505,8 @@
     "recon_1835_north_d5_019__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 28596,
-      "inputs_sha256": "ca9afced48dae55b3d9fe2d01c06d48406e6d039df73d75d55b0e1d2bbf029ab",
+      "bytes": 32340,
+      "inputs_sha256": "18a7d1abae4a15073d00040aa9549dd01c1e5ca54714110ce838e1cb48898f6a",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_d5_019"
@@ -2619,15 +2592,6 @@
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_d7_031"
     },
-    "recon_1835_north_f1_022__inferred_1835.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 163092,
-      "inputs_sha256": "d265abe05244b6cdbbd45abc2406dae9d6243018ff0ffe43db5a9064cbc4ce27",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_h2_022"
-    },
     "recon_1835_north_h1_007__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
@@ -2672,51 +2636,6 @@
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_north_h2_045"
-    },
-    "recon_1835_north_h3_045__inferred_1835.glb": {
-      "archetype": "frame_tavern",
-      "baked_ao": false,
-      "bytes": 22960,
-      "inputs_sha256": "b11bcc46a83aef98bd75c2f1fc28c0d15a5ad5ea79cb2c4b23c605ae845964dd",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_h2_045"
-    },
-    "recon_1835_north_i2_015__inferred_1835.glb": {
-      "archetype": "frame_tavern",
-      "baked_ao": false,
-      "bytes": 13740,
-      "inputs_sha256": "12658c75ed2f4aa189a0aafe2c48c763ca16fda47938d8ab769797099d194274",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_d4_015"
-    },
-    "recon_1835_north_t1_028__inferred_1835.glb": {
-      "archetype": "frame_tavern",
-      "baked_ao": false,
-      "bytes": 22340,
-      "inputs_sha256": "9002737d15cedcd917bc2331443aef8ba8c3e38793224fddbb3fbf457888528d",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_h2_028"
-    },
-    "recon_1835_north_w1_018__inferred_1835.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 114336,
-      "inputs_sha256": "1da36e696bb7a866f35056b66e37ecf742edf2209fd4e17ebb2683c2cd1e33ed",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_d4_018"
-    },
-    "recon_1835_north_w2_005__inferred_1835.glb": {
-      "archetype": "outbuilding",
-      "baked_ao": false,
-      "bytes": 115244,
-      "inputs_sha256": "d8b2cbb061256580d2cfbca2bc1b897366ed9a20875f60d7d1eacc929606c3c9",
-      "kind": "generated",
-      "phase_id": "inferred_1835",
-      "structure_id": "recon_1835_north_d4_005"
     },
     "recon_1835_north_w5_040__inferred_1835.glb": {
       "archetype": "outbuilding",

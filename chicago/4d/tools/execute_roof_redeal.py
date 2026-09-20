@@ -685,6 +685,13 @@ def migrate_tree(plan: list[dict]) -> tuple[list[str], list[str]]:
         for tag in ("nw", "wk", "re", "km", "ke", "rf"):
             yards[f"{tag}_{e['suffix']}_yard"] = f"{tag}_{e['new_suffix']}_yard"
 
+    # A MANIFEST ENTRY IS THE RECORD OF A BAKE, and a bake whose output has been
+    # renamed leaves one pointing at a file that is not there. The substitution
+    # below carries the key across with everything else; the entry then holds the
+    # OLD mesh's hash under the new name, which `validate.py --stale` reads as
+    # "re-bake me" — exactly right, because that is what has to happen next.
+    # Dropping the entry instead would let an unbaked roof through the staleness
+    # gate by having nothing to compare against.
     renamed = []
     for folder, pattern in MIGRATION_FILENAMES:
         for e in plan:
@@ -713,7 +720,12 @@ def migrate_tree(plan: list[dict]) -> tuple[list[str], list[str]]:
             continue     # not text after all; --check-migration sweeps for misses
         out = text
         for old, new in moves.items():
-            out = re.sub(rf"{old}(?![0-9A-Za-z_])", new, out)
+            # The lookahead refuses a LONGER id, not a longer string. Every id in
+            # this parcel ends `_<3 digits>`, so only a digit can extend one —
+            # and `_` must be allowed through, because both manifests key their
+            # entries `<id>__inferred_1835.glb` and an underscore-excluding
+            # lookahead walked straight past all 18 of them (measured, T-1480).
+            out = re.sub(rf"{old}(?![0-9A-Za-z])", new, out)
         for old, new in yards.items():
             out = out.replace(old, new)
         if out != text:
@@ -784,7 +796,7 @@ def check_migration() -> int:
         if (rel.startswith(MIGRATION_PINNED)
                 or path.suffix.lower() in MIGRATION_PINNED_SUFFIXES):
             text = path.read_text(encoding="utf-8", errors="ignore")
-            if any(re.search(rf"{old}(?![0-9A-Za-z_])", text) for old in old_ids):
+            if any(re.search(rf"{old}(?![0-9A-Za-z])", text) for old in old_ids):
                 pinned.append(rel)
             continue
         if rel == NORTH_RECIPE.relative_to(ROOT).as_posix():
@@ -796,7 +808,7 @@ def check_migration() -> int:
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         for old in old_ids:
-            if re.search(rf"{old}(?![0-9A-Za-z_])", text):
+            if re.search(rf"{old}(?![0-9A-Za-z])", text):
                 stale.append(f"{rel} names {old}")
                 break
     if stale:

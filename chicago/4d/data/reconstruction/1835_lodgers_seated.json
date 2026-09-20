@@ -152,6 +152,52 @@
    "at_its_ordinary_night_figure": true
   },
   {
+   "id": "recon_1835_north_h2_022",
+   "name": "Reconstructed H2 medium boarding house #022",
+   "function": "medium_boarding_house",
+   "class": "boarding_house",
+   "standing": "reconstructed",
+   "division": "north",
+   "division_from": "the reconstruction programme's own district for this roof",
+   "beds_ordinary": 10,
+   "beds_crowded": 23,
+   "occupied_before": 0,
+   "keeper_household": null,
+   "keeper_persons": 0,
+   "seated": [
+    "rc_gilbert_nancy"
+   ],
+   "minted_keeper": "rc_barnes_ezra",
+   "minted_lodgers": 8,
+   "occupancy_after": 10,
+   "inside_its_band": true,
+   "at_its_ordinary_night_figure": true
+  },
+  {
+   "id": "recon_1835_north_h2_028",
+   "name": "Reconstructed H2 medium boarding house #028",
+   "function": "medium_boarding_house",
+   "class": "boarding_house",
+   "standing": "reconstructed",
+   "division": "north",
+   "division_from": "the reconstruction programme's own district for this roof",
+   "beds_ordinary": 12,
+   "beds_crowded": 27,
+   "occupied_before": 0,
+   "keeper_household": null,
+   "keeper_persons": 0,
+   "seated": [
+    "funk_absolom",
+    "smith_william",
+    "rc_mccarthy_ellen"
+   ],
+   "minted_keeper": "rc_cavanagh_johanna",
+   "minted_lodgers": 8,
+   "occupancy_after": 12,
+   "inside_its_band": true,
+   "at_its_ordinary_night_figure": true
+  },
+  {
    "id": "recon_1835_north_h2_030",
    "name": "Reconstructed H2 medium boarding house #030",
    "function": "medium_boarding_house",
@@ -165,7 +211,7 @@
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "rc_stiles_abigail"
+    "rc_shea_mary"
    ],
    "minted_keeper": "rc_newell_lydia",
    "minted_lodgers": 8,
@@ -175,50 +221,24 @@
   },
   {
    "id": "recon_1835_north_h2_045",
-   "name": "Reconstructed H3 large boarding house #045",
-   "function": "large_boarding_house",
+   "name": "Reconstructed H2 medium boarding house #045",
+   "function": "medium_boarding_house",
    "class": "boarding_house",
    "standing": "reconstructed",
    "division": "north",
    "division_from": "the reconstruction programme's own district for this roof",
-   "beds_ordinary": 16,
-   "beds_crowded": 35,
+   "beds_ordinary": 11,
+   "beds_crowded": 27,
    "occupied_before": 0,
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "funk_absolom",
-    "smith_william",
     "rc_flynn_owen",
-    "rc_gilbert_nancy",
-    "rc_mccarthy_ellen",
-    "rc_shea_mary"
+    "rc_stiles_abigail"
    ],
-   "minted_keeper": "rc_cavanagh_ellen",
-   "minted_lodgers": 9,
-   "occupancy_after": 16,
-   "inside_its_band": true,
-   "at_its_ordinary_night_figure": true
-  },
-  {
-   "id": "recon_1835_north_h2_028",
-   "name": "Reconstructed T1 small inn or tavern #028",
-   "function": "small_inn_or_tavern",
-   "class": "inn_tavern",
-   "standing": "reconstructed",
-   "division": "north",
-   "division_from": "the reconstruction programme's own district for this roof",
-   "beds_ordinary": 9,
-   "beds_crowded": 35,
-   "occupied_before": 0,
-   "keeper_household": null,
-   "keeper_persons": 0,
-   "seated": [
-    "rc_lyman_george"
-   ],
-   "minted_keeper": "rc_kellogg_luther",
-   "minted_lodgers": 7,
-   "occupancy_after": 9,
+   "minted_keeper": "rc_gilbert_benjamin",
+   "minted_lodgers": 8,
+   "occupancy_after": 11,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
   },
@@ -230,15 +250,15 @@
    "standing": "reconstructed",
    "division": "west",
    "division_from": "the reconstruction programme's own district for this roof",
-   "beds_ordinary": 7,
+   "beds_ordinary": 8,
    "beds_crowded": 17,
    "occupied_before": 0,
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [],
    "minted_keeper": "rc_fitzgerald_martin",
-   "minted_lodgers": 6,
-   "occupancy_after": 7,
+   "minted_lodgers": 7,
+   "occupancy_after": 8,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
   },
@@ -326,10 +346,11 @@
    "keeper_persons": 4,
    "seated": [
     "rc_dufresne_hyacinthe",
-    "rc_gilbert_samuel"
+    "rc_gilbert_samuel",
+    "rc_lyman_george"
    ],
    "minted_keeper": null,
-   "minted_lodgers": 9,
+   "minted_lodgers": 8,
    "occupancy_after": 15,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -431,8 +452,8 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
-   "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_028",
+   "place_name": "Reconstructed H2 medium boarding house #028",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -453,8 +474,8 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
-   "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_028",
+   "place_name": "Reconstructed H2 medium boarding house #028",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -542,7 +563,7 @@
    "trade": "labourer",
    "group": "labour",
    "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place_name": "Reconstructed H2 medium boarding house #045",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -563,8 +584,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_022",
+   "place_name": "Reconstructed H2 medium boarding house #022",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -629,8 +650,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "painter",
    "group": "mechanic",
-   "place": "recon_1835_north_h2_028",
-   "place_name": "Reconstructed T1 small inn or tavern #028",
+   "place": "western_hotel",
+   "place_name": "Western Hotel",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -651,8 +672,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_028",
+   "place_name": "Reconstructed H2 medium boarding house #028",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -673,8 +694,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h2_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -717,8 +738,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h2_030",
-   "place_name": "Reconstructed H2 medium boarding house #030",
+   "place": "recon_1835_north_h2_045",
+   "place_name": "Reconstructed H2 medium boarding house #045",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -757,6 +778,18 @@
    "persons": 7
   },
   {
+   "id": "hh_lodging_recon_1835_north_h2_022",
+   "file": "lodgers/hh_lodging_recon_1835_north_h2_022.json",
+   "place": "recon_1835_north_h2_022",
+   "persons": 9
+  },
+  {
+   "id": "hh_lodging_recon_1835_north_h2_028",
+   "file": "lodgers/hh_lodging_recon_1835_north_h2_028.json",
+   "place": "recon_1835_north_h2_028",
+   "persons": 9
+  },
+  {
    "id": "hh_lodging_recon_1835_north_h2_030",
    "file": "lodgers/hh_lodging_recon_1835_north_h2_030.json",
    "place": "recon_1835_north_h2_030",
@@ -766,19 +799,13 @@
    "id": "hh_lodging_recon_1835_north_h2_045",
    "file": "lodgers/hh_lodging_recon_1835_north_h2_045.json",
    "place": "recon_1835_north_h2_045",
-   "persons": 10
-  },
-  {
-   "id": "hh_lodging_recon_1835_north_h2_028",
-   "file": "lodgers/hh_lodging_recon_1835_north_h2_028.json",
-   "place": "recon_1835_north_h2_028",
-   "persons": 8
+   "persons": 9
   },
   {
    "id": "hh_lodging_recon_1835_west_006",
    "file": "lodgers/hh_lodging_recon_1835_west_006.json",
    "place": "recon_1835_west_006",
-   "persons": 7
+   "persons": 8
   },
   {
    "id": "hh_lodging_steamboat_hotel",
@@ -796,7 +823,7 @@
    "id": "hh_lodging_western_hotel",
    "file": "lodgers/hh_lodging_western_hotel.json",
    "place": "western_hotel",
-   "persons": 9
+   "persons": 8
   },
   {
    "id": "hh_lodging_wolf_point_tavern",
@@ -806,10 +833,10 @@
   }
  ],
  "fills": {
-  "persons/female/10_19/north/lodging/none": 5,
+  "persons/female/10_19/north/lodging/none": 6,
   "persons/female/10_19/south/lodging/none": 4,
   "persons/female/10_19/west/lodging/none": 1,
-  "persons/female/20_29/north/lodging/none": 5,
+  "persons/female/20_29/north/lodging/none": 6,
   "persons/female/20_29/north/lodging/trade": 1,
   "persons/female/20_29/south/lodging/none": 5,
   "persons/female/20_29/west/lodging/none": 2,
@@ -817,16 +844,17 @@
   "persons/female/30_39/north/lodging/trade": 2,
   "persons/female/30_39/south/lodging/none": 2,
   "persons/female/30_39/west/lodging/none": 1,
-  "persons/female/40_49/south/lodging/none": 1,
-  "persons/male/10_19/north/lodging/none": 5,
+  "persons/female/40_49/north/lodging/none": 1,
+  "persons/female/50_plus/north/lodging/none": 1,
+  "persons/male/10_19/north/lodging/none": 7,
   "persons/male/10_19/south/lodging/none": 4,
   "persons/male/10_19/west/lodging/none": 2,
-  "persons/male/20_29/north/lodging/none": 8,
-  "persons/male/20_29/north/lodging/trade": 1,
+  "persons/male/20_29/north/lodging/none": 9,
+  "persons/male/20_29/north/lodging/trade": 2,
   "persons/male/20_29/south/lodging/none": 7,
-  "persons/male/20_29/west/lodging/none": 2,
+  "persons/male/20_29/west/lodging/none": 3,
   "persons/male/20_29/west/lodging/trade": 1,
-  "persons/male/30_39/north/lodging/none": 5,
+  "persons/male/30_39/north/lodging/none": 6,
   "persons/male/30_39/south/lodging/none": 4,
   "persons/male/30_39/west/lodging/none": 1,
   "persons/male/40_49/north/lodging/none": 1,
@@ -876,6 +904,20 @@
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
   {
+   "place": "recon_1835_north_h2_022",
+   "name": "Reconstructed H2 medium boarding house #022",
+   "keeper": "rc_barnes_ezra",
+   "persons_on_the_keeper_s_card": 1,
+   "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
+  },
+  {
+   "place": "recon_1835_north_h2_028",
+   "name": "Reconstructed H2 medium boarding house #028",
+   "keeper": "rc_cavanagh_johanna",
+   "persons_on_the_keeper_s_card": 1,
+   "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
+  },
+  {
    "place": "recon_1835_north_h2_030",
    "name": "Reconstructed H2 medium boarding house #030",
    "keeper": "rc_newell_lydia",
@@ -884,15 +926,8 @@
   },
   {
    "place": "recon_1835_north_h2_045",
-   "name": "Reconstructed H3 large boarding house #045",
-   "keeper": "rc_cavanagh_ellen",
-   "persons_on_the_keeper_s_card": 1,
-   "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
-  },
-  {
-   "place": "recon_1835_north_h2_028",
-   "name": "Reconstructed T1 small inn or tavern #028",
-   "keeper": "rc_kellogg_luther",
+   "name": "Reconstructed H2 medium boarding house #045",
+   "keeper": "rc_gilbert_benjamin",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
@@ -973,19 +1008,19 @@
   "the_children": "The book orders 156 people under ten into lodging households. They are keepers' families, not boarders."
  },
  "measurement": {
-  "built_lodging_places": 15,
-  "ordinary_night_beds": 135,
-  "crowded_beds": 455,
+  "built_lodging_places": 16,
+  "ordinary_night_beds": 144,
+  "crowded_beds": 462,
   "occupied_before_this_stage": 30,
   "seated_from_the_layer": 17,
-  "minted_here": 75,
-  "minted_keepers": 5,
-  "occupied_after_this_stage": 122,
+  "minted_here": 84,
+  "minted_keepers": 6,
+  "occupied_after_this_stage": 131,
   "ordinary_night_beds_still_empty": 13,
-  "houses_at_their_ordinary_night_figure": 13,
+  "houses_at_their_ordinary_night_figure": 14,
   "houses_over_their_crowded_ceiling": 0,
   "nobody_is_seated_twice": true,
-  "buckets_filled": 25,
-  "people_ordered_into_lodging_still_owed": "The book orders 544 people into lodging households. This piece spends 75 of them; the rest wait on the 37 unbuilt boarding houses, the crews and the works gang (T-1372), the trades this stage does not deal, and the children who are keepers' families rather than boarders."
+  "buckets_filled": 26,
+  "people_ordered_into_lodging_still_owed": "The book orders 544 people into lodging households. This piece spends 84 of them; the rest wait on the 37 unbuilt boarding houses, the crews and the works gang (T-1372), the trades this stage does not deal, and the children who are keepers' families rather than boarders."
  }
 }

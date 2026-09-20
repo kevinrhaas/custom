@@ -83,18 +83,16 @@ DISTRICTS = ("south", "west", "north", "fort")
 # for the freight row on 2026-08-29 — see `district_group_matrix_note` in the inventory — and
 # the declaration went with it. The one left is not a fault at all: it is two gates reading
 # one liberty differently, and it moves when the liberty does.
-DECLARED_OVERSHOOT = {
-    ("north", "institutional_public"): {
-        "over": 1,
-        "why": "T-0032 set this row to the NAMED institutional census — south 5 / west 1 / "
-               "north 3 — and `tools/measure_institutional_claims.py` holds it there. This "
-               "counts every roof that stands, named or not, so it also counts "
-               "recon_1835_north_d4_015, the one anonymous school docs/LIBERTIES.md records "
-               "at L93 as a liberty taken rather than deleted. The two gates disagree by "
-               "exactly that liberty, and both readings are correct for their own question. "
-               "The row moves when L93 is retired, not before.",
-    },
-}
+# EMPTY, AND THAT IS THE POINT. It carried one declaration: the north division's
+# `institutional_public` row stood one over the NAMED institutional census T-0032
+# set it to, because this gate counts every roof that stands and the town carried
+# one anonymous school — the liberty L93 records rather than deletes. T-1445
+# adjudicated that roof off its family and T-1480 carried the verdict out, so the
+# breach the declaration described is repaired and the declaration is retired
+# with it. A repaired breach is NOT left standing as an allowance for the next
+# one, which is what this gate says when it finds a declaration it no longer
+# needs — and it is why it found this one.
+DECLARED_OVERSHOOT: dict[tuple[str, str], dict] = {}
 
 
 def load(path: Path):

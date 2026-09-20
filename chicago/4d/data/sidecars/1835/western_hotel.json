@@ -193,14 +193,14 @@
           "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 15 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a lodger. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
         },
         {
-          "name": "Victoire Bertrand",
+          "name": "Owen Nolan",
           "relationship": "lodger",
           "grade": "reconstructed",
           "occupation": "",
           "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 15 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a lodger. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
         },
         {
-          "name": "Terence Fitzgerald",
+          "name": "Lemuel Parmelee",
           "relationship": "lodger",
           "grade": "reconstructed",
           "occupation": "",
@@ -214,21 +214,14 @@
           "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 15 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a lodger. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
         },
         {
-          "name": "John Sawyer",
+          "name": "Toussaint Marcotte",
           "relationship": "lodger",
           "grade": "reconstructed",
           "occupation": "",
           "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 15 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a lodger. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
         },
         {
-          "name": "Joseph Eastman",
-          "relationship": "lodger",
-          "grade": "reconstructed",
-          "occupation": "",
-          "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This person exists because the town model says 15 people slept in this house on an ordinary night and the layer holds fewer, and the whole of what is claimed is that: an adult of this sex and band took a bed here as a lodger. They are reproducible from the seeds printed above and a real name retires them. No figure is drawn (L1)."
-        },
-        {
-          "name": "Lemuel Kellogg",
+          "name": "Henry Gilbert",
           "relationship": "lodger",
           "grade": "reconstructed",
           "occupation": "",
@@ -270,6 +263,25 @@
           "relationship": "lodger",
           "grade": "reconstructed",
           "occupation": "baker",
+          "note": ""
+        }
+      ],
+      "research_note": ""
+    },
+    {
+      "household": "hh_rc_lyman_george",
+      "name": "George Lyman",
+      "division": "",
+      "relation": "lodged here",
+      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at painter in the mechanic group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
+      "sources": [],
+      "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
+      "persons": [
+        {
+          "name": "George Lyman",
+          "relationship": "lodger",
+          "grade": "reconstructed",
+          "occupation": "painter",
           "note": ""
         }
       ],
@@ -378,7 +390,7 @@
       "people": 15,
       "beds_ordinary": 15,
       "empty": 0,
-      "statement": "15 on this card against an ordinary night's 15 beds: 4 the residents layer already housed here, 2 seated here from elsewhere in the layer, where no source gives them a roof, 9 drawn against the order book's lodging buckets for beds that were standing empty.",
+      "statement": "15 on this card against an ordinary night's 15 beds: 4 the residents layer already housed here, 3 seated here from elsewhere in the layer, where no source gives them a roof, 8 drawn against the order book's lodging buckets for beds that were standing empty.",
       "empty_note": "",
       "keeper_persons": 4,
       "keeper_owed": ""

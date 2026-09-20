@@ -162,7 +162,7 @@
     ],
     "date_purchased": "1830-09-29",
     "type_of_sale": "canal land sale",
-    "margin_m": 63.7,
+    "margin_m": 64.2,
     "generated_by": "tools/resolve_land_tracts.py --build"
   }
 }
