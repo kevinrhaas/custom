@@ -182,6 +182,13 @@ cp -f data/reconstruction/1835_population_profile.json "$SITE/data/reconstructio
 # zero on the deployed site while the dev tree shows seven.
 cp -f data/reconstruction/1835_reconstruction_order_book.json "$SITE/data/reconstruction/"
 
+# And the address book (T-1491). Derived by tools/seat_known_1835.py and re-derived by
+# tools/check.sh; people.js fetches it at data/reconstruction/1835_address_book.json so
+# that a household card can say where its household stood and at which rung. Leaving it
+# behind is a 404 and 1,186 cards reading "No known address" with nothing after it —
+# which is the sentence this file exists to replace.
+cp -f data/reconstruction/1835_address_book.json "$SITE/data/reconstruction/"
+
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
 # publishing heightfield.json without heightfield.bin gives a flat world and a

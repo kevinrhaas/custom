@@ -11929,7 +11929,16 @@ for (const [label, viewport, touch] of [
         title: document.getElementById('panel-title')?.textContent.trim() ?? '',
         backShown: !document.getElementById('panel-back')?.hasAttribute('hidden'),
         go: go?.dataset.structure ?? null, goText: go?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-        fields: !!card?.querySelector('.res-fields') };
+        fields: !!card?.querySelector('.res-fields'),
+        // T-1491. The seat, in words, under the actions block — and the bare
+        // "No known address" it replaces, which must not be standing beside it.
+        seat: {
+          rung: card?.querySelector('.people-seat')?.dataset.rung ?? null,
+          label: card?.querySelector('.people-seat-rung')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          words: card?.querySelector('.people-seat-words')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          noaddr: !!card?.querySelector('.people-noaddr'),
+        } };
       return out;
     });
     check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
@@ -11955,6 +11964,24 @@ for (const [label, viewport, touch] of [
       && people.counts.manifest > 1000
       && new RegExp(`^${String(people.counts.stated).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
       JSON.stringify(people.counts));
+    // T-1491. The address book on the card. John S. C. Hogan's household is the case
+    // the row exists for: it has a WORKPLACE the sources name — his store, which is why
+    // the Go-to above resolves — and no home at all. Before the address book the card
+    // said nothing whatever about where these people lived; a reader could not tell that
+    // from a household nobody has looked for. It now says which division the evidence
+    // reaches, that it reaches nothing narrower, who owes the seat, and what would move
+    // it up the ladder. The bare "No known address" must be GONE, not sitting beside it.
+    check(`${label}: the household card says how far the evidence places its people`,
+      people.card.seat.rung === 'owed'
+      && /south division/.test(people.card.seat.label)
+      && /no nearer/.test(people.card.seat.label)
+      && /reaches the south division and nothing narrower/.test(people.card.seat.words)
+      && /owed to T-1492/.test(people.card.seat.words)
+      && /Would move it up the ladder: a source naming a street, a corner or a building/
+        .test(people.card.seat.next)
+      && people.card.seat.noaddr === false,
+      JSON.stringify(people.card.seat));
+
     check(`${label}: searching "Beaubien" finds Mark Beaubien`,
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
       && /Beaubien/.test(people.search.note),

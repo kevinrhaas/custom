@@ -82,6 +82,15 @@
   },
   "note": "PRESENCE ON THE SCENE DATE IS AN ASSUMPTION OF CONTINUITY AND NOT A STATEMENT. Nothing reached follows this household past 1833. It is graded uncertain rather than present because the town's population roughly quadrupled between the roster and the scene date and a great many of the men on it were, in Andreas's own phrase, 'adventurers, comprising moneyed speculators and prospectors, as yet undecided whether to stay at Chicago or go on'."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "solitary",
+  "size_drawn": 1,
+  "kin_seated": 1,
+  "seed": "hh_brown_lemuel:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "brown_lemuel",
