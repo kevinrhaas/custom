@@ -48,9 +48,9 @@
     "persons": {
       "total": 2685,
       "by_action": {
-        "enrich": 1351,
-        "new_resident": 1309,
-        "replace_invented": 25
+        "enrich": 1363,
+        "new_resident": 1299,
+        "replace_invented": 23
       },
       "letter_list_only": 1970
     },
@@ -9179,9 +9179,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-12-24",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "clybourne_archibald",
+      "action_note": "data/residents/ already holds this person as clybourne_archibald (hh_clybourne_archibald, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_a_filer",
@@ -9752,8 +9752,8 @@
       "first_seen": "1834-12-24",
       "last_seen": "1834-12-24",
       "action": "enrich",
-      "action_target": "sweet_a",
-      "action_note": "data/residents/ already holds this person as sweet_a (hh_sweet_a, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "sweet_alanson",
+      "action_note": "data/residents/ already holds this person as sweet_alanson (hh_sweet_alanson, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_albert_fo_w_ler",
@@ -10378,9 +10378,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "knight_clark",
+      "action_note": "data/residents/ already holds this person as knight_clark (hh_knight_clark, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_ann_bandle",
@@ -10422,9 +10422,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-12",
       "last_seen": "1834-11-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "taylor_anson_h",
+      "action_note": "data/residents/ already holds this person as taylor_anson_h (hh_taylor_anson, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_anstin_mr_al",
@@ -11379,9 +11379,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-24",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "beaubien_jean_baptiste",
+      "action_note": "data/residents/ already holds this person as beaubien_jean_baptiste (hh_beaubien_jean_baptiste, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_bebee_orson",
@@ -15658,9 +15658,9 @@
       "letter_list_only": false,
       "first_seen": "1834-05-14",
       "last_seen": "1835-08-22",
-      "action": "enrich",
-      "action_target": "temple_john_t",
-      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_dr_trimball",
@@ -15933,9 +15933,9 @@
       "letter_list_only": false,
       "first_seen": "1834-10-01",
       "last_seen": "1834-10-01",
-      "action": "enrich",
-      "action_target": "rider_elia",
-      "action_note": "data/residents/ already holds this person as rider_elia (hh_rider_elia, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_e_s_kimberley",
@@ -15944,9 +15944,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "kimberly_edmund_s",
+      "action_note": "data/residents/ already holds this person as kimberly_edmund_s (hh_pruyne_kimberly, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_e_s_kimberly",
@@ -15955,9 +15955,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "kimberly_edmund_s",
+      "action_note": "data/residents/ already holds this person as kimberly_edmund_s (hh_pruyne_kimberly, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_e_simons",
@@ -16010,9 +16010,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1834-03-18",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "haddock_edward",
+      "action_note": "data/residents/ already holds this person as haddock_edward (hh_haddock_edward, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_e_wentworth",
@@ -16164,9 +16164,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-08-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "kimberly_edmund_s",
+      "action_note": "data/residents/ already holds this person as kimberly_edmund_s (hh_pruyne_kimberly, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_edmund_uncertain_poke",
@@ -16506,8 +16506,8 @@
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
       "action": "enrich",
-      "action_target": "smith_elded",
-      "action_note": "data/residents/ already holds this person as smith_elded (hh_smith_elded, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_e_kirby",
+      "action_note": "data/residents/ already holds this person as smith_e_kirby (hh_smith_e_kirby, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_elijah_wentworth_sen",
@@ -17462,9 +17462,9 @@
       "letter_list_only": false,
       "first_seen": "1834-01-21",
       "last_seen": "1834-01-21",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "sproat_grenville",
+      "action_note": "data/residents/ already holds this person as sproat_grenville (hh_sproat_grenville, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_g_s_hubbard",
@@ -17968,9 +17968,9 @@
       "letter_list_only": true,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-16",
-      "action": "enrich",
-      "action_target": "walker_george_e",
-      "action_note": "data/residents/ already holds this person as walker_george_e (hh_walker_george_e, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_germanicus_kent",
@@ -19960,8 +19960,8 @@
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-17",
       "action": "enrich",
-      "action_target": "hogan_john",
-      "action_note": "data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "hogan_john_s_c",
+      "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_hogan_john_s_c",
@@ -19971,8 +19971,8 @@
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-19",
       "action": "enrich",
-      "action_target": "hogan_john",
-      "action_note": "data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "hogan_john_s_c",
+      "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_hogue_w_m",
@@ -20883,9 +20883,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
+      "action": "enrich",
+      "action_target": "scarrett_isaac",
+      "action_note": "data/residents/ already holds this person as scarrett_isaac (hh_scarrett_isaac, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_isaac_stevens",
@@ -20982,9 +20982,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-18",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "allen_lieut_james",
+      "action_note": "data/residents/ already holds this person as allen_lieut_james (hh_allen_lieut_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_b_barnard",
@@ -21004,9 +21004,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-17",
       "last_seen": "1835-07-01",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "beaubien_jean_baptiste",
+      "action_note": "data/residents/ already holds this person as beaubien_jean_baptiste (hh_beaubien_jean_baptiste, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_b_brown",
@@ -21037,9 +21037,9 @@
       "letter_list_only": false,
       "first_seen": "1834-04-16",
       "last_seen": "1834-04-16",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "beaubien_jean_baptiste",
+      "action_note": "data/residents/ already holds this person as beaubien_jean_baptiste (hh_beaubien_jean_baptiste, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_b_tuttle",
@@ -21291,8 +21291,8 @@
       "first_seen": "1834-03-04",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "kinzie_james",
-      "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "kinzie_john_h",
+      "action_note": "data/residents/ already holds this person as kinzie_john_h (hh_kinzie_john_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_h_mulford",
@@ -21500,8 +21500,8 @@
       "first_seen": "1834-02-11",
       "last_seen": "1835-07-04",
       "action": "enrich",
-      "action_target": "hogan_john",
-      "action_note": "data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "hogan_john_s_c",
+      "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_s_evert",
@@ -21533,8 +21533,8 @@
       "first_seen": "1834-10-29",
       "last_seen": "1834-10-29",
       "action": "enrich",
-      "action_target": "wright_j",
-      "action_note": "data/residents/ already holds this person as wright_j (hh_wright_j, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "wright_john_s",
+      "action_note": "data/residents/ already holds this person as wright_john_s (hh_wright_john, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_shrigley",
@@ -21565,9 +21565,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-11-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_u_lius_pe_r_rin",
@@ -21620,9 +21620,9 @@
       "letter_list_only": false,
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "eldridge_john_w",
+      "action_note": "data/residents/ already holds this person as eldridge_john_w (hh_eldridge_john_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_w_fell",
@@ -22787,8 +22787,8 @@
       "first_seen": "1834-10-29",
       "last_seen": "1834-10-29",
       "action": "enrich",
-      "action_target": "kinzie_james",
-      "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "kinzie_john_h",
+      "action_note": "data/residents/ already holds this person as kinzie_john_h (hh_kinzie_john_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_jno_l_wilson_co",
@@ -23128,8 +23128,8 @@
       "first_seen": "1834-04-16",
       "last_seen": "1835-07-29",
       "action": "enrich",
-      "action_target": "kinzie_james",
-      "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "kinzie_john_h",
+      "action_note": "data/residents/ already holds this person as kinzie_john_h (hh_kinzie_john_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_john_h_woods",
@@ -23403,8 +23403,8 @@
       "first_seen": "1834-01-28",
       "last_seen": "1835-05-27",
       "action": "enrich",
-      "action_target": "hogan_john",
-      "action_note": "data/residents/ already holds this person as hogan_john (hh_hogan_john, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "hogan_john_s_c",
+      "action_note": "data/residents/ already holds this person as hogan_john_s_c (hh_hogan_john_s_c, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_john_s_davison",
@@ -23425,8 +23425,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1833-12-10",
       "action": "enrich",
-      "action_target": "kinzie_james",
-      "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "kinzie_john_h",
+      "action_note": "data/residents/ already holds this person as kinzie_john_h (hh_kinzie_john_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_john_sewel_l",
@@ -23468,9 +23468,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1835-07-29",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_john_thomas",
@@ -23656,8 +23656,8 @@
       "first_seen": "1834-02-25",
       "last_seen": "1834-07-02",
       "action": "enrich",
-      "action_target": "wright_j",
-      "action_note": "data/residents/ already holds this person as wright_j (hh_wright_j, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "wright_john",
+      "action_note": "data/residents/ already holds this person as wright_john (hh_wright_john, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_john_y_m_lean",
@@ -23754,9 +23754,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "johnson_samuel",
-      "action_note": "data/residents/ already holds this person as johnson_samuel (hh_johnson_samuel, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_johnson_stevens",
@@ -23952,9 +23952,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_jones_william",
@@ -23974,9 +23974,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-03",
-      "action": "enrich",
-      "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_jordan_j_b",
@@ -24755,9 +24755,9 @@
       "letter_list_only": true,
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
-      "action": "enrich",
-      "action_target": "king_byram",
-      "action_note": "data/residents/ already holds this person as king_byram (hh_king_byram, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_king_byram",
@@ -24899,8 +24899,8 @@
       "first_seen": "1834-09-03",
       "last_seen": "1835-08-19",
       "action": "enrich",
-      "action_target": "kinzie_james",
-      "action_note": "data/residents/ already holds this person as kinzie_james (hh_kinzie_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "kinzie_john_h",
+      "action_note": "data/residents/ already holds this person as kinzie_john_h (hh_kinzie_john_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_kirne_e_capt",
@@ -26098,8 +26098,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "smith_lawrence",
-      "action_note": "data/residents/ already holds this person as smith_lawrence (hh_smith_lawrence, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_l_w",
+      "action_note": "data/residents/ already holds this person as smith_l_w (hh_smith_l_w, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_lyon_josoph",
@@ -27121,8 +27121,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1833-12-10",
       "action": "enrich",
-      "action_target": "beaubien_mark",
-      "action_note": "data/residents/ already holds this person as beaubien_mark (hh_beaubien_mark, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "beaubien_madore",
+      "action_note": "data/residents/ already holds this person as beaubien_madore (hh_beaubien_madore, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_meltic_alezamler",
@@ -30784,8 +30784,8 @@
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-17",
       "action": "enrich",
-      "action_target": "rider_elia",
-      "action_note": "data/residents/ already holds this person as rider_elia (hh_rider_elia, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "rider_eli_a",
+      "action_note": "data/residents/ already holds this person as rider_eli_a (hh_rider_eli_a, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_riggs_humphrey",
@@ -32038,8 +32038,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "johnson_samuel",
-      "action_note": "data/residents/ already holds this person as johnson_samuel (hh_johnson_samuel, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "johnson_sanford",
+      "action_note": "data/residents/ already holds this person as johnson_sanford (hh_johnson_sanford, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_sanford_ruth",
@@ -33203,9 +33203,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-06",
       "last_seen": "1834-08-13",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "salisbury_stephen_m",
+      "action_note": "data/residents/ already holds this person as salisbury_stephen_m (hh_salisbury_stephen_m, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_stephen_mack",
@@ -33742,9 +33742,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-12",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_t_e_parsons_2",
@@ -33874,9 +33874,9 @@
       "letter_list_only": false,
       "first_seen": "1834-12-03",
       "last_seen": "1834-12-03",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_ta_y_lor_charles",
@@ -33985,8 +33985,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1835-08-05",
       "action": "enrich",
-      "action_target": "taylor_william",
-      "action_note": "data/residents/ already holds this person as taylor_william (hh_taylor_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "taylor_william_h",
+      "action_note": "data/residents/ already holds this person as taylor_william_h (hh_taylor_william_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_temple",
@@ -34006,9 +34006,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1835-08-19",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_temple_p",
@@ -35843,9 +35843,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "temple_john_t",
+      "action_note": "data/residents/ already holds this person as temple_john_t (hh_temple_john_t, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_thomas_eisdell",
@@ -35921,8 +35921,8 @@
       "first_seen": "1834-07-16",
       "last_seen": "1834-07-16",
       "action": "enrich",
-      "action_target": "taylor_william",
-      "action_note": "data/residents/ already holds this person as taylor_william (hh_taylor_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "taylor_william_h",
+      "action_note": "data/residents/ already holds this person as taylor_william_h (hh_taylor_william_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_warren_hanke",
@@ -36537,8 +36537,8 @@
       "first_seen": "1834-11-05",
       "last_seen": "1834-11-05",
       "action": "enrich",
-      "action_target": "taylor_william",
-      "action_note": "data/residents/ already holds this person as taylor_william (hh_taylor_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "taylor_william_h",
+      "action_note": "data/residents/ already holds this person as taylor_william_h (hh_taylor_william_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_w_harrison",
@@ -38121,8 +38121,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "taylor_william",
-      "action_note": "data/residents/ already holds this person as taylor_william (hh_taylor_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "taylor_william_h",
+      "action_note": "data/residents/ already holds this person as taylor_william_h (hh_taylor_william_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_wm_hogue",
@@ -38164,9 +38164,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-23",
-      "action": "enrich",
-      "action_target": "jones_willard",
-      "action_note": "data/residents/ already holds this person as jones_willard (hh_jones_willard, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_kimbal",
@@ -38296,9 +38296,9 @@
       "letter_list_only": false,
       "first_seen": "1834-01-21",
       "last_seen": "1834-01-21",
-      "action": "enrich",
-      "action_target": "taylor_william",
-      "action_note": "data/residents/ already holds this person as taylor_william (hh_taylor_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_teall",
@@ -38330,8 +38330,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "smith_william",
-      "action_note": "data/residents/ already holds this person as smith_william (hh_smith_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_william_v",
+      "action_note": "data/residents/ already holds this person as smith_william_v (hh_smith_william_v, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_wm_w_wattles",
@@ -38550,8 +38550,8 @@
       "first_seen": "1833-11-26",
       "last_seen": "1833-11-26",
       "action": "enrich",
-      "action_target": "wright_j",
-      "action_note": "data/residents/ already holds this person as wright_j (hh_wright_j, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "wright_john",
+      "action_note": "data/residents/ already holds this person as wright_john (hh_wright_john, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_wright_john_d",
@@ -38561,8 +38561,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "wright_j",
-      "action_note": "data/residents/ already holds this person as wright_j (hh_wright_j, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "wright_john",
+      "action_note": "data/residents/ already holds this person as wright_john (hh_wright_john, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_wright_samuel_l",

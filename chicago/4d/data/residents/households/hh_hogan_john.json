@@ -113,49 +113,6 @@
     "confidence": "reconstructed",
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
-   "workplaces": [
-    {
-     "business_id": "biz_brewster_hogan_co",
-     "business_name": "Brewster, Hogan & Co.",
-     "role": "partner",
-     "printed_as": "John S. C. Hogan",
-     "from": "1833-12-03",
-     "to": "1834-06-11",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card hogan_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1833_12_03#c008",
-      "chicago_democrat_1834_03_04#c010",
-      "chicago_democrat_1834_06_11#c001"
-     ],
-     "business_present_at_scene_date": false
-    },
-    {
-     "business_id": "biz_j_s_c_hogan",
-     "business_name": "J. S. C. Hogan",
-     "role": "partner",
-     "printed_as": "John S. C. Hogan",
-     "from": "1834-03-25",
-     "to": "1835-07-01",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card hogan_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1834_03_25#c010",
-      "chicago_democrat_1834_06_11#c002",
-      "chicago_democrat_1834_08_13#c017",
-      "chicago_democrat_1834_08_20#c007",
-      "chicago_democrat_1834_09_03#c023",
-      "chicago_democrat_1834_11_19#c009",
-      "chicago_democrat_1834_12_03#c013",
-      "chicago_democrat_1834_12_17#c009",
-      "chicago_democrat_1835_05_20#c016",
-      "chicago_democrat_1835_07_01#c002"
-     ],
-     "business_present_at_scene_date": true
-    }
-   ],
    "sources": [
     "st_cyr_register_ichr_v4"
    ],

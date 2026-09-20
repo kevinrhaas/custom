@@ -36,7 +36,7 @@ block; `reading` is the printed notice restated and is attested wherever it is f
 | `staff` | rows | 0 | 1 | 0 | 1 | 195 |
 | `locations` | rows | 26 | 174 | 0 | 200 | 0 |
 | `dates` | block | 15 | 181 | 0 | 196 | 0 |
-| `proprietor_community` | block | 0 | 17 | 94 | 111 | 85 |
+| `proprietor_community` | block | 0 | 19 | 94 | 113 | 83 |
 | `customers` | rows | 0 | 0 | 0 | 0 | 196 |
 | `sources` | reading | 196 | 0 | 0 | 196 | 0 |
 
@@ -55,7 +55,7 @@ Every one below has one.
 | `proprietors` | 85 | The notice names no keeper — an unsigned advertisement, or one signed by a firm style alone. A null here is a finding about the paper, not a person left out. |
 | `partners` | 152 | A sole keeper, or no keeper named at all. `compile_businesses` files a lone name as a proprietor and only a firm of two or more as partners. |
 | `staff` | 195 | THE PAPERS NAME OWNERS AND ALMOST NEVER A CLERK. Empty on every record is a true reading of the register: T-1183 rules the staffing model and T-1189 fills this from it. |
-| `proprietor_community` | 85 | No keeper this record names has a community on their town card, so there is nothing to read a house's community off. Never inferred from a surname. |
+| `proprietor_community` | 83 | No keeper this record names has a community on their town card, so there is nothing to read a house's community off. Never inferred from a surname. |
 | `customers` | 196 | The register carries no customer claim at all; T-1189 is where a workplace gets its people. |
 
 ## 3. Identity: the layer against `identity.json`

@@ -44,7 +44,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1190 | 601 | open | yes |
+| T-1190 | 601 | claimed | yes |
 | T-1198 | 298 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1189 | 12 | split_live | yes |

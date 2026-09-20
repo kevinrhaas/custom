@@ -1,26 +1,25 @@
 {
- "id": "biz_kinzie_john_h_forwarding_and_commission",
+ "id": "biz_kinzie_james_merchant",
  "register_id": null,
- "name": "John Harris Kinzie, forwarding and commission merchant and merchant",
+ "name": "James Kinzie, merchant",
  "provenance": "authored",
  "type": [
-  "storage_and_forwarding",
   "store"
  ],
- "trade": "forwarding and commission merchant and merchant",
- "occupation": "forwarding_and_commission",
+ "trade": "merchant",
+ "occupation": "merchant",
  "goods": [],
  "firm_styles": [],
  "proprietors": [
   {
-   "name": "John Harris Kinzie",
-   "person_id": "kinzie_john_h",
+   "name": "James Kinzie",
+   "person_id": "kinzie_james",
    "register_person_id": null,
    "role": "proprietor",
    "from": null,
    "to": null,
    "tier": "inferred",
-   "basis": "THE TRADE IS THE SOURCE'S; THE HOUSE IS THE INFERENCE. John Harris Kinzie carries dated role(s) of `forwarding_and_commission, merchant` that cover 1835-07-01, graded attested on andreas_1884_v1. That the trade was followed at Chicago in window is what the source says; that it was followed in a house of this keeper's own is this record's inference, and it is graded `inferred` for that reason and never promoted. The keeper held no workplace in the business layer before T-1404.",
+   "basis": "THE TRADE IS THE SOURCE'S; THE HOUSE IS THE INFERENCE. James Kinzie carries dated role(s) of `merchant` that cover 1835-07-01, graded attested on andreas_1884_v1. That the trade was followed at Chicago in window is what the source says; that it was followed in a house of this keeper's own is this record's inference, and it is graded `inferred` for that reason and never promoted. The keeper held no workplace in the business layer before T-1404.",
    "source_id": "andreas_1884_v1",
    "claim_ids": []
   }
@@ -29,15 +28,16 @@
  "staff": [],
  "locations": [
   {
-   "kind": "premises",
-   "structure_id": "jh_kinzie_forwarding_store",
+   "kind": "unplaceable",
+   "structure_id": null,
    "street_id": null,
    "face": null,
    "primary": true,
    "from": null,
    "to": null,
    "tier": "inferred",
-   "basis": "THE KEEPER'S CARD ALREADY PUTS THIS TRADE IN THIS ROOF. hh_kinzie_john_h carries `works_at: jh_kinzie_forwarding_store` at inferred on andreas_1884_v1, and that structure's own committed `function` reads `forwarding_and_commission_store` — the term this trade's premises ruling names. A `works_at` that named a roof of another function would be a BUILT-BY link rather than a workplace and is refused here. The tier is capped at `inferred` because the house itself is an inference: it is the firm, not the roof, that no source prints."
+   "basis": "NO READING PLACES THIS HOUSE. The evidence is a trade on a card, not a printed address, so the record carries its limit rather than a guess.",
+   "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
   }
  ],
  "dates": {
@@ -62,8 +62,8 @@
   "basis": "This record names 1 person/people the resident layer holds a card for and the layer knows no community for any of them. The silence is in the resident layer, not in the register.",
   "from": [
    {
-    "person_id": "kinzie_john_h",
-    "name": "John Harris Kinzie",
+    "person_id": "kinzie_james",
+    "name": "James Kinzie",
     "role": "proprietor",
     "community": "unknown",
     "tier": null

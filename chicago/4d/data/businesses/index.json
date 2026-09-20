@@ -34,7 +34,7 @@
       "unplaceable": 109
     },
     "named_people": 280,
-    "named_people_linked_to_a_town_card": 226,
+    "named_people_linked_to_a_town_card": 227,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 37,
     "by_grade": {
@@ -66,10 +66,10 @@
       "french_canadian": 5,
       "irish": 10,
       "metis": 1,
-      "new_york": 51,
+      "new_york": 52,
       "other": 11,
-      "southern": 10,
-      "unknown": 99,
+      "southern": 11,
+      "unknown": 97,
       "yankee": 74
     }
   },
@@ -119,7 +119,7 @@
       {
         "value": "new_york",
         "label": "New York State",
-        "count": 51
+        "count": 52
       },
       {
         "value": "irish",
@@ -139,7 +139,7 @@
       {
         "value": "southern",
         "label": "Southern",
-        "count": 10
+        "count": 11
       },
       {
         "value": "other",
@@ -149,7 +149,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 99
+        "count": 97
       }
     ]
   },
@@ -222,7 +222,7 @@
       "people": [
         {
           "name": "A. Clybourn",
-          "person_id": null,
+          "person_id": "clybourne_archibald",
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
@@ -245,8 +245,8 @@
       "opened": "1833-12-10",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unknown",
-      "proprietor_community_tier": null,
+      "proprietor_community": "southern",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -1211,7 +1211,7 @@
         },
         {
           "name": "John S. C. Hogan",
-          "person_id": "hogan_john",
+          "person_id": "hogan_john_s_c",
           "role": "partner",
           "tier": "attested",
           "from": "1833-12-03",
@@ -3263,7 +3263,7 @@
       "people": [
         {
           "name": "E. W. Haddock",
-          "person_id": null,
+          "person_id": "haddock_edward",
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-03-18",
@@ -3286,8 +3286,8 @@
       "opened": "1834-03-18",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "unknown",
-      "proprietor_community_tier": null,
+      "proprietor_community": "new_york",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -5712,7 +5712,7 @@
       "people": [
         {
           "name": "J. H. Kinzie",
-          "person_id": "kinzie_james",
+          "person_id": "kinzie_john_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-06-20",
@@ -6144,7 +6144,7 @@
       "people": [
         {
           "name": "John S. C. Hogan",
-          "person_id": "hogan_john",
+          "person_id": "hogan_john_s_c",
           "role": "partner",
           "tier": "attested",
           "from": "1834-03-25",
@@ -6169,7 +6169,7 @@
       "opened": "1834-03-25",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "yankee",
+      "proprietor_community": "new_york",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
@@ -6579,7 +6579,7 @@
       "people": [
         {
           "name": "John H. Kinzie",
-          "person_id": "kinzie_james",
+          "person_id": "kinzie_john_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-04-16",
@@ -6681,7 +6681,7 @@
       "people": [
         {
           "name": "John S. Kinzie",
-          "person_id": "kinzie_james",
+          "person_id": "kinzie_john_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-12-10",
@@ -6835,7 +6835,7 @@
       "people": [
         {
           "name": "John Wright",
-          "person_id": "wright_j",
+          "person_id": "wright_john",
           "role": "proprietor",
           "tier": "attested",
           "from": "1833-11-26",
@@ -6858,8 +6858,8 @@
       "opened": "1833-11-26",
       "closed": null,
       "dates_tier": "inferred",
-      "proprietor_community": "new_york",
-      "proprietor_community_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "inferred",
       "review_required": false,
       "liberties": [
         "survival_required"
@@ -6932,7 +6932,7 @@
         },
         {
           "name": "Wm. Jones",
-          "person_id": "jones_willard",
+          "person_id": null,
           "role": "partner",
           "tier": "attested",
           "from": "1834-07-09",
@@ -11686,7 +11686,7 @@
       "people": [
         {
           "name": "[uncertain: W. H. Taylor]",
-          "person_id": "taylor_william",
+          "person_id": "taylor_william_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-07-16",
@@ -12097,7 +12097,7 @@
       "people": [
         {
           "name": "[W. H.] Taylor",
-          "person_id": "taylor_william",
+          "person_id": "taylor_william_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1834-11-05",
@@ -12797,7 +12797,7 @@
       "people": [
         {
           "name": "Wm. H. Taylor",
-          "person_id": "taylor_william",
+          "person_id": "taylor_william_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-05-20",
@@ -12851,7 +12851,7 @@
       "people": [
         {
           "name": "Taylor, Wm. H.",
-          "person_id": "taylor_william",
+          "person_id": "taylor_william_h",
           "role": "proprietor",
           "tier": "attested",
           "from": "1835-08-05",

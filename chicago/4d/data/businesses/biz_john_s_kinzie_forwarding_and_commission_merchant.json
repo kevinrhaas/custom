@@ -13,13 +13,13 @@
   "proprietors": [
     {
       "name": "John S. Kinzie",
-      "person_id": "kinzie_james",
+      "person_id": "kinzie_john_h",
       "register_person_id": "person_john_s_kinzie",
       "role": "proprietor",
       "from": "1833-12-10",
       "to": "1833-12-10",
       "tier": "attested",
-      "basis": "The register matches the printed name to the town card kinzie_james (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "basis": "The register matches the printed name to the town card kinzie_john_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1833_12_10#c012"
@@ -66,7 +66,7 @@
     "basis": "This record names 1 person/people the resident layer holds a card for and the layer knows no community for any of them. The silence is in the resident layer, not in the register.",
     "from": [
       {
-        "person_id": "kinzie_james",
+        "person_id": "kinzie_john_h",
         "name": "John S. Kinzie",
         "role": "proprietor",
         "community": "unknown",
