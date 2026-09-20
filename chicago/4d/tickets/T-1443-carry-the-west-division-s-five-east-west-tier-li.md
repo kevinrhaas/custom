@@ -1,7 +1,7 @@
 ---
 id: T-1443
 title: Carry the West Division's five east-west tier lines off their E -320 clip to Des Plaines Street, on each line's own committed bearing and control
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1431
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1569
 claimed_by: run 9/20/2026, 6:33:20 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T13:44:38.645Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35507852269
 ---
 
