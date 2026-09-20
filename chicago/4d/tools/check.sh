@@ -1438,6 +1438,23 @@ selftest "the North Division lines still lie on the streets they continue, and s
 selftest "the North Division tier is still the wedge the plat letters, and still refuses to publish a northing" \
   python3 tools/measure_north_division_tier_depth.py --self-test
 
+# T-1458, the cut the reading above paid for. `generate_plat_lots.py` can cut a block only
+# between two committed street lines and the tier has one, so the seven blocks Thompson
+# draws between Kinzie and the river went uncut for as long as the sheet had no depth. They
+# are cut here instead, off committed Kinzie and DOWN by the read depth — never off the
+# sheet's own southern line, which is the northing T-1457 refuses to publish. The two steps
+# are the pair every derived file in this repo carries: the file re-derives from its inputs,
+# and the derivation holds its own assertions. The ones worth naming: the committed columns
+# give four 80 ft lots to a face in all seven blocks, which is the sheet's module arrived at
+# from the other side; the tier line predicts block 6's read north face to a fifth of a pixel,
+# which is what its carried depth rests on; and the ONE block the terrain calls wet is the one
+# the plat draws its watercourse across, two records with no arithmetic in common agreeing.
+step "the North Division tier's blocks and lots re-derive from the reading and the committed lines" \
+  python3 tools/cut_north_division_tier.py --check
+
+selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
+  python3 tools/cut_north_division_tier.py --self-test
+
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
 # this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a

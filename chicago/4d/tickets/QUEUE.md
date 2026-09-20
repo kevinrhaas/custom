@@ -65,7 +65,6 @@ T-1442 — Print the finished business layer: the trade-census crosswalk and the
 T-1455 — The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
 T-1456 — The School Section tier, and every documented north or west record's lot recorded on the record
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
-T-1458 — Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face
 T-1446 — Execute the roof redeal the adjudication names: refamily and retire in the recipe files so the three infill generators re-derive byte for byte, retired records to exclusions under a retired_reconstruction guard with their liberty tokens resolved, rebaked, with a screenshot from Lake and Clark
 T-1465 — Give every roof its covering and its texture before the 297 are built: shingle and roof_board substrates on the sheet, dealt by archetype, bound to the vendored relief maps on L263's exposure — a roof nobody can see the material of is not a reconstruction, it is a gap
 T-1198 — Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
