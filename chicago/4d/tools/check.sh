@@ -539,8 +539,12 @@ selftest "…and its own assertions still fire when broken" \
 # of the fifty-eight and the ones that had no control at all. Four boxes are flanked by
 # two committed lines; the six tier lines are committed but clipped at east -320 m and are
 # continued WEST along their own bearings; and the two flanks Jefferson and Des Plaines
-# would give are `clinton` stepped one and two modules west, because both streets are
-# REFUSED for standing wholly west of the modelled ground. The gate re-cuts every box,
+# would give are `clinton` stepped one and two modules west, because when these eighteen
+# numerals were READ both streets stood refused for want of modelled ground. T-1430 has
+# since seated them, 8.70 m and 8.22 m from where the step puts them, and the crops still
+# come off the step: they are citations of a reading already taken, and re-cutting them
+# would re-read eighteen numerals to no purpose. What the seating changes is what the
+# agreement MEANS — two instruments agreeing, rather than one licensing the other. The gate re-cuts every box,
 # checks every read window still lies inside the box it is cited under, re-measures the
 # three agreements that licence the step, and asserts the boustrophedon ACROSS the blocks
 # other tickets already read — so a numeral misread here breaks against T-0788's 28 29 and
@@ -1095,6 +1099,22 @@ selftest "…and those assertions still fire when the enumeration is broken" \
 # against a figure that is wrong by a third of the programme.
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
+
+# T-1196. The 668-roof schedule is a production decision from the owner's 2026
+# specification, taken before the population layer existed, and the order book carries five
+# `programme_deltas` rows stamped for this ticket so the comparison would be made
+# deliberately. It is made here, once per gate, and it is the re-derivation rather than the
+# spec that is asserted: every group says what it was compared WITH, three of the five
+# deltas turn out to be unit mismatches or tautologies rather than disagreements about
+# roofs, and the 308-household one resolves as an occupancy rate the November census
+# brackets. The step also holds the two files that deal the same 668 roofs to each other:
+# the crosswalk's counts had drifted to 662 and nine of its priority ranks were one place
+# out, which is what an authored count field does when nothing re-derives it.
+step "the roof programme re-derives against the order book, and the crosswalk deals its 668" \
+  python3 tools/reprogramme_roofs_1835.py --check
+
+selftest "…and its own refusals still fire when the programme is bent" \
+  python3 tools/reprogramme_roofs_1835.py --self-test
 
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
