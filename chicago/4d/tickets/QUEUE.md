@@ -234,4 +234,3 @@ T-1429 — The nearest-street reading crosses the river: a bank test for nearest
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1435 — The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
-
