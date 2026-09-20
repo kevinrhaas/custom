@@ -62,7 +62,6 @@ T-1449 — Close the employment join and print it: the minted hands on the busin
 T-1442 — Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1455 — The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
 T-1456 — The School Section tier, and every documented north or west record's lot recorded on the record
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1458 — Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face
@@ -246,3 +245,4 @@ T-1439 — The order book reports a false delta of ten institutional roofs: prog
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
 T-1459 — Re-cut the order book's unfilled remainder to the adult sex ratio the town model already states, and reopen the 10-19 trade band the 1840 schedule drew out — the 78 filled buckets and their 1,370 drawn persons do not move
+T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division grid: blocks 28 and 45 re-cut in the sheet's own arrangement, with the structures seated on their lots re-seated
