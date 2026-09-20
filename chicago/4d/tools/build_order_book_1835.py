@@ -40,11 +40,24 @@ THE FOUR RULES THIS BOOK ADDS, AND WHY EACH IS STATED RATHER THAN HIDDEN.
    axis are subtracted PRO RATA across the cells of that axis, which is the only
    distribution that keeps the totals honest without asserting where anybody was.
 
-3. PRESENCE IS THE TEST FOR "KNOWN".  A household record whose presence on
-   1 July 1835 is `uncertain` is not a household this town holds; it is a
-   candidate T-1172 may re-admit, and it is already counted on the roster as
-   class R1. Counting it as known AND offering it on the roster would order one
-   person twice, so only `present` records count as known here.
+3. PRESENCE IS THE TEST FOR "KNOWN", AND T-1386 IS WHERE PRESENCE IS READ.
+   The first cut of this rule counted only a record whose own `present_on_scene_date`
+   said `present`, and left the 820 `uncertain` ones to T-1172's re-admission as
+   roster class R1: counting a household as known AND offering it on the roster
+   would order one person twice.  T-1386 RE-ADMITTED THEM (2026-09-19).  827 people
+   are ruled into the town on the owner's standing rule — an attested or inferred
+   resident is in the population unless there is EVIDENCE they were not — and they
+   stand in the layer today, which is why the landing card counts 2,267 people and
+   this book counted 457.  So the double-count the rule was written to stop has
+   INVERTED: leaving them out of `known` does not decline to order them twice, it
+   orders a replacement for 826 people already standing (T-1463).
+       The rule is therefore read against the rulings file as well as the index: a
+   household is known when the index records it `present`, or when T-1386 rules it
+   present.  The two `evidenced_absences` stay out, because evidence of absence is
+   exactly what the rule asks for; and the roster stays a LICENCE rather than a
+   quota (rule `real_names_first`), so counting these once orders nobody twice.
+       THIS APPLIES A RULING RATHER THAN MAKING ONE.  A run that finds a new
+   modelling decision required here is to stop and say so, not to invent it.
 
 4. THE FORT IS NOT APPORTIONED.  The garrison of 1 July 1835 is a return to be
    read (T-1176), not a share of a town model, so the fort division's person and
@@ -398,12 +411,41 @@ def division_shares(inventory: dict) -> dict[str, float]:
     return {k: v / mass for k, v in weights.items()}
 
 
-def known_layer(residents: dict) -> dict:
-    """The known people and households, read off the committed resident index.
+def ruled_present(rulings: dict | None) -> dict:
+    """The households T-1386 ruled into the town of 1 July 1835, keyed by id.
 
-    Rule 3: only a household whose presence on the scene date is `present` counts
-    as known. The `uncertain` ones are the roster's R1 class and are offered, not
-    counted — counting them in both places would order one person twice.
+    `evidenced_absences` are deliberately NOT among the rulings — that stage leaves
+    them out because a dated departure or a dated appearance elsewhere is the one
+    thing that keeps a resident out of the count, and this book inherits that.
+    """
+    if rulings is None:
+        return {}
+    rows = rulings.get("rulings")
+    if not rows:
+        raise Fault("the presence rulings carry no rulings: T-1386's file is empty")
+    out = {}
+    for row in rows:
+        hid = row.get("household_id")
+        if not hid:
+            raise Fault("a presence ruling names no household")
+        if ((row.get("present_on_scene_date") or {}).get("value")) == "present":
+            out[hid] = row
+    return out
+
+
+def known_layer(residents: dict, rulings: dict | None = None) -> dict:
+    """The known people and households, read off the committed resident index AND
+    off T-1386's presence rulings.
+
+    Rule 3: a household is known when the index records it `present` on the scene
+    date, OR when T-1386 rules it present. Until T-1463 only the first clause
+    existed and the 820 `uncertain` households — 827 people who stand in the layer
+    today — were counted unknown, so every bucket ordered their replacement.
+
+    Called with `rulings=None` this returns the PRE-RULING cut. Nothing ships off
+    that number: `build` uses it only to tell a quota the re-cut shrinks under work
+    already drawn (refused by name) from a filler that overfilled its own quota
+    (a fault), which are two different reds and must not be read as one.
 
     AND A RECONSTRUCTED PERSON IS NOT KNOWN. `known` is what the SOURCES give the town;
     a reconstructed person is the order being filled, and `filled` is their counter.
@@ -415,12 +457,17 @@ def known_layer(residents: dict) -> dict:
     households = residents.get("households", [])
     if not households:
         raise Fault("the resident index carries no households")
+    ruled = ruled_present(rulings)
     out = {
         "households_total": len(households),
         "households_present": 0,
         "households_uncertain": 0,
+        "households_ruled_present": 0,
+        "households_evidenced_absent": 0,
         "households_reconstructed": 0,
         "persons_total": 0,
+        "persons_standing": 0,
+        "persons_ruled_present": 0,
         "persons_present": 0,
         "persons_present_attested": 0,
         "persons_present_inferred": 0,
@@ -435,11 +482,19 @@ def known_layer(residents: dict) -> dict:
         persons = int(hh.get("persons") or 0)
         out["persons_total"] += persons
         presence = hh.get("present_on_scene_date")
+        from_a_ruling = presence == "uncertain" and hh.get("id") in ruled
         if presence == "uncertain":
             out["households_uncertain"] += 1
+            if not from_a_ruling:
+                continue
+        elif presence != "present":
+            out["households_evidenced_absent"] += 1
             continue
-        if presence != "present":
-            continue
+        # EVERY PERSON PAST THIS LINE IS STANDING IN THE TOWN, named or drawn. It is the
+        # figure the landing card prints and the one the remainder is measured against
+        # (T-1463): `persons_standing + still owed` is what the town converges to, and a
+        # book whose sum overshoots the model is ordering somebody who already exists.
+        out["persons_standing"] += persons
         grades = hh.get("grades") or {}
         named = persons - int(grades.get("reconstructed") or 0)
         # AND A RECONSTRUCTED HOUSEHOLD IS NOT KNOWN EITHER (T-1174). The paragraph above
@@ -453,6 +508,9 @@ def known_layer(residents: dict) -> dict:
             out["households_reconstructed"] += 1
             continue
         out["households_present"] += 1
+        if from_a_ruling:
+            out["households_ruled_present"] += 1
+            out["persons_ruled_present"] += named
         out["persons_present"] += named
         out["persons_present_attested"] += int(grades.get("attested") or 0)
         out["persons_present_inferred"] += int(grades.get("inferred") or 0)
@@ -657,7 +715,11 @@ def household_buckets(model: dict, inventory: dict, known: dict) -> dict:
         "households_target_basis": basis,
         "households_target_range": [hh_fig["low"], hh_fig["high"]],
         "known_present": known["households_present"],
-        "known_uncertain_offered_to_T-1172": known["households_uncertain"],
+        # WAS `known_uncertain_offered_to_T-1172`. They are not offered any more: T-1386
+        # ruled them into the town and T-1463 counts them known, so the name would be a
+        # label for work that has happened (the roster still offers the NAMES, which is a
+        # licence and not a quota — see `the_roster_is_not_double_counted`).
+        "known_uncertain_in_the_index_ruled_in_by_T-1386": known["households_ruled_present"],
         "buckets": buckets,
     }
 
@@ -1024,6 +1086,36 @@ def invariants(known: dict, persons: dict, households: dict, structures: dict) -
     ]
 
 
+def presence_agrees(known: dict, before: dict, rulings: dict) -> None:
+    """THE GUARD THAT KEEPS THIS FROM GOING STALE IN SILENCE AGAIN (T-1463).
+
+    The book read `1835_presence_rulings.json` for a year and reported what summing it
+    in WOULD give, while every quota was cut as though it said nothing. Nothing fired,
+    because nothing compared the two. This does: `known` must equal the pre-ruling cut
+    plus the attested and inferred people the rulings' own `counts` block says it ruled
+    into the town. Regenerate the rulings without rebuilding the book, or stop summing
+    them in, and the gate is red rather than quietly 826 people short.
+    """
+    counts = rulings.get("counts") or {}
+    by_grade = counts.get("persons_by_residence_grade") or {}
+    if not by_grade:
+        raise Fault("the presence rulings carry no persons_by_residence_grade to check against")
+    # A RECONSTRUCTED PERSON IS NOT KNOWN wherever they stand, so the rulings add only
+    # the people the SOURCES name. The `reconstructed` grade is somebody else's `filled`.
+    ruled_known = sum(int(by_grade.get(g) or 0) for g in ("attested", "inferred"))
+    expected = before["persons_present"] + ruled_known
+    if known["persons_present"] != expected:
+        raise Fault(
+            f"the book's known and T-1386's presence rulings disagree: the book counts "
+            f"{known['persons_present']} known where the index gives {before['persons_present']} "
+            f"and the rulings add {ruled_known} named people, which is {expected}")
+    households = int((counts.get("households_ruled") or 0))
+    if known["households_ruled_present"] > households:
+        raise Fault(
+            f"the book counts {known['households_ruled_present']} households ruled present "
+            f"where the rulings rule {households}")
+
+
 # ----------------------------------------------------------------- the build --
 
 def build(data: dict, fills: list | None = None, occupancy: dict | None = None) -> dict:
@@ -1031,10 +1123,23 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     for fill in fills:
         if not isinstance(fill, dict) or not fill.get("ticket") or not fill.get("bucket"):
             raise Fault("a fill in the ledger names no ticket or no bucket")
-    known = known_layer(data["residents"])
+    known = known_layer(data["residents"], data["presence_rulings"])
+    before = known_layer(data["residents"])
+    presence_agrees(known, before, data["presence_rulings"])
     occ = occupancy if occupancy is not None else occupancy_of()
     persons = person_buckets(data["model"], data["composition"], data["inventory"], known)
     households = household_buckets(data["model"], data["inventory"], known)
+    # THE QUOTAS AS THEY STOOD BEFORE THE RULINGS WERE SUMMED IN, for one purpose only:
+    # telling a re-cut apart from an overfill. Every person already drawn was drawn
+    # against these, so a bucket whose new quota falls under its own `filled` is the
+    # re-cut reaching work already done — REFUSED BY NAME below, with both numbers, and
+    # held at what was drawn. A `filled` above even the pre-ruling quota is a filler that
+    # bypassed the book, which is the original fault and stays one.
+    quota_before = {b["key"]: b["to_reconstruct"] for b in
+                    person_buckets(data["model"], data["composition"], data["inventory"],
+                                   before)["buckets"]
+                    + household_buckets(data["model"], data["inventory"], before)["buckets"]}
+    recut_refusals = []
     businesses = business_buckets(data["crosswalk"], data["register"], data["trade_spend"],
                                   data["model"])
     structures = structure_buckets(data["inventory"], data["programme"], occ)
@@ -1066,7 +1171,25 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
             b["filled"] = counted.get(b["key"], 0)
             todo = b.get("to_reconstruct", b.get("to_build"))
             if todo is not None and b["filled"] > todo:
-                raise Fault(f"the bucket {b['key']} is overfilled: {b['filled']} of {todo}")
+                was = quota_before.get(b["key"])
+                if was is not None and b["filled"] <= was:
+                    recut_refusals.append({
+                        "bucket": b["key"],
+                        "owning_ticket": b.get("owning_ticket"),
+                        "quota_before_the_rulings": was,
+                        "the_re_cut_would_have_ordered": todo,
+                        "already_drawn": b["filled"],
+                        "held_at": b["filled"],
+                        "why": "the re-cut would put this bucket's order under the people "
+                               "already drawn against it. The owner's ruling of 2026-09-20 "
+                               "(T-1459) holds here: no bucket's target falls below what has "
+                               "been drawn against it, and the refusal is named with both "
+                               "numbers rather than clamped in silence.",
+                    })
+                    b["to_reconstruct"] = b["filled"]
+                    b["recut_refused"] = True
+                else:
+                    raise Fault(f"the bucket {b['key']} is overfilled: {b['filled']} of {todo}")
         families.append({"key": key, "title": title, "lead": lead,
                          "summary": payload, "buckets": buckets})
 
@@ -1103,10 +1226,18 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
             "unresolved_known": "A named person or household the layer cannot place on an axis is "
                                 "subtracted PRO RATA across that axis's cells, so the book never "
                                 "orders a replacement for somebody already standing in the town.",
-            "presence_is_the_test": "Only a household recorded `present` on the scene date counts "
-                                    "as known. An `uncertain` one is the roster's R1 class and is "
-                                    "offered to T-1172 — counting it in both places orders one "
-                                    "person twice.",
+            "presence_is_the_test": "A household is known when the index records it `present` on "
+                                    "the scene date, or when T-1386's presence rulings rule it "
+                                    "present. The 820 `uncertain` households hold 827 people who "
+                                    "stand in the layer, so counting them unknown ordered a "
+                                    "replacement for each of them (T-1463). The two evidenced "
+                                    "absences stay out; the roster stays a licence, not a quota, "
+                                    "so counting these once orders nobody twice.",
+            "the_re_cut_does_not_reach_work_already_done": "Summing the rulings into `known` "
+                                    "shrinks quotas people have already been drawn against. No "
+                                    "bucket's order falls below its own `filled`: the re-cut is "
+                                    "REFUSED there by name, with both numbers, in `recut_refusals` "
+                                    "— never clamped in silence (the owner's ruling of 2026-09-20).",
             "the_fort_is_read_not_apportioned": "The garrison and its households carry a null "
                                                 "target; T-1176 reads the return and the civilian "
                                                 "quota is re-cut at the next --build.",
@@ -1118,25 +1249,21 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
                                 "across cells that cannot hold it.",
         },
         "known_layer": known,
-        # THE POPULATION THE RULINGS PUT IN THE TOWN (T-1386), stated beside `known_layer`
-        # and deliberately NOT summed into it. `known_layer` counts what the resident
-        # INDEX records `present`, and the index is a summary of the household directory
-        # and nothing else (T-0715); the 827 people the research left `uncertain` are ruled
-        # into the town by a ruling layer outside those cards, so the two are different
-        # reads and the book says both rather than averaging them.
-        #
-        # WHY THE QUOTAS ARE NOT RE-CUT HERE. Every bucket's `to_reconstruct` is
-        # `target - known`, and 983 reconstructed people have already been drawn against
-        # the quotas `known` gives today. Adding 826 named people to `known` shrinks those
-        # quotas under work already done, which the `no_bucket_overfilled` invariant would
-        # refuse — correctly, because the answer is to retire or re-family the surplus and
-        # that is T-1196's re-cut of the programme and T-1197's re-audit of the anonymous
-        # roofs, not a side effect of a presence ruling. T-1179 converges the layer over
-        # both. What this block owes the book is the FIGURE and the delta, so the next
-        # stage re-cuts from a number rather than rediscovering it.
+        # THE POPULATION THE RULINGS PUT IN THE TOWN (T-1386), AND NOW SUMMED INTO
+        # `known_layer` RATHER THAN STATED BESIDE IT (T-1463). This block stood here for a
+        # year saying what summing the rulings in WOULD give — 1,283 against the 457 the
+        # book cut its quotas from — and declining to do it, on the reasoning that shrinking
+        # quotas under work already drawn would trip the overfill gate. That reasoning was
+        # right about the mechanism and wrong about the answer: the gate is what
+        # `recut_refusals` is for, and the price of waiting was that every bucket ordered a
+        # replacement for 826 people standing in the layer. The owner found it off the
+        # landing card — 2,267 people against a 2,536 target with 929 still on order, a town
+        # that would have converged to ~3,196. The block is kept, and now RECONCILES.
         "population_ruled_in": {
             "ticket": "T-1386",
             "source": "data/reconstruction/1835_presence_rulings.json",
+            "summed_into_known": True,
+            "summed_by": "T-1463",
             "persons_ruled_present": int(
                 (data["presence_rulings"].get("counts") or {}).get("persons_ruled") or 0),
             "households_ruled_present": int(
@@ -1145,14 +1272,30 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
                                  ).get("persons_by_tier") or {},
             "by_residence_grade": (data["presence_rulings"].get("counts") or {}
                                    ).get("persons_by_residence_grade") or {},
-            "persons_known_today": known["persons_present"],
-            "persons_known_if_the_rulings_are_summed_in": known["persons_present"] + sum(
-                int(n or 0) for grade, n in
-                ((data["presence_rulings"].get("counts") or {}).get(
-                    "persons_by_residence_grade") or {}).items()
-                if grade in ("attested", "inferred")),
+            # A PRESENCE TIER IS NOT A RESIDENCE GRADE, and the difference is why 826 and not
+            # 148 enter `known`. `by_presence_tier` prices HOW the ruling was reached — 679 of
+            # the 827 are `carried` by the standing rule rather than read on the day. That is
+            # the confidence of the PRESENCE, and it is carried on every one of those cards
+            # already. `by_residence_grade` is who the person is to the sources: 276 attested
+            # and 550 inferred, 1 reconstructed. `known` is what the sources give the town, so
+            # it takes the 826 named and leaves the 1 reconstructed to somebody's `filled`.
+            "what_known_takes": "the 826 attested and inferred; the 1 reconstructed is a fill",
+            "persons_known_before_the_rulings": before["persons_present"],
+            "persons_known_now": known["persons_present"],
+            "households_known_before_the_rulings": before["households_present"],
+            "households_known_now": known["households_present"],
+            "the_roster_is_not_double_counted": "R1 offers these names to T-1172 as a LICENCE "
+                                                "to use a real read name, never as a quota "
+                                                "(rule `real_names_first`), and T-1386 has "
+                                                "already re-admitted them into the layer. "
+                                                "Counting them known orders nobody twice; it "
+                                                "stops ordering them once.",
             "what_re_cuts_the_quotas": ["T-1196", "T-1197", "T-1179"],
         },
+        # THE RE-CUT'S REFUSALS. Empty is the healthy state; a row is a bucket whose new
+        # order would have fallen under the people already drawn against it, held at what
+        # was drawn and named here with both numbers.
+        "recut_refusals": recut_refusals,
         "roster_offered": {
             "total": int(data["roster"].get("counts", {}).get("offered") or 0),
             "by_class": offered,
@@ -1171,7 +1314,24 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
             "roofs_target": structures["roof_target"],
             "roofs_standing": structures["standing_records"],
             "roofs_to_build": structures["to_build_total"],
+            # THE NUMBER SAID OUT LOUD (T-1463). `persons_standing` is what the layer holds
+            # on 1 July 1835 — the landing card's figure — and `persons_still_owed` is what
+            # the book has left to order after its counters. Their sum is what this town
+            # converges to, and it is the one line that would have caught the over-order.
+            "persons_standing": known["persons_standing"],
+            "persons_still_owed": sum(
+                max(0, (b["to_reconstruct"] or 0) - b["filled"]) for b in families[0]["buckets"]),
+            "persons_when_the_book_is_filled": known["persons_standing"] + sum(
+                max(0, (b["to_reconstruct"] or 0) - b["filled"]) for b in families[0]["buckets"]),
+            "persons_target_range": list(persons["town_target_range"]),
+            "households_standing": known["households_present"] + known["households_reconstructed"],
+            "households_still_owed": sum(
+                max(0, (b["to_reconstruct"] or 0) - b["filled"]) for b in families[1]["buckets"]),
         },
+        # WHAT THE RE-CUT FOUND, written into the book rather than into a report nobody
+        # re-derives (T-1463). Two of these are adjudications the ticket asked for out
+        # loud, and the third is a collision this run declines to rule on.
+        "what_the_re_cut_found": recut_findings(known, before, families, recut_refusals),
         "bucket_families": families,
         "programme_deltas": programme_deltas(data["model"], data["inventory"],
                                              data["programme"], persons, households),
@@ -1181,6 +1341,98 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     if len(doc["bucket_families"]) != 5:
         raise Fault("the order book is five bucket families; fewer is a book with a hole in it")
     return doc
+
+
+def converges_inside_the_model(doc: dict) -> str:
+    """THE OVERSHOOT GATE (T-1463), asked of the SHIPPED book on every --build and --check.
+
+    The bug this ticket exists to remove was invisible for a year because nothing multiplied
+    the book's remainder out against the town already standing: 2,267 people stood, 843 were
+    still on order, and 3,110 was never set beside a model that wanted 2,536. This sets them
+    beside each other and says the number out loud whether it passes or fails.
+
+    It is NOT an invariant of the bucket algebra, which is why it lives here and not in
+    `build`. `persons_still_owed` is `to_reconstruct - filled`, so a fixture book with a
+    partial ledger re-orders people already drawn and lands wherever its fixture puts it.
+    The committed book carries the whole ledger, and it is the one that has to close.
+    """
+    t = doc["totals"]
+    lands, low, high = t["persons_when_the_book_is_filled"], *t["persons_target_range"]
+    said = (f"{t['persons_standing']:,} standing plus {t['persons_still_owed']:,} still owed "
+            f"is {lands:,}, against a model of {t['persons_target']:,} within {low:,}-{high:,}")
+    if not low <= lands <= high:
+        raise Fault(f"the book orders a town outside the model: {said}. A remainder that lands "
+                    f"outside the range is ordering people the layer already holds, or too few "
+                    f"to reach the town")
+    return said
+
+
+def recut_findings(known: dict, before: dict, families: list, refusals: list) -> list[dict]:
+    """The three things summing T-1386 into `known` made measurable (T-1463)."""
+    def owed(fam, ticket=None):
+        return sum(max(0, (b["to_reconstruct"] or 0) - b["filled"]) for b in fam["buckets"]
+                   if ticket is None or b["owning_ticket"] == ticket)
+    persons, households = families[0], families[1]
+    p_1171, h_1171 = owed(persons, "T-1171"), owed(households, "T-1171")
+    held = sum(r["already_drawn"] - r["the_re_cut_would_have_ordered"] for r in refusals)
+    target = persons["summary"]["town_target"]
+    low, high = persons["summary"]["town_target_range"]
+    standing = known["persons_standing"]
+    still = owed(persons)
+    return [
+        {
+            "id": "t_1171_adjudicated",
+            "asks": "T-1171 closed 2026-09-18 (PR #1476) having drawn 124 of 556, and the "
+                    "presence rulings landed 2026-09-19 — the day after. Was its 432 real, "
+                    "or an artifact of a quota cut against a town that did not yet hold the "
+                    "827 ruled-in people?",
+            "the_answer_is": "BOTH, and the split is measured rather than argued.",
+            "household_leg_before": 58, "household_leg_now": h_1171,
+            "person_leg_before": 374, "person_leg_now": p_1171,
+            "measured": f"Of the 432, the household leg is DISCHARGED: T-1171's household quota "
+                        f"was 182 against 124 drawn and the re-cut takes it to its own drawn "
+                        f"figure, so it owes {h_1171}. The person leg is PART artifact: 374 "
+                        f"before, {p_1171} now. The remainder is owed and is not a counting "
+                        f"error, so T-1171 REOPENS for it.",
+            "verdict": "reopen T-1171 for the persons; the households are discharged",
+        },
+        {
+            "id": "the_remainder_said_out_loud",
+            "asks": "What does the town converge to if every remaining order is filled?",
+            "persons_standing_in_the_layer": standing,
+            "persons_still_owed": still,
+            "converges_to": standing + still,
+            "model_point": target, "model_range": [low, high],
+            "measured": f"{standing:,} standing plus {still:,} still owed is {standing + still:,}, "
+                        f"inside the model's {low:,}-{high:,}. Before the re-cut the same sum was "
+                        f"{standing:,} + 843 = {standing + 843:,}, and the book was ordering a "
+                        f"replacement for 826 people already in the layer. It is {standing + still - target:,} "
+                        f"above the model's {target:,} point, and that surplus is the {held:,} people "
+                        f"drawn into {len(refusals)} buckets past what the re-cut would now order — "
+                        f"named in `recut_refusals`, held rather than clamped, and retired or "
+                        f"re-familied by T-1196, T-1197 and T-1179 rather than by this book.",
+        },
+        {
+            "id": "households_are_counted_in_two_different_units",
+            "asks": "The model wants 643 households and the layer now holds "
+                    f"{known['households_present'] + known['households_reconstructed']:,} records. "
+                    "Are those the same thing?",
+            "the_answer_is": "NOT THIS RUN'S TO MAKE — reported, not acted on.",
+            "households_known_before_the_rulings": before["households_present"],
+            "households_known_now": known["households_present"],
+            "model_target": households["summary"]["households_target"],
+            "model_range": list(households["summary"]["households_target_range"]),
+            "measured": "814 of the 820 records T-1386 ruled present hold exactly ONE person, and "
+                        "424 of them are a single name off a post-office letter list. A letter-list "
+                        "name evidences a PERSON in the town; whether it evidences a HOUSEHOLD in "
+                        "the model's sense — the model's own average is 3.9 people to a house — is "
+                        "a modelling question, and the persons re-cut does not depend on the answer. "
+                        "The household quota therefore reads 0 owed today. That is arithmetic the "
+                        "ruling forces, not a finding that the town has all the houses it needs.",
+            "declined": "T-1463 says a run that finds a new modelling decision required is to stop "
+                        "and say so rather than invent it. This is that. Filed for the owner.",
+        },
+    ]
 
 
 # ---------------------------------------------------------------- the report --
@@ -1205,6 +1457,39 @@ def report_text(doc: dict) -> str:
         f"| Households | {t['households_target']:,} | {t['households_known']:,} | {t['households_to_reconstruct']:,} |",
         f"| Businesses (enumerated classes) | {t['businesses_target']:,} | {t['businesses_known']:,} | {t['businesses_to_reconstruct']:,} |",
         f"| Roofs | {t['roofs_target']:,} | {t['roofs_standing']:,} | {t['roofs_to_build']:,} |",
+        "",
+        f"**{t['persons_standing']:,} people stand in the layer today** and "
+        f"**{t['persons_still_owed']:,}** are still owed after the counters, so the town this "
+        f"book converges to is **{t['persons_when_the_book_is_filled']:,}** — inside the model's "
+        f"{t['persons_target_range'][0]:,}-{t['persons_target_range'][1]:,}. `--build` and "
+        "`--check` both refuse a remainder that lands outside it.",
+        "",
+        "## What the re-cut found",
+        "",
+        "> T-1463 summed T-1386's presence rulings into `known`. These are the three things "
+        "that made measurable, carried in the book so they cannot go stale in a report.",
+        "",
+    ]
+    for f in doc.get("what_the_re_cut_found", []):
+        out += ["", f"### {f['id'].replace('_', ' ')}", "", f"*{f['asks']}*", "", f["measured"]]
+        if f.get("verdict"):
+            out.append(f"\n**Verdict:** {f['verdict']}")
+        if f.get("declined"):
+            out.append(f"\n**Declined:** {f['declined']}")
+    refusals = doc.get("recut_refusals", [])
+    out += ["", "## Where the re-cut was refused", "",
+            f"{len(refusals)} bucket{'' if len(refusals) == 1 else 's'} would have had "
+            "their order cut below the people already drawn against them. The owner's ruling "
+            "of 2026-09-20 refuses that by name rather than clamping it: each is held at what "
+            "was drawn, and the surplus is retired or re-familied by T-1196, T-1197 and T-1179.", ""]
+    if refusals:
+        out += ["| bucket | ticket | quota before the rulings | the re-cut would order | drawn |",
+                "|---|---|---:|---:|---:|"]
+        for r in refusals:
+            out.append(f"| `{r['bucket']}` | {r['owning_ticket']} | "
+                       f"{r['quota_before_the_rulings']:,} | "
+                       f"{r['the_re_cut_would_have_ordered']:,} | {r['already_drawn']:,} |")
+    out += [
         "",
         "## The rules this book adds",
         "",
@@ -1268,6 +1553,7 @@ def _fills_on_disk() -> list:
 
 def cmd_build() -> int:
     doc = build(load(), _fills_on_disk())
+    lands = converges_inside_the_model(doc)
     BOOK.parent.mkdir(parents=True, exist_ok=True)
     BOOK.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -1277,7 +1563,7 @@ def cmd_build() -> int:
           f"{len(doc['bucket_families'])} families; {doc['totals']['persons_to_reconstruct']:,} "
           f"persons, {doc['totals']['households_to_reconstruct']:,} households, "
           f"{doc['totals']['businesses_to_reconstruct']:,} businesses and "
-          f"{doc['totals']['roofs_to_build']:,} roofs to reconstruct")
+          f"{doc['totals']['roofs_to_build']:,} roofs to reconstruct; {lands}")
     return 0
 
 
@@ -1300,7 +1586,8 @@ def cmd_check() -> int:
     t = expected["totals"]
     print(f"OK: 1835 reconstruction order book — {t['persons_to_reconstruct']:,} persons, "
           f"{t['households_to_reconstruct']:,} households, "
-          f"{t['businesses_to_reconstruct']:,} businesses, {t['roofs_to_build']:,} roofs to go")
+          f"{t['businesses_to_reconstruct']:,} businesses, {t['roofs_to_build']:,} roofs to go; "
+          f"{converges_inside_the_model(expected)}")
     return 0
 
 
@@ -1345,11 +1632,16 @@ def cmd_self_test() -> int:
 
     # AN OVERFILLED BUCKET IS RED. This is the whole point of the counters: a filler
     # that writes more records than its quota cannot merge.
+    # PAST ITS QUOTA MEANS PAST THE PRE-RULING ONE TOO (T-1463): a `filled` that sits
+    # between the re-cut quota and the quota the filler was actually given is the re-cut
+    # reaching work already done, and that is REFUSED by name rather than faulted. Only a
+    # figure above both is a filler that bypassed the book, so the fixture clears both.
     doc = build(data, [], occ)
     first = doc["bucket_families"][0]["buckets"][0]
+    BYPASS = 10_000
     fires("a bucket filled past its quota",
           lambda: build(data, [{"ticket": "T-1347", "bucket": first["key"],
-                                "records": (first["to_reconstruct"] or 0) + 1}], occ))
+                                "records": (first["to_reconstruct"] or 0) + BYPASS}], occ))
     fires("a fill that names no ticket",
           lambda: build(data, [{"bucket": first["key"], "records": 1}], occ))
 
@@ -1365,7 +1657,48 @@ def cmd_self_test() -> int:
           lambda: build(data, [{"ticket": "T-1171", "bucket": first["key"],
                                 "records": first["to_reconstruct"] or 0},
                                {"ticket": "T-1174", "bucket": first["key"],
-                                "records": 1}], occ))
+                                "records": BYPASS}], occ))
+
+    # AND THE TWO REDS ARE NOT ONE RED. A `filled` inside the gap between the re-cut quota
+    # and the pre-ruling one builds cleanly and is NAMED in `recut_refusals`; it does not
+    # fault, and the bucket is held at what was drawn rather than clamped to the re-cut.
+    inside = build(data, [{"ticket": "T-1174", "bucket": first["key"],
+                           "records": (first["to_reconstruct"] or 0) + 1}], occ)
+    named = [r for r in inside["recut_refusals"] if r["bucket"] == first["key"]]
+    assert len(named) == 1 and named[0]["held_at"] == (first["to_reconstruct"] or 0) + 1, named
+    bucket = inside["bucket_families"][0]["buckets"][0]
+    assert bucket["to_reconstruct"] == bucket["filled"] and bucket["recut_refused"], bucket
+
+    # THE PRESENCE RULINGS AND THE BOOK'S `known` MUST AGREE (T-1463). This is the guard
+    # that would have caught the over-order: the book read the rulings for a year, reported
+    # what summing them in would give, and cut every quota as though they said nothing.
+    stale = copy.deepcopy(data)
+    stale["presence_rulings"]["counts"]["persons_by_residence_grade"]["inferred"] += 7
+    fires("the book's known and T-1386's presence rulings disagree",
+          lambda: build(stale, [], occ))
+    gone = copy.deepcopy(data)
+    gone["presence_rulings"]["rulings"] = []
+    fires("a presence rulings file with no rulings in it", lambda: build(gone, [], occ))
+
+    # AND THE TOWN THE FILLED BOOK CONVERGES TO MUST SIT INSIDE THE MODEL'S OWN RANGE.
+    # A ledger with one record in it leaves the whole quota outstanding on top of a town
+    # that already holds the people it was drawn for, which is the shape of the bug.
+    fires("a book whose remainder would order a town outside the model's range",
+          lambda: converges_inside_the_model(
+              build(data, [{"ticket": "T-1171", "bucket": first["key"], "records": 1}], occ)))
+    assert "2,267 standing" in converges_inside_the_model(build(data, _fills_on_disk(), occ))
+
+    # THE RE-CUT IS REFUSED, NOT CLAMPED, WHERE IT REACHES WORK ALREADY DRAWN (T-1463).
+    # Every refusal names its bucket, what the re-cut would have ordered and what was
+    # drawn, and holds the order at the drawn figure. The owner's ruling of 2026-09-20.
+    shipped = build(data, _fills_on_disk(), occ)
+    for r in shipped["recut_refusals"]:
+        assert r["already_drawn"] == r["held_at"] > r["the_re_cut_would_have_ordered"], r
+        assert r["already_drawn"] <= r["quota_before_the_rulings"], r
+        b = next(x for fam in shipped["bucket_families"] for x in fam["buckets"]
+                 if x["key"] == r["bucket"])
+        assert b["to_reconstruct"] == b["filled"] and b["recut_refused"], b
+    assert shipped["totals"]["persons_known"] == shipped["population_ruled_in"]["persons_known_now"]
 
     # A SHORTFALL THE EVIDENCE EXPLAINS IS NOT A QUOTA (T-1428). The December census
     # prints seven schools; the register holds five at the scene date and names two more

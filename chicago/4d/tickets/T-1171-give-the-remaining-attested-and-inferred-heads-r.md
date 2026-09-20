@@ -1,7 +1,7 @@
 ---
 id: T-1171
 title: Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
-state: done
+state: open
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: 2026-09-18
+closed: null
 pr: 1476
-claimed_by: run 9/18/2026, 8:01:51 AM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-18T21:26:50.435Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35347479721
+closed_at: null
+claimed_run: null
 ---
 
 After T-1170, most of the 1,263 heads still stand alone — a letter-list name with a
@@ -51,3 +51,32 @@ aggregate, not just per household.
 **Stop condition:** the town's households look like the model's town in every printed table.
 
 **Links:** T-1167 · T-1163 · T-1161 · T-1166 · T-1170.
+
+
+---
+
+## REOPENED 2026-09-20 by T-1463, for 227 persons — measured, not assumed
+
+**The dates are the finding.** This ticket closed **2026-09-18** on PR #1476 having drawn
+124 of 556. T-1386's presence rulings landed **2026-09-19**, the day after, and put 827
+people into the town of 1 July 1835 who had been counted `uncertain`. Every quota this
+stage worked to was therefore cut against a town that did not yet hold them, and the 432
+it was still owed on 2026-09-20 was an unknown mixture of real work and that lag.
+
+T-1463 summed the rulings into the order book's `known` and measured the split:
+
+| leg | owed before the re-cut | owed after | verdict |
+|---|---:|---:|---|
+| households | 58 | **0** | DISCHARGED — the quota was 182 against 124 drawn; the re-cut takes it to the drawn figure |
+| persons | 374 | **227** | part artifact, part real |
+
+So 205 of the 432 was the staleness and **227 persons are genuinely owed**. That is why
+this reopens rather than closing with a note: the answer was measured, and half of it is
+work. T-1174 (856/856) and T-1347 (308/308) closed exact on the same counter, which is
+what made 432 worth adjudicating rather than explaining away.
+
+**What the re-taker is owed, and what they are not.** 227 persons in the `T-1171` person
+buckets of `data/reconstruction/1835_reconstruction_order_book.json`; no households. And
+the person buckets this stage already overdrew are REFUSED rather than re-cut — they are
+named in the book's `recut_refusals` with both numbers, held at what was drawn. Nobody
+this stage has already drawn is un-drawn (the owner's ruling of 2026-09-20, T-1459).
