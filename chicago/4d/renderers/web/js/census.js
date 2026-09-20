@@ -77,12 +77,13 @@ function titleAttr(s) {
   return s ? ` title="${attr(s)}"` : '';
 }
 
-async function readJson(url) {
+async function readJson(url, onError) {
   try {
     const res = await fetch(url, { cache: 'no-cache' });
-    if (!res.ok) return null;
+    if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
     return await res.json();
-  } catch {
+  } catch (err) {
+    onError?.(err);
     return null;
   }
 }
@@ -93,13 +94,13 @@ async function readJson(url) {
  * @param {{ dataBase: URL|string, root?: Element|null }} opts
  * @returns {Promise<object|null>} the town census as loaded, or null if it could not be read
  */
-export async function mountGateCensus({ dataBase, root }) {
+export async function mountGateCensus({ dataBase, root, onError }) {
   const host = root ?? document.getElementById('gate-census');
   if (!host) return null;
 
   const [census, residents] = await Promise.all([
-    readJson(new URL('town_census.json', dataBase)),
-    readJson(new URL('residents/index.json', dataBase)),
+    readJson(new URL('town_census.json', dataBase), onError),
+    readJson(new URL('residents/index.json', dataBase), onError),
   ]);
 
   const rows = [];
