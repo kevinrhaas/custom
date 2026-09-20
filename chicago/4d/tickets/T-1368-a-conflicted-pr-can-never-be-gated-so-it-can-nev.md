@@ -182,3 +182,19 @@ The finding above this one presents the merge-driver cause as new. It is not:
 measurement adds is only that GitHub's `mergeable` can stay `null`/`unknown`
 indefinitely rather than merely stale — #1518 never resolved and merged fine when
 asked directly.
+
+**Still live, and it cost hands on FOUR PRs on 2026-09-20** — #1587, #1585, #1584 and #1590.
+Each was `dirty`, each merged `dev` cleanly in a local clone, and each needed a human to
+push that merge before any gate would run. #1590 is the cleanest demonstration: its gate had
+already passed (two green runs at 21:27) and its steward run finished a minute later, so it
+was a GREEN PR that no automation could merge, purely because dev moved four times under it.
+
+**The mechanism is the repo's own merge drivers.** They are local git config, so GitHub's
+server-side merge never runs them; a branch that merges `dev` cleanly in a clone still reads
+`dirty` to the API. A dirty PR has no merge ref, so the `pull_request` gate never fires, so
+it can never become clean. The lap says `REAL CONFLICT — left alone` and stops on a branch
+that has no conflict at all.
+
+**A `hold` label looks identical from outside** — dirty plus zero check runs — and was twice
+mistaken for this deadlock on 2026-09-20 (#1533, #1576). Whatever clears this must read
+labels before declaring a PR stuck.

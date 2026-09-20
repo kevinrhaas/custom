@@ -1,7 +1,7 @@
 ---
 id: T-1373
 title: Dev is red at desktop part 12: T-1347's 308 trade households are written outside data/residents/households/, so the People directory counts them and the manifest cannot, and the smoke's count assertion only knows to add the re-admitted
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Superseded by T-1466, the same failing assertion measured a day later and in full. Both are the People directory's count identity in smoke_renderer.mjs (stated == manifest + readmitted + trades + transients). T-1373 named one unaccounted layer, T-1347's 308 trade households; T-1466 measures the whole gap on dev — 3,228 against 2,269 + 182 + 308 + 307 = 3,066, short by 162 — and covers every layer that mints a person outside data/residents/households/, which is T-1373's own stated acceptance.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T23:17:06.088Z
 claimed_run: null
 ---
 

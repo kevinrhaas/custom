@@ -42,3 +42,11 @@ to work inside its stage rather than beside it.
 plan names it; `docs/RESEARCH/fort_dearborn.md` is the fort dossier.
 
 **Links:** T-1176 (parent) · T-1348 · T-1349 · T-1177 · `docs/RESEARCH/fort_dearborn.md`.
+
+**Absorbed from T-1412 (withdrawn 2026-09-20).** That ticket asked for the
+same establishment as a *civic* one and named four people to seat at the council house:
+the agent, **Billy Caldwell** the interpreter, **David McKee** the blacksmith and **Joseph
+Porthier** the striker. Those names are carried here so the withdrawal loses nothing — and
+they are a reading to make, not a roster to write: T-1412 itself said the agency's standing
+on 1 July 1835 is to be read *before anything is written*, which is this ticket's rule too.
+The striker is a role T-1374's parent did not name, so it is an addition and not a repeat.
