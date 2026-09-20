@@ -1,7 +1,7 @@
 ---
 id: T-1413
 title: The West Division's surviving corridor control committed: Fulton x Canal adopted where it moves nothing, and Fulton x Clinton plus the two western junctions held with the seven roofs and the ground that hold them
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1192
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1543
 claimed_by: run 9/19/2026, 7:04:59 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T00:55:16.598Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35476562284
 ---
 
