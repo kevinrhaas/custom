@@ -77,20 +77,20 @@ It is an adjudication over committed claim records and committed derived files �
 | land-sale visitors and their agents | floor only | the register's own purchasers, 26-27 June 1835 | draining — the Democrat of 1 July says the sale has passed |
 | immigrant families awaiting lots | no | the American, 13 June 1835: 'men, women and children just landed from the vessels', 'the unsheltered emigrants' | still landing — vessels in with passengers 28, 29 June, 2, 3 July |
 | the harbour-works gang | no | the federal harbour improvement was at work through 1835; no committed source gives its strength in any month | at work |
-| crews ashore | hulls only | the Marine Journal of 4 July 1835, seated hull by hull in data/reconstruction/1835_vessels_in_port.json | 4 to 6 vessels in port, named and mastered; nobody aboard |
+| crews ashore | hulls only | the Marine Journal of 4 July 1835, seated hull by hull in data/reconstruction/1835_vessels_in_port.json, and joined to the two packets the newspaper register already carried as houses of trade (T-1425) | 4 to 6 vessels in port, named and mastered; nobody aboard |
 | travellers of business and of state | no | the Democrat of 1 July 1835 names Lewis Cass, Secretary of War, arrived on the 29th in the steamer Michigan, 'among the numerous visitors to Chicago' | present |
 - **unit** — rows of the cohort — `bounded` says whether anything committed sets a size
 
 ### the port on the scene date
 
-| arrived | vessel | rig | master | from | cargo | cleared 1 July |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1835-06-27 | Jesse Smith | schooner | Drurian | Green Bay | lumber | yes |
-| 1835-06-27 | Philips | schooner | Howe | Milwaukee | not stated | yes |
-| 1835-06-28 | Llewelling | schooner | Clark | cut from the column | passengers | no |
-| 1835-06-28 | Hiram | schooner | Rathbourn | Michigan | lumber | no |
-| 1835-06-29 | Whig | schooner | Day | cut from the column | merchandize | no |
-| 1835-06-29 | an unnamed steamboat | steamboat | not read | cut from the column | passengers | no |
+| arrived | vessel | rig | master | from | cargo | cleared 1 July | house in the register |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1835-06-27 | Jesse Smith | schooner | Drurian | Green Bay | lumber | yes | none |
+| 1835-06-27 | Philips | schooner | Howe | Milwaukee | not stated | yes | biz_the_chicago_and_st_joseph_packet_schooner_phillips |
+| 1835-06-28 | Llewelling | schooner | Clark | cut from the column | passengers | no | biz_chicago_st_joseph_packet_schooner_llewellyn |
+| 1835-06-28 | Hiram | schooner | Rathbourn | Michigan | lumber | no | none |
+| 1835-06-29 | Whig | schooner | Day | cut from the column | merchandize | no | none |
+| 1835-06-29 | an unnamed steamboat | steamboat | not read | cut from the column | passengers | no | none |
 - **unit** — vessels, from the Marine Journal of 4 July 1835, re-derived from the seated hulls in data/reconstruction/1835_vessels_in_port.json
 
 **Open questions.** These are recorded here and do not become tickets.
