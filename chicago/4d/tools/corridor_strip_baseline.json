@@ -1,6 +1,5 @@
 {
  "_doc": "T-0419. The band the re-centred South Water corridor opens, and what branch A would cost the plat grid. Written by tools/measure_corridor_strip.py --write-baseline; the fork is the owner's and this file only pins the figures it is asked about.",
- "_note": "T-1437, 2026-09-20: ONE FIGURE MOVED AND IT IS NOT A MEASUREMENT. `counterfactual.blocks_after` reads 45 where it read 18, because the plat grid now holds two grids rather than one — Kinzie's Addition's twenty-seven blocks joined it, and the counterfactual counts blocks that SURVIVE branch A, so every block the branch does not touch adds one. Nothing about South Water Street or Kinzie Street changed: both bands, both areas, both dry percentages, both structure lists and both offsets are byte-identical above, and `blocks_lost`, `lots_after`, `lots_recut`, `roofs_on_lost_blocks` and `roofs_on_moved_blocks` are unchanged. The question T-0419 asks is the same question and has the same answer; the denominator it is counted against is larger. The T-1191 note this replaces recorded Kinzie joining the table on the same terms.",
  "tool": "tools/measure_corridor_strip.py",
  "reading": {
   "streets": {
@@ -47,8 +46,8 @@
    }
   },
   "counterfactual": {
-   "blocks_after": 45,
-   "lots_after": 136,
+   "blocks_after": 62,
+   "lots_after": 188,
    "lots_recut": 32,
    "blocks_lost": [
     "blk_south_water_lasalle"

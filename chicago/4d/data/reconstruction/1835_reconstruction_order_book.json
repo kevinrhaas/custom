@@ -3489,6 +3489,244 @@
       },
       "buckets": [
         {
+          "key": "ground/blk_michigan_st_tract_west_north",
+          "axes": {
+            "division": "north"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_michigan_st_tract_west_south",
+          "axes": {
+            "division": "north"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_michigan_st_tract_east_north",
+          "axes": {
+            "division": "north"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_michigan_st_tract_east_south",
+          "axes": {
+            "division": "north"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t1",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t1",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t2",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t2",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t3",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t3",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t4",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t5",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t5",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t6",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t6",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_b_t7",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_wabansia_c_t7",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
           "key": "ground/blk_south_water_market",
           "axes": {
             "division": "south"
