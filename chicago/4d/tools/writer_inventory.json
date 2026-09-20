@@ -1000,6 +1000,13 @@
       "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 124 cards and 556 people from their seeds. In the manifest directly after `modelled_families`, which fills the same order-book buckets and has to go first.",
       "placed": "by stage order, 2026-09-19 — it draws against the quota the stage above it spends"
     },
+    "redeal_anonymous_roofs.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 1.9s, wrote data/reconstruction/1835_roof_redeal.json and docs/RESEARCH/1835_anonymous_roof_redeal.md and changed no committed byte; the perturbation test tells idempotence from inertia — the record's retire count was bent from 0 to 7 and one verdict flipped to `retire`, `--check` went red (\"no longer re-derives from its inputs\"), `--build` re-derived both files, and `git status` came back empty.",
+      "placed": "not yet — measured to reproduce, but it reads the structure layer, the order book and the placement policy, all of which earlier reconstruction stages write, so its place in the manifest's dependency order is that pass's to settle."
+    },
     "refuse_reconstructed_grade.py": {
       "placement": "not_a_writer",
       "write_mode": null,

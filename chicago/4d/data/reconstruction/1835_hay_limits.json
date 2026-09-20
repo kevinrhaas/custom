@@ -428,9 +428,9 @@
  "block_infill_programme": {
   "counted_from": "data/reconstruction/1835_665_roof_programme.json schedule[]",
   "method": "A block's centre is the mean of the four corners its own four bounding street centrelines make. No block polygon is invented.",
-  "blocks_with_four_bounding_streets": 21,
-  "inside_the_limit": 18,
-  "outside_the_limit": 3,
+  "blocks_with_four_bounding_streets": 48,
+  "inside_the_limit": 22,
+  "outside_the_limit": 26,
   "scheduling_roofs_outside_the_limit": 0,
   "scheduling_roofs_outside_the_limit_rows": [],
   "blocks_outside_the_limit": [
@@ -451,6 +451,236 @@
     "centre_local_enu_m": [
      -215.87,
      -318.38
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_superior_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     888.7,
+     971.99
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_superior_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1000.25,
+     971.08
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_superior_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1111.81,
+     970.16
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_huron_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     888.08,
+     882.67
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_huron_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     999.64,
+     881.76
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_huron_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1111.2,
+     880.85
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_huron_north_pine",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1222.76,
+     879.93
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_erie_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     887.47,
+     793.36
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_erie_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     999.04,
+     792.44
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_erie_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1110.59,
+     791.52
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_erie_north_pine",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1222.14,
+     790.61
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ontario_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     886.86,
+     704.04
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ontario_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     998.42,
+     703.12
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ontario_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1109.97,
+     702.21
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ontario_north_pine",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1221.53,
+     701.29
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ohio_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     886.25,
+     614.72
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ohio_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     997.81,
+     613.81
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ohio_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1109.36,
+     612.89
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_ohio_north_pine",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1220.91,
+     611.98
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_indiana_north_wolcott",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     885.64,
+     525.4
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_indiana_north_cass",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     997.2,
+     524.49
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_indiana_north_rush",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1108.75,
+     523.58
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_indiana_north_pine",
+    "state": "unsubdivided",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     1220.31,
+     522.66
     ],
     "inside_the_limit": false
    },

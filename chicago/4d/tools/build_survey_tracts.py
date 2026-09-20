@@ -839,17 +839,40 @@ def cross_checks(polys, tracts):
     ka = next(t for t in tracts if t["id"] == "kinzies_addition")
     patent = 102.29
     blocks = load(ROOT / "data/traces/vectors/thompson_lots.json")["blocks"]
-    otring = polys["canal_commissioners_1830"]
-    outside = [b["id"] for b in blocks
-               if not all(inside(tuple(p), otring) for p in b["boundary_local_enu_m"])]
+    # EACH BLOCK IS TESTED AGAINST ITS OWN PLAT'S BOUNDS, and it has to be. The claim
+    # below says "every block generated from the Thompson module", and until T-1194 the
+    # lot layer held nothing else, so reading the whole file and testing it against the
+    # Original Town was the same set by accident. T-1194 seats Kinzie's Addition in the
+    # same file — 27 blocks north of the main stem, on a different sheet with different
+    # bounds — and testing THOSE against the Original Town asks whether a block of one
+    # plat lies inside another, which is not a question about anything. The block's own
+    # `grid` names the tract it was generated on, so the partition is read rather than
+    # assumed, and a plat that arrives without a ring here is a failure and not a skip.
+    GRID_RING = {"original_town": "canal_commissioners_1830",
+                 "kinzies_addition": "kinzies_addition"}
+    outside, unringed, per_plat = [], [], {}
+    for b in blocks:
+        grid = b.get("grid")
+        key = GRID_RING.get(grid)
+        if key is None or key not in polys:
+            unringed.append(b["id"])
+            continue
+        per_plat[grid] = per_plat.get(grid, 0) + 1
+        if not all(inside(tuple(p), polys[key]) for p in b["boundary_local_enu_m"]):
+            outside.append(b["id"])
     return {
         "committed_plat_blocks_inside_the_original_town": {
-            "claim": ("If the four streets are the 1830 plat's bounds, every block this "
-                      "project has already generated from the Thompson module must fall "
-                      "inside them. This does not prove the bounds — a bigger rectangle "
-                      "would pass too — but a block outside would disprove them."),
+            "claim": ("If a plat's bounds are where this project puts them, every block "
+                      "it has generated from that plat's module must fall inside them. "
+                      "This does not prove any bounds — a bigger rectangle would pass "
+                      "too — but a block outside its OWN plat would disprove them. Each "
+                      "block is tested against the tract its `grid` names: the Original "
+                      "Town's blocks against the 1830 canal commissioners' four streets, "
+                      "Kinzie's Addition's against Kinzie's."),
             "blocks": len(blocks),
+            "by_plat": dict(sorted(per_plat.items())),
             "outside": outside,
+            "no_ring_for_their_plat": unringed,
             "confidence": "inferred",
         },
         "lighthouse_inside_the_reservation": {
@@ -997,8 +1020,13 @@ def check_properties(doc: dict | None = None) -> int:
     want(abs(d - cc["lighthouse_inside_the_reservation"]["distance_inside_m"]) < 0.02,
          f"the glyph stands {d:.2f} m inside, "
          f"{cc['lighthouse_inside_the_reservation']['distance_inside_m']} recorded")
+    want(not cc["committed_plat_blocks_inside_the_original_town"]["no_ring_for_their_plat"],
+         "a committed plat block names a grid this cross-check has no ring for, so it "
+         "was never tested: "
+         f"{cc['committed_plat_blocks_inside_the_original_town']['no_ring_for_their_plat']}"
+         " — add the plat's tract to GRID_RING rather than letting it pass unchecked")
     want(not cc["committed_plat_blocks_inside_the_original_town"]["outside"],
-         "a committed plat block now stands outside the Original Town's four bounds: "
+         "a committed plat block now stands outside its OWN plat's bounds: "
          f"{cc['committed_plat_blocks_inside_the_original_town']['outside']}")
     ka = next(t for t in doc["tracts"] if t["id"] == "kinzies_addition")
     want(ka["area_acres"] < cc["kinzies_addition_against_its_patent"]["patent_acres"],

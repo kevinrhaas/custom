@@ -343,6 +343,45 @@ def _land_owner_count() -> int:
                if "land_owner" in json.loads(path.read_text()))
 
 
+def _attr(value):
+    """A form attribute's value, whether it is bare or wrapped in a tier block."""
+    return value.get("value") if isinstance(value, dict) else value
+
+
+def _phase_forms():
+    """Every phase form in the structure layer, read once."""
+    for path in sorted(STRUCTURES_DIR.glob("*.json")):
+        doc = json.loads(path.read_text())
+        for record in (doc if isinstance(doc, list) else [doc]):
+            if not isinstance(record, dict) or "id" not in record:
+                continue
+            for phase in (record.get("phases") or []):
+                yield record, (phase.get("form") or {})
+
+
+def _brick_fabric_count() -> int:
+    """Structures the layer says are brick, which L264's course dimension reaches.
+
+    Counted off the records rather than off materials.md's prose, for the reason
+    every scope here is: the memo says "two records are attested brick" and the
+    layer carries three — `fort_dearborn_magazine` is the one the sentence forgot.
+    A liberty that restated the memo's number would be agreeing with a second
+    opinion instead of measuring the population it reaches.
+    """
+    return len({record["id"] for record, form in _phase_forms()
+                if _attr(form.get("construction")) == "brick"})
+
+
+def _roof_covering_count() -> int:
+    """Phases stating a roof type, which is the population L263's exposure reaches.
+
+    R-W2a finding 2 counted the roof TYPES and found no covering behind any of
+    them. This counts the same population, because the exposure L263 commits is
+    drawn on every one of them the moment the substrate carries a tile.
+    """
+    return sum(1 for _, form in _phase_forms() if _attr(form.get("roof_type")))
+
+
 RESIDENTS_DIR = ROOT / "data" / "residents"
 PROGRAMME = ROOT / "data" / "reconstruction" / \
     "1835_resident_reconstruction_programme.json"
@@ -466,6 +505,12 @@ SCOPE_SOURCES = {
         _land_owner_count,
         "data/structures/*.json, themselves re-derived by "
         "tools/resolve_land_tracts.py --check"),
+    "structures.records[brick_fabric]": (
+        _brick_fabric_count,
+        "data/structures/*.json, the layer's own construction attribute"),
+    "structures.phases[roof_type_stated]": (
+        _roof_covering_count,
+        "data/structures/*.json, the layer's own roof_type attribute"),
     **_stage_scope_sources(),
 }
 

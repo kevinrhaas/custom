@@ -1129,6 +1129,22 @@ step "the roof programme re-derives against the order book, and the crosswalk de
 selftest "…and its own refusals still fire when the programme is bent" \
   python3 tools/reprogramme_roofs_1835.py --self-test
 
+# T-1445, and it reads the step above. Once the programme is re-derived, the 285 roofs
+# the 2026-08 block recipes dealt anonymously can be asked whether the town still wants a
+# roof of their kind in their place — against the order book's district/group head and
+# the placement policy's clauses. 32 do not: trade roofs stranded sixteen to forty-seven
+# metres back inside a block, and yard buildings fronting a principal street. The verdict
+# is a SUBSTITUTION and the gate asserts it as one: a refamily moves the roof between
+# order-book buckets and moves the roof COUNT by nothing, a seated roof is never re-dealt
+# behind its household's back, and the whole audit re-derives from committed files or
+# this step fails. T-1446 carries the verdicts into the recipe files and the bake; until
+# it does, this is a decision published and not yet executed.
+step "the anonymous roofs re-audit against the programme the step above re-derived" \
+  python3 tools/redeal_anonymous_roofs.py --check
+
+selftest "…and the redeal's own refusals still fire on a bent order book" \
+  python3 tools/redeal_anonymous_roofs.py --self-test
+
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
 # their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,
