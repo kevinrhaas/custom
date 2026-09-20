@@ -1,7 +1,7 @@
 ---
 id: T-1433
 title: Seat the reconstructed residents who have a trade and no workplace: each at a business of their trade in their division, nearest first and seeded, and the no-fixed-premises trades given their implied employer or a casual entry with its reason
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1189
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 4:57:28 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35503586653
 ---
 
 Seat the reconstructed residents who have a trade and no workplace: each at a business of their trade in their division, nearest first and seeded, and the no-fixed-premises trades given their implied employer or a casual entry with its reason.
