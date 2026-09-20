@@ -3,6 +3,22 @@
   "target_date": "1835-07-01",
   "intersections": [
     {
+      "id": "fulton_canal",
+      "label": "Fulton Street & Canal Street",
+      "streets": [
+        "fulton",
+        "canal"
+      ],
+      "search_terms": [
+        "Fulton Street",
+        "Canal Street",
+        "W Fulton Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -162.0,
+      "local_n": 12.17
+    },
+    {
       "id": "kinzie_canal",
       "label": "Kinzie Street & Canal Street",
       "streets": [

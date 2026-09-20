@@ -61,6 +61,8 @@ AUTHORED = DATA / "businesses" / "authored"
 ORDER_BOOK = DATA / "reconstruction" / "1835_reconstruction_order_book.json"
 STREETS = DATA / "streets" / "1835.json"
 LEDGER = DATA / "reconstruction" / "1835_business_reconstruction.json"
+LODGING_MODEL = DATA / "reconstruction" / "1835_lodging_model.json"
+LODGERS = DATA / "residents" / "lodgers"
 
 PROGRAMME = "chicago_1835_business_reconstruction"
 SCENE_DATE = "1835-07-01"
@@ -82,6 +84,71 @@ GROUPS = {
 }
 
 
+# ------------------------------------------------- the second quota: a roof, not a count
+#
+# THE ORDER BOOK CANNOT ORDER A BOARDING HOUSE, and that is a property of the census
+# rather than a hole in the book. `business_buckets` in tools/build_order_book_1835.py
+# orders against PRINTED COUNTS or not at all, and the December 1835 State census
+# enumerates taverns — eight of them, all attested, and the town keeps eight — while it
+# never enumerates a boarding house at all. So no shortfall of this class can ever be
+# counted, and the first quota has nothing to say about the one part of the lodging
+# economy this town demonstrably had: the 1840 schedule's 8.2 people to a dwelling.
+#
+# What this project HAS already committed is the BUILDING. Five boarding houses stand in
+# `data/structures/`; the lodging model (T-1370) apportioned each of them beds out of a
+# bracket the town model owns; the lodgers stage (T-1371) put people in those beds and
+# named a keeper for every reconstructed one. A house with beds, lodgers and a keeper and
+# no firm behind it is an establishment the business layer cannot see — it does not appear
+# in the Businesses view, its building card names no trade, and the keeper's own card can
+# say she keeps a boarding house while nothing in the town holds one.
+#
+# So the roof is the quota. One record per STANDING reconstructed lodging roof of the
+# class below, and never one for a slot the roof programme has scheduled and not built:
+# the 37 unbuilt boarding houses are 333 beds with no roof over them (T-1196 re-derives
+# the programme, T-1409 raises the houses) and a firm in a building site is a fiction of a
+# different kind. The named houses are not touched either — who kept the New York House in
+# 1835 is a research question, and the lodgers stage refused to answer it for exactly this
+# reason; their keepers come from the register through T-1404.
+ROOF_QUOTA = {
+    "lodging_river_and_transport": {
+        "ticket": "T-1408",
+        "lodging_class": "boarding_house",
+        # THE CENSUS CLASS A BOARDING HOUSE TAKES, and why it is not its own. `type` is the
+        # ONE taxonomy — the December 1835 State census's classes — so that a business
+        # counts against the census without a second crosswalk. That census has no boarding
+        # -house line, and `other` is precisely its bucket for a class it never put a figure
+        # against. Typing these houses `tavern` would spend the eight-tavern count the
+        # register already fills; minting a class the census never printed would put a
+        # nineteenth line in a taxonomy whose whole job is to match an eighteen-line
+        # document. The trade is carried in `trade` and `occupation`, which are free of it.
+        "type": "other",
+        "trade": "boarding house",
+        "occupation": "boarding_house_keeper",
+    },
+}
+
+# THE KEEPER'S POSSESSIVE, form 5 of docs/RESEARCH/business-naming-1835.md, which is the
+# form this town's own lodging houses take: *Miss Bayne's Boarding and Day School* in the
+# register, *Rufus Brown's Boarding House* on the one boarding house the structure layer
+# names. NO HONORIFIC IS DEALT. Three of the four keepers the lodgers stage drew are women,
+# and `Mrs.` would assert a marriage, `Miss` a want of one; the cards carry neither, because
+# the stage minted them as solitary keepers and nothing in the layer says which. A style
+# that reached for the honorific would be inventing a marital status to make a sign read
+# well — so the possessive stands on the name alone, which asserts only what the card holds.
+ROOF_STYLES = {
+    "boarding_house": {
+        "forms": [
+            ("{given} {surname}'s boarding house",
+             "the possessive in full, as the structure layer's own *Rufus Brown's Boarding "
+             "House* prints it"),
+            ("{surname}'s boarding house",
+             "the possessive with the forename cut, as *Ingersoll's tavern stand* and "
+             "*Stuart's confectionary and perfumery* print it in the register"),
+        ],
+    },
+}
+
+
 # THE TRADES A CENSUS CLASS IS KEPT BY, in the resident layer's own occupation vocabulary.
 # ONE ROW PER CLASS THIS TOOL HAS BEEN ASKED TO BUILD, and no further: a class whose group
 # has not run yet is not guessed at here, because deciding that a `refectory_keeper` keeps a
@@ -91,6 +158,22 @@ TRADE_CLASS = {
     "druggist": ["druggist"],
     "store": ["dry_goods_merchant", "grocer", "hardware_merchant", "merchant"],
     "book_store": [],
+    # T-1185, THE MECHANICS' SHOPS. The book gives this ticket four classes and owes it
+    # heads for two. `brewer` is the resident band's own word and the register's: the
+    # Chicago Brewery's occupation line reads `brewer`. `silversmith_jeweller` is one shop
+    # in this town and three words in two vocabularies — the register grades J. H. Mulford
+    # `jeweller` and advertises "Watches", "Clocks", "Silver Ware" and "Indian silver work"
+    # over one counter, and the resident band drew its head at `watchmaker`; all three
+    # names are listed so a re-cut of either vocabulary still finds the shop.
+    "brewery": ["brewer"],
+    "silversmith_jeweller": ["jeweller", "silversmith", "watchmaker"],
+    # AND TWO THE BOOK OWES NOTHING, which is a ruling and not an omission. The iron
+    # foundry stands at its census target (Dart & Co., castings) and the tin and copper
+    # trade stands ABOVE it — four printed houses against the December census's two. An
+    # empty list here says the class is mapped and draws no head; a class MISSING from
+    # this table is refused by name, and the two must not be confused.
+    "iron_foundry": [],
+    "tin_and_copper_manufactory": [],
 }
 
 # THE FACE A CLASS TAKES, by division, in the order a seeded deal reads them. From the
@@ -114,6 +197,23 @@ FACES = {
         "south": ["lake", "dearborn"],
         "north": ["kinzie"],
         "west": ["canal"],
+    },
+    # A BREWERY IS NOT A SHOP FRONT. It wants water, fuel and room for a yard, and the
+    # town's one attested brewery is a river house, not a Lake Street one. It takes the
+    # working banks — the North Water bank in the north division, which is where the
+    # register's heavy trades sit, the river front and the Market Street branch face in
+    # the south, West Water in the west — and never a retail street.
+    "brewery": {
+        "south": ["south_water", "market"],
+        "north": ["north_water", "kinzie"],
+        "west": ["west_water", "canal"],
+    },
+    # The silversmith and jeweller is a retail front: J. H. Mulford, the one house of the
+    # class the register prints, advertises from South Water Street.
+    "silversmith_jeweller": {
+        "south": ["south_water", "lake", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
     },
 }
 
@@ -153,6 +253,57 @@ STYLES = {
         ],
         "trade": "store",
         "occupation": None,
+    },
+    "brewery": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus — "
+             "'B. Jones, grocery and provision store', 'S. B. Cobb, saddle, harness and "
+             "trunk manufactory'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is the minority form and is attested — "
+             "'William F. Lyon, Wholesale Grocery Store', 'Frederick Thomas, drugs and "
+             "paints'"),
+        ],
+        "goods": [
+            ("brewery",
+             "the only word the corpus prints for this class: the register carries one "
+             "brewery, 'the Chicago Brewery', with no goods line under it, so the trade "
+             "word stands alone rather than a list being composed for it"),
+        ],
+        "trade": "brewing",
+        "occupation": "brewer",
+        # THE TIGHTER BOUND, STATED ON THE RECORD RATHER THAN ACTED ON.
+        "caveat": (
+            "A TIGHTER COUNT STANDS UNAPPLIED, AND THIS RECORD CARRIES IT. The book takes "
+            "its target from the December 1835 State census, which prints two breweries. "
+            "But the Chicago American of 15 August 1835 takes stock of the town six weeks "
+            "AFTER the scene date and counts 'one brewery, one furnace (just going up)' — "
+            "one, where December counts two. If the American is right for 1 July 1835 then "
+            "the town's second brewery arrived in the autumn and this house does not stand "
+            "at the scene date at all. That is the Sept-Dec 1835 crosswalk's ruling to make "
+            "and it has not made it: this bucket reads `compared_by_the_crosswalk: true` "
+            "and `crosswalk_note: null`. The house therefore stands on the book's quota, "
+            "with the count that would retire it printed here; a crosswalk that rules the "
+            "American in re-cuts the bucket and --build withdraws this record, which is "
+            "the only way it may ever go."),
+    },
+    "silversmith_jeweller": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus, and the "
+             "one attested house of this class signs by surname — 'J. H. Mulford'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is attested — 'Frederick Thomas, drugs and paints', "
+             "'William F. Lyon, Wholesale Grocery Store'"),
+        ],
+        "goods": [
+            ("watches, jewelry, engravings and fancy goods",
+             "J. H. Mulford's own trade line in the register — the one attested house of "
+             "the class, and the only goods line the corpus prints for it"),
+        ],
+        "trade": "watches, jewelry, engravings and fancy goods",
+        "occupation": "jeweller",
     },
 }
 
@@ -244,6 +395,16 @@ def record_for(group, bucket, head, ordinal, communities, streets):
     faces = FACES[cls][head["division"]]
     face = draw(slot + ":street_face", faces)
 
+    # A CLASS MAY CARRY A COUNT THAT ARGUES AGAINST ITS OWN BUCKET, and where it does the
+    # record says so in its own basis rather than in a document beside it: a reader holding
+    # the card holds the objection to it. `caveat` is optional and a class without one is
+    # written exactly as it was before this key existed.
+    basis_note = ("%s. The book leaves %d of this class to reconstruct and this is one of "
+                  "them. %s" % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
+                                style_basis))
+    if spec.get("caveat"):
+        basis_note += " " + spec["caveat"]
+
     proprietor = {
         "name": head["name"],
         "person_id": head["person_id"],
@@ -331,15 +492,216 @@ def record_for(group, bucket, head, ordinal, communities, streets):
             "basis": {
                 "kind": "model",
                 "id": "1835_reconstruction_order_book",
-                "note": ("%s. The book leaves %d of this class to reconstruct and this is "
-                         "one of them. %s"
-                         % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
-                            style_basis)),
+                "note": basis_note,
             },
             "withdrawn_if": (
                 "a source naming a real house of this class, or a re-cut of the order book "
                 "that no longer orders this bucket; the retirement runs through --build, "
                 "never by hand"),
+        },
+    }
+    return record
+
+
+# ------------------------------------------------------- the roofs, and who keeps them
+
+def lodging_places(model=None):
+    """Every lodging place the model holds, with its beds — the model's own order."""
+    model = model or load_json(LODGING_MODEL)
+    return list(model["places"])
+
+
+def roof_keepers(root=None):
+    """`{place: keeper}` for the lodging households the lodgers stage wrote a head on.
+
+    Read off the households rather than off that stage's ledger, for the reason the
+    liberty counter reads the business records rather than the business index: the
+    ledger is a derivation of these cards, and adopting a person out of a derivation
+    would be adopting a summary of them.
+    """
+    root = Path(root or LODGERS)
+    out = {}
+    for path in sorted(root.glob("*.json")):
+        doc = load_json(path)
+        block = doc.get("lodging_household") or {}
+        head = next((p for p in doc.get("persons", []) if p.get("id") == doc.get("head")), None)
+        if not block.get("place") or head is None:
+            continue
+        out[block["place"]] = {
+            "household_id": doc["id"],
+            "person_id": head["id"],
+            "name": head["name"],
+            "sex": head.get("sex"),
+            "division": doc["division"],
+            "community": (head.get("reconstruction") or {}).get("community"),
+        }
+    return out
+
+
+def roof_buckets(group, model=None, keepers=None):
+    """The standing reconstructed lodging roofs this group owes a firm, by division.
+
+    Shaped like an order-book bucket so the build loop reads one list, and carrying its
+    places so the record can name the roof that bought it. A roof whose keeper the lodgers
+    stage never named is NOT ordered: this tool adopts a keeper and never mints one, and a
+    house with nobody to keep it is a shortfall stated rather than a person invented.
+    """
+    spec = ROOF_QUOTA.get(group)
+    if spec is None:
+        return []
+    keepers = keepers if keepers is not None else roof_keepers()
+    by_division, unkept = {}, []
+    for place in lodging_places(model):
+        if place["class"] != spec["lodging_class"] or place["standing"] != "reconstructed":
+            continue
+        keeper = keepers.get(place["id"])
+        if keeper is None:
+            unkept.append(place["id"])
+            continue
+        by_division.setdefault(keeper["division"], []).append(dict(place, keeper=keeper))
+    buckets = []
+    for division in sorted(by_division):
+        places = by_division[division]
+        buckets.append({
+            "key": "lodging/%s/%s" % (spec["lodging_class"], division),
+            "axes": {"class": spec["lodging_class"], "division": division},
+            "to_reconstruct": len(places),
+            "owning_ticket": spec["ticket"],
+            "places": places,
+            "unkept": sorted(unkept),
+            "basis": ("the lodging model gives %d standing %s roof(s) in the %s division "
+                      "their beds and the lodgers stage named a keeper for each"
+                      % (len(places), spec["lodging_class"].replace("_", " "), division)),
+        })
+    return buckets
+
+
+def roof_style(place, seed):
+    given, surname = initials(place["keeper"]["name"])
+    form, form_basis = draw(seed + ":firm_form", ROOF_STYLES[place["class"]]["forms"])
+    return form.format(initial=given[0], given=given, surname=surname), form_basis
+
+
+def record_for_roof(group, bucket, place, ordinal, communities):
+    spec = ROOF_QUOTA[group]
+    keeper = place["keeper"]
+    slot = "%s:%s:%03d" % (group, bucket["key"], ordinal)
+    name, style_basis = roof_style(place, slot)
+    _, surname = initials(keeper["name"])
+
+    proprietor = {
+        "name": keeper["name"],
+        "person_id": keeper["person_id"],
+        "register_person_id": None,
+        "role": "proprietor",
+        "from": None,
+        "to": None,
+        "tier": "reconstructed",
+        "basis": (
+            "ADOPTED, NOT MINTED. %s is the keeper the lodgers stage (T-1371) drew for this "
+            "house and printed in data/reconstruction/1835_lodgers_seated.json § keepers; "
+            "that card reads the trade off the building it stands in and heads %s. One "
+            "quota, filled once: this record is the house they keep, not a second person."
+            % (keeper["name"], keeper["household_id"])),
+        "source_id": None,
+        "claim_ids": [],
+    }
+
+    record = {
+        "id": "rcb_%s_boarding_house" % surname.lower().replace("'", "").replace(".", ""),
+        "register_id": None,
+        "name": name,
+        "provenance": "reconstructed",
+        "type": [spec["type"]],
+        "trade": spec["trade"],
+        "occupation": spec["occupation"],
+        "goods": [],
+        "firm_styles": [],
+        "proprietors": [proprietor],
+        "partners": [],
+        "staff": [],
+        "locations": [{
+            "kind": "premises",
+            "structure_id": place["id"],
+            "street_id": None,
+            "face": None,
+            "primary": True,
+            "from": None,
+            "to": None,
+            "tier": "reconstructed",
+            "basis": (
+                "THE ROOF IS THE PREMISES, and it is the one thing here that was not dealt. "
+                "This firm exists because %s stands in data/structures/ with %d ordinary-"
+                "night beds in it; the building came first and the house of trade is what "
+                "the building was missing. No street is claimed beyond the one the roof "
+                "already stands on, and no coordinate is written here at all."
+                % (place["id"], place["beds_ordinary"])),
+            "limit_reason": None,
+        }],
+        "dates": {
+            "opened": None,
+            "closed": None,
+            "precision": "unbounded",
+            "tier": "reconstructed",
+            "basis": (
+                "NOTHING DATES THIS HOUSE. The roof it occupies is an anonymous count-unit "
+                "dated to the year and to nothing narrower, and a keeping is not an "
+                "opening; the record claims that the house was letting beds on %s and "
+                "nothing about either end." % SCENE_DATE),
+        },
+        "evidence": {},
+        "present_at_scene_date": True,
+        "exclusion": None,
+        "exclusion_note": None,
+        "proprietor_community": derive_proprietor_community([proprietor], [], communities),
+        "customers": [],
+        "sources": [],
+        "claim_ids": [],
+        "liberties": {"survival_required": False, "backdating_required": False},
+        "review_required": False,
+        "replaceable_by": (
+            "A source naming whoever kept a boarding house in the %s division in 1835 — "
+            "that keeper takes this roof and this record is withdrawn with the drawn one."
+            % bucket["axes"]["division"]),
+        "reconstruction": {
+            "programme": PROGRAMME,
+            "group": group,
+            "ticket": spec["ticket"],
+            "roof": {
+                "structure_id": place["id"],
+                "class": place["class"],
+                "beds_ordinary": place["beds_ordinary"],
+                "keeper_person_id": keeper["person_id"],
+                "keeper_household_id": keeper["household_id"],
+                "note": (
+                    "A STANDING ROOF, NOT A SHORTFALL. The December 1835 State census "
+                    "enumerates taverns and never boarding houses, so the order book holds "
+                    "no bucket of this class to point at and no count of it is short. What "
+                    "is committed is the building: %s stands, the lodging model apportioned "
+                    "it %d ordinary-night beds out of a bracket the town model owns, and "
+                    "the lodgers stage put people in them and named %s their keeper. The "
+                    "firm is what was missing, and it is withdrawn with the roof."
+                    % (place["id"], place["beds_ordinary"], keeper["name"])),
+            },
+            "seed": slot,
+            "basis": {
+                "kind": "model",
+                "id": "1835_lodging_model",
+                "note": ("%s. %s. The style is dealt on the seed printed beside it from the "
+                         "keeper's possessive, form 5 of the naming guide: %s. No honorific "
+                         "is dealt, because nothing on this keeper's card says whether they "
+                         "were married, widowed or single and a sign that said so would be "
+                         "inventing it."
+                         % (bucket["basis"].rstrip("."),
+                            ("the keeper is a woman" if keeper["sex"] == "female"
+                             else "the keeper is a man" if keeper["sex"] == "male"
+                             else "the keeper's sex is not stated"),
+                            style_basis)),
+            },
+            "withdrawn_if": (
+                "the retirement of the roof itself, a re-cut lodging model that gives this "
+                "house no beds, or a source naming whoever really kept it; the retirement "
+                "runs through --build, never by hand"),
         },
     }
     return record
@@ -382,6 +744,12 @@ def build_group(group, communities=None, streets=None, heads=None, book=None):
             "This tool ADOPTS heads and never mints one — minting here would order the same "
             "person twice. The shortfall is T-1173's to draw." % (group, "\n".join(
                 "  %s orders %d and %d head(s) stand at its trades" % row for row in shortfalls)))
+    # AND THE ROOFS THAT STAND. The second quota, in the same loop and on the same rules:
+    # one record per standing lodging roof, a keeper adopted rather than minted, and a
+    # premises location in the building that bought it.
+    for bucket in roof_buckets(group):
+        for ordinal, place in enumerate(bucket["places"], start=1):
+            records.append(record_for_roof(group, bucket, place, ordinal, communities))
     records.sort(key=lambda r: r["id"])
     return records
 
@@ -391,7 +759,7 @@ def collisions(records, businesses_dir=None):
     house may not be two houses. The name of a real proprietor is checked too: this tool
     adopts a reconstructed person, so a style carrying a real person's name would be one."""
     names, people = attested_strings(businesses_dir)
-    bad, seen = [], set()
+    bad, seen, ids = [], set(), set()
     for record in records:
         key = record["name"].strip().lower()
         if key in names:
@@ -400,6 +768,15 @@ def collisions(records, businesses_dir=None):
         if key in seen:
             bad.append("%s: two reconstructed houses trade under %r" % (record["id"], record["name"]))
         seen.add(key)
+        # AND TWO HOUSES MAY NOT SHARE A FILE. The id is built from the keeper's surname and
+        # the class, so two keepers of one trade who happen to share a surname would write
+        # one record over the other and the build would quietly come out one house short —
+        # a shortfall nothing states, which is the one kind this programme must not produce.
+        if record["id"] in ids:
+            bad.append("%s: two reconstructed houses claim this id; one would overwrite the "
+                       "other and the town would be a house short with nothing saying so"
+                       % record["id"])
+        ids.add(record["id"])
         for person in record["proprietors"] + record["partners"] + record["staff"]:
             if (person["name"] or "").strip().lower() in people:
                 bad.append("%s: %r is a name the register prints on a real house"
@@ -412,15 +789,107 @@ def collisions(records, businesses_dir=None):
     return bad
 
 
+def lodging_table(built):
+    """BEDS AGAINST KEEPERS: every lodging place that stands, and the firm behind it.
+
+    The acceptance clause of T-1408, and the reason it is a TABLE rather than a number:
+    a house is unkept for more than one reason and the reasons are not interchangeable.
+    A reconstructed roof with no firm is this programme's debt. A documented house with no
+    firm is a RESEARCH question — the lodgers stage refused to put a drawn proprietor
+    inside the New York House and the Sauganash on exactly that ground, and so does this —
+    and its keeper reaches the business layer through the register or not at all. The
+    table states which, per house, so neither can hide inside the other's count.
+    """
+    # READ OFF DISK, NOT OFF THE BUILD. --build writes every record before it writes this
+    # ledger, so disk is the complete picture and the build's own dict is not: a run that
+    # rebuilds one group would otherwise print the other group's standing roofs as unkept.
+    firms, seated = business_premises()
+    keepers = roof_keepers()
+    rows, owed = [], 0
+    for place in lodging_places():
+        firm = firms.get(place["id"]) or None
+        register = sorted(set(seated.get(place["id"], [])))
+        keeper = keepers.get(place["id"])
+        if place["standing"] == "reconstructed":
+            kept_by = "this programme" if firm else None
+            if not firm:
+                owed += 1
+                why = ("NO FIRM. The lodgers stage named no keeper for this roof, so there "
+                       "is nobody to adopt and this programme mints none."
+                       if keeper is None else
+                       "NO FIRM, AND THE KEEPER IS STANDING. This is this programme's debt.")
+            else:
+                why = None
+        else:
+            kept_by = "the register" if register else None
+            why = (None if register else
+                   "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the "
+                   "scene date is a research question and not a draw; T-1404 raises the "
+                   "attested keepers the sources do name, and a reconstructed proprietor "
+                   "is never written into a documented building.")
+        rows.append({
+            "place": place["id"],
+            "name": place["name"],
+            "class": place["class"],
+            "standing": place["standing"],
+            "beds_ordinary": place["beds_ordinary"],
+            "beds_crowded": place["beds_crowded"],
+            "keeper_person": (keeper or {}).get("person_id"),
+            "firm": firm,
+            "businesses_in_the_register_at_this_roof": register,
+            "kept_by": kept_by,
+            "why_not": why,
+        })
+    return {
+        "_doc": ("BEDS AGAINST KEEPERS. Every place data/reconstruction/"
+                 "1835_lodging_model.json stands, and the house of trade behind it. "
+                 "`kept_by` is null where there is none, and `why_not` says which kind of "
+                 "absence it is."),
+        "places": len(rows),
+        "reconstructed_roofs_this_programme_owes_a_firm": owed,
+        "rows": rows,
+    }
+
+
+def business_premises(businesses_dir=None):
+    """`({roof: firm}, {structure: [register ids]})` — who is seated in which building.
+
+    Two maps, because the two mean different things. The first is what THIS programme
+    bought with a standing roof. The second is every other house of trade the layer seats
+    in a building, which is what a documented lodging house's keeper would arrive as.
+    Read off the records rather than off data/businesses/index.json, because the index is
+    derived from them and this table is asked while a build is deciding what it will say.
+    """
+    root = Path(businesses_dir or (DATA / "businesses"))
+    firms, seated = {}, {}
+    for path in sorted(list(root.glob("biz_*.json")) + list((root / "authored").glob("*.json"))):
+        doc = load_json(path)
+        roof = (doc.get("reconstruction") or {}).get("roof") or {}
+        if roof.get("structure_id"):
+            firms[roof["structure_id"]] = doc["id"]
+            continue
+        for loc in doc.get("locations") or []:
+            if loc.get("kind") == "premises" and loc.get("structure_id"):
+                seated.setdefault(loc["structure_id"], []).append(doc["id"])
+    return firms, seated
+
+
 def ledger(built):
     """What was built, by group, class and street — the counts the ticket asks be printed."""
     streets = {s["id"]: s.get("name_1835") or s["id"] for s in load_json(STREETS)["streets"]}
     groups = {}
     for group, records in sorted(built.items()):
-        by_class, by_street = {}, {}
+        by_class, by_street, by_roof = {}, {}, {}
         for record in records:
             by_class[record["type"][0]] = by_class.get(record["type"][0], 0) + 1
+            # A HOUSE BOUGHT BY A ROOF HAS NO STREET TO COUNT, and it is not silently
+            # dropped into a `null` row: it is counted by the building it stands in, which
+            # is the stronger statement of the two. The street table stays the street table.
             face = record["locations"][0]["street_id"]
+            if face is None:
+                roof = record["locations"][0]["structure_id"]
+                by_roof[roof] = by_roof.get(roof, 0) + 1
+                continue
             label = streets.get(face, face)
             by_street[label] = by_street.get(label, 0) + 1
         groups[group] = {
@@ -429,6 +898,7 @@ def ledger(built):
             "records": len(records),
             "by_class": dict(sorted(by_class.items())),
             "by_street": dict(sorted(by_street.items())),
+            "by_roof": dict(sorted(by_roof.items())),
             "ids": [r["id"] for r in records],
             "proprietors_adopted": [r["proprietors"][0]["person_id"] for r in records],
         }
@@ -447,6 +917,7 @@ def ledger(built):
         "liberty": "docs/LIBERTIES.md § L254",
         "records": sum(len(r) for r in built.values()),
         "groups": groups,
+        "lodging": lodging_table(built),
     }
 
 
@@ -456,7 +927,13 @@ def fills_for(built):
     for group, records in built.items():
         ticket = GROUPS[group]["ticket"]
         for record in records:
-            bucket = record["reconstruction"]["bucket"]
+            # A HOUSE BOUGHT BY A ROOF FILLS NOTHING HERE, and that is not an omission: the
+            # order book holds no bucket of its class to fill, which is the whole reason the
+            # roof form exists. Carrying it would write a fill against a key the book does
+            # not have, and the book's own --build would then be asked to count it.
+            bucket = record["reconstruction"].get("bucket")
+            if not bucket:
+                continue
             out.setdefault(ticket, {})
             out[ticket][bucket] = out[ticket].get(bucket, 0) + 1
     return out
@@ -524,7 +1001,16 @@ def build(groups):
         if block.get("group") in built and path.stem not in {
                 r["id"] for r in built[block["group"]]}:
             path.unlink()
-    write(ledger({g: built.get(g, []) for g in built_groups()} | built), LEDGER)
+    # THE LEDGER IS THE WHOLE LAYER, NOT THIS RUN. A --build takes one group, because a
+    # group is one ticket's quota — but the ledger counts every reconstructed house the
+    # town carries, so a group this run did not touch is RE-DERIVED here rather than
+    # written empty. It was written empty until T-1408, and nobody could see it while one
+    # group existed: the second group's first build blanked the first group's counts and
+    # --check then reported the ledger as a hand edit, naming the wrong file and the wrong
+    # fault. A ledger that forgets a group when another is rebuilt is not a ledger.
+    whole = {g: build_group(g) for g in built_groups() if g not in built}
+    whole.update(built)
+    write(ledger(whole), LEDGER)
     write_fills(built)
     for group, records in sorted(built.items()):
         print("%s (%s): %d reconstructed business record(s)"
@@ -657,10 +1143,75 @@ def self_test():
                 failures.append("%s: proprietor %s is not an adopted trade head"
                                 % (record["id"], person["person_id"]))
 
+    # 8. Two houses may not claim one id — one would overwrite the other on disk and the
+    #    town would come out a house short with nothing saying so.
+    same_id = json.loads(json.dumps(records))[:1] * 2
+    same_id[1]["name"] = same_id[1]["name"] + " the second"
+    if not any("claim this id" in b for b in collisions(same_id)):
+        failures.append("two houses sharing an id were not refused")
+
+    # 9. THE SECOND QUOTA. A standing lodging roof buys a firm, and the record says so the
+    #    way the schema demands: a roof block, no order-book bucket, and a premises
+    #    location in the very building that bought it.
+    roofs = [r for r in build_group("lodging_river_and_transport")
+             if (r["reconstruction"].get("roof") or {}).get("structure_id")]
+    if not roofs:
+        failures.append("the lodging group builds no house on a standing roof")
+    for record in roofs:
+        block = record["reconstruction"]
+        if block.get("bucket") or block.get("slot"):
+            failures.append("%s: bought by a roof and naming an order-book row too"
+                            % record["id"])
+        seat = record["locations"][0]
+        if seat["kind"] != "premises" or seat["structure_id"] != block["roof"]["structure_id"]:
+            failures.append("%s: bought by a roof it does not stand on" % record["id"])
+        if record["proprietors"][0]["person_id"] != block["roof"]["keeper_person_id"]:
+            failures.append("%s: keeps a house with somebody else's keeper" % record["id"])
+
+    # 10. A roof whose keeper the lodgers stage never named is NOT ordered. This tool
+    #     adopts a keeper and mints nobody, so an unkept roof is a shortfall stated in the
+    #     ledger rather than a person invented to fill it.
+    keeperless = roof_buckets("lodging_river_and_transport", keepers={})
+    if keeperless:
+        failures.append("a lodging roof with no keeper was still ordered a firm")
+
+    # 11. A ROOF FILLS NO ORDER-BOOK BUCKET, because the book holds none of its class. A
+    #     fill written against a key the book does not have would be counted by the book's
+    #     own --build and there is nothing there to count.
+    if fills_for({"lodging_river_and_transport": roofs}):
+        failures.append("a house bought by a roof wrote a fill into the order book")
+
+    # 10. A class that carries a caveat prints it on every record it writes, and a class
+    #    that carries none is written exactly as it was before the key existed. The
+    #    brewery of T-1185 is the standing example: the Chicago American of 15 August 1835
+    #    counts one brewery where the December census counts two, and a reader holding the
+    #    card must hold that objection too.
+    mechanics = build_group("mechanics_shops", communities, streets, heads)
+    for record in mechanics:
+        cls = record["type"][0]
+        caveat = STYLES[cls].get("caveat")
+        note = record["reconstruction"]["basis"]["note"]
+        if caveat and caveat not in note:
+            failures.append("%s: the %s caveat is not on the record it qualifies"
+                            % (record["id"], cls))
+        if not caveat and "TIGHTER COUNT" in note:
+            failures.append("%s: an uncaveated class printed a caveat" % record["id"])
+    for record in records:
+        if "TIGHTER COUNT" in record["reconstruction"]["basis"]["note"]:
+            failures.append("%s: the caveat leaked onto a class that carries none"
+                            % record["id"])
+
+    # 9. An empty trade row is a RULING — the class is mapped and draws no head — and is
+    #    not the same thing as a class missing from the table, which is refused by name.
+    for cls in ("iron_foundry", "tin_and_copper_manufactory"):
+        if TRADE_CLASS.get(cls) != []:
+            failures.append("%s: the book owes T-1185 no houses of this class and the "
+                            "trade row should say so with an empty list" % cls)
+
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 7 assertions of the business reconstruction still fire")
+    print("OK: 12 assertions of the business reconstruction still fire")
     return 0
 
 

@@ -123,8 +123,70 @@ house takes — which is why one prints an initial and one a forename. The face 
 `street_only` limit, not a premises: no lot, no roof, no coordinate. See
 **docs/LIBERTIES.md § L254**.
 
+## Worked: the four boarding houses of 1835, and the honorific that is not dealt
+
+A boarding house signs by **form 5, the keeper's possessive**, and by nothing else. It is
+the form this town's own lodging houses take — *Miss Bayne's Boarding and Day School* in
+the register, *Rufus Brown's Boarding House* on the one boarding house the structure layer
+names — and the seed deals between the possessive in full and the possessive with the
+forename cut, exactly as *Ingersoll's tavern stand* and *Stuart's confectionary and
+perfumery* print it.
+
+| | reconstructed house | adopted keeper | seat |
+|---|---|---|---|
+| north | *Bardwell's boarding house* | `rc_bardwell_esther` | `recon_1835_north_h1_007` |
+| north | *Newell's boarding house* | `rc_newell_lydia` | `recon_1835_north_h2_030` |
+| north | *Ellen Cavanagh's boarding house* | `rc_cavanagh_ellen` | `recon_1835_north_h3_045` |
+| west | *Martin Fitzgerald's boarding house* | `rc_fitzgerald_martin` | `recon_1835_west_006` |
+
+Two things are different here from the druggists above, and both follow from the same fact:
+**the building came first**. The seat is a `premises` and not a street face, because the
+roof is what bought the house — the census enumerates taverns and never boarding houses, so
+no shortfall of this class can be counted and there is no order-book row to spend. And the
+keeper is adopted from the **lodgers** stage rather than from the trade heads: T-1371 drew
+these four as the keepers of roofs it was putting people into, and their cards already read
+`boarding_house_keeper`.
+
+**No honorific is dealt, ever.** Three of the four keepers are women, and the register
+prints both *Mrs. H. Sherman* and *Miss Bayne's* — so the form is available and attested.
+It is refused anyway, because both forms assert a marital status and these cards carry
+none: the stage minted them as solitary keepers and nothing in the layer says whether they
+were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inventing a
+husband to make a shopfront read well. The possessive stands on the name alone, which
+asserts only what the card holds. See **docs/LIBERTIES.md § L257**.
+
+## Worked: the brewery and the jeweller's of 1835
+
+T-1185's group, the mechanics' shops, writes two. Both sign by form 1, on goods lines the
+register prints for their own class and nowhere else:
+
+| | reconstructed house | adopted keeper | face |
+|---|---|---|---|
+| north | *M. Quinn, brewery* | `rc_quinn_martin` | North Water Street |
+| west | *L. Chevalier, watches, jewelry, engravings and fancy goods* | `rc_chevalier_louis` | Canal Street |
+
+Two things about the goods lines. The brewery's is a single word because that is all the corpus
+gives: the register carries one brewery, *the Chicago Brewery*, with no trade line under it, and
+a list composed for the reconstruction would be exactly the invention this page exists to
+refuse. The jeweller's is J. H. Mulford's own line, verbatim — he is the one attested house of
+the class — which is the rule of § *The goods line* applied at its strictest.
+
+And the faces differ in kind from the druggists'. A brewery is not a shop front: it wants water,
+fuel and a yard, and it takes the working banks rather than a retail street, which is why
+*M. Quinn* lands on North Water and not on Kinzie. The jeweller's is a retail front and takes
+the retail faces, as Mulford does from South Water Street.
+
+**The brewery also carries the count that argues against it.** The *Chicago American* of
+15 August 1835 counts one brewery where the December census counts two. The record's own
+`reconstruction.basis.note` prints that sentence, so a reader holding the card holds the
+objection to the card. See **docs/LIBERTIES.md § L257** and
+**docs/RESEARCH/business-layer.md** § *the mechanics' shops of 1835*.
+
 ---
 
 Related: the order book **docs/RESEARCH/1835_reconstruction_order_book.md**, the trade heads
+**docs/RESEARCH/1835_trade_households.md**, the lodging model
+**data/reconstruction/1835_lodging_model.json**, the business layer
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1408**, **T-1173**, **T-1166**.
 **docs/RESEARCH/1835_trade_households.md**, the business layer
-**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1173**, **T-1166**.
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1185**, **T-1173**, **T-1166**.
