@@ -1260,7 +1260,13 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
-    "staff_businesses_1835.py": {
+    "seat_reconstructed_trades_1835.py": {
+   "placement": "pending",
+   "write_mode": "--build",
+   "measured": "2026-09-20",
+   "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one."
+  },
+  "staff_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
