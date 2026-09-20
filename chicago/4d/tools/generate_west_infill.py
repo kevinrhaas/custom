@@ -16,6 +16,13 @@ vegetation sampler are all readings of that same field, so the condition the blo
 written against is met and the block is retired rather than waived. The 35 held slots
 instantiate on their recipe ids and their recipe families, exactly as the hold promised.
 
+**Five of those thirty-five stay held, on a different question entirely.** They stand
+inside the drift band of the corporate boundary's extrapolated west leg, so it would be
+the extrapolation rather than the 1833 ordinance deciding whether each stood inside the
+town limits or outside them. The reconstruction leaves that side unstated by not
+building the roof; see `BOUNDARY_HOLDS`. They keep their ids, their families and their
+dealt sequence numbers, exactly as the terrain hold kept them.
+
 The hold's one lasting mark is the dealing order. `seq` deals finish, roof condition,
 age state and form, and the twenty roofs built under the hold were dealt 1..20 in
 recipe order. Releasing the rest does not redeal them: `dealing_order()` keeps those
@@ -419,6 +426,27 @@ STREET_ADJUSTMENTS = {
 # authored layout and this is the archetype's form rule applied to it.
 FACING_CORRECTIONS = {"west_rec_033"}
 
+# FIVE SLOTS STAY HELD, AND NOT FOR TERRAIN. The corporate boundary of 7 November 1833
+# resolves its west leg on Jefferson Street, whose committed centreline ends far south
+# of this parcel: `tools/measure_corporation_limits.py` carries it 1 188.8 m past that
+# end to reach Ohio, and an extension that long is uncertain by 22 m of drift. Five of
+# the released slots stand inside that band — 6.9 to 22.6 m from the line — so it is the
+# EXTRAPOLATION, not the ordinance, that would decide whether each of them stood inside
+# the town of Chicago or outside it. The gate says the remedy in as many words: trace the
+# street, or leave the structure's side unstated. Tracing Jefferson north to Ohio is not
+# this ticket's work, so the side is left unstated in the only way a reconstruction can
+# leave it unstated — the roof is not built. They keep their ids, their families and
+# their dealt sequence numbers exactly as the terrain hold kept them, so the day the
+# centreline is carried they instantiate unchanged. Measured 2026-09-20; T-1490 owns it.
+BOUNDARY_HOLDS = {
+    "west_rec_027",  # 12.9 m from the leg, 23.8 m of drift
+    "west_rec_029",  # 19.2 m from the leg, 23.2 m of drift
+    "west_rec_032",  # 22.6 m from the leg, 22.7 m of drift
+    "west_rec_035",  #  6.9 m from the leg, 22.0 m of drift
+    "west_rec_037",  #  7.4 m from the leg, 22.4 m of drift
+}
+HELD_IDS = {f"{PREFIX}{rid.split('_')[-1]}" for rid in BOUNDARY_HOLDS}
+
 # The reading T-1444 took of the recipe's fourth terrain rule, frozen so the corridor
 # cannot quietly gain a roof while T-1460 is open. Measured as footprint-corner distance
 # to the swale centreline against its own half_width_m; see validate() for what it means
@@ -575,6 +603,10 @@ def validate(records: list[dict], rows: list[dict],
 
     # Every placement instantiates, on its own recipe id. The hold promised the 35 held
     # slots would arrive unchanged in id and family, and this is where that is kept.
+    placement_ids = {row["id"] for row in recipe["placements"]}
+    if not BOUNDARY_HOLDS <= placement_ids:
+        raise SystemExit("BOUNDARY_HOLDS names a slot this recipe does not place: "
+                         + ", ".join(sorted(BOUNDARY_HOLDS - placement_ids)))
     expected_ids = {f"{PREFIX}{row['id'].split('_')[-1]}" for row in recipe["placements"]}
     if {r["id"] for r in records} != expected_ids:
         raise SystemExit("the West parcel no longer instantiates one record per "
@@ -718,6 +750,12 @@ def main() -> int:
     recipe = load(RECIPE_PATH)
     first, released = split_placements(recipe)
     records = records_from_inputs()
+    # Every slot is derived, dealt and validated; the five the corporate boundary cannot
+    # decide are then withheld from the tree. Deriving them and dropping them — rather
+    # than never dealing them — is what keeps the other fifty byte-identical: `seq`, and
+    # with it every roof's finish, condition and age state, is dealt over the whole
+    # parcel exactly as the terrain hold dealt it.
+    records = [r for r in records if r["id"] not in HELD_IDS]
     expected = {f"{r['id']}.json" for r in records}
     drift = []
     for record in records:
@@ -742,8 +780,10 @@ def main() -> int:
     mode = "verified" if args.check else "generated"
     print(f"{mode} {len(records)} inferred anonymous West Division records "
           f"({principal} principal, {len(records) - principal} ancillary); "
-          f"{len(first)} dealt under the retired terrain hold and {len(released)} "
-          f"released onto the ground west of E {WEST_TERRAIN_LIMIT_E:g} m (T-1444)")
+          f"{len(first)} dealt under the retired terrain hold and "
+          f"{len(released) - len(BOUNDARY_HOLDS)} released onto the ground west of "
+          f"E {WEST_TERRAIN_LIMIT_E:g} m; {len(BOUNDARY_HOLDS)} held on the corporate "
+          f"boundary's extrapolated west leg (T-1444, T-1490)")
     return 0
 
 

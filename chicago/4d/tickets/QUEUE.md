@@ -256,3 +256,4 @@ T-1469 — Spend the trade and premises enrichments against the finished busines
 T-1470 — Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach
 T-1471 — Answer the tavern identity question the roof programme is owed: whether the register's 15 scene-date tavern records are that many HOUSES, with the fold or the refusal to fold on the records and the inns_taverns group re-cut or left alone on the measurement
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
+T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
