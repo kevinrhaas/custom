@@ -120,7 +120,15 @@ export async function mountOrderBook({ mount, noteMount = null, dataBase, proble
       + `${num(t.roofs_standing)} of those roofs are standing, so `
       + `${num(t.persons_to_reconstruct)} people, ${num(t.households_to_reconstruct)} households, `
       + `${num(t.businesses_to_reconstruct)} businesses and ${num(t.roofs_to_build)} roofs are `
-      + `still to reconstruct. Every one of them will be marked reconstructed, with its reason.`;
+      + `still to reconstruct. Every one of them will be marked reconstructed, with its reason. `
+      // THE NUMBER SAID OUT LOUD (T-1463). The panel printed target, known and to-do and
+      // never once multiplied them out against the town already standing, which is how the
+      // book came to order a replacement for 826 people the layer held. This sentence is
+      // that arithmetic, and the same figures the builder refuses to ship outside the range.
+      + `${num(t.persons_standing)} of them already stand, so filling the book converges on `
+      + `${num(t.persons_when_the_book_is_filled)} people — inside the model's `
+      + `${num(t.persons_target_range && t.persons_target_range[0])}–`
+      + `${num(t.persons_target_range && t.persons_target_range[1])}.`;
     noteMount.removeAttribute('aria-busy');
   }
 

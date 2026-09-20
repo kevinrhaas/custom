@@ -75,8 +75,8 @@
  },
  "persons": [
   {
-   "id": "rc_crandall_abigail",
-   "name": "Abigail Crandall",
+   "id": "rc_crandall_mary",
+   "name": "Mary Crandall",
    "relationship": "lodger",
    "grade": "reconstructed",
    "sex": "female",
@@ -99,7 +99,7 @@
     "note": "AN AGE BAND, NEVER A YEAR. The order book counts in the 1840 schedule's bands and this project writes no year it cannot read."
    },
    "name_basis": {
-    "value": "Abigail Crandall",
+    "value": "Mary Crandall",
     "confidence": "reconstructed",
     "tier": "reconstructed",
     "basis": {
