@@ -925,6 +925,13 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "reprogramme_roofs_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia \u2014 A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
+      "placed": "not yet \u2014 measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
+    },
     "reconstruct_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--group <group> --build",
