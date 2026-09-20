@@ -4708,6 +4708,27 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
 
+# T-1448, of T-1434, of T-1189. THE MINT ORDER FOR THE SHOP HANDS — and the collision
+# that stopped the mint. The two passes above joined the houses to the people the
+# sources name and the people this programme had already drawn; what was left was to
+# MINT the rest, and the first question a mint has to answer is how many people it is
+# allowed to invent. This project has one answer to that — the reconstruction order
+# book — and set beside the staffing model it does not agree: the shops want 129 hands,
+# the book has 109 slots left, every hand wanted is a man where two fifths of those
+# slots are women's, and a fifth of the hands are boys of twelve to eighteen in a band
+# where the book has nothing outstanding at all.
+#
+# WHY A GATE. The order is arithmetic over two derived files that both move — the
+# staffing model re-cuts whenever a business record changes its occupation, and the
+# book re-cuts whenever the known layer does — so the numbers the owner is being asked
+# to rule on would go on reading as today's long after they stopped being true.
+# `--check` re-derives the whole order byte for byte.
+step "the 1835 staffing mint order re-derives, and spends no bucket it cannot reach" \
+  python3 tools/staffing_mint_order_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/staffing_mint_order_1835.py --self-test
+
 # T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
 # THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
 # ordinary-night capacity of 135 between them and seated nobody; thirty people stood on
