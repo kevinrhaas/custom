@@ -123,7 +123,16 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | T-1315 | 3 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1354 | 6 | open | yes |
-| T-1423 | 266 | open | yes |
+
+The rest defer to no ticket, and that is the second legitimate shape rather than a gap (T-1423): a name the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, whose open question is whether the person was in the town on 1 July 1835. No ticket can answer that — only a document can — so each states the document instead. The pointer that used to stand here was renamed four times as the ticket it named kept closing, and no source came any nearer.
+
+| Units | Reopened by |
+| --- | ---: |
+| 83 | A printing of the 1832 muster that gives the surname this index omits — the original rolls, a company return, a pay or pension record — without which there is nothing for a surname-indexed roll to be compared against at all. |
+| 69 | A source beyond the post-office list that places this name at Chicago inside the scene window -- a poll or tax roll, a deed, a church register line, a directory entry, an old-settler recollection naming the person in the town. |
+| 40 | A source that narrows COOK to the town: a deed, plat or tax entry putting this purchaser on a Chicago lot, a directory or church register line naming them there, or a town roll under a name reading the crosswalk can reach. |
+| 38 | A source that follows this man from the 1832 enrollment to the scene date — a muster roll giving his residence, a pension file, a land entry, or a town roll under a name reading the crosswalk can reach. |
+| 36 | A source that reaches this name where the rolls cannot: a deed, plat or directory entry putting the person on town ground, a church register line, or a forename reading that separates the surname bearers the crosswalk refused to choose between. |
 
 Reproduce: `python3 tools/measure_research_spend.py --check`.
 

@@ -566,6 +566,43 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
 RULING_DISPOSITIONS = {"refused", "later_only", "outside_chicago", "aggregate_only", "unresolved",
                        "asserted"}
 
+# AN UNRESOLVED UNIT NAMES A TICKET *OR* THE EVIDENCE IT IS WAITING FOR (T-1423).
+# The ledger's ownership invariant — only an open ticket may own an unresolved unit — was
+# built for a unit that is waiting on WORK, and it is right about that. It was also the
+# only shape available, so units waiting on EVIDENCE had to borrow it, and the borrowing
+# has a five-rename history written into tools/spend_name_on_a_roll_rulings.py: the roster
+# hand-off ran T-1159 -> T-1172 -> T-1179 -> T-1394 -> T-1423 and the arrival hand-off ran
+# T-1169 -> T-1318 -> T-1329, each rename forced by this same gate going red the moment the
+# named ticket closed. Nothing was learned by any of them. Worse, one of them fired inside
+# `rederive.mjs --run`, which the PR lap runs on every pass: "the lap stopped pushing and
+# three PRs sat dirty with no gate able to run on them".
+#
+# The 266 units of the five rules below ask a question no ticket can answer — whether a name
+# the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, was
+# in the town on 1 July 1835. Only a document can answer that, and none is in hand. This
+# file already says what such a pointer is worth: "'wait for somebody to decide' is not a
+# disposition, it is a deferral wearing one." So an unresolved ruling may instead state
+# `awaiting_evidence` — the document that would reopen the unit — and name NO ticket. The
+# unit stays `unresolved`, because it is; what goes away is the false claim that somebody
+# is working on it. Exactly one of the two, never both, and a wait that states no evidence
+# is the deferral this rule exists to refuse.
+AWAITING_MIN = 40
+
+
+def unresolved_owner_faults(where: str, row: dict) -> list[str]:
+    """One owner, and a wait has to say what it is waiting for."""
+    ticket = str(row.get("ticket") or "").strip()
+    awaiting = str(row.get("awaiting_evidence") or "").strip()
+    if ticket and awaiting:
+        return [f"{where}: names a ticket AND the evidence it awaits — a unit has one owner"]
+    if ticket:
+        return []
+    if not awaiting:
+        return [f"{where}: hands the unit on and names neither a ticket nor the evidence it awaits"]
+    if len(awaiting) < AWAITING_MIN:
+        return [f"{where}: awaits evidence it does not state — a bare wait is a deferral wearing a disposition"]
+    return []
+
 # A RULING MAY SAY `asserted`, AND IT IS THE ONLY DISPOSITION THAT MUST PROVE ITSELF (T-1330).
 # The derivation above closes a unit as `asserted` on one test: a source-bearing structured
 # field on a resident card NAMES the unit's record id AND cites a source the unit itself
@@ -714,8 +751,8 @@ def read_rulings(root: Path = ROOT) -> tuple[dict, list[str]]:
                 faults.append(f"{where}: disposition {rule.get('disposition')!r} is not one a ruling may reach")
             if len(str(rule.get("statement") or "").strip()) < 40:
                 faults.append(f"{where}: states no rule — a ruling with no statement is a silent reclassification")
-            if rule.get("disposition") == "unresolved" and not str(rule.get("ticket") or "").strip():
-                faults.append(f"{where}: hands the unit on and names no ticket")
+            if rule.get("disposition") == "unresolved":
+                faults.extend(unresolved_owner_faults(where, rule))
             rules[name] = rule
             stated_in.setdefault(name, label)
         rows = doc.get("rulings")
@@ -794,7 +831,10 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]],
         row["rule"] = ruling["rule"]
         row["evidence"] = said
     elif rule["disposition"] == "unresolved":
-        row["ticket"] = rule["ticket"]
+        if str(rule.get("ticket") or "").strip():
+            row["ticket"] = rule["ticket"]
+        else:
+            row["awaiting_evidence"] = rule["awaiting_evidence"]
         row["reason"] = said
     else:
         row["reason"] = said
@@ -906,9 +946,13 @@ def validate_document(doc: dict, root: Path = ROOT,
             if not cited_sources(field):
                 faults.append(f"{where}: asserted structured field names no source")
         elif disposition == "unresolved":
-            ticket = row.get("ticket")
-            if states.get(ticket) not in OPEN_TICKET_STATES:
-                faults.append(f"{where}: unresolved ticket {ticket!r} is missing or not open")
+            owner_faults = unresolved_owner_faults(where, row)
+            if owner_faults:
+                faults.extend(owner_faults)
+            elif not str(row.get("awaiting_evidence") or "").strip():
+                ticket = row.get("ticket")
+                if states.get(ticket) not in OPEN_TICKET_STATES:
+                    faults.append(f"{where}: unresolved ticket {ticket!r} is missing or not open")
             if not str(row.get("reason") or "").strip():
                 faults.append(f"{where}: unresolved row gives no reason")
         elif disposition == "refused":
@@ -964,16 +1008,27 @@ def report_text(doc: dict, legacy_rows: list[dict]) -> str:
             f"The pre-ledger resident-card measure is preserved: **{reached:,}** rulings reach "
             f"a town person, **{wrote:,}** are on a card, **{unwritten:,}** are unwritten, "
             f"and **{unsourced:,}** state no source.", "", "## Unresolved ownership", "",
-            "Only tickets whose current state is open may own an unresolved unit.", "",
+            "An unresolved unit is waiting on WORK or on EVIDENCE, and it says which. Only "
+            "tickets whose current state is open may own the first kind. The second names "
+            "no ticket at all — no ticket can produce a document that is not in hand — and "
+            "states instead what would reopen it (T-1423).", "",
             "| Ticket | Units |", "| --- | ---: |"]
-    unresolved = Counter(row["ticket"] for row in doc["units"]
-                         if row["disposition"] == "unresolved")
-    for ticket, count in sorted(unresolved.items()):
+    rows_unresolved = [row for row in doc["units"] if row["disposition"] == "unresolved"]
+    owned = Counter(row["ticket"] for row in rows_unresolved if row.get("ticket"))
+    for ticket, count in sorted(owned.items()):
         out.append(f"| {ticket} | {count:,} |")
+    awaiting = Counter(row["awaiting_evidence"] for row in rows_unresolved
+                       if row.get("awaiting_evidence"))
+    out += ["", f"**{sum(awaiting.values()):,}** unit(s) wait on evidence rather than on a "
+            "ticket, under " + f"{len(awaiting):,} stated reopening condition(s):", "",
+            "| Units | Reopened by |", "| ---: | --- |"]
+    for clause, count in sorted(awaiting.items(), key=lambda kv: (-kv[1], kv[0])):
+        out.append(f"| {count:,} | {clause} |")
     out += ["", "Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` "
             "counts are closed decisions, not missing work. The gate fails only when a unit "
-            "is unclassified, an asserted target dies, an unresolved owner closes or "
-            "disappears, or an assertion survives only as prose.", ""]
+            "is unclassified, an asserted target dies, an unresolved unit owned by a ticket "
+            "has that ticket close or disappear, a unit waits on evidence it does not state, "
+            "a unit claims both owners, or an assertion survives only as prose.", ""]
     return "\n".join(out)
 
 
@@ -1001,6 +1056,9 @@ def check(legacy_rows: list[dict], root: Path = ROOT) -> list[str]:
     if not report.exists() or report.read_text(encoding="utf-8") != report_text(expected, legacy_rows):
         faults.append("research-spend report is stale — run --ledger-build")
     return faults
+
+
+AWAITING = {"good": "A document naming this person at Chicago on or about 1 July 1835."}
 
 
 def self_test() -> int:
@@ -1044,6 +1102,30 @@ def self_test() -> int:
         run("an unresolved unit owned by a spent split parent",
             lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
                        r.pop("target")), "missing or not open", {"T-1": "split"})
+        # T-1423. The other kind of unresolved unit — waiting on a document, not on work.
+        # It has to say what document, and it may not also claim a ticket is on it.
+        run("an unresolved unit waiting on nothing it names",
+            lambda r: (r.update(disposition="unresolved", reason="fixture"),
+                       r.pop("target")), "names neither a ticket nor the evidence")
+        run("an unresolved unit whose wait states no evidence",
+            lambda r: (r.update(disposition="unresolved", reason="fixture",
+                                awaiting_evidence="something, one day"),
+                       r.pop("target")), "awaits evidence it does not state")
+        run("an unresolved unit claiming both owners",
+            lambda r: (r.update(disposition="unresolved", reason="fixture", ticket="T-1",
+                                awaiting_evidence=AWAITING["good"]),
+                       r.pop("target")), "a unit has one owner", {"T-1": "open"})
+        # …and the honest shape passes, which is the half a mutation test cannot show.
+        clean = copy.deepcopy(base)
+        clean.update(disposition="unresolved", reason="fixture",
+                     awaiting_evidence=AWAITING["good"])
+        clean.pop("target")
+        if validate_document({"units": [clean], "unit_count": 1,
+                              "totals": {name: int(name == "unresolved")
+                                         for name in DISPOSITIONS}}, root, {}):
+            failures.append("a unit waiting on stated evidence should be green")
+        else:
+            print("  passes: a unit waiting on stated evidence, owned by no ticket")
         good = {"unit": "u1", "rule": "r", "note": "The row says so in its own last word."}
         rule = {"disposition": "refused",
                 "statement": "A stated rule, long enough to be a sentence a reader can weigh."}
@@ -1064,8 +1146,17 @@ def self_test() -> int:
                  lambda d: d["rulings"][0].update(note="x"), "carries no note")
         register("a ruling naming an unstated rule",
                  lambda d: d["rulings"][0].update(rule="nope"), "which this file does not state")
-        register("a hand-off that names no ticket",
-                 lambda d: d["rules"]["r"].update(disposition="unresolved"), "names no ticket")
+        register("a hand-off that names neither a ticket nor an evidence clause",
+                 lambda d: d["rules"]["r"].update(disposition="unresolved"),
+                 "names neither a ticket nor the evidence")
+        register("a hand-off that waits on evidence it does not state",
+                 lambda d: d["rules"]["r"].update(disposition="unresolved",
+                                                  awaiting_evidence="later"),
+                 "awaits evidence it does not state")
+        register("a hand-off that claims a ticket and an evidence clause at once",
+                 lambda d: d["rules"]["r"].update(disposition="unresolved", ticket="T-1",
+                                                  awaiting_evidence=AWAITING["good"]),
+                 "a unit has one owner")
         register("two rulings on one unit",
                  lambda d: d["rulings"].append(copy.deepcopy(good)), "two rulings on one unit")
         for label, args, want in (

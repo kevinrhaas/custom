@@ -58,7 +58,6 @@ T-1419 — The services: land agents and surveyors, a barber and a dentist's sta
 T-1425 — The pier-works contractor and his gang, and the vessels in port on 1 July with their masters
 T-1189 — Staff every business — attested, inferred and reconstructed — with real persons: attested partners and clerks first, then the reconstructed residents, then new reconstructed staff to the staffing model, so every working person has a workplace and every workplace its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
-T-1423 — The re-admitted names' hand-off outlived the ticket that carried it: 325 unresolved research units name T-1394, whose closeout is spent, so they need a live owner for the evidence question T-1179's reconciliation never settled
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 T-1417 — Put the new ground to use: flora zones, the minimap box and the walker's collision carried to the west wall, the West Division streets taken off their E -320 clip, and generate_west_infill's 35 held slots released
 T-1194 — Generate the lot grid north and west of the river: Thompson's North Division blocks, Kinzie's Addition, Wabansia, the West Division blocks and the School Section tier — numbered lots from each sheet's own module, the small lots kept small, buildable ground tested
@@ -236,3 +235,4 @@ T-1429 — The nearest-street reading crosses the river: a bank test for nearest
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1428 — The trade-census crosswalk counts four houses at the scene date that the register says had not opened: read present_at_scene_date, not the gazetteer's built_at_scene_date — and teach the order book that a shortfall the evidence explains is not a quota
+
