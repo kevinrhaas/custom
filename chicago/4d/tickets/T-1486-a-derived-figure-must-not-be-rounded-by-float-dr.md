@@ -1,7 +1,7 @@
 ---
 id: T-1486
 title: A derived figure must not be rounded by float drift: sweep the 31 remaining round(sum(...)) sites
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1593
 claimed_by: run 9/20/2026, 4:30:26 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T22:19:53.025Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35538771732
 ---
 
