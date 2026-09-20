@@ -232,3 +232,4 @@ T-1412 — The United States Indian Agency at Chicago as a civic establishment: 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
 T-1428 — The trade-census crosswalk counts four houses at the scene date that the register says had not opened: read present_at_scene_date, not the gazetteer's built_at_scene_date — and teach the order book that a shortfall the evidence explains is not a quota
+T-1435 — The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
