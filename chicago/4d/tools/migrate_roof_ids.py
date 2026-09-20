@@ -179,13 +179,29 @@ def text_files() -> list[Path]:
     return sorted(out)
 
 
+def read_utf8(path: Path) -> str | None:
+    """The file's text, or None when it is not text at all.
+
+    A `.txt` under `docs/` turned out to be a 400 kB Unreal log in the engine's own
+    encoding. It is not something this tool may rewrite and not something it may
+    silently pass over either, so it decodes to None and `--check` counts it: a name
+    this tool cannot read is a name it cannot promise to have moved.
+    """
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return None
+
+
 def names_of(ids: list[str]) -> dict[str, list[str]]:
     """Which committed files name each id today, a record's own file excluded."""
     pattern = re.compile("|".join(re.escape(i) for i in ids))
     found: dict[str, list[str]] = {i: [] for i in ids}
     for path in text_files():
         rel = path.relative_to(ROOT).as_posix()
-        text = path.read_text(encoding="utf-8", errors="ignore")
+        text = read_utf8(path)
+        if text is None:
+            continue
         for hit in set(pattern.findall(text)):
             if rel in (f"data/structures/{hit}.json", f"data/sidecars/1835/{hit}.json"):
                 continue
@@ -220,7 +236,9 @@ def rewrite_names(plan: list[dict]) -> list[str]:
     pattern = re.compile("|".join(re.escape(k) for k in rename))
     touched = []
     for path in text_files():
-        text = path.read_text(encoding="utf-8")
+        text = read_utf8(path)
+        if text is None:
+            continue
         moved = pattern.sub(lambda mo: rename[mo.group(0)], text)
         if moved != text:
             path.write_text(moved, encoding="utf-8")

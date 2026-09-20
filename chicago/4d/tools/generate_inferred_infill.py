@@ -367,15 +367,24 @@ def _form_body(family: str, seq: int, finish: str, width: float, depth: float) -
             "chimneys": inferred(1, why),
         }
 
-    if family.startswith("D") and family != "D2":
-        bays = 5 if family == "D7" else (3 if width >= 5.4 else 2)
-        plan = "centre_passage" if family == "D7" else ("single_pen" if family == "D3" else "hall_parlour")
+    # T-1494. The H families join this branch rather than falling past it into the
+    # outbuilding tail, which is where they landed the first time and where a
+    # `frame_dwelling` record was dealt a plank wall the archetype refuses outright.
+    # `big` and the chimney count are `generate_block_infill`'s own rule for the same
+    # two families, copied so the town does not build an H2 two ways; every existing
+    # family in this parcel keeps the value it had, including D7's single chimney,
+    # because a redeal is not licence to move a roof nobody adjudicated.
+    if family.startswith(("D", "H")) and family != "D2":
+        big = family in ("D7", "H2")
+        bays = 5 if big else (3 if width >= 5.4 else 2)
+        plan = "centre_passage" if big else ("single_pen" if family == "D3" else "hall_parlour")
         result = {
             "stories": inferred(stories, why), "wall_height_m": inferred(wall, why),
             "roof_type": inferred("gable", why),
             "roof_pitch_deg": inferred(pitch(), why),
             "construction": inferred(construction, why), "plan": inferred(plan, why),
-            "bays": inferred(bays, why), "chimneys": inferred(1, why),
+            "bays": inferred(bays, why),
+            "chimneys": inferred(2 if family == "H2" else 1, why),
             "paint": inferred(finish, why),
         }
         # Slot 10, not slot 7: `family_bands.pitch_deg` draws on 7, and two decisions
