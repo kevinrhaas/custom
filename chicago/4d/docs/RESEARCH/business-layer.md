@@ -489,7 +489,10 @@ is a ruling made in the wrong place, and the Sept–Dec 1835 crosswalk (**T-1404
 one; the bucket reads `compared_by_the_crosswalk: true` with `crosswalk_note: null`. So
 *M. Quinn, brewery* stands on the book's quota **with the American printed in its own
 `reconstruction.basis.note`**, and a crosswalk that rules the American in re-cuts the bucket
-and `--build` withdraws the record. See **L257**.
+and `--build` withdraws the record. See **L258** — the liberty that authorises this brewery and
+the jeweller's shop beside it, and which carries the American on its own face. (It read L257
+until T-1442 checked the citation: L257 is the four boarding houses, and the liberties were
+renumbered after this paragraph was written.)
 
 The same sentence corroborates the rest of the band where it can be checked: "one steam
 saw-mill" against the register's two and the book's one, "two book-stores" and "two printing

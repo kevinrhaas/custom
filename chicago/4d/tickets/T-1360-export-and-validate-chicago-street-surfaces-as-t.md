@@ -34,3 +34,7 @@ First bounded scenery parity slice: a named street corridor from the shared data
 ## Ticket budget exception
 
 Owner explicitly requested this programme and its execution-separated tickets. One held epic, five bounded initial slices and reused T-0252 avoid a large speculative backlog.
+
+## Owner update, 2026-09-20 — roads remain a named priority
+
+Reuse this ticket for the missing roads; do not mint a duplicate. Expand the corridor receipt to include its street surface, junction, applicable alley/frontage or plank walk, and a bridge/wharf approach where present. Confirm vertical fit against T-1473 building entrances and the same terrain snapshot. Record coverage for the rest of the town in the parity matrix and file the next bounded road-network slice before closing; a single corridor does not complete roads. Street collision is tested with normal walking, including slopes, crossings and building thresholds. Do not draw approximate decorative roads over an unrelated invisible floor.

@@ -103,7 +103,7 @@
     "households_to_reconstruct": 209,
     "businesses_target": 108,
     "businesses_known": 133,
-    "businesses_to_reconstruct": 8,
+    "businesses_to_reconstruct": 7,
     "roofs_target": 668,
     "roofs_standing": 384,
     "roofs_to_build": 297
@@ -2524,16 +2524,16 @@
           "scene_bracket": null,
           "target": 5,
           "known": 4,
-          "to_reconstruct": 1,
+          "to_reconstruct": 0,
           "records_opening_after_scene_date": 0,
           "filled": 0,
-          "owning_ticket": "T-1190",
+          "owning_ticket": "T-1215",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": false,
           "crosswalk_note": "a church is a structure and not a trade; T-0988 leaves this row to the roof programme and it is not compared here",
-          "basis": "the December 1835 State census prints 5; the register holds 4 at the scene date"
+          "basis": "the December 1835 State census prints 5; the register holds 4 at the scene date. The crosswalk does not COMPARE this class — a church is a structure and not a trade; T-0988 leaves this row to the roof programme and it is not compared here — so the difference is not a shortfall and the book orders nothing against it. The row is carried with both figures so the class still has a ticket answering for it"
         },
         {
           "key": "businesses/druggist",
@@ -2722,7 +2722,7 @@
           "to_reconstruct": 0,
           "records_opening_after_scene_date": 0,
           "filled": 0,
-          "owning_ticket": "T-1190",
+          "owning_ticket": "T-1215",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
@@ -2745,7 +2745,7 @@
           "to_reconstruct": 0,
           "records_opening_after_scene_date": 2,
           "filled": 0,
-          "owning_ticket": "T-1190",
+          "owning_ticket": "T-1215",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
@@ -3180,8 +3180,8 @@
             "division": "west"
           },
           "target": 75,
-          "standing": 21,
-          "to_build": 54,
+          "standing": 26,
+          "to_build": 49,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1208",
@@ -3190,7 +3190,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 54 of them to build"
+          "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 49 of them to build"
         },
         {
           "key": "structures/ordinary_dwellings/north",
@@ -3235,8 +3235,8 @@
             "division": "west"
           },
           "target": 14,
-          "standing": 3,
-          "to_build": 11,
+          "standing": 2,
+          "to_build": 12,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
@@ -3245,7 +3245,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 11 of them to build"
+          "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 12 of them to build"
         },
         {
           "key": "structures/small_outbuildings/north",
@@ -3430,8 +3430,8 @@
             "division": "west"
           },
           "target": 8,
-          "standing": 8,
-          "to_build": 0,
+          "standing": 4,
+          "to_build": 4,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1207",
@@ -3440,7 +3440,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 0 of them to build"
+          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 4 of them to build"
         },
         {
           "key": "structures/workshops/north",
@@ -3993,6 +3993,12 @@
       "owning_ticket": "T-1215",
       "statement": "The town census's people-per-dwelling ratio is met within the model's bracket.",
       "measured_now": "the book orders 2,536 people into 643 households."
+    },
+    {
+      "id": "an_uncompared_class_orders_nothing",
+      "owning_ticket": "T-1442",
+      "statement": "A trade-census class the crosswalk rules `compared: false` carries its figures but orders no reconstruction: the difference between a census line and the register is only a shortfall where the crosswalk has ruled the two comparable.",
+      "measured_now": "carried uncompared: 1 of 18 enumerated business classes, each ordering nought."
     },
     {
       "id": "no_bucket_overfilled",
