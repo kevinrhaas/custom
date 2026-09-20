@@ -13516,6 +13516,30 @@ list this corpus does not hold: no source in `data/sources/` prints the port of 
 arrivals and clearances for 1835. `--check` goes red if a head at a house-of-trade trade is
 left without one.
 
+**CORRECTION, 2026-09-20, T-1425 — the sentence before last was false when it was written,
+and it is struck.** This corpus does hold a marine list. The Chicago American carries a
+weekly **Marine Journal** headed *PORT OF CHICAGO*, `data/sources/chicago_democrat_1833_1835`
+names *"arrivals and clearances"* among the things that run supplies, and the reading of the
+column of 4 July 1835 — the one that spans the scene date — has been committed since T-1372
+at `data/reconstruction/1835_vessels_in_port.json`: **six hulls, four of them mastered by
+name.** The deferral was right and its stated reason was wrong, which is the worse of the two
+failures, because a reason is what the next run reads. **The ruling does not move:** the
+column gives masters and gives no man a house, and the four it names are lake masters entered
+at this port rather than householders of this town, so `master_mariner` is adjudicated
+`commands_a_vessel` and `mail_contractor` `contract_not_premises`, and neither buys anything.
+**What the list did buy is a join nobody had made:** two of those six hulls are already
+houses in this register — the Chicago & St. Joseph packets *Llewellyn* and *Phillips* — and
+the vessels file now says which, hull by hull, graded `inferred` with both spellings kept
+apart. The *Phillips*'s compiled record names no proprietor at all and the column names her
+master, Howe; that is T-1189's to seat, and nothing was written onto a derived record here.
+**And the guard is data now:** `adjudication_faults` holds every row's `kind` to a closed
+vocabulary, refuses a deferral to a ticket that has closed, and goes red if the marine list
+the `commands_a_vessel` ruling stands on leaves the tree. `the_pier_works` in the same table
+carries what T-1409 asked for and this corpus cannot answer — the works employed a gang
+across the scene date and no committed source names its contractor, its foreman or its
+strength in any month of 1835, with the Chief Engineer's report for 1835 named as the
+document that would retire the refusal.
+
 **What this deliberately does NOT do.** It writes **no staff** — the hostler a livery kept
 and the hands a yard kept are T-1183's model and T-1189's fill. It writes **no dates**: the
 head who keeps the house is ordered onto the scene date and to nothing narrower, and a
@@ -13531,8 +13555,8 @@ never did are the floor of what this reading supports, not its ceiling.
 Related: **L254** (the same tool's quota row), **L255** (its documented floor), **L257** (its
 standing roof and the form this one is modelled on), **L248** (the trade heads these houses
 adopt), the naming guide `docs/RESEARCH/business-naming-1835.md`, and the successors
-**T-1425** (the pier works and the vessels in port), **T-1189** (their staff) and **T-1199**
-(their seats).
+**T-1425** (the pier works and the vessels in port — closed 2026-09-20; see the correction
+above), **T-1189** (their staff) and **T-1199** (their seats).
 **Recorded:** 2026-09-20.
 
 ### L261 — At the top of Wright's sheet the field carries the North Branch to the box wall, because a survey's edge is not a river's end
