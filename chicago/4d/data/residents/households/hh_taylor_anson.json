@@ -246,6 +246,38 @@
      "carpenter"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_charles_taylor",
+     "business_name": "Charles Taylor",
+     "role": "proprietor",
+     "printed_as": "Charles Taylor",
+     "from": "1834-06-04",
+     "to": "1834-06-04",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card taylor_charles (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_06_04#c008"
+     ],
+     "business_present_at_scene_date": false
+    },
+    {
+     "business_id": "biz_taylor_handy",
+     "business_name": "Taylor & Handy",
+     "role": "partner",
+     "printed_as": "Charles Taylor",
+     "from": "1834-03-18",
+     "to": "1834-03-18",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card taylor_charles (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_03_18#c008"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "census_1840_chicago_familysearch_images",

@@ -121,6 +121,33 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_newberry_dole",
+     "business_name": "Newberry & Dole",
+     "role": "partner",
+     "printed_as": "Newberry, [Walter L.]",
+     "from": "1833-11-26",
+     "to": "1835-08-05",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card newberry_walter_loomis (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_08#c011",
+      "chicago_american_1835_06_20#c014",
+      "chicago_american_1835_07_04#c002",
+      "chicago_democrat_1833_11_26#c013",
+      "chicago_democrat_1834_03_04#c021",
+      "chicago_democrat_1834_04_01#c013",
+      "chicago_democrat_1834_04_16#c015",
+      "chicago_democrat_1834_05_07#c009",
+      "chicago_democrat_1834_05_14#c007",
+      "chicago_democrat_1835_07_01#c015",
+      "chicago_democrat_1835_08_05#c022"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_american_1835",
     "fergus_chicago_directory_1839",

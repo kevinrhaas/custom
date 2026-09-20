@@ -149,6 +149,39 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_b_jones_grocery_and_provision_store",
+     "business_name": "B. Jones, grocery and provision store",
+     "role": "proprietor",
+     "printed_as": "B. Jones",
+     "from": "1833-11-26",
+     "to": "1834-03-04",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card jones_benjamin (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c018",
+      "chicago_democrat_1834_03_04#c022"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_b_jones_storage_and_forwarding",
+     "business_name": "B. Jones, storage and forwarding",
+     "role": "proprietor",
+     "printed_as": "B. Jones",
+     "from": "1833-11-26",
+     "to": "1833-11-26",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card jones_benjamin (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c014"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26",

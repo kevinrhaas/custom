@@ -96,6 +96,25 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_russell_e_heacock",
+     "business_name": "Russell E. Heacock",
+     "role": "proprietor",
+     "printed_as": "Russell E. Heacock",
+     "from": "1835-05-27",
+     "to": "1835-07-29",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card heacock_russel_e (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_05_27#c007",
+      "chicago_democrat_1835_07_08#c012",
+      "chicago_democrat_1835_07_29#c018"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_1835",

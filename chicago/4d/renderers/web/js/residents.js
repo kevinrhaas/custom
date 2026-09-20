@@ -1265,8 +1265,8 @@ export function rolesHtml(roles, citationsById) {
         bound its own sources permit. This is the record; the <q>Occupation</q> row
         above is a generated view of the roles that cover 1 July 1835, which is why a
         role printed in another year does not fill it. A role outside the window is
-        kept and marked, not dropped — and nothing here says where the work was done,
-        because a role carries no place yet.</span>
+        kept and marked, not dropped. Where the work was done is the row below, and
+        only for the houses a source names this person in.</span>
       <ol class="res-roles">${ordered.map((r) => roleRowHtml(r, citationsById)).join('')}</ol></dd>`;
 }
 
@@ -1329,6 +1329,58 @@ function birthRefusedHtml(block, citationsById) {
       cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
+/**
+ * WHERE THIS PERSON WORKED (T-1432, piece 1 of T-1189).
+ *
+ * The business layer has always known: 144 of its person rows carry a `person_id` and
+ * 110 town cards answer to them. The cards did not — `persons[]` held no workplace at
+ * all, so a man who kept a store and a card that said nothing about a store were the
+ * same person read from two ends. `tools/staff_businesses_1835.py` writes the join
+ * down and `tools/check.sh` holds it from both ends; this prints it.
+ *
+ * It is `workplaces` and NOT `works_at` deliberately. `works_at` is the BUILDING: a
+ * singular, undated structure id that `validate.py` polices as a link, and the card
+ * prints it on the household above. This is the FIRM, plural and dated, one entry a
+ * (house, role). Two questions, two words.
+ *
+ * NOTHING IS UPGRADED BY BEING SHOWN. Each row wears the tier the business record gave
+ * it and opens on that record's own citation, which is why a partner the register read
+ * out of a firm style and a partner matched to a card do not read alike here.
+ */
+function workplacesHtml(rows, citationsById) {
+  const list = (rows || []).filter(Boolean);
+  if (!list.length) return '';
+  const item = (w) => {
+    // The citation join is keyed by SOURCE id; `claim_ids` are the individual
+    // notices inside that source, which the row counts rather than lists.
+    const cites = [w.source_id].filter(Boolean).map((id) => citationsById.get(id)).filter(Boolean);
+    const notices = (w.claim_ids || []).length;
+    const from = w.from ? printedOn(w.from) : '';
+    const to = w.to ? printedOn(w.to) : '';
+    const when = from && to && from !== to ? `${from} – ${to}` : (from || to || '');
+    return `<li>${swatch(w.tier)}${tierWord(w.tier)}<b>${escapeHtml(w.business_name || w.business_id)}</b>
+      <span class="res-role">${escapeHtml(words(w.role || ''))}</span>${
+      w.business_present_at_scene_date ? '' : '<span class="res-chip res-role-off">not trading on 1 July 1835</span>'}
+      ${when ? `<br><span class="res-why">The ${notices ? `${notices} ` : ''}${
+  notices === 1 ? 'notice' : 'notices'} that carry this run ${escapeHtml(when)}. They bound
+        the READING and do not date the employment.</span>` : ''}
+      ${w.printed_as && w.printed_as !== (w.business_name || '')
+    ? `<br><span class="res-why">Printed as <q>${escapeHtml(w.printed_as)}</q>.</span>` : ''}
+      ${w.basis ? `<br><span class="res-why">${escapeHtml(w.basis)}</span>` : ''}
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
+  };
+  return `<dt>Where they worked</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${list.length} ${
+  list.length === 1 ? 'house' : 'houses'} the sources name them in</span>
+      <br><span class="res-why">Carried from the business layer, which is where the
+        evidence for it lives, at that record\u2019s own grade — nothing is upgraded by
+        being joined. A house nobody named them in is not here: the hands the staffing
+        model says a house of this kind employed are reconstructed work and are not
+        written onto anybody\u2019s card by this row.</span>
+      <ul class="res-workplaces">${list.map(item).join('')}</ul></dd>`;
+}
+
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
@@ -1383,6 +1435,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${rolesHtml(roles, citationsById)}
+      ${workplacesHtml(person.workplaces, citationsById)}
       ${associationsHtml(person.associated_with, citationsById,
         'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}

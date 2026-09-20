@@ -98,6 +98,35 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_g_spring",
+     "business_name": "G. Spring",
+     "role": "partner",
+     "printed_as": "G. Spring",
+     "from": "1833-12-17",
+     "to": "1835-08-05",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card spring_giles (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_12_17#c004",
+      "chicago_democrat_1834_01_28#c006",
+      "chicago_democrat_1834_03_04#c030",
+      "chicago_democrat_1834_05_28#c009",
+      "chicago_democrat_1834_06_11#c004",
+      "chicago_democrat_1834_07_09#c021",
+      "chicago_democrat_1834_08_20#c003",
+      "chicago_democrat_1834_09_03#c015",
+      "chicago_democrat_1834_10_15#c002",
+      "chicago_democrat_1834_11_12#c008",
+      "chicago_democrat_1834_11_26#c009",
+      "chicago_democrat_1835_05_20#c022",
+      "chicago_democrat_1835_08_05#c019"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_voter_lists_1833_1835_irad",

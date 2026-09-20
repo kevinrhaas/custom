@@ -32,32 +32,42 @@ people worked. **Their own cards do not.** `persons[]` has never held a workplac
 `works_at` exists only on the HOUSEHOLD, where it is a singular structure id — a PLACE, and
 undated — so a man who kept a store and a card that says nothing about a store are the same
 record read from two ends, and nothing gates them against each other. This piece writes the
-join down and puts a gate on it. It mints nobody: the reconstructed seatings are T-1433's
+join down and puts a gate on it.
+
+**THE FIELD IS `workplaces`, NOT `works_at`, AND THE PARENT'S WORDING IS WHY THIS SAYS SO.**
+T-1189 asks for `works_at[]` on the person. That name is already taken and already means
+something else: `works_at` is a SINGULAR, UNDATED structure id — the building — and
+`validate.py` and `associations.py` police it as one on persons as well as households.
+A list of dated employments under that name would have been refused by the gate as a
+malformed link, and would have read as a second opinion about the same field. So the
+BUILDING keeps `works_at` and the FIRMS get `workplaces`. Two questions, two words.
+
+It mints nobody: the reconstructed seatings are T-1433's
 and the model's shortfall is T-1434's.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
 - `tools/staff_businesses_1835.py --build|--check|--selftest` exists and is the only writer
-  of `persons[].works_at`. `--build` is deterministic and re-runnable to a byte; `--check`
+  of `persons[].workplaces`. `--build` is deterministic and re-runnable to a byte; `--check`
   re-derives and exits non-zero on any drift.
 - Every business person row that carries a `person_id` — proprietor, partner or staff — has
-  a matching `works_at[]` entry on that person's card, carrying the business id and name, the
+  a matching `workplaces[]` entry on that person's card, carrying the business id and name, the
   role in the business layer's own word, the date bracket the record gives it, and the row's
   OWN tier and source. Nothing is upgraded: an `inferred` row joins as `inferred`.
-- The join is bidirectional and `--check` asserts it BOTH ways: no `works_at[]` entry without
+- The join is bidirectional and `--check` asserts it BOTH ways: no `workplaces[]` entry without
   a business record naming that person back in that role, and no named row without its entry.
   A row whose `person_id` is null is a statement about the evidence and stays one — it is
   counted in the report, never invented into a card.
 - `tools/check.sh` runs `--check`; `--selftest` mutates the join four ways (a dropped entry, an
   entry naming a business that does not name it back, a flipped role, an upgraded tier) and
   each mutation must make the check fail.
-- `tools/validate.py` validates the shape of `persons[].works_at`: the keys, a `role` from the
+- `tools/validate.py` validates the shape of `persons[].workplaces`: the keys, a `role` from the
   businesses schema's role enum, a tier from the residents vocabulary, and a `business_id` that
   resolves.
 - Report `data/reconstruction/1835_staffing_join.json`: rows written by role and tier, persons
   tied, businesses with people and without, the unresolved printed names counted rather than
   guessed, and the shortfall against the staffing model left standing with the ticket that owns it.
-- `writes_no_person: true` in the report, and `--check` refuses the file if any `works_at` entry
+- `writes_no_person: true` in the report, and `--check` refuses the file if any `workplaces` entry
   sits on a person no business row names.
 - **Visible:** a person's own row in the household record on the People card now prints where
   they worked — the firm, their role there, the bracket and the tier chip — and opens its sources.

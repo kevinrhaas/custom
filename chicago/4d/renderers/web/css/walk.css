@@ -734,6 +734,14 @@ body.is-touch .gate-touch { display: block; }
 [data-theme="light"] .res-role-row.res-role-at,
 [data-theme="light"] .res-role-scene { border-color: color-mix(in srgb, var(--doc) 40%, var(--ink)); }
 [data-theme="light"] .res-role-scene { color: color-mix(in srgb, var(--doc) 30%, var(--ink)); }
+/* The houses a person is named in (T-1432). Built on the roles timeline above
+   because it is the same idea read from the other end — one rule down the left
+   edge a row, and the rule is the GRADE here rather than the scene date, since a
+   partner the register matched to a card and a name it only read out of a firm
+   style are different claims about the same house. */
+.res-workplaces { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 8px; }
+.res-workplaces > li { border-left: 2px solid var(--edge); padding-left: 9px; }
+.res-workplaces .res-role { margin-left: 6px; }
 .res-candidates { margin: 7px 0 0 18px; padding: 0; }
 .res-candidates > li { margin: 0 0 8px; }
 /* The seventeen households this project could not put on a building card. The
