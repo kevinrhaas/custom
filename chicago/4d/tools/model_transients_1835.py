@@ -54,6 +54,7 @@ FERGUS_1843 = ROOT / "data" / "research" / "directories" / "claims" / "fergus_18
 NORRIS_1844 = ROOT / "data" / "research" / "directories" / "claims" / "norris_1844_town_findings.json"
 PAPERS = ROOT / "data" / "research" / "newspapers" / "extracted"
 BROWN = ROOT / "data" / "residents" / "households" / "hh_brown_rufus.json"
+BUSINESS_INDEX = ROOT / "data" / "businesses" / "index.json"
 
 SCENE_DATE = "1835-07-01"
 SALE_DAYS = ("1835-06-26", "1835-06-27")
@@ -224,7 +225,8 @@ def port_on_the_scene_date(vessels: dict) -> dict:
                      if e["event"] == "arrived" and e["date"] == arrivals[0])
         row = (arrivals[0], v["display_name"], v["rig"],
                (v.get("master") or {}).get("surname"), first.get("port"),
-               first.get("cargo"))
+               first.get("cargo"),
+               (v.get("register_business") or {}).get("business_id"))
         in_port.append(row)
         if SCENE_DATE in clearances:
             cleared_on.append(v["display_name"])
@@ -313,8 +315,74 @@ def check_vessels(vessels: dict, journal: str, corroborant: str) -> dict:
         says(journal, v["verbatim"],
              f"the Marine Journal of 4 July 1835, for '{v['id']}'")
 
+    joined = check_register_join(vessels)
+
     return {"hulls": len(rows), "documented": documented,
-            "outside_the_window": len(vessels.get("entered_but_outside_the_window") or [])}
+            "outside_the_window": len(vessels.get("entered_but_outside_the_window") or []),
+            "in_the_register": joined}
+
+
+def check_register_join(vessels: dict) -> list[str]:
+    """T-1425: every hull says whether the business layer holds a house for it.
+
+    THE JOIN IS AN IDENTITY RULING AND THE GUARD TREATS IT AS ONE. A `business_id` must
+    name a record `data/businesses/index.json` actually carries, so a compile that
+    renames or retires a house takes this file red instead of leaving a dangling id; it
+    may never be graded `documented`, because no source says in words that the
+    register's packet and the column's hull are one vessel; and where the two runs spell
+    the name differently the divergence must be WRITTEN, not normalised away — that is
+    data/sources/chicago_american_1835.json's own rule that a disagreement between two
+    witnesses is the finding. A hull with no house must still say so and why: the whole
+    point of the field is that no hull is passed over in silence.
+    """
+    if not BUSINESS_INDEX.exists():
+        raise Fault("the business index is not in the tree, so no hull can be joined to a "
+                    "house; run tools/compile_businesses.py --build")
+    known = {b["id"]: b for b in read_json(BUSINESS_INDEX).get("businesses") or []}
+    joined = []
+    for v in (vessels.get("vessels") or []) + (
+            vessels.get("entered_but_outside_the_window") or []):
+        vid = v["id"]
+        join = v.get("register_business")
+        if not isinstance(join, dict):
+            raise Fault(f"vessel '{vid}' does not say whether the register holds a house "
+                        f"for her. Every hull carries `register_business`, with a null "
+                        f"`business_id` and a reason where it does not")
+        if not (join.get("basis") or "").strip():
+            raise Fault(f"vessel '{vid}' joins to the register with no basis printed")
+        bid = join.get("business_id")
+        if bid is None:
+            for key in ("name_in_the_register", "confidence", "spelling_divergence",
+                        "what_the_column_adds"):
+                if join.get(key) is not None:
+                    raise Fault(f"vessel '{vid}' holds no register house and still carries "
+                                f"'{key}' — a refused join says nothing but why")
+            continue
+        if bid not in known:
+            raise Fault(f"vessel '{vid}' joins to business '{bid}', which "
+                        f"data/businesses/index.json does not carry")
+        if join.get("confidence") == "documented":
+            raise Fault(f"vessel '{vid}' grades its register join documented. No source "
+                        f"says the register's house and this hull are one vessel; the "
+                        f"join is reasoned and `inferred` is its ceiling")
+        if join.get("confidence") not in VESSEL_CONFIDENCE:
+            raise Fault(f"vessel '{vid}' grades its register join "
+                        f"'{join.get('confidence')}', which is not one of "
+                        f"{list(VESSEL_CONFIDENCE)}")
+        printed = join.get("name_in_the_register")
+        if not printed:
+            raise Fault(f"vessel '{vid}' joins to a register house and does not carry the "
+                        f"name that house is printed under")
+        if v["display_name"].lower() not in printed.lower() and not (
+                join.get("spelling_divergence") or "").strip():
+            raise Fault(f"vessel '{vid}' is printed '{printed}' in the register and "
+                        f"'{v['display_name']}' in the column, and the divergence is not "
+                        f"written down. Two witnesses that disagree are a finding, not a "
+                        f"spelling to be picked")
+        joined.append(bid)
+    if len(set(joined)) != len(joined):
+        raise Fault("two hulls claim the same register house; one house is one vessel")
+    return sorted(joined)
 
 
 # ---------------------------------------------------------------------------
@@ -618,7 +686,9 @@ def build_composition(sale: dict, port: dict, vessel_stats: dict) -> dict:
                 {"row": "crews ashore",
                  "bounded": "hulls only",
                  "evidence": "the Marine Journal of 4 July 1835, seated hull by hull in "
-                             "data/reconstruction/1835_vessels_in_port.json",
+                             "data/reconstruction/1835_vessels_in_port.json, and joined to "
+                             "the two packets the newspaper register already carried as "
+                             "houses of trade (T-1425)",
                  "at the scene date": f"{len(at_nightfall)} to {len(in_port)} vessels in "
                                       f"port, named and mastered; nobody aboard"},
                 {"row": "travellers of business and of state",
@@ -635,7 +705,13 @@ def build_composition(sale: dict, port: dict, vessel_stats: dict) -> dict:
             "rows": [{"arrived": r[0], "vessel": r[1], "rig": r[2],
                       "master": r[3] or "not read", "from": r[4] or "cut from the column",
                       "cargo": r[5] or "not stated",
-                      "cleared 1 July": "no" if r in at_nightfall else "yes"}
+                      "cleared 1 July": "no" if r in at_nightfall else "yes",
+                      # T-1425. Two of these hulls trade under a name the register prints,
+                      # and the business layer could see neither of them until the join was
+                      # made; the other four are silences in the register and not gaps here.
+                      # The identity ruling itself is `inferred` and lives on the hull,
+                      # where the reading is.
+                      "house in the register": r[6] or "none"}
                      for r in in_port],
         },
     }

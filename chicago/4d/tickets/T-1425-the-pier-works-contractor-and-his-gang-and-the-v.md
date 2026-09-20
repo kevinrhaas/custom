@@ -1,7 +1,7 @@
 ---
 id: T-1425
 title: The pier-works contractor and his gang, and the vessels in port on 1 July with their masters
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1409
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 2:05:11 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35495796218
 ---
 
 The pier-works contractor and his gang, and the vessels in port on 1 July with their masters.
