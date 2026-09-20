@@ -54,7 +54,6 @@
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
 T-1433 — Seat the reconstructed residents who have a trade and no workplace: each at a business of their trade in their division, nearest first and seeded, and the no-fixed-premises trades given their implied employer or a casual entry with its reason
 T-1434 — Mint the staffing shortfall to the model's typical band and close the join: new reconstructed staff where a business is still short, every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
@@ -231,3 +230,7 @@ T-1412 — The United States Indian Agency at Chicago as a civic establishment: 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
 T-1429 — The nearest-street reading crosses the river: a bank test for nearest_frontage, so a roof is not credited with a corridor on the far side of the water
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1435 — The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
