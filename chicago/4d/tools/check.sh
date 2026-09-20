@@ -1100,6 +1100,22 @@ selftest "…and those assertions still fire when the enumeration is broken" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# T-1196. The 668-roof schedule is a production decision from the owner's 2026
+# specification, taken before the population layer existed, and the order book carries five
+# `programme_deltas` rows stamped for this ticket so the comparison would be made
+# deliberately. It is made here, once per gate, and it is the re-derivation rather than the
+# spec that is asserted: every group says what it was compared WITH, three of the five
+# deltas turn out to be unit mismatches or tautologies rather than disagreements about
+# roofs, and the 308-household one resolves as an occupancy rate the November census
+# brackets. The step also holds the two files that deal the same 668 roofs to each other:
+# the crosswalk's counts had drifted to 662 and nine of its priority ranks were one place
+# out, which is what an authored count field does when nothing re-derives it.
+step "the roof programme re-derives against the order book, and the crosswalk deals its 668" \
+  python3 tools/reprogramme_roofs_1835.py --check
+
+selftest "…and its own refusals still fire when the programme is bent" \
+  python3 tools/reprogramme_roofs_1835.py --self-test
+
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
 # their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,

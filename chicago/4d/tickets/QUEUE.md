@@ -62,7 +62,6 @@ T-1431 — Carry the West Division's five tier lines off their E -320 clip and r
 T-1436 — Thompson's North Division tier: the seven Kinzie-to-the-river blocks and the four-to-a-face lots the plat draws in them
 T-1438 — The West Division, Wabansia, the School Section tier and the Michigan Street tract: lots from each block's own figures, and every documented north or west record's lot recorded on the record
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1196 — Re-derive the roof programme from the order book: the 668-roof schedule re-cut by what the population, occupation and lodging models say the town needed — families, districts and blocks re-targeted, every delta from the spec stated, the census's 398 dwellings reconciled
 T-1197 — Re-audit the 285 anonymous roofs against the re-derived programme: keep the ones the order book can occupy, re-family the ones of the wrong kind, retire the ones that no longer fit — 214 stand empty today — and record every change as a substitution, not a demolition
 T-1198 — Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
@@ -236,3 +235,7 @@ T-1428 — The trade-census crosswalk counts four houses at the scene date that 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1435 — The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1439 — The order book reports a false delta of ten institutional roofs: programme_deltas reads the town model's institutional HIGH end, which includes the fort's ten principal roofs, against district_group_matrix.institutional_public alone — and the boarding-house row beside it compares that matrix with a figure read off the same matrix, so it can never disagree
