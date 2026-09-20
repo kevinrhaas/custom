@@ -1,7 +1,7 @@
 ---
 id: T-1423
 title: The re-admitted names' hand-off outlived the ticket that carried it: 325 unresolved research units name T-1394, whose closeout is spent, so they need a live owner for the evidence question T-1179's reconciliation never settled
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1556
 claimed_by: run 9/20/2026, 2:20:41 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T08:12:45.716Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35496291488
 ---
 
