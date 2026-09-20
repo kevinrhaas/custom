@@ -365,66 +365,93 @@ MULTI_BUILDING_LOT = {
 #
 # --score finds these by measurement. The reason is authored, and assertion 3 refuses an
 # outlier that has none — so a new one cannot appear without somebody saying why.
+#
+# WHAT MOVED ON 2026-09-20, AND IT WAS THE STREETS RATHER THAN THE BUILDINGS (T-1191).
+# This policy was written the day before the north bank had corridors. Seventeen of the
+# twenty-two reasons below were therefore measured against a line on the FAR side of the
+# river — the only committed corridor within reach of a north-side roof was South Water's
+# or State's. T-1191 reads the north bank off Thompson's 1830 plat and Wright's 1834
+# sheet, and every one of those readings is now taken against a north-bank line instead.
+# Nothing was re-typed, nothing was moved to make it fit, and no confidence changed.
+#
+# Four reasons went away with the measurement that earned them, which is assertion 3
+# working:
+#
+#   watkins_school_house   390 m off State, across the river → -8.40 m inside Michigan
+#                          Street's north-bank corridor. Its own reason said it was "the
+#                          same absence of street control as the Steamboat Hotel, not a
+#                          placement"; T-1191 supplied the street control, and the school
+#                          house now conforms to the institutional clause on its own line.
+#   miller_tannery         153 m off South Water → 60.79 m off Market Street's north-bank
+#                          corridor, which the noxious-trades clause allows on the branch
+#                          ground. Andreas still places it against Miller's tavern rather
+#                          than against a street; it simply no longer BREACHES one.
+#   fort_dearborn_out_building_a / _b   312 m and 323 m off Lake, a principal street the
+#                          ancillary clause avoids → 198.31 m and 195.52 m off Kinzie,
+#                          which is ordinary, so the clause stops firing and both read as
+#                          conforming. THIS ONE IS AN ARTEFACT AND IS RECORDED AS ONE.
+#                          Both stand inside the unplatted military reservation on the
+#                          SOUTH bank; Kinzie Street runs along the NORTH bank and the
+#                          river is between them. `nearest_frontage` measures a straight
+#                          line and has no water in it, so a south-side roof at the river
+#                          mouth can be credited with a north-side street and vice versa.
+#                          The reservation has no street to front either way — that was
+#                          the whole of these two reasons — but the assertion is a
+#                          measurement and the measurement no longer says so, so the
+#                          reasons cannot stay. See T-1191's ticket file § the river is
+#                          not in the reading, which carries this for the owner.
 
 OUTLIER_REASONS = {
     "blacksmith_shop_state_st":
         "the GOVERNMENT smithy, not a mechanic's: it belongs to the agency "
         "establishment the 1821 treaty obliged the United States to keep at Chicago, "
-        "and it stands in the north-side cluster round Cobweb Castle. South Water is "
-        "the nearest committed line at 97 m only because it runs along the far side of "
-        "the channel. The record is flagged review_required and nothing here seats it.",
+        "and it stands in the north-side cluster round Cobweb Castle. Since T-1191 put "
+        "the north bank's own corridors in the reading it is nearest Wolcott at 45.85 m "
+        "rather than South Water at 97 m across the channel — a truer line and still not "
+        "a frontage. The record is flagged review_required and nothing here seats it.",
     "brickyard_north_side":
         "the clay is where the clay is. A brickyard is seated by its material and not "
-        "by its frontage, 89 m off the South Water line on the north bank.",
+        "by its frontage — 31.43 m off Clark Street's north-bank corridor since T-1191, "
+        "and 89 m off South Water's line across the river before it.",
     "chicago_lighthouse_1832":
         "at the river mouth on the federal reserve — a lighthouse is seated by the "
         "harbour and not by a street.",
     "council_house":
         "on the lakefront reservation ground east of the platted town.",
-    "fort_dearborn_out_building_a":
-        "inside the unplatted military reservation, 312 m from the Lake Street "
-        "centreline: the ancillary clause's 'behind its own roof' is a statement about "
-        "a platted lot and there is no lot here.",
-    "fort_dearborn_out_building_b":
-        "inside the unplatted military reservation, 323 m from the Lake Street "
-        "centreline, as its pair.",
     "fort_dearborn_shop":
-        "inside the unplatted military reservation, 381 m from the State Street "
-        "centreline: the garrison's own workshop, not a mechanic's shop on a street.",
+        "inside the unplatted military reservation: the garrison's own workshop, not a "
+        "mechanic's shop on a street. The nearest committed corridor is now Kinzie's at "
+        "157.87 m, on the far bank, which is no more its frontage than State's 381 m was.",
     "fort_dearborn_us_factors_house":
         "inside the unplatted military reservation — see the garrison clause. No street "
         "crossed the reservation in 1835.",
     "kinzie_hunter_warehouse":
         "on the north bank of the main river: its frontage is the WATER, which is what "
-        "a forwarding warehouse wants, and the street class beside it is the south-side "
-        "line across the channel.",
+        "a forwarding warehouse wants. Since T-1191 the line beside it is Market Street's "
+        "north-bank corridor at 4.16 m rather than South Water's across the channel, and "
+        "standing that close to a light back street is not taking its face.",
     "miller_house":
-        "on the north bank. South Water is the nearest committed centreline only "
-        "because it runs along the far side of the river from it.",
-    "miller_tannery":
-        "the settlement's first factory, placed by Andreas's 'just north of Miller's "
-        "tavern' — against another RECORD rather than against a street. It stands on "
-        "the north bank 153 m from South Water's line, which is the clause's own "
-        "river ground; the principal class beside it is the nearest committed "
-        "centreline across the channel and not a frontage it takes.",
+        "on the north bank, at the forks. It is nearest Market Street's north-bank "
+        "corridor at 60.66 m since T-1191 and was nearest South Water's line at 138 m "
+        "across the river before it; neither is a face this house takes.",
     "north_bank_shed_dearborn_e1": "a north-bank freight shed: its frontage is the water.",
     "north_bank_shed_dearborn_e2": "a north-bank freight shed: its frontage is the water.",
     "north_bank_shed_dearborn_e3": "a north-bank freight shed: its frontage is the water.",
     "north_bank_shed_dearborn_w": "a north-bank freight shed: its frontage is the water.",
     "north_side_school_1833":
-        "the north-side school, 90 m off the South Water line across the river.",
+        "the north-side school, 4.32 m off Clark Street's north-bank corridor since "
+        "T-1191 and 90 m off the South Water line across the river before it. The "
+        "institutional clause puts a named institution on its line and this one stands "
+        "back off a light street, which is where the school house was built.",
     "robert_kinzie_store":
         "at Wolf Point, off the platted grid: the store fronts the forks and the ferry "
         "landing, and Lake Street's line is 27 m away because Lake ENDS at the river.",
     "steamboat_hotel":
-        "north division, which in July 1835 has almost no committed street control: "
-        "State is simply the nearest line, 203 m off, and the hotel fronts nothing "
-        "this project has yet platted.",
+        "north division. Until T-1191 State was simply the nearest line, 203 m off "
+        "across the river; the hotel is now read against Kinzie at 20.47 m, which is a "
+        "real north-bank line and still a setback no lodging clause allows.",
     "walker_meeting_house":
         "on the west ground 48 m off the Canal line, at the edge of what was platted.",
-    "watkins_school_house":
-        "390 m from the State Street centreline in the north division — the same "
-        "absence of street control as the Steamboat Hotel, not a placement.",
     "wolf_point_tavern":
         "at the forks, 40 m off Lake's line: the tavern fronts the ferry and the two "
         "branches, which is precisely why it stands there.",
