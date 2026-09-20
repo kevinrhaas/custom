@@ -57,7 +57,6 @@
 T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
 T-1189 — Staff every business — attested, inferred and reconstructed — with real persons: attested partners and clerks first, then the reconstructed residents, then new reconstructed staff to the staffing model, so every working person has a workplace and every workplace its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
-T-1423 — The re-admitted names' hand-off outlived the ticket that carried it: 325 unresolved research units name T-1394, whose closeout is spent, so they need a live owner for the evidence question T-1179's reconciliation never settled
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 T-1191 — Seat the North Division's streets and alleys as platted corridors: Kinzie's Addition and the Kinzie–Michigan tier off Wright and Hathaway, with block faces, mid-block alleys and corridor control, so a north-side roof can be dealt to a lot
 T-1417 — Put the new ground to use: flora zones, the minimap box and the walker's collision carried to the west wall, the West Division streets taken off their E -320 clip, and generate_west_infill's 35 held slots released
@@ -232,3 +231,4 @@ T-1412 — The United States Indian Agency at Chicago as a civic establishment: 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
 T-1428 — The trade-census crosswalk counts four houses at the scene date that the register says had not opened: read present_at_scene_date, not the gazetteer's built_at_scene_date — and teach the order book that a shortfall the evidence explains is not a quota
+

@@ -94,20 +94,39 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # AND A SPLIT CLOSES A TICKET TOO (2026-09-19). T-1179 was split into T-1392, T-1393 and
 # T-1394, leaving `state: split`, which is not an open state — so the same invariant fired
 # again, this time inside `rederive.mjs --run`, which the PR lap runs on every pass. The
-# lap stopped pushing and three PRs sat dirty with no gate able to run on them. T-1394 is
-# the heir: a direct child, open, and the closeout that makes the rebuild order a fixed
-# point over EVERY READER of the layer — the index, the sidecars and the town census a
-# re-admitted name is reconciled against. The re-admission itself is in
-# data/reconstruction/1835_readmissions.json and carries its own withdrawal rule.
-SPLIT_NOTE_TAIL = (
-    "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then. T-1394 HAS NOW SPENT IT IN TURN (2026-09-20): its three children T-1398, T-1399 and T-1400 made the rebuild order a fixed point, wrote one liberty entry per stage and put the minting stage on the People view's own filter, so the RECONCILIATION this hand-off waited on is done — and the unit is still `unresolved`, because what was reconciled was the layer and what is unsettled is the EVIDENCE. A closeout that has closed cannot own an open question, so the hand-off moves once more, to T-1423, which owns exactly that remainder and nothing else.")
+# lap stopped pushing and three PRs sat dirty with no gate able to run on them.
+#
+# THAT IS WHERE THE RENAMING STOPS (T-1423, 2026-09-20). Count the chain: the roster
+# hand-off ran T-1159 -> T-1172 -> T-1179 -> T-1394 -> T-1423, and the arrival hand-off
+# above it ran T-1169 -> T-1318 -> T-1329, eight pointers and not one new fact. T-1394's
+# children DID do their work — the rebuild order is a fixed point, the liberty entries are
+# written, the minting stage is on the People view's filter — and these units were no nearer
+# settled afterwards, because what was reconciled was the LAYER and what is unsettled is the
+# EVIDENCE. No ticket can settle it. The question is whether a name the research read and
+# the town withheld was at Chicago on 1 July 1835, and only a document answers that.
+# So these units now name NO ticket. They state `awaiting_evidence` — the document that
+# would reopen each of them — which is the shape this file already uses on its refusals
+# ("WHAT WOULD REOPEN IT: …"), and `research_spend_ledger.py` gates it: exactly one owner,
+# and a wait that names no evidence is refused. The unit stays `unresolved`, because it is.
+# What goes away is the standing claim that somebody is working on it.
+TWO_HAND_OFF_SHAPES = (
+    "A hand-off is not a spend, and it has two honest shapes (T-1423): a unit waiting "
+    "on WORK names the open ticket whose field owns the finding, and that ticket "
+    "closing turns this file red, which is the point; a unit waiting on EVIDENCE names "
+    "no ticket at all and states `awaiting_evidence` — the document that would reopen "
+    "it — because no ticket can produce a source nobody holds, and a pointer renamed at "
+    "every closure records nothing but the closures.")
 
-ROSTER = "T-1423"
-ROSTER_SPENT = (
-    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
-    "the reconstructed tier, under its own read name, in "
-    "data/reconstruction/1835_readmissions.json — and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. " + SPLIT_NOTE_TAIL)
+
+READMITTED = (
+    " T-1172 SPENT THE RE-ADMISSION (2026-09-18): the name is on the town at the "
+    "reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json, with its own `withdrawn_if` clause — and "
+    "that settles nothing about the evidence, which is why this unit stays `unresolved`. "
+    "It waits on a document and not on a ticket: the hand-off was renamed four times "
+    "(T-1159, T-1172, T-1179, T-1394) as each named ticket closed, and T-1394's closeout "
+    "reconciled the LAYER while leaving the EVIDENCE exactly where it was. What would "
+    "reopen the unit is stated in this rule's `awaiting_evidence`, and nothing else will.")
 
 LADDER = (
     "Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date "
@@ -142,7 +161,11 @@ CIVIC_RULES = {
     },
     "the_roll_names_a_person_the_town_does_not_hold": {
         "disposition": "unresolved",
-        "ticket": ROSTER,
+        "awaiting_evidence": (
+            "A source that reaches this name where the rolls cannot: a deed, plat or "
+            "directory entry putting the person on town ground, a church register line, or "
+            "a forename reading that separates the surname bearers the crosswalk refused "
+            "to choose between."),
         "statement": (
             "The entry is a named person on a roll of the Town of Chicago, and the "
             "crosswalk finds no one in the town's households it can be joined to: either no "
@@ -151,7 +174,7 @@ CIVIC_RULES = {
             "roster's case exactly — it is the file that carries every such name with its "
             "source, its reason and its re-admission class, so that reconstruction names "
             "real people before it invents any. Nothing is minted here and no presence is "
-            "asserted; the name is handed on with the roll and date that carry it." + ROSTER_SPENT),
+            "asserted; the name is handed on with the roll and date that carry it." + READMITTED),
     },
     # T-1326 GAVE THESE EIGHT THEIR REAL ANSWER, and it is a refusal rather than a hand-off.
     # The rule was named `..._may_bound_a_rolled_mans_arrival` and handed the row to the
@@ -194,7 +217,10 @@ CIVIC_RULES = {
     },
     "the_enrollment_index_prints_no_surname": {
         "disposition": "unresolved",
-        "ticket": ROSTER,
+        "awaiting_evidence": (
+            "A printing of the 1832 muster that gives the surname this index omits — the "
+            "original rolls, a company return, a pay or pension record — without which "
+            "there is nothing for a surname-indexed roll to be compared against at all."),
         "statement": (
             "The index prints this enrollment WITHOUT a surname comma — the French and "
             "Potawatomi forms, eighty-three of the hundred and thirty-four rows — and the "
@@ -204,11 +230,14 @@ CIVIC_RULES = {
             "Chicago in 1832 and the town does not hold, so it goes to the borderline "
             "roster with its form stated as the reason no crosswalk could reach it. NOTHING "
             "IS INFERRED ABOUT WHO THIS PERSON WAS, and nothing about the 1835 town follows "
-            "from the row; the name is preserved exactly as the index prints it." + ROSTER_SPENT),
+            "from the row; the name is preserved exactly as the index prints it." + READMITTED),
     },
     "the_enrollment_names_a_man_the_rolls_do_not_carry": {
         "disposition": "unresolved",
-        "ticket": ROSTER,
+        "awaiting_evidence": (
+            "A source that follows this man from the 1832 enrollment to the scene date — a "
+            "muster roll giving his residence, a pension file, a land entry, or a town roll "
+            "under a name reading the crosswalk can reach."),
         "statement": (
             "The index enrolls this man at Chicago in 1832 under a surname the 1833-1835 "
             "poll and tax lists either do not carry at all, or carry under forenames that "
@@ -216,7 +245,7 @@ CIVIC_RULES = {
             "not the residents layer, so this file may not say the town has no such person "
             "— it says only that the rolls do not reach him. That is a name read and "
             "withheld, and the borderline roster is where such a name is kept with its "
-            "source and its re-admission class." + ROSTER_SPENT),
+            "source and its re-admission class." + READMITTED),
     },
     "the_1884_history_is_later_evidence_about_the_town": {
         "disposition": "later_only",
@@ -656,9 +685,7 @@ def build_document(domain: str) -> dict:
             "a unit open, so a ruling here can only close a unit nothing else has closed "
             "and can never overturn an assertion, a later_only or a refusal the readings "
             "themselves carry. NOTHING HERE EDITS A RESIDENT, MINTS A PERSON, MOVES A "
-            "CONFIDENCE OR REOPENS AN IDENTITY A CROSSWALK RULED. A hand-off is not a "
-            "spend: it names the open ticket whose field owns the finding, and that ticket "
-            "closing turns this file red, which is the point."),
+            "CONFIDENCE OR REOPENS AN IDENTITY A CROSSWALK RULED. " + TWO_HAND_OFF_SHAPES),
         "ticket": TICKET,
         "generated_by": GENERATOR,
         "counts": {rule: tally[rule] for rule in sorted(tally)},
@@ -764,8 +791,8 @@ def self_test() -> int:
         for name, rule in sorted(rules.items()):
             if len(str(rule.get("statement") or "").strip()) < 40:
                 failures.append(f"{domain} rule {name}: states no rule")
-            if rule["disposition"] == "unresolved" and not rule.get("ticket"):
-                failures.append(f"{domain} rule {name}: hands the unit on and names no ticket")
+            if rule["disposition"] == "unresolved":
+                failures.extend(L.unresolved_owner_faults(f"{domain} rule {name}", rule))
 
     total = 0
     for domain in REGISTERS:

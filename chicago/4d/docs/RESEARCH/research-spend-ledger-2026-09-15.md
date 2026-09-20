@@ -38,7 +38,7 @@ The pre-ledger resident-card measure is preserved: **1,640** rulings reach a tow
 
 ## Unresolved ownership
 
-Only tickets whose current state is open may own an unresolved unit.
+An unresolved unit is waiting on WORK or on EVIDENCE, and it says which. Only tickets whose current state is open may own the first kind. The second names no ticket at all — no ticket can produce a document that is not in hand — and states instead what would reopen it (T-1423).
 
 | Ticket | Units |
 | --- | ---: |
@@ -49,6 +49,15 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1315 | 3 |
 | T-1335 | 169 |
 | T-1354 | 6 |
-| T-1423 | 266 |
 
-Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.
+**266** unit(s) wait on evidence rather than on a ticket, under 5 stated reopening condition(s):
+
+| Units | Reopened by |
+| ---: | --- |
+| 83 | A printing of the 1832 muster that gives the surname this index omits — the original rolls, a company return, a pay or pension record — without which there is nothing for a surname-indexed roll to be compared against at all. |
+| 69 | A source beyond the post-office list that places this name at Chicago inside the scene window -- a poll or tax roll, a deed, a church register line, a directory entry, an old-settler recollection naming the person in the town. |
+| 40 | A source that narrows COOK to the town: a deed, plat or tax entry putting this purchaser on a Chicago lot, a directory or church register line naming them there, or a town roll under a name reading the crosswalk can reach. |
+| 38 | A source that follows this man from the 1832 enrollment to the scene date — a muster roll giving his residence, a pension file, a land entry, or a town roll under a name reading the crosswalk can reach. |
+| 36 | A source that reaches this name where the rolls cannot: a deed, plat or directory entry putting the person on town ground, a church register line, or a forename reading that separates the surname bearers the crosswalk refused to choose between. |
+
+Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved unit owned by a ticket has that ticket close or disappear, a unit waits on evidence it does not state, a unit claims both owners, or an assertion survives only as prose.
