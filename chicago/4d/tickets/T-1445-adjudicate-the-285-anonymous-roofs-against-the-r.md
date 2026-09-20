@@ -1,7 +1,7 @@
 ---
 id: T-1445
 title: Adjudicate the 285 anonymous roofs against the re-derived programme and the placement policy: one verdict per roof — keep, refamily to a named family, or retire — each with the order-book bucket it serves and the reason it is a substitution, published as a re-derivable redeal ledger and gated; no roof moves ground
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1197
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1566
 claimed_by: run 9/20/2026, 6:46:16 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T12:50:47.524Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35508393032
 ---
 
