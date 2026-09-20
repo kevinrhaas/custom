@@ -11986,7 +11986,10 @@ for (const [label, viewport, touch] of [
       ['read', 'garrison', 'transients', 'trade_households', 'women_and_children']
         .every((v) => people.tier.offer.includes(v))
       && people.tier.stated > 0 && people.tier.garrison === people.tier.stated
-      && people.tier.garrisonRows === people.tier.stated
+      // The list pages at 80, so what the pill MATCHES is the file's count and what it
+      // PAINTS is the first page of it — asserting the painted rows against the file's
+      // 125 would be asserting that this list is not paged.
+      && people.tier.garrisonRows === Math.min(80, people.tier.stated)
       && /Fort Dearborn/.test(people.tier.titled)
       && people.tier.read === people.tier.readStated && people.tier.readAllGraded
       && people.tier.sum === people.counts.stated
