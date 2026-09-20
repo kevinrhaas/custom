@@ -12145,7 +12145,7 @@ terrain spec, **T-1252** the heightfield and the scene file.
 
 ### L-rc-sex-rate — 587 people are sexed by a coin weighted at the rate of the roll that names them
 
-**What is invented.** Of the 1,282 people the resident layer names, 593 carried no sex after
+**What is invented:** Of the 1,282 people the resident layer names, 593 carried no sex after
 T-1303 had read every gendered title and every forename this project holds evidence about.
 587 of them now carry one, and NOT ONE of those 587 values is a reading about that person.
 Each is a draw: a number from `blake2s(<person_id>:sex_ratio)` against the male rate measured
@@ -12184,7 +12184,7 @@ Related: tickets **T-1304**, from **T-1168**; **T-1303** read the tiers above it
 
 ### L-rc-age-conditioning — every drawn age band assumes that a roll names an adult, and no source says so
 
-**What is invented.** 1,212 of the layer's 1,282 people now carry an age band drawn from the
+**What is invented:** 1,212 of the layer's 1,282 people now carry an age band drawn from the
 1840 Chicago schedule's sex × age columns, seeded by their own id. The band is the invention;
 so is the CONDITIONING that decides which columns the draw may land in:
 
@@ -12219,6 +12219,10 @@ and nothing else. A period statement of the franchise's or the militia's age rul
 a source record, would turn `civic_list_20_and_over` from a convention into a reading.
 
 Related: tickets **T-1304**, from **T-1168**; **T-1303** handed the finding on.
+**Recorded:** 2026-09-18.
+
+---
+
 ### L242 — Three people stand in the town whom the 1840 census counts and no source names
 **Decision:** the reconstruction programme's `named_families` stage (T-1314) writes, into the
 household cards of the 1835 residents the 1840 federal census bridge has `validated`, the members
@@ -12226,6 +12230,7 @@ that census COUNTS in the head's household five years later and does not name. T
 by it today: `rc_murphy_thomas` (a boy of 5–9 on the scene date), `rc_murphy_honora` (a woman of
 25–34) and `rc_adams_nancy` (a woman of 15–24). Each carries an invented given name drawn from
 `data/reconstruction/1835_invented_name_pools.json` and the head's own surname.
+**Scope:** `residents.persons[named_families]` — 3 people in the 2 cards the bridge validated, re-derivable from `tools/reconstruct_residents_1835.py --check`.
 **Why:** John Murphy's 1840 household holds six people and his card named two; William Hanford
 Adams's holds two and his card named one. The rest were not invented by anybody — they are in a
 federal enumeration, in that head's house, with a sex and an age band. Leaving them out is also a
@@ -12443,6 +12448,8 @@ the row carries no readable date at all, and 39 because T-1144's reading of the 
 its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day
 before it. A lag nothing measures is not a lag a persistence rate may be applied to.
 
+**Scope:** `residents.persons[readmissions]` — 182 people, in 182 cards of their own in `data/residents/readmitted/`, re-derivable from `tools/readmit_borderline_roster.py --check`. The 820 of the title is what the stage RE-ADMITS and the 182 is what it MINTS: 734 of the 820 are a second presence written beside a reading on a card this layer already held, and only the 86 new names and the 96 rows that carry their own household get a card here. The stage's own ledger prints both figures; this one is the count of people who exist because this stage ran.
+
 **What is invented, exactly.** Two things and no more. First, **that these people were in
 Chicago on 1 July 1835**, which no source says of any of them — that is what "withheld"
 meant. Second, **the rate at which a person the corpus names stops being found in Chicago**,
@@ -12578,6 +12585,8 @@ head of their own household, carries an invented name from the pools, an age ban
 bucket set, and **a trade dealt from the Fergus
 1839 directory's printed shares** (T-1346's table: 1,377 mapped entries over 88 trades).
 
+**Scope:** `residents.persons[trade_households]` — 308 people in 308 cards, one head apiece, re-derivable from `tools/reconstruct_trade_households.py --check`.
+
 **Why:** because the order book is the quota and the quota was empty. The town model reads
 1835 Chicago as employing around 506 people and the rosters this project can read name 457
 residents in total; the men who dug the harbour, drove the drays and framed the balloon
@@ -12642,6 +12651,8 @@ register NAMES, and mints the remaining **307** as reconstructed visitors in 83 
 `party` households in `data/residents/transients/`. Their sleeping places are dealt
 **equally across the six classes** T-1352 names, remainder to the first in its printed order:
 51 apiece, 52 to "a room in a public house".
+
+**Scope:** `residents.persons[transients]` — 307 people in 83 cards, re-derivable from `tools/reconstruct_transients_1835.py --check`. 307 and not the 384 of the title: the point adopted is the whole crowd, and 77 of it is reserved for purchasers the Public Domain register names and is not minted here. The count a register may hold this entry to is the count of people this entry invented.
 
 **Why:** because T-1352 bounded the crowd and deliberately adopted no point, printing two
 candidates and leaving the choice to this ticket, and because a bracket nobody spends is a
@@ -12712,6 +12723,8 @@ Chicago in 1832. It is the first output of stage `underdocumented`, the only sta
 programme licensed to write a Native or Métis person. Every card carries
 `review_required: true` and `touches_removal: true` with the sentence that says why, the
 `community` value **`native`** and **no nation at all**, and `origin: null`.
+
+**Scope:** `residents.persons[underdocumented]` — 102 people in 94 cards, of which **87** are this entry's and 15 are **L255**'s `free_black` sub-stage. The total is restated rather than the selector narrowed, for the reason the four reconstructed-business entries restate theirs: the stage is the unit the programme declares and the register says how large the whole of it is. Re-derivable from `tools/reconstruct_underdocumented.py --check` and `tools/reconstruct_free_black.py --check` together.
 
 **Why:** because the same page had already been half spent. The roll prints 134 men in two
 companies — forty under `G KERCHEVAL` and ninety-four under `INDIAN` — and T-1172 carded
@@ -12852,6 +12865,8 @@ seventy of them as boarders and lodgers** nobody names, drawn against the order 
 programme itself raised as a lodging place, at the trade that roof's own `function`
 states. Nothing is hand-authored: every value comes from a seed a reader can retype, and
 `--check` re-derives all twelve cards and the ledger byte for byte.
+
+**Scope:** `residents.persons[lodgers]` — 75 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
 
 **Why:** because T-1370 counted 135 ordinary-night beds across those fifteen houses and
 found thirty people in them — eight keepers and their families, and not one boarder. The
@@ -13062,6 +13077,8 @@ T-1376's `native_and_metis`. Cards in `data/residents/underdocumented/hh_fb_*.js
 `review_required: true` with its own sentence. `touches_removal` is **false**, deliberately:
 this is not the removal, and borrowing that flag would borrow the weight of a subject this
 stage is not about.
+
+**Scope:** `residents.persons[underdocumented]` — 102 people in 94 cards, of which **15** are this entry's and 87 are **L250**'s `native_and_metis` sub-stage. Restated whole for the reason L250 gives.
 
 **Why:** T-1375 gave every person in the layer a community and printed one row reading
 `free_black` — **0**. That is a finding about this project and not about 1835 Chicago. The
