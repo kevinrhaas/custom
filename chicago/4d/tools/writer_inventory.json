@@ -1280,13 +1280,25 @@
    "measured": "2026-09-20",
    "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one."
   },
+    "staffing_mint_order_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_staffing_mint_order.json and nothing else, and `git status --porcelain` was otherwise identical before and after \u2014 not one committed byte moved, no person card was touched and no bucket's `filled` changed. T-1448. PENDING rather than manifest for the reason its two siblings staff_businesses_1835.py and seat_reconstructed_trades_1835.py are: it reads the compiled business layer, the staffing model and the order book and writes an adjudication beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one."
+    },
   "staff_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
       "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
     },
-    "supersede_arrival.py": {
+    "substitute_reconstruction.py": {
+      "placement": "not_a_writer",
+      "write_mode": "(none declared)",
+      "measured": "2026-09-20",
+      "finding": "Not a writer, and deliberately cannot become one: it reads what a new attested record would retire and prints the plan. Run BARE it printed the substitutable population and the liberty re-count, exited 0, and `git status --porcelain` was identical before and after \u2014 not one byte moved. There is no write mode to measure because there is no --build beside the dry run: a retirement runs through the retired record's OWN generator (reconstruct_businesses_1835.py, reconstruct_trade_households.py), which re-derives a whole population from the order book, and a second tool deleting one record would put the layer off the fixed point this gate holds it to. T-1441."
+    },
+  "supersede_arrival.py": {
       "placement": "not_a_writer",
       "write_mode": "(none declared)",
       "measured": "2026-09-19",

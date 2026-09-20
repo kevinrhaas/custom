@@ -4461,6 +4461,23 @@ step "every reconstructed business re-derives, and no invented style is a printe
 selftest "…and an unmapped class, a quota past its heads and a borrowed style are refused" \
   python3 tools/reconstruct_businesses_1835.py --self-test
 
+# T-1441, of T-1190 clause 2 and clause 3. AND WHETHER THE SUBSTITUTION PROMISE IS KEPT.
+# Every reconstructed record says what would retire it, and until now nothing could answer
+# that question with the parts of a retirement the record does NOT carry: the order-book row
+# that re-opens, the roof that is carried rather than demolished, the liberty whose count
+# moves. `--dry-run` reads that plan for a candidate source and writes nothing ever; this
+# holds the population it reads. Two assertions: every reconstructed firm and trade head
+# still states its own retirement, and each liberty entry's share of the 32 houses agrees
+# with the firms on disk. compile_liberties re-derives the POPULATION and cannot re-derive
+# the SHARE — a firm carries the ticket that built it and a liberty carries no ticket — so
+# a group rebuilt one house larger used to leave a word like FIFTEEN standing over sixteen.
+# docs/PROVENANCE.md § Substitution is the rule.
+step "every reconstruction says what retires it, and each liberty's share of the firms re-counts" \
+  python3 tools/substitute_reconstruction.py --check
+
+selftest "…and the match, the retirement plan and the share re-count each fire when broken" \
+  python3 tools/substitute_reconstruction.py --self-test
+
 # And what the town DOES with the register's `street_only` businesses (T-0354). The owner
 # ruled on 2026-08-29 that a business the paper places on a platted street and nothing
 # narrower adopts a reconstructed roof already standing on that street face;
@@ -4690,6 +4707,27 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
+
+# T-1448, of T-1434, of T-1189. THE MINT ORDER FOR THE SHOP HANDS — and the collision
+# that stopped the mint. The two passes above joined the houses to the people the
+# sources name and the people this programme had already drawn; what was left was to
+# MINT the rest, and the first question a mint has to answer is how many people it is
+# allowed to invent. This project has one answer to that — the reconstruction order
+# book — and set beside the staffing model it does not agree: the shops want 129 hands,
+# the book has 109 slots left, every hand wanted is a man where two fifths of those
+# slots are women's, and a fifth of the hands are boys of twelve to eighteen in a band
+# where the book has nothing outstanding at all.
+#
+# WHY A GATE. The order is arithmetic over two derived files that both move — the
+# staffing model re-cuts whenever a business record changes its occupation, and the
+# book re-cuts whenever the known layer does — so the numbers the owner is being asked
+# to rule on would go on reading as today's long after they stopped being true.
+# `--check` re-derives the whole order byte for byte.
+step "the 1835 staffing mint order re-derives, and spends no bucket it cannot reach" \
+  python3 tools/staffing_mint_order_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/staffing_mint_order_1835.py --self-test
 
 # T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
 # THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an
