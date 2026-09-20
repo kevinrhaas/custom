@@ -1,7 +1,7 @@
 ---
 id: T-1437
 title: Kinzie's Addition: the block grid between its committed corridors, its fifty-two read numerals stamped onto it, and the lots the sheet's own figures allow
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1194
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1561
 claimed_by: run 9/20/2026, 4:55:56 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T10:59:13.901Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35502972675
 ---
 
