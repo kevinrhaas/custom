@@ -1,7 +1,7 @@
 ---
 id: T-1424
 title: The houses of trade the census never enumerates: the livery stables and the lumber yards, built on the trade head as the order, with the river and transport trades adjudicated head by head
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1409
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1551
 claimed_by: run 9/19/2026, 11:45:57 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T05:44:39.690Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35489743452
 ---
 
