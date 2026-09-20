@@ -79,31 +79,23 @@ FAMILY_COLUMN = re.compile(r"^\W{0,4}(MARRIED|Married|DIED|Died)\b")
 # T-1172 closed on 2026-09-18 having re-admitted the roster, so by this file's own
 # rule -- a hand-off names the OPEN ticket whose field owns the finding -- every
 # hand-off that pointed at it moves on rather than pointing at finished work.
+# T-1423, 2026-09-20: AND THE RENAMING ENDS HERE. The tail below used to grow a paragraph
+# every time the named ticket closed. What it records now is that the renaming was never
+# the answer, and the unit waits on a document.
 HANDED_ON = (
-    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
-    "the reconstructed tier, under its own read name, in "
-    "data/reconstruction/1835_readmissions.json -- and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. The hand-off moved to "
-    "T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so by "
-    "this register's own rule it moves again -- to T-1394, the closeout that makes the "
-    "rebuild order a fixed point over every reader of the layer, which is where a "
-    "re-admission is finally reconciled against the index, the sidecars and the town "
-    "census; the re-admission's own `withdrawn_if` clause is what retires it before "
-    "then."
-    # T-1400. And T-1394 has now spent it in turn. Its three children -- T-1398 (the
-    # rebuild order made executable), T-1399 (one liberty entry per stage) and T-1400
-    # (the minting stage on the People view's own filter) -- are all done, so the
-    # RECONCILIATION this hand-off waited on has happened and the closeout cannot own an
-    # open question any longer. The unit stays `unresolved` for the reason it always
-    # did: what was reconciled is the layer, and what is unsettled is the EVIDENCE. So
-    # the hand-off moves one more time, by the same rule that moved it twice before.
-    " T-1394 HAS NOW SPENT IT IN TURN (2026-09-20): its three children T-1398, T-1399 "
-    "and T-1400 made the rebuild order a fixed point, wrote one liberty entry per stage "
-    "and put the minting stage on the People view's own filter, so the RECONCILIATION "
-    "this hand-off waited on is done -- and the unit is still `unresolved`, because what "
-    "was reconciled was the layer and what is unsettled is the EVIDENCE. A closeout that "
-    "has closed cannot own an open question, so the hand-off moves once more, to T-1423, "
-    "which owns exactly that remainder and nothing else.")
+    " T-1172 SPENT THE RE-ADMISSION (2026-09-18): the name is on the town at the "
+    "reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json, with its own `withdrawn_if` clause -- and "
+    "that settles nothing about the evidence, which is why this unit stays `unresolved`. "
+    "The pointer was then renamed to T-1179 and to T-1394 as each closed, and T-1394's "
+    "three children DID their work -- the rebuild order a fixed point, a liberty entry per "
+    "stage, the minting stage on the People view's filter -- while leaving this unit "
+    "exactly where it was: what they reconciled is the LAYER, and what is open is the "
+    "EVIDENCE. No ticket can close that, so this unit names none. What would reopen it is "
+    "stated in this rule's `awaiting_evidence`.")
+
+TWO_HAND_OFF_SHAPES = (
+    "A hand-off is not a spend, and it has two honest shapes (T-1423): a unit waiting on WORK names the open ticket whose field owns the finding, and that ticket closing turns this file red, which is the point; a unit waiting on EVIDENCE names no ticket at all and states `awaiting_evidence` -- the document that would reopen it -- because no ticket can produce a source nobody holds, and a pointer renamed at every closure records nothing but the closures.")
 
 RULES = {
     # ---- residents ---------------------------------------------------------------
@@ -444,16 +436,31 @@ RULES = {
         # three PRs sat dirty with no gate able to run on them. A hand-off pointing at a
         # split ticket blocks the whole queue, not just this file.
         #
-        # T-1394 is the heir: a direct child of T-1179, open, and the one that makes the
-        # rebuild order a fixed point over EVERY READER of the layer -- the index, the
-        # sidecars and the town census a re-admission is reconciled against. T-1392 and
-        # T-1393 are done, and T-1215 converges the TOWN a band later, not this layer.
-        "ticket": "T-1423",
+        # AND THE HEIR HAD AN HEIR, WHICH IS WHEN TO STOP (T-1423, 2026-09-20). T-1394's
+        # children T-1398, T-1399 and T-1400 all closed, having done real work: the rebuild
+        # order is a fixed point, one liberty entry per stage is written, the minting stage
+        # is on the People view's filter. These 69 units were not one document nearer
+        # settled for any of it, because what those tickets reconciled is the LAYER and what
+        # is open is the EVIDENCE. Renaming the pointer a fifth time would buy the same
+        # nothing at the same cost -- a red gate inside `rederive.mjs --run` the next time
+        # the named ticket closes. So this rule names NO ticket. It states
+        # `awaiting_evidence`: the document that would reopen the unit, gated by
+        # research_spend_ledger.py, which takes exactly one owner and refuses a wait that
+        # says nothing. The unit is still `unresolved` -- it just no longer claims a ticket
+        # is on it.
+        "awaiting_evidence": (
+            "A source beyond the post-office list that places this name at Chicago inside "
+            "the scene window -- a poll or tax roll, a deed, a church register line, a "
+            "directory entry, an old-settler recollection naming the person in the town."),
         "statement": (
             "The unit's own `letter_list_only` field is true: the name's whole evidence is "
             "that a letter waited for it at the Chicago post office. Whether a letter-list "
-            "name is a resident is the question of T-0660 -> T-0691, which is BLOCKED on "
-            "the owner, and NOTHING HERE INVENTS ITS OUTCOME. What is ruled is the only "
+            "name is a resident is the question of T-0660, and the owner RULED IT on "
+            "2026-09-18, option (c): refusals 7 and 8 are mint-time rules that do not "
+            "un-mint a standing record, nothing is retired, and the pass SAYS a collision "
+            "rather than acting on one. That ruling settles what the letter list may DO; it "
+            "decides no individual residency, and this unit is an individual. What is ruled "
+            "here is the only "
             "thing that can be ruled without it: the name was read and it is withheld from "
             "1835, and the borderline roster is exactly that -- every name the research "
             "read and withheld, with its source, its reason and its re-admission class, of "
@@ -1194,9 +1201,8 @@ def build_documents(root: Path = ROOT) -> dict[str, dict]:
                 "can never overturn an assertion, a later_only or a refusal the readings "
                 "themselves carry. NOTHING HERE EDITS A RESIDENT, MINTS A PERSON, MOVES A "
                 "CONFIDENCE OR INVENTS A CITATION, and nothing here decides the blocked "
-                "letter-list question of T-0660 -> T-0691. A hand-off is not a spend: it "
-                "names the open ticket whose field owns the finding, and that ticket "
-                "closing turns this file red, which is the point."),
+                "letter-list question of T-0660 -> T-0691. "
+                + TWO_HAND_OFF_SHAPES),
             "ticket": TICKET,
             "generated_by": "tools/spend_remainder_rulings.py",
             "counts": {rule: tally[rule] for rule in sorted(tally)},
@@ -1223,15 +1229,17 @@ def self_test() -> int:
             failures.append(f"rule {name}: states no rule")
         if rule["disposition"] not in L.RULING_DISPOSITIONS:
             failures.append(f"rule {name}: {rule['disposition']!r} is not a disposition a ruling may reach")
-        if rule["disposition"] == "unresolved" and not rule.get("ticket"):
-            failures.append(f"rule {name}: hands the unit on and names no ticket")
+        if rule["disposition"] == "unresolved":
+            failures.extend(L.unresolved_owner_faults(f"rule {name}", rule))
 
     # A hand-off may only name a ticket that is still live work, which is the invariant
     # that makes "owned" mean something. The ledger tests this too; testing it here says
-    # WHICH rule broke rather than which 90 units did.
+    # WHICH rule broke rather than which 90 units did. A rule that names no ticket at all
+    # is waiting on EVIDENCE and not on work (T-1423) -- there is no liveness to test, and
+    # `unresolved_owner_faults` above has already required it to say what it waits for.
     states = L.ticket_states(ROOT)
     for name, rule in sorted(RULES.items()):
-        if rule["disposition"] != "unresolved":
+        if rule["disposition"] != "unresolved" or not rule.get("ticket"):
             continue
         if states.get(rule["ticket"]) not in L.OPEN_TICKET_STATES:
             failures.append(f"rule {name}: hands on to {rule['ticket']}, which is "

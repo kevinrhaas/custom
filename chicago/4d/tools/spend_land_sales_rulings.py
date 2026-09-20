@@ -39,6 +39,9 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import research_spend_ledger as L  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = ROOT / "data" / "research" / "land_sales" / "records"
 CROSSWALK = ROOT / "data" / "research" / "land_sales" / "resident_crosswalk.json"
@@ -59,14 +62,33 @@ OUTSIDE_COOK = {
     "ST. LOUIS": "St. Louis, Missouri",
 }
 
+TWO_HAND_OFF_SHAPES = (
+    "A hand-off is not a spend, and it has two honest shapes (T-1423): a unit waiting "
+    "on WORK names the open ticket whose field owns the finding, and that ticket "
+    "closing turns this file red, which is the point; a unit waiting on EVIDENCE names "
+    "no ticket at all and states `awaiting_evidence` — the document that would reopen "
+    "it — because no ticket can produce a source nobody holds, and a pointer renamed at "
+    "every closure records nothing but the closures.")
+
 # T-1172 closed on 2026-09-18 having re-admitted the roster, so on this file's own
 # rule — a hand-off names the OPEN ticket whose field owns the finding — the hand-off
 # moves on again rather than pointing at finished work.
+# AND THEN IT MOVED TWICE MORE, WHICH IS THE ANSWER (T-1423, 2026-09-20). T-1179 was
+# split, so the pointer went to T-1394; T-1394's children closed, so it would have gone to
+# T-1423; and these 40 rows were no nearer settled at any point in that chain. They ask
+# whether a purchaser the register places in COOK COUNTY was in the TOWN on 1 July 1835,
+# and no ticket can answer it — only a document can. So the rule names no ticket now. It
+# states `awaiting_evidence` instead, which is what would reopen the unit, and
+# `research_spend_ledger.py` gates that: one owner, and a wait must say what it waits for.
 HANDED_ON = (
-    " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
-    "the reconstructed tier, under its own read name, in "
-    "data/reconstruction/1835_readmissions.json — and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. " + "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then. T-1394 HAS NOW SPENT IT IN TURN (2026-09-20): its three children T-1398, T-1399 and T-1400 made the rebuild order a fixed point, wrote one liberty entry per stage and put the minting stage on the People view's own filter, so the RECONCILIATION this hand-off waited on is done — and the unit is still `unresolved`, because what was reconciled was the layer and what is unsettled is the EVIDENCE. A closeout that has closed cannot own an open question, so the hand-off moves once more, to T-1423, which owns exactly that remainder and nothing else.")
+    " T-1172 SPENT THE RE-ADMISSION (2026-09-18): the name is on the town at the "
+    "reconstructed tier, under its own read name, in "
+    "data/reconstruction/1835_readmissions.json, with its own `withdrawn_if` clause — and "
+    "that settles nothing about the evidence, which is why this unit stays `unresolved`. "
+    "It waits on a document and not on a ticket: the hand-off was renamed three times "
+    "(T-1159, T-1172, T-1179/T-1394) as each named ticket closed, and none of those "
+    "closures brought a source any nearer. A county is not a town, and what would close "
+    "the gap is stated in this rule's `awaiting_evidence`.")
 
 RULES = {
     "the_purchaser_is_a_corporate_body": {
@@ -123,19 +145,16 @@ RULES = {
     },
     "the_cook_residence_names_a_withheld_person": {
         "disposition": "unresolved",
-        # T-1159 BUILT THE ROSTER, SO THE HAND-OFF MOVES ON. These rows were handed to
-        # T-1159 to be CARRIED, and they are: each one is a row of
-        # data/reconstruction/1835_borderline_roster.json in class
-        # `R2_in_window_single_source`. Carrying is not spending — a roster offers a name
-        # and mints nobody — so the unit is still unresolved, and it now names the ticket
-        # that will actually spend it: T-1172, which re-admits the roster's single-source
-        # names as reconstructed residents under their own read names. This file's own
-        # doc calls for exactly this: a hand-off names the OPEN ticket whose field owns
-        # the finding, and that ticket closing turns the file red.
-        # T-1179 was SPLIT on 2026-09-19 (T-1392/T-1393/T-1394), and a split ticket is
-        # not open, so the ledger's invariant refused it and the PR lap stopped pushing.
-        # T-1394 is the open heir that reconciles a re-admission against the layer.
-        "ticket": "T-1423",
+        "awaiting_evidence": (
+            "A source that narrows COOK to the town: a deed, plat or tax entry putting this "
+            "purchaser on a Chicago lot, a directory or church register line naming them "
+            "there, or a town roll under a name reading the crosswalk can reach."),
+        # T-1159 BUILT THE ROSTER, SO THE HAND-OFF MOVED ON — four times, and the fourth
+        # move is the one that admits what the first three were. These rows are each a row
+        # of data/reconstruction/1835_borderline_roster.json in class
+        # `R2_in_window_single_source`, and T-1172 re-admitted every one of them. Carrying
+        # is not spending and re-admitting is not evidence, so the unit stayed unresolved
+        # through T-1159, T-1172, T-1179 and T-1394 alike. It is not waiting on a ticket.
         "statement": (
             "The tract was entered on or before 1 July 1835, the register's Residence "
             "column reads COOK, and no upheld crosswalk join puts this purchaser on a card "
@@ -329,9 +348,8 @@ def build_document() -> dict:
             "otherwise leave a unit open, so a ruling here can only close a unit nothing "
             "else has closed and can never overturn an assertion, a later_only or a refusal "
             "the readings themselves carry. NOTHING HERE EDITS A RESIDENT, MINTS A PERSON, "
-            "MOVES A CONFIDENCE OR REOPENS AN IDENTITY THE CROSSWALK RULED. A hand-off is "
-            "not a spend: it names the open ticket whose field owns the finding, and that "
-            "ticket closing turns this file red, which is the point. `spent` is that "
+            "MOVES A CONFIDENCE OR REOPENS AN IDENTITY THE CROSSWALK RULED. "
+            + TWO_HAND_OFF_SHAPES + " `spent` is that "
             "having happened: a rule whose units a later pass wrote onto the cards is "
             "recorded there and is NOT ruled here, because a ruling on a unit something "
             "else already closed reads as work done and is not."),
@@ -404,8 +422,8 @@ def self_test() -> int:
     for name, rule in sorted(RULES.items()):
         if len(rule["statement"].strip()) < 40:
             failures.append(f"rule {name}: states no rule")
-        if rule["disposition"] == "unresolved" and not rule.get("ticket"):
-            failures.append(f"rule {name}: hands the unit on and names no ticket")
+        if rule["disposition"] == "unresolved":
+            failures.extend(L.unresolved_owner_faults(f"rule {name}", rule))
 
     doc = build_document()
     if len(doc["rulings"]) != len({r["unit"] for r in doc["rulings"]}):

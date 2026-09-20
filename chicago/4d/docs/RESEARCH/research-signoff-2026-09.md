@@ -14,7 +14,7 @@ The companion report is `research-closing-audit-2026-09.md` (T-1241), which read
 | --- | ---: | ---: |
 | **C1** — Every registered reading unit carries one of the six durable dispositions | yes | T-1143 |
 | **C2** — Every asserted unit lands on a field that exists on the record it names | yes | T-1143 |
-| **C3** — Every unresolved unit defers to a ticket that is still live | yes | T-1143 |
+| **C3** — Every unresolved unit defers to a ticket that is still live, or states the evidence that would reopen it | yes | T-1143 |
 | **C4** — The resident synthesizer stands zero files from the cards it writes | yes | T-0838 |
 | **C5** — No role row claims 1 July 1835 without a source that describes it | yes | T-1145 |
 | **C6** — Every person working in the window resolves to a workplace or says why none does | yes | T-1147 |
@@ -46,14 +46,23 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | --- | ---: | ---: | ---: |
 | T-1190 | 601 | open | yes |
 | T-1198 | 298 | open | yes |
-| T-1423 | 266 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1189 | 12 | open | yes |
 | T-1354 | 6 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1190 (601), T-1198 (298), T-1423 (266), T-1335 (169), T-1189 (12) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1190 (601), T-1198 (298), T-1335 (169), T-1189 (12), T-1354 (6) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+
+**266** further unresolved unit(s) name no ticket at all, because no ticket can settle them: they are names the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, and what is open is whether the person was in the town on 1 July 1835. Each states the document that would reopen it (T-1423):
+
+| Units | Reopened by |
+| --- | ---: |
+| 83 | A printing of the 1832 muster that gives the surname this index omits — the original rolls, a company return, a pay or pension record — without which there is nothing for a surname-indexed roll to be compared against at all. |
+| 69 | A source beyond the post-office list that places this name at Chicago inside the scene window -- a poll or tax roll, a deed, a church register line, a directory entry, an old-settler recollection naming the person in the town. |
+| 40 | A source that narrows COOK to the town: a deed, plat or tax entry putting this purchaser on a Chicago lot, a directory or church register line naming them there, or a town roll under a name reading the crosswalk can reach. |
+| 38 | A source that follows this man from the 1832 enrollment to the scene date — a muster roll giving his residence, a pension file, a land entry, or a town roll under a name reading the crosswalk can reach. |
+| 36 | A source that reaches this name where the rolls cannot: a deed, plat or directory entry putting the person on town ground, a church register line, or a forename reading that separates the surname bearers the crosswalk refused to choose between. |
 
 | The town as the layer holds it | Count |
 | --- | ---: |

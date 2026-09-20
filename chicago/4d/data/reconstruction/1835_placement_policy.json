@@ -183,13 +183,13 @@
         "evidence_records": 12,
         "standing_with_a_street": 12,
         "by_street_class": {
-          "principal": 12,
+          "principal": 11,
           "ordinary": 0,
-          "light": 0
+          "light": 1
         },
         "on_the_street_line": 11,
         "setback_m_min": -12.1,
-        "setback_m_max": 74.38
+        "setback_m_max": 4.16
       }
     },
     {
@@ -266,13 +266,13 @@
         "evidence_records": 5,
         "standing_with_a_street": 4,
         "by_street_class": {
-          "principal": 2,
+          "principal": 1,
           "ordinary": 2,
-          "light": 0
+          "light": 1
         },
         "on_the_street_line": 3,
         "setback_m_min": -0.56,
-        "setback_m_max": 97.08
+        "setback_m_max": 45.85
       }
     },
     {
@@ -304,13 +304,13 @@
         "evidence_records": 4,
         "standing_with_a_street": 4,
         "by_street_class": {
-          "principal": 1,
+          "principal": 0,
           "ordinary": 3,
-          "light": 0
+          "light": 1
         },
         "on_the_street_line": 1,
         "setback_m_min": -11.45,
-        "setback_m_max": 153.35
+        "setback_m_max": 60.79
       }
     },
     {
@@ -349,9 +349,9 @@
           "ordinary": 0,
           "light": 1
         },
-        "on_the_street_line": 0,
-        "setback_m_min": 9.31,
-        "setback_m_max": 93.05
+        "on_the_street_line": 1,
+        "setback_m_min": 0.85,
+        "setback_m_max": 9.31
       }
     },
     {
@@ -428,7 +428,7 @@
         },
         "on_the_street_line": 1,
         "setback_m_min": -1.98,
-        "setback_m_max": 153.62
+        "setback_m_max": 59.84
       }
     },
     {
@@ -508,12 +508,12 @@
         "standing_with_a_street": 4,
         "by_street_class": {
           "principal": 0,
-          "ordinary": 2,
-          "light": 2
+          "ordinary": 4,
+          "light": 0
         },
         "on_the_street_line": 0,
-        "setback_m_min": 59.84,
-        "setback_m_max": 326.83
+        "setback_m_min": 11.32,
+        "setback_m_max": 80.93
       }
     },
     {
@@ -549,13 +549,13 @@
         "evidence_records": 9,
         "standing_with_a_street": 9,
         "by_street_class": {
-          "principal": 1,
-          "ordinary": 4,
-          "light": 4
+          "principal": 0,
+          "ordinary": 6,
+          "light": 3
         },
-        "on_the_street_line": 4,
-        "setback_m_min": -3.97,
-        "setback_m_max": 390.43
+        "on_the_street_line": 5,
+        "setback_m_min": -8.4,
+        "setback_m_max": 61.77
       }
     },
     {
@@ -588,12 +588,12 @@
         "standing_with_a_street": 4,
         "by_street_class": {
           "principal": 1,
-          "ordinary": 1,
-          "light": 2
+          "ordinary": 3,
+          "light": 0
         },
         "on_the_street_line": 1,
         "setback_m_min": 0.59,
-        "setback_m_max": 411.95
+        "setback_m_max": 144.13
       }
     },
     {
@@ -624,19 +624,19 @@
         "standing_with_a_street": 4,
         "by_street_class": {
           "principal": 0,
-          "ordinary": 0,
-          "light": 4
+          "ordinary": 4,
+          "light": 0
         },
         "on_the_street_line": 0,
-        "setback_m_min": 332.74,
-        "setback_m_max": 371.74
+        "setback_m_min": 32.78,
+        "setback_m_max": 66.04
       }
     }
   ],
   "coverage": {
     "documented_roofs_with_a_family": 77,
-    "conforming": 55,
-    "outliers": 22,
+    "conforming": 59,
+    "outliers": 18,
     "by_family": {
       "A1": [
         "ancillary_behind_its_own_roof"
@@ -713,179 +713,152 @@
     {
       "id": "blacksmith_shop_state_st",
       "family": "W1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 97.08,
+      "street": "wolcott",
+      "class": "light",
+      "setback_m": 45.85,
       "measured": [
-        "stands 97.08 m off the street line (2.71 m), and mechanics_streets puts it on the line"
+        "stands 45.85 m off the street line (2.71 m), and mechanics_streets puts it on the line",
+        "stands on a light street, which mechanics_streets avoids"
       ],
-      "reason": "the GOVERNMENT smithy, not a mechanic's: it belongs to the agency establishment the 1821 treaty obliged the United States to keep at Chicago, and it stands in the north-side cluster round Cobweb Castle. South Water is the nearest committed line at 97 m only because it runs along the far side of the channel. The record is flagged review_required and nothing here seats it."
+      "reason": "the GOVERNMENT smithy, not a mechanic's: it belongs to the agency establishment the 1821 treaty obliged the United States to keep at Chicago, and it stands in the north-side cluster round Cobweb Castle. Since T-1191 put the north bank's own corridors in the reading it is nearest Wolcott at 45.85 m rather than South Water at 97 m across the channel — a truer line and still not a frontage. The record is flagged review_required and nothing here seats it."
     },
     {
       "id": "brickyard_north_side",
       "family": "F4",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 88.71,
+      "street": "clark_north",
+      "class": "light",
+      "setback_m": 31.43,
       "measured": [
-        "stands 88.71 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 31.43 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
-      "reason": "the clay is where the clay is. A brickyard is seated by its material and not by its frontage, 89 m off the South Water line on the north bank."
+      "reason": "the clay is where the clay is. A brickyard is seated by its material and not by its frontage — 31.43 m off Clark Street's north-bank corridor since T-1191, and 89 m off South Water's line across the river before it."
     },
     {
       "id": "chicago_lighthouse_1832",
       "family": "I3",
-      "street": "state",
-      "class": "light",
-      "setback_m": 264.72,
+      "street": "kinzie",
+      "class": "ordinary",
+      "setback_m": 61.77,
       "measured": [
-        "stands 264.72 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
+        "stands 61.77 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
       ],
       "reason": "at the river mouth on the federal reserve — a lighthouse is seated by the harbour and not by a street."
     },
     {
       "id": "council_house",
       "family": "I3",
-      "street": "state",
-      "class": "light",
-      "setback_m": 223.19,
+      "street": "kinzie",
+      "class": "ordinary",
+      "setback_m": 7.91,
       "measured": [
-        "stands 223.19 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
+        "stands 7.91 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
       ],
       "reason": "on the lakefront reservation ground east of the platted town."
     },
     {
-      "id": "fort_dearborn_out_building_a",
-      "family": "A5",
-      "street": "lake",
-      "class": "principal",
-      "setback_m": 312.17,
-      "measured": [
-        "stands on a principal street, which ancillary_behind_its_own_roof avoids"
-      ],
-      "reason": "inside the unplatted military reservation, 312 m from the Lake Street centreline: the ancillary clause's 'behind its own roof' is a statement about a platted lot and there is no lot here."
-    },
-    {
-      "id": "fort_dearborn_out_building_b",
-      "family": "A5",
-      "street": "lake",
-      "class": "principal",
-      "setback_m": 322.71,
-      "measured": [
-        "stands on a principal street, which ancillary_behind_its_own_roof avoids"
-      ],
-      "reason": "inside the unplatted military reservation, 323 m from the Lake Street centreline, as its pair."
-    },
-    {
       "id": "fort_dearborn_shop",
       "family": "W4",
-      "street": "state",
-      "class": "light",
-      "setback_m": 381.57,
+      "street": "kinzie",
+      "class": "ordinary",
+      "setback_m": 157.87,
       "measured": [
-        "stands 381.57 m off the street line (2.71 m), and mechanics_streets puts it on the line",
-        "stands on a light street, which mechanics_streets avoids"
+        "stands 157.87 m off the street line (2.71 m), and mechanics_streets puts it on the line"
       ],
-      "reason": "inside the unplatted military reservation, 381 m from the State Street centreline: the garrison's own workshop, not a mechanic's shop on a street."
+      "reason": "inside the unplatted military reservation: the garrison's own workshop, not a mechanic's shop on a street. The nearest committed corridor is now Kinzie's at 157.87 m, on the far bank, which is no more its frontage than State's 381 m was."
     },
     {
       "id": "fort_dearborn_us_factors_house",
       "family": "C2",
-      "street": "lake",
-      "class": "principal",
-      "setback_m": 287.59,
+      "street": "kinzie",
+      "class": "ordinary",
+      "setback_m": 194.48,
       "measured": [
-        "stands 287.59 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 194.48 m off the street line (2.71 m), and commercial_front puts it on the line"
       ],
       "reason": "inside the unplatted military reservation — see the garrison clause. No street crossed the reservation in 1835."
     },
     {
       "id": "kinzie_hunter_warehouse",
       "family": "F1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 74.38,
+      "street": "market_north",
+      "class": "light",
+      "setback_m": 4.16,
       "measured": [
-        "stands 74.38 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 4.16 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
-      "reason": "on the north bank of the main river: its frontage is the WATER, which is what a forwarding warehouse wants, and the street class beside it is the south-side line across the channel."
+      "reason": "on the north bank of the main river: its frontage is the WATER, which is what a forwarding warehouse wants. Since T-1191 the line beside it is Market Street's north-bank corridor at 4.16 m rather than South Water's across the channel, and standing that close to a light back street is not taking its face."
     },
     {
       "id": "miller_house",
       "family": "C4",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 138.22,
+      "street": "market_north",
+      "class": "light",
+      "setback_m": 60.66,
       "measured": [
-        "stands 138.22 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 60.66 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
-      "reason": "on the north bank. South Water is the nearest committed centreline only because it runs along the far side of the river from it."
-    },
-    {
-      "id": "miller_tannery",
-      "family": "W5",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 153.35,
-      "measured": [
-        "stands on a principal street, which heavy_and_noxious_trades avoids"
-      ],
-      "reason": "the settlement's first factory, placed by Andreas's 'just north of Miller's tavern' — against another RECORD rather than against a street. It stands on the north bank 153 m from South Water's line, which is the clause's own river ground; the principal class beside it is the nearest committed centreline across the channel and not a frontage it takes."
+      "reason": "on the north bank, at the forks. It is nearest Market Street's north-bank corridor at 60.66 m since T-1191 and was nearest South Water's line at 138 m across the river before it; neither is a face this house takes."
     },
     {
       "id": "north_bank_shed_dearborn_e1",
       "family": "F1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 94.91,
+      "street": "dearborn_north",
+      "class": "light",
+      "setback_m": -6.63,
       "measured": [
-        "stands 94.91 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands on a light street, which commercial_front avoids"
       ],
       "reason": "a north-bank freight shed: its frontage is the water."
     },
     {
       "id": "north_bank_shed_dearborn_e2",
       "family": "F1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 95.58,
+      "street": "dearborn_north",
+      "class": "light",
+      "setback_m": 8.46,
       "measured": [
-        "stands 95.58 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 8.46 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
       "reason": "a north-bank freight shed: its frontage is the water."
     },
     {
       "id": "north_bank_shed_dearborn_e3",
       "family": "F1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 96.18,
+      "street": "dearborn_north",
+      "class": "light",
+      "setback_m": 20.13,
       "measured": [
-        "stands 96.18 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 20.13 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
       "reason": "a north-bank freight shed: its frontage is the water."
     },
     {
       "id": "north_bank_shed_dearborn_w",
       "family": "F1",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 93.79,
+      "street": "dearborn_north",
+      "class": "light",
+      "setback_m": 6.33,
       "measured": [
-        "stands 93.79 m off the street line (2.71 m), and commercial_front puts it on the line"
+        "stands 6.33 m off the street line (2.71 m), and commercial_front puts it on the line",
+        "stands on a light street, which commercial_front avoids"
       ],
       "reason": "a north-bank freight shed: its frontage is the water."
     },
     {
       "id": "north_side_school_1833",
       "family": "I2",
-      "street": "south_water",
-      "class": "principal",
-      "setback_m": 89.57,
+      "street": "clark_north",
+      "class": "light",
+      "setback_m": 4.32,
       "measured": [
-        "stands 89.57 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
+        "stands 4.32 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
       ],
-      "reason": "the north-side school, 90 m off the South Water line across the river."
+      "reason": "the north-side school, 4.32 m off Clark Street's north-bank corridor since T-1191 and 90 m off the South Water line across the river before it. The institutional clause puts a named institution on its line and this one stands back off a light street, which is where the school house was built."
     },
     {
       "id": "robert_kinzie_store",
@@ -902,13 +875,13 @@
     {
       "id": "steamboat_hotel",
       "family": "T2",
-      "street": "state",
-      "class": "light",
-      "setback_m": 202.51,
+      "street": "kinzie",
+      "class": "ordinary",
+      "setback_m": 20.47,
       "measured": [
-        "stands 202.51 m off the street line (2.71 m), and lodging_near_the_landings puts it on the line"
+        "stands 20.47 m off the street line (2.71 m), and lodging_near_the_landings puts it on the line"
       ],
-      "reason": "north division, which in July 1835 has almost no committed street control: State is simply the nearest line, 203 m off, and the hotel fronts nothing this project has yet platted."
+      "reason": "north division. Until T-1191 State was simply the nearest line, 203 m off across the river; the hotel is now read against Kinzie at 20.47 m, which is a real north-bank line and still a setback no lodging clause allows."
     },
     {
       "id": "walker_meeting_house",
@@ -920,17 +893,6 @@
         "stands 48.04 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
       ],
       "reason": "on the west ground 48 m off the Canal line, at the edge of what was platted."
-    },
-    {
-      "id": "watkins_school_house",
-      "family": "I2",
-      "street": "state",
-      "class": "light",
-      "setback_m": 390.43,
-      "measured": [
-        "stands 390.43 m off the street line (2.71 m), and institutions_stand_where_named puts it on the line"
-      ],
-      "reason": "390 m from the State Street centreline in the north division — the same absence of street control as the Steamboat Hotel, not a placement."
     },
     {
       "id": "wolf_point_tavern",
