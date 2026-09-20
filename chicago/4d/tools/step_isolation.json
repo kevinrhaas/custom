@@ -2178,7 +2178,7 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build f4f49c147 · Sep 20, 2026, 7:34 AM CT"
+        "- ../../site/chicago/4d/walk/index.html build 9bb14f977 · Sep 20, 2026, 7:51 AM CT"
       ]
     },
     "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-dev-preview.mjs": {
@@ -3229,14 +3229,7 @@
       "wrote": []
     },
     "tools/ticket.mjs": {
-      "wrote": [
-        "chicago/4d/tickets/BOARD.md",
-        "chicago/4d/tickets/tickets.json",
-        "site/chicago/4d/tickets.json"
-      ],
-      "wrote_by": [
-        "/home/runner/work/polecat-platform/polecat-platform/custom-repo/chicago/4d/tools/ticket.mjs board"
-      ]
+      "wrote": []
     },
     "tools/tiebreak.py": {
       "wrote": []
