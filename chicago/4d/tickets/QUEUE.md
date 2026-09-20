@@ -236,4 +236,3 @@ T-1435 — The in-window crosswalk still hands its lawyer and physician shortfal
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1439 — The order book reports a false delta of ten institutional roofs: programme_deltas reads the town model's institutional HIGH end, which includes the fort's ten principal roofs, against district_group_matrix.institutional_public alone — and the boarding-house row beside it compares that matrix with a figure read off the same matrix, so it can never disagree
-
