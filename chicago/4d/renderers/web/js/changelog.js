@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Most of this town was invented, and the list now says how', kind: 'feature', ts: '',
+  { v: 1005, title: 'Most of this town was invented, and the list now says how', kind: 'feature', ts: '2026-09-20T05:12:53.460Z', date: 'Sep 20, 2026, 12:12 AM CT',
     items: [
       'The People list holds 3,228 names and 1,943 of them are people no source mentions. That was already on every row \u2014 the dot beside a name says reconstructed, and the card underneath says what the invention rests on and what would replace it. What the list could not tell you was which KIND of invention, and there are nine of them.',
       'A private of the 5th Infantry is drawn against the establishment the Act of 2 March 1821 fixes for an infantry company, and a muster roll for 1835 would retire the whole garrison in one stroke. A visitor of the season is drawn against a bounded cohort and was going home on the next boat. A wife is drawn because a household size counted her and no source wrote her name down. A lodger is drawn against a bed in a boarding house that really stood. Those are four different claims, retired by four different pieces of paper, and the list showed them with one word.',
