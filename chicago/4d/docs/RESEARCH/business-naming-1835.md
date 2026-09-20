@@ -136,7 +136,7 @@ perfumery* print it.
 |---|---|---|---|
 | north | *Bardwell's boarding house* | `rc_bardwell_esther` | `recon_1835_north_h1_007` |
 | north | *Newell's boarding house* | `rc_newell_lydia` | `recon_1835_north_h2_030` |
-| north | *Ellen Cavanagh's boarding house* | `rc_cavanagh_ellen` | `recon_1835_north_h3_045` |
+| north | *Ellen Cavanagh's boarding house* | `rc_cavanagh_ellen` | `recon_1835_north_h2_045` |
 | west | *Martin Fitzgerald's boarding house* | `rc_fitzgerald_martin` | `recon_1835_west_006` |
 
 Two things are different here from the druggists above, and both follow from the same fact:

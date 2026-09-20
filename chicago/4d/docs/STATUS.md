@@ -2780,7 +2780,7 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
    `inf_*` are excluded outright. Putting a documented firm into an invented roof is a decision
    T-0263 makes deliberately, with the adoption written down; making it by string match is how an
    invention gets laundered into the documented layer. `Kinzie Hall` had matched
-   `recon_1835_north_i2_015` on the word "hall".
+   `recon_1835_north_d4_015` on the word "hall".
 
 5. **A word in the record is not a surname in the record** (T-1042). The pools these guards back
    are word SETS, so any capitalised word in a building's prose could satisfy a required surname:
@@ -2892,7 +2892,7 @@ changes; the 662 roofs are the same 662 roofs, re-typed.
 
 **Why the South pays and no one else.** Six of the North's seven freight roofs are documented
 pre-existing records — Kinzie & Hunter's warehouse, the four north-bank sheds at the Dearborn reach,
-the north-side brickyard — and the seventh, `recon_1835_north_f1_022`, was dealt by a parcel that ran
+the north-side brickyard — and the seventh, `recon_1835_north_h2_022`, was dealt by a parcel that ran
 before anything measured this. Against them the South's freight cell holds seventeen authored slots
 of which five stand: twelve are unbuilt and unnamed. **An authored slot yields to a documented
 record** — the principle T-0032 established when it held the institutional row to the named census —
@@ -3344,10 +3344,10 @@ roofs they have room for. Two do not, and both are in the North Division:
 Six of the seven North freight roofs are **documented pre-existing records** — Kinzie & Hunter's
 warehouse, the four north-bank sheds at the Dearborn reach, the north-side brickyard — so the breach
 is not an invention that can be removed. It is a row authored without the north bank's river-freight
-fabric in view. The seventh is `recon_1835_north_f1_022`, dealt by a parcel that ran before anything
+fabric in view. The seventh is `recon_1835_north_h2_022`, dealt by a parcel that ran before anything
 measured this. The institutional cell is a narrower thing: T-0032 set that row to the NAMED census and
 `measure_institutional_claims.py` holds it there, while this counts every roof that stands — so the
-two gates disagree by exactly `recon_1835_north_i2_015`, the one anonymous school **L93** records as a
+two gates disagree by exactly `recon_1835_north_d4_015`, the one anonymous school **L93** records as a
 liberty taken rather than deleted. Both readings are right for their own question.
 
 **What the breach was costing, which nothing anywhere stated.** `reconcile_665.py` clamps the negative

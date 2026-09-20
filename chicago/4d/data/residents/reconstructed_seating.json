@@ -2180,7 +2180,7 @@
     {
       "person_id": "rc_cavanagh_ellen",
       "person_name": "Ellen Cavanagh",
-      "household_id": "hh_lodging_recon_1835_north_h3_045",
+      "household_id": "hh_lodging_recon_1835_north_h2_045",
       "kind": "keeps_their_own_house",
       "trade": "boarding_house_keeper",
       "premises": "own_premises",
@@ -7716,7 +7716,7 @@
     {
       "person_id": "rc_kellogg_luther",
       "person_name": "Luther Kellogg",
-      "household_id": "hh_lodging_recon_1835_north_t1_028",
+      "household_id": "hh_lodging_recon_1835_north_h2_028",
       "kind": "seated",
       "trade": "tavern_keeper",
       "premises": "own_premises",

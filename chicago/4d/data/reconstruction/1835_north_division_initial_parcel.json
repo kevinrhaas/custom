@@ -52,41 +52,29 @@
   },
   "inventory": {
     "roof_total": 60,
-    "principal_functional": 45,
-    "ancillary": 15,
+    "principal_functional": 44,
+    "ancillary": 16,
     "share_of_north_district_target": 0.4,
     "north_district_target": 150,
     "group_totals": {
-      "ordinary_dwellings": 33,
-      "larger_boarding_houses": 3,
-      "stores_mixed_use": 3,
-      "inns_taverns": 1,
-      "workshops": 3,
-      "warehouses_freight": 1,
-      "institutional_public": 1,
-      "barns_stables": 7,
+      "ordinary_dwellings": 38,
+      "larger_boarding_houses": 5,
+      "workshops": 1,
+      "barns_stables": 8,
       "small_outbuildings": 8
     },
     "family_totals": {
       "D1": 6,
       "D2": 4,
-      "D3": 7,
-      "D4": 7,
+      "D3": 8,
+      "D4": 10,
       "D5": 5,
-      "D6": 3,
+      "D6": 4,
       "D7": 1,
       "H1": 1,
-      "H2": 1,
-      "H3": 1,
-      "C1": 2,
-      "C2": 1,
-      "T1": 1,
-      "W1": 1,
-      "W2": 1,
+      "H2": 4,
       "W5": 1,
-      "F1": 1,
-      "I2": 1,
-      "A1": 4,
+      "A1": 5,
       "A2": 3,
       "A3": 3,
       "A4": 3,
@@ -203,10 +191,10 @@
     ],
     [
       5,
-      "w2_005",
+      "d4_005",
       630,
       155,
-      "W2",
+      "D4",
       "principal_functional",
       20,
       30,
@@ -290,7 +278,7 @@
       10,
       180,
       "north_water_west",
-      "nw_w2_005_yard"
+      "nw_d4_005_yard"
     ],
     [
       12,
@@ -333,10 +321,10 @@
     ],
     [
       15,
-      "i2_015",
+      "d4_015",
       555,
       350,
-      "I2",
+      "D4",
       "principal_functional",
       18,
       26,
@@ -372,13 +360,13 @@
     ],
     [
       18,
-      "w1_018",
+      "d4_018",
       800,
       180,
-      "W1",
+      "D4",
       "principal_functional",
       18,
-      28,
+      27,
       180,
       "wolcott_kinzie_core",
       null
@@ -398,10 +386,10 @@
     ],
     [
       20,
-      "c1_020",
+      "d3_020",
       890,
       180,
-      "C1",
+      "D3",
       "principal_functional",
       18,
       26,
@@ -424,10 +412,10 @@
     ],
     [
       22,
-      "f1_022",
+      "h2_022",
       875,
       225,
-      "F1",
+      "H2",
       "principal_functional",
       22,
       40,
@@ -489,23 +477,23 @@
     ],
     [
       27,
-      "c2_027",
+      "d6_027",
       900,
       300,
-      "C2",
+      "D6",
       "principal_functional",
       20,
-      32,
+      30,
       180,
       "wolcott_kinzie_core",
       null
     ],
     [
       28,
-      "t1_028",
+      "h2_028",
       930,
       345,
-      "T1",
+      "H2",
       "principal_functional",
       24,
       36,
@@ -602,7 +590,7 @@
       12,
       180,
       "wolcott_kinzie_core",
-      "wk_w1_018_yard"
+      "wk_d4_018_yard"
     ],
     [
       36,
@@ -723,13 +711,13 @@
     ],
     [
       45,
-      "h3_045",
+      "h2_045",
       945,
       365,
-      "H3",
+      "H2",
       "principal_functional",
-      32,
-      48,
+      30,
+      42,
       0,
       "rush_east_fringe",
       null
@@ -749,11 +737,11 @@
     ],
     [
       47,
-      "c1_047",
+      "a1_047",
       1290,
       340,
-      "C1",
-      "principal_functional",
+      "A1",
+      "ancillary",
       18,
       26,
       0,
@@ -784,7 +772,7 @@
       10,
       0,
       "rush_east_fringe",
-      "re_c1_047_yard"
+      "re_a1_047_yard"
     ],
     [
       50,
@@ -938,5 +926,209 @@
     "Do not interpret a cadastral lot line as evidence that a roof existed. Empty frontage is an affirmative reconstruction requirement.",
     "A newly documented named North Division roof substitutes for the closest anonymous family and inventory class; it does not increase the 665-roof total.",
     "Run polygon collision, terrain coverage, water-mask, and existing-structure exclusion tests before converting this recipe into structure records."
-  ]
+  ],
+  "migrated": {
+    "on": "2026-09-20",
+    "ticket": "T-1480",
+    "adjudicated_by": "T-1445",
+    "executed_under": "T-1451",
+    "ledger": "data/reconstruction/1835_roof_redeal.json",
+    "why": "THE SAME 60 ROOFS STAND AND NINE OF THEM ARE CALLED SOMETHING ELSE. T-1445 adjudicated the town's 285 anonymous roofs and returned 32 refamily verdicts; T-1451 carried out the six whose ids do not move. These nine are the North Division's, and `generate_north_infill` builds a record's id out of its family and sequence, so refamilying one RENAMES it and every committed file that names it --- the sidecars, the liberties, the signage and trade goods, the lodging model and the lodgers seated under two of these roofs, the reconstructed seating, the business layer and the boarding house authored over `..._h3_045`, the hay limits, the Newberry leads, the land-sale ground index, the asset manifests and the two GLBs per roof. NOTHING IS ADJUDICATED HERE: every family below is the `to_family` T-1445 reached and every reason beside it is T-1445's own, quoted. The parcel still builds 60 roofs at the same coordinates, rotations and clusters. What moves is which family stands where, THREE FOOTPRINTS that the family they join cannot carry at the depth they had --- `..._c2_027` 20x32 to 20x30 ft, `..._w1_018` 18x28 to 18x27 ft, and `..._h3_045` 32x48 to the 30x42 ft ceiling of the H2 band --- and ONE INVENTORY CLASS: `..._c1_047` is moved from a store to a stable and a stable is ancillary, so the parcel's mix is recounted from 45/15 to 44/16 rather than the class being held to keep an old total. Three yards named after a migrated roof are renamed with it. Everything here is still conjectural exactly as it was --- that any building stood on this ground, which building it was, and every dimension of it. Recorded in docs/LIBERTIES.md.",
+    "yard_groups_renamed": {
+      "nw_w2_005_yard": "nw_d4_005_yard",
+      "re_c1_047_yard": "re_a1_047_yard",
+      "wk_w1_018_yard": "wk_d4_018_yard"
+    },
+    "roofs": [
+      {
+        "was_id": "recon_1835_north_c1_020",
+        "id": "recon_1835_north_d3_020",
+        "sequence": 20,
+        "was": "C1",
+        "now": "D3",
+        "was_group": "stores_mixed_use",
+        "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 47.61 m off the street line (2.71 m), and commercial_front puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_c1_047",
+        "id": "recon_1835_north_a1_047",
+        "sequence": 47,
+        "was": "C1",
+        "now": "A1",
+        "was_group": "stores_mixed_use",
+        "now_group": "barns_stables",
+        "was_footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "ancillary",
+        "why": "the placement policy refuses this family here — stands 34.50 m off the street line (2.71 m), and commercial_front puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_c2_027",
+        "id": "recon_1835_north_d6_027",
+        "sequence": 27,
+        "was": "C2",
+        "now": "D6",
+        "was_group": "stores_mixed_use",
+        "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          20,
+          32
+        ],
+        "footprint_ft": [
+          20,
+          30
+        ],
+        "footprint_moved": true,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 28.78 m off the street line (2.71 m), and commercial_front puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_f1_022",
+        "id": "recon_1835_north_h2_022",
+        "sequence": 22,
+        "was": "F1",
+        "now": "H2",
+        "was_group": "warehouses_freight",
+        "now_group": "larger_boarding_houses",
+        "was_footprint_ft": [
+          22,
+          40
+        ],
+        "footprint_ft": [
+          22,
+          40
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 9.36 m off the street line (2.71 m), and commercial_front puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_h3_045",
+        "id": "recon_1835_north_h2_045",
+        "sequence": 45,
+        "was": "H3",
+        "now": "H2",
+        "was_group": "larger_boarding_houses",
+        "now_group": "larger_boarding_houses",
+        "was_footprint_ft": [
+          32,
+          48
+        ],
+        "footprint_ft": [
+          30,
+          42
+        ],
+        "footprint_moved": true,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 6.53 m off the street line (2.71 m), and lodging_near_the_landings puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_i2_015",
+        "id": "recon_1835_north_d4_015",
+        "sequence": 15,
+        "was": "I2",
+        "now": "D4",
+        "was_group": "institutional_public",
+        "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_ft": [
+          18,
+          26
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the north division stands 1 roof(s) over its institutional_public row, and this is one the order book has no occupant class for where it stands; the position is wanted and the kind is not"
+      },
+      {
+        "was_id": "recon_1835_north_t1_028",
+        "id": "recon_1835_north_h2_028",
+        "sequence": 28,
+        "was": "T1",
+        "now": "H2",
+        "was_group": "inns_taverns",
+        "now_group": "larger_boarding_houses",
+        "was_footprint_ft": [
+          24,
+          36
+        ],
+        "footprint_ft": [
+          24,
+          36
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 27.49 m off the street line (2.71 m), and lodging_near_the_landings puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_w1_018",
+        "id": "recon_1835_north_d4_018",
+        "sequence": 18,
+        "was": "W1",
+        "now": "D4",
+        "was_group": "workshops",
+        "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          18,
+          28
+        ],
+        "footprint_ft": [
+          18,
+          27
+        ],
+        "footprint_moved": true,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 12.28 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands"
+      },
+      {
+        "was_id": "recon_1835_north_w2_005",
+        "id": "recon_1835_north_d4_005",
+        "sequence": 5,
+        "was": "W2",
+        "now": "D4",
+        "was_group": "workshops",
+        "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          20,
+          30
+        ],
+        "footprint_ft": [
+          20,
+          30
+        ],
+        "footprint_moved": false,
+        "was_inventory_class": "principal_functional",
+        "inventory_class": "principal_functional",
+        "why": "the placement policy refuses this family here — stands 37.63 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands"
+      }
+    ]
+  }
 }

@@ -24,7 +24,7 @@ families by name since L93, but that refusal only ever covered the block
 generator — the North, West and phase-one parcels ran before it existed and
 nothing has ever asked the committed records the question.
 
-**I2 (school or community-use) is a ratchet at one.** `recon_1835_north_i2_015`
+**I2 (school or community-use) is a ratchet at one.** `recon_1835_north_d4_015`
 stands in the North Division from a parcel written before any of this, massed as
 a generic frame block. L93 records it rather than quietly removing it, because a
 liberty this project took is not deleted to make a gate pass. It may shrink — a
@@ -89,7 +89,7 @@ ABSOLUTE = {
 # The one liberty already taken, named rather than pattern-matched. A ratchet
 # that counted by family alone would let a SECOND anonymous school in as long as
 # the first went out.
-LEGACY_I2 = "recon_1835_north_i2_015"
+LEGACY_I2 = "recon_1835_north_d4_015"
 
 # THE CIVIC LEDGER — every civic or public-service building this project has
 # researched, and what it was on 1835-07-01. The verdict is a claim and NOT the

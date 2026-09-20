@@ -174,7 +174,7 @@
    "at_its_ordinary_night_figure": true
   },
   {
-   "id": "recon_1835_north_h3_045",
+   "id": "recon_1835_north_h2_045",
    "name": "Reconstructed H3 large boarding house #045",
    "function": "large_boarding_house",
    "class": "boarding_house",
@@ -201,7 +201,7 @@
    "at_its_ordinary_night_figure": true
   },
   {
-   "id": "recon_1835_north_t1_028",
+   "id": "recon_1835_north_h2_028",
    "name": "Reconstructed T1 small inn or tavern #028",
    "function": "small_inn_or_tavern",
    "class": "inn_tavern",
@@ -431,7 +431,7 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -453,7 +453,7 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -541,7 +541,7 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "labourer",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -563,7 +563,7 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -629,7 +629,7 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "painter",
    "group": "mechanic",
-   "place": "recon_1835_north_t1_028",
+   "place": "recon_1835_north_h2_028",
    "place_name": "Reconstructed T1 small inn or tavern #028",
    "relationship": "lodger",
    "basis": {
@@ -651,7 +651,7 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -673,7 +673,7 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
    "basis": {
@@ -763,15 +763,15 @@
    "persons": 9
   },
   {
-   "id": "hh_lodging_recon_1835_north_h3_045",
-   "file": "lodgers/hh_lodging_recon_1835_north_h3_045.json",
-   "place": "recon_1835_north_h3_045",
+   "id": "hh_lodging_recon_1835_north_h2_045",
+   "file": "lodgers/hh_lodging_recon_1835_north_h2_045.json",
+   "place": "recon_1835_north_h2_045",
    "persons": 10
   },
   {
-   "id": "hh_lodging_recon_1835_north_t1_028",
-   "file": "lodgers/hh_lodging_recon_1835_north_t1_028.json",
-   "place": "recon_1835_north_t1_028",
+   "id": "hh_lodging_recon_1835_north_h2_028",
+   "file": "lodgers/hh_lodging_recon_1835_north_h2_028.json",
+   "place": "recon_1835_north_h2_028",
    "persons": 8
   },
   {
@@ -883,14 +883,14 @@
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
   {
-   "place": "recon_1835_north_h3_045",
+   "place": "recon_1835_north_h2_045",
    "name": "Reconstructed H3 large boarding house #045",
    "keeper": "rc_cavanagh_ellen",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
   {
-   "place": "recon_1835_north_t1_028",
+   "place": "recon_1835_north_h2_028",
    "name": "Reconstructed T1 small inn or tavern #028",
    "keeper": "rc_kellogg_luther",
    "persons_on_the_keeper_s_card": 1,

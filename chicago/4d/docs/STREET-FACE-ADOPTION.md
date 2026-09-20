@@ -170,7 +170,7 @@ found nine of the original twenty-four seated in privies: an allocation nothing 
 is an allocation nothing checks.**
 
 **And the band's one shop was of the same shape.** North Water Street's single band roof,
-`recon_1835_north_c1_020`, is an inferred household's home too, so the reading the owner
+`recon_1835_north_d3_020`, is an inferred household's home too, so the reading the owner
 declined would have seated nobody at all — not the Wm. Sabine the question named. The
 declination cost nothing, which is a stronger answer than the one the ticket promised and
 is recorded as such rather than glossed.

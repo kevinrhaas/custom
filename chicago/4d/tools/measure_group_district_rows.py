@@ -89,7 +89,7 @@ DECLARED_OVERSHOOT = {
         "why": "T-0032 set this row to the NAMED institutional census — south 5 / west 1 / "
                "north 3 — and `tools/measure_institutional_claims.py` holds it there. This "
                "counts every roof that stands, named or not, so it also counts "
-               "recon_1835_north_i2_015, the one anonymous school docs/LIBERTIES.md records "
+               "recon_1835_north_d4_015, the one anonymous school docs/LIBERTIES.md records "
                "at L93 as a liberty taken rather than deleted. The two gates disagree by "
                "exactly that liberty, and both readings are correct for their own question. "
                "The row moves when L93 is retired, not before.",

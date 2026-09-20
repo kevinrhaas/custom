@@ -24,7 +24,7 @@
       "by_roof": {
         "recon_1835_north_h1_007": 1,
         "recon_1835_north_h2_030": 1,
-        "recon_1835_north_h3_045": 1,
+        "recon_1835_north_h2_045": 1,
         "recon_1835_west_006": 1
       },
       "ids": [
@@ -199,7 +199,7 @@
         "why_not": null
       },
       {
-        "place": "recon_1835_north_h3_045",
+        "place": "recon_1835_north_h2_045",
         "name": "Reconstructed H3 large boarding house #045",
         "class": "boarding_house",
         "standing": "reconstructed",
@@ -285,7 +285,7 @@
         "why_not": null
       },
       {
-        "place": "recon_1835_north_t1_028",
+        "place": "recon_1835_north_h2_028",
         "name": "Reconstructed T1 small inn or tavern #028",
         "class": "inn_tavern",
         "standing": "reconstructed",

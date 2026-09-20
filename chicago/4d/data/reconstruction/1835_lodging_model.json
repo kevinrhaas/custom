@@ -116,7 +116,7 @@
       "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright."
     },
     {
-      "id": "recon_1835_north_h3_045",
+      "id": "recon_1835_north_h2_045",
       "name": "Reconstructed H3 large boarding house #045",
       "function": "large_boarding_house",
       "class": "boarding_house",
@@ -224,7 +224,7 @@
       "replaceable_by": "Any source that states this house's rooms, beds or lodgers on a dated day: an advertisement counting its rooms, a traveller's account of how many it slept, a licence return. A stated capacity retires the apportioned one outright."
     },
     {
-      "id": "recon_1835_north_t1_028",
+      "id": "recon_1835_north_h2_028",
       "name": "Reconstructed T1 small inn or tavern #028",
       "function": "small_inn_or_tavern",
       "class": "inn_tavern",

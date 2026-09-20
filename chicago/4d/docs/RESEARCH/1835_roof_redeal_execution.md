@@ -4,9 +4,9 @@ DERIVED — regenerate with `tools/execute_roof_redeal.py --apply`. T-1451.
 
 T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execution: the verdicts carried back into the authored recipes so the generators re-derive the records. It adjudicates nothing — every family below is the `to_family` T-1445 reached.
 
-- refamily verdicts standing: **32**
+- refamily verdicts standing: **23**
 - carried out here: **6** (the West Division parcel)
-- outstanding, and why: **26** — the record id carries the family, so executing them renames a roof other files name (T-1452)
+- outstanding, and why: **17** — the record id carries the family, so executing them renames a roof other files name (T-1452)
 - retired: **0** — the guard stands empty and that is a measurement, not an omission
 
 ## Carried out
@@ -32,15 +32,6 @@ Each of these becomes a new id when its family moves, and the id is not private 
 | `recon_1835_blk_randolph_market_a4_06` | `recon_1835_blk_randolph_market_d2_06` | 4 |
 | `recon_1835_blk_south_water_lasalle_a1_06` | `recon_1835_blk_south_water_lasalle_d3_06` | 5 |
 | `recon_1835_blk_south_water_wells_a1_07` | `recon_1835_blk_south_water_wells_d1_07` | 4 |
-| `recon_1835_north_c1_020` | `recon_1835_north_d3_020` | 5 |
-| `recon_1835_north_c1_047` | `recon_1835_north_a1_047` | 5 |
-| `recon_1835_north_c2_027` | `recon_1835_north_d6_027` | 7 |
-| `recon_1835_north_f1_022` | `recon_1835_north_h2_022` | 6 |
-| `recon_1835_north_h3_045` | `recon_1835_north_h2_045` | 13 |
-| `recon_1835_north_i2_015` | `recon_1835_north_d4_015` | 7 |
-| `recon_1835_north_t1_028` | `recon_1835_north_h2_028` | 11 |
-| `recon_1835_north_w1_018` | `recon_1835_north_d4_018` | 8 |
-| `recon_1835_north_w2_005` | `recon_1835_north_d4_005` | 7 |
 | `recon_1835_south_c1_003` | `recon_1835_south_d1_003` | 8 |
 | `recon_1835_south_c1_010` | `recon_1835_south_d1_010` | 5 |
 | `recon_1835_south_c1_018` | `recon_1835_south_d1_018` | 5 |

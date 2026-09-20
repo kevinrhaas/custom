@@ -17245,7 +17245,7 @@
    ],
    "candidates": [
     {
-     "id": "recon_1835_north_i2_015",
+     "id": "recon_1835_north_d4_015",
      "name": "Reconstructed I2 schoolhouse or meeting hall #015",
      "rule": "exact surname"
     }
@@ -17331,7 +17331,7 @@
    ],
    "candidates": [
     {
-     "id": "recon_1835_north_i2_015",
+     "id": "recon_1835_north_d4_015",
      "name": "Reconstructed I2 schoolhouse or meeting hall #015",
      "rule": "OCR variant (0.89 similarity to 'hall')"
     }
@@ -31393,12 +31393,12 @@
      "rule": "OCR variant (0.89 similarity to 'shop')"
     },
     {
-     "id": "recon_1835_north_w1_018",
+     "id": "recon_1835_north_d4_018",
      "name": "Reconstructed W1 blacksmith shop #018",
      "rule": "OCR variant (0.89 similarity to 'shop')"
     },
     {
-     "id": "recon_1835_north_w2_005",
+     "id": "recon_1835_north_d4_005",
      "name": "Reconstructed W2 carpenter or joiner shop #005",
      "rule": "OCR variant (0.89 similarity to 'shop')"
     },

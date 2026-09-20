@@ -534,6 +534,7 @@ def main() -> int:
                 drift.append(f"{path.relative_to(ROOT)} has drifted from the North recipe")
         else:
             path.write_text(text, encoding="utf-8")
+    classes = Counter(r["reconstruction"]["inventory_class"] for r in records)
     extras = sorted(p.name for p in STRUCTURES.glob(f"{PREFIX}*.json") if p.name not in expected)
     drift.extend(f"data/structures/{name} is outside the bounded 60-roof parcel" for name in extras)
     if drift:
@@ -542,7 +543,13 @@ def main() -> int:
             print(f"  - {item}")
         return 1
     mode = "verified" if args.check else "generated"
-    print(f"{mode} {len(records)} inferred anonymous North Division records (45 principal, 15 ancillary)")
+    # The mix is READ, not retyped. It was `(45 principal, 15 ancillary)` in the
+    # format string, and T-1480 moved a store to a stable — an ancillary roof —
+    # so the line would have gone on reporting a split the recipe no longer
+    # claims while `validate` gated the real one two functions up.
+    print(f"{mode} {len(records)} inferred anonymous North Division records "
+          f"({classes['principal_functional']} principal, "
+          f"{classes['ancillary']} ancillary)")
     return 0
 
 
