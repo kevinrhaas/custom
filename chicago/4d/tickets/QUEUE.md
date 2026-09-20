@@ -64,7 +64,6 @@ T-1478 — Every documented north or west record's lot recorded on the record: t
 T-1486 — A derived figure must not be rounded by float drift: sweep the 31 remaining round(sum(...)) sites
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1452 — Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark
-T-1487 — Give every roof a covering on the material sheet: shingle and roof_board substrates at L263's tile, a dealing rule argued by archetype and the liberty for what it asserts beyond materials.md 2.2, every roof material named for the covering it carries, and the town baked
 T-1488 — Bind the roof relief maps in the web renderer: the metric roof UVs a 4.48 m tile needs — the smart-project atlas is a per-object island pack and cannot tile one — one shared material per roof substrate, the two maps published, and the draw count measured at the critic stations at both viewports
 T-1198 — Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
@@ -258,4 +257,3 @@ T-1471 — Answer the tavern identity question the roof programme is owed: wheth
 
 T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division grid: blocks 28 and 45 re-cut in the sheet's own arrangement, with the structures seated on their lots re-seated
 T-1489 — Carry a reconstructed employment seat back onto the card of the person who holds it: the six mint-owned resident directories re-derive whole, so workplaces[] stops at households/ and 91 of the 124 seated people say nothing about work on their own card
-

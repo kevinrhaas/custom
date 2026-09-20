@@ -1,7 +1,7 @@
 ---
 id: T-1487
 title: Give every roof a covering on the material sheet: shingle and roof_board substrates at L263's tile, a dealing rule argued by archetype and the liberty for what it asserts beyond materials.md 2.2, every roof material named for the covering it carries, and the town baked
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-1465
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1591
 claimed_by: run 9/20/2026, 2:31:55 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-20T21:26:58.208Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35532164463
 ---
 
