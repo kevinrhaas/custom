@@ -177,6 +177,133 @@
         "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
         "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
       ],
+      "wallSeconds": 375,
+      "takenAt": "2026-09-20T11:20:45.213Z",
+      "ref": "steward/t-1433-seat-reconstructed-staff",
+      "commit": "801e65f92679",
+      "devCommit": "703263b9f6b3",
+      "treeHash": "sha256:01611b9fee8e8ecd",
+      "treeDirty": false,
+      "changelogHash": "sha256:862e9056ea94eb97",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 272,
+      "takenAt": "2026-09-20T11:20:45.125Z",
+      "ref": "steward/t-1433-seat-reconstructed-staff",
+      "commit": "801e65f92679",
+      "devCommit": "703263b9f6b3",
+      "treeHash": "sha256:01611b9fee8e8ecd",
+      "treeDirty": false,
+      "changelogHash": "sha256:862e9056ea94eb97",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 477,
+      "takenAt": "2026-09-20T11:20:45.032Z",
+      "ref": "steward/t-1433-seat-reconstructed-staff",
+      "commit": "801e65f92679",
+      "devCommit": "703263b9f6b3",
+      "treeHash": "sha256:01611b9fee8e8ecd",
+      "treeDirty": false,
+      "changelogHash": "sha256:862e9056ea94eb97",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 300,
+      "takenAt": "2026-09-20T11:20:44.944Z",
+      "ref": "steward/t-1433-seat-reconstructed-staff",
+      "commit": "801e65f92679",
+      "devCommit": "703263b9f6b3",
+      "treeHash": "sha256:01611b9fee8e8ecd",
+      "treeDirty": false,
+      "changelogHash": "sha256:862e9056ea94eb97",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.6,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke-d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 77,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
       "wallSeconds": 392,
       "takenAt": "2026-09-20T09:38:49.195Z",
       "ref": "steward/t-1432-staffing-join-attested",
