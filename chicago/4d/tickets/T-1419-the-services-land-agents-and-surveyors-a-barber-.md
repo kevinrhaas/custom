@@ -1,7 +1,7 @@
 ---
 id: T-1419
 title: The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1186
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 10:53:56 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35487618850
 ---
 
 The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not.
