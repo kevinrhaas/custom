@@ -252,7 +252,11 @@ is the contract. The short form:
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
   only live view of work the merged files cannot show yet. It reads each branch as
-  **live**, **held** or **cold**, and `held` is the one to read carefully: the branch is
+  **live**, **held**, **open_pr**, **recoverable** or **cold**. A branch under
+  **open_pr** has a pull request up right now and is printed with its number and labels
+  — `hold` there means a run parked that work for the owner on purpose, so do not
+  rebuild it, do not take the ticket and do not delete the branch (T-1427). `held` is the
+  other one to read carefully: the branch is
   older than a run but the ticket's claim lock still stands, so it is either a run reading
   sources for hours or a run that died after its merge. Check its PR before you take it —
   age alone used to file that branch under "finished or litter", and two runs read cohort

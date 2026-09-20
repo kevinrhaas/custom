@@ -525,6 +525,31 @@ function prTicketIds(title) {
   return [...new Set(out)];
 }
 
+/**
+ * A pull request cut down to the fields the joins actually read — six pages of whole
+ * PR objects is tens of megabytes held for no reason.
+ *
+ * IT IS A NAMED FUNCTION AND NOT AN INLINE `.map` BECAUSE THE FIXTURES MUST GO THROUGH
+ * IT TOO (T-1427). The projection used to drop `head.ref`, and `inflight`'s
+ * "a branch that ever HAD a pull request was never invisible" guard reads exactly that
+ * field — so against the live API the guard was an empty set and could never fire,
+ * while `test_ticket_inflight.mjs` supplied `head.ref` in its own fixture rows and the
+ * gate went green. A check dead in production and green in the gate is worse than no
+ * check, and the cure is that the fixture and the API arrive by one road.
+ *
+ * `labels` is flattened to names, which is how `inflight` says `hold` out loud.
+ */
+function normalizePull(p) {
+  return {
+    number: p?.number, title: p?.title,
+    state: p?.state ?? null,
+    merged_at: p?.merged_at ?? null, created_at: p?.created_at ?? null,
+    labels: Array.isArray(p?.labels)
+      ? p.labels.map((l) => (typeof l === 'string' ? l : l?.name)).filter(Boolean) : [],
+    head: { ref: p?.head?.ref ?? null },
+  };
+}
+
 /** A REST GET that returns parsed JSON, or null — `gh api` if the runner has it
  *  authenticated, else plain `curl`. Both synchronous, both time-boxed, both silent
  *  on failure. REST only: the GraphQL bucket is a separate hourly quota the fleet
@@ -549,18 +574,23 @@ function restGet(pathAndQuery) {
       // A rate-limit answer is a well-formed OBJECT, not the array we asked for.
       // Treating it as zero results would report "nothing landed" from a refusal.
       if (!Array.isArray(body)) continue;
-      // Keep only the four fields the join reads — six pages of whole PR objects is
-      // tens of megabytes held for no reason.
-      return body.map((p) => ({ number: p.number, title: p.title,
-        merged_at: p.merged_at ?? null, created_at: p.created_at ?? null }));
+      return body.map(normalizePull);
     } catch { /* not JSON — try the next transport */ }
   }
   return null;
 }
 
 /**
- * Closed pull requests, newest-created first, far enough back to cover the oldest
- * ticket we are asking about.
+ * Pull requests, OPEN AND CLOSED, newest-created first, far enough back to cover the
+ * oldest ticket we are asking about.
+ *
+ * It asked for `state=closed` until T-1427, and the open half is the half that stops a
+ * run from rebuilding work: PR #1533 was open on `steward/t-1191-north-corridors` and
+ * deliberately labelled `hold`, and `inflight` — unable to see it — printed the branch
+ * under "carrying work NOBODY CAN SEE ... no PR ever carried this branch". The reading
+ * that exists to prevent a duplicate rebuild was inviting one, at the owner's own parked
+ * work. `landedFindings` filters on `merged_at`, so the merged-PR reconciliation is
+ * unchanged by the wider ask.
  *
  * Paging is bounded two ways: it stops once a page's oldest `created_at` predates
  * every ticket in question (no PR can name a ticket that did not exist yet), and it
@@ -568,12 +598,12 @@ function restGet(pathAndQuery) {
  * ticket older than the horizon is one this check did not actually cover, and rule 2
  * says we do not get to call that clean.
  */
-function closedPulls({ since = null, maxPages = 6, perPage = 100 } = {}) {
+function recentPulls({ since = null, maxPages = 6, perPage = 100 } = {}) {
   const pulls = [];
   let pages = 0;
   let horizon = null;
   for (let page = 1; page <= maxPages; page += 1) {
-    const batch = restGet(`repos/kevinrhaas/custom/pulls?state=closed&sort=created`
+    const batch = restGet(`repos/kevinrhaas/custom/pulls?state=all&sort=created`
       + `&direction=desc&per_page=${perPage}&page=${page}`);
     if (batch === null) return { ok: pages > 0, pulls, pages, horizon, truncated: true };
     pages += 1;
@@ -617,7 +647,7 @@ function coverage(fetched, since) {
   const gap = fetched.truncated && since && fetched.horizon && day(fetched.horizon) > day(since)
     ? ` — which does NOT reach the oldest workable ticket (opened ${day(since)}), so anything older than the horizon is simply unexamined`
     : '';
-  return `Read ${fetched.pages} page(s) of closed PRs, ${reach}${gap}.`;
+  return `Read ${fetched.pages} page(s) of pull requests (open and closed), ${reach}${gap}.`;
 }
 
 /** Prints the report. Returns nothing and throws nothing: every caller is a run on
@@ -638,8 +668,8 @@ function collectLanded(tickets, { fixture = null, maxPages = 6 } = {}) {
   const asked = tickets.filter((t) => t.id && asksAbout(t));
   const since = asked.map((t) => t.opened).filter(Boolean).sort()[0] ?? null;
   const fetched = fixture
-    ? { ok: true, pulls: fixture, pages: 0, horizon: null, truncated: false }
-    : closedPulls({ since, maxPages });
+    ? { ok: true, pulls: fixture.map(normalizePull), pages: 0, horizon: null, truncated: false }
+    : recentPulls({ since, maxPages });
   return {
     ok: fetched.ok,
     found: fetched.ok ? landedFindings(asked, fetched.pulls) : [],
@@ -1962,17 +1992,32 @@ switch (cmd) {
         });
       } catch { return null; }                       // rule 3: never stop a run
     })();
+    // THE OPEN PULL REQUESTS, BY THE BRANCH THEY SIT ON (T-1427). An open PR is the
+    // loudest statement there is that a branch's work is visible and somebody's, and
+    // until now it was the one thing this report could not see: the fetch asked for
+    // closed PRs only, and the projection dropped `head.ref` besides.
+    const openPrByRef = new Map();
+    for (const pr of (landed?.ok ? landed.pulls : null) ?? []) {
+      const ref = pr?.head?.ref;
+      if (!ref || pr.merged_at || pr.state !== 'open') continue;
+      const prev = openPrByRef.get(ref);
+      if (!prev || Number(pr.number) > Number(prev.number)) openPrByRef.set(ref, pr);
+    }
     if (landed?.ok) {
       const landedIds = new Set(landed.found.map(({ t }) => t.id));
       // A branch that ever HAD a pull request was never invisible, whatever became of
-      // it, so it is not what this reading is for. Open PRs are not in this collection
-      // (it reads closed ones), and the report says so rather than implying otherwise.
+      // it, so it is not what this reading is for.
       const hadPr = new Set((landed.pulls ?? [])
         .map((pr) => pr?.head?.ref).filter(Boolean));
       for (const r of rows) {
         if (r.how !== 'cold') continue;
         if (!WORKABLE.includes(r.t.state)) continue;
         if (isClaimMarker(r.b)) continue;            // a lock is not work
+        // AN OPEN PULL REQUEST OUTRANKS EVERY AGE HEURISTIC HERE. The work is on the
+        // remote and readable, so it is not lost; and the cold list's own advice —
+        // `git push origin --delete` — would shut somebody's pull request. Neither
+        // existing reading is true about it, so it gets its own.
+        if (openPrByRef.has(r.b)) { r.how = 'open_pr'; continue; }
         if (landedIds.has(r.t.id) || hadPr.has(r.b)) continue;
         r.how = 'recoverable';
       }
@@ -1980,7 +2025,7 @@ switch (cmd) {
 
     // Live work first, then the claims that outlived the window, then work nobody can
     // see, then the cold.
-    const RANK = { live: 0, held: 1, recoverable: 2, cold: 3 };
+    const RANK = { live: 0, held: 1, open_pr: 2, recoverable: 3, cold: 4 };
     rows.sort((a, b) => RANK[a.how] - RANK[b.how] || a.t.id.localeCompare(b.t.id));
 
     if (!branches.length) {
@@ -1989,17 +2034,27 @@ switch (cmd) {
     }
     const live = rows.filter((r) => r.how === 'live');
     const held = rows.filter((r) => r.how === 'held');
+    const openPr = rows.filter((r) => r.how === 'open_pr');
     const recoverable = rows.filter((r) => r.how === 'recoverable');
     const cold = rows.filter((r) => r.how === 'cold');
     const age = (r) => ageWords(r.age);
+    // Said on every line that has one, not only in the section below: a run reading
+    // this list wants the PR number at the branch, not two lists to cross-reference.
+    const prNote = (branch) => {
+      const pr = openPrByRef.get(branch);
+      if (!pr) return '';
+      const labels = (pr.labels ?? []).length ? ` · ${pr.labels.join(', ')}` : '';
+      return `   · PR #${pr.number} OPEN${labels}`;
+    };
     const say = (r) => {
       console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
-      console.log(`          ↳ ${r.b}${isClaimMarker(r.b) ? '   (claim lock — claimed, nothing pushed yet)' : ''}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+      console.log(`          ↳ ${r.b}${isClaimMarker(r.b) ? '   (claim lock — claimed, nothing pushed yet)' : ''}${r.b === here ? '   ← you are here' : ''}   ${age(r)}${prNote(r.b)}\n`);
     };
 
     if (has('json')) {
       console.log(JSON.stringify(rows.map((r) => ({
         id: r.t.id, state: r.t.state, branch: r.b, age_hours: r.age, reading: r.how,
+        open_pr: openPrByRef.get(r.b)?.number ?? null,
       })), null, 2));
       break;
     }
@@ -2021,6 +2076,25 @@ switch (cmd) {
     console.log('so a merged branch never becomes an ancestor of dev. The PR list is the truth:');
     console.log(`  ${REPO_URL}/pulls\n`);
 
+    if (openPr.length) {
+      console.log(`OPEN PULL REQUESTS — ${openPr.length} branch(es) whose work is already up for review:\n`);
+      for (const r of openPr) {
+        const pr = openPrByRef.get(r.b);
+        const labels = (pr.labels ?? []);
+        console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
+        console.log(`          ↳ ${r.b}   ${age(r)}`);
+        console.log(`          PR #${pr.number} is OPEN${labels.length ? ` and labelled ${labels.join(', ')}` : ''}: ${REPO_URL}/pull/${pr.number}`);
+        if (labels.includes('hold')) {
+          console.log(`          \`hold\` means a run PARKED it for the owner on purpose. Do not rebuild it,`);
+          console.log(`          do not take the ticket, and do not delete the branch.`);
+        }
+        console.log('');
+      }
+      console.log('The branch is older than a run, so every age reading here calls it cold — but the');
+      console.log('work is visible, somebody put it up, and deleting the branch would shut the pull');
+      console.log('request. Read the PR before you touch the ticket.\n');
+    }
+
     if (recoverable.length) {
       console.log(`RECOVERABLE — ${recoverable.length} branch(es) carrying work NOBODY CAN SEE:\n`);
       for (const r of recoverable) {
@@ -2033,7 +2107,7 @@ switch (cmd) {
       console.log('request — the shape of a run cancelled before it could open one (T-1155). The');
       console.log('queue still offers the ticket, so the next run rebuilds the work unless somebody');
       console.log('reads the branch first. Open its PR, or take its reasoning into your own and');
-      console.log('delete it; an OPEN PR would not appear here, so check the list above too.\n');
+      console.log('delete it. A branch with an OPEN pull request is not here — it is listed above.\n');
     }
 
     if (cold.length) {

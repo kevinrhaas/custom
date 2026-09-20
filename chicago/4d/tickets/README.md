@@ -130,6 +130,12 @@ one of three readings:
 - **held** — older than that, and the ticket's CLAIM LOCK still stands on the remote.
 - **cold** — a finished ticket, or an unclaimed branch older than any run could be.
 
+…and a fifth, **open_pr**, added 2026-09-20 after T-1427: a branch older than a run whose
+work is sitting in an OPEN pull request. Every age reading here calls such a branch cold, and
+the cold list's standing advice is to delete it — which would shut the pull request. It is
+printed with its PR number and the PR's labels, and a `hold` label is said out loud, because
+`hold` means a run parked that work for the owner on purpose.
+
 …and a fourth, **recoverable**, added 2026-09-17 after T-1155: a branch older than a run, on
 an unfinished ticket, with no claim lock — and which **no merged pull request accounts for**.
 That is work sitting on the remote that nothing else in this directory can see.
@@ -148,8 +154,19 @@ so `inflight` now asks once, before it prints, and upgrades nothing when the ans
 come. An empty answer is not evidence, the same rule `landed` has always been held to.
 
 Each recoverable branch is printed with its age and the compare URL that opens its pull request.
-**Read it before you rebuild it.** An OPEN pull request does not appear in that collection, so
-the PR list is still the authority.
+**Read it before you rebuild it.**
+
+**And for three days it was mostly wrong** (T-1427, 2026-09-20). Two faults compounded. The PR
+fetch asked GitHub for `state=closed`, so an open pull request was never in the collection; and
+`restGet` projected each PR down to four fields, dropping the `head.ref` that the
+"a branch that ever HAD a pull request was never invisible" guard reads — so against the live
+API that guard was an empty set and could never fire. The gate stayed green throughout because
+the test fixture supplied `head.ref` by hand. On the morning it was found, `inflight` listed five
+branches as carrying work NOBODY CAN SEE and **every one of the five had a pull request**;
+`steward/t-1191-north-corridors` was one of them, and PR #1533 on it was open, labelled `hold`,
+and parked for the owner on purpose. The reading that exists to prevent a duplicate rebuild was
+inviting one, at the owner's own parked work. The fixture and the API now arrive through one
+projection (`normalizePull`), so a fixture can no longer be richer than production.
 
 It also lists claims sitting in the merged files with no branch behind them, which is the
 shape of a run that claimed and died.
