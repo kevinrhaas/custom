@@ -1,5 +1,9 @@
 # ROADMAP
 
+## Owner update programme, 2026-09-20
+
+Follow docs/unreal/BUILD-AND-RELEASE.md for the next manual Mac release. T-1472 automates that path; T-1473 fixes placement; T-1360 owns roads; T-1474 adds flora; T-1475 begins navigation and inspection. docs/unreal/PARITY.md retains all remaining web parity work under T-1356. Engine-only children stay held in the existing Unreal band until a qualified executor claims them.
+
 ## Standalone Mac first — owner priority, 2026-09-20
 
 T-1464 is the bounded local Mac packaging slice under T-1356. The owner selected

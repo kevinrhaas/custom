@@ -39,6 +39,8 @@ full renderer parity and bridge-route validation. `import_report.json` names ski
 records and review-required records. Do not describe this as the full browser game
 ported to Unreal, or mark the historical scene released on this build's account.
 
+For subsequent update rounds, follow the [build-and-release runbook](../../docs/unreal/BUILD-AND-RELEASE.md): select a passing dev revision, build a fresh checkout, test, and publish a versioned prerelease. The [parity tracker](../../docs/unreal/PARITY.md) identifies features that a rebuild alone cannot add.
+
 ## Rebuild on a qualified local Mac
 
 Prerequisites: a licensed Unreal Engine **5.8.2** installation, Apple Silicon Mac,

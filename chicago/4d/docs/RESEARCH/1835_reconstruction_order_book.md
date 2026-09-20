@@ -260,10 +260,10 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 | `structures/larger_boarding_houses/west` | 6 | 1 | 5 | 0 | T-1209 |
 | `structures/larger_boarding_houses/north` | 8 | 4 | 4 | 0 | T-1209 |
 | `structures/ordinary_dwellings/south` | 176 | 110 | 66 | 0 | T-1203 |
-| `structures/ordinary_dwellings/west` | 75 | 21 | 54 | 0 | T-1208 |
+| `structures/ordinary_dwellings/west` | 75 | 26 | 49 | 0 | T-1208 |
 | `structures/ordinary_dwellings/north` | 84 | 42 | 42 | 0 | T-1206 |
 | `structures/small_outbuildings/south` | 48 | 25 | 23 | 0 | T-1212 |
-| `structures/small_outbuildings/west` | 14 | 3 | 11 | 0 | T-1212 |
+| `structures/small_outbuildings/west` | 14 | 2 | 12 | 0 | T-1212 |
 | `structures/small_outbuildings/north` | 20 | 9 | 11 | 0 | T-1212 |
 | `structures/small_outbuildings/fort` | 3 | 3 | 0 | 0 | T-1204 |
 | `structures/stores_mixed_use/south` | 42 | 32 | 10 | 0 | T-1201 |
@@ -274,7 +274,7 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 | `structures/warehouses_freight/west` | 2 | 0 | 2 | 0 | T-1207 |
 | `structures/warehouses_freight/north` | 7 | 7 | 0 | 0 | T-1205 |
 | `structures/workshops/south` | 15 | 14 | 1 | 0 | T-1201 |
-| `structures/workshops/west` | 8 | 8 | 0 | 0 | T-1207 |
+| `structures/workshops/west` | 8 | 4 | 4 | 0 | T-1207 |
 | `structures/workshops/north` | 7 | 7 | 0 | 0 | T-1205 |
 | `structures/workshops/fort` | 1 | 1 | 0 | 0 | T-1204 |
 

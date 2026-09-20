@@ -65,8 +65,7 @@ T-1442 — Print the finished business layer: the trade-census crosswalk and the
 T-1455 — The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
 T-1456 — The School Section tier, and every documented north or west record's lot recorded on the record
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
-T-1458 — Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face
-T-1446 — Execute the roof redeal the adjudication names: refamily and retire in the recipe files so the three infill generators re-derive byte for byte, retired records to exclusions under a retired_reconstruction guard with their liberty tokens resolved, rebaked, with a screenshot from Lake and Clark
+T-1452 — Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark
 T-1465 — Give every roof its covering and its texture before the 297 are built: shingle and roof_board substrates on the sheet, dealt by archetype, bound to the vendored relief maps on L263's exposure — a roof nobody can see the material of is not a reconstruction, it is a gap
 T-1198 — Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
@@ -138,16 +137,20 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-# --- 8. UNREAL DELIVERY — regular assets, renderer parity, reliable streaming
+# --- 8. UNREAL DELIVERY — repeatable native builds, web parity, then streaming
 # Programme: T-1356; docs/unreal/README.md. Owner-ranked here on 2026-09-18.
 # Remote-workable preparation (still subject to the city-first ordering above):
 T-1357 — Publish a versioned Chicago scene bundle from every successful scheduled asset bake
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 # LOCAL / QUALIFIED UNREAL ONLY — NOT WORKABLE BY THE REMOTE WEB WORKER.
 # HOLD references below are comments, not claimable queue entries. Tickets are blocked-tech.
-# HOLD T-1359 — affected Mac/Unreal/browser access; may diagnose independently of bundles.
+# HOLD T-1472 — on-demand latest-validated Mac build/release; qualified Mac + release access.
+# HOLD T-1473 — sinking buildings/terrain contact; qualified Unreal + matched web/source views.
 # HOLD T-1358 — after T-1357 and current Unreal/GPU capability receipt.
 # HOLD T-1360 — after T-0252, T-1357, T-1358; Unreal visual/collision receipt required.
+# HOLD T-1474 — flora corridor; after shared exports/import and placement, Unreal visual/performance proof.
+# HOLD T-1475 — map/search/place inspection; runtime provenance and Unreal input/route validation.
+# HOLD T-1359 — streaming corruption; affected Mac/Unreal/browser access, after native priorities.
 # HOLD T-1361 — after T-1358/T-1359, approved licensed build runner, GPU host, budget and credentials.
 # Coordinator: unblock only when all dependencies AND current executor capability are proven;
 # immediately assign/claim on that eligible executor; otherwise retain blocked-tech.

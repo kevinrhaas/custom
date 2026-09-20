@@ -1137,13 +1137,28 @@ selftest "…and its own refusals still fire when the programme is bent" \
 # is a SUBSTITUTION and the gate asserts it as one: a refamily moves the roof between
 # order-book buckets and moves the roof COUNT by nothing, a seated roof is never re-dealt
 # behind its household's back, and the whole audit re-derives from committed files or
-# this step fails. T-1446 carries the verdicts into the recipe files and the bake; until
-# it does, this is a decision published and not yet executed.
+# this step fails. T-1451 carries the verdicts into the recipe files and the bake, and
+# the step below gates that execution; the 26 whose record id carries the family are
+# T-1452's, and until it runs this remains a decision published and not yet executed.
 step "the anonymous roofs re-audit against the programme the step above re-derived" \
   python3 tools/redeal_anonymous_roofs.py --check
 
 selftest "…and the redeal's own refusals still fire on a bent order book" \
   python3 tools/redeal_anonymous_roofs.py --self-test
+
+# T-1451, and it asks the question the step above cannot. The adjudication is DERIVED
+# over the town as it stands, so carrying a verdict out deletes it: the roof conforms,
+# the next re-derivation returns `keep`, and the evidence that anything happened is gone
+# from the ledger. The permanent record is the recipe's own `redealt` block, and this
+# step holds the recipe, the placements and the live adjudication to each other —
+# including the one assertion that makes an execution worth anything, which is that
+# every roof re-dealt now reads `keep`. A refamily that left the roof still breaching
+# its policy would move a building for nothing, and would otherwise look identical.
+step "the redeal's carried-out verdicts hold, and every re-dealt roof now conforms" \
+  python3 tools/execute_roof_redeal.py --check
+
+selftest "…and the executor's own refusals still fire on an unbuildable deal" \
+  python3 tools/execute_roof_redeal.py --self-test
 
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
@@ -1437,6 +1452,23 @@ selftest "the North Division lines still lie on the streets they continue, and s
 # Everything is arithmetic on two committed files; `--reread` is what goes back to the sheet.
 selftest "the North Division tier is still the wedge the plat letters, and still refuses to publish a northing" \
   python3 tools/measure_north_division_tier_depth.py --self-test
+
+# T-1458, the cut the reading above paid for. `generate_plat_lots.py` can cut a block only
+# between two committed street lines and the tier has one, so the seven blocks Thompson
+# draws between Kinzie and the river went uncut for as long as the sheet had no depth. They
+# are cut here instead, off committed Kinzie and DOWN by the read depth — never off the
+# sheet's own southern line, which is the northing T-1457 refuses to publish. The two steps
+# are the pair every derived file in this repo carries: the file re-derives from its inputs,
+# and the derivation holds its own assertions. The ones worth naming: the committed columns
+# give four 80 ft lots to a face in all seven blocks, which is the sheet's module arrived at
+# from the other side; the tier line predicts block 6's read north face to a fifth of a pixel,
+# which is what its carried depth rests on; and the ONE block the terrain calls wet is the one
+# the plat draws its watercourse across, two records with no arithmetic in common agreeing.
+step "the North Division tier's blocks and lots re-derive from the reading and the committed lines" \
+  python3 tools/cut_north_division_tier.py --check
+
+selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
+  python3 tools/cut_north_division_tier.py --self-test
 
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
