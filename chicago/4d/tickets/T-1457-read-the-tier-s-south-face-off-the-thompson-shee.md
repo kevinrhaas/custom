@@ -1,7 +1,7 @@
 ---
 id: T-1457
 title: Read the tier's south face off the Thompson sheet: a row scan across the seven blocks, the four drawn lines per block committed as pixels, metres through a px-to-northing fit anchored on the South Division corridors, and the depth the plat actually draws
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1436
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1575
 claimed_by: run 9/20/2026, 9:11:00 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T15:18:01.597Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35515025077
 ---
 
