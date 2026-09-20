@@ -6,7 +6,7 @@
   "generated_by": "tools/trade_census_1835.py --build",
   "ticket": "T-1006",
   "not_a_reading": "an adjudication of a claim this domain has already read, set against the business register — no page of any source is read here",
-  "_doc": "THE DECEMBER 1835 TRADE CENSUS, SET AGAINST THE TOWN'S OWN BUSINESS REGISTER.\n\nMoses and Kirkland print, at page 95 of volume 1, the State count taken between\n1 September and December 1835: forty-four stores, two book stores, four druggists,\ntwo silversmiths and jewellers, two tin and copper manufactories, two printing\noffices, two breweries, one steam saw-mill, one iron foundry, four storage and\nforwarding houses, eight taverns, one lottery office, one bank, five churches,\nseven schools, twenty-two lawyers, fourteen physicians, and a lyceum and reading\nroom.  That paragraph is `bk_mose1_006`, read by T-0581, and until this tool it had\nnever been spent: **the project held no denominator for its business layer.**\n\nIt could not be compared, either, because the register's `trade` is free prose off\nthe printed notice — 152 distinct strings for 206 businesses.  The class comes from\n`data/research/newspapers/trade_class_rulings.json`, one ruling per printed string,\nand this tool joins the two and writes the comparison.\n\n    tools/trade_census_1835.py --build       write the crosswalk\n    tools/trade_census_1835.py --check       re-derive it and refuse any drift\n    tools/trade_census_1835.py --self-test   the guards, fired on fixtures\n\nTHE DATE IS THE WHOLE OF THE CAUTION, and it is written into the record rather than\ninto a reader's memory.  The count is two to five months AFTER the scene date of\n1 July 1835, in the fastest-growing months the town had.  A shortfall against it is\nnever evidence that a business stood in July, and this file's every figure says so.\n\nWHAT THIS TOOL MAY NOT DO.  It classifies and it counts.  It creates nothing, it\nplaces nothing, and it upgrades no confidence: the spending of the gap it measures\nis T-1007's, on T-0404's liberty, and a run that finds a hole here files a ticket\nrather than a building.",
+  "_doc": "THE DECEMBER 1835 TRADE CENSUS, SET AGAINST THE TOWN'S OWN BUSINESS REGISTER.\n\nMoses and Kirkland print, at page 95 of volume 1, the State count taken between\n1 September and December 1835: forty-four stores, two book stores, four druggists,\ntwo silversmiths and jewellers, two tin and copper manufactories, two printing\noffices, two breweries, one steam saw-mill, one iron foundry, four storage and\nforwarding houses, eight taverns, one lottery office, one bank, five churches,\nseven schools, twenty-two lawyers, fourteen physicians, and a lyceum and reading\nroom.  That paragraph is `bk_mose1_006`, read by T-0581, and until this tool it had\nnever been spent: **the project held no denominator for its business layer.**\n\nIt could not be compared, either, because the register's `trade` is free prose off\nthe printed notice — 152 distinct strings for 206 businesses.  The class comes from\n`data/research/newspapers/trade_class_rulings.json`, one ruling per printed string,\nand this tool joins the two and writes the comparison.\n\n    tools/trade_census_1835.py --build       write the crosswalk\n    tools/trade_census_1835.py --check       re-derive it and refuse any drift\n    tools/trade_census_1835.py --self-test   the guards, fired on fixtures\n\nTHE DATE IS THE WHOLE OF THE CAUTION, and it is written into the record rather than\ninto a reader's memory.  The count is two to five months AFTER the scene date of\n1 July 1835, in the fastest-growing months the town had.  A shortfall against it is\nnever evidence that a business stood in July, and this file's every figure says so.\n\nWHAT THIS TOOL MAY NOT DO.  It classifies and it counts.  It creates nothing, it\nplaces nothing, and it upgrades no confidence: the spending of the gap it measures\nis T-1007's, on T-0404's liberty, and a run that finds a hole here files a ticket\nrather than a building.\n\nTHE AUTHORED LAYER IS COUNTED TOO, SINCE T-1404.  The register is no longer the whole\nof the town's business layer: `data/businesses/authored/` holds the houses a human or a\ntool wrote down where the paper printed none — the inferred shops T-1404 raises for\ntradesmen whose dated role reaches the scene date, and the reconstructed firms T-1184\nonward draw against this very crosswalk.  Counting the register alone made those houses\ninvisible to the comparison AND to the order book cut from it, so the book would have\nordered eleven physicians reconstructed over a layer that names eight.  An authored\nrecord carries its census class on itself, in `type`, ruled by whoever wrote it; it needs\nno trade ruling and gets none, and `ruled_by` says `authored_record` so the two\npopulations can never be confused in the classification table.\n\nA RECONSTRUCTED HOUSE IS NOT COUNTED, and the reason is the order book.  Its\n`businesses/*` buckets are cut as census count MINUS what the town knows, and the\nreconstructions those buckets order are carried in `filled`, a separate counter.  Count a\nreconstructed firm as known and the same house is subtracted twice: the two druggists\nT-1184 drew against a shortfall of two would close the shortfall AND stand in `filled`,\nand the book's own overfill guard fires.  So `load()` passes the authored records whose\n`provenance` is not `reconstructed` — the attested and inferred houses a source stands\nbehind — and the drawn ones stay where they belong, in the counter of the bucket that\nordered them.",
   "scene_date": "1835-07-01",
   "census_window": "1835-09-01/1835-12-31",
   "date_caution": "THE COUNT IS NOT OF THE SCENE. It was taken between 1 September and December 1835; the scene is 1 July 1835, two to five months earlier and in the fastest-growing months the town had. A class where the town holds fewer than the census counted is NOT thereby a hole in the July town — some of those forty-four stores opened in September. Every figure below is to be read with that gap in front of it.",
@@ -19,10 +19,18 @@
       "census_line": "forty-four stores (dry goods, hardware and groceries)",
       "census_count": 44,
       "compared": true,
-      "town_records_in_town": 64,
-      "town_records_at_scene_date": 59,
+      "town_records_in_town": 72,
+      "town_records_at_scene_date": 67,
       "town_records_outside_town": 3,
       "business_ids": [
+        "biz_beaubien_jean_baptiste_merchant",
+        "biz_beaubien_madore_merchant",
+        "biz_church_thomas_merchant",
+        "biz_gale_stephen_f_merchant",
+        "biz_kinzie_john_h_forwarding_and_commission",
+        "biz_robinson_trading_house_wolf_point",
+        "biz_woodworth_james_h_dry_goods_merchant",
+        "biz_wright_john_merchant",
         "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
         "business_a_leather_stock_chicago_june_1835",
         "business_a_o_t_breed",
@@ -88,7 +96,7 @@
         "business_wm_h_taylor_boot_shoe_leather_store",
         "business_wm_hogue_co"
       ],
-      "delta": 15,
+      "delta": 23,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)"
     },
@@ -218,14 +226,15 @@
       "census_line": "one iron foundry",
       "census_count": 1,
       "compared": true,
-      "town_records_in_town": 1,
-      "town_records_at_scene_date": 1,
+      "town_records_in_town": 2,
+      "town_records_at_scene_date": 2,
       "town_records_outside_town": 0,
       "business_ids": [
+        "biz_keeney_g_w_founder",
         "business_dart_co_castings"
       ],
-      "delta": 0,
-      "outcome": "town_matches_census",
+      "delta": 1,
+      "outcome": "town_holds_more_than_the_census_counted",
       "note": null
     },
     {
@@ -234,10 +243,11 @@
       "census_line": "four storage and forwarding houses",
       "census_count": 4,
       "compared": true,
-      "town_records_in_town": 8,
-      "town_records_at_scene_date": 7,
+      "town_records_in_town": 9,
+      "town_records_at_scene_date": 8,
       "town_records_outside_town": 0,
       "business_ids": [
+        "biz_kinzie_john_h_forwarding_and_commission",
         "business_b_jones_storage_and_forwarding",
         "business_brewster_hogan_co",
         "business_hiram_pearsons",
@@ -247,7 +257,7 @@
         "business_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834",
         "business_wm_sabine_storage_forwarding_and_commission_merchant"
       ],
-      "delta": 3,
+      "delta": 4,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": null
     },
@@ -257,10 +267,18 @@
       "census_line": "eight taverns",
       "census_count": 8,
       "compared": true,
-      "town_records_in_town": 9,
-      "town_records_at_scene_date": 8,
+      "town_records_in_town": 17,
+      "town_records_at_scene_date": 16,
       "town_records_outside_town": 0,
       "business_ids": [
+        "biz_beaubien_mark_tavern_keeper",
+        "biz_couch_ira_hotel_keeper",
+        "biz_davis_john_hotel_keeper",
+        "biz_haddock_edward_tavern_keeper",
+        "biz_murphy_john_tavern_keeper",
+        "biz_stow_william_h_hotel_keeper",
+        "biz_sweet_alanson_tavern_keeper",
+        "biz_walters_william_tavern_keeper",
         "business_e_wentworth",
         "business_e_wentworth_s_public_house_on_flag_creek",
         "business_e_wentworth_s_tavern_flag_creek",
@@ -271,8 +289,8 @@
         "business_p_s_carli_eagle_tavern",
         "business_the_traveller_s_home"
       ],
-      "delta": 0,
-      "outcome": "town_matches_census",
+      "delta": 8,
+      "outcome": "town_holds_more_than_the_census_counted",
       "note": null
     },
     {
@@ -378,15 +396,20 @@
       "census_line": "fourteen physicians",
       "census_count": 14,
       "compared": true,
-      "town_records_in_town": 3,
-      "town_records_at_scene_date": 3,
+      "town_records_in_town": 8,
+      "town_records_at_scene_date": 8,
       "town_records_outside_town": 0,
       "business_ids": [
+        "biz_egan_william_b_physician",
+        "biz_harmon_elijah_d_physician",
+        "biz_inf_physician_south_01_physician",
+        "biz_kimberly_edmund_s_physician",
+        "biz_temple_john_t_physician",
         "business_dr_j_h_barnard",
         "business_dr_w_g_austin",
         "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834"
       ],
-      "delta": -11,
+      "delta": -6,
       "outcome": "town_holds_fewer_than_the_census_counted",
       "note": null
     },
@@ -410,10 +433,27 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 78,
-      "town_records_at_scene_date": 72,
+      "town_records_in_town": 95,
+      "town_records_at_scene_date": 89,
       "town_records_outside_town": 1,
       "business_ids": [
+        "biz_andrus_thomas_carpenter",
+        "biz_blodgett_tyler_k_brickmaker",
+        "biz_brown_lemuel_blacksmith",
+        "biz_brown_rufus_boarding_house_keeper",
+        "biz_clybourne_archibald_butcher",
+        "biz_collett_j_a_refectory_keeper",
+        "biz_handy_major_mason",
+        "biz_inf_cooper_north_04_cooper",
+        "biz_inf_joiner_north_02_joiner",
+        "biz_mckee_david_blacksmith",
+        "biz_meeker_joseph_carpenter",
+        "biz_miller_john_tanner",
+        "biz_porthier_joseph_blacksmith",
+        "biz_smith_george_coffee_house_keeper",
+        "biz_taylor_anson_h_carpenter",
+        "biz_taylor_augustine_carpenter",
+        "biz_temple_peter_dentist",
         "business_a_clybourn_s_market_on_the_market_square",
         "business_a_filer_co",
         "business_a_garrett",
@@ -520,13 +560,15 @@
   ],
   "totals": {
     "businesses_in_register": 196,
-    "in_town": 193,
+    "authored_records_counted": 39,
+    "businesses_counted": 235,
+    "in_town": 232,
     "outside_town": 3,
-    "at_scene_date": 180,
-    "carrying_no_enumerated_class": 73,
+    "at_scene_date": 219,
+    "carrying_no_enumerated_class": 90,
     "not_stated": 5,
     "census_enumerated_total": 118,
-    "town_enumerated_total_at_scene_date": 118
+    "town_enumerated_total_at_scene_date": 141
   },
   "classes_the_town_holds_nothing_for": [
     "bank",
@@ -553,6 +595,475 @@
     }
   ],
   "classification": [
+    {
+      "business_id": "biz_andrus_thomas_carpenter",
+      "name": "Thomas Andrus, carpenter",
+      "trade": "carpenter",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_andrus_thomas_carpenter` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_beaubien_jean_baptiste_merchant",
+      "name": "Col. Jean Baptiste Beaubien, merchant and trader",
+      "trade": "merchant and trader",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_beaubien_jean_baptiste_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_beaubien_madore_merchant",
+      "name": "Madore Benjamin Beaubien, merchant",
+      "trade": "merchant",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_beaubien_madore_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_beaubien_mark_tavern_keeper",
+      "name": "Mark Beaubien, tavern keeper",
+      "trade": "tavern keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_beaubien_mark_tavern_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_blodgett_tyler_k_brickmaker",
+      "name": "Tyler K. Blodgett, Henry S. Lampman, brickmaker",
+      "trade": "brickmaker",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_blodgett_tyler_k_brickmaker` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_brown_lemuel_blacksmith",
+      "name": "Lemuel Brown, blacksmith",
+      "trade": "blacksmith",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_brown_lemuel_blacksmith` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_brown_rufus_boarding_house_keeper",
+      "name": "Rufus Brown, Mrs Rufus Brown, boarding house keeper",
+      "trade": "boarding house keeper",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_brown_rufus_boarding_house_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_church_thomas_merchant",
+      "name": "Thomas Church, merchant",
+      "trade": "merchant",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_church_thomas_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_clybourne_archibald_butcher",
+      "name": "Archibald Clybourne, butcher",
+      "trade": "butcher",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_clybourne_archibald_butcher` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_collett_j_a_refectory_keeper",
+      "name": "J. A. Collett, refectory keeper",
+      "trade": "refectory keeper",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_collett_j_a_refectory_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_couch_ira_hotel_keeper",
+      "name": "Ira Couch, James Couch, hotel keeper",
+      "trade": "hotel keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_couch_ira_hotel_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_davis_john_hotel_keeper",
+      "name": "John Davis, hotel keeper",
+      "trade": "hotel keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_davis_john_hotel_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_egan_william_b_physician",
+      "name": "Dr William Bradshaw Egan, physician",
+      "trade": "physician",
+      "classes": [
+        "physician"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_egan_william_b_physician` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_gale_stephen_f_merchant",
+      "name": "Stephen F. Gale, merchant",
+      "trade": "merchant",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_gale_stephen_f_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_haddock_edward_tavern_keeper",
+      "name": "Edward H. Haddock, tavern keeper",
+      "trade": "tavern keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_haddock_edward_tavern_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_handy_major_mason",
+      "name": "Major Handy, mason",
+      "trade": "mason",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_handy_major_mason` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_harmon_elijah_d_physician",
+      "name": "Dr Elijah Dewey Harmon, physician",
+      "trade": "physician",
+      "classes": [
+        "physician"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_harmon_elijah_d_physician` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_inf_cooper_north_04_cooper",
+      "name": "J. Garland, cooper",
+      "trade": "cooper",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_inf_cooper_north_04_cooper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_inf_joiner_north_02_joiner",
+      "name": "J. W. Reed, joiner",
+      "trade": "joiner",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_inf_joiner_north_02_joiner` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_inf_physician_south_01_physician",
+      "name": "Dr. Josiah C. Goodhue, physician",
+      "trade": "physician",
+      "classes": [
+        "physician"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_inf_physician_south_01_physician` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_keeney_g_w_founder",
+      "name": "G. W. Keeney, founder",
+      "trade": "founder",
+      "classes": [
+        "iron_foundry"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_keeney_g_w_founder` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_kimberly_edmund_s_physician",
+      "name": "Dr Edmund Stoughton Kimberly, physician",
+      "trade": "physician",
+      "classes": [
+        "physician"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_kimberly_edmund_s_physician` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_kinzie_john_h_forwarding_and_commission",
+      "name": "John Harris Kinzie, forwarding and commission merchant and merchant",
+      "trade": "forwarding and commission merchant and merchant",
+      "classes": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_kinzie_john_h_forwarding_and_commission` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_mckee_david_blacksmith",
+      "name": "David McKee, blacksmith",
+      "trade": "blacksmith",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_mckee_david_blacksmith` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_meeker_joseph_carpenter",
+      "name": "Joseph Meeker, carpenter",
+      "trade": "carpenter",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_meeker_joseph_carpenter` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_miller_john_tanner",
+      "name": "John Miller, Benjamin Hall, tanner",
+      "trade": "tanner",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_miller_john_tanner` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_murphy_john_tavern_keeper",
+      "name": "John Murphy, Harriet Murphy, tavern keeper",
+      "trade": "tavern keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_murphy_john_tavern_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_porthier_joseph_blacksmith",
+      "name": "Joseph Porthier, blacksmith",
+      "trade": "blacksmith",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_porthier_joseph_blacksmith` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_robinson_trading_house_wolf_point",
+      "name": "Alexander Robinson's store or trading-house at Wolf Point",
+      "trade": "the country trade at the forks — a store or trading-house",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_robinson_trading_house_wolf_point` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_smith_george_coffee_house_keeper",
+      "name": "George Smith, coffee house keeper",
+      "trade": "coffee house keeper",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_smith_george_coffee_house_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_stow_william_h_hotel_keeper",
+      "name": "William H. Stow, hotel keeper",
+      "trade": "hotel keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_stow_william_h_hotel_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_sweet_alanson_tavern_keeper",
+      "name": "Alanson Sweet, tavern keeper",
+      "trade": "tavern keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_sweet_alanson_tavern_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_taylor_anson_h_carpenter",
+      "name": "Anson H. Taylor, carpenter",
+      "trade": "carpenter",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_taylor_anson_h_carpenter` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_taylor_augustine_carpenter",
+      "name": "Augustine Deodat Taylor, carpenter",
+      "trade": "carpenter",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_taylor_augustine_carpenter` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_temple_john_t_physician",
+      "name": "Dr John Taylor Temple, physician",
+      "trade": "physician",
+      "classes": [
+        "physician"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_temple_john_t_physician` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_temple_peter_dentist",
+      "name": "Dr Peter Temple, dentist",
+      "trade": "dentist",
+      "classes": [
+        "other"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_temple_peter_dentist` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_walters_william_tavern_keeper",
+      "name": "William Walters, tavern keeper",
+      "trade": "tavern keeper",
+      "classes": [
+        "tavern"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_walters_william_tavern_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_woodworth_james_h_dry_goods_merchant",
+      "name": "James H. Woodworth, dry goods merchant",
+      "trade": "dry goods merchant",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_woodworth_james_h_dry_goods_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_wright_john_merchant",
+      "name": "John Wright, merchant",
+      "trade": "merchant",
+      "classes": [
+        "store"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_wright_john_merchant` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
     {
       "business_id": "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
       "name": "a Chicago stove and hollow ware dealer, August 1835",
