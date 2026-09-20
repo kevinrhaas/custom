@@ -58,7 +58,8 @@
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
 T-1463 — The order book counts 457 people known where T-1386 ruled 1,283 into the town, so it is ordering ~826 replacements for people already standing — re-cut the unfilled remainder against the presence rulings the book already reads
-T-1449 — Close the employment join and print it: the minted hands on the businesses' staff[] and the cards' workplaces[], every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
+T-1461 — The employment coverage answer: every working-age person in the resident layer carries exactly one employment status — an attested workplace, a reconstructed seat, or an explicit not_employed reason in the words of the rule that decided it — derived, gated and printed on the card
+T-1462 — The business side of the join and the order book's employment buckets: staff[] rows on the houses the seating seats a hand in, each house's shortfall against the staffing model stated beside them so a half-filled house cannot read as a full one, the buckets filled once the re-cut lands, and the business card printing its people
 T-1442 — Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
