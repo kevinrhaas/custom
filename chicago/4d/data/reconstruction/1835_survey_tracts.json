@@ -3638,28 +3638,27 @@
       "blocks": 63,
       "by_plat": {
         "kinzies_addition": 27,
-        "original_town": 19
+        "original_town": 19,
+        "wabansia": 13
       },
       "outside": [],
-      "no_ring_for_their_plat": [
-        "blk_michigan_st_tract_west_north",
-        "blk_michigan_st_tract_west_south",
-        "blk_michigan_st_tract_east_north",
-        "blk_michigan_st_tract_east_south",
-        "blk_wabansia_b_t1",
-        "blk_wabansia_c_t1",
-        "blk_wabansia_b_t2",
-        "blk_wabansia_c_t2",
-        "blk_wabansia_b_t3",
-        "blk_wabansia_c_t3",
-        "blk_wabansia_b_t4",
-        "blk_wabansia_b_t5",
-        "blk_wabansia_c_t5",
-        "blk_wabansia_b_t6",
-        "blk_wabansia_c_t6",
-        "blk_wabansia_b_t7",
-        "blk_wabansia_c_t7"
-      ],
+      "no_ring_for_their_plat": [],
+      "not_testable_and_why": {
+        "michigan_st_tract": {
+          "blocks": [
+            "blk_michigan_st_tract_east_north",
+            "blk_michigan_st_tract_east_south",
+            "blk_michigan_st_tract_west_north",
+            "blk_michigan_st_tract_west_south"
+          ],
+          "reason": "no survey-tract polygon is committed for this plat, so there are no bounds to test its blocks against"
+        }
+      },
+      "corners_on_the_line": {
+        "worst_m": 1.17,
+        "allowance_m": 17.5,
+        "why": "A block that tiles its plat to the edge has corners ON the boundary. The allowance is data/datum.json's own 17.5 m RMS coordinate residual, not a figure fitted to this layer; the worst distance actually used is stated so a reader can see how much of it any block needs."
+      },
       "confidence": "inferred"
     },
     "lighthouse_inside_the_reservation": {
