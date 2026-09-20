@@ -12,25 +12,25 @@
       "passed": 85,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 321,
-      "takenAt": "2026-09-20T14:57:39.408Z",
-      "ref": "steward/t-1438-wabansia-michigan-lots",
-      "commit": "0bac4fc4d777",
+      "wallSeconds": 325,
+      "takenAt": "2026-09-20T15:00:56.626Z",
+      "ref": "steward/t-1446-roof-redeal-execute",
+      "commit": "6edd7a73ee21",
       "devCommit": "ea2cb25915d8",
-      "treeHash": "sha256:94f3ab50a00d8cc8",
+      "treeHash": "sha256:1c0c77db3694f501",
       "treeDirty": false,
-      "changelogHash": "sha256:212579bf8c870bbb",
+      "changelogHash": "sha256:8cb9883ea1c58328",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          1.8,
-          3.3,
-          2.5
+          4,
+          4.3,
+          3.5
         ]
       },
-      "source": "/tmp/smoke1.log"
+      "source": "/tmp/smoke_d1.log"
     },
     {
       "viewport": "mobile",
@@ -2090,6 +2090,37 @@
         ]
       },
       "source": "/tmp/smoke_m1213.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 321,
+      "takenAt": "2026-09-20T14:57:39.408Z",
+      "ref": "steward/t-1438-wabansia-michigan-lots",
+      "commit": "0bac4fc4d777",
+      "devCommit": "ea2cb25915d8",
+      "treeHash": "sha256:94f3ab50a00d8cc8",
+      "treeDirty": false,
+      "changelogHash": "sha256:212579bf8c870bbb",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.3,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke1.log"
     }
   ]
 }
