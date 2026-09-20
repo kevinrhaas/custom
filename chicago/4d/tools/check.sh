@@ -651,6 +651,19 @@ step "Wabansia's streets re-derive from the readings and the committed Kinzie li
 step "Kinzie Street's Wabansia reach re-derives, meets the committed line and bends nothing" \
   python3 tools/carry_kinzie_west.py --check
 
+# T-1443, and it is the same argument turned through ninety degrees. `carroll`, `fulton`,
+# `lake`, `randolph` and `washington` all stopped at local east -320 — a clip that was
+# this reconstruction's own extent and never a claim about the street, as `fulton`'s own
+# note said. T-1416 built the field out to east -705 and T-1430 seated `des_plaines`, so
+# both reasons are gone and the five are carried to that street. This holds the carry to
+# the two things that would quietly invalidate it: that each reach is the committed line
+# EXTENDED and not re-fitted — the old west vertex stays on the new line, so no platted
+# lot line moves and no corridor is re-cut — and that every metre of it stands on dry
+# modelled ground. `fulton`'s two surviving intersections west of the clip are the
+# corroboration and they are re-measured here, not quoted.
+step "the West Division's five tiers re-derive to Des Plaines, bend nothing and stand on dry ground" \
+  python3 tools/carry_west_tiers_west.py --check
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled
