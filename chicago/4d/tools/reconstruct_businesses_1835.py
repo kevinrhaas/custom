@@ -989,7 +989,17 @@ def trade_heads(root=None):
 
 def attested_strings(businesses_dir=None):
     """Every firm style, house name and proprietor name the register already prints —
-    the collision set an invention may not walk into."""
+    the collision set an invention may not walk into.
+
+    A DRAWN HAND IS NOT A PRINTED NAME (T-1462). Since the reconstructed seating was
+    laid onto the compiled records, `staff` carries 124 rows this project drew itself,
+    each at `reconstructed` tier — and they are the same people the trade households
+    are built out of. Counting them here made the collision set eat its own tail: Almira
+    Sawyer was refused a dressmaking shop of her own because a pass had just seated
+    Almira Sawyer in somebody else's. The set is what a SOURCE prints, so a row this
+    project reconstructed is not part of it, and the tier is how the record says which
+    it is.
+    """
     root = Path(businesses_dir or (DATA / "businesses"))
     names, people = set(), set()
     for path in sorted(root.glob("biz_*.json")):
@@ -999,6 +1009,8 @@ def attested_strings(businesses_dir=None):
             names.add(style.strip().lower())
         for field in ("proprietors", "partners", "staff"):
             for person in doc.get(field) or []:
+                if person.get("tier") == "reconstructed":
+                    continue
                 people.add((person.get("name") or "").strip().lower())
     return names, people
 

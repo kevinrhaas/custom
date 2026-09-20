@@ -73,8 +73,10 @@ FIELDS = [
      "A sole keeper, or no keeper named at all. `compile_businesses` files a lone name as a "
      "proprietor and only a firm of two or more as partners."),
     ("staff", "rows",
-     "THE PAPERS NAME OWNERS AND ALMOST NEVER A CLERK. Empty on every record is a true reading "
-     "of the register: T-1183 rules the staffing model and T-1189 fills this from it."),
+     "THE PAPERS NAME OWNERS AND ALMOST NEVER A CLERK, so empty on a record the register "
+     "compiled is a true reading of the register and not an omission. What is no longer empty "
+     "is the 84 houses T-1433's seating seated a reconstructed hand in: T-1462 lays those 124 "
+     "seats on as `staff` rows at their own tier, each with its seed and its basis."),
     ("locations", "rows", None),
     ("dates", "block", None),
     ("proprietor_community", "block",
@@ -509,8 +511,9 @@ def render(records, identity, register, rulings):
       % (staffed, n, blocks))
     w("  papers name proprietors and almost never a hand, so an empty list is a true reading")
     w("  of the register and not an omission. T-1183 rules the staffing model; T-1422 laid it")
-    w("  over the schools and the printing offices as `staffing`, which names nobody; T-1189 is")
-    w("  the ticket that puts people in `staff`.")
+    w("  over the schools and the printing offices as `staffing`, which names nobody; T-1462")
+    w("  lays the 124 reconstructed seats T-1433 drew onto the 84 houses that took them, each")
+    w("  with the shortfall that house still stands at against the model's typical band.")
     w("- **Secondary premises** — § 6. T-1404 and T-1405.")
     w("- **Black-owned and Native or Métis-run houses** — T-1403.")
     w("- **The class counts against the census's own** — `tools/trade_census_1835.py`.")

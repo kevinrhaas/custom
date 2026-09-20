@@ -13835,3 +13835,59 @@ parent audit **T-1197**, the roof programme **T-1196**, the order book **T-1166*
 placement policy **T-1195**; the twenty-six verdicts whose record id carries its family,
 and whose execution is therefore an id migration across the derived layer, are **T-1452**.
 **Recorded:** 2026-09-20.
+
+### L266 — The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 63 roofs that are not framed
+
+**Scope:** `structures.phases[log_or_fort_archetype]` — 63 phases: 49 log dwellings and
+14 fort structures. Nothing about their geometry, their roof type,
+their pitch or their weathering moves. This entry is about one thing: which of the two
+coverings this project can argue each of those roofs is drawn on.
+
+**Decision:** `generators/common/materials.py`'s `roof_substrate()` deals the `shingle`
+substrate to every roofed building that is not an outbuilding. For the 182 framed roofs
+that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 63
+it is a claim, and this is the claim.
+
+**What §2.2 actually grades, and where it stops.** It grades a shingled covering
+**attested** on the North Side school of 1833 — *"a frame building twenty-six by
+thirty-eight feet; twelve-foot posts; sheeted and shingled roof"* — and **inferred** as
+*the ordinary covering of a framed building here*. The second half of that sentence says
+**framed**. A log cabin is not a framed building, and the fort's eight garrison kinds are
+not all framed either. So the rule reaches these 63 roofs by an argument and not by the
+grading, and the argument is set out here rather than left implicit in a selector.
+
+**The argument.** The two coverings this project can argue split on **what a roof is for**,
+not on what the walls beneath it are made of. The board roof is argued — by
+`generators/archetypes/outbuilding.py`, which §2.2 grades on — as the covering of a
+**shed**: *"a shingle field on an outbuilding would be claiming a finish."* A privy, a
+stable, a wagon shed and a smokehouse are roofed to keep rain off a thing. A log cabin is
+a **dwelling**: it carries a family through a Chicago winter, and it meets the same demand
+the framed dwelling's roof meets, at the same cost to whoever built it. The fort's
+garrison buildings are quarters, a magazine, a storehouse and a guardhouse — buildings the
+United States Army roofed to keep, not sheds. Reading the split as wall-fabric rather than
+purpose would put a shed's covering on fifty homes because their walls were cheap, which
+is a claim in the other direction and a worse one.
+
+**Which way it is wrong if it is wrong.** Toward a town that reads slightly better built
+than it was. If a share of the 1835 cabins were roofed with riven clapboards weighted
+under poles rather than with a nailed shingle field — a covering this project holds no
+source for at all, and therefore has no row for — then those roofs are drawn with a finer
+and more regular rhythm than they had. The error is bounded and visible: it is one
+substrate row on 63 roofs, and every one of them is reachable through this scope line.
+
+**What is NOT claimed.** No exposure — that is **L263**, taken separately and on the
+owner's ruling of 2026-09-20. No weathering: `roof_finish()` grades the roof's condition
+from the 218 records that state one and this entry does not touch it. No colour: no
+substrate owns one (§1.1). And no confidence moves — a covering dealt by rule does not
+make a roof better attested, and every one of these 63 phases keeps the grade it had.
+
+**What would discharge it:** a source stating the covering of any log building or any Fort
+Dearborn building of the period. It is one membership test in one frozenset; nothing else
+has to move when it arrives.
+
+**Related:** **L263** (the exposure, and the ruling that took it), **L264** (the brick
+course, taken the same day and still unwired), T-1487 (this parcel), T-1488 (the relief
+binding that makes it visible), T-1465 (the parent ask), T-1450 (the vendored maps),
+`docs/RESEARCH/materials.md` §2.2 and §3.1.
+
+**Recorded:** 2026-09-20.
