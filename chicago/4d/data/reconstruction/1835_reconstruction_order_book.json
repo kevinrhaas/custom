@@ -2500,7 +2500,7 @@
           "target": 2,
           "known": 1,
           "to_reconstruct": 1,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1185",
           "documented_zero": false,
           "staff_implied": null,
@@ -2754,7 +2754,7 @@
           "target": 2,
           "known": 1,
           "to_reconstruct": 1,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1185",
           "documented_zero": false,
           "staff_implied": null,
@@ -3773,6 +3773,20 @@
       "stage": "lodgers",
       "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "businesses/brewery",
+      "ticket": "T-1185",
+      "stage": "mechanics_shops",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/silversmith_jeweller",
+      "ticket": "T-1185",
+      "stage": "mechanics_shops",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
     },
     {
       "bucket": "businesses/druggist",

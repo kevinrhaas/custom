@@ -181,7 +181,33 @@ prints under Dr. J. H. Barnard — and the form, not the line, is what the seed 
 
 **Why there are three and not fifteen.** The census lines behind this group count MEN and not
 premises, and the count was returned months after the scene. Both corrections are in the
-order book rather than here: see **docs/LIBERTIES.md § L258**.
+order book rather than here: see **docs/LIBERTIES.md § L259**.
+## Worked: the brewery and the jeweller's of 1835
+
+T-1185's group, the mechanics' shops, writes two. Both sign by form 1, on goods lines the
+register prints for their own class and nowhere else:
+
+| | reconstructed house | adopted keeper | face |
+|---|---|---|---|
+| north | *M. Quinn, brewery* | `rc_quinn_martin` | North Water Street |
+| west | *L. Chevalier, watches, jewelry, engravings and fancy goods* | `rc_chevalier_louis` | Canal Street |
+
+Two things about the goods lines. The brewery's is a single word because that is all the corpus
+gives: the register carries one brewery, *the Chicago Brewery*, with no trade line under it, and
+a list composed for the reconstruction would be exactly the invention this page exists to
+refuse. The jeweller's is J. H. Mulford's own line, verbatim — he is the one attested house of
+the class — which is the rule of § *The goods line* applied at its strictest.
+
+And the faces differ in kind from the druggists'. A brewery is not a shop front: it wants water,
+fuel and a yard, and it takes the working banks rather than a retail street, which is why
+*M. Quinn* lands on North Water and not on Kinzie. The jeweller's is a retail front and takes
+the retail faces, as Mulford does from South Water Street.
+
+**The brewery also carries the count that argues against it.** The *Chicago American* of
+15 August 1835 counts one brewery where the December census counts two. The record's own
+`reconstruction.basis.note` prints that sentence, so a reader holding the card holds the
+objection to the card. See **docs/LIBERTIES.md § L257** and
+**docs/RESEARCH/business-layer.md** § *the mechanics' shops of 1835*.
 
 ---
 
@@ -189,3 +215,6 @@ Related: the order book **docs/RESEARCH/1835_reconstruction_order_book.md**, the
 **docs/RESEARCH/1835_trade_households.md**, the lodging model
 **data/reconstruction/1835_lodging_model.json**, the business layer
 **docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1418** (of **T-1186**), **T-1408**, **T-1173**, **T-1166**.
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1408**, **T-1173**, **T-1166**.
+**docs/RESEARCH/1835_trade_households.md**, the business layer
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1185**, **T-1173**, **T-1166**.

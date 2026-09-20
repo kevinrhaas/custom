@@ -215,7 +215,7 @@ The December 1835 State census set against the register the town already holds.
 |---|---:|---:|---:|---:|---|
 | `businesses/bank` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/book_store` | 2 | 2 | 0 | 0 | T-1184 |
-| `businesses/brewery` | 2 | 1 | 1 | 0 | T-1185 |
+| `businesses/brewery` | 2 | 1 | 1 | 1 | T-1185 |
 | `businesses/church` | 5 | 0 | 5 | 0 | T-1188 |
 | `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
 | `businesses/iron_foundry` | 1 | 1 | 0 | 0 | T-1185 |
@@ -225,7 +225,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/physician` | 9 | 8 | 1 | 1 | T-1418 |
 | `businesses/printing_office` | 2 | 3 | 0 | 0 | T-1188 |
 | `businesses/school` | 7 | 7 | 0 | 0 | T-1188 |
-| `businesses/silversmith_jeweller` | 2 | 1 | 1 | 0 | T-1185 |
+| `businesses/silversmith_jeweller` | 2 | 1 | 1 | 1 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
 | `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
 | `businesses/store` | 44 | 59 | 0 | 0 | T-1184 |

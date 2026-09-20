@@ -3,13 +3,13 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 208,
+    "records": 210,
     "compiled_from_register": 196,
-    "authored": 12,
-    "present_at_scene_date": 191,
+    "authored": 14,
+    "present_at_scene_date": 193,
     "by_type": {
       "book_store": 2,
-      "brewery": 1,
+      "brewery": 2,
       "druggist": 4,
       "iron_foundry": 1,
       "lawyer": 20,
@@ -18,7 +18,7 @@
       "physician": 4,
       "printing_office": 3,
       "school": 7,
-      "silversmith_jeweller": 1,
+      "silversmith_jeweller": 2,
       "steam_saw_mill": 4,
       "storage_and_forwarding": 8,
       "store": 68,
@@ -28,40 +28,40 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 35,
-      "street_only": 66,
+      "street_only": 68,
       "unplaceable": 85
     },
-    "named_people": 208,
-    "named_people_linked_to_a_town_card": 156,
+    "named_people": 210,
+    "named_people_linked_to_a_town_card": 158,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 22,
     "by_grade": {
       "attested": 159,
       "inferred": 38,
-      "reconstructed": 11
+      "reconstructed": 13
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 35,
-      "street_only": 66,
+      "street_only": 68,
       "unplaceable": 81
     },
     "by_street": {
-      "Canal Street": 1,
+      "Canal Street": 2,
       "Dearborn Street": 24,
       "Kinzie Street": 1,
       "La Salle Street": 4,
       "Lake Street": 14,
       "Monroe Street": 1,
-      "North Water Street": 3,
+      "North Water Street": 4,
       "Randolph Street": 2,
       "South Water Street": 41
     },
     "by_proprietor_community": {
       "british": 9,
       "free_black": 2,
-      "french_canadian": 1,
-      "irish": 1,
+      "french_canadian": 2,
+      "irish": 2,
       "metis": 1,
       "new_york": 41,
       "other": 10,
@@ -101,7 +101,7 @@
       {
         "value": "french_canadian",
         "label": "French Canadian",
-        "count": 1
+        "count": 2
       },
       {
         "value": "free_black",
@@ -121,7 +121,7 @@
       {
         "value": "irish",
         "label": "Irish",
-        "count": 1
+        "count": 2
       },
       {
         "value": "german",
@@ -11056,6 +11056,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_chevalier_silversmith_jeweller",
+      "file": "rcb_chevalier_silversmith_jeweller.json",
+      "name": "L. Chevalier, watches, jewelry, engravings and fancy goods",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "silversmith_jeweller"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "watches, jewelry, engravings and fancy goods",
+      "occupation": "jeweller",
+      "goods": [
+        "watches, jewelry, engravings and fancy goods"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Louis Chevalier",
+          "person_id": "rc_chevalier_louis",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "canal",
+        "street": "Canal Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "french_canadian",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_crandall_druggist",
       "file": "rcb_crandall_druggist.json",
       "name": "B. Crandall, drugs, medicines and dye stuffs",
@@ -11427,6 +11475,54 @@
       "closed": null,
       "dates_tier": "reconstructed",
       "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_quinn_brewery",
+      "file": "rcb_quinn_brewery.json",
+      "name": "M. Quinn, brewery",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "brewery"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "brewing",
+      "occupation": "brewer",
+      "goods": [
+        "brewery"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Martin Quinn",
+          "person_id": "rc_quinn_martin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "north_water",
+        "street": "North Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
