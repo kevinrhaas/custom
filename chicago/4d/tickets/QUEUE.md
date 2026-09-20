@@ -61,7 +61,9 @@ T-1442 — Print the finished business layer: the trade-census crosswalk and the
 T-1431 — Carry the West Division's five tier lines off their E -320 clip and release generate_west_infill's 35 held slots on the extended ground
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1436 — Thompson's North Division tier: the seven Kinzie-to-the-river blocks and the four-to-a-face lots the plat draws in them
-T-1438 — The West Division, Wabansia, the School Section tier and the Michigan Street tract: lots from each block's own figures, and every documented north or west record's lot recorded on the record
+T-1454 — The Michigan Street tract and Wabansia: the block grids between each sheet's own committed corridors, their numerals stamped onto the cells, and the lots each sheet's own figures allow
+T-1455 — The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
+T-1456 — The School Section tier, and every documented north or west record's lot recorded on the record
 T-1446 — Execute the roof redeal the adjudication names: refamily and retire in the recipe files so the three infill generators re-derive byte for byte, retired records to exclusions under a retired_reconstruction guard with their liberty tokens resolved, rebaked, with a screenshot from Lake and Clark
 T-1198 — Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
@@ -238,4 +240,3 @@ T-1435 — The in-window crosswalk still hands its lawyer and physician shortfal
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1439 — The order book reports a false delta of ten institutional roofs: programme_deltas reads the town model's institutional HIGH end, which includes the fort's ten principal roofs, against district_group_matrix.institutional_public alone — and the boarding-house row beside it compares that matrix with a figure read off the same matrix, so it can never disagree
-
