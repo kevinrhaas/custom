@@ -117,6 +117,23 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_j_b_brown_dearborn_street_grocery",
+     "business_name": "J. B. Brown, Dearborn Street grocery",
+     "role": "partner",
+     "printed_as": "J. B. Brown",
+     "from": "1834-07-02",
+     "to": "1834-07-02",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card brown_jesse_b (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_07_02#c021"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "blackhawk_war_chicago_enrollments_isa",
     "chicago_democrat_1833_1835"

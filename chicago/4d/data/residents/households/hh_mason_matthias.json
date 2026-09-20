@@ -127,6 +127,34 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_matthias_mason_co",
+     "business_name": "Matthias Mason & Co.",
+     "role": "partner",
+     "printed_as": "Matthias Mason",
+     "from": "1833-11-26",
+     "to": "1834-12-10",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card mason_matthias (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c020",
+      "chicago_democrat_1833_12_24#c003",
+      "chicago_democrat_1834_01_07#c008",
+      "chicago_democrat_1834_02_18#c010",
+      "chicago_democrat_1834_02_25#c006",
+      "chicago_democrat_1834_03_04#c015",
+      "chicago_democrat_1834_04_01#c012",
+      "chicago_democrat_1834_06_11#c013",
+      "chicago_democrat_1834_09_10#c013",
+      "chicago_democrat_1834_10_15#c007",
+      "chicago_democrat_1834_11_19#c008",
+      "chicago_democrat_1834_12_10#c007"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_11_26",
     "chicago_democrat_1833_1835",

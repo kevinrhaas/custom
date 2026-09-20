@@ -109,6 +109,23 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_fullerton_g_attorneys_and_counsellors",
+     "business_name": "Fullerton & G., attorneys and counsellors",
+     "role": "proprietor",
+     "printed_as": "A. N. Fullerton",
+     "from": "1835-06-13",
+     "to": "1835-06-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card fullerton_alexander (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_13#c004"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_american_1835",

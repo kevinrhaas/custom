@@ -114,6 +114,23 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_lathrop_johnson_co_livery",
+     "business_name": "Lathrop Johnson & Co., livery",
+     "role": "proprietor",
+     "printed_as": "Lathrop Johnson",
+     "from": "1835-06-27",
+     "to": "1835-06-27",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card johnson_lathrop (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_27#c006"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "chicago_american_1835",
     "chicago_tribune_1882_04_25_old_settler_deaths",
