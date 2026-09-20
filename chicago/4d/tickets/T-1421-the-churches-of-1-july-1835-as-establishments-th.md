@@ -1,7 +1,7 @@
 ---
 id: T-1421
 title: The churches of 1 July 1835 as establishments: the congregations the sources attest, each with its minister at the tier the layer holds and its sexton reconstructed, seated on the worship roofs the town already carries, and the census's fifth church left uninvented
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1411
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1549
 claimed_by: run 9/19/2026, 10:12:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T04:59:18.266Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35485586079
 ---
 
