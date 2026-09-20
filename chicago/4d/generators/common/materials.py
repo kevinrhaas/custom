@@ -756,11 +756,15 @@ def roof_material_name(substrate: Substrate) -> str:
     the same thing by hand is how this project ended up with two hewn-log colours and
     two materials called `heavy_timber` (materials.md findings 2 and 3).
 
-    It is a LABEL and not a contract. `docs/GLB-CONTRACT.md` says material names are
-    not pinned by that document and that a renderer keyed on one would be reading a
-    convention nobody promised to keep — which is still true, and is why T-1488 has to
-    choose deliberately between proposing a pin and carrying the substrate in the
-    material's `extras`. Until it does, this name is for a person reading a GLB.
+    IT IS A CONTRACT NOW — T-1488, 2026-09-20. It was a label, and this docstring said
+    so: `docs/GLB-CONTRACT.md` pinned no material name and warned that a renderer keyed
+    on one would be reading a convention nobody promised to keep. That document's
+    § Roof coverings now proposes the pin, bilaterally, for `roof_<substrate>` and for
+    nothing else, and `renderers/web/js/roof-relief.js` binds the two coverings' relief
+    maps by reading it. The promise attached to the pin is the sentence above this one:
+    THIS FUNCTION IS THE ONLY WRITER. A new covering is a new row in `SUBSTRATES` and a
+    new branch in `roof_substrate()`, never a literal at a call site — because a second
+    writer is exactly how a pinned name stops being one.
     """
     return substrate.key if substrate.key.startswith("roof") else f"roof_{substrate.key}"
 
