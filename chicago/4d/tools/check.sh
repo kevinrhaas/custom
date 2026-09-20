@@ -539,8 +539,12 @@ selftest "…and its own assertions still fire when broken" \
 # of the fifty-eight and the ones that had no control at all. Four boxes are flanked by
 # two committed lines; the six tier lines are committed but clipped at east -320 m and are
 # continued WEST along their own bearings; and the two flanks Jefferson and Des Plaines
-# would give are `clinton` stepped one and two modules west, because both streets are
-# REFUSED for standing wholly west of the modelled ground. The gate re-cuts every box,
+# would give are `clinton` stepped one and two modules west, because when these eighteen
+# numerals were READ both streets stood refused for want of modelled ground. T-1430 has
+# since seated them, 8.70 m and 8.22 m from where the step puts them, and the crops still
+# come off the step: they are citations of a reading already taken, and re-cutting them
+# would re-read eighteen numerals to no purpose. What the seating changes is what the
+# agreement MEANS — two instruments agreeing, rather than one licensing the other. The gate re-cuts every box,
 # checks every read window still lies inside the box it is cited under, re-measures the
 # three agreements that licence the step, and asserts the boustrophedon ACROSS the blocks
 # other tickets already read — so a numeral misread here breaks against T-0788's 28 29 and
