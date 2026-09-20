@@ -7,7 +7,7 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 15,
+  "records": 30,
   "groups": {
     "lodging_river_and_transport": {
       "ticket": "T-1187",
@@ -72,26 +72,61 @@
     },
     "professions_and_services": {
       "ticket": "T-1418",
-      "title": "the professions",
-      "records": 3,
+      "title": "the professions and the services",
+      "records": 18,
       "by_class": {
         "lawyer": 2,
+        "other": 15,
         "physician": 1
       },
       "by_street": {
-        "North Water Street": 1,
-        "South Water Street": 2
+        "Canal Street": 3,
+        "Dearborn Street": 3,
+        "Kinzie Street": 3,
+        "Lake Street": 4,
+        "North Water Street": 2,
+        "South Water Street": 3
       },
       "by_roof": {},
       "ids": [
+        "rcb_brady_barbers_shop",
+        "rcb_chapin_millinery",
+        "rcb_cobb_millinery",
+        "rcb_crandall_land_office",
+        "rcb_fairbanks_land_office",
+        "rcb_goodrich_millinery",
+        "rcb_kellogg_millinery",
         "rcb_mcguire_physician",
+        "rcb_metcalf_land_office",
+        "rcb_murphy_land_office",
         "rcb_parmelee_lawyer",
-        "rcb_robillard_lawyer"
+        "rcb_quinn_millinery",
+        "rcb_robillard_lawyer",
+        "rcb_sawyer_dress_making_shop",
+        "rcb_shea_millinery",
+        "rcb_sullivan_millinery",
+        "rcb_walsh_millinery",
+        "rcb_woodruff_millinery"
       ],
       "proprietors_adopted": [
+        "rc_brady_daniel",
+        "rc_chapin_eliza",
+        "rc_cobb_maria",
+        "rc_crandall_william",
+        "rc_fairbanks_seth",
+        "rc_goodrich_seth",
+        "rc_kellogg_almira",
         "rc_mcguire_john",
+        "rc_metcalf_hiram",
+        "rc_murphy_hugh",
         "rc_parmelee_reuben",
-        "rc_robillard_baptiste"
+        "rc_quinn_honora",
+        "rc_robillard_baptiste",
+        "rc_sawyer_almira",
+        "rc_shea_alice",
+        "rc_sullivan_mary",
+        "rc_walsh_honora",
+        "rc_woodruff_hannah"
       ]
     },
     "stores_and_provisions": {
@@ -339,7 +374,7 @@
     ]
   },
   "river_and_transport": {
-    "_doc": "EVERY RECONSTRUCTED HEAD AT A RIVER OR TRANSPORT TRADE, and the house of trade behind it or the reason there is none. `kind` says which sort of absence a headless trade is: `house_of_trade` this programme builds, `count_already_held` the register already over-holds, `employment` has no premises to keep, `commands_a_vessel` keeps a hull and not a house, `contract_not_premises` holds a route and not a stand, `deferred` waits on the ticket named. No head is passed over in silence — that is what this table is for. T-1425 emptied `deferred`: every head here now carries a ruling made with its evidence in front of it.",
+    "_doc": "EVERY RECONSTRUCTED HEAD AT A RIVER OR TRANSPORT TRADE, and the house of trade behind it or the reason there is none. `kind` says which sort of absence a headless trade is: `house_of_trade` this programme builds, `census_bucket` the order book counts and another ticket fills, `count_already_held` the register already over-holds, `employment` has no premises to keep, `commands_a_vessel` keeps a hull and not a house, `contract_not_premises` holds a route and not a stand, `deferred` waits on the ticket named. No head is passed over in silence — that is what this table is for.",
     "ticket": "T-1424, adjudication completed by T-1425",
     "trades": 9,
     "heads": 20,
@@ -576,5 +611,702 @@
       "replaceable_by": "The Chief Engineer's annual report for 1835, or the House Document series — named and unfound in docs/RESEARCH/north_pier.md, dossier 01. A strength for the works in the season of 1835 retires this refusal and orders whatever it orders.",
       "written_beside_the_hulls": "data/reconstruction/1835_vessels_in_port.json"
     }
+  },
+  "services": {
+    "_doc": "EVERY RECONSTRUCTED HEAD AT A PROFESSIONAL OR SERVICE TRADE, and the house of trade behind it or the reason there is none. `kind` says which sort of absence a headless trade is: `house_of_trade` this programme builds, `census_bucket` the order book counts and another ticket fills, `count_already_held` the register already over-holds, `employment` has no premises to keep, `commands_a_vessel` keeps a hull and not a house, `contract_not_premises` holds a route and not a stand, `deferred` waits on the ticket named. No head is passed over in silence — that is what this table is for.",
+    "ticket": "T-1419",
+    "trades": 12,
+    "heads": 83,
+    "heads_this_programme_owes_a_house": 0,
+    "heads_still_deferred": 0,
+    "rows": [
+      {
+        "trade": "attorney",
+        "kind": "census_bucket",
+        "deferred_to": null,
+        "heads": 4,
+        "why": "THE COUNT IS PRINTED, SO THE COUNT ORDERS. The December 1835 State census counts twenty-two lawyers, the order book holds the bucket and T-1418 filled it; a head left over is a man the printed count does not reach, and a house raised for him here would spend a count the register may already hold. T-1189 gives him his place of work.",
+        "people": [
+          {
+            "person_id": "rc_robillard_baptiste",
+            "name": "Baptiste Robillard",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/20_29/north/family/trade:attorney:001",
+            "firm": "rcb_robillard_lawyer"
+          },
+          {
+            "person_id": "rc_parmelee_reuben",
+            "name": "Reuben Parmelee",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:attorney:001",
+            "firm": "rcb_parmelee_lawyer"
+          },
+          {
+            "person_id": "rc_dickinson_george",
+            "name": "George Dickinson",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/20_29/west/family/trade:attorney:001",
+            "firm": null
+          },
+          {
+            "person_id": "rc_woodruff_chauncey",
+            "name": "Chauncey Woodruff",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:attorney:001",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "barber_surgeon",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "THE ARGUMENT RESTATED, WHICH IS WHAT T-1186 ASKED FOR BEFORE A SECOND BARBER WAS RAISED. The old programme's argument was a COUNT — a barber bucket in the order book — and it was refused, because the December census prints no barber and the book orders against printed counts or not at all. The argument here is not a count: this project already stands one barber's shop, rcb_fb_barbers_shop, on T-1377's documented floor of the town's free Black residents, and that floor argues about PEOPLE and orders no second shop. What is committed is the second head — the resident band drew Daniel Brady at barber_surgeon — and the trade names the shop he keeps. One head, one shop, withdrawn with him.",
+        "people": [
+          {
+            "person_id": "rc_brady_daniel",
+            "name": "Daniel Brady",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:barber_surgeon:004",
+            "firm": "rcb_brady_barbers_shop"
+          }
+        ]
+      },
+      {
+        "trade": "dentist",
+        "kind": "count_already_held",
+        "deferred_to": null,
+        "heads": 0,
+        "why": "THE STAND ARGUED BY T-1186 IS REFUSED, AND BY NAME. The register already prints this town's dentistry at the scene date — Wm. H. Kennicott, Surgeon Dentist, in two printings, a travelling dentist at the New York House and one unidentified — and the resident band drew NO head at the trade. So there is neither a count short nor a man to house: a stand raised here would be an establishment invented out of nothing, which is the one thing this programme refuses.",
+        "people": []
+      },
+      {
+        "trade": "domestic",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 58,
+        "why": "NO PREMISES. Domestic service is given in another household's house; the workplace link is T-1189's, which staffs every establishment with real persons, and nothing here raises a house. There is no `seamstress` in the resident layer's closed occupation vocabulary, so the parent's third female service trade has no row to rule on and is not invented one.",
+        "people": [
+          {
+            "person_id": "rc_sheldon_susan",
+            "name": "Susan Sheldon",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:005",
+            "firm": null
+          },
+          {
+            "person_id": "rc_donnelly_ellen",
+            "name": "Ellen Donnelly",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:006",
+            "firm": null
+          },
+          {
+            "person_id": "rc_gilbert_almira",
+            "name": "Almira Gilbert",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:007",
+            "firm": null
+          },
+          {
+            "person_id": "rc_newell_nancy",
+            "name": "Nancy Newell",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:008",
+            "firm": null
+          },
+          {
+            "person_id": "rc_walsh_margaret",
+            "name": "Margaret Walsh",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:009",
+            "firm": null
+          },
+          {
+            "person_id": "rc_leland_anna",
+            "name": "Anna Leland",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:010",
+            "firm": null
+          },
+          {
+            "person_id": "rc_gilbert_nancy",
+            "name": "Nancy Gilbert",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:011",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mccarthy_bridget",
+            "name": "Bridget McCarthy",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:domestic:012",
+            "firm": null
+          },
+          {
+            "person_id": "rc_brady_catherine",
+            "name": "Catherine Brady",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:012",
+            "firm": null
+          },
+          {
+            "person_id": "rc_carroll_honora",
+            "name": "Honora Carroll",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:013",
+            "firm": null
+          },
+          {
+            "person_id": "rc_connor_johanna",
+            "name": "Johanna Connor",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:014",
+            "firm": null
+          },
+          {
+            "person_id": "rc_cobb_abigail",
+            "name": "Abigail Cobb",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:015",
+            "firm": null
+          },
+          {
+            "person_id": "rc_kellogg_lucy",
+            "name": "Lucy Kellogg",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:016",
+            "firm": null
+          },
+          {
+            "person_id": "rc_tuttle_phebe",
+            "name": "Phebe Tuttle",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:017",
+            "firm": null
+          },
+          {
+            "person_id": "rc_stebbins_rhoda",
+            "name": "Rhoda Stebbins",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:018",
+            "firm": null
+          },
+          {
+            "person_id": "rc_goodrich_sophronia",
+            "name": "Sophronia Goodrich",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:019",
+            "firm": null
+          },
+          {
+            "person_id": "rc_duffy_catherine",
+            "name": "Catherine Duffy",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:020",
+            "firm": null
+          },
+          {
+            "person_id": "rc_quinn_johanna",
+            "name": "Johanna Quinn",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:021",
+            "firm": null
+          },
+          {
+            "person_id": "rc_parmelee_almira",
+            "name": "Almira Parmelee",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:022",
+            "firm": null
+          },
+          {
+            "person_id": "rc_hastings_amanda",
+            "name": "Amanda Hastings",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:023",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mccarthy_margaret",
+            "name": "Margaret McCarthy",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:024",
+            "firm": null
+          },
+          {
+            "person_id": "rc_corrigan_honora",
+            "name": "Honora Corrigan",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:025",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mccarthy_ellen",
+            "name": "Ellen McCarthy",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:026",
+            "firm": null
+          },
+          {
+            "person_id": "rc_parmelee_sarah",
+            "name": "Sarah Parmelee",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:027",
+            "firm": null
+          },
+          {
+            "person_id": "rc_lynch_catherine",
+            "name": "Catherine Lynch",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:028",
+            "firm": null
+          },
+          {
+            "person_id": "rc_quinn_margaret",
+            "name": "Margaret Quinn",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:domestic:029",
+            "firm": null
+          },
+          {
+            "person_id": "rc_doyle_alice",
+            "name": "Alice Doyle",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:005",
+            "firm": null
+          },
+          {
+            "person_id": "rc_ryan_margaret",
+            "name": "Margaret Ryan",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:006",
+            "firm": null
+          },
+          {
+            "person_id": "rc_stiles_abigail",
+            "name": "Abigail Stiles",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:007",
+            "firm": null
+          },
+          {
+            "person_id": "rc_chapin_anna",
+            "name": "Anna Chapin",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:008",
+            "firm": null
+          },
+          {
+            "person_id": "rc_cavanagh_mary",
+            "name": "Mary Cavanagh",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:009",
+            "firm": null
+          },
+          {
+            "person_id": "rc_eastman_lucy",
+            "name": "Lucy Eastman",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:010",
+            "firm": null
+          },
+          {
+            "person_id": "rc_newell_amanda",
+            "name": "Amanda Newell",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:domestic:011",
+            "firm": null
+          },
+          {
+            "person_id": "rc_sheldon_phebe",
+            "name": "Phebe Sheldon",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/30_39/north/family/trade:domestic:003",
+            "firm": null
+          },
+          {
+            "person_id": "rc_hastings_lydia",
+            "name": "Lydia Hastings",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/30_39/north/family/trade:domestic:004",
+            "firm": null
+          },
+          {
+            "person_id": "rc_gallagher_mary",
+            "name": "Mary Gallagher",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/30_39/north/family/trade:domestic:005",
+            "firm": null
+          },
+          {
+            "person_id": "rc_connor_alice",
+            "name": "Alice Connor",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:006",
+            "firm": null
+          },
+          {
+            "person_id": "rc_dickinson_phebe",
+            "name": "Phebe Dickinson",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:007",
+            "firm": null
+          },
+          {
+            "person_id": "rc_thayer_almira",
+            "name": "Almira Thayer",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:008",
+            "firm": null
+          },
+          {
+            "person_id": "rc_donnelly_mary",
+            "name": "Mary Donnelly",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:009",
+            "firm": null
+          },
+          {
+            "person_id": "rc_tobin_bridget",
+            "name": "Bridget Tobin",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:010",
+            "firm": null
+          },
+          {
+            "person_id": "rc_duffy_alice",
+            "name": "Alice Duffy",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:011",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mcguire_ellen",
+            "name": "Ellen McGuire",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:012",
+            "firm": null
+          },
+          {
+            "person_id": "rc_shea_mary",
+            "name": "Mary Shea",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:domestic:013",
+            "firm": null
+          },
+          {
+            "person_id": "rc_goodrich_lydia",
+            "name": "Lydia Goodrich",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/30_39/west/family/trade:domestic:003",
+            "firm": null
+          },
+          {
+            "person_id": "rc_quinn_alice",
+            "name": "Alice Quinn",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/30_39/west/family/trade:domestic:004",
+            "firm": null
+          },
+          {
+            "person_id": "rc_sullivan_ellen",
+            "name": "Ellen Sullivan",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/30_39/west/family/trade:domestic:005",
+            "firm": null
+          },
+          {
+            "person_id": "rc_hale_ruth",
+            "name": "Ruth Hale",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/40_49/north/family/trade:domestic:002",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mcguire_johanna",
+            "name": "Johanna McGuire",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/40_49/north/family/trade:domestic:003",
+            "firm": null
+          },
+          {
+            "person_id": "rc_fitzgerald_bridget",
+            "name": "Bridget Fitzgerald",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/40_49/south/family/trade:domestic:003",
+            "firm": null
+          },
+          {
+            "person_id": "rc_mcguire_catherine",
+            "name": "Catherine McGuire",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/40_49/south/family/trade:domestic:004",
+            "firm": null
+          },
+          {
+            "person_id": "rc_kelly_catherine",
+            "name": "Catherine Kelly",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/40_49/south/family/trade:domestic:005",
+            "firm": null
+          },
+          {
+            "person_id": "rc_reilly_johanna",
+            "name": "Johanna Reilly",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/40_49/west/family/trade:domestic:002",
+            "firm": null
+          },
+          {
+            "person_id": "rc_dickinson_betsey",
+            "name": "Betsey Dickinson",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/50_plus/north/family/trade:domestic:002",
+            "firm": null
+          },
+          {
+            "person_id": "rc_duffy_bridget",
+            "name": "Bridget Duffy",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/50_plus/south/family/trade:domestic:002",
+            "firm": null
+          },
+          {
+            "person_id": "rc_eastman_clarissa",
+            "name": "Clarissa Eastman",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/50_plus/south/family/trade:domestic:003",
+            "firm": null
+          },
+          {
+            "person_id": "rc_fisk_phebe",
+            "name": "Phebe Fisk",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/50_plus/west/family/trade:domestic:001",
+            "firm": null
+          },
+          {
+            "person_id": "rc_nash_eli",
+            "name": "Eli Nash",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/40_49/north/family/trade:domestic:002",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "dressmaker",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "the trade names the house; this programme builds one per head.",
+        "people": [
+          {
+            "person_id": "rc_sawyer_almira",
+            "name": "Almira Sawyer",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:dressmaker:030",
+            "firm": "rcb_sawyer_dress_making_shop"
+          }
+        ]
+      },
+      {
+        "trade": "land_agent",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 4,
+        "why": "the trade names the house; this programme builds one per head.",
+        "people": [
+          {
+            "person_id": "rc_crandall_william",
+            "name": "William Crandall",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/20_29/north/family/trade:land_agent:019",
+            "firm": "rcb_crandall_land_office"
+          },
+          {
+            "person_id": "rc_fairbanks_seth",
+            "name": "Seth Fairbanks",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:land_agent:045",
+            "firm": "rcb_fairbanks_land_office"
+          },
+          {
+            "person_id": "rc_murphy_hugh",
+            "name": "Hugh Murphy",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/20_29/west/family/trade:land_agent:018",
+            "firm": "rcb_murphy_land_office"
+          },
+          {
+            "person_id": "rc_metcalf_hiram",
+            "name": "Hiram Metcalf",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:land_agent:029",
+            "firm": "rcb_metcalf_land_office"
+          }
+        ]
+      },
+      {
+        "trade": "laundress",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "THE RULING T-1404 DEFERRED TO T-1186, MADE HERE. Washing was taken in at the laundress's own dwelling or done at her employer's, and neither is a house of trade: a dwelling that takes in washing is a dwelling, and work done in another household's kitchen is done on premises the laundress does not keep. The role carries `premises: no_fixed_premises` and no house is raised. This does not touch rcb_fb_washing_and_ironing, which is an establishment T-1377's documented floor argues for directly and which stands on that argument and not on this one.",
+        "people": [
+          {
+            "person_id": "rc_gallagher_catherine",
+            "name": "Catherine Gallagher",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/50_plus/west/family/trade:laundress:002",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "milliner",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 9,
+        "why": "the trade names the house; this programme builds one per head.",
+        "people": [
+          {
+            "person_id": "rc_walsh_honora",
+            "name": "Honora Walsh",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/20_29/north/family/trade:milliner:014",
+            "firm": "rcb_walsh_millinery"
+          },
+          {
+            "person_id": "rc_woodruff_hannah",
+            "name": "Hannah Woodruff",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:milliner:033",
+            "firm": "rcb_woodruff_millinery"
+          },
+          {
+            "person_id": "rc_sullivan_mary",
+            "name": "Mary Sullivan",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/20_29/south/family/trade:milliner:034",
+            "firm": "rcb_sullivan_millinery"
+          },
+          {
+            "person_id": "rc_shea_alice",
+            "name": "Alice Shea",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/20_29/west/family/trade:milliner:013",
+            "firm": "rcb_shea_millinery"
+          },
+          {
+            "person_id": "rc_cobb_maria",
+            "name": "Maria Cobb",
+            "division": "north",
+            "head_slot": "trade_households:persons/female/30_39/north/family/trade:milliner:006",
+            "firm": "rcb_cobb_millinery"
+          },
+          {
+            "person_id": "rc_kellogg_almira",
+            "name": "Almira Kellogg",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/30_39/south/family/trade:milliner:015",
+            "firm": "rcb_kellogg_millinery"
+          },
+          {
+            "person_id": "rc_chapin_eliza",
+            "name": "Eliza Chapin",
+            "division": "west",
+            "head_slot": "trade_households:persons/female/30_39/west/family/trade:milliner:006",
+            "firm": "rcb_chapin_millinery"
+          },
+          {
+            "person_id": "rc_quinn_honora",
+            "name": "Honora Quinn",
+            "division": "south",
+            "head_slot": "trade_households:persons/female/40_49/south/family/trade:milliner:006",
+            "firm": "rcb_quinn_millinery"
+          },
+          {
+            "person_id": "rc_goodrich_seth",
+            "name": "Seth Goodrich",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/30_39/north/family/trade:milliner:013",
+            "firm": "rcb_goodrich_millinery"
+          }
+        ]
+      },
+      {
+        "trade": "music_teacher",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 2,
+        "why": "NO PREMISES. Taught in the pupil's house or in a room hired for the term — the premises rulings' own words — so there is nothing kept to raise. The counted schools are T-1188's and a music master is not one of them.",
+        "people": [
+          {
+            "person_id": "rc_parmelee_silas",
+            "name": "Silas Parmelee",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:music_teacher:052",
+            "firm": null
+          },
+          {
+            "person_id": "rc_newell_seth",
+            "name": "Seth Newell",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/50_plus/south/family/trade:music_teacher:004",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "physician",
+        "kind": "census_bucket",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "THE COUNT IS PRINTED, SO THE COUNT ORDERS. The census counts fourteen physicians and T-1418 filled that bucket against the register's standing rooms; the same rule as the lawyers, for the same reason.",
+        "people": [
+          {
+            "person_id": "rc_mcguire_john",
+            "name": "John McGuire",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:physician:032",
+            "firm": "rcb_mcguire_physician"
+          }
+        ]
+      },
+      {
+        "trade": "schoolteacher",
+        "kind": "census_bucket",
+        "deferred_to": null,
+        "heads": 0,
+        "why": "THE COUNT IS PRINTED, SO THE COUNT ORDERS — and it is not this ticket's count. The December census counts seven schools, the order book holds that bucket for the civic, church, school and press group, and that group filled it with the keepers the register already names. A teaching establishment raised here would spend a count from outside the group that owns it.",
+        "people": []
+      },
+      {
+        "trade": "surveyor",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 2,
+        "why": "NO PREMISES, AND THE ONE PRINTED SURVEYOR SIGNS A COMMISSION AND NOT A HOUSE. Surveying is done in the field and the plat drawn where the surveyor lodges; the register's L. G. Curtiss prints as 'Deputy Surveyor of Cook County', which is an office held and not a shop kept, and no source gives this town a surveyor's office in 1835. The premises rulings rule the trade `no_fixed_premises` and this ticket leaves that standing.",
+        "people": [
+          {
+            "person_id": "rc_gallagher_martin",
+            "name": "Martin Gallagher",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:surveyor:056",
+            "firm": null
+          },
+          {
+            "person_id": "rc_nichols_eli",
+            "name": "Eli Nichols",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/20_29/west/family/trade:surveyor:021",
+            "firm": null
+          }
+        ]
+      }
+    ]
   }
 }
