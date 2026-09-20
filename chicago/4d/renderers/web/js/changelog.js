@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Five West Division streets stop pretending they ended in a field', kind: 'feature', ts: '',
+  { v: 1021, title: 'Five West Division streets stop pretending they ended in a field', kind: 'feature', ts: '2026-09-20T14:19:44.225Z', date: 'Sep 20, 2026, 9:19 AM CT',
     items: [
       'Carroll, Fulton, Lake, Randolph and Washington all stopped dead at the same spot \u2014 320 metres west of the forks, on a line nobody ever surveyed. It was the edge of the modelled ground, and five streets had been trimmed to it. Today they run on, a kilometre of street between them, west to Des Plaines Street where the plat\u2019s West Division ends.',
       'The clip was never a claim about the streets, and the file said so out loud. Fulton\u2019s own record carried the sentence: the west clip is this reconstruction\u2019s own extent, not a statement that the street ended there, and moving it would move five streets rather than one. Both reasons it rested on are gone: the ground was built out to 705 metres last night, and moving five streets is what this does.',
