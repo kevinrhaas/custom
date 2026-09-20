@@ -1,7 +1,7 @@
 ---
 id: T-1400
 title: The People view's tier filter and its transient, garrison and reconstructed pills
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1394
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1547
 claimed_by: run 9/19/2026, 10:07:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T04:07:34.754Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35485582568
 ---
 

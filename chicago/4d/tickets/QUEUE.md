@@ -55,7 +55,6 @@
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1399 — One liberty entry per reconstruction stage, with the counts the compiler agrees with, and the research doc's final tables by tier
-T-1400 — The People view's tier filter and its transient, garrison and reconstructed pills
 T-1411 — The churches, the schools and the press as establishments with their people: the five churches of the census with ministers attested and sextons reconstructed, the seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated
 T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
 T-1409 — The river and transport trades: the forwarding and warehouse gap beyond the attested four, the drays and livery, the lumber yards, the pier-works contractor and his gang, and the vessels in port on 1 July with their masters
