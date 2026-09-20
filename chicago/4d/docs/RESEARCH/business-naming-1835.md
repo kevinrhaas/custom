@@ -182,6 +182,7 @@ prints under Dr. J. H. Barnard — and the form, not the line, is what the seed 
 **Why there are three and not fifteen.** The census lines behind this group count MEN and not
 premises, and the count was returned months after the scene. Both corrections are in the
 order book rather than here: see **docs/LIBERTIES.md § L259**.
+
 ## Worked: the brewery and the jeweller's of 1835
 
 T-1185's group, the mechanics' shops, writes two. Both sign by form 1, on goods lines the

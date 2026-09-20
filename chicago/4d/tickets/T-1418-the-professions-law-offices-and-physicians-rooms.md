@@ -1,7 +1,7 @@
 ---
 id: T-1418
 title: The professions: law offices and physicians' rooms to the July bracket's low end, with the order book re-cut to count the two census lines in the unit they count in
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1186
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1544
 claimed_by: run 9/19/2026, 7:52:18 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T01:27:47.520Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35478663043
 ---
 
