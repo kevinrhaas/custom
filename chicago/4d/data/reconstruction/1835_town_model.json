@@ -175,10 +175,10 @@
         {
           "figure": "establishments_in_the_compared_classes",
           "low": 118,
-          "high": 140,
+          "high": 137,
           "point": null,
           "is_a_count": false,
-          "method": "The register holds 140 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
+          "method": "The register holds 137 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -354,24 +354,24 @@
               "class": "storage_and_forwarding",
               "census_line": "four storage and forwarding houses",
               "census_count": 4,
-              "town_at_scene_date": 8,
-              "delta": 4,
+              "town_at_scene_date": 7,
+              "delta": 3,
               "outcome": "town_holds_more_than_the_census_counted"
             },
             {
               "class": "tavern",
               "census_line": "eight taverns",
               "census_count": 8,
-              "town_at_scene_date": 16,
-              "delta": 8,
+              "town_at_scene_date": 15,
+              "delta": 7,
               "outcome": "town_holds_more_than_the_census_counted"
             },
             {
               "class": "store",
               "census_line": "forty-four stores (dry goods, hardware and groceries)",
               "census_count": 44,
-              "town_at_scene_date": 67,
-              "delta": 23,
+              "town_at_scene_date": 66,
+              "delta": 22,
               "outcome": "town_holds_more_than_the_census_counted"
             }
           ]
@@ -653,11 +653,11 @@
         },
         {
           "figure": "inns_and_taverns",
-          "low": 16,
-          "high": 16,
+          "low": 15,
+          "high": 15,
           "point": null,
           "is_a_count": true,
-          "method": "The programme schedules 10 inns and taverns; the State census counted 8 taverns two to five months later and the business layer holds 16 at the scene date. The three units are a roof, a licence and a printed notice, and they are not the same thing counted three ways. THE LAYER'S COUNT MAY EXCEED BOTH OTHERS AND THE CEILING FOLLOWS IT (T-1404): the census's figure is a count of LICENCES taken months after the scene, and the town's named public houses — the Sauganash, the Exchange, the Tremont, the Mansion House, the Steamboat, the Western, Wolf Point — are houses the papers never advertised and the licence roll never separated. A licence count cannot cap a house count, so the ceiling is whichever of the three reads highest. T-1196 owns re-cutting the roof programme against it.",
+          "method": "The programme schedules 10 inns and taverns; the State census counted 8 taverns two to five months later and the business layer holds 15 at the scene date. The three units are a roof, a licence and a printed notice, and they are not the same thing counted three ways. THE LAYER'S COUNT MAY EXCEED BOTH OTHERS AND THE CEILING FOLLOWS IT (T-1404): the census's figure is a count of LICENCES taken months after the scene, and the town's named public houses — the Sauganash, the Exchange, the Tremont, the Mansion House, the Steamboat, the Western, Wolf Point — are houses the papers never advertised and the licence roll never separated. A licence count cannot cap a house count, so the ceiling is whichever of the three reads highest. T-1196 owns re-cutting the roof programme against it.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1",
             "owner_chicago_1835_reconstruction_spec_2026"

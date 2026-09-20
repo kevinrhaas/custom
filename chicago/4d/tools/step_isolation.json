@@ -3,7 +3,7 @@
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
   "measured": "2026-09-20",
   "gate_verdict": "CHECK FAIL",
-  "declared_steps": 562,
+  "declared_steps": 563,
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
@@ -1685,6 +1685,7 @@
         "site/chicago/4d/data/residents/readmitted/hh_william_pettit.json",
         "site/chicago/4d/data/residents/readmitted/hh_willis_scott.json",
         "site/chicago/4d/data/residents/readmitted/hh_zebiah_w_wentworth.json",
+        "site/chicago/4d/data/residents/reconstructed_seating.json",
         "site/chicago/4d/data/residents/reconstructed_trades/hh_rc_bacon_otis.json",
         "site/chicago/4d/data/residents/reconstructed_trades/hh_rc_bacon_silas.json",
         "site/chicago/4d/data/residents/reconstructed_trades/hh_rc_bardwell_ira.json",
@@ -2177,7 +2178,7 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build 4dfc70b19 · Sep 20, 2026, 7:05 AM CT"
+        "- ../../site/chicago/4d/walk/index.html build 1dc6e3ce6 · Sep 20, 2026, 5:28 AM CT"
       ]
     },
     "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-dev-preview.mjs": {
@@ -2265,9 +2266,6 @@
       "wrote": []
     },
     "tools/carry_stage_blocks.py": {
-      "wrote": []
-    },
-    "tools/carry_west_tiers_west.py": {
       "wrote": []
     },
     "tools/census_1840_composition.py": {
@@ -2996,6 +2994,9 @@
     "tools/report_research_signoff.py": {
       "wrote": []
     },
+    "tools/reprogramme_roofs_1835.py": {
+      "wrote": []
+    },
     "tools/research_domains.py": {
       "wrote": []
     },
@@ -3039,6 +3040,9 @@
       "wrote": []
     },
     "tools/seat_michigan_st_tract.py": {
+      "wrote": []
+    },
+    "tools/seat_reconstructed_trades_1835.py": {
       "wrote": []
     },
     "tools/seat_wabansia_streets.py": {

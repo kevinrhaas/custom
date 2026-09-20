@@ -120,61 +120,6 @@
      "merchant"
     ]
    },
-   "workplaces": [
-    {
-     "business_id": "biz_j_h_kinzie_merchant",
-     "business_name": "J. H. Kinzie, merchant",
-     "role": "proprietor",
-     "printed_as": "J. H. Kinzie",
-     "from": "1835-06-20",
-     "to": "1835-06-20",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card kinzie_james (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_american_1835_06_20#c005"
-     ],
-     "business_present_at_scene_date": true
-    },
-    {
-     "business_id": "biz_john_h_kinzie",
-     "business_name": "John H. Kinzie",
-     "role": "proprietor",
-     "printed_as": "John H. Kinzie",
-     "from": "1834-04-16",
-     "to": "1835-07-29",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card kinzie_james (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1834_04_16#c003",
-      "chicago_democrat_1834_04_30#c006",
-      "chicago_democrat_1834_05_07#c008",
-      "chicago_democrat_1834_06_04#c017",
-      "chicago_democrat_1834_08_06#c006",
-      "chicago_democrat_1834_08_13#c010",
-      "chicago_democrat_1834_09_24#c008",
-      "chicago_democrat_1835_07_22#c004",
-      "chicago_democrat_1835_07_29#c007"
-     ],
-     "business_present_at_scene_date": true
-    },
-    {
-     "business_id": "biz_john_s_kinzie_forwarding_and_commission_merchant",
-     "business_name": "John S. Kinzie, forwarding and commission merchant",
-     "role": "proprietor",
-     "printed_as": "John S. Kinzie",
-     "from": "1833-12-10",
-     "to": "1833-12-10",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card kinzie_james (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1833_12_10#c012"
-     ],
-     "business_present_at_scene_date": true
-    }
-   ],
    "sources": [
     "andreas_1884_v1",
     "kinzie_waubun_1856",
@@ -567,29 +512,6 @@
      "bound_kind": "print_appearance",
      "corpus": "chicago_press_1833_1835",
      "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_08_13#c001",
-     "claim_kind": "event",
-     "as_printed": "Meers. John H. Kinzie, G",
-     "role": "town trustee",
-     "locator": "chicago_democrat_1834_08_13 page 2 column 5",
-     "describes_date": "1834-08-13",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-08-13",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_h_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-08-13 names 'Meers. John H. Kinzie, G' in the claim read as chicago_democrat_1834_08_13#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
      "record_id": "chicago_democrat_1834_08_13#c005",
      "claim_kind": "event",
      "as_printed": "James Kinzie",
@@ -613,75 +535,6 @@
      "bound_kind": "print_appearance",
      "corpus": "chicago_press_1833_1835",
      "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_09_24#c006",
-     "claim_kind": "notice",
-     "as_printed": "JNO, H. KINZIE",
-     "role": "advertiser",
-     "locator": "chicago_democrat_1834_09_24 page 3 column 2",
-     "describes_date": "1834-09-24",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-09-24",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_kinzie_john_h, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-09-24 names 'JNO, H. KINZIE' in the claim read as chicago_democrat_1834_09_24#c006, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_10_29#c007",
-     "claim_kind": "event",
-     "as_printed": "3. H. KINZII",
-     "role": "chairman of the meeting",
-     "locator": "chicago_democrat_1834_10_29 page 2 column 2",
-     "describes_date": "1834-10-29",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-10-29",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_h_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-10-29 names '3. H. KINZII' in the claim read as chicago_democrat_1834_10_29#c007, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_10_29#c009",
-     "claim_kind": "event",
-     "as_printed": "INO. H",
-     "role": "chairman",
-     "locator": "chicago_democrat_1834_10_29 page 2 column 1",
-     "describes_date": "1834-10-29",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-10-29",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_jno_h_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-10-29 names 'INO. H' in the claim read as chicago_democrat_1834_10_29#c009, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
      "record_id": "chicago_democrat_1834_11_19#c001",
      "claim_kind": "event",
      "as_printed": "James Kinzie",
@@ -700,52 +553,6 @@
      ],
      "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_james_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-11-19 names 'James Kinzie' in the claim read as chicago_democrat_1834_11_19#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_11_19#c001",
-     "claim_kind": "event",
-     "as_printed": "JohnH. Kinzie",
-     "role": "committee member",
-     "locator": "chicago_democrat_1834_11_19 page 3 column 2",
-     "describes_date": "1834-11-19",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-11-19",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_john_h_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-11-19 names 'JohnH. Kinzie' in the claim read as chicago_democrat_1834_11_19#c001, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1835_07_01#c010",
-     "claim_kind": "event",
-     "as_printed": "J. H. Kinzie",
-     "role": "committee",
-     "locator": "chicago_democrat_1835_07_01 page 3 column 2",
-     "describes_date": "1835-07-01",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1835-07-01",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_h_kinzie, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1835-07-01 names 'J. H. Kinzie' in the claim read as chicago_democrat_1835_07_01#c010, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],
    "appearance_bounds": [

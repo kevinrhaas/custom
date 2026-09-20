@@ -17,33 +17,30 @@
   "counts": {
     "business_records": 196,
     "person_rows_in_the_business_layer": 197,
-    "rows_carrying_a_person_id": 144,
-    "distinct_persons_tied_to_a_workplace": 110,
-    "businesses_with_at_least_one_named_person": 123,
-    "businesses_with_none": 73,
+    "rows_carrying_a_person_id": 145,
+    "distinct_persons_tied_to_a_workplace": 112,
+    "businesses_with_at_least_one_named_person": 125,
+    "businesses_with_none": 71,
     "town_cards": 2269
   },
   "by_role": [
     {
       "role": "partner",
-      "entries": 56
+      "entries": 55
     },
     {
       "role": "proprietor",
-      "entries": 88
+      "entries": 90
     }
   ],
   "by_tier": {
-    "attested": 144
+    "attested": 145
   },
   "unresolved_printed_names": {
     "what_this_is": "A person row the register could not match to a town card. The printed name is the evidence and no card is invented for it; the row keeps its place in the business record and joins nobody.",
-    "rows": 53,
-    "businesses": 43,
+    "rows": 52,
+    "businesses": 42,
     "by_business": {
-      "biz_a_clybourn_s_market_on_the_market_square": [
-        "A. Clybourn"
-      ],
       "biz_brewster_hogan_co": [
         "Brewster",
         "Hogan"
@@ -77,9 +74,6 @@
       ],
       "biz_e_p_deacon": [
         "E. P. Deacon"
-      ],
-      "biz_e_w_haddock": [
-        "E. W. Haddock"
       ],
       "biz_e_wentworth": [
         "E. Wentworth"
@@ -120,6 +114,9 @@
       "biz_john_bates_jr": [
         "J. Bates, Jr.",
         "John Bates, Jr."
+      ],
+      "biz_jones_king": [
+        "Wm. Jones"
       ],
       "biz_kercheval_hamilton": [
         "Rich'd J. Hamilton"
@@ -184,7 +181,6 @@
   },
   "businesses_with_no_named_person": [
     "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835",
-    "biz_a_clybourn_s_market_on_the_market_square",
     "biz_a_leather_stock_chicago_june_1835",
     "biz_a_o_t_breed",
     "biz_a_wholesale_wine_and_liquor_store_dearborn_street",
@@ -207,7 +203,6 @@
     "biz_dart_co_castings",
     "biz_deacon_mccaleb",
     "biz_e_p_deacon",
-    "biz_e_w_haddock",
     "biz_e_wentworth",
     "biz_e_wentworth_s_public_house_on_flag_creek",
     "biz_e_wentworth_s_tavern_flag_creek",
@@ -259,7 +254,7 @@
   ],
   "questions_for_the_convergence": {
     "what_this_is": "The first time a card's own name has stood beside every name the register printed for it. These are mechanical disagreements, not refutations: this tool carries rows across at the identity the business layer already asserted and re-matches nobody. T-1190 is the ticket that converges the layer by id and they are its.",
-    "cards": 3,
+    "cards": 2,
     "rows": [
       {
         "person_id": "bradley_joseph",
@@ -275,22 +270,8 @@
         ]
       },
       {
-        "person_id": "hogan_john",
-        "the_card_reads": "John Hogan",
-        "the_register_printed": [
-          "John S. C. Hogan"
-        ],
-        "houses": [
-          "biz_brewster_hogan_co",
-          "biz_j_s_c_hogan"
-        ],
-        "what_disagrees": [
-          "every printing of this name carries a middle initial and the card carries none"
-        ]
-      },
-      {
-        "person_id": "kinzie_james",
-        "the_card_reads": "James Kinzie",
+        "person_id": "kinzie_john_h",
+        "the_card_reads": "John Harris Kinzie",
         "the_register_printed": [
           "J. H. Kinzie",
           "John H. Kinzie",
@@ -302,7 +283,6 @@
           "biz_john_s_kinzie_forwarding_and_commission_merchant"
         ],
         "what_disagrees": [
-          "every printing of this name carries a middle initial and the card carries none",
           "the printings disagree about the middle initial: H., S."
         ]
       }

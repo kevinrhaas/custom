@@ -75,13 +75,13 @@
     },
     {
       "name": "Wm. Jones",
-      "person_id": "jones_willard",
+      "person_id": null,
       "register_person_id": "person_wm_jones",
       "role": "partner",
       "from": "1834-07-09",
       "to": "1834-12-03",
       "tier": "attested",
-      "basis": "The register matches the printed name to the town card jones_willard (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "basis": "The register holds this printed name as person_wm_jones with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1834_07_09#c020",
@@ -134,15 +134,8 @@
     "value": "new_york",
     "tier": "reconstructed",
     "rule": "proprietors_agree",
-    "basis": "The 2 keeper(s) this record names and the resident layer holds a card for all read new_york: Wm. Jones (new_york), Byram King (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read new_york: Byram King (new_york). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
-      {
-        "person_id": "jones_willard",
-        "name": "Wm. Jones",
-        "role": "partner",
-        "community": "new_york",
-        "tier": "reconstructed"
-      },
       {
         "person_id": "king_byram",
         "name": "Byram King",

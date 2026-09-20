@@ -127,6 +127,23 @@
      "tavern_keeper"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_e_w_haddock",
+     "business_name": "E. W. Haddock",
+     "role": "proprietor",
+     "printed_as": "E. W. Haddock",
+     "from": "1834-03-18",
+     "to": "1834-03-18",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card haddock_edward (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_03_18#c011"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "census_1840_chicago_familysearch_images",
