@@ -76,7 +76,9 @@ GROUPS = {
         "title": "stores, book stores and the drug and provision trades",
     },
     "mechanics_shops": {"ticket": "T-1185", "title": "the mechanics' shops"},
-    "professions_and_services": {"ticket": "T-1186", "title": "the professions and services"},
+    # T-1186 split on 2026-09-20: T-1418 owns the two census rows this group fills
+    # (the professions), T-1419 the services the census enumerates nowhere.
+    "professions_and_services": {"ticket": "T-1418", "title": "the professions"},
     "lodging_river_and_transport": {
         "ticket": "T-1187", "title": "lodging, the river and transport"},
     "civic_church_school_and_press": {
@@ -158,6 +160,28 @@ TRADE_CLASS = {
     "druggist": ["druggist"],
     "store": ["dry_goods_merchant", "grocer", "hardware_merchant", "merchant"],
     "book_store": [],
+    # THE TWO CLASSES THE CENSUS COUNTS IN MEN take exactly one trade each, and that is
+    # the point of them: "twenty-two lawyers" is twenty-two men, so one drawn head is one
+    # office and the person count and the establishment count are the same number. A
+    # second trade folded in here would break that identity.
+    "lawyer": ["attorney"],
+    "physician": ["physician"],
+    # T-1185, THE MECHANICS' SHOPS. The book gives this ticket four classes and owes it
+    # heads for two. `brewer` is the resident band's own word and the register's: the
+    # Chicago Brewery's occupation line reads `brewer`. `silversmith_jeweller` is one shop
+    # in this town and three words in two vocabularies — the register grades J. H. Mulford
+    # `jeweller` and advertises "Watches", "Clocks", "Silver Ware" and "Indian silver work"
+    # over one counter, and the resident band drew its head at `watchmaker`; all three
+    # names are listed so a re-cut of either vocabulary still finds the shop.
+    "brewery": ["brewer"],
+    "silversmith_jeweller": ["jeweller", "silversmith", "watchmaker"],
+    # AND TWO THE BOOK OWES NOTHING, which is a ruling and not an omission. The iron
+    # foundry stands at its census target (Dart & Co., castings) and the tin and copper
+    # trade stands ABOVE it — four printed houses against the December census's two. An
+    # empty list here says the class is mapped and draws no head; a class MISSING from
+    # this table is refused by name, and the two must not be confused.
+    "iron_foundry": [],
+    "tin_and_copper_manufactory": [],
 }
 
 # THE FACE A CLASS TAKES, by division, in the order a seeded deal reads them. From the
@@ -181,6 +205,42 @@ FACES = {
         "south": ["lake", "dearborn"],
         "north": ["kinzie"],
         "west": ["canal"],
+    },
+    # THE PROFESSIONS SIT WHERE THE REGISTER ALREADY PUTS THEM. Of the law offices the
+    # register resolves a place for, South Water carries Collins & Caton, J. Curtiss and
+    # J. D. Caton; Dearborn carries G. Spring, H. C. Bennett and both printings of S.
+    # Abell; Lake carries Russell E. Heacock and John Dean Caton. Those three faces, in
+    # that order of weight, are the south-division rule.
+    "lawyer": {
+        "south": ["south_water", "dearborn", "lake"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # AND BOTH PLACED PHYSICIANS ARE ON LAKE STREET: Dr. J. H. Barnard against the New
+    # York House and Dr. W. G. Austin "on Lake Street, near the post office" (the American
+    # of 8 August 1835). Lake leads, and the two business streets either side of it follow
+    # it rather than a rule of their own.
+    "physician": {
+        "south": ["lake", "south_water", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # A BREWERY IS NOT A SHOP FRONT. It wants water, fuel and room for a yard, and the
+    # town's one attested brewery is a river house, not a Lake Street one. It takes the
+    # working banks — the North Water bank in the north division, which is where the
+    # register's heavy trades sit, the river front and the Market Street branch face in
+    # the south, West Water in the west — and never a retail street.
+    "brewery": {
+        "south": ["south_water", "market"],
+        "north": ["north_water", "kinzie"],
+        "west": ["west_water", "canal"],
+    },
+    # The silversmith and jeweller is a retail front: J. H. Mulford, the one house of the
+    # class the register prints, advertises from South Water Street.
+    "silversmith_jeweller": {
+        "south": ["south_water", "lake", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
     },
 }
 
@@ -220,6 +280,103 @@ STYLES = {
         ],
         "trade": "store",
         "occupation": None,
+    },
+    "lawyer": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the form 'J. Curtiss, Attorney and Counsellor at Law', 'R. Stewart, attorney' "
+             "and 'S. Abell, attorney and counsellor' print — an initial, the surname, and "
+             "the practice's own line"),
+            ("{given} {surname}, {goods}",
+             "the form 'Ebenezer S. More, attorney at law' prints in full"),
+        ],
+        # EVERY LINE HERE IS A LINE THE REGISTER PRINTS, verbatim, and there are three of
+        # them because the town's own notices carry three. Nothing is composed.
+        "goods": [
+            ("attorney at law",
+             "the trade line of Ebenezer S. More and of R. Stewart in the register"),
+            ("attorney and counsellor at law",
+             "the trade line of Edward W. Casey and James Grant"),
+            ("attorney and counsellor at law, and solicitor in chancery",
+             "the fullest of the three, and the commonest: G. Spring, H. C. Bennett, J. "
+             "Curtiss, Henry Moore and John Dean Caton all print it"),
+        ],
+        "trade": "attorney and counsellor at law",
+        "occupation": "attorney",
+    },
+    "physician": {
+        # THE DOCTOR'S TITLE IS THE FIRM STYLE, and both of the register's physicians carry
+        # it: 'Dr. J. H. Barnard' sets the title, initials and surname and no trade at all,
+        # and 'Dr. W. G. Austin, botanic physician' sets the same with a line after it.
+        "forms": [
+            ("Dr. {initial}. {surname}",
+             "the form 'Dr. J. H. Barnard' prints — the title, the initials and the surname, "
+             "and no trade line"),
+            ("Dr. {initial}. {surname}, {goods}",
+             "the form 'Dr. W. G. Austin, botanic physician' prints — the same, with the "
+             "practice's line after it"),
+        ],
+        # ONE LINE, AND DELIBERATELY. Austin's own line names the BOTANIC system, which is a
+        # medical school a reconstructed man may not be dealt into: the register knows what
+        # Austin practised because Austin advertised it, and nothing knows it of a man
+        # nobody wrote down. 'Physician' is the register's other printed line and it claims
+        # only the trade the census counted.
+        "goods": [
+            ("physician", "the trade line the register prints under Dr. J. H. Barnard"),
+        ],
+        "trade": "physician",
+        "occupation": "physician",
+    },
+    "brewery": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus — "
+             "'B. Jones, grocery and provision store', 'S. B. Cobb, saddle, harness and "
+             "trunk manufactory'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is the minority form and is attested — "
+             "'William F. Lyon, Wholesale Grocery Store', 'Frederick Thomas, drugs and "
+             "paints'"),
+        ],
+        "goods": [
+            ("brewery",
+             "the only word the corpus prints for this class: the register carries one "
+             "brewery, 'the Chicago Brewery', with no goods line under it, so the trade "
+             "word stands alone rather than a list being composed for it"),
+        ],
+        "trade": "brewing",
+        "occupation": "brewer",
+        # THE TIGHTER BOUND, STATED ON THE RECORD RATHER THAN ACTED ON.
+        "caveat": (
+            "A TIGHTER COUNT STANDS UNAPPLIED, AND THIS RECORD CARRIES IT. The book takes "
+            "its target from the December 1835 State census, which prints two breweries. "
+            "But the Chicago American of 15 August 1835 takes stock of the town six weeks "
+            "AFTER the scene date and counts 'one brewery, one furnace (just going up)' — "
+            "one, where December counts two. If the American is right for 1 July 1835 then "
+            "the town's second brewery arrived in the autumn and this house does not stand "
+            "at the scene date at all. That is the Sept-Dec 1835 crosswalk's ruling to make "
+            "and it has not made it: this bucket reads `compared_by_the_crosswalk: true` "
+            "and `crosswalk_note: null`. The house therefore stands on the book's quota, "
+            "with the count that would retire it printed here; a crosswalk that rules the "
+            "American in re-cuts the bucket and --build withdraws this record, which is "
+            "the only way it may ever go."),
+    },
+    "silversmith_jeweller": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the initial-and-surname signature is the commonest in the corpus, and the "
+             "one attested house of this class signs by surname — 'J. H. Mulford'"),
+            ("{given} {surname}, {goods}",
+             "the forename in full is attested — 'Frederick Thomas, drugs and paints', "
+             "'William F. Lyon, Wholesale Grocery Store'"),
+        ],
+        "goods": [
+            ("watches, jewelry, engravings and fancy goods",
+             "J. H. Mulford's own trade line in the register — the one attested house of "
+             "the class, and the only goods line the corpus prints for it"),
+        ],
+        "trade": "watches, jewelry, engravings and fancy goods",
+        "occupation": "jeweller",
     },
 }
 
@@ -311,6 +468,16 @@ def record_for(group, bucket, head, ordinal, communities, streets):
     faces = FACES[cls][head["division"]]
     face = draw(slot + ":street_face", faces)
 
+    # A CLASS MAY CARRY A COUNT THAT ARGUES AGAINST ITS OWN BUCKET, and where it does the
+    # record says so in its own basis rather than in a document beside it: a reader holding
+    # the card holds the objection to it. `caveat` is optional and a class without one is
+    # written exactly as it was before this key existed.
+    basis_note = ("%s. The book leaves %d of this class to reconstruct and this is one of "
+                  "them. %s" % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
+                                style_basis))
+    if spec.get("caveat"):
+        basis_note += " " + spec["caveat"]
+
     proprietor = {
         "name": head["name"],
         "person_id": head["person_id"],
@@ -398,10 +565,7 @@ def record_for(group, bucket, head, ordinal, communities, streets):
             "basis": {
                 "kind": "model",
                 "id": "1835_reconstruction_order_book",
-                "note": ("%s. The book leaves %d of this class to reconstruct and this is "
-                         "one of them. %s"
-                         % (bucket["basis"].rstrip("."), bucket["to_reconstruct"],
-                            style_basis)),
+                "note": basis_note,
             },
             "withdrawn_if": (
                 "a source naming a real house of this class, or a re-cut of the order book "
@@ -1090,10 +1254,37 @@ def self_test():
     if fills_for({"lodging_river_and_transport": roofs}):
         failures.append("a house bought by a roof wrote a fill into the order book")
 
+    # 10. A class that carries a caveat prints it on every record it writes, and a class
+    #    that carries none is written exactly as it was before the key existed. The
+    #    brewery of T-1185 is the standing example: the Chicago American of 15 August 1835
+    #    counts one brewery where the December census counts two, and a reader holding the
+    #    card must hold that objection too.
+    mechanics = build_group("mechanics_shops", communities, streets, heads)
+    for record in mechanics:
+        cls = record["type"][0]
+        caveat = STYLES[cls].get("caveat")
+        note = record["reconstruction"]["basis"]["note"]
+        if caveat and caveat not in note:
+            failures.append("%s: the %s caveat is not on the record it qualifies"
+                            % (record["id"], cls))
+        if not caveat and "TIGHTER COUNT" in note:
+            failures.append("%s: an uncaveated class printed a caveat" % record["id"])
+    for record in records:
+        if "TIGHTER COUNT" in record["reconstruction"]["basis"]["note"]:
+            failures.append("%s: the caveat leaked onto a class that carries none"
+                            % record["id"])
+
+    # 9. An empty trade row is a RULING — the class is mapped and draws no head — and is
+    #    not the same thing as a class missing from the table, which is refused by name.
+    for cls in ("iron_foundry", "tin_and_copper_manufactory"):
+        if TRADE_CLASS.get(cls) != []:
+            failures.append("%s: the book owes T-1185 no houses of this class and the "
+                            "trade row should say so with an empty list" % cls)
+
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 11 assertions of the business reconstruction still fire")
+    print("OK: 12 assertions of the business reconstruction still fire")
     return 0
 
 
