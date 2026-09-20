@@ -84,6 +84,8 @@ RESIDENTS = ROOT / "data" / "residents"
 BUSINESSES = ROOT / "data" / "businesses"
 AUTHORED = BUSINESSES / "authored"
 STAFFING_OVERLAY = BUSINESSES / "rulings" / "establishment_staffing.json"
+RECONSTRUCTED_STAFF_OVERLAY = (ROOT / "data" / "reconstruction"
+                              / "1835_business_staff_overlay.json")
 INDEX = BUSINESSES / "index.json"
 SCHEMA = ROOT / "data" / "businesses.schema.json"
 STREETS = ROOT / "data" / "streets" / "1835.json"
@@ -1001,6 +1003,61 @@ def apply_staffing_overlay(records, overlay):
     return records
 
 
+def read_reconstructed_overlay():
+    """The reconstructed hands, laid over the houses the T-1433 seating seated them in.
+
+    THE SECOND OVERLAY, AND WHY IT IS A SEPARATE ONE. The first is a RULING — authored
+    by a human at T-1422, cited on every row, and a tool that rewrote it would be
+    overwriting a judgement. This one is DERIVED: tools/staff_the_houses_1835.py --build
+    restates the seating join and nothing else, and --check refuses a byte of it that has
+    drifted. Keeping them apart is what lets a reader tell, on any one record, which of
+    its hands somebody decided and which a pass computed.
+
+    It carries nothing the seating does not already hold. 124 seats, in 84 houses, each
+    at its own `reconstructed` tier with its own seed, its own basis and the source that
+    would retire it — and beside them the `shortfall` block, which is the whole point of
+    the exercise: a house standing at half the hands its class wants now says so on its
+    own record instead of reading exactly like a house standing at all of them.
+    """
+    if not RECONSTRUCTED_STAFF_OVERLAY.exists():
+        return {}
+    doc = load_json(RECONSTRUCTED_STAFF_OVERLAY)
+    by_id = {}
+    for entry in doc["entries"]:
+        by_id.setdefault(entry["business_id"], []).append(entry)
+    return by_id
+
+
+def apply_reconstructed_overlay(records, overlay):
+    """Carry each entry on, over the ruling where there is one, and assert it added."""
+    by_id = {record["id"]: record for record in records}
+    for business_id, entries in sorted(overlay.items()):
+        record = by_id.get(business_id)
+        if record is None:
+            raise ValueError(
+                "the reconstructed staff overlay names %s, which the register does not "
+                "compile. Re-run tools/staff_the_houses_1835.py --build after a change to "
+                "the seating join." % business_id)
+        if len(entries) > 1:
+            raise ValueError("the reconstructed staff overlay carries %d entries for %s; "
+                             "one house, one entry" % (len(entries), business_id))
+        entry = entries[0]
+        # A DERIVED PASS MAY ADD TO A JUDGEMENT AND MAY NOT OVERWRITE ONE. Where T-1422's
+        # ruling has already put rows on this record, the derived entry must open with
+        # exactly those rows — the tool carries them forward and this is where that claim
+        # is checked rather than trusted. Five of the 84 houses are in both overlays.
+        standing = list(record.get("staff") or [])
+        offered = list(entry.get("staff") or [])
+        if offered[:len(standing)] != standing:
+            raise ValueError(
+                "the reconstructed staff overlay would drop %d ruled staff row(s) from %s. "
+                "A derived overlay adds to a ruling; it does not replace one."
+                % (len(standing), business_id))
+        record["staff"] = offered
+        record["staffing"] = entry.get("staffing")
+    return records
+
+
 def staffing_problems(records):
     """The rules the `staffing` block stands on. Every one is a --self-test case.
 
@@ -1060,6 +1117,7 @@ def compiled_docs(residents_dir=None):
     town_ids = person_ids(residents_dir)
     records = compile_all(register, gazetteer, town_ids, person_communities(residents_dir))
     records = apply_staffing_overlay(records, read_staffing_overlay())
+    records = apply_reconstructed_overlay(records, read_reconstructed_overlay())
     authored = read_authored()
     return records, authored, build_index(records, authored, works_at_rows(residents_dir))
 

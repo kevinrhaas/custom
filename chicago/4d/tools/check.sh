@@ -4766,6 +4766,29 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
 
+# T-1462, piece 2 of 2 of T-1449, of T-1434, of T-1189. THE BUSINESS SIDE OF THAT SEATING.
+# The pass above seated 124 reconstructed hands in 84 houses and wrote every seat in a
+# join BESIDE the layer, keyed on the person. So the town knew where those people worked
+# and the HOUSES did not: open any one of the 84 business cards and `staff` was empty,
+# "Who kept it" printed the keeper alone, and a house standing at half the hands its
+# class wants read exactly like a house standing at all of them. This lays the seats onto
+# the records as an overlay — the compiler rewrites a compiled record whole, so a hand
+# can only be laid over one — and puts each house's shortfall against the staffing model
+# beside them, measured at the model's typical band and never its high end.
+#
+# WHY A GATE. It is an overlay over two derived files that both move: the seating re-draws
+# whenever the business layer recompiles or the staffing model re-cuts, and the compiler
+# refuses a committed record a rebuild would not produce. `--check` re-derives the overlay
+# byte for byte, and the two failures that matter are refusals rather than warnings — a
+# seat past every band the model gives the class, which would be a person invented by a
+# pass that invents nobody, and an entry that would drop a row T-1422's RULING put on a
+# record, because a derived pass may add to a judgement and may not overwrite one.
+step "the reconstructed hands re-derive onto their houses, and each house states its shortfall" \
+  python3 tools/staff_the_houses_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/staff_the_houses_1835.py --self-test
+
 # T-1461, piece 1 of T-1449, of T-1434, of T-1189. THE EMPLOYMENT COVERAGE ANSWER. The
 # two joins above are both true and neither covers the town: 112 cards a source names in
 # a house, 524 reconstructed trade-holders seated or told why not — 636 people of 3,243.
