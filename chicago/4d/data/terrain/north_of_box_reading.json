@@ -75,7 +75,7 @@
   "note": "It stands on modelled ground and looks north at the wall."
  },
  "totals": {
-  "streets_in_layer": 77,
+  "streets_in_layer": 79,
   "drawn": {
    "streets": 28,
    "partly_off_grid": 0,
@@ -84,11 +84,11 @@
    "off_grid_fraction": 0
   },
   "platted_only": {
-   "streets": 49,
+   "streets": 51,
    "partly_off_grid": 20,
-   "on_grid_m": 46508.01,
+   "on_grid_m": 47468.29,
    "off_grid_m": 2799.89,
-   "off_grid_fraction": 0.0568
+   "off_grid_fraction": 0.0557
   }
  },
  "drawn": [],

@@ -58,7 +58,7 @@ T-1433 — Seat the reconstructed residents who have a trade and no workplace: e
 T-1434 — Mint the staffing shortfall to the model's typical band and close the join: new reconstructed staff where a business is still short, every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
-T-1417 — Put the new ground to use: flora zones, the minimap box and the walker's collision carried to the west wall, the West Division streets taken off their E -320 clip, and generate_west_infill's 35 held slots released
+T-1431 — Carry the West Division's five tier lines off their E -320 clip and release generate_west_infill's 35 held slots on the extended ground
 T-1194 — Generate the lot grid north and west of the river: Thompson's North Division blocks, Kinzie's Addition, Wabansia, the West Division blocks and the School Section tier — numbered lots from each sheet's own module, the small lots kept small, buildable ground tested
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1196 — Re-derive the roof programme from the order book: the 668-roof schedule re-cut by what the population, occupation and lodging models say the town needed — families, districts and blocks re-targeted, every delta from the spec stated, the census's 398 dwellings reconciled
@@ -234,3 +234,4 @@ T-1429 — The nearest-street reading crosses the river: a bank test for nearest
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1435 — The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
+
