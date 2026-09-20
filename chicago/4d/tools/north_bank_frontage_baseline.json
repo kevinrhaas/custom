@@ -37,10 +37,6 @@
       "face_m": 2.015,
       "reason": "DRAWN INSIDE THE TRACK by 0.99 m. Placed 2026-08-11 from Andreas's 'just east of Clark Street' on the north bank, against a book that contradicts itself about which side of Clark the school stood on; the record's own note admits about 110 m of along-street uncertainty. The documented reading holds and the frontage rule does not reach it."
     },
-    "recon_1835_north_c1_020__inferred_1835": {
-      "face_m": 16.941,
-      "reason": "A GENERATED ROOF, placed by the North Division infill recipe against the platted lots and the corridor test its generator already runs; `tools/generate_north_infill.py --check` owns it. It falls inside the 25 m band without fronting this street."
-    },
     "recon_1835_north_d3_020__inferred_1835": {
       "reason": "UNEXPLAINED \u2014 write the reason.",
       "face_m": 17.062

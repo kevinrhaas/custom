@@ -29,7 +29,7 @@ The inventory's own defensible range is 565–765 roofs; the adopted total is in
 
 **`fort_principal`** — The fort component of the model's institutional high end, and the same number. The compound is read from its dossiers, not apportioned.
 
-**`inns_taverns`** — The structure layer holds 10 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 15 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out.
+**`inns_taverns`** — The structure layer holds 9 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 15 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out.
 
 **`institutional_public`** — The model's low end is the 9 roofs OUTSIDE the fort and its high end adds the 10 principal roofs INSIDE it. The programme schedules both — 9 institutional_public plus 10 fort_principal — so the two agree at 19. The order book's delta of ten is that high end read against one of the two groups.
 

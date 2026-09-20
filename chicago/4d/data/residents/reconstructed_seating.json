@@ -18,13 +18,13 @@
     "data/structures/*.json"
   ],
   "counts": {
-    "people_in_scope": 524,
+    "people_in_scope": 525,
     "by_kind": {
       "class_held_no_house": 71,
-      "keeps_their_own_house": 162,
+      "keeps_their_own_house": 164,
       "no_employer_named": 162,
       "no_ruling": 5,
-      "seated": 124
+      "seated": 123
     },
     "houses_taking_a_reconstructed_hand": 84,
     "seats_by_house_and_role": [
@@ -227,11 +227,6 @@
         "business_id": "biz_ingersoll_s_tavern_stand",
         "role": "domestic",
         "seats": 2
-      },
-      {
-        "business_id": "biz_ingersoll_s_tavern_stand",
-        "role": "tavern_keeper",
-        "seats": 1
       },
       {
         "business_id": "biz_j_a_marshall_s_dancing_school",
@@ -523,10 +518,10 @@
   "which_term_of_the_order_rule_decided": {
     "what_this_is": "The ticket asks for the nearest house of the trade in the person's own division, seeded. Two of those three terms are inert against the layer as it stands, and this count is how a reader sees that rather than taking the rule's word for it.",
     "division_match": 0,
-    "nearest": 1,
+    "nearest": 0,
     "seeded_draw": 123,
     "why_division_is_inert": "No business record carries a division. The order book says why in its own words — 'EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY ... assigning premises to a division is T-1182's audit and T-1198's seating' — and this tool reads the field rather than deriving one, because deriving one is that audit done without a licence for it. Business records stating a division today: 0.",
-    "why_nearest_is_nearly_inert": "Both ends must resolve to committed coordinates. 30 of 196 business records name a structure this project holds, and 43 of 2138 resident records are seated at one. Seating the reconstructed households is T-1198's and T-1199's."
+    "why_nearest_is_nearly_inert": "Both ends must resolve to committed coordinates. 30 of 196 business records name a structure this project holds, and 44 of 2139 resident records are seated at one. Seating the reconstructed households is T-1198's and T-1199's."
   },
   "by_trade": {
     "attorney": {
@@ -567,9 +562,9 @@
       }
     },
     "boarding_house_keeper": {
-      "people": 42,
+      "people": 44,
       "kinds": {
-        "keeps_their_own_house": 42
+        "keeps_their_own_house": 44
       }
     },
     "boatman": {
@@ -875,12 +870,6 @@
       "people": 7,
       "kinds": {
         "seated": 7
-      }
-    },
-    "tavern_keeper": {
-      "people": 1,
-      "kinds": {
-        "seated": 1
       }
     },
     "teamster": {
@@ -1386,6 +1375,33 @@
       "replaceable_by": {
         "kind": "business",
         "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
+      },
+      "chosen_by": []
+    },
+    {
+      "person_id": "rc_barnes_ezra",
+      "person_name": "Ezra Barnes",
+      "household_id": "hh_lodging_recon_1835_north_h2_022",
+      "kind": "keeps_their_own_house",
+      "trade": "boarding_house_keeper",
+      "premises": "own_premises",
+      "division_of_the_person": "north",
+      "business_id": null,
+      "business_name": null,
+      "role": null,
+      "tier": "reconstructed",
+      "seed": "rc_barnes_ezra:employment",
+      "ticket": "T-1433",
+      "parent_ticket": "T-1189",
+      "classes": [],
+      "basis": {
+        "kind": "rule",
+        "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
+        "note": "The premises ruling: lodging is sold to arrivals who have to find the door — PUBLIC_TRADES `boarding_house`; the December census counts no boarding houses, so the class is `other`. The staffing model employs this trade in no class of house either, so there is not even somebody else's counter to stand behind. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
+      },
+      "replaceable_by": {
+        "kind": "business",
+        "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
       },
       "chosen_by": []
     },
@@ -2178,9 +2194,9 @@
       "chosen_by": []
     },
     {
-      "person_id": "rc_cavanagh_ellen",
-      "person_name": "Ellen Cavanagh",
-      "household_id": "hh_lodging_recon_1835_north_h2_045",
+      "person_id": "rc_cavanagh_johanna",
+      "person_name": "Johanna Cavanagh",
+      "household_id": "hh_lodging_recon_1835_north_h2_028",
       "kind": "keeps_their_own_house",
       "trade": "boarding_house_keeper",
       "premises": "own_premises",
@@ -2189,7 +2205,7 @@
       "business_name": null,
       "role": null,
       "tier": "reconstructed",
-      "seed": "rc_cavanagh_ellen:employment",
+      "seed": "rc_cavanagh_johanna:employment",
       "ticket": "T-1433",
       "parent_ticket": "T-1189",
       "classes": [],
@@ -6141,6 +6157,33 @@
       "chosen_by": []
     },
     {
+      "person_id": "rc_gilbert_benjamin",
+      "person_name": "Benjamin Gilbert",
+      "household_id": "hh_lodging_recon_1835_north_h2_045",
+      "kind": "keeps_their_own_house",
+      "trade": "boarding_house_keeper",
+      "premises": "own_premises",
+      "division_of_the_person": "north",
+      "business_id": null,
+      "business_name": null,
+      "role": null,
+      "tier": "reconstructed",
+      "seed": "rc_gilbert_benjamin:employment",
+      "ticket": "T-1433",
+      "parent_ticket": "T-1189",
+      "classes": [],
+      "basis": {
+        "kind": "rule",
+        "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
+        "note": "The premises ruling: lodging is sold to arrivals who have to find the door — PUBLIC_TRADES `boarding_house`; the December census counts no boarding houses, so the class is `other`. The staffing model employs this trade in no class of house either, so there is not even somebody else's counter to stand behind. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
+      },
+      "replaceable_by": {
+        "kind": "business",
+        "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
+      },
+      "chosen_by": []
+    },
+    {
       "person_id": "rc_gilbert_clarissa",
       "person_name": "Clarissa Gilbert",
       "household_id": "hh_rc_gilbert_clarissa",
@@ -7712,36 +7755,6 @@
         "match": "a house of this class raised or read into the layer, after which this person seats at it"
       },
       "chosen_by": []
-    },
-    {
-      "person_id": "rc_kellogg_luther",
-      "person_name": "Luther Kellogg",
-      "household_id": "hh_lodging_recon_1835_north_h2_028",
-      "kind": "seated",
-      "trade": "tavern_keeper",
-      "premises": "own_premises",
-      "division_of_the_person": "north",
-      "business_id": "biz_ingersoll_s_tavern_stand",
-      "business_name": "Ingersoll's tavern stand",
-      "role": "tavern_keeper",
-      "tier": "reconstructed",
-      "seed": "rc_kellogg_luther:employment",
-      "ticket": "T-1433",
-      "parent_ticket": "T-1189",
-      "establishment_class": "tavern_or_hotel",
-      "basis": {
-        "kind": "model",
-        "id": "1835_business_staffing_model#tavern_or_hotel.tavern_keeper",
-        "note": "The staffing model puts 1 of this role in a tavern or hotel at the typical band and 1 at the high end, on period_convention. The bar-keeper. `bar_keeper` is NOT in the residents occupation vocabulary and is carried here under the nearest term it does hold; see `vocabulary_gaps`. Analogue: the 1839 list's two bar-keepers against 50 keepers of houses — a floor, and the clearest evidence in this file that the directory did not canvass service. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a source naming where this person worked, which retires the draw"
-      },
-      "chosen_by": [
-        "nearest"
-      ],
-      "candidates_considered": 7
     },
     {
       "person_id": "rc_kellogg_seth",
