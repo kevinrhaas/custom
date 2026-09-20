@@ -1,7 +1,7 @@
 ---
 id: T-1464
 title: Package and play a standalone Mac preview from dev
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-1356
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1581
 claimed_by: local-mac 9/20/2026, 11:04:11 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T16:37:47.892Z
 claimed_run: null
 ---
 
@@ -32,3 +32,19 @@ The owner reported a fence near the fort hanging in the air. Include the Unreal
 placement correction in this local build: match the existing browser's lowest
 rotated-footprint terrain anchoring, measure the fort garden fence/palisade offsets,
 and rebuild the app. Do not invent new geometry or historical dimensions.
+
+## Completed local demonstration
+
+Native arm64 Development app built and packaged with Unreal 5.8.2 / Xcode 27.0,
+using dev scene snapshot 253f026570358dfcdab62fb2593c4082b058de07. Normal native
+launch and Escape quit were observed. The final palisade-corrected package passed
+the offscreen 21-second grounded movement/obstacle/back-away test with keyboard
+and mouse ignored. Code-sign verification passed before and after ZIP extraction.
+See [build instructions](../renderers/unreal/README.md) and
+[the receipt](../renderers/unreal/receipts/mac-253f02657.json).
+
+No generated engine assets or caches were added to source history; all new adapter
+source is isolated in renderers/unreal. Local check/preflight completed with two
+recorded Mac-specific baseline failures; this PR requires its own green Linux CI
+before merge. The wider streaming, bundle-update and renderer-parity tickets remain
+held/open under their existing acceptance.
