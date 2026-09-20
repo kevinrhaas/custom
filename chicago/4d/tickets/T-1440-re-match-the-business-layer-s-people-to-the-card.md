@@ -1,7 +1,7 @@
 ---
 id: T-1440
 title: Re-match the business layer's people to the cards the merge rulings already settled: the fullest agreement takes a printing, rivals are refused, and the folded cards answer to their own printed names
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1190
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1564
 claimed_by: run 9/20/2026, 6:28:34 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T12:12:46.366Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35506620874
 ---
 
