@@ -98,12 +98,24 @@ def ticket_states(root: Path = ROOT) -> dict[str, str]:
             states[tid.group(1)] = state.group(1)
             if parent:
                 parents[tid.group(1)] = parent.group(1)
-    live = {parent for child, parent in parents.items()
-            if states.get(child) in {"open", "claimed", "review", "in-progress"}}
-    for ticket in live:
-        if states.get(ticket) == "split":
-            states[ticket] = "split_live"
-    return states
+    # AND LIVENESS CLIMBS A CHAIN, NOT ONE STEP (T-1421). A split piece may itself be
+    # split — T-1188 was cut into T-1410 and T-1411, and T-1411 into T-1421 and T-1422 —
+    # and read one level deep the grandparent went back to plain `split` the moment its
+    # last direct child stopped being `open`, so twelve units that had not moved read as
+    # deferred to finished work and the sign-off went NO-GO on C3. The work had not
+    # stopped; it had been cut finer. So the pass runs to a fixed point and a `split_live`
+    # parent is itself live for ITS parent. The invariant is untouched and still strict:
+    # a unit may only defer to work that is still going to happen, and a chain every one
+    # of whose leaves has closed still reports plain `split`.
+    alive = {"open", "claimed", "review", "in-progress", "split_live"}
+    while True:
+        promoted = False
+        for child, parent in parents.items():
+            if states.get(child) in alive and states.get(parent) == "split":
+                states[parent] = "split_live"
+                promoted = True
+        if not promoted:
+            return states
 
 
 def declared_containers(doc: dict) -> list[str]:
@@ -1064,6 +1076,34 @@ def self_test() -> int:
                 failures.append(f"{label}: expected {want!r}, got {got!r}")
             else:
                 print(f"  fires: {label}")
+
+        # T-1421: LIVENESS CLIMBS THE WHOLE CHAIN. A split piece that is itself split
+        # used to drop its grandparent back to plain `split`, and twelve unmoved units
+        # read as deferred to finished work. Both directions are asserted here: a live
+        # leaf lifts every split above it, and a chain whose leaves have all closed
+        # still reports plain `split`.
+        chain = root / "tickets"
+        def ticket(tid, state, parent=None):
+            body = f"---\nid: {tid}\nstate: {state}\n"
+            body += f"parent: {parent}\n" if parent else "parent: null\n"
+            chain.mkdir(parents=True, exist_ok=True)
+            (chain / f"{tid}-fixture.md").write_text(body + "---\n", encoding="utf-8")
+        ticket("T-9001", "split")
+        ticket("T-9002", "split", "T-9001")
+        ticket("T-9003", "open", "T-9002")
+        states = ticket_states(root)
+        if states.get("T-9001") != "split_live" or states.get("T-9002") != "split_live":
+            failures.append("a live leaf did not lift the splits above it: %r" % states)
+        else:
+            print("  holds: a live leaf lifts every split above it")
+        ticket("T-9003", "done", "T-9002")
+        states = ticket_states(root)
+        if states.get("T-9001") != "split" or states.get("T-9002") != "split":
+            failures.append("a spent chain still reported itself live: %r" % states)
+        else:
+            print("  fires: a chain whose leaves have all closed reports plain split")
+        for stale in chain.glob("T-90*-fixture.md"):
+            stale.unlink()
 
         # T-1144 acceptance 9's presence leg restates evidence and names its own subject.
         # A block is a target when it carries WHAT THE READING SAYS; repeating the man's

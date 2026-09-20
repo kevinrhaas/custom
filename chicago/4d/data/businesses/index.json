@@ -3,13 +3,14 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 251,
+    "records": 255,
     "compiled_from_register": 196,
-    "authored": 55,
-    "present_at_scene_date": 234,
+    "authored": 59,
+    "present_at_scene_date": 238,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
+      "church": 4,
       "civic": 3,
       "druggist": 4,
       "iron_foundry": 2,
@@ -28,22 +29,22 @@
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 50,
+      "premises": 54,
       "street_only": 70,
       "unplaceable": 109
     },
-    "named_people": 257,
-    "named_people_linked_to_a_town_card": 205,
+    "named_people": 260,
+    "named_people_linked_to_a_town_card": 207,
     "works_at_households": 50,
-    "works_at_households_resolving_to_a_business": 34,
+    "works_at_households_resolving_to_a_business": 37,
     "by_grade": {
-      "attested": 162,
-      "inferred": 76,
+      "attested": 165,
+      "inferred": 77,
       "reconstructed": 13
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 50,
+      "premises": 54,
       "street_only": 70,
       "unplaceable": 105
     },
@@ -67,7 +68,7 @@
       "new_york": 51,
       "other": 11,
       "southern": 10,
-      "unknown": 95,
+      "unknown": 99,
       "yankee": 62
     }
   },
@@ -147,7 +148,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 95
+        "count": 99
       }
     ]
   },
@@ -3843,6 +3844,100 @@
       "liberties": [
         "survival_required"
       ]
+    },
+    {
+      "id": "biz_first_baptist_church",
+      "file": "biz_first_baptist_church.json",
+      "name": "The First Baptist Church Society of Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "church"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "a Baptist congregation, in the lower storey of the Temple Building",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Rev. Allen B. Freeman",
+          "person_id": null,
+          "role": "minister",
+          "tier": "inferred",
+          "from": "1833-08-16",
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "temple_building",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "attested",
+        "from": "1833-08",
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": "1833-10-19",
+      "closed": null,
+      "dates_tier": "attested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": [
+        "survival_required"
+      ]
+    },
+    {
+      "id": "biz_first_presbyterian_church",
+      "file": "biz_first_presbyterian_church.json",
+      "name": "The First Presbyterian Church of Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "church"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "a Presbyterian congregation and its meeting house",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Rev. Jeremiah Porter",
+          "person_id": "porter_jeremiah",
+          "role": "minister",
+          "tier": "attested",
+          "from": "1833-06-26",
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "first_presbyterian_church",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "attested",
+        "from": "1834-01-04",
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": "1833-06-26",
+      "closed": null,
+      "dates_tier": "attested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
     },
     {
       "id": "biz_frederick_thomas_drugs_and_paints",
@@ -7833,6 +7928,44 @@
       "liberties": []
     },
     {
+      "id": "biz_methodist_episcopal_congregation",
+      "file": "biz_methodist_episcopal_congregation.json",
+      "name": "The Methodist Episcopal congregation at Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "church"
+      ],
+      "present_at_scene_date": true,
+      "grade": "inferred",
+      "trade": "a Methodist Episcopal congregation and its log meeting house at the forks",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [],
+      "where": {
+        "kind": "premises",
+        "structure_id": "walker_meeting_house",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": [
+        "survival_required"
+      ]
+    },
+    {
       "id": "biz_miller_john_tanner",
       "file": "biz_miller_john_tanner.json",
       "name": "John Miller, Benjamin Hall, tanner",
@@ -9939,6 +10072,54 @@
       "dates_tier": "inferred",
       "proprietor_community": "new_york",
       "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "biz_st_marys_church",
+      "file": "biz_st_marys_church.json",
+      "name": "St. Mary's, the Catholic congregation of Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "church"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "a Catholic congregation and its church",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Rev. John Mary Irenaeus St Cyr",
+          "person_id": "st_cyr_john_mary",
+          "role": "priest",
+          "tier": "attested",
+          "from": "1833-05",
+          "to": null,
+          "also_printed_as": [
+            "Jean Marie Irénée Saint Cyr"
+          ]
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "st_marys_church",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "attested",
+        "from": "1833-10",
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": "1833-05",
+      "closed": null,
+      "dates_tier": "attested",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     },
@@ -13811,7 +13992,9 @@
       "household_id": "hh_porter_jeremiah",
       "head": "porter_jeremiah",
       "structure_id": "first_presbyterian_church",
-      "business_ids": []
+      "business_ids": [
+        "biz_first_presbyterian_church"
+      ]
     },
     {
       "household_id": "hh_porthier_joseph",
@@ -13843,6 +14026,7 @@
       "head": "sproat_grenville",
       "structure_id": "temple_building",
       "business_ids": [
+        "biz_first_baptist_church",
         "biz_the_chicago_academy"
       ]
     },
@@ -13850,7 +14034,9 @@
       "household_id": "hh_st_cyr_john_mary",
       "head": "st_cyr_john_mary",
       "structure_id": "st_marys_church",
-      "business_ids": []
+      "business_ids": [
+        "biz_st_marys_church"
+      ]
     },
     {
       "household_id": "hh_stow_william_h",
@@ -13870,13 +14056,16 @@
       "household_id": "hh_taylor_augustine",
       "head": "taylor_augustine",
       "structure_id": "st_marys_church",
-      "business_ids": []
+      "business_ids": [
+        "biz_st_marys_church"
+      ]
     },
     {
       "household_id": "hh_temple_john_t",
       "head": "temple_john_t",
       "structure_id": "temple_building",
       "business_ids": [
+        "biz_first_baptist_church",
         "biz_the_chicago_academy"
       ]
     },

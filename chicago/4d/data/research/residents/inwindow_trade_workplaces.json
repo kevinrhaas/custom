@@ -7,9 +7,9 @@
  "not_a_reading": "DERIVED, never hand-edited. Every row is read off a committed role on a committed card and a committed ruling. No page of any source is read here, nobody is minted, nothing is reconstructed and no confidence is promoted: a house raised from a role is `inferred` and says so on its own record.",
  "scene_date": "1835-07-01",
  "counts": {
-  "already_holds_a_workplace": 75,
+  "already_holds_a_workplace": 77,
   "held": 4,
-  "no_premises": 32,
+  "no_premises": 30,
   "not_ruled": 4,
   "raise": 45,
   "houses_raised": 38,
@@ -734,13 +734,6 @@
    "basis": "A school is an establishment, and the December census counts seven of them against the seven the town holds. T-1188 establishes the schools as businesses and T-1189 staffs them. exercised at an establishment the person does not keep."
   },
   {
-   "person_id": "porter_jeremiah",
-   "name": "Rev. Jeremiah Porter",
-   "role": "minister",
-   "kind": "profession",
-   "basis": "A church is an establishment, and the December census counts five. T-1188 establishes the churches and T-1189 staffs them. exercised at an establishment the person does not keep."
-  },
-  {
    "person_id": "pratt_oscar",
    "name": "Oscar Pratt",
    "role": "printer",
@@ -767,13 +760,6 @@
    "role": "surveyor",
    "kind": "profession",
    "basis": "Surveying is done in the field and the plat drawn where the surveyor lodges; no source gives this town a surveyor's office in 1835."
-  },
-  {
-   "person_id": "st_cyr_john_mary",
-   "name": "Rev. John Mary Irenaeus St Cyr",
-   "role": "priest",
-   "kind": "profession",
-   "basis": "A church is an establishment, and the December census counts five. T-1188 establishes the churches and T-1189 staffs them. exercised at an establishment the person does not keep."
   },
   {
    "person_id": "steele_ashbel",
@@ -901,9 +887,9 @@
    {
     "class": "church",
     "census_count": 5,
-    "town_before_T-1404": 0,
+    "town_before_T-1404": 4,
     "raised_here": 0,
-    "town_after_T-1404": 0,
+    "town_after_T-1404": 4,
     "still_short": null,
     "documented_zero": false,
     "owed_to": null

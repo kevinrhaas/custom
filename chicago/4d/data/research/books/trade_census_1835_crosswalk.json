@@ -357,10 +357,15 @@
       "census_line": "five churches",
       "census_count": 5,
       "compared": false,
-      "town_records_in_town": 0,
-      "town_records_at_scene_date": 0,
+      "town_records_in_town": 4,
+      "town_records_at_scene_date": 4,
       "town_records_outside_town": 0,
-      "business_ids": [],
+      "business_ids": [
+        "biz_first_baptist_church",
+        "biz_first_presbyterian_church",
+        "biz_methodist_episcopal_congregation",
+        "biz_st_marys_church"
+      ],
       "outcome": "not_compared",
       "delta": null,
       "note": "a church is a structure and not a trade; T-0988 leaves this row to the roof programme and it is not compared here"
@@ -590,11 +595,11 @@
   ],
   "totals": {
     "businesses_in_register": 196,
-    "authored_records_counted": 39,
-    "businesses_counted": 235,
-    "in_town": 232,
+    "authored_records_counted": 43,
+    "businesses_counted": 239,
+    "in_town": 236,
     "outside_town": 3,
-    "at_scene_date": 219,
+    "at_scene_date": 223,
     "carrying_no_enumerated_class": 90,
     "not_stated": 5,
     "census_enumerated_total": 118,
@@ -782,6 +787,30 @@
       "built_at_scene_date": true
     },
     {
+      "business_id": "biz_first_baptist_church",
+      "name": "The First Baptist Church Society of Chicago",
+      "trade": "a Baptist congregation, in the lower storey of the Temple Building",
+      "classes": [
+        "church"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_first_baptist_church` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_first_presbyterian_church",
+      "name": "The First Presbyterian Church of Chicago",
+      "trade": "a Presbyterian congregation and its meeting house",
+      "classes": [
+        "church"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_first_presbyterian_church` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
       "business_id": "biz_gale_stephen_f_merchant",
       "name": "Stephen F. Gale, merchant",
       "trade": "merchant",
@@ -927,6 +956,18 @@
       "built_at_scene_date": true
     },
     {
+      "business_id": "biz_methodist_episcopal_congregation",
+      "name": "The Methodist Episcopal congregation at Chicago",
+      "trade": "a Methodist Episcopal congregation and its log meeting house at the forks",
+      "classes": [
+        "church"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_methodist_episcopal_congregation` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
       "business_id": "biz_miller_john_tanner",
       "name": "John Miller, Benjamin Hall, tanner",
       "trade": "tanner",
@@ -984,6 +1025,18 @@
       "scope": "in_town",
       "ruled_by": "authored_record",
       "basis": "AUTHORED, NOT PRINTED. `biz_smith_george_coffee_house_keeper` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
+      "built_at_scene_date": true
+    },
+    {
+      "business_id": "biz_st_marys_church",
+      "name": "St. Mary's, the Catholic congregation of Chicago",
+      "trade": "a Catholic congregation and its church",
+      "classes": [
+        "church"
+      ],
+      "scope": "in_town",
+      "ruled_by": "authored_record",
+      "basis": "AUTHORED, NOT PRINTED. `biz_st_marys_church` carries its own census class in `type` and its own grade in `provenance: authored`; the ruling was made by whoever wrote the record and is read off it here.",
       "built_at_scene_date": true
     },
     {

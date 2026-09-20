@@ -1,7 +1,7 @@
 ---
 id: T-1411
 title: The churches, the schools and the press as establishments with their people: the five churches of the census with ministers attested and sextons reconstructed, the seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1188
 opened: 2026-09-19
-closed: null
+closed: 2026-09-19
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 10:06:42 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T03:12:13.703Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35485586079
 ---
 
 The churches, the schools and the press as establishments with their people: the five churches of the census with ministers attested and sextons reconstructed, the seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated.
