@@ -12852,21 +12852,31 @@ likeliest), and the stage picks none. Nothing was reduced to fit.
 Related: tickets **T-1349**, from **T-1176** and **T-1167**; **T-1348** is the officers' half of
 the same parent; **L247** is the stage above it in the programme. **Recorded:** 2026-09-19.
 
-### L252 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
+### L252 — Forty-seven people are put to bed in houses that had the beds, and forty-seven the town already counts are told where they slept
 
 **Decision:** `tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night
 capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each
-is an invention of a different size. (1) It **seats seventeen people the layer already
-holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew
-at a household size of one — into a named or reconstructed lodging house, writing
+is an invention of a different size. (1) It **seats forty-seven people the layer already
+holds** — the heads T-1171 drew as `solitary` and those T-1173 drew at a household size of
+one — into a named or reconstructed lodging house, writing
 `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints
-seventy of them as boarders and lodgers** nobody names, drawn against the order book's own
+forty-two of them as boarders and lodgers** nobody names, drawn against the order book's own
 `household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this
 programme itself raised as a lodging place, at the trade that roof's own `function`
 states. Nothing is hand-authored: every value comes from a seed a reader can retype, and
 `--check` re-derives all twelve cards and the ledger byte for byte.
 
-**Scope:** `residents.persons[lodgers]` — 75 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
+**Scope:** `residents.persons[lodgers]` — 47 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The forty-seven of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
+
+**The liberty SHRANK on 2026-09-20, and the reason is worth keeping (T-1171).** It stood at
+75 minted against 17 seated. `reconstruct_modelled_families.py` had been refusing 822
+households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated in
+`data/reconstruction/1835_presence_rulings.json`; once this stage reads that file the model
+draws 30 more of the town's own named men as living alone, and `seat_lodgers_1835.py` puts
+THEM in the beds it would otherwise have invented somebody for. Twenty-eight invented people
+are gone and twenty-eight real ones sleep in their place. The beds did not move — 94 of 135
+ordinary-night beds are filled either way — only the question of who is in them, and this is
+the direction that question is supposed to travel.
 
 **Why:** because T-1370 counted 135 ordinary-night beds across those fifteen houses and
 found thirty people in them — eight keepers and their families, and not one boarder. The

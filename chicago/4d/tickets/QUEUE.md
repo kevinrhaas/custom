@@ -59,7 +59,6 @@
 
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1478 — Every documented north or west record's lot recorded on the record: the lot a committed footprint stands on, written onto the record and gated
 T-1486 — A derived figure must not be rounded by float drift: sweep the 31 remaining round(sum(...)) sites
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
