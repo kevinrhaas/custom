@@ -80,3 +80,58 @@ buckets of `data/reconstruction/1835_reconstruction_order_book.json`; no househo
 the person buckets this stage already overdrew are REFUSED rather than re-cut — they are
 named in the book's `recut_refusals` with both numbers, held at what was drawn. Nobody
 this stage has already drawn is un-drawn (the owner's ruling of 2026-09-20, T-1459).
+
+---
+
+## 2026-09-20 — the staleness is fixed, and the 227 is adjudicated
+
+**What was wrong, and it was the same fault T-1463 found one layer up.** This stage's
+first refusal reads `present_on_scene_date` OFF THE CARD. T-1386 adjudicated the 827
+attested and inferred people the layer had left on an unruled `uncertain` and wrote its 820
+household rulings to `data/reconstruction/1835_presence_rulings.json` — a DERIVED sidecar
+the card does not carry. The order book reads that file (`population_ruled_in`, summed into
+`known` by T-1463); so do the town census and the population profile. This stage did not.
+So while the book counted a town of 2,267, this stage measured itself against one of 1,140
+and refused 822 households the project had already ruled were in it.
+
+| | before | after |
+|---|---:|---:|
+| heads eligible for a family | 89 | **429** |
+| the town this stage measures against | 1,140 | **2,267** |
+| widest gap, drawn household sizes against 1840 | 0.0584 | **0.0274** |
+| people this stage drew | 300 | 300 |
+| heads carrying a household type | 89 | **119** |
+
+**What it bought, measured.** Not new people — the book has none left to give here (see
+below) — but thirty more of the town's own named men are now drawn `solitary`, and
+`seat_lodgers_1835.py` seats THOSE men in beds it had been minting strangers for. L252's
+invention falls from 75 minted against 17 seated to **47 against 47**: twenty-eight invented
+people gone, twenty-eight real ones asleep in their place, the same 94 of 135
+ordinary-night beds filled.
+
+**A second rule, and it closes a hole rather than a gap.** A married house the order book
+has no woman left for is now refused WHOLE. It used to keep its children — a cottage of
+infants with no mother, reading as evidence of a family nobody drew.
+
+**THE 227 IS NOT THIS STAGE'S TO DRAW, and here is the arithmetic.** The re-cut's 227 sit
+in twelve buckets, every one of them `persons/male/{20_29,30_39,40_49,50_plus}/*/family/none`
+— men aged twenty and over in family households. This stage draws the KIN CORE and nothing
+else, and its own marriage rule caps a child at `head_low - 20` years (never above 19), so it
+cannot put an adult man in a house that is not its head. An adult man in somebody else's
+family house in 1835 is an apprentice, a journeyman, a clerk or a hired hand — priced by
+T-1183's staffing model and seated by T-1173 — or a boarder, seated by T-1175. None of them
+is kin.
+
+**What IS still owed here, and what blocks it.** 310 married houses this stage drew stand
+refused for want of a woman in their cell, 147 of them in
+`persons/female/20_29/south/family/none`. The women exist: T-1174 drew 856 and T-1347 drew
+308, exact on the counter — but as records of their own rather than into these heads'
+houses. **Re-housing them is T-1179's convergence**, and until it runs there is no woman in
+the book for house number 90 onwards. That is the one bullet this ticket now adds to its
+acceptance:
+
+- The 310 married houses the order book refuses a wife are seated once T-1179's convergence
+  puts T-1174's and T-1347's women under the roofs the household model drew for them. No
+  new woman is drawn for them; the ones already in the town are moved.
+
+`--report` prints all of it, and the ticket stays open on that bullet alone.

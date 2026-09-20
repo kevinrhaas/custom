@@ -17,10 +17,19 @@ in every record that it did so.
 WHAT IT MAY NOT DO. Only the head's own household is filled, and only where the record
 admits one. Four refusals, each with a reason a reader can check:
 
-  1. A household whose presence on the scene date is `uncertain` gets nothing. The order
-     book counts only `present` households as known (its rule 3) and offers the uncertain
-     ones to T-1172 as the roster's R1 class. A family drawn onto an uncertain head would
-     order the same person twice, once here and once there.
+  1. A household whose presence on the scene date is still unsettled gets nothing. The
+     order book counts only present households as known (its rule 3) and offers the
+     unsettled ones to T-1172 as the roster's R1 class. A family drawn onto an unsettled
+     head would order the same person twice, once here and once there.
+     SETTLED MEANS THE CARD **OR** T-1386'S RULING, since 2026-09-20. T-1386 adjudicated
+     the 827 attested and inferred people the layer had left on an unruled `uncertain`
+     and wrote 820 household rulings to `data/reconstruction/1835_presence_rulings.json`,
+     a derived sidecar the card does not carry. The order book, the town census and the
+     population profile all read that file; this stage did not, and so refused 822
+     households the project had already ruled were in the town — 89 heads eligible where
+     429 are. That was the staleness T-1463 named when it reopened this ticket, and it is
+     why the stage measured itself against a town of 1,140 when the book's own town stood
+     at 2,267. The two evidenced absences the file names stay out.
   2. A `letter_list` mint gets nothing. That record argues for a PERSON and not for a
      household — "one member, no dwelling, no division, no trade, no family" is its own
      research note, and `mint_letter_list_residents.py --gate` PROVES no record there
@@ -37,6 +46,14 @@ admits one. Four refusals, each with a reason a reader can check:
      side; a household flagged `review_required` or `touches_removal` is in that hands, not
      this stage's. And a model that gave Father St Cyr a wife would be inventing against
      the record rather than into a gap in it, which is the one draw no quota excuses.
+
+  6. A married house the order book has no woman left for is not half-drawn — it is
+     refused whole, and the cell that refused it is named. Seating the children of a
+     marriage the book would not seat would put a cottage of infants with no mother on
+     the ground and would read as evidence of a family nobody drew. 310 houses stand
+     refused this way today, 147 of them in `persons/female/20_29/south/family/none`:
+     T-1174 and T-1347 drew the women the pyramid was short as their OWN records rather
+     than into these houses, and re-housing them is T-1179's convergence.
 
   And one bound that is not a refusal: NOBODY BUT KIN IS DRAWN. The household types carry
   servants, apprentices and journeymen, and the size the 1840 histogram draws is of the
@@ -75,6 +92,7 @@ COMPOSITION = ROOT / "data" / "research" / "census_1840" / "composition_1840.jso
 POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 BOOK = ROOT / "data" / "reconstruction" / "1835_reconstruction_order_book.json"
 LEDGER = ROOT / "data" / "reconstruction" / "1835_modelled_families.json"
+RULINGS = ROOT / "data" / "reconstruction" / "1835_presence_rulings.json"
 
 STAGE = "modelled_families"
 TICKET = "T-1171"
@@ -144,6 +162,32 @@ def value_of(block):
     return block.get("value") if isinstance(block, dict) else block
 
 
+_RULED = None
+
+
+def ruled_present() -> frozenset:
+    """The households T-1386 ruled into the town of 1 July 1835.
+
+    `present_on_scene_date` ON THE CARD IS NOT THE WHOLE RULING. T-1386 adjudicated the
+    827 attested and inferred people the layer left on an unruled `uncertain` and wrote
+    its 820 household rulings to `data/reconstruction/1835_presence_rulings.json`, a
+    DERIVED sidecar the card itself does not carry. The order book reads that file and
+    counts those households KNOWN and PRESENT (its `population_ruled_in`, summed into
+    `known` by T-1463); so do the town census and the population profile. This stage read
+    the card alone and therefore refused 822 households the project had already ruled were
+    in the town — the staleness T-1463 named, and the reason the layer stood at 1.02 people
+    a record while the book's own population counted 2,267.
+
+    The rulings are a floor and never a veto: a card that already says `present` stays
+    present, and the two evidenced absences the file names are not in this set."""
+    global _RULED
+    if _RULED is None:
+        rows = json.loads(RULINGS.read_text(encoding="utf-8"))["rulings"]
+        _RULED = frozenset(r["household_id"] for r in rows
+                           if value_of(r.get("present_on_scene_date")) == "present")
+    return _RULED
+
+
 def table(section_key: str, table_key: str) -> dict:
     model = json.loads(MODEL.read_text(encoding="utf-8"))
     for section in model["sections"]:
@@ -193,9 +237,27 @@ def head_of(card: dict):
     return person if person.get("relationship") == "head" else None
 
 
-def eligibility(card: dict) -> tuple:
-    """(eligible, the refusal). One rule a line, in the docstring's order."""
-    if value_of(card.get("present_on_scene_date")) != "present":
+def settled_present(card: dict, ruled=None) -> bool:
+    """Is this household in the town of 1 July 1835? The card first, T-1386's ruling
+    after it. Both are the project's own answer to the same question; the card is simply
+    the half of it that predates the adjudication."""
+    if value_of(card.get("present_on_scene_date")) == "present":
+        return True
+    if value_of(card.get("present_on_scene_date")) == "absent":
+        return False
+    if ruled is None:
+        ruled = ruled_present()
+    return card.get("id") in ruled
+
+
+def eligibility(card: dict, ruled=None) -> tuple:
+    """(eligible, the refusal). One rule a line, in the docstring's order.
+
+    `ruled` is the T-1386 ruling set; it defaults to the committed one and is passed
+    explicitly only by the self-test, which owns no household id in the file."""
+    if ruled is None:
+        ruled = ruled_present()
+    if not settled_present(card, ruled):
         return False, "presence on the scene date is not settled (T-1172's roster holds it)"
     if str(card.get("source_pass") or "") == "letter_list":
         return False, "a letter-list mint argues for a person and not for a household"
@@ -437,13 +499,27 @@ def fill(base: dict) -> tuple:
     refused_buckets = Counter()
     drawn_band = Counter()
     drawn_size = Counter()
+    refused_size = Counter()
     kin_size = Counter()
     fills = Counter()
     per_card = {}
 
-    for hid in sorted(out):
+    # THE ORDER THE QUOTA IS SPENT IN, AND WHY IT IS NOT PLAIN hid ORDER. A household
+    # the card itself rules present was drawn for before T-1386's rulings were honoured
+    # here, and the owner's ruling of 2026-09-20 (T-1459) is that nobody this stage has
+    # already drawn is un-drawn. The seeds are per-household, so every such house draws
+    # the same family it drew before; only the ORDER the book is spent in could take a
+    # slot away from one. So they are served first, and the households T-1386 ruled in
+    # follow them. Both keys are committed data, so `--check` re-derives the same order.
+    ruled = ruled_present()
+
+    def service_order(hid: str) -> tuple:
         card = out[hid]
-        ok, why = eligibility(card)
+        return (0 if value_of(card.get("present_on_scene_date")) == "present" else 1, hid)
+
+    for hid in sorted(out, key=service_order):
+        card = out[hid]
+        ok, why = eligibility(card, ruled)
         if not ok:
             refusals[why] += 1
             continue
@@ -455,8 +531,11 @@ def fill(base: dict) -> tuple:
         family_names = {surname.lower()}
 
         size = pick(seed_for(hid, "household_size"), [(s, n) for s, n in sizes])
+        # THE SIZE HISTOGRAM MEASURES THE MODEL, NOT THE BOOK. Every eligible head is
+        # counted here, before the order book has spoken, because what this table tests
+        # is whether the 1840 size distribution is being SAMPLED faithfully. A house the
+        # book then refuses is a fact about the quota and is counted as one, below.
         drawn_size[size] += 1
-        counts["heads_drawn_for"] += 1
         members = []
         household_type = ("solitary" if size == 1
                           else "married_couple" if size == 2 else "family_with_children")
@@ -479,7 +558,18 @@ def fill(base: dict) -> tuple:
             name = f"{given} {surname}"
             bucket = bucket_for(hid, card, "female", low, "wife")
             if left.get(bucket, 0) <= 0:
+                # THE WIFE IS THE HOUSE. The model drew this house married; if the book
+                # has no woman left for her cell, the married house is not a house this
+                # stage may half-draw. Seating the children of a marriage the book would
+                # not seat would put a fatherless-looking cottage of infants on the
+                # ground and would read as evidence of a family nobody drew. The whole
+                # house is refused, the cell that refused it is named, and the head is
+                # left exactly as the sources leave him.
                 refused_buckets[bucket] += 1
+                refusals["the order book has no woman left in this house's cell"] += 1
+                counts["houses_the_book_refused"] += 1
+                refused_size[size] += 1
+                continue
             else:
                 left[bucket] -= 1
                 fills[bucket] += 1
@@ -500,6 +590,8 @@ def fill(base: dict) -> tuple:
                     community, head_name))
                 drawn_band[book_band(low)] += 1
                 counts["wives"] += 1
+
+        counts["heads_drawn_for"] += 1
 
         # THE CHILDREN. What the drawn size leaves once the head and his wife are seated.
         # No child is born after the scene date and none is older than the marriage the
@@ -588,7 +680,9 @@ def fill(base: dict) -> tuple:
         "children": counts["children"],
         "refused_by_eligibility": dict(sorted(refusals.items())),
         "refused_by_the_order_book": dict(sorted(refused_buckets.items())),
+        "houses_the_book_refused": counts["houses_the_book_refused"],
         "size_drawn_histogram": {str(k): v for k, v in sorted(drawn_size.items())},
+        "size_refused_histogram": {str(k): v for k, v in sorted(refused_size.items())},
         "kin_seated_histogram": {str(k): v for k, v in sorted(kin_size.items())},
         "drawn_into_bands": dict(sorted(drawn_band.items())),
         "fills": dict(sorted(fills.items())),
@@ -601,11 +695,16 @@ def fill(base: dict) -> tuple:
 
 def present(live: dict) -> list:
     """The people the order book counts as the town: the present households alone. The
-    uncertain ones are the roster's, and measuring the whole layer against a town's sex
-    ratio would measure the naming sources instead — the letter lists are 94.3% male and
-    they are two records in three here."""
+    still-unruled ones are the roster's, and measuring the whole layer against a town's
+    sex ratio would measure the naming sources instead — the letter lists are 94.3% male
+    and they are two records in three here.
+
+    `present` here means what the ORDER BOOK means by it, which since T-1386 includes the
+    820 households it ruled into the town. Counting only the cards that carry the word
+    would measure this stage against a town of 1,140 that the book itself stopped using
+    when it summed the rulings into `known` (T-1463)."""
     return [p for card in live.values() for p in (card.get("persons") or [])
-            if value_of(card.get("present_on_scene_date")) == "present"]
+            if settled_present(card)]
 
 
 def sex_ratio(people: list):
@@ -668,8 +767,12 @@ def measurement(base: dict, live: dict, ledger: dict) -> dict:
         "the_model_s_range": wanted,
         "inside_the_model_s_range": (after is not None and wanted is not None
                                      and wanted[0] <= after <= wanted[1]),
-        "what_closes_it": "T-1174 draws the 855 women and children the pyramid still "
-                          "lacks; T-1179 converges the layer and re-runs the profile.",
+        "what_closes_it": "T-1174 (done, 856/856) and T-1347 (done, 308/308) drew the "
+                          "women and children the pyramid was short, but they were drawn "
+                          "as their own records and not into these houses: 310 married "
+                          "houses this stage drew stand with no woman left in their cell. "
+                          "Re-housing them is T-1179's convergence, and it is what closes "
+                          "this ratio; nothing this stage may draw does.",
         "age_pyramid_after": dict(sorted(pyramid.items())),
         "household_size_1840_share": shape,
         "household_size_drawn_share": drawn,
@@ -750,7 +853,12 @@ def report() -> int:
     print("WHY A HOUSEHOLD WAS PASSED OVER")
     for why, n in sorted(ledger["refused_by_eligibility"].items(), key=lambda kv: -kv[1]):
         print("   %5d  %s" % (n, why))
-    print("HOUSEHOLD SIZE — the 1840 city against the draw")
+    print("HOUSES THE ORDER BOOK COULD NOT SEAT")
+    print("   %5d  married houses the model drew and the book has no woman left for"
+          % ledger["houses_the_book_refused"])
+    for size, n in sorted(ledger["size_refused_histogram"].items(), key=lambda kv: int(kv[0])):
+        print("   %5d  at size %s" % (n, size))
+    print("HOUSEHOLD SIZE — the 1840 city against the size the model drew")
     for size in sorted(stats["household_size_1840_share"], key=int):
         print("   %2s  1840 %6.4f   drawn %6.4f" % (
             size, stats["household_size_1840_share"][size],
@@ -777,8 +885,11 @@ def report() -> int:
 def self_test() -> int:
     failures = []
 
+    checked = []
+
     def fires(what: str, ok: bool) -> None:
         print("   %-64s %s" % (what, "ok" if ok else "FAIL"))
+        checked.append(what)
         if not ok:
             failures.append(what)
 
@@ -795,8 +906,17 @@ def self_test() -> int:
 
     fires("a present, civic, single-head, adult male household is eligible",
           eligibility(card())[0] is True)
-    fires("an uncertain presence is refused",
-          eligibility(card(present_on_scene_date={"value": "uncertain"}))[0] is False)
+    fires("an uncertain presence no ruling settles is refused",
+          eligibility(card(present_on_scene_date={"value": "uncertain"}),
+                      frozenset())[0] is False)
+    fires("an uncertain presence T-1386 ruled present is admitted",
+          eligibility(card(present_on_scene_date={"value": "uncertain"}),
+                      frozenset({"hh_x"}))[0] is True)
+    fires("an evidenced absence is refused however it was ruled",
+          eligibility(card(present_on_scene_date={"value": "absent"}),
+                      frozenset({"hh_x"}))[0] is False)
+    fires("every household the rulings file names was ruled present",
+          len(ruled_present()) == 820)
     fires("a letter-list mint is refused",
           eligibility(card(source_pass="letter_list"))[0] is False)
     fires("a household that already holds a second person is refused",
@@ -833,7 +953,7 @@ def self_test() -> int:
     fires("a drawn person names the stage that wrote them",
           ours({"reconstruction": {"stage": STAGE}}) and not ours({"grade": "attested"}))
 
-    print("   %d rule(s) checked, %d failed" % (18, len(failures)))
+    print("   %d rule(s) checked, %d failed" % (len(checked), len(failures)))
     return 1 if failures else 0
 
 
