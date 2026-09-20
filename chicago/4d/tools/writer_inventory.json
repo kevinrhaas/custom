@@ -119,6 +119,12 @@
       "measured": "2026-09-18",
       "finding": "Cannot rebuild: declares only --check and --self-test; the blunt pattern matched `--build` in a MESSAGE about what a later build would do."
     },
+    "carry_west_tiers_west.py": {
+      "placement": "reproduces",
+      "write_mode": "--write",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--write` on a clean tree rewrote its own two outputs (data/streets/1835.json, data/traces/west_tiers_west_reach.json) byte for byte and changed no committed byte."
+    },
     "census_1840_composition.py": {
       "placement": "manifest",
       "write_mode": "--build",
@@ -228,10 +234,10 @@
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
     "converge_resident_layer.py": {
-     "placement": "not_a_writer",
-     "write_mode": "--run, which writes no byte of its own",
-     "measured": "2026-09-19",
-     "finding": "Measured on dev at 3845cb41c, at its fixed point. `--check` and `--self-test` write nothing and read only tools/check.sh and the order file. `--run` is a write mode only by proxy: it executes the thirteen build commands the order names, every one of which already has a row here, and writes nothing itself. Run on that clean tree it reached the fixed point in one pass in 43 s and git reported no committed byte moved, which is the measurement \u2014 the order is idempotent where the tree already satisfies it. Recorded not_a_writer so the audit stops reporting it; it is a driver, and the bytes belong to the rows it drives."
+      "placement": "not_a_writer",
+      "write_mode": "--run, which writes no byte of its own",
+      "measured": "2026-09-19",
+      "finding": "Measured on dev at 3845cb41c, at its fixed point. `--check` and `--self-test` write nothing and read only tools/check.sh and the order file. `--run` is a write mode only by proxy: it executes the thirteen build commands the order names, every one of which already has a row here, and writes nothing itself. Run on that clean tree it reached the fixed point in one pass in 43 s and git reported no committed byte moved, which is the measurement — the order is idempotent where the tree already satisfies it. Recorded not_a_writer so the audit stops reporting it; it is a driver, and the bytes belong to the rows it drives."
     },
     "crosswalk_census_1840_heads.py": {
       "placement": "not_derivable",
@@ -1264,7 +1270,7 @@
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
-      "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
+      "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after — not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
     },
     "supersede_arrival.py": {
       "placement": "not_a_writer",
