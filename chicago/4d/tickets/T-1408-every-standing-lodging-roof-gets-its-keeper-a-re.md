@@ -1,7 +1,7 @@
 ---
 id: T-1408
 title: Every standing lodging roof gets its keeper: a reconstructed boarding-house keeper and proprietor household behind each built H-family roof, the F-family freight sheds referred to their firms or scheduled, and the lodging model's beds-vs-keepers table printing zero unkept standing boarding house
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1187
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1541
 claimed_by: run 9/19/2026, 5:56:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T00:05:11.152Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35473935108
 ---
 
