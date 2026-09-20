@@ -156,7 +156,7 @@ def control_offsets(lines: dict | None = None, control: dict | None = None) -> d
             elif abs(offsets[0]) <= QUOTED_M:
                 verdict, offset = "centred", 0.0
             else:
-                verdict, offset = "recentred", round(sum(offsets) / len(offsets), 2)
+                verdict, offset = "recentred", round(math.fsum(offsets) / len(offsets), 2)
         out[sid] = {
             "axis": "ew" if sid in CORRIDOR_EW else "ns" if sid in CORRIDOR_NS else None,
             "points": points,
