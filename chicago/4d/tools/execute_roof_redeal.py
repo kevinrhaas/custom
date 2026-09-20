@@ -68,9 +68,11 @@ DATA = ROOT / "data"
 RECON = DATA / "reconstruction"
 LEDGER = RECON / "1835_roof_redeal.json"
 WEST_RECIPE = RECON / "1835_phase2_west_wolf_point_approaches.json"
+NORTH_RECIPE = RECON / "1835_north_division_initial_parcel.json"
 CROSSWALK = RECON / "1835_family_archetype_crosswalk.json"
 EXCLUSIONS = DATA / "exclusions.json"
 REPORT = ROOT / "docs" / "RESEARCH" / "1835_roof_redeal_execution.md"
+MIGRATION_REPORT = ROOT / "docs" / "RESEARCH" / "1835_roof_id_migration.md"
 
 sys.path.insert(0, str(ROOT / "tools"))
 # The same letter-to-group mapping the adjudication and the 665 ledger use,
@@ -79,11 +81,13 @@ sys.path.insert(0, str(ROOT / "tools"))
 from reconcile_665 import group_of  # noqa: E402
 
 TICKET = "T-1451"
+MIGRATION_TICKET = "T-1480"
 ARCHETYPE_OF = {f["id"]: f["current_placeholder_archetype"]
                 for f in json.loads(
                     (RECON / "1835_family_archetype_crosswalk.json")
                     .read_text(encoding="utf-8"))["families"]}
 WEST_PREFIX = "recon_1835_west_"
+NORTH_PREFIX = "recon_1835_north_"
 
 # The directories and files that name a roof by id. A refamily that moves the id
 # has to move every one of these with it, which is what makes the other 26
