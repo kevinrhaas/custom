@@ -54,6 +54,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "tools"))
+
+from exact_sums import consistent_reading  # noqa: E402  (same directory)
 DATA = ROOT / "data"
 OUT_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
 SIDECARS = DATA / "sidecars" / "1835"
@@ -380,10 +383,15 @@ def ground_reading(ring: list, field) -> dict:
     Section's blocks 95, 118 and 119 are each perfectly flat at 0.885 m: `min` and `max`
     round that up to 0.89, while the drifted mean of 418 identical samples landed
     0.8849999999999949 and rounded DOWN to 0.88 — a record printing a mean outside its
-    own min and max, and which of the two a machine printed depended on how many
-    samples it happened to add. `math.fsum` is correctly rounded and order-independent,
-    so the same block reads the same on every machine; the assertion below then refuses
-    a reading that is arithmetically impossible rather than committing one.
+    own min and max. Which of the two a machine printed turned out to depend on the
+    INTERPRETER, not on the data (measured under T-1486): CPython 3.12 gave `sum()`
+    Neumaier compensation for floats and agrees with `math.fsum` on these samples, while
+    the 3.11 this project's CI pins does not — so a re-derivation looked correct where it
+    ran and stale where it did not. `math.fsum` is correctly rounded and order-independent
+    on every version, so the same block reads the same on every machine; the shared
+    refusal in tools/exact_sums.py then declines a reading that is arithmetically
+    impossible rather than committing one, and tools/check_exact_sums.py mutation-tests
+    that refusal by restoring the uncompensated sum and watching it fire.
     """
     es = [p[0] for p in ring]
     ns = [p[1] for p in ring]
@@ -411,16 +419,8 @@ def ground_reading(ring: list, field) -> dict:
         "below_datum": below,
     }
     if heights:
-        reading["min_m"] = round(min(heights), 2)
-        reading["max_m"] = round(max(heights), 2)
-        reading["mean_m"] = round(math.fsum(heights) / len(heights), 2)
-        if not reading["min_m"] <= reading["mean_m"] <= reading["max_m"]:
-            raise AssertionError(
-                f"REFUSING a ground reading whose mean {reading['mean_m']} m falls "
-                f"outside its own min {reading['min_m']} m and max "
-                f"{reading['max_m']} m over {len(heights)} sample(s). Rounding is "
-                "monotonic, so this cannot happen to an honestly summed mean — it "
-                "means the arithmetic drifted across a rounding boundary.")
+        lo, mean, hi = consistent_reading(heights, 2, label="ground reading (m)")
+        reading["min_m"], reading["max_m"], reading["mean_m"] = lo, hi, mean
     reading["reading"] = (
         "dry: every sample stands above datum on the modelled field"
         if heights and not below and not off else
