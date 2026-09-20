@@ -19,13 +19,13 @@
   "proprietors": [
     {
       "name": "A. Clybourn",
-      "person_id": null,
+      "person_id": "clybourne_archibald",
       "register_person_id": "person_a_clybourn",
       "role": "proprietor",
       "from": "1833-12-10",
       "to": "1833-12-10",
       "tier": "attested",
-      "basis": "The register holds this printed name as person_a_clybourn with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "basis": "The register matches the printed name to the town card clybourne_archibald (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1833_12_10#c003"
@@ -68,11 +68,19 @@
   "exclusion": null,
   "exclusion_note": null,
   "proprietor_community": {
-    "value": "unknown",
-    "tier": null,
-    "rule": "no_person_linked",
-    "basis": "This record names nobody the resident layer holds a card for, so there is no person to read a community off. The silence is in the register.",
-    "from": []
+    "value": "southern",
+    "tier": "inferred",
+    "rule": "proprietors_agree",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read southern: A. Clybourn (southern). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "from": [
+      {
+        "person_id": "clybourne_archibald",
+        "name": "A. Clybourn",
+        "role": "proprietor",
+        "community": "southern",
+        "tier": "inferred"
+      }
+    ]
   },
   "customers": [],
   "sources": [

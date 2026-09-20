@@ -21,13 +21,13 @@
   "proprietors": [
     {
       "name": "Taylor, Wm. H.",
-      "person_id": "taylor_william",
+      "person_id": "taylor_william_h",
       "register_person_id": "person_taylor_wm_h",
       "role": "proprietor",
       "from": "1835-08-05",
       "to": "1835-08-05",
       "tier": "attested",
-      "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "basis": "The register matches the printed name to the town card taylor_william_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
       "source_id": "chicago_newspapers_1833_1835",
       "claim_ids": [
         "chicago_democrat_1835_08_05#c024"
@@ -76,7 +76,7 @@
     "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read yankee: Taylor, Wm. H. (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
     "from": [
       {
-        "person_id": "taylor_william",
+        "person_id": "taylor_william_h",
         "name": "Taylor, Wm. H.",
         "role": "proprietor",
         "community": "yankee",

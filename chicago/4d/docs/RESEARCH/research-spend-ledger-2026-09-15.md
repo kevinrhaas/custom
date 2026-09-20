@@ -27,10 +27,10 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | genealogytrails | 0 | 1 | 0 | 1 | 3 | 0 | 5 |
 | land_sales | 313 | 570 | 46 | 0 | 603 | 40 | 1,572 |
 | newberry_index | 0 | 0 | 0 | 0 | 6,658 | 0 | 6,658 |
-| newspapers | 114 | 57 | 0 | 121 | 36 | 861 | 1,189 |
+| newspapers | 122 | 57 | 0 | 121 | 28 | 861 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
 | residents | 24 | 7 | 0 | 0 | 982 | 67 | 1,080 |
-| **Total** | **799** | **12,574** | **109** | **185** | **8,670** | **1,356** | **23,693** |
+| **Total** | **807** | **12,574** | **109** | **185** | **8,662** | **1,356** | **23,693** |
 
 ## Second-hop preservation
 

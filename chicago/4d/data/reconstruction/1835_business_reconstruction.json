@@ -264,8 +264,7 @@
         "keeper_person": null,
         "firm": null,
         "businesses_in_the_register_at_this_roof": [
-          "biz_e_w_haddock",
-          "biz_haddock_edward_tavern_keeper"
+          "biz_e_w_haddock"
         ],
         "kept_by": "the register",
         "why_not": null

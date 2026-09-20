@@ -46,11 +46,13 @@ its written reason, so dropping the reason is as red as dropping the file.
 from __future__ import annotations
 
 import argparse
+import io
 import csv
 import json
 import re
 import subprocess
 import sys
+from contextlib import redirect_stdout
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]           # chicago/4d
@@ -232,8 +234,21 @@ def measure() -> dict:
             "households_housed": (census.get("people") or {}).get("households_housed"),
         },
         "audit": {"rows": audit_rows},
+        # AN ABSENCE IS NOT A MEASUREMENT OF ZERO, and this row is the one place in the
+        # set where the two are easy to confuse. `site/chicago/4d/` is generated and
+        # untracked (T-0938), so a fresh clone has no mirror at all until
+        # `tools/publish.sh` runs — and a run that rebuilds this report before
+        # publishing used to write "0 files, -1336 against the baseline" as though it
+        # had counted an empty mirror. It had counted nothing. `tools/check.sh`
+        # publishes as its FIRST step, so the false zero then disagreed with the tree
+        # and the gate went red saying the report was STALE, which sent the reader
+        # looking for a change that did not exist. Measured on PRs #1557, #1560 and
+        # #1561, three different runs on 2026-09-20, each red for about an hour.
+        # `None` is the honest reading: not counted. `mirror_unpublished()` holds it,
+        # and --build and --check refuse rather than write it down or compare against it.
         "published_residents": {
-            "files": len(list(PUBLISHED_RESIDENTS.rglob("*.json"))) if PUBLISHED_RESIDENTS.exists() else 0,
+            "files": (len(list(PUBLISHED_RESIDENTS.rglob("*.json")))
+                      if PUBLISHED_RESIDENTS.exists() else None),
         },
         "standing": {
             "refused_names_in_layer": sum(refused.values()),
@@ -274,6 +289,22 @@ BANKED = (
     ("standing", "uncertain_presences_with_leg",
      "acc. 9 — …of them carrying a dated evidence leg"),
 )
+
+
+MIRROR_UNPUBLISHED = (
+    "the mirror is not published, so the published-resident count was not taken. "
+    "site/chicago/4d/ is generated and untracked (T-0938) — run `bash tools/publish.sh` "
+    "(or `./tools/check.sh`, which publishes first) and try again.")
+
+
+def mirror_unpublished(now: dict) -> bool:
+    """True when the mirror was not there to count. NOT the same as a mirror of zero."""
+    return now["published_residents"]["files"] is None
+
+
+def shown(value) -> str:
+    """A value that was never counted prints as no reading, never as `None`."""
+    return "—" if value is None else str(value)
 
 
 def delta(now, then) -> str:
@@ -358,7 +389,7 @@ def render(now: dict, baseline: dict, order: list[tuple[int, dict]]) -> str:
     w("| measured | baseline | now | delta |")
     w("|---|---:|---:|---:|")
     for section, key, label in ROWS:
-        w(f"| {label} | {base[section][key]} | {now[section][key]} | "
+        w(f"| {label} | {shown(base[section][key])} | {shown(now[section][key])} | "
           f"{delta(now[section][key], base[section][key])} |")
     w("")
     w("## 4. T-1144's banked acceptances, as deltas")
@@ -370,7 +401,7 @@ def render(now: dict, baseline: dict, order: list[tuple[int, dict]]) -> str:
     w("| measured | baseline | now | delta |")
     w("|---|---:|---:|---:|")
     for section, key, label in BANKED:
-        w(f"| {label} | {base[section][key]} | {now[section][key]} | "
+        w(f"| {label} | {shown(base[section][key])} | {shown(now[section][key])} | "
           f"{delta(now[section][key], base[section][key])} |")
     w("")
     uncertain = now["standing"]["uncertain_presences"]
@@ -410,6 +441,11 @@ def rebuild() -> int:
     """The one rebuild. Every member, in the manifest's order, then the report."""
     steps = manifest_steps()
     before = measure()
+    if mirror_unpublished(before):
+        # Said BEFORE the members run, not after: the rebuild takes minutes, and none of
+        # its steps publishes the mirror, so the refusal at the end would be the same one.
+        print(f"REFUSED: {MIRROR_UNPUBLISHED}")
+        return 1
     for position, member in ordered_members(steps):
         if position is None:
             command = ["bash", member["owner"]]
@@ -423,6 +459,9 @@ def rebuild() -> int:
             print("\n".join((result.stdout + result.stderr).splitlines()[-8:]))
             return 1
     after = measure()
+    if mirror_unpublished(after):
+        print(f"REFUSED to write {REPORT.relative_to(ROOT)}: {MIRROR_UNPUBLISHED}")
+        return 1
     moved = [label for section, key, label in ROWS + BANKED
              if after[section][key] != before[section][key]]
     REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -483,7 +522,15 @@ def check(quiet: bool = False, steps: list[dict] | None = None, gate: str | None
         print(f"FAIL {REPORT.relative_to(ROOT)} is missing — run "
               f"python3 tools/rebuild_closing_set.py --build")
         return 1
-    if REPORT.read_text(encoding="utf-8") != report_text():
+    # BEFORE the freshness comparison, because an unmeasured row would lose it and the
+    # reader would be told the report is STALE — sent looking for a change to the town
+    # that never happened. The two failures want different remedies and must not share
+    # a message.
+    now = measure()
+    if mirror_unpublished(now):
+        print(f"FAIL cannot check {REPORT.relative_to(ROOT)}: {MIRROR_UNPUBLISHED}")
+        return 1
+    if REPORT.read_text(encoding="utf-8") != report_text(now):
         print(f"FAIL {REPORT.relative_to(ROOT)} is stale — the tree has moved under it. "
               f"Run python3 tools/rebuild_closing_set.py --rebuild")
         return 1
@@ -535,10 +582,72 @@ def self_test() -> int:
     if report_text(moved) == rendered:
         failures.append("a refused name came back and the report did not say so")
 
+    # …and the mirror, which is the one member that can be ABSENT rather than wrong.
+    # Every case below is run against a measurement whose mirror row is None — what
+    # measure() returns on a tree where tools/publish.sh has not run. The old code
+    # wrote 0 there and each of these passed while saying something false.
+    # Both fixtures are CONSTRUCTED rather than read off this tree, because whether the
+    # tree happens to be published is exactly the variable under test — and a working
+    # copy that has never run publish.sh would otherwise make case 2 unreachable.
+    unpublished = json.loads(json.dumps(base))
+    unpublished["published_residents"]["files"] = None
+    published = json.loads(json.dumps(base))
+    published["published_residents"]["files"] = 2153
+    if not mirror_unpublished(unpublished):
+        failures.append("an unpublished mirror is not recognised as uncounted")
+    if mirror_unpublished(published):
+        failures.append("a mirror that IS published is called unpublished")
+    # The fault itself, reproduced: a zero is indistinguishable from an absence, so the
+    # report renders and commits a -1336 delta nobody measured.
+    zeroed = json.loads(json.dumps(base))
+    zeroed["published_residents"]["files"] = 0
+    if mirror_unpublished(zeroed):
+        failures.append("a mirror published EMPTY is refused — 0 is a count, None is not")
+    if report_text(zeroed) == report_text(published):
+        failures.append("the mirror count moved to 0 and the report did not say so")
+    # The distinction the whole fix rests on: uncounted and counted-zero are different
+    # readings and must not render alike.
+    if report_text(zeroed) == report_text(unpublished):
+        failures.append("an uncounted mirror and an empty one render identically")
+    # And the row itself is rendered as uncounted rather than as a number, so a report
+    # that ever did reach disk could not read as a measurement.
+    if "| published resident files in the mirror | " not in report_text(unpublished):
+        failures.append("the mirror row vanished from the report when uncounted")
+    if "1336 | None |" in report_text(unpublished):
+        failures.append("an uncounted mirror renders as `None` rather than as no reading")
+
+    # THE CASES ABOVE ARE FIXTURES, AND A FIXTURE CANNOT REACH THIS FAULT. The bug was
+    # never in how a None renders — it was in measure() turning a missing DIRECTORY into
+    # the number 0, and no hand-built dict exercises that line. Mutation-tested: restoring
+    # `else 0` leaves every case above green, which is the same shape of dead check T-1427
+    # found in `inflight`. So these two drive the real function against a real path that
+    # is not there.
+    global PUBLISHED_RESIDENTS
+    kept_path = PUBLISHED_RESIDENTS
+    try:
+        PUBLISHED_RESIDENTS = REPO / "site" / "chicago" / "4d" / "data" / "no_such_mirror"
+        if measure()["published_residents"]["files"] is not None:
+            failures.append("measure() counts a mirror that is not on disk — an absent "
+                            "directory came back as a number")
+        noise = io.StringIO()
+        with redirect_stdout(noise):
+            code = check(steps=steps, gate=gate)
+        said = noise.getvalue()
+        if code == 0:
+            failures.append("--check passes with no mirror to count")
+        if "stale" in said:
+            failures.append("--check calls an unpublished mirror STALE — the wrong "
+                            "remedy, and it sends the reader after a change to the town "
+                            "that never happened")
+        if "not published" not in said:
+            failures.append("--check does not say the mirror is unpublished")
+    finally:
+        PUBLISHED_RESIDENTS = kept_path
+
     for line in failures:
         print(f"  MISS {line}")
     print(f"CLOSING SET SELF-TEST {'FAIL' if failures else 'PASS'} — "
-          f"{len(failures)} failure(s), 6 case(s)")
+          f"{len(failures)} failure(s), 17 case(s)")
     return 1 if failures else 0
 
 
@@ -563,8 +672,12 @@ def main() -> int:
     if args.check:
         return check(quiet=args.quiet)
     if args.build:
+        now = measure()
+        if mirror_unpublished(now):
+            print(f"REFUSED to write {REPORT.relative_to(ROOT)}: {MIRROR_UNPUBLISHED}")
+            return 1
         REPORT.parent.mkdir(parents=True, exist_ok=True)
-        REPORT.write_text(report_text(), encoding="utf-8")
+        REPORT.write_text(report_text(now), encoding="utf-8")
         print(f"wrote {REPORT.relative_to(ROOT)}")
         return 0
     parser.print_help()

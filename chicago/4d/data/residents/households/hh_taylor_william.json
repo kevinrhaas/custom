@@ -124,68 +124,6 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
-   "workplaces": [
-    {
-     "business_id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
-     "business_name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
-     "role": "proprietor",
-     "printed_as": "[uncertain: W. H. Taylor]",
-     "from": "1834-07-16",
-     "to": "1834-07-16",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1834_07_16#c020"
-     ],
-     "business_present_at_scene_date": true
-    },
-    {
-     "business_id": "biz_w_h_taylor",
-     "business_name": "[W. H.] Taylor",
-     "role": "proprietor",
-     "printed_as": "[W. H.] Taylor",
-     "from": "1834-11-05",
-     "to": "1834-11-05",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1834_11_05#c013"
-     ],
-     "business_present_at_scene_date": true
-    },
-    {
-     "business_id": "biz_wm_h_taylor",
-     "business_name": "Wm. H. Taylor",
-     "role": "proprietor",
-     "printed_as": "Wm. H. Taylor",
-     "from": "1835-05-20",
-     "to": "1835-05-20",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1835_05_20#c020"
-     ],
-     "business_present_at_scene_date": true
-    },
-    {
-     "business_id": "biz_wm_h_taylor_boot_shoe_leather_store",
-     "business_name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
-     "role": "proprietor",
-     "printed_as": "Taylor, Wm. H.",
-     "from": "1835-08-05",
-     "to": "1835-08-05",
-     "tier": "attested",
-     "basis": "The register matches the printed name to the town card taylor_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
-     "source_id": "chicago_newspapers_1833_1835",
-     "claim_ids": [
-      "chicago_democrat_1835_08_05#c024"
-     ],
-     "business_present_at_scene_date": true
-    }
-   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],
@@ -212,29 +150,6 @@
      ],
      "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_william_taylor, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
      "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1833-12-17 names 'William Taylor' in the claim read as chicago_democrat_1833_12_17#c008, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
-    },
-    {
-     "bound_kind": "print_appearance",
-     "corpus": "chicago_press_1833_1835",
-     "publication": "The Chicago Democrat",
-     "record_id": "chicago_democrat_1834_01_21#c005",
-     "claim_kind": "event",
-     "as_printed": "Wn. Taylor",
-     "role": "seller, three miles south of this town",
-     "locator": "chicago_democrat_1834_01_21 page 3 column 4",
-     "describes_date": "1834-01-21",
-     "date_confidence": "documented",
-     "precision": "day",
-     "reaches": "1834-01-21",
-     "here_by": null,
-     "side_of_scene_date": "earlier",
-     "covers_scene_date": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_wm_taylor, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
-     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-01-21 names 'Wn. Taylor' in the claim read as chicago_democrat_1834_01_21#c005, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],
    "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 17 December 1833 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
