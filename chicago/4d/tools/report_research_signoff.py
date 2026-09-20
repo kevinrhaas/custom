@@ -67,8 +67,12 @@ AS_OF = "2026-09-18"
 
 # The dispositions a reading unit may end on, split into the two halves this report cares
 # about: what was written onto the town, and what was deliberately withheld from it. An
-# `unresolved` unit is neither — it is research read and not yet spent, and its whole
-# legitimacy is that it defers to work that is still going to happen.
+# `unresolved` unit is neither — it is research read and not yet spent. Its legitimacy has
+# two forms (T-1423): a unit waiting on WORK defers to a ticket that is still going to
+# happen, and a unit waiting on EVIDENCE names no ticket and states the document that would
+# reopen it, because no ticket can produce a source nobody holds. C3 below tests the first
+# and must not read the second as a dead pointer — 266 units wait on evidence, and they are
+# not 266 units deferring to finished work.
 WITHHELD = ("refused", "later_only", "outside_chicago", "aggregate_only")
 SPENT = ("asserted",)
 
@@ -132,12 +136,21 @@ def measure_axis1() -> dict:
         if not path.exists() or not resolves(read_json(path), target.get("field_path")):
             unresolvable_targets += 1
     states = ticket_states(ROOT)
-    owners = Counter(u.get("ticket") for u in units if u.get("disposition") == "unresolved")
+    unresolved = [u for u in units if u.get("disposition") == "unresolved"]
+    owners = Counter(u["ticket"] for u in unresolved if u.get("ticket"))
     owner_rows = [
         {"ticket": t, "units": n, "state": states.get(t, "missing"),
          "live": states.get(t, "missing") in OPEN_TICKET_STATES}
         for t, n in sorted(owners.items(), key=lambda kv: (-kv[1], kv[0]))
     ]
+    awaiting = Counter(u["awaiting_evidence"] for u in unresolved
+                       if u.get("awaiting_evidence"))
+    awaiting_rows = [{"reopened_by": clause, "units": n}
+                     for clause, n in sorted(awaiting.items(), key=lambda kv: (-kv[1], kv[0]))]
+    # A unit that names neither is the fault C3 exists to catch, and the ledger's own gate
+    # refuses it before this report is built; counted here so the receipt can say zero.
+    unowned = sum(1 for u in unresolved
+                  if not u.get("ticket") and not u.get("awaiting_evidence"))
     index = read_json(RESIDENT_INDEX)
     counts = index.get("counts") or {}
     drift = read_json(SYNTHESIS_DRIFT)
@@ -149,7 +162,9 @@ def measure_axis1() -> dict:
         "asserted": dispositions.get("asserted", 0),
         "unresolvable_targets": unresolvable_targets,
         "owners": owner_rows,
-        "owners_not_live": sum(r["units"] for r in owner_rows if not r["live"]),
+        "owners_not_live": sum(r["units"] for r in owner_rows if not r["live"]) + unowned,
+        "awaiting_evidence": awaiting_rows,
+        "awaiting_evidence_units": sum(r["units"] for r in awaiting_rows),
         "persons": counts.get("persons", 0),
         "households": counts.get("households", 0),
         "by_grade": {k: v for k, v in sorted((counts.get("by_grade") or {}).items())},
@@ -405,7 +420,8 @@ def conditions(model: dict) -> list[dict]:
         ("C2", "Every asserted unit lands on a field that exists on the record it names",
          a1["unresolvable_targets"] == 0,
          f"{a1['unresolvable_targets']} of {a1['asserted']} do not resolve", "T-1143"),
-        ("C3", "Every unresolved unit defers to a ticket that is still live",
+        ("C3", "Every unresolved unit defers to a ticket that is still live, or states the "
+               "evidence that would reopen it",
          a1["owners_not_live"] == 0, f"{a1['owners_not_live']} units defer to finished work",
          "T-1143"),
         ("C4", "The resident synthesizer stands zero files from the cards it writes",
@@ -526,6 +542,18 @@ def render(model: dict) -> str:
                f"beside them. That is the shape of a finished research spend: what is still unspent "
                f"is waiting on the bands this report opens, not on more of the corpus. "
                f"**{n(a1['owners_not_live'])}** units defer to work that is no longer live (C3).")
+    out.append("")
+    # T-1423. The second legitimate shape, and the reason C3 is not simply "names a live
+    # ticket": these units are not waiting on a band of this programme, they are waiting on
+    # a document. Saying so is what stopped the hand-off being renamed at every closure.
+    out.append(f"**{n(a1['awaiting_evidence_units'])}** further unresolved unit(s) name no ticket "
+               "at all, because no ticket can settle them: they are names the research READ and "
+               "the town WITHHELD, since re-admitted at the reconstructed tier, and what is open "
+               "is whether the person was in the town on 1 July 1835. Each states the document "
+               "that would reopen it (T-1423):")
+    out.append("")
+    out.extend(table(["Units", "Reopened by"],
+                     [[n(r["units"]), r["reopened_by"]] for r in a1["awaiting_evidence"]]))
     out.append("")
     out.extend(table(["The town as the layer holds it", "Count"], [
         ["Persons", n(a1["persons"])],
