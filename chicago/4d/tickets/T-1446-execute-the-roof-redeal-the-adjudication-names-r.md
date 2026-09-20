@@ -1,7 +1,7 @@
 ---
 id: T-1446
 title: Execute the roof redeal the adjudication names: refamily and retire in the recipe files so the three infill generators re-derive byte for byte, retired records to exclusions under a retired_reconstruction guard with their liberty tokens resolved, rebaked, with a screenshot from Lake and Clark
-state: claimed
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1197
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: run 9/20/2026, 8:18:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T13:34:19.883Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35512921370
 ---
 
