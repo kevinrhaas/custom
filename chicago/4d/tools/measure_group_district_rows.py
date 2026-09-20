@@ -280,8 +280,19 @@ def self_test() -> int:
     t0032 = copy(inventory)
     t0032["district_group_matrix"]["institutional_public"].update(
         south=10, west=1, north=1, total=12)
+    # BOTH SIDES OF THIS FIXTURE ARE SYNTHETIC NOW, for the reason the freight
+    # fixture below already states about itself. It read the live cell and the
+    # live declaration, and T-1480 moved both: the redeal carried this town's one
+    # anonymous school out of this very cell, so the count fell by one, and the
+    # declaration that described the breach was retired with the breach. The case
+    # is about the ratchet catching a GROWN overshoot, and it went stale on a tree
+    # that was green.
+    t0032_built = {(d, g): (4 if (d, g) == ("north", "institutional_public") else n)
+                   for (d, g), n in built.items()}
+    t0032_was = {("north", "institutional_public"):
+                 {"over": 1, "why": "synthetic, self-test only"}}
     case("the north half of the apportionment T-0032 corrected is caught",
-         overshoot_findings(audit(t0032, built)),
+         overshoot_findings(audit(t0032, t0032_built), t0032_was),
          "the north division's institutional_public overshoot has GROWN from 1 to 3")
 
     # The row is cut to ONE BELOW what actually stands, read off the committed tree
@@ -308,7 +319,11 @@ def self_test() -> int:
     before["district_group_matrix"]["warehouses_freight"].update(south=17, north=1)
     before["district_group_matrix"]["ordinary_dwellings"].update(south=170, north=90)
 
-    grown = {(d, g): n + (3 if (d, g) == ("north", "warehouses_freight") else 0)
+    # ABSOLUTE, like `healed` and `shrunk` below, and not `n + 3`. Adding to the
+    # live count made the expectation below a second opinion about the tree — the
+    # thing this fixture's own comment warns against — and T-1480 proved it by
+    # re-dealing a North Division warehouse into a boarding house.
+    grown = {(d, g): (10 if (d, g) == ("north", "warehouses_freight") else n)
              for (d, g), n in built.items()}
     case("a declared breach that GROWS fails — the ratchet only falls",
          overshoot_findings(audit(before, grown), was),
