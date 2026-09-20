@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Kinzie\u2019s Addition gets its blocks back', kind: 'feature', ts: '',
+  { v: 1018, title: 'Kinzie\u2019s Addition gets its blocks back', kind: 'feature', ts: '2026-09-20T13:17:16.402Z', date: 'Sep 20, 2026, 8:17 AM CT',
     items: [
       'North of the river, east of Wolcott Street, this town held a plat with fifty-two numbered blocks and not one of them existed. The streets were there \u2014 Michigan, Illinois, Indiana, Ohio, Ontario, Erie, Huron and Superior running east to the lake, Cass and Rush and Pine and Sand running north \u2014 and the ground between them was nothing at all. Twenty-seven of those blocks now stand, each one carrying the number John Kinzie\u2019s surveyor wrote in it.',
       'The reason they were missing is the one that kept the roadways off the north bank a fortnight ago, one layer down. A single pair of street lists said which lines a block could be cut between, and every line in it belonged to the Original Town \u2014 so however well Kinzie\u2019s Addition had been surveyed, there was no way to ask for a block between two of its streets. There are two grids now, one per plat, each cut at its own plat\u2019s corridor: the Addition\u2019s streets are 72.7 ft wide against the Original Town\u2019s 80, which is 2.2 m across every block face.',
