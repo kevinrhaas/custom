@@ -190,7 +190,18 @@ def buildable_in_band(w: int, d: int, band: list[float]) -> list[int]:
 # --------------------------------------------------------------------------
 
 def plan_west(recipe: dict, here: list[dict]) -> list[dict]:
-    """What each executable verdict does to the west recipe, before doing it."""
+    """What each executable verdict does to the west recipe, before doing it.
+
+    THE LEDGER MOVES UNDER THIS TOOL, BY DESIGN. `1835_roof_redeal.json` is a
+    DERIVED adjudication over the town as it stands, re-derived by the gate on
+    every commit. Carry a verdict out and the roof conforms, so the next
+    re-derivation returns `keep` for it and the verdict is simply gone --- which
+    is the adjudication working, not drift. The permanent record of what was
+    carried out is therefore the recipe's own `redealt` block, written here and
+    committed beside the placements it moved; `--check` reads THAT and then asks
+    the live ledger the harder question, which is whether each re-dealt roof now
+    conforms.
+    """
     by_id = {}
     for p in recipe["placements"]:
         by_id["recon_1835_" + p["id"].replace("west_rec_", "west_")] = p
@@ -325,6 +336,8 @@ def apply_west(text: str, recipe: dict, plan: list[dict]) -> str:
         eol = text.index("\n", line_at)
         line = text[line_at:eol]
         was = line
+        if f'"family":"{e["to_family"]}"' in line and e["from_family"] != e["to_family"]:
+            continue                      # already carried out by an earlier run
         line = line.replace(f'"family":"{e["from_family"]}"',
                             f'"family":"{e["to_family"]}"', 1)
         if line == was:
@@ -363,6 +376,7 @@ def apply_west(text: str, recipe: dict, plan: list[dict]) -> str:
                 "id": e["id"], "slot": e["slot"],
                 "was": e["from_family"], "now": e["to_family"],
                 "was_group": e["from_group"], "now_group": e["to_group"],
+                "was_footprint_ft": e["from_footprint_ft"],
                 "footprint_ft": e["to_footprint_ft"],
                 "footprint_moved": e["from_footprint_ft"] != e["to_footprint_ft"],
                 "why": e["why"],
@@ -475,12 +489,19 @@ def write_report(plan: list[dict], outstanding: list[dict], retire: list[dict]) 
         refs = references(v["id"])
         out.append(f"| `{v['id']}` | `{new}` | {len(refs)} |")
     out.append("")
+    blk = sorted({v["id"].removeprefix("recon_1835_").rsplit("_", 2)[0]
+                  for v in outstanding if v["id"].startswith("recon_1835_blk_")})
+    n_blk = sum(1 for v in outstanding if v["id"].startswith("recon_1835_blk_"))
     out.append(
-        "The three platted-block roofs among them carry a second difficulty the "
-        "West parcel does not: they are `ancillary` slots whose new family is a "
-        "dwelling, and `generate_block_infill` gates a block's principal/ancillary "
-        "split against its claimed schedule and refuses a second principal roof on "
-        "one lot. That is a re-deal of the block, not a field edit.\n")
+        f"The {n_blk} platted-block roofs among them, across {len(blk)} block(s) "
+        f"({', '.join('`' + b + '`' for b in blk)}), carry a second difficulty "
+        "the West parcel does not. Their slots are `ancillary` — yard buildings off "
+        "the block alley — and the family each is moved into is a dwelling. "
+        "`generate_block_infill` gates a block's principal/ancillary split against "
+        "the schedule the recipe claims, and refuses a second principal roof on a "
+        "lot that already has one, so whether a rear cottage counts as the one or "
+        "the other is a re-deal of the block and its claimed mix, not a field "
+        "edit.\n")
     return "\n".join(out) + "\n"
 
 
@@ -561,41 +582,91 @@ def main() -> int:
 
     if args.apply:
         plan = plan_west(recipe, here)
+        # Verdicts a previous run already carried out are gone from the ledger and
+        # stand in the recipe. Merge them so the report and the totals describe the
+        # whole execution rather than only today's remainder.
+        done = {e["id"] for e in plan}
+        for r in recipe.get("redealt", {}).get("roofs", []):
+            if r["id"] in done:
+                continue
+            plan.append({
+                "id": r["id"], "slot": r["slot"],
+                "from_family": r["was"], "to_family": r["now"],
+                "from_group": r["was_group"], "to_group": r["now_group"],
+                "from_footprint_ft": list(r.get("was_footprint_ft", r["footprint_ft"])),
+                "to_footprint_ft": list(r["footprint_ft"]),
+                "band_already_fits": not r["footprint_moved"],
+                "inventory_class": None, "why": r["why"],
+            })
+        plan.sort(key=lambda e: e["id"])
         text = WEST_RECIPE.read_text(encoding="utf-8")
         WEST_RECIPE.write_text(apply_west(text, recipe, plan), encoding="utf-8")
         dump(EXCLUSIONS, apply_retirements(retire))
         REPORT.write_text(write_report(plan, outstanding, retire), encoding="utf-8")
-        print(f"executed {len(plan)} West Division verdict(s); "
+        print(f"{len(plan)} West Division verdict(s) carried out; "
               f"{len(outstanding)} outstanding as an id migration (T-1452); "
               f"{len(retire)} retired")
         return 0
 
-    # --check: the recipe must already BE what --apply would write.
+    # --check. Two questions, and the second is the one worth asking.
     fresh = load(WEST_RECIPE)
-    for p in fresh["placements"]:
-        pass
-    plan = []
-    by_id = {"recon_1835_" + p["id"].replace("west_rec_", "west_"): p
-             for p in fresh["placements"]}
-    for v in here:
-        p = by_id.get(v["id"])
+    executed = fresh.get("redealt", {}).get("roofs", [])
+    if not executed:
+        print("DRIFT: no execution recorded in "
+              f"{WEST_RECIPE.name} — run --apply")
+        return 1
+    by_slot = {p["id"]: p for p in fresh["placements"]}
+    verdict = {v["id"]: v for v in ledger["verdicts"]}
+
+    # 1. the recipe says what was carried out, and the placements say the same thing
+    for r in executed:
+        p = by_slot.get(r["slot"])
         if p is None:
-            print(f"DRIFT: {v['id']} has no placement in {WEST_RECIPE.name}")
+            print(f"DRIFT: {r['id']} was re-dealt but {r['slot']} is not a placement")
             return 1
-        if p["family"] != v["to_family"]:
-            print(f"DRIFT: {v['id']} stands as {p['family']}, the adjudication "
-                  f"says {v['to_family']} — run --apply")
+        if p["family"] != r["now"]:
+            print(f"DRIFT: {r['id']} was re-dealt to {r['now']} and stands as "
+                  f"{p['family']}")
             return 1
-        plan.append({"slot": p["id"], "to_family": v["to_family"]})
-    fam_out, group_out = totals_after(fresh, plan)
-    if fresh["family_totals"] != fam_out:
+        if [int(x) for x in p["footprint_ft"]] != [int(x) for x in r["footprint_ft"]]:
+            print(f"DRIFT: {r['id']} was re-dealt at "
+                  f"{r['footprint_ft']} ft and stands at {p['footprint_ft']}")
+            return 1
+
+    # 2. THE EXECUTION HAS TO HAVE WORKED. A refamily is for one thing: the roof
+    #    stops breaching the placement policy. So ask the live adjudication what it
+    #    now says about each roof this tool moved, and require `keep`. A re-dealt
+    #    roof still returning `refamily` means the family it was moved into is
+    #    refused where it stands too, and carrying the verdict out achieved nothing.
+    for r in executed:
+        v = verdict.get(r["id"])
+        if v is None:
+            print(f"DRIFT: the adjudication no longer audits {r['id']}")
+            return 1
+        if v["verdict"] != "keep":
+            print(f"FAIL: {r['id']} was re-dealt {r['was']} -> {r['now']} and the "
+                  f"adjudication still says {v['verdict']} — the execution did not "
+                  f"settle it")
+            return 1
+
+    # 3. the totals still count the placements the recipe holds
+    fam_out, group_out = totals_after(fresh, [])
+    if fresh["family_totals"] != {k: v for k, v in fam_out.items() if v}:
         print("DRIFT: family_totals does not count the placements it claims")
         return 1
-    if {k: v for k, v in fresh["inventory_group_totals"].items()} != group_out:
+    if dict(fresh["inventory_group_totals"]) != group_out:
         print("DRIFT: inventory_group_totals does not count the placements it claims")
         return 1
+
+    # 4. everything still outstanding moves an id, which is why it is still outstanding
+    for v in outstanding:
+        if not id_moves(v["id"], v["family"]):
+            print(f"DRIFT: {v['id']} is outstanding but its id does not move — "
+                  f"this tool should have carried it out")
+            return 1
+
     ex = load(EXCLUSIONS)
-    if ex.get("retired_reconstruction_count", None) != len(retire):
+    if ex.get("retired_reconstruction_count") != len(retire):
         print(f"DRIFT: the retired_reconstruction guard counts "
               f"{ex.get('retired_reconstruction_count')}, the adjudication retires "
               f"{len(retire)}")
@@ -603,8 +674,9 @@ def main() -> int:
     if len(ex.get("retired_reconstruction", [])) != len(retire):
         print("DRIFT: the retired_reconstruction guard does not hold its own count")
         return 1
-    print(f"verified {len(here)} executed West Division verdict(s), "
-          f"{len(outstanding)} outstanding (T-1452), "
+
+    print(f"verified {len(executed)} carried-out verdict(s), every one now `keep`; "
+          f"{len(outstanding)} outstanding as an id migration (T-1452); "
           f"{len(retire)} retired roof(s) under the guard")
     return 0
 

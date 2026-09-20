@@ -1,7 +1,7 @@
 ---
 id: T-1451
 title: Carry the redeal out where no id moves: the West Division parcel's six refamilied roofs re-dealt in the recipe, generate_west_infill re-deriving byte for byte, rebaked and published — with tools/execute_roof_redeal.py --apply/--check as the executor and the retired_reconstruction exclusions guard standing (empty: the adjudication retires none)
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1446
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 0
 claimed_by: run 9/20/2026, 8:34:28 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T14:15:12.385Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35512921370
 ---
 

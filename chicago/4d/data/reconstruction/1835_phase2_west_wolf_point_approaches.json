@@ -72,6 +72,10 @@
         "now": "D4",
         "was_group": "workshops",
         "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          20,
+          28
+        ],
         "footprint_ft": [
           20,
           28
@@ -86,11 +90,15 @@
         "now": "D5",
         "was_group": "workshops",
         "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          20,
+          30
+        ],
         "footprint_ft": [
           20,
           30
         ],
-        "footprint_moved": true,
+        "footprint_moved": false,
         "why": "the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands"
       },
       {
@@ -100,6 +108,10 @@
         "now": "D3",
         "was_group": "barns_stables",
         "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          16,
+          24
+        ],
         "footprint_ft": [
           16,
           24
@@ -114,11 +126,15 @@
         "now": "D2",
         "was_group": "small_outbuildings",
         "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          12,
+          16
+        ],
         "footprint_ft": [
           12,
           16
         ],
-        "footprint_moved": true,
+        "footprint_moved": false,
         "why": "the placement policy refuses this family here — stands on a principal street, which ancillary_behind_its_own_roof avoids; the slot is wanted and the position stands"
       },
       {
@@ -128,11 +144,15 @@
         "now": "D6",
         "was_group": "workshops",
         "now_group": "ordinary_dwellings",
+        "was_footprint_ft": [
+          22,
+          33
+        ],
         "footprint_ft": [
           22,
           33
         ],
-        "footprint_moved": true,
+        "footprint_moved": false,
         "why": "the placement policy refuses this family here — stands 30.47 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands"
       },
       {
@@ -142,6 +162,10 @@
         "now": "A1",
         "was_group": "workshops",
         "now_group": "barns_stables",
+        "was_footprint_ft": [
+          18,
+          26
+        ],
         "footprint_ft": [
           18,
           26

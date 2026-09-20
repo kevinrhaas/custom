@@ -11648,25 +11648,25 @@
     },
     {
       "id": "recon_1835_west_008",
-      "name": "Reconstructed W1 blacksmith shop #007",
+      "name": "Reconstructed D4 two-room frame cottage #007",
       "sidecar": "sidecars/1835/recon_1835_west_008.json",
       "asset": "gltf/recon_1835_west_008__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_009",
-      "name": "Reconstructed W2 carpenter or joiner shop #008",
+      "name": "Reconstructed D5 deep-plan frame cottage #008",
       "sidecar": "sidecars/1835/recon_1835_west_009.json",
       "asset": "gltf/recon_1835_west_009__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_010",
-      "name": "Reconstructed A1 stable #009",
+      "name": "Reconstructed D3 one-room frame cottage #009",
       "sidecar": "sidecars/1835/recon_1835_west_010.json",
       "asset": "gltf/recon_1835_west_010__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_011",
-      "name": "Reconstructed A3 privy #010",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #010",
       "sidecar": "sidecars/1835/recon_1835_west_011.json",
       "asset": "gltf/recon_1835_west_011__inferred_1835.glb"
     },
@@ -11708,13 +11708,13 @@
     },
     {
       "id": "recon_1835_west_021",
-      "name": "Reconstructed W3 cooper, wagon or wheelwright shop #017",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #017",
       "sidecar": "sidecars/1835/recon_1835_west_021.json",
       "asset": "gltf/recon_1835_west_021__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_022",
-      "name": "Reconstructed W4 small artisan shop #018",
+      "name": "Reconstructed A1 stable #018",
       "sidecar": "sidecars/1835/recon_1835_west_022.json",
       "asset": "gltf/recon_1835_west_022__inferred_1835.glb"
     },

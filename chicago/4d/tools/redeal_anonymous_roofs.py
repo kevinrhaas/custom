@@ -15,7 +15,9 @@ this kind, in this place? --- and writes the answer with the arithmetic that
 reached it.
 
 T-1197 asked for the audit and its execution together and was split: this piece
-is the verdict, T-1446 carries it out in the recipe files and the bake. Nothing
+is the verdict. T-1451 carries it out where the record id does not move (the West
+Division parcel) and T-1452 owns the 26 whose id carries the family and whose
+execution is therefore an id migration across the derived layer. Nothing
 here is a demolition. Every roof that stops being what it was becomes something
 else the order book has an occupant for, and the ledger records the SUBSTITUTION
 --- the bucket it leaves and the bucket it joins --- rather than a deletion.
@@ -36,7 +38,8 @@ THE THREE VERDICTS, and the test that reaches each:
 
   retire    Nothing in the order book wants a roof of this kind here and no
             family it could become is wanted either. The record leaves the
-            standing count for T-1446 to move into `data/exclusions.json`.
+            standing count for `tools/execute_roof_redeal.py` to move into
+            `data/exclusions.json`, under its `retired_reconstruction` guard.
 
 WHAT THE TOOL WILL NOT DO, and each refusal is recorded rather than worked round:
 
@@ -321,7 +324,7 @@ def adjudicate(data: dict, records: list[dict]) -> dict:
         # household followed, and T-1197's parent asked that they be dealt to those
         # trades. That is a SEATING question — who stands in the roof — and this tool
         # answers the KIND question. Carrying the field into the ledger is what lets
-        # T-1446 and the seating tickets ask it without re-reading 285 records.
+        # T-1451/T-1452 and the seating tickets ask it without re-reading 285 records.
         row["raised_for"] = (record.get("reconstruction") or {}).get("occupation")
 
     verdicts: dict[str, dict] = {}
@@ -473,7 +476,9 @@ def adjudicate(data: dict, records: list[dict]) -> dict:
         "generated_by": "tools/redeal_anonymous_roofs.py --build",
         "not_a_reading": "an adjudication over committed derived files — no page of any "
                          "source was opened, nobody is named, nothing is built, and no "
-                         "roof moves ground. T-1446 carries the verdicts out.",
+                         "roof moves ground. tools/execute_roof_redeal.py carries the "
+                       "verdicts out; a verdict already carried out is gone from "
+                       "this file, because the roof it moved now conforms.",
         "inputs": [
             "data/structures/*.json",
             "data/reconstruction/1835_building_inventory.json",

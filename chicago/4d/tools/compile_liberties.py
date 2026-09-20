@@ -330,6 +330,7 @@ def _back_projected_residence_count() -> int:
 
 
 STRUCTURES_DIR = ROOT / "data" / "structures"
+RECON_DIR = ROOT / "data" / "reconstruction"
 
 
 def _land_owner_count() -> int:
@@ -472,6 +473,19 @@ def _stage_scope_sources() -> dict:
 # A scope may only name an enumeration written down HERE. The alternative — an
 # entry free to spell its own predicate — is a check marking its own homework:
 # whatever the prose selected would be exactly what the prose counted, for ever.
+def _redealt_roof_count() -> int:
+    """Anonymous roofs whose family an adjudication moved and an executor carried out.
+
+    Counted off the RECIPE's own `redealt` record rather than off the adjudication
+    ledger, and that is the whole point of counting it here: the ledger is derived
+    over the town as it stands, so a verdict carried out vanishes from it the moment
+    it works. The recipe is where the execution is permanent.
+    """
+    recipe = json.loads(
+        (RECON_DIR / "1835_phase2_west_wolf_point_approaches.json").read_text())
+    return len(recipe.get("redealt", {}).get("roofs", []))
+
+
 SCOPE_SOURCES = {
     "register_1835.businesses[survival_liberty_required]": (
         _register_survival_liberty_count,
@@ -511,6 +525,10 @@ SCOPE_SOURCES = {
     "structures.phases[roof_type_stated]": (
         _roof_covering_count,
         "data/structures/*.json, the layer's own roof_type attribute"),
+    "phase2_west_wolf_point_approaches.placements[redealt]": (
+        _redealt_roof_count,
+        "data/reconstruction/1835_phase2_west_wolf_point_approaches.json, itself "
+        "re-derived by tools/execute_roof_redeal.py --check"),
     **_stage_scope_sources(),
 }
 

@@ -14,10 +14,10 @@ T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execu
 | roof | was | now | group | footprint ft | why |
 | --- | --- | --- | --- | --- | --- |
 | `recon_1835_west_008` | W1 | D4 | workshops → ordinary_dwellings | 20x28 | the placement policy refuses this family here — stands 3.81 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands |
-| `recon_1835_west_009` | W2 | D5 | workshops → ordinary_dwellings | 20x30 (was 20x32) | the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands |
+| `recon_1835_west_009` | W2 | D5 | workshops → ordinary_dwellings | 20x30 | the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands |
 | `recon_1835_west_010` | A1 | D3 | barns_stables → ordinary_dwellings | 16x24 | the placement policy refuses this family here — stands on a principal street, which ancillary_behind_its_own_roof avoids; the slot is wanted and the position stands |
-| `recon_1835_west_011` | A3 | D2 | small_outbuildings → ordinary_dwellings | 12x16 (was 5x6) | the placement policy refuses this family here — stands on a principal street, which ancillary_behind_its_own_roof avoids; the slot is wanted and the position stands |
-| `recon_1835_west_021` | W3 | D6 | workshops → ordinary_dwellings | 22x33 (was 22x34) | the placement policy refuses this family here — stands 30.47 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands |
+| `recon_1835_west_011` | A3 | D2 | small_outbuildings → ordinary_dwellings | 12x16 | the placement policy refuses this family here — stands on a principal street, which ancillary_behind_its_own_roof avoids; the slot is wanted and the position stands |
+| `recon_1835_west_021` | W3 | D6 | workshops → ordinary_dwellings | 22x33 | the placement policy refuses this family here — stands 30.47 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands |
 | `recon_1835_west_022` | W4 | A1 | workshops → barns_stables | 18x26 | the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands |
 
 ## Outstanding — the id migration T-1452 owns
@@ -53,5 +53,5 @@ Each of these becomes a new id when its family moves, and the id is not private 
 | `recon_1835_south_w3_029` | `recon_1835_south_h1_029` | 8 |
 | `recon_1835_south_w4_032` | `recon_1835_south_d1_032` | 10 |
 
-The three platted-block roofs among them carry a second difficulty the West parcel does not: they are `ancillary` slots whose new family is a dwelling, and `generate_block_infill` gates a block's principal/ancillary split against its claimed schedule and refuses a second principal roof on one lot. That is a re-deal of the block, not a field edit.
+The 6 platted-block roofs among them, across 3 block(s) (`blk_randolph_market`, `blk_south_water_lasalle`, `blk_south_water_wells`), carry a second difficulty the West parcel does not. Their slots are `ancillary` — yard buildings off the block alley — and the family each is moved into is a dwelling. `generate_block_infill` gates a block's principal/ancillary split against the schedule the recipe claims, and refuses a second principal roof on a lot that already has one, so whether a rear cottage counts as the one or the other is a re-deal of the block and its claimed mix, not a field edit.
 
