@@ -1643,11 +1643,18 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "georeferenced Wright 1834 scan — see `block_numbering` below and "
             "data/traces/thompson_block_numbering.json. A block left unnumbered here is one "
             "the sheet was not read on, and the authored file says which and why. "
-            "SINCE T-1437 THIS FILE HOLDS TWO GRIDS, not one: the Original Town south of "
-            "the main stem, and Kinzie's Addition north of it, each cut between its own "
-            "plat's lines at its own corridor width. Every block says which in `grid`, "
-            "and `grids` below says what each one may be divided on. The Addition's "
-            "blocks carry no lots on purpose — see `subdivision_withheld`."),
+            "SINCE T-1454 THIS FILE HOLDS FOUR GRIDS, not one: the Original Town south "
+            "of the main stem and Kinzie's Addition north of it, each cut between its "
+            "own plat's committed street lines at its own corridor width; and the "
+            "Michigan Street tract and Wabansia, which are cut on their own committed "
+            "SEATINGS instead, because the lines that rule them — the tracts' own "
+            "borders, their mid-block alleys, Wabansia's block columns — are not streets "
+            "any street table carries. Every block says which in `grid`, and `grids` "
+            "below says where each one was cut from and what it may be divided on. The "
+            "Addition's blocks carry no lots on purpose (`subdivision_withheld`: no lot "
+            "rule has been read for that plat); the two seated tracts carry the lot lines "
+            "Wright rules INSIDE them, which is the first lot line in this file that is a "
+            "reading rather than a module divided into a block."),
         "tool": "tools/generate_plat_lots.py",
         "generated_from": [
             "data/traces/street_control.json",
@@ -2192,12 +2199,82 @@ def self_test() -> int:
               f"module's {expected:.1f} m; the Original Town's corridor would have given "
               f"{town_would_give:.1f} m")
 
+    # T-1454. THE SEATED TRACTS LAND ON THEIR OWN SEATINGS, or the ladder this file
+    # interpolates is not the one the seating tool committed. Asserted at the ladder's
+    # four extremes, which are the only points where the two derivations have to agree
+    # exactly: everything between them is this file's interpolation of them.
+    cases += 1
+    seated = load(MICHIGAN_SEATING_PATH)
+    north, east = (seated["ladder_m"]["off_michigan_northward"],
+                   seated["ladder_m"]["off_market_eastward"])
+    place = _tract_frame(seated["corners_local_enu_m"],
+                         (east["west_border"], east["east_border"]),
+                         (north["south_border"], north["north_border"]))
+    off = []
+    for corner, (u, v) in (("nw", (east["west_border"], north["north_border"])),
+                           ("ne", (east["east_border"], north["north_border"])),
+                           ("sw", (east["west_border"], north["south_border"])),
+                           ("se", (east["east_border"], north["south_border"]))):
+        gap = math.dist(place(u, v), seated["corners_local_enu_m"][corner])
+        if gap > 0.01:
+            off.append(f"{corner} {gap:.3f} m")
+    if off:
+        print(f"  THE LADDER IS NOT THE SEATING'S: {', '.join(off)}")
+        failed += 1
+    else:
+        print("  ok:    the Michigan Street tract's ladder lands on all four corners "
+              "tools/seat_michigan_st_tract.py committed, to the millimetre")
+
+    # …AND EVERY READ LOT ROW CLOSES ON ITS BLOCK inside the sheet's own stretch. This is
+    # the check that the lot lines belong to the face they were laid on: if a row had to
+    # be scaled past 4.5 per cent, either the reading is short a line or the seating is
+    # not that row's, and the file flags it rather than absorbing it.
+    cases += 1
+    grid = load(OUT_PATH)
+    rows = [r for b in grid["blocks"] if b["grid"] == "michigan_st_tract"
+            for r in b["lot_rows"]]
+    read_rows = [r for r in rows if "scale" in r]
+    withheld = [r for r in rows if "subdivision_withheld" in r]
+    strained = [f"{r['row']} {abs(r['scale'] - 1) * 100:.1f}%" for r in read_rows
+                if abs(r["scale"] - 1.0) > SHEET_STRETCH]
+    if len(read_rows) != 5 or len(withheld) != 3 or strained:
+        print(f"  THE TRACT'S LOT ROWS DO NOT ANSWER: {len(read_rows)} read, "
+              f"{len(withheld)} withheld, strained {strained or 'none'}")
+        failed += 1
+    else:
+        worst = max(abs(r["scale"] - 1.0) for r in read_rows) * 100
+        print(f"  ok:    {len(read_rows)} read lot rows close on their seated faces "
+              f"within {worst:.1f} per cent, under the sheets' own {SHEET_STRETCH * 100:.1f}; "
+              f"the {len(withheld)} faces the reading never reached stay withheld")
+
+    # …AND WABANSIA'S TWENTY-ONE NUMERALS ALL LAND, on a block or on the omission that
+    # names its blocker. Eight of them are on omissions today — seven because the
+    # modelled ground stops short of the survey's west margin and one because its corner
+    # stands in the committed North Branch — and an omission that quietly lost its
+    # numeral would read as a survey with nineteen blocks.
+    cases += 1
+    numbering = load(WABANSIA_NUMBERING_PATH)
+    landed = {e["plat_block_number"]["number"]
+              for e in grid["blocks"] + grid["omitted"]
+              if e.get("grid") == "wabansia" and e.get("plat_block_number")}
+    lost = sorted(r["number"] for r in numbering["blocks"] if r["number"] not in landed)
+    built = sum(1 for b in grid["blocks"] if b["grid"] == "wabansia")
+    skipped = sum(1 for o in grid["omitted"] if o["grid"] == "wabansia")
+    if lost or built + skipped != len(numbering["blocks"]):
+        print(f"  WABANSIA'S NUMERALS LOST: {lost or 'none'}; {built} built and "
+              f"{skipped} omitted against {len(numbering['blocks'])} read")
+        failed += 1
+    else:
+        print(f"  ok:    all {len(numbering['blocks'])} of Wabansia's numerals land — "
+              f"{built} on a block, {skipped} on an omission that names its blocker")
+
     if failed:
         print(f"SELF-TEST FAIL — {failed} of {cases}")
         return 1
     print(f"SELF-TEST PASS — the crossed-corner refusal fires on the case that "
-          f"produced it, the ground says why, and the survey-tract layer's answer and the "
-          f"West Division refusal are both re-derived ({cases} cases)")
+          f"produced it, the ground says why, the survey-tract layer's answer and the "
+          f"West Division refusal are both re-derived, and the two seated tracts land on "
+          f"their own seatings ({cases} cases)")
     return 0
 
 
