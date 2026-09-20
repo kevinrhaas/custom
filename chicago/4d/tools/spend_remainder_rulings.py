@@ -89,7 +89,21 @@ HANDED_ON = (
     "rebuild order a fixed point over every reader of the layer, which is where a "
     "re-admission is finally reconciled against the index, the sidecars and the town "
     "census; the re-admission's own `withdrawn_if` clause is what retires it before "
-    "then.")
+    "then."
+    # T-1400. And T-1394 has now spent it in turn. Its three children -- T-1398 (the
+    # rebuild order made executable), T-1399 (one liberty entry per stage) and T-1400
+    # (the minting stage on the People view's own filter) -- are all done, so the
+    # RECONCILIATION this hand-off waited on has happened and the closeout cannot own an
+    # open question any longer. The unit stays `unresolved` for the reason it always
+    # did: what was reconciled is the layer, and what is unsettled is the EVIDENCE. So
+    # the hand-off moves one more time, by the same rule that moved it twice before.
+    " T-1394 HAS NOW SPENT IT IN TURN (2026-09-20): its three children T-1398, T-1399 "
+    "and T-1400 made the rebuild order a fixed point, wrote one liberty entry per stage "
+    "and put the minting stage on the People view's own filter, so the RECONCILIATION "
+    "this hand-off waited on is done -- and the unit is still `unresolved`, because what "
+    "was reconciled was the layer and what is unsettled is the EVIDENCE. A closeout that "
+    "has closed cannot own an open question, so the hand-off moves once more, to T-1423, "
+    "which owns exactly that remainder and nothing else.")
 
 RULES = {
     # ---- residents ---------------------------------------------------------------
@@ -434,7 +448,7 @@ RULES = {
         # rebuild order a fixed point over EVERY READER of the layer -- the index, the
         # sidecars and the town census a re-admission is reconciled against. T-1392 and
         # T-1393 are done, and T-1215 converges the TOWN a band later, not this layer.
-        "ticket": "T-1394",
+        "ticket": "T-1423",
         "statement": (
             "The unit's own `letter_list_only` field is true: the name's whole evidence is "
             "that a letter waited for it at the Chicago post office. Whether a letter-list "

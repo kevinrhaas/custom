@@ -7,16 +7,20 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 11,
+  "records": 15,
   "groups": {
     "lodging_river_and_transport": {
       "ticket": "T-1187",
       "title": "lodging, the river and transport",
-      "records": 4,
+      "records": 8,
       "by_class": {
-        "other": 4
+        "other": 8
       },
-      "by_street": {},
+      "by_street": {
+        "Canal Street": 1,
+        "Dearborn Street": 2,
+        "Market Street": 1
+      },
       "by_roof": {
         "recon_1835_north_h1_007": 1,
         "recon_1835_north_h2_030": 1,
@@ -26,14 +30,22 @@
       "ids": [
         "rcb_bardwell_boarding_house",
         "rcb_cavanagh_boarding_house",
+        "rcb_dufresne_livery_stable",
         "rcb_fitzgerald_boarding_house",
-        "rcb_newell_boarding_house"
+        "rcb_hubbard_lumber_yard",
+        "rcb_leland_livery_stable",
+        "rcb_newell_boarding_house",
+        "rcb_woodruff_lumber_yard"
       ],
       "proprietors_adopted": [
         "rc_bardwell_esther",
         "rc_cavanagh_ellen",
+        "rc_dufresne_joseph",
         "rc_fitzgerald_martin",
-        "rc_newell_lydia"
+        "rc_hubbard_asa",
+        "rc_leland_warren",
+        "rc_newell_lydia",
+        "rc_woodruff_calvin"
       ]
     },
     "mechanics_shops": {
@@ -323,6 +335,236 @@
         ],
         "kept_by": "the register",
         "why_not": null
+      }
+    ]
+  },
+  "river_and_transport": {
+    "_doc": "EVERY RECONSTRUCTED HEAD AT A RIVER OR TRANSPORT TRADE, and the house of trade behind it or the reason there is none. `kind` says which sort of absence a headless trade is: `house_of_trade` this programme builds, `count_already_held` the register already over-holds, `employment` has no premises to keep, `deferred` waits on the ticket named. No head is passed over in silence — that is what this table is for.",
+    "ticket": "T-1424",
+    "trades": 9,
+    "heads": 20,
+    "heads_this_programme_owes_a_house": 0,
+    "rows": [
+      {
+        "trade": "boatman",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 3,
+        "why": "NO PREMISES. A boatman is a hand on the water — the ferry at the forks, the lighters working the bar, the river craft. T-1189 seats him.",
+        "people": [
+          {
+            "person_id": "rc_dufresne_hyacinthe",
+            "name": "Hyacinthe Dufresne",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/20_29/north/family/trade:boatman:004",
+            "firm": null
+          },
+          {
+            "person_id": "rc_bourassa_hyacinthe",
+            "name": "Hyacinthe Bourassa",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:boatman:008",
+            "firm": null
+          },
+          {
+            "person_id": "rc_robillard_michel",
+            "name": "Michel Robillard",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:boatman:005",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "forwarding_and_commission",
+        "kind": "count_already_held",
+        "deferred_to": null,
+        "heads": 2,
+        "why": "NO ESTABLISHMENT TO ORDER, AND THAT IS NOT THE SAME AS NO MAN TO PLACE. The December 1835 State census prints four storage and forwarding houses and the register holds EIGHT at the scene date, so `businesses/storage_and_forwarding` leaves nothing to reconstruct and the 'gap beyond the attested four' T-1409 went looking for is not there. The resident band still drew these heads, and rightly: it draws against the PERSON buckets, off the 1839 trade table's share of men at a trade, and a town can be short of forwarding clerks while holding twice the houses it was counted for. So these men are hands at houses that already stand, and T-1189 seats them; a firm minted here would be a ninth house against a count of four.",
+        "people": [
+          {
+            "person_id": "rc_fisk_abner",
+            "name": "Abner Fisk",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:forwarding_and_commission:033",
+            "firm": null
+          },
+          {
+            "person_id": "rc_bertrand_louis",
+            "name": "Louis Bertrand",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/20_29/west/family/trade:forwarding_and_commission:013",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "livery_stable_keeper",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 2,
+        "why": "the trade names the house; this programme builds one per head.",
+        "people": [
+          {
+            "person_id": "rc_leland_warren",
+            "name": "Warren Leland",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:livery_stable_keeper:046",
+            "firm": "rcb_leland_livery_stable"
+          },
+          {
+            "person_id": "rc_dufresne_joseph",
+            "name": "Joseph Dufresne",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:livery_stable_keeper:030",
+            "firm": "rcb_dufresne_livery_stable"
+          }
+        ]
+      },
+      {
+        "trade": "lumber_merchant",
+        "kind": "house_of_trade",
+        "deferred_to": null,
+        "heads": 2,
+        "why": "the trade names the house; this programme builds one per head.",
+        "people": [
+          {
+            "person_id": "rc_hubbard_asa",
+            "name": "Asa Hubbard",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:lumber_merchant:047",
+            "firm": "rcb_hubbard_lumber_yard"
+          },
+          {
+            "person_id": "rc_woodruff_calvin",
+            "name": "Calvin Woodruff",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/30_39/west/family/trade:lumber_merchant:011",
+            "firm": "rcb_woodruff_lumber_yard"
+          }
+        ]
+      },
+      {
+        "trade": "mail_contractor",
+        "kind": "deferred",
+        "deferred_to": "T-1425",
+        "heads": 1,
+        "why": "A CONTRACT IS NOT A SHOP. The mail contractor holds a route and the post office is a civic establishment T-1410 already built; what this head would keep, if anything, is a stage and stable yard, and that is the same question as the pier-works contractor and his gang. T-1425 owns both.",
+        "people": [
+          {
+            "person_id": "rc_vieau_francois",
+            "name": "Francois Vieau",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/20_29/north/family/trade:mail_contractor:020",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "master_mariner",
+        "kind": "deferred",
+        "deferred_to": "T-1425",
+        "heads": 1,
+        "why": "A MASTER COMMANDS A VESSEL, NOT A PREMISES. The five schooners data/boats/era_boats.json stands are unnamed and unmanned, and naming them wants a marine list this corpus does not hold — no source in data/sources/ prints the port of Chicago's arrivals and clearances for 1835. T-1425 owns the vessels in port and their masters.",
+        "people": [
+          {
+            "person_id": "rc_tuttle_benjamin",
+            "name": "Benjamin Tuttle",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:master_mariner:049",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "sawyer",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "NO PREMISES, AND THE MILL IS ALREADY STANDING. The census prints one steam saw-mill and the register holds two at the scene date, so the class orders nothing; a sawyer is a hand in one of them and T-1189 seats him.",
+        "people": [
+          {
+            "person_id": "rc_barnes_ira",
+            "name": "Ira Barnes",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/40_49/north/family/trade:sawyer:004",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "seaman",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 1,
+        "why": "NO PREMISES. A seaman's berth is a vessel and not a house of trade; the vessels themselves are T-1425's.",
+        "people": [
+          {
+            "person_id": "rc_newell_hiram",
+            "name": "Hiram Newell",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/40_49/south/family/trade:seaman:009",
+            "firm": null
+          }
+        ]
+      },
+      {
+        "trade": "teamster",
+        "kind": "employment",
+        "deferred_to": null,
+        "heads": 7,
+        "why": "NO PREMISES. A teamster drives another man's team or his own off the street; the dray is the trade and there is no house of it to build. The livery stables above are where the town's hire teams stood, and T-1189 seats these men at the houses, yards and landings that employed them.",
+        "people": [
+          {
+            "person_id": "rc_gallagher_daniel",
+            "name": "Daniel Gallagher",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/20_29/north/family/trade:teamster:025",
+            "firm": null
+          },
+          {
+            "person_id": "rc_newell_samuel",
+            "name": "Samuel Newell",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:teamster:059",
+            "firm": null
+          },
+          {
+            "person_id": "rc_reilly_martin",
+            "name": "Martin Reilly",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/20_29/south/family/trade:teamster:060",
+            "firm": null
+          },
+          {
+            "person_id": "rc_bardwell_otis",
+            "name": "Otis Bardwell",
+            "division": "west",
+            "head_slot": "trade_households:persons/male/20_29/west/family/trade:teamster:023",
+            "firm": null
+          },
+          {
+            "person_id": "rc_flynn_martin",
+            "name": "Martin Flynn",
+            "division": "north",
+            "head_slot": "trade_households:persons/male/30_39/north/family/trade:teamster:015",
+            "firm": null
+          },
+          {
+            "person_id": "rc_leland_david",
+            "name": "David Leland",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/30_39/south/family/trade:teamster:035",
+            "firm": null
+          },
+          {
+            "person_id": "rc_ingalls_chauncey",
+            "name": "Chauncey Ingalls",
+            "division": "south",
+            "head_slot": "trade_households:persons/male/40_49/south/family/trade:teamster:010",
+            "firm": null
+          }
+        ]
       }
     ]
   }

@@ -1173,7 +1173,17 @@ def semantic_problems(records, town_ids=None):
         # beds, lodgers and a keeper and no firm behind it is an establishment the business
         # layer cannot see, and the roof is what buys the firm that makes it visible.
         #
-        # So the block must state EXACTLY ONE of the three, and say which. A record naming
+        # The fourth is a TRADE HEAD, and T-1424 is the case that showed the THIRD does not
+        # cover everything either. A livery stable is as uncounted as a boarding house — the
+        # census's eighteen lines reach the taverns and the saw-mill and never a livery — but
+        # nothing in data/structures/ is a livery stable, so there is no committed building to
+        # buy the firm and the roof form has nothing to point at. What is committed is the
+        # MAN: the resident band drew two men at `livery_stable_keeper` and two at
+        # `lumber_merchant` because the 1839 trade table says the town was short of the
+        # trades, and the word of each trade names the house he keeps. A drawn keeper with no
+        # house to keep is the mirror image of a standing roof with no firm in it.
+        #
+        # So the block must state EXACTLY ONE of the four, and say which. A record naming
         # more than one is claiming a house twice over; a record naming none is the original
         # fault this check exists to catch.
         block = record.get("reconstruction")
@@ -1185,13 +1195,15 @@ def semantic_problems(records, town_ids=None):
             quota = bool(block.get("bucket") or block.get("slot"))
             floor = bool(block.get("floor"))
             roof = bool(block.get("roof"))
-            if sum((quota, floor, roof)) > 1:
+            head = bool(block.get("trade_head"))
+            if sum((quota, floor, roof, head)) > 1:
                 bad.append("%s: the reconstruction block names more than one of an "
-                           "order-book row, a documented floor and a standing roof; a house "
-                           "is bought once" % rid)
-            elif not (quota or floor or roof):
+                           "order-book row, a documented floor, a standing roof and a trade "
+                           "head; a house is bought once" % rid)
+            elif not (quota or floor or roof or head):
                 bad.append("%s: the reconstruction block names neither an order-book row "
-                           "(bucket + slot) nor a documented floor nor a standing roof" % rid)
+                           "(bucket + slot) nor a documented floor nor a standing roof nor a "
+                           "trade head" % rid)
             elif quota and not (block.get("bucket") and block.get("slot")):
                 bad.append("%s: a quota row names a bucket and a slot, and this one names "
                            "only %s" % (rid, "a bucket" if block.get("bucket") else "a slot"))
@@ -1213,6 +1225,29 @@ def semantic_problems(records, town_ids=None):
                         bad.append("%s: bought by the standing roof %r and its primary "
                                    "location is %r; a roof buys the firm of THAT building"
                                    % (rid, r.get("structure_id"), seat))
+            elif head:
+                # A TRADE HEAD IS ONLY A TRADE HEAD IF HE KEEPS THE HOUSE. The whole argument
+                # is that this firm is the establishment a man this project already drew was
+                # drawn to keep, so a record bought by his head and kept by somebody else —
+                # or by nobody — has bought nothing. And it may not be seated on a roof: the
+                # form exists precisely because no building of the class stands, and a record
+                # that found one should be claiming that roof instead.
+                h = block["trade_head"]
+                if not isinstance(h, dict):
+                    bad.append("%s: the trade head is not a block" % rid)
+                else:
+                    keepers = [p.get("person_id") for p in record["proprietors"]]
+                    if keepers != [h.get("person_id")]:
+                        bad.append("%s: bought by the trade head %r and kept by %r; a head "
+                                   "buys the house HE keeps and no other"
+                                   % (rid, h.get("person_id"),
+                                      ", ".join(str(k) for k in keepers) or "nobody"))
+                    primary = next((l for l in record["locations"] if l.get("primary")), None)
+                    if (primary or {}).get("kind") != "street_only":
+                        bad.append("%s: bought by a trade head and seated %r; the form exists "
+                                   "because no building of this class stands, so the house "
+                                   "takes a street face and nothing narrower"
+                                   % (rid, (primary or {}).get("kind")))
             elif floor:
                 # A floor carries its own evidence, because nothing upstream counted it.
                 f = block["floor"]
@@ -1516,11 +1551,12 @@ def self_test():
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[])),
            "carries no reconstruction block", ids)
 
-    # THE WIDENED RULE HOLDS EVERY WAY (owner, 2026-09-19; a third door for T-1408). A
-    # reconstructed house is bought by a quota row, by a documented floor or by a standing
-    # roof, and the check has to refuse every way that can go wrong — none of the three,
-    # more than one, a half quota row, a floor with nothing behind it, and a roof the house
-    # does not stand on. Without these the widening would be a hole rather than a door.
+    # THE WIDENED RULE HOLDS EVERY WAY (owner, 2026-09-19; a third door for T-1408, a fourth
+    # for T-1424). A reconstructed house is bought by a quota row, by a documented floor, by
+    # a standing roof or by a drawn trade head, and the check has to refuse every way that
+    # can go wrong — none of the four, more than one, a half quota row, a floor with nothing
+    # behind it, a roof the house does not stand on, and a trade head who does not keep the
+    # house he bought. Without these the widening would be a hole rather than a door.
     expect("a reconstruction naming neither a quota row nor a floor",
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
                                      reconstruction={"programme": "x", "group": "g",
@@ -1570,6 +1606,36 @@ def self_test():
     expect("a reconstruction naming a standing roof AND a quota row",
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
                                      reconstruction={"bucket": "b", "slot": "s",
+                                                     "roof": {"structure_id": "fixture_store"}})),
+           "a house is bought once", ids)
+
+    def head_block(**over):
+        block = {"person_id": "fixture_a", "household_id": "hh_rc_fixture",
+                 "trade": "livery_stable_keeper", "head_slot": "s", "note": "n"}
+        block.update(over)
+        return block
+
+    def street_only(doc):
+        doc["locations"] = [{"kind": "street_only", "structure_id": None,
+                             "street_id": "lake", "face": None, "primary": True,
+                             "from": None, "to": None, "tier": "reconstructed",
+                             "basis": "a face off a stated rule", "limit_reason": "no source"}]
+
+    expect("a trade head who does not keep the house he bought",
+           mutate(lambda d: (d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                      reconstruction={"trade_head": head_block(
+                                          person_id="somebody_else")}),
+                             street_only(d))),
+           "a head buys the house HE keeps", ids)
+
+    expect("a house bought by a trade head and seated on a roof",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"trade_head": head_block()})),
+           "the house takes a street face and nothing narrower", ids)
+
+    expect("a reconstruction naming a trade head AND a standing roof",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"trade_head": head_block(),
                                                      "roof": {"structure_id": "fixture_store"}})),
            "a house is bought once", ids)
 

@@ -12999,7 +12999,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses and three are **L259**'s professions, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 17 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions and four are **L260**'s liveries and lumber yards, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13216,11 +13216,12 @@ outliers, and the seating tickets **T-1198** and **T-1199**.
 
 ### L257 — Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them
 
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which FOUR are this
-entry's. The other nine are **L254**'s apothecaries, **L255**'s Black-owned firms, **L258**'s
-brewery and jeweller's and **L259**'s professions; the selector reads the whole reconstructed
-layer, so the count is restated here rather than narrowed, and each entry says which of the
-thirteen are its own.
+**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which FOUR are this
+entry's. The other thirteen are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L258**'s brewery and jeweller's, **L259**'s professions and **L260**'s liveries and lumber
+yards; the
+selector reads the whole reconstructed layer, so the count is restated here rather than
+narrowed, and each entry says which of the seventeen are its own.
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed
 business record for each of the four standing reconstructed boarding houses —
@@ -13297,9 +13298,10 @@ the seating tickets **T-1198** and **T-1199**.
 **Recorded:** 2026-09-19.
 
 ### L258 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, the
+**Scope:** `businesses.records[reconstructed]` — 17 houses of trade. TWO are this entry's, the
 mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms, four
-**L257**'s boarding houses and three **L259**'s professions. The
+**L257**'s boarding houses, three **L259**'s professions and four **L260**'s liveries and
+lumber yards. The
 selector reads the whole layer, so the count is restated here rather than narrowed, and the
 register keeps saying how many reconstructed houses of trade the town carries in total
 
@@ -13361,11 +13363,11 @@ same selector counts), **L248** (the trade heads these houses adopt), tickets **
 **Recorded:** 2026-09-19.
 
 ### L259 — Two law offices and a physician's room stand for a census line that counts men, read down to the population the scene date actually had
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which THREE are this
-entry's: two law offices and one physician's room. The other ten are **L254**'s apothecaries,
-**L255**'s Black-owned firms, **L257**'s boarding houses and **L258**'s brewery and
-jeweller's; the selector reads the whole reconstructed layer, so the count is restated here
-rather than narrowed.
+**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which THREE are this
+entry's: two law offices and one physician's room. The other fourteen are **L254**'s
+apothecaries, **L255**'s Black-owned firms, **L257**'s boarding houses, **L258**'s brewery and
+jeweller's and **L260**'s liveries and lumber yards; the selector reads the whole
+reconstructed layer, so the count is restated here rather than narrowed.
 
 **Decision:** `tools/reconstruct_businesses_1835.py --group professions_and_services`
 (T-1418, of T-1186) writes **three** reconstructed records: *B. Robillard, attorney and counsellor at
@@ -13438,3 +13440,136 @@ these houses adopt), **L257** (the roofs beside that row), the naming guide
 **T-1166**, and the successors **T-1419** (the services, which the census enumerates
 nowhere), **T-1404** (a premises for every in-window trade) and **T-1189** (their staff).
 **Recorded:** 2026-09-20.
+
+### L260 — Two livery stables and two lumber yards stand because the men who kept them were already drawn, and nothing else in this town could buy them
+
+**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which FOUR are this
+entry's. The other thirteen are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L257**'s boarding houses, **L258**'s brewery and jeweller's and **L259**'s professions; the
+selector reads the whole reconstructed layer, so the count is restated here rather than
+narrowed, and each entry says which of the seventeen are its own.
+
+**Decision:** `tools/reconstruct_businesses_1835.py` (T-1424, of T-1409 and T-1187) writes a
+reconstructed business record for each of the four reconstructed trade heads the resident
+band drew at a trade whose own word names a house of trade — *J. Dufresne, livery stable* and
+*W. Leland, livery stable* in the south division, *A. Hubbard, lumber yard and store house*
+in the south and *Woodruff's lumber yard* in the west. Each adopts the head as its sole
+proprietor, takes a `street_only` face off a stated rule, is typed `other`, and is bought by
+a new FOURTH form of the reconstruction contract: a **TRADE HEAD**, beside **L254**'s quota
+row, **L255**'s documented floor and **L257**'s standing roof.
+
+**Why a fourth form, when the third was written a day ago.** Because the third does not
+reach these houses. A standing roof buys a firm out of a BUILDING this project has already
+committed: `recon_1835_north_h1_007` stands in `data/structures/`, the lodging model gave it
+beds and the lodgers stage gave it a keeper, and the firm was the only piece missing. Nothing
+in `data/structures/` is a livery stable, and nothing is a lumber yard. Neither is there a
+count to be short of: `business_buckets` orders against PRINTED counts or not at all, and the
+December 1835 State census's eighteen lines reach the taverns, the stores, the saw-mill and
+the forwarding houses and never reach a livery or a yard. So there is no bucket, no floor and
+no roof — and yet this project has committed something all the same. It has committed the
+**man**. `trade_households` (T-1347, of T-1173) drew two men at `livery_stable_keeper` and
+two at `lumber_merchant`, because the 1839 trade table says the town was short of the trades,
+and every one of those cards carries the sentence that made this entry inevitable: *"the
+business band (T-1184 … T-1188) ADOPTS these heads as its proprietors rather than minting its
+own, so the two bands fill one quota."* A drawn keeper with no house to keep is the exact
+mirror of a standing roof with no firm in it, and the business layer cannot see either.
+
+**What is invented, exactly:** three things. (1) **The house itself** — that a livery stable
+keeper kept a livery stable and a lumber merchant kept a yard. That is a rule and not a
+reading: it is the meaning of the occupation word, and the register's own printings carry it
+(*Lathrop Johnson & Co., livery*, *the Livery Stable at the Point*, and the *lumber yard and
+warehouse announced for the opening of navigation, 1834*). It is the whole of the fourth
+form's claim, and it is why the form is confined to trades whose word names the premises: a
+`teamster` gets nothing here, and neither does a `boatman`, a `seaman` or a `sawyer`.
+(2) **The firm style** — the form and the goods line, dealt on the record's own seed from
+forms the register prints. There are only three printed houses between these two trades, so
+there are only the lines those three carry and nothing is composed; *A. Clybourn's market on
+the market square* is what licenses the possessive on a yard. (3) **The street face** — a
+`street_only` location, which the business schema calls a LIMIT rather than a place. A livery
+takes the approach and hotel streets because the one livery the register places is *at the
+Point*, where the west and north roads meet Wolf Point's taverns; a lumber yard takes the
+working banks because the one yard the register prints is announced for the **opening of
+navigation**, which is how lumber reached this town. (4) Nothing else.
+
+**The keeper is NOT invented here,** and this entry leans on that harder than any before it,
+because the head is not merely the proprietor of the house — the head is what BOUGHT it. All
+four are cards **L248** wrote months earlier and this tool writes no person at all.
+
+**THE CLASS IS `other` AND MAY NEVER BE OTHERWISE,** which is the one refusal in this entry
+that guards a number. Typing a lumber yard `storage_and_forwarding` would spend a printed
+count — and that count is not merely spent, it is already **over**-held: the census prints
+four forwarding houses and the register carries eight at the scene date. `--check` refuses by
+name any trade row typed into a class the order book enumerates.
+
+**And the ledger now prints the adjudication, head by head,** which is the other half of this
+ticket and the part that keeps the fourth form from becoming a licence. `river_and_transport`
+in `data/reconstruction/1835_business_reconstruction.json` carries all **20** reconstructed
+heads at a river or transport trade, each with the kind of absence it is: four keep houses
+this entry built; two at `forwarding_and_commission` keep none, because the class's count is
+already over-held and **a town short of forwarding clerks is not a town short of forwarding
+houses** — the resident band draws against PERSON buckets and the book against establishment
+ones, and T-1189 seats those two men as hands; twelve at `teamster`, `boatman`, `seaman` and
+`sawyer` keep none because those words name employments and not premises; and two — a
+`master_mariner` and a `mail_contractor` — wait on **T-1425**. The five schooners
+`data/boats/era_boats.json` stands are unnamed and unmanned, and naming them wants a marine
+list this corpus does not hold: no source in `data/sources/` prints the port of Chicago's
+arrivals and clearances for 1835. `--check` goes red if a head at a house-of-trade trade is
+left without one.
+
+**What this deliberately does NOT do.** It writes **no staff** — the hostler a livery kept
+and the hands a yard kept are T-1183's model and T-1189's fill. It writes **no dates**: the
+head who keeps the house is ordered onto the scene date and to nothing narrower, and a
+keeping is not an opening. It writes **no source**, and the compiler refuses one on a
+reconstructed record. And it seats nothing: no lot, no roof, no coordinate, because T-1195
+writes the placement policy and T-1199 does the seating.
+
+**Which way it is wrong if it is wrong.** Toward a town with too few houses of trade. Only
+trades whose word names a premises buy one, so the twelve employments buy nothing at all and
+the two forwarding men buy nothing either; the four the census ought to have counted and
+never did are the floor of what this reading supports, not its ceiling.
+
+Related: **L254** (the same tool's quota row), **L255** (its documented floor), **L257** (its
+standing roof and the form this one is modelled on), **L248** (the trade heads these houses
+adopt), the naming guide `docs/RESEARCH/business-naming-1835.md`, and the successors
+**T-1425** (the pier works and the vessels in port), **T-1189** (their staff) and **T-1199**
+(their seats).
+**Recorded:** 2026-09-20.
+
+### L261 — At the top of Wright's sheet the field carries the North Branch to the box wall, because a survey's edge is not a river's end
+
+**Decision:** in `data/terrain/epochs/e1834_harbor_cut/terrain_spec.json`, the new block
+`northern_branch` continues the **North Branch** north of the last row its traced polygon
+covers — N +1079.21 — between the row's crossings of the two bank runs the spec already
+carries to the wall (`trace_carries`: `north_branch_west_bank`, `north_branch_east_bank`), to
+the box's north wall at N +1120. **40.79 m of channel, about 45.4 m wide.** Water is written
+`conjectural` everywhere in this field, so no vertex of it claims more than a continuation is
+worth.
+
+**Why it was needed now and not before.** This is L239's fault at the other end of the same
+corpus, and T-1416 is what exposed it. `north_branch_wabansia`'s polygon closes on the line
+Wright ruled across the top of his sheet; its own note in the spec has always said that edge
+"is the edge of a survey and not the end of a river". While the box's west wall stood at
+E −320 the branch left the modelled ground through the WEST wall at about N +700 and that
+northern edge lay 160 m outside the box, so nothing had to answer for it. T-1416 carried the
+wall to E −705 — the easting T-1415 derived for the West Division's 35 held placements — and
+brought the whole traced reach inside. Left alone, the field would have stood **a plug of dry
+West Division prairie across the head of a channel, 40 m short of a wall a visitor can walk
+to**, between two banks that do reach the wall. That is worse than the southern fault L239
+records: that one invented a coast, this one would have dammed a river.
+
+**Why held between the banks and not extrapolated from the ring.** The same answer
+`trace_carries` gives and for the same reason: a bearing is a claim about where a line bends
+past the sheet, and the corpus does not hold one. The rule is stated PER ROW from the two
+traced BANKS, so it cannot drift away from the trace it extends, and the carries run at each
+tip's own easting — which makes the carried channel **45.39 m** wide against **45.4 m** of
+traced channel on the polygon's own last row. It is silent below N +1079.21, so it moves no
+sample the field had already committed.
+
+**Which way it is wrong if it is wrong.** Toward too LITTLE river. The rule stops at the box
+wall, which is itself a survey line and not a river end; the North Branch runs on north for
+miles and this project does not model it. And it claims no bed of its own: the channel's
+depth comes from the same reach profile the traced reach below it uses.
+
+**Related:** **L239** (the identical decision at the south end, since resolved by a second
+sheet), the west wall's derivation **T-1415**, this regeneration **T-1416**, and **T-1417**,
+which takes the West Division streets off the old E −320 clip. **Recorded:** 2026-09-20.
