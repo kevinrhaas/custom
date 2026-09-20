@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The post office was not where the town\u2019s mail began', kind: 'feature', ts: '', date: '',
+  { v: 996, title: 'The post office was not where the town\u2019s mail began', kind: 'feature', ts: '2026-09-20T00:21:54.303Z', date: 'Sep 19, 2026, 7:21 PM CT',
     items: [
       'Three of the best-documented workplaces in Chicago were missing from the Businesses list altogether, and for a reason worth saying out loud: that list is compiled out of newspaper advertisements, and a post office does not advertise. The post office, the United States Land Office and the county\u2019s own offices are in the town now, each with the men who actually kept it.',
       'The land office is the most conspicuous thing in Chicago in the summer of 1835 and the least like a building. It opened in May, four weeks before the day you are walking through \u2014 Mark Beaubien\u2019s pre-emption certificate out of it is dated the 28th of that month \u2014 with James Whitlock as Register and Edmund D. Taylor as Receiver. Andreas puts it on the east side of Lake Street between Clark and Dearborn, and in the same breath explains why no roof is drawn for it: the offices of Registers and Receivers were usually their own private rooms.',
