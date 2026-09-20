@@ -137,16 +137,20 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-# --- 8. UNREAL DELIVERY — regular assets, renderer parity, reliable streaming
+# --- 8. UNREAL DELIVERY — repeatable native builds, web parity, then streaming
 # Programme: T-1356; docs/unreal/README.md. Owner-ranked here on 2026-09-18.
 # Remote-workable preparation (still subject to the city-first ordering above):
 T-1357 — Publish a versioned Chicago scene bundle from every successful scheduled asset bake
 T-0252 — Decide once whether a baked town carries the nine renderer-drawn layers, or none of them
 # LOCAL / QUALIFIED UNREAL ONLY — NOT WORKABLE BY THE REMOTE WEB WORKER.
 # HOLD references below are comments, not claimable queue entries. Tickets are blocked-tech.
-# HOLD T-1359 — affected Mac/Unreal/browser access; may diagnose independently of bundles.
+# HOLD T-1472 — on-demand latest-validated Mac build/release; qualified Mac + release access.
+# HOLD T-1473 — sinking buildings/terrain contact; qualified Unreal + matched web/source views.
 # HOLD T-1358 — after T-1357 and current Unreal/GPU capability receipt.
 # HOLD T-1360 — after T-0252, T-1357, T-1358; Unreal visual/collision receipt required.
+# HOLD T-1474 — flora corridor; after shared exports/import and placement, Unreal visual/performance proof.
+# HOLD T-1475 — map/search/place inspection; runtime provenance and Unreal input/route validation.
+# HOLD T-1359 — streaming corruption; affected Mac/Unreal/browser access, after native priorities.
 # HOLD T-1361 — after T-1358/T-1359, approved licensed build runner, GPU host, budget and credentials.
 # Coordinator: unblock only when all dependencies AND current executor capability are proven;
 # immediately assign/claim on that eligible executor; otherwise retain blocked-tech.
