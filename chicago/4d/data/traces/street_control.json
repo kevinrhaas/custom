@@ -73,6 +73,30 @@
       "axis": "ew",
       "modern": "W Kinzie Street, unchanged alignment",
       "note": "North of the main stem, in Kinzie's Addition rather than the original town; one of the streets that survives on its 1835 alignment, which is why the North Branch bridge's deck sits on it."
+    },
+    "west_water": {
+      "name": "West Water Street",
+      "axis": "ns",
+      "modern": "no street survives; the Chicago Riverwalk runs nearest",
+      "note": "The West Division's riverfront street, on the west bank of the South Branch. NOT Canal Street, which stands about one plat module further west \u2014 data/streets/1835.json records the 131-159 m between them, and the gloss that once confused the two was withdrawn by T-0770 rather than restated. It has NO control point and cannot acquire one under `node_rule`: an Overpass query over the whole seated reach on 2026-09-05 returned eighteen names and no through street on that bank. Named here, with no control, because a street this table's held control and refusals name should resolve in it \u2014 the same reason `south_water` was named in 2026-08-28."
+    },
+    "clinton": {
+      "name": "Clinton Street",
+      "axis": "ns",
+      "modern": "N/S Clinton Street, unchanged alignment",
+      "note": "The West Division's second north-south street, and the one street in this table whose surviving junction is readable, undisputed and deliberately NOT adopted. See `held_control.fulton_clinton` for the seven generated roofs the re-centring it implies would put in the roadway."
+    },
+    "carroll": {
+      "name": "Carroll Street",
+      "axis": "ew",
+      "modern": "W Carroll Avenue, and NOT on the 1835 line",
+      "note": "The one West Division tier that does not survive inside the plat: its committed centreline is interpolated between Kinzie and Fulton and is graded for that. An Overpass query for every way named Carroll between lon -87.68 and -87.632 on 2026-09-04 returned nothing usable under `node_rule` (T-0446), so this street has no control, and the negative is recorded here rather than left as an absence."
+    },
+    "fulton": {
+      "name": "Fulton Street",
+      "axis": "ew",
+      "modern": "W Fulton Street, unchanged alignment",
+      "note": "The best-held West Division tier \u2014 four surviving intersections, with Canal, Clinton, Jefferson and Des Plaines, read from OpenStreetMap on 2026-09-04 by T-0446 and carried until 2026-09-20 only in the prose of `fulton`'s own record in data/streets/1835.json, which is the arrangement this whole file exists to end. One of the four is adopted below as `control.fulton_canal`; the other three are held, each with its own number, in `held_control`. Fulton itself takes no corridor offset from any of them: `plat_corridors.control_offsets` reads a street's cross-axis only for the rows and columns of the Original Town grid, and this tier is in neither list, so it reads `no_control` before and after."
     }
   },
 
@@ -151,6 +175,89 @@
       "refetched": "2026-08-28",
       "derived_from": "read from OpenStreetMap 2026-08-28 under `node_rule`, reproducible with tools/refetch_control.py --discover south_water_franklin; the junction was first read 2026-08-27 by T-0183 while the Market x South Water refusal below was being recorded, and committed by T-0245",
       "note": "THE FIRST CONTROL POINT ANYWHERE ON SOUTH WATER STREET, and it is a crossing rather than the bend `refused_control.market_south_water` records one block west. The two shared nodes are Franklin's crossings of Wacker Drive's two carriageways, 15.28 m apart on the same easting to 0.08 m: 28358941 at E 447281.12 N 4637399.57 and 28358883 at E 447281.20 N 4637414.85. AND BOTH NAMED WAYS CONTINUE THROUGH THEM, which is the test the bend at Market fails and the thing a shared-node count cannot tell you on its own. North Franklin Street arrives from the south on way 452188414 (local 208.2, -12.3), passes through 28358941, runs on to 28358883 on way 253745133 and carries north beyond it; West Upper Wacker Drive crosses it east-west on a different carriageway at each node \u2014 way 319358165 in from the west and 931237159 out to the east through 28358941, way 319358163 in from the east and 1136945346 out to the west through 28358883. At Market neither holds: North Upper Wacker ENDS at the node and West Upper Wacker BEGINS there. The mean is local ENU (208.46, +11.41) off data/datum.json. It is also a corner this project already has a document about \u2014 the first post office stood at the south-west corner of Franklin and South Water from 2 Nov 1832 to 3 Mar 1837 (docs/research/03-structures-north.md), so it is on the scene date. WHAT IT CHANGED: NOTHING MOVED, AND THESE ARE THE NUMBERS, because the value of this point is that it makes two committed lines checkable for the first time rather than that it corrects them. data/streets/1835.json puts the South Water x Franklin corner at local (208.49, +2.83) \u2014 the intersection of the two committed centrelines \u2014 which is 8.58 m from this control, and essentially all of it is northing: dE -0.03 m, dN +8.58 m. So the whole disagreement is ACROSS South Water and none of it is along it. Franklin's committed centreline reproduces this junction's easting to 0.03 m, which is a reproduction and not an independent confirmation \u2014 `franklin` already lists `osm_streets_2026` among its sources. South Water's committed centreline stands 8.28 m SOUTH of the junction measured perpendicular to its own line (it runs 15.4 degrees north of east through this block). That southward stand is the deliberate one data/streets/1835.json describes as 'shifted into the dry half of the platted riverfront corridor', and after 2026-08-28 it is a measured 8.28 m rather than a sentence: 68 per cent of the 12.192 m half of the 80 ft platted module, so if the corridor is centred on this junction the reconstructed line sits inside its dry half with 3.91 m to spare before the south edge. Nothing is re-derived against this point and no placement names it: the standoff is a reconstruction decision about dry ground, not an error in an offset, and re-deriving South Water onto the modern centreline would undo it. See T-0245."
+    },
+    "fulton_canal": {
+      "streets": [
+        "fulton",
+        "canal"
+      ],
+      "utm_e": 446910.7,
+      "utm_n": 4637407.97,
+      "lat": 41.8868193,
+      "lon": -87.6399045,
+      "osm_node_ids": [
+        258020617
+      ],
+      "osm_ways": [
+        "West Fulton Street",
+        "North Canal Street"
+      ],
+      "read_on": "2026-09-04",
+      "derived_from": "data/streets/1835.json `fulton`.note, which records this junction as local east -162.00 north +12.17, read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json by T-0446. The UTM pair here is that committed local pair plus the committed datum origin and nothing else, and the lat/lon is that UTM pair projected 26916 to 4326 with pyproj \u2014 the same transform reproduces `lake_canal`'s committed lat/lon to all seven decimals it carries, which is the check that this pair is on the project's own datum and not a second reading. Everything here re-derives offline and nothing is a new observation. It has NOT been re-fetched against today's OpenStreetMap, so `refetched` is absent rather than guessed; tools/refetch_control.py --discover fulton_canal is the call that would fill it.",
+      "note": "CANAL'S FOURTH CONTROL POINT, AND THE ONE THAT DISAGREES. T-1192 adopted it because it moves nothing: canal already carried three points that do not agree on a single offset, so plat_corridors.control_offsets returned `disagree` before this point and returns `disagree` after it, and a disagreeing street's platted corridor stays on its drawn line. Measured on the committed tree 2026-09-20 \\u2014 tools/measure_corridor_intrusion.py --gate reads 19 lapping phases and 0 generated roofs in a corridor both with and without this point. What the point adds is a measurement. Canal's drawn centreline reproduces its Lake junction to 0.00 m and its Randolph junction to 0.09 m and stands 4.61 m WEST of this one, the largest of its four offsets; the control spread goes 2.33 m to 6.85 m. AND IT SURVIVES THE QUEUED CORRECTION, which is the part worth having: under the road-only reading of kinzie_canal the other three points converge to 0.09 m, and this one still stands 4.61 m off, so the road-only spread goes 0.09 m to 4.61 m. Canal's disagreement is therefore no longer something the bikeway correction could resolve, and that is a statement about the street rather than about the query. tools/measure_canal_control_spread.py carries both readings and gates all four offsets."
+    }
+  },
+
+  "held_control": {
+    "_doc": "Junctions this project HAS under `node_rule` and deliberately does not use as corridor control. These are not refusals \\u2014 `refused_control` below is for a junction the rule could not deliver, and every one of these was delivered, cleanly, on a recorded date. They are held, each for a reason carrying a number, and they are kept out of `control` for two concrete reasons: tools/compile_scene.py compiles every entry of `control` into the scene index as a searchable street intersection, and plat_corridors.control_offsets reads `control` as the thing a platted corridor is centred on. Adopting one is therefore a placement decision about where a street RAN, not bookkeeping about what OpenStreetMap says today. Each entry states what adopting it would do, measured, and what would release it.",
+    "fulton_clinton": {
+      "streets": [
+        "fulton",
+        "clinton"
+      ],
+      "osm_node_ids": [
+        258966840
+      ],
+      "osm_ways": [
+        "West Fulton Street",
+        "South Clinton Street"
+      ],
+      "read_on": "2026-09-04",
+      "local_enu_m": [
+        -282.18,
+        11.83
+      ],
+      "held_by": "T-1192",
+      "held_on": "2026-09-20",
+      "what_adopting_it_would_do": "Clinton carries no control today, so a single point would give it `recentred` rather than `disagree`: its platted corridor would translate 4.19 m east onto this junction while the drawn line stayed put. MEASURED against the committed tree on 2026-09-20 with tools/measure_corridor_intrusion.py --gate: seven GENERATED roofs would newly lap a platted corridor, and that gate refuses a generated roof in a corridor by construction \\u2014 it must read 0 and would read 7. They are recon_1835_west_003 (3.98 m), recon_1835_west_016 (3.91 m), recon_1835_west_012 (3.70 m), recon_1835_west_024 (3.25 m), recon_1835_west_006 (2.94 m), recon_1835_west_019 (1.56 m) and recon_1835_blk_randolph_clinton_a2_05 (0.30 m). The town's lapping-phase count goes 19 to 26.",
+      "what_would_release_it": "Re-seating those seven roofs clear of the re-centred corridor. Every one of them is a GENERATED placement rather than a reading, so nothing attested stands in the way and no evidence is in tension \\u2014 which is exactly why this junction is held rather than refused. The work is placement work and belongs with the West Division seating.",
+      "note": "The reading is not in doubt and neither is the arithmetic: it is the same note, the same ticket and the same day's OpenStreetMap query as the Canal junction adopted above. What separates the two is the state of the street each controls \\u2014 Canal already disagreed, so a fourth point changes a number; Clinton does not yet, so a first point moves a corridor. Identical evidence, different consequence, and the consequence is what decides."
+    },
+    "jefferson_fulton": {
+      "streets": [
+        "fulton",
+        "jefferson"
+      ],
+      "osm_node_ids": [
+        262247424
+      ],
+      "read_on": "2026-09-04",
+      "local_enu_m": [
+        -401.04,
+        13.11
+      ],
+      "held_by": "T-1192",
+      "held_on": "2026-09-20",
+      "what_adopting_it_would_do": "Nothing today: `jefferson` has no committed centreline for a corridor to be centred on. The street is refused by the MODELLED GROUND and not by its evidence \\u2014 tools/measure_west_division_streets.py re-derives that refusal from the committed heightfield on every commit, and docs/RESEARCH/west_division_streets.md section 2 argues it. The distances are derived there rather than restated here.",
+      "what_would_release_it": "The modelled ground reaching this easting. The control is already committed and needs no new research; the memo says so in as many words."
+    },
+    "des_plaines_fulton": {
+      "streets": [
+        "fulton",
+        "des_plaines"
+      ],
+      "osm_node_ids": [
+        258966841
+      ],
+      "read_on": "2026-09-04",
+      "local_enu_m": [
+        -524.88,
+        13.72
+      ],
+      "held_by": "T-1192",
+      "held_on": "2026-09-20",
+      "what_adopting_it_would_do": "Nothing today, for the same reason as `jefferson_fulton` and further west again.",
+      "what_would_release_it": "The modelled ground reaching this easting."
     }
   },
 
