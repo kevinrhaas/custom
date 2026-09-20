@@ -1,7 +1,7 @@
 ---
 id: T-1410
 title: The civic establishments as businesses with their people: the post office at Hogan's store, the U.S. Land Office of May 1835 with its Register and Receiver, and the county and town offices in R. J. Hamilton's own room — attested officers from the civic dossier, reconstructed clerks, and no civic roof invented
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1188
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-19
+pr: 1542
 claimed_by: run 9/19/2026, 6:31:04 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T00:22:57.005Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35475934979
 ---
 
