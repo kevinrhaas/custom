@@ -288,6 +288,15 @@ The streets, terrain and lots a structure bucket waits on.
 
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
+| `ground/blk_west_fulton_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_fulton_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_fulton_clinton` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_lake_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_lake_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_lake_canal` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_randolph_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_randolph_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_west_randolph_canal` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
 | `ground/blk_michigan_st_tract_west_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
 | `ground/blk_michigan_st_tract_west_south` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
 | `ground/blk_michigan_st_tract_east_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |

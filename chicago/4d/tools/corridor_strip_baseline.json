@@ -46,8 +46,8 @@
    }
   },
   "counterfactual": {
-   "blocks_after": 62,
-   "lots_after": 188,
+   "blocks_after": 71,
+   "lots_after": 218,
    "lots_recut": 32,
    "blocks_lost": [
     "blk_south_water_lasalle"

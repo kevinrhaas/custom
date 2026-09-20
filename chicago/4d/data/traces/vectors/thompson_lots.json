@@ -1,5 +1,5 @@
 {
- "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, read block by block off the georeferenced Wright 1834 scan — see `block_numbering` below and data/traces/thompson_block_numbering.json. A block left unnumbered here is one the sheet was not read on, and the authored file says which and why. SINCE T-1454 THIS FILE HOLDS FOUR GRIDS, not one: the Original Town south of the main stem and Kinzie's Addition north of it, each cut between its own plat's committed street lines at its own corridor width; and the Michigan Street tract and Wabansia, which are cut on their own committed SEATINGS instead, because the lines that rule them — the tracts' own borders, their mid-block alleys, Wabansia's block columns — are not streets any street table carries. Every block says which in `grid`, and `grids` below says where each one was cut from and what it may be divided on. The Addition's blocks carry no lots on purpose (`subdivision_withheld`: no lot rule has been read for that plat); the two seated tracts carry the lot lines Wright rules INSIDE them, which is the first lot line in this file that is a reading rather than a module divided into a block.",
+ "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, read block by block off the georeferenced Wright 1834 scan — see `block_numbering` below and data/traces/thompson_block_numbering.json. A block left unnumbered here is one the sheet was not read on, and the authored file says which and why. SINCE T-1455 THIS FILE HOLDS FIVE GRIDS, not one: the Original Town south of the main stem, Kinzie's Addition north of it and the West Division west of the South Branch, each cut between its own committed street lines at its own corridor width and divided on its own module; and the Michigan Street tract and Wabansia, which are cut on their own committed SEATINGS instead, because the lines that rule them — the tracts' own borders, their mid-block alleys, Wabansia's block columns — are not streets any street table carries. Every block says which in `grid`, and `grids` below says where each one was cut from and what it may be divided on. The Addition's blocks carry no lots on purpose (`subdivision_withheld`: no lot rule has been read for that plat); the two seated tracts carry the lot lines Wright rules INSIDE them, which is the first lot line in this file that is a reading rather than a module divided into a block; and the West Division is divided BLOCK BY BLOCK, on each block's own printed figure and its own counted numerals, with no lot lines at all in the blocks that print no figure.",
  "tool": "tools/generate_plat_lots.py",
  "generated_from": [
   "data/traces/street_control.json",
@@ -39,7 +39,9 @@
    "omitted": 5,
    "numbered": 19,
    "lots": 144,
-   "subdivided": true
+   "subdivided": true,
+   "divides_on": "the South Division module, four lots to a face",
+   "built_and_not_divided": 0
   },
   "kinzies_addition": {
    "plat": "kinzie_addition",
@@ -67,7 +69,36 @@
    "omitted": 25,
    "numbered": 27,
    "lots": 0,
-   "subdivided": false
+   "subdivided": false,
+   "divides_on": null,
+   "built_and_not_divided": 27
+  },
+  "west_division": {
+   "plat": "thompson_plat_1830",
+   "name": "the West Division, Thompson 1830",
+   "bounded_between": {
+    "east_west": [
+     "carroll",
+     "fulton",
+     "lake",
+     "randolph",
+     "washington"
+    ],
+    "north_south": [
+     "canal",
+     "clinton",
+     "des_plaines",
+     "jefferson",
+     "west_water"
+    ]
+   },
+   "blocks": 9,
+   "omitted": 15,
+   "numbered": 9,
+   "lots": 30,
+   "subdivided": true,
+   "divides_on": "each block's OWN printed frontage or depth, with the arrangement and the lot numerals read off the sheet block by block — and no lots at all where the block prints neither figure",
+   "built_and_not_divided": 6
   },
   "michigan_st_tract": {
    "plat": "michigan_st_tract",
@@ -157,14 +188,14 @@
   "rule": "a block takes the tract that covers the most of it, by clipped area, using the clipper in tools/sort_land_sales_onto_tracts.py",
   "the_precedence_clause": "EXCEPT that a residual tract — one whose ring is defined as what another tract leaves over — yields any block a non-residual tract covers at least 50% of. canal_section_9_remainder is the layer's only residual. T-1104 states this clause for parcels; a second statement of it would be a second answer, so it is the same clause and the same clipper.",
   "what_the_layer_answers_here": {
-   "blocks_sorted": 63,
+   "blocks_sorted": 72,
    "by_tract": {
-    "canal_commissioners_1830": 19,
+    "canal_commissioners_1830": 28,
     "canal_section_9_remainder": 4,
     "kinzies_addition": 27,
     "wabansia": 13
    },
-   "finding": "THE LAYER DISCRIMINATES THIS GRID SINCE T-1437, and until then it could not. The finding recorded here from T-1105 to 2026-09-20 was that all nineteen generated blocks fell in canal_commissioners_1830 and no other placed ring touched one, so the question T-1105 asked the layer was one the layer could not answer. That was a property of the GRID and not of the layer: the generator could only cut blocks between Original Town lines, so of course every block stood in the Original Town's tract. With Kinzie's Addition's own grid cut, 19 block(s) stand in canal_commissioners_1830, 4 block(s) stand in canal_section_9_remainder, 27 block(s) stand in kinzies_addition, 13 block(s) stand in wabansia — and the module each takes is now a per-tract answer rather than a single town-wide one. What varies INSIDE the Original Town's tract is still the DIVISION, because the river runs through it and the plat gives its two sides different blocks.",
+   "finding": "THE LAYER DISCRIMINATES THIS GRID SINCE T-1437, and until then it could not. The finding recorded here from T-1105 to 2026-09-20 was that all nineteen generated blocks fell in canal_commissioners_1830 and no other placed ring touched one, so the question T-1105 asked the layer was one the layer could not answer. That was a property of the GRID and not of the layer: the generator could only cut blocks between Original Town lines, so of course every block stood in the Original Town's tract. With Kinzie's Addition's own grid cut, 28 block(s) stand in canal_commissioners_1830, 4 block(s) stand in canal_section_9_remainder, 27 block(s) stand in kinzies_addition, 13 block(s) stand in wabansia — and the module each takes is now a per-tract answer rather than a single town-wide one. What varies INSIDE the Original Town's tract is still the DIVISION, because the river runs through it and the plat gives its two sides different blocks.",
    "the_grade_is_inherited": "canal_commissioners_1830 is `conjectural` — its four bounds are the standard account of the 1830 plat and no source record here states them. Any module chosen off that ring would be conjectural for that reason alone. None is: the module below is chosen off the street lines, and the tract is carried as a finding, not used as an input."
   },
   "the_west_division_module": {
@@ -184,7 +215,8 @@
    ],
    "refused_on_every_one_of_them": "and the refusal is arithmetic, not preference. Two lot columns alone need 360 ft; the committed faces west of the river are 315.2 ft, 326.1 ft. The arrangement does not fit before the alley is cut.",
    "what_is_short_is_the_spacing_not_the_module": "Clinton to Canal is committed at 367.9 ft against the plat's 458 ft — 90.1 ft short, the same finding tools/measure_west_division_module.py reports and the owner reported on 2026-08-31. Seating the printed module means moving those centrelines, which is T-0445 and is deliberately not done here: this generator writes what the committed lines give and records what the sheet asks for beside it.",
-   "what_would_change_if_the_lines_moved": "the two West Division blocks would be subdivided the other way about — columns and a north-south alley instead of faces and an east-west one — so this is a refusal that will be worth revisiting the day T-0445 settles the spacing, and not before."
+   "what_would_change_if_the_lines_moved": "these two blocks would be subdivided the other way about — columns and a north-south alley instead of faces and an east-west one — so this is a refusal that will be worth revisiting the day T-0445 settles the spacing, and not before.",
+   "and_since_t_1455_the_division_has_its_own_grid": "`west_division` above cuts the other twenty of the sheet's twenty-two West Division blocks, on the West Division's own tier lines and in the West Division's own arrangement. It does NOT seat the printed module at its printed size either — that is still T-0445's — it cuts the printed arrangement and the counted rows into the block the committed lines give and publishes the shortfall on each block as `closure_against_the_committed_lines`. The two blocks listed here are the ones both grids can reach; they stay on this grid, because moving them moves lot lines that committed structure records are seated against, and they are carried in the West Division grid's omissions with that said."
   },
   "omitted_blocks_carry_no_tract": "an omitted block has no ring to clip, by definition — it is omitted because the grid could not draw one — so it is sorted onto no tract rather than onto one guessed from its bounding streets"
  },
@@ -217,22 +249,23 @@
  "confidence": "inferred",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
  "summary": {
-  "blocks": 63,
+  "blocks": 72,
   "blocks_by_grid": {
    "original_town": 19,
    "kinzies_addition": 27,
+   "west_division": 9,
    "michigan_st_tract": 4,
    "wabansia": 13
   },
-  "omitted": 38,
+  "omitted": 53,
   "reserved": 1,
-  "numbered": 59,
-  "numbered_omitted": 35,
-  "lots": 196,
-  "numbered_lots": 144,
+  "numbered": 68,
+  "numbered_omitted": 48,
+  "lots": 226,
+  "numbered_lots": 174,
   "block_frontage_ft": {
    "min": 120.8,
-   "median": 293.3,
+   "median": 296.2,
    "max": 362.8
   },
   "lot_frontage_ft": {
@@ -8057,6 +8090,1737 @@
    }
   },
   {
+   "id": "blk_west_fulton_des_plaines",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "fulton",
+    "south": "lake",
+    "west": "des_plaines",
+    "east": "jefferson"
+   },
+   "boundary_local_enu_m": [
+    [
+     -512.39,
+     1.34
+    ],
+    [
+     -412.94,
+     0.85
+    ],
+    [
+     -410.67,
+     -94.17
+    ],
+    [
+     -510.12,
+     -93.37
+    ]
+   ],
+   "area_m2": 9432.5,
+   "frontage_m": 99.45,
+   "frontage_ft": 326.3,
+   "depth_m": 94.84,
+   "lots_read_on_the_sheet": 8,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 380,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.29,
+    "max_m": 1.32,
+    "mean_m": 1.31,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 0.9518,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 4,
+    "lots_read": 8,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "The second digit, as on block 11, and for the same reason. Four figures for four rows, which is itself the corroboration of this tier's four-row count.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 25,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Fulton - Lake tier"
+   }
+  },
+  {
+   "id": "blk_west_fulton_jefferson",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "fulton",
+    "south": "lake",
+    "west": "jefferson",
+    "east": "clinton"
+   },
+   "boundary_local_enu_m": [
+    [
+     -388.55,
+     0.73
+    ],
+    [
+     -320.06,
+     0.4
+    ],
+    [
+     -298.29,
+     0.29
+    ],
+    [
+     -296.0,
+     -95.1
+    ],
+    [
+     -319.9,
+     -94.91
+    ],
+    [
+     -386.27,
+     -94.37
+    ]
+   ],
+   "area_m2": 8596.3,
+   "frontage_m": 90.27,
+   "frontage_ft": 296.2,
+   "depth_m": 95.23,
+   "lots_read_on_the_sheet": 8,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 344,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.02,
+    "max_m": 1.31,
+    "mean_m": 1.25,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 4,
+    "lots_read": 8,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "Both dimensions; no marginal figures.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 24,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 420,810,320,265",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Fulton - Lake tier"
+   }
+  },
+  {
+   "id": "blk_west_fulton_clinton",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "fulton",
+    "south": "lake",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "boundary_local_enu_m": [
+    [
+     -273.89,
+     0.17
+    ],
+    [
+     -182.09,
+     -0.27
+    ],
+    [
+     -177.52,
+     -96.06
+    ],
+    [
+     -271.6,
+     -95.3
+    ]
+   ],
+   "area_m2": 8885.8,
+   "frontage_m": 92.95,
+   "frontage_ft": 304.9,
+   "depth_m": 95.6,
+   "lots_read_on_the_sheet": 8,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 360,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 0.87,
+    "max_m": 1.2,
+    "mean_m": 1.05,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 4,
+    "lots_read": 8,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "Both dimensions; no marginal figures.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 23,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 720,810,330,265",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Fulton - Lake tier"
+   }
+  },
+  {
+   "id": "blk_west_lake_des_plaines",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "des_plaines",
+    "east": "jefferson"
+   },
+   "boundary_local_enu_m": [
+    [
+     -509.53,
+     -117.75
+    ],
+    [
+     -410.08,
+     -118.56
+    ],
+    [
+     -407.24,
+     -237.0
+    ],
+    [
+     -506.7,
+     -236.19
+    ]
+   ],
+   "area_m2": 11776.7,
+   "frontage_m": 99.46,
+   "frontage_ft": 326.3,
+   "depth_m": 118.41,
+   "lots_per_column": 5,
+   "alley_local_enu_m": [
+    [
+     -462.55,
+     -118.14
+    ],
+    [
+     -457.06,
+     -118.18
+    ],
+    [
+     -454.23,
+     -236.62
+    ],
+    [
+     -459.71,
+     -236.57
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 1,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -509.53,
+       -117.75
+      ],
+      [
+       -462.55,
+       -118.14
+      ],
+      [
+       -461.98,
+       -141.82
+      ],
+      [
+       -508.97,
+       -141.44
+      ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 2,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -508.97,
+       -141.44
+      ],
+      [
+       -461.98,
+       -141.82
+      ],
+      [
+       -461.42,
+       -165.51
+      ],
+      [
+       -508.4,
+       -165.13
+      ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 3,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -508.4,
+       -165.13
+      ],
+      [
+       -461.42,
+       -165.51
+      ],
+      [
+       -460.85,
+       -189.2
+      ],
+      [
+       -507.83,
+       -188.82
+      ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 4,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -507.83,
+       -188.82
+      ],
+      [
+       -460.85,
+       -189.2
+      ],
+      [
+       -460.28,
+       -212.89
+      ],
+      [
+       -507.26,
+       -212.5
+      ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 5,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -507.26,
+       -212.5
+      ],
+      [
+       -460.28,
+       -212.89
+      ],
+      [
+       -459.71,
+       -236.57
+      ],
+      [
+       -506.7,
+       -236.19
+      ]
+     ],
+     "plat_lot_number": 10,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 1,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -457.06,
+       -118.18
+      ],
+      [
+       -410.08,
+       -118.56
+      ],
+      [
+       -409.51,
+       -142.25
+      ],
+      [
+       -456.5,
+       -141.87
+      ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 2,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -456.5,
+       -141.87
+      ],
+      [
+       -409.51,
+       -142.25
+      ],
+      [
+       -408.95,
+       -165.94
+      ],
+      [
+       -455.93,
+       -165.56
+      ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 3,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -455.93,
+       -165.56
+      ],
+      [
+       -408.95,
+       -165.94
+      ],
+      [
+       -408.38,
+       -189.62
+      ],
+      [
+       -455.36,
+       -189.24
+      ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 4,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -455.36,
+       -189.24
+      ],
+      [
+       -408.38,
+       -189.62
+      ],
+      [
+       -407.81,
+       -213.31
+      ],
+      [
+       -454.79,
+       -212.93
+      ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 5,
+     "frontage_m": 23.69,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -454.79,
+       -212.93
+      ],
+      [
+       -407.81,
+       -213.31
+      ],
+      [
+       -407.24,
+       -237.0
+      ],
+      [
+       -454.23,
+       -236.62
+      ]
+     ],
+     "plat_lot_number": 9,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 479,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.3,
+    "max_m": 1.32,
+    "mean_m": 1.31,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 0.9833,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "figure_read_on_this_block": {
+     "figure": "lot_frontage_ft",
+     "ft": 75.6,
+     "printed": [
+      "75 3/5",
+      "75 3/5",
+      "75 3/5",
+      "75 3/5",
+      "75 3/5"
+     ],
+     "region": "126,1085,26,215",
+     "governs": "the north-south frontage of a lot, and so the row pitch"
+    },
+    "closure_against_the_committed_lines": {
+     "axis": "north to south",
+     "the_sheet_asks_ft": 378.0,
+     "the_committed_lines_give_ft": 388.5,
+     "short_by_ft": -10.5,
+     "so": "the lot lines below divide the block the committed lines give, in the arrangement and the count the sheet reads, and are NOT the printed figure seated at its printed size. What is short is this project's West Division street spacing and not the module — T-0445 is the ticket that would move those centrelines, and T-0444 and tools/measure_west_division_module.py report the same gap."
+    }
+   },
+   "plat_block_number": {
+    "number": 26,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "Five rows, five figures, the same figure in each. Read at 10x with auto-contrast; the fraction reads as thirds-over-fifths ink but resolves to 3/5 against block 47, which is the clearer of the two, and against the arithmetic: 5 x 75.6 = 378 = 180 + 18 + 180."
+   }
+  },
+  {
+   "id": "blk_west_lake_jefferson",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "jefferson",
+    "east": "clinton"
+   },
+   "boundary_local_enu_m": [
+    [
+     -385.69,
+     -118.76
+    ],
+    [
+     -320.1,
+     -119.29
+    ],
+    [
+     -295.42,
+     -119.49
+    ],
+    [
+     -292.58,
+     -237.92
+    ],
+    [
+     -319.9,
+     -237.71
+    ],
+    [
+     -382.85,
+     -237.2
+    ]
+   ],
+   "area_m2": 10689.2,
+   "frontage_m": 90.27,
+   "frontage_ft": 296.2,
+   "depth_m": 118.41,
+   "lots_read_on_the_sheet": 10,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 434,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.03,
+    "max_m": 1.32,
+    "mean_m": 1.28,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "Both dimensions; no marginal figures.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 27,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 420,1050,320,270",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Lake - Randolph tier"
+   }
+  },
+  {
+   "id": "blk_west_lake_canal",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "canal",
+    "east": "west_water"
+   },
+   "boundary_local_enu_m": [
+    [
+     -151.93,
+     -120.65
+    ],
+    [
+     -44.81,
+     -121.51
+    ],
+    [
+     -39.56,
+     -239.94
+    ],
+    [
+     -146.28,
+     -239.07
+    ]
+   ],
+   "area_m2": 12657.6,
+   "frontage_m": 106.93,
+   "frontage_ft": 350.8,
+   "depth_m": 118.38,
+   "lots_per_column": 5,
+   "alley_local_enu_m": [
+    [
+     -101.12,
+     -121.06
+    ],
+    [
+     -95.62,
+     -121.1
+    ],
+    [
+     -90.18,
+     -239.53
+    ],
+    [
+     -95.66,
+     -239.48
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 1,
+     "frontage_m": 23.71,
+     "depth_m": 50.8,
+     "polygon": [
+      [
+       -151.93,
+       -120.65
+      ],
+      [
+       -101.12,
+       -121.06
+      ],
+      [
+       -100.03,
+       -144.74
+      ],
+      [
+       -150.8,
+       -144.33
+      ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 2,
+     "frontage_m": 23.71,
+     "depth_m": 50.76,
+     "polygon": [
+      [
+       -150.8,
+       -144.33
+      ],
+      [
+       -100.03,
+       -144.74
+      ],
+      [
+       -98.94,
+       -168.43
+      ],
+      [
+       -149.67,
+       -168.02
+      ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 3,
+     "frontage_m": 23.71,
+     "depth_m": 50.72,
+     "polygon": [
+      [
+       -149.67,
+       -168.02
+      ],
+      [
+       -98.94,
+       -168.43
+      ],
+      [
+       -97.84,
+       -192.11
+      ],
+      [
+       -148.54,
+       -191.7
+      ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 4,
+     "frontage_m": 23.71,
+     "depth_m": 50.68,
+     "polygon": [
+      [
+       -148.54,
+       -191.7
+      ],
+      [
+       -97.84,
+       -192.11
+      ],
+      [
+       -96.75,
+       -215.8
+      ],
+      [
+       -147.41,
+       -215.39
+      ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 5,
+     "frontage_m": 23.71,
+     "depth_m": 50.64,
+     "polygon": [
+      [
+       -147.41,
+       -215.39
+      ],
+      [
+       -96.75,
+       -215.8
+      ],
+      [
+       -95.66,
+       -239.48
+      ],
+      [
+       -146.28,
+       -239.07
+      ]
+     ],
+     "plat_lot_number": 10,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 1,
+     "frontage_m": 23.71,
+     "depth_m": 50.8,
+     "polygon": [
+      [
+       -95.62,
+       -121.1
+      ],
+      [
+       -44.81,
+       -121.51
+      ],
+      [
+       -43.76,
+       -145.2
+      ],
+      [
+       -94.54,
+       -144.79
+      ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 2,
+     "frontage_m": 23.71,
+     "depth_m": 50.76,
+     "polygon": [
+      [
+       -94.54,
+       -144.79
+      ],
+      [
+       -43.76,
+       -145.2
+      ],
+      [
+       -42.71,
+       -168.88
+      ],
+      [
+       -93.45,
+       -168.47
+      ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 3,
+     "frontage_m": 23.71,
+     "depth_m": 50.72,
+     "polygon": [
+      [
+       -93.45,
+       -168.47
+      ],
+      [
+       -42.71,
+       -168.88
+      ],
+      [
+       -41.66,
+       -192.57
+      ],
+      [
+       -92.36,
+       -192.16
+      ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 4,
+     "frontage_m": 23.71,
+     "depth_m": 50.68,
+     "polygon": [
+      [
+       -92.36,
+       -192.16
+      ],
+      [
+       -41.66,
+       -192.57
+      ],
+      [
+       -40.61,
+       -216.26
+      ],
+      [
+       -91.27,
+       -215.84
+      ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 5,
+     "frontage_m": 23.71,
+     "depth_m": 50.64,
+     "polygon": [
+      [
+       -91.27,
+       -215.84
+      ],
+      [
+       -40.61,
+       -216.26
+      ],
+      [
+       -39.56,
+       -239.94
+      ],
+      [
+       -90.18,
+       -239.53
+      ]
+     ],
+     "plat_lot_number": 9,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 492,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.02,
+    "max_m": 1.16,
+    "mean_m": 1.08,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "figure_read_on_this_block": {
+     "figure": "lot_depth_ft",
+     "ft": 180.0,
+     "printed": {
+      "west_column_ft": 180,
+      "east_column_ft": 180
+     },
+     "region": null,
+     "governs": "the east-west depth of a lot, and so the two columns and the alley"
+    },
+    "closure_against_the_committed_lines": {
+     "axis": "east to west",
+     "the_sheet_asks_ft": 378.0,
+     "the_committed_lines_give_ft": 350.8,
+     "short_by_ft": 27.2,
+     "so": "the lot lines below divide the block the committed lines give, in the arrangement and the count the sheet reads, and are NOT the printed figure seated at its printed size. What is short is this project's West Division street spacing and not the module — T-0445 is the ticket that would move those centrelines, and T-0444 and tools/measure_west_division_module.py report the same gap."
+    }
+   },
+   "plat_block_number": {
+    "number": 29,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "THE RIVERFRONT BLOCK THAT IS STILL A WHOLE BLOCK. It prints 180 at the north face of BOTH columns, so at this tier the branch has not yet eaten into the Canal-to-West-Water block and West Water Street runs its full course. That matters two tiers south, where it has."
+   }
+  },
+  {
+   "id": "blk_west_randolph_des_plaines",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "des_plaines",
+    "east": "jefferson"
+   },
+   "boundary_local_enu_m": [
+    [
+     -506.11,
+     -260.58
+    ],
+    [
+     -406.66,
+     -261.39
+    ],
+    [
+     -404.0,
+     -372.33
+    ],
+    [
+     -503.45,
+     -371.52
+    ]
+   ],
+   "area_m2": 11030.9,
+   "frontage_m": 99.46,
+   "frontage_ft": 326.3,
+   "depth_m": 110.91,
+   "lots_per_column": 5,
+   "alley_local_enu_m": [
+    [
+     -459.13,
+     -260.96
+    ],
+    [
+     -453.64,
+     -261.01
+    ],
+    [
+     -450.99,
+     -371.94
+    ],
+    [
+     -456.47,
+     -371.9
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 1,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -506.11,
+       -260.58
+      ],
+      [
+       -459.13,
+       -260.96
+      ],
+      [
+       -458.6,
+       -283.15
+      ],
+      [
+       -505.58,
+       -282.77
+      ]
+     ],
+     "plat_lot_number": 2,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 2,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -505.58,
+       -282.77
+      ],
+      [
+       -458.6,
+       -283.15
+      ],
+      [
+       -458.07,
+       -305.34
+      ],
+      [
+       -505.05,
+       -304.96
+      ]
+     ],
+     "plat_lot_number": 3,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 3,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -505.05,
+       -304.96
+      ],
+      [
+       -458.07,
+       -305.34
+      ],
+      [
+       -457.53,
+       -327.53
+      ],
+      [
+       -504.52,
+       -327.14
+      ]
+     ],
+     "plat_lot_number": 6,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 4,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -504.52,
+       -327.14
+      ],
+      [
+       -457.53,
+       -327.53
+      ],
+      [
+       -457.0,
+       -349.71
+      ],
+      [
+       -503.99,
+       -349.33
+      ]
+     ],
+     "plat_lot_number": 7,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "west",
+     "column": "west",
+     "row": 5,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -503.99,
+       -349.33
+      ],
+      [
+       -457.0,
+       -349.71
+      ],
+      [
+       -456.47,
+       -371.9
+      ],
+      [
+       -503.45,
+       -371.52
+      ]
+     ],
+     "plat_lot_number": 10,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 1,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -453.64,
+       -261.01
+      ],
+      [
+       -406.66,
+       -261.39
+      ],
+      [
+       -406.13,
+       -283.58
+      ],
+      [
+       -453.11,
+       -283.2
+      ]
+     ],
+     "plat_lot_number": 1,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 2,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -453.11,
+       -283.2
+      ],
+      [
+       -406.13,
+       -283.58
+      ],
+      [
+       -405.6,
+       -305.76
+      ],
+      [
+       -452.58,
+       -305.38
+      ]
+     ],
+     "plat_lot_number": 4,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 3,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -452.58,
+       -305.38
+      ],
+      [
+       -405.6,
+       -305.76
+      ],
+      [
+       -405.06,
+       -327.95
+      ],
+      [
+       -452.05,
+       -327.57
+      ]
+     ],
+     "plat_lot_number": 5,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 4,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -452.05,
+       -327.57
+      ],
+      [
+       -405.06,
+       -327.95
+      ],
+      [
+       -404.53,
+       -350.14
+      ],
+      [
+       -451.52,
+       -349.76
+      ]
+     ],
+     "plat_lot_number": 8,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    },
+    {
+     "tier": "east",
+     "column": "east",
+     "row": 5,
+     "frontage_m": 22.19,
+     "depth_m": 46.99,
+     "polygon": [
+      [
+       -451.52,
+       -349.76
+      ],
+      [
+       -404.53,
+       -350.14
+      ],
+      [
+       -404.0,
+       -372.33
+      ],
+      [
+       -450.99,
+       -371.94
+      ]
+     ],
+     "plat_lot_number": 9,
+     "plat_lot_confidence": "documented",
+     "plat_lot_numeral_read_in": "data/traces/thompson_west_division_lots.json"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 435,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.29,
+    "max_m": 1.33,
+    "mean_m": 1.31,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "figure_read_on_this_block": {
+     "figure": "lot_frontage_ft",
+     "ft": 75.6,
+     "printed": [
+      "75 3/5",
+      "75 3/5",
+      "75 3/5",
+      "75 3/5",
+      "75 3/5"
+     ],
+     "region": "122,1340,28,240",
+     "governs": "the north-south frontage of a lot, and so the row pitch"
+    },
+    "closure_against_the_committed_lines": {
+     "axis": "north to south",
+     "the_sheet_asks_ft": 378.0,
+     "the_committed_lines_give_ft": 363.9,
+     "short_by_ft": 14.1,
+     "so": "the lot lines below divide the block the committed lines give, in the arrangement and the count the sheet reads, and are NOT the printed figure seated at its printed size. What is short is this project's West Division street spacing and not the module — T-0445 is the ticket that would move those centrelines, and T-0444 and tools/measure_west_division_module.py report the same gap."
+    }
+   },
+   "plat_block_number": {
+    "number": 47,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "THE CLEAREST FRONTAGE READING ON THE SHEET. Five rows, five figures, all 75 3/5, the 7 and the 5 unambiguous and the fraction plainly a 3 over a 5. This is the block the frontage figure is taken from; block 26 confirms it."
+   }
+  },
+  {
+   "id": "blk_west_randolph_jefferson",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "jefferson",
+    "east": "clinton"
+   },
+   "boundary_local_enu_m": [
+    [
+     -382.26,
+     -261.59
+    ],
+    [
+     -320.1,
+     -262.09
+    ],
+    [
+     -291.99,
+     -262.31
+    ],
+    [
+     -289.34,
+     -373.26
+    ],
+    [
+     -319.9,
+     -373.01
+    ],
+    [
+     -379.61,
+     -372.52
+    ]
+   ],
+   "area_m2": 10012.4,
+   "frontage_m": 90.27,
+   "frontage_ft": 296.2,
+   "depth_m": 110.91,
+   "lots_read_on_the_sheet": 10,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 398,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.28,
+    "max_m": 1.32,
+    "mean_m": 1.31,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "Both dimensions; no marginal figures. Carries the word 'Reserved' written diagonally across its lots 3 and 4.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 46,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 420,1320,320,280",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "'Reserved' across the middle of the block, region 420,1320,320,280. Recorded as read; what it reserves it for the sheet does not say, and this file does not guess."
+   }
+  },
+  {
+   "id": "blk_west_randolph_canal",
+   "grid": "west_division",
+   "plat": "thompson_plat_1830",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "canal",
+    "east": "west_water"
+   },
+   "boundary_local_enu_m": [
+    [
+     -145.12,
+     -263.47
+    ],
+    [
+     -38.48,
+     -264.34
+    ],
+    [
+     -33.56,
+     -375.33
+    ],
+    [
+     -139.81,
+     -374.47
+    ]
+   ],
+   "area_m2": 11811.2,
+   "frontage_m": 106.45,
+   "frontage_ft": 349.2,
+   "depth_m": 110.96,
+   "lots_read_on_the_sheet": 10,
+   "subdivision_withheld": "this block prints no dimension that resolves, and a tier-mate's figure is not this block's — see `module.lot_subdivision_withheld`",
+   "alley_local_enu_m": null,
+   "lots": [],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 477,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.01,
+    "max_m": 1.14,
+    "mean_m": 1.06,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_commissioners_1830",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_commissioners_1830"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "west_division_thompson_1830",
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "confidence_of_the_figures": "documented",
+    "division": "west",
+    "arrangement": "two columns of lots backing onto an 18 ft NORTH-SOUTH alley, each lot fronting the north-south street on the outer side of its column",
+    "rows_read": 5,
+    "lots_read": 10,
+    "chosen_by": "this block's own entry on the sheet reading — its numerals, its row count and its own dimension figure",
+    "lot_subdivision_withheld": {
+     "why": "THIS BLOCK PRINTS NO DIMENSION THAT RESOLVES. The sheet dimensions the first block of a tier and lets the rest of the tier inherit, so fourteen of the twenty-two carry no figure at all and five more carry one the committed scan cannot resolve to a digit. Inheriting a tier-mate's figure is the one move `what_this_refutes` in the authored file exists to refuse — carrying the South Division's 80 ft west would have mis-sized every lot line, and carrying a neighbour's 75 3/5 along a tier is the same mistake one street shorter.",
+     "this_block_refused": "A frontage figure, for the same reason as block 29. Its two DIFFERENT depths, 180 and 150, are why `lot_depth_ft` is null here as well: the block has two and the file will not average them.",
+     "what_would_settle_it": "a scan of the same sheet that resolves this block's own marginal figures; the authored file names the crop region and the enlargements already tried",
+     "meanwhile": "the block stands with its boundary, its numeral, its lot COUNT and its ground, which is what a placement ticket needs to name it — it is the lot LINES that are withheld, not the block"
+    }
+   },
+   "plat_block_number": {
+    "number": 44,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "THE FIRST TIER WHERE THE RIVER TAKES SOMETHING. 180 at the north face of the west column and 150 at the north face of the east column: the branch has cut thirty feet off the depth of the lots fronting West Water Street. The block still carries all ten numerals — it is shortened, not subdivided differently. `lot_depth_ft` is left null because this block has two of them and the file will not average them into a number nobody wrote."
+   }
+  },
+  {
    "id": "blk_michigan_st_tract_west_north",
    "grid": "michigan_st_tract",
    "plat": "michigan_st_tract",
@@ -11804,6 +13568,153 @@
    }
   },
   {
+   "id": "blk_west_carroll_des_plaines",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "carroll",
+    "south": "fulton",
+    "west": "des_plaines",
+    "east": "jefferson"
+   },
+   "reason": "Des Plaines Street's committed centreline stops 47 m short of this block",
+   "plat_block_number": {
+    "number": 11,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "96 against the south row is the single most interesting figure in the West Division margins: it is a whole number where every other frontage on the sheet carries a fraction, and it makes this tier deeper than the square tiers by about twenty feet. Whatever it means, it is not the 458 ft module."
+   },
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_carroll_jefferson",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "carroll",
+    "south": "fulton",
+    "west": "jefferson",
+    "east": "clinton"
+   },
+   "reason": "Jefferson Street's committed centreline stops 46 m short of this block",
+   "plat_block_number": {
+    "number": 12,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 420,530,320,280",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Carroll - Fulton tier"
+   },
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_carroll_clinton",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "carroll",
+    "south": "fulton",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "reason": "Clinton Street's committed centreline stops 45 m short of this block",
+   "plat_block_number": {
+    "number": 13,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 720,530,340,280",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Carroll - Fulton tier"
+   },
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_carroll_canal",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "carroll",
+    "south": "fulton",
+    "west": "canal",
+    "east": "west_water"
+   },
+   "reason": "the sheet draws no block between these four lines. data/traces/thompson_west_division_lots.json reads every block the West Division carries, block by block, and none of them stands here; a cell generated where the plat draws none would be the grid inventing ground"
+  },
+  {
+   "id": "blk_west_fulton_canal",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "fulton",
+    "south": "lake",
+    "west": "canal",
+    "east": "west_water"
+   },
+   "reason": "the sheet draws no block between these four lines. data/traces/thompson_west_division_lots.json reads every block the West Division carries, block by block, and none of them stands here; a cell generated where the plat draws none would be the grid inventing ground"
+  },
+  {
+   "id": "blk_west_lake_clinton",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "plat_block_number": {
+    "number": 28,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 720,1050,290,270",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Lake - Randolph tier"
+   },
+   "already_derived_as": "blk_lake_clinton",
+   "reason": "this ground is already emitted by the Original Town's grid as `blk_lake_clinton`, and the same ground derived twice is the one thing a generated layer may not do. It stands there on the SOUTH Division module with a `west_division_module_refused` note beside it, which this reading says is the wrong arrangement for it — and this block prints no dimension of its own, so this grid would withhold its lot lines rather than re-cut them. Moving it onto this grid moves lot lines that committed structure records are seated against, and that is its own ticket rather than this cell's."
+  },
+  {
+   "id": "blk_west_randolph_clinton",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "plat_block_number": {
+    "number": 45,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 720,1320,290,280",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Randolph - Washington tier"
+   },
+   "already_derived_as": "blk_randolph_clinton",
+   "reason": "this ground is already emitted by the Original Town's grid as `blk_randolph_clinton`, and the same ground derived twice is the one thing a generated layer may not do. It stands there on the SOUTH Division module with a `west_division_module_refused` note beside it, which this reading says is the wrong arrangement for it — and this block prints no dimension of its own, so this grid would withhold its lot lines rather than re-cut them. Moving it onto this grid moves lot lines that committed structure records are seated against, and that is its own ticket rather than this cell's."
+  },
+  {
    "id": "kinzies_addition_block_3",
    "grid": "kinzies_addition",
    "bounded_by": {
@@ -12378,6 +14289,214 @@
     "authored_in": "data/traces/kinzie_addition_block_numbering.json",
     "note": "Pine Street to Sand Street"
    }
+  },
+  {
+   "id": "blk_west_north_town_line_to_carroll_10",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": null,
+    "south": "carroll",
+    "west": "des_plaines",
+    "east": "jefferson",
+    "tier": "north town line - Carroll"
+   },
+   "plat_block_number": {
+    "number": 10,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 100,340,600,230",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the north town line - Carroll tier"
+   },
+   "reason": "this cell is closed by the plat's north town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 8
+  },
+  {
+   "id": "blk_west_north_town_line_to_carroll_9",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": null,
+    "south": "carroll",
+    "west": "jefferson",
+    "east": "clinton",
+    "tier": "north town line - Carroll"
+   },
+   "plat_block_number": {
+    "number": 9,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 380,340,330,230",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the north town line - Carroll tier"
+   },
+   "reason": "this cell is closed by the plat's north town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 8
+  },
+  {
+   "id": "blk_west_north_town_line_to_carroll_8",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": null,
+    "south": "carroll",
+    "west": "clinton",
+    "east": "canal",
+    "tier": "north town line - Carroll"
+   },
+   "plat_block_number": {
+    "number": 8,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": false,
+    "graded_by": "the file's reading rule — this entry states no confidence because it prints no dimension to grade, and the grade here is of the NUMERAL, counted in the crop the entry cites at 700,340,360,230",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 8,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the north town line - Carroll tier"
+   },
+   "reason": "this cell is closed by the plat's north town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 8
+  },
+  {
+   "id": "blk_west_fulton_to_lake_22",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "fulton",
+    "south": "lake",
+    "west": "canal",
+    "east": null,
+    "tier": "Fulton - Lake"
+   },
+   "plat_block_number": {
+    "number": 22,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 5,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "THE RIVERFRONT BLOCK, AND IT IS NOT A BLOCK. The South Branch cuts it to a wedge: ONE column of four lots, 2 3 6 7 running north to south with each face narrower than the one below it, and lot 8 in a detached triangle south-east of them. Lots 1, 4, 5, 9 and 10 are not on the sheet. Its four printed figures widen 17, 70, 118 down the wedge and 141 across the triangle's south face — the river's diagonal, written as dimensions."
+   },
+   "reason": "this cell is closed by the South Branch of the Chicago River, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 5
+  },
+  {
+   "id": "blk_west_washington_to_south_town_line_48",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "washington",
+    "south": null,
+    "west": "des_plaines",
+    "east": "jefferson",
+    "tier": "Washington - south town line"
+   },
+   "plat_block_number": {
+    "number": 48,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "The south face of this block and block 49 is the dimension row the whole file leans on: 180 under each of the four columns, 80 in Jefferson Street between them, and the sheet's 'Due East and West Line' written under it all."
+   },
+   "reason": "this cell is closed by the plat's south town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_washington_to_south_town_line_49",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "washington",
+    "south": null,
+    "west": "jefferson",
+    "east": "clinton",
+    "tier": "Washington - south town line"
+   },
+   "plat_block_number": {
+    "number": 49,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Washington - south town line tier"
+   },
+   "reason": "this cell is closed by the plat's south town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_washington_to_south_town_line_50",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "washington",
+    "south": null,
+    "west": "clinton",
+    "east": "canal",
+    "tier": "Washington - south town line"
+   },
+   "plat_block_number": {
+    "number": 50,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "block of the Washington - south town line tier"
+   },
+   "reason": "this cell is closed by the plat's south town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 10
+  },
+  {
+   "id": "blk_west_washington_to_south_town_line_51",
+   "grid": "west_division",
+   "bounded_by": {
+    "north": "washington",
+    "south": null,
+    "west": "canal",
+    "east": "west_water",
+    "tier": "Washington - south town line"
+   },
+   "plat_block_number": {
+    "number": 51,
+    "confidence": "documented",
+    "confidence_stated_on_the_entry": true,
+    "graded_by": "the entry's own `confidence`",
+    "numeral_on_sheet": true,
+    "lot_numerals_read": 10,
+    "sources": [
+     "thompson_plat_1830"
+    ],
+    "authored_in": "data/traces/thompson_west_division_lots.json",
+    "note": "THE RIVER HAS TAKEN MORE AGAIN. 180 under the west column and 88 under the east: at the south town line the lots fronting West Water Street are less than half the depth of a full lot. Read with 44's 150 and 29's 180, the three figures are the branch's diagonal written as three numbers, north to south, and they are printed rather than measured. The block prints a bearing North 8 East up its east side."
+   },
+   "reason": "this cell is closed by the plat's south town line, which is not a committed street line, so this grid has no cell to draw — the block's numerals and its lot count are carried here rather than lost",
+   "lots_the_reading_gives": 10
   },
   {
    "id": "blk_wabansia_a_t1",

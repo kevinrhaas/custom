@@ -3489,6 +3489,132 @@
       },
       "buckets": [
         {
+          "key": "ground/blk_west_fulton_des_plaines",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_fulton_jefferson",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_fulton_clinton",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_lake_des_plaines",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_lake_jefferson",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_lake_canal",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_randolph_des_plaines",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_randolph_jefferson",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/blk_west_randolph_canal",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 0,
+          "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
           "key": "ground/blk_michigan_st_tract_west_north",
           "axes": {
             "division": "north"
