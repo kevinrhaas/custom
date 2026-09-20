@@ -651,6 +651,19 @@ step "Wabansia's streets re-derive from the readings and the committed Kinzie li
 step "Kinzie Street's Wabansia reach re-derives, meets the committed line and bends nothing" \
   python3 tools/carry_kinzie_west.py --check
 
+# T-1443, and it is the same argument turned through ninety degrees. `carroll`, `fulton`,
+# `lake`, `randolph` and `washington` all stopped at local east -320 — a clip that was
+# this reconstruction's own extent and never a claim about the street, as `fulton`'s own
+# note said. T-1416 built the field out to east -705 and T-1430 seated `des_plaines`, so
+# both reasons are gone and the five are carried to that street. This holds the carry to
+# the two things that would quietly invalidate it: that each reach is the committed line
+# EXTENDED and not re-fitted — the old west vertex stays on the new line, so no platted
+# lot line moves and no corridor is re-cut — and that every metre of it stands on dry
+# modelled ground. `fulton`'s two surviving intersections west of the clip are the
+# corroboration and they are re-measured here, not quoted.
+step "the West Division's five tiers re-derive to Des Plaines, bend nothing and stand on dry ground" \
+  python3 tools/carry_west_tiers_west.py --check
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled
@@ -1411,6 +1424,19 @@ selftest "West Water still stands one half-corridor off the bank, and the two re
 # is committed data and `--reread` is what goes back to the 7 MB sheet.
 selftest "the North Division lines still lie on the streets they continue, and say what names them" \
   python3 tools/measure_north_division_streets.py --self-test
+
+# T-1457, the same sheet read DOWN instead of across. T-0451 gave the tier a width and no
+# depth, and T-1436 could not cut lots into it because nothing committed said where the
+# blocks stop. They stop on a line the plat draws, and the tier is a WEDGE: the lower lot
+# row is the 180 ft the sheet letters in every block, and the upper row takes up the whole
+# difference, 178.6 ft at Franklin to 232.7 at Wolcott. This holds that reading against the
+# sheet's own lettered figures, holds the px-to-northing fit against T-0451's independent
+# px-to-easting fit on the other axis, and — the assertion that matters most — holds the
+# REFUSAL: committed Kinzie is held out of the fit and missed by 16.8 m at its worst, which
+# is a shear, so depths may be published from this sheet up there and northings may not.
+# Everything is arithmetic on two committed files; `--reread` is what goes back to the sheet.
+selftest "the North Division tier is still the wedge the plat letters, and still refuses to publish a northing" \
+  python3 tools/measure_north_division_tier_depth.py --self-test
 
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
