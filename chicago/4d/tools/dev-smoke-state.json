@@ -2573,6 +2573,40 @@
         ]
       },
       "source": "/tmp/smoke_m1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 199,
+      "takenAt": "2026-09-20T01:30:46.388Z",
+      "ref": "steward/t-1193-west-wall-derivation",
+      "commit": "26fa502f2a05",
+      "devCommit": "749321d57bf2",
+      "treeHash": "sha256:dd0e00b44c4894d4",
+      "treeDirty": false,
+      "changelogHash": "sha256:ff1a3481022655f3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          4.1,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke_m12b.log"
     }
   ]
 }
