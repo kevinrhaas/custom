@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 259,
+  "count": 261,
   "liberties": [
     {
       "id": "L1",
@@ -14760,7 +14760,7 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
-      "recorded": "2026-09-18",
+      "recorded": "2026-09-17",
       "revised": null,
       "fields": [
         {
@@ -14773,7 +14773,22 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-09-17. ### L-rc-sex-rate — 587 people are sexed by a coin weighted at the rate of the roll that names them **What is invented.** Of the 1,282 people the resident layer names, 593 carried no sex after T-1303 had read every gendered title and every forename this project holds evidence about. 587 of them now carry one, and NOT ONE of those 587 values is a reading about that person. Each is a draw: a number from `blake2s(<person_id>:sex_ratio)` against the male rate measured on the roll the person was named off, graded `reconstructed`, carrying the seed that redraws it and the evidence that would retire it. 552 came up male and 35 female. **What is NOT invented.** The rates. They are measured on this layer's own people, roll by roll, over those whose sex the evidence already settles: the letter lists read 351 men in 372 settled names (94.4%), the civic rolls 197 in 208 (94.7%), the unclaimed names 83 in 92 (90.2%). A roll settling fewer than 50 names is not measured on its own and draws at the pooled rate of every roll (93.9%); `documented` and `placed` do that, for 27 people between them. The measurement is committed, re-derived on every commit, and printed in `data/reconstruction/1835_sex_age_model.json`. **The bias, and it runs one way.** The forename table those rates are measured through was derived mostly from this layer's men, so a woman's forename is likelier than a man's to be missing from it and to fall into the very group being drawn for. Every rate here is therefore a **ceiling** on its roll's male share rather than a point reading of it, and the 552/35 split leans male by an amount this pass cannot bound. Smoothing it toward a guessed correction would be a second invention on top of the first, so it is stated instead. **What it is not.** It is not a claim about the town. The rolls read 93.9% male; the town model reads 120.9–150 males per 100 females, a 55–60% male town. Nothing here is drawn at the town's ratio, because none of these people is a draw from the town — they are people a roll already named, and a roll of correspondents, voters and subscribers names adult men. The women and children the town's pyramid lacks are **T-1174**'s, under its own quota, as new people."
+          "text": "2026-09-17."
+        }
+      ]
+    },
+    {
+      "id": "L-rc-sex-rate",
+      "title": "587 people are sexed by a coin weighted at the rate of the roll that names them",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-18",
+      "revised": null,
+      "fields": [
+        {
+          "label": "What is invented",
+          "text": "Of the 1,282 people the resident layer names, 593 carried no sex after T-1303 had read every gendered title and every forename this project holds evidence about. 587 of them now carry one, and NOT ONE of those 587 values is a reading about that person. Each is a draw: a number from `blake2s(<person_id>:sex_ratio)` against the male rate measured on the roll the person was named off, graded `reconstructed`, carrying the seed that redraws it and the evidence that would retire it. 552 came up male and 35 female. **What is NOT invented.** The rates. They are measured on this layer's own people, roll by roll, over those whose sex the evidence already settles: the letter lists read 351 men in 372 settled names (94.4%), the civic rolls 197 in 208 (94.7%), the unclaimed names 83 in 92 (90.2%). A roll settling fewer than 50 names is not measured on its own and draws at the pooled rate of every roll (93.9%); `documented` and `placed` do that, for 27 people between them. The measurement is committed, re-derived on every commit, and printed in `data/reconstruction/1835_sex_age_model.json`. **The bias, and it runs one way.** The forename table those rates are measured through was derived mostly from this layer's men, so a woman's forename is likelier than a man's to be missing from it and to fall into the very group being drawn for. Every rate here is therefore a **ceiling** on its roll's male share rather than a point reading of it, and the 552/35 split leans male by an amount this pass cannot bound. Smoothing it toward a guessed correction would be a second invention on top of the first, so it is stated instead. **What it is not.** It is not a claim about the town. The rolls read 93.9% male; the town model reads 120.9–150 males per 100 females, a 55–60% male town. Nothing here is drawn at the town's ratio, because none of these people is a draw from the town — they are people a roll already named, and a roll of correspondents, voters and subscribers names adult men. The women and children the town's pyramid lacks are **T-1174**'s, under its own quota, as new people."
         },
         {
           "label": "How to resolve",
@@ -14781,11 +14796,30 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-09-18. --- ### L-rc-age-conditioning — every drawn age band assumes that a roll names an adult, and no source says so **What is invented.** 1,212 of the layer's 1,282 people now carry an age band drawn from the 1840 Chicago schedule's sex × age columns, seeded by their own id. The band is the invention; so is the CONDITIONING that decides which columns the draw may land in: | conditioning | people | drawn from | what it assumes | |---|---:|---|---| | `civic_list_20_and_over` | 192 | the schedule's 20-and-over bands | that a poll, tax or muster list names somebody 20 or over | | `named_on_a_roll_15_and_over` | 1,019 | the 15-and-over bands | that a roll naming a person in their own right names somebody 15 or over | | `dependent_child_under_15` | 1 | the under-15 bands | nothing beyond the record, which calls the person a child | **Why it had to be declared rather than derived.** T-1303 found and refused the shortcut: a poll list, a civic office or a trade says a person was an adult and says nothing about when they were born, and the franchise's own age rule is not in any source record this project holds. The ticket's instruction was to find the statute and cite it or draw the band from the model and say so. There is no statute in this corpus, so this is the saying-so. `15` rather than `20` for the general case because an apprentice or a journeyman stands on a trade roll; the 1840 schedule counts a child as a tally inside a household and never as a correspondent, which is the whole of the argument that a roll's names are not children. **What it costs.** Any person on these rolls who was in fact 14 or younger cannot be drawn as a child, and any voter under 20 cannot be drawn under 20. Both are excluded by assumption rather than by evidence. **What is NOT invented.** No birth year. A draw yields the band the schedule prints — `20 under 30` — and the card prints that interval. An exact year taken from a decadal band would read as a record of a birth, which is the misrepresentation T-1303 refused six thin death-notice matches to avoid, and it is refused here by the writer and by its self-test. The 1840 distribution is used only as the schedule's own `what_this_may_calibrate` allows: the sex ratio and the child share as shapes. It names nobody and supplies nobody."
+          "text": "2026-09-18."
+        }
+      ]
+    },
+    {
+      "id": "L-rc-age-conditioning",
+      "title": "every drawn age band assumes that a roll names an adult, and no source says so",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-18",
+      "revised": null,
+      "fields": [
+        {
+          "label": "What is invented",
+          "text": "1,212 of the layer's 1,282 people now carry an age band drawn from the 1840 Chicago schedule's sex × age columns, seeded by their own id. The band is the invention; so is the CONDITIONING that decides which columns the draw may land in: | conditioning | people | drawn from | what it assumes | |---|---:|---|---| | `civic_list_20_and_over` | 192 | the schedule's 20-and-over bands | that a poll, tax or muster list names somebody 20 or over | | `named_on_a_roll_15_and_over` | 1,019 | the 15-and-over bands | that a roll naming a person in their own right names somebody 15 or over | | `dependent_child_under_15` | 1 | the under-15 bands | nothing beyond the record, which calls the person a child | **Why it had to be declared rather than derived.** T-1303 found and refused the shortcut: a poll list, a civic office or a trade says a person was an adult and says nothing about when they were born, and the franchise's own age rule is not in any source record this project holds. The ticket's instruction was to find the statute and cite it or draw the band from the model and say so. There is no statute in this corpus, so this is the saying-so. `15` rather than `20` for the general case because an apprentice or a journeyman stands on a trade roll; the 1840 schedule counts a child as a tally inside a household and never as a correspondent, which is the whole of the argument that a roll's names are not children. **What it costs.** Any person on these rolls who was in fact 14 or younger cannot be drawn as a child, and any voter under 20 cannot be drawn under 20. Both are excluded by assumption rather than by evidence. **What is NOT invented.** No birth year. A draw yields the band the schedule prints — `20 under 30` — and the card prints that interval. An exact year taken from a decadal band would read as a record of a birth, which is the misrepresentation T-1303 refused six thin death-notice matches to avoid, and it is refused here by the writer and by its self-test. The 1840 distribution is used only as the schedule's own `what_this_may_calibrate` allows: the sex ratio and the child share as shapes. It names nobody and supplies nobody."
         },
         {
           "label": "How to resolve",
           "text": "a source stating a person's age or birth year retires that person's band and nothing else. A period statement of the franchise's or the militia's age rule, committed as a source record, would turn `civic_list_20_and_over` from a convention into a reading. Related: tickets **T-1304**, from **T-1168**; **T-1303** handed the finding on."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-18."
         }
       ]
     },
@@ -14795,12 +14829,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[named_families]",
+        "count": 3
+      },
       "recorded": "2026-09-18",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "the reconstruction programme's `named_families` stage (T-1314) writes, into the household cards of the 1835 residents the 1840 federal census bridge has `validated`, the members that census COUNTS in the head's household five years later and does not name. Three people land by it today: `rc_murphy_thomas` (a boy of 5–9 on the scene date), `rc_murphy_honora` (a woman of 25–34) and `rc_adams_nancy` (a woman of 15–24). Each carries an invented given name drawn from `data/reconstruction/1835_invented_name_pools.json` and the head's own surname."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[named_families]` — 3 people in the 2 cards the bridge validated, re-derivable from `tools/reconstruct_residents_1835.py --check`."
         },
         {
           "label": "Why",
@@ -14923,12 +14965,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[readmissions]",
+        "count": 182
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
-          "text": "the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction programme (T-1167) spends four of its seven classes and re-admits **820** of them: **734** cards whose presence on 1 July 1835 the research left `uncertain` are given a **second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new cards are minted under read names the town carried on no row — 19 from a single in-window appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own biography dates an arrival before the scene. **117** offered rows are withheld, each with its reason: 37 because a card already in the layer shares the surname and first given initial — the discriminator this project's own directory crosswalks match on — 41 because the row carries no readable date at all, and 39 because T-1144's reading of the row shows its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day before it. A lag nothing measures is not a lag a persistence rate may be applied to. **What is invented, exactly.** Two things and no more. First, **that these people were in Chicago on 1 July 1835**, which no source says of any of them — that is what \"withheld\" meant. Second, **the rate at which a person the corpus names stops being found in Chicago**, because nothing measures it. Everything else — the names, the readings, the dates, the sources — is the corpus's own, and every re-admitted record prints the name as read beside the name as rendered. **What bounds the rate.** Three of this project's crosswalks count how many of the SAME 1,280-person layer a later Chicago volume still names: Fergus 1839 (164), Fergus 1843 (136) and Norris 1844 (112). How much of the town each volume covers is unknown and that unknown multiplies all three counts alike, so it cancels out of the SLOPE of `ln(matched)` against time and does not cancel out of any one level. A least-squares line through the three gives **λ = 0.06784 a year** — a 93.4 % chance of still being in the town a year later — and `persistence(L) = exp(-λL)` prices a card whose evidence stops L years before the scene. Each ruling carries the seed that redraws it (`<household_id>:persistence`), so the whole draw re-derives on demand. **Which way it is wrong if it is wrong, said rather than corrected.** The steady-coverage assumption is load-bearing and is the one most likely to fail: Fergus 1839 is a list first set up from memory in 1839 and completed in 1876, and the other two are ordinary printed directories. If coverage GREW across the three volumes, the observed fall is shallower than the real one, λ is too small, and this stage re-admits **too many** people rather than too few. Published persistence studies of frontier towns read nearer 0.15–0.25 a year than 0.068. That is stated here instead of corrected for, because correcting it would mean choosing a number rather than measuring one. **What is NOT done here.** No refusal is overturned. Every ledger disposition, grade, rung and inferred or attested value in the research layer is untouched, and the inferred `uncertain` each ruling stands beside is kept on the card and printed beside the reconstruction in the People view. The re-admissions are written to `data/reconstruction/1835_readmissions.json` and `data/residents/readmitted/`, outside the directory the mint writers re-derive, so a mint re-run is still byte-identical and nothing here can be mistaken for research. R4 (a family for a head the town already holds) is T-1170's and R6 (the Native, Métis and Black cohorts, which carry their own review) is T-1177's; neither is spent here. **What it leaves open.** The order book models 643 households in the town and the layer now reads 1,133 present. The two counts are not in the same unit — 736 of the layer's households are letter-list CONTAINERS holding one person and arguing for a person rather than a dwelling — and reconciling them is T-1171's and T-1179's."
+          "text": "the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction programme (T-1167) spends four of its seven classes and re-admits **820** of them: **734** cards whose presence on 1 July 1835 the research left `uncertain` are given a **second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new cards are minted under read names the town carried on no row — 19 from a single in-window appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own biography dates an arrival before the scene. **117** offered rows are withheld, each with its reason: 37 because a card already in the layer shares the surname and first given initial — the discriminator this project's own directory crosswalks match on — 41 because the row carries no readable date at all, and 39 because T-1144's reading of the row shows its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day before it. A lag nothing measures is not a lag a persistence rate may be applied to."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[readmissions]` — 182 people, in 182 cards of their own in `data/residents/readmitted/`, re-derivable from `tools/readmit_borderline_roster.py --check`. The 820 of the title is what the stage RE-ADMITS and the 182 is what it MINTS: 734 of the 820 are a second presence written beside a reading on a card this layer already held, and only the 86 new names and the 96 rows that carry their own household get a card here. The stage's own ledger prints both figures; this one is the count of people who exist because this stage ran. **What is invented, exactly.** Two things and no more. First, **that these people were in Chicago on 1 July 1835**, which no source says of any of them — that is what \"withheld\" meant. Second, **the rate at which a person the corpus names stops being found in Chicago**, because nothing measures it. Everything else — the names, the readings, the dates, the sources — is the corpus's own, and every re-admitted record prints the name as read beside the name as rendered. **What bounds the rate.** Three of this project's crosswalks count how many of the SAME 1,280-person layer a later Chicago volume still names: Fergus 1839 (164), Fergus 1843 (136) and Norris 1844 (112). How much of the town each volume covers is unknown and that unknown multiplies all three counts alike, so it cancels out of the SLOPE of `ln(matched)` against time and does not cancel out of any one level. A least-squares line through the three gives **λ = 0.06784 a year** — a 93.4 % chance of still being in the town a year later — and `persistence(L) = exp(-λL)` prices a card whose evidence stops L years before the scene. Each ruling carries the seed that redraws it (`<household_id>:persistence`), so the whole draw re-derives on demand. **Which way it is wrong if it is wrong, said rather than corrected.** The steady-coverage assumption is load-bearing and is the one most likely to fail: Fergus 1839 is a list first set up from memory in 1839 and completed in 1876, and the other two are ordinary printed directories. If coverage GREW across the three volumes, the observed fall is shallower than the real one, λ is too small, and this stage re-admits **too many** people rather than too few. Published persistence studies of frontier towns read nearer 0.15–0.25 a year than 0.068. That is stated here instead of corrected for, because correcting it would mean choosing a number rather than measuring one. **What is NOT done here.** No refusal is overturned. Every ledger disposition, grade, rung and inferred or attested value in the research layer is untouched, and the inferred `uncertain` each ruling stands beside is kept on the card and printed beside the reconstruction in the People view. The re-admissions are written to `data/reconstruction/1835_readmissions.json` and `data/residents/readmitted/`, outside the directory the mint writers re-derive, so a mint re-run is still byte-identical and nothing here can be mistaken for research. R4 (a family for a head the town already holds) is T-1170's and R6 (the Native, Métis and Black cohorts, which carry their own review) is T-1177's; neither is spent here. **What it leaves open.** The order book models 643 households in the town and the layer now reads 1,133 present. The two counts are not in the same unit — 736 of the layer's households are letter-list CONTAINERS holding one person and arguing for a person rather than a dwelling — and reconciling them is T-1171's and T-1179's."
         },
         {
           "label": "How to resolve",
@@ -14973,12 +15023,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[trade_households]",
+        "count": 308
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "`tools/reconstruct_trade_households.py` (T-1347, of T-1173) writes 308 reconstructed heads into `data/residents/reconstructed_trades/`, one per person the reconstruction order book counts the town of 1 July 1835 short of in its twenty-four `family/trade` buckets — 197 men and 111 women, by sex, age band and division. Each is a head of their own household, carries an invented name from the pools, an age band the bucket set, and **a trade dealt from the Fergus 1839 directory's printed shares** (T-1346's table: 1,377 mapped entries over 88 trades)."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[trade_households]` — 308 people in 308 cards, one head apiece, re-derivable from `tools/reconstruct_trade_households.py --check`."
         },
         {
           "label": "Why",
@@ -15004,12 +15062,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[transients]",
+        "count": 307
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "`tools/reconstruct_transients_1835.py` (T-1353, of T-1178) adopts **384** as the transient population of 1 July 1835 — the `twice the 1843 rate` reading of the 192-to-900 bracket L245 recorded — reserves **77** of it for the land-sale purchasers the Public Domain register NAMES, and mints the remaining **307** as reconstructed visitors in 83 `camp` and `party` households in `data/residents/transients/`. Their sleeping places are dealt **equally across the six classes** T-1352 names, remainder to the first in its printed order: 51 apiece, 52 to \"a room in a public house\"."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[transients]` — 307 people in 83 cards, re-derivable from `tools/reconstruct_transients_1835.py --check`. 307 and not the 384 of the title: the point adopted is the whole crowd, and 77 of it is reserved for purchasers the Public Domain register names and is not minted here. The count a register may hold this entry to is the count of people this entry invented."
         },
         {
           "label": "Why",
@@ -15035,12 +15101,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[underdocumented]",
+        "count": 102
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "`tools/reconstruct_underdocumented.py` (T-1376, of T-1177) writes **87** reconstructed cards into `data/residents/underdocumented/`, one per man of the company the Illinois State Archives index of Black Hawk War enrollments heads `INDIAN`, enrolled at Chicago in 1832. It is the first output of stage `underdocumented`, the only stage of the programme licensed to write a Native or Métis person. Every card carries `review_required: true` and `touches_removal: true` with the sentence that says why, the `community` value **`native`** and **no nation at all**, and `origin: null`."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[underdocumented]` — 102 people in 94 cards, of which **87** are this entry's and 15 are **L255**'s `free_black` sub-stage. The total is restated rather than the selector narrowed, for the reason the four reconstructed-business entries restate theirs: the stage is the unit the programme declares and the register says how large the whole of it is. Re-derivable from `tools/reconstruct_underdocumented.py --check` and `tools/reconstruct_free_black.py --check` together."
         },
         {
           "label": "Why",
@@ -15103,12 +15177,20 @@
         "sauganash_hotel"
       ],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[lodgers]",
+        "count": 75
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "`tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each is an invention of a different size. (1) It **seats seventeen people the layer already holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew at a household size of one — into a named or reconstructed lodging house, writing `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints seventy of them as boarders and lodgers** nobody names, drawn against the order book's own `household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this programme itself raised as a lodging place, at the trade that roof's own `function` states. Nothing is hand-authored: every value comes from a seed a reader can retype, and `--check` re-derives all twelve cards and the ledger byte for byte."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[lodgers]` — 75 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life."
         },
         {
           "label": "Why",
@@ -15192,12 +15274,20 @@
       "section": "per_subject",
       "subjects": [],
       "covers": [],
+      "scope": {
+        "enumeration": "residents.persons[underdocumented]",
+        "count": 102
+      },
       "recorded": "2026-09-19",
       "revised": null,
       "fields": [
         {
           "label": "Decision",
           "text": "`tools/reconstruct_free_black.py` (T-1377, of T-1177) writes **7** households, **15** people and **2** firms — the `free_black` sub-stage of stage `underdocumented`, beside T-1376's `native_and_metis`. Cards in `data/residents/underdocumented/hh_fb_*.json`, firms in `data/businesses/authored/rcb_fb_*.json`, the derived record `data/reconstruction/1835_free_black.json`. Every person is `grade: reconstructed`, wears the `rc_fb_` prefix a grep finds, carries `community: free_black`, and carries `review_required: true` with its own sentence. `touches_removal` is **false**, deliberately: this is not the removal, and borrowing that flag would borrow the weight of a subject this stage is not about."
+        },
+        {
+          "label": "Scope",
+          "text": "`residents.persons[underdocumented]` — 102 people in 94 cards, of which **15** are this entry's and 87 are **L250**'s `native_and_metis` sub-stage. Restated whole for the reason L250 gives."
         },
         {
           "label": "Why",
