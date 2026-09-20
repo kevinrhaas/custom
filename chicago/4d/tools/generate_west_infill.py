@@ -438,13 +438,12 @@ FACING_CORRECTIONS = {"west_rec_033"}
 # leave it unstated — the roof is not built. They keep their ids, their families and
 # their dealt sequence numbers exactly as the terrain hold kept them, so the day the
 # centreline is carried they instantiate unchanged. Measured 2026-09-20; T-1490 owns it.
-BOUNDARY_HOLDS = {
-    "west_rec_027",  # 12.9 m from the leg, 23.8 m of drift
-    "west_rec_029",  # 19.2 m from the leg, 23.2 m of drift
-    "west_rec_032",  # 22.6 m from the leg, 22.7 m of drift
-    "west_rec_035",  #  6.9 m from the leg, 22.0 m of drift
-    "west_rec_037",  #  7.4 m from the leg, 22.4 m of drift
-}
+# The slots and their measurements are RECORDED IN THE RECIPE, under
+# `terrain_and_hydrology_gate.boundary_hold`, and read from there rather than retyped:
+# `tools/reconcile_665.py` has to count the same hold, and two copies of a hold are how
+# a schedule and a generator come to disagree about what the parcel still owes.
+BOUNDARY_HOLDS = frozenset(
+    load(RECIPE_PATH)["terrain_and_hydrology_gate"]["boundary_hold"]["slots"])
 HELD_IDS = {f"{PREFIX}{rid.split('_')[-1]}" for rid in BOUNDARY_HOLDS}
 
 # The reading T-1444 took of the recipe's fourth terrain rule, frozen so the corridor

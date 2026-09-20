@@ -13712,12 +13712,14 @@ the tickets **T-1419**, **T-1186** (the parent), **T-1404** (the premises ruling
 
 ### L263 — The shingle exposure is set at 0.14 m, which gives every shingled roof in this town its rhythm from a period stock and not from a source
 
-**Scope:** `structures.phases[roof_type_stated]` — 399 phases. Every phase that states a
+**Scope:** `structures.phases[roof_type_stated]` — 394 phases. Every phase that states a
 roof type takes this exposure the moment the `roof_plane` substrate carries a tile, which is
 why the population is counted here rather than described. No record's `roof_type` or pitch
 moves: this entry is about the SURFACE drawn on a roof already argued elsewhere. The count
-was 364 when this was recorded; T-1444 released the West Division parcel's 35 held slots and
-each states a roof type, so the exposure now dresses 399 roofs on the same one ruling.
+was 364 when this was recorded; T-1444 retired the West Division parcel's terrain hold and
+built 30 of its 35 held slots — the other five stay unbuilt on the corporate boundary's
+extrapolated west leg (T-1490) — and each of the thirty states a roof type, so the exposure
+now dresses 394 roofs on the same one ruling.
 
 **Decision:** the shingle exposure is committed at **0.14 m**, and with it the 4.48 m roof
 tile (32 exposures to the tile, holding 228.6 px per m at 1024²). Taken on the owner's
