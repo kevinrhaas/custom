@@ -76,9 +76,14 @@ ENTRY_KEYS = ("business_id", "business_name", "role", "printed_as", "from", "to"
               "tier", "basis", "source_id", "claim_ids",
               "business_present_at_scene_date")
 
-#: Where the entry is placed on the person record: directly after the roles it
-#: belongs beside, so a reader meets the trade and the place together.
-AFTER_KEYS = ("roles", "occupation")
+#: WHERE THE LIST SITS ON THE PERSON, AND WHY IT IS A FIXED SLOT. Immediately after
+#: `occupation`, so a reader meets the trade and the place together — and, more to the
+#: point, so the four mints can put it back in the same place. A mint rebuilds its card
+#: whole and `tools/resident_mint_carry.py` carries the foreign keys back; anything it
+#: appends at the TAIL lands after the keys that other passes pop and re-append, and
+#: reads as drift on every card by turns. `dated_bounds` and `appearance_bounds` were
+#: each given a fixed slot for exactly this, at T-1326 and T-1337. This is the third.
+AFTER_KEYS = ("occupation", "roles")
 
 
 class Fault(Exception):
@@ -299,11 +304,12 @@ def place(person: dict, entries: list) -> dict:
     end — or with it removed where this join gives them none."""
     out: dict = {}
     placed = False
+    after = next((k for k in AFTER_KEYS if k in person), None)
     for key, value in person.items():
         if key == "workplaces":
             continue
         out[key] = value
-        if not placed and entries and key in AFTER_KEYS:
+        if entries and not placed and key == after:
             out["workplaces"] = entries
             placed = True
     if entries and not placed:

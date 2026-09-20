@@ -938,6 +938,27 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].roles[].premises": (
         "shown", "role.premises === 'no_fixed_premises'"),
     "persons[].roles[].note": ("shown", "escapeHtml(role.note)"),
+    # T-1432. THE HOUSES A SOURCE NAMES THIS PERSON IN, on the same card and directly
+    # under the roles. Every figure on the row is shown, because the row exists to be
+    # read: the house and what they were in it, the run of notices that carry it, the
+    # grade the business record gave the claim and the setting the register printed the
+    # name under. None of it is a diagnostic and none of it is banked unread.
+    "persons[].workplaces[].business_id": (
+        "shown", "escapeHtml(w.business_name || w.business_id)"),
+    "persons[].workplaces[].business_name": (
+        "shown", "escapeHtml(w.business_name || w.business_id)"),
+    "persons[].workplaces[].role": ("shown", "escapeHtml(words(w.role || ''))"),
+    "persons[].workplaces[].printed_as": ("shown", "escapeHtml(w.printed_as)"),
+    "persons[].workplaces[].from": ("shown", "const from = w.from ? printedOn(w.from)"),
+    "persons[].workplaces[].to": ("shown", "const to = w.to ? printedOn(w.to)"),
+    "persons[].workplaces[].tier": ("shown", "swatch(w.tier)"),
+    "persons[].workplaces[].basis": ("shown", "escapeHtml(w.basis)"),
+    "persons[].workplaces[].source_id": (
+        "shown", "[w.source_id].filter(Boolean).map((id) => citationsById.get(id))"),
+    "persons[].workplaces[].claim_ids": (
+        "shown", "const notices = (w.claim_ids || []).length;"),
+    "persons[].workplaces[].business_present_at_scene_date": (
+        "shown", "w.business_present_at_scene_date ?"),
     "persons[].roles[].sources": (
         "shown", "(role.sources || []).map((id) => citationsById.get(id))"),
     # The derived view's own list of which roles reach the scene date. The card reads
