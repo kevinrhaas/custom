@@ -139,6 +139,72 @@ replacement rule, are re-derived and never typed:
 `data/research/residents/attribute_tiers.json`, or `python3 tools/summarize_residents.py
 tiers`.
 
+## Substitution: what a new source retires, and how it is read before it is done (T-1441, 2026-09-20)
+
+`replaceable_by` states the promise. The owner asked for it in one sentence — *"so if we get
+new research we can replace the reconstructed person or business with an inferred or attested
+one later"* — and every reconstructed record above carries it. What the field cannot do on its
+own is ANSWER it. A reader holding a new directory line would have to open 32 reconstructed
+firms and 308 reconstructed trade heads, read 340 sentences of prose, and work out which of
+them the line retires; and the expensive parts of a retirement are not written in the record
+at all. `tools/substitute_reconstruction.py --dry-run` is the reading, and this is the rule
+it implements.
+
+**A candidate is a reading, never another reconstruction.** The tool takes a small JSON
+document naming a record the research has just won — its `kind`, `tier`, the trade or census
+class it belongs to, and the division if the source narrows one.
+`tools/fixtures/substitution_candidate.json` is the shipped example and the fixture the
+self-test runs over. A candidate at `tier: reconstructed` is REFUSED: a reconstruction cannot
+retire a reconstruction, or the layer would churn without ever being read out of a source. An
+`attested` candidate that cites no source is refused for the reason the ladder above gives.
+
+**Three predicates, all of which must hold.**
+
+  1. **The trade or class agrees.** A reconstructed record stands in for a count of its own
+     class, so a candidate of another class replaces nothing and is an addition instead.
+  2. **The place does not disagree.** Where both the candidate and the record name a
+     division they must be the same one; where the record narrows to no division, the match
+     stands and the plan says so. Silence is not disagreement — a `street_only` face is not
+     a division, and reading one off a street would be making T-1182's ruling in passing.
+  3. **The scene date agrees.** A house that arrived in the autumn did not stand in for one
+     on 1 July 1835 and retires nothing.
+
+**It never picks between matches, and that is a finding rather than a gap.** Where a class
+leaves two reconstructed millineries on the same face, neither is more this candidate's than
+the other on any authority — the same limit `docs/STREET-FACE-ADOPTION.md` states about order
+within a face. The tool prints every match and names the choice as the operator's. A tool
+that chose would be inventing the one fact the evidence does not carry.
+
+**The retirement has three parts a hand-read loses, and the plan prints all three.**
+
+  * **The id is redirected, not deleted.** The town is walked through links; a reader who
+    bookmarked a house may not find a hole where it stood.
+  * **The roof is carried.** A reconstructed firm seated on a committed structure did not
+    invent that structure — the building stood before the firm was dealt onto it. The new
+    record takes the roof; nothing is demolished.
+  * **The order-book row re-opens by being ANSWERED, not by being filled.** An attested
+    house of a class the December 1835 census counts raises that bucket's `known` by one,
+    which lowers `to_reconstruct` by one, while the retirement lowers `filled` by one. A
+    firm that fills no census row was bought by a trade head instead, and is withdrawn with
+    the head — the plan names the head rather than inventing a quota for it.
+
+**And it names the liberty whose count moves.** Every reconstructed firm is covered by an
+entry in `docs/LIBERTIES.md`, and each of those entries states in its own prose how many of
+the population are its own. `compile_liberties.py` re-derives the POPULATION and fails on
+drift; it has never re-derived the SHARE, because a firm carries the ticket that built it
+and a liberty carries no ticket, so the two cannot be joined out of the data. The tool holds
+that join and re-counts both ends — the records on disk against each entry's own sentence,
+required to agree and to sum to the scope — so a group rebuilt one house larger now fails a
+gate instead of leaving a word like FIFTEEN standing over sixteen firms.
+
+**THE TOOL WRITES NOTHING, AND THERE IS NO `--build` BESIDE THE DRY RUN.** Every reconstructed
+record says the same thing about its own retirement: *the retirement runs through `--build`,
+never by hand* — and the `--build` it means is its OWN generator's. Those tools re-derive a
+whole population from the order book, and a record that is no longer ordered simply stops
+being written; a second tool reaching in to delete one record would put the layer off the
+fixed point `check.sh` holds it to. What retires a reconstruction is the SOURCE, entered
+where sources are entered. This one reads the cost first.
+
 ## The business record, and the limit as a field (T-1310, 2026-09-18)
 
 A business is the third thing in this dataset with an identity of its own — after a structure
