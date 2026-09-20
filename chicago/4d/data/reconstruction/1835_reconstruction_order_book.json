@@ -102,7 +102,7 @@
     "households_known": 436,
     "households_to_reconstruct": 209,
     "businesses_target": 108,
-    "businesses_known": 140,
+    "businesses_known": 139,
     "businesses_to_reconstruct": 8,
     "roofs_target": 668,
     "roofs_standing": 384,
@@ -2347,7 +2347,7 @@
           "known": 2,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1189",
           "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the north division"
         },
         {
@@ -2360,7 +2360,7 @@
           "known": 5,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1189",
           "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the south division"
         },
         {
@@ -2373,7 +2373,7 @@
           "known": 1,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1189",
           "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the west division"
         },
         {
@@ -2436,7 +2436,7 @@
       "lead": "The December 1835 State census set against the register the town already holds.",
       "summary": {
         "register_total": 196,
-        "at_scene_date": 223,
+        "at_scene_date": 222,
         "census_enumerated_total": 118,
         "register_businesses_read": 196,
         "division_note": "EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.",
@@ -2523,7 +2523,7 @@
           "known": 4,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1190",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
@@ -2708,16 +2708,16 @@
           "unit": "establishment",
           "scene_bracket": null,
           "target": 2,
-          "known": 3,
+          "known": 2,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1190",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 2; the register holds 3 at the scene date"
+          "basis": "the December 1835 State census prints 2; the register holds 2 at the scene date"
         },
         {
           "key": "businesses/school",
@@ -2733,7 +2733,7 @@
           "known": 7,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1411",
+          "owning_ticket": "T-1428",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",

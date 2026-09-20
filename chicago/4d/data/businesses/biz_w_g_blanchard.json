@@ -78,6 +78,7 @@
     }
   ],
   "staff": [],
+  "staffing": null,
   "locations": [
     {
       "kind": "street_only",

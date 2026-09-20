@@ -291,7 +291,7 @@ RULES = {
     },
     "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1188",
+        "ticket": "T-1189",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -302,9 +302,17 @@ RULES = {
             "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
             "fact it names; this unit's own note says which field that is. This one names a CIVIC, "
             "CHURCH, SCHOOL or GARRISON POST -- a county office, a town trusteeship, a coronership, "
-            "a ministry, a church membership, a school kept or an officer's clerkship -- and T-1188 "
-            "completes those establishments with their staff, attested where the sources name the "
-            "officer."),
+            "a ministry, a church membership, a school kept or an officer's clerkship."
+            " IT WAS ROUTED TO T-1188, which completes those establishments with their staff. That "
+            "ticket split into T-1410 (the post office, the land office and the county rooms) and "
+            "T-1411, which split again into T-1421 (the churches) and T-1422 (the schools and the "
+            "press), and all four are now done -- so the establishments EXIST and a unit cannot "
+            "defer to spent work. The hand-off is T-1189 since 2026-09-20: what these twelve "
+            "findings name is a POST, a person at one of those establishments, and T-1189 is the "
+            "open ticket that puts real persons into them -- every working person a workplace and "
+            "every workplace its people. The three closed children raised the houses and named the "
+            "officers their own sources printed; they did not walk the resident layer's enrichments "
+            "against them, and that walk is what a post found in a volume still needs."),
     },
     "the_enrichment_names_a_landholding_no_field_carries": {
         "disposition": "unresolved",

@@ -146,9 +146,14 @@ HOUSEHOLD_BUCKETS = (
     ("boarding_house", "larger_boarding_houses", "T-1175"),
     ("inn_tavern", "inns_taverns", "T-1175"),
     # T-1188 split (T-1410, T-1411); the institutional HOUSEHOLDS are the people who
-    # lived at a church, a parsonage or a school, so they go with T-1411. T-1410's
-    # three establishments — post office, land office, county rooms — house nobody.
-    ("institutional", "institutional_public", "T-1411"),
+    # lived at a church, a parsonage or a school. T-1410's three establishments — post
+    # office, land office, county rooms — house nobody. T-1411 split in turn (T-1421,
+    # T-1422) and both children closed WITHOUT writing a household: they wrote
+    # establishments and the hands about them, which is a different thing from the people
+    # who slept there. So this bucket is undone work that lost its owner, and it goes to
+    # T-1189 — every working person a workplace and every workplace its people — which is
+    # the live ticket that puts real persons at these establishments (T-1422).
+    ("institutional", "institutional_public", "T-1189"),
     ("garrison", "fort_principal", "T-1176"),
 )
 
@@ -204,7 +209,12 @@ BUSINESS_TICKETS = {
     "druggist": "T-1184",
     "silversmith_jeweller": "T-1185",
     "tin_and_copper_manufactory": "T-1185",
-    "printing_office": "T-1411",
+    # FINISHED CLASSES, HANDED ON RATHER THAN LEFT POINTING AT A SPENT TICKET (T-1422).
+    # T-1411 and both its children are closed and neither row orders anything: the press
+    # reads 2 against the census's 2 once the Democrat's two notices are ruled one house,
+    # and the churches are `compared: false` by T-0988's ruling. What is left for both is
+    # that the finished count PRINTS, which is T-1190's own sentence.
+    "printing_office": "T-1190",
     "brewery": "T-1185",
     "steam_saw_mill": "T-1187",
     "iron_foundry": "T-1185",
@@ -215,8 +225,13 @@ BUSINESS_TICKETS = {
     # BOTH PARENTS SPLIT ON 2026-09-20 and each row follows its own heir.
     # T-1188 split, so the civic rows move to T-1411, the churches, schools and press
     # as establishments — this branch's own reassignment.
-    "church": "T-1411",
-    "school": "T-1411",
+    "church": "T-1190",
+    # AND THE SCHOOLS ARE NOT FINISHED, for a reason T-1422 measured and did not spend:
+    # the crosswalk counts seven at the scene date because it reads the gazetteer's
+    # `built_at_scene_date`, and the register says two of the seven had not opened. Fix
+    # that alone and this bucket orders two reconstructed schools against a gap two dated
+    # notices already explain. T-1428 owns both halves of that, so it owns this row.
+    "school": "T-1428",
     # T-1186 was split on 2026-09-20 when the unit ruling below turned out to be a
     # demonstration of its own; T-1418 is the piece that owns these two rows and T-1419
     # the services, which the census enumerates nowhere and which therefore own no bucket.

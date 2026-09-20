@@ -2,6 +2,102 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 229,
+      "takenAt": "2026-09-20T06:51:45.281Z",
+      "ref": "steward/t-1422-schools-press",
+      "commit": "82beea68e6b5",
+      "devCommit": "ae373ab74654",
+      "treeHash": "sha256:12ff297da3d61e67",
+      "treeDirty": true,
+      "changelogHash": "sha256:35b83568f34dde1a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          2.9,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d13b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 76,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 184,
+      "takenAt": "2026-09-20T06:16:30.379Z",
+      "ref": "steward/t-1422-schools-press",
+      "commit": "82beea68e6b5",
+      "devCommit": "ae373ab74654",
+      "treeHash": "sha256:12ff297da3d61e67",
+      "treeDirty": false,
+      "changelogHash": "sha256:35b83568f34dde1a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.1,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 115,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 219,
+      "takenAt": "2026-09-20T06:16:30.311Z",
+      "ref": "steward/t-1422-schools-press",
+      "commit": "82beea68e6b5",
+      "devCommit": "ae373ab74654",
+      "treeHash": "sha256:12ff297da3d61e67",
+      "treeDirty": false,
+      "changelogHash": "sha256:35b83568f34dde1a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.1,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "3",
       "parts": [
@@ -974,41 +1070,6 @@
       "source": "/tmp/smoke_d12.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 181,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
-      ],
-      "wallSeconds": 312,
-      "takenAt": "2026-09-19T15:53:13.322Z",
-      "ref": "steward/t-1393-attribute-completeness",
-      "commit": "ae66b57bfaa6",
-      "devCommit": "a69af8c84c5f",
-      "treeHash": "sha256:fd7dcda824d1648e",
-      "treeDirty": false,
-      "changelogHash": "sha256:09484873b530a35f",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2,
-          3.7,
-          3
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
-    },
-    {
       "viewport": "desktop",
       "stage": "3",
       "parts": [
@@ -1041,74 +1102,6 @@
         ]
       },
       "source": "/tmp/smoke_d3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 75,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "mobile 390x780: the tavern-keeper pill narrows the list to tavern keepers — {\"all\":3228,\"matched\":9,\"pressed\":\"\",\"offTrade\":[],\"rows\":9,\"cleared\":3228}"
-      ],
-      "wallSeconds": 211,
-      "takenAt": "2026-09-19T13:27:54.663Z",
-      "ref": "steward/t-1325-open-firm-from-here",
-      "commit": "416757286a65",
-      "devCommit": "51b5c6c8e4b7",
-      "treeHash": "sha256:00f7c90bec02f202",
-      "treeDirty": false,
-      "changelogHash": "sha256:b5890f36aefbd2af",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.1,
-          2.4,
-          2.5
-        ]
-      },
-      "source": "/tmp/smoke_m12c.txt"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 75,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3028,\"file\":3028,\"stated\":3028,\"manifest\":2144,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2721,\"countText\":\"3,028 people in 1,959 households\\n        · 736 known only from the letter lists\\n        · 144 with a known address\"}",
-        "mobile 390x780: the tavern-keeper pill narrows the list to tavern keepers — {\"all\":3028,\"matched\":8,\"pressed\":\"\",\"offTrade\":[],\"rows\":8,\"cleared\":3028}"
-      ],
-      "wallSeconds": 216,
-      "takenAt": "2026-09-19T13:12:11.235Z",
-      "ref": "steward/t-1325-open-firm-from-here",
-      "commit": "991eb840f76b",
-      "devCommit": "3c1a0dfed5a5",
-      "treeHash": "sha256:644a4492e788c6d5",
-      "treeDirty": false,
-      "changelogHash": "sha256:5451f49a7beedf00",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.1,
-          4,
-          4
-        ]
-      },
-      "source": "/tmp/smoke_m12b.txt"
     },
     {
       "viewport": "mobile",
