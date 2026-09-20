@@ -459,7 +459,7 @@
     "state": "unsubdivided",
     "roofs_scheduled": 0,
     "centre_local_enu_m": [
-     888.7,
+     888.69,
      971.99
     ],
     "inside_the_limit": false
@@ -489,7 +489,7 @@
     "state": "unsubdivided",
     "roofs_scheduled": 0,
     "centre_local_enu_m": [
-     888.08,
+     888.09,
      882.67
     ],
     "inside_the_limit": false
@@ -529,7 +529,7 @@
     "state": "unsubdivided",
     "roofs_scheduled": 0,
     "centre_local_enu_m": [
-     887.47,
+     887.48,
      793.36
     ],
     "inside_the_limit": false
@@ -539,7 +539,7 @@
     "state": "unsubdivided",
     "roofs_scheduled": 0,
     "centre_local_enu_m": [
-     999.04,
+     999.03,
      792.44
     ],
     "inside_the_limit": false
@@ -696,6 +696,108 @@
    }
   ],
   "rows_without_block_geometry": [
+   {
+    "id": "blk_michigan_st_tract_west_north",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_michigan_st_tract_west_south",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_michigan_st_tract_east_north",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_michigan_st_tract_east_south",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t1",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t1",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t2",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t2",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t3",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t3",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t4",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t5",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t5",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t6",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t6",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_b_t7",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
+   {
+    "id": "blk_wabansia_c_t7",
+    "kind": "platted_block_unscheduled",
+    "state": "gated",
+    "roofs": 0
+   },
    {
     "id": "west_wolf_point_outer",
     "kind": "reviewed_recipe_remainder",
