@@ -294,6 +294,13 @@
       "finding": "Reproduces, and the perturbation test tells idempotence from inertia. Run BARE on a clean tree it rewrote data/traces/vectors/north_division_tier_lots.json and `git status` came back empty; block 1's committed depth was then bent from 131.33 m to 999, `--check` went red (\"STALE ... not what tools/cut_north_division_tier.py re-derives\"), a bare run re-derived the file and `git status` came back empty again. Its only output is that one file; it reads data/traces/thompson_north_division_streets.json, data/streets/1835.json, data/traces/street_control.json and the committed heightfield, and writes none of them.",
       "placed": "not yet \u2014 measured to reproduce, and its inputs are all committed readings rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is still the ordering pass's call and not this ticket's."
     },
+    "cut_school_section_tier.py": {
+      "placement": "pending",
+      "write_mode": "bare",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and the perturbation test tells idempotence from inertia. Run BARE on a clean tree it rewrote data/traces/vectors/school_section_tier_lots.json and `git status` came back empty; block 24's first lot frontage was then bent from 30.14 m to 999, `--check` went red (\"STALE ... not what tools/cut_school_section_tier.py re-derives\"), a bare run re-derived the file and `git status` came back empty again. Its only output is that one file; it reads data/traces/vectors/school_section_blocks_1834.json, data/research/land_sales/entries.json, data/traces/vectors/school_section_tier_skew_1834.json and the committed heightfield, and writes none of them.",
+      "placed": "not yet \u2014 measured to reproduce, and every input it reads is a committed reading rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is the ordering pass's call and not this ticket's."
+    },
     "date_norris_1844_businesses.py": {
       "placement": "manifest",
       "write_mode": null,
@@ -1311,6 +1318,12 @@
       "write_mode": "--build",
       "measured": "2026-09-20",
       "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_staffing_mint_order.json and nothing else, and `git status --porcelain` was otherwise identical before and after \u2014 not one committed byte moved, no person card was touched and no bucket's `filled` changed. T-1448. PENDING rather than manifest for the reason its two siblings staff_businesses_1835.py and seat_reconstructed_trades_1835.py are: it reads the compiled business layer, the staffing model and the order book and writes an adjudication beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one."
+    },
+  "staff_the_houses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_business_staff_overlay.json and nothing else, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved, no person was written, no business was raised and no seat was invented. T-1462. PENDING rather than manifest for the reason its three siblings staff_businesses_1835.py, seat_reconstructed_trades_1835.py and staffing_mint_order_1835.py are: it reads the reconstructed seating, the staffing model and T-1422's ruling and writes an overlay beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one. What is already known about that slot: it has to run BEFORE compile_businesses.py, which reads what it writes."
     },
   "staff_businesses_1835.py": {
       "placement": "pending",

@@ -146,3 +146,23 @@
   padding-left: 9px;
 }
 .biz-invented b { color: inherit; }
+
+/* WHO WORKED THERE (T-1462). A drawn hand carries the seed that drew it, so a reader
+   who doubts the row can retype it rather than take the grade dot's word. Quiet, the
+   way `.biz-styles` is quiet: the person is the reading and this is only the proof. */
+.biz-drawn {
+  color: var(--ink-dim);
+  font-size: 11px;
+}
+.biz-drawn code { word-break: break-all; }
+
+/* The house's own shortfall against the staffing model. A house at its band says so in
+   the ordinary voice; a house standing short takes the conjectural grade's colour and a
+   rule down its edge, because a half-filled house that reads as a full one is exactly
+   the silence this block was added to break. */
+.biz-shortfall { margin: -6px 0 14px; }
+.biz-short {
+  color: var(--con);
+  border-left: 2px solid var(--con);
+  padding-left: 9px;
+}

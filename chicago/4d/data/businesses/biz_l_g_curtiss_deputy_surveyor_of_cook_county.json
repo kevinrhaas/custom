@@ -28,8 +28,60 @@
     }
   ],
   "partners": [],
-  "staff": [],
-  "staffing": null,
+  "staff": [
+    {
+      "name": "Thomas Lynch",
+      "person_id": "rc_lynch_thomas",
+      "role": "household_member",
+      "occupation": "labourer",
+      "tier": "reconstructed",
+      "basis": "The staffing model puts 1 of this role in a surveyor's office at the typical band and 2 at the high end, on period_convention. Chainmen, hired by the survey and not by the year. Analogue: the 13 surveyors of 1839, against whom the list prints no chainman. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything. Seated by tools/seat_reconstructed_trades_1835.py (T-1433) off 1835_business_staffing_model#surveyor_office.labourer; carried onto this record by tools/staff_the_houses_1835.py (T-1462).",
+      "seed": "rc_lynch_thomas:employment",
+      "replaceable_by": "a source naming where this person worked, which retires the draw"
+    }
+  ],
+  "staffing": {
+    "class": "surveyor_office",
+    "reads_as": "a surveyor's office",
+    "principal_role": null,
+    "principal_is": null,
+    "hands": [
+      {
+        "role": "household_member",
+        "occupation": "labourer",
+        "household_relationship": "household_member",
+        "count_low": 0,
+        "count_typical": 1,
+        "count_high": 2,
+        "seats_drawn": 1,
+        "drawn": true,
+        "basis": "period_convention"
+      }
+    ],
+    "writes_no_person": true,
+    "basis": "the 1835 business staffing model's band for this class, with the reconstructed seats T-1433 put in this house marked drawn",
+    "replaceable_by": "a source naming the hands of this house, which retires every reconstructed seat it covers",
+    "shortfall": {
+      "typical_wanted": 1,
+      "seats_taken": 1,
+      "seats_against_the_band": 1,
+      "short_by": 0,
+      "by_role": [
+        {
+          "occupation": "labourer",
+          "household_relationship": "household_member",
+          "count_low": 0,
+          "count_typical": 1,
+          "count_high": 2,
+          "seats_drawn": 1,
+          "short_by": 0
+        }
+      ],
+      "statement": "The staffing model puts 1 hand(s) about this kind of house at its typical band and this house carries 1. It is at its band.",
+      "counted_here": "the reconstructed hands this overlay seats. A hand a SOURCE names carries its own citation in staff[] and is counted by the attested join, not by this.",
+      "replaceable_by": "a source naming a hand at this house, which retires the seat it replaces, or the mint T-1448 ordered, which draws the rest"
+    }
+  },
   "locations": [
     {
       "kind": "anchored",

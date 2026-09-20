@@ -1681,7 +1681,7 @@
    "published_limit": "structure",
    "grade": "structure_committed",
    "evidence_reach": "structure",
-   "evidence_street": "Lake Street",
+   "evidence_street": "Canal Street",
    "model_seat": "goss_cobb_saddlery",
    "seat_is_substitutable": false,
    "register_action": "enrich_existing",

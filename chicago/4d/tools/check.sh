@@ -1473,6 +1473,25 @@ step "the North Division tier's blocks and lots re-derive from the reading and t
 selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
   python3 tools/cut_north_division_tier.py --self-test
 
+# T-1477. The School Section's northernmost tier — the thirteen blocks between Madison and
+# Monroe, the row Section 16 turns toward the town — cut into lots. The block grid has been
+# committed since T-0797 and stopped at blocks, because Wright rules the section into blocks
+# and letters their numbers without ruling a single lot line inside one. The lot COUNT is
+# therefore not a module here: it is read, block by block, out of the Illinois State
+# Archives' register of the state's own October 1833 sale, which prints the plat's language
+# (`LOT3BL71`, `BL106`) and so says how many pieces each block was cut into. Nine blocks
+# sold eight lots, two sold four, and the two the sheet letters `Reserved` sold nothing and
+# are left whole. The assertions worth naming: the blocks the sale never names are EXACTLY
+# the blocks the sheet reserves — two records, neither consulted about the other; the two
+# four-lot blocks are the two at the South Branch end, and the one block the committed
+# heightfield calls wet is one of them; and every block boundary is the committed grid's
+# own vertex for vertex, which is what keeps this a cut and not a second survey.
+step "the School Section tier's lots re-derive from the committed grid and the 1833 register" \
+  python3 tools/cut_school_section_tier.py --check
+
+selftest "the School Section tier is still cut into the lots the sale witnesses, and no others" \
+  python3 tools/cut_school_section_tier.py --self-test
+
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
 # this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
@@ -4768,6 +4787,29 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
+
+# T-1462, piece 2 of 2 of T-1449, of T-1434, of T-1189. THE BUSINESS SIDE OF THAT SEATING.
+# The pass above seated 124 reconstructed hands in 84 houses and wrote every seat in a
+# join BESIDE the layer, keyed on the person. So the town knew where those people worked
+# and the HOUSES did not: open any one of the 84 business cards and `staff` was empty,
+# "Who kept it" printed the keeper alone, and a house standing at half the hands its
+# class wants read exactly like a house standing at all of them. This lays the seats onto
+# the records as an overlay — the compiler rewrites a compiled record whole, so a hand
+# can only be laid over one — and puts each house's shortfall against the staffing model
+# beside them, measured at the model's typical band and never its high end.
+#
+# WHY A GATE. It is an overlay over two derived files that both move: the seating re-draws
+# whenever the business layer recompiles or the staffing model re-cuts, and the compiler
+# refuses a committed record a rebuild would not produce. `--check` re-derives the overlay
+# byte for byte, and the two failures that matter are refusals rather than warnings — a
+# seat past every band the model gives the class, which would be a person invented by a
+# pass that invents nobody, and an entry that would drop a row T-1422's RULING put on a
+# record, because a derived pass may add to a judgement and may not overwrite one.
+step "the reconstructed hands re-derive onto their houses, and each house states its shortfall" \
+  python3 tools/staff_the_houses_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/staff_the_houses_1835.py --self-test
 
 # T-1461, piece 1 of T-1449, of T-1434, of T-1189. THE EMPLOYMENT COVERAGE ANSWER. The
 # two joins above are both true and neither covers the town: 112 cards a source names in
