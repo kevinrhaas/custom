@@ -113,32 +113,59 @@
   {
    "id": "L-rc-persons",
    "when": "the first stage writes an invented person",
-   "states": "how many people the town gained that no source names, and the model row that set the count"
+   "states": "how many people the town gained that no source names, and the model row that set the count",
+   "kept_by": [
+    "L244",
+    "L247",
+    "L248",
+    "L249",
+    "L250",
+    "L251",
+    "L252",
+    "L255"
+   ]
   },
   {
    "id": "L-rc-families",
    "when": "T-1170/T-1171 draw families onto real heads",
-   "states": "that a real person's household composition is drawn from the 1840 distribution"
+   "states": "that a real person's household composition is drawn from the 1840 distribution",
+   "kept_by": [
+    "L242",
+    "L244"
+   ]
   },
   {
    "id": "L-rc-readmission",
    "when": "T-1172 re-admits the borderline roster",
-   "states": "which names were withheld by the research and on what limit they return"
+   "states": "which names were withheld by the research and on what limit they return",
+   "kept_by": [
+    "L246"
+   ]
   },
   {
    "id": "L-rc-underdocumented",
    "when": "T-1177 runs",
-   "states": "the cohorts reconstructed within their evidence, and the review they carry"
+   "states": "the cohorts reconstructed within their evidence, and the review they carry",
+   "kept_by": [
+    "L250",
+    "L255"
+   ]
   },
   {
    "id": "L-rc-age-conditioning",
    "when": "T-1304 draws an age band",
-   "states": "that the bands a draw is conditioned on - 20 and over for a poll, tax or muster list, 15 and over for any other roll naming a person in their own right - are the MODEL's assumption and no source's statement"
+   "states": "that the bands a draw is conditioned on - 20 and over for a poll, tax or muster list, 15 and over for any other roll naming a person in their own right - are the MODEL's assumption and no source's statement",
+   "kept_by": [
+    "L-rc-age-conditioning"
+   ]
   },
   {
    "id": "L-rc-sex-rate",
    "when": "T-1304 draws a sex",
-   "states": "that every roll's measured male rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names"
+   "states": "that every roll's measured male rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names",
+   "kept_by": [
+    "L-rc-sex-rate"
+   ]
   }
  ],
  "stages": [
@@ -154,7 +181,13 @@
    ],
    "note": "Recorded where a source says, inferred from forename, office or register role, reconstructed from the population model otherwise. The read tiers are tools/spend_person_sex_age.py (T-1303); the drawn tier is tools/reconstruct_sex_age.py (T-1304), which writes no person and fills `sex_basis` and `age_band` blocks on people the sources already name. The sex rates are measured on this layer's own rolls; the age bands are the 1840 schedule's, and no birth year is written.",
    "implemented": true,
-   "built_by": "tools/reconstruct_sex_age.py"
+   "built_by": "tools/reconstruct_sex_age.py",
+   "mints": "attribute_blocks",
+   "liberties": [
+    "L-rc-sex-rate",
+    "L-rc-age-conditioning"
+   ],
+   "owes_no_person_scope": "Writes a sex and an age band onto people other passes already read, so it mints nobody and carries no person scope. Its two entries state the draw and the conditioning the draw assumes."
   },
   {
    "key": "attribute_fill_arrival",
@@ -168,7 +201,12 @@
    "note": "The earliest dated appearance is the bound; the arrival model fills the rest.",
    "implemented": true,
    "recipe": "arrival_fill",
-   "built_by": "tools/reconstruct_residents_1835.py"
+   "built_by": "tools/reconstruct_residents_1835.py",
+   "mints": "attribute_blocks",
+   "liberties": [
+    "L243"
+   ],
+   "owes_no_person_scope": "Writes arrival year, origin and reason onto households that already exist. No person scope for the same reason: the stage changes what a card says, not how many cards there are."
   },
   {
    "key": "named_families",
@@ -181,7 +219,11 @@
    "note": "Registers, 1840 census rows, biographies and the ruled kin ties come first; the model is what fills a counted-but-unnamed dependant.",
    "implemented": true,
    "community": "the head's own surname, looked up in the name pools' surname lists; yankee where it is in none",
-   "method": "Only a `validated` row of data/research/residents/census_1840_identity_bridges.csv spends. Its IPUMS household is read from the committed extract at the sha256 composition_1840.json records, banded by T-0504's column map, back-projected five years, and the under-5 band dropped whole because all but its first month is born after 1835-07-01. The card's named people absorb the senior bands of their own sex first; the bands that remain are the members the row counts and does not name. Nobody is removed when the card holds more of a sex than the 1840 row counts. The allocation decides only which band is LEFT OVER; it writes no age onto a person the sources name, and nothing here may be read as a claim about how old a named resident was."
+   "method": "Only a `validated` row of data/research/residents/census_1840_identity_bridges.csv spends. Its IPUMS household is read from the committed extract at the sha256 composition_1840.json records, banded by T-0504's column map, back-projected five years, and the under-5 band dropped whole because all but its first month is born after 1835-07-01. The card's named people absorb the senior bands of their own sex first; the bands that remain are the members the row counts and does not name. Nobody is removed when the card holds more of a sex than the 1840 row counts. The allocation decides only which band is LEFT OVER; it writes no age onto a person the sources name, and nothing here may be read as a claim about how old a named resident was.",
+   "mints": "persons",
+   "liberties": [
+    "L242"
+   ]
   },
   {
    "key": "modelled_families",
@@ -195,7 +237,11 @@
    ],
    "note": "Drawn at the head's own size band, never at the mean - the head_rule row says why. tools/reconstruct_modelled_families.py draws the KIN CORE only: a wife and children, for a head whose household record is present on the scene date, holds him alone, and is not a letter-list mint. The servant, the apprentice and the journeyman a house of this size also held are priced by T-1183 and seated by T-1173; the lodger is T-1175's. Every draw is seeded on the household id and counted into the order book, which refuses the draw rather than overfill a bucket.",
    "implemented": true,
-   "built_by": "tools/reconstruct_modelled_families.py"
+   "built_by": "tools/reconstruct_modelled_families.py",
+   "mints": "persons",
+   "liberties": [
+    "L244"
+   ]
   },
   {
    "key": "readmissions",
@@ -208,7 +254,11 @@
    "note": "These are not invented names and do not take an rc_ id. Each carries its evidence limit and its reopen rule. Written into data/residents/readmitted/ and data/reconstruction/1835_readmissions.json, NOT into the mints’ data/residents/households/, so a mint re-run stays byte-identical; tools/compile_scene.py overlays them onto the scene.",
    "implemented": true,
    "uses_name_pools": false,
-   "built_by": "tools/readmit_borderline_roster.py"
+   "built_by": "tools/readmit_borderline_roster.py",
+   "mints": "persons",
+   "liberties": [
+    "L246"
+   ]
   },
   {
    "key": "trade_households",
@@ -224,7 +274,11 @@
    "implemented": true,
    "built_by": "tools/reconstruct_trade_households.py",
    "community": "the weighting the name pools carry for the drawn trade; the general documented stock where they carry none",
-   "method": "The order book's twenty-four `family/trade` buckets are the quota: 308 heads by sex, age band and division. Each sex's heads are dealt across the trades by largest remainder on the Fergus 1839 trade table's printed shares (T-1346), capped where the December 1835 State census counts a class one person keeps, and the refusals and the rounding remainder fall to the residual trade — day labour for the men, domestic service for the women. A trade is then spread across the bands in proportion to what the book ordered: the seniority rule T-1173 sketched is REFUSED in writing, because the 1839 table carries no ages and the 1840 schedule carries no trades. No arrival is drawn: the arrival model's distribution is computed over the compiled scene and the scene carries these cards, so writing one here would move the table that drew it and re-derive the research layer's own arrival fills — T-1169 owns that block and T-1179 joins these cards to the tree it runs over. No kin is seated; the family the 1840 size histogram owes each head is written onto the card as `household_owed` and seated by T-1174 and T-1179, whose quota it is."
+   "method": "The order book's twenty-four `family/trade` buckets are the quota: 308 heads by sex, age band and division. Each sex's heads are dealt across the trades by largest remainder on the Fergus 1839 trade table's printed shares (T-1346), capped where the December 1835 State census counts a class one person keeps, and the refusals and the rounding remainder fall to the residual trade — day labour for the men, domestic service for the women. A trade is then spread across the bands in proportion to what the book ordered: the seniority rule T-1173 sketched is REFUSED in writing, because the 1839 table carries no ages and the 1840 schedule carries no trades. No arrival is drawn: the arrival model's distribution is computed over the compiled scene and the scene carries these cards, so writing one here would move the table that drew it and re-derive the research layer's own arrival fills — T-1169 owns that block and T-1179 joins these cards to the tree it runs over. No kin is seated; the family the 1840 size histogram owes each head is written onto the card as `household_owed` and seated by T-1174 and T-1179, whose quota it is.",
+   "mints": "persons",
+   "liberties": [
+    "L248"
+   ]
   },
   {
    "key": "women_and_children",
@@ -239,7 +293,11 @@
    "note": "Run after families are drawn, so the pyramid is measured against what the town already holds rather than against an empty layer.",
    "implemented": true,
    "recipe": "women_children_fill",
-   "built_by": "tools/reconstruct_women_children.py"
+   "built_by": "tools/reconstruct_women_children.py",
+   "mints": "persons",
+   "liberties": [
+    "L247"
+   ]
   },
   {
    "key": "lodgers",
@@ -252,7 +310,11 @@
    ],
    "note": "The surplus adult men the 1840 sex ratio implies are boarders, not husbands. T-1370 gave every lodging place a capacity and seated nobody; T-1371 fills the ordinary-night figure of the fifteen BUILT houses — the solitary heads T-1171 and T-1173 already drew are seated first, the short beds are drawn against the book's `lodging` buckets, and a roof this programme raised itself is given a keeper. The crews of the vessels in port and the hands at the works are T-1372's, and so is the house card that prints who lived there.",
    "implemented": true,
-   "built_by": "tools/seat_lodgers_1835.py"
+   "built_by": "tools/seat_lodgers_1835.py",
+   "mints": "persons",
+   "liberties": [
+    "L252"
+   ]
   },
   {
    "key": "garrison",
@@ -265,7 +327,11 @@
    "note": "The fort is its own division in the lodging table and is seated in the fort's roofs. The establishment is READ from the Act of 2 March 1821 § 2 and the company count carried forward from Andreas's 1833 reading; no muster roll or post return for mid-1835 has been reached, so the strength is a CEILING. T-1348 ruled every officer this layer can place at the post, so this stage invents none. The Indian Agency establishment of the parent's ask is in neither child and is filed separately.",
    "implemented": true,
    "recipe": "garrison_fill",
-   "built_by": "tools/reconstruct_garrison_1835.py"
+   "built_by": "tools/reconstruct_garrison_1835.py",
+   "mints": "persons",
+   "liberties": [
+    "L251"
+   ]
   },
   {
    "key": "underdocumented",
@@ -283,9 +349,14 @@
    "written_by": "tools/reconstruct_underdocumented.py",
    "sub_stages": {
     "native_and_metis": "T-1376, BUILT. The company the 1832 Black Hawk roll heads INDIAN, carded under R3's own licence; the counted-but-unnamed remainder refused in writing for want of any count. data/reconstruction/1835_native_and_metis.json.",
-    "free_black": "T-1377, BUILT. The free Black town of 1835 written to the FLOOR of the only bracket the corpus gives it \u2014 Caton's six or seven free coloured men of August 1833 below, the 1840 census's 53 free coloured persons carried back at the same share above. Seven men, thirteen people and two firms, drawn from a name pool of five surnames the 1840 schedule prints in its free-coloured block; nobody here is a person a source names, and the head-room between the floor and the ceiling is left standing. data/reconstruction/1835_free_black.json, written by tools/reconstruct_free_black.py.",
+    "free_black": "T-1377, BUILT. The free Black town of 1835 written to the FLOOR of the only bracket the corpus gives it — Caton's six or seven free coloured men of August 1833 below, the 1840 census's 53 free coloured persons carried back at the same share above. Seven men, thirteen people and two firms, drawn from a name pool of five surnames the 1840 schedule prints in its free-coloured block; nobody here is a person a source names, and the head-room between the floor and the ceiling is left standing. data/reconstruction/1835_free_black.json, written by tools/reconstruct_free_black.py.",
     "businesses_and_catholic_shares": "T-1378, not yet built."
-   }
+   },
+   "mints": "persons",
+   "liberties": [
+    "L250",
+    "L255"
+   ]
   },
   {
    "key": "transients",
@@ -298,7 +369,11 @@
    ],
    "note": "Land-sale visitors, immigrants awaiting lots, the harbour gang and crews ashore. T-1352 bounds the cohort and adopts no point; T-1353 adopts 384 and mints ONE row of it - the immigrant and land-seeking parties - refusing the crews and the works gang for want of a complement and a strength, and the named purchasers and the named travellers because a drawn person may not stand in for a person a source names.",
    "implemented": true,
-   "built_by": "tools/reconstruct_transients_1835.py"
+   "built_by": "tools/reconstruct_transients_1835.py",
+   "mints": "persons",
+   "liberties": [
+    "L249"
+   ]
   },
   {
    "key": "converge",
@@ -307,7 +382,10 @@
    "writes": "nothing — this stage only re-derives and reports",
    "draws_from": [],
    "note": "Index, sidecars, town census, People view and gates agree, and the population profile is re-run against the model.",
-   "implemented": false
+   "implemented": false,
+   "mints": "nothing",
+   "liberties": [],
+   "owes_no_person_scope": "This stage re-derives and reports. It writes no card and no block, so it invents nothing and owes no entry; the liberties of the layer it converges are the ten rows above."
   }
  ],
  "supersedes": {
@@ -702,5 +780,7 @@
    "run_against": "the committed footprint of fort_dearborn_barracks",
    "acts_on_nothing": "The check is REPORTED and not applied. It can come out short, and on one floor it does; the ledger states the three readings that survive and picks none."
   }
- }
+ },
+ "_the_liberty_binding": "T-1399. EVERY STAGE NAMES THE ENTRIES IN docs/LIBERTIES.md THAT ADMIT ITS INVENTIONS, and `mints` says what it writes that an entry has to account for. `persons` means the stage minted people, and tools/compile_liberties.py derives an enumeration `residents.persons[<key>]` for it, counts it off the cards, and refuses a stage no entry claims, an entry that claims a stage this file does not declare it on, and a declared count that has drifted from the layer. `attribute_blocks` and `nothing` mint no person, so they carry no count to agree about and say in `owes_no_person_scope` why not. The binding is DECLARED here rather than inferred from prose because `liberties_this_programme_will_owe` below promised six entries under names — L-rc-persons, L-rc-families, L-rc-readmission, L-rc-underdocumented — that four of the real entries were never given, and nothing noticed for three weeks: a promise nothing checks is a promise that ages.",
+ "_liberties_this_programme_will_owe_doc": "The promise list, kept. Each row now names the entry or entries that discharged it (`kept_by`), and four of those ids are nothing like the name the promise was filed under — which is why the authority a gate reads is `stages[].liberties` above and not this list. Left in place because it is the reasoning that decided what the programme would owe before it owed it."
 }

@@ -164,3 +164,89 @@ and compared, an unmarked one is some earlier reading's and is never touched, an
 recipe no longer produces is WITHDRAWN rather than left behind. Without it `--build` would be a
 one-way write and the committed layer could drift from the rules that claim to explain it — which
 is the failure the 2026-09-02 retirement was about, one attribute down instead of one person.
+
+---
+
+## The stages at close — what each wrote, and the entry that admits it (T-1399, 2026-09-20)
+
+Twelve stages, eleven of which write. This is the programme's own account of what it
+invented, and it is not typed: `tools/compile_liberties.py --check`, which `tools/check.sh`
+runs on every commit, re-counts every figure in both tables below off the cards and refuses
+the document that has drifted from them.
+
+The `liberty` column is the binding, and it is declared in
+`data/reconstruction/1835_resident_reconstruction_programme.json` § `stages[].liberties`
+rather than inferred from the entries' prose. The programme had carried a promise list
+instead — six liberties it said it would owe, under names like `L-rc-persons` and
+`L-rc-readmission` — and four of those names were never the id of anything. The entries
+that kept the promises are the ones in this column. Two of the six kept their names and
+turned out not to be in the register at all: `### L-rc-sex-rate` and
+`### L-rc-age-conditioning` did not match the heading grammar, so from 2026-09-18 to
+2026-09-20 both folded silently into **L241** and the admissions for 587 drawn sexes and
+1,212 drawn age bands were not in `data/liberties.json` for a visitor to read.
+
+| stage | mints | persons | cards | liberty |
+| --- | --- | ---: | ---: | --- |
+| `attribute_fill_sex_age` | attribute blocks | — | — | **L-rc-sex-rate**, **L-rc-age-conditioning** |
+| `attribute_fill_arrival` | attribute blocks | — | — | **L243** |
+| `named_families` | persons | 3 | 2 | **L242** |
+| `modelled_families` | persons | 300 | 84 | **L244** |
+| `readmissions` | persons | 182 | 182 | **L246** |
+| `trade_households` | persons | 308 | 308 | **L248** |
+| `women_and_children` | persons | 556 | 124 | **L247** |
+| `lodgers` | persons | 75 | 12 | **L252** |
+| `garrison` | persons | 125 | 11 | **L251** |
+| `underdocumented` | persons | 102 | 94 | **L250**, **L255** |
+| `transients` | persons | 307 | 83 | **L249** |
+| `converge` | nothing | — | — | — |
+| **the programme** | | **1,958** | **900** | |
+
+A stage that mints nobody carries no count for a liberty to agree with, and says why in
+`owes_no_person_scope`. The two attribute stages write onto people other passes read:
+4,050 arrival, origin and reason blocks for `attribute_fill_arrival`, and 587 sexes and
+1,212 age bands for `attribute_fill_sex_age`. Those figures are the stages' own and stand
+in their entries; they are not enumerations, because the thing this register counts is
+invented **people**, and an attribute stage changes what a card says rather than how many
+cards there are.
+
+### The layer by tier
+
+Every person the programme wrote is graded `reconstructed`, and nothing else in the layer
+is. The 984 in the household cards are exactly the four stages that write into them —
+3 + 300 + 556 + 125 — which is the check the two halves of this table make on each other.
+
+| where | attested | inferred | reconstructed | persons | cards |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `data/residents/households/` | 410 | 875 | 984 | 2,269 | 1,393 |
+| the five stage directories beside it | 0 | 0 | 974 | 974 | 679 |
+| **the layer** | **410** | **875** | **1,958** | **3,243** | **2,072** |
+
+The first row is `data/residents/index.json` § `counts.by_grade`. The second is
+`readmitted/`, `reconstructed_trades/`, `lodgers/`, `transients/` and `underdocumented/`,
+which the index does not reach — the reason the per-stage counter this table is checked by
+reads the whole of `data/residents/` and not the household directory alone. Three of the
+stage counts had been anchored there and were right only by accident: their three stages
+happen to write into households.
+
+Not every one of the 3,243 stands in the scene on 1 July 1835. `data/town_census.json`
+§ `people.scene` is the figure that does — 1,440 people in 571 households, against a
+model target of 2,536 — and the difference is the cards whose presence on the day is
+bounded rather than established.
+
+### The attributes by tier
+
+Tier is per attribute as well as per person (T-1158), and the two answers are independent:
+a person graded `attested` carries plenty of values nothing attests. Over the 1,393
+household cards, from `data/research/residents/attribute_tiers.json` § `counts`:
+
+| tier | blocks | share of 18,247 |
+| --- | ---: | ---: |
+| `attested` | 590 | 3.2% |
+| `inferred` | 3,309 | 18.1% |
+| `reconstructed` | 8,308 | 45.5% |
+| `unknown` — nothing is asserted | 6,040 | 33.1% |
+
+`unknown` is a third of the layer and is the most honest column here: it is the count of
+places where this project knows it has nothing, rather than the count of places it has
+filled. The reconstruction programme moved values out of it and into `reconstructed`, under
+the eleven liberties above, and the table that says how far is this one.
