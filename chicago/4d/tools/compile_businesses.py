@@ -6,6 +6,16 @@
     tools/compile_businesses.py --self-test   the gate's assertions still fire
     tools/compile_businesses.py --community-report   the shares of docs/RESEARCH/business_community_1835.md
 
+THE STAFFING OVERLAY (T-1422). data/businesses/rulings/establishment_staffing.json is laid
+over the compiled records by `apply_staffing_overlay`, and it is the only thing in this
+file that adds to a record the register did not print. It supplies two fields and no
+others: `staff`, which a compiled record otherwise always has none of, and `staffing`,
+the block saying what KIND of hand the 1835 staffing model puts about this kind of house,
+naming nobody. It exists because T-1411 split over the absence of it — the schools and
+the printing offices are COMPILED, so a reading about their hands had nowhere to be
+written down at all, and authored/ holds whole records rather than additions to compiled
+ones. An entry naming a record the register does not compile is refused.
+
 T-1310, of T-1180. THERE WAS NOWHERE TO WRITE A BUSINESS DOWN. The business layer was
 three DERIVED files — the newspaper claims, gazetteer.json, register_1835.json — and a
 business existed in the scene only as a structure whose `function`/`occupants` block
@@ -73,6 +83,7 @@ RULINGS = RESEARCH / "trade_class_rulings.json"
 RESIDENTS = ROOT / "data" / "residents"
 BUSINESSES = ROOT / "data" / "businesses"
 AUTHORED = BUSINESSES / "authored"
+STAFFING_OVERLAY = BUSINESSES / "rulings" / "establishment_staffing.json"
 INDEX = BUSINESSES / "index.json"
 SCHEMA = ROOT / "data" / "businesses.schema.json"
 STREETS = ROOT / "data" / "streets" / "1835.json"
@@ -186,9 +197,9 @@ def derive_proprietor_community(proprietors, partners, communities):
         the second in the register.
 
     STAFF ARE NOT READ. A clerk's community is evidence about the clerk, not about the
-    house that employed him. (`staff` is empty on every compiled record today — the
-    papers name owners and almost never a clerk — so this is a rule written before it can
-    bite, not a filter over anything.)
+    house that employed him. (`staff` stood empty on every compiled record until T-1422,
+    because the papers name owners and almost never a clerk; the staffing overlay has
+    since put one row on one record, and the rule is still a rule rather than a filter.)
     """
     named = list(proprietors) + list(partners)
     rows = []
@@ -653,6 +664,15 @@ def compile_record(entry, gaz, register_persons, town_ids, communities, anchors=
         # of the register and not an omission: T-1183 rules the staffing model and
         # T-1189 fills this from it.
         "staff": [],
+        # AND NOWHERE TO WRITE THE HANDS THE MODEL DOES KNOW ABOUT, until T-1422. The
+        # register compiles the schools and the printing offices, so a reading about who
+        # taught at the Chicago Academy or who set type for the Democrat could not be
+        # written down at all: a hand edit here is refused by --check, and
+        # data/businesses/authored/ holds whole records rather than additions to compiled
+        # ones. `staffing` is that place. It is null here and filled from
+        # data/businesses/rulings/establishment_staffing.json by apply_staffing_overlay,
+        # so it is DERIVED like everything else on this record.
+        "staffing": None,
         "locations": locations_for(entry, gaz, anchors),
         "dates": dates_for(entry),
         "evidence": {
@@ -936,6 +956,98 @@ def build_index(records, authored, rows):
 
 # ---------------------------------------------------------------- build / check
 
+def read_staffing_overlay():
+    """The hands each kind of house employed, laid over the records the register compiles.
+
+    WHY AN OVERLAY AND NOT A FIELD OF THE REGISTER. The register reads NOTICES, and a
+    notice names a keeper. The staffing model (T-1183) reads the 1839 directory and the
+    census and says what KIND of hand a kind of house employed; it writes no person and
+    names none. Neither of those two things can say what the other says, and until T-1422
+    there was no third place to put the join — which is why T-1411 split with the
+    churches done and the schools and the press undone. This is the third place.
+
+    IT MAY ADD AND IT MAY NOT OVERWRITE. An entry contributes `staff` rows, which a
+    compiled record always has none of, and a `staffing` block, which is null until an
+    entry supplies one. It touches no other field, so the compiled record stays the
+    register's own reading and the overlay stays legible as a separate claim.
+    """
+    if not STAFFING_OVERLAY.exists():
+        return {}
+    doc = load_json(STAFFING_OVERLAY)
+    by_id = {}
+    for entry in doc["entries"]:
+        by_id.setdefault(entry["business_id"], []).append(entry)
+    return by_id
+
+
+def apply_staffing_overlay(records, overlay):
+    """Carry each entry onto its record, and refuse an entry that names no record."""
+    by_id = {record["id"]: record for record in records}
+    for business_id, entries in sorted(overlay.items()):
+        record = by_id.get(business_id)
+        if record is None:
+            # A RULING THAT HAS OUTLIVED ITS RECORD IS A JUDGEMENT NOBODY CAN CHECK. The
+            # same rule trade_census_1835.py holds its own overrides to.
+            raise ValueError(
+                "the staffing overlay names %s, which the register does not compile. An "
+                "overlay entry belongs to a compiled record; a house a human authors "
+                "carries its own staffing in data/businesses/authored/." % business_id)
+        if len(entries) > 1:
+            raise ValueError("the staffing overlay carries %d entries for %s; one house, "
+                             "one entry" % (len(entries), business_id))
+        entry = entries[0]
+        record["staff"] = list(entry.get("staff") or [])
+        record["staffing"] = entry.get("staffing")
+    return records
+
+
+def staffing_problems(records):
+    """The rules the `staffing` block stands on. Every one is a --self-test case.
+
+    THE PROMISE THIS ENFORCES IS THE MODEL'S OWN: it writes no person. A block that
+    carried a name or a person id would be a roster wearing a model's clothes, and the
+    difference between the two is the whole reason `staff` and `staffing` are separate
+    fields. The rest is bookkeeping that keeps a `drawn` flag honest in both directions.
+    """
+    bad = []
+    for record in records:
+        rid = record.get("id", "<no id>")
+        block = record.get("staffing")
+        if block is None:
+            continue
+        if block.get("writes_no_person") is not True:
+            bad.append("%s: a staffing block that does not hold itself to writing no "
+                       "person" % rid)
+        for hand in block.get("hands") or []:
+            if not (hand["count_low"] <= hand["count_typical"] <= hand["count_high"]):
+                bad.append("%s: the %s hand runs %s-%s-%s, which is not a range"
+                           % (rid, hand["role"], hand["count_low"], hand["count_typical"],
+                              hand["count_high"]))
+            if "person_id" in hand or "name" in hand:
+                bad.append("%s: the %s hand names a person; the model writes none, and a "
+                           "hand a source names belongs in staff[]" % (rid, hand["role"]))
+            if not hand["drawn"] and not (hand.get("why_not_drawn") or "").strip():
+                bad.append("%s: the %s hand is undrawn and says nothing about why; an "
+                           "undrawn hand is a statement, not a gap" % (rid, hand["role"]))
+            # A DRAWN HAND POINTS AT A ROW OR IT IS DRAWN ON NOTHING. `drawn: true` is a
+            # claim that this record carries the person, and the only place it can carry
+            # one is staff[] — so the claim is checked against it rather than trusted.
+            if hand["drawn"] and not any(
+                    person["role"] == hand["household_relationship"]
+                    or person["role"] == hand["role"]
+                    for person in record["staff"]):
+                bad.append("%s: the %s hand is drawn and no staff row stands for it"
+                           % (rid, hand["role"]))
+        attendance = block.get("attendance")
+        if attendance is not None:
+            if attendance["kind"] == "none_printed" and attendance["value"] is not None:
+                bad.append("%s: attendance says none was printed and prints one" % rid)
+            if attendance["kind"] != "none_printed" and attendance["value"] is None:
+                bad.append("%s: attendance claims a %s count and carries no figure"
+                           % (rid, attendance["kind"]))
+    return bad
+
+
 def read_authored():
     if not AUTHORED.is_dir():
         return []
@@ -947,6 +1059,7 @@ def compiled_docs(residents_dir=None):
     gazetteer = load_json(GAZETTEER)
     town_ids = person_ids(residents_dir)
     records = compile_all(register, gazetteer, town_ids, person_communities(residents_dir))
+    records = apply_staffing_overlay(records, read_staffing_overlay())
     authored = read_authored()
     return records, authored, build_index(records, authored, works_at_rows(residents_dir))
 
@@ -978,7 +1091,7 @@ def semantic_problems(records, town_ids=None):
     """The rules a JSON schema cannot state. Every one of these is a --self-test case."""
     town_ids = town_ids if town_ids is not None else person_ids()
     vocab = {value for value, _ in community_vocabulary()}
-    bad = []
+    bad = staffing_problems(records)
     seen = set()
     for record in records:
         rid = record.get("id", "<no id>")
@@ -1258,7 +1371,13 @@ def self_test():
     global BUSINESSES
     failures = []
 
+    # COUNTED, NOT TYPED. The closing line used to print a literal 16 and went on
+    # printing it after T-1422 added eight cases, which is a gate reporting on a version
+    # of itself that no longer exists.
+    fired = []
+
     def expect(name, records, needle, town_ids=None):
+        fired.append(name)
         found = semantic_problems(records, town_ids)
         if not any(needle in problem for problem in found):
             failures.append("%s: expected a refusal mentioning %r, got %r" % (name, needle, found))
@@ -1361,6 +1480,66 @@ def self_test():
     expect("an anchored location carrying a roof of its own",
            mutate(lambda d: anchored(d, structure_id="fixture_store")),
            "the landmark is not the house's own roof", ids)
+
+    # T-1422 — the staffing overlay. Every one of these is a way the block could stop
+    # being a MODEL and start being a roster nobody wrote, which is the one thing the
+    # field exists not to be.
+    def staffed(doc, **over):
+        doc["staffing"] = {
+            "class": "printing_office", "reads_as": "a printing office",
+            "principal_role": "printer", "principal_is": "A. Fixture",
+            "hands": [{"role": "printer", "household_relationship": "journeyman",
+                       "count_low": 1, "count_typical": 1, "count_high": 2, "drawn": False,
+                       "basis": "directory_1839",
+                       "why_not_drawn": "no source names him"}],
+            "attendance": None, "writes_no_person": True,
+            "basis": "the model's row for this class", "replaceable_by": "an imprint",
+        }
+        doc["staffing"].update(over)
+
+    clean_block = mutate(lambda d: staffed(d))
+    if semantic_problems(clean_block, ids):
+        failures.append("a clean staffing block is refused: %r"
+                        % semantic_problems(clean_block, ids))
+
+    expect("a staffing block that will not promise to write no person",
+           mutate(lambda d: staffed(d, writes_no_person=False)), "writing no person", ids)
+
+    def names_a_person(doc):
+        staffed(doc)
+        doc["staffing"]["hands"][0]["person_id"] = "fixture_a"
+    expect("a hand that names a person", mutate(names_a_person),
+           "the model writes none", ids)
+
+    def undrawn_and_silent(doc):
+        staffed(doc)
+        doc["staffing"]["hands"][0]["why_not_drawn"] = "  "
+    expect("an undrawn hand that says nothing about why", mutate(undrawn_and_silent),
+           "an undrawn hand is a statement", ids)
+
+    def drawn_on_nothing(doc):
+        staffed(doc)
+        doc["staffing"]["hands"][0]["drawn"] = True
+    expect("a hand drawn with no staff row behind it", mutate(drawn_on_nothing),
+           "no staff row stands for it", ids)
+
+    def not_a_range(doc):
+        staffed(doc)
+        doc["staffing"]["hands"][0].update(count_low=3, count_typical=1, count_high=2)
+    expect("a hand count that is not a range", mutate(not_a_range),
+           "which is not a range", ids)
+
+    expect("an attendance that says none was printed and prints one",
+           mutate(lambda d: staffed(d, attendance={"value": 30, "kind": "none_printed",
+                                                   "tier": None, "on_date": None,
+                                                   "basis": "b"})),
+           "none was printed and prints one", ids)
+
+    expect("an attendance claiming a count it does not carry",
+           mutate(lambda d: staffed(d, attendance={"value": None, "kind": "attending",
+                                                   "tier": "attested", "on_date": "1832",
+                                                   "basis": "b"})),
+           "carries no figure", ids)
 
     expect("an attested opening that is not exact",
            mutate(lambda d: d["dates"].update(precision="not_later_than")),
@@ -1540,7 +1719,8 @@ def self_test():
         print("  FAIL  " + failure, file=sys.stderr)
     if failures:
         return 1
-    print("self-test: %d assertion(s) fire when broken, and the compile is deterministic" % 19)
+    print("self-test: %d assertion(s) fire when broken, and the compile is deterministic"
+          % len(fired))
     return 0
 
 

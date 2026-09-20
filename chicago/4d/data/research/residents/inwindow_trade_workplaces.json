@@ -977,9 +977,9 @@
    {
     "class": "printing_office",
     "census_count": 2,
-    "town_before_T-1404": 3,
+    "town_before_T-1404": 2,
     "raised_here": 0,
-    "town_after_T-1404": 3,
+    "town_after_T-1404": 2,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null

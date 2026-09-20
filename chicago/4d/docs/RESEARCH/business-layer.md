@@ -273,6 +273,104 @@ had, and `1835_town_model.md` says so in its own caution — "A church with five
 in December had fewer in July and some of them had no building at all." A fifth congregation
 on 1 July 1835 would need a source naming it. None reached does.
 
+## The schools and the press — the staffing overlay, and the third printing office (T-1422)
+
+T-1411 asked for the churches, the schools and the press as establishments with their people,
+and it **split over a hole in this layer**. A church needed nothing new: the class held zero
+records and every congregation above is authored whole. The schools and the printing offices
+are the opposite case — the register COMPILES them, `--check` refuses a hand edit to a
+compiled record, and `data/businesses/authored/` holds whole records rather than *additions
+to* compiled ones. So a reading about who taught at the Chicago Academy, or about the boy the
+Democrat advertised for, had **nowhere in this layer to be written down**.
+
+`data/businesses/rulings/establishment_staffing.json` is that place. It is laid over the
+compiled records by `compile_businesses.apply_staffing_overlay`, it supplies exactly two
+fields and no others, and it is derived like everything else here — `--check` re-derives it
+and an entry naming a record the register does not compile is refused.
+
+- **`staff`** — people, with citations, at the tier the evidence supports. A compiled record
+  otherwise always has none.
+- **`staffing`** — what KIND of hand the 1835 business staffing model puts about this kind of
+  house. **It names nobody**, `writes_no_person` is held true by the compiler, and a hand
+  nobody has written carries `drawn: false` with the reason. It is not a roster and cannot
+  become one by itself; T-1189 is the ticket that puts people in `staff`.
+
+### The seven schools' teachers are the seven keepers the register already prints
+
+The staffing model gives a school one role — an assistant, 0–1 with a **typical of nought**,
+because "the town's schools of 1835 are one room and one teacher". So the answer to *who
+taught here* is a pointer at a row each record already carries, and **not a new row beside
+it**: `principal_role: "teacher"` and `principal_is` name the proprietor or partner, and the
+assistant stands undrawn on all seven. Counting a man once is the whole of the rule.
+
+| school | the teacher | pupils |
+|---|---|---|
+| `biz_the_chicago_academy` | G. T. Sproat, signed "Preceptor" | none printed — a four-department fee table instead |
+| `biz_john_watkins` | John Watkins | **thirty subscribed for, twelve attending** — and the figure is *1832* |
+| `biz_miss_bayne_s_boarding_and_day_school` | [uncertain: Miss Bayne], unlinked | none printed — terms by the quarter, $3 to $8 |
+| `biz_j_a_marshall_s_dancing_school` | J. A. Marshall | none printed — addresses left at the Exchange Coffee House |
+| `biz_samuel_lewis` | Samuel Lewis | none printed — he was waiting on subscribers in August |
+| `biz_hiram_everts_high_school_for_young_gentlemen` | Hiram Everts | none printed — and **not standing on 1 July**, opened 10 August 1835 |
+| `biz_charles_hunt_high_school_for_young_ladies` | Charles Hunt | none printed — **not standing on 1 July**, first term 17 August 1835 |
+
+**One pupil figure exists in this whole project and it is not a figure for 1835.** Andreas
+quotes Watkins's own later letter on his FIRST quarter: thirty scholars subscribed for but
+only twelve attending, "only four of them were white: the others were quarter, half, and
+three-quarters Indians". That quarter was taught in the autumn of 1832 in Colonel Hamilton's
+horse stable, twelve feet square — three years before the scene date and two moves before the
+schoolhouse the record is seated on. It is carried with its own date on it, because a dated
+figure can be read with its date where a silence cannot be read at all, and nothing may read
+it as the attendance of 1 July 1835.
+
+**And two of the seven schools were not open on 1 July.** The register says so itself —
+`present_at_scene_date: false`, `exclusion: opening_announced_after_scene_date` — and both
+notices are conditional on "sufficient encouragement", which is what a schoolmaster wrote when
+the subscription list was not yet full. The December census counted them because December is
+after August. The trade-census crosswalk does **not** yet read the register's judgement here;
+see T-1428.
+
+### The Democrat's apprentice — the one advertised hand in the corpus
+
+The Chicago Democrat of **20 May 1835** carries, in its own columns: *"Wanted immediately,
+[a]n apprentice at this office to the printing [b]usiness. A good opportunity is offere[d] by
+an immediate application."* That is the only hand any notice in this corpus places in either
+printing office, six weeks before the scene date — and it is a **vacancy, not a man**. The
+staff row stands at `inferred`, names nobody, and says in its basis that a reading where the
+place went unfilled through July is open and the row must be able to take it. The journeyman
+the model also allows stays undrawn: a shop advertising for the cheaper hand is not evidence
+that it already had the dearer one.
+
+The *Chicago American*'s office gets the same block and no rows at all. Its `proprietors` and
+`partners` are both **empty** — the one notice it compiles is the shop advertising its plant,
+signed by nobody — and that null is the finding.
+
+### The third printing office: two notices, one house
+
+The census prints **two printing offices** and the register raised **three**. The third was
+never a third shop; it was the Democrat's own weekly imprint, read twice:
+
+| record | compiled from | says |
+|---|---|---|
+| `biz_the_chicago_democrat` | the terms block, 26 November 1833 | "THE DEMOCRAT, Is published every Tuesday, in [t]he village [of] Chicago, … [in the building on the] corner of South Water and Clark stree[ts]" |
+| `biz_chicago_democrat_printing_office` | the colophon, 7 January 1834 | "[The Chicago Democrat] is published every Tues[day, in the villa]ge [of] Chicago, Cook co. Ill. in the building on the corner of South Water and Clark streets" |
+
+One sentence, thirteen months apart, one address. Both are class `printing_office`, both give
+South Water Street, both name John Calhoun, and no third proprietor, second address or second
+press appears anywhere in the corpus. The register split them only because the gazetteer read
+the firm STYLE two ways.
+
+`one_house_rulings` in `trade_class_rulings.json` is where that adjudication is now made, and
+it is deliberately narrow: `register_cautions` beside it is where a suspected double is NAMED
+without being ruled, and that is where a double belongs until somebody has read the pages and
+written the argument out. Noble & Wesencraft sits in the cautions and is **not** folded.
+
+**The fold moves the count and nothing else.** Both records stand, both keep their claims, and
+`folded_business_ids` on the class row names the pair — exactly as
+`compile_businesses.fold_printed_styles` removes the second count of one man without deleting
+the second spelling of his name. `printing_office` now reads **2 against 2**, and the office is
+the survivor because the office is what the census counted: the Chicago Democrat is the
+newspaper printed in one of them.
+
 ## The limits are data now
 
 61 of the register's businesses are `street_only` and 62 are `unplaceable`: the paper gives a
