@@ -3635,8 +3635,36 @@
   "cross_checks": {
     "committed_plat_blocks_inside_the_original_town": {
       "claim": "If the four streets are the 1830 plat's bounds, every block this project has already generated from the Thompson module must fall inside them. This does not prove the bounds — a bigger rectangle would pass too — but a block outside would disprove them.",
-      "blocks": 19,
-      "outside": [],
+      "blocks": 46,
+      "outside": [
+        "blk_superior_north_wolcott",
+        "blk_superior_north_cass",
+        "blk_superior_north_rush",
+        "blk_huron_north_wolcott",
+        "blk_huron_north_cass",
+        "blk_huron_north_rush",
+        "blk_huron_north_pine",
+        "blk_erie_north_wolcott",
+        "blk_erie_north_cass",
+        "blk_erie_north_rush",
+        "blk_erie_north_pine",
+        "blk_ontario_north_wolcott",
+        "blk_ontario_north_cass",
+        "blk_ontario_north_rush",
+        "blk_ontario_north_pine",
+        "blk_ohio_north_wolcott",
+        "blk_ohio_north_cass",
+        "blk_ohio_north_rush",
+        "blk_ohio_north_pine",
+        "blk_indiana_north_wolcott",
+        "blk_indiana_north_cass",
+        "blk_indiana_north_rush",
+        "blk_indiana_north_pine",
+        "blk_illinois_north_wolcott",
+        "blk_illinois_north_cass",
+        "blk_illinois_north_rush",
+        "blk_illinois_north_pine"
+      ],
       "confidence": "inferred"
     },
     "lighthouse_inside_the_reservation": {
