@@ -296,6 +296,12 @@ def build_occupations(crosswalk: dict, comp: dict, people: dict, pop: dict) -> d
     short = [c for c in compared if c["delta"] < 0]
     over = [c for c in compared if c["delta"] > 0]
     shortfall = sum(-c["delta"] for c in short)
+    # HOW MUCH OF THE SHORTFALL THE SOURCES HAVE ALREADY ACCOUNTED FOR (T-1428). The
+    # crosswalk names, per class, the register's houses whose OPENING is dated after
+    # 1 July: houses that stand in the autumn census and honestly not in the July town.
+    # Without this the table reads a dated, named August opening as a hole in the town,
+    # which is the reading that nearly had the order book commission two schools.
+    explained = sum(c.get("shortfall_explained_by_later_openings") or 0 for c in short)
 
     industry = comp["industry"]
     employed_share = industry["employed_share_of_persons"]
@@ -331,7 +337,9 @@ def build_occupations(crosswalk: dict, comp: dict, people: dict, pop: dict) -> d
                ["data/research/books/trade_census_1835_crosswalk.json"]),
         figure("classes_short_of_the_census", len(short), len(short),
                f"{len(short)} compared classes hold fewer records than the census counted, "
-               f"{shortfall} establishments short in total; {len(over)} hold more, which is "
+               f"{shortfall} establishments short in total — of which {explained} are houses "
+               "the register names with an opening announced AFTER the scene date, so that "
+               f"much of the gap is already accounted for; {len(over)} hold more, which is "
                "the register counting NOTICES where the census counted houses.",
                ["moses_kirkland_history_of_chicago_v1"],
                ["data/research/books/trade_census_1835_crosswalk.json"]),
@@ -360,7 +368,9 @@ def build_occupations(crosswalk: dict, comp: dict, people: dict, pop: dict) -> d
             "rows": [{"class": c["class"], "census_line": c["census_line"],
                       "census_count": c["census_count"],
                       "town_at_scene_date": c["town_records_at_scene_date"],
-                      "delta": c["delta"], "outcome": c["outcome"]}
+                      "delta": c["delta"], "outcome": c["outcome"],
+                      "opened_after_the_scene_date":
+                          c.get("shortfall_explained_by_later_openings") or 0}
                      for c in sorted(compared, key=lambda c: (c["delta"], c["class"]))],
         },
         "employment_shape_1840": {

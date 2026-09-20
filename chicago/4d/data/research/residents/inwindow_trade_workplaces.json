@@ -919,10 +919,10 @@
    {
     "class": "school",
     "census_count": 7,
-    "town_before_T-1404": 7,
+    "town_before_T-1404": 5,
     "raised_here": 0,
-    "town_after_T-1404": 7,
-    "still_short": 0,
+    "town_after_T-1404": 5,
+    "still_short": 2,
     "documented_zero": false,
     "owed_to": null
    },
@@ -959,9 +959,9 @@
    {
     "class": "store",
     "census_count": 44,
-    "town_before_T-1404": 60,
+    "town_before_T-1404": 59,
     "raised_here": 6,
-    "town_after_T-1404": 66,
+    "town_after_T-1404": 65,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null

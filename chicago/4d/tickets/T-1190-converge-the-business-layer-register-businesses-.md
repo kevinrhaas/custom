@@ -61,6 +61,14 @@ join carries `printed_as` on every row so a reader can check the match rather th
 T-1432 raised these and did not touch them: it carries rows across at the identity the business
 layer already asserted and re-matches nobody. Re-matching is this ticket's clause 1.
 
+**AND ONE ROW LEFT OVER BY T-1428 (2026-09-20).** The crosswalk, the order book and the
+1835 town model all say, per class, how much of a shortfall is houses the register names
+with an opening dated after the scene date — `school` is 7 against 5 with 2 explained, and
+orders nothing. `data/research/residents/inwindow_trade_workplaces.json` was rebuilt with
+the corrected figures but its row still reads `still_short: 2` with `owed_to: null`: right
+arithmetic, and it hands the two to nobody, but the row does not say they are accounted
+for. When this ticket makes the finished counts print, make that row say it too.
+
 **Stop condition:** the business layer is complete to the order book, reproducible, and every
 invented firm says how it will be replaced.
 

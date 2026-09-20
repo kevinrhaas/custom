@@ -39,11 +39,11 @@ The inventory's own defensible range is 565–765 roofs; the adopted total is in
 
 **`small_outbuildings`** — Ancillary. The town model carries no figure for yards and outbuildings and the order book orders none; the ratio to principal roofs is T-1212's to deal. The spec stands untouched.
 
-**`stores_mixed_use`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`stores_mixed_use`** — No model figure schedules this group on its own. The nearest comparandum is the 118–134 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
-**`warehouses_freight`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`warehouses_freight`** — No model figure schedules this group on its own. The nearest comparandum is the 118–134 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
-**`workshops`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`workshops`** — No model figure schedules this group on its own. The nearest comparandum is the 118–134 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
 ## The census's 398 dwellings, reconciled
 
