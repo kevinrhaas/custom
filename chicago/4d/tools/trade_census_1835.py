@@ -205,9 +205,53 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tu
         if business_id not in register_ids:
             raise Fault(f"an override naming no business in the register: {business_id}")
 
+    # TWO NOTICES RULED TO BE ONE HOUSE (T-1422). The fold moves the COUNT and nothing
+    # else: both records stand, both keep their claims, and the class row names the pair.
+    # Every guard here exists because the alternative to it is a count nobody can audit.
+    by_id = {row["business_id"]: row for row in rows}
+    folded_into = {}
+    for fold in one_house_rulings(rulings):
+        folded, into = fold["folded"], fold["into"]
+        if folded == into:
+            raise Fault(f"a one-house ruling folding {folded} into itself")
+        for side in (folded, into):
+            if side not in register_ids:
+                raise Fault(f"a one-house ruling naming no business in the register: {side}")
+            if side not in by_id:
+                raise Fault(f"a one-house ruling naming {side}, which this table does not rule")
+        if not str(fold.get("basis") or "").strip():
+            raise Fault(f"a one-house ruling with no basis: {folded} into {into}")
+        if folded in folded_into:
+            raise Fault(f"{folded} is folded twice; a house is folded once")
+        # A HOUSE FOLDED INTO A HOUSE THAT IS ITSELF FOLDED would leave the survivor out
+        # of the count altogether, which is the opposite of what a fold is for.
+        if into in folded_into or any(f == into for f in folded_into):
+            raise Fault(f"{folded} is folded into {into}, which is itself folded away")
+        shared = set(by_id[folded]["classes"]) & set(by_id[into]["classes"])
+        if not shared:
+            raise Fault(
+                f"a one-house ruling joining {folded} and {into}, which share no census "
+                "class. Two notices of different classes are two houses, and a ruling that "
+                "says otherwise is reclassifying one of them without saying so.")
+        for cls in fold["classes"]:
+            if cls not in shared:
+                raise Fault(
+                    f"a one-house ruling folding {folded} into {into} in class {cls!r}, "
+                    "which is not a class both of them carry")
+        folded_into[folded] = fold
+    for row in rows:
+        fold = folded_into.get(row["business_id"])
+        row["folded_into"] = fold["into"] if fold else None
+        row["folded_in_classes"] = list(fold["classes"]) if fold else []
+
     rows.sort(key=lambda r: r["business_id"])
     not_counted.sort(key=lambda r: r["business_id"])
     return rows, not_counted
+
+
+def one_house_rulings(rulings: dict) -> list:
+    """The folds, or none. Absent means nobody has ruled one, which is the normal state."""
+    return list((rulings.get("one_house_rulings") or {}).get("rulings") or [])
 
 
 def compare(rows: list, rulings: dict) -> list:
@@ -221,7 +265,12 @@ def compare(rows: list, rulings: dict) -> list:
         cls = entry["id"]
         members = [r for r in rows if cls in r["classes"]]
         in_town = [r for r in members if r["scope"] == "in_town"]
-        at_scene = [r for r in in_town if r["built_at_scene_date"]]
+        # A HOUSE FOLDED INTO ANOTHER IS STILL A RECORD AND IS NO LONGER A COUNT. It is
+        # dropped from both totals and named in `folded_business_ids`, so the reader sees
+        # the pair rather than a number that quietly got smaller (T-1422).
+        folded = [r for r in in_town if cls in r["folded_in_classes"]]
+        standing = [r for r in in_town if cls not in r["folded_in_classes"]]
+        at_scene = [r for r in standing if r["built_at_scene_date"]]
         census = entry["census_count"]
         row = {
             "claim_id": CLAIM,
@@ -229,10 +278,12 @@ def compare(rows: list, rulings: dict) -> list:
             "census_line": entry["census_line"],
             "census_count": census,
             "compared": entry["compared"],
-            "town_records_in_town": len(in_town),
+            "town_records_in_town": len(standing),
             "town_records_at_scene_date": len(at_scene),
             "town_records_outside_town": len(members) - len(in_town),
-            "business_ids": [r["business_id"] for r in in_town],
+            "business_ids": [r["business_id"] for r in standing],
+            "folded_business_ids": [{"business_id": r["business_id"],
+                                     "into": r["folded_into"]} for r in folded],
         }
         if census is None or not entry["compared"]:
             row["outcome"] = "not_compared"
@@ -300,7 +351,9 @@ def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
             "in_town": sum(1 for r in rows if r["scope"] == "in_town"),
             "outside_town": sum(1 for r in rows if r["scope"] != "in_town"),
             "at_scene_date": sum(1 for r in rows
-                                 if r["scope"] == "in_town" and r["built_at_scene_date"]),
+                                 if r["scope"] == "in_town" and r["built_at_scene_date"]
+                                 and not r["folded_into"]),
+            "folded_into_another_house": sum(1 for r in rows if r["folded_into"]),
             "carrying_no_enumerated_class": sum(
                 1 for r in rows if set(r["classes"]) <= {"other", "not_stated"}),
             "not_stated": sum(1 for r in rows if "not_stated" in r["classes"]),
@@ -525,7 +578,55 @@ def cmd_self_test() -> int:
     _fires_authored(gaz, rules, [{"id": "biz_y", "type": ["tavern", "civic"]}],
                     "mixes census classes with classes the census never counted")
 
-    print("trade_census_1835 self-tests pass (15 guards)")
+    # TWO NOTICES RULED TO BE ONE HOUSE (T-1422). The fold has to move the count, name
+    # the pair, and refuse every way of writing a fold that would make the count
+    # unauditable — which is most of the ways of writing one.
+    def folding(**over):
+        r = copy.deepcopy(rules)
+        fold = {"folded": "b3", "into": "b1", "classes": ["tavern"],
+                "ticket": "T-0000", "basis": "one house, two printed styles"}
+        fold.update(over)
+        r["one_house_rulings"] = {"rulings": [fold]}
+        return r
+
+    g = copy.deepcopy(gaz)
+    g["businesses"].append({"id": "b3", "name": "A, tavern keeper", "trade": "tavern",
+                            "built_at_scene_date": True})
+    doc = build(g, folding())
+    tav = next(c for c in doc["classes"] if c["class"] == "tavern")
+    assert tav["town_records_at_scene_date"] == 1, tav
+    assert tav["town_records_in_town"] == 1, tav
+    assert tav["business_ids"] == ["b1"], tav
+    assert tav["folded_business_ids"] == [{"business_id": "b3", "into": "b1"}], tav
+    assert doc["totals"]["folded_into_another_house"] == 1, doc["totals"]
+    # and the folded record is still IN the classification: folded is not deleted
+    assert any(r["business_id"] == "b3" for r in doc["classification"]), doc["classification"]
+
+    _fires(g, folding(folded="b1"), "folding b1 into itself")
+    _fires(g, folding(folded="nobody"), "naming no business in the register")
+    _fires(g, folding(basis="  "), "with no basis")
+    _fires(g, folding(into="b2"), "share no census class")
+    _fires(g, folding(classes=["other"]), "which is not a class both of them carry")
+
+    # a house folded into a house that is itself folded would leave BOTH out of the count
+    r = folding()
+    r["one_house_rulings"]["rulings"].append(
+        {"folded": "b1", "into": "b3", "classes": ["tavern"], "basis": "and back again"})
+    _fires(g, r, "which is itself folded away")
+
+    # the same house folded twice
+    r = folding()
+    r["one_house_rulings"]["rulings"].append(
+        {"folded": "b3", "into": "b1", "classes": ["tavern"], "basis": "again"})
+    _fires(g, r, "is folded twice")
+
+    # no rulings section at all is the NORMAL state and is not a fault
+    doc = build(g, rules)
+    tav = next(c for c in doc["classes"] if c["class"] == "tavern")
+    assert tav["town_records_at_scene_date"] == 2, tav
+    assert tav["folded_business_ids"] == [], tav
+
+    print("trade_census_1835 self-tests pass (24 guards)")
     return 0
 
 

@@ -56,8 +56,8 @@ It is an adjudication over committed derived files — no page of any source is 
 | Figure | Reading | Method |
 | --- | ---: | --- |
 | `census_classes_compared` | **17** | 17 of the 20 classes the T-1006 crosswalk holds carry both a printed census line and a register count; the other 3 are a class the census never printed a line for, or a line the town holds nothing for. |
-| `establishments_in_the_compared_classes` | **118 – 141** | The register holds 141 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
-| `classes_short_of_the_census` | **8** | 8 compared classes hold fewer records than the census counted, 17 establishments short in total; 7 hold more, which is the register counting NOTICES where the census counted houses. |
+| `establishments_in_the_compared_classes` | **118 – 140** | The register holds 140 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
+| `classes_short_of_the_census` | **8** | 8 compared classes hold fewer records than the census counted, 17 establishments short in total; 6 hold more, which is the register counting NOTICES where the census counted houses. |
 | `employed_persons` | **424 – 588** | The 1840 schedule returns 18% of persons in its seven industry columns, 0.902 per household. Applied to this model's July population range. The 1840 columns count persons in families and not occupations of named men, so this is a size and not a roster. |
 | `people_the_layer_gives_a_trade` | **138 – 327** | 138 people carry a role that reaches 1 July 1835; 327 carry any role at all, and 189 carry only roles dated off the scene. The gap between this and the employed-persons figure above is what the reconstruction bands have to fill. |
 
@@ -76,9 +76,9 @@ It is an adjudication over committed derived files — no page of any source is 
 | lyceum_and_reading_room | a lyceum and reading room | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted |
 | silversmith_jeweller | two silversmiths and jewellers | 2 | 1 | -1 | town_holds_fewer_than_the_census_counted |
 | book_store | two book stores | 2 | 2 | 0 | town_matches_census |
+| printing_office | two printing offices | 2 | 2 | 0 | town_matches_census |
 | school | seven schools | 7 | 7 | 0 | town_matches_census |
 | iron_foundry | one iron foundry | 1 | 2 | 1 | town_holds_more_than_the_census_counted |
-| printing_office | two printing offices | 2 | 3 | 1 | town_holds_more_than_the_census_counted |
 | steam_saw_mill | one steam saw-mill | 1 | 2 | 1 | town_holds_more_than_the_census_counted |
 | tin_and_copper_manufactory | two tin and copper manufactories | 2 | 4 | 2 | town_holds_more_than_the_census_counted |
 | storage_and_forwarding | four storage and forwarding houses | 4 | 8 | 4 | town_holds_more_than_the_census_counted |
