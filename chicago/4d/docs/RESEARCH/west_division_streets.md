@@ -1,4 +1,4 @@
-# West Water seated, and Jefferson and Des Plaines seated after it
+# West Water seated, Jefferson and Des Plaines seated after it, and the five tiers carried off the clip
 
 **T-0445, piece 2 of 4 of T-0443. 2026-09-05. Extended by T-0768, 2026-09-12,
 which carried the reach past the turn at Wolf Point and refused the rest with the
@@ -339,7 +339,115 @@ lot-counts, which the owner's 2026-09-03 ruling puts within reach at
 `chicago/pre_fire_v1/maps/images/1830_thompson_plat.png` and which T-0444's
 acceptance 1 already asks for.
 
-## What this changes in the town
+## 4. The five east-west tiers came off the clip, and Fulton's own control was waiting there
+
+**T-1443, 2026-09-20, piece 1 of 2 of T-1431 out of T-1417.** §2 above answered the
+refusal that had kept `jefferson` and `des_plaines` off the map. The same ground answers
+a second one, and this one was written into a committed record rather than into a memo.
+`fulton`'s note said it:
+
+> WHY THE LINE STILL STOPS AT EAST -320 like `kinzie`, `lake`, `randolph` and
+> `washington`, when the control runs 200 m further west: the west clip is this
+> reconstruction's own extent, not a statement that the street ended there, and moving it
+> would move five streets rather than one.
+
+Both halves of that sentence have expired. T-1416 built the modelled field out to local
+east -705, so the extent that did the clipping is gone; and moving five streets is exactly
+what this section does, in one generator, with one gate. Every number below is recomputed
+from committed files by `tools/carry_west_tiers_west.py`, which `tools/check.sh` runs as
+`--check`.
+
+### Where each line stops, and what it crosses
+
+Each tier stops where it meets the committed `des_plaines` centreline §2 seated — the
+westernmost platted street of the West Division. Not at the field's west wall: that is a
+fact about this reconstruction's extent and would be the same mistake one ticket later.
+The plat's own west boundary line is not committed to this repository, so the lines stop
+on the last committed control rather than on an inferred edge. `carroll` stops at
+`fulton`'s west end instead, because an interpolation may claim no more ground than the
+pair it lies between — §2's rule about borrowed lines, turned through ninety degrees.
+
+| street | old west end | new west end | carried (m) | kink at the retained vertex (deg) | lowest ground on the reach (m) |
+|---|---|---|---|---|---|
+| `carroll` | [-320.0, 137.85] | [-524.877, 139.16] | 204.88 | 0.0013 | 1.22 |
+| `fulton` | [-320.0, 12.59] | [-524.877, 13.588] | 204.88 | 0.0000 | 1.23 |
+| `lake` | [-320.0, -107.1] | [-522.025, -105.461] | 202.03 | 0.0029 | 1.05 |
+| `randolph` | [-320.0, -249.9] | [-518.603, -248.288] | 198.61 | 0.0164 | 1.30 |
+| `washington` | [-320.0, -385.2] | [-515.361, -383.615] | 195.37 | 0.0000 | 1.30 |
+
+1006 m of street, and not one metre of it off the modelled box or under water: every
+reach is sampled against the committed heightfield and the lowest sample on any of them
+stands 1.05 m above the summer-1835
+water surface.
+
+### The bearing each line is carried on, which is the one judgement here
+
+`lake`, `randolph` and `washington` are three lines of the Thompson plat's own east-west
+grid and they share ONE bearing exactly — **-0.008115**, to six decimals, which is the
+number `tools/measure_no_build_ground.plat_bearing` asserts and the tract layer stands on.
+They are carried on it. The alternative — each line's own westernmost *segment* — is worse
+evidence dressed as precision: that segment's west end **was the clip itself**, an artefact
+of this reconstruction's extent rather than a surveyed point, and on `randolph` it leans
+3.5% off the grid the same street carries at its other end. Carried that way the three
+would arrive at Des Plaines not parallel, in a plat that draws them parallel.
+
+`fulton` is not on that grid and is not forced onto it: its own four-point fit runs at a
+different slope, a committed disagreement (T-0446) and not this ticket's to reconcile.
+
+`plat_bearing` itself had to move with this, and the move is the point: it read the chord
+from each line's first vertex to its last, which was the Original Town's reach only for as
+long as the lines stopped at the town's west line. It now drops vertices west of -320
+before taking the chord. A derived reach may not redefine the grid it was derived from.
+
+### What corroborates it: control the record already carried
+
+`fulton`'s note lists four surviving OpenStreetMap intersections, read on 2026-09-04 and
+fitted at RMS 0.35 m. **Two of the four stand WEST of the old clip.** The carry is
+derived from the committed bearing and reads neither of them:
+
+| node | local east | line stands | side of the clip |
+|---|---|---|---|
+| Canal (258020617) | -162.00 | -0.350 m | east |
+| Clinton (258966840) | -282.18 | +0.576 m | east |
+| **Jefferson (262247424)** | -401.04 | **-0.125 m** | **west** |
+| **Des Plaines (258966841)** | -524.88 | **-0.132 m** | **west** |
+
+The carried line passes 0.132 m from the worse of the two, inside the
+0.35 m RMS of the four-point fit itself and tighter than either eastern residual.
+The clip had been standing in front of 200 m of street that the record's own control
+already held.
+
+`carroll`'s bracket is re-measured at the new west end on the same rule as T-0446: one
+Fulton-to-Lake module north of Fulton is 132.624, one module
+south of Kinzie is 145.696, and the midpoint
+139.16 sits between them — a half-bracket of **6.536 m**, still
+the largest uncertainty of any West Division street. West of the clip the Kinzie term is
+`kinzie_west`, T-1085's separate record, because that is the line that exists there.
+
+### Nothing east of the clip moves
+
+Each line KEEPS its old west vertex — the reach is carried from it, not fitted through it —
+so every committed vertex from local east -320 eastward stands exactly where it stood. No
+platted lot line moves, no corridor is re-cut, and the corridor-intrusion count is
+untouched. What the carry does add is a change of direction at that retained vertex, and
+it is measured rather than rounded away: the largest is `randolph`'s
+0.0164 deg, and `fulton` and `washington` have none at all.
+
+### What it moves in the town
+
+`tools/measure_north_of_box.mjs` re-reads the drawn street on the grid at
+15,944.12 m against 14,938.34 m — the 1006 m added, all of it on modelled ground,
+which is the same answer the heightfield sampling gives from the other side.
+
+The town wagons re-deal, because their lattice is anchored at each street's west end and
+stepped by the street's traffic class: 25 further stands are offered on the new reaches
+and **every one of them is refused off-town**, more than 16 m from any committed footprint —
+"past that the street is running out into the prairie", which is `generate_yard_goods.py`'s
+own words and exactly right here. What changes inside the town is the lattice's phase:
+66 wagons become 65 and the enumerated refusals fall from 43 to 40. No wagon stands west of
+the old clip.
+
+## What §1 changed in the town
 
 One new street, on ground that had none: the block the eye expects between the
 river and Canal Street — the absence T-0444's memo named as the third of the West
