@@ -6,7 +6,7 @@ T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execu
 
 - refamily verdicts standing: **32**
 - carried out here: **6** (the West Division parcel)
-- outstanding, and why: **26** — the record id carries the family, so executing them renames a roof other files name (T-1452)
+- outstanding, and why: **26** — the record id carries the family, so executing them renames a roof other files name (T-1481/T-1482/T-1484, over the surface `tools/measure_roof_id_migration.py` measures)
 - retired: **0** — the guard stands empty and that is a measurement, not an omission
 
 ## Carried out
@@ -20,7 +20,7 @@ T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execu
 | `recon_1835_west_021` | W3 | D6 | workshops → ordinary_dwellings | 22x33 | the placement policy refuses this family here — stands 30.47 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands |
 | `recon_1835_west_022` | W4 | A1 | workshops → barns_stables | 18x26 | the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands |
 
-## Outstanding — the id migration T-1452 owns
+## Outstanding — the id migration T-1481, T-1482 and T-1484 own
 
 Each of these becomes a new id when its family moves, and the id is not private to its record. The files below name it today and would point at a roof that no longer exists. Counted over the committed tree; a record's own `data/structures/<id>.json` is not listed.
 

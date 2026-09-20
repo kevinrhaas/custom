@@ -1160,6 +1160,20 @@ step "the redeal's carried-out verdicts hold, and every re-dealt roof now confor
 selftest "…and the executor's own refusals still fire on an unbuildable deal" \
   python3 tools/execute_roof_redeal.py --self-test
 
+# T-1483, and the step that had to exist before the 26 outstanding verdicts could be
+# carried out at all. Their record ids encode the family, so executing them RENAMES a
+# roof some seventy files name — and a scripted rename over those files would pass every
+# gate here while printing a cooper employed at a cottage and a hitching post refused to
+# a dwelling for a reason about a smithy. This measures, for every reference, whether the
+# migration renames it, re-derives it, leaves it frozen as a record of a dated run, or
+# has to adjudicate it; the report is the surface T-1481, T-1482 and T-1484 each stand
+# on, and this step refuses it drifting away from the tree it describes.
+step "the 26 moving roof ids' migration surface still describes the tree" \
+  python3 tools/measure_roof_id_migration.py --check
+
+selftest "…and it still tells a pointer from an assertion about what a roof is" \
+  python3 tools/measure_roof_id_migration.py --self-test
+
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
 # their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,
