@@ -1,7 +1,7 @@
 ---
 id: T-1428
 title: The trade-census crosswalk counts four houses at the scene date that the register says had not opened: read present_at_scene_date, not the gazetteer's built_at_scene_date — and teach the order book that a shortfall the evidence explains is not a quota
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1560
 claimed_by: run 9/20/2026, 3:36:53 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T09:56:01.068Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35499767240
 ---
 
