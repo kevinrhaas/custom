@@ -193,7 +193,21 @@ NEVER_PLATTED_OMISSIONS = {"blk_south_water_clinton"}
 # any placement with centre E < -300 m until the heightfield, collision surface,
 # vegetation sampler, minimap and water mask share the extended box." Read as a number
 # here only to cross-check the recipe's remainder against the records actually emitted.
+#
+# T-1444 RETIRED IT. The recipe now carries the text under `instantiation_block_retired`
+# and holds nothing back, so the cross-check below asks the recipe which state it is in
+# rather than assuming the block is live: a schedule that kept subtracting 35 roofs the
+# parcel had already built would report a remainder that does not exist.
 WEST_INSTANTIATION_BLOCK_E = -300.0
+
+
+def west_held_back(recipe: dict) -> int:
+    """How many of the West recipe's placements its own gate still withholds."""
+    gate = recipe["terrain_and_hydrology_gate"]
+    if not gate.get("instantiation_block"):
+        return 0
+    return sum(1 for p in recipe["placements"]
+               if p["center_local_enu_m"][0] < WEST_INSTANTIATION_BLOCK_E)
 
 # What the balance of each district is waiting on. The West entry is the street control
 # ROADMAP S9 records as owed; the North entry is the coverage the North parcel's own
@@ -1154,21 +1168,23 @@ def programme_document():
     # its records carry, so the question can be asked exactly.
     west_built = sum(1 for r in rows if r.get("programme_phase") == west_recipe["id"])
     west_outer = west_recipe["roof_totals"]["all"] - west_built
-    beyond_box = sum(1 for p in west_recipe["placements"]
-                     if p["center_local_enu_m"][0] < WEST_INSTANTIATION_BLOCK_E)
-    if west_outer != beyond_box:
+    held_back = west_held_back(west_recipe)
+    if west_outer != held_back:
         raise SystemExit(
-            f"the West recipe has {west_outer} placements left to emit but {beyond_box} "
-            "standing beyond its instantiation block — the parcel has been instantiated "
-            "out of order and this schedule cannot say what is left")
+            f"the West recipe has {west_outer} placements left to emit but {held_back} "
+            "held back by its own gate — the parcel has been instantiated out of order "
+            "and this schedule cannot say what is left")
     units.append({
         "id": "west_wolf_point_outer", "kind": "reviewed_recipe_remainder",
         "district": "west", "capacity_roofs": west_outer,
         "standing_roofs": 0, "headroom": west_outer,
-        "state": "gated",
-        "waiting_on": "unified terrain, hydrology, collision, flora and map coverage west "
-                      "to local E -700 m; the recipe's placements are already written and "
-                      "reviewed",
+        "state": "gated" if west_outer else "complete",
+        "waiting_on": ("unified terrain, hydrology, collision, flora and map coverage west "
+                       "to local E -700 m; the recipe's placements are already written and "
+                       "reviewed") if west_outer else
+                      ("nothing — T-1416 carried the modelled ground to E -705 m and "
+                       "T-1444 released the 35 slots this unit was holding. Every one of "
+                       "the recipe's 55 reviewed placements now stands as a record."),
         "recipe": "data/reconstruction/1835_phase2_west_wolf_point_approaches.json",
     })
 

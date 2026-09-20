@@ -11649,6 +11649,12 @@
       "asset": "gltf/recon_1835_west_003__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_west_004",
+      "name": "Reconstructed D5 deep-plan frame cottage #021",
+      "sidecar": "sidecars/1835/recon_1835_west_004.json",
+      "asset": "gltf/recon_1835_west_004__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_west_005",
       "name": "Reconstructed D6 one-and-a-half-story frame cottage #004",
       "sidecar": "sidecars/1835/recon_1835_west_005.json",
@@ -11697,6 +11703,12 @@
       "asset": "gltf/recon_1835_west_012__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_west_013",
+      "name": "Reconstructed A5 small utility building #022",
+      "sidecar": "sidecars/1835/recon_1835_west_013.json",
+      "asset": "gltf/recon_1835_west_013__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_west_014",
       "name": "Reconstructed D1 older log dwelling #012",
       "sidecar": "sidecars/1835/recon_1835_west_014.json",
@@ -11715,6 +11727,12 @@
       "asset": "gltf/recon_1835_west_016__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_west_017",
+      "name": "Reconstructed D4 two-room frame cottage #023",
+      "sidecar": "sidecars/1835/recon_1835_west_017.json",
+      "asset": "gltf/recon_1835_west_017__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_west_018",
       "name": "Reconstructed D5 deep-plan frame cottage #015",
       "sidecar": "sidecars/1835/recon_1835_west_018.json",
@@ -11725,6 +11743,12 @@
       "name": "Reconstructed D7 small two-story frame house #016",
       "sidecar": "sidecars/1835/recon_1835_west_019.json",
       "asset": "gltf/recon_1835_west_019__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_020",
+      "name": "Reconstructed C2 store-residence #024",
+      "sidecar": "sidecars/1835/recon_1835_west_020.json",
+      "asset": "gltf/recon_1835_west_020__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_021",
@@ -11749,6 +11773,192 @@
       "name": "Reconstructed A2 barn or carriage shed #020",
       "sidecar": "sidecars/1835/recon_1835_west_024.json",
       "asset": "gltf/recon_1835_west_024__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_025",
+      "name": "Reconstructed A3 privy #025",
+      "sidecar": "sidecars/1835/recon_1835_west_025.json",
+      "asset": "gltf/recon_1835_west_025__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_026",
+      "name": "Reconstructed D1 older log dwelling #026",
+      "sidecar": "sidecars/1835/recon_1835_west_026.json",
+      "asset": "gltf/recon_1835_west_026__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_027",
+      "name": "Reconstructed D1 older log dwelling #027",
+      "sidecar": "sidecars/1835/recon_1835_west_027.json",
+      "asset": "gltf/recon_1835_west_027__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_028",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #028",
+      "sidecar": "sidecars/1835/recon_1835_west_028.json",
+      "asset": "gltf/recon_1835_west_028__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_029",
+      "name": "Reconstructed D3 one-room frame cottage #029",
+      "sidecar": "sidecars/1835/recon_1835_west_029.json",
+      "asset": "gltf/recon_1835_west_029__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_030",
+      "name": "Reconstructed D3 one-room frame cottage #030",
+      "sidecar": "sidecars/1835/recon_1835_west_030.json",
+      "asset": "gltf/recon_1835_west_030__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_031",
+      "name": "Reconstructed D4 two-room frame cottage #031",
+      "sidecar": "sidecars/1835/recon_1835_west_031.json",
+      "asset": "gltf/recon_1835_west_031__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_032",
+      "name": "Reconstructed D4 two-room frame cottage #032",
+      "sidecar": "sidecars/1835/recon_1835_west_032.json",
+      "asset": "gltf/recon_1835_west_032__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_033",
+      "name": "Reconstructed D5 deep-plan frame cottage #033",
+      "sidecar": "sidecars/1835/recon_1835_west_033.json",
+      "asset": "gltf/recon_1835_west_033__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_034",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #034",
+      "sidecar": "sidecars/1835/recon_1835_west_034.json",
+      "asset": "gltf/recon_1835_west_034__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_035",
+      "name": "Reconstructed H2 medium boarding house #035",
+      "sidecar": "sidecars/1835/recon_1835_west_035.json",
+      "asset": "gltf/recon_1835_west_035__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_036",
+      "name": "Reconstructed W5 large workshop #036",
+      "sidecar": "sidecars/1835/recon_1835_west_036.json",
+      "asset": "gltf/recon_1835_west_036__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_037",
+      "name": "Reconstructed A1 stable #037",
+      "sidecar": "sidecars/1835/recon_1835_west_037.json",
+      "asset": "gltf/recon_1835_west_037__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_038",
+      "name": "Reconstructed D1 older log dwelling #038",
+      "sidecar": "sidecars/1835/recon_1835_west_038.json",
+      "asset": "gltf/recon_1835_west_038__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_039",
+      "name": "Reconstructed D1 older log dwelling #039",
+      "sidecar": "sidecars/1835/recon_1835_west_039.json",
+      "asset": "gltf/recon_1835_west_039__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_040",
+      "name": "Reconstructed D1 older log dwelling #040",
+      "sidecar": "sidecars/1835/recon_1835_west_040.json",
+      "asset": "gltf/recon_1835_west_040__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_041",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #041",
+      "sidecar": "sidecars/1835/recon_1835_west_041.json",
+      "asset": "gltf/recon_1835_west_041__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_042",
+      "name": "Reconstructed D3 one-room frame cottage #042",
+      "sidecar": "sidecars/1835/recon_1835_west_042.json",
+      "asset": "gltf/recon_1835_west_042__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_043",
+      "name": "Reconstructed D3 one-room frame cottage #043",
+      "sidecar": "sidecars/1835/recon_1835_west_043.json",
+      "asset": "gltf/recon_1835_west_043__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_044",
+      "name": "Reconstructed D4 two-room frame cottage #044",
+      "sidecar": "sidecars/1835/recon_1835_west_044.json",
+      "asset": "gltf/recon_1835_west_044__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_045",
+      "name": "Reconstructed D5 deep-plan frame cottage #045",
+      "sidecar": "sidecars/1835/recon_1835_west_045.json",
+      "asset": "gltf/recon_1835_west_045__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_046",
+      "name": "Reconstructed F1 freight or storage shed #046",
+      "sidecar": "sidecars/1835/recon_1835_west_046.json",
+      "asset": "gltf/recon_1835_west_046__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_047",
+      "name": "Reconstructed A1 stable #047",
+      "sidecar": "sidecars/1835/recon_1835_west_047.json",
+      "asset": "gltf/recon_1835_west_047__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_048",
+      "name": "Reconstructed D1 older log dwelling #048",
+      "sidecar": "sidecars/1835/recon_1835_west_048.json",
+      "asset": "gltf/recon_1835_west_048__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_049",
+      "name": "Reconstructed D1 older log dwelling #049",
+      "sidecar": "sidecars/1835/recon_1835_west_049.json",
+      "asset": "gltf/recon_1835_west_049__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_050",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #050",
+      "sidecar": "sidecars/1835/recon_1835_west_050.json",
+      "asset": "gltf/recon_1835_west_050__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_051",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #051",
+      "sidecar": "sidecars/1835/recon_1835_west_051.json",
+      "asset": "gltf/recon_1835_west_051__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_052",
+      "name": "Reconstructed D3 one-room frame cottage #052",
+      "sidecar": "sidecars/1835/recon_1835_west_052.json",
+      "asset": "gltf/recon_1835_west_052__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_053",
+      "name": "Reconstructed D4 two-room frame cottage #053",
+      "sidecar": "sidecars/1835/recon_1835_west_053.json",
+      "asset": "gltf/recon_1835_west_053__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_054",
+      "name": "Reconstructed A1 stable #054",
+      "sidecar": "sidecars/1835/recon_1835_west_054.json",
+      "asset": "gltf/recon_1835_west_054__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_055",
+      "name": "Reconstructed A2 barn or carriage shed #055",
+      "sidecar": "sidecars/1835/recon_1835_west_055.json",
+      "asset": "gltf/recon_1835_west_055__inferred_1835.glb"
     },
     {
       "id": "robert_kinzie_store",
