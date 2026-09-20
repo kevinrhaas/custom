@@ -1,7 +1,7 @@
 ---
 id: T-1491
 title: The address book: every household and business given a row at the rung its evidence reaches — a named roof, a lot, or an honest refusal — with the reach recorded where the seat is owed to the reconstructed rungs, written and gated by tools/seat_known_1835.py, and said on the household card in words
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1198
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1594
 claimed_by: run 9/20/2026, 4:38:04 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T22:42:52.947Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35538794207
 ---
 
