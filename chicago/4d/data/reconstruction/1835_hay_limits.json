@@ -428,9 +428,9 @@
  "block_infill_programme": {
   "counted_from": "data/reconstruction/1835_665_roof_programme.json schedule[]",
   "method": "A block's centre is the mean of the four corners its own four bounding street centrelines make. No block polygon is invented.",
-  "blocks_with_four_bounding_streets": 48,
-  "inside_the_limit": 22,
-  "outside_the_limit": 26,
+  "blocks_with_four_bounding_streets": 57,
+  "inside_the_limit": 24,
+  "outside_the_limit": 33,
   "scheduling_roofs_outside_the_limit": 0,
   "scheduling_roofs_outside_the_limit_rows": [],
   "blocks_outside_the_limit": [
@@ -681,6 +681,76 @@
     "centre_local_enu_m": [
      1220.31,
      522.66
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_fulton_des_plaines",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -461.53,
+     -46.34
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_fulton_jefferson",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -342.28,
+     -47.11
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_fulton_clinton",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -224.04,
+     -47.88
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_lake_des_plaines",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -458.39,
+     -177.38
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_lake_jefferson",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -339.13,
+     -178.34
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_randolph_des_plaines",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -455.06,
+     -316.45
+    ],
+    "inside_the_limit": false
+   },
+   {
+    "id": "blk_west_randolph_jefferson",
+    "state": "gated",
+    "roofs_scheduled": 0,
+    "centre_local_enu_m": [
+     -335.8,
+     -317.42
     ],
     "inside_the_limit": false
    },
