@@ -121,3 +121,62 @@ it. This reading does not re-grade North Water, does not touch
 `derive_north_water.py`, and does not give the corridor `street_control.json`
 refuses it: it says where the *blocks* stop, which is a different statement from
 where the *street* runs, and only the first is drawn.
+
+## The cut this paid for
+
+**T-1458, 2026-09-20.** The seven blocks are cut, in
+`data/traces/vectors/north_division_tier_lots.json`, by
+`tools/cut_north_division_tier.py`. Both halves of the gate run in `check.sh`: the
+file re-derives from the reading and the committed street lines, and the derivation
+holds its own assertions.
+
+They are cut in their own file and not in `data/traces/vectors/thompson_lots.json`
+because `tools/generate_plat_lots.py` cannot cut them. That generator needs two
+committed street lines to make a block, and this tier has one; and it subdivides on
+the South Division's module — four lots to a face either side of a **centred** alley
+— which a wedge is not. On block 1 a centred alley would stand 8.5 m from where the
+sheet draws it. Cutting the tier inside that generator would have meant either moving
+a committed line or drawing eight lots at the wrong depths in every block on the tier.
+
+| blk | west | east | frontage | depth | upper | alley | lower |
+|---|---|---|---|---|---|---|---|
+| 7 | the North Branch | Market | 340.7 ft | 353.8 ft | 149.2 ft | 22.9 ft | 181.7 ft |
+| 6 | Market | Franklin | 320.0 | 370.9 | 170.0 | 20.9 | 180.0 |
+| 5 | Franklin | Wells | 320.2 | 383.6 | 178.6 | 20.4 | 184.6 |
+| 4 | Wells | La Salle | 320.2 | 394.0 | 191.9 | 20.4 | 181.7 |
+| 3 | La Salle | Clark | 325.4 | 407.8 | 207.0 | 21.8 | 179.1 |
+| 2 | Clark | Dearborn | 323.3 | 421.0 | 221.2 | 20.9 | 178.8 |
+| 1 | Dearborn | Wolcott | 338.3 | 430.9 | 232.7 | 21.1 | 177.1 |
+
+Seven blocks, 56 lots, 83,873 m² of platted ground.
+
+**Three checks the cut did not have to pass and does.**
+
+* **The module, arrived at from the other side.** Every block's frontage divides into
+  four lots of 77.2 to 85.2 ft against the sheet's lettered 80 — and that frontage is
+  *committed street spacing*, not a figure from this sheet. Four to a face was read off
+  the plat; the streets were fixed years of tickets earlier; they agree.
+* **Block 6's carry.** Its depth is carried on the tier line because the watercourse
+  takes its two middle lines. The scan still returns its **north face**, at 381.44 px,
+  and the line fitted through blocks 5–1 predicts 381.36 — 0.08 px, held out.
+* **The sheet and the terrain, on the same block.** Block 6 is the one block of the
+  seven whose ground the committed heightfield calls wet: 40 lattice samples below
+  datum, and none anywhere else on the tier. A row scan of the plat and a trace of
+  Wright's survey share no arithmetic and put the water in the same block.
+
+**What is still `conjectural` here, and it is one face.** Block 7 ends on the North
+Branch and no street closes it on the west. Its west face is the stroke T-0451's
+column scan returns at 1065.0 px put through that reading's own px-to-easting fit —
+the fit the tier's committed columns were themselves seated on. It is the best this
+project has and it is still one stroke through an extrapolated fit. The traced bank is
+**not** used as the block's edge: the plat draws a block and the trace draws a bank,
+and those are two different claims.
+
+Lot NUMBERS are `inferred`. The sheet letters 4 on the lower row's west lot in every
+block read, and nothing else; the run of the other seven is taken from the one Original
+Town block whose lot numerals are read — block 18, north row 4 3 2 and south row 5 6 7
+(`clark_reach_bulge_1834.md` § 8). A row carrying 4 at its west end runs 4-3-2-1 west
+to east, so the other row runs 5-6-7-8 the same way.
+
+Nothing here seats a building. These are lots; who stood on them is a placement
+ticket's question, and block 6's wet ground is where it will be asked first.

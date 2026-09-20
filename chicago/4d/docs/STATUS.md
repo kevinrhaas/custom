@@ -1,5 +1,34 @@
 # STATUS
 
+## Unreal update process and queued parity — 2026-09-20
+
+Owner-requested process documentation now describes selecting the newest passing dev snapshot, isolated Mac builds, packaged tests, checksums and a draft-to-published GitHub prerelease. This documents the working manual path; on-demand automation remains T-1472. New held tickets T-1473/T-1474/T-1475 cover sinking buildings, a flora corridor and navigation/place inspection. Existing T-1360 retains roads. The [parity matrix](unreal/PARITY.md) records broader web gaps and successor obligations. All engine-only tasks remain blocked-tech with ordered HOLD references after South Through Time and before Loop Improvements. No new renderer feature or automatic build service ships in this documentation slice.
+
+## Standalone Mac preview — T-1464, 2026-09-20
+
+The owner prioritised a native Mac app from latest dev before streaming. The local
+Apple Silicon build consumed snapshot `253f026570358dfcdab62fb2593c4082b058de07` with
+Unreal 5.8.2 and Xcode 27.0. BuildCookRun and local code-sign verification passed;
+the packaged app opened directly into Chicago, without the editor or streaming.
+384 terrain/structure mesh actors imported with no errors; `estray_pen` is explicitly
+skipped because its enclosure is browser-generated. The pawn is persistently body-free.
+A 21-second offscreen packaged test, ignoring keyboard/mouse input, passed with
+all sampled states grounded: walk forward, stop at an obstacle, back away. It is
+not a full bridge or bank route test. The owner identified the low garden fence
+near the fort: positional Python Rotator arguments had applied its 53-degree
+bearing as pitch, tilting the entire enclosure into the sky. Explicit yaw arguments
+now keep it upright, with a measured world height of 1.135333 m. Every imported
+structure is checked for zero pitch/roll and its expected yaw. Player start and sun
+also use named rotation fields. Lowest-footprint anchoring separately lowers the
+fort palisade 1.437281 m to bed it in the downhill terrain.
+Escape quit the native app. No claim is made that the streaming corruption is fixed.
+
+[Build source and instructions](../renderers/unreal/README.md) are isolated from the
+web renderer. [The receipt](../renderers/unreal/receipts/mac-253f02657.json) records
+hashes and actual readings. This preview omits browser procedural scenery, research
+UI and confidence visualization. It is locally signed, not notarized for public
+distribution. T-1358/T-1360/T-1361 retain their broader acceptance and execution holds.
+
 ## Unreal delivery programme — owner request, 2026-09-18
 
 Nothing in the published scene changes in this ticket/documentation slice. T-1356

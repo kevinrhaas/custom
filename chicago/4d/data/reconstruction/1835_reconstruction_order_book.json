@@ -3180,8 +3180,8 @@
             "division": "west"
           },
           "target": 75,
-          "standing": 21,
-          "to_build": 54,
+          "standing": 26,
+          "to_build": 49,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1208",
@@ -3190,7 +3190,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 54 of them to build"
+          "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 49 of them to build"
         },
         {
           "key": "structures/ordinary_dwellings/north",
@@ -3235,8 +3235,8 @@
             "division": "west"
           },
           "target": 14,
-          "standing": 3,
-          "to_build": 11,
+          "standing": 2,
+          "to_build": 12,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
@@ -3245,7 +3245,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 11 of them to build"
+          "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 12 of them to build"
         },
         {
           "key": "structures/small_outbuildings/north",
@@ -3430,8 +3430,8 @@
             "division": "west"
           },
           "target": 8,
-          "standing": 8,
-          "to_build": 0,
+          "standing": 4,
+          "to_build": 4,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1207",
@@ -3440,7 +3440,7 @@
             "T-1193",
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 0 of them to build"
+          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 4 of them to build"
         },
         {
           "key": "structures/workshops/north",

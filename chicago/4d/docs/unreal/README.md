@@ -1,5 +1,9 @@
 # Chicago 4D → Unreal → streamed application
 
+## Standalone updates and parity — 2026-09-20
+
+The standalone Mac preview and downloadable prerelease now exist. Use the [build/release process](BUILD-AND-RELEASE.md) for the next update and the [parity tracker](PARITY.md) for missing web features. T-1472 through T-1475 add on-demand builds, placement repair, flora and navigation; existing T-1360 owns roads. Native parity comes before streaming. The prototype evidence below is historical, not the current build entry point.
+
 Owner request, 18 September 2026: regularly build downloadable game assets, complete the
 Unreal rendition, fix the black-bar/static corruption seen during play, and eventually
 pull or push a tested build onto a server. Queue this programme after South Through Time

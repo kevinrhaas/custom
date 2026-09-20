@@ -47,3 +47,9 @@ Owner programme, 18 September 2026. The priority band is immediately after South
 ## Ticket budget exception
 
 Owner explicitly requested this programme and its execution-separated tickets. One held epic, five bounded initial slices and reused T-0252 avoid a large speculative backlog.
+
+## Owner update, 2026-09-20 — native feature parity before streaming
+
+T-1464 delivered the first Apple Silicon preview; the downloadable prerelease does not close the parity programme. New ordered children are T-1472 (repeatable latest-validated Mac build/release), T-1473 (sinking-building placement), existing T-1360 (roads and approaches), T-1474 (first flora corridor), and T-1475 (map/search/place inspection). Keep the Unreal band after South Through Time and before Loop Improvements. The owner expressly requests these tickets now; the earlier one-successor filing guidance does not prevent these four named follow-ups.
+
+[Build/release runbook](../docs/unreal/BUILD-AND-RELEASE.md) describes the existing manual path and the pending automation boundary. [Parity matrix](../docs/unreal/PARITY.md) tracks all remaining web layers and interactions; unsupported layers do not become implemented just because a newer dev commit is built. Full-town roads, flora, props, navigation, confidence, epochs, materials and measured performance require their own completed receipts or explicit owner deferral.
