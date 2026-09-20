@@ -2344,6 +2344,9 @@
     "tools/compile_scene.py": {
       "wrote": []
     },
+    "tools/complete_inwindow_trades.py": {
+      "wrote": []
+    },
     "tools/complete_resident_research_pass_14.py": {
       "wrote": []
     },

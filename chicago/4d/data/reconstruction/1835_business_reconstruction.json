@@ -119,7 +119,8 @@
         "keeper_person": null,
         "firm": null,
         "businesses_in_the_register_at_this_roof": [
-          "biz_brown_painter"
+          "biz_brown_painter",
+          "biz_brown_rufus_boarding_house_keeper"
         ],
         "kept_by": "the register",
         "why_not": null
@@ -185,9 +186,11 @@
         "beds_crowded": 35,
         "keeper_person": null,
         "firm": null,
-        "businesses_in_the_register_at_this_roof": [],
-        "kept_by": null,
-        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+        "businesses_in_the_register_at_this_roof": [
+          "biz_murphy_john_tavern_keeper"
+        ],
+        "kept_by": "the register",
+        "why_not": null
       },
       {
         "place": "green_tree_tavern",
@@ -214,7 +217,8 @@
         "keeper_person": null,
         "firm": null,
         "businesses_in_the_register_at_this_roof": [
-          "biz_e_w_haddock"
+          "biz_e_w_haddock",
+          "biz_haddock_edward_tavern_keeper"
         ],
         "kept_by": "the register",
         "why_not": null
@@ -269,9 +273,11 @@
         "beds_crowded": 35,
         "keeper_person": null,
         "firm": null,
-        "businesses_in_the_register_at_this_roof": [],
-        "kept_by": null,
-        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+        "businesses_in_the_register_at_this_roof": [
+          "biz_davis_john_hotel_keeper"
+        ],
+        "kept_by": "the register",
+        "why_not": null
       },
       {
         "place": "tremont_house_1",
@@ -282,9 +288,11 @@
         "beds_crowded": 35,
         "keeper_person": null,
         "firm": null,
-        "businesses_in_the_register_at_this_roof": [],
-        "kept_by": null,
-        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+        "businesses_in_the_register_at_this_roof": [
+          "biz_couch_ira_hotel_keeper"
+        ],
+        "kept_by": "the register",
+        "why_not": null
       },
       {
         "place": "western_hotel",
@@ -295,9 +303,11 @@
         "beds_crowded": 35,
         "keeper_person": null,
         "firm": null,
-        "businesses_in_the_register_at_this_roof": [],
-        "kept_by": null,
-        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+        "businesses_in_the_register_at_this_roof": [
+          "biz_stow_william_h_hotel_keeper"
+        ],
+        "kept_by": "the register",
+        "why_not": null
       },
       {
         "place": "wolf_point_tavern",
@@ -308,9 +318,11 @@
         "beds_crowded": 35,
         "keeper_person": null,
         "firm": null,
-        "businesses_in_the_register_at_this_roof": [],
-        "kept_by": null,
-        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+        "businesses_in_the_register_at_this_roof": [
+          "biz_walters_william_tavern_keeper"
+        ],
+        "kept_by": "the register",
+        "why_not": null
       }
     ]
   }

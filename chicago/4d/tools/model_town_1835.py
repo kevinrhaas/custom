@@ -508,13 +508,21 @@ def build_lodging(inventory: dict, crosswalk: dict, comp: dict, pop: dict) -> di
                ["owner_chicago_1835_reconstruction_spec_2026"],
                ["data/reconstruction/1835_building_inventory.json"]),
         figure("inns_and_taverns", tavern_line.get("town_records_at_scene_date", inns),
-               max(inns, tavern_line.get("census_count", inns)),
+               max(inns, tavern_line.get("census_count", inns),
+                   tavern_line.get("town_records_at_scene_date", inns)),
                f"The programme schedules {inns} inns and taverns; the State census counted "
                f"{tavern_line.get('census_count', 'no')} taverns two to five months later "
-               f"and the register holds "
+               f"and the business layer holds "
                f"{tavern_line.get('town_records_at_scene_date', 'no')} at the scene date. "
                "The three units are a roof, a licence and a printed notice, and they are not "
-               "the same thing counted three ways.",
+               "the same thing counted three ways. THE LAYER'S COUNT MAY EXCEED BOTH OTHERS "
+               "AND THE CEILING FOLLOWS IT (T-1404): the census's figure is a count of "
+               "LICENCES taken months after the scene, and the town's named public houses — "
+               "the Sauganash, the Exchange, the Tremont, the Mansion House, the Steamboat, "
+               "the Western, Wolf Point — are houses the papers never advertised and the "
+               "licence roll never separated. A licence count cannot cap a house count, so "
+               "the ceiling is whichever of the three reads highest. T-1196 owns re-cutting "
+               "the roof programme against it.",
                ["moses_kirkland_history_of_chicago_v1",
                 "owner_chicago_1835_reconstruction_spec_2026"],
                ["data/reconstruction/1835_building_inventory.json",

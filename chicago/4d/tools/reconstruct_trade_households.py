@@ -973,8 +973,13 @@ def self_test() -> int:
     caps = ceilings()
     fires("a class the town already matches leaves room for nobody",
           caps.get("printer") == 0 and caps.get("schoolteacher") == 0)
+    # THE FIGURES ARE LIVE AND THE ASSERTION IS NOT A CONSTANT. `physician` read 11 until
+    # T-1404 raised the five attested physicians' offices the business layer had no record
+    # of; the ceiling is census minus what the town can NAME, so naming five of them is
+    # exactly what is supposed to move it. It is kept as a number rather than recomputed
+    # here on purpose — a self-test that derives its own expectation asserts nothing.
     fires("a class the town is short of leaves room for the difference",
-          caps.get("physician") == 11 and caps.get("attorney") == 4)
+          caps.get("physician") == 6 and caps.get("attorney") == 4)
 
     rows = dict(trade_rows())
     fires("no trade outside the 1835 vocabulary reaches the draw",
