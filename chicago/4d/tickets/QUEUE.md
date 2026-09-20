@@ -54,7 +54,6 @@
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
 T-1449 — Close the employment join and print it: the minted hands on the businesses' staff[] and the cards' workplaces[], every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
 T-1441 — Tool the substitution rule: substitute_reconstruction.py --dry-run prints the reconstructed records a new attested business or person would retire, proved on a fixture and documented in PROVENANCE.md, with every reconstructed firm's LIBERTIES scope re-counted
 T-1442 — Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md
