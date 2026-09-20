@@ -228,10 +228,10 @@
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
     "converge_resident_layer.py": {
-     "placement": "not_a_writer",
-     "write_mode": "--run, which writes no byte of its own",
-     "measured": "2026-09-19",
-     "finding": "Measured on dev at 3845cb41c, at its fixed point. `--check` and `--self-test` write nothing and read only tools/check.sh and the order file. `--run` is a write mode only by proxy: it executes the thirteen build commands the order names, every one of which already has a row here, and writes nothing itself. Run on that clean tree it reached the fixed point in one pass in 43 s and git reported no committed byte moved, which is the measurement \u2014 the order is idempotent where the tree already satisfies it. Recorded not_a_writer so the audit stops reporting it; it is a driver, and the bytes belong to the rows it drives."
+      "placement": "not_a_writer",
+      "write_mode": "--run, which writes no byte of its own",
+      "measured": "2026-09-19",
+      "finding": "Measured on dev at 3845cb41c, at its fixed point. `--check` and `--self-test` write nothing and read only tools/check.sh and the order file. `--run` is a write mode only by proxy: it executes the thirteen build commands the order names, every one of which already has a row here, and writes nothing itself. Run on that clean tree it reached the fixed point in one pass in 43 s and git reported no committed byte moved, which is the measurement — the order is idempotent where the tree already satisfies it. Recorded not_a_writer so the audit stops reporting it; it is a driver, and the bytes belong to the rows it drives."
     },
     "crosswalk_census_1840_heads.py": {
       "placement": "not_derivable",
@@ -929,8 +929,8 @@
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
-      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia \u2014 A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
-      "placed": "not yet \u2014 measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia — A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
+      "placed": "not yet — measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
     },
     "reconstruct_businesses_1835.py": {
       "placement": "pending",
@@ -1290,7 +1290,13 @@
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
-      "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after — not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one."
+    },
+    "staff_businesses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after — not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
     },
     "substitute_reconstruction.py": {
       "placement": "not_a_writer",
@@ -1368,6 +1374,13 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "execute_roof_redeal.py": {
+      "placement": "pending",
+      "write_mode": "--apply",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--apply` on a clean tree ran in 5.1 s, rewrote data/reconstruction/1835_phase2_west_wolf_point_approaches.json, data/exclusions.json and docs/RESEARCH/1835_roof_redeal_execution.md and changed no committed byte. The perturbation test tells idempotence from inertia and was run from both sides, because this tool holds two files to each other: the recipe's `redealt` record was bent D4 -> D9 and `--check` went red (\"was re-dealt to D9 and stands as D4\"); the PLACEMENT was then bent D4 -> W1 instead and `--check` went red the other way (\"was re-dealt to D4 and stands as W1\"); `--apply` restored it and `git status` came back empty.",
+      "placed": "not yet — measured to reproduce, but it reads the redeal ledger, which tools/redeal_anonymous_roofs.py writes and which is itself `pending` for the same reason: both sit downstream of the reconstruction stages that write the structure layer, and their place in the manifest's dependency order is that pass's to settle."
     }
   }
 }
