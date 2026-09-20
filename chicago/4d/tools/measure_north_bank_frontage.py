@@ -266,8 +266,8 @@ def write_baseline() -> int:
         entry["face_m"] = row["face_m"]
         exceptions[row["key"]] = entry
     # An exception for a building that no longer fronts this street is dead, and
-    # leaving it is what the gate's own message asks to be repaired: T-1480 renamed
-    # `recon_1835_north_c1_020` and the baseline went on naming it after a
+    # leaving it is what the gate's own message asks to be repaired. T-1480 renamed
+    # a roof on this bank and the baseline went on naming the id it left, through a
     # --write-baseline, because this function only ever ADDED. It prunes now.
     live = {row["key"] for row in frontages()}
     exceptions = {k: v for k, v in exceptions.items() if k in live}
