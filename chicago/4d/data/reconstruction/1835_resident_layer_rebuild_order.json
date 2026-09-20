@@ -349,6 +349,7 @@
    "compile_register",
    "consolidate_resident_evidence",
    "crosswalk_census_1840_heads",
+   "employment_coverage_1835",
    "exhaust_tax_1833",
    "export_resident_research_package",
    "location_reconciliation",

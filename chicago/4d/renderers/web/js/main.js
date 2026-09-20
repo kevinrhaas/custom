@@ -18,6 +18,7 @@ import * as THREE from 'three';
 const H_FOV_DEG = 76;
 const DEG = Math.PI / 180;
 
+import { createBoot, createCheckpoint, yieldToPaint } from './boot-phases.js';
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
 import { createTerrain, enuToWorld, groundTiling, hazeReachM } from './terrain.js';
@@ -813,8 +814,20 @@ const api = {
   roll: null,
 };
 window.__chicago4d = api;
+let bootStorage;
+try { bootStorage = window.localStorage; } catch { /* private mode */ }
+const bootController = createBoot({
+  device: prefersTouch() ? 'mobile' : 'desktop',
+  detail: DETAIL[readDetailPreference()] ? readDetailPreference() : (prefersTouch() ? 'light' : 'full'),
+  build: document.getElementById('gate-build')?.textContent || VERSION,
+  storage: bootStorage, problems, present: progress,
+});
+api.boot = bootController;
+const bootCheckpoint = createCheckpoint();
 
 boot().catch((err) => {
+  const active = bootController.phases.find(phase => phase.essential && phase.startedAt !== null && phase.endedAt === null);
+  bootController.fail(active?.id || 'scene', err);
   api.error = String(err?.message || err);
   problems.push(`boot: ${api.error}`);
   if (gateSub) gateSub.textContent = `Could not load the scene — ${api.error}`;
@@ -823,6 +836,8 @@ boot().catch((err) => {
 });
 
 async function boot() {
+  bootController.start('scene');
+  await yieldToPaint();
   const bases = resolveBases();
   const coarse = prefersTouch();
 
@@ -894,18 +909,25 @@ async function boot() {
   const scene3d = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(62, 1, NEAR.min, 3000);
 
-  progress(8, 'Reading the scene…');
   // The gate's two numbers (T-0036). Started here and NOT awaited: it is one
   // small JSON beside a scene load that fetches hundreds of files, and the row
   // it fills sits above the progress bar — a visitor should be reading how big
   // the town is while the town loads, not after. It fails soft to a hidden row,
   // so nothing downstream depends on it and no rejection reaches the boot chain.
-  const census = mountGateCensus({ dataBase: bases.dataBase }).then((c) => {
+  bootController.start('census');
+  void mountGateCensus({ dataBase: bases.dataBase,
+    onError: err => bootController.fail('census', err),
+  }).then((c) => {
     api.census = c;
+    bootController.end('census');
     return c;
-  }).catch(() => null);
-  const loaded = await loadScene(YEAR, bases);
-  progress(30, 'Placing the buildings…');
+  }).catch(err => { bootController.fail('census', err); return null; });
+  const loaded = await loadScene(YEAR, bases, {
+    onProgress: (done, total) => bootController.progress('scene', done, total),
+  });
+  bootController.end('scene');
+  bootController.start('terrain');
+  await yieldToPaint();
   problems.push(...loaded.problems);
   api.scene = loaded.scene;
   api.datum = loaded.datum;
@@ -935,16 +957,24 @@ async function boot() {
     confidence,
     problems,
   });
+  if (!terrain.loaded) throw new Error('Terrain heightfield did not load');
   scene3d.add(terrain.group);
   // T-1154 — the ground's reach, set from the fog the world just made rather
   // than from a literal here, so a scene that changes its haze moves the reach
   // with it and the two can never drift apart. See terrain.js hazeReachM().
   terrain.setGroundReach(hazeReachM(scene3d.fog?.density ?? 0));
-  progress(55, 'Laying the ground and the river…');
-
-  const buildings = createBuildings({ registry: loaded.registry, confidence, terrain });
+  bootController.end('terrain');
+  bootController.start('buildings', loaded.registry.size);
+  await yieldToPaint();
+  const buildings = await createBuildings({ registry: loaded.registry, confidence, terrain,
+    checkpoint: bootCheckpoint,
+    onProgress: (done, total) => bootController.progress('buildings', done, total),
+  });
   problems.push(...buildings.problems);
   scene3d.add(buildings.group);
+  bootController.end('buildings');
+  bootController.start('ground');
+  await yieldToPaint();
 
   /**
    * T-1126 — FURNITURE FOLLOWS ITS HOST, and the failure is SAID OUT LOUD.
@@ -1165,7 +1195,9 @@ async function boot() {
   // structure record to carry `placement.walk_surface_m`, and the height is the
   // one that layer drew the slab at (T-0058; see the header of `wharves.js`).
   decks.push(...wharves.decks);
-  progress(68, 'Planting the prairie…');
+  bootController.end('ground');
+  bootController.start('flora');
+  await yieldToPaint();
 
   // ---- vegetation ------------------------------------------------------- //
   // Awaited, like the terrain and for the same reason: the sward is what the
@@ -1382,13 +1414,26 @@ async function boot() {
    */
   const swardBlocked = (e, n) => streets.blocksGrowth(e, n) || yards.suppressesSward(e, n);
 
+  let floraUnits = 0, floraDone = 0, treeDone = 0;
+  const plantingProgress = (done, total) => {
+    if (done === 0) floraUnits += total;
+    else floraDone++;
+    bootController.progress('flora', floraDone, floraUnits);
+  };
   let flora = await createFlora({
+    checkpoint: bootCheckpoint,
     dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: swardBlocked,
     confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
   let trees = await createTrees({
+    checkpoint: bootCheckpoint,
+    onProgress: (done, total) => {
+      if (done === 0 && treeDone === 0) floraUnits = total;
+      floraDone += done - treeDone; treeDone = done;
+      bootController.progress('flora', floraDone, floraUnits);
+    },
     dataBase: bases.dataBase, terrain, footprints: planting,
     growthBlocked: streets.blocksGrowth,
     confidence, problems, pixelsPerRadian, streetRecords: loaded.index?.streets ?? [],
@@ -1401,6 +1446,10 @@ async function boot() {
     ...detailOpts(),
   });
   scene3d.add(trees.group);
+  await flora.prepare?.(camera, bootCheckpoint, plantingProgress);
+  bootController.end('flora');
+  bootController.start('interaction');
+  await yieldToPaint();
 
   /**
    * Rebuild the two layers that scale, in place. Both are planted from a FIXED
@@ -1477,12 +1526,13 @@ async function boot() {
   // Absent (an older mirror, a failed fetch) degrades to "no people listed";
   // it never takes the scene down.
   let people = null;
+  bootController.start('people');
   try {
     const res = await fetch(new URL(`sidecars/${loaded.scene.id ?? YEAR}/people.json`, bases.dataBase), { cache: 'no-cache' });
     if (res.ok) people = await res.json();
-    else problems.push(`people: sidecars/${loaded.scene.id ?? YEAR}/people.json ${res.status} — nobody is listed in Go to or People`);
+    else throw new Error(`sidecars/${loaded.scene.id ?? YEAR}/people.json ${res.status} — nobody is listed in Go to or People`);
   } catch (err) {
-    problems.push(`people: ${err.message} — nobody is listed in Go to or People`);
+    bootController.fail('people', err);
   }
 
   /** A structure's ground position in local ENU metres — footprint centroid where
@@ -1690,7 +1740,7 @@ async function boot() {
 
   // …and the same people as a DIRECTORY: one row a person, searchable and
   // filterable, with the way to the building they lived or worked at.
-  api.people = await mountPeople({
+  try { api.people = await mountPeople({
     mount: document.getElementById('people-directory'),
     people,
     registry: loaded.registry,
@@ -1705,6 +1755,8 @@ async function boot() {
     onBusiness: openBusiness,
     problems,
   });
+  bootController.end('people');
+  } catch (err) { bootController.fail('people', err); }
 
   // …and the town's FIRMS, which until now reached a visitor only through the
   // roof they stood in. 166 of the 196 the register knows have no roof here — 26
@@ -2209,6 +2261,8 @@ async function boot() {
 
   // ---- loop ------------------------------------------------------------- //
 
+  let resolveFirstFrame, rejectFirstFrame;
+  const firstFrame = new Promise((resolve, reject) => { resolveFirstFrame = resolve; rejectFirstFrame = reject; });
   const clock = new THREE.Clock();
   let frames = 0;
   let fpsMark = performance.now();
@@ -2285,6 +2339,8 @@ async function boot() {
     trees.update(dt, camera);
 
     renderer.render(scene3d, camera);
+    bootController.frameRendered();
+    resolveFirstFrame();
 
     // Read back inside the frame that drew it. Outside the loop the drawing
     // buffer has already been composited and cleared, and readPixels quietly
@@ -2319,7 +2375,23 @@ async function boot() {
       fpsMark = now;
     }
   }
-  renderer.setAnimationLoop(tick);
+  // Compile programs while the gate can still repaint, before the first draw.
+  // The horizon creates its initial geometry on update, so include that too.
+  trees.update(0, camera);
+  await yieldToPaint();
+  for (const layer of scene3d.children) {
+    if (layer.isLight) continue; // targetScene already supplies the lights
+    await renderer.compileAsync(layer, camera, scene3d);
+    const pause = bootCheckpoint(); if (pause) await pause;
+  }
+  await yieldToPaint();
+  renderer.setAnimationLoop(() => {
+    try { tick(); } catch (err) {
+      renderer.setAnimationLoop(null);
+      if (bootController.readyAt === null) rejectFirstFrame(err);
+      else throw err;
+    }
+  });
 
   // ---- harness ---------------------------------------------------------- //
 
@@ -2590,16 +2662,16 @@ async function boot() {
     facadeWeathering: { get: () => buildings.weathering, enumerable: true },
   });
 
-  // Settle the gate census before declaring ready. It was started before the
-  // scene load and has had every one of those seconds; awaiting it here means
-  // `api.census` is either the document or null by the time anything — a gate,
-  // a visitor, the smoke — asks, rather than being a race the harness would
-  // have to poll around.
-  await census;
-
-  progress(100, 'Ready');
-  api.ready = true;
+  // Optional census work may finish later; it cannot hold the street closed.
+  await firstFrame;
+  bootController.end('interaction');
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
+  api.ready = true;
+  if (!bootController.finish()) {
+    api.ready = false;
+    if (gateBtn) gateBtn.disabled = true;
+    throw new Error('Boot readiness barrier failed');
+  }
   if (gateSub) {
     // T-0782: the count that used to open this line was `registry.size` — every
     // RECORD in the scene, bridges and the pier and the palisade and the parade
