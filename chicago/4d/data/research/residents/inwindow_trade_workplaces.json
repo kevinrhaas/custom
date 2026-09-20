@@ -1085,9 +1085,9 @@
    {
     "class": "store",
     "census_count": 44,
-    "town_before_T-1404": 61,
+    "town_before_T-1404": 60,
     "raised_here": 7,
-    "town_after_T-1404": 68,
+    "town_after_T-1404": 67,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
