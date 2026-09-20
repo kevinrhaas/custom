@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
-| Businesses (enumerated classes) | 108 | 133 | 8 |
+| Businesses (enumerated classes) | 108 | 133 | 7 |
 | Roofs | 668 | 384 | 297 |
 
 ## The rules this book adds
@@ -216,15 +216,15 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/bank` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/book_store` | 2 | 2 | 0 | 0 | T-1184 |
 | `businesses/brewery` | 2 | 1 | 1 | 1 | T-1185 |
-| `businesses/church` | 5 | 4 | 1 | 0 | T-1190 |
+| `businesses/church` | 5 | 4 | 0 | 0 | T-1215 |
 | `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
 | `businesses/iron_foundry` | 1 | 2 | 0 | 0 | T-1185 |
 | `businesses/lawyer` | 15 | 13 | 2 | 2 | T-1418 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/lyceum_and_reading_room` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/physician` | 9 | 8 | 1 | 1 | T-1418 |
-| `businesses/printing_office` | 2 | 2 | 0 | 0 | T-1190 |
-| `businesses/school` | 7 | 5 | 0 | 0 | T-1190 |
+| `businesses/printing_office` | 2 | 2 | 0 | 0 | T-1215 |
+| `businesses/school` | 7 | 5 | 0 | 0 | T-1215 |
 | `businesses/silversmith_jeweller` | 2 | 1 | 1 | 1 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
 | `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
@@ -260,10 +260,10 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 | `structures/larger_boarding_houses/west` | 6 | 1 | 5 | 0 | T-1209 |
 | `structures/larger_boarding_houses/north` | 8 | 4 | 4 | 0 | T-1209 |
 | `structures/ordinary_dwellings/south` | 176 | 110 | 66 | 0 | T-1203 |
-| `structures/ordinary_dwellings/west` | 75 | 21 | 54 | 0 | T-1208 |
+| `structures/ordinary_dwellings/west` | 75 | 26 | 49 | 0 | T-1208 |
 | `structures/ordinary_dwellings/north` | 84 | 42 | 42 | 0 | T-1206 |
 | `structures/small_outbuildings/south` | 48 | 25 | 23 | 0 | T-1212 |
-| `structures/small_outbuildings/west` | 14 | 3 | 11 | 0 | T-1212 |
+| `structures/small_outbuildings/west` | 14 | 2 | 12 | 0 | T-1212 |
 | `structures/small_outbuildings/north` | 20 | 9 | 11 | 0 | T-1212 |
 | `structures/small_outbuildings/fort` | 3 | 3 | 0 | 0 | T-1204 |
 | `structures/stores_mixed_use/south` | 42 | 32 | 10 | 0 | T-1201 |
@@ -274,7 +274,7 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 | `structures/warehouses_freight/west` | 2 | 0 | 2 | 0 | T-1207 |
 | `structures/warehouses_freight/north` | 7 | 7 | 0 | 0 | T-1205 |
 | `structures/workshops/south` | 15 | 14 | 1 | 0 | T-1201 |
-| `structures/workshops/west` | 8 | 8 | 0 | 0 | T-1207 |
+| `structures/workshops/west` | 8 | 4 | 4 | 0 | T-1207 |
 | `structures/workshops/north` | 7 | 7 | 0 | 0 | T-1205 |
 | `structures/workshops/fort` | 1 | 1 | 0 | 0 | T-1204 |
 
@@ -288,6 +288,23 @@ The streets, terrain and lots a structure bucket waits on.
 
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
+| `ground/blk_michigan_st_tract_west_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
+| `ground/blk_michigan_st_tract_west_south` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
+| `ground/blk_michigan_st_tract_east_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
+| `ground/blk_michigan_st_tract_east_south` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t1` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t1` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t2` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t2` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t3` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t3` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t4` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t5` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t5` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t6` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t6` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_b_t7` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
+| `ground/blk_wabansia_c_t7` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
 | `ground/blk_south_water_market` | 27 | — | — | 0 | T-1194 |
 | `ground/west_wolf_point_outer` | 35 | — | — | 0 | T-1192, T-1193, T-1194 |
 | `ground/south_plat_beyond_committed_control` | 104 | — | — | 0 | T-1194 |
@@ -313,4 +330,5 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 - **every_business_has_staff** (T-1189) — Every business — attested, inferred or reconstructed — carries the staff T-1183's model implies for its kind. *Now:* not yet measurable: the authored business layer is T-1180.
 - **every_structure_occupied_or_its_use_stated** (T-1197) — Every standing roof carries an occupant or a stated use. *Now:* 260 of 384 standing records carry no occupants block.
 - **dwellings_ratio_within_its_bracket** (T-1215) — The town census's people-per-dwelling ratio is met within the model's bracket. *Now:* the book orders 2,536 people into 643 households.
+- **an_uncompared_class_orders_nothing** (T-1442) — A trade-census class the crosswalk rules `compared: false` carries its figures but orders no reconstruction: the difference between a census line and the register is only a shortfall where the crosswalk has ruled the two comparable. *Now:* carried uncompared: 1 of 18 enumerated business classes, each ordering nought.
 - **no_bucket_overfilled** (T-1166) — No bucket's `filled` exceeds its `to_reconstruct`; a filler that bypasses the book is red in check.sh. *Now:* enforced by --check on every gate run.

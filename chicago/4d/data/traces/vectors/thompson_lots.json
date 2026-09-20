@@ -1,5 +1,5 @@
 {
- "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, read block by block off the georeferenced Wright 1834 scan — see `block_numbering` below and data/traces/thompson_block_numbering.json. A block left unnumbered here is one the sheet was not read on, and the authored file says which and why. SINCE T-1437 THIS FILE HOLDS TWO GRIDS, not one: the Original Town south of the main stem, and Kinzie's Addition north of it, each cut between its own plat's lines at its own corridor width. Every block says which in `grid`, and `grids` below says what each one may be divided on. The Addition's blocks carry no lots on purpose — see `subdivision_withheld`.",
+ "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, which is a description and not a claim. Thompson's own block NUMBERS are carried separately, in `plat_block_number`, read block by block off the georeferenced Wright 1834 scan — see `block_numbering` below and data/traces/thompson_block_numbering.json. A block left unnumbered here is one the sheet was not read on, and the authored file says which and why. SINCE T-1454 THIS FILE HOLDS FOUR GRIDS, not one: the Original Town south of the main stem and Kinzie's Addition north of it, each cut between its own plat's committed street lines at its own corridor width; and the Michigan Street tract and Wabansia, which are cut on their own committed SEATINGS instead, because the lines that rule them — the tracts' own borders, their mid-block alleys, Wabansia's block columns — are not streets any street table carries. Every block says which in `grid`, and `grids` below says where each one was cut from and what it may be divided on. The Addition's blocks carry no lots on purpose (`subdivision_withheld`: no lot rule has been read for that plat); the two seated tracts carry the lot lines Wright rules INSIDE them, which is the first lot line in this file that is a reading rather than a module divided into a block.",
  "tool": "tools/generate_plat_lots.py",
  "generated_from": [
   "data/traces/street_control.json",
@@ -68,6 +68,32 @@
    "numbered": 27,
    "lots": 0,
    "subdivided": false
+  },
+  "michigan_st_tract": {
+   "plat": "michigan_st_tract",
+   "name": "the Michigan Street tract north of Kinzie Street, Wright 1834",
+   "cut_from": {
+    "seating": "data/traces/michigan_st_tract_seated.json",
+    "reading": "data/traces/michigan_st_tract_grid.json"
+   },
+   "blocks": 4,
+   "omitted": 0,
+   "numbered": 0,
+   "lots": 32,
+   "subdivided": true
+  },
+  "wabansia": {
+   "plat": "wabansia",
+   "name": "Wabansia, on the west bank of the North Branch, Wright 1834",
+   "cut_from": {
+    "seating": "data/traces/wabansia_seating.json",
+    "reading": "data/traces/wabansia_block_numbering.json"
+   },
+   "blocks": 13,
+   "omitted": 0,
+   "numbered": 13,
+   "lots": 20,
+   "subdivided": true
   }
  },
  "kinzies_addition": {
@@ -131,12 +157,14 @@
   "rule": "a block takes the tract that covers the most of it, by clipped area, using the clipper in tools/sort_land_sales_onto_tracts.py",
   "the_precedence_clause": "EXCEPT that a residual tract — one whose ring is defined as what another tract leaves over — yields any block a non-residual tract covers at least 50% of. canal_section_9_remainder is the layer's only residual. T-1104 states this clause for parcels; a second statement of it would be a second answer, so it is the same clause and the same clipper.",
   "what_the_layer_answers_here": {
-   "blocks_sorted": 46,
+   "blocks_sorted": 63,
    "by_tract": {
     "canal_commissioners_1830": 19,
-    "kinzies_addition": 27
+    "canal_section_9_remainder": 4,
+    "kinzies_addition": 27,
+    "wabansia": 13
    },
-   "finding": "THE LAYER DISCRIMINATES THIS GRID SINCE T-1437, and until then it could not. The finding recorded here from T-1105 to 2026-09-20 was that all nineteen generated blocks fell in canal_commissioners_1830 and no other placed ring touched one, so the question T-1105 asked the layer was one the layer could not answer. That was a property of the GRID and not of the layer: the generator could only cut blocks between Original Town lines, so of course every block stood in the Original Town's tract. With Kinzie's Addition's own grid cut, 19 block(s) stand in canal_commissioners_1830, 27 block(s) stand in kinzies_addition — and the module each takes is now a per-tract answer rather than a single town-wide one. What varies INSIDE the Original Town's tract is still the DIVISION, because the river runs through it and the plat gives its two sides different blocks.",
+   "finding": "THE LAYER DISCRIMINATES THIS GRID SINCE T-1437, and until then it could not. The finding recorded here from T-1105 to 2026-09-20 was that all nineteen generated blocks fell in canal_commissioners_1830 and no other placed ring touched one, so the question T-1105 asked the layer was one the layer could not answer. That was a property of the GRID and not of the layer: the generator could only cut blocks between Original Town lines, so of course every block stood in the Original Town's tract. With Kinzie's Addition's own grid cut, 19 block(s) stand in canal_commissioners_1830, 4 block(s) stand in canal_section_9_remainder, 27 block(s) stand in kinzies_addition, 13 block(s) stand in wabansia — and the module each takes is now a per-tract answer rather than a single town-wide one. What varies INSIDE the Original Town's tract is still the DIVISION, because the river runs through it and the plat gives its two sides different blocks.",
    "the_grade_is_inherited": "canal_commissioners_1830 is `conjectural` — its four bounds are the standard account of the 1830 plat and no source record here states them. Any module chosen off that ring would be conjectural for that reason alone. None is: the module below is chosen off the street lines, and the tract is carried as a finding, not used as an input."
   },
   "the_west_division_module": {
@@ -189,25 +217,27 @@
  "confidence": "inferred",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
  "summary": {
-  "blocks": 46,
+  "blocks": 63,
   "blocks_by_grid": {
    "original_town": 19,
-   "kinzies_addition": 27
+   "kinzies_addition": 27,
+   "michigan_st_tract": 4,
+   "wabansia": 13
   },
-  "omitted": 30,
+  "omitted": 38,
   "reserved": 1,
-  "numbered": 46,
-  "numbered_omitted": 27,
-  "lots": 144,
+  "numbered": 59,
+  "numbered_omitted": 35,
+  "lots": 196,
   "numbered_lots": 144,
   "block_frontage_ft": {
-   "min": 289.6,
+   "min": 120.8,
    "median": 293.3,
-   "max": 340.2
+   "max": 362.8
   },
   "lot_frontage_ft": {
-   "min": 77.7,
-   "max": 85.1
+   "min": 24.3,
+   "max": 169.2
   }
  },
  "blocks": [
@@ -8025,6 +8055,3652 @@
     "note": "Pine Street to Sand Street",
     "lots_not_numbered": "this grid draws no lot lines inside the Addition, so there is nothing here to number; the Democrat's land notices sell by block AND lot, and only the block half of that address is placeable today"
    }
+  },
+  {
+   "id": "blk_michigan_st_tract_west_north",
+   "grid": "michigan_st_tract",
+   "plat": "michigan_st_tract",
+   "bounded_by": {
+    "south": "michigan_north",
+    "east": "market_north"
+   },
+   "bounded_by_uncommitted": {
+    "north": "the tract's north border",
+    "west": "the tract's west border"
+   },
+   "boundary_local_enu_m": [
+    [
+     9.14,
+     476.64
+    ],
+    [
+     78.47,
+     476.23
+    ],
+    [
+     77.93,
+     410.89
+    ],
+    [
+     8.6,
+     411.3
+    ]
+   ],
+   "area_m2": 4530.1,
+   "frontage_m": 69.33,
+   "frontage_ft": 227.5,
+   "depth_m": 65.34,
+   "lots_per_face": [
+    4,
+    0
+   ],
+   "alley_local_enu_m": [
+    [
+     8.89,
+     446.19
+    ],
+    [
+     78.22,
+     445.78
+    ],
+    [
+     78.16,
+     439.29
+    ],
+    [
+     8.84,
+     439.7
+    ]
+   ],
+   "alley_width_m": 6.49,
+   "alley_read_in": "data/traces/michigan_st_tract_grid.json § readings.east_west.alley_north_tier.col_west — this block's own alley, read as a pair of rules on this column and not carried from another",
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 21.64,
+     "depth_m": 30.45,
+     "polygon": [
+      [
+       9.14,
+       476.64
+      ],
+      [
+       30.78,
+       476.51
+      ],
+      [
+       30.53,
+       446.06
+      ],
+      [
+       8.89,
+       446.19
+      ]
+     ],
+     "read_frontage_m": 21.81,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "north",
+     "frontage_m": 15.83,
+     "depth_m": 30.45,
+     "polygon": [
+      [
+       30.78,
+       476.51
+      ],
+      [
+       46.61,
+       476.42
+      ],
+      [
+       46.36,
+       445.96
+      ],
+      [
+       30.53,
+       446.06
+      ]
+     ],
+     "read_frontage_m": 15.95,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    },
+    {
+     "tier": "north",
+     "frontage_m": 14.77,
+     "depth_m": 30.45,
+     "polygon": [
+      [
+       46.61,
+       476.42
+      ],
+      [
+       61.38,
+       476.33
+      ],
+      [
+       61.13,
+       445.88
+      ],
+      [
+       46.36,
+       445.96
+      ]
+     ],
+     "read_frontage_m": 14.89,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 3
+    },
+    {
+     "tier": "north",
+     "frontage_m": 17.09,
+     "depth_m": 30.45,
+     "polygon": [
+      [
+       61.38,
+       476.33
+      ],
+      [
+       78.47,
+       476.23
+      ],
+      [
+       78.22,
+       445.78
+      ],
+      [
+       61.13,
+       445.88
+      ]
+     ],
+     "read_frontage_m": 17.22,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 4
+    }
+   ],
+   "lot_rows": [
+    {
+     "row": "tier1_north",
+     "fronts_read": 4,
+     "read_total_m": 69.87,
+     "seated_face_m": 69.33,
+     "scale": 0.9923,
+     "faces": "the tract's north border",
+     "note": "the lot lines are the sheet's, laid west to east in the order they were read and scaled by the figure above so the row closes on the seated face; the departure is the sheet's fit, and the sheets carry 3.7-4.5 per cent of anisotropic stretch"
+    },
+    {
+     "row": "tier1_south",
+     "subdivision_withheld": "the reading did not reach this face. T-1076 read the west column's lot lines on one row and this is not one of them, and a lot count carried from the row above would be a guess dressed as arithmetic — the same refusal Kinzie's Addition's blocks carry whole.",
+     "what_would_settle_it": "one more crop of wright_1834_nara_hup on this row, read the way tools/read_michigan_st_tract.py reads the others"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 182,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.18,
+    "max_m": 1.28,
+    "mean_m": 1.23,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_section_9_remainder",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "michigan_st_tract_wright_1834",
+    "authored_in": "data/traces/michigan_st_tract_grid.json",
+    "tract_width_m": 202.15,
+    "tier_depth_by_column_m": {
+     "col_west": [
+      67.87,
+      62.68
+     ],
+     "col_east": [
+      62.89,
+      63.83
+     ]
+    },
+    "michigan_st_corridor_m": 25.71,
+    "north_south_street_corridor_m": 22.2,
+    "alley_width": {
+     "read_m": 5.79,
+     "read_ft": 19.0,
+     "scaled_ft": 18.0,
+     "sd_m": 0.83,
+     "n": 4,
+     "note": "reported, NOT settled: the sheets carry 3.7-4.5 per cent local scale error, which is large against the 0.6 m between a 16 ft and an 18 ft alley — the same refusal data/traces/vectors/street_corridors_1834.json makes."
+    },
+    "lots_per_block_row": {
+     "west_column": [
+      4
+     ],
+     "east_column": [
+      7,
+      7,
+      7,
+      7
+     ]
+    },
+    "west_column_lot_front_m": {
+     "mean": 17.47,
+     "sd": 3.05,
+     "n": 4,
+     "samples": [
+      14.89,
+      15.95,
+      17.22,
+      21.81
+     ]
+    },
+    "east_column_lot_front_m": {
+     "mean": 15.56,
+     "sd": 4.03,
+     "n": 28,
+     "samples": [
+      7.2,
+      8.33,
+      10.59,
+      11.22,
+      12.14,
+      12.7,
+      13.41,
+      14.26,
+      14.4,
+      14.4,
+      14.47,
+      14.47,
+      14.54,
+      14.61,
+      15.18,
+      15.46,
+      16.45,
+      16.66,
+      16.73,
+      17.08,
+      17.65,
+      18.07,
+      18.42,
+      18.42,
+      18.63,
+      20.82,
+      23.86,
+      25.62
+     ]
+    },
+    "confidence": "attested",
+    "division": "north",
+    "chosen_by": "the tract's own read parcel module, seated on the two committed town lines the reading identifies its streets as — `michigan_north` and `market_north`",
+    "reading": "The small parcels are the tract's signature and they are real: the west column's lot frontages run well under the Original Town's, and every block here carries a mid-block alley, which no Original Town block on this sheet does."
+   }
+  },
+  {
+   "id": "blk_michigan_st_tract_west_south",
+   "grid": "michigan_st_tract",
+   "plat": "michigan_st_tract",
+   "bounded_by": {
+    "north": "michigan_north",
+    "east": "market_north"
+   },
+   "bounded_by_uncommitted": {
+    "south": "the tract's south border",
+    "west": "the tract's west border"
+   },
+   "boundary_local_enu_m": [
+    [
+     8.39,
+     385.59
+    ],
+    [
+     77.72,
+     385.18
+    ],
+    [
+     77.2,
+     321.94
+    ],
+    [
+     7.87,
+     322.35
+    ]
+   ],
+   "area_m2": 4384.5,
+   "frontage_m": 69.33,
+   "frontage_ft": 227.5,
+   "depth_m": 63.24,
+   "lots_per_face": [
+    0,
+    0
+   ],
+   "alley_local_enu_m": [
+    [
+     8.16,
+     358.08
+    ],
+    [
+     77.49,
+     357.67
+    ],
+    [
+     77.45,
+     352.91
+    ],
+    [
+     8.12,
+     353.32
+    ]
+   ],
+   "alley_width_m": 4.76,
+   "alley_read_in": "data/traces/michigan_st_tract_grid.json § readings.east_west.alley_south_tier.col_west — this block's own alley, read as a pair of rules on this column and not carried from another",
+   "lots": [],
+   "lot_rows": [
+    {
+     "row": "tier2_north",
+     "subdivision_withheld": "the reading did not reach this face. T-1076 read the west column's lot lines on one row and this is not one of them, and a lot count carried from the row above would be a guess dressed as arithmetic — the same refusal Kinzie's Addition's blocks carry whole.",
+     "what_would_settle_it": "one more crop of wright_1834_nara_hup on this row, read the way tools/read_michigan_st_tract.py reads the others"
+    },
+    {
+     "row": "tier2_south",
+     "subdivision_withheld": "the reading did not reach this face. T-1076 read the west column's lot lines on one row and this is not one of them, and a lot count carried from the row above would be a guess dressed as arithmetic — the same refusal Kinzie's Addition's blocks carry whole.",
+     "what_would_settle_it": "one more crop of wright_1834_nara_hup on this row, read the way tools/read_michigan_st_tract.py reads the others"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 182,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.18,
+    "max_m": 1.23,
+    "mean_m": 1.2,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_section_9_remainder",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "michigan_st_tract_wright_1834",
+    "authored_in": "data/traces/michigan_st_tract_grid.json",
+    "tract_width_m": 202.15,
+    "tier_depth_by_column_m": {
+     "col_west": [
+      67.87,
+      62.68
+     ],
+     "col_east": [
+      62.89,
+      63.83
+     ]
+    },
+    "michigan_st_corridor_m": 25.71,
+    "north_south_street_corridor_m": 22.2,
+    "alley_width": {
+     "read_m": 5.79,
+     "read_ft": 19.0,
+     "scaled_ft": 18.0,
+     "sd_m": 0.83,
+     "n": 4,
+     "note": "reported, NOT settled: the sheets carry 3.7-4.5 per cent local scale error, which is large against the 0.6 m between a 16 ft and an 18 ft alley — the same refusal data/traces/vectors/street_corridors_1834.json makes."
+    },
+    "lots_per_block_row": {
+     "west_column": [
+      4
+     ],
+     "east_column": [
+      7,
+      7,
+      7,
+      7
+     ]
+    },
+    "west_column_lot_front_m": {
+     "mean": 17.47,
+     "sd": 3.05,
+     "n": 4,
+     "samples": [
+      14.89,
+      15.95,
+      17.22,
+      21.81
+     ]
+    },
+    "east_column_lot_front_m": {
+     "mean": 15.56,
+     "sd": 4.03,
+     "n": 28,
+     "samples": [
+      7.2,
+      8.33,
+      10.59,
+      11.22,
+      12.14,
+      12.7,
+      13.41,
+      14.26,
+      14.4,
+      14.4,
+      14.47,
+      14.47,
+      14.54,
+      14.61,
+      15.18,
+      15.46,
+      16.45,
+      16.66,
+      16.73,
+      17.08,
+      17.65,
+      18.07,
+      18.42,
+      18.42,
+      18.63,
+      20.82,
+      23.86,
+      25.62
+     ]
+    },
+    "confidence": "attested",
+    "division": "north",
+    "chosen_by": "the tract's own read parcel module, seated on the two committed town lines the reading identifies its streets as — `michigan_north` and `market_north`",
+    "reading": "The small parcels are the tract's signature and they are real: the west column's lot frontages run well under the Original Town's, and every block here carries a mid-block alley, which no Original Town block on this sheet does."
+   }
+  },
+  {
+   "id": "blk_michigan_st_tract_east_north",
+   "grid": "michigan_st_tract",
+   "plat": "michigan_st_tract",
+   "bounded_by": {
+    "south": "michigan_north",
+    "west": "market_north"
+   },
+   "bounded_by_uncommitted": {
+    "north": "the tract's north border",
+    "east": "the tract's east border"
+   },
+   "boundary_local_enu_m": [
+    [
+     100.67,
+     476.1
+    ],
+    [
+     211.23,
+     475.44
+    ],
+    [
+     210.69,
+     410.1
+    ],
+    [
+     100.13,
+     410.76
+    ]
+   ],
+   "area_m2": 7224.7,
+   "frontage_m": 110.57,
+   "frontage_ft": 362.8,
+   "depth_m": 65.34,
+   "lots_per_face": [
+    7,
+    7
+   ],
+   "alley_local_enu_m": [
+    [
+     100.41,
+     445.14
+    ],
+    [
+     210.98,
+     444.48
+    ],
+    [
+     210.93,
+     439.0
+    ],
+    [
+     100.37,
+     439.66
+    ]
+   ],
+   "alley_width_m": 5.48,
+   "alley_read_in": "data/traces/michigan_st_tract_grid.json § readings.east_west.alley_north_tier.col_east — this block's own alley, read as a pair of rules on this column and not carried from another",
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 18.63,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       100.67,
+       476.1
+      ],
+      [
+       119.29,
+       475.99
+      ],
+      [
+       119.04,
+       445.03
+      ],
+      [
+       100.41,
+       445.14
+      ]
+     ],
+     "read_frontage_m": 18.42,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "north",
+     "frontage_m": 18.84,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       119.29,
+       475.99
+      ],
+      [
+       138.13,
+       475.87
+      ],
+      [
+       137.88,
+       444.92
+      ],
+      [
+       119.04,
+       445.03
+      ]
+     ],
+     "read_frontage_m": 18.63,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    },
+    {
+     "tier": "north",
+     "frontage_m": 16.85,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       138.13,
+       475.87
+      ],
+      [
+       154.98,
+       475.77
+      ],
+      [
+       154.73,
+       444.82
+      ],
+      [
+       137.88,
+       444.92
+      ]
+     ],
+     "read_frontage_m": 16.66,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 3
+    },
+    {
+     "tier": "north",
+     "frontage_m": 14.56,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       154.98,
+       475.77
+      ],
+      [
+       169.54,
+       475.69
+      ],
+      [
+       169.29,
+       444.73
+      ],
+      [
+       154.73,
+       444.82
+      ]
+     ],
+     "read_frontage_m": 14.4,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 4
+    },
+    {
+     "tier": "north",
+     "frontage_m": 14.63,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       169.54,
+       475.69
+      ],
+      [
+       184.18,
+       475.6
+      ],
+      [
+       183.92,
+       444.64
+      ],
+      [
+       169.29,
+       444.73
+      ]
+     ],
+     "read_frontage_m": 14.47,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 5
+    },
+    {
+     "tier": "north",
+     "frontage_m": 14.78,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       184.18,
+       475.6
+      ],
+      [
+       198.95,
+       475.51
+      ],
+      [
+       198.7,
+       444.55
+      ],
+      [
+       183.92,
+       444.64
+      ]
+     ],
+     "read_frontage_m": 14.61,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 6
+    },
+    {
+     "tier": "north",
+     "frontage_m": 12.28,
+     "depth_m": 30.96,
+     "polygon": [
+      [
+       198.95,
+       475.51
+      ],
+      [
+       211.23,
+       475.44
+      ],
+      [
+       210.98,
+       444.48
+      ],
+      [
+       198.7,
+       444.55
+      ]
+     ],
+     "read_frontage_m": 12.14,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_north",
+     "plat_lot_confidence": "inferred",
+     "order": 7
+    },
+    {
+     "tier": "south",
+     "frontage_m": 18.42,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       100.13,
+       410.76
+      ],
+      [
+       118.54,
+       410.65
+      ],
+      [
+       118.78,
+       439.55
+      ],
+      [
+       100.37,
+       439.66
+      ]
+     ],
+     "read_frontage_m": 18.07,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "south",
+     "frontage_m": 18.77,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       118.54,
+       410.65
+      ],
+      [
+       137.32,
+       410.53
+      ],
+      [
+       137.55,
+       439.44
+      ],
+      [
+       118.78,
+       439.55
+      ]
+     ],
+     "read_frontage_m": 18.42,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    },
+    {
+     "tier": "south",
+     "frontage_m": 17.41,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       137.32,
+       410.53
+      ],
+      [
+       154.72,
+       410.43
+      ],
+      [
+       154.96,
+       439.33
+      ],
+      [
+       137.55,
+       439.44
+      ]
+     ],
+     "read_frontage_m": 17.08,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 3
+    },
+    {
+     "tier": "south",
+     "frontage_m": 14.68,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       154.72,
+       410.43
+      ],
+      [
+       169.4,
+       410.34
+      ],
+      [
+       169.64,
+       439.25
+      ],
+      [
+       154.96,
+       439.33
+      ]
+     ],
+     "read_frontage_m": 14.4,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 4
+    },
+    {
+     "tier": "south",
+     "frontage_m": 14.75,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       169.4,
+       410.34
+      ],
+      [
+       184.14,
+       410.26
+      ],
+      [
+       184.38,
+       439.16
+      ],
+      [
+       169.64,
+       439.25
+      ]
+     ],
+     "read_frontage_m": 14.47,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 5
+    },
+    {
+     "tier": "south",
+     "frontage_m": 15.76,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       184.14,
+       410.26
+      ],
+      [
+       199.9,
+       410.16
+      ],
+      [
+       200.14,
+       439.07
+      ],
+      [
+       184.38,
+       439.16
+      ]
+     ],
+     "read_frontage_m": 15.46,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 6
+    },
+    {
+     "tier": "south",
+     "frontage_m": 10.79,
+     "depth_m": 28.9,
+     "polygon": [
+      [
+       199.9,
+       410.16
+      ],
+      [
+       210.69,
+       410.1
+      ],
+      [
+       210.93,
+       439.0
+      ],
+      [
+       200.14,
+       439.07
+      ]
+     ],
+     "read_frontage_m": 10.59,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier1_south",
+     "plat_lot_confidence": "inferred",
+     "order": 7
+    }
+   ],
+   "lot_rows": [
+    {
+     "row": "tier1_north",
+     "fronts_read": 7,
+     "read_total_m": 109.33,
+     "seated_face_m": 110.57,
+     "scale": 1.0113,
+     "faces": "the tract's north border",
+     "note": "the lot lines are the sheet's, laid west to east in the order they were read and scaled by the figure above so the row closes on the seated face; the departure is the sheet's fit, and the sheets carry 3.7-4.5 per cent of anisotropic stretch"
+    },
+    {
+     "row": "tier1_south",
+     "fronts_read": 7,
+     "read_total_m": 108.49,
+     "seated_face_m": 110.57,
+     "scale": 1.0192,
+     "faces": "Michigan Street",
+     "note": "the lot lines are the sheet's, laid west to east in the order they were read and scaled by the figure above so the row closes on the seated face; the departure is the sheet's fit, and the sheets carry 3.7-4.5 per cent of anisotropic stretch"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 286,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.15,
+    "max_m": 1.24,
+    "mean_m": 1.19,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_section_9_remainder",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "michigan_st_tract_wright_1834",
+    "authored_in": "data/traces/michigan_st_tract_grid.json",
+    "tract_width_m": 202.15,
+    "tier_depth_by_column_m": {
+     "col_west": [
+      67.87,
+      62.68
+     ],
+     "col_east": [
+      62.89,
+      63.83
+     ]
+    },
+    "michigan_st_corridor_m": 25.71,
+    "north_south_street_corridor_m": 22.2,
+    "alley_width": {
+     "read_m": 5.79,
+     "read_ft": 19.0,
+     "scaled_ft": 18.0,
+     "sd_m": 0.83,
+     "n": 4,
+     "note": "reported, NOT settled: the sheets carry 3.7-4.5 per cent local scale error, which is large against the 0.6 m between a 16 ft and an 18 ft alley — the same refusal data/traces/vectors/street_corridors_1834.json makes."
+    },
+    "lots_per_block_row": {
+     "west_column": [
+      4
+     ],
+     "east_column": [
+      7,
+      7,
+      7,
+      7
+     ]
+    },
+    "west_column_lot_front_m": {
+     "mean": 17.47,
+     "sd": 3.05,
+     "n": 4,
+     "samples": [
+      14.89,
+      15.95,
+      17.22,
+      21.81
+     ]
+    },
+    "east_column_lot_front_m": {
+     "mean": 15.56,
+     "sd": 4.03,
+     "n": 28,
+     "samples": [
+      7.2,
+      8.33,
+      10.59,
+      11.22,
+      12.14,
+      12.7,
+      13.41,
+      14.26,
+      14.4,
+      14.4,
+      14.47,
+      14.47,
+      14.54,
+      14.61,
+      15.18,
+      15.46,
+      16.45,
+      16.66,
+      16.73,
+      17.08,
+      17.65,
+      18.07,
+      18.42,
+      18.42,
+      18.63,
+      20.82,
+      23.86,
+      25.62
+     ]
+    },
+    "confidence": "attested",
+    "division": "north",
+    "chosen_by": "the tract's own read parcel module, seated on the two committed town lines the reading identifies its streets as — `michigan_north` and `market_north`",
+    "reading": "The small parcels are the tract's signature and they are real: the west column's lot frontages run well under the Original Town's, and every block here carries a mid-block alley, which no Original Town block on this sheet does."
+   }
+  },
+  {
+   "id": "blk_michigan_st_tract_east_south",
+   "grid": "michigan_st_tract",
+   "plat": "michigan_st_tract",
+   "bounded_by": {
+    "north": "michigan_north",
+    "west": "market_north"
+   },
+   "bounded_by_uncommitted": {
+    "south": "the tract's south border",
+    "east": "the tract's east border"
+   },
+   "boundary_local_enu_m": [
+    [
+     99.92,
+     385.05
+    ],
+    [
+     210.48,
+     384.39
+    ],
+    [
+     209.96,
+     321.15
+    ],
+    [
+     99.4,
+     321.81
+    ]
+   ],
+   "area_m2": 6992.5,
+   "frontage_m": 110.57,
+   "frontage_ft": 362.8,
+   "depth_m": 63.24,
+   "lots_per_face": [
+    7,
+    7
+   ],
+   "alley_local_enu_m": [
+    [
+     99.7,
+     358.36
+    ],
+    [
+     210.26,
+     357.71
+    ],
+    [
+     210.21,
+     351.29
+    ],
+    [
+     99.64,
+     351.94
+    ]
+   ],
+   "alley_width_m": 6.42,
+   "alley_read_in": "data/traces/michigan_st_tract_grid.json § readings.east_west.alley_south_tier.col_east — this block's own alley, read as a pair of rules on this column and not carried from another",
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 18.14,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       99.92,
+       385.05
+      ],
+      [
+       118.06,
+       384.94
+      ],
+      [
+       117.84,
+       358.26
+      ],
+      [
+       99.7,
+       358.36
+      ]
+     ],
+     "read_frontage_m": 17.65,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "north",
+     "frontage_m": 21.4,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       118.06,
+       384.94
+      ],
+      [
+       139.45,
+       384.81
+      ],
+      [
+       139.23,
+       358.13
+      ],
+      [
+       117.84,
+       358.26
+      ]
+     ],
+     "read_frontage_m": 20.82,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    },
+    {
+     "tier": "north",
+     "frontage_m": 8.56,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       139.45,
+       384.81
+      ],
+      [
+       148.01,
+       384.76
+      ],
+      [
+       147.79,
+       358.08
+      ],
+      [
+       139.23,
+       358.13
+      ]
+     ],
+     "read_frontage_m": 8.33,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 3
+    },
+    {
+     "tier": "north",
+     "frontage_m": 7.4,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       148.01,
+       384.76
+      ],
+      [
+       155.41,
+       384.72
+      ],
+      [
+       155.19,
+       358.03
+      ],
+      [
+       147.79,
+       358.08
+      ]
+     ],
+     "read_frontage_m": 7.2,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 4
+    },
+    {
+     "tier": "north",
+     "frontage_m": 14.94,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       155.41,
+       384.72
+      ],
+      [
+       170.36,
+       384.63
+      ],
+      [
+       170.14,
+       357.95
+      ],
+      [
+       155.19,
+       358.03
+      ]
+     ],
+     "read_frontage_m": 14.54,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 5
+    },
+    {
+     "tier": "north",
+     "frontage_m": 15.6,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       170.36,
+       384.63
+      ],
+      [
+       185.96,
+       384.54
+      ],
+      [
+       185.74,
+       357.85
+      ],
+      [
+       170.14,
+       357.95
+      ]
+     ],
+     "read_frontage_m": 15.18,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 6
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.52,
+     "depth_m": 26.68,
+     "polygon": [
+      [
+       185.96,
+       384.54
+      ],
+      [
+       210.48,
+       384.39
+      ],
+      [
+       210.26,
+       357.71
+      ],
+      [
+       185.74,
+       357.85
+      ]
+     ],
+     "read_frontage_m": 23.86,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_north",
+     "plat_lot_confidence": "inferred",
+     "order": 7
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.66,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       99.4,
+       321.81
+      ],
+      [
+       125.06,
+       321.65
+      ],
+      [
+       125.3,
+       351.79
+      ],
+      [
+       99.64,
+       351.94
+      ]
+     ],
+     "read_frontage_m": 25.62,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "south",
+     "frontage_m": 11.24,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       125.06,
+       321.65
+      ],
+      [
+       136.29,
+       321.59
+      ],
+      [
+       136.54,
+       351.73
+      ],
+      [
+       125.3,
+       351.79
+      ]
+     ],
+     "read_frontage_m": 11.22,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    },
+    {
+     "tier": "south",
+     "frontage_m": 16.76,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       136.29,
+       321.59
+      ],
+      [
+       153.05,
+       321.49
+      ],
+      [
+       153.3,
+       351.63
+      ],
+      [
+       136.54,
+       351.73
+      ]
+     ],
+     "read_frontage_m": 16.73,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 3
+    },
+    {
+     "tier": "south",
+     "frontage_m": 14.28,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       153.05,
+       321.49
+      ],
+      [
+       167.33,
+       321.4
+      ],
+      [
+       167.58,
+       351.54
+      ],
+      [
+       153.3,
+       351.63
+      ]
+     ],
+     "read_frontage_m": 14.26,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 4
+    },
+    {
+     "tier": "south",
+     "frontage_m": 16.48,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       167.33,
+       321.4
+      ],
+      [
+       183.81,
+       321.31
+      ],
+      [
+       184.06,
+       351.44
+      ],
+      [
+       167.58,
+       351.54
+      ]
+     ],
+     "read_frontage_m": 16.45,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 5
+    },
+    {
+     "tier": "south",
+     "frontage_m": 12.72,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       183.81,
+       321.31
+      ],
+      [
+       196.53,
+       321.23
+      ],
+      [
+       196.78,
+       351.37
+      ],
+      [
+       184.06,
+       351.44
+      ]
+     ],
+     "read_frontage_m": 12.7,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 6
+    },
+    {
+     "tier": "south",
+     "frontage_m": 13.43,
+     "depth_m": 30.14,
+     "polygon": [
+      [
+       196.53,
+       321.23
+      ],
+      [
+       209.96,
+       321.15
+      ],
+      [
+       210.21,
+       351.29
+      ],
+      [
+       196.78,
+       351.37
+      ]
+     ],
+     "read_frontage_m": 13.41,
+     "read_in": "data/traces/michigan_st_tract_grid.json § readings.north_south.tier2_south",
+     "plat_lot_confidence": "inferred",
+     "order": 7
+    }
+   ],
+   "lot_rows": [
+    {
+     "row": "tier2_north",
+     "fronts_read": 7,
+     "read_total_m": 107.58,
+     "seated_face_m": 110.57,
+     "scale": 1.0278,
+     "faces": "Michigan Street",
+     "note": "the lot lines are the sheet's, laid west to east in the order they were read and scaled by the figure above so the row closes on the seated face; the departure is the sheet's fit, and the sheets carry 3.7-4.5 per cent of anisotropic stretch"
+    },
+    {
+     "row": "tier2_south",
+     "fronts_read": 7,
+     "read_total_m": 110.39,
+     "seated_face_m": 110.57,
+     "scale": 1.0016,
+     "faces": "the tract's south border",
+     "note": "the lot lines are the sheet's, laid west to east in the order they were read and scaled by the figure above so the row closes on the seated face; the departure is the sheet's fit, and the sheets carry 3.7-4.5 per cent of anisotropic stretch"
+    }
+   ],
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 277,
+    "off_the_modelled_field": 0,
+    "below_datum": 8,
+    "min_m": -0.27,
+    "max_m": 1.16,
+    "mean_m": 1.07,
+    "reading": "8 sample(s) below datum and 0 off the modelled field"
+   },
+   "survey_tract": {
+    "tract": "canal_section_9_remainder",
+    "share": 1.0,
+    "geometry_confidence": "conjectural",
+    "on": [
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "michigan_st_tract_wright_1834",
+    "authored_in": "data/traces/michigan_st_tract_grid.json",
+    "tract_width_m": 202.15,
+    "tier_depth_by_column_m": {
+     "col_west": [
+      67.87,
+      62.68
+     ],
+     "col_east": [
+      62.89,
+      63.83
+     ]
+    },
+    "michigan_st_corridor_m": 25.71,
+    "north_south_street_corridor_m": 22.2,
+    "alley_width": {
+     "read_m": 5.79,
+     "read_ft": 19.0,
+     "scaled_ft": 18.0,
+     "sd_m": 0.83,
+     "n": 4,
+     "note": "reported, NOT settled: the sheets carry 3.7-4.5 per cent local scale error, which is large against the 0.6 m between a 16 ft and an 18 ft alley — the same refusal data/traces/vectors/street_corridors_1834.json makes."
+    },
+    "lots_per_block_row": {
+     "west_column": [
+      4
+     ],
+     "east_column": [
+      7,
+      7,
+      7,
+      7
+     ]
+    },
+    "west_column_lot_front_m": {
+     "mean": 17.47,
+     "sd": 3.05,
+     "n": 4,
+     "samples": [
+      14.89,
+      15.95,
+      17.22,
+      21.81
+     ]
+    },
+    "east_column_lot_front_m": {
+     "mean": 15.56,
+     "sd": 4.03,
+     "n": 28,
+     "samples": [
+      7.2,
+      8.33,
+      10.59,
+      11.22,
+      12.14,
+      12.7,
+      13.41,
+      14.26,
+      14.4,
+      14.4,
+      14.47,
+      14.47,
+      14.54,
+      14.61,
+      15.18,
+      15.46,
+      16.45,
+      16.66,
+      16.73,
+      17.08,
+      17.65,
+      18.07,
+      18.42,
+      18.42,
+      18.63,
+      20.82,
+      23.86,
+      25.62
+     ]
+    },
+    "confidence": "attested",
+    "division": "north",
+    "chosen_by": "the tract's own read parcel module, seated on the two committed town lines the reading identifies its streets as — `michigan_north` and `market_north`",
+    "reading": "The small parcels are the tract's signature and they are real: the west column's lot frontages run well under the Original Town's, and every block here carries a mid-block alley, which no Original Town block on this sheet does."
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t1",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "south": "free"
+   },
+   "bounded_by_uncommitted": {
+    "north": "tract boundary",
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t1"
+   },
+   "boundary_local_enu_m": [
+    [
+     -620.33,
+     1076.35
+    ],
+    [
+     -574.34,
+     1076.88
+    ],
+    [
+     -574.16,
+     1000.06
+    ],
+    [
+     -620.15,
+     999.53
+    ]
+   ],
+   "area_m2": 3533.0,
+   "frontage_m": 45.99,
+   "frontage_ft": 150.9,
+   "depth_m": 76.82,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 45.99,
+     "depth_m": 76.82,
+     "polygon": [
+      [
+       -620.33,
+       1076.35
+      ],
+      [
+       -574.34,
+       1076.88
+      ],
+      [
+       -574.16,
+       1000.06
+      ],
+      [
+       -620.15,
+       999.53
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 147.4,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 66,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "B",
+     "tier": "t1"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 159,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.05,
+    "max_m": 1.13,
+    "mean_m": 1.1,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t1",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "south": "free"
+   },
+   "bounded_by_uncommitted": {
+    "north": "tract boundary",
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t1"
+   },
+   "boundary_local_enu_m": [
+    [
+     -551.98,
+     1077.14
+    ],
+    [
+     -515.02,
+     1077.56
+    ],
+    [
+     -514.84,
+     1000.74
+    ],
+    [
+     -551.8,
+     1000.32
+    ]
+   ],
+   "area_m2": 2839.3,
+   "frontage_m": 36.96,
+   "frontage_ft": 121.3,
+   "depth_m": 76.82,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 36.96,
+     "depth_m": 76.82,
+     "polygon": [
+      [
+       -551.98,
+       1077.14
+      ],
+      [
+       -515.02,
+       1077.56
+      ],
+      [
+       -514.84,
+       1000.74
+      ],
+      [
+       -551.8,
+       1000.32
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 118.5,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 65,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t1"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 118,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.01,
+    "max_m": 1.05,
+    "mean_m": 1.03,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t2",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "free",
+    "south": "trade"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t2"
+   },
+   "boundary_local_enu_m": [
+    [
+     -622.0,
+     976.5
+    ],
+    [
+     -574.67,
+     977.05
+    ],
+    [
+     -574.43,
+     876.79
+    ],
+    [
+     -621.76,
+     876.24
+    ]
+   ],
+   "area_m2": 4745.4,
+   "frontage_m": 47.33,
+   "frontage_ft": 155.3,
+   "depth_m": 100.26,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 47.33,
+     "depth_m": 100.26,
+     "polygon": [
+      [
+       -622.0,
+       976.5
+      ],
+      [
+       -574.67,
+       977.05
+      ],
+      [
+       -574.43,
+       876.79
+      ],
+      [
+       -621.76,
+       876.24
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 151.7,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 67,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "B",
+     "tier": "t2"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 200,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.04,
+    "max_m": 1.1,
+    "mean_m": 1.08,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t2",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "free",
+    "south": "trade"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t2"
+   },
+   "boundary_local_enu_m": [
+    [
+     -551.32,
+     977.31
+    ],
+    [
+     -514.5,
+     977.74
+    ],
+    [
+     -514.26,
+     877.48
+    ],
+    [
+     -551.08,
+     877.06
+    ]
+   ],
+   "area_m2": 3691.5,
+   "frontage_m": 36.82,
+   "frontage_ft": 120.8,
+   "depth_m": 100.25,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 36.82,
+     "depth_m": 100.25,
+     "polygon": [
+      [
+       -551.32,
+       977.31
+      ],
+      [
+       -514.5,
+       977.74
+      ],
+      [
+       -514.26,
+       877.48
+      ],
+      [
+       -551.08,
+       877.06
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 118.0,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 64,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t2"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 160,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 0.99,
+    "max_m": 1.05,
+    "mean_m": 1.02,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 0.9991,
+    "geometry_confidence": "inferred",
+    "on": [
+     "canal_section_9_remainder",
+     "wabansia"
+    ],
+    "precedence_clause_fired": "the residual yielded: a non-residual tract covers this block by 100% and canal_section_9_remainder is the layer's only residual ring"
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t3",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "trade",
+    "south": "sailors"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t3"
+   },
+   "boundary_local_enu_m": [
+    [
+     -620.51,
+     855.41
+    ],
+    [
+     -574.59,
+     855.94
+    ],
+    [
+     -574.37,
+     762.89
+    ],
+    [
+     -620.29,
+     762.37
+    ]
+   ],
+   "area_m2": 4272.7,
+   "frontage_m": 45.92,
+   "frontage_ft": 150.7,
+   "depth_m": 93.04,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 45.92,
+     "depth_m": 93.04,
+     "polygon": [
+      [
+       -620.51,
+       855.41
+      ],
+      [
+       -574.59,
+       855.94
+      ],
+      [
+       -574.37,
+       762.89
+      ],
+      [
+       -620.29,
+       762.37
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 147.2,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 68,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "B",
+     "tier": "t3"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 190,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.05,
+    "max_m": 1.12,
+    "mean_m": 1.09,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t3",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "trade",
+    "south": "sailors"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t3"
+   },
+   "boundary_local_enu_m": [
+    [
+     -551.81,
+     856.2
+    ],
+    [
+     -511.25,
+     856.67
+    ],
+    [
+     -511.03,
+     763.62
+    ],
+    [
+     -551.59,
+     763.16
+    ]
+   ],
+   "area_m2": 3774.0,
+   "frontage_m": 40.56,
+   "frontage_ft": 133.1,
+   "depth_m": 93.04,
+   "lots_per_face": 1,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 40.56,
+     "depth_m": 93.04,
+     "polygon": [
+      [
+       -551.81,
+       856.2
+      ],
+      [
+       -511.25,
+       856.67
+      ],
+      [
+       -511.03,
+       763.62
+      ],
+      [
+       -551.59,
+       763.16
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 1,
+    "lot_divider_px": null,
+    "width_ft_controlled": 130.0,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 63,
+    "confidence": "inferred",
+    "numeral_on_sheet": true,
+    "legibility": "ambiguous",
+    "cell": {
+     "column": "C",
+     "tier": "t3"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 152,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.0,
+    "max_m": 1.06,
+    "mean_m": 1.03,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 0.9928,
+    "geometry_confidence": "inferred",
+    "on": [
+     "canal_section_9_remainder",
+     "wabansia"
+    ],
+    "precedence_clause_fired": "the residual yielded: a non-residual tract covers this block by 99% and canal_section_9_remainder is the layer's only residual ring"
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t4",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "sailors",
+    "south": "hight"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t4"
+   },
+   "boundary_local_enu_m": [
+    [
+     -618.89,
+     737.79
+    ],
+    [
+     -519.43,
+     738.93
+    ],
+    [
+     -519.21,
+     645.74
+    ],
+    [
+     -618.67,
+     644.6
+    ]
+   ],
+   "area_m2": 9268.9,
+   "frontage_m": 99.47,
+   "frontage_ft": 326.3,
+   "depth_m": 93.19,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 51.49,
+     "depth_m": 93.19,
+     "polygon": [
+      [
+       -618.89,
+       737.79
+      ],
+      [
+       -567.4,
+       738.38
+      ],
+      [
+       -567.18,
+       645.19
+      ],
+      [
+       -618.67,
+       644.6
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 47.97,
+     "depth_m": 93.19,
+     "polygon": [
+      [
+       -567.4,
+       738.38
+      ],
+      [
+       -519.43,
+       738.93
+      ],
+      [
+       -519.21,
+       645.74
+      ],
+      [
+       -567.18,
+       645.19
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 966.5,
+    "width_ft_controlled": 318.9,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 69,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "crossed",
+    "cell": {
+     "column": "B",
+     "tier": "t4"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 367,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.04,
+    "max_m": 1.18,
+    "mean_m": 1.11,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t5",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "hight",
+    "south": "owen"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t5"
+   },
+   "boundary_local_enu_m": [
+    [
+     -617.41,
+     616.34
+    ],
+    [
+     -519.15,
+     617.46
+    ],
+    [
+     -518.92,
+     523.84
+    ],
+    [
+     -617.18,
+     522.71
+    ]
+   ],
+   "area_m2": 9199.9,
+   "frontage_m": 98.27,
+   "frontage_ft": 322.4,
+   "depth_m": 93.62,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 51.22,
+     "depth_m": 93.62,
+     "polygon": [
+      [
+       -617.41,
+       616.34
+      ],
+      [
+       -566.19,
+       616.92
+      ],
+      [
+       -565.97,
+       523.3
+      ],
+      [
+       -617.18,
+       522.71
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 47.05,
+     "depth_m": 93.62,
+     "polygon": [
+      [
+       -566.19,
+       616.92
+      ],
+      [
+       -519.15,
+       617.46
+      ],
+      [
+       -518.92,
+       523.84
+      ],
+      [
+       -565.97,
+       523.3
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 967.8,
+    "width_ft_controlled": 315.0,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 70,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "crossed",
+    "cell": {
+     "column": "B",
+     "tier": "t5"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 380,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.13,
+    "max_m": 1.27,
+    "mean_m": 1.2,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t5",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "hight",
+    "south": "owen"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t5"
+   },
+   "boundary_local_enu_m": [
+    [
+     -489.87,
+     617.8
+    ],
+    [
+     -393.16,
+     618.91
+    ],
+    [
+     -392.94,
+     525.29
+    ],
+    [
+     -489.65,
+     524.18
+    ]
+   ],
+   "area_m2": 9054.2,
+   "frontage_m": 96.72,
+   "frontage_ft": 317.3,
+   "depth_m": 93.62,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 51.28,
+     "depth_m": 93.62,
+     "polygon": [
+      [
+       -489.87,
+       617.8
+      ],
+      [
+       -438.59,
+       618.39
+      ],
+      [
+       -438.37,
+       524.76
+      ],
+      [
+       -489.65,
+       524.18
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 45.43,
+     "depth_m": 93.62,
+     "polygon": [
+      [
+       -438.59,
+       618.39
+      ],
+      [
+       -393.16,
+       618.91
+      ],
+      [
+       -392.94,
+       525.29
+      ],
+      [
+       -438.37,
+       524.76
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 1148.7,
+    "width_ft_controlled": 310.0,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 61,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t5"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 356,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.04,
+    "max_m": 1.17,
+    "mean_m": 1.1,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t6",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "owen",
+    "south": "hubbard"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t6"
+   },
+   "boundary_local_enu_m": [
+    [
+     -617.12,
+     497.32
+    ],
+    [
+     -518.23,
+     498.46
+    ],
+    [
+     -518.01,
+     405.85
+    ],
+    [
+     -616.9,
+     404.71
+    ]
+   ],
+   "area_m2": 9158.5,
+   "frontage_m": 98.9,
+   "frontage_ft": 324.5,
+   "depth_m": 92.61,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 51.56,
+     "depth_m": 92.61,
+     "polygon": [
+      [
+       -617.12,
+       497.32
+      ],
+      [
+       -565.56,
+       497.92
+      ],
+      [
+       -565.34,
+       405.3
+      ],
+      [
+       -616.9,
+       404.71
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 47.33,
+     "depth_m": 92.61,
+     "polygon": [
+      [
+       -565.56,
+       497.92
+      ],
+      [
+       -518.23,
+       498.46
+      ],
+      [
+       -518.01,
+       405.85
+      ],
+      [
+       -565.34,
+       405.3
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 968.3,
+    "width_ft_controlled": 317.1,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 71,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "B",
+     "tier": "t6"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 365,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.22,
+    "max_m": 1.31,
+    "mean_m": 1.28,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t6",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "owen",
+    "south": "hubbard"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t6"
+   },
+   "boundary_local_enu_m": [
+    [
+     -489.87,
+     498.78
+    ],
+    [
+     -393.37,
+     499.89
+    ],
+    [
+     -393.15,
+     407.28
+    ],
+    [
+     -489.65,
+     406.17
+    ]
+   ],
+   "area_m2": 8937.1,
+   "frontage_m": 96.51,
+   "frontage_ft": 316.6,
+   "depth_m": 92.61,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 50.93,
+     "depth_m": 92.61,
+     "polygon": [
+      [
+       -489.87,
+       498.78
+      ],
+      [
+       -438.94,
+       499.37
+      ],
+      [
+       -438.72,
+       406.75
+      ],
+      [
+       -489.65,
+       406.17
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 45.57,
+     "depth_m": 92.61,
+     "polygon": [
+      [
+       -438.94,
+       499.37
+      ],
+      [
+       -393.37,
+       499.89
+      ],
+      [
+       -393.15,
+       407.28
+      ],
+      [
+       -438.72,
+       406.75
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 1147.8,
+    "width_ft_controlled": 309.4,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 60,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t6"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 342,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.14,
+    "max_m": 1.25,
+    "mean_m": 1.18,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_b_t7",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "hubbard",
+    "south": "kinzie"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column B",
+    "east": "the east rule of block column B"
+   },
+   "cell": {
+    "column": "B",
+    "tier": "t7"
+   },
+   "boundary_local_enu_m": [
+    [
+     -614.8,
+     379.56
+    ],
+    [
+     -518.58,
+     380.66
+    ],
+    [
+     -518.33,
+     277.12
+    ],
+    [
+     -614.55,
+     277.89
+    ]
+   ],
+   "area_m2": 9872.7,
+   "frontage_m": 96.22,
+   "frontage_ft": 315.7,
+   "depth_m": 102.6,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 49.66,
+     "depth_m": 102.15,
+     "polygon": [
+      [
+       -614.8,
+       379.56
+      ],
+      [
+       -565.14,
+       380.13
+      ],
+      [
+       -564.89,
+       277.49
+      ],
+      [
+       -614.55,
+       277.89
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 46.56,
+     "depth_m": 103.09,
+     "polygon": [
+      [
+       -565.14,
+       380.13
+      ],
+      [
+       -518.58,
+       380.66
+      ],
+      [
+       -518.33,
+       277.12
+      ],
+      [
+       -564.89,
+       277.49
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 968.5,
+    "width_ft_controlled": 308.4,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 72,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "B",
+     "tier": "t7"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 392,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.29,
+    "max_m": 1.32,
+    "mean_m": 1.31,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t7",
+   "grid": "wabansia",
+   "plat": "wabansia",
+   "bounded_by": {
+    "north": "hubbard",
+    "south": "kinzie"
+   },
+   "bounded_by_uncommitted": {
+    "west": "the west rule of block column C",
+    "east": "the east rule of block column C"
+   },
+   "cell": {
+    "column": "C",
+    "tier": "t7"
+   },
+   "boundary_local_enu_m": [
+    [
+     -489.45,
+     381.0
+    ],
+    [
+     -394.36,
+     382.09
+    ],
+    [
+     -394.11,
+     276.13
+    ],
+    [
+     -489.2,
+     276.89
+    ]
+   ],
+   "area_m2": 9987.8,
+   "frontage_m": 95.09,
+   "frontage_ft": 312.0,
+   "depth_m": 105.03,
+   "lots_per_face": 2,
+   "alley_local_enu_m": null,
+   "alley_withheld": "the sheet rules no alley inside these blocks, which is what data/traces/wabansia_streets.json states of the street reading too (`alleys` is false there for the same reason); an 18 ft alley laid in here would come from the Original Town's module and not from Wabansia",
+   "lots": [
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 51.0,
+     "depth_m": 104.6,
+     "polygon": [
+      [
+       -489.45,
+       381.0
+      ],
+      [
+       -438.45,
+       381.58
+      ],
+      [
+       -438.2,
+       276.48
+      ],
+      [
+       -489.2,
+       276.89
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 1
+    },
+    {
+     "tier": "the whole block, tier line to tier line",
+     "frontage_m": 44.09,
+     "depth_m": 105.53,
+     "polygon": [
+      [
+       -438.45,
+       381.58
+      ],
+      [
+       -394.36,
+       382.09
+      ],
+      [
+       -394.11,
+       276.13
+      ],
+      [
+       -438.2,
+       276.48
+      ]
+     ],
+     "plat_lot_confidence": "inferred",
+     "order": 2
+    }
+   ],
+   "lot_rule": {
+    "read_in": "data/traces/wabansia_block_numbering.json § columns",
+    "lots_wide": 2,
+    "lot_divider_px": 1148.1,
+    "width_ft_controlled": 304.8,
+    "divided_across_only": "the sheet draws a north-south lot line in this tract and no east-west one, so each lot runs the full depth of its tier. A back row cut here would be the Original Town's arrangement applied to a survey that does not draw it."
+   },
+   "plat_block_number": {
+    "number": 59,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t7"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   },
+   "ground": {
+    "epoch": "e1834_harbor_cut",
+    "sampled_every_m": 5.0,
+    "samples": 399,
+    "off_the_modelled_field": 0,
+    "below_datum": 0,
+    "min_m": 1.17,
+    "max_m": 1.29,
+    "mean_m": 1.23,
+    "reading": "dry: every sample stands above datum on the modelled field"
+   },
+   "survey_tract": {
+    "tract": "wabansia",
+    "share": 1.0,
+    "geometry_confidence": "inferred",
+    "on": [
+     "wabansia",
+     "canal_section_9_remainder"
+    ],
+    "precedence_clause_fired": null
+   },
+   "module": {
+    "module": "wabansia_wright_1834",
+    "authored_in": "data/traces/wabansia_streets.json",
+    "tier_pitch_m": {
+     "mean": 119.98,
+     "sd": 2.95,
+     "n": 6,
+     "each": [
+      122.18,
+      115.76,
+      119.62,
+      120.45,
+      117.89,
+      123.98
+     ]
+    },
+    "control": {
+     "original_town_platted_ft": 80.0,
+     "original_town_read_ft": {
+      "mean": 81.9,
+      "sd": 5.1,
+      "n": 3
+     },
+     "method_over_read": 1.024,
+     "source": "data/traces/kinzie_addition_street_grid.json § control_summary"
+    },
+    "confidence": "inferred",
+    "division": "west",
+    "chosen_by": "Wabansia's own read column and tier rules, seated on the one line it shares with the town it adjoins — Kinzie Street",
+    "lot_subdivision": "the sheet's own column dividers and nothing else: fifteen of the twenty-one cells are two lots wide and six are one, read tier by tier off wright_1834_nara_hup, and no east-west lot rule is drawn"
+   }
   }
  ],
  "omitted": [
@@ -8701,6 +12377,357 @@
     ],
     "authored_in": "data/traces/kinzie_addition_block_numbering.json",
     "note": "Pine Street to Sand Street"
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t1",
+   "grid": "wabansia",
+   "bounded_by": {
+    "south": "free"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -757.4, 52 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -757.39,
+     1074.78
+    ],
+    [
+     -642.91,
+     1076.09
+    ],
+    [
+     -642.72,
+     999.28
+    ],
+    [
+     -757.21,
+     997.96
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 79,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "A",
+     "tier": "t1"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t2",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "free",
+    "south": "trade"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -758.3, 53 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -758.28,
+     974.94
+    ],
+    [
+     -643.37,
+     976.26
+    ],
+    [
+     -643.14,
+     876.0
+    ],
+    [
+     -758.04,
+     874.68
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 78,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "faint",
+    "cell": {
+     "column": "A",
+     "tier": "t2"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t3",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "trade",
+    "south": "sailors"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -758.1, 53 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -758.13,
+     853.83
+    ],
+    [
+     -642.38,
+     855.16
+    ],
+    [
+     -642.16,
+     762.12
+    ],
+    [
+     -757.91,
+     760.79
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 77,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "faint",
+    "cell": {
+     "column": "A",
+     "tier": "t3"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t4",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "sailors",
+    "south": "hight"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -756.4, 51 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -756.44,
+     736.21
+    ],
+    [
+     -640.97,
+     737.53
+    ],
+    [
+     -640.75,
+     644.34
+    ],
+    [
+     -756.22,
+     643.02
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 76,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "A",
+     "tier": "t4"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_c_t4",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "sailors",
+    "south": "hight"
+   },
+   "reason": "1 of 4 corners stand under datum on the committed e1834_harbor_cut field, the farthest at local E -393.9 — inside the North Branch this project already holds. tools/seat_wabansia_streets.py records the same disagreement at Sailors Street, where T-1074's tier-4 corner and T-1078's traced bank do not agree and neither is settled; the cell is carried here rather than drawn over the water.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -490.65,
+     739.26
+    ],
+    [
+     -393.95,
+     740.37
+    ],
+    [
+     -393.72,
+     647.18
+    ],
+    [
+     -490.43,
+     646.07
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 62,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "C",
+     "tier": "t4"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t5",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "hight",
+    "south": "owen"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -755.0, 50 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -755.03,
+     614.76
+    ],
+    [
+     -639.55,
+     616.08
+    ],
+    [
+     -639.33,
+     522.46
+    ],
+    [
+     -754.8,
+     521.13
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 75,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "A",
+     "tier": "t5"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t6",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "owen",
+    "south": "hubbard"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -750.7, 46 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -750.72,
+     495.79
+    ],
+    [
+     -638.64,
+     497.08
+    ],
+    [
+     -638.42,
+     404.46
+    ],
+    [
+     -750.5,
+     403.18
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 74,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "A",
+     "tier": "t6"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
+   }
+  },
+  {
+   "id": "blk_wabansia_a_t7",
+   "grid": "wabansia",
+   "bounded_by": {
+    "north": "hubbard",
+    "south": "kinzie"
+   },
+   "reason": "2 of 4 corners fall beyond the modelled ground — the modelled field's west edge stands at local E -705.0 and this cell's far corner at E -751.3, 46 m past it. T-1193 carried the box out to E -700 for the West Division's held slots and this survey's west margin stands past even that, so the cell is carried here rather than emitted onto ground nothing models. Extending the box is what would build it; a block drawn over the edge would be dealt roofs that die in tools/generate_block_infill.py.",
+   "would_be_boundary_local_enu_m": [
+    [
+     -751.29,
+     378.0
+    ],
+    [
+     -637.37,
+     379.3
+    ],
+    [
+     -637.13,
+     278.07
+    ],
+    [
+     -751.05,
+     278.97
+    ]
+   ],
+   "lots_the_reading_gives": 2,
+   "plat_block_number": {
+    "number": 73,
+    "confidence": "documented",
+    "numeral_on_sheet": true,
+    "legibility": "clear",
+    "cell": {
+     "column": "A",
+     "tier": "t7"
+    },
+    "derives_from_scheme": true,
+    "sources": [
+     "wright_1834"
+    ],
+    "authored_in": "data/traces/wabansia_block_numbering.json",
+    "note": "A boustrophedon that starts at the tract's south-east corner, on Kinzie Street beside the North Branch, and ends at its north-west. Kinzie's Addition's own run (T-1061) turns the other way, from the river tier northward; the two surveys share a sheet and not a habit."
    }
   }
  ]

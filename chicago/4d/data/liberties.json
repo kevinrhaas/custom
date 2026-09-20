@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 266,
+  "count": 267,
   "liberties": [
     {
       "id": "L1",
@@ -16254,6 +16254,42 @@
         {
           "label": "What would discharge it",
           "text": "a measured brick from a Chicago building of the period, or a documentary brick size from the yards that supplied the town."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-20."
+        }
+      ]
+    },
+    {
+      "id": "L265",
+      "title": "Six invented West Division roofs change what they are, and two of them lose a foot or two of depth to become buildable as it",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_008",
+        "recon_1835_west_009",
+        "recon_1835_west_011",
+        "recon_1835_west_021"
+      ],
+      "covers": [],
+      "scope": {
+        "enumeration": "phase2_west_wolf_point_approaches.placements[redealt]",
+        "count": 6
+      },
+      "recorded": "2026-09-20",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`phase2_west_wolf_point_approaches.placements[redealt]` — 6 roofs, re-derived from `data/reconstruction/1835_phase2_west_wolf_point_approaches.json` into `recon_1835_west_008`, `_009`, `_010`, `_011`, `_021` and `_022`. These are six of the twenty anonymous West Division roofs **L90** raised; nothing here adds, removes or moves a roof, and none of the thirty-five slots **L90** holds back for want of ground is released."
+        },
+        {
+          "label": "Decision",
+          "text": "carry out, in the recipe, six of the thirty-two refamily verdicts T-1445's adjudication reached over the town's 285 anonymous roofs — a smithy and three other workshop roofs, a stable and a privy become two-room, deep-plan, one-room, one-and-a-half storey and rough-plank dwellings and one stable, at the same coordinates, the same rotations and the same inventory classes. `tools/execute_roof_redeal.py --apply` writes them and `--check` gates them; the reasoning is published at `docs/RESEARCH/1835_roof_redeal_execution.md`. **Nothing is adjudicated here.** Every family written is the `to_family` T-1445 reached against the order book's district head and the placement policy's clauses, and every reason recorded beside it is T-1445's own, quoted. The adjudication is the liberty; this is its execution, and the two are separated on purpose so that the argument can be read without the diff and the diff cannot quietly change the argument. **Two footprints move, and that is this entry's own invention rather than T-1445's.** The adjudication tested each roof's committed footprint against the four numbers of its new family's band and found 28 of 32 already inside it. It could not test PROPORTION. `frame_dwelling` refuses a range deeper than one-and-a-half times its own front — the eaves-front house is the 1835 form and the gable-front house is a Greek Revival habit that arrives here in 1836 — and a workshop is allowed to be long and narrow where a cottage is not. So a 20 × 32 ft shop inside the D5 band is a building that cannot be built as a D5. `recon_1835_west_009` loses two feet of depth and `recon_1835_west_021` one, each the smaller of the two moves its own band permits; `recon_1835_west_011`, a 5 × 6 ft privy the policy refuses where it stands, is raised to the 12 × 16 ft floor of the D2 band, which is the smallest rough-plank dwelling that family allows. No dimension between the band's own corners is offered, because an interpolated size would be a measurement this project invented twice. **Which way it is wrong if it is wrong.** Toward a West Division with too few places of work. Four workshop roofs leave the west's workshop row and it falls from eight standing to four against a target of eight. That shortfall is the adjudication's finding rather than a side effect of executing it — a trade shop standing thirty metres off its street line is refused wherever the town would like a trade shop to be — and the four roofs the west still wants stay counted in the order book for the seating tickets to put back on the line. The alternative was to leave four shops nobody could walk into from the street, which the town's own documented buildings say did not exist here. **The grade does not move.** All six were `inferred_anonymous` before and are `inferred_anonymous` after. Refamilying changes what an invented building is, never how well attested it is, and no numbered roof here identifies an owner, an address, a use or an observed building."
+        },
+        {
+          "label": "Related",
+          "text": "**L90** (the parcel these six stand in), the adjudication **T-1445**, the parent audit **T-1197**, the roof programme **T-1196**, the order book **T-1166**, the placement policy **T-1195**; the twenty-six verdicts whose record id carries its family, and whose execution is therefore an id migration across the derived layer, are **T-1452**."
         },
         {
           "label": "Recorded",

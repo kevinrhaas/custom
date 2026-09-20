@@ -44,7 +44,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1190 | 601 | split_live | yes |
+| T-1468 | 601 | split_live | yes |
 | T-1198 | 298 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1189 | 12 | split_live | yes |
@@ -52,7 +52,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1190 (601), T-1198 (298), T-1335 (169), T-1189 (12), T-1354 (6) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1468 (601), T-1198 (298), T-1335 (169), T-1189 (12), T-1354 (6) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
 
 **266** further unresolved unit(s) name no ticket at all, because no ticket can settle them: they are names the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, and what is open is whether the person was in the town on 1 July 1835. Each states the document that would reopen it (T-1423):
 
@@ -240,11 +240,12 @@ Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/
 | `outside_chicago` | 109 |
 | `refused` | 8,662 |
 
-The same rule over the gate itself: of **179** tools carrying a `--check`, **173** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
+The same rule over the gate itself: of **180** tools carrying a `--check`, **173** are run by `tools/check.sh` and **7** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 
 | Ungated check | Owner | States why |
 | --- | ---: | ---: |
 | `tools/measure_boot_payload.mjs` | T-1156 | yes |
+| `tools/measure_boot_phases.mjs` | T-1246 | yes |
 | `tools/measure_street_widths.py` | — | yes |
 | `tools/mint_letter_list_residents.py` | T-1222 | yes |
 | `tools/rename_household_ids.py` | — | yes |

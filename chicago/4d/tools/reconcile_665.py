@@ -140,6 +140,16 @@ ANCILLARY_PER_PRINCIPAL = 154 / 508
 ROW_UNITS_PER_LOT = 3
 
 
+# The plats whose blocks reach the grid with lots but with nobody recorded on them, and
+# the committed reading that says so. See the block comment in `programme_document`.
+UNSCHEDULED_PLATS = {
+    "michigan_st_tract": ("data/traces/michigan_st_tract_seated.json § open, where the "
+                          "tract's own name and platter are still unsettled (T-1080)"),
+    "wabansia": ("data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one "
+                 "unplaced household in the whole survey"),
+}
+
+
 def block_capacity(lots: int) -> int:
     """The roofs a platted block's ground can hold: its frontage, plus its yard buildings.
 
@@ -822,6 +832,15 @@ def standing_roofs(grid, datum, taken):
     return rows
 
 
+# Which division a plat's ground is in, where the grid's own geometry cannot say.
+# Named per plat rather than per block: it is a fact about the survey, not about a cell.
+DIVISION_BY_PLAT = {
+    "kinzies_addition": "north",
+    "michigan_st_tract": "north",
+    "wabansia": "west",
+}
+
+
 def district_of_block(block) -> str:
     """A block is West Division ground when it lies west of the South Branch, which at
     this datum is local easting 0 — the origin IS the forks. No block in the grid
@@ -832,7 +851,20 @@ def district_of_block(block) -> str:
     The survey-tract layer is what says which survey a block stands in, and a block in
     the Addition's tract is North Division ground by definition — that is what the
     Addition IS. Asked of the Original Town's tract the question is the old one.
+
+    T-1454. Two more grids arrived and the same blindness caught one of them. The
+    Michigan Street tract stands north of the main stem at POSITIVE easting, so the
+    east/west test read its four blocks `south` and the South Division's named units then
+    held 153 roofs against a remainder of 143 — the district balance refused, which is
+    the assertion doing its job. Wabansia reads `west` off the easting test and is right,
+    but it is right by accident rather than by evidence. So the plat answers for both: a
+    block of Kinzie's Addition or the Michigan Street tract is North Division ground and
+    a block of Wabansia is West Division ground, because that is where those surveys are,
+    and the easting test is left to the one grid whose two sides it was written for.
     """
+    named = DIVISION_BY_PLAT.get(block.get("grid"))
+    if named:
+        return named
     tract = (block.get("survey_tract") or {}).get("tract")
     if tract == "kinzies_addition":
         return "north"
@@ -1062,6 +1094,37 @@ def programme_document():
                 f"this plat's own lot rule: {withheld}. The block stands on the grid with "
                 "its boundary, its numeral and its ground; what it has no line to deal a "
                 "roof onto is a lot.")
+        # T-1454. A PLAT WITH LOTS IS STILL NOT A SCHEDULE. The Michigan Street tract
+        # and Wabansia arrived with the lot lines Wright rules inside them, so unlike
+        # Kinzie's Addition above they do not fall out of the arithmetic at zero — and
+        # dealt on the Original Town's units-per-lot they proposed 114 roofs into a
+        # North Division whose whole remainder is 67, which the district balance refused
+        # outright. That refusal is right twice over. `ROW_UNITS_PER_LOT` is a density
+        # read off Original Town ground and these are not Original Town lots: the
+        # Michigan tract's run 15 m on the front and Wabansia's 46-115 m. And neither
+        # survey has anybody on it. Wabansia's own seating reads its occupancy as "ONE
+        # household, unplaced ... a survey over prairie with one doctor's house somewhere
+        # in it" (data/traces/wabansia_seating.json § occupancy_before_1835_07_01), and
+        # the Michigan tract does not yet have a settled NAME, let alone a resident
+        # (data/traces/michigan_st_tract_seated.json § open, T-1080).
+        #
+        # So the ground is carried and the headroom is not. Scheduling roofs onto it
+        # would put a density nothing measured onto a survey nobody is recorded on, and
+        # move the 665 target's district split on the strength of it. What the seats are
+        # worth is T-1198's and T-1199's question, with the placement policy behind it.
+        if block["grid"] in UNSCHEDULED_PLATS:
+            unit["kind"] = "platted_block_unscheduled"
+            unit["state"] = "gated"
+            unit["capacity_roofs"] = 0
+            unit["principal_room"] = 0
+            unit["ancillary_room"] = 0
+            unit["headroom"] = 0
+            unit["waiting_on"] = (
+                "a placement policy for this survey. The lot lines are the sheet's and "
+                "they are on the grid; what is missing is any evidence of who stood on "
+                f"them — see {UNSCHEDULED_PLATS[block['grid']]}. Dealing this district's "
+                "remainder onto them at the Original Town's units-per-lot would be a "
+                "density read off other ground, and these lots are not that size.")
         hold = block.get("reserved")
         if hold:
             unit["kind"] = "platted_block_reserved"
