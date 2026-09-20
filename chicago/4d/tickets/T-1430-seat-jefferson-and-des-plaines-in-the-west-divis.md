@@ -1,7 +1,7 @@
 ---
 id: T-1430
 title: Seat Jefferson and Des Plaines in the West Division: the two streets the ground refused, derived from Clinton's committed line and their own surviving intersection control, now that the box reaches E -705
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1417
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 2:30:23 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35496288002
 ---
 
 Seat Jefferson and Des Plaines in the West Division: the two streets the ground refused, derived from Clinton's committed line and their own surviving intersection control, now that the box reaches E -705.
