@@ -68,3 +68,10 @@ it. The report invited a rebuild of the owner's own parked work.
 can see, or offered for deletion.
 
 **Links:** T-1155 (the reading this repairs) · T-0852 · T-0429 · PR #1533.
+
+**No changelog entry, signed:** the three watched files this branch touches —
+`tools/ticket.mjs`, `tools/test_ticket_inflight.mjs` and the `check.sh` step that
+gates them — are the loop's own instruments. No renderer, record, figure or asset
+moves, so there is nothing a visitor or the release feed could read. The branch
+carries the `Changelog: none` trailer the gate asks for rather than inventing a
+release note for a change no reader has.
