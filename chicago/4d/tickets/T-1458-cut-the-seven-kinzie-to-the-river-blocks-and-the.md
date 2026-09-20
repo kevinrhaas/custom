@@ -1,7 +1,7 @@
 ---
 id: T-1458
 title: Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1436
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 10:56:57 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35521006618
 ---
 
 Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face.
