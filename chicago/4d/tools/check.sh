@@ -4734,6 +4734,34 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
 
+# T-1461, piece 1 of T-1449, of T-1434, of T-1189. THE EMPLOYMENT COVERAGE ANSWER. The
+# two joins above are both true and neither covers the town: 112 cards a source names in
+# a house, 524 reconstructed trade-holders seated or told why not — 636 people of 3,243.
+# The other 2,607 held no workplace, no seat and no reason, and a card that had never
+# been asked the question looked exactly like a card that had been asked and answered
+# no. This gives every person one answer from a closed set of five, in the words of the
+# rule that decided it, so a silence is a statement that can be counted and argued with.
+#
+# IT SUPPLIES NO TRADE AND SEATS NOBODY. 2,536 people carry `occupation: none_recorded`
+# and leave this pass carrying none — reading a trade in from the household is exactly
+# the inference the reconstruction stages do under a quota and this pass has none.
+# `at_a_trade_with_no_house_to_join` is counted as neither placed nor unemployed for the
+# same reason: the soldier at the post and the laundress over her tub are at work, and
+# what is missing is a house in the business layer to join them to.
+#
+# WHY A GATE. The cover is the claim, and it is made of four files that move
+# independently — a card merged away leaves its answer behind as a fossil, a new
+# household arrives with no answer at all, a premises ruling re-cut moves a man from his
+# own account to somebody else's. `--check` re-derives every row and the report byte for
+# byte and refuses the four ways the cover can be wrong: a person with no answer, a
+# person with two, an answer in a word the vocabulary does not hold, and a child below
+# the staffing model's own working-age floor placed in a shop.
+step "every person in the resident layer carries one employment answer, and none carries none" \
+  python3 tools/employment_coverage_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/employment_coverage_1835.py --self-test
+
 # T-1448, of T-1434, of T-1189. THE MINT ORDER FOR THE SHOP HANDS — and the collision
 # that stopped the mint. The two passes above joined the houses to the people the
 # sources name and the people this programme had already drawn; what was left was to
