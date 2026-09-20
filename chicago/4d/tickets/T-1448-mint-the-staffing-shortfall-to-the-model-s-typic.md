@@ -1,7 +1,7 @@
 ---
 id: T-1448
 title: Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
-state: blocked-owner
+state: open
 epic: META
 requested_by: owner
 seen: true
@@ -12,7 +12,7 @@ opened: 2026-09-20
 closed: null
 pr: null
 claimed_by: run 9/20/2026, 7:46:36 AM CT
-blocked_on: The shops are short 129 hands and the order book has 109 places left, all 129 wanted are men where 40 of the 109 are women's, and 24 of the hands are boys of 12-18 in a band the book has drawn out. Minting to the typical band means one of three things and all three change what the town is: re-cut the book (T-1166), come down toward the model's own count_low of 65, or let the houses stand short and have the business card say so. Numbers for all three are in data/reconstruction/1835_staffing_mint_order.json.
+blocked_on: null
 needs_bake: false
 closed_at: null
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35511233651
@@ -68,3 +68,39 @@ three. **Blocked on the owner.**
 - T-1433's 62 unseatable domestics are NOT in this order. Their taverns are full to the
   model's HIGH band, so they are a town owed more lodging houses, not a house short of
   hands.
+
+
+## THE OWNER'S RULING, 2026-09-20 — option 1, and only the remainder
+
+Asked which of the three the town takes, the owner ruled **RE-CUT THE BOOK (T-1166)**,
+and then, asked what becomes of the people already drawn against the old cut, ruled
+**re-cut just the remainder**.
+
+So the two halves of the answer are:
+
+- **The cut changes.** The town's remaining working people are younger and more male
+  than a cut shaped by the 1840 schedule's bands makes them. This is the answer that
+  lets the mint run to the typical band.
+- **Nothing already drawn moves.** The 1,370 persons standing in 78 filled buckets stay
+  where they are. The re-cut applies to `to_reconstruct` minus `filled` — the remainder —
+  and never re-opens a bucket a stage has already spent against.
+
+**THE EVIDENCE IS ALREADY IN THE MODEL, which is why this is a re-cut and not a new
+reading.** `1835_town_model.json` carries it in terms:
+
+> Households drawn symmetrically break the adult sex ratio (146.8 males per 100 females
+> aged 20 and over in 1840, and higher in 1835). The surplus men are boarders and
+> lodgers, not husbands.
+
+The model said it; the book's trade cut did not carry it through. That is the gap this
+ruling closes, and it is why no page of any source has to be read again.
+
+**Measured exposure, on the committed book:** 199 buckets, of which **78 have
+`filled > 0`** — 1,370 persons already drawn, the largest being T-1174 at 856, T-1347 at
+308, T-1171 at 124 and T-1175 at 75. Those are the buckets the ruling protects. 2,299
+remain to reconstruct and are the re-cut's subject.
+
+**T-1448 is unblocked by this**, and the mint it asks for now waits on the re-cut rather
+than on a decision. The re-cut is T-1166's successor and is filed separately; this
+ticket's own work — minting the shortfall into cards — runs once the remainder can pay
+for it.
