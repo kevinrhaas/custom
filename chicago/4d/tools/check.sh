@@ -4461,6 +4461,23 @@ step "every reconstructed business re-derives, and no invented style is a printe
 selftest "…and an unmapped class, a quota past its heads and a borrowed style are refused" \
   python3 tools/reconstruct_businesses_1835.py --self-test
 
+# T-1441, of T-1190 clause 2 and clause 3. AND WHETHER THE SUBSTITUTION PROMISE IS KEPT.
+# Every reconstructed record says what would retire it, and until now nothing could answer
+# that question with the parts of a retirement the record does NOT carry: the order-book row
+# that re-opens, the roof that is carried rather than demolished, the liberty whose count
+# moves. `--dry-run` reads that plan for a candidate source and writes nothing ever; this
+# holds the population it reads. Two assertions: every reconstructed firm and trade head
+# still states its own retirement, and each liberty entry's share of the 32 houses agrees
+# with the firms on disk. compile_liberties re-derives the POPULATION and cannot re-derive
+# the SHARE — a firm carries the ticket that built it and a liberty carries no ticket — so
+# a group rebuilt one house larger used to leave a word like FIFTEEN standing over sixteen.
+# docs/PROVENANCE.md § Substitution is the rule.
+step "every reconstruction says what retires it, and each liberty's share of the firms re-counts" \
+  python3 tools/substitute_reconstruction.py --check
+
+selftest "…and the match, the retirement plan and the share re-count each fire when broken" \
+  python3 tools/substitute_reconstruction.py --self-test
+
 # And what the town DOES with the register's `street_only` businesses (T-0354). The owner
 # ruled on 2026-08-29 that a business the paper places on a platted street and nothing
 # narrower adopts a reconstructed roof already standing on that street face;

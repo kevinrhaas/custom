@@ -1292,7 +1292,13 @@
       "measured": "2026-09-20",
       "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
     },
-    "supersede_arrival.py": {
+    "substitute_reconstruction.py": {
+      "placement": "not_a_writer",
+      "write_mode": "(none declared)",
+      "measured": "2026-09-20",
+      "finding": "Not a writer, and deliberately cannot become one: it reads what a new attested record would retire and prints the plan. Run BARE it printed the substitutable population and the liberty re-count, exited 0, and `git status --porcelain` was identical before and after \u2014 not one byte moved. There is no write mode to measure because there is no --build beside the dry run: a retirement runs through the retired record's OWN generator (reconstruct_businesses_1835.py, reconstruct_trade_households.py), which re-derives a whole population from the order book, and a second tool deleting one record would put the layer off the fixed point this gate holds it to. T-1441."
+    },
+  "supersede_arrival.py": {
       "placement": "not_a_writer",
       "write_mode": "(none declared)",
       "measured": "2026-09-19",
