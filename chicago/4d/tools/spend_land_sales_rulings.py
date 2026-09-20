@@ -164,7 +164,6 @@ RULES = {
             "the scene window. T-1159's borderline roster carries exactly this name, with "
             "its source and its re-admission class; T-1172 is the ticket that re-admits "
             "it, so the finding is handed there and asserted nowhere." + HANDED_ON),
-        # Stated after the statement it qualifies, because it is the statement's last word.
     },
     "a_sale_is_never_a_residence": {
         "disposition": "refused",
