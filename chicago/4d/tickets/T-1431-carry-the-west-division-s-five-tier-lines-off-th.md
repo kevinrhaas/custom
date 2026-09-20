@@ -1,7 +1,7 @@
 ---
 id: T-1431
 title: Carry the West Division's five tier lines off their E -320 clip and release generate_west_infill's 35 held slots on the extended ground
-state: claimed
+state: split
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1417
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: run 9/20/2026, 6:30:04 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-20T11:33:12.715Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35507852269
 ---
 
