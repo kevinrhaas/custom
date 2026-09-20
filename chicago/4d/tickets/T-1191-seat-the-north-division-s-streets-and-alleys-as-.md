@@ -1,7 +1,7 @@
 ---
 id: T-1191
 title: Seat the North Division's streets and alleys as platted corridors: Kinzie's Addition and the Kinzie–Michigan tier off Wright and Hathaway, with block faces, mid-block alleys and corridor control, so a north-side roof can be dealt to a lot
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1552
 claimed_by: run 9/19/2026, 12:27:10 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T06:31:49.634Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35457966596
 ---
 
