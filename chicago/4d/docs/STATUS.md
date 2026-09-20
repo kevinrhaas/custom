@@ -1,5 +1,9 @@
 # STATUS
 
+## Unreal update process and queued parity — 2026-09-20
+
+Owner-requested process documentation now describes selecting the newest passing dev snapshot, isolated Mac builds, packaged tests, checksums and a draft-to-published GitHub prerelease. This documents the working manual path; on-demand automation remains T-1472. New held tickets T-1473/T-1474/T-1475 cover sinking buildings, a flora corridor and navigation/place inspection. Existing T-1360 retains roads. The [parity matrix](unreal/PARITY.md) records broader web gaps and successor obligations. All engine-only tasks remain blocked-tech with ordered HOLD references after South Through Time and before Loop Improvements. No new renderer feature or automatic build service ships in this documentation slice.
+
 ## Standalone Mac preview — T-1464, 2026-09-20
 
 The owner prioritised a native Mac app from latest dev before streaming. The local

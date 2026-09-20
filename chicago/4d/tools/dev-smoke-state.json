@@ -16,24 +16,55 @@
         "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
       ],
       "wallSeconds": 386,
-      "takenAt": "2026-09-20T18:15:47.924Z",
+      "takenAt": "2026-09-20T18:16:43.904Z",
       "ref": "steward/t-1456-school-section-tier",
-      "commit": "1a0dbbd3a416",
-      "devCommit": "937cb9994dfe",
-      "treeHash": "sha256:cb1f0955b1c05a7e",
-      "treeDirty": false,
-      "changelogHash": "sha256:fb3981c3eddc791d",
+      "commit": "598615e9b242",
+      "devCommit": "c8c11eabe9fc",
+      "treeHash": "sha256:d8518d5c97797cf6",
+      "treeDirty": true,
+      "changelogHash": "sha256:8e334f588bb59be2",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.9,
-          3.3,
-          2
+          1.5,
+          2.7,
+          1.9
         ]
       },
       "source": "/tmp/smoke-d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 325,
+      "takenAt": "2026-09-20T15:00:56.626Z",
+      "ref": "steward/t-1446-roof-redeal-execute",
+      "commit": "6edd7a73ee21",
+      "devCommit": "ea2cb25915d8",
+      "treeHash": "sha256:1c0c77db3694f501",
+      "treeDirty": false,
+      "changelogHash": "sha256:8cb9883ea1c58328",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.3,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
     },
     {
       "viewport": "desktop",
@@ -1037,41 +1068,6 @@
         ]
       },
       "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 181,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
-      ],
-      "wallSeconds": 459,
-      "takenAt": "2026-09-20T00:06:36.276Z",
-      "ref": "steward/t-1188-civic-establishments",
-      "commit": "8fe6cab63326",
-      "devCommit": "ff7eaefe2d4a",
-      "treeHash": "sha256:f05a8d63ba288868",
-      "treeDirty": false,
-      "changelogHash": "sha256:2951783fb4a92999",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          3.6,
-          2.1
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
     },
     {
       "viewport": "desktop",

@@ -353,6 +353,13 @@
       "measured": "2026-09-18",
       "finding": "Does NOT reproduce: `--write` rewrote 1 committed file(s) on a tree the gate called clean."
     },
+    "execute_roof_redeal.py": {
+      "placement": "pending",
+      "write_mode": "--apply",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--apply` on a clean tree ran in 5.1 s, rewrote data/reconstruction/1835_phase2_west_wolf_point_approaches.json, data/exclusions.json and docs/RESEARCH/1835_roof_redeal_execution.md and changed no committed byte. The perturbation test tells idempotence from inertia and was run from both sides, because this tool holds two files to each other: the recipe's `redealt` record was bent D4 -> D9 and `--check` went red (\"was re-dealt to D9 and stands as D4\"); the PLACEMENT was then bent D4 -> W1 instead and `--check` went red the other way (\"was re-dealt to D4 and stands as W1\"); `--apply` restored it and `git status` came back empty.",
+      "placed": "not yet — measured to reproduce, but it reads the redeal ledger, which tools/redeal_anonymous_roofs.py writes and which is itself `pending` for the same reason: both sit downstream of the reconstruction stages that write the structure layer, and their place in the manifest's dependency order is that pass's to settle."
+    },
     "exhaust_tax_1833.py": {
       "placement": "manifest",
       "write_mode": "--build",
