@@ -1,7 +1,7 @@
 ---
 id: T-1442
 title: Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1190
 opened: 2026-09-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-20
+pr: 1579
+claimed_by: run 9/20/2026, 10:02:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T16:16:39.832Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35518135687
 ---
 
 Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md.

@@ -117,12 +117,12 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1189 | 12 | split_live | yes |
-| T-1190 | 601 | split_live | yes |
 | T-1198 | 298 | open | yes |
 | T-1299 | 1 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1354 | 6 | open | yes |
+| T-1468 | 601 | split_live | yes |
 
 The rest defer to no ticket, and that is the second legitimate shape rather than a gap (T-1423): a name the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, whose open question is whether the person was in the town on 1 July 1835. No ticket can answer that — only a document can — so each states the document instead. The pointer that used to stand here was renamed four times as the ticket it named kept closing, and no source came any nearer.
 
