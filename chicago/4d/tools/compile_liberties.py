@@ -373,6 +373,20 @@ def _brick_fabric_count() -> int:
                 if _attr(form.get("construction")) == "brick"})
 
 
+def _log_and_fort_roof_count() -> int:
+    """Phases on a log dwelling or a fort structure — the roofs L266 shingles by an
+    argument rather than by materials.md §2.2's grading.
+
+    Counted off the records' own `archetype` rather than restated from the selector,
+    for the reason every scope here is counted: `roof_substrate()` deals by archetype,
+    so a record refamilied into or out of `log_dwelling` moves in and out of this
+    liberty's reach, and the entry should say how many it reaches today rather than
+    how many it reached when it was written.
+    """
+    return sum(1 for record, _ in _phase_forms()
+               if record.get("archetype") in ("log_dwelling", "fort_structure"))
+
+
 def _roof_covering_count() -> int:
     """Phases stating a roof type, which is the population L263's exposure reaches.
 
@@ -525,6 +539,9 @@ SCOPE_SOURCES = {
     "structures.phases[roof_type_stated]": (
         _roof_covering_count,
         "data/structures/*.json, the layer's own roof_type attribute"),
+    "structures.phases[log_or_fort_archetype]": (
+        _log_and_fort_roof_count,
+        "data/structures/*.json, the layer's own archetype attribute"),
     "phase2_west_wolf_point_approaches.placements[redealt]": (
         _redealt_roof_count,
         "data/reconstruction/1835_phase2_west_wolf_point_approaches.json, itself "

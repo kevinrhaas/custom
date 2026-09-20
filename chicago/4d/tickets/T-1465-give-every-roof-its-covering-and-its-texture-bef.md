@@ -1,7 +1,7 @@
 ---
 id: T-1465
 title: Give every roof its covering and its texture before the 297 are built: shingle and roof_board substrates on the sheet, dealt by archetype, bound to the vendored relief maps on L263's exposure — a roof nobody can see the material of is not a reconstruction, it is a gap
-state: claimed
+state: split
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: run 9/20/2026, 2:28:20 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-20T19:31:48.596Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35532164463
 ---
 
