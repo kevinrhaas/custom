@@ -936,7 +936,7 @@
     "town_after_T-1404": 18,
     "still_short": 4,
     "documented_zero": false,
-    "owed_to": "T-1186"
+    "owed_to": "T-1190"
    },
    {
     "class": "lottery_office",
@@ -986,7 +986,7 @@
     "town_after_T-1404": 8,
     "still_short": 6,
     "documented_zero": false,
-    "owed_to": "T-1186"
+    "owed_to": "T-1190"
    },
    {
     "class": "printing_office",

@@ -522,7 +522,16 @@ def shortfall(built: list[dict]) -> list[dict]:
             "still_short": (max(0, census - after) if census is not None and row["compared"]
                             else None),
             "documented_zero": cls in crosswalk["classes_the_town_holds_nothing_for"],
-            "owed_to": "T-1186" if cls in ("physician", "lawyer") else None,
+            # WHO OWES THE REMAINDER, and it is no longer T-1186. That ticket was split
+            # into T-1418 (the professions) and T-1419 (the services) and both have closed,
+            # so a shortfall handed to it by id would be handed to spent work (T-1237). The
+            # two lines are not unordered any more either: T-1418 re-cut them to the unit
+            # the December census counts them in — MEN, scaled to the scene date's own
+            # population bracket — and the order book bought the offices that cut called
+            # for. What is left is the difference between the raw December figure and the
+            # town, which is a reading to PRINT rather than a quota to fill, and printing
+            # the finished crosswalk is T-1190's convergence clause.
+            "owed_to": "T-1190" if cls in ("physician", "lawyer") else None,
         })
     return rows
 
