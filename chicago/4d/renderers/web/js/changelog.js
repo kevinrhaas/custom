@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Every person in this town now says whether they were at work', kind: 'feature', ts: '',
+  { v: 1030, title: 'Every person in this town now says whether they were at work', kind: 'feature', ts: '2026-09-20T18:30:01.004Z', date: 'Sep 20, 2026, 1:30 PM CT',
     items: [
       'Two passes this week put people behind counters: one carried across the 112 cards a newspaper actually names in a house, the other seated 124 of the 524 reconstructed residents who had a trade and nowhere to follow it and said why it could not seat the rest. Between them they reach 636 of the 3,243 people here. The other 2,607 said nothing at all about work.',
       'Saying nothing is the problem, not the number. A card nobody had ever asked the question of looked exactly like a card that had been asked and answered no \u2014 both were blank. So a reader could not tell the difference between a woman whose trade no source records and a man the project had ruled on and found no employer for, and neither could the project. Every person in the layer now carries one answer out of five, with the rule that decided it written beside it, and it is printed on their card.',
