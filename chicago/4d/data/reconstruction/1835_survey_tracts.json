@@ -3635,13 +3635,31 @@
   "cross_checks": {
     "committed_plat_blocks_inside_the_original_town": {
       "claim": "If a plat's bounds are where this project puts them, every block it has generated from that plat's module must fall inside them. This does not prove any bounds — a bigger rectangle would pass too — but a block outside its OWN plat would disprove them. Each block is tested against the tract its `grid` names: the Original Town's blocks against the 1830 canal commissioners' four streets, Kinzie's Addition's against Kinzie's.",
-      "blocks": 46,
+      "blocks": 63,
       "by_plat": {
         "kinzies_addition": 27,
         "original_town": 19
       },
       "outside": [],
-      "no_ring_for_their_plat": [],
+      "no_ring_for_their_plat": [
+        "blk_michigan_st_tract_west_north",
+        "blk_michigan_st_tract_west_south",
+        "blk_michigan_st_tract_east_north",
+        "blk_michigan_st_tract_east_south",
+        "blk_wabansia_b_t1",
+        "blk_wabansia_c_t1",
+        "blk_wabansia_b_t2",
+        "blk_wabansia_c_t2",
+        "blk_wabansia_b_t3",
+        "blk_wabansia_c_t3",
+        "blk_wabansia_b_t4",
+        "blk_wabansia_b_t5",
+        "blk_wabansia_c_t5",
+        "blk_wabansia_b_t6",
+        "blk_wabansia_c_t6",
+        "blk_wabansia_b_t7",
+        "blk_wabansia_c_t7"
+      ],
       "confidence": "inferred"
     },
     "lighthouse_inside_the_reservation": {

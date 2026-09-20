@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two outlying surveys get their blocks, and the first read lot lines', kind: 'feature', ts: '',
+  { v: 1025, title: 'Two outlying surveys get their blocks, and the first read lot lines', kind: 'feature', ts: '2026-09-20T16:09:17.743Z', date: 'Sep 20, 2026, 11:09 AM CT',
     items: [
       'A week ago Kinzie\u2019s Addition got its fifty-two numbered cells. Two surveys were still missing, and they are the two not laid on the town\u2019s own streets at all: the small platted tract north of Kinzie Street, and Wabansia, out on the North Branch. Seventeen blocks of them stand now, with sixty-eight lots inside.',
       'What kept them out is that a block here has always been cut between four street centrelines, and these two are not ruled by streets. The Michigan Street tract is bounded by its own borders and split by its own mid-block alleys; Wabansia\u2019s three block columns are lines on a sheet and nothing else. But both surveys had already been SEATED \u2014 hung on the committed grid, corner by corner, by earlier work \u2014 and a seating is a perfectly good thing to cut a block on. So the blocks come off the seatings, and never off a second guess at where those surveys stand.',
