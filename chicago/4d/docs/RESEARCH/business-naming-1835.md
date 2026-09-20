@@ -251,3 +251,39 @@ The two heads draw as **A. Hubbard, lumber yard and store house** in the south d
 
 **And the honorific question does not arise here,** as it does for the boarding houses: all
 four heads are men, and the possessive stands on the name alone in any case.
+
+## Worked: the fifteen service houses of 1835
+
+T-1419's fifteen houses take T-1424's form — the **trade head** — into four trades the
+December 1835 State census enumerates nowhere: nine **millineries**, four **land offices**,
+one **dress making shop** and one **barber's shop**. The naming problem here is the opposite
+of the liveries': three of the four trades are printed in this register several times over,
+so nothing has to be reasoned from a neighbouring class.
+
+**The millineries and the dress making shop.** The register prints three millineries at the
+scene date and one dress maker, and all four carry the same idiom: *Elmira Fowler* on
+Dearborn, *Mrs. H. Sherman* and *[Mrs.] Herman* at the Mansion House, all at *millinery and
+dress making*, and *Sarah D. Howe* at *dress, cloak and habit making* on Lake. Two goods
+lines come off that: the trade word alone and the printed line whole. The forms are 1 with
+the forename in full — the form Fowler and Howe both print — and 1 with the initial, the
+corpus's commonest signature. **No honorific is dealt**, exactly as for the boarding houses
+and for the same reason (**L257**): *Mrs. H. Sherman* is available and attested, and it is
+refused anyway, because these cards assert no marital status and a sign reading *Mrs.
+Chapin's* would invent a husband to make a shopfront read well.
+
+**The land offices.** Three printings, two of them signatures: *J. C. Goodhue, land agent*
+and *W. G. Blanchard, house and land agent*, with one unnamed house and land agent carrying
+Blanchard's line again. Form 1 in both its readings, and the two trade lines as printed.
+Blanchard is the one land agent the register places, on **Lake Street**, so Lake leads the
+south-division face rule and the two business streets either side follow it.
+
+**The barber's shop, which has no printing at all.** The corpus prints no barber — the
+December census does not count the trade and no advertisement survives — so there is no
+style to take and, by the rule above, none is composed. The forms are the naming guide's own
+sole-trader readings, and the goods line is the single word *barber*: the one this project
+already stands a barber's shop under, in `rcb_fb_barbers_shop` (**L255**, T-1377). One head,
+one shop, and the second shop is bought by the head rather than by a count — which is the
+restatement T-1186 asked for before a second barber could be raised.
+
+**docs/RESEARCH/business-layer.md**, tickets **T-1419** (of **T-1186**), **T-1424**,
+**T-1404**, **T-1173**, **T-1377**.

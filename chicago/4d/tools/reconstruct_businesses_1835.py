@@ -77,8 +77,12 @@ GROUPS = {
     },
     "mechanics_shops": {"ticket": "T-1185", "title": "the mechanics' shops"},
     # T-1186 split on 2026-09-20: T-1418 owns the two census rows this group fills
-    # (the professions), T-1419 the services the census enumerates nowhere.
-    "professions_and_services": {"ticket": "T-1418", "title": "the professions"},
+    # (the professions), T-1419 the services the census enumerates nowhere. The ticket here
+    # is the ORDER BOOK's — whose buckets this group spends — and it stays T-1418's; the
+    # services are ordered by no bucket at all and each of their records names T-1419 for
+    # itself, out of TRADE_QUOTA below.
+    "professions_and_services": {"ticket": "T-1418",
+                                 "title": "the professions and the services"},
     "lodging_river_and_transport": {
         "ticket": "T-1187", "title": "lodging, the river and transport"},
     "civic_church_school_and_press": {
@@ -212,6 +216,60 @@ TRADE_QUOTA = {
             },
         },
     },
+    # THE SERVICES THE CENSUS ENUMERATES NOWHERE (T-1419, of T-1186). The professions half
+    # of this group is ordered against two printed counts — twenty-two lawyers and fourteen
+    # physicians — and T-1418 spent them. NONE of the four trades below is a line of the
+    # December 1835 State census, so none of them has an order-book bucket and none of them
+    # can be short of a count; what this town's research HAS committed is the person. The
+    # resident band drew each of these heads at a trade whose own word names the house, and
+    # every one of the four is a trade the register itself prints houses of.
+    "professions_and_services": {
+        "ticket": "T-1419",
+        "trades": {
+            "land_agent": {
+                "house": "land_office",
+                "type": "other",
+                "trade": "land agency",
+                "occupation": "land_agent",
+                "basis": ("a land agent kept an office and the register prints three houses "
+                          "of the trade — J. C. Goodhue, land agent; W. G. Blanchard, house "
+                          "and land agent, on Lake Street; and one unnamed house and land "
+                          "agent — against a census that enumerates no land office at all"),
+            },
+            "milliner": {
+                "house": "millinery",
+                "type": "other",
+                "trade": "millinery",
+                "occupation": "milliner",
+                "basis": ("a millinery is a shop front, and the register prints three of "
+                          "them at the scene date — Elmira Fowler on Dearborn Street, Mrs. "
+                          "H. Sherman and [Mrs.] Herman at the Mansion House — all under "
+                          "the one trade line 'millinery and dress making', against a "
+                          "census with no line for a milliner"),
+            },
+            "dressmaker": {
+                "house": "dress_making_shop",
+                "type": "other",
+                "trade": "dress making",
+                "occupation": "dressmaker",
+                "basis": ("the register's one printed house of the trade is Sarah D. Howe's "
+                          "dress, cloak and habit making on Lake Street, and the December "
+                          "census enumerates no dress maker"),
+            },
+            "barber_surgeon": {
+                "house": "barbers_shop",
+                "type": "other",
+                "trade": "barber's shop",
+                "occupation": "barber_surgeon",
+                "basis": ("a barber keeps a shop front — PUBLIC_TRADES `shop` of the "
+                          "signage rule — and this project already stands one of them, "
+                          "rcb_fb_barbers_shop, on T-1377's documented floor of the town's "
+                          "free Black residents; that floor is an argument about PEOPLE and "
+                          "it orders no second shop, so the second shop is bought by the "
+                          "head or not at all"),
+            },
+        },
+    },
 }
 
 # THE FORMS, each drawn from the register's own printings of these two trades, as STYLES is
@@ -252,6 +310,80 @@ TRADE_STYLES = {
              "commission' — cut to its two heads, the third being a commission the "
              "reconstruction does not claim"),
         ],
+    },    # AND THE FOUR SERVICE HOUSES, on the same footing: every form and every goods line
+    # below is a printing of THAT TRADE in this register, except the barber's, which has no
+    # printing in the corpus at all and takes the naming guide's own sole-trader forms with
+    # the one trade word the project already stands a barber's shop under.
+    "land_office": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the form the register prints this trade in twice over — 'J. C. Goodhue, land "
+             "agent' and 'W. G. Blanchard, house and land agent' — which is also form 1 of "
+             "the naming guide, the commonest signature in the corpus"),
+            ("{given} {surname}, {goods}",
+             "the same signature with the forename in full, the attested minority form "
+             "('Frederick Thomas, drugs and paints', 'William F. Lyon, Wholesale Grocery "
+             "Store')"),
+        ],
+        "goods": [
+            ("land agent", "the trade line the register prints under J. C. Goodhue"),
+            ("house and land agent",
+             "the trade line the register prints under W. G. Blanchard, and again over its "
+             "one unnamed house of the trade"),
+        ],
+    },
+    "millinery": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "the form the register prints the trade in: 'Elmira Fowler', the one milliner "
+             "it names in full and without an honorific"),
+            ("{initial}. {surname}, {goods}",
+             "form 1 of the naming guide, the corpus's commonest signature — and the form "
+             "'Mrs. H. Sherman' prints once the honorific is cut, which this programme cuts "
+             "everywhere (docs/LIBERTIES.md § L257)"),
+        ],
+        "goods": [
+            ("millinery",
+             "the head of the trade line all three printed millineries carry, 'millinery "
+             "and dress making'"),
+            ("millinery and dress making",
+             "that line whole, as Elmira Fowler, Mrs. H. Sherman and [Mrs.] Herman all "
+             "print it"),
+        ],
+    },
+    "dress_making_shop": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "the form the register prints the trade in: 'Sarah D. Howe', the town's one "
+             "printed dress maker, named in full"),
+            ("{initial}. {surname}, {goods}",
+             "form 1 of the naming guide, the corpus's commonest signature"),
+        ],
+        "goods": [
+            ("dress making",
+             "the trade's own words in the register, from the tail of 'millinery and dress "
+             "making' and the head of Sarah D. Howe's own line"),
+            ("dress, cloak and habit making",
+             "Sarah D. Howe's trade line whole, as the register prints it"),
+        ],
+    },
+    "barbers_shop": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "THE TRADE HAS NO PRINTING IN THIS CORPUS and no form is composed for it: this "
+             "is the naming guide's form 1 with the forename in full, and it is the form "
+             "the project's one standing barber's shop already takes — 'Benjamin Anderson, "
+             "barber' (rcb_fb_barbers_shop, T-1377)"),
+            ("{initial}. {surname}, {goods}",
+             "the same signature with the initial, which is form 1's majority reading in "
+             "the register — 'A. Garrett', 'S. Foot', 'S. Dewey'"),
+        ],
+        "goods": [
+            ("barber",
+             "the one trade word this project already stands a barber's shop under, and no "
+             "second line is dealt: the register prints none for the trade, and the naming "
+             "guide refuses a goods line composed for a class rather than taken from it"),
+        ],
     },
 }
 
@@ -274,6 +406,42 @@ TRADE_FACES = {
         "south": ["south_water", "market"],
         "north": ["north_water", "kinzie"],
         "west": ["west_water", "canal"],
+    },
+    # A LAND OFFICE IS A DOOR AMONG DOORS, on the same rule the law offices take: the one
+    # land agent the register resolves a place for is W. G. Blanchard on LAKE STREET, and
+    # the two business streets either side of it follow Lake rather than a rule of their
+    # own. Goodhue and the unnamed house are unplaced, so Lake leads on the one placing
+    # there is and nothing narrower is claimed.
+    "land_office": {
+        "south": ["lake", "south_water", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # A MILLINERY IS A RETAIL FRONT and never a working bank. Elmira Fowler advertises from
+    # DEARBORN STREET and Sherman and Herman both sit at the Mansion House on Lake, so the
+    # rule is the two shopping streets and no third. North of the river that is Kinzie, the
+    # north division's store street, and in the west it is the Canal Street approach — the
+    # same reading the book store takes, for the same reason: a shop a customer walks to.
+    "millinery": {
+        "south": ["lake", "dearborn"],
+        "north": ["kinzie"],
+        "west": ["canal"],
+    },
+    # A DRESS MAKING SHOP TAKES THE MILLINERY'S RULE, and the register argues it directly:
+    # Sarah D. Howe prints from LAKE STREET, and the trade shares its one printed trade line
+    # with the millineries.
+    "dress_making_shop": {
+        "south": ["lake", "dearborn"],
+        "north": ["kinzie"],
+        "west": ["canal"],
+    },
+    # A BARBER'S SHOP IS A SHOP FRONT TOO — `shop` of the signage rule, and the Chicago
+    # American of August 1835 counts the barber among the town's mechanics' shops. The
+    # register places none, so the rule is the shop-front rule and not a reading.
+    "barbers_shop": {
+        "south": ["lake", "dearborn"],
+        "north": ["kinzie"],
+        "west": ["canal"],
     },
 }
 
@@ -346,6 +514,129 @@ RIVER_AND_TRANSPORT = {
                 "post office is a civic establishment T-1410 already built; what this head "
                 "would keep, if anything, is a stage and stable yard, and that is the same "
                 "question as the pier-works contractor and his gang. T-1425 owns both."),
+    },
+}
+
+
+# EVERY PROFESSIONAL AND SERVICE TRADE THE RESIDENT BAND DREW A HEAD AT, AND WHAT BECOMES OF
+# IT. The acceptance clause of T-1419 and the twin of the table above. The professions half
+# of this group was ordered against two PRINTED COUNTS and T-1418 spent them; the services
+# half has no count at all, because the December 1835 State census's eighteen lines reach
+# none of these trades. So the rows below carry one kind the river table did not need —
+# `census_bucket`, a class the book DOES hold a bucket of, which is ordered by the count and
+# never by the head — and the four houses this ticket builds are bought by the head instead.
+# Two trades the parent ticket argued for are REFUSED HERE BY NAME rather than passed over:
+# the dentist's stand, and the laundress's washing as a house of trade.
+SERVICES = {
+    "land_agent": {
+        "kind": "house_of_trade",
+        "why": "the trade names the house; this programme builds one per head.",
+    },
+    "milliner": {
+        "kind": "house_of_trade",
+        "why": "the trade names the house; this programme builds one per head.",
+    },
+    "dressmaker": {
+        "kind": "house_of_trade",
+        "why": "the trade names the house; this programme builds one per head.",
+    },
+    "barber_surgeon": {
+        "kind": "house_of_trade",
+        "why": ("THE ARGUMENT RESTATED, WHICH IS WHAT T-1186 ASKED FOR BEFORE A SECOND "
+                "BARBER WAS RAISED. The old programme's argument was a COUNT — a barber "
+                "bucket in the order book — and it was refused, because the December census "
+                "prints no barber and the book orders against printed counts or not at all. "
+                "The argument here is not a count: this project already stands one barber's "
+                "shop, rcb_fb_barbers_shop, on T-1377's documented floor of the town's free "
+                "Black residents, and that floor argues about PEOPLE and orders no second "
+                "shop. What is committed is the second head — the resident band drew Daniel "
+                "Brady at barber_surgeon — and the trade names the shop he keeps. One head, "
+                "one shop, withdrawn with him."),
+    },
+    "attorney": {
+        "kind": "census_bucket",
+        "why": ("THE COUNT IS PRINTED, SO THE COUNT ORDERS. The December 1835 State census "
+                "counts twenty-two lawyers, the order book holds the bucket and T-1418 "
+                "filled it; a head left over is a man the printed count does not reach, and "
+                "a house raised for him here would spend a count the register may already "
+                "hold. T-1189 gives him his place of work."),
+    },
+    "physician": {
+        "kind": "census_bucket",
+        "why": ("THE COUNT IS PRINTED, SO THE COUNT ORDERS. The census counts fourteen "
+                "physicians and T-1418 filled that bucket against the register's standing "
+                "rooms; the same rule as the lawyers, for the same reason."),
+    },
+    "surveyor": {
+        "kind": "employment",
+        "why": ("NO PREMISES, AND THE ONE PRINTED SURVEYOR SIGNS A COMMISSION AND NOT A "
+                "HOUSE. Surveying is done in the field and the plat drawn where the "
+                "surveyor lodges; the register's L. G. Curtiss prints as 'Deputy Surveyor "
+                "of Cook County', which is an office held and not a shop kept, and no "
+                "source gives this town a surveyor's office in 1835. The premises rulings "
+                "rule the trade `no_fixed_premises` and this ticket leaves that standing."),
+    },
+    "laundress": {
+        "kind": "employment",
+        "why": ("THE RULING T-1404 DEFERRED TO T-1186, MADE HERE. Washing was taken in at "
+                "the laundress's own dwelling or done at her employer's, and neither is a "
+                "house of trade: a dwelling that takes in washing is a dwelling, and work "
+                "done in another household's kitchen is done on premises the laundress does "
+                "not keep. The role carries `premises: no_fixed_premises` and no house is "
+                "raised. This does not touch rcb_fb_washing_and_ironing, which is an "
+                "establishment T-1377's documented floor argues for directly and which "
+                "stands on that argument and not on this one."),
+    },
+    "domestic": {
+        "kind": "employment",
+        "why": ("NO PREMISES. Domestic service is given in another household's house; the "
+                "workplace link is T-1189's, which staffs every establishment with real "
+                "persons, and nothing here raises a house. There is no `seamstress` in the "
+                "resident layer's closed occupation vocabulary, so the parent's third "
+                "female service trade has no row to rule on and is not invented one."),
+    },
+    "dentist": {
+        "kind": "count_already_held",
+        "why": ("THE STAND ARGUED BY T-1186 IS REFUSED, AND BY NAME. The register already "
+                "prints this town's dentistry at the scene date — Wm. H. Kennicott, Surgeon "
+                "Dentist, in two printings, a travelling dentist at the New York House and "
+                "one unidentified — and the resident band drew NO head at the trade. So "
+                "there is neither a count short nor a man to house: a stand raised here "
+                "would be an establishment invented out of nothing, which is the one thing "
+                "this programme refuses."),
+    },
+    "schoolteacher": {
+        "kind": "deferred",
+        "ticket": "T-1188",
+        "why": ("THE SCHOOLS ARE A COUNTED CLASS AND NOT THIS TICKET'S. The December census "
+                "counts seven schools and the order book holds that bucket for the civic, "
+                "church, school and press group; a teaching establishment raised here would "
+                "spend it from outside the group that owns it."),
+    },
+    "music_teacher": {
+        "kind": "employment",
+        "why": ("NO PREMISES. Taught in the pupil's house or in a room hired for the term — "
+                "the premises rulings' own words — so there is nothing kept to raise. The "
+                "counted schools are T-1188's and a music master is not one of them."),
+    },
+}
+
+
+# WHICH TABLE ADJUDICATES WHICH GROUP. Each trade quota above must be covered by a table
+# here, and `trade_buckets` refuses a quota row the table does not call a `house_of_trade` —
+# the table is the ruling and the quota follows it, never the reverse.
+TRADE_ADJUDICATION = {
+    "lodging_river_and_transport": {
+        "ticket": "T-1424",
+        "rulings": RIVER_AND_TRANSPORT,
+        "of": "river or transport",
+        "ledger_key": "river_and_transport",
+    },
+    "professions_and_services": {
+        "ticket": "T-1419",
+        "rulings": SERVICES,
+        "of": "professional or service",
+        "ledger_key": "services",
     },
 }
 
@@ -1019,7 +1310,8 @@ def trade_buckets(group, heads=None, book=None):
                 "the trade quota orders a %s and this tool carries no style or face row for "
                 "%r. Add them to TRADE_STYLES and TRADE_FACES with the register printings "
                 "that argue them." % (trade, house))
-        if RIVER_AND_TRANSPORT.get(trade, {}).get("kind") != "house_of_trade":
+        adjudication = TRADE_ADJUDICATION[group]["rulings"]
+        if adjudication.get(trade, {}).get("kind") != "house_of_trade":
             raise SystemExit(
                 "the trade quota orders a house for %s and the adjudication table does not "
                 "call that trade a house_of_trade. The table is the ruling; the quota "
@@ -1175,15 +1467,18 @@ def record_for_trade(group, bucket, head, ordinal, communities, streets):
     }
 
 
-def river_and_transport_table():
-    """EVERY RIVER AND TRANSPORT HEAD, AND WHAT BECAME OF IT — the acceptance of T-1424.
+def trade_adjudication_table(group):
+    """EVERY HEAD AT ONE OF THIS GROUP'S TRADES, AND WHAT BECAME OF IT — the acceptance of
+    T-1424 for the river and transport trades and of T-1419 for the services.
 
     Read off the heads and off the records on disk, for the reason lodging_table reads off
     disk: --build writes every record before it writes this ledger, so disk is the complete
-    picture and one group's build is not. A trade in RIVER_AND_TRANSPORT that the resident
-    band drew no head at still prints, with an empty list, because the ruling stands whether
-    or not anybody was drawn into it.
+    picture and one group's build is not. A trade in the table that the resident band drew
+    no head at still prints, with an empty list, because the ruling stands whether or not
+    anybody was drawn into it.
     """
+    spec = TRADE_ADJUDICATION[group]
+    rulings = spec["rulings"]
     heads = trade_heads()
     kept = {}
     for path in sorted(list((DATA / "businesses").glob("biz_*.json"))
@@ -1193,8 +1488,8 @@ def river_and_transport_table():
             if person.get("person_id"):
                 kept.setdefault(person["person_id"], doc["id"])
     rows, unhoused = [], 0
-    for trade in sorted(RIVER_AND_TRANSPORT):
-        ruling = RIVER_AND_TRANSPORT[trade]
+    for trade in sorted(rulings):
+        ruling = rulings[trade]
         people = []
         for head in heads.get(trade, []):
             firm = kept.get(head["person_id"])
@@ -1216,18 +1511,24 @@ def river_and_transport_table():
             "people": people,
         })
     return {
-        "_doc": ("EVERY RECONSTRUCTED HEAD AT A RIVER OR TRANSPORT TRADE, and the house of "
+        "_doc": ("EVERY RECONSTRUCTED HEAD AT A %s TRADE, and the house of "
                  "trade behind it or the reason there is none. `kind` says which sort of "
                  "absence a headless trade is: `house_of_trade` this programme builds, "
+                 "`census_bucket` the order book counts and another ticket fills, "
                  "`count_already_held` the register already over-holds, `employment` has no "
                  "premises to keep, `deferred` waits on the ticket named. No head is passed "
-                 "over in silence — that is what this table is for."),
-        "ticket": "T-1424",
+                 "over in silence — that is what this table is for." % spec["of"].upper()),
+        "ticket": spec["ticket"],
         "trades": len(rows),
         "heads": sum(r["heads"] for r in rows),
         "heads_this_programme_owes_a_house": unhoused,
         "rows": rows,
     }
+
+
+def river_and_transport_table():
+    """T-1424's table, by its own name."""
+    return trade_adjudication_table("lodging_river_and_transport")
 
 
 # ------------------------------------------------------------------------ build / check
@@ -1466,7 +1767,11 @@ def ledger(built):
         "records": sum(len(r) for r in built.values()),
         "groups": groups,
         "lodging": lodging_table(built),
-        "river_and_transport": river_and_transport_table(),
+        # BOTH ADJUDICATION TABLES, under their own names. A key here is a contract with
+        # whatever reads the ledger, so the river table keeps the name it was published
+        # under and the services table takes one of its own.
+        **{spec["ledger_key"]: trade_adjudication_table(group)
+           for group, spec in sorted(TRADE_ADJUDICATION.items())},
     }
 
 
@@ -1607,11 +1912,13 @@ def check(groups=None):
     # AND NO HEAD THE TRADE QUOTA ORDERS A HOUSE FOR IS LEFT WITHOUT ONE. The ledger would
     # print the debt either way; this makes it RED, which is what the stop condition of
     # T-1424 asks for — a head drawn at a trade that names a house, and no house.
-    table = river_and_transport_table()
-    if table["heads_this_programme_owes_a_house"]:
-        bad.append("%d river or transport head(s) stand at a trade that names a house of "
-                   "trade and keep none; see `river_and_transport` in the ledger"
-                   % table["heads_this_programme_owes_a_house"])
+    for group, spec in sorted(TRADE_ADJUDICATION.items()):
+        table = trade_adjudication_table(group)
+        if table["heads_this_programme_owes_a_house"]:
+            bad.append("%d %s head(s) stand at a trade that names a house of trade and keep "
+                       "none; see `%s` in the ledger"
+                       % (table["heads_this_programme_owes_a_house"], spec["of"],
+                          spec["ledger_key"]))
 
     want_ledger = ledger(built)
     if not LEDGER.exists():
@@ -1770,10 +2077,13 @@ def self_test():
     #     the schema demands: a trade_head block, no order-book bucket and no roof, the head
     #     himself as the sole proprietor, and a street-only face because there is nothing of
     #     the class standing to seat it on.
-    kept = [r for r in build_group("lodging_river_and_transport")
-            if (r["reconstruction"].get("trade_head") or {}).get("person_id")]
-    if not kept:
-        failures.append("the lodging group builds no house on a drawn trade head")
+    kept = []
+    for group in sorted(TRADE_ADJUDICATION):
+        mine = [r for r in build_group(group)
+                if (r["reconstruction"].get("trade_head") or {}).get("person_id")]
+        if not mine:
+            failures.append("%s builds no house on a drawn trade head" % group)
+        kept.extend(mine)
     for record in kept:
         block = record["reconstruction"]
         if block.get("bucket") or block.get("slot") or block.get("roof"):
@@ -1826,20 +2136,29 @@ def self_test():
     # 16. EVERY RIVER AND TRANSPORT HEAD IS ADJUDICATED. The stop condition of T-1424: a
     #     head at a `house_of_trade` trade with no firm behind it is this programme's debt,
     #     and every other head carries a printed reason it keeps no house.
-    table = river_and_transport_table()
-    if table["heads_this_programme_owes_a_house"]:
-        failures.append("%d river or transport head(s) the trade quota orders a house for "
-                        "have none" % table["heads_this_programme_owes_a_house"])
-    for row in table["rows"]:
-        if not (row.get("why") or "").strip():
-            failures.append("%s: adjudicated with no reason printed" % row["trade"])
-        if row["kind"] == "deferred" and not row.get("deferred_to"):
-            failures.append("%s: deferred to nothing" % row["trade"])
+    for group, spec in sorted(TRADE_ADJUDICATION.items()):
+        table = trade_adjudication_table(group)
+        if table["heads_this_programme_owes_a_house"]:
+            failures.append("%d %s head(s) the trade quota orders a house for have none"
+                            % (table["heads_this_programme_owes_a_house"], spec["of"]))
+        for row in table["rows"]:
+            if not (row.get("why") or "").strip():
+                failures.append("%s: adjudicated with no reason printed" % row["trade"])
+            if row["kind"] == "deferred" and not row.get("deferred_to"):
+                failures.append("%s: deferred to nothing" % row["trade"])
+
+    # 17. AND EVERY QUOTA ROW IS COVERED BY A TABLE. A group that orders houses and has no
+    #     adjudication table would build them on no ruling at all; the two must be added
+    #     together or neither.
+    for group in TRADE_QUOTA:
+        if group not in TRADE_ADJUDICATION:
+            failures.append("%s orders houses on a trade quota and no table adjudicates it"
+                            % group)
 
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 17 assertions of the business reconstruction still fire")
+    print("OK: 18 assertions of the business reconstruction still fire")
     return 0
 
 

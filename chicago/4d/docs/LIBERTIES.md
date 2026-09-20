@@ -12999,7 +12999,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 17 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions and four are **L260**'s liveries and lumber yards, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions, four are **L260**'s liveries and lumber yards and fifteen are **L262**'s services, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13216,12 +13216,12 @@ outliers, and the seating tickets **T-1198** and **T-1199**.
 
 ### L257 — Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them
 
-**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which FOUR are this
-entry's. The other thirteen are **L254**'s apothecaries, **L255**'s Black-owned firms,
-**L258**'s brewery and jeweller's, **L259**'s professions and **L260**'s liveries and lumber
-yards; the
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade, of which FOUR are this
+entry's. The other twenty-eight are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L258**'s brewery and jeweller's, **L259**'s professions, **L260**'s liveries and lumber
+yards and **L262**'s services; the
 selector reads the whole reconstructed layer, so the count is restated here rather than
-narrowed, and each entry says which of the seventeen are its own.
+narrowed, and each entry says which of the thirty-two are its own.
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed
 business record for each of the four standing reconstructed boarding houses —
@@ -13298,10 +13298,10 @@ the seating tickets **T-1198** and **T-1199**.
 **Recorded:** 2026-09-19.
 
 ### L258 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
-**Scope:** `businesses.records[reconstructed]` — 17 houses of trade. TWO are this entry's, the
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade. TWO are this entry's, the
 mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms, four
-**L257**'s boarding houses, three **L259**'s professions and four **L260**'s liveries and
-lumber yards. The
+**L257**'s boarding houses, three **L259**'s professions, four **L260**'s liveries and
+lumber yards and fifteen **L262**'s services. The
 selector reads the whole layer, so the count is restated here rather than narrowed, and the
 register keeps saying how many reconstructed houses of trade the town carries in total
 
@@ -13363,10 +13363,11 @@ same selector counts), **L248** (the trade heads these houses adopt), tickets **
 **Recorded:** 2026-09-19.
 
 ### L259 — Two law offices and a physician's room stand for a census line that counts men, read down to the population the scene date actually had
-**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which THREE are this
-entry's: two law offices and one physician's room. The other fourteen are **L254**'s
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade, of which THREE are this
+entry's: two law offices and one physician's room. The other twenty-nine are **L254**'s
 apothecaries, **L255**'s Black-owned firms, **L257**'s boarding houses, **L258**'s brewery and
-jeweller's and **L260**'s liveries and lumber yards; the selector reads the whole
+jeweller's, **L260**'s liveries and lumber yards and **L262**'s services — the other half of
+this entry's own group, and the half no census line reaches; the selector reads the whole
 reconstructed layer, so the count is restated here rather than narrowed.
 
 **Decision:** `tools/reconstruct_businesses_1835.py --group professions_and_services`
@@ -13443,11 +13444,12 @@ nowhere), **T-1404** (a premises for every in-window trade) and **T-1189** (thei
 
 ### L260 — Two livery stables and two lumber yards stand because the men who kept them were already drawn, and nothing else in this town could buy them
 
-**Scope:** `businesses.records[reconstructed]` — 17 houses of trade, of which FOUR are this
-entry's. The other thirteen are **L254**'s apothecaries, **L255**'s Black-owned firms,
-**L257**'s boarding houses, **L258**'s brewery and jeweller's and **L259**'s professions; the
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade, of which FOUR are this
+entry's. The other twenty-eight are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L257**'s boarding houses, **L258**'s brewery and jeweller's, **L259**'s professions and
+**L262**'s services, which take this entry's own fourth form into four more trades; the
 selector reads the whole reconstructed layer, so the count is restated here rather than
-narrowed, and each entry says which of the seventeen are its own.
+narrowed, and each entry says which of the thirty-two are its own.
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1424, of T-1409 and T-1187) writes a
 reconstructed business record for each of the four reconstructed trade heads the resident
@@ -13573,3 +13575,90 @@ depth comes from the same reach profile the traced reach below it uses.
 **Related:** **L239** (the identical decision at the south end, since resolved by a second
 sheet), the west wall's derivation **T-1415**, this regeneration **T-1416**, and **T-1417**,
 which takes the West Division streets off the old E −320 clip. **Recorded:** 2026-09-20.
+
+### L262 — Fifteen service houses stand because the women and men who kept them were already drawn, and the December census has no line that could ever have counted them
+
+**Scope:** `businesses.records[reconstructed]` — 32 houses of trade, of which FIFTEEN are
+this entry's: nine millineries, four land offices, one dress making shop and one barber's
+shop. The other seventeen are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L257**'s boarding houses, **L258**'s brewery and jeweller's, **L259**'s professions and
+**L260**'s liveries and lumber yards; the selector reads the whole reconstructed layer, so
+the count is restated here rather than narrowed, and each entry says which of the thirty-two
+are its own.
+
+**Decision:** `tools/reconstruct_businesses_1835.py --group professions_and_services`
+(T-1419, of T-1186) writes fifteen reconstructed business records on **L260**'s fourth form,
+the **trade head** — nine millineries (*E. Chapin, millinery and dress making* and *Alice
+Shea, millinery* on the Canal Street approach; *Maria Cobb, millinery*, *S. Goodrich,
+millinery and dress making* and *H. Walsh, millinery and dress making* on Kinzie; *A.
+Kellogg*, *Mary Sullivan* and *Hannah Woodruff* on Lake; *Honora Quinn* on Dearborn), four
+land offices (*William Crandall, land agent* on North Water, *S. Fairbanks, land agent* on
+South Water, *Hiram Metcalf, land agent* on Lake, *H. Murphy, house and land agent* on
+Canal), one dress making shop (*Almira Sawyer, dress, cloak and habit making*, Dearborn) and
+one barber's shop (*Daniel Brady, barber*, Dearborn). Each adopts its head as sole
+proprietor, takes a `street_only` face off a stated rule, is typed `other`, and is withdrawn
+with the head.
+
+**Why the head and not a count, for THESE trades.** This is the other half of **L259**'s
+group and it is the half no census line reaches. The December 1835 State census prints
+eighteen lines; *milliner*, *land agent*, *dress maker* and *barber* are none of them. So the
+order book — which orders against printed counts or not at all — holds no bucket of any of
+the four, no shortfall of them can be COUNTED, and the generator may not invent a quota
+inside itself: its whole contract is that the quota is read from the book. What this project
+HAS committed is the person. `trade_households` (T-1347, of T-1173) drew nine milliners, four
+land agents, one dress maker and one barber-surgeon out of the 1839 trade table, and every
+one of those cards says the business band adopts these heads rather than minting its own. A
+drawn milliner with no shop is a working woman with nowhere to work.
+
+**And all four trades are printed houses in this register,** which is what confines the form:
+*J. C. Goodhue, land agent*, *W. G. Blanchard, house and land agent* and one unnamed house
+and land agent; *Elmira Fowler*, *Mrs. H. Sherman* and *[Mrs.] Herman*, all at *millinery and
+dress making*; *Sarah D. Howe*, *dress, cloak and habit making*. Every style and every goods
+line dealt here is one of those printings, and every face is a street the register puts the
+trade on — Blanchard on Lake, Fowler on Dearborn, Howe on Lake, Sherman and Herman at the
+Mansion House.
+
+**The second barber, whose evidence T-1186 asked to see restated.** The old programme argued
+for a barber by way of a COUNT — a barber bucket — and was refused, rightly, because the
+census prints no barber. The argument here is not a count. This project already stands one
+barber's shop, `rcb_fb_barbers_shop`, on **L255**'s documented floor of the town's free Black
+residents, and that floor is an argument about PEOPLE: it orders no second shop and says
+nothing about one. What is committed is the second head. The shop is dealt on the naming
+guide's own sole-trader form with the one trade word the project already stands a barber's
+shop under, because the corpus prints no style for the trade and none is composed for it.
+
+**The dentist's stand is REFUSED, by name.** The parent ticket argued for one; this entry
+declines it. The register already prints this town's dentistry at the scene date — *Wm. H.
+Kennicott, Surgeon Dentist* in two printings, a travelling dentist at the New York House and
+one unidentified — and the resident band drew no head at the trade. Neither a count short nor
+a man to house: a stand raised here would be an establishment invented out of nothing.
+
+**And the washing is refused too, which is a ruling about women's work and not an oversight.**
+`data/businesses/rulings/premises_rulings.json` left the laundress open, deferred to T-1186 —
+*"Washing was taken in at the laundress's own dwelling or done at her employer's; T-1186 rules
+whether either is a house of trade."* It is ruled here: **neither is**. A dwelling that takes
+in washing is a dwelling, and work done in another household's kitchen is done on premises
+the laundress does not keep. She carries `premises: no_fixed_premises` and the link to her
+employer is T-1189's. The same ruling stands for the domestic, and there is no `seamstress` in
+the resident layer's closed occupation vocabulary to rule on. This does NOT touch
+`rcb_fb_washing_and_ironing`, which is an establishment **L255**'s documented floor argues for
+directly and which stands on that argument and not on this one. The asymmetry is deliberate
+and it is the whole point of the form: a woman who kept a SHOP — a milliner, a dress maker —
+gets a house, and a woman who sold her labour into somebody else's house does not, because
+the house was never hers.
+
+**The surveyor keeps no office either.** Surveying is done in the field and the plat drawn
+where the surveyor lodges; the register's one printed surveyor signs *L. G. Curtiss, Deputy
+Surveyor of Cook County*, which is an office HELD and not a shop KEPT. The two drawn surveyor
+heads take `no_fixed_premises`.
+
+**Which way it is wrong if it is wrong.** Toward a town with too few houses of trade, and
+toward too few of them kept by women. Only heads already drawn buy houses: if the resident
+band drew nine milliners and the town of 1835 had twelve, the twelfth has neither a card nor a
+shop here. Nothing is invented upward to close that.
+
+**Related:** **L260** (the fourth form itself), **L259** (this group's counted half),
+**L255** (the documented floor the barber's shop is measured against), **L257**, **L254**;
+the tickets **T-1419**, **T-1186** (the parent), **T-1404** (the premises rulings),
+**T-1424**, **T-1189** (their staff) and **T-1199** (their seats).
+**Recorded:** 2026-09-20.
