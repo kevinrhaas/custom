@@ -12,6 +12,7 @@
     "data/reconstruction/1835_665_roof_programme.json",
     "data/reconstruction/1835_building_inventory.json",
     "data/research/books/trade_census_1835_crosswalk.json",
+    "data/research/books/trade_census_1835_spend.json",
     "data/research/census_1840/composition_1840.json",
     "data/residents/index.json",
     "data/research/newspapers/register_1835.json",
@@ -100,9 +101,9 @@
     "households_target": 643,
     "households_known": 436,
     "households_to_reconstruct": 209,
-    "businesses_target": 120,
+    "businesses_target": 108,
     "businesses_known": 118,
-    "businesses_to_reconstruct": 24,
+    "businesses_to_reconstruct": 12,
     "roofs_target": 668,
     "roofs_standing": 384,
     "roofs_to_build": 297
@@ -2449,6 +2450,9 @@
             "division": "unassigned"
           },
           "census_line": "one bank",
+          "census_count": 0,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 0,
           "known": 0,
           "to_reconstruct": 0,
@@ -2468,6 +2472,9 @@
             "division": "unassigned"
           },
           "census_line": "two book stores",
+          "census_count": 2,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 2,
           "known": 2,
           "to_reconstruct": 0,
@@ -2487,6 +2494,9 @@
             "division": "unassigned"
           },
           "census_line": "two breweries",
+          "census_count": 2,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 2,
           "known": 1,
           "to_reconstruct": 1,
@@ -2506,6 +2516,9 @@
             "division": "unassigned"
           },
           "census_line": "five churches",
+          "census_count": 5,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 5,
           "known": 0,
           "to_reconstruct": 5,
@@ -2525,6 +2538,9 @@
             "division": "unassigned"
           },
           "census_line": "four druggists",
+          "census_count": 4,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 4,
           "known": 2,
           "to_reconstruct": 2,
@@ -2544,6 +2560,9 @@
             "division": "unassigned"
           },
           "census_line": "one iron foundry",
+          "census_count": 1,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 1,
           "known": 1,
           "to_reconstruct": 0,
@@ -2563,17 +2582,37 @@
             "division": "unassigned"
           },
           "census_line": "twenty-two lawyers",
-          "target": 22,
-          "known": 18,
-          "to_reconstruct": 4,
-          "filled": 0,
-          "owning_ticket": "T-1186",
+          "census_count": 22,
+          "unit": "person",
+          "scene_bracket": {
+            "unit": "person",
+            "unit_basis": "'Lawyers' and 'physicians' are the two lines of the enumeration that count PEOPLE and not premises, which is why the register's record count cannot be set against them directly: nineteen lawyer records are fourteen men, five of them second printings of one office.",
+            "census_count": 22,
+            "held_in_the_counted_unit": 13,
+            "register_records": 18,
+            "low": 15,
+            "high": 21,
+            "scaled_by": {
+              "state_census_population": 3297,
+              "scene_date_population_low": 2353,
+              "scene_date_population_high": 3265,
+              "figure": "population_on_1_july_1835"
+            },
+            "method": "The census counts 22 in a town of 3297; the town model brackets 1 July 1835 between 2353 and 3265 people. A profession scales with the population it serves, so the scene date holds between 15 and 21 of them. The book orders to the low end, floored.",
+            "source": "data/research/books/trade_census_1835_spend.json",
+            "ticket": "T-1418"
+          },
+          "target": 15,
+          "known": 13,
+          "to_reconstruct": 2,
+          "filled": 2,
+          "owning_ticket": "T-1418",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 22; the register holds 18 at the scene date"
+          "basis": "the December 1835 State census prints 22 — a line that counts MEN and not premises (T-1007). The town holds 13 of them at the scene date against 18 register records, and the scene date's population brackets the class between 15 and 21. The book orders to the low end, 15"
         },
         {
           "key": "businesses/lottery_office",
@@ -2582,6 +2621,9 @@
             "division": "unassigned"
           },
           "census_line": "one lottery office",
+          "census_count": 0,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 0,
           "known": 0,
           "to_reconstruct": 0,
@@ -2601,6 +2643,9 @@
             "division": "unassigned"
           },
           "census_line": "a lyceum and reading room",
+          "census_count": 0,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 0,
           "known": 0,
           "to_reconstruct": 0,
@@ -2620,17 +2665,37 @@
             "division": "unassigned"
           },
           "census_line": "fourteen physicians",
-          "target": 14,
-          "known": 3,
-          "to_reconstruct": 11,
-          "filled": 0,
-          "owning_ticket": "T-1186",
+          "census_count": 14,
+          "unit": "person",
+          "scene_bracket": {
+            "unit": "person",
+            "unit_basis": "As for the lawyers: the line counts men.",
+            "census_count": 14,
+            "held_in_the_counted_unit": 8,
+            "register_records": 3,
+            "low": 9,
+            "high": 13,
+            "scaled_by": {
+              "state_census_population": 3297,
+              "scene_date_population_low": 2353,
+              "scene_date_population_high": 3265,
+              "figure": "population_on_1_july_1835"
+            },
+            "method": "The census counts 14 in a town of 3297; the town model brackets 1 July 1835 between 2353 and 3265 people. A profession scales with the population it serves, so the scene date holds between 9 and 13 of them. The book orders to the low end, floored.",
+            "source": "data/research/books/trade_census_1835_spend.json",
+            "ticket": "T-1418"
+          },
+          "target": 9,
+          "known": 8,
+          "to_reconstruct": 1,
+          "filled": 1,
+          "owning_ticket": "T-1418",
           "documented_zero": false,
           "staff_implied": null,
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 14; the register holds 3 at the scene date"
+          "basis": "the December 1835 State census prints 14 — a line that counts MEN and not premises (T-1007). The town holds 8 of them at the scene date against 3 register records, and the scene date's population brackets the class between 9 and 13. The book orders to the low end, 9"
         },
         {
           "key": "businesses/printing_office",
@@ -2639,6 +2704,9 @@
             "division": "unassigned"
           },
           "census_line": "two printing offices",
+          "census_count": 2,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 2,
           "known": 3,
           "to_reconstruct": 0,
@@ -2658,6 +2726,9 @@
             "division": "unassigned"
           },
           "census_line": "seven schools",
+          "census_count": 7,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 7,
           "known": 7,
           "to_reconstruct": 0,
@@ -2677,6 +2748,9 @@
             "division": "unassigned"
           },
           "census_line": "two silversmiths and jewellers",
+          "census_count": 2,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 2,
           "known": 1,
           "to_reconstruct": 1,
@@ -2696,6 +2770,9 @@
             "division": "unassigned"
           },
           "census_line": "one steam saw-mill",
+          "census_count": 1,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 1,
           "known": 2,
           "to_reconstruct": 0,
@@ -2715,6 +2792,9 @@
             "division": "unassigned"
           },
           "census_line": "four storage and forwarding houses",
+          "census_count": 4,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 4,
           "known": 7,
           "to_reconstruct": 0,
@@ -2734,6 +2814,9 @@
             "division": "unassigned"
           },
           "census_line": "forty-four stores (dry goods, hardware and groceries)",
+          "census_count": 44,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 44,
           "known": 59,
           "to_reconstruct": 0,
@@ -2753,6 +2836,9 @@
             "division": "unassigned"
           },
           "census_line": "eight taverns",
+          "census_count": 8,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 8,
           "known": 8,
           "to_reconstruct": 0,
@@ -2772,6 +2858,9 @@
             "division": "unassigned"
           },
           "census_line": "two tin and copper manufactories",
+          "census_count": 2,
+          "unit": "establishment",
+          "scene_bracket": null,
           "target": 2,
           "known": 4,
           "to_reconstruct": 0,
@@ -4195,6 +4284,20 @@
       "stage": "trade_households",
       "records": 2,
       "by": "tools/reconstruct_trade_households.py --build"
+    },
+    {
+      "bucket": "businesses/lawyer",
+      "ticket": "T-1418",
+      "stage": "professions_and_services",
+      "records": 2,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/physician",
+      "ticket": "T-1418",
+      "stage": "professions_and_services",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
     }
   ]
 }

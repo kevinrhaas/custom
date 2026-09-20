@@ -76,7 +76,9 @@ GROUPS = {
         "title": "stores, book stores and the drug and provision trades",
     },
     "mechanics_shops": {"ticket": "T-1185", "title": "the mechanics' shops"},
-    "professions_and_services": {"ticket": "T-1186", "title": "the professions and services"},
+    # T-1186 split on 2026-09-20: T-1418 owns the two census rows this group fills
+    # (the professions), T-1419 the services the census enumerates nowhere.
+    "professions_and_services": {"ticket": "T-1418", "title": "the professions"},
     "lodging_river_and_transport": {
         "ticket": "T-1187", "title": "lodging, the river and transport"},
     "civic_church_school_and_press": {
@@ -158,6 +160,12 @@ TRADE_CLASS = {
     "druggist": ["druggist"],
     "store": ["dry_goods_merchant", "grocer", "hardware_merchant", "merchant"],
     "book_store": [],
+    # THE TWO CLASSES THE CENSUS COUNTS IN MEN take exactly one trade each, and that is
+    # the point of them: "twenty-two lawyers" is twenty-two men, so one drawn head is one
+    # office and the person count and the establishment count are the same number. A
+    # second trade folded in here would break that identity.
+    "lawyer": ["attorney"],
+    "physician": ["physician"],
     # T-1185, THE MECHANICS' SHOPS. The book gives this ticket four classes and owes it
     # heads for two. `brewer` is the resident band's own word and the register's: the
     # Chicago Brewery's occupation line reads `brewer`. `silversmith_jeweller` is one shop
@@ -197,6 +205,25 @@ FACES = {
         "south": ["lake", "dearborn"],
         "north": ["kinzie"],
         "west": ["canal"],
+    },
+    # THE PROFESSIONS SIT WHERE THE REGISTER ALREADY PUTS THEM. Of the law offices the
+    # register resolves a place for, South Water carries Collins & Caton, J. Curtiss and
+    # J. D. Caton; Dearborn carries G. Spring, H. C. Bennett and both printings of S.
+    # Abell; Lake carries Russell E. Heacock and John Dean Caton. Those three faces, in
+    # that order of weight, are the south-division rule.
+    "lawyer": {
+        "south": ["south_water", "dearborn", "lake"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # AND BOTH PLACED PHYSICIANS ARE ON LAKE STREET: Dr. J. H. Barnard against the New
+    # York House and Dr. W. G. Austin "on Lake Street, near the post office" (the American
+    # of 8 August 1835). Lake leads, and the two business streets either side of it follow
+    # it rather than a rule of their own.
+    "physician": {
+        "south": ["lake", "south_water", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
     },
     # A BREWERY IS NOT A SHOP FRONT. It wants water, fuel and room for a yard, and the
     # town's one attested brewery is a river house, not a Lake Street one. It takes the
@@ -253,6 +280,52 @@ STYLES = {
         ],
         "trade": "store",
         "occupation": None,
+    },
+    "lawyer": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the form 'J. Curtiss, Attorney and Counsellor at Law', 'R. Stewart, attorney' "
+             "and 'S. Abell, attorney and counsellor' print — an initial, the surname, and "
+             "the practice's own line"),
+            ("{given} {surname}, {goods}",
+             "the form 'Ebenezer S. More, attorney at law' prints in full"),
+        ],
+        # EVERY LINE HERE IS A LINE THE REGISTER PRINTS, verbatim, and there are three of
+        # them because the town's own notices carry three. Nothing is composed.
+        "goods": [
+            ("attorney at law",
+             "the trade line of Ebenezer S. More and of R. Stewart in the register"),
+            ("attorney and counsellor at law",
+             "the trade line of Edward W. Casey and James Grant"),
+            ("attorney and counsellor at law, and solicitor in chancery",
+             "the fullest of the three, and the commonest: G. Spring, H. C. Bennett, J. "
+             "Curtiss, Henry Moore and John Dean Caton all print it"),
+        ],
+        "trade": "attorney and counsellor at law",
+        "occupation": "attorney",
+    },
+    "physician": {
+        # THE DOCTOR'S TITLE IS THE FIRM STYLE, and both of the register's physicians carry
+        # it: 'Dr. J. H. Barnard' sets the title, initials and surname and no trade at all,
+        # and 'Dr. W. G. Austin, botanic physician' sets the same with a line after it.
+        "forms": [
+            ("Dr. {initial}. {surname}",
+             "the form 'Dr. J. H. Barnard' prints — the title, the initials and the surname, "
+             "and no trade line"),
+            ("Dr. {initial}. {surname}, {goods}",
+             "the form 'Dr. W. G. Austin, botanic physician' prints — the same, with the "
+             "practice's line after it"),
+        ],
+        # ONE LINE, AND DELIBERATELY. Austin's own line names the BOTANIC system, which is a
+        # medical school a reconstructed man may not be dealt into: the register knows what
+        # Austin practised because Austin advertised it, and nothing knows it of a man
+        # nobody wrote down. 'Physician' is the register's other printed line and it claims
+        # only the trade the census counted.
+        "goods": [
+            ("physician", "the trade line the register prints under Dr. J. H. Barnard"),
+        ],
+        "trade": "physician",
+        "occupation": "physician",
     },
     "brewery": {
         "forms": [

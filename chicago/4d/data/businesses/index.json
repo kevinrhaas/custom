@@ -3,19 +3,19 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 207,
+    "records": 210,
     "compiled_from_register": 196,
-    "authored": 11,
-    "present_at_scene_date": 190,
+    "authored": 14,
+    "present_at_scene_date": 193,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
       "druggist": 4,
       "iron_foundry": 1,
-      "lawyer": 18,
+      "lawyer": 20,
       "not_stated": 5,
       "other": 85,
-      "physician": 3,
+      "physician": 4,
       "printing_office": 3,
       "school": 7,
       "silversmith_jeweller": 2,
@@ -28,22 +28,22 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 35,
-      "street_only": 65,
+      "street_only": 68,
       "unplaceable": 85
     },
-    "named_people": 207,
-    "named_people_linked_to_a_town_card": 155,
+    "named_people": 210,
+    "named_people_linked_to_a_town_card": 158,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 22,
     "by_grade": {
       "attested": 159,
       "inferred": 38,
-      "reconstructed": 10
+      "reconstructed": 13
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 35,
-      "street_only": 65,
+      "street_only": 68,
       "unplaceable": 81
     },
     "by_street": {
@@ -53,21 +53,21 @@
       "La Salle Street": 4,
       "Lake Street": 14,
       "Monroe Street": 1,
-      "North Water Street": 3,
+      "North Water Street": 4,
       "Randolph Street": 2,
-      "South Water Street": 39
+      "South Water Street": 41
     },
     "by_proprietor_community": {
       "british": 9,
       "free_black": 2,
-      "french_canadian": 1,
-      "irish": 1,
+      "french_canadian": 2,
+      "irish": 2,
       "metis": 1,
       "new_york": 41,
       "other": 10,
       "southern": 5,
       "unknown": 89,
-      "yankee": 48
+      "yankee": 49
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -101,7 +101,7 @@
       {
         "value": "french_canadian",
         "label": "French Canadian",
-        "count": 1
+        "count": 2
       },
       {
         "value": "free_black",
@@ -111,7 +111,7 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 48
+        "count": 49
       },
       {
         "value": "new_york",
@@ -121,7 +121,7 @@
       {
         "value": "irish",
         "label": "Irish",
-        "count": 1
+        "count": 2
       },
       {
         "value": "german",
@@ -11290,6 +11290,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_mcguire_physician",
+      "file": "rcb_mcguire_physician.json",
+      "name": "Dr. J. McGuire, physician",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "physician",
+      "occupation": "physician",
+      "goods": [
+        "physician"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "John McGuire",
+          "person_id": "rc_mcguire_john",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "south_water",
+        "street": "South Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_metcalf_druggist",
       "file": "rcb_metcalf_druggist.json",
       "name": "Nathaniel Metcalf, drugs, medicines and dye stuffs",
@@ -11384,6 +11432,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_parmelee_lawyer",
+      "file": "rcb_parmelee_lawyer.json",
+      "name": "R. Parmelee, attorney and counsellor at law, and solicitor in chancery",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "attorney and counsellor at law",
+      "occupation": "attorney",
+      "goods": [
+        "attorney and counsellor at law, and solicitor in chancery"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Reuben Parmelee",
+          "person_id": "rc_parmelee_reuben",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "south_water",
+        "street": "South Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_quinn_brewery",
       "file": "rcb_quinn_brewery.json",
       "name": "M. Quinn, brewery",
@@ -11427,6 +11523,54 @@
       "closed": null,
       "dates_tier": "reconstructed",
       "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_robillard_lawyer",
+      "file": "rcb_robillard_lawyer.json",
+      "name": "B. Robillard, attorney and counsellor at law, and solicitor in chancery",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "attorney and counsellor at law",
+      "occupation": "attorney",
+      "goods": [
+        "attorney and counsellor at law, and solicitor in chancery"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Baptiste Robillard",
+          "person_id": "rc_robillard_baptiste",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "north_water",
+        "street": "North Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "french_canadian",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
