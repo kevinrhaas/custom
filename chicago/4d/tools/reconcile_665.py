@@ -811,7 +811,17 @@ def standing_roofs(grid, datum, taken):
 def district_of_block(block) -> str:
     """A block is West Division ground when it lies west of the South Branch, which at
     this datum is local easting 0 — the origin IS the forks. No block in the grid
-    straddles a division line."""
+    straddles a division line.
+
+    T-1437. The grid reaches north of the main stem now, and the east/west test above
+    cannot see that: Kinzie's Addition stands east of the forks and would read `south`.
+    The survey-tract layer is what says which survey a block stands in, and a block in
+    the Addition's tract is North Division ground by definition — that is what the
+    Addition IS. Asked of the Original Town's tract the question is the old one.
+    """
+    tract = (block.get("survey_tract") or {}).get("tract")
+    if tract == "kinzies_addition":
+        return "north"
     return "west" if max(p[0] for p in block["boundary_local_enu_m"]) < 0 else "south"
 
 
@@ -1025,6 +1035,19 @@ def programme_document():
         # arithmetic above already gives it nothing; what this does is stop it reading
         # as a block that happens to be full. `at_capacity` would be a claim that the
         # square was built out, which is the opposite of what the evidence says.
+        # A block nobody has drawn a lot line inside is not headroom either, and it is
+        # not `at_capacity`: that would say the block was built out, when what is true
+        # is that this project has never read its subdivision. Kinzie's Addition's
+        # twenty-seven blocks reach here that way (T-1437) — street control has arrived
+        # and the lot rule has not.
+        withheld = block.get("subdivision_withheld")
+        if withheld and not lots:
+            unit["kind"] = "platted_block_unsubdivided"
+            unit["state"] = "unsubdivided"
+            unit["waiting_on"] = (
+                f"this plat's own lot rule: {withheld}. The block stands on the grid with "
+                "its boundary, its numeral and its ground; what it has no line to deal a "
+                "roof onto is a lot.")
         hold = block.get("reserved")
         if hold:
             unit["kind"] = "platted_block_reserved"
