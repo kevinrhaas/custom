@@ -60,7 +60,6 @@
 T-1462 — The business side of the join and the order book's employment buckets: staff[] rows on the houses the seating seats a hand in, each house's shortfall against the staffing model stated beside them so a half-filled house cannot read as a full one, the buckets filled once the re-cut lands, and the business card printing its people
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1478 — Every documented north or west record's lot recorded on the record: the lot a committed footprint stands on, written onto the record and gated
 T-1486 — A derived figure must not be rounded by float drift: sweep the 31 remaining round(sum(...)) sites
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
@@ -257,4 +256,3 @@ T-1470 — Spend the firm notices and the civic and business ledger domains: eve
 T-1471 — Answer the tavern identity question the roof programme is owed: whether the register's 15 scene-date tavern records are that many HOUSES, with the fold or the refusal to fold on the records and the inns_taverns group re-cut or left alone on the measurement
 
 T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division grid: blocks 28 and 45 re-cut in the sheet's own arrangement, with the structures seated on their lots re-seated
-

@@ -1,7 +1,7 @@
 ---
 id: T-1171
 title: Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
-state: claimed
+state: blocked-tech
 epic: META
 requested_by: owner
 seen: true
@@ -12,7 +12,7 @@ opened: 2026-09-16
 closed: null
 pr: 1476
 claimed_by: run 9/20/2026, 3:23:50 PM CT
-blocked_on: null
+blocked_on: T-1179's convergence must re-house T-1174's 856 and T-1347's 308 women and children into the 310 married houses the household model drew; until it does, the order book has no woman left in their cells and this stage may draw nobody. The re-cut's remaining 227 are men aged 20+ in family households, which the kin core cannot draw (child age is capped at head_low-20) — they are T-1183/T-1173's hands and T-1175's boarders, adjudicated in the ticket.
 needs_bake: false
 closed_at: null
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35535214426
