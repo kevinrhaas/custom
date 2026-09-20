@@ -1425,6 +1425,19 @@ selftest "West Water still stands one half-corridor off the bank, and the two re
 selftest "the North Division lines still lie on the streets they continue, and say what names them" \
   python3 tools/measure_north_division_streets.py --self-test
 
+# T-1457, the same sheet read DOWN instead of across. T-0451 gave the tier a width and no
+# depth, and T-1436 could not cut lots into it because nothing committed said where the
+# blocks stop. They stop on a line the plat draws, and the tier is a WEDGE: the lower lot
+# row is the 180 ft the sheet letters in every block, and the upper row takes up the whole
+# difference, 178.6 ft at Franklin to 232.7 at Wolcott. This holds that reading against the
+# sheet's own lettered figures, holds the px-to-northing fit against T-0451's independent
+# px-to-easting fit on the other axis, and — the assertion that matters most — holds the
+# REFUSAL: committed Kinzie is held out of the fit and missed by 16.8 m at its worst, which
+# is a shear, so depths may be published from this sheet up there and northings may not.
+# Everything is arithmetic on two committed files; `--reread` is what goes back to the sheet.
+selftest "the North Division tier is still the wedge the plat letters, and still refuses to publish a northing" \
+  python3 tools/measure_north_division_tier_depth.py --self-test
+
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
 # this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a

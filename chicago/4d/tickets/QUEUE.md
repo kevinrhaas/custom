@@ -59,7 +59,7 @@
 T-1449 — Close the employment join and print it: the minted hands on the businesses' staff[] and the cards' workplaces[], every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
 T-1442 — Print the finished business layer: the trade-census crosswalk and the order book's business buckets re-run after the staffing mint, the Businesses view's counters and the reconstruction card's bars full, published as business-layer-final-2026-09.md
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
-T-1436 — Thompson's North Division tier: the seven Kinzie-to-the-river blocks and the four-to-a-face lots the plat draws in them
+T-1458 — Cut the seven Kinzie-to-the-river blocks and their four-to-a-face lots on the read south face
 T-1438 — The West Division, Wabansia, the School Section tier and the Michigan Street tract: lots from each block's own figures, and every documented north or west record's lot recorded on the record
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1446 — Execute the roof redeal the adjudication names: refamily and retire in the recipe files so the three infill generators re-derive byte for byte, retired records to exclusions under a retired_reconstruction guard with their liberty tokens resolved, rebaked, with a screenshot from Lake and Clark
