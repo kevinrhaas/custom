@@ -38,6 +38,7 @@
  * untouched, under "Browse by household".
  */
 
+import { TIER_TITLE } from './attribute-tiers.js';
 import { escapeHtml } from './citations.js';
 import { displayName } from './display-name.js';
 import { householdHtml, loadResidentJoins, words } from './residents.js';
@@ -75,6 +76,28 @@ const GRADE_TITLE = {
   inferred: 'a real named person reasonably believed to belong to the 1835 town',
   reconstructed: 'nobody a source names \u2014 invented within the population model to fill a count the town needed, and replaceable the moment evidence turns up',
 };
+
+/**
+ * The Tier row's own words (T-1400, from T-1394).
+ *
+ * `grade` was already on every row and already had a pill, folded into the three-
+ * question `facts` line under the bare word "Grade" with no tooltip on it. It is not a
+ * minor fact: it is T-1158's tier, the thing this whole project is FOR, and 1,943 of
+ * these 3,228 people carry `reconstructed` on it. So the row comes out of that line,
+ * takes the vocabulary's own name, and each pill says what it promises — the same three
+ * sentences the attribute chips on a card say, imported rather than retyped.
+ *
+ * And the reconstructed pill is opened up by the row below it. One word over 1,943
+ * people is not an answer to "invented how?": a Fort Dearborn private drawn against the
+ * establishment of the Act of 1821, a visitor of the season drawn against a bounded
+ * cohort, a wife counted by a household size and a lodger drawn against a bed are four
+ * different acts, retired by four different pieces of evidence. `stage` carries which,
+ * off the card's own committed `reconstruction.stage`, and the programme supplies the
+ * pills, their order and their tooltips.
+ */
+const READ_PILL = 'read from a source';
+const READ_TITLE = 'Not drawn by the reconstruction: a source names this person, and the '
+  + 'grade beside them says how firmly.';
 
 const KNOWN_TITLE = {
   documented: 'Named by a source outside the post-office lists and the civic-list consolidation',
@@ -184,7 +207,12 @@ function filterSpecs(people) {
     topTrades.push(...[...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 10).map(([v]) => v));
   }
-  const grades = (people.vocabulary?.grades || []).filter((g) => (people.counts?.by_grade || {})[g] > 0);
+  // `by_grade` counts the town's own people, so a grade carried only by the visitors
+  // would have no pill; the row is the tier of EVERY person in the directory, so the
+  // rows themselves are what decide which of the vocabulary's grades are offered.
+  const gradesHeld = new Set(people.people?.map((r) => r.grade));
+  const grades = (people.vocabulary?.grades || []).filter((g) => gradesHeld.has(g));
+  const stages = (people.vocabulary?.stages || []).filter((st) => st.count > 0);
   return [
     {
       key: 'occupation', label: 'Trade',
@@ -225,6 +253,26 @@ function filterSpecs(people) {
         ['transient', 'a visitor of the season']],
       test: (v) => KNOWN[v] || (() => false),
     },
+    // T-1400. The tier, out of the cramped `facts` line and under the vocabulary's own
+    // name, with the card's three sentences on the pills.
+    {
+      key: 'grade', label: 'Tier',
+      options: grades.map((v) => [v, v]),
+      title: (v) => TIER_TITLE[v] || '',
+      test: (v) => (r) => r.grade === v,
+    },
+    // T-1400. And which stage of the reconstruction programme drew the 1,943 the tier
+    // above calls `reconstructed` — the row that makes "invented how?" an askable
+    // question. `read from a source` is not a stage and is not in the vocabulary: it is
+    // the complement, every person no stage minted, and it leads the row because it is
+    // what a visitor is most likely to want alone.
+    {
+      key: 'stage', label: 'Reconstructed as',
+      options: [['read', READ_PILL], ...stages.map((st) => [st.value, st.label])],
+      title: (v) => (v === 'read' ? READ_TITLE
+        : (stages.find((st) => st.value === v)?.title || '')),
+      test: (v) => (v === 'read' ? (r) => !r.stage : (r) => r.stage === v),
+    },
     // The three short questions share one line (`group`): two or three pills
     // each, and a row apiece would cost the list three lines of the drawer.
     {
@@ -232,11 +280,6 @@ function filterSpecs(people) {
       options: (people.vocabulary?.presence || []).filter((p) => (people.counts?.by_presence || {})[p] > 0)
         .map((v) => [v, words(v)]),
       test: (v) => (r) => r.present === v,
-    },
-    {
-      key: 'grade', label: 'Grade', group: 'facts',
-      options: grades.map((v) => [v, v]),
-      test: (v) => (r) => r.grade === v,
     },
     {
       key: 'address', label: '', toggle: true, group: 'facts',
@@ -339,7 +382,7 @@ export async function mountPeople({
   const COMMUNITY_LABEL = new Map(
     (people.vocabulary?.communities || []).map((c) => [c.value, c.label]));
 
-  // On a phone the eight filter rows would sit between the search box and the
+  // On a phone the filter rows would sit between the search box and the
   // first row of the list, so they start folded there and open on demand; a
   // desktop drawer shows them always. The count on the toggle says how many
   // are active while folded.
@@ -431,10 +474,11 @@ export async function mountPeople({
 
   // ---- filter pills ----------------------------------------------------- //
 
-  function pill(key, value, label, count, on) {
+  function pill(key, value, label, count, on, title = '') {
     const empty = count === 0 && !on;
     return `<button type="button" class="pill" data-filter="${escapeHtml(key)}" data-value="${escapeHtml(value)}"
-      aria-pressed="${on ? 'true' : 'false'}"${empty ? ' disabled' : ''}>${escapeHtml(label)}${
+      aria-pressed="${on ? 'true' : 'false'}"${empty ? ' disabled' : ''}${
+      title ? ` title="${escapeHtml(title)}"` : ''}>${escapeHtml(label)}${
       count === null ? '' : ` <span class="pill-n">${n(count)}</span>`}</button>`;
   }
 
@@ -457,9 +501,10 @@ export async function mountPeople({
       // the drawer said "All" while the list was narrowed. It gets a pill of its
       // own at the end of the row, so the row always shows what it is filtered by.
       const offered = current === '' || spec.options.some(([v]) => v === current);
-      const extra = offered ? '' : pill(spec.key, current, words(current), countOf(current), true);
+      const titleOf = (v) => (typeof spec.title === 'function' ? spec.title(v) : '');
+      const extra = offered ? '' : pill(spec.key, current, words(current), countOf(current), true, titleOf(current));
       const pills = pill(spec.key, '', 'All', pool.length, current === '')
-        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v)).join('')
+        + spec.options.map(([v, text]) => pill(spec.key, v, text, countOf(v), current === v, titleOf(v))).join('')
         + extra;
       const more = spec.more
         ? `<select class="people-more-select" id="people-occupation" aria-label="More trades">
