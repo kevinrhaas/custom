@@ -1,7 +1,7 @@
 ---
 id: T-1463
 title: The order book counts 457 people known where T-1386 ruled 1,283 into the town, so it is ordering ~826 replacements for people already standing — re-cut the unfilled remainder against the presence rulings the book already reads
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-20
+pr: 1587
+claimed_by: run 9/20/2026, 12:09:14 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T18:31:58.715Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35524773033
 ---
 
 The order book counts 457 people known where T-1386 ruled 1,283 into the town, so it is ordering ~826 replacements for people already standing — re-cut the unfilled remainder against the presence rulings the book already reads.
