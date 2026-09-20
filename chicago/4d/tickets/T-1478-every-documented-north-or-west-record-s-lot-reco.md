@@ -1,7 +1,7 @@
 ---
 id: T-1478
 title: Every documented north or west record's lot recorded on the record: the lot a committed footprint stands on, written onto the record and gated
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1456
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 3:34:33 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35535796615
 ---
 
 Every documented north or west record's lot recorded on the record: the lot a committed footprint stands on, written onto the record and gated.
