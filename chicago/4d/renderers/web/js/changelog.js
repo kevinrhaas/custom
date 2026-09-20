@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two schools that had not opened were being counted as open', kind: 'fix', ts: '',
+  { v: 1014, title: 'Two schools that had not opened were being counted as open', kind: 'fix', ts: '2026-09-20T10:06:32.231Z', date: 'Sep 20, 2026, 5:06 AM CT',
     items: [
       'The town\u2019s trades are checked against a State census taken in the autumn of 1835, and the comparison is only honest if both sides are counting the same day. Seven schools were printed in that return. This town was holding up seven against it \u2014 and two of them had not opened. Everts announced his high school for the tenth of August and Hunt his for the seventeenth, six and seven weeks after the first of July you walk through. The research file said exactly that. The count was not reading it.',
       'It was reading a different flag that sits nearby and answers a different question. One of them asks whether a house ever stopped trading; the other asks whether it was open on the day of the scene. Taken off the first, a schoolmaster still advertising for pupils in August counts as a schoolmaster in July. The town holds five schools on the first of July now, and the two that opened later are named and dated beside the figure rather than folded into it.',
