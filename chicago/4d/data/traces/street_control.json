@@ -183,6 +183,8 @@
       ],
       "utm_e": 446910.7,
       "utm_n": 4637407.97,
+      "lat": 41.8868193,
+      "lon": -87.6399045,
       "osm_node_ids": [
         258020617
       ],
@@ -191,7 +193,7 @@
         "North Canal Street"
       ],
       "read_on": "2026-09-04",
-      "derived_from": "data/streets/1835.json `fulton`.note, which records this junction as local east -162.00 north +12.17, read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json by T-0446. The UTM pair here is that committed local pair plus the committed datum origin and nothing else, so it re-derives offline and carries no new reading. It has not been re-fetched, and `refetched` is absent rather than guessed.",
+      "derived_from": "data/streets/1835.json `fulton`.note, which records this junction as local east -162.00 north +12.17, read from OpenStreetMap on 2026-09-04 and transformed to EPSG:26916 against data/datum.json by T-0446. The UTM pair here is that committed local pair plus the committed datum origin and nothing else, and the lat/lon is that UTM pair projected 26916 to 4326 with pyproj \u2014 the same transform reproduces `lake_canal`'s committed lat/lon to all seven decimals it carries, which is the check that this pair is on the project's own datum and not a second reading. Everything here re-derives offline and nothing is a new observation. It has NOT been re-fetched against today's OpenStreetMap, so `refetched` is absent rather than guessed; tools/refetch_control.py --discover fulton_canal is the call that would fill it.",
       "note": "CANAL'S FOURTH CONTROL POINT, AND THE ONE THAT DISAGREES. T-1192 adopted it because it moves nothing: canal already carried three points that do not agree on a single offset, so plat_corridors.control_offsets returned `disagree` before this point and returns `disagree` after it, and a disagreeing street's platted corridor stays on its drawn line. Measured on the committed tree 2026-09-20 \\u2014 tools/measure_corridor_intrusion.py --gate reads 19 lapping phases and 0 generated roofs in a corridor both with and without this point. What the point adds is a measurement. Canal's drawn centreline reproduces its Lake junction to 0.00 m and its Randolph junction to 0.09 m and stands 4.61 m WEST of this one, the largest of its four offsets; the control spread goes 2.33 m to 6.85 m. AND IT SURVIVES THE QUEUED CORRECTION, which is the part worth having: under the road-only reading of kinzie_canal the other three points converge to 0.09 m, and this one still stands 4.61 m off, so the road-only spread goes 0.09 m to 4.61 m. Canal's disagreement is therefore no longer something the bikeway correction could resolve, and that is a statement about the street rather than about the query. tools/measure_canal_control_spread.py carries both readings and gates all four offsets."
     }
   },
