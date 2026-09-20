@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 1026, title: 'A standalone Mac preview of Chicago', kind: 'feature', ts: '2026-09-20T16:54:00.602Z', date: 'Sep 20, 2026, 11:54 AM CT',
+    items: [
+      'The Unreal importer keeps the low garden fence near the fort upright instead of tipping its whole enclosure into the sky. Long structures also bed across their full footprint so the palisade meets the downhill ground.',
+      'A separate Unreal project can now build a local Apple Silicon Mac preview from the committed 1835 terrain and buildings. It starts in Chicago with a body-free first-person view, walking controls, restart and quit, without a browser or streaming server.',
+      'This is an early renderer preview. The browser version still has scenery, research cards and time controls that have not been ported. The Unreal build instructions describe its coverage and require a Mac with Unreal and Xcode; the remote web worker cannot package or play-test it.',
+    ] },
   { v: 1025, title: 'Two outlying surveys get their blocks, and the first read lot lines', kind: 'feature', ts: '2026-09-20T16:09:17.743Z', date: 'Sep 20, 2026, 11:09 AM CT',
     items: [
       'A week ago Kinzie\u2019s Addition got its fifty-two numbered cells. Two surveys were still missing, and they are the two not laid on the town\u2019s own streets at all: the small platted tract north of Kinzie Street, and Wabansia, out on the North Branch. Seventeen blocks of them stand now, with sixty-eight lots inside.',
