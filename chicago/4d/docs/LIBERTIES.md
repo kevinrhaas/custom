@@ -12984,7 +12984,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 10 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, and two are **L258**'s mechanics' houses, the brewery and the jeweller's. This selector counts all ten because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses and three are **L259**'s professions, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13199,11 +13199,11 @@ outliers, and the seating tickets **T-1198** and **T-1199**.
 
 ### L257 — Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them
 
-**Scope:** `businesses.records[reconstructed]` — 10 houses of trade, of which FOUR are this
-entry's. The other six are **L254**'s apothecaries, **L255**'s Black-owned firms and
-**L258**'s brewery and jeweller's, which arrived on the same day; the
-selector reads the whole reconstructed layer, so the count is restated here rather than
-narrowed, and each entry says which of the eight are its own.
+**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which FOUR are this
+entry's. The other nine are **L254**'s apothecaries, **L255**'s Black-owned firms, **L258**'s
+brewery and jeweller's and **L259**'s professions; the selector reads the whole reconstructed
+layer, so the count is restated here rather than narrowed, and each entry says which of the
+thirteen are its own.
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed
 business record for each of the four standing reconstructed boarding houses —
@@ -13280,9 +13280,9 @@ the seating tickets **T-1198** and **T-1199**.
 **Recorded:** 2026-09-19.
 
 ### L258 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
-**Scope:** `businesses.records[reconstructed]` — 10 houses of trade. TWO are this entry's, the
-mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms and four
-**L257**'s boarding houses. The
+**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, the
+mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms, four
+**L257**'s boarding houses and three **L259**'s professions. The
 selector reads the whole layer, so the count is restated here rather than narrowed, and the
 register keeps saying how many reconstructed houses of trade the town carries in total
 
@@ -13342,3 +13342,82 @@ Related: **L254** (the machinery, and the first group), **L255** (the two Black-
 same selector counts), **L248** (the trade heads these houses adopt), tickets **T-1185**,
 **T-1184**, the crosswalk **T-1404**, the order book **T-1166**, the roof re-cut **T-1196**.
 **Recorded:** 2026-09-19.
+
+### L259 — Two law offices and a physician's room stand for a census line that counts men, read down to the population the scene date actually had
+**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which THREE are this
+entry's: two law offices and one physician's room. The other ten are **L254**'s apothecaries,
+**L255**'s Black-owned firms, **L257**'s boarding houses and **L258**'s brewery and
+jeweller's; the selector reads the whole reconstructed layer, so the count is restated here
+rather than narrowed.
+
+**Decision:** `tools/reconstruct_businesses_1835.py --group professions_and_services`
+(T-1418, of T-1186) writes **three** reconstructed records: *B. Robillard, attorney and counsellor at
+law, and solicitor in chancery* on North Water Street, *R. Parmelee, attorney and counsellor
+at law, and solicitor in chancery* on South Water Street, and *Dr. J. McGuire, physician* on
+South Water Street. Each carries `provenance: reconstructed`, a `reconstruction` block naming the
+order-book row that bought it, and the seed string a reader can retype to redraw its style,
+its goods line and its street face. **And the order-book row itself was re-cut to buy
+them:** `tools/build_order_book_1835.py` now orders the two census lines that count MEN in
+men, and to the scene date's own bracket rather than to the December return.
+
+**Why:** because the December 1835 State census prints **twenty-two lawyers** and **fourteen
+physicians**, and until this entry the order book set those two figures against the newspaper
+register's RECORD COUNT — eighteen and three — and ordered four law offices and eleven
+physicians' rooms. Both halves of that subtraction were wrong. T-1007's spend of the census
+had already adjudicated the unit: those two lines are the only ones of the enumeration that
+count people rather than premises, eighteen lawyer records are **thirteen men** (five of them
+second printings of one office), and three physician records are **eight men** once the
+resident cards carrying Egan, Harmon, Goodhue, Kimberly and Temple are read beside them. And
+the count is not of the scene: it was returned between 1 September and December 1835 over a
+town of 3,297, while the town model brackets 1 July 1835 between 2,353 and 3,265 people.
+Scaling the two lines by that bracket puts **15 to 21** lawyers and **9 to 13** physicians in
+the July town. The book now orders to the LOW end of each — 15 and 9 — against the 13 and 8
+the town holds in the counted unit, which is two offices and one room and not fifteen.
+
+**What is invented, exactly:** four things. (1) **That the class was short at all**, which is
+the census's claim and not this project's — but the SIZE of the shortfall is this entry's
+arithmetic: *a profession scales with the population it serves* is a rule, not a reading, and
+it is the rule that turns twenty-two December lawyers into fifteen July ones. The bracket is
+carried on the bucket as `scene_bracket`, with both ends and the two population figures it
+was drawn from, so a reader can disagree with the low end and see exactly what the high end
+would have bought. (2) **The firm style** — the form and the goods line, dealt on the
+record's own seed from forms the register itself prints: *J. Curtiss, Attorney and Counsellor
+at Law* and *Ebenezer S. More, attorney at law* set the two law forms, *Dr. J. H. Barnard*
+and *Dr. W. G. Austin, botanic physician* set the two physician forms, and every trade line
+offered is a line one of those notices prints verbatim. **Austin's own line is deliberately
+NOT offered:** 'botanic physician' names a medical school, the register knows Austin's
+because Austin advertised it, and nothing knows it of a man nobody wrote down. (3) **The
+street face** — a `street_only` location, which the business schema calls a LIMIT rather than
+a place: no lot, no roof, no coordinate, and a `limit_reason` that says no source places this
+house because no source names it. The faces are the register's own distribution: of the law
+offices it resolves a place for, South Water carries three, Dearborn four and Lake two, and
+both of its placed physicians are on Lake Street. (4) Nothing else.
+
+**The keeper is NOT invented here.** All three proprietors are reconstructed trade heads the
+resident band drew months earlier (**L248**, stage `trade_households`) at the trades
+`attorney` and `physician`, and their cards said in advance what would happen to them: *"the
+business band adopts these heads as its proprietors rather than minting its own, so the two
+bands fill one quota."* A business tool that drew its own proprietor would order the same man
+twice, once as a resident and once as a practitioner.
+
+**What this deliberately does NOT do.** It writes **no staff** — the clerk a law office kept
+is T-1183's model and T-1189's fill. It writes **no dates**: the census that orders these
+rooms counts a standing practice and not an opening, so `precision` is `unbounded` and the
+record claims only that the practice was open on the scene date. It writes **no source**, and
+the compiler refuses one on a reconstructed record. And it re-cuts **only the two classes the
+spend rules are counted in men** — the druggists, silversmiths and breweries keep the premises
+reading they always had, because for them the register and the census are already counting
+the same thing.
+
+**Which way it is wrong if it is wrong.** Toward a town with too FEW practitioners. The low
+end of the bracket is taken and never the midpoint; the floor is a hard floor, so a class the
+town already meets in the counted unit orders nobody rather than a negative; and the four
+attorney heads the resident band drew are more than the two the re-cut book now buys — the
+surplus keeps its trade and waits for a workplace rather than being handed one.
+
+Related: **L254** (the same tool's first group and the quota row), **L248** (the trade heads
+these houses adopt), **L257** (the roofs beside that row), the naming guide
+`docs/RESEARCH/business-naming-1835.md`, the unit adjudication **T-1007**, the order book
+**T-1166**, and the successors **T-1419** (the services, which the census enumerates
+nowhere), **T-1404** (a premises for every in-window trade) and **T-1189** (their staff).
+**Recorded:** 2026-09-20.
