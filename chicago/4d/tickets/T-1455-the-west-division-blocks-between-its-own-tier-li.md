@@ -1,7 +1,7 @@
 ---
 id: T-1455
 title: The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1438
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 12:06:47 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35524661272
 ---
 
 The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld.
