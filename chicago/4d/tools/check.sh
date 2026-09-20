@@ -4870,6 +4870,29 @@ step "every attribute's tier still re-derives from the card it sits on" \
 selftest "…and its own refusals still fire when broken" \
   python3 tools/migrate_attribute_tiers.py --self-test
 
+# T-1398. THE REBUILD ORDER OF THE RESIDENT LAYER, gated rather than remembered.
+#
+# Every step above re-derives ONE artifact and says so when it is stale. None of them can
+# say whether the SET of them adds up to a fixed point, and that is the thing the layer
+# keeps getting wrong: the town model is a count of the layer, the programme's stages draw
+# from the model, and the stages write back into the layer the model counts. Rebuilding
+# "the stale piece the check named" therefore never converges — the check names the stage
+# that is stale and the cycle runs through a stage it does not name. Measured three times
+# in one evening clearing #1497 and #1502 (T-1179's findings): five gate steps red, then a
+# 2-cycle running three passes, then two readers nobody had in the set at all.
+#
+# So the order is data now — data/reconstruction/1835_resident_layer_rebuild_order.json —
+# `converge_resident_layer.py --run` executes it and iterates to the fixed point, and this
+# holds the file honest: every step gated by THIS file, every declared path named by the
+# tool that claims it, every back edge declared, and every gated re-derivation standing
+# beside the layer classified either into the order or out of it. It re-derives nothing
+# itself; the steps above already do that, and doing it twice would double the gate.
+step "the resident layer's rebuild order still holds, and its set has not grown in silence" \
+  python3 tools/converge_resident_layer.py --check
+
+selftest "…and each of its four assertions still fires when broken" \
+  python3 tools/converge_resident_layer.py --self-test
+
 # The third is the two derivations parting company. The gate derives the tier in Python and
 # the walkthrough derives it in JavaScript, because a card a visitor opens may not fetch a
 # table of ten thousand rows to learn its own tiers. That failure would not crash: the card

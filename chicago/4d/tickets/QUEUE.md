@@ -53,8 +53,9 @@
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
-T-1394 — The resident layer's closeout: the rebuild order made executable and gated as a fixed point over every reader of the layer, one liberty entry per stage with its counts, the People view's tier filter and reconstructed pills, and the research doc's final tables by tier
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
+T-1399 — One liberty entry per reconstruction stage, with the counts the compiler agrees with, and the research doc's final tables by tier
+T-1400 — The People view's tier filter and its transient, garrison and reconstructed pills
 T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
 T-1409 — The river and transport trades: the forwarding and warehouse gap beyond the attested four, the drays and livery, the lumber yards, the pier-works contractor and his gang, and the vessels in port on 1 July with their masters
 T-1188 — Complete the civic, church, school and press establishments as businesses with staff: the post office, the land office opened in 1835, the county offices, the schools, the churches and the two printing offices — attested where the sources name the officer, reconstructed for the rest
@@ -233,3 +234,4 @@ T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
+
