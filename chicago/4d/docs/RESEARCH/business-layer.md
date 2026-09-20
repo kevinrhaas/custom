@@ -215,6 +215,64 @@ The street is what both readings agree on, so the street is as far as the locati
 is written here. Minting them is `T-1189`'s — *staff every business with real persons* — and
 a clerk minted in this record would be a person the resident band never drew, ordered twice.
 
+## The churches — four congregations, five counted, and no sexton (T-1421)
+
+The `church` class existed in the enumeration and held **zero records**, for the same
+reason `civic` did: this layer was compiled out of printed trade notices and no
+congregation advertised. Four are authored records now, each seated on a roof the town
+already carries:
+
+| record | in the pulpit | seated on |
+|---|---|---|
+| `biz_first_presbyterian_church` | Rev. Jeremiah Porter, `minister`, **attested** | `first_presbyterian_church`, the congregation's own house since its dedication on 4 January 1834 |
+| `biz_st_marys_church` | Rev. John Mary Irenaeus St Cyr, `priest`, **attested** | `st_marys_church`, in use since October 1833 |
+| `biz_first_baptist_church` | Rev. Allen B. Freeman, `minister`, **inferred** | `temple_building`, the lower storey — the upper is Sproat's school |
+| `biz_methodist_episcopal_congregation` | *nobody* | `walker_meeting_house`, the log house at the forks, `inferred` |
+
+Two new role words, `minister` and `priest`, and they are not new words: the resident
+layer's `.vocabulary.occupations` already holds both, as what Porter and St Cyr WERE. A
+church establishment needs them as what each man DID at a meeting house — the same rule
+`civic` followed for `postmaster` a ticket earlier.
+
+**The office is attested; the morning is not, and the two are kept apart.** Porter's card
+carries the pastorate on `andreas_1884_v1` and Andreas has him in that pulpit until he left
+Chicago in September 1835 — but he was married at Rochester, New York on 15 June 1835,
+sixteen days before the scene date, and went on to Massachusetts, so the minister of the
+First Presbyterian may have been eight hundred miles from it that morning. The committed
+roof says the same thing from the other side: `first_presbyterian_church`'s `occupants`
+field refuses to name a person because "NO SOURCE REACHED NAMES THE MINISTER IN CHARGE ON
+1835-07-01". Neither record overturns the other. **The establishment carries the office, the
+roof carries the room, and neither is asked to carry the other** — which is why
+`st_marys_church` can keep its `inferred` occupancy while this layer's priest row stands at
+`attested`: the roof is grading a day and the establishment is grading an office.
+
+**The one inference, and why it is not an attestation.** Freeman's arrival (16 August 1833)
+and the church's organisation (19 October 1833, nineteen members) are both verbatim in
+`baptisthistoryhomepage`. That he was still the minister twenty months later is not, and one
+reading points the other way without dating itself: `lathrop_samuel_s`'s card records Samuel
+S. Lathrop building the fence around Rev. A. B. Freeman's Chicago **grave**. A death that
+might fall on either side of 1 July 1835 cannot be read as falling after it — or before it.
+So the row is `inferred` with the reasoning printed, and `person_id` is null, because the
+resident layer holds no card for him and a surname agreement is a refusal here as everywhere.
+
+**NO SEXTON IS RECONSTRUCTED, AND THAT IS THE FINDING.** The obvious move — a keeper for each
+of four houses of worship — would have invented four town offices. The only sexton any trade
+table this project holds ever prints is **one**: `sexton, St. James' Church` in Fergus's 1839
+directory, four years and some three thousand people after the scene, in a town that by then
+had more congregations than this one. Four against one printed is not a reconstruction, so
+the establishments carry no staff but their clergy, the schema is given no word for `sexton`
+until a source names the man, and each record's `replaceable_by` says what would create the
+office. Documented zeros stand.
+
+**The census counts five and the town holds four, and the fifth is not invented.** The
+crosswalk row stays `not_compared` — T-0988's ruling that a church is a structure and not a
+trade is untouched — but it now names the four records instead of standing empty. The gap is
+the one the whole crosswalk is read with: the State count was taken between 1 September and
+December 1835, two to five months after the scene, in the fastest-growing months the town
+had, and `1835_town_model.md` says so in its own caution — "A church with five congregations
+in December had fewer in July and some of them had no building at all." A fifth congregation
+on 1 July 1835 would need a source naming it. None reached does.
+
 ## The limits are data now
 
 61 of the register's businesses are `street_only` and 62 are `unplaceable`: the paper gives a
