@@ -45,6 +45,22 @@ research we can replace the reconstructed … business with an inferred or attes
    "Reconstructing the town" card's business bars read full.
 6. Gates: everything above under `check.sh` with mutation self-tests; no gate weakened.
 
+**A FINDING FOR CLAUSE 1, HANDED OVER BY T-1432 (2026-09-20).** The staffing join put every
+card's own name beside every name the register printed for it — the first time the two have
+stood in one place — and three cards disagree mechanically. They are counted in
+`data/reconstruction/1835_staffing_join.json` under `questions_for_the_convergence`, and the
+join carries `printed_as` on every row so a reader can check the match rather than take it:
+
+- `kinzie_james` — the card reads **James Kinzie** and holds three houses printed *J. H.
+  Kinzie*, *John H. Kinzie* and *John S. Kinzie*. The printings disagree with each other about
+  the middle initial AND with the card about the forename. James Kinzie and John H. Kinzie were
+  two men; if these rows are John's, one card is carrying another man's trade.
+- `hogan_john` — the card reads **John Hogan**, every printing *John S. C. Hogan*.
+- `bradley_joseph` — the card reads **Joseph Bradley**, every printing *J. C. Bradley*.
+
+T-1432 raised these and did not touch them: it carries rows across at the identity the business
+layer already asserted and re-matches nobody. Re-matching is this ticket's clause 1.
+
 **Stop condition:** the business layer is complete to the order book, reproducible, and every
 invented firm says how it will be replaced.
 

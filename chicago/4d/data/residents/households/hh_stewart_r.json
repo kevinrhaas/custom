@@ -123,6 +123,23 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_r_stewart_attorney",
+     "business_name": "R. Stewart, attorney",
+     "role": "proprietor",
+     "printed_as": "R. Stewart",
+     "from": "1835-06-13",
+     "to": "1835-06-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card stewart_r (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_13#c003"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_american_1835",
     "chicago_democrat_1833_1835",

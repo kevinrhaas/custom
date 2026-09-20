@@ -100,6 +100,29 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_edward_w_casey",
+     "business_name": "Edward W. Casey",
+     "role": "proprietor",
+     "printed_as": "Edward W. Casey",
+     "from": "1834-06-04",
+     "to": "1835-05-27",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card casey_edward_w (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_06_04#c014",
+      "chicago_democrat_1834_07_02#c055",
+      "chicago_democrat_1834_09_03#c016",
+      "chicago_democrat_1834_10_15#c003",
+      "chicago_democrat_1834_11_12#c009",
+      "chicago_democrat_1834_12_03#c011",
+      "chicago_democrat_1835_05_27#c011"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_voter_lists_1833_1835_irad",

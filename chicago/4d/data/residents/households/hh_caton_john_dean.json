@@ -94,6 +94,78 @@
      "attorney"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_collins_caton",
+     "business_name": "Collins & Caton",
+     "role": "partner",
+     "printed_as": "J. D. Caton",
+     "from": "1834-01-28",
+     "to": "1835-05-20",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card caton_john_dean (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_01_28#c007",
+      "chicago_democrat_1834_02_04#c009",
+      "chicago_democrat_1834_02_11#c005",
+      "chicago_democrat_1834_03_04#c009",
+      "chicago_democrat_1834_04_01#c011",
+      "chicago_democrat_1834_06_04#c003",
+      "chicago_democrat_1834_06_18#c017",
+      "chicago_democrat_1834_07_02#c016",
+      "chicago_democrat_1834_08_13#c021",
+      "chicago_democrat_1835_05_20#c014"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_j_d_caton_attorney_and_counsellor_at_law",
+     "business_name": "J. D. Caton, attorney and counsellor at law",
+     "role": "proprietor",
+     "printed_as": "J. D. Caton",
+     "from": "1833-12-17",
+     "to": "1833-12-17",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card caton_john_dean (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_12_17#c006"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_john_dean_caton",
+     "business_name": "John Dean Caton",
+     "role": "proprietor",
+     "printed_as": "John Dean Caton",
+     "from": "1835-07-22",
+     "to": "1835-07-29",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card caton_john_dean (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_07_22#c003",
+      "chicago_democrat_1835_07_29#c006"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_john_dean_caton_attorney_and_counsellor_at_law",
+     "business_name": "John Dean Caton, Attorney and Counsellor at Law",
+     "role": "proprietor",
+     "printed_as": "Caton, John Dean",
+     "from": "1835-08-19",
+     "to": "1835-08-19",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card caton_john_dean (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_08_19#c017"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_tribune_1882_05_19_fourth_reception",

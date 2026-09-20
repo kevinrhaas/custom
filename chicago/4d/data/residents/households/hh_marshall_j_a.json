@@ -105,6 +105,23 @@
      "schoolteacher"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_j_a_marshall_s_dancing_school",
+     "business_name": "J. A. Marshall's dancing school",
+     "role": "proprietor",
+     "printed_as": "J. A. Marshall",
+     "from": "1834-11-19",
+     "to": "1834-11-19",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card marshall_j_a (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_11_19#c004"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "calumet_club_early_chicago_1879",
     "chicago_democrat_1833_1835",

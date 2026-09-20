@@ -5230,6 +5230,72 @@ def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
                                    rep.error)
 
 
+#: The roles a person may hold at a house of trade — the businesses schema's own enum,
+#: read from the file rather than restated, so the two can never drift apart.
+def business_roles(data_root: Path | None = None) -> set:
+    schema = (data_root or DATA) / "businesses.schema.json"
+    if not schema.exists():
+        return set()
+    try:
+        return set(json.loads(schema.read_text(encoding="utf-8"))["$defs"]["role"]["enum"])
+    except Exception:
+        return set()
+
+
+#: Every key an entry carries. Written by tools/staff_businesses_1835.py and by
+#: nothing else; the shape is fixed so a card and a gate read the same row.
+PERSON_WORKPLACE_KEYS = {"business_id", "business_name", "role", "printed_as", "from", "to",
+                         "tier", "basis", "source_id", "claim_ids",
+                         "business_present_at_scene_date"}
+
+
+def check_person_workplaces(where: str, rows, grades, rep: Report) -> None:
+    """persons[].workplaces - the FIRMS a person worked for, one entry a (house, role).
+
+    NOT `works_at`, which is the BUILDING and is singular, undated and policed above as a
+    structure link. The two were deliberately given different words at T-1432 because they
+    answer different questions, and the day they share one is the day a list of dated
+    employments starts reading as a second opinion about a structure id.
+
+    What is checked here is the SHAPE and the grade; that each `business_id` answers to a
+    record, and that the record names the person back, is `check_business_layer`'s, which
+    is the half of the file that holds the business records.
+    """
+    if not isinstance(rows, list) or not rows:
+        rep.error(where, "workplaces is present and is not a non-empty list. A person who "
+                         "worked nowhere the record knows of carries no key at all - an "
+                         "empty list claims a join that is not there")
+        return
+    roles = business_roles()
+    for row in rows:
+        if not isinstance(row, dict):
+            rep.error(where, "a workplaces entry must be an object")
+            continue
+        missing = sorted(PERSON_WORKPLACE_KEYS - set(row))
+        extra = sorted(set(row) - PERSON_WORKPLACE_KEYS)
+        if missing:
+            rep.error(where, f"a workplaces entry is missing {missing}")
+        if extra:
+            rep.error(where, f"a workplaces entry carries {extra}, which the shape does not "
+                             f"hold - add it to the tool and to PERSON_WORKPLACE_KEYS together")
+        bid = row.get("business_id")
+        if not isinstance(bid, str) or not bid.startswith("biz_"):
+            rep.error(where, f"a workplaces entry names business '{bid}', which is not a "
+                             f"business id")
+        if roles and row.get("role") not in roles:
+            rep.error(where, f"a workplaces entry carries role '{row.get('role')}', which the "
+                             f"businesses schema's role vocabulary does not hold")
+        if row.get("tier") not in grades:
+            rep.error(where, f"a workplaces entry carries tier '{row.get('tier')}', which is "
+                             f"not one of the manifest's grades. A row is carried across at "
+                             f"the grade the business layer gave it and is never upgraded "
+                             f"by being copied")
+        if row.get("tier") == "attested" and not row.get("source_id"):
+            rep.error(where, "a workplaces entry is attested and cites no source")
+        if row.get("tier") in ("inferred", "reconstructed") and not (row.get("basis") or "").strip():
+            rep.error(where, f"a workplaces entry is {row.get('tier')} and states no basis")
+
+
 def check_resident_link(where: str, key: str, node, structure_ids: set, rep: Report) -> None:
     """lives_at / works_at must name a real structure or be null."""
     if not isinstance(node, dict):
@@ -5291,6 +5357,35 @@ def check_business_layer(structure_ids: set, rep: Report, tally: dict,
         if row.get("id") not in records:
             rep.error("businesses/index.json",
                       f"the index lists '{row.get('id')}' and no record answers to it")
+
+    # T-1432. THE JOIN READ FROM THE OTHER END. `persons[].workplaces` names a firm;
+    # a firm that the layer does not hold, or that does not name the person back, is a
+    # fossil, and this is the half of the file that can tell. That the list re-derives
+    # from the business records at all is tools/staff_businesses_1835.py --check's.
+    named: dict = {}
+    for bid, doc in records.items():
+        for key in ("proprietors", "partners", "staff"):
+            for prow in doc.get(key) or []:
+                if prow.get("person_id"):
+                    named.setdefault((prow["person_id"], bid), set()).add(prow.get("role"))
+    hh_root = (data_root or DATA) / "residents" / "households"
+    for path in sorted(hh_root.glob("*.json")):
+        doc = load_json(path, rep)
+        if not isinstance(doc, dict):
+            continue
+        for person in doc.get("persons") or []:
+            for row in person.get("workplaces") or []:
+                where = f"residents/households/{path.name}/{person.get('id')}"
+                bid = row.get("business_id")
+                if bid not in records:
+                    rep.error(where, f"a workplace names business '{bid}', which the layer "
+                                     f"does not hold")
+                    continue
+                if row.get("role") not in named.get((person.get("id"), bid), set()):
+                    rep.error(where, f"a workplace puts this person in '{bid}' as "
+                                     f"'{row.get('role')}' and the business record does not "
+                                     f"name them in that role - the join has to hold from "
+                                     f"both ends or it is not a join")
 
     for row in index.get("works_at") or []:
         where = "businesses/index.json"
@@ -5479,6 +5574,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             for k in ("lives_at", "works_at"):
                 if k in p:
                     check_resident_link(pwhere, k, p.get(k), structure_ids, rep)
+            if "workplaces" in p:
+                check_person_workplaces(pwhere, p.get("workplaces"), RESIDENT_GRADES, rep)
             if "associated_with" in p:
                 check_association_rows(pwhere, p.get("associated_with"), error=rep.error,
                                        structure_ids=structure_ids, source_ids=source_ids,

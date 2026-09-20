@@ -116,6 +116,25 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_j_wellmaker_co",
+     "business_name": "J. Wellmaker & Co.",
+     "role": "partner",
+     "printed_as": "William Adams",
+     "from": "1834-03-04",
+     "to": "1834-04-08",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card adams_william_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_03_04#c011",
+      "chicago_democrat_1834_03_25#c004",
+      "chicago_democrat_1834_04_08#c013"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "later_census": {
     "year": 1840,
     "source_id": "census_1840_chicago_v4_research",

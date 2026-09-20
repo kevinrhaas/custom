@@ -227,6 +227,19 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             _insert_after(person, "appearance_bounds", appearances,
                           "dated_bounds" if "dated_bounds" in person else "sources")
 
+        # T-1432: AND THE THIRD FIXED SLOT, FOR THE SAME REASON AS THE TWO ABOVE.
+        # `tools/staff_businesses_1835.py` writes `persons[].workplaces[]` — the houses
+        # of trade a source names this person in — after every mint has run, and it puts
+        # the list immediately after `occupation`, because the trade and the place answer
+        # one question between them. Carried back in at the tail it would land behind the
+        # keys `spend_person_sex_age.py` and `reconstruct_sex_age.py` pop and re-append,
+        # and read as drift on 110 cards by turns.
+        workplaces = old.get("workplaces")
+        if workplaces is not None and "workplaces" not in owned:
+            person.pop("workplaces", None)
+            _insert_after(person, "workplaces", workplaces,
+                          "occupation" if "occupation" in person else "roles")
+
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
         if pointer is not None and isinstance(person.get("occupation"), dict):

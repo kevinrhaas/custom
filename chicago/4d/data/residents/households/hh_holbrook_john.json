@@ -108,6 +108,25 @@
      "shoemaker"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_john_holbrook",
+     "business_name": "John Holbrook",
+     "role": "partner",
+     "printed_as": "John Holbrook",
+     "from": "1835-06-10",
+     "to": "1835-08-12",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card holbrook_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_13#c012",
+      "chicago_democrat_1835_06_10#c010",
+      "chicago_democrat_1835_08_12#c012"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_american_1835",
     "chicago_democrat_1833_1835",

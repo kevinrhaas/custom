@@ -123,6 +123,39 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_russell_brown",
+     "business_name": "Russell & Brown",
+     "role": "partner",
+     "printed_as": "Wm. H. Brown",
+     "from": "1835-05-20",
+     "to": "1835-05-20",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card brown_william_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_05_20#c011"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_tuttle_brown",
+     "business_name": "Tuttle & Brown",
+     "role": "partner",
+     "printed_as": "Wm. H. Brown",
+     "from": "1834-06-04",
+     "to": "1834-06-25",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card brown_william_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_06_04#c011",
+      "chicago_democrat_1834_06_25#c006"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "census_1840_chicago_familysearch_images",
     "chicago_democrat_1833_1835",

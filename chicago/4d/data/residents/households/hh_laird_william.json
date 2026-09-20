@@ -115,6 +115,23 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_g_w_w_laird",
+     "business_name": "G. W. & W. Laird",
+     "role": "partner",
+     "printed_as": "William Laird",
+     "from": "1834-07-02",
+     "to": "1834-07-02",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card laird_william (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_07_02#c049"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],
