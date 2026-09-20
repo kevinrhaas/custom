@@ -1,7 +1,7 @@
 ---
 id: T-1450
 title: Adopt the PBR texture library the owner supplied: it is dimensionally interlocked with the material sheet and its relief maps carry the modules they declare, so wire normal/roughness/AO per substrate now and vendor the whole set for the Unreal target
-state: open
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1568
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T13:15:49.499Z
 claimed_run: null
 ---
 
