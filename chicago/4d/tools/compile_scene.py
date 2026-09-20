@@ -656,6 +656,18 @@ PERSON_EVIDENCE_KINDS = (
 #: so it is passed in rather than read off the person.
 HOW_KNOWN = ("documented", "letter_list", "civic_mint", "projected", "transient")
 
+#: T-1400. A pill is read by a visitor, and three of the programme's stage keys are
+#: written for the tool that owns them rather than for a reader: `readmissions` is a
+#: pass, not a kind of person; `underdocumented` is a word about the sources, not about
+#: these ninety-odd men and women; `transients` is the cohort's name and "visitors" is
+#: what the town called them. The rest of the keys read as themselves and are spelled
+#: straight through, so this map stays the exception and never the vocabulary.
+STAGE_PILL_LABEL = {
+    "readmissions": "re-admitted",
+    "underdocumented": "under-documented",
+    "transients": "visitors",
+}
+
 
 def how_known(person: dict, transient: bool = False) -> str:
     if transient:
@@ -855,6 +867,33 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     community_vocab = (load(community_rules_path).get("vocabulary", [])
                        if community_rules_path.exists() else [])
 
+    # T-1400, from T-1394. THE STAGE THAT MINTED A PERSON, carried onto the row so the
+    # directory can be asked the one question the `grade` pill cannot answer. 1,943 of
+    # these 3,228 people are graded `reconstructed`, and until this row they were one
+    # undifferentiated word: a Fort Dearborn private drawn against the Act of 1821, a
+    # visitor of the season drawn against a bounded cohort, a wife counted by a
+    # household size and a boarding-house lodger drawn against a bed all read the same.
+    # They are not the same kind of invention and they are not replaced by the same kind
+    # of evidence — a muster roll retires the whole garrison file, and nothing in it
+    # touches a modelled family — so the reader is owed the distinction.
+    #
+    # `person.reconstruction.stage` is the value, already committed on every card by the
+    # tool that wrote it, so nothing here re-derives a stage from a record's shape. A
+    # person with no stage was READ rather than drawn, and every one of those 1,285 is
+    # graded `attested` or `inferred`: the partition is the layer's own.
+    #
+    # The vocabulary is the programme's, in the programme's order, with the programme's
+    # own title as the pill's tooltip — so an order the owner set in
+    # 1835_resident_reconstruction_programme.json is the order a visitor reads, and a
+    # stage cannot be renamed in one place and not the other. A stage found on a card
+    # that the programme does not declare is appended rather than dropped: a filter that
+    # silently hid a cohort would be the exact failure this row exists to prevent.
+    programme_path = DATA / "reconstruction" / "1835_resident_reconstruction_programme.json"
+    programme_stages = (load(programme_path).get("stages", [])
+                        if programme_path.exists() else [])
+    stage_title = {s.get("key"): s.get("title") for s in programme_stages if s.get("key")}
+    stage_order = [s.get("key") for s in programme_stages if s.get("key")]
+
     def row_for(hh, person, rel, ruling=None, minted=None, trade=None, transient=None,
                 lodging=None, underdocumented=None):
         occ = person.get("occupation") or {}
@@ -871,6 +910,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "file": rel,
             "relationship": person.get("relationship"),
             "grade": person.get("grade"),
+            "stage": (person.get("reconstruction") or {}).get("stage"),
             "occupation": None if occ_value in (None, "", "none_recorded") else occ_value,
             "letter_list_only": bool(person.get("letter_list_only")),
             "civic_mint": bool(person.get("civic_mint")),
@@ -1098,6 +1138,22 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     transients = [r for r in rows if r.get("transient")]
     underdocumented = [r for r in rows if r.get("underdocumented")]
 
+    # T-1400. Counted over EVERY row rather than over the residents alone, because
+    # `transients` is one of these keys: a stage tally that took the visitors out would
+    # print 0 beside the pill that selects 307 of them. The resident/visitor partition
+    # is `residents` and `transients` above and stays there.
+    stage_counts = {}
+    for r in rows:
+        stage_counts[r["stage"]] = stage_counts.get(r["stage"], 0) + 1
+    def stage_label(key):
+        return STAGE_PILL_LABEL.get(key, key.replace("_", " "))
+    stage_vocab = [{"value": k, "label": stage_label(k), "title": stage_title.get(k) or "",
+                    "count": stage_counts.get(k, 0)}
+                   for k in stage_order if stage_counts.get(k)]
+    for k in sorted(x for x in stage_counts if x and x not in stage_order):
+        stage_vocab.append({"value": k, "label": stage_label(k), "title": "",
+                            "count": stage_counts[k]})
+
     emit(outdir / "people.json", {
         "scene": scene_id,
         "standard": "One row per person in data/residents/, flattened from the household "
@@ -1113,6 +1169,11 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "projected_residents": known["projected"],
             "documented": known["documented"],
             "by_grade": by_grade,
+            # T-1400. The stage of the reconstruction programme that minted each person,
+            # and the people no stage minted — which is every person a source names.
+            "by_stage": {k: stage_counts.get(k, 0) for k in stage_order},
+            "read_from_a_source": stage_counts.get(None, 0),
+            "reconstructed_by_a_stage": sum(v for k, v in stage_counts.items() if k),
             "by_division": divisions,
             "by_presence": presence,
             "by_arrival_year": {str(k): v for k, v in sorted(tally("arrival_year").items())},
@@ -1191,6 +1252,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                             for v in community_vocab],
             "divisions": list(vocab.get("divisions") or divisions.keys()),
             "grades": list(vocab.get("grades") or by_grade.keys()),
+            "stages": stage_vocab,
             "presence": list(vocab.get("presence") or presence.keys()),
             "relationships": list(vocab.get("relationships") or sorted(tally("relationship"))),
             "arrival_precision": list(vocab.get("arrival_precision") or sorted(tally("arrival_precision"))),
