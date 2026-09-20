@@ -4625,6 +4625,22 @@ step "the location spend re-derives: no placement past its evidence, four retent
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
 
+# T-1491. THE ADDRESS BOOK IS THE SPEND'S OTHER HALF, and it is gated for the same reason:
+# it says where every known household and firm stands, and the whole of its value is that it
+# never says more than the evidence does. Three limits carry the weight. A row at the `owed`
+# rung MAY NOT CARRY A SEAT — that is the rung, and a seat appearing on one is exactly how a
+# reconstructed band would come to be read as a reading. The business half is a strict
+# restatement of the adjudication gated above, so a firm whose rung stops agreeing with its
+# grade fails here rather than drifting into a second opinion. And rung 2 stands empty by
+# MEASUREMENT, not assumption: the step re-reads the committed lot-address ledger, so the day
+# a second lot address arrives naming somebody the gate fails rather than the rung quietly
+# staying empty.
+step "the address book re-derives: every household and firm at the rung its evidence reaches, no seat invented" \
+  python3 tools/seat_known_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/seat_known_1835.py --self-test
+
 # T-1144 acceptance 7, and the owner asked for it in those words on 2026-09-17: the
 # convergence report must NAME, per person, which of the plural roles[] and which home,
 # work and other locations reach 1 July 1835, so the sign-off reads coverage per axis off

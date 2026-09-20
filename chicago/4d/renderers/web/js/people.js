@@ -701,6 +701,46 @@ export async function mountPeople({
       <span class="people-go-title">${escapeHtml(title)}</span></button>`;
   }
 
+  /**
+   * Where this household stood, at the rung its evidence reaches (T-1491).
+   *
+   * Before the address book, 1,186 of the 1,393 household cards said "No known
+   * address" and stopped. That reads as an absence in the TOWN when it is an absence
+   * in the RECORD, and the three absences it flattens are not the same thing: nobody
+   * wrote down where these people lived; the paper names their street and no more; the
+   * evidence puts them outside the town altogether. The address book keeps them apart
+   * and this is where a visitor reads the difference.
+   *
+   * The rung label is derived here rather than carried in the file, because it is a
+   * label and not a reading — the reading is `row.words`, written where the seat was.
+   */
+  const RUNG_LABEL = {
+    structure: () => 'Seated at a named roof',
+    lot: () => 'Placed on a lot the plat holds',
+    face: (row) => `Housed on a face of ${row.reach_value || 'its street'}`,
+    unplaceable: () => 'Not seated in this town',
+  };
+
+  function rungLabel(row) {
+    const known = RUNG_LABEL[row.rung];
+    if (known) return known(row);
+    if (row.reach === 'division') return `Reaches the ${row.reach_value} division, and no nearer`;
+    if (row.reach === 'face') return `Reaches ${row.reach_value}, and no nearer`;
+    if (row.reach === 'structure_owed') return 'Reaches a roof this town has not built';
+    return 'No source places this household';
+  }
+
+  function seatHtml(row) {
+    if (!row) return '';
+    const owed = row.owed_to
+      ? `<span class="people-seat-owed">The seat is owed to ${escapeHtml(row.owed_to)}.</span>`
+      : '';
+    return `<p class="people-seat" data-rung="${escapeHtml(row.rung)}">
+      <span class="people-seat-rung">${escapeHtml(rungLabel(row))}</span>
+      <span class="people-seat-words">${escapeHtml(row.words)} ${owed}</span>
+      <span class="people-seat-next">Would move it up the ladder: ${escapeHtml(row.replaceable_by)}.</span></p>`;
+  }
+
   function actionsHtml(r) {
     const livesTitle = r.lives_at ? buildingTitle(r.lives_at) : null;
     const worksTitle = r.works_at ? buildingTitle(r.works_at) : null;
@@ -860,6 +900,16 @@ export async function mountPeople({
       const joins = await loadResidentJoins(dataBase, sceneId, problems);
       if (seq !== openSeq) return false;
       render(hh, joins);
+      // T-1491. The seat, in words, under whatever the actions block could offer —
+      // replacing the bare "No known address" where there was nothing to go to, and
+      // standing beneath the Go-to button where there was.
+      const seatRow = joins.seatByHousehold?.get(r.household);
+      if (seatRow) {
+        const actions = cardEl.querySelector('.people-card-actions');
+        actions?.querySelector('.people-noaddr')?.remove();
+        actions?.querySelector('.people-seat')?.remove();
+        actions?.insertAdjacentHTML('beforeend', seatHtml(seatRow));
+      }
     } catch (err) {
       if (seq !== openSeq) return false;
       problems.push(`people: ${err.message} — one household record is missing`);

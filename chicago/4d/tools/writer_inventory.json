@@ -1145,6 +1145,13 @@
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "seat_known_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 1s, rewrote data/reconstruction/1835_address_book.json and changed no committed byte; the perturbation test says that is idempotence rather than inertia \u2014 the file was deleted, `--check` went red on it (\"is missing or unreadable \u2014 run --build\"), `--build` restored it, and `git status` came back clean.",
+      "placed": "not yet \u2014 measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/residents/households/, which several reconstruction stages write, as well as data/research/location_spend.json and data/structures/. It has to sit after all of them."
+    },
     "seat_lodgers_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
