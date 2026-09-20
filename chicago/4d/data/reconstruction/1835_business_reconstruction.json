@@ -7,7 +7,7 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 6,
+  "records": 9,
   "groups": {
     "lodging_river_and_transport": {
       "ticket": "T-1187",
@@ -34,6 +34,30 @@
         "rc_cavanagh_ellen",
         "rc_fitzgerald_martin",
         "rc_newell_lydia"
+      ]
+    },
+    "professions_and_services": {
+      "ticket": "T-1418",
+      "title": "the professions",
+      "records": 3,
+      "by_class": {
+        "lawyer": 2,
+        "physician": 1
+      },
+      "by_street": {
+        "North Water Street": 1,
+        "South Water Street": 2
+      },
+      "by_roof": {},
+      "ids": [
+        "rcb_mcguire_physician",
+        "rcb_parmelee_lawyer",
+        "rcb_robillard_lawyer"
+      ],
+      "proprietors_adopted": [
+        "rc_mcguire_john",
+        "rc_parmelee_reuben",
+        "rc_robillard_baptiste"
       ]
     },
     "stores_and_provisions": {

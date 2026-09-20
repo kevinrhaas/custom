@@ -155,9 +155,37 @@ were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inven
 husband to make a shopfront read well. The possessive stands on the name alone, which
 asserts only what the card holds. See **docs/LIBERTIES.md § L257**.
 
+## Worked: the two law offices and the physician's room of 1835
+
+A learned trade signs by **form 6**, and the professions group takes it unchanged. The two
+law offices take the attorney's own two printings — the initial and surname of *J. Curtiss,
+Attorney and Counsellor at Law*, or the forename in full of *Ebenezer S. More, attorney at
+law* — with one of the three trade lines the register actually prints after it: *attorney at
+law*, *attorney and counsellor at law*, or the fullest and commonest of the three, *attorney
+and counsellor at law, and solicitor in chancery*. The physician's room takes the doctor's
+title, which in this corpus IS the firm style: *Dr. J. H. Barnard* prints the title, the
+initials and the surname and no trade at all, and *Dr. W. G. Austin, botanic physician*
+prints the same with a line after it.
+
+| | reconstructed house | adopted keeper | face |
+|---|---|---|---|
+| north | *B. Robillard, attorney and counsellor at law, and solicitor in chancery* | `rc_robillard_baptiste` | North Water Street |
+| south | *R. Parmelee, attorney and counsellor at law, and solicitor in chancery* | `rc_parmelee_reuben` | South Water Street |
+| south | *Dr. J. McGuire, physician* | `rc_mcguire_john` | South Water Street |
+
+**One attested line is deliberately withheld.** Austin's own *botanic physician* names a
+medical school. The register knows Austin's because Austin advertised it; nothing whatever
+knows it of a man nobody wrote down, and dealing it on a seed would invent a training. The
+physician's goods table therefore carries the single line *physician* — the one the register
+prints under Dr. J. H. Barnard — and the form, not the line, is what the seed varies.
+
+**Why there are three and not fifteen.** The census lines behind this group count MEN and not
+premises, and the count was returned months after the scene. Both corrections are in the
+order book rather than here: see **docs/LIBERTIES.md § L258**.
+
 ---
 
 Related: the order book **docs/RESEARCH/1835_reconstruction_order_book.md**, the trade heads
 **docs/RESEARCH/1835_trade_households.md**, the lodging model
 **data/reconstruction/1835_lodging_model.json**, the business layer
-**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1408**, **T-1173**, **T-1166**.
+**docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1418** (of **T-1186**), **T-1408**, **T-1173**, **T-1166**.
