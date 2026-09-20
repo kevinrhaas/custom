@@ -83,6 +83,28 @@
      "merchant"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_john_wright",
+     "business_name": "John Wright",
+     "role": "proprietor",
+     "printed_as": "John Wright",
+     "from": "1833-11-26",
+     "to": "1834-07-02",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card wright_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c009",
+      "chicago_democrat_1833_11_26#c023",
+      "chicago_democrat_1834_02_25#c009",
+      "chicago_democrat_1834_03_18#c012",
+      "chicago_democrat_1834_03_25#c011",
+      "chicago_democrat_1834_07_02#c020"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26"
@@ -194,6 +216,31 @@
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_1835"
+   ],
+   "dated_bounds": [
+    {
+     "bound_kind": "print_appearance",
+     "corpus": "chicago_press_1833_1835",
+     "publication": "The Chicago Democrat",
+     "record_id": "chicago_democrat_1834_10_29#c006",
+     "claim_kind": "person",
+     "as_printed": "J. S. Wright",
+     "role": "committee member",
+     "locator": "chicago_democrat_1834_10_29 page 2 column 2",
+     "describes_date": "1834-10-29",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-10-29",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "identity_rule": "data/research/newspapers/register_1835.json — persons[] person_j_s_wright, action `enrich` onto this card. The register states its own reason there and this row cites it rather than transcribing it.",
+     "note": "AN APPEARANCE IN THE TOWN'S PRINT, AND NOTHING FURTHER. The Chicago Democrat of 1834-10-29 names 'J. S. Wright' in the claim read as chicago_democrat_1834_10_29#c006, so the reading dates an appearance of this person in the town's press and `here_by` is null: a name in print is not a body in the town, and a notice can be signed elsewhere and reprinted here. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the issue is deposited, dated and numbered in data/research/newspapers/corpus.json, and what no source states is that the name the paper prints is the person on this card — the register joins them under its own written note. No grade moves here and the identity is neither reopened nor hardened."
+    }
    ],
    "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement.",
    "resident_research": {

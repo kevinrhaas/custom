@@ -14,7 +14,7 @@ The inventory's own defensible range is 565–765 roofs; the adopted total is in
 |---|---:|---:|---|---:|---:|
 | `barns_stables` | 73 | — | not modelled | 73 | +0 |
 | `fort_principal` | 10 | 10 | roofs against roofs | 10 | +0 |
-| `inns_taverns` | 10 | 16 | roofs against printed notices | 10 | +0 |
+| `inns_taverns` | 10 | 15 | roofs against printed notices | 10 | +0 |
 | `institutional_public` | 9 | 9 | roofs outside the fort against roofs outside the fort | 9 | +0 |
 | `larger_boarding_houses` | 42 | 42 | roofs against roofs | 42 | +0 |
 | `ordinary_dwellings` | 335 | 335 | roofs against roofs | 335 | +0 |
@@ -29,7 +29,7 @@ The inventory's own defensible range is 565–765 roofs; the adopted total is in
 
 **`fort_principal`** — The fort component of the model's institutional high end, and the same number. The compound is read from its dossiers, not apportioned.
 
-**`inns_taverns`** — The structure layer holds 10 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 16 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out.
+**`inns_taverns`** — The structure layer holds 10 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 15 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out.
 
 **`institutional_public`** — The model's low end is the 9 roofs OUTSIDE the fort and its high end adds the 10 principal roofs INSIDE it. The programme schedules both — 9 institutional_public plus 10 fort_principal — so the two agree at 19. The order book's delta of ten is that high end read against one of the two groups.
 
@@ -39,11 +39,11 @@ The inventory's own defensible range is 565–765 roofs; the adopted total is in
 
 **`small_outbuildings`** — Ancillary. The town model carries no figure for yards and outbuildings and the order book orders none; the ratio to principal roofs is T-1212's to deal. The spec stands untouched.
 
-**`stores_mixed_use`** — No model figure schedules this group on its own. The nearest comparandum is the 118–140 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`stores_mixed_use`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
-**`warehouses_freight`** — No model figure schedules this group on its own. The nearest comparandum is the 118–140 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`warehouses_freight`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
-**`workshops`** — No model figure schedules this group on its own. The nearest comparandum is the 118–140 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
+**`workshops`** — No model figure schedules this group on its own. The nearest comparandum is the 118–137 establishments the occupation model counts in the compared classes, against the 104 commercial, workshop and freight roofs the programme schedules together — more trades than roofs, which is the store-over-office and shop-house town these families already build. Nothing moves a single group off that.
 
 ## The census's 398 dwellings, reconciled
 
@@ -105,7 +105,7 @@ Target 668 roofs · 48 instantiated in phase 1 · 620 remaining.
 
 ## Deltas this re-derivation does not act on
 
-**`inns_and_taverns`** → T-1190. The business register holds 16 tavern records at the scene date and folds none of them, against 10 scheduled roofs and the same number standing. Whether those records are that many HOUSES is an identity question the business layer's convergence owns; if it folds them the roof programme needs no change, and if it does not, this group re-cuts against the folded count.
+**`inns_and_taverns`** → T-1190. The business register holds 15 tavern records at the scene date and folds none of them, against 10 scheduled roofs and the same number standing. Whether those records are that many HOUSES is an identity question the business layer's convergence owns; if it folds them the roof programme needs no change, and if it does not, this group re-cuts against the folded count.
 
 **`institutional_and_public`** → the order book's own comparison. build_order_book_1835.programme_deltas reads the town model's institutional HIGH end — which includes the fort's ten principal roofs — against district_group_matrix.institutional_public alone, and reports a delta of ten where the two files agree. The comparison needs the fort group added to its programme side, or the model's low end taken.
 

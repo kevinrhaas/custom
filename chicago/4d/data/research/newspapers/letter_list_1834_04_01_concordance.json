@@ -28,11 +28,11 @@
   "lines_the_1_april_transcription_drops": 30,
   "of_those_carried_by_another_impression": 28,
   "of_those_carried_by_no_claim_at_all": 2,
-  "reaches_a_card": 88,
+  "reaches_a_card": 89,
   "by_outcome": {
    "minted": 66,
-   "refused": 103,
-   "held_already": 22,
+   "refused": 102,
+   "held_already": 23,
    "unread": 2
   },
   "lines_whose_reading_the_page_disagrees_with": 28,
@@ -1969,10 +1969,12 @@
     }
    ],
    "reaches": {
-    "kind": "refused",
+    "kind": "held_already",
     "person": "person_sanford_johns_o_n",
-    "reason": "garbled",
-    "by": "tools/mint_letter_list_residents.py"
+    "resident": "johnson_sanford",
+    "household": "hh_johnson_sanford",
+    "card_name": "Sanford Johnson",
+    "action": "enrich"
    }
   },
   {
@@ -3051,9 +3053,9 @@
    "reaches": {
     "kind": "held_already",
     "person": "person_wm_v_smith",
-    "resident": "smith_william",
-    "household": "hh_smith_william",
-    "card_name": "William Smith",
+    "resident": "smith_william_v",
+    "household": "hh_smith_william_v",
+    "card_name": "William V Smith",
     "action": "enrich"
    }
   },
@@ -3168,9 +3170,9 @@
    "reaches": {
     "kind": "held_already",
     "person": "person_lyman_smith",
-    "resident": "smith_lawrence",
-    "household": "hh_smith_lawrence",
-    "card_name": "Lawrence Smith",
+    "resident": "smith_l_w",
+    "household": "hh_smith_l_w",
+    "card_name": "L W Smith",
     "action": "enrich"
    }
   },

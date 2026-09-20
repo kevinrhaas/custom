@@ -1,7 +1,7 @@
 ---
 id: T-1190
 title: Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-20
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 6:04:13 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T11:28:18.516Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35506620874
 ---
 
 The closeout of the business band, the way T-1144 closes the resident spend. After it, the town

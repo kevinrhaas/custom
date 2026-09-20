@@ -431,9 +431,54 @@ def apply_to_person(person: dict, row: dict) -> bool:
     return changed
 
 
+def retract(wanted: set, quiet: bool = False) -> int:
+    """And take the bound OFF a card the register has stopped enriching (T-1440).
+
+    `apply` visits the cards the register names and no others, so a card that LEAVES
+    that set was never visited again and kept the bound it had been given. `strays`
+    has always caught it — "carries a press bound and the committed register enriches
+    no press person onto it" — and there was no build step the message could send you
+    to: the generator could write a bound and not retract one, so the gate named a
+    fault the tool it names could not repair.
+
+    It happens whenever a printed name is re-matched. T-1440 moved fifty-four of them,
+    and `hogan_john` and `wright_j` — two cards that had been holding another man's
+    notices — were left carrying press appearances the register no longer puts on them.
+
+    Only this pass's own groups are cleared, for the reason `apply_to_person` states:
+    the block is shared, and writing an empty list for a source this pass does not own
+    would delete the voter and land registers' rows off the card.
+    """
+    dropped = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        household = load(path)
+        changed = False
+        for person in household.get("persons") or []:
+            if person.get("id") in wanted:
+                continue
+            for source_id in PRESS_SOURCES:
+                if B.mine(person, source_id) and B.write(person, source_id, []):
+                    changed = True
+            # AND THE EMPTIED BLOCK GOES WITH THEM. `dated_bounds: []` is a key no
+            # renderer reads and `measure_layer_reads.py --gate` refuses one, rightly:
+            # a figure shipped to a browser that nothing builds is dead weight. A card
+            # that has given back every bound it held is a card that never had one.
+            if B.BLOCK in person and not person[B.BLOCK]:
+                del person[B.BLOCK]
+                changed = True
+        if changed:
+            dropped += 1
+            dump(path, household)
+    if not quiet and dropped:
+        print("press bounds: retracted from %d resident record(s) the register no "
+              "longer enriches" % dropped)
+    return dropped
+
+
 def apply(quiet: bool = False) -> int:
     touched = 0
-    for row in people():
+    rows = people()
+    for row in rows:
         path = HOUSEHOLDS / ("%s.json" % row["household_id"])
         household = load(path)
         for person in household.get("persons") or []:
@@ -442,6 +487,7 @@ def apply(quiet: bool = False) -> int:
             if apply_to_person(person, row):
                 touched += 1
                 dump(path, household)
+    retract({row["person_id"] for row in rows}, quiet=quiet)
     if not quiet:
         print("press bounds: written onto %d resident record(s)" % touched)
     return touched
@@ -606,6 +652,22 @@ def self_test() -> int:
     ok("and another owner's rows in the same block are carried through untouched",
        other["dated_bounds"][0]["sources"] == ["chicago_voter_lists_1833_1835_irad"]
        and len(other["dated_bounds"]) == 1 + len(row["bounds"]))
+
+    # T-1440: the retraction, held to the same rule as the write. A card the register
+    # has stopped enriching loses this pass's groups and keeps everybody else's — which
+    # is the case `strays` names and, until now, nothing could repair.
+    stray = {"id": "x", "sources": ["x"],
+             "dated_bounds": [{"bound_kind": "presence",
+                               "sources": ["chicago_voter_lists_1833_1835_irad"]}]}
+    apply_to_person(stray, row)
+    dropped = [B.write(stray, source_id, []) for source_id in PRESS_SOURCES]
+    ok("retracting clears this pass's groups off a card the register dropped",
+       any(dropped) and not any(B.mine(stray, s) for s in PRESS_SOURCES))
+    ok("and it leaves the other owners' rows standing",
+       stray["dated_bounds"] == [{"bound_kind": "presence",
+                                  "sources": ["chicago_voter_lists_1833_1835_irad"]}])
+    ok("and retracting twice is a no-op",
+       not any(B.write(stray, source_id, []) for source_id in PRESS_SOURCES))
 
     print("  %d check(s), %d failure(s)" % (len(ran), len(failures)))
     return 1 if failures else 0

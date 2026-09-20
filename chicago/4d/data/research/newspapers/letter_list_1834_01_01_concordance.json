@@ -31,9 +31,9 @@
    "spelling": 14
   },
   "reaches": {
-   "minted": 93,
+   "minted": 92,
    "refused": 67,
-   "held_already": 10
+   "held_already": 11
   },
   "reaches_a_card": 103,
   "refused_by_reason": {
@@ -2094,9 +2094,9 @@
    "reaches": {
     "kind": "held_already",
     "person": "person_j_h_kinzie",
-    "resident": "kinzie_james",
-    "household": "hh_kinzie_james",
-    "card_name": "James Kinzie",
+    "resident": "kinzie_john_h",
+    "household": "hh_kinzie_john_h",
+    "card_name": "John Harris Kinzie",
     "action": "enrich"
    }
   },
@@ -2847,11 +2847,12 @@
     }
    ],
    "reaches": {
-    "kind": "minted",
+    "kind": "held_already",
     "person": "person_isaac_scarritt",
-    "household": "hh_scarritt_isaac",
-    "card_name": null,
-    "by": "tools/mint_letter_list_residents.py"
+    "resident": "scarrett_isaac",
+    "household": "hh_scarrett_isaac",
+    "card_name": "Isaac Scarrett",
+    "action": "enrich"
    }
   },
   {
