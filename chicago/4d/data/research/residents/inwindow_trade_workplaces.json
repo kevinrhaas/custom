@@ -7,10 +7,10 @@
  "not_a_reading": "DERIVED, never hand-edited. Every row is read off a committed role on a committed card and a committed ruling. No page of any source is read here, nobody is minted, nothing is reconstructed and no confidence is promoted: a house raised from a role is `inferred` and says so on its own record.",
  "scene_date": "1835-07-01",
  "counts": {
-  "already_holds_a_workplace": 69,
-  "held": 5,
-  "no_premises": 36,
-  "not_ruled": 5,
+  "already_holds_a_workplace": 75,
+  "held": 4,
+  "no_premises": 32,
+  "not_ruled": 4,
   "raise": 45,
   "houses_raised": 38,
   "houses_seated_on_a_committed_structure": 15
@@ -657,27 +657,6 @@
    "basis": "The garrison is the fort's establishment; T-1176 reads it and T-1204 builds its reach. exercised at an establishment the person does not keep."
   },
   {
-   "person_id": "hamilton_richard_j",
-   "name": "Richard Jones Hamilton",
-   "role": "county_clerk",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
-  },
-  {
-   "person_id": "hogan_john_s_c",
-   "name": "John S. C. Hogan",
-   "role": "postmaster",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
-  },
-  {
-   "person_id": "hogan_john_s_c",
-   "name": "John S. C. Hogan",
-   "role": "postmaster",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
-  },
-  {
    "person_id": "hubbard_elijah_kent",
    "name": "Elijah Kent Hubbard",
    "role": "insurance_agent",
@@ -811,13 +790,6 @@
    "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
   },
   {
-   "person_id": "whitlock_james",
-   "name": "James Whitlock",
-   "role": "land_office_register",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
-  },
-  {
    "person_id": "wright_john_s",
    "name": "John S. Wright",
    "role": "clerk",
@@ -832,15 +804,6 @@
    "role": "auctioneer",
    "register_house": "biz_j_bates_jr_auction_store",
    "printed_as": "J. Bates jr.",
-   "held_by": "the_surname_test",
-   "owed_to": "T-1182 clause 1"
-  },
-  {
-   "person_id": "hogan_john_s_c",
-   "name": "John S. C. Hogan",
-   "role": "merchant",
-   "register_house": "biz_brewster_hogan_co",
-   "printed_as": "Hogan",
    "held_by": "the_surname_test",
    "owed_to": "T-1182 clause 1"
   },
@@ -877,13 +840,6 @@
    "person_id": "cass_lewis",
    "name": "Lewis Cass",
    "as_printed": "Secretary of War",
-   "reason": "THE PRINTING HAS NOT BEEN RULED INTO THE CLOSED VOCABULARY. The role keeps what the source printed and `role` is null until T-1254 rules the controlled term; a house may not be raised on a string nobody has adjudicated.",
-   "owed_to": "T-1254"
-  },
-  {
-   "person_id": "hamilton_richard_j",
-   "name": "Richard Jones Hamilton",
-   "as_printed": "clerk of the circuit court",
    "reason": "THE PRINTING HAS NOT BEEN RULED INTO THE CLOSED VOCABULARY. The role keeps what the source printed and `role` is null until T-1254 rules the controlled term; a house may not be raised on a string nobody has adjudicated.",
    "owed_to": "T-1254"
   },

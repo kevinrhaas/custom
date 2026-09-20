@@ -84,7 +84,7 @@ class Fault(Exception):
 # the join
 
 
-def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> list:
+def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tuple:
     """One row per business in the register: its printed trade, and its class.
 
     Every fault this raises is a SILENT MISCOUNT if it does not. A business whose
@@ -93,6 +93,7 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> li
     failure T-0988 exists to end ("no business is silently left out of the count").
     """
     known = {row["id"] for row in rulings["vocabulary"]}
+    not_counted: list = []
     by_trade = {}
     for row in rulings["trade_rulings"]:
         if row["trade"] in by_trade:
@@ -151,10 +152,35 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> li
         if not classes:
             raise Fault(f"{rec['id']}: an authored record naming no class at all. Its `type` IS "
                         "its ruling; a house with none is a house outside the count.")
-        for cls in classes:
-            if cls not in known:
-                raise Fault(f"{rec['id']}: an authored record names a class the vocabulary does "
-                            f"not hold: {cls}")
+        # A CLASS THE 1835 TRADE CENSUS NEVER COUNTED IS OUTSIDE THE COMPARISON, NOT A
+        # FAULT (owner, 2026-09-20). `known` is the vocabulary of CENSUS CLASSES, and the
+        # whole of this table is the register read against that census. T-1188's civic
+        # establishments — the post office, the land office, the county offices — are
+        # houses the town certainly held and that the trade census never enumerated: they
+        # are not a printed trade and were never in its denominator. Counting them would
+        # put a house on one side of a comparison the other side cannot hold, and faulting
+        # on them stops the build over a record that is doing nothing wrong.
+        #
+        # So they are set OUTSIDE the count and NAMED there. This file's own rule is that
+        # "no business is silently left out of the count" (T-0988), and the answer to that
+        # is a row saying which houses are out and why — not a fault, and not a silence.
+        # A record MIXING a census class with a non-census one is still a fault: that is a
+        # record that cannot decide which side of the comparison it is on.
+        outside = [c for c in classes if c not in known]
+        if outside and len(outside) != len(classes):
+            raise Fault(f"{rec['id']}: an authored record mixes census classes with classes "
+                        f"the census never counted ({', '.join(outside)}); a house stands on "
+                        "one side of this comparison or the other, not both")
+        if outside:
+            not_counted.append({
+                "business_id": rec["id"],
+                "name": rec.get("name"),
+                "classes": classes,
+                "why": ("The 1835 trade census enumerates printed TRADES. This house carries "
+                        "a class it never counted, so it stands outside this comparison "
+                        "rather than in it — named here so it is not silently left out."),
+            })
+            continue
         rows.append({
             "business_id": rec["id"],
             "name": rec.get("name"),
@@ -180,7 +206,8 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> li
             raise Fault(f"an override naming no business in the register: {business_id}")
 
     rows.sort(key=lambda r: r["business_id"])
-    return rows
+    not_counted.sort(key=lambda r: r["business_id"])
+    return rows, not_counted
 
 
 def compare(rows: list, rulings: dict) -> list:
@@ -225,7 +252,7 @@ def compare(rows: list, rulings: dict) -> list:
 
 
 def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
-    rows = classify(gazetteer, rulings, authored)
+    rows, not_counted = classify(gazetteer, rulings, authored)
     register = [r for r in rows if r["ruled_by"] != "authored_record"]
     classes = compare(rows, rulings)
     compared = [c for c in classes if c["outcome"] not in ("not_compared",)]
@@ -241,6 +268,16 @@ def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
             "an adjudication of a claim this domain has already read, set against the "
             "business register — no page of any source is read here"),
         "_doc": __doc__.strip(),
+        "outside_the_census_classes": {
+            "_doc": ("Authored houses whose census class the 1835 trade census never "
+                     "enumerated — T-1188's civic establishments among them. They stand "
+                     "OUTSIDE this comparison rather than in it: the census counts printed "
+                     "TRADES, and a post office is not one. Named here because this table's "
+                     "rule is that no business is silently left out of the count (T-0988); "
+                     "being outside a comparison and being invisible are different things."),
+            "count": len(not_counted),
+            "records": not_counted,
+        },
         "scene_date": SCENE_DATE,
         "census_window": CENSUS_WINDOW,
         "date_caution": DATE_CAUTION,
@@ -395,7 +432,7 @@ def cmd_self_test() -> int:
     import copy
 
     gaz, rules = _fixture()
-    rows = classify(gaz, rules)
+    rows, _ = classify(gaz, rules)
     assert [r["business_id"] for r in rows] == ["b1", "b2"], rows
     assert rows[0]["classes"] == ["tavern"] and rows[1]["ruled_by"] == "business"
 
@@ -471,12 +508,24 @@ def cmd_self_test() -> int:
     row = next(r for r in doc["classification"] if r["business_id"] == "biz_x_tavern_keeper")
     assert row["ruled_by"] == "authored_record", row
 
-    # an authored record naming no class, and one naming a class the vocabulary lacks
+    # an authored record naming no class at all is still a fault
     _fires_authored(gaz, rules, [{"id": "biz_y", "type": []}], "naming no class at all")
-    _fires_authored(gaz, rules, [{"id": "biz_y", "type": ["innkeeper"]}],
-                    "a class the vocabulary does not hold")
 
-    print("trade_census_1835 self-tests pass (14 guards)")
+    # A CLASS THE CENSUS NEVER COUNTED IS OUTSIDE THE COMPARISON, NOT A FAULT (owner,
+    # 2026-09-20). It used to raise; T-1188's civic houses are the case that showed it
+    # should not. The guard is that it lands in `outside_the_census_classes` and NOT in
+    # the classification — outside and invisible are different things.
+    rows, outside = classify(gaz, rules, [{"id": "biz_y", "name": "Y", "type": ["civic"]}])
+    assert [r["business_id"] for r in outside] == ["biz_y"], outside
+    assert all(r["business_id"] != "biz_y" for r in rows), rows
+    assert outside[0]["classes"] == ["civic"], outside
+
+    # ...and a record MIXING a census class with one the census never counted still is,
+    # because such a house cannot say which side of the comparison it stands on.
+    _fires_authored(gaz, rules, [{"id": "biz_y", "type": ["tavern", "civic"]}],
+                    "mixes census classes with classes the census never counted")
+
+    print("trade_census_1835 self-tests pass (15 guards)")
     return 0
 
 

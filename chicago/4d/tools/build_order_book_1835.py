@@ -145,7 +145,10 @@ HOUSEHOLD_BUCKETS = (
     ("store_residence", "stores_mixed_use", "T-1171"),
     ("boarding_house", "larger_boarding_houses", "T-1175"),
     ("inn_tavern", "inns_taverns", "T-1175"),
-    ("institutional", "institutional_public", "T-1188"),
+    # T-1188 split (T-1410, T-1411); the institutional HOUSEHOLDS are the people who
+    # lived at a church, a parsonage or a school, so they go with T-1411. T-1410's
+    # three establishments — post office, land office, county rooms — house nobody.
+    ("institutional", "institutional_public", "T-1411"),
     ("garrison", "fort_principal", "T-1176"),
 )
 
@@ -188,13 +191,20 @@ STRUCTURE_TICKETS = {
 }
 
 # Which business ticket owns a December 1835 trade-census class.
+#
+# T-1188 WAS SPLIT (T-1410, T-1411) and the three classes it owned went with the half
+# that owns them: the printing offices, the churches and the schools are T-1411's. The
+# other half, T-1410, owns the post office, the land office and the county's own rooms —
+# which the State census never enumerates, so it takes no class here at all and the book
+# orders nothing for it. A bucket whose `owning_ticket` names a ticket in state `split`
+# points at work nobody can claim, which is why this table moves with a split.
 BUSINESS_TICKETS = {
     "store": "T-1184",
     "book_store": "T-1184",
     "druggist": "T-1184",
     "silversmith_jeweller": "T-1185",
     "tin_and_copper_manufactory": "T-1185",
-    "printing_office": "T-1188",
+    "printing_office": "T-1411",
     "brewery": "T-1185",
     "steam_saw_mill": "T-1187",
     "iron_foundry": "T-1185",
@@ -202,8 +212,11 @@ BUSINESS_TICKETS = {
     "tavern": "T-1187",
     "lottery_office": "T-1182",
     "bank": "T-1182",
-    "church": "T-1188",
-    "school": "T-1188",
+    # BOTH PARENTS SPLIT ON 2026-09-20 and each row follows its own heir.
+    # T-1188 split, so the civic rows move to T-1411, the churches, schools and press
+    # as establishments — this branch's own reassignment.
+    "church": "T-1411",
+    "school": "T-1411",
     # T-1186 was split on 2026-09-20 when the unit ruling below turned out to be a
     # demonstration of its own; T-1418 is the piece that owns these two rows and T-1419
     # the services, which the census enumerates nowhere and which therefore own no bucket.

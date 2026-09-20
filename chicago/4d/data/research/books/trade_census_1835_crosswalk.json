@@ -7,6 +7,36 @@
   "ticket": "T-1006",
   "not_a_reading": "an adjudication of a claim this domain has already read, set against the business register — no page of any source is read here",
   "_doc": "THE DECEMBER 1835 TRADE CENSUS, SET AGAINST THE TOWN'S OWN BUSINESS REGISTER.\n\nMoses and Kirkland print, at page 95 of volume 1, the State count taken between\n1 September and December 1835: forty-four stores, two book stores, four druggists,\ntwo silversmiths and jewellers, two tin and copper manufactories, two printing\noffices, two breweries, one steam saw-mill, one iron foundry, four storage and\nforwarding houses, eight taverns, one lottery office, one bank, five churches,\nseven schools, twenty-two lawyers, fourteen physicians, and a lyceum and reading\nroom.  That paragraph is `bk_mose1_006`, read by T-0581, and until this tool it had\nnever been spent: **the project held no denominator for its business layer.**\n\nIt could not be compared, either, because the register's `trade` is free prose off\nthe printed notice — 152 distinct strings for 206 businesses.  The class comes from\n`data/research/newspapers/trade_class_rulings.json`, one ruling per printed string,\nand this tool joins the two and writes the comparison.\n\n    tools/trade_census_1835.py --build       write the crosswalk\n    tools/trade_census_1835.py --check       re-derive it and refuse any drift\n    tools/trade_census_1835.py --self-test   the guards, fired on fixtures\n\nTHE DATE IS THE WHOLE OF THE CAUTION, and it is written into the record rather than\ninto a reader's memory.  The count is two to five months AFTER the scene date of\n1 July 1835, in the fastest-growing months the town had.  A shortfall against it is\nnever evidence that a business stood in July, and this file's every figure says so.\n\nWHAT THIS TOOL MAY NOT DO.  It classifies and it counts.  It creates nothing, it\nplaces nothing, and it upgrades no confidence: the spending of the gap it measures\nis T-1007's, on T-0404's liberty, and a run that finds a hole here files a ticket\nrather than a building.\n\nTHE AUTHORED LAYER IS COUNTED TOO, SINCE T-1404.  The register is no longer the whole\nof the town's business layer: `data/businesses/authored/` holds the houses a human or a\ntool wrote down where the paper printed none — the inferred shops T-1404 raises for\ntradesmen whose dated role reaches the scene date, and the reconstructed firms T-1184\nonward draw against this very crosswalk.  Counting the register alone made those houses\ninvisible to the comparison AND to the order book cut from it, so the book would have\nordered eleven physicians reconstructed over a layer that names eight.  An authored\nrecord carries its census class on itself, in `type`, ruled by whoever wrote it; it needs\nno trade ruling and gets none, and `ruled_by` says `authored_record` so the two\npopulations can never be confused in the classification table.\n\nA RECONSTRUCTED HOUSE IS NOT COUNTED, and the reason is the order book.  Its\n`businesses/*` buckets are cut as census count MINUS what the town knows, and the\nreconstructions those buckets order are carried in `filled`, a separate counter.  Count a\nreconstructed firm as known and the same house is subtracted twice: the two druggists\nT-1184 drew against a shortfall of two would close the shortfall AND stand in `filled`,\nand the book's own overfill guard fires.  So `load()` passes the authored records whose\n`provenance` is not `reconstructed` — the attested and inferred houses a source stands\nbehind — and the drawn ones stay where they belong, in the counter of the bucket that\nordered them.",
+  "outside_the_census_classes": {
+    "_doc": "Authored houses whose census class the 1835 trade census never enumerated — T-1188's civic establishments among them. They stand OUTSIDE this comparison rather than in it: the census counts printed TRADES, and a post office is not one. Named here because this table's rule is that no business is silently left out of the count (T-0988); being outside a comparison and being invisible are different things.",
+    "count": 3,
+    "records": [
+      {
+        "business_id": "biz_chicago_post_office",
+        "name": "The Post Office at Chicago",
+        "classes": [
+          "civic"
+        ],
+        "why": "The 1835 trade census enumerates printed TRADES. This house carries a class it never counted, so it stands outside this comparison rather than in it — named here so it is not silently left out."
+      },
+      {
+        "business_id": "biz_cook_county_offices",
+        "name": "The Cook County offices, in Richard J. Hamilton's own room",
+        "classes": [
+          "civic"
+        ],
+        "why": "The 1835 trade census enumerates printed TRADES. This house carries a class it never counted, so it stands outside this comparison rather than in it — named here so it is not silently left out."
+      },
+      {
+        "business_id": "biz_us_land_office_chicago",
+        "name": "The United States Land Office at Chicago",
+        "classes": [
+          "civic"
+        ],
+        "why": "The 1835 trade census enumerates printed TRADES. This house carries a class it never counted, so it stands outside this comparison rather than in it — named here so it is not silently left out."
+      }
+    ]
+  },
   "scene_date": "1835-07-01",
   "census_window": "1835-09-01/1835-12-31",
   "date_caution": "THE COUNT IS NOT OF THE SCENE. It was taken between 1 September and December 1835; the scene is 1 July 1835, two to five months earlier and in the fastest-growing months the town had. A class where the town holds fewer than the census counted is NOT thereby a hole in the July town — some of those forty-four stores opened in September. Every figure below is to be read with that gap in front of it.",
