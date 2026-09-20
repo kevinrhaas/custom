@@ -1,7 +1,7 @@
 ---
 id: T-1415
 title: Derive the west wall: the easting the West Division's held slots need, held to the three tests the other three walls stand on, and a committed reading of everything that stands on the E -320 clip today, gated
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1193
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/19/2026, 7:29:04 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35478371061
 ---
 
 Derive the west wall: the easting the West Division's held slots need, held to the three tests the other three walls stand on, and a committed reading of everything that stands on the E -320 clip today, gated.

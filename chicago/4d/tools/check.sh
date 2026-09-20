@@ -1897,6 +1897,23 @@ step "the shipped ground stands where the master does, and inside the road lift"
 step "the town off the modelled ground is still the town the reading measured" \
   node tools/measure_north_of_box.mjs --gate
 
+# T-1415, of T-1193. The sibling above measures a CONSEQUENCE — what the renderer
+# does with a town that stands off the box. The west side asks a decision
+# instead: the West Division recipe holds 35 of its 55 placements for want of
+# ground and names E -700 m as the box it needs, and until this step nothing had
+# derived that number. It is derived here from the westernmost held FOOTPRINT
+# edge (not its centre) less the Wright georeference's worst residual, rounded
+# west onto the 2.5 m lattice — which lands at E -705, five metres west of the
+# round figure the recipe asked for, because -700 clears the sheet's RMS and
+# stands 4.24 m short of its maximum. The gate holds the reading, so the wall
+# moves when a placement moves rather than when somebody remembers. It moves no
+# ground: the grid is a mesh input and T-1416 is what spends the bake.
+step "the west wall the held slots need is still the wall the reading derives" \
+  node tools/measure_west_of_box.mjs --gate
+
+selftest "…and its own assertions still fire when the wall or a street moves" \
+  node tools/measure_west_of_box.mjs --self-test
+
 # T-0467. The other half of the same question, asked of the places a visitor is
 # OFFERED rather than of the streets. `data/scenes/*.json` § anchors is the list
 # the Go-to menu paints and the smoke harness drives, and until this step nothing
