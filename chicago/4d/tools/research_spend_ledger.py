@@ -441,9 +441,10 @@ EPIC_PIECES = {
     # business record for, and raising one for exactly that is T-1182's acceptance in its
     # own words. It is the same routing `PLACE_AND_ENTERPRISE` gives an enterprise claim one
     # comment below, reached from the civic corpus instead of the press.
-    "civic": ("T-1190", "The business layer's convergence owns this unasserted civic claim: "
+    "civic": ("T-1468", "The business layer's convergence owns this unasserted civic claim: "
                         "a trade the town ran that no business record carries."
-                        " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and all five are DONE, so the pointer moves again rather than going quiet with the ticket. T-1190 since 2026-09-20 (owner's call): the business layer's convergence is what is left to reconcile a trade or a premises against the layer once the audit is spent."),
+                        " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and all five are DONE, so the pointer moves again rather than going quiet with the ticket. T-1190 since 2026-09-20 (owner's call): the business layer's convergence is what is left to reconcile a trade or a premises against the layer once the audit is spent."
+                        " AND T-1190 IS SPENT SINCE 2026-09-20, its three pieces T-1440, T-1441 and T-1442 all closed; the pointer moves once more, to T-1468, which owns the reconciliation itself rather than the convergence that has now finished."),
     "census_1830": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
     "directories": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
 }
@@ -470,9 +471,10 @@ PLACE_AND_ENTERPRISE = {
     # That ticket split into T-1310 (the business record layer) and T-1311 (the structure-function vocabulary), and with the second of the two done the parent is spent work a unit cannot defer to (T-1237).
     # T-1310 BUILT the layer -- 196 firms with a tier on every field -- so what is left for these notices is not building it but reconciling them against it, which is T-1182's field: audit every attested and inferred business against the research, its proprietors, partners, dates and premises.
     #
-    "business": ("T-1190", "The business layer's convergence owns this unasserted "
+    "business": ("T-1468", "The business layer's convergence owns this unasserted "
                            "enterprise claim."
-                           " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and all five are DONE, so the pointer moves again rather than going quiet with the ticket. T-1190 since 2026-09-20 (owner's call): the business layer's convergence is what is left to reconcile a trade or a premises against the layer once the audit is spent."),
+                           " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and all five are DONE, so the pointer moves again rather than going quiet with the ticket. T-1190 since 2026-09-20 (owner's call): the business layer's convergence is what is left to reconcile a trade or a premises against the layer once the audit is spent."
+                        " AND T-1190 IS SPENT SINCE 2026-09-20, its three pieces T-1440, T-1441 and T-1442 all closed; the pointer moves once more, to T-1468, which owns the reconciliation itself rather than the convergence that has now finished."),
     "building": ("T-1198", "The seating pass owns this unasserted place claim."),
     "street": ("T-1198", "The seating pass owns this unasserted place claim."),
     "infrastructure": ("T-1198", "The seating pass owns this unasserted place claim."),

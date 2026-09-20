@@ -105,7 +105,7 @@ Target 668 roofs · 48 instantiated in phase 1 · 620 remaining.
 
 ## Deltas this re-derivation does not act on
 
-**`inns_and_taverns`** → T-1190. The business register holds 15 tavern records at the scene date and folds none of them, against 10 scheduled roofs and the same number standing. Whether those records are that many HOUSES is an identity question the business layer's convergence owns; if it folds them the roof programme needs no change, and if it does not, this group re-cuts against the folded count.
+**`inns_and_taverns`** → T-1468. The business register holds 15 tavern records at the scene date and folds none of them, against 10 scheduled roofs and the same number standing. Whether those records are that many HOUSES is an identity question the business layer's reconciliation owns (T-1190's convergence is spent as of T-1442, 2026-09-20, and T-1468 carries what it did not finish); if it folds them the roof programme needs no change, and if it does not, this group re-cuts against the folded count.
 
 **`institutional_and_public`** → the order book's own comparison. build_order_book_1835.programme_deltas reads the town model's institutional HIGH end — which includes the fort's ten principal roofs — against district_group_matrix.institutional_public alone, and reports a delta of ten where the two files agree. The comparison needs the fort group added to its programme side, or the model's low end taken.
 

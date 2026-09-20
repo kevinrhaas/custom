@@ -425,12 +425,13 @@ def owed_out(rows: list[dict], data: dict) -> list[dict]:
     """Deltas this re-derivation does not act on, and who owns each."""
     inns = next(r for r in rows if r["group"] == "inns_taverns")
     return [
-        {"id": "inns_and_taverns", "owed_to": "T-1190",
+        {"id": "inns_and_taverns", "owed_to": "T-1468",
          "statement": f"The business register holds {inns['model']} tavern records at the "
                       f"scene date and folds none of them, against "
                       f"{inns['spec']} scheduled roofs and the same number standing. Whether "
                       "those records are that many HOUSES is an identity question the business "
-                      "layer's convergence owns; if it folds them the roof programme needs no "
+                      "layer's reconciliation owns (T-1190's convergence is spent as of T-1442, "
+                      "2026-09-20, and T-1468 carries what it did not finish); if it folds them the roof programme needs no "
                       "change, and if it does not, this group re-cuts against the folded count."},
         {"id": "institutional_and_public", "owed_to": "the order book's own comparison",
          "statement": "build_order_book_1835.programme_deltas reads the town model's "

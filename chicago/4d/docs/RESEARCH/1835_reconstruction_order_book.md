@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
-| Businesses (enumerated classes) | 108 | 133 | 8 |
+| Businesses (enumerated classes) | 108 | 133 | 7 |
 | Roofs | 668 | 384 | 297 |
 
 ## The rules this book adds
@@ -216,15 +216,15 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/bank` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/book_store` | 2 | 2 | 0 | 0 | T-1184 |
 | `businesses/brewery` | 2 | 1 | 1 | 1 | T-1185 |
-| `businesses/church` | 5 | 4 | 1 | 0 | T-1190 |
+| `businesses/church` | 5 | 4 | 0 | 0 | T-1215 |
 | `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
 | `businesses/iron_foundry` | 1 | 2 | 0 | 0 | T-1185 |
 | `businesses/lawyer` | 15 | 13 | 2 | 2 | T-1418 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/lyceum_and_reading_room` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/physician` | 9 | 8 | 1 | 1 | T-1418 |
-| `businesses/printing_office` | 2 | 2 | 0 | 0 | T-1190 |
-| `businesses/school` | 7 | 5 | 0 | 0 | T-1190 |
+| `businesses/printing_office` | 2 | 2 | 0 | 0 | T-1215 |
+| `businesses/school` | 7 | 5 | 0 | 0 | T-1215 |
 | `businesses/silversmith_jeweller` | 2 | 1 | 1 | 1 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
 | `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
@@ -330,4 +330,5 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 - **every_business_has_staff** (T-1189) — Every business — attested, inferred or reconstructed — carries the staff T-1183's model implies for its kind. *Now:* not yet measurable: the authored business layer is T-1180.
 - **every_structure_occupied_or_its_use_stated** (T-1197) — Every standing roof carries an occupant or a stated use. *Now:* 260 of 384 standing records carry no occupants block.
 - **dwellings_ratio_within_its_bracket** (T-1215) — The town census's people-per-dwelling ratio is met within the model's bracket. *Now:* the book orders 2,536 people into 643 households.
+- **an_uncompared_class_orders_nothing** (T-1442) — A trade-census class the crosswalk rules `compared: false` carries its figures but orders no reconstruction: the difference between a census line and the register is only a shortfall where the crosswalk has ruled the two comparable. *Now:* carried uncompared: 1 of 18 enumerated business classes, each ordering nought.
 - **no_bucket_overfilled** (T-1166) — No bucket's `filled` exceeds its `to_reconstruct`; a filler that bypasses the book is red in check.sh. *Now:* enforced by --check on every gate run.
