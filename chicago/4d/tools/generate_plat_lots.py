@@ -373,6 +373,17 @@ def ground_reading(ring: list, field) -> dict:
     water lot recorded, not silently skipped"*. The lattice is cut from the ring's own
     bounding box snapped to the step, so the reading is a property of the block and not
     of the order the generator happened to build it in.
+
+    THE MEAN IS SUMMED EXACTLY, and the three figures are asserted against each other.
+    `sum()` accumulates left to right and drifts by a few parts in 10^15, which is
+    nothing on a height until the true value sits on a rounding boundary. The School
+    Section's blocks 95, 118 and 119 are each perfectly flat at 0.885 m: `min` and `max`
+    round that up to 0.89, while the drifted mean of 418 identical samples landed
+    0.8849999999999949 and rounded DOWN to 0.88 — a record printing a mean outside its
+    own min and max, and which of the two a machine printed depended on how many
+    samples it happened to add. `math.fsum` is correctly rounded and order-independent,
+    so the same block reads the same on every machine; the assertion below then refuses
+    a reading that is arithmetically impossible rather than committing one.
     """
     es = [p[0] for p in ring]
     ns = [p[1] for p in ring]
@@ -402,7 +413,14 @@ def ground_reading(ring: list, field) -> dict:
     if heights:
         reading["min_m"] = round(min(heights), 2)
         reading["max_m"] = round(max(heights), 2)
-        reading["mean_m"] = round(sum(heights) / len(heights), 2)
+        reading["mean_m"] = round(math.fsum(heights) / len(heights), 2)
+        if not reading["min_m"] <= reading["mean_m"] <= reading["max_m"]:
+            raise AssertionError(
+                f"REFUSING a ground reading whose mean {reading['mean_m']} m falls "
+                f"outside its own min {reading['min_m']} m and max "
+                f"{reading['max_m']} m over {len(heights)} sample(s). Rounding is "
+                "monotonic, so this cannot happen to an honestly summed mean — it "
+                "means the arithmetic drifted across a rounding boundary.")
     reading["reading"] = (
         "dry: every sample stands above datum on the modelled field"
         if heights and not below and not off else
