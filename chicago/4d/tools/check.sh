@@ -17,6 +17,9 @@ STRICT=""
 # file so that tools/test_check_harness.sh can source and exercise it (T-0763).
 source "$_check_tools/check_harness.sh"
 
+step "Boot phase readiness, failure and history contract (T-1246)" \
+  node tools/test_boot_phases.mjs
+
 # THE MIRROR IS BUILT FIRST, BECAUSE IT IS NOT IN THE REPOSITORY ANY MORE (T-0938).
 #
 # `site/chicago/4d/` used to be committed, so every step below could assume it was

@@ -89,7 +89,6 @@ T-1215 — Converge the reconstructed town: every person housed, every business 
 # Arrival/jaunts: read docs/ARRIVAL-JAUNTS-EXECUTION.md; honor ticket dependencies.
 # Finish each subsection; unavoidable successors stay beside their dependency, not at the tail.
 # --- 6A. ARRIVAL AND SOURCES — measured loading, time rollback, source library, free start
-T-1246 — Expose real boot phases and yield long scene-building tasks
 T-1292 — Move the town census off the loader into an Evidence → City summary topic
 T-1247 — Roll the year back into a restrained time-machine arrival
 T-1248 — Compile the sources used and their reconstruction backlinks
@@ -255,4 +254,5 @@ T-1467 — derive_hay_limits.py re-derives four block centres one centimetre off
 T-1469 — Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
 T-1470 — Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach
 T-1471 — Answer the tavern identity question the roof programme is owed: whether the register's 15 scene-date tavern records are that many HOUSES, with the fold or the refusal to fold on the records and the inns_taverns group re-cut or left alone on the measurement
+
 T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division grid: blocks 28 and 45 re-cut in the sheet's own arrangement, with the structures seated on their lots re-seated

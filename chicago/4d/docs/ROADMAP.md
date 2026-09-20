@@ -1,5 +1,7 @@
 # ROADMAP
 
+T-1246 (2026-09-20): real boot phases and deterministic row/batch yields implemented. Mobile/light flora repaint gap 123.8/116.5 ms cold/warm; all 12 scene comparisons identical. See [boot measurement receipt and reproduction](performance/BOOT-PHASES.md). T-1247 retains the loading presentation changes.
+
 ## Owner update programme, 2026-09-20
 
 Follow docs/unreal/BUILD-AND-RELEASE.md for the next manual Mac release. T-1472 automates that path; T-1473 fixes placement; T-1360 owns roads; T-1474 adds flora; T-1475 begins navigation and inspection. docs/unreal/PARITY.md retains all remaining web parity work under T-1356. Engine-only children stay held in the existing Unreal band until a qualified executor claims them.
