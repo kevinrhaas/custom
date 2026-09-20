@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Six invented buildings on the west side stop being workshops', kind: 'fix', ts: '',
+  { v: 1028, title: 'Six invented buildings on the west side stop being workshops', kind: 'fix', ts: '2026-09-20T17:13:56.114Z', date: 'Sep 20, 2026, 12:13 PM CT',
     items: [
       'Yesterday this town asked all 285 of its invented buildings whether it still wanted a building of that kind in that place, and 32 said no. That was a decision on paper. Six of them have now actually changed.',
       'They are all on the west side, across the river from the town proper \u2014 a blacksmith\u2019s shop and three other workshops, a stable and a privy. What was wrong with them is where they stand. Chicago\u2019s own documented buildings say a place of trade stands ON the street, and these sat well back: one of them thirty metres off the line, another on a quiet lane a working shop would not have taken. A shop nobody can walk into from the street was never a shop. So they become what a building in that position actually was \u2014 four cottages, a rough plank dwelling and a stable \u2014 at the same spot, facing the same way, not one of them moved an inch.',
