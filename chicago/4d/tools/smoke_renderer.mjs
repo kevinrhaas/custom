@@ -11895,6 +11895,32 @@ for (const [label, viewport, touch] of [
           .map((r) => r.dataset.personId), rows: rows().length };
       dir.filter('occupation', '');
       out.pill.cleared = dir.state?.matched;
+      // T-1400. The Tier row and the stage row below it. The garrison is the case the
+      // row exists for: 125 people a source never names, drawn against the establishment
+      // of the Act of 1821, and before this row they were indistinguishable in the
+      // directory from the 1,285 the sources DO name. Read the offer off the pills, then
+      // filter by it and count the rows the list actually paints.
+      out.tier = {
+        offer: [...document.querySelectorAll('#people-filters .people-frow[data-row="stage"] .pill')]
+          .map((p) => p.dataset.value).filter(Boolean),
+        garrison: dir.filter('stage', 'garrison'),
+        garrisonRows: rows().length,
+        stated: pj.counts?.by_stage?.garrison ?? 0,
+        titled: document.querySelector('#people-filters .pill[data-filter="stage"][data-value="garrison"]')
+          ?.getAttribute('title') ?? '',
+      };
+      dir.filter('stage', 'read');
+      out.tier.read = dir.state?.matched;
+      out.tier.readStated = pj.counts?.read_from_a_source ?? 0;
+      // Every person is either read or minted by exactly one stage: the two sides of the
+      // row must partition the directory, and a row filtered to `read` must hold nobody
+      // the reconstruction drew.
+      out.tier.readAllGraded = rows().every((r) => !/grade-reconstructed/
+        .test(r.querySelector('.grade-dot')?.className ?? ''));
+      dir.filter('stage', '');
+      out.tier.cleared = dir.state?.matched;
+      out.tier.sum = out.tier.readStated
+        + Object.values(pj.counts?.by_stage ?? {}).reduce((a, b) => a + b, 0);
       const opened = await dir.open('hogan_john_s_c');
       const card = document.getElementById('people-card');
       const go = card?.querySelector('.people-go');
@@ -11949,6 +11975,26 @@ for (const [label, viewport, touch] of [
       people.pill.matched > 0 && people.pill.matched < people.pill.all && people.pill.rows === people.pill.matched
       && !people.pill.offTrade.length && people.pill.pressed === 'tavern_keeper' && people.pill.cleared === people.pill.all,
       JSON.stringify(people.pill));
+    // T-1400. The tier row and its stage pills. 1,943 of these 3,228 people are graded
+    // `reconstructed`, and the one word said nothing about HOW: the garrison private,
+    // the visitor of the season, the modelled wife and the seated lodger were one pill.
+    // Asserted three ways — the offer carries the stages the programme declares, the
+    // garrison pill narrows the painted list to exactly the file's own garrison count,
+    // and `read from a source` and the stages PARTITION the directory, so nobody the
+    // reconstruction drew can hide among the people the sources name.
+    check(`${label}: the Tier row's stage pills name the reconstruction, and partition it`,
+      ['read', 'garrison', 'transients', 'trade_households', 'women_and_children']
+        .every((v) => people.tier.offer.includes(v))
+      && people.tier.stated > 0 && people.tier.garrison === people.tier.stated
+      // The list pages at 80, so what the pill MATCHES is the file's count and what it
+      // PAINTS is the first page of it — asserting the painted rows against the file's
+      // 125 would be asserting that this list is not paged.
+      && people.tier.garrisonRows === Math.min(80, people.tier.stated)
+      && /Fort Dearborn/.test(people.tier.titled)
+      && people.tier.read === people.tier.readStated && people.tier.readAllGraded
+      && people.tier.sum === people.counts.stated
+      && people.tier.cleared === people.counts.stated,
+      JSON.stringify(people.tier));
     check(`${label}: opening a person shows their card with a way to their building`,
       people.card.opened && people.card.hidden === false && people.card.shown && /Hogan/.test(people.card.name)
       && people.card.title === people.card.name && people.card.backShown && people.card.go === 'hogan_store'
