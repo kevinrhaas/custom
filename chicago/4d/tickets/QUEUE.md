@@ -59,7 +59,6 @@ T-1189 — Staff every business — attested, inferred and reconstructed — wit
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 T-1191 — Seat the North Division's streets and alleys as platted corridors: Kinzie's Addition and the Kinzie–Michigan tier off Wright and Hathaway, with block faces, mid-block alleys and corridor control, so a north-side roof can be dealt to a lot
-T-1192 — Seat the West Division's and Wabansia's streets and alleys as platted corridors off Wright and Hathaway — Canal, Clinton, West Water, Carroll, Fulton, the School Section tier and the Wabansia grid north-west of the forks — with the small lots the sheets draw
 T-1193 — Extend the modelled ground to N +760 and E −700: heightfield, collision, water mask, North and South Branch banks, flora and minimap together, so the North Division's second parcel and the West Division's held slots have ground to stand on
 T-1194 — Generate the lot grid north and west of the river: Thompson's North Division blocks, Kinzie's Addition, Wabansia, the West Division blocks and the School Section tier — numbered lots from each sheet's own module, the small lots kept small, buildable ground tested
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
@@ -229,3 +228,7 @@ T-1383 — The two women the St Mary's priest wrote down as Indigenous are the o
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
 T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
