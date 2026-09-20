@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 251,
+    "records": 266,
     "compiled_from_register": 196,
-    "authored": 55,
-    "present_at_scene_date": 234,
+    "authored": 70,
+    "present_at_scene_date": 249,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
@@ -15,7 +15,7 @@
       "iron_foundry": 2,
       "lawyer": 20,
       "not_stated": 5,
-      "other": 102,
+      "other": 117,
       "physician": 9,
       "printing_office": 3,
       "school": 7,
@@ -29,46 +29,47 @@
     "by_location_kind": {
       "anchored": 26,
       "premises": 50,
-      "street_only": 70,
+      "street_only": 85,
       "unplaceable": 109
     },
-    "named_people": 257,
-    "named_people_linked_to_a_town_card": 205,
+    "named_people": 272,
+    "named_people_linked_to_a_town_card": 220,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 34,
     "by_grade": {
       "attested": 162,
       "inferred": 76,
-      "reconstructed": 13
+      "reconstructed": 28
     },
     "by_where_kind": {
       "anchored": 26,
       "premises": 50,
-      "street_only": 70,
+      "street_only": 85,
       "unplaceable": 105
     },
     "by_street": {
-      "Canal Street": 2,
-      "Dearborn Street": 24,
-      "Kinzie Street": 1,
+      "Canal Street": 4,
+      "Dearborn Street": 27,
+      "Kinzie Street": 2,
       "La Salle Street": 4,
-      "Lake Street": 15,
+      "Lake Street": 18,
       "Monroe Street": 1,
-      "North Water Street": 4,
+      "North Water Street": 7,
       "Randolph Street": 2,
-      "South Water Street": 42
+      "South Water Street": 44,
+      "West Water Street": 1
     },
     "by_proprietor_community": {
       "british": 11,
       "free_black": 2,
       "french_canadian": 4,
-      "irish": 4,
+      "irish": 10,
       "metis": 1,
       "new_york": 51,
       "other": 11,
       "southern": 10,
       "unknown": 95,
-      "yankee": 62
+      "yankee": 71
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -112,7 +113,7 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 62
+        "count": 71
       },
       {
         "value": "new_york",
@@ -122,7 +123,7 @@
       {
         "value": "irish",
         "label": "Irish",
-        "count": 4
+        "count": 10
       },
       {
         "value": "german",
@@ -12952,6 +12953,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_brady_barber_surgeon",
+      "file": "rcb_brady_barber_surgeon.json",
+      "name": "Daniel Brady, barber",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "barber's shop",
+      "occupation": "barber_surgeon",
+      "goods": [
+        "barber"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Daniel Brady",
+          "person_id": "rc_brady_daniel",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "lake",
+        "street": "Lake Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_cavanagh_boarding_house",
       "file": "rcb_cavanagh_boarding_house.json",
       "name": "Ellen Cavanagh's boarding house",
@@ -12994,6 +13043,54 @@
       "dates_tier": "reconstructed",
       "proprietor_community": "unknown",
       "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_chapin_milliner",
+      "file": "rcb_chapin_milliner.json",
+      "name": "Eliza Chapin, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Eliza Chapin",
+          "person_id": "rc_chapin_eliza",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "west_water",
+        "street": "West Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
     },
@@ -13046,6 +13143,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_cobb_milliner",
+      "file": "rcb_cobb_milliner.json",
+      "name": "M. Cobb, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Maria Cobb",
+          "person_id": "rc_cobb_maria",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "north_water",
+        "street": "North Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_crandall_druggist",
       "file": "rcb_crandall_druggist.json",
       "name": "B. Crandall, drugs, medicines and dye stuffs",
@@ -13083,6 +13228,102 @@
         "from": null,
         "to": null,
         "limit_reason": "No source places this house, because no source names it: it exists because the December 1835 State census counts more of its class than the register holds. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_crandall_land_agent",
+      "file": "rcb_crandall_land_agent.json",
+      "name": "W. Crandall, house and land agent",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "house and land agency",
+      "occupation": "land_agent",
+      "goods": [
+        "house and land agent"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "William Crandall",
+          "person_id": "rc_crandall_william",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "north_water",
+        "street": "North Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_fairbanks_land_agent",
+      "file": "rcb_fairbanks_land_agent.json",
+      "name": "Seth Fairbanks, land agent",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "house and land agency",
+      "occupation": "land_agent",
+      "goods": [
+        "land agent"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Seth Fairbanks",
+          "person_id": "rc_fairbanks_seth",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
       },
       "locations": 1,
       "opened": null,
@@ -13232,6 +13473,102 @@
       "liberties": []
     },
     {
+      "id": "rcb_goodrich_milliner",
+      "file": "rcb_goodrich_milliner.json",
+      "name": "Seth Goodrich, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Seth Goodrich",
+          "person_id": "rc_goodrich_seth",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "north_water",
+        "street": "North Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_kellogg_milliner",
+      "file": "rcb_kellogg_milliner.json",
+      "name": "Almira Kellogg, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Almira Kellogg",
+          "person_id": "rc_kellogg_almira",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_mcguire_physician",
       "file": "rcb_mcguire_physician.json",
       "name": "Dr. J. McGuire, physician",
@@ -13323,6 +13660,102 @@
       "closed": null,
       "dates_tier": "reconstructed",
       "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_metcalf_land_agent",
+      "file": "rcb_metcalf_land_agent.json",
+      "name": "Hiram Metcalf, land agent",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "house and land agency",
+      "occupation": "land_agent",
+      "goods": [
+        "land agent"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Hiram Metcalf",
+          "person_id": "rc_metcalf_hiram",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "dearborn",
+        "street": "Dearborn Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_murphy_land_agent",
+      "file": "rcb_murphy_land_agent.json",
+      "name": "H. Murphy, land agent",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "house and land agency",
+      "occupation": "land_agent",
+      "goods": [
+        "land agent"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Hugh Murphy",
+          "person_id": "rc_murphy_hugh",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "canal",
+        "street": "Canal Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []
@@ -13470,6 +13903,54 @@
       "liberties": []
     },
     {
+      "id": "rcb_quinn_milliner",
+      "file": "rcb_quinn_milliner.json",
+      "name": "H. Quinn, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Honora Quinn",
+          "person_id": "rc_quinn_honora",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "south_water",
+        "street": "South Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_robillard_lawyer",
       "file": "rcb_robillard_lawyer.json",
       "name": "B. Robillard, attorney and counsellor at law, and solicitor in chancery",
@@ -13513,6 +13994,246 @@
       "closed": null,
       "dates_tier": "reconstructed",
       "proprietor_community": "french_canadian",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_sawyer_dressmaker",
+      "file": "rcb_sawyer_dressmaker.json",
+      "name": "Almira Sawyer, dress, cloak and habit making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "dress making",
+      "occupation": "dressmaker",
+      "goods": [
+        "dress, cloak and habit making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Almira Sawyer",
+          "person_id": "rc_sawyer_almira",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "lake",
+        "street": "Lake Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_shea_milliner",
+      "file": "rcb_shea_milliner.json",
+      "name": "A. Shea, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Alice Shea",
+          "person_id": "rc_shea_alice",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "canal",
+        "street": "Canal Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_sullivan_milliner",
+      "file": "rcb_sullivan_milliner.json",
+      "name": "Mary Sullivan, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Mary Sullivan",
+          "person_id": "rc_sullivan_mary",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "south_water",
+        "street": "South Water Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_walsh_milliner",
+      "file": "rcb_walsh_milliner.json",
+      "name": "H. Walsh, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Honora Walsh",
+          "person_id": "rc_walsh_honora",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "kinzie",
+        "street": "Kinzie Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "irish",
+      "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_woodruff_milliner",
+      "file": "rcb_woodruff_milliner.json",
+      "name": "Hannah Woodruff, millinery and dress making",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "millinery and dress making",
+      "occupation": "milliner",
+      "goods": [
+        "millinery and dress making"
+      ],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Hannah Woodruff",
+          "person_id": "rc_woodruff_hannah",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "street_only",
+        "structure_id": null,
+        "anchor": null,
+        "street_id": "lake",
+        "street": "Lake Street",
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
       "review_required": false,
       "liberties": []

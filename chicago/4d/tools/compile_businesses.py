@@ -1069,16 +1069,28 @@ def semantic_problems(records, town_ids=None):
                        "says what bought it — a quota row (bucket + slot), a documented "
                        "floor or a standing roof" % rid)
         elif block:
+            #
+            # AND A FOURTH DOOR (T-1419): A DRAWN HEAD. The December 1835 State census
+            # enumerates no milliner, no land agent, no dressmaker and no barber, so those
+            # classes can no more have an order-book bucket than a boarding house can —
+            # and unlike a boarding house they have no standing roof either, because
+            # nothing in data/structures/ is a milliner's shop. What IS committed is the
+            # PERSON: the resident band drew heads at those trades out of the 1839 trade
+            # table, and T-1404's premises rulings give each of those trades a shop of its
+            # own. A head at a premises trade with no house behind it is a working person
+            # with nowhere to work, and the head is what buys the house that fixes it.
             quota = bool(block.get("bucket") or block.get("slot"))
             floor = bool(block.get("floor"))
             roof = bool(block.get("roof"))
-            if sum((quota, floor, roof)) > 1:
+            person = bool(block.get("person"))
+            if sum((quota, floor, roof, person)) > 1:
                 bad.append("%s: the reconstruction block names more than one of an "
-                           "order-book row, a documented floor and a standing roof; a house "
-                           "is bought once" % rid)
-            elif not (quota or floor or roof):
+                           "order-book row, a documented floor, a standing roof and a drawn "
+                           "head; a house is bought once" % rid)
+            elif not (quota or floor or roof or person):
                 bad.append("%s: the reconstruction block names neither an order-book row "
-                           "(bucket + slot) nor a documented floor nor a standing roof" % rid)
+                           "(bucket + slot) nor a documented floor nor a standing roof nor "
+                           "a drawn head" % rid)
             elif quota and not (block.get("bucket") and block.get("slot")):
                 bad.append("%s: a quota row names a bucket and a slot, and this one names "
                            "only %s" % (rid, "a bucket" if block.get("bucket") else "a slot"))
@@ -1100,6 +1112,27 @@ def semantic_problems(records, town_ids=None):
                         bad.append("%s: bought by the standing roof %r and its primary "
                                    "location is %r; a roof buys the firm of THAT building"
                                    % (rid, r.get("structure_id"), seat))
+            elif person:
+                # A HEAD IS ONLY A HEAD IF THE HOUSE IS THEIRS. The whole argument is that
+                # this firm is the trade of a person this project already drew, so a record
+                # bought by a head that names no head — or names one the record does not
+                # put behind the counter — has bought nothing.
+                h = block["person"]
+                if not isinstance(h, dict):
+                    bad.append("%s: the drawn head is not a block" % rid)
+                else:
+                    who = (h.get("person_id") or "").strip()
+                    if not who:
+                        bad.append("%s: the drawn head names no person; the keeper is "
+                                   "ADOPTED and a head that names none minted one" % rid)
+                    elif who not in {(k.get("person_id") or "")
+                                     for k in record.get("proprietors") or []}:
+                        bad.append("%s: bought by the drawn head %r and that person keeps "
+                                   "no part of it; a head buys the house THEY keep"
+                                   % (rid, who))
+                    if not (h.get("trade") or "").strip():
+                        bad.append("%s: the drawn head names no trade, and the trade is "
+                                   "what the premises ruling is read against" % rid)
             elif floor:
                 # A floor carries its own evidence, because nothing upstream counted it.
                 f = block["floor"]
@@ -1387,6 +1420,24 @@ def self_test():
                                                               "keeper_person_id": "rc_x",
                                                               "note": "n"}})),
            "a roof buys the firm of THAT building", ids)
+
+    expect("a drawn head that names nobody",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"person": {"person_id": "",
+                                                                "trade": "milliner"}})),
+           "names no person", ids)
+
+    expect("a drawn head who keeps no part of the house",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"person": {"person_id": "rc_nobody",
+                                                                "trade": "milliner"}})),
+           "a head buys the house THEY keep", ids)
+
+    expect("a drawn head with no trade",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"person": {"person_id": "rc_nobody",
+                                                                "trade": ""}})),
+           "names no trade", ids)
 
     expect("a reconstruction naming a standing roof AND a quota row",
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],

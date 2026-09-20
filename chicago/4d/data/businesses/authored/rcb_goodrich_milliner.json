@@ -1,0 +1,100 @@
+{
+  "id": "rcb_goodrich_milliner",
+  "register_id": null,
+  "name": "Seth Goodrich, millinery and dress making",
+  "provenance": "reconstructed",
+  "type": [
+    "other"
+  ],
+  "trade": "millinery and dress making",
+  "occupation": "milliner",
+  "goods": [
+    "millinery and dress making"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Seth Goodrich",
+      "person_id": "rc_goodrich_seth",
+      "register_person_id": null,
+      "role": "proprietor",
+      "from": null,
+      "to": null,
+      "tier": "reconstructed",
+      "basis": "ADOPTED, NOT MINTED. Seth Goodrich is the reconstructed trade head the resident band's `trade_households` stage drew at milliner in the north division (slot trade_households:persons/male/30_39/north/family/trade:milliner:013), and that card says itself that the business band adopts these heads rather than minting its own. One quota, filled once: this house is the establishment that head keeps.",
+      "source_id": null,
+      "claim_ids": []
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "north_water",
+      "face": null,
+      "primary": true,
+      "from": null,
+      "to": null,
+      "tier": "reconstructed",
+      "basis": "A FACE, NOT A PREMISES. The placement rule for a milliner kept by a north-division household deals this house onto North Water Street; the face is drawn on the seed printed in `reconstruction.seed` from the faces that rule allows, and no lot, roof or coordinate is claimed. T-1195 writes the placement policy with its evidence and T-1199 seats this house on the lot grid.",
+      "limit_reason": "No source places this house, because no source names it: it exists because its keeper does. The street is the reconstruction's own deal and stops there."
+    }
+  ],
+  "dates": {
+    "opened": null,
+    "closed": null,
+    "precision": "unbounded",
+    "tier": "reconstructed",
+    "basis": "NOTHING DATES THIS HOUSE. Its keeper was dealt onto the scene date and carries no arrival the layer can read; the record claims that the house was trading on 1835-07-01 and nothing about either end."
+  },
+  "evidence": {},
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": {
+    "value": "yankee",
+    "tier": "reconstructed",
+    "rule": "proprietors_agree",
+    "basis": "The 1 keeper(s) this record names and the resident layer holds a card for all read yankee: Seth Goodrich (yankee). A house is not its keeper, so the reading is an inference about the house and is capped there.",
+    "from": [
+      {
+        "person_id": "rc_goodrich_seth",
+        "name": "Seth Goodrich",
+        "role": "proprietor",
+        "community": "yankee",
+        "tier": "reconstructed"
+      }
+    ]
+  },
+  "customers": [],
+  "sources": [],
+  "claim_ids": [],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A register, directory or deed naming a real milliner in the north division in 1835 — that house takes this slot and this record is withdrawn with the head it belongs to.",
+  "reconstruction": {
+    "programme": "chicago_1835_business_reconstruction",
+    "group": "professions_and_services",
+    "ticket": "T-1419",
+    "person": {
+      "person_id": "rc_goodrich_seth",
+      "household_id": "hh_rc_goodrich_seth",
+      "trade": "milliner",
+      "slot": "trade_households:persons/male/30_39/north/family/trade:milliner:013",
+      "premises_ruling": "data/businesses/rulings/premises_rulings.json",
+      "note": "A DRAWN KEEPER, NOT A SHORTFALL. The December 1835 State census enumerates no milliner, so the order book holds no bucket of this class to point at and no count of it is short. What is committed is the PERSON: the trade stage dealt Seth Goodrich at this trade out of the 1839 trade table, and the premises ruling gives the trade a millinery and dress making. The house is what was missing, and it is withdrawn with the head."
+    },
+    "seed": "professions_and_services:services/milliner/north:003",
+    "basis": {
+      "kind": "model",
+      "id": "1835_premises_rulings",
+      "note": "the trade stage drew 3 head(s) at milliner in the north division and the premises ruling gives that trade a shop of its own. The style is dealt on the seed printed beside it from the period forms the register itself carries: the form 'Elmira Fowler' prints — the milliner's own name is her house's name — with the trade line the register carries beneath it. The goods line is the trade line all three of the town's printed millinery houses carry."
+    },
+    "withdrawn_if": "the retirement of the head itself, a re-ruling that gives this trade no premises of its own, or a source naming a real house of this trade; the retirement runs through --build, never by hand"
+  }
+}

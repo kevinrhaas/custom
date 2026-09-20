@@ -419,7 +419,7 @@
    "premises": "no_fixed_premises",
    "census_class": null,
    "signage_function": null,
-   "basis": "Washing was taken in at the laundress's own dwelling or done at her employer's; T-1186 rules whether either is a house of trade."
+   "basis": "Washing was taken in at the laundress's own dwelling or done at her employer's, and T-1419 ruled that neither is a house of trade: the trade keeps no premises of its own and the head is carried unhoused in data/reconstruction/1835_business_reconstruction.json § service_premises."
   },
   {
    "occupation": "lighthouse_keeper",

@@ -66,6 +66,8 @@ LODGERS = DATA / "residents" / "lodgers"
 
 PROGRAMME = "chicago_1835_business_reconstruction"
 SCENE_DATE = "1835-07-01"
+GENERATOR_NAME = "tools/reconstruct_businesses_1835.py"
+OWN_PREMISES = "own_premises"
 
 
 # ------------------------------------------------------------------- the five groups
@@ -147,6 +149,214 @@ ROOF_STYLES = {
              "the possessive with the forename cut, as *Ingersoll's tavern stand* and "
              "*Stuart's confectionary and perfumery* print it in the register"),
         ],
+    },
+}
+
+
+# ---------------------------------------------- the third quota: a person, not a count
+#
+# THE SERVICES THE CENSUS ENUMERATES NOWHERE (T-1419, of T-1186). The December 1835 State
+# census prints eighteen lines and not one of them is a milliner, a land agent, a
+# dressmaker or a barber. No shortfall of those trades can therefore be COUNTED, the order
+# book holds no bucket to point at, and this tool may not invent one inside itself — its
+# whole contract is that the quota is read from the book. The route to these people is the
+# PERSON side, exactly as the roof quota's route is the building side.
+#
+# And the person is committed. The resident band's `trade_households` stage (T-1347, of
+# T-1173) dealt the town's missing adults their trades out of the 1839 trade table and drew
+# four land agents, nine milliners, a dressmaker and a barber-surgeon; every one of those
+# cards says itself that the business band adopts these heads rather than minting its own.
+# `data/businesses/rulings/premises_rulings.json` (T-1404) rules each of those trades
+# `own_premises` — a milliner kept a shop. A head at a premises trade with no house of
+# trade behind it is a working person with nowhere to work: the same hole T-1404 closed on
+# the attested layer, left open on the half of the layer that tool cannot see, because a
+# reconstructed head carries an `occupation` block and deliberately no dated `roles[]`.
+#
+# THE OTHER HALF OF THE CLAUSE IS A REFUSAL, AND IT IS WRITTEN DOWN. The same rulings give
+# `surveyor`, `laundress`, `domestic` and `music_teacher` `no_fixed_premises`, and the heads
+# at those trades get no house here. That is a statement about the trade rather than a gap
+# in the layer — a laundress washed in other people's houses and in her own — and
+# `service_premises` in the ledger accounts for every head of every service trade, housed or
+# unhoused, with the rule that put it there.
+PERSON_QUOTA = {
+    "professions_and_services": {
+        "ticket": "T-1419",
+        # THE TRADES, AND NOT ONE MORE. Each key is a trade T-1419 names. A value is the
+        # style of the house it keeps; `None` says the rulings give it no premises and the
+        # ledger carries the head instead. The two halves are CHECKED against the rulings
+        # file on every build, so a re-ruling of any of these trades stops the build rather
+        # than silently housing or unhousing a person.
+        #
+        # A reconstructed head at a trade the census DOES count is the first quota's
+        # business and is ordered out of the book. A head at a trade the census never
+        # counts and this ticket does not name — carpenter, tailor, shoemaker, the
+        # mechanics' trades — is NEITHER, and the ledger names it in `not_this_ticket`
+        # rather than letting this table quietly grow to cover it.
+        "services": {
+            "land_agent": "land_agent",
+            "milliner": "milliner",
+            "dressmaker": "dressmaker",
+            "barber_surgeon": "barber_surgeon",
+            "surveyor": None,
+            "laundress": None,
+            "domestic": None,
+            "music_teacher": None,
+        },
+        # WHAT THE TICKET ASKED FOR AND THIS BUILD DOES NOT RAISE, with the reason, because
+        # a refusal that leaves no trace reads afterwards as an oversight.
+        "refusals": [
+            {
+                "asked_for": "a dentist's stand",
+                "refused": True,
+                "why": ("THE STAND ALREADY STANDS, AND NOBODY WAS DRAWN TO KEEP A SECOND. "
+                        "The register prints Wm. H. Kennicott, Surgeon Dentist on Lake "
+                        "Street and two further dentists' notices the identity work has not "
+                        "resolved, and T-1404 raised Peter Temple's stand off his own dated "
+                        "role. The resident band drew NO head at `dentist`, so there is "
+                        "nobody here to adopt — and this tool mints no proprietor. A stand "
+                        "raised without a keeper would be a house with nobody in it."),
+            },
+            {
+                "asked_for": "a second barber",
+                "refused": False,
+                "why": ("RAISED, AND THIS IS THE ARGUMENT. The register prints no barber's "
+                        "house at all, so nothing of this class is attested and nothing is "
+                        "being doubled. What is committed is the PERSON: the trade stage "
+                        "dealt one head at `barber_surgeon` out of the 1839 trade table, and "
+                        "the rulings give that trade a shop. The town's other barber is "
+                        "T-1377's free Black cohort (rcb_fb_barbers_shop), raised on a "
+                        "different argument entirely — a count of people, not a count of "
+                        "trades — so the two do not stand on one reading twice."),
+            },
+            {
+                "asked_for": "seamstresses",
+                "refused": True,
+                "why": ("THE LAYER CARRIES NONE. `seamstress` is not a term of the resident "
+                        "layer's closed occupation vocabulary and no head stands at it, so "
+                        "there is no person to house or to leave unhoused. The needle trades "
+                        "the layer does carry are `dressmaker` and `milliner`, and both are "
+                        "in the table above. This is a stated zero, not a silence."),
+            },
+            {
+                "asked_for": "teachers",
+                "refused": True,
+                "why": ("NOT THIS TICKET'S, BY THE TICKET'S OWN WORDS. The December 1835 "
+                        "State census counts seven schools and that bucket is "
+                        "`businesses/school`, which T-1411 owns. `music_teacher` is in the "
+                        "table above and is a different thing — a master who taught in his "
+                        "pupils' parlours keeps no school — and the rulings give it no "
+                        "premises, so its heads are carried in the ledger unhoused."),
+            },
+        ],
+    },
+}
+
+# THE FACE A SERVICE TRADE TAKES, by division, on the same rule and with the same limit as
+# FACES above: where the register places a house of this very trade, that street leads.
+PERSON_FACES = {
+    # BOTH PLACED LAND AGENTS ARE ON LAKE STREET — G. Blanshard and W. G. Blanchard — and
+    # the two business streets either side of it follow it rather than a rule of their own.
+    "land_agent": {
+        "south": ["lake", "south_water", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # THE ONE PLACED MILLINERY HOUSE IS ON DEARBORN: Elmira Fowler's. Lake and South Water
+    # follow, as the retail rule has them everywhere else.
+    "milliner": {
+        "south": ["dearborn", "lake", "south_water"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # AND THE ONE PLACED DRESSMAKER IS ON LAKE: Sarah D. Howe's, dress, cloak and habit
+    # making.
+    "dressmaker": {
+        "south": ["lake", "dearborn", "south_water"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+    # NOTHING PLACES A BARBER, because the register prints no barber's house. The retail
+    # rule of the south division is taken unchanged and the record says it is a deal off
+    # that rule rather than off a house of its own class.
+    "barber_surgeon": {
+        "south": ["lake", "south_water", "dearborn"],
+        "north": ["kinzie", "north_water"],
+        "west": ["canal", "west_water"],
+    },
+}
+
+# THE PERIOD FORMS FOR A SERVICE HOUSE. Every form and every goods line below is one the
+# register prints on a house OF THIS TRADE, with that house named beside it — except the
+# barber's, where the register prints no house of the class at all and the record says so.
+#
+# NO HONORIFIC IS DEALT, and eleven of these fifteen keepers are women. The register's own
+# millinery notices read *Mrs. H. Sherman* and *[Mrs.] Herman*, and a `Mrs.` here would
+# assert a marriage these cards do not hold — the trade stage drew them as heads and not as
+# wives. The possessive form the lodging houses use is for the same reason not offered.
+PERSON_STYLES = {
+    "land_agent": {
+        "forms": [
+            ("{initial}. {surname}, {goods}",
+             "the form 'J. C. Goodhue, land agent' prints, the name cut to initials as "
+             "'G. Blanshard' and 'W. G. Blanchard' print theirs"),
+            ("{given} {surname}, {goods}",
+             "the form 'Frederick Thomas, drugs and paints' prints the keeper's name in "
+             "full against the trade line"),
+        ],
+        "goods": [
+            ("land agent", "J. C. Goodhue's own trade line in the register"),
+            ("house and land agent", "W. G. Blanchard's own trade line in the register"),
+        ],
+        "trade": "house and land agency",
+        "occupation": "land_agent",
+    },
+    "milliner": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "the form 'Elmira Fowler' prints — the milliner's own name is her house's "
+             "name — with the trade line the register carries beneath it"),
+            ("{initial}. {surname}, {goods}",
+             "the form 'Mrs. H. Sherman' prints the surname against an initial; the "
+             "honorific is cut, because nothing on this keeper's card says whether she was "
+             "married, widowed or single"),
+        ],
+        "goods": [
+            ("millinery and dress making",
+             "the trade line all three of the town's printed millinery houses carry"),
+        ],
+        "trade": "millinery and dress making",
+        "occupation": "milliner",
+    },
+    "dressmaker": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "the form 'Sarah D. Howe' prints — the dressmaker's own name is her house's "
+             "name — with her trade line beneath it"),
+            ("{initial}. {surname}, {goods}",
+             "the form 'Mrs. H. Sherman' prints the surname against an initial, the "
+             "honorific cut for the reason the millinery row gives"),
+        ],
+        "goods": [
+            ("dress, cloak and habit making", "Sarah D. Howe's own trade line in the register"),
+        ],
+        "trade": "dress making",
+        "occupation": "dressmaker",
+    },
+    "barber_surgeon": {
+        "forms": [
+            ("{given} {surname}, {goods}",
+             "the plainest form the register carries — a keeper's name against a trade "
+             "line, as 'Frederick Thomas, drugs and paints' prints — because the register "
+             "prints no barber's house whose form could be copied"),
+        ],
+        "goods": [
+            ("barber",
+             "the trade in the resident layer's own word. No barber's notice survives in "
+             "this corpus, so no goods line of the class exists to take and none is "
+             "composed"),
+        ],
+        "trade": "barber's shop",
+        "occupation": "barber_surgeon",
     },
 }
 
@@ -780,6 +990,293 @@ def record_for_roof(group, bucket, place, ordinal, communities):
     return record
 
 
+# ------------------------------------------------ the services, and who carries them on
+
+PREMISES_RULINGS = DATA / "businesses" / "rulings" / "premises_rulings.json"
+
+
+def premises_rulings(path=None):
+    """`{occupation: ruling}` — T-1404's ruling on which trades kept premises of their own."""
+    doc = load_json(path or PREMISES_RULINGS)
+    return {row["occupation"]: row for row in doc["rulings"]}
+
+
+def person_buckets(group, heads=None, rulings=None):
+    """The service trades this group owes a firm, by trade and division.
+
+    Shaped like an order-book bucket so the build loop reads one list, and carrying its
+    heads so the record can name the person that bought it. The table above and the rulings
+    file must AGREE: a trade this tool houses that the rulings give no premises, or a trade
+    it leaves unhoused that the rulings give a shop, stops the build. The alternative is a
+    re-ruling that silently changes who has a workplace, which is the thing a ruling kept in
+    data was meant to prevent.
+    """
+    spec = PERSON_QUOTA.get(group)
+    if spec is None:
+        return []
+    heads = heads if heads is not None else trade_heads()
+    rulings = rulings if rulings is not None else premises_rulings()
+    buckets = []
+    for trade in sorted(spec["services"]):
+        style = spec["services"][trade]
+        ruling = rulings.get(trade)
+        if ruling is None:
+            raise SystemExit(
+                "%s is a service trade of %s and no row of %s rules it. An unruled trade is "
+                "a tradesman who vanishes out of both halves of the clause; rule it in "
+                "T-1404's file, not here."
+                % (trade, spec["ticket"], PREMISES_RULINGS.relative_to(ROOT)))
+        wants_house = ruling["premises"] == OWN_PREMISES
+        if bool(style) != wants_house:
+            raise SystemExit(
+                "the premises ruling for %s reads %r and this tool %s a house for it. The "
+                "rulings file is the authority and the table in %s has drifted from it — "
+                "one of the two is wrong and a build may not choose between them."
+                % (trade, ruling["premises"],
+                   "raises" if style else "raises no", GENERATOR_NAME))
+        if not wants_house:
+            continue
+        by_division = {}
+        for head in heads.get(trade, []):
+            by_division.setdefault(head["division"], []).append(head)
+        for division in sorted(by_division):
+            rows = sorted(by_division[division], key=lambda h: h["slot"])
+            buckets.append({
+                "key": "services/%s/%s" % (trade, division),
+                "axes": {"trade": trade, "class": ruling["census_class"],
+                         "division": division},
+                "to_reconstruct": len(rows),
+                "owning_ticket": spec["ticket"],
+                "heads": rows,
+                "basis": ("the trade stage drew %d head(s) at %s in the %s division and the "
+                          "premises ruling gives that trade a %s of its own"
+                          % (len(rows), trade.replace("_", " "), division,
+                             ruling["signage_function"])),
+            })
+    return buckets
+
+
+def record_for_person(group, bucket, head, ordinal, communities, streets):
+    spec = PERSON_QUOTA[group]
+    trade = bucket["axes"]["trade"]
+    cls = bucket["axes"]["class"]
+    style = PERSON_STYLES[trade]
+    slot = "%s:%s:%03d" % (group, bucket["key"], ordinal)
+    name, goods, style_basis = firm_style(style, head, slot)
+    _, surname = initials(head["name"])
+    face = draw(slot + ":street_face", PERSON_FACES[trade][head["division"]])
+
+    proprietor = {
+        "name": head["name"],
+        "person_id": head["person_id"],
+        "register_person_id": None,
+        "role": "proprietor",
+        "from": None,
+        "to": None,
+        "tier": "reconstructed",
+        "basis": (
+            "ADOPTED, NOT MINTED. %s is the reconstructed trade head the resident band's "
+            "`trade_households` stage drew at %s in the %s division (slot %s), and that card "
+            "says itself that the business band adopts these heads rather than minting its "
+            "own. One quota, filled once: this house is the establishment that head keeps."
+            % (head["name"], head["trade"], head["division"], head["slot"])),
+        "source_id": None,
+        "claim_ids": [],
+    }
+
+    record = {
+        "id": "rcb_%s_%s" % (surname.lower().replace("'", "").replace(".", ""), trade),
+        "register_id": None,
+        "name": name,
+        "provenance": "reconstructed",
+        "type": [cls],
+        "trade": style["trade"],
+        "occupation": style["occupation"],
+        "goods": [goods],
+        "firm_styles": [],
+        "proprietors": [proprietor],
+        "partners": [],
+        "staff": [],
+        "locations": [{
+            "kind": "street_only",
+            "structure_id": None,
+            "street_id": face,
+            "face": None,
+            "primary": True,
+            "from": None,
+            "to": None,
+            "tier": "reconstructed",
+            "basis": (
+                "A FACE, NOT A PREMISES. The placement rule for a %s kept by a %s-division "
+                "household deals this house onto %s; the face is drawn on the seed printed "
+                "in `reconstruction.seed` from the faces that rule allows, and no lot, roof "
+                "or coordinate is claimed. T-1195 writes the placement policy with its "
+                "evidence and T-1199 seats this house on the lot grid."
+                % (trade.replace("_", " "), head["division"], streets.get(face, face))),
+            "limit_reason": (
+                "No source places this house, because no source names it: it exists because "
+                "its keeper does. The street is the reconstruction's own deal and stops "
+                "there."),
+        }],
+        "dates": {
+            "opened": None,
+            "closed": None,
+            "precision": "unbounded",
+            "tier": "reconstructed",
+            "basis": (
+                "NOTHING DATES THIS HOUSE. Its keeper was dealt onto the scene date and "
+                "carries no arrival the layer can read; the record claims that the house was "
+                "trading on %s and nothing about either end." % SCENE_DATE),
+        },
+        "evidence": {},
+        "present_at_scene_date": True,
+        "exclusion": None,
+        "exclusion_note": None,
+        "proprietor_community": derive_proprietor_community([proprietor], [], communities),
+        "customers": [],
+        "sources": [],
+        "claim_ids": [],
+        "liberties": {"survival_required": False, "backdating_required": False},
+        "review_required": False,
+        "replaceable_by": (
+            "A register, directory or deed naming a real %s in the %s division in 1835 — "
+            "that house takes this slot and this record is withdrawn with the head it "
+            "belongs to." % (trade.replace("_", " "), head["division"])),
+        "reconstruction": {
+            "programme": PROGRAMME,
+            "group": group,
+            "ticket": spec["ticket"],
+            "person": {
+                "person_id": head["person_id"],
+                "household_id": head["household_id"],
+                "trade": trade,
+                "slot": head["slot"],
+                "premises_ruling": PREMISES_RULINGS.relative_to(ROOT).as_posix(),
+                "note": (
+                    "A DRAWN KEEPER, NOT A SHORTFALL. The December 1835 State census "
+                    "enumerates no %s, so the order book holds no bucket of this class to "
+                    "point at and no count of it is short. What is committed is the PERSON: "
+                    "the trade stage dealt %s at this trade out of the 1839 trade table, and "
+                    "the premises ruling gives the trade a %s. The house is what was "
+                    "missing, and it is withdrawn with the head."
+                    % (trade.replace("_", " "), head["name"],
+                       PERSON_STYLES[trade]["trade"])),
+            },
+            "seed": slot,
+            "basis": {
+                "kind": "model",
+                "id": "1835_premises_rulings",
+                "note": ("%s. %s" % (bucket["basis"].rstrip("."), style_basis)),
+            },
+            "withdrawn_if": (
+                "the retirement of the head itself, a re-ruling that gives this trade no "
+                "premises of its own, or a source naming a real house of this trade; the "
+                "retirement runs through --build, never by hand"),
+        },
+    }
+    return record
+
+
+def person_keepers(businesses_dir=None):
+    """`{person_id: [business ids]}` — every person the layer already names as a keeper."""
+    root = Path(businesses_dir or (DATA / "businesses"))
+    out = {}
+    for path in sorted(list(root.glob("biz_*.json")) + list((root / "authored").glob("*.json"))):
+        doc = load_json(path)
+        for field in ("proprietors", "partners"):
+            for person in doc.get(field) or []:
+                if person.get("person_id"):
+                    out.setdefault(person["person_id"], []).append(doc["id"])
+    return out
+
+
+def service_premises_table(group="professions_and_services"):
+    """EVERY SERVICE HEAD ACCOUNTED FOR, housed or unhoused, with the rule that did it.
+
+    T-1419's stop condition, and the reason it is a TABLE rather than a count: the two
+    outcomes are not interchangeable. A milliner with no shop is this programme's debt. A
+    laundress with no shop is a reading of the trade — she washed in other people's houses
+    and in her own — and writing her one would be inventing a premises to make a total come
+    out even. The table says which, per head, so neither can hide inside the other.
+
+    It reads DISK rather than the build's own dict, for the reason the lodging table does:
+    --build writes every record before it writes this ledger, so disk is the complete
+    picture and a run that rebuilt one group is not.
+    """
+    spec = PERSON_QUOTA[group]
+    rulings = premises_rulings()
+    heads = trade_heads()
+    keeps = person_keepers()
+    rows, owed = [], 0
+    for trade in sorted(spec["services"]):
+        ruling = rulings[trade]
+        wants_house = ruling["premises"] == OWN_PREMISES
+        for head in heads.get(trade, []):
+            firms = sorted(set(keeps.get(head["person_id"], [])))
+            if wants_house:
+                outcome = "keeps a house of trade" if firms else "owed a house of trade"
+                if not firms:
+                    owed += 1
+                why = ("The premises ruling gives %s a %s of its own, and the house is "
+                       "this programme's." % (trade.replace("_", " "),
+                                              ruling["signage_function"]))
+            else:
+                outcome = ("no_fixed_premises" if not firms
+                           else "no_fixed_premises, and a house names them anyway")
+                why = ("NO PREMISES, BY RULE AND NOT BY OMISSION. %s"
+                       % (ruling.get("basis") or ruling.get("note")
+                          or "the premises ruling gives this trade none of its own."))
+            rows.append({
+                "person_id": head["person_id"],
+                "name": head["name"],
+                "household_id": head["household_id"],
+                "trade": trade,
+                "division": head["division"],
+                "ruling": ruling["premises"],
+                "outcome": outcome,
+                "businesses": firms,
+                "why": why,
+            })
+    # AND THE HEADS THIS TICKET DOES NOT OWN, counted by trade so the boundary is a figure
+    # rather than a silence. A head at a trade the census counts is the first quota's and
+    # arrives through the order book; a head at a premises trade the census never counts and
+    # this ticket does not name is neither, and nothing yet orders it a house.
+    counted = {cls: trades for cls, trades in TRADE_CLASS.items() if trades}
+    census_trades = {t for trades in counted.values() for t in trades}
+    elsewhere, unordered = {}, {}
+    for trade, rows_ in sorted(heads.items()):
+        if trade in spec["services"]:
+            continue
+        ruling = rulings.get(trade)
+        if ruling is None or ruling["premises"] != OWN_PREMISES:
+            continue
+        housed = sum(1 for h in rows_ if keeps.get(h["person_id"]))
+        bucket = elsewhere if trade in census_trades else unordered
+        bucket[trade] = {"heads": len(rows_), "keeping a house": housed}
+    return {
+        "_doc": ("EVERY SERVICE HEAD ACCOUNTED FOR. The reconstructed trade band's heads at "
+                 "the trades T-1419 names, each either keeping a house of trade or carrying "
+                 "`no_fixed_premises` with the ruling that put it there."),
+        "ticket": spec["ticket"],
+        "rulings": PREMISES_RULINGS.relative_to(ROOT).as_posix(),
+        "heads": len(rows),
+        "owed_a_house": owed,
+        "refusals": spec["refusals"],
+        "not_this_ticket": {
+            "_doc": ("Reconstructed heads at OTHER premises trades, so the boundary of this "
+                     "ticket is a figure and not a silence."),
+            "ordered_by_the_census_and_the_order_book": elsewhere,
+            "no_census_line_and_no_ticket_yet": unordered,
+            "note": ("A head in the second group is a working person the business layer "
+                     "still holds no workplace for. The December census counts none of "
+                     "these trades, so no bucket can order them and the route is the person "
+                     "side this quota opens; T-1189 staffs the layer and is where the "
+                     "finding is filed."),
+        },
+        "rows": rows,
+    }
+
+
 # ------------------------------------------------------------------------ build / check
 
 def build_group(group, communities=None, streets=None, heads=None, book=None):
@@ -823,6 +1320,20 @@ def build_group(group, communities=None, streets=None, heads=None, book=None):
     for bucket in roof_buckets(group):
         for ordinal, place in enumerate(bucket["places"], start=1):
             records.append(record_for_roof(group, bucket, place, ordinal, communities))
+    # AND THE SERVICE TRADES NOBODY COUNTED. The third quota, on the same rules again: one
+    # record per drawn head at a trade the census enumerates nowhere and the premises
+    # rulings give a shop, the keeper adopted rather than minted, and a face rather than a
+    # roof because nothing seats these houses yet.
+    for bucket in person_buckets(group, heads):
+        for ordinal, head in enumerate(bucket["heads"], start=1):
+            if head["person_id"] in taken:
+                raise SystemExit(
+                    "%s keeps a house out of the order book already and the service quota "
+                    "would give them a second. One person, one house: the trade row that "
+                    "adopted them and the service table both claim this head."
+                    % head["person_id"])
+            taken.add(head["person_id"])
+            records.append(record_for_person(group, bucket, head, ordinal, communities, streets))
     records.sort(key=lambda r: r["id"])
     return records
 
@@ -991,6 +1502,7 @@ def ledger(built):
         "records": sum(len(r) for r in built.values()),
         "groups": groups,
         "lodging": lodging_table(built),
+        "service_premises": service_premises_table(),
     }
 
 
@@ -1107,10 +1619,17 @@ def check(groups=None):
         on_disk = {p.stem for p in AUTHORED.glob("rcb_*.json")
                    if (load_json(p).get("reconstruction") or {}).get("group") == group}
         want = {r["id"] for r in records}
+        # WHICH QUOTA ORDERED IT, in the words of the quota that did. A group carries up
+        # to three — the order book's count, a standing roof, a drawn head — and a message
+        # naming the wrong one sends the reader to a file with nothing in it about the
+        # record they are holding.
+        quota = {r["id"]: ("the order book orders it" if r["reconstruction"].get("bucket")
+                           else "a standing roof buys it" if r["reconstruction"].get("roof")
+                           else "a drawn head keeps it") for r in records}
         for extra in sorted(on_disk - want):
-            bad.append("%s: on disk and the order book does not order it" % extra)
+            bad.append("%s: on disk and nothing in this group's quotas orders it" % extra)
         for missing in sorted(want - on_disk):
-            bad.append("%s: the order book orders it and it is not on disk" % missing)
+            bad.append("%s: %s and it is not on disk" % (missing, quota[missing]))
         for record in records:
             path = AUTHORED / ("%s.json" % record["id"])
             if path.exists() and load_json(path) != record:
@@ -1281,10 +1800,43 @@ def self_test():
             failures.append("%s: the book owes T-1185 no houses of this class and the "
                             "trade row should say so with an empty list" % cls)
 
+    # 11. THE SERVICE TABLE AND THE PREMISES RULINGS MAY NOT DRIFT APART. A re-ruling that
+    #    took the shop away from a milliner, or gave one to a laundress, must stop the
+    #    build — not quietly house or unhouse eleven women.
+    ruled = premises_rulings()
+    unhoused = json.loads(json.dumps(ruled))
+    unhoused["milliner"]["premises"] = "no_fixed_premises"
+    expect("a re-ruled trade the table still houses",
+           lambda: person_buckets("professions_and_services", heads, unhoused),
+           "has drifted from it")
+    housed = json.loads(json.dumps(ruled))
+    housed["laundress"]["premises"] = "own_premises"
+    housed["laundress"]["signage_function"] = "shop"
+    expect("a re-ruled trade the table still leaves unhoused",
+           lambda: person_buckets("professions_and_services", heads, housed),
+           "has drifted from it")
+
+    # 12. A trade the rulings do not carry at all is refused by name, never skipped.
+    unruled = {k: v for k, v in ruled.items() if k != "land_agent"}
+    expect("an unruled service trade",
+           lambda: person_buckets("professions_and_services", heads, unruled),
+           "and no row of")
+
+    # 13. A house bought by a drawn head writes no fill into the order book, for the same
+    #    reason a house bought by a roof writes none: the book holds no bucket of its class.
+    services = build_group("professions_and_services", communities, streets, heads)
+    person_records = [r for r in services if r["reconstruction"].get("person")]
+    if not person_records:
+        failures.append("the service quota built nothing at all")
+    if any(r["reconstruction"].get("bucket") for r in person_records):
+        failures.append("a house bought by a drawn head names an order-book bucket")
+    if fills_for({"professions_and_services": person_records}):
+        failures.append("a house bought by a drawn head wrote a fill into the order book")
+
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 12 assertions of the business reconstruction still fire")
+    print("OK: 16 assertions of the business reconstruction still fire")
     return 0
 
 

@@ -12999,7 +12999,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses and three are **L259**'s professions, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 28 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions and fifteen are **L260**'s services, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13216,11 +13216,11 @@ outliers, and the seating tickets **T-1198** and **T-1199**.
 
 ### L257 — Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them
 
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which FOUR are this
-entry's. The other nine are **L254**'s apothecaries, **L255**'s Black-owned firms, **L258**'s
-brewery and jeweller's and **L259**'s professions; the selector reads the whole reconstructed
-layer, so the count is restated here rather than narrowed, and each entry says which of the
-thirteen are its own.
+**Scope:** `businesses.records[reconstructed]` — 28 houses of trade, of which FOUR are this
+entry's. The other twenty-four are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L258**'s brewery and jeweller's, **L259**'s professions and **L260**'s services; the
+selector reads the whole reconstructed layer, so the count is restated here rather than
+narrowed, and each entry says which of the twenty-eight are its own.
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed
 business record for each of the four standing reconstructed boarding houses —
@@ -13297,9 +13297,9 @@ the seating tickets **T-1198** and **T-1199**.
 **Recorded:** 2026-09-19.
 
 ### L258 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade. TWO are this entry's, the
+**Scope:** `businesses.records[reconstructed]` — 28 houses of trade. TWO are this entry's, the
 mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms, four
-**L257**'s boarding houses and three **L259**'s professions. The
+**L257**'s boarding houses, three **L259**'s professions and fifteen **L260**'s services. The
 selector reads the whole layer, so the count is restated here rather than narrowed, and the
 register keeps saying how many reconstructed houses of trade the town carries in total
 
@@ -13361,11 +13361,11 @@ same selector counts), **L248** (the trade heads these houses adopt), tickets **
 **Recorded:** 2026-09-19.
 
 ### L259 — Two law offices and a physician's room stand for a census line that counts men, read down to the population the scene date actually had
-**Scope:** `businesses.records[reconstructed]` — 13 houses of trade, of which THREE are this
-entry's: two law offices and one physician's room. The other ten are **L254**'s apothecaries,
-**L255**'s Black-owned firms, **L257**'s boarding houses and **L258**'s brewery and
-jeweller's; the selector reads the whole reconstructed layer, so the count is restated here
-rather than narrowed.
+**Scope:** `businesses.records[reconstructed]` — 28 houses of trade, of which THREE are this
+entry's: two law offices and one physician's room. The other twenty-five are **L254**'s
+apothecaries, **L255**'s Black-owned firms, **L257**'s boarding houses, **L258**'s brewery and
+jeweller's and **L260**'s services; the selector reads the whole reconstructed layer, so the
+count is restated here rather than narrowed.
 
 **Decision:** `tools/reconstruct_businesses_1835.py --group professions_and_services`
 (T-1418, of T-1186) writes **three** reconstructed records: *B. Robillard, attorney and counsellor at
@@ -13437,4 +13437,100 @@ these houses adopt), **L257** (the roofs beside that row), the naming guide
 `docs/RESEARCH/business-naming-1835.md`, the unit adjudication **T-1007**, the order book
 **T-1166**, and the successors **T-1419** (the services, which the census enumerates
 nowhere), **T-1404** (a premises for every in-window trade) and **T-1189** (their staff).
+**Recorded:** 2026-09-20.
+
+### L260 — Fifteen service houses stand because the people who kept them were already drawn, and no census ever counted the class
+**Scope:** `businesses.records[reconstructed]` — 28 houses of trade, of which FIFTEEN are
+this entry's: four land agents' offices, nine millinery and dress-making shops, a dressmaker's
+and a barber's. The other thirteen are **L254**'s apothecaries, **L255**'s Black-owned firms,
+**L257**'s boarding houses, **L258**'s brewery and jeweller's and **L259**'s professions; the
+selector reads the whole reconstructed layer, so the count is restated here rather than
+narrowed.
+
+**Decision:** `tools/reconstruct_businesses_1835.py` (T-1419, of T-1186) writes **fifteen**
+reconstructed records on a quota that is neither a count nor a building but a PERSON — *W.
+Crandall, house and land agent*, *Seth Fairbanks, land agent*, *Hiram Metcalf, land agent*
+and *H. Murphy, land agent*; nine millinery and dress-making shops kept by Maria Cobb, Eliza
+Chapin, Seth Goodrich, Almira Kellogg, Honora Quinn, Alice Shea, Mary Sullivan, Honora Walsh
+and Hannah Woodruff; *Almira Sawyer, dress, cloak and habit making*; and *Daniel Brady,
+barber*. Each carries `provenance: reconstructed`, a `reconstruction.person` block naming the
+head who bought it, and the seed string a reader can retype to redraw its style, its goods
+line and its street face. Beside them the same build writes the OTHER half of the clause:
+sixty-three heads at `surveyor`, `laundress`, `domestic` and `music_teacher` are recorded
+carrying **no premises of their own**, in `data/reconstruction/1835_business_reconstruction.json`
+§ `service_premises`, with the ruling that put them there.
+
+**Why:** because the December 1835 State census prints eighteen lines and not one of them is
+a milliner, a land agent, a dressmaker or a barber. No shortfall of those classes can
+therefore be COUNTED, the reconstruction order book can hold no bucket to point at, and the
+business tool may not invent a quota inside itself — its whole contract is that the quota is
+read from the book. Nor is there a building to stand on, as **L257**'s boarding houses have:
+nothing in `data/structures/` is a milliner's shop. What IS committed is the keeper. The
+resident band's `trade_households` stage (**L248**) dealt the town's missing adults their
+trades out of the 1839 trade table and drew these fifteen at these trades; T-1404's premises
+rulings give each of those trades a shop, an office or a stand of its own. A head at a
+premises trade with no house behind it is a working person with nowhere to work — the same
+hole T-1404 closed on the attested layer, left open on the half of the layer that tool cannot
+see, because a reconstructed head carries an `occupation` block and deliberately no dated
+`roles[]`.
+
+**What is invented, exactly:** three things. (1) **That the keeper kept a house at all.** The
+person is not invented — see below — but the PREMISES is: that a milliner in this town kept a
+shop of her own rather than working from her lodgings is an inference about the shop, and it
+is declared on the shop's own record and nowhere else. It rests on a ruling in data
+(`data/businesses/rulings/premises_rulings.json`), and the build REFUSES to run if that
+ruling and this tool's table ever disagree — a re-ruling that took the shop away from a
+milliner stops the build rather than quietly unhousing eleven women. (2) **The firm style** —
+the form and the goods line, dealt on the record's own seed from forms the register itself
+prints on houses of these very trades: *Elmira Fowler* and *Mrs. H. Sherman* set the millinery
+forms and *millinery and dress making* is the trade line all three of the town's printed
+millinery houses carry; *Sarah D. Howe* sets the dressmaker's and *dress, cloak and habit
+making* is her own line; *J. C. Goodhue, land agent* and *W. G. Blanchard, house and land
+agent* set the land agents'. **No honorific is dealt**, and eleven of these fifteen keepers
+are women: the register's own notices read *Mrs. H. Sherman* and *[Mrs.] Herman*, and a
+`Mrs.` here would assert a marriage these cards do not hold. **The barber is the one class
+with no printed form at all** — the register carries no barber's notice — so his house takes
+the plainest form the register uses anywhere, a keeper's name against a trade line, and the
+record says that is what it is doing. (3) **The street face** — a `street_only` location,
+which the business schema calls a LIMIT rather than a place: no lot, no roof, no coordinate,
+and a `limit_reason` saying no source places this house because no source names it. Where the
+register places a house of the same trade, that street leads: both placed land agents are on
+Lake Street, the one placed millinery house is Elmira Fowler's on Dearborn, and the one placed
+dressmaker is Sarah D. Howe's on Lake. Nothing places a barber, and his record says the face
+is a deal off the south division's retail rule rather than off a house of his own class.
+
+**The keeper is NOT invented here.** All fifteen proprietors are reconstructed trade heads the
+resident band drew earlier (**L248**), and their cards said in advance what would happen to
+them: *"the business band adopts these heads as its proprietors rather than minting its own,
+so the two bands fill one quota."* A business tool that drew its own proprietor would order
+the same person twice.
+
+**What this deliberately does NOT do.** It raises **no house for a trade the rulings give
+none**. A laundress washed at her own hearth or at her employer's and a domestic served in
+somebody else's house; writing either a shop would be inventing a premises to make a total
+come out even, so the sixty-three of them are carried unhoused and counted, which is a
+statement about the trade rather than a gap in the layer. It raises **no second dentist's
+stand**: the register prints Wm. H. Kennicott, Surgeon Dentist on Lake Street, T-1404 raised
+Peter Temple's stand off his own dated role, and the resident band drew NO head at `dentist` —
+so there is nobody here to adopt, and this tool mints no proprietor. It writes **no
+seamstresses**, because `seamstress` is not a term of the resident layer's closed vocabulary
+and no head stands at it — a stated zero, not a silence. It leaves **teachers alone**: the
+census counts seven schools and that bucket is T-1411's. And it writes **no staff and no
+dates** — the shop girl a millinery kept is T-1183's model and T-1189's fill, and nothing
+dates a house whose keeper was dealt onto the scene date.
+
+**Which way it is wrong if it is wrong.** Toward a town with too FEW houses of trade. Only
+the trades this ticket names are housed; the reconstructed heads at the mechanics' trades the
+census also never counts — carpenters, tailors, shoemakers, bakers — are still working people
+the business layer holds no workplace for, and the ledger's `not_this_ticket` block counts
+them by trade rather than letting the boundary pass as a silence. The finding is filed on
+T-1189. And of the fifteen raised, the barber's is the thinnest: it is the only one whose
+class the register never prints at all, so nothing in this corpus demonstrates the form of the
+house, only the trade of the man.
+
+Related: **L254** (the machinery and the quota row), **L248** (the trade heads these houses
+adopt), **L257** (the standing-roof quota, the same argument made from a building),
+**L259** (the professions, the first half of T-1186), the premises rulings **T-1404**, the
+naming guide `docs/RESEARCH/business-naming-1835.md`, and the successors **T-1189** (their
+staff) and **T-1199** (their seats).
 **Recorded:** 2026-09-20.

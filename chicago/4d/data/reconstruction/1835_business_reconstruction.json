@@ -7,7 +7,7 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 11,
+  "records": 26,
   "groups": {
     "lodging_river_and_transport": {
       "ticket": "T-1187",
@@ -61,25 +61,61 @@
     "professions_and_services": {
       "ticket": "T-1418",
       "title": "the professions",
-      "records": 3,
+      "records": 18,
       "by_class": {
         "lawyer": 2,
+        "other": 15,
         "physician": 1
       },
       "by_street": {
-        "North Water Street": 1,
-        "South Water Street": 2
+        "Canal Street": 2,
+        "Dearborn Street": 3,
+        "Kinzie Street": 1,
+        "Lake Street": 3,
+        "North Water Street": 4,
+        "South Water Street": 4,
+        "West Water Street": 1
       },
       "by_roof": {},
       "ids": [
+        "rcb_brady_barber_surgeon",
+        "rcb_chapin_milliner",
+        "rcb_cobb_milliner",
+        "rcb_crandall_land_agent",
+        "rcb_fairbanks_land_agent",
+        "rcb_goodrich_milliner",
+        "rcb_kellogg_milliner",
         "rcb_mcguire_physician",
+        "rcb_metcalf_land_agent",
+        "rcb_murphy_land_agent",
         "rcb_parmelee_lawyer",
-        "rcb_robillard_lawyer"
+        "rcb_quinn_milliner",
+        "rcb_robillard_lawyer",
+        "rcb_sawyer_dressmaker",
+        "rcb_shea_milliner",
+        "rcb_sullivan_milliner",
+        "rcb_walsh_milliner",
+        "rcb_woodruff_milliner"
       ],
       "proprietors_adopted": [
+        "rc_brady_daniel",
+        "rc_chapin_eliza",
+        "rc_cobb_maria",
+        "rc_crandall_william",
+        "rc_fairbanks_seth",
+        "rc_goodrich_seth",
+        "rc_kellogg_almira",
         "rc_mcguire_john",
+        "rc_metcalf_hiram",
+        "rc_murphy_hugh",
         "rc_parmelee_reuben",
-        "rc_robillard_baptiste"
+        "rc_quinn_honora",
+        "rc_robillard_baptiste",
+        "rc_sawyer_almira",
+        "rc_shea_alice",
+        "rc_sullivan_mary",
+        "rc_walsh_honora",
+        "rc_woodruff_hannah"
       ]
     },
     "stores_and_provisions": {
@@ -323,6 +359,1069 @@
         ],
         "kept_by": "the register",
         "why_not": null
+      }
+    ]
+  },
+  "service_premises": {
+    "_doc": "EVERY SERVICE HEAD ACCOUNTED FOR. The reconstructed trade band's heads at the trades T-1419 names, each either keeping a house of trade or carrying `no_fixed_premises` with the ruling that put it there.",
+    "ticket": "T-1419",
+    "rulings": "data/businesses/rulings/premises_rulings.json",
+    "heads": 78,
+    "owed_a_house": 0,
+    "refusals": [
+      {
+        "asked_for": "a dentist's stand",
+        "refused": true,
+        "why": "THE STAND ALREADY STANDS, AND NOBODY WAS DRAWN TO KEEP A SECOND. The register prints Wm. H. Kennicott, Surgeon Dentist on Lake Street and two further dentists' notices the identity work has not resolved, and T-1404 raised Peter Temple's stand off his own dated role. The resident band drew NO head at `dentist`, so there is nobody here to adopt — and this tool mints no proprietor. A stand raised without a keeper would be a house with nobody in it."
+      },
+      {
+        "asked_for": "a second barber",
+        "refused": false,
+        "why": "RAISED, AND THIS IS THE ARGUMENT. The register prints no barber's house at all, so nothing of this class is attested and nothing is being doubled. What is committed is the PERSON: the trade stage dealt one head at `barber_surgeon` out of the 1839 trade table, and the rulings give that trade a shop. The town's other barber is T-1377's free Black cohort (rcb_fb_barbers_shop), raised on a different argument entirely — a count of people, not a count of trades — so the two do not stand on one reading twice."
+      },
+      {
+        "asked_for": "seamstresses",
+        "refused": true,
+        "why": "THE LAYER CARRIES NONE. `seamstress` is not a term of the resident layer's closed occupation vocabulary and no head stands at it, so there is no person to house or to leave unhoused. The needle trades the layer does carry are `dressmaker` and `milliner`, and both are in the table above. This is a stated zero, not a silence."
+      },
+      {
+        "asked_for": "teachers",
+        "refused": true,
+        "why": "NOT THIS TICKET'S, BY THE TICKET'S OWN WORDS. The December 1835 State census counts seven schools and that bucket is `businesses/school`, which T-1411 owns. `music_teacher` is in the table above and is a different thing — a master who taught in his pupils' parlours keeps no school — and the rulings give it no premises, so its heads are carried in the ledger unhoused."
+      }
+    ],
+    "not_this_ticket": {
+      "_doc": "Reconstructed heads at OTHER premises trades, so the boundary of this ticket is a figure and not a silence.",
+      "ordered_by_the_census_and_the_order_book": {
+        "attorney": {
+          "heads": 4,
+          "keeping a house": 2
+        },
+        "brewer": {
+          "heads": 1,
+          "keeping a house": 1
+        },
+        "druggist": {
+          "heads": 2,
+          "keeping a house": 2
+        },
+        "dry_goods_merchant": {
+          "heads": 7,
+          "keeping a house": 0
+        },
+        "grocer": {
+          "heads": 10,
+          "keeping a house": 0
+        },
+        "hardware_merchant": {
+          "heads": 8,
+          "keeping a house": 0
+        },
+        "merchant": {
+          "heads": 7,
+          "keeping a house": 0
+        },
+        "physician": {
+          "heads": 1,
+          "keeping a house": 1
+        },
+        "watchmaker": {
+          "heads": 1,
+          "keeping a house": 1
+        }
+      },
+      "no_census_line_and_no_ticket_yet": {
+        "auctioneer": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "baker": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "blacksmith": {
+          "heads": 8,
+          "keeping a house": 0
+        },
+        "boarding_house_keeper": {
+          "heads": 38,
+          "keeping a house": 0
+        },
+        "brickmaker": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "builder": {
+          "heads": 9,
+          "keeping a house": 0
+        },
+        "butcher": {
+          "heads": 3,
+          "keeping a house": 0
+        },
+        "carpenter": {
+          "heads": 21,
+          "keeping a house": 0
+        },
+        "carriage_maker": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "confectioner": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "cooper": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "forwarding_and_commission": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "harness_maker": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "hatter": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "liquor_dealer": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "livery_stable_keeper": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "lumber_merchant": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "mason": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "miller": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "painter": {
+          "heads": 2,
+          "keeping a house": 0
+        },
+        "refectory_keeper": {
+          "heads": 3,
+          "keeping a house": 0
+        },
+        "shoemaker": {
+          "heads": 4,
+          "keeping a house": 0
+        },
+        "soap_and_candle_maker": {
+          "heads": 1,
+          "keeping a house": 0
+        },
+        "tailor": {
+          "heads": 7,
+          "keeping a house": 0
+        },
+        "tinsmith": {
+          "heads": 1,
+          "keeping a house": 0
+        }
+      },
+      "note": "A head in the second group is a working person the business layer still holds no workplace for. The December census counts none of these trades, so no bucket can order them and the route is the person side this quota opens; T-1189 staffs the layer and is where the finding is filed."
+    },
+    "rows": [
+      {
+        "person_id": "rc_brady_daniel",
+        "name": "Daniel Brady",
+        "household_id": "hh_rc_brady_daniel",
+        "trade": "barber_surgeon",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_brady_barber_surgeon"
+        ],
+        "why": "The premises ruling gives barber surgeon a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_sheldon_susan",
+        "name": "Susan Sheldon",
+        "household_id": "hh_rc_sheldon_susan",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_donnelly_ellen",
+        "name": "Ellen Donnelly",
+        "household_id": "hh_rc_donnelly_ellen",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_gilbert_almira",
+        "name": "Almira Gilbert",
+        "household_id": "hh_rc_gilbert_almira",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_newell_nancy",
+        "name": "Nancy Newell",
+        "household_id": "hh_rc_newell_nancy",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_walsh_margaret",
+        "name": "Margaret Walsh",
+        "household_id": "hh_rc_walsh_margaret",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_leland_anna",
+        "name": "Anna Leland",
+        "household_id": "hh_rc_leland_anna",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_gilbert_nancy",
+        "name": "Nancy Gilbert",
+        "household_id": "hh_rc_gilbert_nancy",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mccarthy_bridget",
+        "name": "Bridget McCarthy",
+        "household_id": "hh_rc_mccarthy_bridget",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_brady_catherine",
+        "name": "Catherine Brady",
+        "household_id": "hh_rc_brady_catherine",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_carroll_honora",
+        "name": "Honora Carroll",
+        "household_id": "hh_rc_carroll_honora",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_connor_johanna",
+        "name": "Johanna Connor",
+        "household_id": "hh_rc_connor_johanna",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_cobb_abigail",
+        "name": "Abigail Cobb",
+        "household_id": "hh_rc_cobb_abigail",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_kellogg_lucy",
+        "name": "Lucy Kellogg",
+        "household_id": "hh_rc_kellogg_lucy",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_tuttle_phebe",
+        "name": "Phebe Tuttle",
+        "household_id": "hh_rc_tuttle_phebe",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_stebbins_rhoda",
+        "name": "Rhoda Stebbins",
+        "household_id": "hh_rc_stebbins_rhoda",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_goodrich_sophronia",
+        "name": "Sophronia Goodrich",
+        "household_id": "hh_rc_goodrich_sophronia",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_duffy_catherine",
+        "name": "Catherine Duffy",
+        "household_id": "hh_rc_duffy_catherine",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_quinn_johanna",
+        "name": "Johanna Quinn",
+        "household_id": "hh_rc_quinn_johanna",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_parmelee_almira",
+        "name": "Almira Parmelee",
+        "household_id": "hh_rc_parmelee_almira",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_hastings_amanda",
+        "name": "Amanda Hastings",
+        "household_id": "hh_rc_hastings_amanda",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mccarthy_margaret",
+        "name": "Margaret McCarthy",
+        "household_id": "hh_rc_mccarthy_margaret",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_corrigan_honora",
+        "name": "Honora Corrigan",
+        "household_id": "hh_rc_corrigan_honora",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mccarthy_ellen",
+        "name": "Ellen McCarthy",
+        "household_id": "hh_rc_mccarthy_ellen",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_parmelee_sarah",
+        "name": "Sarah Parmelee",
+        "household_id": "hh_rc_parmelee_sarah",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_lynch_catherine",
+        "name": "Catherine Lynch",
+        "household_id": "hh_rc_lynch_catherine",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_quinn_margaret",
+        "name": "Margaret Quinn",
+        "household_id": "hh_rc_quinn_margaret",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_doyle_alice",
+        "name": "Alice Doyle",
+        "household_id": "hh_rc_doyle_alice",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_ryan_margaret",
+        "name": "Margaret Ryan",
+        "household_id": "hh_rc_ryan_margaret",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_stiles_abigail",
+        "name": "Abigail Stiles",
+        "household_id": "hh_rc_stiles_abigail",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_chapin_anna",
+        "name": "Anna Chapin",
+        "household_id": "hh_rc_chapin_anna",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_cavanagh_mary",
+        "name": "Mary Cavanagh",
+        "household_id": "hh_rc_cavanagh_mary",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_eastman_lucy",
+        "name": "Lucy Eastman",
+        "household_id": "hh_rc_eastman_lucy",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_newell_amanda",
+        "name": "Amanda Newell",
+        "household_id": "hh_rc_newell_amanda",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_sheldon_phebe",
+        "name": "Phebe Sheldon",
+        "household_id": "hh_rc_sheldon_phebe",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_hastings_lydia",
+        "name": "Lydia Hastings",
+        "household_id": "hh_rc_hastings_lydia",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_gallagher_mary",
+        "name": "Mary Gallagher",
+        "household_id": "hh_rc_gallagher_mary",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_connor_alice",
+        "name": "Alice Connor",
+        "household_id": "hh_rc_connor_alice",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_dickinson_phebe",
+        "name": "Phebe Dickinson",
+        "household_id": "hh_rc_dickinson_phebe",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_thayer_almira",
+        "name": "Almira Thayer",
+        "household_id": "hh_rc_thayer_almira",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_donnelly_mary",
+        "name": "Mary Donnelly",
+        "household_id": "hh_rc_donnelly_mary",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_tobin_bridget",
+        "name": "Bridget Tobin",
+        "household_id": "hh_rc_tobin_bridget",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_duffy_alice",
+        "name": "Alice Duffy",
+        "household_id": "hh_rc_duffy_alice",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mcguire_ellen",
+        "name": "Ellen McGuire",
+        "household_id": "hh_rc_mcguire_ellen",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_shea_mary",
+        "name": "Mary Shea",
+        "household_id": "hh_rc_shea_mary",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_goodrich_lydia",
+        "name": "Lydia Goodrich",
+        "household_id": "hh_rc_goodrich_lydia",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_quinn_alice",
+        "name": "Alice Quinn",
+        "household_id": "hh_rc_quinn_alice",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_sullivan_ellen",
+        "name": "Ellen Sullivan",
+        "household_id": "hh_rc_sullivan_ellen",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_hale_ruth",
+        "name": "Ruth Hale",
+        "household_id": "hh_rc_hale_ruth",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mcguire_johanna",
+        "name": "Johanna McGuire",
+        "household_id": "hh_rc_mcguire_johanna",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_fitzgerald_bridget",
+        "name": "Bridget Fitzgerald",
+        "household_id": "hh_rc_fitzgerald_bridget",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_mcguire_catherine",
+        "name": "Catherine McGuire",
+        "household_id": "hh_rc_mcguire_catherine",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_kelly_catherine",
+        "name": "Catherine Kelly",
+        "household_id": "hh_rc_kelly_catherine",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_reilly_johanna",
+        "name": "Johanna Reilly",
+        "household_id": "hh_rc_reilly_johanna",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_dickinson_betsey",
+        "name": "Betsey Dickinson",
+        "household_id": "hh_rc_dickinson_betsey",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_duffy_bridget",
+        "name": "Bridget Duffy",
+        "household_id": "hh_rc_duffy_bridget",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_eastman_clarissa",
+        "name": "Clarissa Eastman",
+        "household_id": "hh_rc_eastman_clarissa",
+        "trade": "domestic",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_fisk_phebe",
+        "name": "Phebe Fisk",
+        "household_id": "hh_rc_fisk_phebe",
+        "trade": "domestic",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_nash_eli",
+        "name": "Eli Nash",
+        "household_id": "hh_rc_nash_eli",
+        "trade": "domestic",
+        "division": "north",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Domestic service is given in another household's house. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
+      },
+      {
+        "person_id": "rc_sawyer_almira",
+        "name": "Almira Sawyer",
+        "household_id": "hh_rc_sawyer_almira",
+        "trade": "dressmaker",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_sawyer_dressmaker"
+        ],
+        "why": "The premises ruling gives dressmaker a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_crandall_william",
+        "name": "William Crandall",
+        "household_id": "hh_rc_crandall_william",
+        "trade": "land_agent",
+        "division": "north",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_crandall_land_agent"
+        ],
+        "why": "The premises ruling gives land agent a office of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_fairbanks_seth",
+        "name": "Seth Fairbanks",
+        "household_id": "hh_rc_fairbanks_seth",
+        "trade": "land_agent",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_fairbanks_land_agent"
+        ],
+        "why": "The premises ruling gives land agent a office of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_murphy_hugh",
+        "name": "Hugh Murphy",
+        "household_id": "hh_rc_murphy_hugh",
+        "trade": "land_agent",
+        "division": "west",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_murphy_land_agent"
+        ],
+        "why": "The premises ruling gives land agent a office of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_metcalf_hiram",
+        "name": "Hiram Metcalf",
+        "household_id": "hh_rc_metcalf_hiram",
+        "trade": "land_agent",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_metcalf_land_agent"
+        ],
+        "why": "The premises ruling gives land agent a office of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_gallagher_catherine",
+        "name": "Catherine Gallagher",
+        "household_id": "hh_rc_gallagher_catherine",
+        "trade": "laundress",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Washing was taken in at the laundress's own dwelling or done at her employer's, and T-1419 ruled that neither is a house of trade: the trade keeps no premises of its own and the head is carried unhoused in data/reconstruction/1835_business_reconstruction.json § service_premises."
+      },
+      {
+        "person_id": "rc_walsh_honora",
+        "name": "Honora Walsh",
+        "household_id": "hh_rc_walsh_honora",
+        "trade": "milliner",
+        "division": "north",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_walsh_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_woodruff_hannah",
+        "name": "Hannah Woodruff",
+        "household_id": "hh_rc_woodruff_hannah",
+        "trade": "milliner",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_woodruff_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_sullivan_mary",
+        "name": "Mary Sullivan",
+        "household_id": "hh_rc_sullivan_mary",
+        "trade": "milliner",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_sullivan_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_shea_alice",
+        "name": "Alice Shea",
+        "household_id": "hh_rc_shea_alice",
+        "trade": "milliner",
+        "division": "west",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_shea_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_cobb_maria",
+        "name": "Maria Cobb",
+        "household_id": "hh_rc_cobb_maria",
+        "trade": "milliner",
+        "division": "north",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_cobb_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_kellogg_almira",
+        "name": "Almira Kellogg",
+        "household_id": "hh_rc_kellogg_almira",
+        "trade": "milliner",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_kellogg_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_chapin_eliza",
+        "name": "Eliza Chapin",
+        "household_id": "hh_rc_chapin_eliza",
+        "trade": "milliner",
+        "division": "west",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_chapin_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_quinn_honora",
+        "name": "Honora Quinn",
+        "household_id": "hh_rc_quinn_honora",
+        "trade": "milliner",
+        "division": "south",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_quinn_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_goodrich_seth",
+        "name": "Seth Goodrich",
+        "household_id": "hh_rc_goodrich_seth",
+        "trade": "milliner",
+        "division": "north",
+        "ruling": "own_premises",
+        "outcome": "keeps a house of trade",
+        "businesses": [
+          "rcb_goodrich_milliner"
+        ],
+        "why": "The premises ruling gives milliner a shop of its own, and the house is this programme's."
+      },
+      {
+        "person_id": "rc_parmelee_silas",
+        "name": "Silas Parmelee",
+        "household_id": "hh_rc_parmelee_silas",
+        "trade": "music_teacher",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Taught in the pupil's house or in a room hired for the term. exercised at an establishment the person does not keep."
+      },
+      {
+        "person_id": "rc_newell_seth",
+        "name": "Seth Newell",
+        "household_id": "hh_rc_newell_seth",
+        "trade": "music_teacher",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Taught in the pupil's house or in a room hired for the term. exercised at an establishment the person does not keep."
+      },
+      {
+        "person_id": "rc_gallagher_martin",
+        "name": "Martin Gallagher",
+        "household_id": "hh_rc_gallagher_martin",
+        "trade": "surveyor",
+        "division": "south",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Surveying is done in the field and the plat drawn where the surveyor lodges; no source gives this town a surveyor's office in 1835."
+      },
+      {
+        "person_id": "rc_nichols_eli",
+        "name": "Eli Nichols",
+        "household_id": "hh_rc_nichols_eli",
+        "trade": "surveyor",
+        "division": "west",
+        "ruling": "no_fixed_premises",
+        "outcome": "no_fixed_premises",
+        "businesses": [],
+        "why": "NO PREMISES, BY RULE AND NOT BY OMISSION. Surveying is done in the field and the plat drawn where the surveyor lodges; no source gives this town a surveyor's office in 1835."
       }
     ]
   }
