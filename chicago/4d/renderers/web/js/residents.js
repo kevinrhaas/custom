@@ -1381,8 +1381,66 @@ function workplacesHtml(rows, citationsById) {
 }
 
 
+/**
+ * WHERE A RECONSTRUCTED TRADE WAS FOLLOWED, OR WHY NOWHERE (T-1433, piece 2 of T-1189).
+ *
+ * The row above prints the houses a SOURCE names this person in. This one is the other
+ * half of the town: 524 residents this project reconstructed, each given a trade by the
+ * town model and, until now, nowhere to follow it. `tools/seat_reconstructed_trades_1835.py`
+ * seats the ones the staffing model can seat and states, for every one it cannot, the
+ * reason in the words of the ruling that decided it.
+ *
+ * IT IS A JOIN BESIDE THE LAYER, NOT A FIELD ON THE CARD, and that is not a detail of
+ * plumbing. Two thirds of these people stand on cards a reconstruction STAGE derives
+ * whole and compares byte for byte, so a key appended to one of those cards breaks that
+ * stage's gate rather than adding a field. The seating is loaded the way
+ * `residents/directories.json` is, keyed on person_id, and a load that fails costs this
+ * block and never the card.
+ *
+ * IT IS DRAWN AND IT SAYS SO, EVERY TIME. The chip is the `reconstructed` hatch, the
+ * block carries the seed it was drawn from, and `chosen_by` names which term of the
+ * order rule actually decided the seat — because two of the three terms the rule states
+ * are inert against the layer as it stands, and a card that hid that would be claiming
+ * a precision the data does not have.
+ */
+function employmentHtml(seatingByPerson, personId) {
+  const e = seatingByPerson && seatingByPerson.get(personId);
+  if (!e) return '';
+  const basis = e.basis && e.basis.note ? e.basis.note : '';
+  const drawn = {
+    seated: 'Seated by the staffing model',
+    class_held_no_house: 'No house of this kind has room',
+    keeps_their_own_house: 'Owed a house of their own',
+    no_employer_named: 'No employer can be named',
+    no_ruling: 'No ruling on this trade yet',
+  }[e.kind] || e.kind;
+  const term = {
+    division_match: 'the house stands in their own division',
+    nearest: 'it is the nearest house of the trade to where they live',
+    seeded_draw: 'a seeded draw — no division and no distance separated the candidates',
+  };
+  const how = (e.chosen_by || []).map((t) => term[t] || t).join('; ');
+  return `<dt>Where this reconstructed trade was followed</dt>
+    <dd>${swatch('reconstructed')}${tierWord('reconstructed')}<span class="res-chip res-research">${
+  escapeHtml(drawn)}</span>
+      ${e.business_id ? `<br><b>${escapeHtml(e.business_name || e.business_id)}</b>${
+        e.role ? `<span class="res-role">${escapeHtml(words(e.role))}</span>` : ''}` : ''}
+      ${how ? `<br><span class="res-why">Chosen because ${escapeHtml(how)}${
+        e.candidates_considered ? ` — ${e.candidates_considered} house${
+          e.candidates_considered === 1 ? '' : 's'} of the trade were open to them` : ''}.</span>` : ''}
+      ${basis ? `<br><span class="res-why">${escapeHtml(basis)}</span>` : ''}
+      ${e.replaceable_by && e.replaceable_by.match
+    ? `<br><span class="res-why">Withdrawn by ${escapeHtml(e.replaceable_by.match)}.</span>` : ''}
+      <br><span class="res-why">Drawn, not read. No source places this person at work
+        anywhere; the seat is a pointer at a house the business layer already holds,
+        reproducible from the seed <code>${escapeHtml(e.seed || '')}</code>. Nothing is
+        written onto the house itself until the staffing shortfall is minted.</span></dd>`;
+}
+
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
-  directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
+  directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null,
+  seatingByPerson = new Map()) {
   const occ = person.occupation || {};
   // The roles are the record and `occupation` is the view of them that covers the
   // scene date (T-1255): the summary says how many there are so a card with a
@@ -1436,6 +1494,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${rolesHtml(roles, citationsById)}
       ${workplacesHtml(person.workplaces, citationsById)}
+      ${employmentHtml(seatingByPerson, person.id)}
       ${associationsHtml(person.associated_with, citationsById,
         'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
@@ -1551,7 +1610,7 @@ function modelledFamilyHtml(block) {
 }
 
 export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
-  agencies = null, withheldByPerson = new Map()) {
+  agencies = null, withheldByPerson = new Map(), seatingByPerson = new Map()) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -1592,7 +1651,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
     ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
     <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules,
-      withheldByPerson, hh.old_settler_deaths)).join('')}</div>`;
+      withheldByPerson, hh.old_settler_deaths, seatingByPerson)).join('')}</div>`;
 }
 
 /**
@@ -1809,6 +1868,20 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
   // later trade and street and cites the volume, and this layer carries the printed
   // lines, the match rule and the arithmetic the card has no room for. Its absence
   // costs the section this block and nothing else.
+  // T-1433. WHERE A RECONSTRUCTED TRADE WAS FOLLOWED — the seats and the stated
+  // absences `tools/seat_reconstructed_trades_1835.py` draws for the 524 residents this
+  // project reconstructed with a trade and no attested workplace. Beside the layer and
+  // not on the cards, because two thirds of those cards are the byte-compared output of
+  // a reconstruction stage. Its own loader, degrading like every other join here: a miss
+  // costs the block on a card and never the card.
+  const seatingByPerson = new Map();
+  try {
+    const seating = await getJson('residents/reconstructed_seating.json');
+    for (const row of seating.rows || []) seatingByPerson.set(row.person_id, row);
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the reconstructed trade seatings are not shown`);
+  }
+
   const directoryByPerson = new Map();
   let directoryCounts = {};
   let directoryVolumes = [];
@@ -1933,7 +2006,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules, agencies, withheldByPerson);
+          vocab.ladder_rules, agencies, withheldByPerson, seatingByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
