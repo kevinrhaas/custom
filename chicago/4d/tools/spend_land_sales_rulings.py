@@ -66,7 +66,7 @@ HANDED_ON = (
     " T-1172 HAS NOW SPENT IT (2026-09-18): the name is re-admitted to the town at "
     "the reconstructed tier, under its own read name, in "
     "data/reconstruction/1835_readmissions.json — and that settles nothing about "
-    "the evidence, which is why this unit stays `unresolved`. " + "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then.")
+    "the evidence, which is why this unit stays `unresolved`. " + "The hand-off moved to T-1179, and T-1179 WAS SPLIT on 2026-09-19 into T-1392, T-1393 and T-1394, so on the same rule it moves again — to T-1394, the closeout that makes the rebuild order a fixed point over every reader of the layer, which is where a re-admission is finally reconciled against the index, the sidecars and the town census; the re-admission's own `withdrawn_if` clause is what retires it before then. T-1394 HAS NOW SPENT IT IN TURN (2026-09-20): its three children T-1398, T-1399 and T-1400 made the rebuild order a fixed point, wrote one liberty entry per stage and put the minting stage on the People view's own filter, so the RECONCILIATION this hand-off waited on is done — and the unit is still `unresolved`, because what was reconciled was the layer and what is unsettled is the EVIDENCE. A closeout that has closed cannot own an open question, so the hand-off moves once more, to T-1423, which owns exactly that remainder and nothing else.")
 
 RULES = {
     "the_purchaser_is_a_corporate_body": {
@@ -135,7 +135,7 @@ RULES = {
         # T-1179 was SPLIT on 2026-09-19 (T-1392/T-1393/T-1394), and a split ticket is
         # not open, so the ledger's invariant refused it and the PR lap stopped pushing.
         # T-1394 is the open heir that reconciles a re-admission against the layer.
-        "ticket": "T-1394",
+        "ticket": "T-1423",
         "statement": (
             "The tract was entered on or before 1 July 1835, the register's Residence "
             "column reads COOK, and no upheld crosswalk join puts this purchaser on a card "
