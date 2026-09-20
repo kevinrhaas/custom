@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Eleven buildings standing in the street, and nothing able to see them', kind: 'fix', ts: '',
+  { v: 1010, title: 'Eleven buildings standing in the street, and nothing able to see them', kind: 'fix', ts: '2026-09-20T08:28:13.781Z', date: 'Sep 20, 2026, 3:28 AM CT',
     items: [
       'North of the river this town had no streets \u2014 not on the ground, where the ribbons draw fine, but in the one place it matters for a building: the rule that says a roof may not stand in a roadway. Ask it about Lake Street and it answers. Ask it about Kinzie Street and it had nothing to say at all, and had never had.',
       'The reason is a single pair of lists. One of them decided two different things at once: which streets a city BLOCK may be cut between, and which streets a BUILDING may be reported standing in. The north bank could not have the first \u2014 the 1830 plat draws one of its seven blocks straight across a slough \u2014 and was therefore denied the second.',
