@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Jefferson and Des Plaines Streets, refused for fifteen days, are drawn', kind: 'feature', ts: '',
+  { v: 1012, title: 'Jefferson and Des Plaines Streets, refused for fifteen days, are drawn', kind: 'feature', ts: '2026-09-20T09:01:54.720Z', date: 'Sep 20, 2026, 4:01 AM CT',
     items: [
       'The Thompson plat rules five north-south streets through the West Division \u2014 West Water, Canal, Clinton, Jefferson, Des Plaines \u2014 and until today this town drew three of them. The last two were not missing by oversight. They were refused in writing, with the number that refused them: both lay entirely west of where the modelled ground stopped, 320 metres out from the forks, and a street drawn over the end of the terrain is a line hanging in the air.',
       'That refusal named what would reverse it, and said plainly it was not more research: when the box moves, both lines are seatable from control already in this repository. The box moved last night, out to 705 metres. Nothing new was read to place either street.',
