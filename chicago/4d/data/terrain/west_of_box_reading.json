@@ -6,7 +6,7 @@
  "scene": "1835",
  "box_local_enu_m": {
   "e": [
-   -320,
+   -705,
    1700
   ],
   "n": [
@@ -18,7 +18,7 @@
  "step_up_m": 0.35,
  "wall": {
   "_doc": "The three tests every wall of this box stands on, run against the west one. `derived_e_m` is computed here and not adopted: move a placement and it moves.",
-  "current_e_m": -320,
+  "current_e_m": -705,
   "asked_for_e_m": -700,
   "derived_e_m": -705,
   "contains": {
@@ -40,7 +40,7 @@
   },
   "lattice": {
    "cell_m": 2.5,
-   "columns_added": 154,
+   "columns_added": 0,
    "lands_on_lattice": true,
    "no_committed_sample_moves": true
   }
@@ -48,12 +48,12 @@
  "field_cost": {
   "_doc": "Stated because T-1067 filed the northern wall's cost as a separate piece of work, and the same figure decides whether T-1416 is one run.",
   "rows": 1969,
-  "cols_now": 809,
+  "cols_now": 963,
   "cols_then": 963,
-  "samples_now": 1592921,
+  "samples_now": 1896147,
   "samples_then": 1896147,
-  "growth_fraction": 0.1904,
-  "heightfield_bin_bytes_now": 3185842,
+  "growth_fraction": 0,
+  "heightfield_bin_bytes_now": 3792294,
   "heightfield_bin_bytes_then": 3792294
  },
  "held_slots": {
@@ -92,61 +92,8 @@
  "streets": {
   "_doc": "Three populations, never added together: records the present wall CUT, records the move brings onto modelled ground, and records that stand off the derived wall even after the move. The last are platted, unopened lines — `streets.js` compiles no ribbon for a record with track_width_m 0, so they draw nothing.",
   "in_layer": 77,
-  "clipped_at_the_present_wall": [
-   {
-    "id": "carroll",
-    "name_1835": "Carroll Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   },
-   {
-    "id": "fulton",
-    "name_1835": "Fulton Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   },
-   {
-    "id": "kinzie",
-    "name_1835": "Kinzie Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   },
-   {
-    "id": "lake",
-    "name_1835": "Lake Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   },
-   {
-    "id": "randolph",
-    "name_1835": "Randolph Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   },
-   {
-    "id": "washington",
-    "name_1835": "Washington Street",
-    "population": "drawn",
-    "west_end_e_m": -320
-   }
-  ],
-  "brought_onto_the_ground_by_the_move": [
-   {
-    "id": "school_section_line_1",
-    "population": "platted_only",
-    "west_end_e_m": -647.07
-   },
-   {
-    "id": "des_plaines_school_section",
-    "population": "platted_only",
-    "west_end_e_m": -506.45
-   },
-   {
-    "id": "jefferson_school_section",
-    "population": "platted_only",
-    "west_end_e_m": -379.98
-   }
-  ],
+  "clipped_at_the_present_wall": [],
+  "brought_onto_the_ground_by_the_move": [],
   "still_west_of_the_derived_wall": {
    "drawn": [],
    "platted_only": [
@@ -284,7 +231,7 @@
     "inside_the_derived_wall": true,
     "north_end_e_m": -481.31,
     "north_end_n_m": 1079.21,
-    "terminus_brought_inside_by_the_move": true
+    "terminus_brought_inside_by_the_move": false
    },
    {
     "file": "branches.geojson",
@@ -294,7 +241,7 @@
     "inside_the_derived_wall": true,
     "north_end_e_m": -486.87,
     "north_end_n_m": 1075.48,
-    "terminus_brought_inside_by_the_move": true
+    "terminus_brought_inside_by_the_move": false
    },
    {
     "file": "branches.geojson",
@@ -304,7 +251,7 @@
     "inside_the_derived_wall": true,
     "north_end_e_m": -441.48,
     "north_end_n_m": 1076.41,
-    "terminus_brought_inside_by_the_move": true
+    "terminus_brought_inside_by_the_move": false
    },
    {
     "file": "river.geojson",
@@ -427,21 +374,17 @@
     "terminus_brought_inside_by_the_move": false
    }
   ],
-  "termini_brought_inside_by_the_move": [
-   "Chicago River, North Branch — the forks to the north line of Wright's survey",
-   "West bank of the North Branch: Wabansia's river front — the water lots of Kain's and Hight's subdivision and the blocks west of them",
-   "East bank of the North Branch: the unplatted ground east of the river, between Kinzie's Addition and the north line of the survey"
-  ]
+  "termini_brought_inside_by_the_move": []
  },
  "west_wall_scarp": {
   "_doc": "The e_min wall walked at the terrain cell. `one_way_m` is perimeter where the modelled ground stands more than the walker's step-up above the constant outside it: a visitor may walk out and may not walk back.",
   "length_m": 4920,
-  "one_way_m": 4797.5,
-  "one_way_fraction": 0.9751,
-  "walkable_both_ways_m": 10,
-  "refuses_the_way_out_m": 112.5,
-  "step_down_max_m": 1.325,
-  "step_down_min_m": -2.187,
-  "step_down_mean_m": 1.211
+  "one_way_m": 4920,
+  "one_way_fraction": 1,
+  "walkable_both_ways_m": 0,
+  "refuses_the_way_out_m": 0,
+  "step_down_max_m": 1.33,
+  "step_down_min_m": 1.205,
+  "step_down_mean_m": 1.303
  }
 }

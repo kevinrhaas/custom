@@ -1,7 +1,7 @@
 ---
 id: T-1416
 title: Regenerate the field to the west wall: heightfield, collision surface and water mask out to the new easting, the North Branch's banks carried through it, the evidence limit's west line written and every vertex beyond it conjectural — baked, with the ground readings re-measured
-state: open
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: T-1193
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-20
+pr: 1553
+claimed_by: run 9/20/2026, 12:04:18 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T06:37:29.720Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35490535603
 ---
 
 Regenerate the field to the west wall: heightfield, collision surface and water mask out to the new easting, the North Branch's banks carried through it, the evidence limit's west line written and every vertex beyond it conjectural — baked, with the ground readings re-measured.
