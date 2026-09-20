@@ -258,6 +258,7 @@ TRADE_QUOTA = {
             },
             "barber_surgeon": {
                 "house": "barbers_shop",
+                "label": "barber's shop",
                 "type": "other",
                 "trade": "barber's shop",
                 "occupation": "barber_surgeon",
@@ -1345,10 +1346,17 @@ def trade_style(house, head, seed):
                          % (form_basis, goods_basis))
 
 
+def house_label(row, house):
+    """What a house of trade is CALLED in prose. The key is an identifier and reads like
+    one — `barbers_shop` unsplits to "barbers shop" — so a row may carry its own words."""
+    return row.get("label") or house.replace("_", " ")
+
+
 def record_for_trade(group, bucket, head, ordinal, communities, streets):
     spec = TRADE_QUOTA[group]
     row = spec["trades"][bucket["trade"]]
     house = bucket["axes"]["class"]
+    label = house_label(row, house)
     slot = "%s:%s:%03d" % (group, bucket["key"], ordinal)
     name, goods, style_basis = trade_style(house, head, slot)
     _, surname = initials(head["name"])
@@ -1401,7 +1409,7 @@ def record_for_trade(group, bucket, head, ordinal, communities, streets):
                 "in `reconstruction.seed` from the faces that rule allows, and no lot, roof "
                 "or coordinate is claimed. T-1195 writes the placement policy with its "
                 "evidence and T-1199 seats this house on the lot grid."
-                % (house.replace("_", " "), head["division"], streets.get(face, face))),
+                % (label, head["division"], streets.get(face, face))),
             "limit_reason": (
                 "No source places this house, because no source names it: it exists because "
                 "the resident band drew a %s the town was short of, and the trade names the "
@@ -1432,7 +1440,7 @@ def record_for_trade(group, bucket, head, ordinal, communities, streets):
         "replaceable_by": (
             "A register, directory or deed naming a real %s in the %s division in 1835 — "
             "that house takes this slot and this record is withdrawn with the head."
-            % (house.replace("_", " "), head["division"])),
+            % (label, head["division"])),
         "reconstruction": {
             "programme": PROGRAMME,
             "group": group,
@@ -1450,7 +1458,7 @@ def record_for_trade(group, bucket, head, ordinal, communities, streets):
                          "resident band drew %s at %s because the 1839 trade table says the "
                          "town was short of the trade, and %s. The house is withdrawn with "
                          "the head."
-                         % (house.replace("_", " "), head["name"],
+                         % (label, head["name"],
                             head["trade"].replace("_", " "), row["basis"])),
             },
             "seed": slot,

@@ -38,7 +38,7 @@
       "from": null,
       "to": null,
       "tier": "reconstructed",
-      "basis": "A FACE, NOT A PREMISES. The placement rule for a barbers shop kept by a south-division household deals this house onto Dearborn Street; the face is drawn on the seed printed in `reconstruction.seed` from the faces that rule allows, and no lot, roof or coordinate is claimed. T-1195 writes the placement policy with its evidence and T-1199 seats this house on the lot grid.",
+      "basis": "A FACE, NOT A PREMISES. The placement rule for a barber's shop kept by a south-division household deals this house onto Dearborn Street; the face is drawn on the seed printed in `reconstruction.seed` from the faces that rule allows, and no lot, roof or coordinate is claimed. T-1195 writes the placement policy with its evidence and T-1199 seats this house on the lot grid.",
       "limit_reason": "No source places this house, because no source names it: it exists because the resident band drew a barber surgeon the town was short of, and the trade names the house he keeps. The street is the reconstruction's own deal and stops there."
     }
   ],
@@ -76,7 +76,7 @@
     "backdating_required": false
   },
   "review_required": false,
-  "replaceable_by": "A register, directory or deed naming a real barbers shop in the south division in 1835 — that house takes this slot and this record is withdrawn with the head.",
+  "replaceable_by": "A register, directory or deed naming a real barber's shop in the south division in 1835 — that house takes this slot and this record is withdrawn with the head.",
   "reconstruction": {
     "programme": "chicago_1835_business_reconstruction",
     "group": "professions_and_services",
@@ -86,7 +86,7 @@
       "household_id": "hh_rc_brady_daniel",
       "trade": "barber_surgeon",
       "head_slot": "trade_households:persons/male/20_29/south/family/trade:barber_surgeon:004",
-      "note": "A TRADE HEAD, NOT A SHORTFALL AND NOT A ROOF. The December 1835 State census's eighteen lines never reach this class, so the order book holds no bucket to point at and no count of it can be short; and nothing in data/structures/ is a barbers shop, so there is no committed building to buy the firm either. What IS committed is the man: the resident band drew Daniel Brady at barber surgeon because the 1839 trade table says the town was short of the trade, and a barber keeps a shop front — PUBLIC_TRADES `shop` of the signage rule — and this project already stands one of them, rcb_fb_barbers_shop, on T-1377's documented floor of the town's free Black residents; that floor is an argument about PEOPLE and it orders no second shop, so the second shop is bought by the head or not at all. The house is withdrawn with the head."
+      "note": "A TRADE HEAD, NOT A SHORTFALL AND NOT A ROOF. The December 1835 State census's eighteen lines never reach this class, so the order book holds no bucket to point at and no count of it can be short; and nothing in data/structures/ is a barber's shop, so there is no committed building to buy the firm either. What IS committed is the man: the resident band drew Daniel Brady at barber surgeon because the 1839 trade table says the town was short of the trade, and a barber keeps a shop front — PUBLIC_TRADES `shop` of the signage rule — and this project already stands one of them, rcb_fb_barbers_shop, on T-1377's documented floor of the town's free Black residents; that floor is an argument about PEOPLE and it orders no second shop, so the second shop is bought by the head or not at all. The house is withdrawn with the head."
     },
     "seed": "professions_and_services:trade/barbers_shop/south:001",
     "basis": {
