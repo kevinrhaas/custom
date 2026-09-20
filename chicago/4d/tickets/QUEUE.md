@@ -55,7 +55,6 @@
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1419 — The services: land agents and surveyors, a barber and a dentist's stand, teachers, and the female service trades as businesses where a woman kept a shop and no_fixed_premises employments where she did not
-T-1432 — The attested and inferred half of the staffing join: one tool writes staff[] on every business a source names a hand for and works_at[] on every person the business layer already ties to a workplace, at their own tiers and sources, and the person card prints where they worked
 T-1433 — Seat the reconstructed residents who have a trade and no workplace: each at a business of their trade in their division, nearest first and seeded, and the no-fixed-premises trades given their implied employer or a casual entry with its reason
 T-1434 — Mint the staffing shortfall to the model's typical band and close the join: new reconstructed staff where a business is still short, every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count

@@ -1,7 +1,7 @@
 ---
 id: T-1432
 title: The attested and inferred half of the staffing join: one tool writes staff[] on every business a source names a hand for and works_at[] on every person the business layer already ties to a workplace, at their own tiers and sources, and the person card prints where they worked
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1189
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1559
 claimed_by: run 9/20/2026, 3:23:17 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T09:39:36.567Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35499137151
 ---
 
