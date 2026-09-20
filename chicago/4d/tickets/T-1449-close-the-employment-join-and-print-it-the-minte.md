@@ -1,7 +1,7 @@
 ---
 id: T-1449
 title: Close the employment join and print it: the minted hands on the businesses' staff[] and the cards' workplaces[], every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1434
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 10:22:21 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35519205347
 ---
 
 Close the employment join and print it: the minted hands on the businesses' staff[] and the cards' workplaces[], every working-age person a workplace or an explicit not_employed reason, the order book's employment buckets filled and the business card printing its people.
