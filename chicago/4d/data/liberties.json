@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 264,
+  "count": 266,
   "liberties": [
     {
       "id": "L1",
@@ -15520,6 +15520,75 @@
         {
           "label": "Related",
           "text": "**L260** (the fourth form itself), **L259** (this group's counted half), **L255** (the documented floor the barber's shop is measured against), **L257**, **L254**; the tickets **T-1419**, **T-1186** (the parent), **T-1404** (the premises rulings), **T-1424**, **T-1189** (their staff) and **T-1199** (their seats)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-20."
+        }
+      ]
+    },
+    {
+      "id": "L263",
+      "title": "The shingle exposure is set at 0.14 m, which gives every shingled roof in this town its rhythm from a period stock and not from a source",
+      "section": "per_subject",
+      "subjects": [
+        "north_side_school_1833"
+      ],
+      "covers": [],
+      "scope": {
+        "enumeration": "structures.phases[roof_type_stated]",
+        "count": 364
+      },
+      "recorded": "2026-09-20",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`structures.phases[roof_type_stated]` — 364 phases. Every phase that states a roof type takes this exposure the moment the `roof_plane` substrate carries a tile, which is why the population is counted here rather than described. No record's `roof_type` or pitch moves: this entry is about the SURFACE drawn on a roof already argued elsewhere."
+        },
+        {
+          "label": "Decision",
+          "text": "the shingle exposure is committed at **0.14 m**, and with it the 4.48 m roof tile (32 exposures to the tile, holding 228.6 px per m at 1024²). Taken on the owner's ruling of 2026-09-20, which is the authority `docs/RESEARCH/materials.md` §2.2 asks for by name. **What is and is not being claimed, because they are easy to run together.** The COVERING is not this liberty. materials.md §2.2 records the one direct attestation in the repository — the North Side school of 1833, *\"a frame building twenty-six by thirty-eight feet; twelve-foot posts; sheeted and shingled roof\"* (`docs/RESEARCH/north_side_school_1833.md`) — and grades a shingled covering **attested** for that building and **inferred** as the ordinary covering of a framed building here. The board roof is separately argued: `outbuilding.py` says in terms that *\"a shingle field on an outbuilding would be claiming a finish\"*, and §2.2 grades `roof_board` inferred and well argued. What has never had a source is the **exposure** — how much of each shingle the weather sees — and therefore the roof's tiling rate. §2.2 states the open question and the two ways out: *\"Pick the exposure from a source or record a liberty — do not pick it to make the arithmetic land.\"* This is the second of those, taken deliberately. **Why 0.14 m and not another number.** It is a period stock for riven shingles, and it is the same 0.14 m this project already committed as the clapboard exposure since T-0049 — so the town's two lapped surfaces are dealt from one number rather than two guesses. It is also the figure materials.md itself works the arithmetic against, which means this entry commits the number the research already reasoned with instead of introducing a third. The supplied library's own note concedes the point without being asked: the exposure is *\"a declared reconstruction outside the attested North Side school.\"*"
+        },
+        {
+          "label": "What would discharge it",
+          "text": "a source giving a shingle exposure, a shingle length, or a course count on any Chicago roof of the period. The number is one constant in one substrate row; nothing else has to move when it arrives."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-20."
+        }
+      ]
+    },
+    {
+      "id": "L264",
+      "title": "The brick course is set from a period common brick, because the rhythm of a brick wall cannot be drawn without one and this project holds no Chicago brick",
+      "section": "per_subject",
+      "subjects": [
+        "chicago_lighthouse_1832",
+        "fort_dearborn_commandants_quarters",
+        "fort_dearborn_magazine",
+        "lake_house_construction"
+      ],
+      "covers": [],
+      "scope": {
+        "enumeration": "structures.records[brick_fabric]",
+        "count": 3
+      },
+      "recorded": "2026-09-20",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Scope",
+          "text": "`structures.records[brick_fabric]` — 3 structures. The `brick` substrate in `generators/common/materials.py` has carried `tile_m = None` since T-0007, and these are the records that take a course the moment it carries one: `fort_dearborn_commandants_quarters`, `fort_dearborn_magazine` and `lake_house_construction`. **materials.md says \"two records are attested brick\" and the layer holds three** — the magazine is the one the sentence forgot, which is exactly why this scope counts the population instead of restating the memo. The brick chimneys (materials.md §4, finding 1) ride the same substrate."
+        },
+        {
+          "label": "Decision",
+          "text": "the brick course is committed at **70 mm** and the brick length at **213 mm**, from a period US common brick of 8 × 4 × 2¼ in (203 × 102 × 57 mm) with a ⅜ in (10 mm) mortar joint, laid in half-brick stagger. At the library's 4.20 m span that is **60 courses and 20 bricks to the row**. Taken on the owner's ruling of 2026-09-20. **What is attested and what is not.** That these two buildings were brick is attested; materials.md grades it so. What no source in this repository gives is a brick or a course DIMENSION, which is why §3.2 leaves brick and stone unsized and says: *\"Their rhythm is a brick dimension... leave untiled or record the liberty; do not quietly pick a modern brick.\"* A brick wall cannot be drawn at all without a course, so the choice was between an untextured brick surface and a recorded one. This is the recorded one. **The supplied map runs its courses tall, and is regenerated rather than adopted.** The library ships brick at 48 rows to a 4.20 m span, which is an 87.5 mm course and implies a brick 78 mm — just over 3 in — tall. Its brick LENGTH is right: 20 to the row is 210 mm, within 3 mm of an 8 in brick with its joint. So the length is kept and the course corrected to 60 rows, which is the dimension argued above. **The number is not chosen to make the arithmetic land** — 4.20 m ÷ 60 is 70.0 mm exactly, and that is a coincidence of the span, not the reason. The generator ships with the library and is deterministic, so this is a re-derivation at `rows=60` and not a repaint. **STONE IS NOT COVERED BY THIS ENTRY AND STAYS UNSIZED.** §3.2 pairs brick and stone, and the owner's ruling named brick. `chicago_lighthouse_1832` is the one stone record and its own note says bare masonry is unattested and whitewash the commoner Great Lakes finish — so the question there is a finish before it is a rhythm. `stone` keeps `tile_m = None` and the `limestone_rubble_lime_mortar` map stays unbound until someone rules on it."
+        },
+        {
+          "label": "What would discharge it",
+          "text": "a measured brick from a Chicago building of the period, or a documentary brick size from the yards that supplied the town."
         },
         {
           "label": "Recorded",
