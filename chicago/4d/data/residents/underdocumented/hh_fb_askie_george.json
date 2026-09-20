@@ -91,33 +91,6 @@
     },
     "note": "DEALT, NOT READ. The trade is dealt round the seven this stage carries, in the order the slot falls, so it is reproducible from the seed above and from nothing else. No source gives this person a trade and none gives any Black person at Chicago one before 1840."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "sawyer",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "unplaced",
-    "business_id": "biz_uncertain_noble_wesencaft",
-    "business_name": "[uncertain: Noble & Wesencaft]",
-    "role": "sawyer",
-    "tier": "reconstructed",
-    "seed": "rc_fb_askie_george:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "mill",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#mill.sawyer",
-     "note": "The staffing model puts 2 of this role in a mill at the typical band and 3 at the high end, on directory_1839. 6 sawyers and 7 millers in 1839; a steam saw-mill is a gang and not a man. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 2
-   },
    "name_basis": {
     "value": "George Askie",
     "confidence": "reconstructed",

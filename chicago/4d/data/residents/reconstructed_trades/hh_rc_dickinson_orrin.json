@@ -95,33 +95,6 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "clerk",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "south",
-    "business_id": "biz_philo_carpenter",
-    "business_name": "Philo Carpenter",
-    "role": "clerk",
-    "tier": "reconstructed",
-    "seed": "rc_dickinson_orrin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "drug_store",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#drug_store.clerk",
-     "note": "The staffing model puts 1 of this role in a drug store at the typical band and 1 at the high end, on directory_1839. 13 druggists in 1839 and the commerce clerk share over them. The druggist's clerk is often reading medicine, which is why he boards in the house. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 84
-   },
    "name_basis": {
     "value": "Orrin Dickinson",
     "confidence": "reconstructed",

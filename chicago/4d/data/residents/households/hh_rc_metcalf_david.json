@@ -149,30 +149,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "keeps_their_own_house",
-    "trade": "sutler",
-    "premises": "own_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_metcalf_david:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "classes": [],
-    "basis": {
-     "kind": "rule",
-     "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
-     "note": "The premises ruling: a counter open to the street — PUBLIC_TRADES `store` of the signage rule. The staffing model employs this trade in no class of house either, so there is not even somebody else's counter to stand behind. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "David Metcalf",
     "confidence": "reconstructed",

@@ -95,33 +95,6 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "tinsmith",
-    "premises": "own_premises",
-    "division_of_the_person": "south",
-    "business_id": "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835",
-    "business_name": "a Chicago stove and hollow ware dealer, August 1835",
-    "role": "tinsmith",
-    "tier": "reconstructed",
-    "seed": "rc_sheldon_william:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "hardware_or_stove_store",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#hardware_or_stove_store.tinsmith",
-     "note": "The staffing model puts 0 of this role in a hardware or stove store at the typical band and 1 at the high end, on period_convention. A stove dealer who fits and repairs keeps a tinner. Analogue: the town's own tin and copper manufactories, which the census counts separately. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 13
-   },
    "name_basis": {
     "value": "William Sheldon",
     "confidence": "reconstructed",

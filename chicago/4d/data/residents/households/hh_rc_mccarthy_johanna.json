@@ -133,33 +133,6 @@
     },
     "note": "DRAWN FROM AN ASSUMPTION THIS PROJECT STATES RATHER THAN A ROW IT READ. The occupation model counts the December 1835 State census's establishments and the 1840 schedule's seven employment columns, and NEITHER counts a woman's work — so there is no female-trade row to draw from. The weights are the programme's own, written where a reader can argue with them and entered in docs/LIBERTIES.md. The term is the residents vocabulary's."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "schoolteacher",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "south",
-    "business_id": "biz_j_a_marshall_s_dancing_school",
-    "business_name": "J. A. Marshall's dancing school",
-    "role": "schoolteacher",
-    "tier": "reconstructed",
-    "seed": "rc_mccarthy_johanna:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "school",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#school.schoolteacher",
-     "note": "The staffing model puts 0 of this role in a school at the typical band and 1 at the high end, on period_convention. An assistant, at the larger schools only; the town's schools of 1835 are one room and one teacher. Analogue: the 1839 list's 13 schoolteachers. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 2
-   },
    "name_basis": {
     "value": "Johanna McCarthy",
     "confidence": "reconstructed",

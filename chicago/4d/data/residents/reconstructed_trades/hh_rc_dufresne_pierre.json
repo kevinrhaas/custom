@@ -95,33 +95,6 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "shoemaker",
-    "premises": "own_premises",
-    "division_of_the_person": "south",
-    "business_id": "biz_wm_h_taylor",
-    "business_name": "Wm. H. Taylor",
-    "role": "shoemaker",
-    "tier": "reconstructed",
-    "seed": "rc_dufresne_pierre:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "shoemaker_shop",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#shoemaker_shop.shoemaker",
-     "note": "The staffing model puts 1 of this role in a boot and shoe shop at the typical band and 1 at the high end, on directory_1839. 27 shoemakers in 1839 against 8 shops here. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 16
-   },
    "name_basis": {
     "value": "Pierre Dufresne",
     "confidence": "reconstructed",

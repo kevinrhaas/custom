@@ -95,33 +95,6 @@
     },
     "note": "NO ROLE ROW. `roles[]` is the canonical record of a trade and its generator reads the research mints' directory, which this one is deliberately outside of; the convergence stage (T-1179) is where these cards join that tree. Nothing about this trade is dated."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "labourer",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "north",
-    "business_id": "biz_john_bates_jr",
-    "business_name": "John Bates, Jr.",
-    "role": "labourer",
-    "tier": "reconstructed",
-    "seed": "rc_flynn_owen:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "auction_and_commission_room",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#auction_and_commission_room.labourer",
-     "note": "The staffing model puts 0 of this role in an auction and commission room at the typical band and 1 at the high end, on period_convention. A porter on sale days. Analogue: the stores above. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 68
-   },
    "name_basis": {
     "value": "Owen Flynn",
     "confidence": "reconstructed",

@@ -133,33 +133,6 @@
     },
     "note": "DRAWN FROM AN ASSUMPTION THIS PROJECT STATES RATHER THAN A ROW IT READ. The occupation model counts the December 1835 State census's establishments and the 1840 schedule's seven employment columns, and NEITHER counts a woman's work — so there is no female-trade row to draw from. The weights are the programme's own, written where a reader can argue with them and entered in docs/LIBERTIES.md. The term is the residents vocabulary's."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "domestic",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "west",
-    "business_id": "biz_e_wentworth_s_tavern_on_flag_creek",
-    "business_name": "E. Wentworth's tavern on Flag Creek",
-    "role": "domestic",
-    "tier": "reconstructed",
-    "seed": "rc_barnes_susan:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "tavern_or_hotel",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#tavern_or_hotel.domestic",
-     "note": "The staffing model puts 1 of this role in a tavern or hotel at the typical band and 2 at the high end, on period_convention. Chambermaids, by the number of beds. Analogue: the lodging model's per-place capacities, which this row does not itself read. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 15
-   },
    "name_basis": {
     "value": "Susan Barnes",
     "confidence": "reconstructed",

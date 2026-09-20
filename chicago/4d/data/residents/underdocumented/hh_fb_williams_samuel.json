@@ -91,33 +91,6 @@
     },
     "note": "DEALT, NOT READ. The trade is dealt round the seven this stage carries, in the order the slot falls, so it is reproducible from the seed above and from nothing else. No source gives this person a trade and none gives any Black person at Chicago one before 1840."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "labourer",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "unplaced",
-    "business_id": "biz_peter_cohen",
-    "business_name": "Peter Cohen",
-    "role": "labourer",
-    "tier": "reconstructed",
-    "seed": "rc_fb_williams_samuel:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "dry_goods_store",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#dry_goods_store.labourer",
-     "note": "The staffing model puts 0 of this role in a dry-goods store at the typical band and 1 at the high end, on period_convention. A porter to shift goods, at the larger houses only. Analogue: the 1839 list's seven porters, counted under labourer, against 151 commerce principals. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "seeded_draw"
-    ],
-    "candidates_considered": 70
-   },
    "name_basis": {
     "value": "Samuel Williams",
     "confidence": "reconstructed",

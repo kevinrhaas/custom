@@ -14,12 +14,25 @@ model and not one of them given anywhere to follow it. A card that says `carpent
 and nothing else is a trade with no town attached to it, and 524 of them is most of
 the working population of the reconstructed town.
 
-WHAT IT WRITES, AND WHAT IT REFUSES TO WRITE. One block, `persons[].employment`, on
-every reconstructed trade-holder who has no `workplaces`. It mints NOBODY, raises no
-business, and moves no person: the seat is a POINTER from a card the layer already
-holds to a house the layer already holds, drawn by a stated rule and reproducible from
-the seed it carries. Where no house can be pointed at, the block says that instead,
-in the words of the ruling that decided it — a stated absence, never a blank.
+WHAT IT WRITES, AND WHAT IT REFUSES TO WRITE. One derived file,
+`data/residents/reconstructed_seating.json`, holding one block per reconstructed
+trade-holder who has no `workplaces`. It mints NOBODY, raises no business, and moves no
+person: the seat is a POINTER from a card the layer already holds to a house the layer
+already holds, drawn by a stated rule and reproducible from the seed it carries. Where
+no house can be pointed at, the block says that instead, in the words of the ruling
+that decided it — a stated absence, never a blank.
+
+AND IT WRITES NOT ONE BYTE ONTO A PERSON CARD, which is a decision the resident layer
+forced and is right on its own account. Two thirds of the people in scope stand on
+cards a reconstruction STAGE owns whole — `reconstruct_trade_households.py` derives its
+308 cards and its `--check` compares each one byte for byte against what the stage
+derives, and the garrison, the women and children, the free Black cohort, the boarders
+and the re-admissions all do the same for theirs. A later pass appending a key to those
+cards does not add a field; it breaks seven gates, because the card IS the stage's
+output and nothing else may be in it. The join therefore lives beside the layer and is
+keyed on `person_id`, in the same idiom as `residents/directories.json` and
+`residents/person_facts_withheld.json` — a derived join the walkthrough loads and can
+lose without losing the card.
 
 WHY `employment` AND NOT `workplaces`. `workplaces` is T-1432's field and T-1432's
 gate asserts it BOTH ways: an entry there with no business record naming that person
@@ -101,7 +114,7 @@ STRUCTURES = ROOT / "data" / "structures"
 PREMISES_RULINGS = ROOT / "data" / "businesses" / "rulings" / "premises_rulings.json"
 STAFFING_MODEL = ROOT / "data" / "reconstruction" / "1835_business_staffing_model.json"
 RESIDENT_INDEX = RESIDENTS / "index.json"
-REPORT_OUT = ROOT / "data" / "reconstruction" / "1835_reconstructed_seating.json"
+JOIN_OUT = RESIDENTS / "reconstructed_seating.json"
 
 SCENE_DATE = "1835-07-01"
 TICKET = "T-1433"
@@ -114,14 +127,6 @@ PARENT_TICKET = "T-1189"
 #: three fifths of its own population and report a finished job.
 RESIDENT_DIRS = ("households", "reconstructed_trades", "lodgers", "underdocumented",
                  "transients", "readmitted", "merged")
-
-#: The slot on the person, for the same reason `workplaces` has one: the four mints
-#: rebuild a card whole and `tools/resident_mint_carry.py` carries the foreign keys
-#: back. Anything appended at the TAIL lands behind the keys `spend_person_sex_age.py`
-#: and `reconstruct_sex_age.py` pop and re-append, and reads as drift by turns. This
-#: block goes immediately after `workplaces` where a card has one and after
-#: `occupation` where it does not — the attested answer first, then the drawn one.
-AFTER_KEYS = ("workplaces", "occupation", "roles")
 
 #: A value the occupation field uses to say the sources record no trade. It is not a
 #: trade and nobody is seated on it.
@@ -521,38 +526,9 @@ def derive(data: dict) -> dict:
             raise Fault(f"{pid}: role '{block['role']}' is not a term "
                         "data/residents/index.json carries, so it may not be written "
                         "onto a card — the staffing model's own vocabulary_gaps rule")
-        by_person[pid] = block
+        by_person[pid] = {"person_id": pid, "person_name": person.get("name"),
+                          "household_id": record.get("id"), **block}
     return {"by_person": by_person, "filled": context["filled"], "context": context}
-
-
-# ------------------------------------------------------------------ writing --
-
-def place(person: dict, block) -> dict:
-    """The person with `employment` in its fixed slot, or with it removed where this
-    pass gives them none."""
-    out: dict = {}
-    placed = False
-    after = next((k for k in AFTER_KEYS if k in person), None)
-    for key, value in person.items():
-        if key == "employment":
-            continue
-        out[key] = value
-        if block and not placed and key == after:
-            out["employment"] = block
-            placed = True
-    if block and not placed:
-        out["employment"] = block
-    return out
-
-
-def apply_to_records(data: dict, seating: dict) -> list:
-    out = []
-    for path, record in data["records"]:
-        rebuilt = dict(record)
-        rebuilt["persons"] = [place(p, seating["by_person"].get(p.get("id")))
-                              for p in (record.get("persons") or [])]
-        out.append((path, json.dumps(rebuilt, indent=1, ensure_ascii=False) + "\n"))
-    return out
 
 
 # ------------------------------------------------------------------- report --
@@ -578,6 +554,14 @@ def report(data: dict, seating: dict) -> dict:
     return {
         "$schema_note": "DERIVED — regenerate with tools/seat_reconstructed_trades_1835.py "
                         "--build; tools/check.sh re-derives it. Do not hand-edit.",
+        "not_a_card": "A JOIN BESIDE THE RESIDENT LAYER, NOT A FIELD ON IT. Every block "
+                      "here is keyed on `person_id` and nothing is written onto a person "
+                      "card: two thirds of the people in scope stand on cards a "
+                      "reconstruction stage derives whole and compares byte for byte, so "
+                      "a key appended to one of those cards does not add a field, it "
+                      "breaks that stage's gate. The walkthrough loads this file the way "
+                      "it loads residents/directories.json, and losing it costs the block "
+                      "on a card and never the card.",
         "id": "1835_reconstructed_seating",
         "ticket": TICKET,
         "parent_ticket": PARENT_TICKET,
@@ -587,9 +571,9 @@ def report(data: dict, seating: dict) -> dict:
                          "read here, no person is written and no business is raised",
         "writes_no_person": True,
         "raises_no_business": True,
-        "what_it_writes": "persons[].employment on every reconstructed trade-holder with "
-                          "no workplaces — a pointer at a house the business layer already "
-                          "holds, or a stated reason there is none",
+        "what_it_writes": "one row per reconstructed trade-holder with no workplaces — a "
+                          "pointer at a house the business layer already holds, or a "
+                          "stated reason there is none",
         "inputs": [
             "data/residents/{" + ",".join(RESIDENT_DIRS) + "}/*.json",
             "data/businesses/*.json",
@@ -633,6 +617,7 @@ def report(data: dict, seating: dict) -> dict:
                                            "households is T-1198's and T-1199's.",
         },
         "by_trade": {k: by_trade[k] for k in sorted(by_trade)},
+        "rows": [seating["by_person"][pid] for pid in sorted(seating["by_person"])],
         "what_this_does_not_do": {
             "the_business_side_is_T-1434s": "Nothing is written onto a business record "
                                             "here. `staff[]` stays as the register left "
@@ -652,30 +637,37 @@ def report(data: dict, seating: dict) -> dict:
 
 # --------------------------------------------------------------- the refusals --
 
-def verify(data: dict, seating: dict, records) -> int:
-    """The seating as it stands on disk, asserted both ways."""
-    want = seating["by_person"]
-    seen = 0
-    for path, record in records:
-        for person in record.get("persons") or []:
-            pid = person.get("id")
-            block = person.get("employment")
-            if block is None:
-                if pid in want:
-                    raise Fault(f"{pid} is a reconstructed trade-holder with no workplace "
-                                "and their card carries no employment — run "
-                                "tools/seat_reconstructed_trades_1835.py --build")
-                continue
-            seen += 1
-            if pid not in want:
-                raise Fault(f"{path.name}/{pid} carries an employment block and is not in "
-                            "scope for one — a card with a workplace, or with no "
-                            "reconstructed trade, keeps no seat. The join has a fossil "
-                            "on it")
-            if json.dumps(block, sort_keys=True) != json.dumps(want[pid], sort_keys=True):
-                raise Fault(f"{pid}'s employment no longer re-derives — run "
-                            "tools/seat_reconstructed_trades_1835.py --build")
-    return seen
+def verify(data: dict, seating: dict, committed: dict) -> int:
+    """The join as it stands on disk, asserted BOTH ways against the layer.
+
+    A row for somebody who is not in scope is a FOSSIL — a card that has since gained a
+    `workplaces` entry, lost its trade, or been merged away, whose seat has outlived it.
+    A person in scope with no row is a card that has quietly lost its answer. Neither is
+    a warning, and neither is visible without this: the walkthrough would simply print
+    one card fewer, or print a seat for somebody who no longer needs one.
+    """
+    in_scope = set(seating["by_person"])
+    rows = committed.get("rows")
+    if not isinstance(rows, list):
+        raise Fault(f"{JOIN_OUT.relative_to(ROOT)} carries no rows — run "
+                    "tools/seat_reconstructed_trades_1835.py --build")
+    seen = set()
+    for row in rows:
+        pid = row.get("person_id")
+        if not pid:
+            raise Fault("a committed seating row names no person")
+        if pid in seen:
+            raise Fault(f"{pid} is seated twice in the committed join")
+        seen.add(pid)
+        if pid not in in_scope:
+            raise Fault(f"{pid} carries a seat and is not in scope for one — a card with "
+                        "a workplace, or with no reconstructed trade, keeps none. The "
+                        "join has a fossil on it")
+    for pid in sorted(in_scope - seen):
+        raise Fault(f"{pid} is a reconstructed trade-holder with no workplace and the "
+                    "join carries no answer for them — run "
+                    "tools/seat_reconstructed_trades_1835.py --build")
+    return len(seen)
 
 
 def assert_the_model_is_not_exceeded(data: dict, seating: dict) -> None:
@@ -706,13 +698,10 @@ def cmd_build() -> int:
     data = load()
     seating = derive(data)
     assert_the_model_is_not_exceeded(data, seating)
-    for path, text in apply_to_records(data, seating):
-        if path.read_text(encoding="utf-8") != text:
-            path.write_text(text, encoding="utf-8")
     doc = report(data, seating)
-    REPORT_OUT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n",
-                          encoding="utf-8")
+    JOIN_OUT.parent.mkdir(parents=True, exist_ok=True)
+    JOIN_OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n",
+                        encoding="utf-8")
     counts = doc["counts"]
     kinds = counts["by_kind"]
     print(f"OK: the 1835 reconstructed seating — {counts['people_in_scope']} reconstructed "
@@ -724,23 +713,19 @@ def cmd_build() -> int:
 
 
 def cmd_check() -> int:
-    if not REPORT_OUT.exists():
-        raise Fault(f"{REPORT_OUT.relative_to(ROOT)} has never been built")
+    if not JOIN_OUT.exists():
+        raise Fault(f"{JOIN_OUT.relative_to(ROOT)} has never been built")
     data = load()
     seating = derive(data)
     assert_the_model_is_not_exceeded(data, seating)
-    for path, text in apply_to_records(data, seating):
-        if path.read_text(encoding="utf-8") != text:
-            raise Fault(f"{path.name} no longer matches the seating it should carry — run "
-                        "tools/seat_reconstructed_trades_1835.py --build")
-    verify(data, seating, data["records"])
-    was = json.loads(REPORT_OUT.read_text(encoding="utf-8"))
+    was = json.loads(JOIN_OUT.read_text(encoding="utf-8"))
     now = report(data, seating)
+    verify(data, seating, was)
     if json.dumps(was, sort_keys=True) != json.dumps(now, sort_keys=True):
-        raise Fault(f"{REPORT_OUT.relative_to(ROOT)} no longer re-derives — run "
+        raise Fault(f"{JOIN_OUT.relative_to(ROOT)} no longer re-derives — run "
                     "tools/seat_reconstructed_trades_1835.py --build")
     print(f"OK: {now['counts']['people_in_scope']} reconstructed trade-holders re-derive "
-          "to the seats and stated absences their cards carry")
+          "to the seats and stated absences the join carries")
     return 0
 
 
@@ -755,53 +740,30 @@ def _fires(what: str, thunk) -> None:
 def cmd_self_test() -> int:
     data = load()
     seating = derive(data)
+    committed = report(data, seating)
 
-    # ONE: a fossil — an employment block on a card this pass does not seat.
+    # ONE: a fossil — a seat for somebody this pass does not answer for.
     def fossil():
-        records = []
-        planted = False
-        for path, record in data["records"]:
-            copy = json.loads(json.dumps(record))
-            for person in copy.get("persons") or []:
-                if not planted and person.get("id") not in seating["by_person"]:
-                    person["employment"] = {"kind": "seated"}
-                    planted = True
-            records.append((path, copy))
-        if not planted:
-            raise Fault("the self-test found no out-of-scope card to plant a fossil on")
-        verify(data, seating, records)
-    _fires("a card carrying a seat it is not owed", fossil)
+        bent = json.loads(json.dumps(committed))
+        bent["rows"].append({"person_id": "nobody_this_town_holds", "kind": "seated"})
+        verify(data, seating, bent)
+    _fires("a seat carried by a card that is not owed one", fossil)
 
-    # TWO: a lost block — a card in scope whose employment has been dropped.
+    # TWO: a lost answer — somebody in scope whose row has gone.
     def lost():
-        records = []
-        dropped = False
-        for path, record in data["records"]:
-            copy = json.loads(json.dumps(record))
-            for person in copy.get("persons") or []:
-                if not dropped and person.get("id") in seating["by_person"]:
-                    person.pop("employment", None)
-                    dropped = True
-            records.append((path, copy))
-        if not dropped:
-            raise Fault("the self-test found no seated card to drop")
-        verify(data, seating, records)
-    _fires("a seated card that has lost its block", lost)
+        bent = json.loads(json.dumps(committed))
+        if not bent["rows"]:
+            raise Fault("the self-test found no row to drop")
+        bent["rows"].pop()
+        verify(data, seating, bent)
+    _fires("an in-scope card whose answer has gone", lost)
 
-    # THREE: drift — the same card, a different seat.
-    def drift():
-        records = []
-        bent = False
-        for path, record in data["records"]:
-            copy = json.loads(json.dumps(record))
-            for person in copy.get("persons") or []:
-                if not bent and person.get("id") in seating["by_person"]:
-                    person["employment"] = dict(person.get("employment") or {},
-                                                business_id="biz_not_a_house")
-                    bent = True
-            records.append((path, copy))
-        verify(data, seating, records)
-    _fires("a seat that no longer re-derives", drift)
+    # THREE: the same person twice.
+    def doubled():
+        bent = json.loads(json.dumps(committed))
+        bent["rows"].append(json.loads(json.dumps(bent["rows"][0])))
+        verify(data, seating, bent)
+    _fires("a person seated twice", doubled)
 
     # FOUR: the model exceeded — one more hand than the band's high end allows.
     def exceeded():
@@ -814,7 +776,7 @@ def cmd_self_test() -> int:
         assert_the_model_is_not_exceeded(data, bent)
     _fires("a house staffed past the model's high end", exceeded)
 
-    # FIVE: a role the businesses schema does not hold may not be written.
+    # FIVE: a role the resident vocabulary does not hold may not be written.
     def bad_role():
         bent = json.loads(json.dumps(data["model"]))
         for klass in bent["classes"]:

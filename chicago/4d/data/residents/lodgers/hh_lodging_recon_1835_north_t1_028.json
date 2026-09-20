@@ -142,33 +142,6 @@
     },
     "note": "The staffing under a keeper — the bar-keeper, the hostler, the cook, the chambermaid — is T-1183's model and is not written here."
    },
-   "employment": {
-    "kind": "seated",
-    "trade": "tavern_keeper",
-    "premises": "own_premises",
-    "division_of_the_person": "north",
-    "business_id": "biz_ingersoll_s_tavern_stand",
-    "business_name": "Ingersoll's tavern stand",
-    "role": "tavern_keeper",
-    "tier": "reconstructed",
-    "seed": "rc_kellogg_luther:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "establishment_class": "tavern_or_hotel",
-    "basis": {
-     "kind": "model",
-     "id": "1835_business_staffing_model#tavern_or_hotel.tavern_keeper",
-     "note": "The staffing model puts 1 of this role in a tavern or hotel at the typical band and 1 at the high end, on period_convention. The bar-keeper. `bar_keeper` is NOT in the residents occupation vocabulary and is carried here under the nearest term it does hold; see `vocabulary_gaps`. Analogue: the 1839 list's two bar-keepers against 50 keepers of houses — a floor, and the clearest evidence in this file that the directory did not canvass service. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything."
-    },
-    "replaceable_by": {
-     "kind": "person",
-     "match": "a source naming where this person worked, which retires the draw"
-    },
-    "chosen_by": [
-     "nearest"
-    ],
-    "candidates_considered": 7
-   },
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
   },
   {

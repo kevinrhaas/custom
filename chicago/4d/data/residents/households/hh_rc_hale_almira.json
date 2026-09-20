@@ -133,32 +133,6 @@
     },
     "note": "DRAWN FROM AN ASSUMPTION THIS PROJECT STATES RATHER THAN A ROW IT READ. The occupation model counts the December 1835 State census's establishments and the 1840 schedule's seven employment columns, and NEITHER counts a woman's work — so there is no female-trade row to draw from. The weights are the programme's own, written where a reader can argue with them and entered in docs/LIBERTIES.md. The term is the residents vocabulary's."
    },
-   "employment": {
-    "kind": "keeps_their_own_house",
-    "trade": "milliner",
-    "premises": "own_premises",
-    "division_of_the_person": "south",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_hale_almira:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "classes": [
-     "millinery_and_dressmaking"
-    ],
-    "basis": {
-     "kind": "rule",
-     "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
-     "note": "The premises ruling: a shop front on a street of stores — PUBLIC_TRADES `shop` of the signage rule, and one of the twenty-five mechanics' shops the Chicago American counted in August 1835. The staffing model keeps millinery_and_dressmaking at this trade and employs it in no class. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Almira Hale",
     "confidence": "reconstructed",

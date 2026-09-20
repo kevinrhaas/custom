@@ -159,29 +159,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_crandall_lemuel:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Lemuel Crandall",
     "confidence": "reconstructed",
@@ -256,29 +233,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_wadsworth_ira:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Ira Wadsworth",
@@ -355,29 +309,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_lynch_martin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Martin Lynch",
     "confidence": "reconstructed",
@@ -452,29 +383,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_nichols_nathaniel:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Nathaniel Nichols",
@@ -551,29 +459,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_cavanagh_martin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Martin Cavanagh",
     "confidence": "reconstructed",
@@ -648,29 +533,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_quinn_edward:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Edward Quinn",
@@ -747,29 +609,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_keegan_terence:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Terence Keegan",
     "confidence": "reconstructed",
@@ -844,29 +683,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_quinn_patrick:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Patrick Quinn",
@@ -943,29 +759,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_keegan_dennis:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Dennis Keegan",
     "confidence": "reconstructed",
@@ -1040,29 +833,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_hastings_orrin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Orrin Hastings",
@@ -1139,29 +909,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_hayes_martin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Martin Hayes",
     "confidence": "reconstructed",
@@ -1236,29 +983,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_parmelee_henry:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Henry Parmelee",
@@ -1335,29 +1059,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_eastman_henry:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Henry Eastman",
     "confidence": "reconstructed",
@@ -1432,29 +1133,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_barnes_amos:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Amos Barnes",
@@ -1531,29 +1209,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_gallagher_thomas:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Thomas Gallagher",
     "confidence": "reconstructed",
@@ -1628,29 +1283,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_fairbanks_orrin:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Orrin Fairbanks",
@@ -1727,29 +1359,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_gallagher_terence:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Terence Gallagher",
     "confidence": "reconstructed",
@@ -1824,29 +1433,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_hayes_hugh:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Hugh Hayes",
@@ -1923,29 +1509,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_sawyer_rufus:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Rufus Sawyer",
     "confidence": "reconstructed",
@@ -2020,29 +1583,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_walsh_cornelius:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Cornelius Walsh",
@@ -2119,29 +1659,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_sullivan_cornelius:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Cornelius Sullivan",
     "confidence": "reconstructed",
@@ -2216,29 +1733,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_lyman_alvah:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Alvah Lyman",
@@ -2315,29 +1809,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_stebbins_eli:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Eli Stebbins",
     "confidence": "reconstructed",
@@ -2412,29 +1883,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_kelly_terence:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Terence Kelly",
@@ -2511,29 +1959,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_stiles_ezra:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Ezra Stiles",
     "confidence": "reconstructed",
@@ -2608,29 +2033,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_kelly_john:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "John Kelly",
@@ -2707,29 +2109,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_barnes_eli:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Eli Barnes",
     "confidence": "reconstructed",
@@ -2804,29 +2183,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_mahoney_edward:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Edward Mahoney",
@@ -2903,29 +2259,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_sheldon_amos:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Amos Sheldon",
     "confidence": "reconstructed",
@@ -3000,29 +2333,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_metcalf_lemuel:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Lemuel Metcalf",
@@ -3099,29 +2409,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_hayes_james:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "James Hayes",
     "confidence": "reconstructed",
@@ -3196,29 +2483,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_ingalls_reuben:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Reuben Ingalls",
@@ -3295,29 +2559,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_tobin_bryan:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Bryan Tobin",
     "confidence": "reconstructed",
@@ -3392,29 +2633,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_reilly_terence:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Terence Reilly",
@@ -3491,29 +2709,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_bardwell_elisha:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Elisha Bardwell",
     "confidence": "reconstructed",
@@ -3588,29 +2783,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_fairbanks_reuben:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Reuben Fairbanks",
@@ -3687,29 +2859,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_keegan_owen:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Owen Keegan",
     "confidence": "reconstructed",
@@ -3784,29 +2933,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_fairbanks_harvey:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Harvey Fairbanks",
@@ -3883,29 +3009,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_doyle_terence:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Terence Doyle",
     "confidence": "reconstructed",
@@ -3980,29 +3083,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_gallagher_dennis:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Dennis Gallagher",
@@ -4079,29 +3159,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_nash_levi:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Levi Nash",
     "confidence": "reconstructed",
@@ -4176,29 +3233,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_donnelly_james:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "James Donnelly",
@@ -4275,29 +3309,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_fisk_david:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "David Fisk",
     "confidence": "reconstructed",
@@ -4372,29 +3383,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_lyman_abner:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Abner Lyman",
@@ -4471,29 +3459,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_leland_willard:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Willard Leland",
     "confidence": "reconstructed",
@@ -4569,29 +3534,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_kellogg_jared:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "Jared Kellogg",
     "confidence": "reconstructed",
@@ -4666,29 +3608,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_mccarthy_michael:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Michael McCarthy",

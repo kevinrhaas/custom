@@ -140,30 +140,6 @@
     },
     "note": "The staffing under a keeper — the bar-keeper, the hostler, the cook, the chambermaid — is T-1183's model and is not written here."
    },
-   "employment": {
-    "kind": "keeps_their_own_house",
-    "trade": "boarding_house_keeper",
-    "premises": "own_premises",
-    "division_of_the_person": "north",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_bardwell_esther:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "classes": [],
-    "basis": {
-     "kind": "rule",
-     "id": "the_premises_ruling_gives_this_trade_a_house_of_its_own",
-     "note": "The premises ruling: lodging is sold to arrivals who have to find the door — PUBLIC_TRADES `boarding_house`; the December census counts no boarding houses, so the class is `other`. The staffing model employs this trade in no class of house either, so there is not even somebody else's counter to stand behind. Seating this person as somebody else's hand would demote a keeper to a clerk to close a count. The house is owed and T-1434 mints the layer's shortfall."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "a house of this trade raised for this person, after which the seat is theirs and this block becomes a proprietorship"
-    },
-    "chosen_by": []
-   },
    "note": "RECONSTRUCTED, NOT FOUND. Nobody is named by any source here. This roof is itself a reconstruction of the 1835 building programme, raised as a lodging place, and a lodging place with no keeper is not one. The whole of what is claimed is that: an adult of this sex and band kept this invented house. A NAMED house is never given a keeper this way — see the tool's refusals. The family this keeper is owed is not drawn here; `household_owed` says which ticket owes it. No figure is drawn (L1)."
   },
   {

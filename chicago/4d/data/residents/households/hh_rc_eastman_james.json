@@ -152,29 +152,6 @@
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
    },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "soldier",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_eastman_james:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: The garrison is the fort's establishment. exercised at an establishment the person does not keep. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
-   },
    "name_basis": {
     "value": "James Eastman",
     "confidence": "reconstructed",
@@ -249,29 +226,6 @@
      "match": "a muster roll or post return of the Chicago post naming this person and what they did at it"
     },
     "note": "THE TRADE IS THE ESTABLISHMENT'S, not a reading about a man. The Act of 2 March 1821 fixes what a company of infantry consisted of; this person is one of those places, filled."
-   },
-   "employment": {
-    "kind": "no_employer_named",
-    "trade": "laundress",
-    "premises": "no_fixed_premises",
-    "division_of_the_person": "fort",
-    "business_id": null,
-    "business_name": null,
-    "role": null,
-    "tier": "reconstructed",
-    "seed": "rc_wadsworth_maria:employment",
-    "ticket": "T-1433",
-    "parent_ticket": "T-1189",
-    "basis": {
-     "kind": "ruling",
-     "id": "no_fixed_premises_and_no_class_employs_this_trade",
-     "note": "The premises ruling: Washing was taken in at the laundress's own dwelling or done at her employer's; T-1186 rules whether either is a house of trade. The staffing model employs this trade in no class of house, so there is no house to point at and this pass names none. The absence is the reading."
-    },
-    "replaceable_by": {
-     "kind": "business",
-     "match": "an establishment record for the place this ruling names — the post, the school, the household served — after which the seat re-derives onto it"
-    },
-    "chosen_by": []
    },
    "name_basis": {
     "value": "Maria Wadsworth",
