@@ -1605,6 +1605,210 @@
       ]
     },
     {
+      "id": "jefferson",
+      "name_1835": "Jefferson Street",
+      "name_2026": "N/S Jefferson Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -391.143,
+          -400
+        ],
+        [
+          -402.643,
+          80
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "SEATED BY T-1430 (piece 1 of T-1417, of T-1193), AND THE REFUSAL IT ANSWERS IS ITS OWN LICENCE. T-0445 refused this street in writing — docs/RESEARCH/west_division_streets.md §2 — for one reason and one only: the modelled ground's west edge stood at local east -320.0 m and this line lay west of it over its whole length, so a street drawn here would have hung off the end of the terrain, and this project already refuses a platted BLOCK on exactly that test. That memo also said what would reverse the refusal, and that it was not more research: “When the box moves, both lines are seatable from control that is already in this file, with no new research.” T-1415 derived the west wall and T-1416 built the field out to local east -705.0 m, so the box has moved and this is the seating it licensed. Nothing new was read to place this line. WHERE THE LINE COMES FROM, the two halves stated apart because they are held differently. POSITION is surviving control already committed to this repository: `fulton`'s own note carries the four OpenStreetMap intersections T-0446 fitted that tier to, read 2026-09-04 and transformed to EPSG:26916 against data/datum.json. Jefferson's is node 262247424 at local east -401.04, north 13.11, and this path passes through it to 0.001 m. BEARING is read from no sheet and no control on this line: it is the committed `clinton` line's own, -0.02395833 m east per metre north, carried across because Clinton is the neighbouring north-south street of the same plat, fitted to the same modern control family, and because ONE intersection fixes a point and not a direction. `geometry_confidence` is `inferred` for that inheritance and not because the street is doubtful: the Thompson plat DRAWS it, which under the owner's ruling of 2026-09-04 (T-0713) is the sheet's own claim that it ran here. WHAT WOULD RAISE IT to `attested` is a second surviving intersection on this line, which would fit the bearing from control instead of inheriting it, the way Fulton's four do for its tier. THE REACH IS INHERITED TOO, and deliberately. The path spans local north -400.0 to +80.0, which is `clinton`'s own committed extent, because a line whose direction is borrowed from Clinton should not claim more ground than Clinton does. The plat rules this street further north and south; this reconstruction does not draw it further, and whatever extends Clinton extends this. THE GROUND IT STANDS ON, measured and not assumed. Sampled at 25 stations 20.0 m apart along the committed path, the heightfield reads 1.305 to 1.325 m above the 1835 water surface and not one station is at or below it (data/terrain/epochs/e1834_harbor_cut/heightfield.json, box local east -705.0..+1700.0). The whole line stands on dry modelled land, which is the test the refusal was written against and the only test it named. STATUS, argued rather than inherited. `track_width_m` is 0, `opened` and `worn` are false and the surface is `unworn_prairie` — the School Section grid's reading, carried here for the same reasons: nothing committed fronts this line, nothing reached attests traffic or wear on it, and the West Division beyond Canal Street was open ground in 1835 (Andreas: “The West Side was an open prairie, entirely free from timber”). What a visitor should see is a platted corridor over prairie, not a road. What would change that is a building seated on it or a source giving it traffic; the 35 placements `tools/generate_west_infill.py` still holds for want of ground are the nearest candidates, and they are T-1431's. AND ONE DISAGREEMENT THIS RECORD DOES NOT SETTLE: `jefferson_school_section`, the same street name south of Madison, runs due north-south at local east -379.98 on the School Section's own grid. Carried to Madison's northing this line would stand 8.3 m west of it. The two are different surveys and this file has always held them as different records; nothing here claims they met, and no line is bent to make them.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "des_plaines",
+      "name_1835": "Des Plaines Street",
+      "name_2026": "N/S Des Plaines Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -514.968,
+          -400
+        ],
+        [
+          -526.468,
+          80
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "SEATED BY T-1430 (piece 1 of T-1417, of T-1193), AND THE REFUSAL IT ANSWERS IS ITS OWN LICENCE. T-0445 refused this street in writing — docs/RESEARCH/west_division_streets.md §2 — for one reason and one only: the modelled ground's west edge stood at local east -320.0 m and this line lay west of it over its whole length, so a street drawn here would have hung off the end of the terrain, and this project already refuses a platted BLOCK on exactly that test. That memo also said what would reverse the refusal, and that it was not more research: “When the box moves, both lines are seatable from control that is already in this file, with no new research.” T-1415 derived the west wall and T-1416 built the field out to local east -705.0 m, so the box has moved and this is the seating it licensed. Nothing new was read to place this line. WHERE THE LINE COMES FROM, the two halves stated apart because they are held differently. POSITION is surviving control already committed to this repository: `fulton`'s own note carries the four OpenStreetMap intersections T-0446 fitted that tier to, read 2026-09-04 and transformed to EPSG:26916 against data/datum.json. Des Plaines's is node 258966841 at local east -524.88, north 13.72, and this path passes through it to 0.001 m. BEARING is read from no sheet and no control on this line: it is the committed `clinton` line's own, -0.02395833 m east per metre north, carried across because Clinton is the neighbouring north-south street of the same plat, fitted to the same modern control family, and because ONE intersection fixes a point and not a direction. `geometry_confidence` is `inferred` for that inheritance and not because the street is doubtful: the Thompson plat DRAWS it, which under the owner's ruling of 2026-09-04 (T-0713) is the sheet's own claim that it ran here. WHAT WOULD RAISE IT to `attested` is a second surviving intersection on this line, which would fit the bearing from control instead of inheriting it, the way Fulton's four do for its tier. THE REACH IS INHERITED TOO, and deliberately. The path spans local north -400.0 to +80.0, which is `clinton`'s own committed extent, because a line whose direction is borrowed from Clinton should not claim more ground than Clinton does. The plat rules this street further north and south; this reconstruction does not draw it further, and whatever extends Clinton extends this. THE GROUND IT STANDS ON, measured and not assumed. Sampled at 25 stations 20.0 m apart along the committed path, the heightfield reads 1.290 to 1.325 m above the 1835 water surface and not one station is at or below it (data/terrain/epochs/e1834_harbor_cut/heightfield.json, box local east -705.0..+1700.0). The whole line stands on dry modelled land, which is the test the refusal was written against and the only test it named. STATUS, argued rather than inherited. `track_width_m` is 0, `opened` and `worn` are false and the surface is `unworn_prairie` — the School Section grid's reading, carried here for the same reasons: nothing committed fronts this line, nothing reached attests traffic or wear on it, and the West Division beyond Canal Street was open ground in 1835 (Andreas: “The West Side was an open prairie, entirely free from timber”). What a visitor should see is a platted corridor over prairie, not a road. What would change that is a building seated on it or a source giving it traffic; the 35 placements `tools/generate_west_infill.py` still holds for want of ground are the nearest candidates, and they are T-1431's. AND THE SAME DISAGREEMENT: `des_plaines_school_section` runs due north-south at local east -506.45 on the School Section's grid, 19.2 m east of where this line would reach Madison. Two surveys, two records, and no line bent to join them.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
       "id": "kinzie",
       "name_1835": "Kinzie Street",
       "name_2026": "W/E Kinzie Street",
