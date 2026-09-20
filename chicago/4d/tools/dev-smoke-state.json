@@ -2,6 +2,132 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "8-9",
+      "parts": [
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 32,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 240,
+      "takenAt": "2026-09-20T21:26:03.393Z",
+      "ref": "steward/t-1465-roof-covering-substrates",
+      "commit": "a86c268a5a6d",
+      "devCommit": "278888e2897e",
+      "treeHash": "sha256:d76acaab081a95fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:0fb3d9d7a66455a7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_d89.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 33,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 225,
+      "takenAt": "2026-09-20T21:26:03.322Z",
+      "ref": "steward/t-1465-roof-covering-substrates",
+      "commit": "a86c268a5a6d",
+      "devCommit": "278888e2897e",
+      "treeHash": "sha256:d76acaab081a95fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:0fb3d9d7a66455a7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_d7.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 162,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 179,
+      "takenAt": "2026-09-20T21:26:03.253Z",
+      "ref": "steward/t-1465-roof-covering-substrates",
+      "commit": "a86c268a5a6d",
+      "devCommit": "278888e2897e",
+      "treeHash": "sha256:d76acaab081a95fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:0fb3d9d7a66455a7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 187,
+      "takenAt": "2026-09-20T21:26:03.183Z",
+      "ref": "steward/t-1465-roof-covering-substrates",
+      "commit": "a86c268a5a6d",
+      "devCommit": "278888e2897e",
+      "treeHash": "sha256:d76acaab081a95fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:0fb3d9d7a66455a7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "12",
       "parts": [
@@ -1337,71 +1463,6 @@
     },
     {
       "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 115,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 219,
-      "takenAt": "2026-09-20T06:16:30.311Z",
-      "ref": "steward/t-1422-schools-press",
-      "commit": "82beea68e6b5",
-      "devCommit": "ae373ab74654",
-      "treeHash": "sha256:12ff297da3d61e67",
-      "treeDirty": false,
-      "changelogHash": "sha256:35b83568f34dde1a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          3.1,
-          1.8
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 90,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
-        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
-      ],
-      "wallSeconds": 593,
-      "takenAt": "2026-09-20T03:49:10.990Z",
-      "ref": "steward/t-1399-stage-liberties",
-      "commit": "854338142bcf",
-      "devCommit": "e9be37af3d13",
-      "treeHash": "sha256:2a3b55f1d7fd75c0",
-      "treeDirty": false,
-      "changelogHash": "sha256:5237e91e7cca14a4",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.3,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke_m3.log"
-    },
-    {
-      "viewport": "desktop",
       "stage": "12",
       "parts": [
         12
@@ -1593,38 +1654,6 @@
     },
     {
       "viewport": "mobile",
-      "stage": "1-2",
-      "parts": [
-        1,
-        2
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 159,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 391,
-      "takenAt": "2026-09-17T12:19:28.643Z",
-      "ref": "steward/t-1228-inferred-household-passes",
-      "commit": "75e77a34d712",
-      "devCommit": "16e733015998",
-      "treeHash": "sha256:2ae0657e57e0a1f9",
-      "treeDirty": false,
-      "changelogHash": "sha256:c7bbef4ddec3e4b7",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5,
-          4.5,
-          3
-        ]
-      },
-      "source": "/tmp/smoke_m12.log"
-    },
-    {
-      "viewport": "mobile",
       "stage": "3,10",
       "parts": [
         3,
@@ -1780,38 +1809,6 @@
         ]
       },
       "source": "/tmp/smoke-d-3-10.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "7-8",
-      "parts": [
-        7,
-        8
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 32,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 273,
-      "takenAt": "2026-09-13T16:53:20.094Z",
-      "ref": "steward/t-1105-tract-aware-generators",
-      "commit": "093004562bfe",
-      "devCommit": "c34919d9f275",
-      "treeHash": "sha256:49b960ba8647589b",
-      "treeDirty": false,
-      "changelogHash": "sha256:b41da0babd4f7e72",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          1.1,
-          2.4,
-          2.4
-        ]
-      },
-      "source": "/tmp/smoke_d78.log"
     },
     {
       "viewport": "mobile",
