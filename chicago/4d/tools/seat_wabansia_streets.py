@@ -585,7 +585,17 @@ def _tract(seat, south_row, tiers, margin, east, wedge, wl, cbank, m_per_px):
 
 # ------------------------------------------------------------------ the seating
 
-def build():
+def seating():
+    """The tract's sheet-pixel -> local ENU ladder, and the committed readings it hangs on.
+
+    T-1454 lifted this out of `build()` WITHOUT CHANGING A LINE OF IT so that
+    `tools/generate_plat_lots.py` can cut Wabansia's twenty-one blocks on the same
+    ladder this tool seats its six streets on. One edge cannot be derived twice, and a
+    block's north-west corner and the corner of the street beside it are the same edge:
+    a second seating written into the lot generator would be a second answer to the
+    question this file already answers, which is precisely what `_polygon`'s own note
+    refuses one layer up. `build()` below unpacks what this returns and carries on.
+    """
     trace = json.loads(TRACE.read_text())
     blocks = json.loads(BLOCKS.read_text())
     doc = json.loads(STREETS.read_text())
@@ -635,6 +645,20 @@ def build():
         t = (E - kin[0][0]) / u[0]
         base = (kin[0][0] + t * u[0], kin[0][1] + t * u[1])
         return [round(base[0] + d * nrm[0], 2), round(base[1] + d * nrm[1], 2)]
+
+    return {"trace": trace, "blocks": blocks, "doc": doc, "by": by,
+            "to_local": to_local, "shear": shear, "read": read, "ext": ext,
+            "tiers": tiers, "margin": margin, "east": east,
+            "kin": kin, "u": u, "nrm": nrm,
+            "kinzie_py": kinzie_py, "south_row": south_row, "seat": seat}
+
+
+def build():
+    s = seating()
+    trace, blocks, doc, by = s["trace"], s["blocks"], s["doc"], s["by"]
+    to_local, shear, read, ext = s["to_local"], s["shear"], s["read"], s["ext"]
+    tiers, margin, east = s["tiers"], s["margin"], s["east"]
+    south_row, seat, kinzie_py = s["south_row"], s["seat"], s["kinzie_py"]
 
     bank = _bank_px(to_local)
     m_per_px = math.dist(to_local(900, 1500), to_local(900, 1501))

@@ -126,6 +126,11 @@ def ring_area(ring) -> float:
     return abs(a) / 2.0
 
 
+#: How far a block corner may sit outside its plat's ring and still count as ON it.
+#: data/datum.json derivation.residual_m — the model's own coordinate uncertainty.
+ON_THE_LINE_M = 17.5
+
+
 def inside(point, ring) -> bool:
     x, y = point
     hit = False
@@ -849,17 +854,55 @@ def cross_checks(polys, tracts):
     # `grid` names the tract it was generated on, so the partition is read rather than
     # assumed, and a plat that arrives without a ring here is a failure and not a skip.
     GRID_RING = {"original_town": "canal_commissioners_1830",
-                 "kinzies_addition": "kinzies_addition"}
-    outside, unringed, per_plat = [], [], {}
+                 "kinzies_addition": "kinzies_addition",
+                 "wabansia": "wabansia"}
+    # A PLAT THIS LAYER HOLDS NO POLYGON FOR IS NAMED, NOT SKIPPED. The test above is
+    # "does a block fall inside its own plat", and it cannot be asked of a plat whose
+    # bounds are not committed anywhere — the Michigan Street tract is seated in the lot
+    # layer (T-1438) and appears in `survey_tracts.json` only as these block ids. Saying
+    # so is the point: the alternative is four blocks quietly passing a test nobody ran,
+    # which is what the `no_ring_for_their_plat` guard was added to stop. The moment a
+    # polygon for it is committed, delete the row and the blocks are tested like the rest.
+    GRID_NO_RING = {
+        "michigan_st_tract": ("no survey-tract polygon is committed for this plat, so "
+                              "there are no bounds to test its blocks against"),
+    }
+    outside, unringed, untestable, per_plat = [], [], {}, {}
+    on_the_line = 0.0
     for b in blocks:
         grid = b.get("grid")
+        if grid in GRID_NO_RING:
+            untestable.setdefault(grid, []).append(b["id"])
+            continue
         key = GRID_RING.get(grid)
         if key is None or key not in polys:
             unringed.append(b["id"])
             continue
         per_plat[grid] = per_plat.get(grid, 0) + 1
-        if not all(inside(tuple(p), polys[key]) for p in b["boundary_local_enu_m"]):
-            outside.append(b["id"])
+        # A CORNER ON THE LINE IS NOT A CORNER OUTSIDE IT, and a block grid that tiles
+        # its plat to the edge puts corners on the line by construction — which is what
+        # Wabansia does: five of its corners sit at 0.0 m from the ring on the tract's
+        # north and south limits, and the point-in-polygon test then resolves by
+        # floating-point luck rather than by geometry.
+        #
+        # The tolerance is the datum's own number and NOT one fitted to make this pass.
+        # `data/datum.json` derivation.residual_m is 17.5 m RMS of coordinate
+        # uncertainty — both 1834 sheets carry real anisotropic paper stretch (Wright
+        # 3.7 %, Hathaway 4.5 %), so a global affine cannot do better. A corner within
+        # that of its plat's boundary is ON the boundary as far as this project can
+        # measure, and a block really seated in the wrong place is still caught.
+        #
+        # The worst distance actually used is REPORTED below rather than swallowed, so
+        # a reader sees that Wabansia needs 1.2 m of a 17.5 m allowance. If a later
+        # block needs fifteen, that number moves and says so.
+        for p in b["boundary_local_enu_m"]:
+            if inside(tuple(p), polys[key]):
+                continue
+            off = ring_distance(tuple(p), polys[key])
+            if off > ON_THE_LINE_M:
+                outside.append(b["id"])
+                break
+            on_the_line = max(on_the_line, off)
     return {
         "committed_plat_blocks_inside_the_original_town": {
             "claim": ("If a plat's bounds are where this project puts them, every block "
@@ -873,6 +916,17 @@ def cross_checks(polys, tracts):
             "by_plat": dict(sorted(per_plat.items())),
             "outside": outside,
             "no_ring_for_their_plat": unringed,
+            "not_testable_and_why": {g: {"blocks": sorted(ids), "reason": GRID_NO_RING[g]}
+                                     for g, ids in sorted(untestable.items())},
+            "corners_on_the_line": {
+                "worst_m": round(on_the_line, 2),
+                "allowance_m": ON_THE_LINE_M,
+                "why": ("A block that tiles its plat to the edge has corners ON the "
+                        "boundary. The allowance is data/datum.json's own 17.5 m RMS "
+                        "coordinate residual, not a figure fitted to this layer; the "
+                        "worst distance actually used is stated so a reader can see how "
+                        "much of it any block needs."),
+            },
             "confidence": "inferred",
         },
         "lighthouse_inside_the_reservation": {
