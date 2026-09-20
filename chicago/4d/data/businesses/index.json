@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 274,
+    "records": 271,
     "compiled_from_register": 196,
-    "authored": 78,
-    "present_at_scene_date": 257,
+    "authored": 75,
+    "present_at_scene_date": 254,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
@@ -16,35 +16,35 @@
       "iron_foundry": 2,
       "lawyer": 20,
       "not_stated": 5,
-      "other": 121,
+      "other": 120,
       "physician": 9,
       "printing_office": 3,
       "school": 7,
       "silversmith_jeweller": 2,
       "steam_saw_mill": 4,
-      "storage_and_forwarding": 9,
-      "store": 75,
-      "tavern": 17,
+      "storage_and_forwarding": 8,
+      "store": 74,
+      "tavern": 16,
       "tin_and_copper_manufactory": 4
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 54,
+      "premises": 51,
       "street_only": 89,
       "unplaceable": 109
     },
-    "named_people": 280,
-    "named_people_linked_to_a_town_card": 227,
+    "named_people": 277,
+    "named_people_linked_to_a_town_card": 224,
     "works_at_households": 50,
-    "works_at_households_resolving_to_a_business": 37,
+    "works_at_households_resolving_to_a_business": 36,
     "by_grade": {
       "attested": 165,
-      "inferred": 77,
+      "inferred": 74,
       "reconstructed": 32
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 54,
+      "premises": 51,
       "street_only": 89,
       "unplaceable": 105
     },
@@ -66,11 +66,11 @@
       "french_canadian": 5,
       "irish": 10,
       "metis": 1,
-      "new_york": 52,
+      "new_york": 51,
       "other": 11,
-      "southern": 11,
+      "southern": 10,
       "unknown": 97,
-      "yankee": 74
+      "yankee": 73
     }
   },
   "_vocabulary_doc": "THE CLOSED VOCABULARY, and it is the resident layer's — data/residents/community_rules.json, one list for people and for the houses they kept. The rows with a zero count are the point and are shipped anyway: a term nobody carries is a measurement of this layer, not a gap in this file. The Businesses view offers a pill only where the count is above zero.",
@@ -114,12 +114,12 @@
       {
         "value": "yankee",
         "label": "New England",
-        "count": 74
+        "count": 73
       },
       {
         "value": "new_york",
         "label": "New York State",
-        "count": 52
+        "count": 51
       },
       {
         "value": "irish",
@@ -139,7 +139,7 @@
       {
         "value": "southern",
         "label": "Southern",
-        "count": 11
+        "count": 10
       },
       {
         "value": "other",
@@ -2087,52 +2087,6 @@
       "liberties": [
         "survival_required"
       ]
-    },
-    {
-      "id": "biz_clybourne_archibald_butcher",
-      "file": "biz_clybourne_archibald_butcher.json",
-      "name": "Archibald Clybourne, butcher",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "other"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "butcher",
-      "occupation": "butcher",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "Archibald Clybourne",
-          "person_id": "clybourne_archibald",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "premises",
-        "structure_id": "clybourn_slaughterhouse",
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": null
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "southern",
-      "proprietor_community_tier": "inferred",
-      "review_required": false,
-      "liberties": []
     },
     {
       "id": "biz_collett_j_a_refectory_keeper",
@@ -4600,52 +4554,6 @@
       "liberties": [
         "survival_required"
       ]
-    },
-    {
-      "id": "biz_haddock_edward_tavern_keeper",
-      "file": "biz_haddock_edward_tavern_keeper.json",
-      "name": "Edward H. Haddock, tavern keeper",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "tavern"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "tavern keeper",
-      "occupation": "tavern_keeper",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "Edward H. Haddock",
-          "person_id": "haddock_edward",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "premises",
-        "structure_id": "mansion_house",
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": null
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "new_york",
-      "proprietor_community_tier": "reconstructed",
-      "review_required": false,
-      "liberties": []
     },
     {
       "id": "biz_handy_major_mason",
@@ -7309,25 +7217,24 @@
       ]
     },
     {
-      "id": "biz_kinzie_john_h_forwarding_and_commission",
-      "file": "biz_kinzie_john_h_forwarding_and_commission.json",
-      "name": "John Harris Kinzie, forwarding and commission merchant and merchant",
+      "id": "biz_kinzie_james_merchant",
+      "file": "biz_kinzie_james_merchant.json",
+      "name": "James Kinzie, merchant",
       "register_id": null,
       "provenance": "authored",
       "type": [
-        "storage_and_forwarding",
         "store"
       ],
       "present_at_scene_date": true,
       "grade": "inferred",
-      "trade": "forwarding and commission merchant and merchant",
-      "occupation": "forwarding_and_commission",
+      "trade": "merchant",
+      "occupation": "merchant",
       "goods": [],
       "firm_styles": [],
       "people": [
         {
-          "name": "John Harris Kinzie",
-          "person_id": "kinzie_john_h",
+          "name": "James Kinzie",
+          "person_id": "kinzie_james",
           "role": "proprietor",
           "tier": "inferred",
           "from": null,
@@ -7336,15 +7243,15 @@
         }
       ],
       "where": {
-        "kind": "premises",
-        "structure_id": "jh_kinzie_forwarding_store",
+        "kind": "unplaceable",
+        "structure_id": null,
         "anchor": null,
         "street_id": null,
         "street": null,
         "tier": "inferred",
         "from": null,
         "to": null,
-        "limit_reason": null
+        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
       },
       "locations": 1,
       "opened": null,
@@ -13051,52 +12958,6 @@
       "liberties": []
     },
     {
-      "id": "biz_wright_john_merchant",
-      "file": "biz_wright_john_merchant.json",
-      "name": "John Wright, merchant",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "store"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "merchant",
-      "occupation": "merchant",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "John Wright",
-          "person_id": "wright_john",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "unplaceable",
-        "structure_id": null,
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": "The source names the trade and not the premises. T-1198 seats every attested and inferred house on the ground its evidence allows — a structure where one is named, a lot where an address narrows it, a division band where only that is known — and this house waits there."
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "yankee",
-      "proprietor_community_tier": "inferred",
-      "review_required": false,
-      "liberties": []
-    },
-    {
       "id": "rcb_bardwell_boarding_house",
       "file": "rcb_bardwell_boarding_house.json",
       "name": "Bardwell's boarding house",
@@ -14708,9 +14569,7 @@
       "household_id": "hh_clybourne_archibald",
       "head": "clybourne_archibald",
       "structure_id": "clybourn_slaughterhouse",
-      "business_ids": [
-        "biz_clybourne_archibald_butcher"
-      ]
+      "business_ids": []
     },
     {
       "household_id": "hh_couch_ira",
@@ -14777,8 +14636,7 @@
       "head": "haddock_edward",
       "structure_id": "mansion_house",
       "business_ids": [
-        "biz_e_w_haddock",
-        "biz_haddock_edward_tavern_keeper"
+        "biz_e_w_haddock"
       ]
     },
     {
@@ -14839,8 +14697,7 @@
       "structure_id": "jh_kinzie_forwarding_store",
       "business_ids": [
         "biz_j_h_kinzie_merchant",
-        "biz_john_h_kinzie",
-        "biz_kinzie_john_h_forwarding_and_commission"
+        "biz_john_h_kinzie"
       ]
     },
     {

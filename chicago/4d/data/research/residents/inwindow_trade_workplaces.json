@@ -889,9 +889,9 @@
    {
     "class": "other",
     "census_count": null,
-    "town_before_T-1404": 73,
+    "town_before_T-1404": 72,
     "raised_here": 16,
-    "town_after_T-1404": 89,
+    "town_after_T-1404": 88,
     "still_short": null,
     "documented_zero": false,
     "owed_to": null
@@ -949,9 +949,9 @@
    {
     "class": "storage_and_forwarding",
     "census_count": 4,
-    "town_before_T-1404": 8,
+    "town_before_T-1404": 7,
     "raised_here": 0,
-    "town_after_T-1404": 8,
+    "town_after_T-1404": 7,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
@@ -959,9 +959,9 @@
    {
     "class": "store",
     "census_count": 44,
-    "town_before_T-1404": 61,
+    "town_before_T-1404": 60,
     "raised_here": 6,
-    "town_after_T-1404": 67,
+    "town_after_T-1404": 66,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
@@ -969,9 +969,9 @@
    {
     "class": "tavern",
     "census_count": 8,
-    "town_before_T-1404": 9,
+    "town_before_T-1404": 8,
     "raised_here": 7,
-    "town_after_T-1404": 16,
+    "town_after_T-1404": 15,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null

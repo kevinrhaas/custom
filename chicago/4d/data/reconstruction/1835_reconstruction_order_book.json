@@ -102,7 +102,7 @@
     "households_known": 436,
     "households_to_reconstruct": 209,
     "businesses_target": 108,
-    "businesses_known": 139,
+    "businesses_known": 136,
     "businesses_to_reconstruct": 8,
     "roofs_target": 668,
     "roofs_standing": 384,
@@ -2436,7 +2436,7 @@
       "lead": "The December 1835 State census set against the register the town already holds.",
       "summary": {
         "register_total": 196,
-        "at_scene_date": 222,
+        "at_scene_date": 219,
         "census_enumerated_total": 118,
         "register_businesses_read": 196,
         "division_note": "EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.",
@@ -2796,7 +2796,7 @@
           "unit": "establishment",
           "scene_bracket": null,
           "target": 4,
-          "known": 8,
+          "known": 7,
           "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1187",
@@ -2805,7 +2805,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 4; the register holds 8 at the scene date"
+          "basis": "the December 1835 State census prints 4; the register holds 7 at the scene date"
         },
         {
           "key": "businesses/store",
@@ -2818,7 +2818,7 @@
           "unit": "establishment",
           "scene_bracket": null,
           "target": 44,
-          "known": 67,
+          "known": 66,
           "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1184",
@@ -2827,7 +2827,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)",
-          "basis": "the December 1835 State census prints 44; the register holds 67 at the scene date"
+          "basis": "the December 1835 State census prints 44; the register holds 66 at the scene date"
         },
         {
           "key": "businesses/tavern",
@@ -2840,7 +2840,7 @@
           "unit": "establishment",
           "scene_bracket": null,
           "target": 8,
-          "known": 16,
+          "known": 15,
           "to_reconstruct": 0,
           "filled": 0,
           "owning_ticket": "T-1187",
@@ -2849,7 +2849,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 8; the register holds 16 at the scene date"
+          "basis": "the December 1835 State census prints 8; the register holds 15 at the scene date"
         },
         {
           "key": "businesses/tin_and_copper_manufactory",
@@ -3559,10 +3559,10 @@
     {
       "id": "inns_and_taverns",
       "owning_ticket": "T-1196",
-      "model": 16,
+      "model": 15,
       "programme": 10,
-      "delta": 6,
-      "statement": "The model reads 16-16 inns and taverns; the programme schedules 10."
+      "delta": 5,
+      "statement": "The model reads 15-15 inns and taverns; the programme schedules 10."
     },
     {
       "id": "institutional_and_public",
@@ -3773,41 +3773,6 @@
       "stage": "lodgers",
       "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
-    },
-    {
-      "bucket": "businesses/brewery",
-      "ticket": "T-1185",
-      "stage": "mechanics_shops",
-      "records": 1,
-      "by": "tools/reconstruct_businesses_1835.py --build"
-    },
-    {
-      "bucket": "businesses/silversmith_jeweller",
-      "ticket": "T-1185",
-      "stage": "mechanics_shops",
-      "records": 1,
-      "by": "tools/reconstruct_businesses_1835.py --build"
-    },
-    {
-      "bucket": "businesses/druggist",
-      "ticket": "T-1184",
-      "stage": "stores_and_provisions",
-      "records": 2,
-      "by": "tools/reconstruct_businesses_1835.py --build"
-    },
-    {
-      "bucket": "businesses/lawyer",
-      "ticket": "T-1418",
-      "stage": "professions_and_services",
-      "records": 2,
-      "by": "tools/reconstruct_businesses_1835.py --build"
-    },
-    {
-      "bucket": "businesses/physician",
-      "ticket": "T-1418",
-      "stage": "professions_and_services",
-      "records": 1,
-      "by": "tools/reconstruct_businesses_1835.py --build"
     },
     {
       "bucket": "persons/female/10_19/north/family/none",
@@ -4298,6 +4263,41 @@
       "stage": "trade_households",
       "records": 2,
       "by": "tools/reconstruct_trade_households.py --build"
+    },
+    {
+      "bucket": "businesses/brewery",
+      "ticket": "T-1185",
+      "stage": "mechanics_shops",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/silversmith_jeweller",
+      "ticket": "T-1185",
+      "stage": "mechanics_shops",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/lawyer",
+      "ticket": "T-1418",
+      "stage": "professions_and_services",
+      "records": 2,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/physician",
+      "ticket": "T-1418",
+      "stage": "professions_and_services",
+      "records": 1,
+      "by": "tools/reconstruct_businesses_1835.py --build"
+    },
+    {
+      "bucket": "businesses/druggist",
+      "ticket": "T-1184",
+      "stage": "stores_and_provisions",
+      "records": 2,
+      "by": "tools/reconstruct_businesses_1835.py --build"
     }
   ]
 }

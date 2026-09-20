@@ -178,3 +178,16 @@ one and wrote it down. The cards behind them:
   `jones_william`. The register had been giving *Wm.* to Willard.
 - **King, Bradford** — `king_byram` and `king_byron`.
 - **Wm. Taylor** — `taylor_william` and `taylor_william_h`.
+
+## One generator gained a retraction
+
+`spend_press_bounds.py` writes a dated press appearance onto the card of every person the
+register enriches, and it visits those cards and no others — so a card that LEAVES that
+set was never visited again and kept the bound it had been given. `strays()` has always
+caught it ("carries a press bound and the committed register enriches no press person onto
+it") and there was no build step the message could send you to: the tool could write a
+bound and not take one back. `hogan_john` and `wright_j`, which had been holding another
+man's notices, are the two cards that found it. The retraction clears this pass's own
+groups only — the block is shared, and the voter and land registers' rows stay — and it
+removes the emptied block rather than leaving `dated_bounds: []` behind, which is a figure
+no renderer reads and one `measure_layer_reads.py --gate` rightly refuses.
