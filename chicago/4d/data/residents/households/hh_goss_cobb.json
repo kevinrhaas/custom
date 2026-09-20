@@ -94,6 +94,28 @@
     ],
     "note": "NO TRADE STANDS FOR THIS MAN IN JULY 1835, AND THE CORPUS IS WHY (T-0991). The firm 'Goss & Cobb, saddle and harness makers' advertises in the Chicago Democrat of 26 November 1833, self-reported on the corner of Lake and Canal streets — and that printing is the ONLY one this card ever had. The Chicago American of 8 June 1835 prints the partnership's DISSOLUTION over copy dated 'Chicago, Feb. 18, 1835' (chicago_american_1835_06_08#c006), and the issue of 13 June reprints it with this man's own signature now readable — 'OL[IVE]R GOS[S]' (#c015). The newspaper register reads business_goss_cobb as `present_at_scene_date: false` on those two notices, with exclusion `contradicted_before_scene_date`. So the trade held here at `attested` for 1 July 1835 was not merely undated by the corpus: it was CONTRADICTED by it, four and a half months before the scene date. The surviving partner carried the shop on alone — the American of 13 June prints 'S. B. COBB will continue the above business' — and nothing in the corpus prints a trade for Oliver Goss after the dissolution. The 1835 field is therefore `none_recorded` at `reconstructed`, this dataset's reading for a figure the reconstruction supplies rather than a source. THE 1833 SADDLERY IS NOT LOST: it stands in the structures layer at goss_cobb_saddlery and in the newspaper register's own compilation, dated to the years that print it. This is the one row of T-0991's eight the corpus decided by itself; the other rows are a grading question and are the owner's."
    },
+   "workplaces": [
+    {
+     "business_id": "biz_goss_cobb",
+     "business_name": "Goss & Cobb",
+     "role": "partner",
+     "printed_as": "Oliver Goss",
+     "from": "1833-11-26",
+     "to": "1835-06-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card goss_o (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_08#c006",
+      "chicago_american_1835_06_13#c015",
+      "chicago_democrat_1833_11_26#c019",
+      "chicago_democrat_1833_12_10#c001",
+      "chicago_democrat_1834_06_04#c001",
+      "chicago_democrat_1834_07_02#c001"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_american_1835",
@@ -165,6 +187,25 @@
      "saddler"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_s_b_cobb_saddle_harness_and_trunk_manufactory",
+     "business_name": "S. B. Cobb, saddle, harness and trunk manufactory",
+     "role": "proprietor",
+     "printed_as": "S. B. Cobb",
+     "from": "1835-06-08",
+     "to": "1835-07-11",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card cobb_silas_b (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_08#c007",
+      "chicago_american_1835_06_13#c016",
+      "chicago_american_1835_07_11#c008"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "calumet_club_early_chicago_1879",

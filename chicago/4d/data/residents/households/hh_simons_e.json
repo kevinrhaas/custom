@@ -126,6 +126,38 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_marsh_simons",
+     "business_name": "Marsh & Simons",
+     "role": "partner",
+     "printed_as": "Edward Simons",
+     "from": "1834-08-13",
+     "to": "1834-08-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card simons_e (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_08_13#c008"
+     ],
+     "business_present_at_scene_date": false
+    },
+    {
+     "business_id": "biz_the_boston_market",
+     "business_name": "The Boston Market",
+     "role": "proprietor",
+     "printed_as": "Edward Simons",
+     "from": "1834-08-13",
+     "to": "1834-08-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card simons_e (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_08_13#c009"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "census_1840_chicago_familysearch_images",
     "chicago_democrat_1833_1835",

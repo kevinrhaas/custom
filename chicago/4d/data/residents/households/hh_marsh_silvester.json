@@ -119,6 +119,23 @@
      "provision_dealer"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_marsh_simons",
+     "business_name": "Marsh & Simons",
+     "role": "partner",
+     "printed_as": "Silvester Marsh",
+     "from": "1834-08-13",
+     "to": "1834-08-13",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card marsh_silvester (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_08_13#c008"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835",
     "isa_public_domain_land_tract_sales"

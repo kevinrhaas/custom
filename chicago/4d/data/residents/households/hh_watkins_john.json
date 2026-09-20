@@ -112,6 +112,23 @@
      "schoolteacher"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_john_watkins",
+     "business_name": "John Watkins",
+     "role": "proprietor",
+     "printed_as": "John Watkins",
+     "from": "1834-07-09",
+     "to": "1834-07-09",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card watkins_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_07_09#c017"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_voter_lists_1833_1835_irad"

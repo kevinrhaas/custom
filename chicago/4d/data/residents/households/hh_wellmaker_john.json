@@ -118,6 +118,41 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_j_wellmaker_co",
+     "business_name": "J. Wellmaker & Co.",
+     "role": "partner",
+     "printed_as": "John Wellmaker",
+     "from": "1834-03-04",
+     "to": "1834-04-08",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card wellmaker_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_03_04#c011",
+      "chicago_democrat_1834_03_25#c004",
+      "chicago_democrat_1834_04_08#c013"
+     ],
+     "business_present_at_scene_date": false
+    },
+    {
+     "business_id": "biz_the_man_trap",
+     "business_name": "the Man Trap",
+     "role": "proprietor",
+     "printed_as": "John Wellmaker",
+     "from": "1833-12-10",
+     "to": "1834-03-04",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card wellmaker_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_12_10#c008",
+      "chicago_democrat_1834_03_04#c031"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "blackhawk_war_chicago_enrollments_isa",
     "chicago_democrat_1833_1835",

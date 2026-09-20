@@ -1260,6 +1260,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "staff_businesses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
+    },
     "supersede_arrival.py": {
       "placement": "not_a_writer",
       "write_mode": "(none declared)",

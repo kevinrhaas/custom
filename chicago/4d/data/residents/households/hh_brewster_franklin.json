@@ -115,6 +115,25 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_brewster_hogan_co",
+     "business_name": "Brewster, Hogan & Co.",
+     "role": "partner",
+     "printed_as": "Franklin Brewster",
+     "from": "1833-12-03",
+     "to": "1834-06-11",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card brewster_franklin (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_12_03#c008",
+      "chicago_democrat_1834_03_04#c010",
+      "chicago_democrat_1834_06_11#c001"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],
