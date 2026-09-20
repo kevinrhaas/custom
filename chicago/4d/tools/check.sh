@@ -4818,6 +4818,20 @@ step "the association coverage still re-derives from the committed records" \
 selftest "…and its own refusals still fire when broken" \
   python3 tools/associations.py --self-test
 
+# T-1405. The OTHER places a person was — a civic seat, a parish act, an agency, ground
+# bought, a school taught in — derived onto the cards from the committed evidence rather
+# than hand-authored one at a time. Two things this step holds. The first is the usual
+# one: the report re-derives, so a hand-edit loses. The second is the one that matters
+# here — `--check` also asserts that every derived row is still ON ITS CARD, because the
+# resident cards are byte-owned by writers that re-derive them and a field written into
+# one can be dropped by the next pass and go quietly stale. A row that has been dropped
+# is a claim about a man that the layer no longer makes, and the gate says so.
+step "the person associations still re-derive, and are still on their cards" \
+  python3 tools/person_associations.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/person_associations.py --self-test
+
 # T-1158. The per-attribute tier, and the three things that can go wrong with it.
 #
 # The first is DRIFT. The tier of an existing value is DERIVED from the confidence and the

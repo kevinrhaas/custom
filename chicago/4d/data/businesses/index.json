@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 239,
+    "records": 244,
     "compiled_from_register": 196,
-    "authored": 43,
-    "present_at_scene_date": 222,
+    "authored": 48,
+    "present_at_scene_date": 227,
     "by_type": {
       "book_store": 2,
       "brewery": 1,
@@ -14,35 +14,35 @@
       "iron_foundry": 2,
       "lawyer": 18,
       "not_stated": 5,
-      "other": 98,
+      "other": 102,
       "physician": 8,
       "printing_office": 3,
       "school": 7,
       "silversmith_jeweller": 1,
       "steam_saw_mill": 4,
       "storage_and_forwarding": 9,
-      "store": 75,
+      "store": 76,
       "tavern": 17,
       "tin_and_copper_manufactory": 4
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 45,
+      "premises": 50,
       "street_only": 63,
       "unplaceable": 109
     },
-    "named_people": 244,
-    "named_people_linked_to_a_town_card": 192,
+    "named_people": 249,
+    "named_people_linked_to_a_town_card": 197,
     "works_at_households": 50,
-    "works_at_households_resolving_to_a_business": 33,
+    "works_at_households_resolving_to_a_business": 34,
     "by_grade": {
-      "attested": 158,
+      "attested": 159,
       "inferred": 77,
-      "reconstructed": 4
+      "reconstructed": 8
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 45,
+      "premises": 50,
       "street_only": 63,
       "unplaceable": 105
     },
@@ -62,11 +62,11 @@
       "free_black": 2,
       "french_canadian": 2,
       "irish": 2,
-      "metis": 1,
+      "metis": 2,
       "new_york": 51,
       "other": 11,
       "southern": 10,
-      "unknown": 88,
+      "unknown": 92,
       "yankee": 61
     }
   },
@@ -96,7 +96,7 @@
       {
         "value": "metis",
         "label": "Metis",
-        "count": 1
+        "count": 2
       },
       {
         "value": "french_canadian",
@@ -146,7 +146,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 88
+        "count": 92
       }
     ]
   },
@@ -9144,6 +9144,54 @@
       "liberties": []
     },
     {
+      "id": "biz_robinson_trading_house_wolf_point",
+      "file": "biz_robinson_trading_house_wolf_point.json",
+      "name": "Alexander Robinson's store or trading-house at Wolf Point",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the country trade at the forks — a store or trading-house",
+      "occupation": "trader",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Alexander Robinson (Che-che-pin-qua)",
+          "person_id": "robinson_alexander",
+          "role": "proprietor",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "robinson_caldwell_cabins",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "metis",
+      "proprietor_community_tier": "inferred",
+      "review_required": true,
+      "liberties": [
+        "survival_required"
+      ]
+    },
+    {
       "id": "biz_rockwell_cabinet_furniture_warehouse",
       "file": "biz_rockwell_cabinet_furniture_warehouse.json",
       "name": "Rockwell, cabinet furniture warehouse",
@@ -12756,6 +12804,98 @@
       "liberties": []
     },
     {
+      "id": "rcb_bardwell_boarding_house",
+      "file": "rcb_bardwell_boarding_house.json",
+      "name": "Bardwell's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Esther Bardwell",
+          "person_id": "rc_bardwell_esther",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_north_h1_007",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_cavanagh_boarding_house",
+      "file": "rcb_cavanagh_boarding_house.json",
+      "name": "Ellen Cavanagh's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Ellen Cavanagh",
+          "person_id": "rc_cavanagh_ellen",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_north_h3_045",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_crandall_druggist",
       "file": "rcb_crandall_druggist.json",
       "name": "B. Crandall, drugs, medicines and dye stuffs",
@@ -12896,6 +13036,52 @@
       "liberties": []
     },
     {
+      "id": "rcb_fitzgerald_boarding_house",
+      "file": "rcb_fitzgerald_boarding_house.json",
+      "name": "Martin Fitzgerald's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Martin Fitzgerald",
+          "person_id": "rc_fitzgerald_martin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_west_006",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_metcalf_druggist",
       "file": "rcb_metcalf_druggist.json",
       "name": "Nathaniel Metcalf, drugs, medicines and dye stuffs",
@@ -12940,6 +13126,52 @@
       "dates_tier": "reconstructed",
       "proprietor_community": "yankee",
       "proprietor_community_tier": "reconstructed",
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_newell_boarding_house",
+      "file": "rcb_newell_boarding_house.json",
+      "name": "Newell's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Lydia Newell",
+          "person_id": "rc_newell_lydia",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_north_h2_030",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
       "review_required": false,
       "liberties": []
     }
@@ -13260,7 +13492,9 @@
       "household_id": "hh_robinson_alexander",
       "head": "robinson_alexander",
       "structure_id": "robinson_caldwell_cabins",
-      "business_ids": []
+      "business_ids": [
+        "biz_robinson_trading_house_wolf_point"
+      ]
     },
     {
       "household_id": "hh_sproat_grenville",

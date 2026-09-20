@@ -44,7 +44,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1182 | 601 | split_live | yes |
+| T-1190 | 601 | open | yes |
 | T-1198 | 298 | open | yes |
 | T-1394 | 266 | open | yes |
 | T-1335 | 169 | open | yes |
@@ -53,7 +53,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1182 (601), T-1198 (298), T-1394 (266), T-1335 (169), T-1188 (12) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1190 (601), T-1198 (298), T-1394 (266), T-1335 (169), T-1188 (12) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
 
 | The town as the layer holds it | Count |
 | --- | ---: |
@@ -201,7 +201,7 @@ Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. 
 | Agency holdings refused | 1 |
 | Land-sale parcels sorted onto a tract | 346 |
 | Land-sale parcels refused | 1,226 |
-| `associated_with` rows on a person or household | 7 |
+| `associated_with` rows on a person or household | 81 |
 
 | Body an office was held under | Rows |
 | --- | ---: |
@@ -267,7 +267,7 @@ None of these is a condition above, and that is a judgement rather than an overs
 2. **61 firms reach a street and 62 reach nowhere.** Those limits are preserved refusals; T-1198 seats what can be seated and the rest stay limits.
 3. **1,362 of 1,393 households have no `lives_at`, and 1,186 sit in no seating class.** Most are post-office-list names whose whole evidence is that a letter waited for them. T-1172 rules on their re-admission; T-1199 seats them.
 4. **1,942 of 2,269 persons carry no dated role, and 189 carry only roles dated away from the scene date.** The town's trades come from newspapers, directories and registers, and those name the men who advertised. T-1173 reconstructs the trade households the occupation model still wants.
-5. **Only 7 `associated_with` rows exist.** The plural, dated location row is the agreed shape (T-1147) and the renderer already reads it, but the migration off the singular `lives_at`/`works_at` pair has barely begun: T-1273 writes the committed reconciliations as association rows, T-1274 retires the pair. Until then the reconciliation table above, not the card, is where a person's second address is legible — which is why C7 measures the table.
+5. **Only 81 `associated_with` rows exist.** The plural, dated location row is the agreed shape (T-1147) and the renderer already reads it, but the migration off the singular `lives_at`/`works_at` pair has barely begun: T-1273 writes the committed reconciliations as association rows, T-1274 retires the pair. Until then the reconciliation table above, not the card, is where a person's second address is legible — which is why C7 measures the table.
 6. **One resident derivation cannot be gated on byte identity.** `tools/mint_letter_list_residents.py` is not the last writer of the files it derives, so re-running it over the committed tree would revert the synthesis and upgrade grades this project holds down; T-0662 read that and T-0691 owns the contract that compares only what the pass owns. It is declared on the gate baseline with that reason (C9) and `--gate` and `--self-test` are run in check.sh, which prove different things. This is a tooling contract, not an unspent reading: it cannot cause a reconstruction band to invent over a source, which is why it is listed here and not above.
 
 ## 8. What this signs, and what it does not

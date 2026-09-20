@@ -399,6 +399,18 @@
      "premises": null
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 6 row(s) — ls0393, ls0394, ls0395, ls0396, ls0397, ls0398 — to this purchaser, read as 'WRIGHT T G', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 15.71 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "female",
    "sex_basis": {
     "value": "female",

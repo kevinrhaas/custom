@@ -187,6 +187,18 @@
      "premises": "no_fixed_premises"
     }
    ],
+   "associated_with": [
+    {
+     "kind": "civic_seat",
+     "place_or_structure_id": "lake_street_east_side_clark_to_dearborn",
+     "resolves_to": "face",
+     "from": "1835-05",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "andreas_1884_v1",
+     "note": "THE MOST CONSPICUOUS PUBLIC FUNCTION IN THE TOWN THAT SUMMER, AND NEVER A PUBLIC BUILDING. `civic_public_buildings_1835.md` § 4 quotes Andreas twice in one paragraph: 'The location of the first United States Land Office in Chicago was on the east side of Lake Street, between Clark and Dearborn streets', and 'the office of the Registers and Receivers were usually at their private offices'. The first sentence is a block face and the second is why the row may not go past one. `us_land_office_1835` is in data/exclusions.json for the same reason. The date is the opening the chronology gives — 'May' 1835, 'Opening of Government Land-Office at Chicago' — so the SEAT is dated by the office and not by the officer, whose own span may begin before the office existed. THE OFFICE HERE IS LAND_OFFICE_REGISTER, carried on this person's roles[] block from 1833-11 to 1835-08 at attested confidence; this row states where that office SAT and inherits neither its dates nor its tier."
+    }
+   ],
    "age_band": {
     "value": "20-29",
     "low": 20,

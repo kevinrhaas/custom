@@ -204,8 +204,11 @@ function filterSpecs(rows, counts, vocabulary) {
   // record names and their cards in the resident layer — never off a surname. The pills
   // stand in the vocabulary's order rather than by count, as the People view's do, and a
   // term no house carries is left off until a reading puts somebody behind it: today
-  // that is Irish, German, free Black, Metis, French Canadian and all four Native terms.
-  // `Unknown` IS a pill. It is the answer for 85 of these 196 houses — the register
+  // that is Irish, German, French Canadian and all four Native terms. T-1403 put the
+  // first two behind it — free Black on T-1377's two reconstructed firms, Metis on
+  // Alexander Robinson's attested store at Wolf Point — so the filter the ticket asks
+  // for is this one pill list and it now answers.
+  // `Unknown` IS a pill. It is the answer for 85 of these 201 houses — the register
   // names nobody the town holds a card for, or names nobody at all — and a filter that
   // hid it would let the directory read as though the town's trade were settled.
   const communities = (vocabulary?.communities || []).filter((c) => c.count > 0);

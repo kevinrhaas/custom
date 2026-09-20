@@ -84,6 +84,18 @@
    "relationship": "head",
    "grade": "attested",
    "ladder_rule": "G1b",
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 17 row(s) — ls0301, ls0302, ls0303, ls0304, ls0305, ls0306, ls0307, ls0308, ls0309, ls0310, ls0311, ls0312, ls0313, ls0314, ls0315, ls0316, ls0317 — to this purchaser, read as 'PEARSONS HIRAM', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 69.12 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0850 on 2026-09-10 by the rule 'PEARSONS HIRAM matches Hiram Pearsons: the forename names Hiram Pearsons of the 1 person of this surname, and the forename agrees in full.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "occupation": {
     "value": "speculator",

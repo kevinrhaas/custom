@@ -56,7 +56,7 @@ It is an adjudication over committed derived files — no page of any source is 
 | Figure | Reading | Method |
 | --- | ---: | --- |
 | `census_classes_compared` | **17** | 17 of the 20 classes the T-1006 crosswalk holds carry both a printed census line and a register count; the other 3 are a class the census never printed a line for, or a line the town holds nothing for. |
-| `establishments_in_the_compared_classes` | **118 – 141** | The register holds 141 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
+| `establishments_in_the_compared_classes` | **118 – 142** | The register holds 142 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
 | `classes_short_of_the_census` | **8** | 8 compared classes hold fewer records than the census counted, 17 establishments short in total; 7 hold more, which is the register counting NOTICES where the census counted houses. |
 | `employed_persons` | **424 – 588** | The 1840 schedule returns 18% of persons in its seven industry columns, 0.902 per household. Applied to this model's July population range. The 1840 columns count persons in families and not occupations of named men, so this is a size and not a roster. |
 | `people_the_layer_gives_a_trade` | **138 – 327** | 138 people carry a role that reaches 1 July 1835; 327 carry any role at all, and 189 carry only roles dated off the scene. The gap between this and the employed-persons figure above is what the reconstruction bands have to fill. |
@@ -83,7 +83,7 @@ It is an adjudication over committed derived files — no page of any source is 
 | tin_and_copper_manufactory | two tin and copper manufactories | 2 | 4 | 2 | town_holds_more_than_the_census_counted |
 | storage_and_forwarding | four storage and forwarding houses | 4 | 8 | 4 | town_holds_more_than_the_census_counted |
 | tavern | eight taverns | 8 | 16 | 8 | town_holds_more_than_the_census_counted |
-| store | forty-four stores (dry goods, hardware and groceries) | 44 | 67 | 23 | town_holds_more_than_the_census_counted |
+| store | forty-four stores (dry goods, hardware and groceries) | 44 | 68 | 24 | town_holds_more_than_the_census_counted |
 - **date caution** — THE COUNT IS NOT OF THE SCENE. It was taken between 1 September and December 1835; the scene is 1 July 1835, two to five months earlier and in the fastest-growing months the town had. A class where the town holds fewer than the census counted is NOT thereby a hole in the July town — some of those forty-four stores opened in September. Every figure below is to be read with that gap in front of it.
 - **unit** — establishment records at the scene date against the printed census line
 

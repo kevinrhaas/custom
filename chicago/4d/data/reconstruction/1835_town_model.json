@@ -175,10 +175,10 @@
         {
           "figure": "establishments_in_the_compared_classes",
           "low": 118,
-          "high": 141,
+          "high": 142,
           "point": null,
           "is_a_count": false,
-          "method": "The register holds 141 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
+          "method": "The register holds 142 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -370,8 +370,8 @@
               "class": "store",
               "census_line": "forty-four stores (dry goods, hardware and groceries)",
               "census_count": 44,
-              "town_at_scene_date": 67,
-              "delta": 23,
+              "town_at_scene_date": 68,
+              "delta": 24,
               "outcome": "town_holds_more_than_the_census_counted"
             }
           ]

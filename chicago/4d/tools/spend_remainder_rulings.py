@@ -259,7 +259,7 @@ RULES = {
     },
     "the_enrichment_names_a_trade_or_premises_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1182",
+        "ticket": "T-1190",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -272,7 +272,8 @@ RULES = {
             "a firm, a shop, a tavern, a store or the premises one was kept at, and T-1182 is the "
             "audit of every attested and inferred business against the research -- proprietors, "
             "partners, dates and premises -- which also raises an inferred business for an in- "
-            "window trade that has none."),
+            "window trade that has none."
+            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."),
     },
     "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": {
         "disposition": "unresolved",
@@ -441,7 +442,7 @@ RULES = {
     },
     "the_notice_names_a_firm": {
         "disposition": "unresolved",
-        "ticket": "T-1182",
+        "ticket": "T-1190",
         "statement": (
             "The unit carries a `business` block: the reading pulled a firm name, and "
             "where it could a trade, a proprietor and a street placement, out of the "
@@ -453,7 +454,8 @@ RULES = {
             "It read T-1147 until the place and enterprise "
             "completion pass closed (T-1241). A firm is not minted here, a placement is "
             "not written here, and a contradiction between two notices is not resolved "
-            "here."),
+            "here."
+            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."),
     },
     "the_family_column_names_kin": {
         "disposition": "unresolved",

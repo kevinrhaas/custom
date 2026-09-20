@@ -1,7 +1,7 @@
 ---
 id: T-1405
 title: Persons' other significant locations as associated_with[]: civic seats held, church membership and office, agencies held, land purchased and schools taught, each with kind, place, dates, tier and source — counts before and after
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1182
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-19
+pr: 1540
+claimed_by: run 9/19/2026, 5:19:16 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-19T23:21:59.683Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35472811308
 ---
 
 Persons' other significant locations as associated_with[]: civic seats held, church membership and office, agencies held, land purchased and schools taught, each with kind, place, dates, tier and source — counts before and after.
