@@ -286,8 +286,15 @@ def self_test() -> int:
          overshoot_findings(audit(t0032, built)),
          "the north division's institutional_public overshoot has GROWN from 1 to 3")
 
+    # The row is cut to ONE BELOW what actually stands, read off the committed tree
+    # rather than typed. Typed, it was 20 against 21 standing — and on 2026-09-20
+    # T-1451 re-dealt five West Division roofs into this very cell, so the fixture
+    # started reporting a breach of 6 and the self-test failed on a tree that was
+    # green. A fixture that hard-codes a count of the live dataset is a second
+    # opinion about it, and it goes stale the first time the dataset moves.
+    standing_west_dwellings = built[("west", "ordinary_dwellings")]
     tight = copy(inventory)
-    tight["district_group_matrix"]["ordinary_dwellings"]["west"] = 20
+    tight["district_group_matrix"]["ordinary_dwellings"]["west"] = standing_west_dwellings - 1
     case("a new, undeclared division breach fails",
          overshoot_findings(audit(tight, built)),
          "the west division stands 1 roof(s) OVER its ordinary_dwellings row")
