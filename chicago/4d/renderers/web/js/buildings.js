@@ -319,7 +319,7 @@ function materialKey(m) {
  * @param {object} o.confidence             from createConfidenceView
  * @param {object} o.terrain                from createTerrain (for ground height)
  */
-export function createBuildings({ registry, confidence, terrain }) {
+export async function createBuildings({ registry, confidence, terrain, checkpoint = () => null, onProgress = () => {} }) {
   const group = new THREE.Group();
   group.name = 'structures';
   const problems = [];
@@ -349,7 +349,11 @@ export function createBuildings({ registry, confidence, terrain }) {
   const localXZ = new Map();
   let totalTris = 0;
 
+  let completed = 0;
+  onProgress(0, registry.size);
   for (const record of registry.values()) {
+    onProgress(completed++, registry.size);
+    const pause = checkpoint(); if (pause) await pause;
     if (!record.gltf) continue;
     const node = findStructureNode(record.gltf.scene, record.id);
     record.node = node;
@@ -425,6 +429,8 @@ export function createBuildings({ registry, confidence, terrain }) {
       } : { minX: gb.min.x, maxX: gb.max.x, minZ: gb.min.z, maxZ: gb.max.z });
     }
   }
+
+  onProgress(completed, registry.size);
 
   /**
    * The height to stand a building at: the LOWEST ground under its footprint,
@@ -521,6 +527,7 @@ export function createBuildings({ registry, confidence, terrain }) {
     batch.userData.batchIndex = [];
 
     for (const { record, geo, factors } of bucket.entries) {
+      const pause = checkpoint(); if (pause) await pause;
       const geometryId = batch.addGeometry(geo);
       const instanceId = batch.addInstance(geometryId);
       // T-0002. Where this mesh's colours ended up inside the batch, so the

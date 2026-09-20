@@ -17,6 +17,9 @@ STRICT=""
 # file so that tools/test_check_harness.sh can source and exercise it (T-0763).
 source "$_check_tools/check_harness.sh"
 
+step "Boot phase readiness, failure and history contract (T-1246)" \
+  node tools/test_boot_phases.mjs
+
 # THE MIRROR IS BUILT FIRST, BECAUSE IT IS NOT IN THE REPOSITORY ANY MORE (T-0938).
 #
 # `site/chicago/4d/` used to be committed, so every step below could assume it was
@@ -1137,13 +1140,28 @@ selftest "…and its own refusals still fire when the programme is bent" \
 # is a SUBSTITUTION and the gate asserts it as one: a refamily moves the roof between
 # order-book buckets and moves the roof COUNT by nothing, a seated roof is never re-dealt
 # behind its household's back, and the whole audit re-derives from committed files or
-# this step fails. T-1446 carries the verdicts into the recipe files and the bake; until
-# it does, this is a decision published and not yet executed.
+# this step fails. T-1451 carries the verdicts into the recipe files and the bake, and
+# the step below gates that execution; the 26 whose record id carries the family are
+# T-1452's, and until it runs this remains a decision published and not yet executed.
 step "the anonymous roofs re-audit against the programme the step above re-derived" \
   python3 tools/redeal_anonymous_roofs.py --check
 
 selftest "…and the redeal's own refusals still fire on a bent order book" \
   python3 tools/redeal_anonymous_roofs.py --self-test
+
+# T-1451, and it asks the question the step above cannot. The adjudication is DERIVED
+# over the town as it stands, so carrying a verdict out deletes it: the roof conforms,
+# the next re-derivation returns `keep`, and the evidence that anything happened is gone
+# from the ledger. The permanent record is the recipe's own `redealt` block, and this
+# step holds the recipe, the placements and the live adjudication to each other —
+# including the one assertion that makes an execution worth anything, which is that
+# every roof re-dealt now reads `keep`. A refamily that left the roof still breaching
+# its policy would move a building for nothing, and would otherwise look identical.
+step "the redeal's carried-out verdicts hold, and every re-dealt roof now conforms" \
+  python3 tools/execute_roof_redeal.py --check
+
+selftest "…and the executor's own refusals still fire on an unbuildable deal" \
+  python3 tools/execute_roof_redeal.py --self-test
 
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
@@ -1437,6 +1455,23 @@ selftest "the North Division lines still lie on the streets they continue, and s
 # Everything is arithmetic on two committed files; `--reread` is what goes back to the sheet.
 selftest "the North Division tier is still the wedge the plat letters, and still refuses to publish a northing" \
   python3 tools/measure_north_division_tier_depth.py --self-test
+
+# T-1458, the cut the reading above paid for. `generate_plat_lots.py` can cut a block only
+# between two committed street lines and the tier has one, so the seven blocks Thompson
+# draws between Kinzie and the river went uncut for as long as the sheet had no depth. They
+# are cut here instead, off committed Kinzie and DOWN by the read depth — never off the
+# sheet's own southern line, which is the northing T-1457 refuses to publish. The two steps
+# are the pair every derived file in this repo carries: the file re-derives from its inputs,
+# and the derivation holds its own assertions. The ones worth naming: the committed columns
+# give four 80 ft lots to a face in all seven blocks, which is the sheet's module arrived at
+# from the other side; the tier line predicts block 6's read north face to a fifth of a pixel,
+# which is what its carried depth rests on; and the ONE block the terrain calls wet is the one
+# the plat draws its watercourse across, two records with no arithmetic in common agreeing.
+step "the North Division tier's blocks and lots re-derive from the reading and the committed lines" \
+  python3 tools/cut_north_division_tier.py --check
+
+selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
+  python3 tools/cut_north_division_tier.py --self-test
 
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
@@ -4733,6 +4768,34 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
+
+# T-1461, piece 1 of T-1449, of T-1434, of T-1189. THE EMPLOYMENT COVERAGE ANSWER. The
+# two joins above are both true and neither covers the town: 112 cards a source names in
+# a house, 524 reconstructed trade-holders seated or told why not — 636 people of 3,243.
+# The other 2,607 held no workplace, no seat and no reason, and a card that had never
+# been asked the question looked exactly like a card that had been asked and answered
+# no. This gives every person one answer from a closed set of five, in the words of the
+# rule that decided it, so a silence is a statement that can be counted and argued with.
+#
+# IT SUPPLIES NO TRADE AND SEATS NOBODY. 2,536 people carry `occupation: none_recorded`
+# and leave this pass carrying none — reading a trade in from the household is exactly
+# the inference the reconstruction stages do under a quota and this pass has none.
+# `at_a_trade_with_no_house_to_join` is counted as neither placed nor unemployed for the
+# same reason: the soldier at the post and the laundress over her tub are at work, and
+# what is missing is a house in the business layer to join them to.
+#
+# WHY A GATE. The cover is the claim, and it is made of four files that move
+# independently — a card merged away leaves its answer behind as a fossil, a new
+# household arrives with no answer at all, a premises ruling re-cut moves a man from his
+# own account to somebody else's. `--check` re-derives every row and the report byte for
+# byte and refuses the four ways the cover can be wrong: a person with no answer, a
+# person with two, an answer in a word the vocabulary does not hold, and a child below
+# the staffing model's own working-age floor placed in a shop.
+step "every person in the resident layer carries one employment answer, and none carries none" \
+  python3 tools/employment_coverage_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/employment_coverage_1835.py --self-test
 
 # T-1448, of T-1434, of T-1189. THE MINT ORDER FOR THE SHOP HANDS — and the collision
 # that stopped the mint. The two passes above joined the houses to the people the
