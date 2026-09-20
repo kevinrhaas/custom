@@ -6,15 +6,21 @@ fixes an aggregate mix and a review layout, not fifty-five recovered buildings. 
 generated instance therefore says, in machine-readable and visitor-facing fields, that
 its presence, position and footprint are conjectural.
 
-**Only part of the parcel is emitted, and that is the recipe's own instruction.** Its
-`terrain_and_hydrology_gate` blocks any placement whose centre lies west of local
-E -300 m until the heightfield, collision surface, vegetation sampler, minimap and
-water mask all share the extended box out to E -700 m. The committed terrain still
-stops at E -320 m, so 35 of the 55 placements are held and 20 are built. That is not a
-compromise to be tidied away later: a roof west of the modelled ground would stand on
-nothing, sample no terrain, and the ground-contact gate would have no surface to check
-it against. The held slots keep their ids and their family allocation so the day the
-ground arrives they instantiate unchanged.
+**THE WHOLE PARCEL IS EMITTED SINCE T-1444, AND THAT TOO IS THE RECIPE'S OWN
+INSTRUCTION.** Its `terrain_and_hydrology_gate` used to block any placement whose
+centre lay west of local E -300 m until the modelled surfaces reached the extended box,
+because a roof west of the ground would stand on nothing and the ground-contact gate
+would have no surface to check it against. T-1416 built that ground: the committed
+heightfield now spans E -705..1700 m, and the collision surface, the water mask and the
+vegetation sampler are all readings of that same field, so the condition the block was
+written against is met and the block is retired rather than waived. The 35 held slots
+instantiate on their recipe ids and their recipe families, exactly as the hold promised.
+
+The hold's one lasting mark is the dealing order. `seq` deals finish, roof condition,
+age state and form, and the twenty roofs built under the hold were dealt 1..20 in
+recipe order. Releasing the rest does not redeal them: `dealing_order()` keeps those
+twenty first and appends the thirty-five behind them, so nothing already committed,
+reviewed and baked moves because its neighbours arrived.
 
 Like its two siblings (`generate_inferred_infill.py`, `generate_north_infill.py`) this
 re-derives every record byte for byte under `--check`, which is what makes 20 generated
@@ -41,9 +47,18 @@ PHASE_ID = "inferred_1835"
 PROGRAMME_PHASE = "phase2_west_wolf_point_approaches"
 PREFIX = "recon_1835_west_"
 
-# The recipe's own instantiation block. Placements at or west of this line wait for
-# the extended terrain box; see the module docstring.
+# The recipe's own instantiation block, retired by T-1444. It held every placement
+# whose centre lay west of this line; `dealing_order()` still reads it, because the
+# twenty roofs dealt east of it keep the sequence numbers they were built on. It is a
+# record of what was held, not a gate — `validate()` asks the committed heightfield
+# whether each footprint has ground under it, which is the question the block stood in
+# for while no ground existed.
 WEST_TERRAIN_LIMIT_E = -300.0
+
+# The committed box the release stands on, from
+# data/terrain/epochs/e1834_harbor_cut/heightfield.json. Stated here so a shrunk field
+# fails loudly instead of silently un-grounding thirty-five roofs.
+REQUIRED_WEST_BOX_E = -705.0
 
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
@@ -367,25 +382,64 @@ CLUSTER_PLACE = {
 # its own coordinates, so no slot leaves the block it was allocated to. Values are
 # frozen constants rather than a search run at generation time: a placement that
 # moves when an unrelated gate changes is not reproducible.
+#
+# T-1444 keyed this by PLACEMENT ID rather than by dealing sequence. The eight values
+# below are unchanged and still land on the same eight roofs; the key changed because
+# releasing the held slots moves nothing but adds thirty-five sequence numbers, and a
+# setback that follows its building is worth more than one that follows its position in
+# a list. Five more slots joined the table when the hold lifted: four of the five sit in
+# corridors that only reached them once T-1443 carried Lake and Randolph west off their
+# E -320 clip, which is the ordinary consequence of a street arriving after a layout.
 STREET_ADJUSTMENTS = {
-    3: (4.50, 0.00),    # Clinton Street, 4.3 m in
-    6: (-1.25, -2.17),  # Lake Street, 2.2 m in
-    8: (-6.40, 1.13),   # Clinton Street, 6.3 m in
-    11: (10.00, 0.00),  # Clinton Street, 9.5 m in
-    14: (12.00, 0.00),  # Clinton Street, 11.7 m in
-    18: (-9.36, 1.65),  # Clinton Street, 9.1 m in
-    19: (1.39, 7.88),   # Randolph Street, 7.8 m in
-    20: (8.03, 9.58),   # Randolph Street, 9.5 m in
+    "west_rec_003": (4.50, 0.00),    # Clinton Street, 4.3 m in
+    "west_rec_007": (-1.25, -2.17),  # Lake Street, 2.2 m in
+    "west_rec_009": (-6.40, 1.13),   # Clinton Street, 6.3 m in
+    "west_rec_012": (10.00, 0.00),   # Clinton Street, 9.5 m in
+    "west_rec_016": (12.00, 0.00),   # Clinton Street, 11.7 m in
+    "west_rec_022": (-9.36, 1.65),   # Clinton Street, 9.1 m in
+    "west_rec_023": (1.39, 7.88),    # Randolph Street, 7.8 m in
+    "west_rec_024": (8.03, 9.58),    # Randolph Street, 9.5 m in
+    # Released by T-1444, set back on the same rule and by the same search: the nearest
+    # quarter-metre step that clears the corridor and still passes collision, terrain
+    # cover, the dry-ground test and the 0.35 m step contract. Largest move 5.5 m.
+    "west_rec_025": (0.96, 5.42),    # Randolph Street, 5.4 m in
+    "west_rec_029": (-1.04, -3.86),  # Lake Street, 3.8 m in
+    "west_rec_031": (-1.42, -5.31),  # Lake Street, 5.3 m in
+    "west_rec_035": (-0.74, -1.59),  # Randolph Street, 1.5 m in
+    "west_rec_036": (-0.48, -0.57),  # Randolph Street, 0.6 m in
+}
+
+# west_rec_033 is a 20 x 32 ft D5 dwelling, and 32/20 is past the 1.5 at which
+# frame_dwelling_params refuses to build an eaves-front house on a front narrower than
+# its own range — "rotate the footprint or record the building as something else". The
+# footprint does not move: the same rectangle stands on the same ground, turned so that
+# the long side is the facade, which is what an 1835 eaves-front house is. Swapping the
+# two dimensions and turning the bearing a quarter circle is that statement and nothing
+# more. Frozen here rather than edited into the recipe, because the recipe is the
+# authored layout and this is the archetype's form rule applied to it.
+FACING_CORRECTIONS = {"west_rec_033"}
+
+# The reading T-1444 took of the recipe's fourth terrain rule, frozen so the corridor
+# cannot quietly gain a roof while T-1460 is open. Measured as footprint-corner distance
+# to the swale centreline against its own half_width_m; see validate() for what it means
+# and why nothing is moved to satisfy it. Closest in is recon_1835_west_002 at 3.2 m of
+# a 30 m half-width; the eighth, recon_1835_west_013, arrives with the release at 14.3 m.
+SWALE_CORRIDOR_OCCUPANTS = {
+    (f"{PREFIX}{n}", "west_prairie_swale_a")
+    for n in ("001", "002", "003", "005", "009", "011", "012", "013")
 }
 
 
 def make_record(row: dict, seq: int, datum: dict) -> dict:
     sid = f"{PREFIX}{row['id'].split('_')[-1]}"
-    de, dn = STREET_ADJUSTMENTS.get(seq, (0.0, 0.0))
+    de, dn = STREET_ADJUSTMENTS.get(row["id"], (0.0, 0.0))
     center_e = float(row["center_local_enu_m"][0]) + de
     center_n = float(row["center_local_enu_m"][1]) + dn
     width_ft, depth_ft = (float(v) for v in row["footprint_ft"])
     bearing = float(row["rotation_deg"])
+    if row["id"] in FACING_CORRECTIONS:
+        width_ft, depth_ft = depth_ft, width_ft
+        bearing -= 90.0
     width, depth = round(width_ft * .3048, 3), round(depth_ft * .3048, 3)
     local_e, local_n = footprint_origin(center_e, center_n, width, depth, bearing)
     family = row["family"]
@@ -397,6 +451,11 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                "placed it inside a platted street corridor; the move is well inside the "
                "±20 m uncertainty the recipe states for its own layout controls."
                if de or dn else "")
+    if row["id"] in FACING_CORRECTIONS:
+        setback += (" The rectangle the recipe gives stands where it gives it; its long "
+                    "side is read as the facade, because an 1835 dwelling is eaves-front "
+                    "and a front narrower than its own range would build the gable-front "
+                    "house of a later decade.")
     reconstruction = {
         "status": "inferred_anonymous", "family": family, "district": "west",
         "inventory_class": row["inventory_class"], "programme_phase": PROGRAMME_PHASE,
@@ -456,6 +515,15 @@ def world_polygon(record: dict, datum: dict) -> list[tuple[float, float]]:
     return [(e0 + u * cos + v * sin, n0 - u * sin + v * cos) for u, v in poly]
 
 
+def point_segment_distance(e: float, n: float, a: tuple[float, float],
+                           b: tuple[float, float]) -> float:
+    """Local-ENU distance from a point to a segment, for the swale corridors."""
+    de, dn = b[0] - a[0], b[1] - a[1]
+    span = de * de + dn * dn
+    t = 0.0 if span == 0 else max(0.0, min(1.0, ((e - a[0]) * de + (n - a[1]) * dn) / span))
+    return math.hypot(e - (a[0] + t * de), n - (a[1] + t * dn))
+
+
 def polygons_overlap(a: list[tuple[float, float]], b: list[tuple[float, float]]) -> bool:
     """Strict convex-polygon SAT; touching edges are permitted."""
     for poly in (a, b):
@@ -489,36 +557,39 @@ def other_world_polygons(datum: dict, mine: set[str]) -> list[tuple[str, list]]:
     return out
 
 
-def validate(records: list[dict], built_rows: list[dict], held: list[dict],
+def validate(records: list[dict], rows: list[dict],
              inventory: dict, recipe: dict, datum: dict) -> None:
     totals = recipe["roof_totals"]
-    if len(records) + len(held) != totals["all"]:
-        raise SystemExit(f"West recipe accounts for {len(records) + len(held)} roofs, "
+    if len(records) != totals["all"]:
+        raise SystemExit(f"West recipe accounts for {len(records)} roofs, "
                          f"expected {totals['all']}")
 
-    # The built and held halves together must still be the recipe's mix: holding slots
-    # back for terrain is not licence to quietly change what the parcel is.
+    # Releasing the held half is not licence to quietly change what the parcel is: the
+    # whole parcel must still be the recipe's mix, as both halves together had to be.
     all_families = Counter(r["reconstruction"]["family"] for r in records)
-    all_families.update(p["family"] for p in held)
     if all_families != Counter(recipe["family_totals"]):
         raise SystemExit(f"West family mix drifted: {dict(all_families)}")
     for family, count in all_families.items():
         if count > inventory["family_targets"][family]:
             raise SystemExit(f"West {family} count {count} exceeds programme target")
 
-    # Nothing emitted may sit in the blocked box, and nothing held may sit outside it.
-    # The rule is written about placement CENTRES, so it is asked of centres — a
-    # footprint corner is a couple of metres further out and answering with one would
-    # hold back a slot the recipe permits. That the whole FOOTPRINT is on modelled
-    # ground is a separate and stricter question, and `field.covers()` below asks it.
-    for row, record in zip(built_rows, records):
-        de, dn = STREET_ADJUSTMENTS.get(record["reconstruction"]["sequence"], (0.0, 0.0))
-        if float(row["center_local_enu_m"][0]) + de < WEST_TERRAIN_LIMIT_E:
-            raise SystemExit(f"{record['id']} sits west of E {WEST_TERRAIN_LIMIT_E:g} m, "
-                             "which the recipe's terrain gate blocks")
-    for row in held:
-        if float(row["center_local_enu_m"][0]) >= WEST_TERRAIN_LIMIT_E:
-            raise SystemExit(f"{row['id']} is inside the modelled box and should be built")
+    # Every placement instantiates, on its own recipe id. The hold promised the 35 held
+    # slots would arrive unchanged in id and family, and this is where that is kept.
+    expected_ids = {f"{PREFIX}{row['id'].split('_')[-1]}" for row in recipe["placements"]}
+    if {r["id"] for r in records} != expected_ids:
+        raise SystemExit("the West parcel no longer instantiates one record per "
+                         "recipe placement, on the placement's own id")
+
+    # The twenty roofs dealt under the hold keep their sequence numbers. A released slot
+    # that took one would redeal a committed roof's finish, roof condition and age state.
+    first, _ = split_placements(recipe)
+    for seq, row in enumerate(first, start=1):
+        sid = f"{PREFIX}{row['id'].split('_')[-1]}"
+        record = next(r for r in records if r["id"] == sid)
+        if record["reconstruction"]["sequence"] != seq:
+            raise SystemExit(f"{sid} was dealt {seq} under the hold and is now "
+                             f"{record['reconstruction']['sequence']}; the release "
+                             "may not redeal the roofs already built")
 
     for record in records:
         module = importlib.import_module(f"archetypes.{record['archetype']}_params")
@@ -547,6 +618,52 @@ def validate(records: list[dict], built_rows: list[dict], held: list[dict],
     field = Heightfield.load(DATA / "terrain" / "epochs" / "e1834_harbor_cut")
     if field is None:
         raise SystemExit("West recipe cannot validate: committed heightfield is missing")
+
+    # The released half stands on the ground T-1416 built, so the release reads the box
+    # rather than trusting the note that says it arrived. This is the retired
+    # instantiation block's condition, asked of the committed field every run.
+    spec = load(DATA / "terrain" / "epochs" / "e1834_harbor_cut" / "terrain_spec.json")
+    if float(spec["grid"]["e_min_m"]) > REQUIRED_WEST_BOX_E:
+        raise SystemExit(
+            f"the committed terrain box starts at E {spec['grid']['e_min_m']:g} m and "
+            f"the West parcel was released onto ground reaching E {REQUIRED_WEST_BOX_E:g} m. "
+            "Re-extend the field or re-impose the recipe's instantiation block; do not "
+            "leave thirty-five roofs standing off the edge of it.")
+
+    # The recipe's fourth terrain rule deferred a reading to "after the west terrain
+    # extension", which is now: no roof in the two conjectural west-prairie swales, and
+    # move the roof rather than flatten the swale. T-1444 took the reading and it does
+    # not say what the rule assumed. SEVEN OF THE TWENTY ROOFS BUILT UNDER THE HOLD
+    # ALREADY STAND INSIDE west_prairie_swale_a's 30 m corridor, seated there in 2026-08
+    # while the rule was still deferred, and an eighth arrives with the release. The
+    # swale is the conjectural half of that pair: its alignment is invented (no source;
+    # T-0795 walked the whole Wright sheet and it draws no watercourse on this prairie),
+    # and since T-1416 carried the field out to E -705 its line no longer even reaches
+    # the edge of the ground — it begins abruptly at E -320, in open modelled prairie,
+    # where the old west wall used to be. Moving eight reviewed roofs to fit an invented
+    # line that starts nowhere is not what the rule was protecting, so the alignment
+    # goes to the owner (T-1460) and the occupancy is frozen here instead: the corridor
+    # may not quietly acquire a ninth roof while that question is open.
+    swales = [sw for sw in spec.get("swales", []) if sw["id"].startswith("west_prairie_")]
+    inside = set()
+    for sid, poly in polygons:
+        for swale in swales:
+            line = [(float(e), float(n)) for e, n in swale["line"]]
+            half = float(swale["half_width_m"])
+            if any(point_segment_distance(e, n, a, b) <= half
+                   for e, n in poly for a, b in zip(line, line[1:])):
+                inside.add((sid, swale["id"]))
+    if inside != SWALE_CORRIDOR_OCCUPANTS:
+        arrived = sorted(f"{sid} in {swale}" for sid, swale in inside - SWALE_CORRIDOR_OCCUPANTS)
+        left = sorted(f"{sid} in {swale}" for sid, swale in SWALE_CORRIDOR_OCCUPANTS - inside)
+        raise SystemExit(
+            "the conjectural west-prairie swale corridors no longer hold the roofs "
+            "T-1444 measured into them"
+            + (f"; arrived: {', '.join(arrived)}" if arrived else "")
+            + (f"; left: {', '.join(left)}" if left else "")
+            + ". See T-1460: the alignment, not the roofs, is what the recipe's fourth "
+              "terrain rule asked to be reviewed.")
+
     for sid, poly in polygons:
         heights = [field.height(e, n) for e, n in poly]
         if not all(field.covers(e, n) for e, n in poly):
@@ -559,19 +676,37 @@ def validate(records: list[dict], built_rows: list[dict], held: list[dict],
 
 
 def split_placements(recipe: dict) -> tuple[list[dict], list[dict]]:
-    build, held = [], []
+    """The two halves the retired instantiation block cut the parcel into.
+
+    Both halves build now. The split survives because it is what `dealing_order()`
+    keeps: the first half carries the sequence numbers its roofs were dealt, baked and
+    reviewed on, and a released slot may not take one of them.
+    """
+    first, released = [], []
     for row in recipe["placements"]:
-        (build if float(row["center_local_enu_m"][0]) >= WEST_TERRAIN_LIMIT_E
-         else held).append(row)
-    return build, held
+        (first if float(row["center_local_enu_m"][0]) >= WEST_TERRAIN_LIMIT_E
+         else released).append(row)
+    return first, released
+
+
+def dealing_order(recipe: dict) -> list[dict]:
+    """Every placement, in the order `seq` is dealt over.
+
+    Recipe order within each half, the half built under the hold first. Sorting the
+    parcel by easting or by id instead would renumber the twenty committed roofs and
+    redeal their finish, roof condition and age state for no reason but the arrival of
+    their neighbours.
+    """
+    first, released = split_placements(recipe)
+    return first + released
 
 
 def records_from_inputs() -> list[dict]:
     inventory, recipe, datum = load(INVENTORY_PATH), load(RECIPE_PATH), load(DATA / "datum.json")
-    build, held = split_placements(recipe)
-    records = [make_record(row, i + 1, datum) for i, row in enumerate(build)]
+    rows = dealing_order(recipe)
+    records = [make_record(row, i + 1, datum) for i, row in enumerate(rows)]
     deal_siding(records)
-    validate(records, build, held, inventory, recipe, datum)
+    validate(records, rows, inventory, recipe, datum)
     return records
 
 
@@ -581,7 +716,7 @@ def main() -> int:
                         help="report missing, changed, or extra West outputs")
     args = parser.parse_args()
     recipe = load(RECIPE_PATH)
-    _, held = split_placements(recipe)
+    first, released = split_placements(recipe)
     records = records_from_inputs()
     expected = {f"{r['id']}.json" for r in records}
     drift = []
@@ -607,7 +742,8 @@ def main() -> int:
     mode = "verified" if args.check else "generated"
     print(f"{mode} {len(records)} inferred anonymous West Division records "
           f"({principal} principal, {len(records) - principal} ancillary); "
-          f"{len(held)} held for terrain west of E {WEST_TERRAIN_LIMIT_E:g} m")
+          f"{len(first)} dealt under the retired terrain hold and {len(released)} "
+          f"released onto the ground west of E {WEST_TERRAIN_LIMIT_E:g} m (T-1444)")
     return 0
 
 

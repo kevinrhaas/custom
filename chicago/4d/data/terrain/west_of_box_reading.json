@@ -57,7 +57,7 @@
   "heightfield_bin_bytes_then": 3792294
  },
  "held_slots": {
-  "_doc": "generate_west_infill.py holds a placement whose CENTRE is west of its instantiation block. The wall is derived from the westernmost FOOTPRINT edge, because a roof is contained when all of it is.",
+  "_doc": "generate_west_infill.py HELD a placement whose CENTRE was west of its instantiation block, and the wall is derived from the westernmost FOOTPRINT edge of those, because a roof is contained when all of it is. T-1444 released all 35 onto the ground T-1416 built and retired the block; the figures below are kept as the derivation of the wall, which is what they always were, and no longer describe anything the generator withholds.",
   "instantiation_block_e_m": -300,
   "placements": 55,
   "held": 35,
@@ -91,7 +91,7 @@
  },
  "streets": {
   "_doc": "Three populations, never added together: records the present wall CUT, records the move brings onto modelled ground, and records that stand off the derived wall even after the move. The last are platted, unopened lines — `streets.js` compiles no ribbon for a record with track_width_m 0, so they draw nothing.",
-  "in_layer": 77,
+  "in_layer": 79,
   "clipped_at_the_present_wall": [],
   "brought_onto_the_ground_by_the_move": [],
   "still_west_of_the_derived_wall": {

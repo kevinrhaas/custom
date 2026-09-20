@@ -3,7 +3,10 @@
     blender -b -noaudio --factory-startup --python generators/build.py -- [args]
 
     --all           build every structure phase resolvable for the scene
-    --only <id>     build one structure id
+    --only <id>     build one structure id, or a comma-separated list of them.
+                    A list is one Blender start-up instead of N: releasing the West
+                    parcel's thirty-five held slots (T-1444) is thirty-five ids and
+                    thirty-five cold starts is most of a run's clock.
     --scene <id>    scene to resolve phases against (default 1835)
     --no-bake       skip UV + AO baking (fast iteration)
     --ao            bake ambient occlusion (opt-in; nothing in the nightly passes it —
@@ -266,7 +269,7 @@ def export_glb(ob, structure_id: str, phase_id: str, out: Path) -> Path:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true")
-    ap.add_argument("--only")
+    ap.add_argument("--only", help="one structure id, or a comma-separated list")
     ap.add_argument("--scene", default="1835")
     ap.add_argument("--no-bake", action="store_true",
                     help="skip UV unwrap as well as AO")
@@ -294,10 +297,18 @@ def main() -> int:
     # scheme it does not compute, so redefining freshness is a visible event.
     manifest["inputs_scheme"] = mesh_inputs.SCHEME
 
+    wanted = {i.strip() for i in args.only.split(",") if i.strip()} if args.only else None
+    if wanted is not None:
+        have = {load(p)["id"] for p in (ROOT / "data" / "structures").glob("*.json")}
+        missing = sorted(wanted - have)
+        if missing:
+            print("no such structure id: " + ", ".join(missing))
+            return 2
+
     built = 0
     for path in sorted((ROOT / "data" / "structures").glob("*.json")):
         st = load(path)
-        if args.only and st["id"] != args.only:
+        if wanted is not None and st["id"] not in wanted:
             continue
         phase = resolve_phase(st, target)
         if phase is None:
