@@ -205,6 +205,7 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 T-1355 — The four derived research reports conflict on every merge: decide whether they come off the PR surface the way T-0937 and T-0938 took the board and the mirror, with the reading written down
 T-1362 — The lap re-derives only when it merges, so a branch already current with dev stays stale against a gate dev just added: #1487 sat red on four manifest-owned files while the lap said 'already current — nothing to lap'
 T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
+T-1453 — Two gated writers carry a placement the coverage audit does not count, so it says 208 measured and accounts for 206 — and the one whose ordering is unrecorded cost three gate cycles today
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
@@ -238,4 +239,3 @@ T-1435 — The in-window crosswalk still hands its lawyer and physician shortfal
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1439 — The order book reports a false delta of ten institutional roofs: programme_deltas reads the town model's institutional HIGH end, which includes the fort's ten principal roofs, against district_group_matrix.institutional_public alone — and the boarding-house row beside it compares that matrix with a figure read off the same matrix, so it can never disagree
-
