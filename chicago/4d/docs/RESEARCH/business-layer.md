@@ -289,6 +289,118 @@ refused, and one carrying a `structure_id` is refused as well.
 | index → its own record files | `tools/validate.py` |
 | `works_at` crosswalk → a business | `tools/validate.py`: a dangling business id |
 
+## The mechanics' shops of 1835 — three counts, three units, one that binds
+
+**T-1185.** The ticket asks for the mechanic trades set against the *Chicago American*'s
+twenty-five mechanics' shops and against the workshop roofs of the building programme, with
+the bound that wins each row named. Here they are, and the first thing the table shows is
+that the three numbers **do not count the same thing**.
+
+### 1 · What the December 1835 State census enumerates
+
+The census counts establishments by class, and of the eighteen classes it names only four are
+mechanics' shops in the ordinary sense. Those four are the whole of T-1185's quota:
+
+| census class | census counts | the register holds | ordered | what was done |
+|---|---:|---:|---:|---|
+| two breweries | 2 | 1 | 1 | *M. Quinn, brewery*, North Water bank |
+| two silversmiths and jewellers | 2 | 1 | 1 | *L. Chevalier, watches, jewelry, engravings and fancy goods*, Canal Street |
+| one iron foundry | 1 | 1 | 0 | nothing — Dart & Co.'s castings stands at the target |
+| two tin and copper manufactories | 2 | 4 | 0 | nothing — the register is **two over** the census |
+
+The tin and copper row is the one to read twice. The register prints four houses in that trade
+— J. K. Botsford twice, W. Keeney, and a fourth whose proprietor was never recovered — against
+a census that counts two. **The reading wins over the count**, and nothing is retired to make
+the two agree: a printed advertisement is a house somebody saw, and a census class is a tally
+taken five months later by an enumerator who may have merged Botsford's two signs into one
+establishment or counted the shop and not the factory. The over-count is recorded here and in
+**L257**, not corrected.
+
+### 2 · What the *Chicago American* counts, and the one row where it bites
+
+> "There are now upward of fifty business houses, four large forwarding-houses, eight taverns,
+> two printing offices, two book-stores, one steam saw-mill, **one brewery**, one furnace (just
+> going up), and twenty-five mechanics' shops of all kinds."
+> — *Chicago American*, 15 August 1835, quoted by Andreas; see
+> `data/sidecars/1835/tremont_house_1.json` and **T-0406**.
+
+Two things in that sentence matter to this band. **The twenty-five** is an aggregate with no
+trades named, so it can bound a total and can never bound a row. **The one brewery** is a row,
+and it disagrees with the census: the American counts one brewery six weeks *after* the scene
+date where December counts two. That is the tighter bound and the nearer one, and this band
+does **not** apply it — re-cutting an order-book bucket on a run's own reading of a newspaper
+is a ruling made in the wrong place, and the Sept–Dec 1835 crosswalk (**T-1404**) is the right
+one; the bucket reads `compared_by_the_crosswalk: true` with `crosswalk_note: null`. So
+*M. Quinn, brewery* stands on the book's quota **with the American printed in its own
+`reconstruction.basis.note`**, and a crosswalk that rules the American in re-cuts the bucket
+and `--build` withdraws the record. See **L257**.
+
+The same sentence corroborates the rest of the band where it can be checked: "one steam
+saw-mill" against the register's two and the book's one, "two book-stores" and "two printing
+offices" exactly, "one furnace (just going up)" against the census's one iron foundry.
+
+### 3 · What the roof programme counts
+
+The building programme carries **30 workshop roofs** in five families — W1 six forges, W2 eight
+joiners, W3 six cooper and wheelwright shops, W4 six artisan shop-houses, W5 four riverside
+heavy — of which four stand today (one each of W1–W4) and 26 remain. See
+`docs/RESEARCH/1835_family_archetype_crosswalk.md`.
+
+### 4 · What the resident layer already holds
+
+The mechanic trades of the ticket's title are **occupations** in this data, not census classes,
+and the resident band's `trade_households` stage has already drawn heads at them — **73** of
+them:
+
+| trade | heads | trade | heads | trade | heads |
+|---|---:|---|---:|---|---:|
+| blacksmith | 8 | tailor | 7 | brickmaker | 1 |
+| carpenter | 21 | shoemaker | 4 | sawyer | 1 |
+| builder | 9 | harness maker | 1 | soap and candle maker | 1 |
+| cooper | 2 | tinsmith | 1 | hatter | 1 |
+| carriage maker | 2 | mason | 2 | watchmaker | 1 |
+| painter | 2 | plasterer | 1 | brewer | 1 |
+| baker | 2 | butcher | 3 | miller | 1 |
+| confectioner | 1 | | | | |
+
+Seven trades the ticket names have **no head at all** because the resident vocabulary carries
+no such word: tanner, saddler, wheelwright, wagon maker, joiner, gunsmith, cabinetmaker. Three
+of them nonetheless have a standing roof (`inf_wheelwright_shop_west`, `inf_gunsmith_shop`,
+`inf_harness_shop`), which is a gap for **T-1196** and **T-1199** to close, not for this band.
+
+### 5 · So which bound wins
+
+| the question | the bound that wins | why |
+|---|---|---|
+| how many reconstructed business **records** a mechanic class gets | the order book's per-class row | it is the only one of the three that is per-class, and it is derived from a count of establishments |
+| how many mechanics' **shops** the town has in total | the American's twenty-five | it is a reading, it is six weeks from the scene, and it counts shops |
+| how many workshop **roofs** get built | the programme's thirty, until **T-1196** re-cuts it | a roof is not a shop: W4 is a shop-house the American would more likely count among its "fifty business houses", and a forge and its shed are two roofs and one shop |
+| how many mechanic **people** the town has | the occupation model's 73 heads | a person is not a premises — most of the 73 are journeymen in somebody else's shop, or carpenters and masons who work where the wall is |
+
+The three numbers are **not** in conflict once the units are kept apart: 73 mechanics, working
+out of on the order of 25 shops, standing under something like 30 roofs, of which the December
+census enumerated 7 as establishments of a named class. Where two bounds genuinely collide on
+one row — the brewery — the collision is written onto the record and handed to the ticket that
+owns it.
+
+### 6 · The standing `inf_*` workshops, and why none of them is adopted here
+
+The ticket asks that every inferred workshop structure be adopted as one of this group's
+premises or listed for retirement. Thirteen stand, and **none is of a class this group writes**:
+
+`inf_blacksmith_shop_west` (W1) · `inf_cooperage_south` (W3) · `inf_cooperage_south_branch`
+(W3) · `inf_wheelwright_shop_west` (W3) · `inf_gunsmith_shop` (W4) · `inf_harness_shop` (W4) ·
+`inf_shoemaker_shop` (W4) · `inf_tailor_shop` (W4) · `inf_barber_shop` (W4) ·
+`inf_butcher_market` (C1) · `inf_artisan_dwelling_west_a` (D3, blacksmith) ·
+`inf_artisan_dwelling_west_b` (D3, wheelwright) · `inf_teamster_stable_west` (A2)
+
+There is no brewery, no foundry, no tin shop and no jeweller's among them, so there is nothing
+for *M. Quinn* or *L. Chevalier* to move into and nothing that this group's existence makes
+redundant. The list is not idle: every one of these thirteen is a roof whose trade the census
+does **not** enumerate as an establishment, which is exactly the population **T-1197** re-audits
+against the re-derived programme and **T-1199** seats. It is recorded here so that re-audit
+starts from a written list rather than a grep.
+
 ## Links
 
 `data/businesses.schema.json` · `tools/compile_businesses.py` ·

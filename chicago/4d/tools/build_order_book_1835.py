@@ -212,10 +212,16 @@ BUSINESS_TICKETS = {
     "tavern": "T-1187",
     "lottery_office": "T-1182",
     "bank": "T-1182",
+    # BOTH PARENTS SPLIT ON 2026-09-20 and each row follows its own heir.
+    # T-1188 split, so the civic rows move to T-1411, the churches, schools and press
+    # as establishments — this branch's own reassignment.
     "church": "T-1411",
     "school": "T-1411",
-    "lawyer": "T-1186",
-    "physician": "T-1186",
+    # T-1186 was split on 2026-09-20 when the unit ruling below turned out to be a
+    # demonstration of its own; T-1418 is the piece that owns these two rows and T-1419
+    # the services, which the census enumerates nowhere and which therefore own no bucket.
+    "lawyer": "T-1418",
+    "physician": "T-1418",
     "lyceum_and_reading_room": "T-1182",
     "other": "T-1182",
     "not_stated": "T-1182",
@@ -295,6 +301,7 @@ def load(root: Path = ROOT) -> dict:
         "programme": root / "data" / "reconstruction" / "1835_665_roof_programme.json",
         "inventory": root / "data" / "reconstruction" / "1835_building_inventory.json",
         "crosswalk": root / "data" / "research" / "books" / "trade_census_1835_crosswalk.json",
+        "trade_spend": root / "data" / "research" / "books" / "trade_census_1835_spend.json",
         "composition": root / "data" / "research" / "census_1840" / "composition_1840.json",
         "residents": root / "data" / "residents" / "index.json",
         "register": root / "data" / "research" / "newspapers" / "register_1835.json",
@@ -638,11 +645,88 @@ def household_buckets(model: dict, inventory: dict, known: dict) -> dict:
     }
 
 
-def business_buckets(crosswalk: dict, register: dict) -> dict:
+
+# THE TWO CENSUS LINES THAT COUNT MEN, AND THE BRACKET THE SCENE DATE PUTS THEM IN.
+#
+# Every other enumerated line of the December 1835 State census counts PREMISES — four
+# druggists, eight taverns, two breweries — and the register counts premises too, so the
+# two sit in one unit and `target - known` is a quota. Two lines do not: "twenty-two
+# lawyers" and "fourteen physicians" count PEOPLE, and T-1007's spend
+# (`trade_census_1835_spend.json`) is the adjudication that says so and does the join —
+# eighteen lawyer records are thirteen men, five of them second printings of one office,
+# and three physician records are eight men once the resident cards carrying Egan, Harmon,
+# Goodhue, Kimberly and Temple are read alongside them. Set the census's men against the
+# register's NOTICES and the book orders four lawyers the town already has and eleven
+# physicians it is nothing like short of.
+#
+# AND THE COUNT IS NOT OF THE SCENE. The census was returned between 1 September and
+# December 1835 over a town of 3,297; the scene is 1 July 1835, and the town model brackets
+# that day's population between 2,353 and 3,265. A class of men who serve a population
+# scales with it, so the number practising on the scene date is bracketed by the same two
+# ratios, and the book orders to the LOW END of that bracket and never above it: a
+# reconstruction that filled to the December figure would put into the July town the
+# practitioners who arrived in the three months after it.
+#
+# The bracket is stated on the bucket rather than folded into a number, and the low end is
+# floored rather than rounded, because a fraction of a physician is a physician this town
+# is not known to have had.
+PERSON_UNIT_SPEND = "data/research/books/trade_census_1835_spend.json"
+
+
+def person_unit_brackets(spend: dict, model: dict) -> dict:
+    """`{class: bracket}` for the census lines T-1007's spend rules are counted in MEN."""
+    july = figure(model, "population", "population_on_1_july_1835")
+    census_pop = figure(model, "population", "recorded_state_count_september_to_december_1835")
+    denominator = int(census_pop.get("low") or 0)
+    if denominator <= 0:
+        raise Fault("the town model carries no State-census population to scale the trade "
+                    "lines by, and a bracket cannot be drawn without one")
+    low_pop, high_pop = int(july["low"]), int(july["high"])
+    if low_pop > high_pop:
+        raise Fault("the town model's population bracket for the scene date is inverted")
+    out = {}
+    for row in spend.get("classes", []):
+        if row.get("unit") != "person":
+            continue
+        name = row["class"]
+        count = int(row["census_count"])
+        held = row.get("held_in_the_counted_unit")
+        if held is None:
+            raise Fault(f"the spend rules {name!r} in men and does not say how many the town "
+                        f"holds in that unit; the book will not guess it")
+        out[name] = {
+            "unit": "person",
+            "unit_basis": row.get("unit_basis"),
+            "census_count": count,
+            "held_in_the_counted_unit": int(held),
+            "register_records": int(row.get("register_records") or 0),
+            "low": (count * low_pop) // denominator,
+            "high": (count * high_pop) // denominator,
+            "scaled_by": {
+                "state_census_population": denominator,
+                "scene_date_population_low": low_pop,
+                "scene_date_population_high": high_pop,
+                "figure": "population_on_1_july_1835",
+            },
+            "method": (f"The census counts {count} in a town of {denominator}; the town model "
+                       f"brackets 1 July 1835 between {low_pop} and {high_pop} people. A "
+                       f"profession scales with the population it serves, so the scene date "
+                       f"holds between {(count * low_pop) // denominator} and "
+                       f"{(count * high_pop) // denominator} of them. The book orders to the "
+                       f"low end, floored."),
+            "source": PERSON_UNIT_SPEND,
+            "ticket": "T-1418",
+        }
+    return out
+
+
+def business_buckets(crosswalk: dict, register: dict, spend: dict,
+                     model: dict) -> dict:
     classes = crosswalk.get("classes", [])
     if not classes:
         raise Fault("the trade-census crosswalk carries no classes")
     documented_zero = set(crosswalk.get("classes_the_town_holds_nothing_for", []))
+    brackets = person_unit_brackets(spend, model)
     buckets = []
     for row in sorted(classes, key=lambda r: r["class"]):
         name = row["class"]
@@ -653,16 +737,39 @@ def business_buckets(crosswalk: dict, register: dict) -> dict:
         # figure and still has a ticket that must answer for it.
         if row.get("census_count") is None:
             continue
-        target = int(row["census_count"])
+        census_count = int(row["census_count"])
         known = int(row["town_records_at_scene_date"])
         ticket = BUSINESS_TICKETS.get(name)
         if ticket is None:
             raise Fault(f"no ticket owns the business class {name!r}")
         zero = name in documented_zero
+        # A CLASS THE CENSUS COUNTS IN MEN IS ORDERED IN MEN, and to the scene date's
+        # bracket rather than to the December return. Both halves of the row move
+        # together — the target to the bracket's low end and `known` to the men the
+        # spend holds — because a quota with one unit on each side of the subtraction
+        # is not a quota. Every other class keeps the premises reading it always had.
+        bracket = None if zero else brackets.get(name)
+        if bracket is None:
+            target = 0 if zero else census_count
+            basis = ("a DOCUMENTED ZERO of the December 1835 State census — the town held none, "
+                     "and none is reconstructed" if zero else
+                     f"the December 1835 State census prints {census_count}; the register holds "
+                     f"{known} at the scene date")
+        else:
+            target = bracket["low"]
+            known = bracket["held_in_the_counted_unit"]
+            basis = (f"the December 1835 State census prints {census_count} — a line that counts "
+                     f"MEN and not premises (T-1007). The town holds {known} of them at the scene "
+                     f"date against {bracket['register_records']} register records, and the "
+                     f"scene date's population brackets the class between {bracket['low']} and "
+                     f"{bracket['high']}. The book orders to the low end, {target}")
         buckets.append({
             "key": f"businesses/{name}",
             "axes": {"class": name, "division": "unassigned"},
             "census_line": row.get("census_line"),
+            "census_count": 0 if zero else census_count,
+            "unit": "person" if bracket else "establishment",
+            "scene_bracket": bracket,
             "target": 0 if zero else target,
             "known": known,
             "to_reconstruct": 0 if zero else max(0, target - known),
@@ -673,10 +780,7 @@ def business_buckets(crosswalk: dict, register: dict) -> dict:
             "staff_owning_ticket": "T-1183",
             "compared_by_the_crosswalk": bool(row.get("compared")),
             "crosswalk_note": row.get("note"),
-            "basis": ("a DOCUMENTED ZERO of the December 1835 State census — the town held none, "
-                      "and none is reconstructed" if zero else
-                      f"the December 1835 State census prints {target}; the register holds {known} "
-                      f"at the scene date"),
+            "basis": basis,
         })
     totals = crosswalk.get("totals", {})
     return {
@@ -879,7 +983,8 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     occ = occupancy if occupancy is not None else occupancy_of()
     persons = person_buckets(data["model"], data["composition"], data["inventory"], known)
     households = household_buckets(data["model"], data["inventory"], known)
-    businesses = business_buckets(data["crosswalk"], data["register"])
+    businesses = business_buckets(data["crosswalk"], data["register"], data["trade_spend"],
+                                  data["model"])
     structures = structure_buckets(data["inventory"], data["programme"], occ)
     ground = ground_buckets(data["programme"])
 
@@ -933,6 +1038,7 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
             "data/reconstruction/1835_665_roof_programme.json",
             "data/reconstruction/1835_building_inventory.json",
             "data/research/books/trade_census_1835_crosswalk.json",
+            "data/research/books/trade_census_1835_spend.json",
             "data/research/census_1840/composition_1840.json",
             "data/residents/index.json",
             "data/research/newspapers/register_1835.json",

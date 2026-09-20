@@ -7,8 +7,81 @@
   "proprietors": "ADOPTED from data/residents/reconstructed_trades/, never minted. tools/reconstruct_residents_1835.py is the one writer of a person.",
   "style_guide": "docs/RESEARCH/business-naming-1835.md",
   "liberty": "docs/LIBERTIES.md § L254",
-  "records": 2,
+  "records": 11,
   "groups": {
+    "lodging_river_and_transport": {
+      "ticket": "T-1187",
+      "title": "lodging, the river and transport",
+      "records": 4,
+      "by_class": {
+        "other": 4
+      },
+      "by_street": {},
+      "by_roof": {
+        "recon_1835_north_h1_007": 1,
+        "recon_1835_north_h2_030": 1,
+        "recon_1835_north_h3_045": 1,
+        "recon_1835_west_006": 1
+      },
+      "ids": [
+        "rcb_bardwell_boarding_house",
+        "rcb_cavanagh_boarding_house",
+        "rcb_fitzgerald_boarding_house",
+        "rcb_newell_boarding_house"
+      ],
+      "proprietors_adopted": [
+        "rc_bardwell_esther",
+        "rc_cavanagh_ellen",
+        "rc_fitzgerald_martin",
+        "rc_newell_lydia"
+      ]
+    },
+    "mechanics_shops": {
+      "ticket": "T-1185",
+      "title": "the mechanics' shops",
+      "records": 2,
+      "by_class": {
+        "brewery": 1,
+        "silversmith_jeweller": 1
+      },
+      "by_street": {
+        "Canal Street": 1,
+        "North Water Street": 1
+      },
+      "by_roof": {},
+      "ids": [
+        "rcb_chevalier_silversmith_jeweller",
+        "rcb_quinn_brewery"
+      ],
+      "proprietors_adopted": [
+        "rc_chevalier_louis",
+        "rc_quinn_martin"
+      ]
+    },
+    "professions_and_services": {
+      "ticket": "T-1418",
+      "title": "the professions",
+      "records": 3,
+      "by_class": {
+        "lawyer": 2,
+        "physician": 1
+      },
+      "by_street": {
+        "North Water Street": 1,
+        "South Water Street": 2
+      },
+      "by_roof": {},
+      "ids": [
+        "rcb_mcguire_physician",
+        "rcb_parmelee_lawyer",
+        "rcb_robillard_lawyer"
+      ],
+      "proprietors_adopted": [
+        "rc_mcguire_john",
+        "rc_parmelee_reuben",
+        "rc_robillard_baptiste"
+      ]
+    },
     "stores_and_provisions": {
       "ticket": "T-1184",
       "title": "stores, book stores and the drug and provision trades",
@@ -20,6 +93,7 @@
         "Dearborn Street": 1,
         "Kinzie Street": 1
       },
+      "by_roof": {},
       "ids": [
         "rcb_crandall_druggist",
         "rcb_metcalf_druggist"
@@ -29,5 +103,215 @@
         "rc_metcalf_nathaniel"
       ]
     }
+  },
+  "lodging": {
+    "_doc": "BEDS AGAINST KEEPERS. Every place data/reconstruction/1835_lodging_model.json stands, and the house of trade behind it. `kept_by` is null where there is none, and `why_not` says which kind of absence it is.",
+    "places": 15,
+    "reconstructed_roofs_this_programme_owes_a_firm": 1,
+    "rows": [
+      {
+        "place": "brown_boarding_house",
+        "name": "Rufus Brown's Boarding House",
+        "class": "boarding_house",
+        "standing": "named",
+        "beds_ordinary": 5,
+        "beds_crowded": 12,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [
+          "biz_brown_painter"
+        ],
+        "kept_by": "the register",
+        "why_not": null
+      },
+      {
+        "place": "recon_1835_north_h1_007",
+        "name": "Reconstructed H1 small boarding house #007",
+        "class": "boarding_house",
+        "standing": "reconstructed",
+        "beds_ordinary": 7,
+        "beds_crowded": 17,
+        "keeper_person": "rc_bardwell_esther",
+        "firm": "rcb_bardwell_boarding_house",
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": "this programme",
+        "why_not": null
+      },
+      {
+        "place": "recon_1835_north_h2_030",
+        "name": "Reconstructed H2 medium boarding house #030",
+        "class": "boarding_house",
+        "standing": "reconstructed",
+        "beds_ordinary": 10,
+        "beds_crowded": 24,
+        "keeper_person": "rc_newell_lydia",
+        "firm": "rcb_newell_boarding_house",
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": "this programme",
+        "why_not": null
+      },
+      {
+        "place": "recon_1835_north_h3_045",
+        "name": "Reconstructed H3 large boarding house #045",
+        "class": "boarding_house",
+        "standing": "reconstructed",
+        "beds_ordinary": 16,
+        "beds_crowded": 35,
+        "keeper_person": "rc_cavanagh_ellen",
+        "firm": "rcb_cavanagh_boarding_house",
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": "this programme",
+        "why_not": null
+      },
+      {
+        "place": "recon_1835_west_006",
+        "name": "Reconstructed H1 small boarding house #005",
+        "class": "boarding_house",
+        "standing": "reconstructed",
+        "beds_ordinary": 7,
+        "beds_crowded": 17,
+        "keeper_person": "rc_fitzgerald_martin",
+        "firm": "rcb_fitzgerald_boarding_house",
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": "this programme",
+        "why_not": null
+      },
+      {
+        "place": "exchange_coffee_house",
+        "name": "Exchange Coffee House",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 11,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      },
+      {
+        "place": "green_tree_tavern",
+        "name": "Green Tree Tavern",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 8,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [
+          "biz_ingersoll_s_tavern_stand"
+        ],
+        "kept_by": "the register",
+        "why_not": null
+      },
+      {
+        "place": "mansion_house",
+        "name": "Mansion House",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 5,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [
+          "biz_e_w_haddock"
+        ],
+        "kept_by": "the register",
+        "why_not": null
+      },
+      {
+        "place": "new_york_house",
+        "name": "New York House",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 8,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [
+          "biz_a_travelling_dentist_at_the_new_york_house"
+        ],
+        "kept_by": "the register",
+        "why_not": null
+      },
+      {
+        "place": "recon_1835_north_t1_028",
+        "name": "Reconstructed T1 small inn or tavern #028",
+        "class": "inn_tavern",
+        "standing": "reconstructed",
+        "beds_ordinary": 9,
+        "beds_crowded": 35,
+        "keeper_person": "rc_kellogg_luther",
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "NO FIRM, AND THE KEEPER IS STANDING. This is this programme's debt."
+      },
+      {
+        "place": "sauganash_hotel",
+        "name": "Sauganash Hotel",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 7,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      },
+      {
+        "place": "steamboat_hotel",
+        "name": "Steamboat Hotel",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 11,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      },
+      {
+        "place": "tremont_house_1",
+        "name": "Tremont House (the first)",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 12,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      },
+      {
+        "place": "western_hotel",
+        "name": "Western Hotel",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 15,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      },
+      {
+        "place": "wolf_point_tavern",
+        "name": "Wolf Point Tavern",
+        "class": "inn_tavern",
+        "standing": "named",
+        "beds_ordinary": 4,
+        "beds_crowded": 35,
+        "keeper_person": null,
+        "firm": null,
+        "businesses_in_the_register_at_this_roof": [],
+        "kept_by": null,
+        "why_not": "A DOCUMENTED HOUSE WITH NO FIRM IN THE REGISTER. Who kept it on the scene date is a research question and not a draw; T-1404 raises the attested keepers the sources do name, and a reconstructed proprietor is never written into a documented building."
+      }
+    ]
   }
 }
