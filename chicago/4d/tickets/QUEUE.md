@@ -59,7 +59,9 @@ T-1434 — Mint the staffing shortfall to the model's typical band and close the
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 T-1431 — Carry the West Division's five tier lines off their E -320 clip and release generate_west_infill's 35 held slots on the extended ground
-T-1194 — Generate the lot grid north and west of the river: Thompson's North Division blocks, Kinzie's Addition, Wabansia, the West Division blocks and the School Section tier — numbered lots from each sheet's own module, the small lots kept small, buildable ground tested
+T-1436 — Thompson's North Division tier: the seven Kinzie-to-the-river blocks and the four-to-a-face lots the plat draws in them
+T-1437 — Kinzie's Addition: the block grid between its committed corridors, its fifty-two read numerals stamped onto it, and the lots the sheet's own figures allow
+T-1438 — The West Division, Wabansia, the School Section tier and the Michigan Street tract: lots from each block's own figures, and every documented north or west record's lot recorded on the record
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1196 — Re-derive the roof programme from the order book: the 668-roof schedule re-cut by what the population, occupation and lodging models say the town needed — families, districts and blocks re-targeted, every delta from the spec stated, the census's 398 dwellings reconciled
 T-1197 — Re-audit the 285 anonymous roofs against the re-derived programme: keep the ones the order book can occupy, re-family the ones of the wrong kind, retire the ones that no longer fit — 214 stand empty today — and record every change as a substitution, not a demolition
