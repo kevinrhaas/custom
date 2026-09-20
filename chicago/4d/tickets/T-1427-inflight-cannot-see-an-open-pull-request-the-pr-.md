@@ -1,7 +1,7 @@
 ---
 id: T-1427
 title: inflight cannot see an open pull request: the PR projection drops head.ref and the fetch asks only for closed PRs, so a branch under review — including a hold PR parked for the owner — is printed as work NOBODY CAN SEE and offered up for rebuild
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1550
 claimed_by: run 9/20/2026, 12:11:33 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T05:33:27.343Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35490582963
 ---
 

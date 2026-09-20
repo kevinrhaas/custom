@@ -234,4 +234,3 @@ T-1412 — The United States Indian Agency at Chicago as a civic establishment: 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
-T-1427 — inflight cannot see an open pull request: the PR projection drops head.ref and the fetch asks only for closed PRs, so a branch under review — including a hold PR parked for the owner — is printed as work NOBODY CAN SEE and offered up for rebuild
