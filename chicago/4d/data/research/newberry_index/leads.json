@@ -24911,22 +24911,22 @@
           "rule": "OCR variant (0.89 similarity to 'shop')"
         },
         {
-          "id": "recon_1835_south_w1_023",
+          "id": "recon_1835_south_d5_023",
           "name": "Reconstructed W1 blacksmith shop #023",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         },
         {
-          "id": "recon_1835_south_w2_026",
+          "id": "recon_1835_south_d4_026",
           "name": "Reconstructed W2 carpenter or joiner shop #026",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         },
         {
-          "id": "recon_1835_south_w3_029",
+          "id": "recon_1835_south_h1_029",
           "name": "Reconstructed W3 cooper, wagon, or wheelwright shop #029",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         },
         {
-          "id": "recon_1835_south_w4_032",
+          "id": "recon_1835_south_d1_032",
           "name": "Reconstructed W4 small artisan shop #032",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         }
