@@ -219,3 +219,35 @@ Related: the order book **docs/RESEARCH/1835_reconstruction_order_book.md**, the
 **docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1408**, **T-1173**, **T-1166**.
 **docs/RESEARCH/1835_trade_households.md**, the business layer
 **docs/RESEARCH/business-layer.md**, tickets **T-1184**, **T-1185**, **T-1173**, **T-1166**.
+
+## Worked: the two livery stables and the two lumber yards of 1835
+
+T-1424's four houses are the first the programme draws with **no count behind them at all**.
+The apothecaries stand on a census line that prints four against a register that holds two;
+the boarding houses stand on buildings this project already raised. A livery stable stands on
+neither — the census's eighteen lines never reach the trade, and nothing in `data/structures/`
+is one — so what buys the house is the KEEPER, drawn months earlier by the resident band at a
+trade whose own word names the establishment. The naming problem that follows is unusual: the
+register prints only **three** houses between the two trades, so the forms are few and every
+line offered is one of those three printings.
+
+**The liveries.** *Lathrop Johnson & Co., livery* is the register's one printed firm style of
+the trade: form 1, cut here to the sole keeper each drawn head is, since `& Co.` would assert
+partners nobody drew. *the Livery Stable at the Point* is form 4 and cannot be reused — it
+names a PLACE, and a reconstructed house that borrowed it would be claiming the Point. What
+it does yield is a second trade line, since *livery stable* is the register's own phrase for
+the trade beside Lathrop Johnson's bare *livery*. The two heads are both south-division and
+draw as **J. Dufresne, livery stable** and **W. Leland, livery stable**.
+
+**The yards.** The register's one printed yard is a descriptor rather than a signature — *the
+lumber yard and warehouse announced for the opening of navigation, 1834* — and its trade line
+is *lumber yard and store house, on sale and commission*. Two goods lines come off it: the
+bare *lumber yard*, and *lumber yard and store house* with the commission cut, because a
+commission business is a claim about how the house traded and not merely what it sold. The
+forms are 1 and 5, and form 5 is licensed for a yard by *A. Clybourn's market on the market
+square* — this town's own possessive over an open working ground rather than a shop front.
+The two heads draw as **A. Hubbard, lumber yard and store house** in the south division and
+**Woodruff's lumber yard** in the west.
+
+**And the honorific question does not arise here,** as it does for the boarding houses: all
+four heads are men, and the possessive stands on the name alone in any case.
