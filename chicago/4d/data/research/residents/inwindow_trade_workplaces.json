@@ -7,12 +7,12 @@
  "not_a_reading": "DERIVED, never hand-edited. Every row is read off a committed role on a committed card and a committed ruling. No page of any source is read here, nobody is minted, nothing is reconstructed and no confidence is promoted: a house raised from a role is `inferred` and says so on its own record.",
  "scene_date": "1835-07-01",
  "counts": {
-  "already_holds_a_workplace": 68,
+  "already_holds_a_workplace": 69,
   "held": 5,
   "no_premises": 36,
   "not_ruled": 5,
-  "raise": 46,
-  "houses_raised": 39,
+  "raise": 45,
+  "houses_raised": 38,
   "houses_seated_on_a_committed_structure": 15
  },
  "houses_by_census_class": {
@@ -20,7 +20,7 @@
   "other": 17,
   "physician": 5,
   "storage_and_forwarding": 1,
-  "store": 8,
+  "store": 7,
   "tavern": 8
  },
  "houses_raised": [
@@ -424,21 +424,6 @@
    "sources": [
     "andreas_1884_v1",
     "history_medicine_chicago_kimberly_maxwell"
-   ]
-  },
-  {
-   "business_id": "biz_robinson_alexander_trader",
-   "occupation": "trader",
-   "census_classes": [
-    "store"
-   ],
-   "keepers": [
-    "robinson_alexander"
-   ],
-   "seated_at": null,
-   "sources": [
-    "andreas_1884_v1",
-    "kinzie_waubun_1856"
    ]
   },
   {
@@ -1100,9 +1085,9 @@
    {
     "class": "store",
     "census_count": 44,
-    "town_before_T-1404": 59,
-    "raised_here": 8,
-    "town_after_T-1404": 67,
+    "town_before_T-1404": 61,
+    "raised_here": 7,
+    "town_after_T-1404": 68,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
