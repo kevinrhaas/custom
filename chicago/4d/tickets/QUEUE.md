@@ -63,7 +63,6 @@ T-1442 — Print the finished business layer: the trade-census crosswalk and the
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1455 — The West Division: blocks between its own tier lines, lots from each block's own lot_frontage_ft and lot_depth_ft, and the fourteen blocks that print no dimension kept withheld
-T-1477 — The School Section tier: the thirteen Madison-to-Monroe blocks cut into the lots the October 1833 register's own rows witness — eight to a block where eight sold, four where four sold, the two Reserved corners left whole
 T-1478 — Every documented north or west record's lot recorded on the record: the lot a committed footprint stands on, written onto the record and gated
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1452 — Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark
