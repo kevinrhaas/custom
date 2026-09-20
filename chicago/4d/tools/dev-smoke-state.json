@@ -12,6 +12,37 @@
       "passed": 85,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 321,
+      "takenAt": "2026-09-20T14:57:00.459Z",
+      "ref": "steward/t-1438-wabansia-michigan-lots",
+      "commit": "7f68d06161ed",
+      "devCommit": "1033a37a8fe6",
+      "treeHash": "sha256:27d5055fbc5c73e5",
+      "treeDirty": false,
+      "changelogHash": "sha256:ccf280576f50b77d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.8,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 175,
       "takenAt": "2026-09-20T12:34:46.503Z",
       "ref": "steward/t-1190-business-identity-converge",
@@ -1015,40 +1046,6 @@
         ]
       },
       "source": "/tmp/smoke_m1213.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 76,
-      "failed": 2,
-      "failures": [
-        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
-      ],
-      "wallSeconds": 297,
-      "takenAt": "2026-09-19T23:20:48.472Z",
-      "ref": "steward/t-1185-mechanics-shops",
-      "commit": "6ed508068465",
-      "devCommit": "597401b5acf8",
-      "treeHash": "sha256:ff01ceb2f792be35",
-      "treeDirty": false,
-      "changelogHash": "sha256:f767f874910e17b8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          3.5,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_d12b.log"
     },
     {
       "viewport": "desktop",
