@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The ships in the river had names all along', kind: 'fix', ts: '',
+  { v: 1011, title: 'The ships in the river had names all along', kind: 'fix', ts: '2026-09-20T08:48:20.880Z', date: 'Sep 20, 2026, 3:48 AM CT',
     items: [
       'Two nights ago this list said the schooners moored in the Chicago River had no names and no masters, and that naming them wanted a marine list this project did not have. That was wrong: it has had one for a fortnight. The Chicago American printed a weekly column headed PORT OF CHICAGO, and its issue of 4 July 1835 covers the week the walk stands in \u2014 six vessels in the river on the first of July, four with their master\u2019s name beside them.',
       'So here is the harbour on the morning you are visiting. The Jesse Smith, Drurian master, in from Green Bay with lumber on the 27th of June and out again on the 1st. The Philips, Howe, in from Milwaukee on the 27th, in again from Michigan on the 29th, and cleared for Milwaukee on the day itself. The Llewelling, Clark, in with passengers on the 28th and still lying there. The Hiram, Rathbourn, in from Michigan with lumber. The Whig, Day, in with merchandize. And a steamboat whose name is torn off the column.',
