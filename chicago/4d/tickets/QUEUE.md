@@ -87,7 +87,6 @@ T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division
 
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 T-1429 — The nearest-street reading crosses the river: a bank test for nearest_frontage, so a roof is not credited with a corridor on the far side of the water
-T-1486 — A derived figure must not be rounded by float drift: sweep the 31 remaining round(sum(...)) sites
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1452 — Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark
 T-1488 — Bind the roof relief maps in the web renderer: the metric roof UVs a 4.48 m tile needs — the smart-project atlas is a per-object island pack and cannot tile one — one shared material per roof substrate, the two maps published, and the draw count measured at the critic stations at both viewports
@@ -215,3 +214,4 @@ T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-11
 T-1335 — Spend the kin the church registers, the papers' family columns and the completed resident enrichments state — the 166 units T-1320's book pass was never scoped for, plus the two book relatives it left unruled: ties written onto held cards, nobody minted
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
+

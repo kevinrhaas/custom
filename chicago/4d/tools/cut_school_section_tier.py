@@ -71,6 +71,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import pathlib
 import re
 import sys
@@ -452,10 +453,10 @@ def document() -> dict:
             "blocks_divided": len(divided),
             "blocks_left_whole": len(blocks) - len(divided),
             "lots": sum(len(b["lots"]) for b in blocks),
-            "tier_ground_m2": round(sum(b["area_m2"] for b in blocks), 1),
-            "tier_ground_acres": round(sum(b["area_m2"] for b in blocks) / ACRE_M2, 1),
+            "tier_ground_m2": round(math.fsum(b["area_m2"] for b in blocks), 1),
+            "tier_ground_acres": round(math.fsum(b["area_m2"] for b in blocks) / ACRE_M2, 1),
             "lot_ground_acres": round(
-                sum(lot["area_acres"] for b in blocks for lot in b["lots"]), 1),
+                math.fsum(lot["area_acres"] for b in blocks for lot in b["lots"]), 1),
             "blocks_with_ground_below_datum": [
                 b["school_section_block_number"] for b in blocks
                 if b["ground"]["below_datum"]],

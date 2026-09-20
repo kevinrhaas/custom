@@ -2296,6 +2296,9 @@
     "tools/check_enclosure_owners.py": {
       "wrote": []
     },
+    "tools/check_exact_sums.py": {
+      "wrote": []
+    },
     "tools/check_gate_readers.py": {
       "wrote": []
     },

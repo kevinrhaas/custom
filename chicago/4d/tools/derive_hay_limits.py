@@ -306,8 +306,8 @@ def derive():
         "edges": [
             {"edge": "lake_shore_illinois_to_the_north_pier",
              "vertices": len(lake_run),
-             "length_m": round(sum(_length(lake_run[i], lake_run[i + 1])
-                                   for i in range(len(lake_run) - 1)), 2),
+             "length_m": round(math.fsum(_length(lake_run[i], lake_run[i + 1])
+                                        for i in range(len(lake_run) - 1)), 2),
              "confidence": "inferred",
              "note": "The 1834 lake shore as traced by tools/trace_shoreline.py, walked "
                      "south from the Illinois Street line to the outer end of the north "
@@ -327,8 +327,8 @@ def derive():
              "sources": ["wright_1834_nara_hup"]},
             {"edge": "the_reservation_north_boundary_and_west_side",
              "vertices": len(res_run),
-             "length_m": round(sum(_length(res_run[i], res_run[i + 1])
-                                   for i in range(len(res_run) - 1))
+             "length_m": round(math.fsum(_length(res_run[i], res_run[i + 1])
+                                        for i in range(len(res_run) - 1))
                                + _length(res_run[-1], vertices[0]), 2),
              "confidence": "inferred",
              "note": "The committed Fort Dearborn reservation ring, walked west along its "
