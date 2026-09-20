@@ -86,7 +86,11 @@ def measure_ledger() -> dict:
         landed[layer] += 1
         if not (ROOT / str(target.get("file") or "")).exists():
             dead[layer] += 1
-    owners = Counter(u.get("ticket") for u in units if u.get("disposition") == "unresolved")
+    unresolved = [u for u in units if u.get("disposition") == "unresolved"]
+    owners = Counter(u["ticket"] for u in unresolved if u.get("ticket"))
+    # T-1423. The other legitimate shape of an unresolved unit: it waits on a DOCUMENT, not
+    # on a band of this programme, so it names no ticket and states what would reopen it.
+    awaiting = Counter(u["awaiting_evidence"] for u in unresolved if u.get("awaiting_evidence"))
     states = ticket_states(ROOT)
     return {
         "unit_count": ledger.get("unit_count", len(units)),
@@ -102,6 +106,10 @@ def measure_ledger() -> dict:
             {"ticket": t, "units": n, "state": states.get(t, "missing"),
              "live": states.get(t, "missing") in OPEN_TICKET_STATES}
             for t, n in sorted(owners.items())
+        ],
+        "awaiting_evidence": [
+            {"reopened_by": clause, "units": n}
+            for clause, n in sorted(awaiting.items(), key=lambda kv: (-kv[1], kv[0]))
         ],
     }
 
@@ -324,6 +332,16 @@ def render(model: dict) -> str:
     out.extend(table(["Owner", "Units", "State", "Live"],
                      [[o["ticket"], n(o["units"]), o["state"], "yes" if o["live"] else "**NO**"]
                       for o in led["owners"]]))
+    out.append("")
+    out.append("The rest defer to no ticket, and that is the second legitimate shape rather than a gap "
+               "(T-1423): a name the research READ and the town WITHHELD, since re-admitted at the "
+               "reconstructed tier, whose open question is whether the person was in the town on "
+               "1 July 1835. No ticket can answer that — only a document can — so each states the "
+               "document instead. The pointer that used to stand here was renamed four times as the "
+               "ticket it named kept closing, and no source came any nearer.")
+    out.append("")
+    out.extend(table(["Units", "Reopened by"],
+                     [[n(a["units"]), a["reopened_by"]] for a in led["awaiting_evidence"]]))
     out.append("")
     out.append("Reproduce: `python3 tools/measure_research_spend.py --check`.")
     out.append("")
