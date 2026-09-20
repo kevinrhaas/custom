@@ -1,5 +1,14 @@
 # ROADMAP
 
+## Standalone Mac first — owner priority, 2026-09-20
+
+T-1464 is the bounded local Mac packaging slice under T-1356. The owner selected
+latest `dev`, a playable Mac app before streaming, and pushing isolated source
+changes back to GitHub. The adapter lives in [renderers/unreal](../renderers/unreal/README.md).
+This does not waive the separate bundle-update, scenery-parity or hosted-stream
+acceptance in T-1358/T-1360/T-1361. A qualified local Mac can execute this slice;
+a generic remote web worker cannot.
+
 ## Unreal delivery — owner-ranked programme, 2026-09-18
 
 T-1356 and [the Unreal runbook](unreal/README.md) hold the programme. Follow the new

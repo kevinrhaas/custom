@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: 1025, title: 'Two outlying surveys get their blocks, and the first read lot lines', kind: 'feature', ts: '2026-09-20T16:09:17.743Z', date: 'Sep 20, 2026, 11:09 AM CT',
+  { v: null, title: 'Two outlying surveys get their blocks, and the first read lot lines', kind: 'feature', ts: '',
     items: [
       'A week ago Kinzie\u2019s Addition got its fifty-two numbered cells. Two surveys were still missing, and they are the two not laid on the town\u2019s own streets at all: the small platted tract north of Kinzie Street, and Wabansia, out on the North Branch. Seventeen blocks of them stand now, with sixty-eight lots inside.',
       'What kept them out is that a block here has always been cut between four street centrelines, and these two are not ruled by streets. The Michigan Street tract is bounded by its own borders and split by its own mid-block alleys; Wabansia\u2019s three block columns are lines on a sheet and nothing else. But both surveys had already been SEATED \u2014 hung on the committed grid, corner by corner, by earlier work \u2014 and a seating is a perfectly good thing to cut a block on. So the blocks come off the seatings, and never off a second guess at where those surveys stand.',
@@ -7,6 +7,12 @@ export const CHANGELOG = [ // newest first
       'Three of the tract\u2019s eight block faces were never read, and they stay empty rather than take a lot count borrowed from the row above. Wabansia\u2019s blocks are divided across and not back to front, because the sheet draws a column line and no cross line. The point of reading a plat is to find out what it says, which includes the parts it does not.',
       'Eight of Wabansia\u2019s twenty-one numbered blocks are carried as ground this project cannot yet stand behind, each with the reason on it. Seven of them because the modelled terrain simply runs out: it was carried west to local E \u2212700 in August for the West Division, and Wabansia\u2019s west margin is fifty-three metres past that. The eighth has a corner inside the North Branch as this project holds it \u2014 a disagreement between two readings of the same sheet that nobody has settled. Every one of the twenty-one numerals lands somewhere, on a block or on the blocker.',
       'No building has been scheduled onto either survey, and none should be yet. Wabansia\u2019s own evidence file reads its population as one household, advertised in the Democrat in 1834 and placed nowhere; the Michigan Street tract does not yet have a settled name, let alone a resident. Dealing roofs onto them at downtown density would put a crowd on a prairie nobody is recorded on. What these blocks are for is the next question \u2014 giving every household and firm in town a lot to stand on.',
+    ] },
+  { v: 1025, title: 'A standalone Mac preview of Chicago', kind: 'feature', ts: '2026-09-20T16:10:32.433Z', date: 'Sep 20, 2026, 11:10 AM CT',
+    items: [
+      'The Unreal importer now beds long structures across their full footprint, fixing the fort palisade hanging above the downhill ground.',
+      'A separate Unreal project can now build a local Apple Silicon Mac preview from the committed 1835 terrain and buildings. It starts in Chicago with a body-free first-person view, walking controls, restart and quit, without a browser or streaming server.',
+      'This is an early renderer preview. The browser version still has scenery, research cards and time controls that have not been ported. The Unreal build instructions describe its coverage and require a Mac with Unreal and Xcode; the remote web worker cannot package or play-test it.',
     ] },
   { v: 1024, title: 'The blocks north of the river are not all one depth', kind: 'feature', ts: '2026-09-20T15:16:24.384Z', date: 'Sep 20, 2026, 10:16 AM CT',
     items: [

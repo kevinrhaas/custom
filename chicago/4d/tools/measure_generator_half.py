@@ -169,7 +169,10 @@ STATED = {
     },
     "layers_drawn_at_load": 10,
     "layers_with_a_generator": 0,
-    "renderers": 1,
+    # T-1464 (2026-09-20): the owner-requested standalone Unreal adapter now
+    # consumes the committed GLBs. The missing-layer debt has a second reader;
+    # T-0252/T-1360 own the export/parity work, not a reopened wharf-only ticket.
+    "renderers": 2,
 }
 
 # The data layers a renderer draws at load out of committed JSON, rather than

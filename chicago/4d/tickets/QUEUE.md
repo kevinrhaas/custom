@@ -154,6 +154,7 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 # Return unblocked work to this band in the displayed order; do not leave local work open
 # for the general loop. The held epic is a tracker, never a claimable task.
 # --- 9. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
+T-1464 — Package and play a standalone Mac preview from dev
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
@@ -246,3 +247,4 @@ T-1439 — The order book reports a false delta of ten institutional roofs: prog
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
 T-1459 — Re-cut the order book's unfilled remainder to the adult sex ratio the town model already states, and reopen the 10-19 trade band the 1840 schedule drew out — the 78 filled buckets and their 1,370 drawn persons do not move
+

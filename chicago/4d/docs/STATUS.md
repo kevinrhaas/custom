@@ -1,5 +1,25 @@
 # STATUS
 
+## Standalone Mac preview — T-1464, 2026-09-20
+
+The owner prioritised a native Mac app from latest dev before streaming. The local
+Apple Silicon build consumed snapshot `253f026570358dfcdab62fb2593c4082b058de07` with
+Unreal 5.8.2 and Xcode 27.0. BuildCookRun and local code-sign verification passed;
+the packaged app opened directly into Chicago, without the editor or streaming.
+384 terrain/structure mesh actors imported with no errors; `estray_pen` is explicitly
+skipped because its enclosure is browser-generated. The pawn is persistently body-free.
+A 21-second offscreen packaged test, ignoring keyboard/mouse input, passed with
+all sampled states grounded: walk forward, stop at an obstacle, back away. It is
+not a full bridge or bank route test. The owner-reported fort palisade float was
+corrected by lowest-footprint anchoring, lowering it 1.437281 m; the app was rebuilt.
+Escape quit the native app. No claim is made that the streaming corruption is fixed.
+
+[Build source and instructions](../renderers/unreal/README.md) are isolated from the
+web renderer. [The receipt](../renderers/unreal/receipts/mac-253f02657.json) records
+hashes and actual readings. This preview omits browser procedural scenery, research
+UI and confidence visualization. It is locally signed, not notarized for public
+distribution. T-1358/T-1360/T-1361 retain their broader acceptance and execution holds.
+
 ## Unreal delivery programme — owner request, 2026-09-18
 
 Nothing in the published scene changes in this ticket/documentation slice. T-1356
