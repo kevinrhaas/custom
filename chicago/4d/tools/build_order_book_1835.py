@@ -226,12 +226,14 @@ BUSINESS_TICKETS = {
     # T-1188 split, so the civic rows move to T-1411, the churches, schools and press
     # as establishments — this branch's own reassignment.
     "church": "T-1190",
-    # AND THE SCHOOLS ARE NOT FINISHED, for a reason T-1422 measured and did not spend:
-    # the crosswalk counts seven at the scene date because it reads the gazetteer's
-    # `built_at_scene_date`, and the register says two of the seven had not opened. Fix
-    # that alone and this bucket orders two reconstructed schools against a gap two dated
-    # notices already explain. T-1428 owns both halves of that, so it owns this row.
-    "school": "T-1428",
+    # THE SCHOOLS ARE READ AT THE SCENE DATE NOW (T-1428, 2026-09-20). The crosswalk used
+    # to count seven at 1 July because it read the gazetteer's `built_at_scene_date`; the
+    # register says two of those seven had not opened, so it holds five, and the two the
+    # census counted in the autumn are named and dated as opening in August. Both halves
+    # moved together — the crosswalk reads `present_at_scene_date` and the book holds an
+    # explained shortfall apart from a quota — so this row orders nothing and says why.
+    # What is left for it is the same as the churches': the finished count PRINTS, T-1190.
+    "school": "T-1190",
     # T-1186 was split on 2026-09-20 when the unit ruling below turned out to be a
     # demonstration of its own; T-1418 is the piece that owns these two rows and T-1419
     # the services, which the census enumerates nowhere and which therefore own no bucket.
@@ -754,6 +756,22 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
             continue
         census_count = int(row["census_count"])
         known = int(row["town_records_at_scene_date"])
+        # A SHORTFALL THE EVIDENCE HAS ALREADY EXPLAINED IS NOT A QUOTA (T-1428). The
+        # census was taken between September and December; the crosswalk names, per class,
+        # the register's houses whose OPENING is dated after 1 July — houses that account
+        # for one of the autumn figures each while honestly standing outside the July town.
+        # Ordering a reconstruction against that difference would commission an invention
+        # to fill a gap two dated notices have already filled, which is exactly what
+        # `does_not_follow` forbids: the spend goes "only where a source NAMES the
+        # business", and here the source names it, dates it, and puts it after the scene.
+        # So the difference is held apart, the bucket orders against what is left, and the
+        # row says which is which rather than arriving at nought by luck.
+        if "records_opening_after_scene_date" not in row:
+            raise Fault(
+                f"the crosswalk's {name!r} row does not say how many of its houses opened "
+                "after the scene date, so a shortfall cannot be told from a quota. "
+                "Re-run tools/trade_census_1835.py --build.")
+        explained = int(row["records_opening_after_scene_date"])
         ticket = BUSINESS_TICKETS.get(name)
         if ticket is None:
             raise Fault(f"no ticket owns the business class {name!r}")
@@ -770,6 +788,15 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
                      "and none is reconstructed" if zero else
                      f"the December 1835 State census prints {census_count}; the register holds "
                      f"{known} at the scene date")
+            if explained and not zero:
+                # The ids stay in the crosswalk. The book is cohorts and counts, and a
+                # record id inside it is a house this adjudication had no licence to name.
+                basis += (f". {explained} more stand in the register with an opening announced "
+                          "AFTER 1 July — named and dated in the trade-census crosswalk — so "
+                          "that much of the difference is a house the sources already account "
+                          "for rather than a hole to fill; the book orders "
+                          f"{max(0, target - known - explained)} and not "
+                          f"{max(0, target - known)}")
         else:
             target = bracket["low"]
             known = bracket["held_in_the_counted_unit"]
@@ -778,6 +805,15 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
                      f"date against {bracket['register_records']} register records, and the "
                      f"scene date's population brackets the class between {bracket['low']} and "
                      f"{bracket['high']}. The book orders to the low end, {target}")
+            if explained:
+                # The correction below is in PREMISES and this row is in MEN. Nobody has
+                # ruled how a house that opened in August converts into the men the
+                # December line counts, so the book refuses rather than guessing a rate.
+                raise Fault(
+                    f"{name!r} is ordered in MEN and the crosswalk holds {explained} of its "
+                    "houses as opening after the scene date. A premises correction cannot be "
+                    "subtracted from a count of men without a ruling that says at what rate. "
+                    "Rule it, or take the class off the bracket list.")
         buckets.append({
             "key": f"businesses/{name}",
             "axes": {"class": name, "division": "unassigned"},
@@ -787,7 +823,8 @@ def business_buckets(crosswalk: dict, register: dict, spend: dict,
             "scene_bracket": bracket,
             "target": 0 if zero else target,
             "known": known,
-            "to_reconstruct": 0 if zero else max(0, target - known),
+            "to_reconstruct": 0 if zero else max(0, target - known - explained),
+            "records_opening_after_scene_date": explained,
             "filled": 0,
             "owning_ticket": ticket,
             "documented_zero": zero,
@@ -1329,6 +1366,36 @@ def cmd_self_test() -> int:
                                 "records": first["to_reconstruct"] or 0},
                                {"ticket": "T-1174", "bucket": first["key"],
                                 "records": 1}], occ))
+
+    # A SHORTFALL THE EVIDENCE EXPLAINS IS NOT A QUOTA (T-1428). The December census
+    # prints seven schools; the register holds five at the scene date and names two more
+    # whose opening was announced in August. The bucket must order NOUGHT, and must say
+    # that it is nought because the sources account for the difference — not reach it by
+    # luck and not order two inventions against it.
+    school = next(b for b in doc["bucket_families"][2]["buckets"]
+                  if b["key"] == "businesses/school")
+    assert school["known"] == 5 and school["census_count"] == 7, school
+    assert school["records_opening_after_scene_date"] == 2, school
+    assert school["to_reconstruct"] == 0, school
+    assert "opening announced" in school["basis"].lower(), school["basis"]
+
+    # AND THE BOOK REFUSES A CROSSWALK THAT CANNOT TELL IT WHICH IS WHICH, rather than
+    # reading a missing key as a zero and quietly ordering the invention again.
+    stale = copy.deepcopy(data)
+    for row in stale["crosswalk"]["classes"]:
+        row.pop("records_opening_after_scene_date", None)
+    fires("does not say how many of its houses opened after the scene date",
+          lambda: business_buckets(stale["crosswalk"], stale["register"],
+                                   stale["trade_spend"], stale["model"]))
+
+    # A CLASS COUNTED IN MEN CANNOT TAKE A CORRECTION MEASURED IN PREMISES.
+    mixed = copy.deepcopy(data)
+    for row in mixed["crosswalk"]["classes"]:
+        if row["class"] == "lawyer":
+            row["records_opening_after_scene_date"] = 1
+    fires("cannot be subtracted from a count of men",
+          lambda: business_buckets(mixed["crosswalk"], mixed["register"],
+                                   mixed["trade_spend"], mixed["model"]))
 
     # EVERY BUCKET NAMES A TICKET, and every ticket named is in the reconstruction bands.
     for family in doc["bucket_families"]:

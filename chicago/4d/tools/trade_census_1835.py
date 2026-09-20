@@ -59,6 +59,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GAZETTEER = ROOT / "data" / "research" / "newspapers" / "gazetteer.json"
+REGISTER = ROOT / "data" / "research" / "newspapers" / "register_1835.json"
 RULINGS = ROOT / "data" / "research" / "newspapers" / "trade_class_rulings.json"
 CROSSWALK = ROOT / "data" / "research" / "books" / "trade_census_1835_crosswalk.json"
 AUTHORED = ROOT / "data" / "businesses" / "authored"
@@ -84,7 +85,8 @@ class Fault(Exception):
 # the join
 
 
-def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tuple:
+def classify(gazetteer: dict, rulings: dict, register: dict,
+             authored: list | None = None) -> tuple:
     """One row per business in the register: its printed trade, and its class.
 
     Every fault this raises is a SILENT MISCOUNT if it does not. A business whose
@@ -109,6 +111,24 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tu
             raise Fault(f"a ruling that names no class at all: {row}")
         if not str(row.get("basis") or "").strip():
             raise Fault(f"a ruling with no basis: {row}")
+
+    # The register's dated reading of every gazetteer record, indexed once. The register
+    # is compiled FROM the gazetteer (compile_register.py), so a gazetteer id it does not
+    # carry means the two have drifted apart and no count taken across them can be trusted.
+    presence = {}
+    for rec in register["businesses"]:
+        exclusion = rec.get("exclusion")
+        presence[rec["id"]] = {
+            "present": bool(rec.get("present_at_scene_date")),
+            "exclusion": exclusion,
+            "opened_after": exclusion == "opening_announced_after_scene_date",
+        }
+    missing = sorted({b["id"] for b in gazetteer["businesses"]} - set(presence))
+    if missing:
+        raise Fault(
+            "the register does not carry every business the gazetteer does, so the scene-date "
+            "reading cannot be taken for: " + ", ".join(missing)
+            + ". Re-run tools/compile_register.py --build.")
 
     rows = []
     seen_trades = set()
@@ -144,7 +164,19 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tu
             "scope": scope,
             "ruled_by": ruled_by,
             "basis": basis,
-            "built_at_scene_date": bool(biz.get("built_at_scene_date")),
+            # THE SCENE-DATE READING IS THE REGISTER'S, NOT THE GAZETTEER'S (T-1428).
+            # `built_at_scene_date` is compile_gazetteer.py's survival flag and it means
+            # ONE thing: "a documented business stands in the 1835 town unless a claim
+            # contradicts it", false only on a dissolution, removal or replacement
+            # notice. It says nothing about a house whose OPENING is announced after
+            # 1 July, and it goes false on a dissolution announced AFTER 1 July for a
+            # firm that was plainly standing on the day. The register carries the dated
+            # judgement in `present_at_scene_date`, with the reason in `exclusion`, and
+            # that is the field a count of the July town must read. The authored branch
+            # below has always read it; this branch read the other one.
+            "present_at_scene_date": presence[biz["id"]]["present"],
+            "scene_date_exclusion": presence[biz["id"]]["exclusion"],
+            "opened_after_scene_date": presence[biz["id"]]["opened_after"],
         })
 
     for rec in sorted(authored or [], key=lambda r: r["id"]):
@@ -191,7 +223,9 @@ def classify(gazetteer: dict, rulings: dict, authored: list | None = None) -> tu
             "basis": (f"AUTHORED, NOT PRINTED. `{rec['id']}` carries its own census class in "
                       f"`type` and its own grade in `provenance: {rec.get('provenance')}`; the "
                       "ruling was made by whoever wrote the record and is read off it here."),
-            "built_at_scene_date": bool(rec.get("present_at_scene_date")),
+            "present_at_scene_date": bool(rec.get("present_at_scene_date")),
+            "scene_date_exclusion": None,
+            "opened_after_scene_date": False,
         })
 
     orphans = sorted(set(by_trade) - seen_trades)
@@ -270,7 +304,15 @@ def compare(rows: list, rulings: dict) -> list:
         # the pair rather than a number that quietly got smaller (T-1422).
         folded = [r for r in in_town if cls in r["folded_in_classes"]]
         standing = [r for r in in_town if cls not in r["folded_in_classes"]]
-        at_scene = [r for r in standing if r["built_at_scene_date"]]
+        at_scene = [r for r in standing if r["present_at_scene_date"]]
+        # A SHORTFALL THE EVIDENCE EXPLAINS IS NOT A HOLE IN THE JULY TOWN (T-1428). The
+        # census was taken between September and December; a house the register excludes
+        # because its OPENING was announced after 1 July is a house that house-by-house
+        # accounts for one of the December figures without standing in the July one. It is
+        # named here — count and ids — so that whoever subtracts the two knows how much of
+        # the difference is already spoken for, and does not commission an invention to
+        # fill a gap two dated notices have explained.
+        later = [r for r in standing if r["opened_after_scene_date"]]
         census = entry["census_count"]
         row = {
             "claim_id": CLAIM,
@@ -281,6 +323,8 @@ def compare(rows: list, rulings: dict) -> list:
             "town_records_in_town": len(standing),
             "town_records_at_scene_date": len(at_scene),
             "town_records_outside_town": len(members) - len(in_town),
+            "records_opening_after_scene_date": len(later),
+            "business_ids_opening_after_scene_date": [r["business_id"] for r in later],
             "business_ids": [r["business_id"] for r in standing],
             "folded_business_ids": [{"business_id": r["business_id"],
                                      "into": r["folded_into"]} for r in folded],
@@ -288,8 +332,11 @@ def compare(rows: list, rulings: dict) -> list:
         if census is None or not entry["compared"]:
             row["outcome"] = "not_compared"
             row["delta"] = None
+            row["shortfall_explained_by_later_openings"] = None
         else:
             row["delta"] = len(at_scene) - census
+            row["shortfall_explained_by_later_openings"] = min(
+                len(later), max(0, census - len(at_scene)))
             if len(at_scene) == census:
                 row["outcome"] = "town_matches_census"
             elif len(at_scene) < census:
@@ -302,8 +349,9 @@ def compare(rows: list, rulings: dict) -> list:
     return out
 
 
-def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
-    rows, not_counted = classify(gazetteer, rulings, authored)
+def build(gazetteer: dict, rulings: dict, register: dict,
+          authored: list | None = None) -> dict:
+    rows, not_counted = classify(gazetteer, rulings, register, authored)
     register = [r for r in rows if r["ruled_by"] != "authored_record"]
     classes = compare(rows, rulings)
     compared = [c for c in classes if c["outcome"] not in ("not_compared",)]
@@ -351,7 +399,7 @@ def build(gazetteer: dict, rulings: dict, authored: list | None = None) -> dict:
             "in_town": sum(1 for r in rows if r["scope"] == "in_town"),
             "outside_town": sum(1 for r in rows if r["scope"] != "in_town"),
             "at_scene_date": sum(1 for r in rows
-                                 if r["scope"] == "in_town" and r["built_at_scene_date"]
+                                 if r["scope"] == "in_town" and r["present_at_scene_date"]
                                  and not r["folded_into"]),
             "folded_into_another_house": sum(1 for r in rows if r["folded_into"]),
             "carrying_no_enumerated_class": sum(
@@ -384,6 +432,7 @@ def load() -> tuple:
                 if doc.get("provenance") != "reconstructed"]
     return (json.loads(GAZETTEER.read_text(encoding="utf-8")),
             json.loads(RULINGS.read_text(encoding="utf-8")),
+            json.loads(REGISTER.read_text(encoding="utf-8")),
             authored)
 
 
@@ -463,9 +512,20 @@ def _fixture() -> tuple:
     return gaz, rules
 
 
+def _register_for(gaz: dict, excluded: dict | None = None) -> dict:
+    """The register fixture for a gazetteer fixture: every house present at the scene date
+    unless the caller excludes it, which is what compile_register.py writes. Built rather
+    than hand-kept so a new fixture record cannot silently fall out of the join."""
+    out = excluded or {}
+    return {"businesses": [{"id": b["id"], "name": b.get("name"),
+                            "present_at_scene_date": b["id"] not in out,
+                            "exclusion": out.get(b["id"])}
+                           for b in gaz["businesses"]]}
+
+
 def _fires_authored(gaz, rules, authored, fragment: str) -> None:
     try:
-        classify(gaz, rules, authored)
+        classify(gaz, rules, _register_for(gaz), authored)
     except Fault as exc:
         assert fragment in str(exc), f"wrong fault for {fragment!r}: {exc}"
         return
@@ -474,7 +534,7 @@ def _fires_authored(gaz, rules, authored, fragment: str) -> None:
 
 def _fires(gaz, rules, fragment: str) -> None:
     try:
-        classify(gaz, rules)
+        classify(gaz, rules, _register_for(gaz))
     except Fault as exc:
         assert fragment in str(exc), f"wrong fault for {fragment!r}: {exc}"
         return
@@ -485,7 +545,7 @@ def cmd_self_test() -> int:
     import copy
 
     gaz, rules = _fixture()
-    rows, _ = classify(gaz, rules)
+    rows, _ = classify(gaz, rules, _register_for(gaz))
     assert [r["business_id"] for r in rows] == ["b1", "b2"], rows
     assert rows[0]["classes"] == ["tavern"] and rows[1]["ruled_by"] == "business"
 
@@ -534,24 +594,56 @@ def cmd_self_test() -> int:
     r["business_overrides"].append({"business_id": "b9", "classes": ["other"], "basis": "x"})
     _fires(gaz, r, "an override naming no business")
 
-    # THE DATE. A record dated out of the scene is counted apart from the scene town.
-    g = copy.deepcopy(gaz)
-    g["businesses"][0]["built_at_scene_date"] = False
-    doc = build(g, rules)
+    # THE DATE. A record dated out of the scene is counted apart from the scene town —
+    # and the reading that decides it is the REGISTER's (T-1428), not the gazetteer's.
+    reg = _register_for(gaz, {"b1": "contradicted_before_scene_date"})
+    doc = build(gaz, rules, reg)
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
     assert tav["town_records_in_town"] == 1 and tav["town_records_at_scene_date"] == 0, tav
     assert tav["delta"] == -8, tav
     assert DATE_CAUTION in doc["date_caution"]
 
+    # AND THE GAZETTEER'S SURVIVAL FLAG NO LONGER MOVES THE COUNT ON ITS OWN. It goes
+    # false on a dissolution notice whatever that notice's date, so a firm wound up on
+    # 22 July was dropped from a count of the town on 1 July. The register keeps it.
+    g = copy.deepcopy(gaz)
+    g["businesses"][0]["built_at_scene_date"] = False
+    doc = build(g, rules, _register_for(g))
+    tav = next(c for c in doc["classes"] if c["class"] == "tavern")
+    assert tav["town_records_at_scene_date"] == 1, tav
+
+    # A HOUSE THAT OPENED AFTER THE SCENE DATE is out of the July count and NAMED there,
+    # and the shortfall it leaves against the autumn census is marked as explained.
+    reg = _register_for(gaz, {"b1": "opening_announced_after_scene_date"})
+    doc = build(gaz, rules, reg)
+    tav = next(c for c in doc["classes"] if c["class"] == "tavern")
+    assert tav["town_records_at_scene_date"] == 0, tav
+    assert tav["records_opening_after_scene_date"] == 1, tav
+    assert tav["business_ids_opening_after_scene_date"] == ["b1"], tav
+    assert tav["shortfall_explained_by_later_openings"] == 1, tav
+    row = next(r for r in doc["classification"] if r["business_id"] == "b1")
+    assert row["opened_after_scene_date"] is True, row
+    assert row["scene_date_exclusion"] == "opening_announced_after_scene_date", row
+
+    # A REGISTER THAT HAS DRIFTED FROM THE GAZETTEER cannot be joined at all.
+    short = _register_for(gaz)
+    short["businesses"] = [b for b in short["businesses"] if b["id"] != "b1"]
+    try:
+        build(gaz, rules, short)
+    except Fault as exc:
+        assert "does not carry every business" in str(exc), exc
+    else:
+        raise AssertionError("no fault where the register is missing a gazetteer record")
+
     # scope: a house printed as standing outside the town is not counted in it
     r = copy.deepcopy(rules)
     r["trade_rulings"][0]["scope"] = "outside_town"
-    doc = build(gaz, r)
+    doc = build(gaz, r, _register_for(gaz))
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
     assert tav["town_records_in_town"] == 0 and tav["town_records_outside_town"] == 1, tav
 
     # THE AUTHORED LAYER. A record carries its own class and is counted beside the register.
-    doc = build(gaz, rules, [{"id": "biz_x_tavern_keeper", "name": "X, tavern keeper",
+    doc = build(gaz, rules, _register_for(gaz), [{"id": "biz_x_tavern_keeper", "name": "X, tavern keeper",
                               "trade": "tavern keeper", "type": ["tavern"],
                               "provenance": "authored", "present_at_scene_date": True}])
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
@@ -568,7 +660,8 @@ def cmd_self_test() -> int:
     # 2026-09-20). It used to raise; T-1188's civic houses are the case that showed it
     # should not. The guard is that it lands in `outside_the_census_classes` and NOT in
     # the classification — outside and invisible are different things.
-    rows, outside = classify(gaz, rules, [{"id": "biz_y", "name": "Y", "type": ["civic"]}])
+    rows, outside = classify(gaz, rules, _register_for(gaz),
+                             [{"id": "biz_y", "name": "Y", "type": ["civic"]}])
     assert [r["business_id"] for r in outside] == ["biz_y"], outside
     assert all(r["business_id"] != "biz_y" for r in rows), rows
     assert outside[0]["classes"] == ["civic"], outside
@@ -592,7 +685,7 @@ def cmd_self_test() -> int:
     g = copy.deepcopy(gaz)
     g["businesses"].append({"id": "b3", "name": "A, tavern keeper", "trade": "tavern",
                             "built_at_scene_date": True})
-    doc = build(g, folding())
+    doc = build(g, folding(), _register_for(g))
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
     assert tav["town_records_at_scene_date"] == 1, tav
     assert tav["town_records_in_town"] == 1, tav
@@ -621,7 +714,7 @@ def cmd_self_test() -> int:
     _fires(g, r, "is folded twice")
 
     # no rulings section at all is the NORMAL state and is not a fault
-    doc = build(g, rules)
+    doc = build(g, rules, _register_for(g))
     tav = next(c for c in doc["classes"] if c["class"] == "tavern")
     assert tav["town_records_at_scene_date"] == 2, tav
     assert tav["folded_business_ids"] == [], tav

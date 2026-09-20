@@ -175,10 +175,10 @@
         {
           "figure": "establishments_in_the_compared_classes",
           "low": 118,
-          "high": 137,
+          "high": 134,
           "point": null,
           "is_a_count": false,
-          "method": "The register holds 137 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
+          "method": "The register holds 134 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -188,11 +188,11 @@
         },
         {
           "figure": "classes_short_of_the_census",
-          "low": 8,
-          "high": 8,
+          "low": 9,
+          "high": 9,
           "point": null,
           "is_a_count": true,
-          "method": "8 compared classes hold fewer records than the census counted, 17 establishments short in total; 6 hold more, which is the register counting NOTICES where the census counted houses.",
+          "method": "9 compared classes hold fewer records than the census counted, 19 establishments short in total — of which 2 are houses the register names with an opening announced AFTER the scene date, so that much of the gap is already accounted for; 6 hold more, which is the register counting NOTICES where the census counted houses.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -244,7 +244,8 @@
               "census_count": 14,
               "town_at_scene_date": 8,
               "delta": -6,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "lawyer",
@@ -252,7 +253,8 @@
               "census_count": 22,
               "town_at_scene_date": 18,
               "delta": -4,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "druggist",
@@ -260,7 +262,17 @@
               "census_count": 4,
               "town_at_scene_date": 2,
               "delta": -2,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
+            },
+            {
+              "class": "school",
+              "census_line": "seven schools",
+              "census_count": 7,
+              "town_at_scene_date": 5,
+              "delta": -2,
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 2
             },
             {
               "class": "bank",
@@ -268,7 +280,8 @@
               "census_count": 1,
               "town_at_scene_date": 0,
               "delta": -1,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "brewery",
@@ -276,7 +289,8 @@
               "census_count": 2,
               "town_at_scene_date": 1,
               "delta": -1,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "lottery_office",
@@ -284,7 +298,8 @@
               "census_count": 1,
               "town_at_scene_date": 0,
               "delta": -1,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "lyceum_and_reading_room",
@@ -292,7 +307,8 @@
               "census_count": 1,
               "town_at_scene_date": 0,
               "delta": -1,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "silversmith_jeweller",
@@ -300,7 +316,8 @@
               "census_count": 2,
               "town_at_scene_date": 1,
               "delta": -1,
-              "outcome": "town_holds_fewer_than_the_census_counted"
+              "outcome": "town_holds_fewer_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "book_store",
@@ -308,7 +325,8 @@
               "census_count": 2,
               "town_at_scene_date": 2,
               "delta": 0,
-              "outcome": "town_matches_census"
+              "outcome": "town_matches_census",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "printing_office",
@@ -316,15 +334,8 @@
               "census_count": 2,
               "town_at_scene_date": 2,
               "delta": 0,
-              "outcome": "town_matches_census"
-            },
-            {
-              "class": "school",
-              "census_line": "seven schools",
-              "census_count": 7,
-              "town_at_scene_date": 7,
-              "delta": 0,
-              "outcome": "town_matches_census"
+              "outcome": "town_matches_census",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "iron_foundry",
@@ -332,7 +343,8 @@
               "census_count": 1,
               "town_at_scene_date": 2,
               "delta": 1,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "steam_saw_mill",
@@ -340,7 +352,8 @@
               "census_count": 1,
               "town_at_scene_date": 2,
               "delta": 1,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "tin_and_copper_manufactory",
@@ -348,7 +361,8 @@
               "census_count": 2,
               "town_at_scene_date": 4,
               "delta": 2,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "storage_and_forwarding",
@@ -356,7 +370,8 @@
               "census_count": 4,
               "town_at_scene_date": 7,
               "delta": 3,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "tavern",
@@ -364,15 +379,17 @@
               "census_count": 8,
               "town_at_scene_date": 15,
               "delta": 7,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             },
             {
               "class": "store",
               "census_line": "forty-four stores (dry goods, hardware and groceries)",
               "census_count": 44,
-              "town_at_scene_date": 66,
-              "delta": 22,
-              "outcome": "town_holds_more_than_the_census_counted"
+              "town_at_scene_date": 65,
+              "delta": 21,
+              "outcome": "town_holds_more_than_the_census_counted",
+              "opened_after_the_scene_date": 0
             }
           ]
         },

@@ -67,6 +67,11 @@ LOT_FRONTAGE_FT = 80.0
 # rule that keeps a "block" from being generated across the South Branch.
 MAX_PITCH_M = 200.0
 
+# The lattice a block's ground is read on. 2.5 m is the heightfield's own cell and 5 m is
+# two of them: fine enough that the smallest block on this grid still carries hundreds of
+# samples, coarse enough that the reading costs nothing to re-derive on every commit.
+GROUND_STEP_M = 5.0
+
 # Ordered north to south, and west to east. Restricted to the South and West Division
 # grid on purpose: these are the streets a BLOCK may be generated between, and a block
 # generated between two lines that are not yet fixed would look exactly like one that is.
@@ -131,6 +136,73 @@ def _north_bank_axes() -> tuple[list[str], list[str]]:
 
 NORTH_EW_STREETS, NORTH_NS_STREETS = _north_bank_axes()
 
+
+def _addition_axes() -> tuple[list[str], list[str]]:
+    """Kinzie's Addition's BLOCK grid, by axis, READ OUT OF THE COMMITTED FILES.
+
+    T-1437. The Addition's own eleven streets come from the same corridor control
+    `_north_bank_axes` reads. The two lines that close its grid on the south and the
+    west are not the Addition's — they are the Original Town's `michigan_north` and
+    `wolcott` — and they are read here from the Addition's own SEATING block, which is
+    the file that says which committed lines the sheet's module was hung on. No street
+    id is written in this module, for the reason stated above: a street joins or leaves
+    a grid by what the committed control says, not by being named in a tool.
+    """
+    control = json.loads((DATA / "traces" / "street_control.json").read_text(
+        encoding="utf-8"))
+    tier = (control.get("north_bank") or {}).get("tiers", {}).get("kinzies_addition") or {}
+    axis = tier.get("axis") or {}
+    seating = json.loads((DATA / "traces" / "kinzie_addition_street_grid.json").read_text(
+        encoding="utf-8"))["seating"]
+    # The seating block names each datum as "<street id> in data/streets/1835.json";
+    # the id is the first token and the rest is the file it says to look in.
+    ew_datum = str(seating["east_west_datum"]).split()[0]
+    ns_datum = str(seating["north_south_datum"]).split()[0]
+    return ([ew_datum] + list(axis.get("ew") or []),
+            [ns_datum] + list(axis.get("ns") or []))
+
+
+ADDITION_EW_STREETS, ADDITION_NS_STREETS = _addition_axes()
+
+
+def grids() -> list[dict]:
+    """The platted grids a block may be cut inside, and what each one may be divided on.
+
+    ONE PAIR OF STREET LISTS PER PLAT. Until T-1437 there was one pair for the whole
+    town, which is why the only lots in this file stop at the river: a block could be
+    cut only between two Original Town lines. A block may still be cut only between two
+    lines of ONE plat — the modules differ, the corridors differ (22.17 m against
+    24.384), and a cell straddling two sheets is not a cell either sheet draws.
+
+    `subdivides` is the second half of the same discipline. The Original Town's
+    four-to-a-face module is a reading of an Original Town block; nothing in
+    `data/traces/kinzie_addition_street_grid.json` reads a lot rule for the Addition,
+    which measures a tier pitch and a column pitch and stops. So the Addition's blocks
+    are built and NOT divided, and each one says so on itself.
+
+    Read at call time rather than frozen at import: `tools/measure_southern_ground.py`
+    widens `EW_STREETS` for the length of one measurement and a list captured at import
+    would not see it.
+    """
+    return [
+        {
+            "id": "original_town",
+            "plat": "thompson_plat_1830",
+            "name": "the Original Town of Chicago, Thompson 1830",
+            "rows": list(EW_STREETS),
+            "columns": list(NS_STREETS),
+            "subdivides": True,
+        },
+        {
+            "id": "kinzies_addition",
+            "plat": "kinzie_addition",
+            "name": "Kinzie's Addition, Wright 1834",
+            "rows": list(ADDITION_EW_STREETS),
+            "columns": list(ADDITION_NS_STREETS),
+            "subdivides": False,
+        },
+    ]
+
 # What `corridor_rings` covers, and therefore what `plat_corridors.intrusion` can
 # report. A superset of the block lists above, never a substitute for them.
 CORRIDOR_EW = EW_STREETS + NORTH_EW_STREETS
@@ -171,6 +243,99 @@ def block_numbering() -> dict:
     """
     doc = load(NUMBERING_PATH)
     return {b["block_id"]: b for b in doc["blocks"]}, doc
+
+
+ADDITION_NUMBERING_PATH = DATA / "traces" / "kinzie_addition_block_numbering.json"
+
+
+def addition_numbering(rows: list[str], columns: list[str], lines: dict):
+    """Kinzie's Addition's block numbers, turned into this grid's block ids.
+
+    Authored in `data/traces/kinzie_addition_block_numbering.json` and read here, the
+    same way `block_numbering()` reads the Original Town's: the file carries the
+    reading and the judgement, this module carries neither.
+
+    A cell is named there by its COLUMN and its TIER, and both are turned into streets
+    without a street id being typed:
+
+    * the column is `column_name` — `wolcott_cass`, `cass_rush`, `rush_pine`,
+      `pine_sand` — whose two halves ARE the ids of the lines the cell stands between.
+      `west_gore` and `east_of_sand` name no second line, because there is none: the
+      Addition's west boundary rule and the lake shore are not streets;
+    * the tier is numbered from the river upward under the file's own `scheme` — *"West
+      to east along the river tier (3-7) ... turning at every tier and climbing to the
+      Superior tier (50-54)"*. Tier 9 is therefore the ground SOUTH of the southernmost
+      committed east-west line and tier 1 the ground north of the northernmost, and
+      neither has a committed line on its outer side.
+
+    Returns the numbers this grid can reach, keyed by block id, and the cells it cannot,
+    which are carried on the omissions so that all fifty-two are accounted for.
+    """
+    doc = load(ADDITION_NUMBERING_PATH)
+    south_to_north = sorted(rows, key=lambda s: lines[s]["mean_n"])
+    ordered_columns = sorted(columns, key=lambda s: lines[s]["mean_e"])
+    top = len(south_to_north)
+
+    by_id, unreachable = {}, []
+    for record in doc["blocks"]:
+        # tier `t` stands between south_to_north[top - t] and south_to_north[top - t + 1]
+        south_index = top - int(record["tier"])
+        north_index = south_index + 1
+        north = south_to_north[north_index] if 0 <= north_index < top else None
+        south = south_to_north[south_index] if 0 <= south_index < top else None
+        pair = str(record["column_name"]).split("_")
+        west, east = (pair + [None, None])[:2]
+        if west not in ordered_columns or east not in ordered_columns:
+            west = east = None
+        if north is None or south is None or west is None:
+            unreachable.append((record, north, south, record["column_name"]))
+            continue
+        by_id[f"blk_{north}_{west}"] = record
+    return by_id, unreachable, doc
+
+
+def ground_reading(ring: list, field) -> dict:
+    """What the committed heightfield says about the ground inside a block.
+
+    T-1437 acceptance 5, and the parent's *"buildable reading ... wet, sloping or in a
+    water lot recorded, not silently skipped"*. The lattice is cut from the ring's own
+    bounding box snapped to the step, so the reading is a property of the block and not
+    of the order the generator happened to build it in.
+    """
+    es = [p[0] for p in ring]
+    ns = [p[1] for p in ring]
+    step = GROUND_STEP_M
+    heights, below, off = [], 0, 0
+    e = math.floor(min(es) / step) * step
+    while e <= max(es):
+        n = math.floor(min(ns) / step) * step
+        while n <= max(ns):
+            if point_in_polygon((e, n), ring):
+                if not field.covers(e, n):
+                    off += 1
+                else:
+                    height = field.height(e, n)
+                    heights.append(height)
+                    if height < 0.0:
+                        below += 1
+            n += step
+        e += step
+    reading = {
+        "epoch": "e1834_harbor_cut",
+        "sampled_every_m": step,
+        "samples": len(heights) + off,
+        "off_the_modelled_field": off,
+        "below_datum": below,
+    }
+    if heights:
+        reading["min_m"] = round(min(heights), 2)
+        reading["max_m"] = round(max(heights), 2)
+        reading["mean_m"] = round(sum(heights) / len(heights), 2)
+    reading["reading"] = (
+        "dry: every sample stands above datum on the modelled field"
+        if heights and not below and not off else
+        f"{below} sample(s) below datum and {off} off the modelled field")
+    return reading
 
 
 def reserved_blocks() -> dict[str, dict]:
@@ -284,6 +449,51 @@ def west_division() -> dict:
         "confidence": figures["confidence"],
         "printed_frontage": figures["lot_frontage_as_printed"],
         "authored_in": "data/traces/thompson_west_division_lots.json",
+    }
+
+
+def addition_module() -> dict:
+    """Kinzie's Addition's own module, as Wright's sheet MEASURES it (T-1060, T-1437).
+
+    A tier pitch, a column pitch and a corridor, and no lot rule — which is the whole
+    reason the Addition's blocks are built and not divided. The figures are read from
+    the committed street grid rather than restated here.
+    """
+    doc = load(DATA / "traces" / "kinzie_addition_street_grid.json")
+    control = json.loads((DATA / "traces" / "street_control.json").read_text(
+        encoding="utf-8"))["north_bank"]["tiers"]["kinzies_addition"]
+    return {
+        "module": "kinzies_addition_wright_1834",
+        "authored_in": "data/traces/kinzie_addition_street_grid.json",
+        "tier_pitch_m": doc["module"]["tier_pitch_m"]["mean"],
+        "column_pitch_m": doc["module"]["column_pitch_m"]["mean"],
+        "corridor_m": control["corridor_m"],
+        "corridor_confidence": control["confidence"],
+        "seated_on": [str(doc["seating"]["east_west_datum"]).split()[0],
+                      str(doc["seating"]["north_south_datum"]).split()[0]],
+        "seated_on_note": ("the Addition's module is hung on the two committed lines it "
+                           "shares with the town it adjoins, not on this sheet's own fit "
+                           "— read straight through that fit Michigan Street lands "
+                           "19.8 m south of `michigan_north`, which is the same street"),
+        "division": "north",
+        "chosen_by": ("the Addition's own measured module, seated on the two committed "
+                      "lines it shares with the town it adjoins"),
+        "lot_subdivision_withheld": {
+            "why": ("NO LOT RULE HAS BEEN READ FOR THIS PLAT. The Addition's street grid "
+                    "measures a tier pitch and a column pitch and stops there; the "
+                    "four-to-a-face 80 ft module this generator can seat is a reading of "
+                    "ONE Original Town block (docs/RESEARCH/clark_reach_bulge_1834.md "
+                    "section 8) and carrying it across the river would be a guess dressed "
+                    "as arithmetic. The parent ticket asks for the lots of each plat to "
+                    "come from that plat's own module, and this one's has not been read."),
+            "what_would_settle_it": ("the lot lines and lot numerals Wright draws inside "
+                                     "the Addition's cells, read off wright_1834_nara_hup "
+                                     "the way tools/read_kinzie_addition_numerals.py reads "
+                                     "the block numerals — the same raster, the same "
+                                     "registration, one crop per cell"),
+            "meanwhile": ("the block stands with its boundary, its numeral and its ground, "
+                          "which is what a placement ticket needs to name it"),
+        },
     }
 
 
@@ -512,14 +722,18 @@ def _half_width(street: dict, fallback: float) -> float:
 def block_edges(lines: dict, half_width: float) -> dict:
     """Both platted edges of every street: the block faces the corridor is cut between."""
     edges = {}
+    # The union across every grid, read at call time so a caller that widens one of the
+    # lists (measure_southern_ground) still gets edges for the street it added.
+    ew = EW_STREETS + ADDITION_EW_STREETS
+    ns = NS_STREETS + ADDITION_NS_STREETS
     for street_id, street in lines.items():
         own = _half_width(street, half_width)
-        if street_id in EW_STREETS:
+        if street_id in ew:
             edges[street_id] = {
                 "south": offset_polyline(street["points"], own, (0.0, -1.0)),
                 "north": offset_polyline(street["points"], own, (0.0, 1.0)),
             }
-        elif street_id in NS_STREETS:
+        elif street_id in ns:
             edges[street_id] = {
                 "east": offset_polyline(street["points"], own, (1.0, 0.0)),
                 "west": offset_polyline(street["points"], own, (-1.0, 0.0)),
@@ -658,6 +872,33 @@ def stamp_number(entry: dict, record: dict, scheme: dict) -> None:
         lot["plat_lot_confidence"] = scheme["confidence"]
 
 
+def stamp_addition_number(entry: dict, record: dict) -> None:
+    """Put Kinzie's Addition's own block numeral on a cell of this grid.
+
+    A sibling of `stamp_number` and deliberately not the same function: the Addition's
+    reading carries fields the Original Town's does not (`cell`, `legibility`,
+    `written_on_sheet`, and a `derives_from_scheme` flag that separates a numeral READ in
+    its cell from one the run supplies), and it numbers no lots because this grid draws
+    none inside the Addition. Nothing is judged here; the fields are carried across.
+    """
+    entry["plat_block_number"] = {
+        "number": record["number"],
+        "confidence": record["confidence"],
+        "numeral_on_sheet": record["numeral_on_sheet"],
+        "written_on_sheet": record.get("written_on_sheet"),
+        "legibility": record.get("legibility"),
+        "cell": record["cell"],
+        "sources": record["sources"],
+        "authored_in": "data/traces/kinzie_addition_block_numbering.json",
+        "note": record.get("note") or record["bounded_by"],
+    }
+    if entry.get("lots") == [] and "lots_per_face" not in entry:
+        entry["plat_block_number"]["lots_not_numbered"] = (
+            "this grid draws no lot lines inside the Addition, so there is nothing here "
+            "to number; the Democrat's land notices sell by block AND lot, and only the "
+            "block half of that address is placeable today")
+
+
 def grid_from_inputs() -> dict:
     control = load(DATA / "traces" / "street_control.json")
     streets = load(DATA / "streets" / "1835.json")
@@ -671,13 +912,12 @@ def grid_from_inputs() -> dict:
     reach_m = half_width
 
     lines = street_lines(streets)
-    missing = [s for s in EW_STREETS + NS_STREETS if s not in lines]
+    layers = grids()
+    missing = [s for layer in layers for s in layer["rows"] + layer["columns"]
+               if s not in lines]
     if missing:
-        raise SystemExit(f"street table is missing {', '.join(missing)}")
+        raise SystemExit(f"street table is missing {', '.join(sorted(set(missing)))}")
     edges = block_edges(lines, half_width)
-
-    rows = sorted((s for s in EW_STREETS), key=lambda s: -lines[s]["mean_n"])
-    columns = sorted((s for s in NS_STREETS), key=lambda s: lines[s]["mean_e"])
 
     field = None
     try:
@@ -697,7 +937,15 @@ def grid_from_inputs() -> dict:
     # committed centrelines every block edge is offset from — never a figure typed in.
     spacing_ft = abs(lines["clinton"]["mean_e"] - lines["canal"]["mean_e"]) / FT_M
     blocks, omitted = [], []
-    for north_id, south_id in zip(rows, rows[1:]):
+    addition = addition_module()
+    addition_numbers, addition_unreachable, addition_doc = {}, [], None
+    for layer in layers:
+      rows = sorted(layer["rows"], key=lambda s: -lines[s]["mean_n"])
+      columns = sorted(layer["columns"], key=lambda s: lines[s]["mean_e"])
+      if layer["id"] == "kinzies_addition":
+          addition_numbers, addition_unreachable, addition_doc = addition_numbering(
+              rows, columns, lines)
+      for north_id, south_id in zip(rows, rows[1:]):
         pitch_n = abs(lines[north_id]["mean_n"] - lines[south_id]["mean_n"])
         for west_id, east_id in zip(columns, columns[1:]):
             block_id = f"blk_{north_id}_{west_id}"
@@ -706,7 +954,7 @@ def grid_from_inputs() -> dict:
                           "west": west_id, "east": east_id}
             if pitch_n > MAX_PITCH_M or pitch_e > MAX_PITCH_M:
                 omitted.append({
-                    "id": block_id, "bounded_by": bounded_by,
+                    "id": block_id, "grid": layer["id"], "bounded_by": bounded_by,
                     "reason": (f"the streets are {max(pitch_n, pitch_e):.0f} m apart, past "
                                f"the {MAX_PITCH_M:.0f} m the plat's module allows a block "
                                f"— what lies between them is the river, not a block")})
@@ -714,13 +962,14 @@ def grid_from_inputs() -> dict:
             built, why = build_block(north_id, south_id, west_id, east_id,
                                      lines, edges, reach_m)
             if built is None:
-                omitted.append({"id": block_id, "bounded_by": bounded_by, "reason": why})
+                omitted.append({"id": block_id, "grid": layer["id"],
+                                "bounded_by": bounded_by, "reason": why})
                 continue
             ring = built["ring"]
             wet = [p for p in ring if not field.covers(*p) or field.height(*p) < 0.0]
             if wet:
                 omitted.append({
-                    "id": block_id, "bounded_by": bounded_by,
+                    "id": block_id, "grid": layer["id"], "bounded_by": bounded_by,
                     "reason": (f"{len(wet)} of {len(ring)} corners fall on water or beyond "
                                "the modelled ground; a platted block there is not something "
                                "this dataset can stand behind")})
@@ -728,18 +977,31 @@ def grid_from_inputs() -> dict:
             divided = subdivide(built, alley_m, frontage_m)
             entry = {
                 "id": block_id,
+                "grid": layer["id"],
+                "plat": layer["plat"],
                 "bounded_by": bounded_by,
                 "boundary_local_enu_m": rounded(ring),
                 "area_m2": round(polygon_area(ring), 1),
                 "frontage_m": round(divided["frontage_m"], 2),
                 "frontage_ft": round(divided["frontage_m"] / FT_M, 1),
                 "depth_m": round(polygon_area(ring) / divided["frontage_m"], 2),
-                "lots_per_face": divided["count"],
-                "alley_local_enu_m": divided["alley"],
-                "lots": divided["lots"],
             }
+            if layer["subdivides"]:
+                entry["lots_per_face"] = divided["count"]
+                entry["alley_local_enu_m"] = divided["alley"]
+                entry["lots"] = divided["lots"]
+            else:
+                # Built, and deliberately NOT divided. The reason is a property of the
+                # plat, so it is carried once on the module and pointed at from here.
+                entry["subdivision_withheld"] = (
+                    "no lot rule has been read for this plat "
+                    "— see `module.lot_subdivision_withheld`")
+                entry["alley_local_enu_m"] = None
+                entry["lots"] = []
+            entry["ground"] = ground_reading(ring, field)
             entry["survey_tract"] = tract_of(ring, tracts)
-            entry["module"] = module_for(entry, bounded_by, west, spacing_ft)
+            entry["module"] = (dict(addition) if not layer["subdivides"]
+                               else module_for(entry, bounded_by, west, spacing_ft))
             hold = reserved.get(block_id)
             if hold:
                 # The boundary stays; the subdivision goes. `lots_per_face` reports what
@@ -758,6 +1020,49 @@ def grid_from_inputs() -> dict:
                 entry["alley_local_enu_m"] = None
                 entry["lots"] = []
             blocks.append(entry)
+
+    # Kinzie's Addition's fifty-two numerals, each onto the cell its own column and tier
+    # name. Every one has to land: on a block, on an omission this grid attempted, or on
+    # a cell with no committed line on one of its sides.
+    for entry in blocks + omitted:
+        if entry.get("grid") != "kinzies_addition":
+            continue
+        record = addition_numbers.get(entry["id"])
+        if record:
+            stamp_addition_number(entry, record)
+    for record, north, south, column in addition_unreachable:
+        sides = []
+        if column == "west_gore":
+            sides.append("the Addition's west boundary rule")
+        elif column == "east_of_sand":
+            sides.append("the lake shore")
+        if south is None:
+            sides.append("the river")
+        elif north is None:
+            sides.append("the Addition's north boundary")
+        side = " and ".join(sides)
+        cell = {
+            "id": f"kinzies_addition_block_{record['number']}",
+            "grid": "kinzies_addition",
+            "bounded_by": {"north": north, "south": south,
+                           "column": record["column_name"], "tier": record["tier"]},
+            "reason": (f"this cell is closed by {side}, which is not a committed "
+                       "street line, so this grid has no cell to draw "
+                       "— the numeral is carried here rather than lost"),
+        }
+        stamp_addition_number(cell, record)
+        omitted.append(cell)
+    if addition_doc is not None:
+        landed = {o["plat_block_number"]["number"]
+                  for o in blocks + omitted
+                  if o.get("grid") == "kinzies_addition" and o.get("plat_block_number")}
+        lost = sorted(r["number"] for r in addition_doc["blocks"]
+                      if r["number"] not in landed)
+        if lost:
+            raise SystemExit(
+                "data/traces/kinzie_addition_block_numbering.json numbers "
+                f"{', '.join(str(n) for n in lost)}, which this grid neither builds "
+                "nor omits")
 
     scheme = numbering_doc["lot_numbering"]
     for entry in blocks:
@@ -784,7 +1089,8 @@ def grid_from_inputs() -> dict:
                          f"{', '.join(unplaced)}, which the grid neither builds nor omits")
 
     return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
-                    numbering_doc, tracts, west, spacing_ft)
+                    numbering_doc, tracts, west, spacing_ft, layers, addition,
+                    addition_doc)
 
 
 def _count_tracts(blocks: list) -> dict:
@@ -796,8 +1102,22 @@ def _count_tracts(blocks: list) -> dict:
 
 
 def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
-             numbering_doc, tracts, west, spacing_ft) -> dict:
+             numbering_doc, tracts, west, spacing_ft, layers, addition,
+             addition_doc) -> dict:
     faces = [lot["frontage_m"] for b in blocks for lot in b["lots"]]
+    by_grid = {}
+    for layer in layers:
+        mine = [b for b in blocks if b["grid"] == layer["id"]]
+        by_grid[layer["id"]] = {
+            "plat": layer["plat"],
+            "name": layer["name"],
+            "bounded_between": {"east_west": layer["rows"], "north_south": layer["columns"]},
+            "blocks": len(mine),
+            "omitted": sum(1 for o in omitted if o.get("grid") == layer["id"]),
+            "numbered": sum(1 for b in mine if b.get("plat_block_number")),
+            "lots": sum(len(b["lots"]) for b in mine),
+            "subdivided": layer["subdivides"],
+        }
     return {
         "_doc": (
             "The platted block and lot grid, generated from the Thompson module and snapped "
@@ -811,7 +1131,12 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "are carried separately, in `plat_block_number`, read block by block off the "
             "georeferenced Wright 1834 scan — see `block_numbering` below and "
             "data/traces/thompson_block_numbering.json. A block left unnumbered here is one "
-            "the sheet was not read on, and the authored file says which and why."),
+            "the sheet was not read on, and the authored file says which and why. "
+            "SINCE T-1437 THIS FILE HOLDS TWO GRIDS, not one: the Original Town south of "
+            "the main stem, and Kinzie's Addition north of it, each cut between its own "
+            "plat's lines at its own corridor width. Every block says which in `grid`, "
+            "and `grids` below says what each one may be divided on. The Addition's "
+            "blocks carry no lots on purpose — see `subdivision_withheld`."),
         "tool": "tools/generate_plat_lots.py",
         "generated_from": [
             "data/traces/street_control.json",
@@ -819,6 +1144,35 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "data/sources/thompson_plat_1830.json",
         ],
         "sources": SOURCE_IDS,
+        "grids": by_grid,
+        "kinzies_addition": {
+            "why_it_is_a_second_grid": (
+                "Until T-1437 one pair of street lists decided which lines a block could "
+                "be cut between, and both were Original Town lines, so the only lots in "
+                "this file stopped at the river. The Addition is a different plat with a "
+                "different draughtsman, a different corridor (22.17 m against 24.384) and "
+                "a different module, and a cell straddling two sheets is a cell neither "
+                "sheet draws. It gets its own pair."),
+            "module": {k: v for k, v in addition.items()
+                       if k not in ("lot_subdivision_withheld",)},
+            "lot_subdivision_withheld": addition["lot_subdivision_withheld"],
+            "numbering": {
+                "authored_in": "data/traces/kinzie_addition_block_numbering.json",
+                "read": (addition_doc or {}).get("why_this_file_exists"),
+                "scheme": ((addition_doc or {}).get("scheme") or {}).get("run"),
+                "grades": (addition_doc or {}).get("grades"),
+                "refused": [r["scope"] for r in ((addition_doc or {}).get("refused") or [])],
+                "how_a_numeral_reaches_a_block": (
+                    "by the cell's OWN `column_name` and `tier`, never by counting from a "
+                    "neighbour: the column names the two lines the cell stands between and "
+                    "the tier is numbered from the river upward under the file's own "
+                    "scheme. A cell whose column or tier has no committed line on one side "
+                    "— the west gore, the ground east of Sand Street, the river tier "
+                    "and the tier above Superior Street — reaches no cell of this "
+                    "grid, and its numeral is carried on an omission so that all "
+                    "fifty-two are accounted for rather than quietly dropped."),
+            },
+        },
         "module": {
             "street_width_m": module["width_m"],
             "street_width_ft": module["width_ft"],
@@ -876,14 +1230,19 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
                 "blocks_sorted": len(blocks),
                 "by_tract": _count_tracts(blocks),
                 "finding": (
-                    "THE LAYER DOES NOT DISCRIMINATE THIS GRID. All nineteen generated "
-                    "blocks fall in canal_commissioners_1830 and no other placed ring "
-                    "touches one, which the tract record itself already says — its "
-                    "geometry_note reports all 19 inside the rectangle. So the question "
-                    "T-1105 asks the layer, the layer cannot answer: no block here stands "
-                    "in Wabansia or Kinzie's Addition, and a per-tract module would change "
-                    "nothing about what is built. What DOES vary inside this one tract is "
-                    "the DIVISION, because the river runs through the Original Town and "
+                    "THE LAYER DISCRIMINATES THIS GRID SINCE T-1437, and until then it "
+                    "could not. The finding recorded here from T-1105 to 2026-09-20 was "
+                    "that all nineteen generated blocks fell in canal_commissioners_1830 "
+                    "and no other placed ring touched one, so the question T-1105 asked "
+                    "the layer was one the layer could not answer. That was a property of "
+                    "the GRID and not of the layer: the generator could only cut blocks "
+                    "between Original Town lines, so of course every block stood in the "
+                    "Original Town's tract. With Kinzie's Addition's own grid cut, "
+                    + ", ".join(f"{n} block(s) stand in {t}"
+                                for t, n in sorted(_count_tracts(blocks).items()))
+                    + " — and the module each takes is now a per-tract answer rather "
+                    "than a single town-wide one. What varies INSIDE the Original Town's "
+                    "tract is still the DIVISION, because the river runs through it and "
                     "the plat gives its two sides different blocks."),
                 "the_grade_is_inherited": (
                     "canal_commissioners_1830 is `conjectural` — its four bounds are the "
@@ -946,6 +1305,14 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "max_pitch_m": MAX_PITCH_M,
             "water_rule": ("a block with a corner on water or beyond the modelled ground is "
                            "omitted rather than drawn over the river"),
+            "ground_reading": (
+                f"every block that IS drawn carries a `ground` reading sampled off the "
+                f"committed e1834_harbor_cut heightfield on a {GROUND_STEP_M:.0f} m "
+                "lattice cut from the block's own bounding box: how many samples stand "
+                "below datum and how many fall off the modelled field, with the heights. "
+                "The corner rule above refuses a block outright; this says what the "
+                "ground is like inside the ones it lets through, which is what a "
+                "placement ticket has to ask before it deals a roof onto one."),
             "lot_subdivision": ("the block's north and south faces divided in the same "
                                 "proportion, joined station to station, with a centred "
                                 "alley taken out of the middle"),
@@ -975,6 +1342,7 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "position and the line dividing it is not."),
         "summary": {
             "blocks": len(blocks),
+            "blocks_by_grid": {k: v["blocks"] for k, v in by_grid.items()},
             "omitted": len(omitted),
             "reserved": sum(1 for b in blocks if b.get("reserved")),
             "numbered": sum(1 for b in blocks if b.get("plat_block_number")),
@@ -1090,8 +1458,9 @@ def report(grid: dict) -> int:
     print(f"{placed} placed structures against {len(rings)} generated blocks:")
     print(f"  {len(in_block):4d} stand inside a block")
     print(f"  {len(in_street):4d} stand INSIDE A PLATTED STREET CORRIDOR")
-    print(f"  {len(off_grid):4d} stand outside this grid altogether (the North Division, the "
-          "fort, the West Division beyond Clinton, and the blocks in `omitted`)")
+    print(f"  {len(off_grid):4d} stand outside this grid altogether (the Thompson North "
+          "Division tier, the fort, the West Division beyond Clinton, Kinzie's Addition "
+          "river tier and the blocks in `omitted`)")
     by_confidence = {}
     for _, _, confidence, _, _ in in_street:
         by_confidence[confidence] = by_confidence.get(confidence, 0) + 1
@@ -1258,6 +1627,59 @@ def self_test() -> int:
                   f"face and the committed blocks give {faces} ft; Clinton to Canal is "
                   f"{spacing_ft:.1f} ft against the plat's "
                   f"{west['street_module_ft']:.0f} ft")
+
+    # ------------------------------------------------------------- T-1437, the second grid
+    # Three things have to hold at once for Kinzie's Addition to be a grid and not a
+    # copy of the Original Town's with different street names: every cell the grid cuts
+    # carries the Addition's own numeral, none of them carries a lot, and the faces
+    # measure the ADDITION's module rather than the town's. The third is the one that
+    # catches a regression nobody would see by eye — a 2.2 m corridor difference over an
+    # 89 m block face is the kind of thing that hides in a rounded figure.
+    cases += 1
+    addition_blocks = [b for b in (grid["blocks"] if grid else [])
+                       if b["grid"] == "kinzies_addition"]
+    if not addition_blocks:
+        print("  NO KINZIE'S ADDITION BLOCK on this grid — the second grid built nothing")
+        failed += 1
+    else:
+        unnumbered = [b["id"] for b in addition_blocks if not b.get("plat_block_number")]
+        divided = [b["id"] for b in addition_blocks if b["lots"]]
+        if unnumbered or divided:
+            print(f"  ADDITION GRID WRONG: {len(unnumbered)} unnumbered, "
+                  f"{len(divided)} carrying lots")
+            failed += 1
+        else:
+            print(f"  ok:    {len(addition_blocks)} Kinzie's Addition blocks, every one "
+                  "numbered off the sheet and none of them divided")
+
+    cases += 1
+    numbering = load(ADDITION_NUMBERING_PATH)
+    landed = {e["plat_block_number"]["number"]
+              for e in (grid["blocks"] + grid["omitted"] if grid else [])
+              if e.get("grid") == "kinzies_addition" and e.get("plat_block_number")}
+    lost = sorted(r["number"] for r in numbering["blocks"] if r["number"] not in landed)
+    if lost:
+        print(f"  NUMERALS LOST: {lost} reach neither a block nor an omission")
+        failed += 1
+    else:
+        print(f"  ok:    all {len(numbering['blocks'])} of the Addition's numerals land "
+              "— on a block, or on an omission that says which side is not a street")
+
+    cases += 1
+    addition = addition_module()
+    interior = [b for b in addition_blocks
+                if b["bounded_by"]["west"] != addition["seated_on"][1]]
+    expected = addition["column_pitch_m"] - addition["corridor_m"]
+    town_would_give = addition["column_pitch_m"] - 2 * half_width
+    off = [b["id"] for b in interior if abs(b["frontage_m"] - expected) > 1.0]
+    if not interior or off:
+        print(f"  THE ADDITION IS NOT ON ITS OWN CORRIDOR: {off or 'no interior block'}")
+        failed += 1
+    else:
+        faces = sorted({round(b["frontage_m"], 1) for b in interior})
+        print(f"  ok:    the Addition's interior faces read {faces} m against its own "
+              f"module's {expected:.1f} m; the Original Town's corridor would have given "
+              f"{town_would_give:.1f} m")
 
     if failed:
         print(f"SELF-TEST FAIL — {failed} of {cases}")

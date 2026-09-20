@@ -56,8 +56,8 @@ It is an adjudication over committed derived files — no page of any source is 
 | Figure | Reading | Method |
 | --- | ---: | --- |
 | `census_classes_compared` | **17** | 17 of the 20 classes the T-1006 crosswalk holds carry both a printed census line and a register count; the other 3 are a class the census never printed a line for, or a line the town holds nothing for. |
-| `establishments_in_the_compared_classes` | **118 – 137** | The register holds 137 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
-| `classes_short_of_the_census` | **8** | 8 compared classes hold fewer records than the census counted, 17 establishments short in total; 6 hold more, which is the register counting NOTICES where the census counted houses. |
+| `establishments_in_the_compared_classes` | **118 – 134** | The register holds 134 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised. |
+| `classes_short_of_the_census` | **9** | 9 compared classes hold fewer records than the census counted, 19 establishments short in total — of which 2 are houses the register names with an opening announced AFTER the scene date, so that much of the gap is already accounted for; 6 hold more, which is the register counting NOTICES where the census counted houses. |
 | `employed_persons` | **424 – 588** | The 1840 schedule returns 18% of persons in its seven industry columns, 0.902 per household. Applied to this model's July population range. The 1840 columns count persons in families and not occupations of named men, so this is a size and not a roster. |
 | `people_the_layer_gives_a_trade` | **138 – 327** | 138 people carry a role that reaches 1 July 1835; 327 carry any role at all, and 189 carry only roles dated off the scene. The gap between this and the employed-persons figure above is what the reconstruction bands have to fill. |
 
@@ -65,25 +65,25 @@ It is an adjudication over committed derived files — no page of any source is 
 
 ### against the state census
 
-| class | census line | census count | town at scene date | delta | outcome |
-| --- | --- | --- | --- | --- | --- |
-| physician | fourteen physicians | 14 | 8 | -6 | town_holds_fewer_than_the_census_counted |
-| lawyer | twenty-two lawyers | 22 | 18 | -4 | town_holds_fewer_than_the_census_counted |
-| druggist | four druggists | 4 | 2 | -2 | town_holds_fewer_than_the_census_counted |
-| bank | one bank | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted |
-| brewery | two breweries | 2 | 1 | -1 | town_holds_fewer_than_the_census_counted |
-| lottery_office | one lottery office | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted |
-| lyceum_and_reading_room | a lyceum and reading room | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted |
-| silversmith_jeweller | two silversmiths and jewellers | 2 | 1 | -1 | town_holds_fewer_than_the_census_counted |
-| book_store | two book stores | 2 | 2 | 0 | town_matches_census |
-| printing_office | two printing offices | 2 | 2 | 0 | town_matches_census |
-| school | seven schools | 7 | 7 | 0 | town_matches_census |
-| iron_foundry | one iron foundry | 1 | 2 | 1 | town_holds_more_than_the_census_counted |
-| steam_saw_mill | one steam saw-mill | 1 | 2 | 1 | town_holds_more_than_the_census_counted |
-| tin_and_copper_manufactory | two tin and copper manufactories | 2 | 4 | 2 | town_holds_more_than_the_census_counted |
-| storage_and_forwarding | four storage and forwarding houses | 4 | 7 | 3 | town_holds_more_than_the_census_counted |
-| tavern | eight taverns | 8 | 15 | 7 | town_holds_more_than_the_census_counted |
-| store | forty-four stores (dry goods, hardware and groceries) | 44 | 66 | 22 | town_holds_more_than_the_census_counted |
+| class | census line | census count | town at scene date | delta | outcome | opened after the scene date |
+| --- | --- | --- | --- | --- | --- | --- |
+| physician | fourteen physicians | 14 | 8 | -6 | town_holds_fewer_than_the_census_counted | 0 |
+| lawyer | twenty-two lawyers | 22 | 18 | -4 | town_holds_fewer_than_the_census_counted | 0 |
+| druggist | four druggists | 4 | 2 | -2 | town_holds_fewer_than_the_census_counted | 0 |
+| school | seven schools | 7 | 5 | -2 | town_holds_fewer_than_the_census_counted | 2 |
+| bank | one bank | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted | 0 |
+| brewery | two breweries | 2 | 1 | -1 | town_holds_fewer_than_the_census_counted | 0 |
+| lottery_office | one lottery office | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted | 0 |
+| lyceum_and_reading_room | a lyceum and reading room | 1 | 0 | -1 | town_holds_fewer_than_the_census_counted | 0 |
+| silversmith_jeweller | two silversmiths and jewellers | 2 | 1 | -1 | town_holds_fewer_than_the_census_counted | 0 |
+| book_store | two book stores | 2 | 2 | 0 | town_matches_census | 0 |
+| printing_office | two printing offices | 2 | 2 | 0 | town_matches_census | 0 |
+| iron_foundry | one iron foundry | 1 | 2 | 1 | town_holds_more_than_the_census_counted | 0 |
+| steam_saw_mill | one steam saw-mill | 1 | 2 | 1 | town_holds_more_than_the_census_counted | 0 |
+| tin_and_copper_manufactory | two tin and copper manufactories | 2 | 4 | 2 | town_holds_more_than_the_census_counted | 0 |
+| storage_and_forwarding | four storage and forwarding houses | 4 | 7 | 3 | town_holds_more_than_the_census_counted | 0 |
+| tavern | eight taverns | 8 | 15 | 7 | town_holds_more_than_the_census_counted | 0 |
+| store | forty-four stores (dry goods, hardware and groceries) | 44 | 65 | 21 | town_holds_more_than_the_census_counted | 0 |
 - **date caution** — THE COUNT IS NOT OF THE SCENE. It was taken between 1 September and December 1835; the scene is 1 July 1835, two to five months earlier and in the fastest-growing months the town had. A class where the town holds fewer than the census counted is NOT thereby a hole in the July town — some of those forty-four stores opened in September. Every figure below is to be read with that gap in front of it.
 - **unit** — establishment records at the scene date against the printed census line
 

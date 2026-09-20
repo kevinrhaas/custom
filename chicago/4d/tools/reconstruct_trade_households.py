@@ -262,14 +262,26 @@ def trade_rows() -> list:
 
 def ceilings() -> dict:
     """trade -> how many more people of that trade the December census leaves room for.
-    A class the town already matches or exceeds leaves room for nobody."""
+    A class the town already matches or exceeds leaves room for nobody — and NEITHER DOES
+    A CLASS WHOSE SHORTFALL THE SOURCES ALREADY ACCOUNT FOR (T-1428). The December return
+    was taken two to five months after the scene, and the register names houses whose
+    OPENING was announced after 1 July: each of those stands behind one of the December
+    figures while honestly standing outside the July town. Counting them as room would
+    deal a reconstructed keeper against a gap two dated notices fill by name — the
+    seven schools, of which the town holds five and Everts and Hunt opened in August."""
     by_class = {r["class"]: r for r in table("occupations", "against_the_state_census")["rows"]}
     out = {}
     for trade, klass in sorted(CENSUS_CEILINGS.items()):
         row = by_class.get(klass)
         if row is None:
             continue
-        out[trade] = max(0, int(row["census_count"]) - int(row["town_at_scene_date"]))
+        if "opened_after_the_scene_date" not in row:
+            raise SystemExit(
+                f"the town model's {klass!r} row does not say how many of its houses opened "
+                "after the scene date, so a shortfall cannot be told from room. "
+                "Re-run tools/model_town_1835.py --build.")
+        out[trade] = max(0, int(row["census_count"]) - int(row["town_at_scene_date"])
+                         - int(row["opened_after_the_scene_date"]))
     return out
 
 
