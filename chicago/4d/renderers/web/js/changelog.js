@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Thirty-two invented buildings are the wrong kind of building', kind: 'fix', ts: '', date: '',
+  { v: 1017, title: 'Thirty-two invented buildings are the wrong kind of building', kind: 'fix', ts: '2026-09-20T12:34:42.304Z', date: 'Sep 20, 2026, 7:34 AM CT',
     items: [
       'Two hundred and eighty-five buildings in this town were never in any document. They are invented \u2014 raised in August by block recipes to bring the roof count up to what the reconstruction schedule asked for, each honestly labelled a guess. They were dealt before this project modelled the population, and nobody had gone back to ask whether the town still wants a building of that kind in that place.',
       'It has been asked now, of all 285: 253 keep, 32 change what they are, none come down. The schedule wants 668 roofs and 371 stand, so the town is 297 buildings SHORT \u2014 there is almost nowhere a standing roof is surplus to what the order book can put in it, and an audit returning a long demolition list would have been measuring the wrong thing.',
