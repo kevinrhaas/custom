@@ -1,7 +1,7 @@
 ---
 id: T-1477
 title: The School Section tier: the thirteen Madison-to-Monroe blocks cut into the lots the October 1833 register's own rows witness — eight to a block where eight sold, four where four sold, the two Reserved corners left whole
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1456
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 12:20:53 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35525090552
 ---
 
 The School Section tier: the thirteen Madison-to-Monroe blocks cut into the lots the October 1833 register's own rows witness — eight to a block where eight sold, four where four sold, the two Reserved corners left whole.
