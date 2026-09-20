@@ -251,7 +251,7 @@
             {
               "row": "crews ashore",
               "bounded": "hulls only",
-              "evidence": "the Marine Journal of 4 July 1835, seated hull by hull in data/reconstruction/1835_vessels_in_port.json",
+              "evidence": "the Marine Journal of 4 July 1835, seated hull by hull in data/reconstruction/1835_vessels_in_port.json, and joined to the two packets the newspaper register already carried as houses of trade (T-1425)",
               "at the scene date": "4 to 6 vessels in port, named and mastered; nobody aboard"
             },
             {
@@ -272,7 +272,8 @@
               "master": "Drurian",
               "from": "Green Bay",
               "cargo": "lumber",
-              "cleared 1 July": "yes"
+              "cleared 1 July": "yes",
+              "house in the register": "none"
             },
             {
               "arrived": "1835-06-27",
@@ -281,7 +282,8 @@
               "master": "Howe",
               "from": "Milwaukee",
               "cargo": "not stated",
-              "cleared 1 July": "yes"
+              "cleared 1 July": "yes",
+              "house in the register": "biz_the_chicago_and_st_joseph_packet_schooner_phillips"
             },
             {
               "arrived": "1835-06-28",
@@ -290,7 +292,8 @@
               "master": "Clark",
               "from": "cut from the column",
               "cargo": "passengers",
-              "cleared 1 July": "no"
+              "cleared 1 July": "no",
+              "house in the register": "biz_chicago_st_joseph_packet_schooner_llewellyn"
             },
             {
               "arrived": "1835-06-28",
@@ -299,7 +302,8 @@
               "master": "Rathbourn",
               "from": "Michigan",
               "cargo": "lumber",
-              "cleared 1 July": "no"
+              "cleared 1 July": "no",
+              "house in the register": "none"
             },
             {
               "arrived": "1835-06-29",
@@ -308,7 +312,8 @@
               "master": "Day",
               "from": "cut from the column",
               "cargo": "merchandize",
-              "cleared 1 July": "no"
+              "cleared 1 July": "no",
+              "house in the register": "none"
             },
             {
               "arrived": "1835-06-29",
@@ -317,7 +322,8 @@
               "master": "not read",
               "from": "cut from the column",
               "cargo": "passengers",
-              "cleared 1 July": "no"
+              "cleared 1 July": "no",
+              "house in the register": "none"
             }
           ]
         }

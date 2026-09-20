@@ -63,6 +63,7 @@ STREETS = DATA / "streets" / "1835.json"
 LEDGER = DATA / "reconstruction" / "1835_business_reconstruction.json"
 LODGING_MODEL = DATA / "reconstruction" / "1835_lodging_model.json"
 LODGERS = DATA / "residents" / "lodgers"
+VESSELS_IN_PORT = DATA / "reconstruction" / "1835_vessels_in_port.json"
 
 PROGRAMME = "chicago_1835_business_reconstruction"
 SCENE_DATE = "1835-07-01"
@@ -284,6 +285,14 @@ TRADE_FACES = {
 # and never in establishments; most are employments, which have no premises to keep at all;
 # and two are deferred to T-1425 with the evidence they wait on named. A trade missing from
 # this table is REFUSED by name rather than passed over, which is the whole point of it.
+# THE CLOSED VOCABULARY OF `kind`, so that a new ruling has to be declared rather than
+# typed. `deferred` stays in it — T-1425 emptied it and a later ticket may fill it again —
+# but a deferral now has to name a ticket that is STILL OPEN, which is the guard this
+# ticket's own history asks for: T-1424 deferred two heads on a stated reason that was
+# already false, and nothing re-read it until the successor ran.
+RIVER_KINDS = ("house_of_trade", "count_already_held", "employment", "commands_a_vessel",
+               "contract_not_premises", "deferred")
+
 RIVER_AND_TRANSPORT = {
     "livery_stable_keeper": {
         "kind": "house_of_trade",
@@ -331,22 +340,73 @@ RIVER_AND_TRANSPORT = {
                 "nothing; a sawyer is a hand in one of them and T-1189 seats him."),
     },
     "master_mariner": {
-        "kind": "deferred",
-        "ticket": "T-1425",
-        "why": ("A MASTER COMMANDS A VESSEL, NOT A PREMISES. The five schooners "
-                "data/boats/era_boats.json stands are unnamed and unmanned, and naming them "
-                "wants a marine list this corpus does not hold — no source in data/sources/ "
-                "prints the port of Chicago's arrivals and clearances for 1835. T-1425 owns "
-                "the vessels in port and their masters."),
+        "kind": "commands_a_vessel",
+        "why": ("A MASTER COMMANDS A VESSEL, NOT A PREMISES — and T-1425 settled it with "
+                "the marine list in front of it. T-1424 deferred this head on the ground "
+                "that 'no source in data/sources/ prints the port of Chicago's arrivals "
+                "and clearances for 1835'. THAT WAS WRONG WHEN IT WAS WRITTEN. The "
+                "Marine Journal of the Chicago American heads PORT OF CHICAGO and enters "
+                "arrivals and clearances week by week; the column of 4 July 1835 spans "
+                "the scene date itself, and the reading has been committed since T-1372 "
+                "at data/reconstruction/1835_vessels_in_port.json — six hulls, four of "
+                "them mastered by name. Having it changes nothing about the ruling and "
+                "everything about its standing: the column gives masters and gives no man "
+                "a house, the four it names are lake masters entered at this port and not "
+                "householders of this town, and a house of trade cannot be ordered for a "
+                "trade whose premises float. WHAT THE LIST DID BUY is the join T-1425 "
+                "made instead — two of those hulls ARE houses in this register, the "
+                "Chicago & St. Joseph packets, and the vessels file now says so hull by "
+                "hull. A packet is a business; commanding one is not."),
     },
     "mail_contractor": {
-        "kind": "deferred",
-        "ticket": "T-1425",
-        "why": ("A CONTRACT IS NOT A SHOP. The mail contractor holds a route and the "
-                "post office is a civic establishment T-1410 already built; what this head "
-                "would keep, if anything, is a stage and stable yard, and that is the same "
-                "question as the pier-works contractor and his gang. T-1425 owns both."),
+        "kind": "contract_not_premises",
+        "why": ("A CONTRACT IS NOT A SHOP, and T-1425 closes the deferral without "
+                "building anything. The mail contractor holds a ROUTE under the Post "
+                "Office Department; the office at the end of it is a civic establishment "
+                "T-1410 already built, and this corpus gives the contractor no stage yard, "
+                "no stable and no stand of his own — the stage and stable yard T-1424 "
+                "wondered about is a building nobody printed. The hire teams of this town "
+                "stood at the two livery stables the trade quota built, which is where a "
+                "route's horses would be kept by a man who kept no yard. So the head is a "
+                "contract and keeps no house, and T-1189 seats him where the work was "
+                "done."),
     },
+}
+
+# AND THE ONE T-1409 ASKED FOR THAT NO HEAD STANDS BEHIND. The resident band drew nobody at
+# the harbour works — there is no `contractor` and no `pier hand` in its occupation
+# vocabulary — so the works reach this table nowhere, and a reader of a head-by-head
+# adjudication would be entitled to think the question had never been put. It was, and the
+# answer is a refusal with the missing document named: see `the_contractor_this_file_cannot
+# _name` in data/reconstruction/1835_vessels_in_port.json, which T-1425 wrote beside the
+# hulls. The federal improvement was at work across the scene date and no committed source
+# names a contractor, a foreman or a strength in any month of 1835; the nearest thing the
+# tree holds is a tier-3 retrospective making Samuel Jackson foreman from June 1833, two
+# seasons early and unbounded at the far end. The business band orders no house for a man it
+# cannot name.
+PIER_WORKS = {
+    "kind": "refused_no_source",
+    "ticket": "T-1425",
+    "why": ("THE PIER WORKS ARE A PUBLIC UNDERTAKING AND THIS CORPUS CANNOT NAME THEIR "
+            "CONTRACTOR. T-1409 asked for the pier-works contractor and his gang beside "
+            "the vessels in port. No head in the resident band stands at the works — the "
+            "occupation vocabulary has no `contractor` and no pier hand — so no trade row "
+            "above reaches them, and the ask would otherwise vanish between the rows. The "
+            "federal harbour improvement was at work across the scene date; both piers are "
+            "committed structures and the 1835 appropriation was $32,800; and no committed "
+            "source gives the works a contractor, a foreman or a strength in any month of "
+            "1835. data/reconstruction/1835_transient_cohort.json prices the gang "
+            "'bounded: no' for the same reason."),
+    "nearest_thing_the_tree_holds": ("data/sources/resident_research_cook_harbor_jackson.json "
+                                     "— a tier-3 retrospective making Samuel Jackson foreman "
+                                     "of the harbour construction 'for some time' from June "
+                                     "1833: two seasons early, unbounded at the far end, and "
+                                     "not a claim about 1 July 1835."),
+    "replaceable_by": ("The Chief Engineer's annual report for 1835, or the House Document "
+                       "series — named and unfound in docs/RESEARCH/north_pier.md, dossier "
+                       "01. A strength for the works in the season of 1835 retires this "
+                       "refusal and orders whatever it orders."),
+    "written_beside_the_hulls": "data/reconstruction/1835_vessels_in_port.json",
 }
 
 
@@ -1175,6 +1235,57 @@ def record_for_trade(group, bucket, head, ordinal, communities, streets):
     }
 
 
+def ticket_state(number):
+    """The state a ticket file carries, or None if the tree holds no such ticket."""
+    for path in (ROOT / "tickets").glob("%s-*.md" % number):
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if line.startswith("state:"):
+                return line.split(":", 1)[1].strip()
+    return None
+
+
+def adjudication_faults(table):
+    """THE THREE THINGS AN ADJUDICATED ROW MAY NOT DO, checked rather than trusted.
+
+    T-1425's own history is the argument for this. T-1424 deferred two heads to T-1425
+    and stated a reason — that no source in this corpus prints the port of Chicago's
+    arrivals and clearances — which was already false when it was written: the reading
+    had been committed since T-1372. Nothing re-read it, because a deferral was prose
+    and prose is not checked. These three are what CAN be checked:
+
+    1. `kind` is one of RIVER_KINDS, so a new ruling is declared and not typed.
+    2. A `deferred` row names a ticket that is STILL OPEN. A deferral to a ticket that
+       has closed is work nobody owns, and it reads as a reason in the published ledger.
+    3. A ruling that leans on a committed reading names a file the tree still holds. The
+       `commands_a_vessel` ruling stands on the marine list; if that file goes, the
+       ruling is standing on nothing and must be re-argued rather than quietly kept.
+    """
+    faults = []
+    for row in table["rows"]:
+        if row["kind"] not in RIVER_KINDS:
+            faults.append("%s: adjudicated `%s`, which is not one of %r"
+                          % (row["trade"], row["kind"], list(RIVER_KINDS)))
+        if row["kind"] == "deferred":
+            state = ticket_state(row.get("deferred_to") or "")
+            if state is None:
+                faults.append("%s: deferred to '%s', which is not a ticket in this tree"
+                              % (row["trade"], row.get("deferred_to")))
+            elif state in ("done", "split", "blocked"):
+                faults.append("%s: deferred to %s, which is `%s` — a deferral to a closed "
+                              "ticket is work nobody owns"
+                              % (row["trade"], row["deferred_to"], state))
+    if not (VESSELS_IN_PORT.exists()
+            and (load_json(VESSELS_IN_PORT).get("vessels") or [])):
+        faults.append("the `commands_a_vessel` ruling stands on the marine list at %s, "
+                      "which is gone or enters no hull; re-argue the ruling rather than "
+                      "keeping it" % VESSELS_IN_PORT.relative_to(ROOT))
+    works = table.get("the_pier_works") or {}
+    for key in ("why", "nearest_thing_the_tree_holds", "replaceable_by"):
+        if not (works.get(key) or "").strip():
+            faults.append("the pier works are refused with no `%s` printed" % key)
+    return faults
+
+
 def river_and_transport_table():
     """EVERY RIVER AND TRANSPORT HEAD, AND WHAT BECAME OF IT — the acceptance of T-1424.
 
@@ -1220,13 +1331,22 @@ def river_and_transport_table():
                  "trade behind it or the reason there is none. `kind` says which sort of "
                  "absence a headless trade is: `house_of_trade` this programme builds, "
                  "`count_already_held` the register already over-holds, `employment` has no "
-                 "premises to keep, `deferred` waits on the ticket named. No head is passed "
-                 "over in silence — that is what this table is for."),
-        "ticket": "T-1424",
+                 "premises to keep, `commands_a_vessel` keeps a hull and not a house, "
+                 "`contract_not_premises` holds a route and not a stand, `deferred` waits "
+                 "on the ticket named. No head is passed over in silence — that is what "
+                 "this table is for. T-1425 emptied `deferred`: every head here now "
+                 "carries a ruling made with its evidence in front of it."),
+        "ticket": "T-1424, adjudication completed by T-1425",
         "trades": len(rows),
         "heads": sum(r["heads"] for r in rows),
         "heads_this_programme_owes_a_house": unhoused,
+        "heads_still_deferred": sum(r["heads"] for r in rows if r["kind"] == "deferred"),
         "rows": rows,
+        # THE ASK NO ROW CAN CARRY. T-1409 wanted the pier-works contractor and his gang
+        # beside the vessels; no head stands at the works, so the trade rows are silent
+        # about them and the silence would read as an omission. This is the refusal, with
+        # the document that would retire it named.
+        "the_pier_works": PIER_WORKS,
     }
 
 
@@ -1612,6 +1732,7 @@ def check(groups=None):
         bad.append("%d river or transport head(s) stand at a trade that names a house of "
                    "trade and keep none; see `river_and_transport` in the ledger"
                    % table["heads_this_programme_owes_a_house"])
+    bad += adjudication_faults(table)
 
     want_ledger = ledger(built)
     if not LEDGER.exists():
@@ -1835,11 +1956,23 @@ def self_test():
             failures.append("%s: adjudicated with no reason printed" % row["trade"])
         if row["kind"] == "deferred" and not row.get("deferred_to"):
             failures.append("%s: deferred to nothing" % row["trade"])
+    failures += adjudication_faults(table)
+
+    # 17. AND A DEFERRAL THAT OUTLIVES ITS TICKET IS CAUGHT. The assertion still fires:
+    #     defer a row to a ticket that is closed and `adjudication_faults` says so.
+    saved = dict(RIVER_AND_TRANSPORT["seaman"])
+    RIVER_AND_TRANSPORT["seaman"] = {"kind": "deferred", "ticket": "T-1424",
+                                     "why": "a deferral to a ticket that has closed"}
+    try:
+        if not adjudication_faults(river_and_transport_table()):
+            failures.append("a head deferred to the closed T-1424 did not go red")
+    finally:
+        RIVER_AND_TRANSPORT["seaman"] = saved
 
     if failures:
         print("\n".join(["self-test FAILED:"] + ["  " + f for f in failures]))
         return 1
-    print("OK: 17 assertions of the business reconstruction still fire")
+    print("OK: 18 assertions of the business reconstruction still fire")
     return 0
 
 
