@@ -1,7 +1,7 @@
 ---
 id: T-1436
 title: Thompson's North Division tier: the seven Kinzie-to-the-river blocks and the four-to-a-face lots the plat draws in them
-state: claimed
+state: split
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1194
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: run 9/20/2026, 9:00:47 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T14:10:48.421Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35515025077
 ---
 
