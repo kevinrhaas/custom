@@ -87,6 +87,18 @@
    "relationship": "head",
    "grade": "attested",
    "ladder_rule": "G1b",
+   "associated_with": [
+    {
+     "kind": "school",
+     "place_or_structure_id": "north_side_school_1833",
+     "resolves_to": "structure",
+     "from": "1835",
+     "to": null,
+     "tier": "attested",
+     "source_id": "andreas_1884_v1",
+     "note": "THE 1835 USE IS ATTESTED, AND IT IS THE ONLY TEACHING IN THIS LAYER THAT IS. `data/structures/north_side_school_1833.json` carries Andreas at full text: 'John Watkins was THEN teaching what had become a public school on the North Side, on the river bank just east of Clark Street, in the building erected by Colonels Hamilton and Owen.' THE GRAIN IS THE YEAR AND NOT THE DAY — Andreas adds his own limit, 'Mr. Watkins taught as late as 1835, but the exact date of his retirement is not known' — so `from` is 1835 and `to` is null rather than the scene date. HIS EARLIER SCHOOL IS NOT WRITTEN AS A SECOND ROW: `watkins_school_house` and this record both carry 'the Watkins school-house' among their aka, and until that overlap is ruled on, one man taught in two records and only one of them is attested for the year of the scene."
+    }
+   ],
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",

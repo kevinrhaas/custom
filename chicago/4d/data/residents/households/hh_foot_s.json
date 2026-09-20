@@ -263,6 +263,18 @@
      "against_merge": "AND THE SAME ANSWER FOR THE SAME REASON. No roll sets both spellings: tax 1833 and the 1835 poll set FOOT, the 1834 poll sets FOOTE, and the directories and the Democrat set FOOT only. One source id over four rolls is not one printing. Two further facts are worth recording and neither decides: the forenames are 'Starr' and 'Star', a second one-letter difference the fold would also have to absorb; and the documented Starr Foot is a teamster at Clark and Monroe with a trade the Foote card knows nothing of, so a fold would move a bare poll entry onto a documented man rather than the other way. D9."
     }
    ],
+   "associated_with": [
+    {
+     "kind": "land_purchased",
+     "place_or_structure_id": "school_section",
+     "resolves_to": "tract",
+     "from": "1833-10-22",
+     "to": null,
+     "tier": "inferred",
+     "source_id": "isa_public_domain_land_tract_sales",
+     "note": "GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` for that reason, and `land_purchased` is in neither the home kinds nor the work kinds because a holding is not a place a man was. The federal tract-sale register carries 2 row(s) — ls0155, ls0156 — to this purchaser, read as 'FOOT STAN', sorted onto school_section by tools/sort_land_sales_onto_tracts.py and covering about 5.68 acre(s) of it. THE TIER IS INFERRED AND THE TWO HALVES DIFFER: the purchase is documented — the register is a public record and states it — while the tie between that purchaser and THIS card is an identity ruling, upheld under T-0990 on 2026-09-10 by the rule 'FOOT STAN matches S. Foot: the forename names S. Foot of the 2 people of this surname, and the forename agrees as an initial only.'. The weaker half sets the tier. `to` is null because the register records a sale and not a tenure."
+    }
+   ],
    "sex": "male",
    "sex_basis": {
     "value": "male",
