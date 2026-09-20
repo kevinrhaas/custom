@@ -1049,26 +1049,57 @@ def semantic_problems(records, town_ids=None):
         # another programme's quota before it runs, or to file documented evidence as an
         # estimate. Both are worse than widening the rule.
         #
-        # So the block must state EXACTLY ONE of the two, and say which. A record naming
-        # both is claiming a quota row and a floor for the same house; a record naming
-        # neither is the original fault this check exists to catch.
+        # The third is a STANDING ROOF, and T-1408 is the case that showed the second form
+        # does not cover everything either. A boarding house fills no shortfall and stands
+        # on no documented count: the December 1835 State census enumerates TAVERNS and
+        # never boarding houses, and `business_buckets` in tools/build_order_book_1835.py
+        # orders against printed counts or not at all — so the book can no more hold a
+        # boarding-house bucket than it can hold a barber's. What this project does hold is
+        # the BUILDING: the roof stands in data/structures/, the lodging model apportioned
+        # it beds, and the lodgers stage put people in them and named a keeper. A house with
+        # beds, lodgers and a keeper and no firm behind it is an establishment the business
+        # layer cannot see, and the roof is what buys the firm that makes it visible.
+        #
+        # So the block must state EXACTLY ONE of the three, and say which. A record naming
+        # more than one is claiming a house twice over; a record naming none is the original
+        # fault this check exists to catch.
         block = record.get("reconstruction")
         if record["provenance"] == "reconstructed" and not block:
             bad.append("%s: reconstructed and carries no reconstruction block, so nothing "
-                       "says what bought it — a quota row (bucket + slot) or a documented "
-                       "floor" % rid)
+                       "says what bought it — a quota row (bucket + slot), a documented "
+                       "floor or a standing roof" % rid)
         elif block:
             quota = bool(block.get("bucket") or block.get("slot"))
             floor = bool(block.get("floor"))
-            if quota and floor:
-                bad.append("%s: the reconstruction block names an order-book row AND a "
-                           "documented floor; a house is bought once" % rid)
-            elif not quota and not floor:
+            roof = bool(block.get("roof"))
+            if sum((quota, floor, roof)) > 1:
+                bad.append("%s: the reconstruction block names more than one of an "
+                           "order-book row, a documented floor and a standing roof; a house "
+                           "is bought once" % rid)
+            elif not (quota or floor or roof):
                 bad.append("%s: the reconstruction block names neither an order-book row "
-                           "(bucket + slot) nor a documented floor" % rid)
+                           "(bucket + slot) nor a documented floor nor a standing roof" % rid)
             elif quota and not (block.get("bucket") and block.get("slot")):
                 bad.append("%s: a quota row names a bucket and a slot, and this one names "
                            "only %s" % (rid, "a bucket" if block.get("bucket") else "a slot"))
+            elif roof:
+                # A ROOF IS ONLY A ROOF IF THE HOUSE IS ON IT. The whole argument is that
+                # this firm is the trade of a building this project already stands, so a
+                # record bought by a roof and seated on a street — or on somebody else's
+                # roof — has bought nothing and the claim is empty.
+                r = block["roof"]
+                if not isinstance(r, dict):
+                    bad.append("%s: the standing roof is not a block" % rid)
+                else:
+                    if not (r.get("keeper_person_id") or "").strip():
+                        bad.append("%s: the standing roof names no keeper; the keeper is "
+                                   "ADOPTED and a roof that names none minted one" % rid)
+                    primary = next((l for l in record["locations"] if l.get("primary")), None)
+                    seat = (primary or {}).get("structure_id")
+                    if (primary or {}).get("kind") != "premises" or seat != r.get("structure_id"):
+                        bad.append("%s: bought by the standing roof %r and its primary "
+                                   "location is %r; a roof buys the firm of THAT building"
+                                   % (rid, r.get("structure_id"), seat))
             elif floor:
                 # A floor carries its own evidence, because nothing upstream counted it.
                 f = block["floor"]
@@ -1306,10 +1337,11 @@ def self_test():
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[])),
            "carries no reconstruction block", ids)
 
-    # THE WIDENED RULE HOLDS BOTH WAYS (owner, 2026-09-19). A reconstructed house is
-    # bought by a quota row OR by a documented floor, and the check has to refuse the
-    # three ways that can go wrong — neither, both, and a floor with nothing behind it.
-    # Without these the widening would be a hole rather than a second door.
+    # THE WIDENED RULE HOLDS EVERY WAY (owner, 2026-09-19; a third door for T-1408). A
+    # reconstructed house is bought by a quota row, by a documented floor or by a standing
+    # roof, and the check has to refuse every way that can go wrong — none of the three,
+    # more than one, a half quota row, a floor with nothing behind it, and a roof the house
+    # does not stand on. Without these the widening would be a hole rather than a door.
     expect("a reconstruction naming neither a quota row nor a floor",
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
                                      reconstruction={"programme": "x", "group": "g",
@@ -1337,6 +1369,30 @@ def self_test():
            mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
                                      reconstruction={"floor": {"sources": ["s"], "note": "n"}})),
            "states no count", ids)
+
+    expect("a standing roof that names no keeper",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"roof": {"structure_id": "fixture_store",
+                                                              "class": "boarding_house",
+                                                              "beds_ordinary": 9,
+                                                              "keeper_person_id": "",
+                                                              "note": "n"}})),
+           "names no keeper", ids)
+
+    expect("a standing roof the house does not stand on",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"roof": {"structure_id": "somewhere_else",
+                                                              "class": "boarding_house",
+                                                              "beds_ordinary": 9,
+                                                              "keeper_person_id": "rc_x",
+                                                              "note": "n"}})),
+           "a roof buys the firm of THAT building", ids)
+
+    expect("a reconstruction naming a standing roof AND a quota row",
+           mutate(lambda d: d.update(provenance="reconstructed", sources=[], claim_ids=[],
+                                     reconstruction={"bucket": "b", "slot": "s",
+                                                     "roof": {"structure_id": "fixture_store"}})),
+           "a house is bought once", ids)
 
     expect("a compiled record claiming a reconstruction",
            mutate(lambda d: d.update(reconstruction={"programme": "x"})),

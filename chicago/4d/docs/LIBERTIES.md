@@ -12984,7 +12984,7 @@ letter-list name is worth), tickets **T-1386**, **T-1172**, **T-1144**, the re-c
 **Recorded:** 2026-09-19.
 
 ### L254 — Two apothecaries' shops stand in the town because a census counted four and the newspapers name two
-**Scope:** `businesses.records[reconstructed]` — 6 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, which arrived in the same evening; and two are **L257**'s mechanics' houses, the brewery and the jeweller's. This selector counts all six because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
+**Scope:** `businesses.records[reconstructed]` — 10 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, and two are **L258**'s mechanics' houses, the brewery and the jeweller's. This selector counts all ten because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total
 
 **Decision:** `tools/reconstruct_businesses_1835.py` (T-1184) writes reconstructed business
 records into `data/businesses/authored/`, one for every house the reconstruction order book
@@ -13197,9 +13197,92 @@ Related: **L93** (the institutional families refused to a block parcel by name),
 outliers, and the seating tickets **T-1198** and **T-1199**.
 **Recorded:** 2026-09-19.
 
-### L257 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
-**Scope:** `businesses.records[reconstructed]` — 6 houses of trade. TWO are this entry's, the
-mechanics' group; two are **L254**'s apothecaries and two **L255**'s Black-owned firms. The
+### L257 — Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them
+
+**Scope:** `businesses.records[reconstructed]` — 10 houses of trade, of which FOUR are this
+entry's. The other six are **L254**'s apothecaries, **L255**'s Black-owned firms and
+**L258**'s brewery and jeweller's, which arrived on the same day; the
+selector reads the whole reconstructed layer, so the count is restated here rather than
+narrowed, and each entry says which of the eight are its own.
+
+**Decision:** `tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed
+business record for each of the four standing reconstructed boarding houses —
+*Bardwell's boarding house* and *Newell's boarding house* on the north side,
+*Ellen Cavanagh's boarding house* on the north side, *Martin Fitzgerald's boarding house*
+in the west division. Each is seated as the PREMISES of the roof it belongs to, adopts
+that roof's existing keeper as its proprietor, and is bought by a new third form of the
+reconstruction contract: a STANDING ROOF, beside the quota row of **L254** and the
+documented floor of **L255**.
+
+**Why a third form was needed.** The order book buys a reconstructed house with a census
+shortfall, and it can only do that for a class the census enumerated. The December 1835
+State census counts **eight taverns** — all eight attested, and the town keeps eight — and
+never counts a boarding house at all. So no shortfall of this class can be counted, and
+under the first two forms the only ways to raise one were to spend the tavern quota, which
+would put a ninth tavern in a town whose census says eight, or to file a model as a
+documented count. Both are worse than naming the third thing that actually bought these
+houses.
+
+**What actually bought them.** The buildings. Five boarding houses stand in
+`data/structures/`; the lodging model (T-1370) apportioned each of them an ordinary-night
+capacity out of a bracket the town model already owned; the lodgers stage (T-1371) put
+people in those beds and named a keeper for every reconstructed one. What did not exist was
+the FIRM. A house with beds, lodgers and a keeper and no house of trade behind it is an
+establishment the business layer cannot see: it is absent from the Businesses view, its
+building card names no trade, and the keeper's own card can say she keeps a boarding house
+while nothing in the town holds one.
+
+**What is invented here, exactly.** Two things, and no more. (1) **The firm style** — the
+keeper's possessive, form 5 of `docs/RESEARCH/business-naming-1835.md`, dealt on the
+record's own seed between the possessive in full and the possessive with the forename cut.
+(2) **That the keeping was a house of trade** rather than a roof with lodgers in it. Nothing
+else: the building was already committed, the beds were already apportioned, and the keeper
+was already drawn and already carries `boarding_house_keeper` as her occupation.
+
+**NO HONORIFIC IS DEALT, and that is a refusal rather than an omission.** Three of the four
+keepers are women. The register prints *Mrs. H. Sherman* and *Miss Bayne's Boarding and Day
+School*, so both forms are attested in this town — and both assert a marital status. The
+lodgers stage minted these four as solitary keepers and nothing on their cards says whether
+they were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inventing a
+husband to make a shopfront read well, which is the exact shape of invention this project
+refuses. The possessive stands on the name alone.
+
+**The census class is `other`, and it is not a fudge.** `type` is the ONE taxonomy — the
+census's own eighteen classes — so a business counts against the December 1835 State census
+without a second crosswalk, and `other` is that document's own bucket for a class it never
+put a figure against. Typing these houses `tavern` would spend a count the register already
+fills; minting a nineteenth class would put a line in the taxonomy that the document it
+mirrors does not have. The trade is carried in `trade` and `occupation`, which are free of
+the census.
+
+**What this deliberately does NOT do.** It raises **no house on a slot the roof programme
+has scheduled and not built**: the 37 unbuilt boarding houses are 333 beds with no roof over
+them, and a firm in a building site is a fiction of a different kind (T-1196 re-derives the
+programme, T-1409 raises the houses). It writes **no keeper into a documented house** — who
+kept the New York House or the Sauganash on 1 July 1835 is a research question, the lodgers
+stage refused to answer it on exactly that ground, and the attested keepers the sources DO
+name arrive through T-1404. It gives **no firm to the one standing reconstructed inn**,
+because the tavern count is eight and full. It writes **no staff**, which is T-1183's model
+and T-1189's fill, and **no dates**: a keeping is not an opening, so `precision` is
+`unbounded` and the record claims only that the house was letting beds on the scene date.
+And it **mints nobody** — a roof whose keeper the lodgers stage never named is refused a
+firm rather than given an invented proprietor, and the ledger's `lodging` table states the
+shortfall by name.
+
+**Which way it is wrong if it is wrong.** Toward a town with too FEW houses of trade. Four
+of the fifteen standing lodging places gain a firm; the other eleven are counted in the
+ledger's beds-against-keepers table with the reason each one carries none, and seven of
+those are documented houses waiting on the register rather than on a draw.
+
+Related: **L254** (the quota row), **L255** (the documented floor), **L252** (the beds these
+keepers were drawn to fill), the naming guide `docs/RESEARCH/business-naming-1835.md`, and
+the seating tickets **T-1198** and **T-1199**.
+**Recorded:** 2026-09-19.
+
+### L258 — A brewery and a jeweller's shop stand for a census count, and the brewery carries on its own card the newspaper that argues against it
+**Scope:** `businesses.records[reconstructed]` — 10 houses of trade. TWO are this entry's, the
+mechanics' group; two are **L254**'s apothecaries, two **L255**'s Black-owned firms and four
+**L257**'s boarding houses. The
 selector reads the whole layer, so the count is restated here rather than narrowed, and the
 register keeps saying how many reconstructed houses of trade the town carries in total
 
