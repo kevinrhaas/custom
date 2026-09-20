@@ -65,3 +65,14 @@ back to defaults. `test_boot_phases.mjs` exercises readiness, mocked failed
 fetches, history bounds/fallback and hidden-tab yields in `check.sh` without
 requiring browser installation. Its `--browser` mode additionally fails real
 people/census/terrain requests in the published app and freezes/resumes its tab.
+
+## Regression receipt
+
+Final focused published smoke passed desktop stages 1/6/13 (196 checks) and mobile
+stages 1/6 (91 checks), with zero page errors. The full 1–13 runs also completed:
+mobile 538 passed / 4 failed; desktop 533 passed / 6 failed. The standing dev ledger
+already records the household, placeholder/grade, people-count/trade-pill and
+desktop light-tier draw-call failures. The full desktop run also hit a pointer-lock
+error; isolated baseline 1/6 and final 1/6/13 both passed without it. Those broader
+failures are not erased or treated as a fully green suite. The per-commit Linux
+gate is required before merging PR #1586.

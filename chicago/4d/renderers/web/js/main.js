@@ -826,7 +826,7 @@ api.boot = bootController;
 const bootCheckpoint = createCheckpoint();
 
 boot().catch((err) => {
-  const active = bootController.phases.find(p => p.essential && p.startedAt !== null && p.endedAt === null);
+  const active = bootController.phases.find(phase => phase.essential && phase.startedAt !== null && phase.endedAt === null);
   bootController.fail(active?.id || 'scene', err);
   api.error = String(err?.message || err);
   problems.push(`boot: ${api.error}`);
