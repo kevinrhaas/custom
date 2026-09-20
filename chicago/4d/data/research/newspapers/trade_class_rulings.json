@@ -1368,6 +1368,23 @@
       "basis": "the notice prints no trade; its goods are dry goods, groceries, hardware, crockery, flour, salt and provisions — the census's own three lines (B1)"
     }
   ],
+  "one_house_rulings": {
+    "_doc": "TWO PRINTED NOTICES RULED TO BE ONE HOUSE, so the class count stops counting it twice (T-1422). This section is deliberately narrow and deliberately hard to use. The register reads NOTICES and raises a house per notice, which is right — a compiler that guessed at identity would be publishing an adjudication nobody made. `register_cautions` below is where a suspected double is NAMED without being ruled, and that is where a double belongs until somebody has read the pages and written the argument out. A fold here is that argument, made, signed with its ticket, and reversible by `replaceable_by`. It is not a tidy-up and it may not be used as one: 'these two look alike' is a caution, not a ruling. Noble & Wesencraft sits in the cautions below for exactly that reason and is not folded here.",
+    "effect": "The folded row is dropped from `town_records_in_town` and `town_records_at_scene_date` for the classes named, and appears in `folded_business_ids` on each of those class rows so nothing is hidden. Both business records stand unchanged; only the count moves.",
+    "rulings": [
+      {
+        "folded": "business_the_chicago_democrat",
+        "into": "business_chicago_democrat_printing_office",
+        "classes": [
+          "printing_office"
+        ],
+        "ticket": "T-1422",
+        "basis": "ONE OFFICE, PRINTED UNDER TWO NAMES, AND THE SENTENCE THAT SPLIT IT IS THE SAME SENTENCE. `business_the_chicago_democrat` is compiled from the paper's own terms block of 26 November 1833: 'THE DEMOCRAT, Is published every Tuesday, in [t]he village [of] Chicago, [Cook co. Ill., in the building on the] corner of South Water and Clark stree[ts]'. `business_chicago_democrat_printing_office` is compiled from the colophon of 7 January 1834: '[The Chicago Democrat] is published every Tues[day, in the villa]ge [of] Chicago, Cook co. Ill. in the building on the corner of South Water and Clark streets'. That is one weekly imprint, thirteen months apart, giving one address; the register raised two houses out of it because the gazetteer read the firm STYLE two ways — the paper's name, and the paper's name with 'printing office' after it. Both rows are class `printing_office`, both give South Water Street, and both name John Calhoun, whom the corpus prints as editor and printer of the Democrat from its first number. No third proprietor, no second address and no second press appears anywhere in the corpus. THE OFFICE IS THE SURVIVOR BECAUSE THE OFFICE IS WHAT THE CENSUS COUNTED: the printed line is 'two printing offices', and the Chicago Democrat is the newspaper printed in one of them.",
+        "what_this_does_not_do": "IT DOES NOT MERGE THE RECORDS. tools/compile_businesses.py is 1:1 with the printed notice by construction and says in its own header why: an id scheme that collided would settle identity questions a compiler has no licence to settle. Both records stand, both keep their claims, and `folded_business_ids` on the class row names the pair — what this ruling removes is only the second COUNT of one house, exactly as compile_businesses.fold_printed_styles removes the second count of one man.",
+        "replaceable_by": "Any printing showing the Democrat's newspaper and its job office as separate establishments — a second address, a second proprietor, a sale of one without the other — would retire this ruling and put the count back to three."
+      }
+    ]
+  },
   "register_cautions": [
     {
       "what": "two records, one firm",

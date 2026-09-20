@@ -33,7 +33,7 @@ block; `reading` is the printed notice restated and is attested wherever it is f
 | `firm_styles` | reading | 28 | 0 | 0 | 28 | 168 |
 | `proprietors` | rows | 111 | 0 | 0 | 111 | 85 |
 | `partners` | rows | 85 | 0 | 0 | 85 | 152 |
-| `staff` | rows | 0 | 0 | 0 | 0 | 196 |
+| `staff` | rows | 0 | 1 | 0 | 1 | 195 |
 | `locations` | rows | 26 | 174 | 0 | 200 | 0 |
 | `dates` | block | 15 | 181 | 0 | 196 | 0 |
 | `proprietor_community` | block | 0 | 17 | 94 | 111 | 85 |
@@ -54,7 +54,7 @@ Every one below has one.
 | `firm_styles` | 168 | The house is printed under one style only, so there is no second style to keep. |
 | `proprietors` | 85 | The notice names no keeper — an unsigned advertisement, or one signed by a firm style alone. A null here is a finding about the paper, not a person left out. |
 | `partners` | 152 | A sole keeper, or no keeper named at all. `compile_businesses` files a lone name as a proprietor and only a firm of two or more as partners. |
-| `staff` | 196 | THE PAPERS NAME OWNERS AND ALMOST NEVER A CLERK. Empty on every record is a true reading of the register: T-1183 rules the staffing model and T-1189 fills this from it. |
+| `staff` | 195 | THE PAPERS NAME OWNERS AND ALMOST NEVER A CLERK. Empty on every record is a true reading of the register: T-1183 rules the staffing model and T-1189 fills this from it. |
 | `proprietor_community` | 85 | No keeper this record names has a community on their town card, so there is nothing to read a house's community off. Never inferred from a surname. |
 | `customers` | 196 | The register carries no customer claim at all; T-1189 is where a workplace gets its people. |
 
@@ -167,8 +167,11 @@ not count (tailors, bakers, smiths, auctioneers, land agents, liveries, dentists
 
 - **Goods on a store that names none** — T-1404, which works the in-window trades from
   the research and raises a business for each.
-- **Staff** — empty on all 196 records and truthfully so. T-1183 rules the staffing model;
-  T-1189 fills it.
+- **Staff** — a staff row on 1 of 196 records; a `staffing` block on 9. The
+  papers name proprietors and almost never a hand, so an empty list is a true reading
+  of the register and not an omission. T-1183 rules the staffing model; T-1422 laid it
+  over the schools and the printing offices as `staffing`, which names nobody; T-1189 is
+  the ticket that puts people in `staff`.
 - **Secondary premises** — § 6. T-1404 and T-1405.
 - **Black-owned and Native or Métis-run houses** — T-1403.
 - **The class counts against the census's own** — `tools/trade_census_1835.py`.

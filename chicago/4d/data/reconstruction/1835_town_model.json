@@ -175,10 +175,10 @@
         {
           "figure": "establishments_in_the_compared_classes",
           "low": 118,
-          "high": 141,
+          "high": 140,
           "point": null,
           "is_a_count": false,
-          "method": "The register holds 141 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
+          "method": "The register holds 140 records at the scene date across the compared classes and the census counted 118 two to five months later. The low end is what the town can name and the high end is what the census counted, and the difference is growth plus what no notice advertised.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -192,7 +192,7 @@
           "high": 8,
           "point": null,
           "is_a_count": true,
-          "method": "8 compared classes hold fewer records than the census counted, 17 establishments short in total; 7 hold more, which is the register counting NOTICES where the census counted houses.",
+          "method": "8 compared classes hold fewer records than the census counted, 17 establishments short in total; 6 hold more, which is the register counting NOTICES where the census counted houses.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -311,6 +311,14 @@
               "outcome": "town_matches_census"
             },
             {
+              "class": "printing_office",
+              "census_line": "two printing offices",
+              "census_count": 2,
+              "town_at_scene_date": 2,
+              "delta": 0,
+              "outcome": "town_matches_census"
+            },
+            {
               "class": "school",
               "census_line": "seven schools",
               "census_count": 7,
@@ -323,14 +331,6 @@
               "census_line": "one iron foundry",
               "census_count": 1,
               "town_at_scene_date": 2,
-              "delta": 1,
-              "outcome": "town_holds_more_than_the_census_counted"
-            },
-            {
-              "class": "printing_office",
-              "census_line": "two printing offices",
-              "census_count": 2,
-              "town_at_scene_date": 3,
               "delta": 1,
               "outcome": "town_holds_more_than_the_census_counted"
             },

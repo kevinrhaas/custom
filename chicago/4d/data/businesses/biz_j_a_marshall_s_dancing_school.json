@@ -29,6 +29,34 @@
   ],
   "partners": [],
   "staff": [],
+  "staffing": {
+    "class": "school",
+    "reads_as": "a school",
+    "principal_role": "teacher",
+    "principal_is": "J. A. Marshall, this record's proprietor, who advertises the tuition, sets the hours and sells the tickets himself.",
+    "hands": [
+      {
+        "role": "teacher",
+        "household_relationship": "household_member",
+        "count_low": 0,
+        "count_typical": 0,
+        "count_high": 1,
+        "drawn": false,
+        "basis": "period_convention, off the staffing model's `school` class, whose own row reads `schoolteacher` — the same office under the business layer's word for it: an assistant at the larger schools only, and the model's typical is 0 because the town's schools of 1835 are one room and one teacher. Its analogue is the 1839 list's thirteen schoolteachers, four years and some three thousand people after the scene.",
+        "why_not_drawn": "No source reached names a second person teaching with Marshall. The dancing school hires a ROOM and not a staff: it met in Messrs. Johnson & Stevens' Assembly Room at the New York House, and the people of that house are the tavern's, not the school's."
+      }
+    ],
+    "attendance": {
+      "value": null,
+      "kind": "none_printed",
+      "tier": null,
+      "on_date": null,
+      "basis": "NO FIGURE IS PRINTED, AND THE NOTICE IS THE OPPOSITE OF A COUNT: 'Those wishing to become pu[p]ils will please leave their address at the Ex[c]hange Co[ff]ee House.' That is a school advertising for a class it does not yet have. It does divide the class it hopes for by hour — 'Miss[e]s and young Mas[t]ers, from 2 until 5 o'clock, P. M; and from 6 until 9 for the elder class of Gentlemen' — which is a shape and not a number."
+    },
+    "writes_no_person": true,
+    "basis": "THE TEACHER OF A ONE-ROOM SCHOOL IS THE PERSON WHO KEEPS IT, and this record already names them. The staffing model gives the class one role, an assistant, at 0–0–1 with a typical of nought; drawing one here would put a second schoolteacher in a room the model says held one. So the answer to 'who taught here' is a pointer at a row this record carries, not a new row beside it.",
+    "replaceable_by": "Any printing that names a second person teaching at this school — an assistant, an usher, a monitor — would draw the hand above. A roll, a quarterly return or a subscription list would give the attendance a figure for 1835 instead of a silence."
+  },
   "locations": [
     {
       "kind": "anchored",

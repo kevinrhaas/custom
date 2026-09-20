@@ -33,7 +33,7 @@
       "street_only": 70,
       "unplaceable": 109
     },
-    "named_people": 260,
+    "named_people": 261,
     "named_people_linked_to_a_town_card": 207,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 37,
@@ -1800,6 +1800,15 @@
           "tier": "attested",
           "from": "1834-01-07",
           "to": "1835-05-20",
+          "also_printed_as": []
+        },
+        {
+          "name": "[unnamed: the apprentice wanted at this office]",
+          "person_id": null,
+          "role": "apprentice",
+          "tier": "inferred",
+          "from": "1835-05-20",
+          "to": null,
           "also_printed_as": []
         }
       ],

@@ -47,6 +47,59 @@
           "description": "The OTHER styles the same paper printed this same person under, folded onto this row by compile_businesses.fold_printed_styles on `person_id` \u2014 never on the name. \"J. D. Caton\" and \"J. Dean Caton\" are one partner of Collins & Caton, and Giles Spring was printed three ways. The typography is evidence and is kept here rather than deleted; what the fold removes is only the second COUNT of one man. Empty on every row but the twelve the register double-printed."}
       }
     },
+    "staffing": {
+      "type": ["object", "null"],
+      "required": ["class", "reads_as", "hands", "writes_no_person", "basis", "replaceable_by"],
+      "additionalProperties": false,
+      "description": "WHAT THE STAFFING MODEL SAYS THIS KIND OF HOUSE EMPLOYED, NAMING NOBODY. `staff` above is a list of PEOPLE, filled from a source that names one or \u2014 at T-1189 \u2014 from the reconstruction programme. This block is the layer between the model and that list, and it exists because splitting T-1411 found there was nowhere else to put the answer: the register COMPILES the schools and the printing offices, so a reading about their hands had no home at all \u2014 data/businesses/authored/ holds whole records and not additions to compiled ones. It is carried onto a record from data/businesses/rulings/establishment_staffing.json and is null on every record no ruling covers. IT IS NOT A ROSTER AND MAY NOT BECOME ONE BY ITSELF: a hand a source names goes in `staff` with its citation; a hand only the model implies stands here, undrawn, with `drawn: false` and the name of whoever would have to print it first.",
+      "properties": {
+        "class": {"type": "string", "minLength": 1,
+          "description": "The establishment class of data/reconstruction/1835_business_staffing_model.json, so a reader can join the two."},
+        "reads_as": {"type": "string", "minLength": 1,
+          "description": "The model's own prose for that class."},
+        "principal_role": {"type": ["string", "null"],
+          "description": "The role the KEEPER fills himself, where the trade is one a keeper works \u2014 `teacher` at a one-room school. Null where the keeper is not a hand at the trade. A principal is NEVER repeated into `staff`: the record already names them among the proprietors or partners, and a second row would count one person twice."},
+        "principal_is": {"type": ["string", "null"],
+          "description": "Which row of this record the principal is, in prose, so the reader is not left to work it out."},
+        "hands": {"type": "array",
+          "description": "One entry per role the model gives this class, drawn or not.",
+          "items": {
+            "type": "object",
+            "required": ["role", "household_relationship", "count_low", "count_typical", "count_high", "drawn", "basis"],
+            "additionalProperties": false,
+            "properties": {
+              "role": {"$ref": "#/$defs/role"},
+              "household_relationship": {"type": "string", "minLength": 1},
+              "count_low": {"type": "integer", "minimum": 0},
+              "count_typical": {"type": "integer", "minimum": 0},
+              "count_high": {"type": "integer", "minimum": 0},
+              "drawn": {"type": "boolean",
+                "description": "True only when a row of `staff` stands for this hand. False is the ordinary answer and it is a statement rather than a gap."},
+              "basis": {"type": "string", "minLength": 1},
+              "why_not_drawn": {"type": ["string", "null"], "minLength": 1,
+                "description": "Required whenever `drawn` is false: who would have to name this hand before it is written down."}
+            }
+          }},
+        "attendance": {
+          "type": ["object", "null"],
+          "required": ["value", "kind", "tier", "basis"],
+          "additionalProperties": false,
+          "description": "The pupils of a school, or the custom of any other house, where a source gives a figure. `kind` says WHAT was counted, because a subscription target, an enrolment and a head-count on one day are three different numbers and only one of them is a roll.",
+          "properties": {
+            "value": {"type": ["integer", "null"], "minimum": 0},
+            "kind": {"type": "string", "enum": ["enrolled", "subscribed_for", "attending", "none_printed"]},
+            "tier": {"anyOf": [{"$ref": "#/$defs/tier"}, {"type": "null"}]},
+            "on_date": {"type": ["string", "null"],
+              "description": "What the figure is a figure FOR. A count off the scene date is carried with its own date rather than quietly read as July 1835."},
+            "basis": {"type": "string", "minLength": 1}
+          }
+        },
+        "writes_no_person": {"const": true,
+          "description": "Held true by tools/compile_businesses.py, which refuses a block carrying a person id or a name. The staffing model writes no person and neither does this; the field is here so that promise is checkable rather than merely asserted in a comment."},
+        "basis": {"type": "string", "minLength": 1},
+        "replaceable_by": {"type": "string", "minLength": 1}
+      }
+    },
     "anchor": {
       "type": ["object", "null"],
       "required": ["kind", "id", "title", "streets"],
@@ -120,6 +173,7 @@
     "partners": {"type": "array", "items": {"$ref": "#/$defs/person"}},
     "staff": {"type": "array", "items": {"$ref": "#/$defs/person"},
       "description": "Empty on every compiled record: the newspapers name proprietors and partners and almost never a clerk. T-1183 rules the staffing model and T-1189 fills this."},
+    "staffing": {"$ref": "#/$defs/staffing"},
     "locations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/location"}},
     "dates": {
       "type": "object",
