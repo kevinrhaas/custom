@@ -2403,6 +2403,9 @@
     "tools/cut_north_division_tier.py": {
       "wrote": []
     },
+    "tools/cut_school_section_tier.py": {
+      "wrote": []
+    },
     "tools/date_norris_1844_businesses.py": {
       "wrote": []
     },

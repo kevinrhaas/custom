@@ -1455,6 +1455,25 @@ step "the North Division tier's blocks and lots re-derive from the reading and t
 selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
   python3 tools/cut_north_division_tier.py --self-test
 
+# T-1477. The School Section's northernmost tier — the thirteen blocks between Madison and
+# Monroe, the row Section 16 turns toward the town — cut into lots. The block grid has been
+# committed since T-0797 and stopped at blocks, because Wright rules the section into blocks
+# and letters their numbers without ruling a single lot line inside one. The lot COUNT is
+# therefore not a module here: it is read, block by block, out of the Illinois State
+# Archives' register of the state's own October 1833 sale, which prints the plat's language
+# (`LOT3BL71`, `BL106`) and so says how many pieces each block was cut into. Nine blocks
+# sold eight lots, two sold four, and the two the sheet letters `Reserved` sold nothing and
+# are left whole. The assertions worth naming: the blocks the sale never names are EXACTLY
+# the blocks the sheet reserves — two records, neither consulted about the other; the two
+# four-lot blocks are the two at the South Branch end, and the one block the committed
+# heightfield calls wet is one of them; and every block boundary is the committed grid's
+# own vertex for vertex, which is what keeps this a cut and not a second survey.
+step "the School Section tier's lots re-derive from the committed grid and the 1833 register" \
+  python3 tools/cut_school_section_tier.py --check
+
+selftest "the School Section tier is still cut into the lots the sale witnesses, and no others" \
+  python3 tools/cut_school_section_tier.py --self-test
+
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
 # this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
