@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 457 | 2,082 |
 | Households | 643 | 436 | 209 |
-| Businesses (enumerated classes) | 108 | 136 | 8 |
+| Businesses (enumerated classes) | 108 | 133 | 8 |
 | Roofs | 668 | 384 | 297 |
 
 ## The rules this book adds
@@ -205,7 +205,7 @@ The households the model wants, by kind and division.
 The December 1835 State census set against the register the town already holds.
 
 - `register_total`: 196
-- `at_scene_date`: 219
+- `at_scene_date`: 216
 - `census_enumerated_total`: 118
 - `register_businesses_read`: 196
 - `division_note`: EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.
@@ -227,9 +227,9 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/school` | 7 | 5 | 0 | 0 | T-1190 |
 | `businesses/silversmith_jeweller` | 2 | 1 | 1 | 1 | T-1185 |
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
-| `businesses/storage_and_forwarding` | 4 | 8 | 0 | 0 | T-1187 |
-| `businesses/store` | 44 | 66 | 0 | 0 | T-1184 |
-| `businesses/tavern` | 8 | 16 | 0 | 0 | T-1187 |
+| `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
+| `businesses/store` | 44 | 65 | 0 | 0 | T-1184 |
+| `businesses/tavern` | 8 | 15 | 0 | 0 | T-1187 |
 | `businesses/tin_and_copper_manufactory` | 2 | 4 | 0 | 0 | T-1185 |
 
 ## Structures
@@ -302,7 +302,7 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 |---|---:|---:|---:|
 | **households_against_dwellings** — The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many. | 643 | 335 | +308 |
 | **boarding_houses** — The lodging model and the programme agree on the larger boarding houses. | 42 | 42 | +0 |
-| **inns_and_taverns** — The model reads 16-16 inns and taverns; the programme schedules 10. | 16 | 10 | +6 |
+| **inns_and_taverns** — The model reads 15-15 inns and taverns; the programme schedules 10. | 15 | 10 | +5 |
 | **institutional_and_public** — The model reads 9-19 institutional and public roofs; the programme schedules 9. | 19 | 9 | +10 |
 | **people_per_roof** — 2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,536 | 668 | +0 |
 

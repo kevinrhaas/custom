@@ -10,7 +10,7 @@
     "the_letter_list_name_belongs_to_the_borderline_roster": 69,
     "the_market_and_the_port_in_aggregate": 61,
     "the_notice_names_a_firm": 19,
-    "the_press_name_is_a_person_the_town_does_not_hold": 30,
+    "the_press_name_is_a_person_the_town_does_not_hold": 22,
     "the_press_name_replaces_an_invented_card": 6
   },
   "rules": {
@@ -272,11 +272,6 @@
       "note": "chicago_democrat_1833_12_03 c007: the family column of 1833-12-03 reads: “MARRIED, In this town, on Saturday evening 29 ult., by the Hon. R. I. Hamilton, Mr. MARK NOBLE, jun., second son of Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_03.json#claims/c012",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1833_12_03 c012: a notice of 1833-12-03 naming John T. Temple. It reads: “HORSES! HORSES!! WANTED, twenty-five or thirty young Horses, fo[r] which Cash will be paid. JOHN T. TEMPLE. Chicago, De[c.] 2, 1833.” The register carries: John T. Temple → new_resident"
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_12_03.json#claims/c014",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1833_12_03 c014: a notice of 1833-12-03 whose entities array is empty. It reads: “NOTICE. [I]NDIVIDUALS who are cutting Timber [on land] belonging to the General Government [on] the borders of the Little [Calumet …] are hereby notified, that no permi[ssion] for …”"
@@ -480,11 +475,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c018",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_04_01 c018: a notice of 1834-04-01 whose entities array is empty. It reads: “Public [A]uction. [Will] be sold without reserve, on the 8th [day] of April next, at the shop of J. W. [—,] the following property: [—] [first r]ate Cabinet Benches; [—] first …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c019",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_04_01 c019: a notice of 1834-04-01 naming John T. Temple. It reads: “Chicago Property. [Wil]l be sold on the 10th July next, [—] [lo]ts fronting on Kinzie and Michigan [streets. Terms o]f Sale—One third in Cash and the [balance in] three and six …” The register carries: John T. Temple → new_resident"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_01.json#claims/c020",
@@ -1147,16 +1137,6 @@
       "note": "chicago_democrat_1834_10_29 c005: a notice of 1834-10-29 whose entities array is empty. It reads: “List of Letters, [REM]AINING in the Post office [a]t Hen[nepin, Ill.] […] on the first day of October 18[34], [and if not called for be]f[o]re the first o[f] January [next they] …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_05.json#claims/c005",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_11_05 c005: a notice of 1834-11-05 naming Jno. Bates, Jr., John T. Temple. It reads: “For Sale, [A] NOTE for $147 42-100, dated Sept. 19th, 1833, and signed by John T. Temple, late [l]e[t]ter writer in the Post Office Department, [and f]or a short time only, sole …” The register carries: Jno. Bates, Jr. → new_resident; John T. Temple → new_resident"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_05.json#claims/c006",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_11_05 c006: a notice of 1834-11-05 naming John T. Temple. It reads: “Avoid Im[p]osition! T[H]E public are cautioned against re[c]eiving [a note or]due [bi]ll drawn by me in Sept. 18[3]3, [in fav]or of J. Bates, jr. for $147 42-100, as I have [an …” The register carries: John T. Temple → new_resident"
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_05.json#claims/c014",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_11_05 c014: a notice of 1834-11-05 whose entities array is empty. It reads: “List of Letters [REMA]INING in the Post Office at Ge[neva?], Il[l]. Oct. 1, 1834, [… names …] C. VAN HORN, P.M. [L]ist of Letters, [REMA]INING in the Post office at Paw[paw?], …”"
@@ -1175,16 +1155,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c001",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_11_26 c001: a event of 1834-11-26 whose entities array is empty. It reads: “[A meeting of] the citizen[s] of Chi[ca]go, favoura[ble to the establ]ishment of a Library [and Reading Ro]om, will be held at the Presby[terian church … tomor]row (Thursday) …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c003",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_11_26 c003: a notice of 1834-11-26 naming A. Clybourn. It reads: “[S]tray Cattle. [Came to] the s[ub]scriber, [l]iving two [miles … of] Chic[ago …] work oxen. [Some are brand]ed [on] the [h]ip with letters A. C.; [oth]er[s on the] H[.] and …” The register carries: A. Clybourn → new_resident"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c004",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_11_26 c004: a notice of 1834-11-26 naming A. Clybourn. It reads: “$10 REWARD. [STRAYE]D or STOLEN, from Chicago, a [… ]Sorrel HORSE, with a ba[l]l[…] paces and trots; a little C[u]t [on his? … f]ace. Any per[son] bringing back said [horse … and …” The register carries: A. Clybourn → new_resident"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_11_26.json#claims/c007",
@@ -1230,16 +1200,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_17.json#claims/c011",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_12_17 c011: a shipping reading of 1834-12-17. It reads: “[F]or Sale, [an assort]ment of highly finished Shot Guns, [double a]nd single barrels, by the first Eng[lish makers.] NEWBERRY & DOLE. [… in] good barrels, now unloading from [the …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_24.json#claims/c007",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_12_24 c007: a notice of 1834-12-24 naming A. Clybourn, Collins. It reads: “Notice. A[L]L persons indebted to A. Clybourn by note [or] open account, are requested to make [immediate] payment: and all notes or accounts [unpaid on] the 10th of January [will …” The register carries: A. Clybourn → new_resident; Collins → new_resident"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_24.json#claims/c009",
-      "rule": "the_press_name_is_a_person_the_town_does_not_hold",
-      "note": "chicago_democrat_1834_12_24 c009: a notice of 1834-12-24 naming A. Clybourn. It reads: “STRAYED or STOLEN, from Chicag[o … ] $10 REWARD. [… ] [a] bright Sorrel HORSE, with a bal[d face … ] paces and trots; a little [f]at [and thin] necked; and is [… ] when lost. [Any …” The register carries: A. Clybourn → new_resident"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_01_21.json#claims/c004",

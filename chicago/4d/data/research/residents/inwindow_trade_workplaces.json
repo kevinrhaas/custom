@@ -7,21 +7,20 @@
  "not_a_reading": "DERIVED, never hand-edited. Every row is read off a committed role on a committed card and a committed ruling. No page of any source is read here, nobody is minted, nothing is reconstructed and no confidence is promoted: a house raised from a role is `inferred` and says so on its own record.",
  "scene_date": "1835-07-01",
  "counts": {
-  "already_holds_a_workplace": 77,
-  "held": 4,
-  "no_premises": 30,
-  "not_ruled": 4,
-  "raise": 45,
-  "houses_raised": 38,
-  "houses_seated_on_a_committed_structure": 15
+  "already_holds_a_workplace": 84,
+  "held": 3,
+  "no_premises": 29,
+  "not_ruled": 3,
+  "raise": 41,
+  "houses_raised": 35,
+  "houses_seated_on_a_committed_structure": 12
  },
  "houses_by_census_class": {
   "iron_foundry": 1,
-  "other": 17,
+  "other": 16,
   "physician": 5,
-  "storage_and_forwarding": 1,
-  "store": 7,
-  "tavern": 8
+  "store": 6,
+  "tavern": 7
  },
  "houses_raised": [
   {
@@ -139,20 +138,6 @@
    ]
   },
   {
-   "business_id": "biz_clybourne_archibald_butcher",
-   "occupation": "butcher",
-   "census_classes": [
-    "other"
-   ],
-   "keepers": [
-    "clybourne_archibald"
-   ],
-   "seated_at": "clybourn_slaughterhouse",
-   "sources": [
-    "andreas_1884_v1"
-   ]
-  },
-  {
    "business_id": "biz_collett_j_a_refectory_keeper",
    "occupation": "refectory keeper",
    "census_classes": [
@@ -221,20 +206,6 @@
     "gale_stephen_f"
    ],
    "seated_at": null,
-   "sources": [
-    "andreas_1884_v1"
-   ]
-  },
-  {
-   "business_id": "biz_haddock_edward_tavern_keeper",
-   "occupation": "tavern keeper",
-   "census_classes": [
-    "tavern"
-   ],
-   "keepers": [
-    "haddock_edward"
-   ],
-   "seated_at": "mansion_house",
    "sources": [
     "andreas_1884_v1"
    ]
@@ -324,16 +295,15 @@
    ]
   },
   {
-   "business_id": "biz_kinzie_john_h_forwarding_and_commission",
-   "occupation": "forwarding and commission merchant and merchant",
+   "business_id": "biz_kinzie_james_merchant",
+   "occupation": "merchant",
    "census_classes": [
-    "storage_and_forwarding",
     "store"
    ],
    "keepers": [
-    "kinzie_john_h"
+    "kinzie_james"
    ],
-   "seated_at": "jh_kinzie_forwarding_store",
+   "seated_at": null,
    "sources": [
     "andreas_1884_v1"
    ]
@@ -554,21 +524,6 @@
    "sources": [
     "ushouse_james_h_woodworth"
    ]
-  },
-  {
-   "business_id": "biz_wright_john_merchant",
-   "occupation": "merchant",
-   "census_classes": [
-    "store"
-   ],
-   "keepers": [
-    "wright_john"
-   ],
-   "seated_at": null,
-   "sources": [
-    "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
-   ]
   }
  ],
  "no_fixed_premises": [
@@ -676,13 +631,6 @@
    "role": "army_officer",
    "kind": "profession",
    "basis": "The garrison is the fort's establishment; T-1176 reads it and T-1204 builds its reach. exercised at an establishment the person does not keep."
-  },
-  {
-   "person_id": "kinzie_john_h",
-   "name": "John Harris Kinzie",
-   "role": "town_president",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
   },
   {
    "person_id": "lathrop_samuel_s",
@@ -810,15 +758,6 @@
    "printed_as": "an open identity question: mulford_one_letter",
    "held_by": "identity_holds",
    "owed_to": "T-1007's open question"
-  },
-  {
-   "person_id": "taylor_william_h",
-   "name": "William H Taylor",
-   "role": "shoemaker",
-   "register_house": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
-   "printed_as": "[uncertain: …] Taylor",
-   "held_by": "the_surname_test",
-   "owed_to": "T-1182 clause 1"
   }
  ],
  "not_ruled_into_the_vocabulary": [
@@ -840,13 +779,6 @@
    "person_id": "jamison_l_t",
    "name": "L T Jamison",
    "as_printed": "assistant commissary of subsistence",
-   "reason": "THE PRINTING HAS NOT BEEN RULED INTO THE CLOSED VOCABULARY. The role keeps what the source printed and `role` is null until T-1254 rules the controlled term; a house may not be raised on a string nobody has adjudicated.",
-   "owed_to": "T-1254"
-  },
-  {
-   "person_id": "taylor_william_h",
-   "name": "William H Taylor",
-   "as_printed": "leather dealer",
    "reason": "THE PRINTING HAS NOT BEEN RULED INTO THE CLOSED VOCABULARY. The role keeps what the source printed and `role` is null until T-1254 rules the controlled term; a house may not be raised on a string nobody has adjudicated.",
    "owed_to": "T-1254"
   }
@@ -958,8 +890,8 @@
     "class": "other",
     "census_count": null,
     "town_before_T-1404": 72,
-    "raised_here": 17,
-    "town_after_T-1404": 89,
+    "raised_here": 16,
+    "town_after_T-1404": 88,
     "still_short": null,
     "documented_zero": false,
     "owed_to": null
@@ -1018,8 +950,8 @@
     "class": "storage_and_forwarding",
     "census_count": 4,
     "town_before_T-1404": 7,
-    "raised_here": 1,
-    "town_after_T-1404": 8,
+    "raised_here": 0,
+    "town_after_T-1404": 7,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
@@ -1028,8 +960,8 @@
     "class": "store",
     "census_count": 44,
     "town_before_T-1404": 59,
-    "raised_here": 7,
-    "town_after_T-1404": 66,
+    "raised_here": 6,
+    "town_after_T-1404": 65,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null
@@ -1038,8 +970,8 @@
     "class": "tavern",
     "census_count": 8,
     "town_before_T-1404": 8,
-    "raised_here": 8,
-    "town_after_T-1404": 16,
+    "raised_here": 7,
+    "town_after_T-1404": 15,
     "still_short": 0,
     "documented_zero": false,
     "owed_to": null

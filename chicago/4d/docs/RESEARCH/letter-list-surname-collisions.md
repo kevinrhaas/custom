@@ -26,9 +26,9 @@ rows they were, read now off what the pass says rather than off who it drops.
 
 ## The two readings, over the same pool
 
-* the pool the register offers this pass: **1879** candidates
-* accepted under the pre-T-0638 reading: **771**
-* accepted under the corrected reading: **791**
+* the pool the register offers this pass: **1877** candidates
+* accepted under the pre-T-0638 reading: **769**
+* accepted under the corrected reading: **789**
 * standing records a mint-time refusal lands on, corrected reading: **75**; pre-T-0638 reading: **67**
 * THE COLLISIONS THIS FAULT UNCOVERED — said under the corrected reading and not under the old one: **8**
 * candidates the correction ADMITS that the old reading refused: **20**
@@ -70,7 +70,7 @@ and they are why the owner answered it with (c) — keep both, say the collision
 ## The committed cohort against its own derivation
 
 The tree holds **743** letter-list households. The pass, run today
-against that same tree, derives **791**. `check.sh` runs this pass's
+against that same tree, derives **789**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Under the ruling the
 mint-time causes are gone from this table by construction — a standing record is no
 longer out of step with its own pass for colliding on a family name. What is left is

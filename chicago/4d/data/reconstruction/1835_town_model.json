@@ -188,11 +188,11 @@
         },
         {
           "figure": "classes_short_of_the_census",
-          "low": 9,
-          "high": 9,
+          "low": 8,
+          "high": 8,
           "point": null,
           "is_a_count": true,
-          "method": "9 compared classes hold fewer records than the census counted, 19 establishments short in total — of which 2 are houses the register names with an opening announced AFTER the scene date, so that much of the gap is already accounted for; 6 hold more, which is the register counting NOTICES where the census counted houses.",
+          "method": "8 compared classes hold fewer records than the census counted, 17 establishments short in total — of which 0 are houses the register names with an opening announced AFTER the scene date, so that much of the gap is already accounted for; 6 hold more, which is the register counting NOTICES where the census counted houses.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1"
           ],
@@ -266,15 +266,6 @@
               "opened_after_the_scene_date": 0
             },
             {
-              "class": "school",
-              "census_line": "seven schools",
-              "census_count": 7,
-              "town_at_scene_date": 5,
-              "delta": -2,
-              "outcome": "town_holds_fewer_than_the_census_counted",
-              "opened_after_the_scene_date": 2
-            },
-            {
               "class": "bank",
               "census_line": "one bank",
               "census_count": 1,
@@ -338,6 +329,15 @@
               "opened_after_the_scene_date": 0
             },
             {
+              "class": "school",
+              "census_line": "seven schools",
+              "census_count": 7,
+              "town_at_scene_date": 7,
+              "delta": 0,
+              "outcome": "town_matches_census",
+              "opened_after_the_scene_date": 0
+            },
+            {
               "class": "iron_foundry",
               "census_line": "one iron foundry",
               "census_count": 1,
@@ -368,8 +368,8 @@
               "class": "storage_and_forwarding",
               "census_line": "four storage and forwarding houses",
               "census_count": 4,
-              "town_at_scene_date": 8,
-              "delta": 4,
+              "town_at_scene_date": 7,
+              "delta": 3,
               "outcome": "town_holds_more_than_the_census_counted",
               "opened_after_the_scene_date": 0
             },
@@ -377,8 +377,8 @@
               "class": "tavern",
               "census_line": "eight taverns",
               "census_count": 8,
-              "town_at_scene_date": 16,
-              "delta": 8,
+              "town_at_scene_date": 15,
+              "delta": 7,
               "outcome": "town_holds_more_than_the_census_counted",
               "opened_after_the_scene_date": 0
             },
@@ -670,11 +670,11 @@
         },
         {
           "figure": "inns_and_taverns",
-          "low": 16,
-          "high": 16,
+          "low": 15,
+          "high": 15,
           "point": null,
           "is_a_count": true,
-          "method": "The programme schedules 10 inns and taverns; the State census counted 8 taverns two to five months later and the business layer holds 16 at the scene date. The three units are a roof, a licence and a printed notice, and they are not the same thing counted three ways. THE LAYER'S COUNT MAY EXCEED BOTH OTHERS AND THE CEILING FOLLOWS IT (T-1404): the census's figure is a count of LICENCES taken months after the scene, and the town's named public houses — the Sauganash, the Exchange, the Tremont, the Mansion House, the Steamboat, the Western, Wolf Point — are houses the papers never advertised and the licence roll never separated. A licence count cannot cap a house count, so the ceiling is whichever of the three reads highest. T-1196 owns re-cutting the roof programme against it.",
+          "method": "The programme schedules 10 inns and taverns; the State census counted 8 taverns two to five months later and the business layer holds 15 at the scene date. The three units are a roof, a licence and a printed notice, and they are not the same thing counted three ways. THE LAYER'S COUNT MAY EXCEED BOTH OTHERS AND THE CEILING FOLLOWS IT (T-1404): the census's figure is a count of LICENCES taken months after the scene, and the town's named public houses — the Sauganash, the Exchange, the Tremont, the Mansion House, the Steamboat, the Western, Wolf Point — are houses the papers never advertised and the licence roll never separated. A licence count cannot cap a house count, so the ceiling is whichever of the three reads highest. T-1196 owns re-cutting the roof programme against it.",
           "comparanda": [
             "moses_kirkland_history_of_chicago_v1",
             "owner_chicago_1835_reconstruction_spec_2026"
