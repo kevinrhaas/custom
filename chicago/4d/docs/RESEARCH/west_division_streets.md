@@ -1,8 +1,11 @@
-# West Water seated, and Jefferson and Des Plaines refused by the ground
+# West Water seated, and Jefferson and Des Plaines seated after it
 
 **T-0445, piece 2 of 4 of T-0443. 2026-09-05. Extended by T-0768, 2026-09-12,
 which carried the reach past the turn at Wolf Point and refused the rest with the
-clearance — § 1.** Every number here is recomputed
+clearance — § 1. §2's refusal was ANSWERED by T-1430, 2026-09-20, once T-1416 built
+the ground out to local east -705.0: both streets are drawn and the section below
+says how, keeping the refusal that stood for fifteen days because it is the
+derivation of the seating.** Every number here is recomputed
 from committed files by `tools/measure_west_division_streets.py`, which carries
 the assertions as `--self-test` and which `tools/check.sh` runs. Unlike T-0444's
 memo, this one moves something: one street is seated, and §3 says why the other
@@ -199,7 +202,7 @@ and that ruling agree, so the gloss is withdrawn rather than restated: there is
 nothing for it to be restated as. `docs/RESEARCH/south_branch_raft_bridge.md`
 § 3a carries the trace and the per-station table.
 
-## 2. Jefferson and Des Plaines are refused, and the refusal is a measurement
+## 2. Jefferson and Des Plaines were refused by the ground, and are seated now
 
 Both survive on the ground, and their surviving control is *already committed to
 this repository*: `fulton`'s note carries the four OpenStreetMap intersections
@@ -225,6 +228,67 @@ West Division recipe's 55 roofs (ROADMAP K15, admitted at `docs/LIBERTIES.md`
 L90 — *"their centres lie west of local E −300 m and the committed ground stops
 at E −320 m"*). When the box moves, both lines are seatable from control that is
 already in this file, with no new research.
+
+
+### The seating — T-1430, 2026-09-20
+
+The box moved. `tools/measure_west_of_box.mjs` (T-1415) derived the wall the held
+slots need at **local east −705.0 m**, and T-1416 regenerated the heightfield,
+collision surface and water mask out to it. That is the one thing §2 said would
+reverse the refusal, and nothing else about either street changed: **no new source
+was read to place these lines.**
+
+| street | control (already in `fulton`'s note) | inside the wall by |
+|---|---|---|
+| `jefferson` | east −401.04, north +13.11 (OSM node 262247424) | **304.0 m** |
+| `des_plaines` | east −524.88, north +13.72 (OSM node 258966841) | **180.1 m** |
+
+**Position from control, bearing from Clinton, and the two are held apart because
+they are held differently.** Each committed path passes through its own surviving
+intersection — 0.4 mm and 0.0 mm off it — and each carries the committed `clinton`
+line's own east-per-north, −0.02395833. One intersection fixes a *point*, not a
+*direction*, so the direction is inherited from the neighbouring north-south street
+of the same plat, fitted to the same modern control family. `geometry_confidence`
+is **`inferred`** for that inheritance and not because the street is doubtful: the
+Thompson plat draws it, which under T-0713 is the sheet's own claim that it ran
+here. **What would raise it to `attested` is a second surviving intersection on the
+line**, which would fit the bearing from control the way Fulton's four do for its
+tier.
+
+**The reach is inherited too.** Both paths span local north −400.0 to +80.0, which
+is Clinton's own committed extent. A line whose direction is borrowed from Clinton
+should not claim more ground than Clinton does; the plat rules both streets further
+north and south, and whatever extends Clinton extends these.
+
+**The ground, measured and not assumed.** Sampled at 25 stations 20.0 m apart along
+each committed path, the heightfield reads **1.305–1.325 m** (Jefferson) and
+**1.290–1.325 m** (Des Plaines) above the 1835 water surface, and **not one station
+is at or below it**. That is the test the refusal was written against, taken on the
+lines as drawn.
+
+**What is drawn is a corridor, not a road.** `track_width_m` is 0, `opened` and
+`worn` are false, the surface is `unworn_prairie` — the School Section grid's
+reading, carried here for the same reasons: nothing committed fronts either line,
+nothing reached attests traffic or wear on them, and the West Division beyond Canal
+Street was open prairie in 1835. What would change that is a building seated on one
+or a source giving it traffic; the 35 placements `tools/generate_west_infill.py`
+still holds for want of ground are the nearest candidates, and they are T-1431's.
+
+**One disagreement this does not settle.** South of Madison the School Section's own
+grid carries `jefferson_school_section` at east −379.98 and
+`des_plaines_school_section` at −506.45, both due north–south. Carried to Madison's
+northing the West Division lines would stand 8.3 m west of the first and 19.2 m east
+of the second. Two surveys, two records, and no line is bent to join them — which is
+how this file has always held the School Section's streets.
+
+**The eighteen numeral crops did not move, and that is deliberate.**
+`tools/read_west_division_numerals.py` cuts blocks 8–13, 22–27 and 46–51 from
+`clinton` stepped one and two modules west, because when those numerals were READ no
+Jefferson or Des Plaines line existed. Those crops are citations of a reading already
+taken; re-cutting them from the seated lines would re-read eighteen numerals to no
+purpose. The step's own corroboration — it lands 8.70 m and 8.22 m from the two
+surviving intersections — is unchanged by the seating, and now reads as an agreement
+between two instruments rather than as the licence for one.
 
 ## 3. Acceptance 2: nothing else moves, and here is the measurement that says so
 

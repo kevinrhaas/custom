@@ -27,12 +27,21 @@ THE THREE KINDS OF SIDE, AND WHICH BLOCKS USE WHICH.
                      and `canal` are continued north and south the same way where
                      a tier lies past their ends. This is T-1094's rule turned
                      through ninety degrees.
-  stepped            Jefferson Street and Des Plaines Street are REFUSED as
-                     streets — both lie wholly west of the modelled ground's edge
-                     at east -320 m, and docs/RESEARCH/west_division_streets.md §2
-                     refuses them on exactly that ground. So they are not read
-                     from here and nothing is written into data/streets/1835.json.
-                     The two flanks they would give are instead `clinton` STEPPED
+  stepped            Jefferson Street and Des Plaines Street were REFUSED as
+                     streets when these eighteen numerals were read — both lay
+                     wholly west of the modelled ground's edge at east -320 m, and
+                     docs/RESEARCH/west_division_streets.md §2 refused them on
+                     exactly that ground. T-1430 HAS SINCE SEATED BOTH, on the
+                     field T-1416 built out to east -705, and THE CROPS STILL COME
+                     OFF THE STEP. That is deliberate and it is not laziness: a
+                     crop here is the CITATION of a numeral already read, and
+                     re-cutting eighteen of them from lines that did not exist when
+                     they were read would re-read eighteen numerals to no purpose.
+                     `corroboration()` below measures the step against the two
+                     seated lines' own control every run — 8.70 m and 8.22 m — so
+                     what the agreement MEANS has changed (two instruments agreeing,
+                     rather than one licensing the other) while what it MEASURES has
+                     not. The two flanks are therefore still `clinton` STEPPED
                      WEST by one and two modules, the module being the same
                      123.36 m the Original Town's seven flanking lines measure at
                      Madison Street (tools/read_washington_madison_numerals.py's

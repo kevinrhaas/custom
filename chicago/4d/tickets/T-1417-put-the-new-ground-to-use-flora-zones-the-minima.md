@@ -1,7 +1,7 @@
 ---
 id: T-1417
 title: Put the new ground to use: flora zones, the minimap box and the walker's collision carried to the west wall, the West Division streets taken off their E -320 clip, and generate_west_infill's 35 held slots released
-state: open
+state: split
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: T-1193
 opened: 2026-09-19
-closed: null
+closed: 2026-09-20
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 2:21:21 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T07:30:13.053Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35496288002
 ---
 
 Put the new ground to use: flora zones, the minimap box and the walker's collision carried to the west wall, the West Division streets taken off their E -320 clip, and generate_west_infill's 35 held slots released.
