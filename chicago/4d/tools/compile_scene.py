@@ -2149,6 +2149,25 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "note": st["lot_address"]["note"],
             }
 
+        # T-1478. AND WHICH LOT IT TURNED OUT TO STAND ON, which is the row above's
+        # opposite number: `lot_address` is a lot a SOURCE printed, this is a lot the
+        # grid drew afterwards and found a committed footprint already on. It travels as
+        # an attribute for the same reason — a visitor asking "where is this, exactly?"
+        # is asking one question and should not have to know which of the two answers the
+        # building happens to have. `sources` is EMPTY and that is the honest value: no
+        # source names this lot, which is what the row's own note says at length and what
+        # its grade (the weaker of the lot lines and the numeral) already prices in.
+        if "stands_on_lot" in st:
+            seat = st["stands_on_lot"]
+            where = ("lot %d" % seat["lot_number"]) if seat["lot_number"] is not None \
+                else "an unnumbered lot"
+            attributes["stands_on_lot"] = {
+                "value": "%s, %s" % (where, seat["grid"].replace("_", " ")),
+                "confidence": seat["confidence"],
+                "sources": [],
+                "note": seat["note"],
+            }
+
         # T-0609. WHO ENTERED THE GROUND UNDER THE ROOF is an attribute of the building
         # for the same reason the address is: it is a claim with a source, a grade and a
         # reason, and the card already renders those. The register is a register of

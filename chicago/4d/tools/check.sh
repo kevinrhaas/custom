@@ -4957,6 +4957,26 @@ step "the lot-and-block address re-derives, and seating it promotes no roof" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/lot_addresses.py --self-test
 
+# AND THE FOURTH THING A RECORD CAN SAY ABOUT A LOT, WHICH IS THE ONE NOBODY SAID (T-1478).
+# The three above are all CLAIMS — a face adopted, an ordinal off a corner, a printed lot and
+# block. This is a MEASUREMENT: until T-1194 the only lot layer stopped at the main stem, so a
+# documented building north or west of the river stood on a bare coordinate; there are now
+# five more grids out there and `stands_on_lot` records which lot of them each documented
+# footprint turned out to fall on. It is gated rather than committed once because every step
+# of it moves when the town does — a lot line redrawn, a block renumbered, a footprint
+# corrected, a numeral re-read. The assertions worth naming: the seat is plat_occupancy's own
+# rule IMPORTED rather than a second copy of it; only `research`-layer records carry one, so
+# this project's reconstruction can never read back as evidence about the town; the grade is
+# the WEAKER of the lot lines and the numeral, which is why the West Division's documented
+# numerals still give inferred seats; and a grid that numbers nothing — Wabansia, the Michigan
+# Street tract — seats the block and withholds the numeral rather than counting one off the
+# polygon list.
+step "every documented north-or-west record's lot re-derives from the committed grid" \
+  python3 tools/record_lot_seating.py --check
+
+selftest "…and a seat still may not claim a lot, outrank its lot lines, or invent a numeral" \
+  python3 tools/record_lot_seating.py --self-test
+
 # THE 1840 CENSUS LINE -> IPUMS SERIAL JOIN (T-0504). IPUMS holds 964 Chicago households as
 # age-band counts with no names; every one of them is also a ruled line on a page image that
 # carries the head's name, and the twenty-six free-white age-band columns are the only thing
