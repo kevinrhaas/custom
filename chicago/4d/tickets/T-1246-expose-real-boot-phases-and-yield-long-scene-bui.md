@@ -1,7 +1,7 @@
 ---
 id: T-1246
 title: Expose real boot phases and yield long scene-building tasks
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 12:51:17 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null

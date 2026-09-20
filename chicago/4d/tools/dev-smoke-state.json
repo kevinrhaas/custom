@@ -2221,6 +2221,104 @@
         ]
       },
       "source": "/tmp/smoke1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "all",
+      "parts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 533,
+      "failed": 6,
+      "failures": [
+        "desktop 1280x800: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
+        "desktop 1280x800: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}",
+        "desktop 1280x800: the light tier draws inside its 90-call floor at the worst stand — 94 calls at light, worst stand the open aerial — floor 90, set by the owner 2026-08-28 against a measured 85 at Lake and Market (was 80, the pre-2026-08 count restored by T-0147; the ruling is recorded at the definition site and on T-0247)",
+        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]",
+        "desktop 1280x800: zero page errors — console.error: THREE.PointerLockControls: Unable to use Pointer Lock API | pageerror: The root document of this element is not valid for pointer lock. | console.error: THREE.PointerLockControls: Unable to use Pointer Lock API | pageerror: The root document of this element is not valid for pointer lock."
+      ],
+      "wallSeconds": 883,
+      "takenAt": "2026-09-20T18:24:24.816Z",
+      "ref": "steward/t-1246-boot-phases",
+      "commit": "c8c11eabe9fc",
+      "devCommit": "c8c11eabe9fc",
+      "treeHash": "sha256:55db2b2243e59288",
+      "treeDirty": true,
+      "changelogHash": "sha256:99eb629d79bfa287",
+      "host": {
+        "kind": "local",
+        "cpus": 18,
+        "memGB": 48,
+        "loadavg": [
+          14.9,
+          20.4,
+          17.7
+        ]
+      },
+      "source": "/Users/khaas/Chicago4D/t1246/smoke-desktop.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "all",
+      "parts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 538,
+      "failed": 4,
+      "failures": [
+        "mobile 390x780: nothing was drawn into an evidence-only household — 1 reconstructed people on hh_inf_cooper_north_04, name_basis present: true",
+        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}",
+        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
+        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 598,
+      "takenAt": "2026-09-20T18:20:28.866Z",
+      "ref": "steward/t-1246-boot-phases",
+      "commit": "c8c11eabe9fc",
+      "devCommit": "c8c11eabe9fc",
+      "treeHash": "sha256:55db2b2243e59288",
+      "treeDirty": true,
+      "changelogHash": "sha256:99eb629d79bfa287",
+      "host": {
+        "kind": "local",
+        "cpus": 18,
+        "memGB": 48,
+        "loadavg": [
+          20.3,
+          25.2,
+          18
+        ]
+      },
+      "source": "/Users/khaas/Chicago4D/t1246/smoke-mobile.log"
     }
   ]
 }
