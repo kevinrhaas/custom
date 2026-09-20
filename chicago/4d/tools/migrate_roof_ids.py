@@ -62,6 +62,7 @@ MIGRATION = RECON / "1835_roof_id_migration.json"
 STRUCTURES = DATA / "structures"
 SIDECARS = DATA / "sidecars" / "1835"
 ASSETS = (ROOT / "assets" / "gltf", ROOT / "assets" / "web")
+MANIFEST = ROOT / "assets" / "manifest.json"
 PREFIX = "recon_1835_south_"
 TICKET = "T-1494"
 
@@ -270,6 +271,19 @@ def move_files(plan: list[dict]) -> list[str]:
         if old.exists():
             old.unlink()
             moved.append(f"{old.relative_to(ROOT)} -> removed (re-derived as {m['to']})")
+    # The bake's own record of what it built, keyed by mesh NAME. `build.py --only`
+    # writes the new key and has no reason to know the old one is dead, so a migration
+    # that left it would leave "the record of a bake outlived its output" —
+    # `tools/validate.py --stale`'s words — on every one of these, and the withdrawn
+    # T-0059 case counts committed assets out of this file and would read eleven too
+    # many. The entry is DROPPED and not renamed: its hash is the old record's inputs,
+    # and the bake writes the true one.
+    manifest = load(MANIFEST)
+    for m in plan:
+        for name in [k for k in manifest.get("assets", {}) if k.startswith(f"{m['from']}__")]:
+            del manifest["assets"][name]
+            moved.append(f"assets/manifest.json -> dropped {name} (re-baked as {m['to']})")
+    dump(MANIFEST, manifest)
     return moved
 
 
