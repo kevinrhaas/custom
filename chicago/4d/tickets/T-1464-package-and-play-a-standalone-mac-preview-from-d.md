@@ -33,11 +33,17 @@ placement correction in this local build: match the existing browser's lowest
 rotated-footprint terrain anchoring, measure the fort garden fence/palisade offsets,
 and rebuild the app. Do not invent new geometry or historical dimensions.
 
+The owner clarified that this is the low garden fence. The underlying error was
+Python Rotator positional arguments: its 53-degree ground bearing became pitch.
+Named yaw/pitch/roll fields correct structures, player start and sunlight. The
+editor verifier now requires every structure to be upright with the sidecar yaw,
+and measures the garden fence at 1.135333 m tall (below a 1.5 m regression bound).
+
 ## Completed local demonstration
 
 Native arm64 Development app built and packaged with Unreal 5.8.2 / Xcode 27.0,
 using dev scene snapshot 253f026570358dfcdab62fb2593c4082b058de07. Normal native
-launch and Escape quit were observed. The final palisade-corrected package passed
+launch and Escape quit were observed. The corrected package passed
 the offscreen 21-second grounded movement/obstacle/back-away test with keyboard
 and mouse ignored. Code-sign verification passed before and after ZIP extraction.
 See [build instructions](../renderers/unreal/README.md) and

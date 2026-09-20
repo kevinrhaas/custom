@@ -22,6 +22,9 @@ buildings use triangle collision for this preview; water has no blocking collisi
 Rigid structures sit on the lowest of 25 terrain samples across their rotated
 footprint, matching the browser renderer. This fixes the fort palisade floating
 above the downhill side when it was anchored only at its origin.
+Structure bearings use explicitly named Unreal yaw; the garden fence stays upright
+at its 53-degree ground bearing. The verifier checks every structure for zero pitch
+and roll, and checks the garden fence world height remains below 1.5 metres.
 R returns to the start if you leave the useful walkable area.
 
 ## Coverage

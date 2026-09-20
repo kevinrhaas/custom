@@ -10,8 +10,13 @@ the packaged app opened directly into Chicago, without the editor or streaming.
 skipped because its enclosure is browser-generated. The pawn is persistently body-free.
 A 21-second offscreen packaged test, ignoring keyboard/mouse input, passed with
 all sampled states grounded: walk forward, stop at an obstacle, back away. It is
-not a full bridge or bank route test. The owner-reported fort palisade float was
-corrected by lowest-footprint anchoring, lowering it 1.437281 m; the app was rebuilt.
+not a full bridge or bank route test. The owner identified the low garden fence
+near the fort: positional Python Rotator arguments had applied its 53-degree
+bearing as pitch, tilting the entire enclosure into the sky. Explicit yaw arguments
+now keep it upright, with a measured world height of 1.135333 m. Every imported
+structure is checked for zero pitch/roll and its expected yaw. Player start and sun
+also use named rotation fields. Lowest-footprint anchoring separately lowers the
+fort palisade 1.437281 m to bed it in the downhill terrain.
 Escape quit the native app. No claim is made that the streaming corruption is fixed.
 
 [Build source and instructions](../renderers/unreal/README.md) are isolated from the

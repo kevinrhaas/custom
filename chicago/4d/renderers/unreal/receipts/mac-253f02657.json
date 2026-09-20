@@ -6,12 +6,20 @@
   "configuration": "Development",
   "build_cook_run": "PASS",
   "code_sign_verify": "PASS (Sign to Run Locally, not notarized)",
-  "binary_sha256": "2f763d3f52428f82797427e49f06dd920123f9885af1979fc2b5f5a8fe18b77d",
+  "binary_sha256": "eb31076d2881137547fb3d9d2550529497d50b242ec257aab4838d5213eda03a",
   "scene_verification": {
     "imported_mesh_actors": 384,
     "solid_and_water_collision_profiles": "pass",
     "native_body_free_pawn": "pass",
     "player_start_count": 1,
+    "upright_structure_rotations": "pass",
+    "garden_fence": [
+      {
+        "id": "fort_dearborn_garrison_garden",
+        "yaw_deg": 52.99999999551122,
+        "world_height_cm": 113.53333568572998
+      }
+    ],
     "source_commit": "253f026570358dfcdab62fb2593c4082b058de07",
     "play_test": "Required separately"
   },
@@ -19,29 +27,29 @@
     "LogTemp: Display: CHICAGO_WALK_TEST second=0 location=X=10700.000 Y=10300.000 Z=224.657 speed=0.00 walking=1",
     "LogTemp: Display: CHICAGO_WALK_TEST second=1 location=X=10700.000 Y=10300.000 Z=224.657 speed=0.00 walking=1",
     "LogTemp: Display: CHICAGO_WALK_TEST second=2 location=X=10700.000 Y=10300.000 Z=224.657 speed=0.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=3 location=X=10700.000 Y=10580.488 Z=213.626 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=4 location=X=10700.000 Y=10880.497 Z=201.827 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=5 location=X=10700.000 Y=11180.506 Z=190.027 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=6 location=X=10700.000 Y=11480.517 Z=178.228 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=7 location=X=10700.000 Y=11780.529 Z=168.198 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=8 location=X=10700.000 Y=12080.530 Z=167.945 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=9 location=X=10724.097 Y=12217.475 Z=167.807 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=10 location=X=10743.930 Y=12224.452 Z=167.704 speed=0.24 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=11 location=X=10743.696 Y=12224.452 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=12 location=X=10743.464 Y=12224.452 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=13 location=X=10743.232 Y=12224.452 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=14 location=X=10742.999 Y=12224.452 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=15 location=X=10742.767 Y=12224.453 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=16 location=X=10742.534 Y=12224.453 Z=167.704 speed=0.23 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=17 location=X=10742.636 Y=11943.800 Z=167.705 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=18 location=X=10742.636 Y=11643.792 Z=171.000 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=19 location=X=10742.636 Y=11343.774 Z=182.800 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=20 location=X=10742.636 Y=11043.764 Z=194.599 speed=300.00 walking=1",
-    "LogTemp: Display: CHICAGO_WALK_TEST second=21 location=X=10742.636 Y=11038.283 Z=194.815 speed=0.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=3 location=X=10700.000 Y=10580.484 Z=213.626 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=4 location=X=10700.000 Y=10880.492 Z=201.827 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=5 location=X=10700.000 Y=11180.503 Z=190.027 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=6 location=X=10700.000 Y=11480.565 Z=178.226 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=7 location=X=10700.000 Y=11780.599 Z=168.196 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=8 location=X=10700.000 Y=12080.603 Z=167.945 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=9 location=X=10724.129 Y=12217.477 Z=167.807 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=10 location=X=10744.024 Y=12224.451 Z=167.705 speed=0.24 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=11 location=X=10743.791 Y=12224.452 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=12 location=X=10743.558 Y=12224.452 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=13 location=X=10743.326 Y=12224.452 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=14 location=X=10743.094 Y=12224.452 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=15 location=X=10742.861 Y=12224.452 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=16 location=X=10742.629 Y=12224.453 Z=167.705 speed=0.23 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=17 location=X=10742.697 Y=11943.845 Z=167.705 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=18 location=X=10742.697 Y=11643.838 Z=170.997 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=19 location=X=10742.697 Y=11343.827 Z=182.797 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=20 location=X=10742.697 Y=11043.823 Z=194.596 speed=300.00 walking=1",
+    "LogTemp: Display: CHICAGO_WALK_TEST second=21 location=X=10742.697 Y=11038.343 Z=194.811 speed=0.00 walking=1",
     "LogTemp: Display: CHICAGO_WALK_TEST_RESULT PASS"
   ],
   "walk_observation": "PASS: offscreen 21-second test with keyboard/mouse ignored and heading fixed south. All sampled states grounded. Forward motion stopped at an obstacle around Y=12224 cm, then backed away at 300 cm/s. No teleport, flight or collision bypass.",
-  "interactive_observation": "Packaged app opened in native window with Chicago visible, controls overlay, no human mesh or green debug box. Escape quit. Restart reloaded map; mouse capture affected automated view orientation.",
+  "interactive_observation": "Earlier packaged version opened in a native window with Chicago visible, controls overlay, no human mesh or green debug box. Escape quit and restart reloaded the map. Final garden-rotation correction was verified in editor actor rotations/world bounds and the rebuilt package offscreen movement test; no final interactive visual check is claimed.",
   "limitations": [
     "Preview imports generated glTF terrain and structures. Web-renderer procedural streets, flora, props, and research UI are not ported.",
     "Custom per-vertex confidence visualization is not implemented; source sidecars remain the provenance record.",
@@ -1083,13 +1091,13 @@
       "lowered_m": 0.4287795545410108
     }
   ],
-  "fence_fix": "Fort palisade lowered 1.437281 m by matching the existing browser lowest-footprint terrain anchoring. Garden fence checked; its origin is already the lowest sampled point.",
+  "fence_fix": "Garden fence: explicit Python yaw=53, pitch=roll=0 replaces positional arguments that produced pitch=53. Verified world height 1.135333 m. All 384 mesh actors have expected upright rotations. Fort palisade also lowered 1.437281 m using browser-compatible footprint terrain anchoring.",
   "packaged_content_sha256": {
     "Contents/UE/Chicago4D/Content/Paks/global.ucas": "059d0c438c00a355798533eaf7fddb5e0fc141f18d97ec4ab631dc703ff3eb50",
     "Contents/UE/Chicago4D/Content/Paks/global.utoc": "8d5593b62adb9f5b6ba82e3fa95f788e17ac8ae578a09da19e9991f7ed6f2e93",
-    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.ucas": "c0aa08f64ccf3caf1dd5e7df984a0455e0a95dd5a6d0cd81cd1e46fad6a62c27",
-    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.utoc": "7e4214b2a35641bc7b9e98e9887abf07be6d9183d0ae126691da4c2c319cee9e",
-    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.pak": "0883fe4cb953e914beaf4c971e362dd698ab52248b5f7f9552cdb67fb04ee29c"
+    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.ucas": "154f8021ad0821c2e91afbd420819c15ecf08269c22a4341496d2d7a6206fecc",
+    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.utoc": "39e5597b9ef3daf47ba7d9a6b35e0753b30329701fb9a37ae7010eb92d504595",
+    "Contents/UE/Chicago4D/Content/Paks/Chicago4D-Mac.pak": "ced6978e2600771828ef9d69ad5f59cde2484277dd554f373c5753039859ba83"
   },
   "local_gate_notes": [
     "Mac check.sh reports 25 mesh-input hash differences. For st_marys_church, changing only derived ridge_height_m from 6.176698236990594 to adjacent float 6.176698236990593 reproduces the committed hash exactly. No data or asset was rewritten to force a pass. The selected dev source commit passed its GitHub gate.",
@@ -1107,9 +1115,15 @@
     "Config/DefaultGame.ini": "653feaddb92233ddc49c91b772c1367320f6cb483fa4a0973891c8c87d10e843",
     "Config/DefaultGameUserSettings.ini": "1c744d0fbe44eefa0e72d439c72132fa46c020fe656f143abfaa869cfbb77ab6",
     "Config/DefaultInput.ini": "602cf9c04727d82c008f1da64ebc154a9e00e439f0f49d912b467278fc036acb",
-    "Scripts/import_scene.py": "99740fcd9a3eff3b71dda3a96b8d7915966d5c55d378893fffb7fc8037d9294a",
-    "Scripts/verify_scene.py": "b4ba33057af8159ff0879dbba4f18ab9f8bcc9cf03d061a40a6e2c4bcf87477b"
+    "Scripts/import_scene.py": "20246ba3de2badbd46f3e527527e2337ebc5087314b252ea7dd1c7b107fda0f6",
+    "Scripts/verify_scene.py": "29bea51cceabc0dae5da363e56622c040b608c0a48b64fc71274ef48914b1125"
   },
-  "zip_sha256": "d01f497c0274476b64bdf3f0c4b207f1a3e476f1220fbfde2a951006f7ff8dc0",
-  "zip_extract_codesign_verify": "PASS"
+  "zip_sha256": "1bb984bac3e065103aa1b12d46580346f7bc8649ac40021311ee096fc85197a2",
+  "zip_extract_codesign_verify": "PASS",
+  "zip_filename": "Chicago-1835-Mac-garden-fix.zip",
+  "garden_rotation_regression": {
+    "old_world_height_cm": 6370.358876221016,
+    "fixed_world_height_cm": 113.53333568572998,
+    "old_pitch_deg": 52.99999999254126
+  }
 }

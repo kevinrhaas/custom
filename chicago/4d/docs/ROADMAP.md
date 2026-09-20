@@ -7,7 +7,8 @@ latest `dev`, a playable Mac app before streaming, and pushing isolated source
 changes back to GitHub. The adapter lives in [renderers/unreal](../renderers/unreal/README.md).
 This does not waive the separate bundle-update, scenery-parity or hosted-stream
 acceptance in T-1358/T-1360/T-1361. A qualified local Mac can execute this slice;
-a generic remote web worker cannot.
+a generic remote web worker cannot. The local acceptance includes the owner-reported
+garden fence: upright ground bearing, bounded world height, and a rebuilt package.
 
 ## Unreal delivery — owner-ranked programme, 2026-09-18
 

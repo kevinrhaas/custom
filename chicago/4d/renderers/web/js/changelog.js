@@ -10,7 +10,7 @@ export const CHANGELOG = [ // newest first
     ] },
   { v: 1025, title: 'A standalone Mac preview of Chicago', kind: 'feature', ts: '2026-09-20T16:10:32.433Z', date: 'Sep 20, 2026, 11:10 AM CT',
     items: [
-      'The Unreal importer now beds long structures across their full footprint, fixing the fort palisade hanging above the downhill ground.',
+      'The Unreal importer keeps the low garden fence near the fort upright instead of tipping its whole enclosure into the sky. Long structures also bed across their full footprint so the palisade meets the downhill ground.',
       'A separate Unreal project can now build a local Apple Silicon Mac preview from the committed 1835 terrain and buildings. It starts in Chicago with a body-free first-person view, walking controls, restart and quit, without a browser or streaming server.',
       'This is an early renderer preview. The browser version still has scenery, research cards and time controls that have not been ported. The Unreal build instructions describe its coverage and require a Mac with Unreal and Xcode; the remote web worker cannot package or play-test it.',
     ] },

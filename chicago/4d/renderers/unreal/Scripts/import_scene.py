@@ -61,12 +61,13 @@ def place(asset,id,loc,rotation=0,collision=True,terrain_anchor=False):
         if collision:
             body.set_editor_property('collision_trace_flag',unreal.CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE)
             unreal.EditorAssetLibrary.save_loaded_asset(mesh)
-        actor=actors.spawn_actor_from_class(unreal.StaticMeshActor,unreal.Vector(*loc),unreal.Rotator(0,rotation,0))
+        # Python Rotator positional order differs from C++; name each axis.
+        actor=actors.spawn_actor_from_class(unreal.StaticMeshActor,unreal.Vector(*loc),unreal.Rotator(pitch=0, yaw=rotation, roll=0))
         actor.set_actor_label(id)
         comp=actor.static_mesh_component;comp.set_static_mesh(mesh)
         comp.set_collision_profile_name('BlockAll' if collision else 'NoCollision')
         actor.set_editor_property('tags',[unreal.Name('Chicago4D'),unreal.Name(id)])
-    report['imported'].append({'id':id,'asset':asset,'mesh_count':len(imported),'location_cm':loc})
+    report['imported'].append({'id':id,'asset':asset,'mesh_count':len(imported),'location_cm':loc,'yaw_deg':rotation})
 for layer,asset in meta['glb'].items(): place(asset,layer,(0,0,0),collision=layer=='ground')
 for i,row in enumerate(read(ROOT/'data/sidecars/1835/index.json')['structures']):
     sid=row if isinstance(row,str) else row['id']
@@ -82,8 +83,8 @@ for i,row in enumerate(read(ROOT/'data/sidecars/1835/index.json')['structures'])
     if i%25==0:
         OUT.joinpath('import_report.json').write_text(json.dumps(report,indent=2));unreal.log('CHICAGO_PROGRESS '+str(i))
 s=scene['spawn'];e=s['local_e'];n=s['local_n'];h=height(e,n)
-spawn=actors.spawn_actor_from_class(unreal.PlayerStart,unreal.Vector(e*100,-n*100,h*100+110),unreal.Rotator(0,s['yaw_deg']-90,0));spawn.set_actor_label('Chicago1835_Start')
-sun=actors.spawn_actor_from_class(unreal.DirectionalLight,unreal.Vector(0,0,10000),unreal.Rotator(-55,-35,0));sun.set_actor_label('Chicago_Sun')
+spawn=actors.spawn_actor_from_class(unreal.PlayerStart,unreal.Vector(e*100,-n*100,h*100+110),unreal.Rotator(pitch=0, yaw=s['yaw_deg']-90, roll=0));spawn.set_actor_label('Chicago1835_Start')
+sun=actors.spawn_actor_from_class(unreal.DirectionalLight,unreal.Vector(0,0,10000),unreal.Rotator(pitch=-55, yaw=-35, roll=0));sun.set_actor_label('Chicago_Sun')
 sun.light_component.set_mobility(unreal.ComponentMobility.MOVABLE);sun.light_component.set_intensity(5)
 sun.light_component.set_editor_property('atmosphere_sun_light',True)
 sky=actors.spawn_actor_from_class(unreal.SkyAtmosphere,unreal.Vector(0,0,0))
