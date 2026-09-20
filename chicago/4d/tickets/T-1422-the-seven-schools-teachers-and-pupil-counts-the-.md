@@ -1,7 +1,7 @@
 ---
 id: T-1422
 title: The seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1411
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 12:37:00 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35492019357
 ---
 
 The seven schools' teachers and pupil counts, the Democrat and the American staffed to the model, and the register's third printing office adjudicated.
