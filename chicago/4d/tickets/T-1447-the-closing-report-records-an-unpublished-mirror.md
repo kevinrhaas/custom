@@ -1,7 +1,7 @@
 ---
 id: T-1447
 title: The closing report records an unpublished mirror as a measurement of zero, so three PRs in one morning went red saying STALE
-state: open
+state: done
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1565
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T12:32:57.938Z
 claimed_run: null
 ---
 
