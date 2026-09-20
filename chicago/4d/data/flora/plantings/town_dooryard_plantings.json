@@ -225,7 +225,7 @@
       "species": "ribes_spp",
       "at_local_enu_m": [
         384.79,
-        268.29
+        268.53
       ],
       "height_m": 1.03,
       "confidence": "reconstructed",
@@ -928,7 +928,7 @@
       "id": "recon_1835_north_d4_004_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        589.93,
+        597.73,
         171.46
       ],
       "height_m": 1.27,
@@ -1181,7 +1181,7 @@
       "id": "recon_1835_north_d6_021_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        431.98,
+        419.48,
         200.0
       ],
       "height_m": 16.8,
