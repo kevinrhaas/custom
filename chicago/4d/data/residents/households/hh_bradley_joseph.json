@@ -123,6 +123,24 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_a_travelling_dentist_at_the_new_york_house",
+     "business_name": "a travelling dentist at the New York House",
+     "role": "proprietor",
+     "printed_as": "J. C. Bradley",
+     "from": "1835-06-13",
+     "to": "1835-06-20",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card bradley_joseph (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_american_1835_06_13#c008",
+      "chicago_american_1835_06_20#c001"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_american_1835",
     "fergus_chicago_directory_1843",

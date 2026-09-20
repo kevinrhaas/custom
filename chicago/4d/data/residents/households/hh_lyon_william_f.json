@@ -113,6 +113,23 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_william_f_lyon_wholesale_grocery_store",
+     "business_name": "William F. Lyon, Wholesale Grocery Store",
+     "role": "proprietor",
+     "printed_as": "Lyon, William F.",
+     "from": "1835-08-19",
+     "to": "1835-08-19",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card lyon_william_f (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_08_19#c015"
+     ],
+     "business_present_at_scene_date": false
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],

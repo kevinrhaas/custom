@@ -110,6 +110,39 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_l_g_curtiss",
+     "business_name": "L. G. Curtiss",
+     "role": "proprietor",
+     "printed_as": "L. G. Curtiss",
+     "from": "1835-07-22",
+     "to": "1835-07-29",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card curtiss_l_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_07_22#c012",
+      "chicago_democrat_1835_07_29#c015"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_l_g_curtiss_deputy_surveyor_of_cook_county",
+     "business_name": "L. G. Curtiss, Deputy Surveyor of Cook County",
+     "role": "proprietor",
+     "printed_as": "Curtiss, L. G.",
+     "from": "1835-08-05",
+     "to": "1835-08-05",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card curtiss_l_g (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1835_08_05#c011"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],

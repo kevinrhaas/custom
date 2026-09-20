@@ -126,6 +126,42 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_w_kimball",
+     "business_name": "W. Kimball",
+     "role": "proprietor",
+     "printed_as": "W. Kimball",
+     "from": "1833-11-26",
+     "to": "1834-06-04",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card kimball_walter (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c012",
+      "chicago_democrat_1834_02_18#c007",
+      "chicago_democrat_1834_03_18#c004",
+      "chicago_democrat_1834_06_04#c020"
+     ],
+     "business_present_at_scene_date": true
+    },
+    {
+     "business_id": "biz_w_kimball_s_new_store",
+     "business_name": "W. Kimball's New Store",
+     "role": "proprietor",
+     "printed_as": "W. Kimball",
+     "from": "1833-12-10",
+     "to": "1834-01-21",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card kimball_walter (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_12_10#c002",
+      "chicago_democrat_1834_01_21#c003"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26",

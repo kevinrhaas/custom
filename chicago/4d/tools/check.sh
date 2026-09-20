@@ -2193,7 +2193,18 @@ step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" 
 # The gate runs it on a CONSTRUCTED branch list for the reason `landed` does: the right
 # answer against the real remote changes hourly. Both wrong readings are held — age
 # alone fails the fault, the file alone fails T-0987 and T-0429.
-step "a claim that outlived the window is work, and a merged branch is still litter" \
+# AND THE READING THAT WAS DEAD IN PRODUCTION WHILE THIS STEP RAN GREEN (T-1427). The
+# `recoverable` reading guards itself with "a branch that ever HAD a pull request was
+# never invisible", which reads `pr.head.ref` — and `restGet` projected that field away,
+# so against the live API the guard was an empty set that could never fire, while the
+# fixture below supplied `head.ref` by hand and this step passed. The fetch asked for
+# `state=closed` besides, so an OPEN pull request was not in the collection at all. On
+# 2026-09-20 `inflight` printed five branches as carrying work NOBODY CAN SEE and every
+# one of the five had a pull request; `steward/t-1191-north-corridors` was one, and #1533
+# on it was open, labelled `hold`, and parked for the owner on purpose. The one reading
+# that exists to stop a duplicate rebuild was inviting one. The fixture and the API now
+# arrive through one projection, so a fixture can no longer be richer than production.
+step "a claim that outlived the window is work, a merged branch is litter, and a branch under review is neither" \
   node tools/test_ticket_inflight.mjs
 
 # A SPLIT KEEPS ITS CLAIM, so the parent it leaves on `dev` cannot be claimed twice.
@@ -4605,6 +4616,25 @@ step "the 1835 business staffing model re-derives, and staffs nobody the town ca
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/build_staffing_model_1835.py --self-test
+
+# T-1432, piece 1 of T-1189. THE STAFFING JOIN, ATTESTED AND INFERRED HALF. The model
+# above says what a KIND of house employed and names nobody. This says where the people
+# the sources DO name worked: 144 rows of the business layer carry a person_id, 110 town
+# cards between them, and until now those cards said nothing about work at all. The join
+# is written onto the person as `workplaces` — not `works_at`, which is the BUILDING and
+# is singular and undated and policed as a structure link — and it is carried across at
+# the business row's own tier, basis, source and claim ids. Nothing is minted here.
+#
+# WHY A GATE, AND WHY IT ASSERTS BOTH WAYS. The two ends move independently: the register
+# recompiles, the identity work re-matches a printed name to a card, a household record is
+# merged. A card carrying a workplace no business record names back is a fossil, and a
+# named row whose card has lost its entry is a person who has quietly lost their trade.
+# Either one is silent without this, and neither is a warning.
+step "the 1835 staffing join re-derives, and holds from both ends" \
+  python3 tools/staff_businesses_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/staff_businesses_1835.py --self-test
 
 # T-1371, piece 2 of T-1175 and stage `lodgers` of the resident reconstruction programme.
 # THE BEDS THE MODEL ABOVE COUNTED, SLEPT IN. T-1370 gave fifteen built lodging places an

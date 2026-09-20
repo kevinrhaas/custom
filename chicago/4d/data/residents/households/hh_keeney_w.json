@@ -115,6 +115,24 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_w_keeney",
+     "business_name": "W. Keeney",
+     "role": "proprietor",
+     "printed_as": "W. Keeney",
+     "from": "1834-05-07",
+     "to": "1834-06-04",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card keeney_w (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_05_07#c003",
+      "chicago_democrat_1834_06_04#c022"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835"
    ],

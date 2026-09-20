@@ -110,6 +110,26 @@
     "derived_from": "roles",
     "roles_at_scene_date": []
    },
+   "workplaces": [
+    {
+     "business_id": "biz_wm_hogue_co",
+     "business_name": "Wm. Hogue & Co.",
+     "role": "partner",
+     "printed_as": "John Hale",
+     "from": "1834-09-03",
+     "to": "1835-07-29",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card hale_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1834_09_03#c009",
+      "chicago_democrat_1834_11_05#c002",
+      "chicago_democrat_1835_07_22#c007",
+      "chicago_democrat_1835_07_29#c010"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "chicago_democrat_1833_1835",
     "norris_directory_1844"

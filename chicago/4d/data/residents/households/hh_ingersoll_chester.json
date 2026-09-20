@@ -127,6 +127,23 @@
      "tavern_keeper"
     ]
    },
+   "workplaces": [
+    {
+     "business_id": "biz_ingersoll_s_tavern_stand",
+     "business_name": "Ingersoll's tavern stand",
+     "role": "proprietor",
+     "printed_as": "Chester Ingersoll",
+     "from": "1833-11-26",
+     "to": "1833-11-26",
+     "tier": "attested",
+     "basis": "The register matches the printed name to the town card ingersoll_chester (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+     "source_id": "chicago_newspapers_1833_1835",
+     "claim_ids": [
+      "chicago_democrat_1833_11_26#c006"
+     ],
+     "business_present_at_scene_date": true
+    }
+   ],
    "sources": [
     "andreas_1884_v1",
     "chicago_democrat_1833_11_26",
