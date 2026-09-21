@@ -82,8 +82,8 @@
   "tier": "reconstructed"
  },
  "counts": {
-  "r6_rows_offered": 131,
-  "already_on_a_card": 15,
+  "r6_rows_offered": 132,
+  "already_on_a_card": 16,
   "cards_minted": 87,
   "minted_present": 69,
   "minted_absent": 18,
@@ -2217,6 +2217,13 @@
   }
  ],
  "already_on_a_card": [
+  {
+   "row_id": "card:hh_andrews_william",
+   "name_as_read": "William Andrews",
+   "household_id": "hh_andrews_william",
+   "community_term": "metis",
+   "note": "The term was found on a card the town already holds. Nothing is minted; whether that card carries `touches_removal` is the card's own affair and this stage does not reach into it."
+  },
   {
    "row_id": "card:hh_bertrand_b_h",
    "name_as_read": "B. H. Bertrand",

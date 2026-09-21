@@ -12328,17 +12328,19 @@ Related: ticket **T-1169**, stage `attribute_fill_arrival` of **T-1167**'s progr
 `docs/RESEARCH/1835_resident_reconstruction.md`.
 **Recorded:** 2026-09-18.
 ---
-### L244 — Eighty-nine heads the sources leave standing alone are given a wife and children nobody named
+### L244 — A hundred and nineteen heads the sources leave standing alone are given a wife and children nobody named
 
 **Decision:** stage `modelled_families` of the 1835 resident reconstruction programme
 (`data/reconstruction/1835_resident_reconstruction_programme.json`, T-1171) draws a KIN CORE for
 every head whose household record is present on the scene date, holds him alone, is not a
-letter-list mint, and is not under a standing review. Eighty-nine heads qualify. Each is given a
-household size drawn from the 1840 Chicago city's own size histogram at his own band — never at
-the mean, which is the household model's explicit instruction — and the size is seated as a wife
-and children: 84 wives and 216 children, 300 people the sources do not name.
+letter-list mint, is not an evidence-only container, and is not under a standing review. A hundred
+and nineteen heads qualify. Each is given a household size drawn from the 1840 Chicago city's own
+size histogram at his own band — never at the mean, which is the household model's explicit
+instruction — and the size is seated as a wife and children: 84 wives and 212 children, 296 people
+the sources do not name. Thirty-five of the hundred and nineteen drew a house of one and hold no
+kin at all, so the drawn people stand on 84 cards.
 
-**Scope:** `residents.persons[modelled_families]` — 300 people in 89 households, every one of
+**Scope:** `residents.persons[modelled_families]` — 296 people in 84 households, every one of
 them re-derivable from `tools/reconstruct_modelled_families.py --check`.
 
 **What is invented, stated plainly.** That these men were married at all; how many children each
@@ -12363,24 +12365,42 @@ household goes on saying its place is unknown.
 bucket of `data/reconstruction/1835_reconstruction_order_book.json` and a bucket at its
 `to_reconstruct` REFUSES the draw instead of overfilling. No servant, apprentice, journeyman or
 lodger is seated — the drawn size is a floor on the house and the record says so, because the
-staffing model is T-1183's and the lodger is T-1175's. Eight refusals keep the stage off evidence
-it must not touch, and the build counts every one of them: an unsettled presence on the scene date
-(822, T-1172's roster), a letter-list mint (312, whose own gate proves no record there ever gained
-a second member), a household a source already names, counts or rules on (17, T-1313's and
-T-1314's), a head the household model does not seat as a husband (9), the fort and the country
-outside the town (3, T-1176's), a woman heading her own household (3, the age pyramid's and so
-T-1174's), a household under a standing review (2, T-1177's alone under AGENTS.md's
-Indigenous-history review), and a head whose own trade says he kept no wife (1) — which is what
-stopped this stage giving Father St Cyr a family.
+staffing model is T-1183's and the lodger is T-1175's. Nine refusals keep the stage off evidence
+it must not touch, and the build counts every one of them: a letter-list mint (743, whose own gate
+proves no record there ever gained a second member), a household a source already names, counts or
+rules on (147, T-1313's and T-1314's), a head the household model does not seat as a husband (27),
+a woman heading her own household (25, the age pyramid's and so T-1174's), a head the sources do
+not name (11), AN EVIDENCE-ONLY CONTAINER (5, below), a household under a standing review (4,
+T-1177's alone under AGENTS.md's Indigenous-history review), the fort and the country outside the
+town (3, T-1176's), an unsettled presence on the scene date (2, T-1172's roster), and a head whose
+own trade says he kept no wife (1) — which is what stopped this stage giving Father St Cyr a
+family. A tenth refusal is the order book's rather than the rules': 306 married houses stand
+refused whole because the cell that would seat their wife is spent.
 
-**What it does not fix.** The layer's adult sex ratio moves from 1,360.7 men per 100 women to
-340.2 and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: the
-women the age pyramid still lacks are 855 people in T-1174's buckets. The measurement is printed
-against the model in `data/reconstruction/1835_modelled_families.json` and says so rather than
-reading as a target reached.
+**THE EVIDENCE-ONLY REFUSAL, added 2026-09-21 (T-1369).** The five `hh_inf_*` records are not
+households a source records. The occupation census raised each roof because a town of 3,265 people
+in 398 dwellings needed that trade, and the register later put a documented man under it: the man
+and his trade are attested, the dwelling is the hypothesis. `hh_inf_cooper_north_04` has always
+said what follows — *"the layer infers households, not families: the person entries here are the
+ones the trade argument requires and nothing counts wives or children, because counting them would
+multiply a hypothesis by an invention"* — and until this refusal existed the stage drew ten kin
+into four of the five anyway. Those ten are retired; the quota they held was re-spent on
+documented heads the order book had been refusing, which is why the head count rose and the
+people count fell. A source saying one of these five men kept a house retires the container, not
+the refusal.
+
+**What it does not fix.** The layer's adult sex ratio moves from 583.7 men per 100 women to 412.9
+and the model's range is 120.9 to 150.0. It is not met and this stage cannot meet it: T-1174 and
+T-1347 drew the women and children the pyramid was short, but as records of their own rather than
+into these houses, and 310 married houses this stage drew stand with no woman left in their cell.
+Re-housing them is T-1179's convergence. The measurement is printed against the model in
+`data/reconstruction/1835_modelled_families.json` and says so rather than reading as a target
+reached.
 
 Related: tickets **T-1171**, from **T-1167**; **T-1161**'s town model and **T-1166**'s order book
 are the two files it draws against. **Recorded:** 2026-09-18.
+**Restated:** 2026-09-21 (T-1369), when the evidence-only refusal was added and the counts,
+the refusal tallies and the sex-ratio reading were brought back to the ledger.
 
 ### L245 — "Some hundreds more" is read as a band of 200 to 900, and the transient crowd of 1 July 1835 is bounded by it
 

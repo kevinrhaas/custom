@@ -71,13 +71,13 @@
  },
  "counts": {
   "offered": {
-   "R1_in_window_uncertain": 805,
+   "R1_in_window_uncertain": 804,
    "R2_in_window_single_source": 343,
    "R3_1834_return_or_muster": 30,
    "R5_later_only_backprojectable": 55
   },
   "readmitted": {
-   "R1_in_window_uncertain": 726,
+   "R1_in_window_uncertain": 725,
    "R2_in_window_single_source": 123,
    "R3_1834_return_or_muster": 20,
    "R5_later_only_backprojectable": 39
@@ -88,7 +88,7 @@
    "R3_1834_return_or_muster": 10,
    "R5_later_only_backprojectable": 16
   },
-  "presence_ruled_present": 689,
+  "presence_ruled_present": 688,
   "presence_ruled_absent": 37,
   "cards_minted": 182,
   "minted_present": 162
@@ -539,34 +539,6 @@
      "note": "The corpus last names this person on 1834, 1.49 years before the scene date, and says nothing after it. The persistence model gives 0.904 for that lag; the draw seeded on this household reads present."
     },
     "seed": "hh_andrews_thomas:persistence",
-    "replaceable_by": {
-     "kind": "person",
-     "match": "any source that follows this person past 1 July 1835, or any source that places them elsewhere on it"
-    }
-   },
-   "the_inferred_value_this_stands_beside": "uncertain",
-   "withdrawn_if": "a later ruling finds this card a duplicate of another, in which case the retirement runs through tools/consolidate_town_cards.py and not by hand here"
-  },
-  {
-   "row_id": "card:hh_andrews_william",
-   "class": "R1_in_window_uncertain",
-   "household_id": "hh_andrews_william",
-   "name_as_read": "William Andrews",
-   "dated_evidence": "1834-06-25",
-   "dated_evidence_read_as": "1834-06-25",
-   "years_before_the_scene": 1.0158,
-   "persistence": 0.9334,
-   "seed": "hh_andrews_william:persistence",
-   "present_on_scene_date": {
-    "value": "present",
-    "confidence": "reconstructed",
-    "tier": "reconstructed",
-    "basis": {
-     "kind": "model",
-     "id": "persistence_1835",
-     "note": "The corpus last names this person on 1834-06-25, 1.02 years before the scene date, and says nothing after it. The persistence model gives 0.933 for that lag; the draw seeded on this household reads present."
-    },
-    "seed": "hh_andrews_william:persistence",
     "replaceable_by": {
      "kind": "person",
      "match": "any source that follows this person past 1 July 1835, or any source that places them elsewhere on it"

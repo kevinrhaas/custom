@@ -7,58 +7,62 @@
  "generated_by": "tools/reconstruct_modelled_families.py --build",
  "not_a_reading": "no source was opened; nobody here is named by one",
  "heads_drawn_for": 119,
- "people_drawn": 300,
+ "people_drawn": 296,
  "wives": 84,
- "children": 216,
+ "children": 212,
  "refused_by_eligibility": {
   "a letter-list mint argues for a person and not for a household": 743,
   "a source already names, counts or rules on this household's family": 147,
-  "a woman heading her own household is the age pyramid's, T-1174": 26,
+  "a woman heading her own household is the age pyramid's, T-1174": 25,
+  "an evidence-only container holds read evidence and not a household to draw a family into": 5,
   "presence on the scene date is not settled (T-1172's roster holds it)": 2,
   "the fort and the country outside the town are not this stage's": 3,
   "the head is not a person the sources name": 11,
   "the head is not an adult the household model seats as a husband": 27,
   "the head's own trade says he kept no wife": 1,
   "the household carries a standing review, and only T-1177's stage may reconstruct within one": 4,
-  "the order book has no woman left in this house's cell": 310
+  "the order book has no woman left in this house's cell": 306
  },
  "refused_by_the_order_book": {
-  "persons/female/20_29/north/family/none": 57,
-  "persons/female/20_29/south/family/none": 147,
+  "persons/female/20_29/north/family/none": 55,
+  "persons/female/20_29/south/family/none": 145,
   "persons/female/20_29/west/family/none": 48,
   "persons/female/30_39/north/family/none": 14,
   "persons/female/30_39/south/family/none": 26,
   "persons/female/30_39/west/family/none": 14,
   "persons/female/40_49/south/family/none": 2,
   "persons/female/40_49/west/family/none": 1,
-  "persons/female/50_plus/north/family/none": 1
+  "persons/female/50_plus/north/family/none": 1,
+  "persons/female/under_10/south/family/none": 3,
+  "persons/female/under_10/west/family/none": 1,
+  "persons/male/under_10/south/family/none": 2
  },
- "houses_the_book_refused": 310,
+ "houses_the_book_refused": 306,
  "size_drawn_histogram": {
   "1": 35,
-  "2": 61,
+  "2": 59,
   "3": 85,
   "4": 71,
-  "5": 63,
+  "5": 61,
   "6": 59,
   "7": 34,
   "8": 21
  },
  "size_refused_histogram": {
-  "2": 47,
-  "3": 71,
-  "4": 59,
+  "2": 46,
+  "3": 70,
+  "4": 58,
   "5": 47,
   "6": 44,
-  "7": 26,
+  "7": 25,
   "8": 16
  },
  "kin_seated_histogram": {
   "1": 35,
   "2": 14,
-  "3": 14,
+  "3": 16,
   "4": 12,
-  "5": 16,
+  "5": 14,
   "6": 15,
   "7": 8,
   "8": 5
@@ -69,7 +73,7 @@
   "30_39": 15,
   "40_49": 1,
   "50_plus": 1,
-  "under_10": 193
+  "under_10": 189
  },
  "fills": {
   "persons/female/10_19/north/family/none": 3,
@@ -82,7 +86,7 @@
   "persons/female/30_39/west/family/none": 1,
   "persons/female/40_49/south/family/none": 1,
   "persons/female/50_plus/south/family/none": 1,
-  "persons/female/under_10/north/family/none": 30,
+  "persons/female/under_10/north/family/none": 29,
   "persons/female/under_10/south/family/none": 54,
   "persons/female/under_10/west/family/none": 23,
   "persons/male/10_19/north/family/none": 2,
@@ -90,9 +94,24 @@
   "persons/male/10_19/west/family/none": 6,
   "persons/male/under_10/north/family/none": 24,
   "persons/male/under_10/south/family/none": 39,
-  "persons/male/under_10/west/family/none": 23
+  "persons/male/under_10/west/family/none": 20
  },
  "by_household": {
+  "hh_abbott_titus_h": {
+   "size_drawn": 2,
+   "kin_seated": 2,
+   "household_type": "married_couple"
+  },
+  "hh_abell_sidney": {
+   "size_drawn": 4,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
+  "hh_abrams_john": {
+   "size_drawn": 7,
+   "kin_seated": 3,
+   "household_type": "family_with_children"
+  },
   "hh_adams_elizabeth": {
    "size_drawn": 2,
    "kin_seated": 2,
@@ -106,6 +125,11 @@
   "hh_allen_lieut_james": {
    "size_drawn": 5,
    "kin_seated": 5,
+   "household_type": "family_with_children"
+  },
+  "hh_andrews_william": {
+   "size_drawn": 3,
+   "kin_seated": 2,
    "household_type": "family_with_children"
   },
   "hh_austin_w_g": {
@@ -352,26 +376,6 @@
    "size_drawn": 1,
    "kin_seated": 1,
    "household_type": "solitary"
-  },
-  "hh_inf_cooper_north_04": {
-   "size_drawn": 2,
-   "kin_seated": 2,
-   "household_type": "married_couple"
-  },
-  "hh_inf_joiner_north_02": {
-   "size_drawn": 5,
-   "kin_seated": 5,
-   "household_type": "family_with_children"
-  },
-  "hh_inf_physician_south_01": {
-   "size_drawn": 5,
-   "kin_seated": 5,
-   "household_type": "family_with_children"
-  },
-  "hh_inf_tailor_north_02": {
-   "size_drawn": 2,
-   "kin_seated": 2,
-   "household_type": "married_couple"
   },
   "hh_ingersoll_chester": {
    "size_drawn": 8,
@@ -692,7 +696,7 @@
  "measurement": {
   "the_town_the_book_counts": "present households only",
   "people_before_this_stage": 1967,
-  "people_after_this_stage": 2267,
+  "people_after_this_stage": 2263,
   "adults_after_this_stage": {
    "male": 1185,
    "female": 287
@@ -711,7 +715,7 @@
    "30_39": 452,
    "40_49": 137,
    "50_plus": 81,
-   "under_10": 416
+   "under_10": 412
   },
   "household_size_1840_share": {
    "1": 0.0742,
@@ -724,15 +728,15 @@
    "8": 0.0487
   },
   "household_size_drawn_share": {
-   "1": 0.0816,
-   "2": 0.1422,
-   "3": 0.1981,
-   "4": 0.1655,
-   "5": 0.1469,
-   "6": 0.1375,
-   "7": 0.0793,
-   "8": 0.049
+   "1": 0.0824,
+   "2": 0.1388,
+   "3": 0.2,
+   "4": 0.1671,
+   "5": 0.1435,
+   "6": 0.1388,
+   "7": 0.08,
+   "8": 0.0494
   },
-  "largest_share_gap": 0.0274
+  "largest_share_gap": 0.0287
  }
 }
