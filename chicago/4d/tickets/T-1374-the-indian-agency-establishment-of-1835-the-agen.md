@@ -1,7 +1,7 @@
 ---
 id: T-1374
 title: The Indian Agency establishment of 1835: the agent, sub-agent, interpreter and agency blacksmith as the sources name them, and the Native and Metis employees and families the records only count, through T-1177's review rules
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-21
+pr: 1627
+claimed_by: run 9/21/2026, 2:42:03 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T13:53:29.959Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35573791376
 ---
 
 The Indian Agency establishment of 1835: the agent, sub-agent, interpreter and agency blacksmith as the sources name them, and the Native and Metis employees and families the records only count, through T-1177's review rules.
