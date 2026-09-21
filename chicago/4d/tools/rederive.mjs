@@ -37,9 +37,21 @@
  * AFTER consolidate, because consolidate moves the inputs mint reads. Built in
  * the wrong order mint still differed on two cards and only converged when re-run.
  *
+ * AND ONE ORDER IS NOT ENOUGH (T-1363, measured on #1495). A step can READ a file
+ * a LATER step rebuilds, and re-ordering cannot fix that when the later step
+ * derives from the layer the earlier one writes into — it is a two-cycle, and
+ * `steps` is a linear order. The arrival stage draws from
+ * data/reconstruction/1835_town_model.json; model_town_1835.py rebuilds that model
+ * out of the population the stage helped move; so any run that moved the town left
+ * ~1,200 arrival draws a pass behind and the gate went red on them. A second whole
+ * `--run` did not help — it moved the model again. So the manifest DECLARES the
+ * short tail that converges it (`second_pass`), `--run` runs it, and the callers
+ * — pr-lap.sh and pr-stuck.sh — get convergence without knowing any of this.
+ *
  *   node tools/rederive.mjs --check                 the manifest is well-formed
  *   node tools/rederive.mjs --resolvable <paths…>   may these conflicts be cleared?
- *   node tools/rederive.mjs --run                   run the sequence, in order
+ *   node tools/rederive.mjs --run                   run the sequence, then the second pass
+ *   node tools/rederive.mjs --second-pass           run ONLY the declared second pass
  *   node tools/rederive.mjs --prove                 does every step write what it claims?
  *   node tools/rederive.mjs --self-test
  */
@@ -86,6 +98,8 @@ function handAuthored(rel) {
 }
 
 const allResolved = (m) => m.steps.flatMap((s) => s.resolves ?? []);
+const cmdline = (cmd) => (cmd ?? []).join(' ');
+const secondPass = (m) => m.second_pass ?? [];
 
 /* ------------------------------------------------------------------- check */
 
@@ -129,13 +143,75 @@ function check(m = load()) {
     }
   });
 
+  // THE SECOND PASS EARNS ITS PLACE OR IT IS REFUSED (T-1363). Two properties, and
+  // both matter for a different reason:
+  //
+  //   Every entry's command must BE one of the steps. That is what keeps
+  //   `_only_gated_tools` true here for free — the second pass can never reach a
+  //   tool check.sh has not gated, because it can never reach a tool the sequence
+  //   does not already run. It also means the pass resolves no conflicts of its
+  //   own: resolution stays the steps' business.
+  //
+  //   Every entry must say what went stale UNDERNEATH it, and be right about it.
+  //   `stale_on` names files a LATER step rebuilds; `stale_on_pass` names an
+  //   earlier entry in this list whose outputs it reads. A `stale_on` path that is
+  //   only ever rebuilt ABOVE the step has no lag to fix, and an entry with no
+  //   reason at all is how a second pass turns into a superstition somebody
+  //   lengthens whenever a gate goes red.
+  const byCommand = new Map(m.steps.map((s, i) => [cmdline(s.command), i]));
+  const resolvedAt = new Map();
+  m.steps.forEach((s, i) => { for (const rel of s.resolves ?? []) resolvedAt.set(rel, i); });
+  const passSeen = new Map();
+
+  secondPass(m).forEach((e, k) => {
+    const line = cmdline(e.command);
+    const at = `second pass ${k + 1} (${line})`;
+    if (!Array.isArray(e.command) || e.command.length < 2) {
+      problems.push(`${at}: command must be an argv array`);
+      return;
+    }
+    if (!byCommand.has(line)) {
+      problems.push(`${at}: no step in the sequence runs this command. A second-pass entry `
+        + 'must name a step verbatim — that is what keeps it to tools check.sh gates. '
+        + 'Add the step first, or fix the argv to match it exactly.');
+      return;
+    }
+    if (passSeen.has(line)) {
+      problems.push(`${at}: already run by ${passSeen.get(line)} — one slot per command`);
+      return;
+    }
+    const step = byCommand.get(line);
+    for (const rel of e.stale_on ?? []) {
+      if (!resolvedAt.has(rel)) {
+        problems.push(`${at}: stale_on ${rel} is rebuilt by no step, so re-running cannot `
+          + 'have been what moved it. Name a file the sequence writes, or drop the entry.');
+      } else if (resolvedAt.get(rel) < step) {
+        problems.push(`${at}: stale_on ${rel} is rebuilt at step ${resolvedAt.get(rel) + 1}, `
+          + `ABOVE step ${step + 1} — the sequence already hands it over fresh and there is no `
+          + 'lag here to fix. An entry that re-runs for no measured reason does not belong.');
+      }
+    }
+    for (const ref of e.stale_on_pass ?? []) {
+      if (!passSeen.has(ref)) {
+        problems.push(`${at}: stale_on_pass names \`${ref}\`, which is not an EARLIER entry in `
+          + 'this list. A pass runs top to bottom, so a dependency below it has not run yet.');
+      }
+    }
+    if ((e.stale_on ?? []).length === 0 && (e.stale_on_pass ?? []).length === 0) {
+      problems.push(`${at}: says nothing about what went stale underneath it. State it in `
+        + 'stale_on (a file a later step rebuilds) or stale_on_pass (an earlier entry here).');
+    }
+    passSeen.set(line, at);
+  });
+
   if (problems.length) {
     console.error('derived manifest FAILED:');
     for (const p of problems) console.error(`  - ${p}`);
     return 1;
   }
   console.log(`derived manifest OK — ${m.steps.length} step(s), ${allResolved(m).length} `
-    + 'resolvable file(s), none hand-authored');
+    + `resolvable file(s), none hand-authored; ${secondPass(m).length} step(s) declared `
+    + 'for the second pass');
   return 0;
 }
 
@@ -169,19 +245,43 @@ function resolvable(paths, m = load()) {
 
 /* -------------------------------------------------------------------- run */
 
+/** Run one command from the manifest, reporting the tail of its output if it fails. */
+function invoke(command, tag) {
+  const line = cmdline(command);
+  process.stdout.write(`  ${tag} ${line}\n`);
+  try {
+    execFileSync(command[0], command.slice(1), { cwd: APP, stdio: ['ignore', 'pipe', 'pipe'] });
+    return true;
+  } catch (e) {
+    console.error(`  FAILED: ${line}`);
+    console.error(`${e.stdout ?? ''}${e.stderr ?? ''}`.split('\n').slice(-8).map((l) => `    ${l}`).join('\n'));
+    return false;
+  }
+}
+
+/**
+ * THE DECLARED SECOND PASS (T-1363). Short by construction — every entry has to
+ * name a step and say what moved underneath it — and it runs in the order the
+ * manifest lists, which is NOT the order those steps sit in `steps`.
+ */
+function runSecondPass(m = load()) {
+  const pass = secondPass(m);
+  if (!pass.length) return 0;
+  console.log(`  — the declared second pass: ${pass.length} step(s) that read what the `
+    + 'sequence rebuilt after them');
+  for (const [k, e] of pass.entries()) {
+    if (!invoke(e.command, `[2nd ${k + 1}/${pass.length}]`)) return 1;
+  }
+  return 0;
+}
+
 function run(m = load()) {
   for (const [i, s] of m.steps.entries()) {
-    const label = s.command.join(' ');
-    process.stdout.write(`  [${i + 1}/${m.steps.length}] ${label}\n`);
-    try {
-      execFileSync(s.command[0], s.command.slice(1), { cwd: APP, stdio: ['ignore', 'pipe', 'pipe'] });
-    } catch (e) {
-      console.error(`  FAILED: ${label}`);
-      console.error(`${e.stdout ?? ''}${e.stderr ?? ''}`.split('\n').slice(-8).map((l) => `    ${l}`).join('\n'));
-      return 1;
-    }
+    if (!invoke(s.command, `[${i + 1}/${m.steps.length}]`)) return 1;
   }
-  console.log(`derived layer rebuilt — ${m.steps.length} step(s), in dependency order`);
+  if (runSecondPass(m) !== 0) return 1;
+  console.log(`derived layer rebuilt — ${m.steps.length} step(s) in dependency order, then `
+    + `${secondPass(m).length} declared second-pass step(s)`);
   return 0;
 }
 
@@ -280,12 +380,33 @@ async function selfTest() {
     real.steps.findIndex((s) => s.command.join(' ').includes('mint_civic_residents'))
       > real.steps.findIndex((s) => s.command.join(' ').includes('consolidate_resident_evidence')));
 
+  console.log('\n  the declared second pass (T-1363)');
+  const pass = secondPass(real);
+  check_('is declared at all — the sequence alone does not converge', pass.length > 0);
+  check_('every entry names a step the sequence already runs, so it inherits the gating',
+    pass.every((e) => real.steps.some((s) => s.command.join(' ') === e.command.join(' '))));
+  check_('the arrival stage is in it — it is the reader in the measured cycle',
+    pass.some((e) => e.command.join(' ').includes('attribute_fill_arrival')));
+  check_('the arrival entry is stale on the town model, which a LATER step rebuilds',
+    (() => {
+      const e = pass.find((x) => x.command.join(' ').includes('attribute_fill_arrival'));
+      const model = 'chicago/4d/data/reconstruction/1835_town_model.json';
+      const writer = real.steps.findIndex((s) => (s.resolves ?? []).includes(model));
+      const reader = real.steps.findIndex((s) => s.command.join(' ') === e?.command.join(' '));
+      return e?.stale_on?.includes(model) && writer > reader && reader >= 0;
+    })());
+  check_('the tiers are counted before the profile that reads them — the hand order that converged',
+    pass.findIndex((e) => e.command.join(' ').includes('migrate_attribute_tiers'))
+      < pass.findIndex((e) => e.command.join(' ').includes('profile_population_1835')));
+  check_('model_town is NOT re-run in it — that would put the arrival draws back a pass',
+    !pass.some((e) => e.command.join(' ').includes('model_town_1835')));
+
   console.log('\n  check() refuses a manifest that would be unsafe');
   const tmp = mkdtempSync(path.join(tmpdir(), 'c4d-rederive-'));
   try {
-    const bad = (steps) => {
+    const bad = (steps, second_pass = []) => {
       const f = path.join(tmp, 'm.json');
-      writeFileSync(f, JSON.stringify({ schema: 1, steps }));
+      writeFileSync(f, JSON.stringify({ schema: 1, steps, second_pass }));
       return check(load(f));
     };
     check_('a step naming a script that does not exist',
@@ -302,6 +423,31 @@ async function selfTest() {
       }]) === 1);
     check_('a listed path that is not in the tree',
       bad([{ command: ['python3', 'tools/compile_scene.py'], resolves: ['chicago/4d/data/nope.json'] }]) === 1);
+
+    // AND THE SECOND PASS, which is the part that can quietly grow. Each of these
+    // is a way an entry could be added that re-runs a tool for no measured reason.
+    const scene = { command: ['python3', 'tools/compile_scene.py', '--all'], resolves: ['chicago/4d/data/town_census.json'] };
+    const census = { command: ['python3', 'tools/town_census.py'], resolves: ['chicago/4d/data/residents/index.json'] };
+    check_('a second-pass entry naming a command no step runs',
+      bad([scene, census], [{ command: ['python3', 'tools/town_census.py', '--build'], stale_on: ['chicago/4d/data/town_census.json'] }]) === 1);
+    check_('a second-pass entry stale on a file only an EARLIER step rebuilds',
+      bad([scene, census], [{ command: census.command, stale_on: ['chicago/4d/data/town_census.json'] }]) === 1);
+    check_('a second-pass entry stale on a file NO step rebuilds',
+      bad([scene, census], [{ command: scene.command, stale_on: ['chicago/4d/data/nope.json'] }]) === 1);
+    check_('a second-pass entry that says nothing about what went stale',
+      bad([scene, census], [{ command: scene.command }]) === 1);
+    check_('a second-pass entry depending on one BELOW it, which has not run yet',
+      bad([scene, census], [
+        { command: scene.command, stale_on_pass: ['python3 tools/town_census.py'] },
+        { command: census.command, stale_on: ['chicago/4d/data/residents/index.json'] },
+      ]) === 1);
+    check_('the same command given two second-pass slots',
+      bad([scene, census], [
+        { command: scene.command, stale_on: ['chicago/4d/data/residents/index.json'] },
+        { command: scene.command, stale_on: ['chicago/4d/data/residents/index.json'] },
+      ]) === 1);
+    check_('…and the shape all six of those are wrong against IS accepted',
+      bad([scene, census], [{ command: scene.command, stale_on: ['chicago/4d/data/residents/index.json'] }]) === 0);
   } finally { rmSync(tmp, { recursive: true, force: true }); }
 
   console.log(`\n${failures === 0 ? 'rederive self-test: all pass' : `rederive self-test: ${failures} FAILURE(S)`}`);
@@ -313,5 +459,6 @@ async function selfTest() {
 if (has('self-test')) process.exit(await selfTest());
 else if (has('resolvable')) process.exit(resolvable(rest()));
 else if (has('prove')) process.exit(prove());
+else if (has('second-pass')) process.exit(runSecondPass());
 else if (has('run')) process.exit(run());
 else process.exit(check());
