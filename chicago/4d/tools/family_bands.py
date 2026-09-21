@@ -82,6 +82,14 @@ def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, floa
     # The implemented frame dwelling is eaves-front. Families whose band reaches a
     # gable-front proportion are held inside the archetype that exists rather than
     # being drawn as something the generator cannot build.
+    #
+    # For D5 this stopped being a compromise on 2026-09-21 (T-1497). That family's row
+    # asked for a front gable, no source reached attests a Chicago dwelling gable-end to
+    # a street before 1 July 1835, and the row now authors `side gable` — so the clamp
+    # here is D5's own form rule and not a shortfall in the generator. The other families
+    # it touches still author a gable-front option their archetype cannot build, and for
+    # them the sentence above is still the whole truth.
+    # See docs/RESEARCH/d5_gable_front_1835.md.
     if family.startswith(("D", "H")) and family not in ("D1", "D2") and depth > width * 1.46:
         width = min(hi_w * .3048, depth / 1.46)
     return round(width, 3), round(depth, 3)

@@ -19,6 +19,25 @@ finished representation. “Canonical” is the required production family and v
 named records remain protected: a named or better-documented roof substitutes for an anonymous
 slot instead of increasing the authored total.
 
+## D5's front gable was withdrawn, 2026-09-21 (T-1497)
+
+This row asked for `front gable` and `narrow urban plan`, and named a canonical archetype —
+`dwelling_frame` with a `deep_plan_gable_front` variant — that was never written. Before
+writing it, the prior question was asked: did the deep-plan gable-front cottage stand in
+Chicago on 1 July 1835? It did not, and `docs/RESEARCH/d5_gable_front_1835.md` is the reading.
+In short: the only gable fronts attested in this town are the Gifford view's *stores*, in a
+party-walled row that C1-C3 already serve; the gable-front *house* is a Greek Revival habit
+whose Chicago arrival this project already dates to the Clarke House of 1836 and excludes; and
+the frontage pressure that turns a deep plan end-on does not exist on a plat whose 226
+committed lots run to a median 80.1 ft frontage against D5's widest 24 ft front. Thirty-one of
+D5's 32 standing roofs were already eaves-front; the front gable had never once been built.
+
+So the row is repaired rather than the archetype supplied. D5 is `side gable`, its deep plan
+kept and held to one-and-a-half times its front, and `frame_dwelling` is its archetype rather
+than a placeholder for one. **The band is unchanged**, so no family's dealt dimensions move.
+The one record drawn to a front-gable proportion, `recon_1835_west_033`, is re-authored in the
+West recipe at 20 x 30 ft and built with nothing turned.
+
 ## Count and priority control
 
 The family targets independently sum to the programme total. Phase 1 has instantiated 48
@@ -81,7 +100,7 @@ notes are machine-readable in `data/reconstruction/1835_family_archetype_crosswa
 | D2 | `outbuilding` | `dwelling_plank:shanty_rough` | Add habitable windows, hearth/entry and repaired-board variants to rough shed/gable shell | Dwelling versus temporary shanty is interpretive; never invent an occupant. |
 | D3 | `frame_dwelling` | `dwelling_frame:single_room_cottage` | Lock one-storey single-pen, 2/3-bay, side-chimney and stoop variants | Type is well covered; framing, gable direction, bays and finish remain controlled variation. |
 | D4 | `frame_dwelling` | `dwelling_frame:two_room_cottage` | Side-gable hall/parlour, 3/5 bays, center/side door and rear lean-to | Room plan and lean-to are family options, not recovered parcel facts. |
-| D5 | `frame_dwelling` | `dwelling_frame:deep_plan_gable_front` | Current eaves-front compression must become a defining deep-plan front-gable silhouette | Shop-room use cannot be inferred from depth alone. |
+| D5 | `frame_dwelling` | `dwelling_frame:deep_plan_eaves_front` | Deep plan behind a modest front, ridge parallel to the street, depth held to 1.5x the front | Shop-room use cannot be inferred from depth alone. Front gable withdrawn 2026-09-21 — see below. |
 | D6 | `frame_dwelling` | `dwelling_frame:cottage_one_and_half` | True knee-wall/steep-roof profile, explicit orientation, sparse tiny dormers and rear ell | Dormers and ell are optional, not defaults. |
 | D7 | `frame_dwelling` | `dwelling_frame:house_two_story_restrained` | Two-storey 3/5-bay set with restrained Federal/Greek doorway and trim | Style remains a restrained family-level treatment, never an anonymous attribution. |
 | H1 | `frame_dwelling` | `house_frame_large:center_hall_one_and_half` | Larger scale, 5-bay center hall, kitchen ell and small porch | Paint/prosperity and service additions are aggregate signals only. |

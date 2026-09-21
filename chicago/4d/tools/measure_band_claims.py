@@ -137,36 +137,30 @@ TICKETS = ROOT / "tickets"
 
 # AN EXCEPTION IS A DEADLINE, NOT AN ALLOWANCE.
 #
-# This file's own note says the baseline records "only ever a repair", and that is still
-# the rule for a value somebody simply authored out of band. But one offender is not that:
-# `recon_1835_west_033` is a 20 x 32 ft D5 slot whose rectangle is INSIDE D5's band and is
-# exactly the form D5 authors — front gable, narrow urban plan. It reads out of band only
-# because no archetype can build that form: the crosswalk names `dwelling_frame` with the
-# `deep_plan_gable_front` variant as D5's canonical archetype and says in its own
-# evidence_note that "canonical support is required", and that archetype does not exist,
-# so the generator swaps width for depth to get an eaves-front house through the
-# placeholder. The owner ruled on 2026-09-21 that the compromise is kept and recorded
-# rather than the slot being held unbuilt.
+# This file's own note says the baseline records "only ever a repair", and that is still the
+# rule for a value somebody simply authored out of band. One offender was allowed to be
+# something else for a day: `recon_1835_west_033`, a 20 x 32 ft D5 slot whose rectangle was
+# inside D5's band and was exactly the form D5 then authored — front gable, narrow urban plan
+# — and which read out of band only because no archetype could build that form, so
+# `tools/generate_west_infill.py` swapped width for depth to get an eaves-front house through
+# the placeholder. It was banked with `waiting_on: T-1497` on the owner's ruling of 2026-09-21
+# that the compromise be kept and recorded rather than the slot held unbuilt.
 #
-# Recording it is only honest if it expires. An offender listed here with `waiting_on`
-# names the ticket whose work removes it, and this tool REFUSES the baseline once that
-# ticket is no longer open — so the compromise cannot outlive its excuse, and closing the
-# ticket without deleting the row turns the gate red rather than quietly blessing it.
-# A new offender may still not be banked without one: `--write-baseline` writes a
-# `waiting_on` only for keys named here, and every other new offender is refused exactly
-# as before.
-WAITING_ON = {
-    "recon_1835_west_033:footprint": {
-        "ticket": "T-1497",
-        "why": ("the recipe's 20 x 32 ft is inside D5's own 18x28-24x34 band; the value "
-                "reads out of band only because frame_dwelling is an EAVES-FRONT "
-                "placeholder that refuses a front-gable house (32/20 is past its 1.5 "
-                "ceiling), so generate_west_infill swaps width and depth to build it at "
-                "all. T-1497 builds the canonical dwelling_frame/deep_plan_gable_front "
-                "archetype the crosswalk asks for, or repairs the D5 row if the form is "
-                "not 1835. Either way this row leaves the file."),
-    },
-}
+# **T-1497 answered it and the row is gone.** No source reached attests a Chicago dwelling
+# gable-end to a street before 1 July 1835, so D5's row was repaired to the eaves-front family
+# its 32 standing roofs already are, and the recipe re-authored the slot at 20 x 30 — the same
+# two-foot repair T-1445 made to `recon_1835_west_009` at the identical rectangle. The value is
+# in band; nothing is banked for it. See docs/RESEARCH/d5_gable_front_1835.md.
+#
+# The mechanism stays, because it is the thing that made the deadline real. An offender listed
+# in the baseline with `waiting_on` names the ticket whose work removes it, and this tool
+# REFUSES the baseline once that ticket is no longer open — so a compromise cannot outlive its
+# excuse, and closing the ticket without deleting the row turns the gate red rather than
+# quietly blessing it. `WAITING_ON` below is the allow-list `--write-baseline` reads: a new
+# offender may not be banked with a deadline unless its key is named here, and every other new
+# offender is refused exactly as before. It is EMPTY, and an empty list is the correct resting
+# state — a key is added to it only by a ticket that has argued for one.
+WAITING_ON: dict[str, dict] = {}
 
 
 def ticket_state(tid: str) -> str | None:

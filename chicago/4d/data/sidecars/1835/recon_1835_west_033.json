@@ -16,12 +16,12 @@
   },
   "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": -405.124,
-    "local_n": -202.98,
-    "rotation_deg": -88.0,
+    "local_e": -411.206,
+    "local_n": -202.463,
+    "rotation_deg": 2.0,
     "position_confidence": "reconstructed",
     "position_sources": [],
-    "position_note": "Interpretive placement within the reviewed West Division cluster w3_jefferson_lake_residential. The recipe coordinate is a production-layout control, not a recovered lot. The rectangle the recipe gives stands where it gives it; its long side is read as the facade, because an 1835 dwelling is eaves-front and a front narrower than its own range would build the gable-front house of a later decade.",
+    "position_note": "Interpretive placement within the reviewed West Division cluster w3_jefferson_lake_residential. The recipe coordinate is a production-layout control, not a recovered lot.",
     "symbolic_location": "Anonymous reconstructed roof on the West Division approaches",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -35,21 +35,21 @@
         0
       ],
       [
-        9.754,
+        6.096,
         0
       ],
       [
-        9.754,
-        6.096
+        6.096,
+        9.144
       ],
       [
         0,
-        6.096
+        9.144
       ]
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "A 32 × 20 ft rectangle assigned by the reconstruction recipe within the D5 family band; no individual dimensions are documented."
+    "note": "A 20 × 30 ft rectangle assigned by the reconstruction recipe within the D5 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
@@ -77,7 +77,7 @@
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D5 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
     },
     "roof_pitch_deg": {
-      "value": 34.4,
+      "value": 30.5,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"

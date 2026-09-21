@@ -52,10 +52,10 @@
     {
       "id": "D5", "label": "Deep-plan frame cottage", "target_roofs": 58, "phase1_instantiated": 5, "remaining_roofs": 53, "priority_rank": 3, "priority_band": "P0",
       "current_placeholder_archetype": "frame_dwelling",
-      "canonical_archetype": "dwelling_frame", "required_variant": "deep_plan_gable_front",
-      "key_geometry_parameters": {"footprint_ft": "18x28-24x34", "levels": "1", "eave_ft": "9-10", "ridge_ft": "17-21", "roof": "front gable, 7:12-10:12", "construction": "clapboard/board-mix frame", "variants": "narrow urban plan; side entry; optional shop room"},
-      "evidence_note": "The current frame_dwelling is eaves-front and therefore compresses the defining front-gable silhouette; canonical support is required.",
-      "assumption_note": "Shop-room use is an occasional variant and cannot be inferred merely from a deep footprint."
+      "canonical_archetype": "dwelling_frame", "required_variant": "deep_plan_eaves_front",
+      "key_geometry_parameters": {"footprint_ft": "18x28-24x34", "levels": "1", "eave_ft": "9-10", "ridge_ft": "17-21", "roof": "side gable, 7:12-10:12", "construction": "clapboard/board-mix frame", "variants": "deep plan behind a modest front; entry on the long front or in the gable end; optional shop room"},
+      "evidence_note": "REPAIRED 2026-09-21 (T-1497). This row asked for a front gable and no source reached supports one on a Chicago DWELLING before 1 July 1835: the only attestation of a gable end addressing a street here is the Gifford store row (gifford_tremont_house_no_1, tier 5, 1833-1839), which is commercial and party-walled and which C1-C3 already serve; the gable-front house as a style arrives with the Clarke House of 1836, which data/exclusions.json excludes by date; and the frontage pressure that turns a deep plan end-on does not exist on this plat, whose 226 committed lots run to a median frontage of 80.1 ft against this family's widest 24 ft front. The deep plan is kept and the front gable is withdrawn. frame_dwelling is this family's archetype, not a placeholder for one, and the eaves-front proportion tools/family_bands.py holds D5 inside is now this row's own rule rather than a compromise with a generator nobody wrote. The band is unchanged. See docs/RESEARCH/d5_gable_front_1835.md.",
+      "assumption_note": "Shop-room use is an occasional variant and cannot be inferred merely from a deep footprint. The depth is held to one-and-a-half times the front, which is the proportion an eaves-front roof can span without building the tall roof on a narrow face that frame_dwelling_params refuses; a deeper plan than that is a later form and not this one."
     },
     {
       "id": "D6", "label": "One-and-a-half-story cottage", "target_roofs": 29, "phase1_instantiated": 3, "remaining_roofs": 26, "priority_rank": 10, "priority_band": "P1",

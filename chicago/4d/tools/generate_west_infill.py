@@ -420,15 +420,20 @@ STREET_ADJUSTMENTS = {
     "west_rec_036": (-0.48, -0.57),  # Randolph Street, 0.6 m in
 }
 
-# west_rec_033 is a 20 x 32 ft D5 dwelling, and 32/20 is past the 1.5 at which
-# frame_dwelling_params refuses to build an eaves-front house on a front narrower than
-# its own range — "rotate the footprint or record the building as something else". The
-# footprint does not move: the same rectangle stands on the same ground, turned so that
-# the long side is the facade, which is what an 1835 eaves-front house is. Swapping the
-# two dimensions and turning the bearing a quarter circle is that statement and nothing
-# more. Frozen here rather than edited into the recipe, because the recipe is the
-# authored layout and this is the archetype's form rule applied to it.
-FACING_CORRECTIONS = {"west_rec_033"}
+# THE FACING CORRECTION IS GONE, AND SO IS THE FAULT IT COVERED (T-1497, 2026-09-21).
+# `west_rec_033` was a 20 x 32 ft D5 dwelling — 1.6, past the 1.5 at which
+# frame_dwelling_params refuses an eaves-front house on a front narrower than its own
+# range — and this module used to swap its two dimensions and turn the bearing a quarter
+# circle to get it through the archetype. That correction was the right shape of answer
+# to the wrong question: it treated a front-gable rectangle as a fact of the layout and
+# the eaves-front archetype as the limitation. The reading at
+# docs/RESEARCH/d5_gable_front_1835.md settles it the other way. No source reached
+# attests a Chicago dwelling gable-end to a street before 1 July 1835, so D5 is an
+# eaves-front family and its row now says so; the rectangle, not the archetype, was
+# wrong. The recipe re-authors the slot at 20 x 30 — two feet off the depth, the smaller
+# of the two moves the band permits, and the same repair T-1445 made to
+# `recon_1835_west_009` at the identical rectangle — and this generator now builds every
+# West Division slot from the recipe's own dimensions with nothing turned.
 
 # FIVE SLOTS STAY HELD, AND NOT FOR TERRAIN. The corporate boundary of 7 November 1833
 # resolves its west leg on Jefferson Street, whose committed centreline ends far south
@@ -468,9 +473,6 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
     center_n = float(row["center_local_enu_m"][1]) + dn
     width_ft, depth_ft = (float(v) for v in row["footprint_ft"])
     bearing = float(row["rotation_deg"])
-    if row["id"] in FACING_CORRECTIONS:
-        width_ft, depth_ft = depth_ft, width_ft
-        bearing -= 90.0
     width, depth = round(width_ft * .3048, 3), round(depth_ft * .3048, 3)
     local_e, local_n = footprint_origin(center_e, center_n, width, depth, bearing)
     family = row["family"]
@@ -482,11 +484,6 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                "placed it inside a platted street corridor; the move is well inside the "
                "±20 m uncertainty the recipe states for its own layout controls."
                if de or dn else "")
-    if row["id"] in FACING_CORRECTIONS:
-        setback += (" The rectangle the recipe gives stands where it gives it; its long "
-                    "side is read as the facade, because an 1835 dwelling is eaves-front "
-                    "and a front narrower than its own range would build the gable-front "
-                    "house of a later decade.")
     reconstruction = {
         "status": "inferred_anonymous", "family": family, "district": "west",
         "inventory_class": row["inventory_class"], "programme_phase": PROGRAMME_PHASE,

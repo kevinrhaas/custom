@@ -2893,12 +2893,20 @@ corridor that still passes every other gate; the largest move in the release is 
 recipe states for its own coordinates, so no slot leaves its allocated block. The shifts are
 frozen constants in `tools/generate_west_infill.py`, not a search run at generation time,
 because a placement that moves when an unrelated gate changes is not reproducible.
-**One roof was turned, and only turned.** `recon_1835_west_033` is a 20 × 32 ft D5 dwelling,
-and 32/20 is past the ratio at which `frame_dwelling_params` refuses to build an eaves-front
-house — a front narrower than its own range would produce the gable-front house of a later
-decade. The rectangle the recipe gives stands exactly where it gives it, on the same ground, with
-its long side read as the facade. Nothing about the building moved; which of its faces is called
-the front did.
+**One roof was turned, and only turned — and the turn was withdrawn on 2026-09-21 (T-1497).**
+`recon_1835_west_033` was a 20 × 32 ft D5 dwelling, and 32/20 is past the ratio at which
+`frame_dwelling_params` refuses to build an eaves-front house. This release read that as a
+limit of the archetype and turned the rectangle a quarter circle, long side to the front, so
+that nothing about the building moved and only which of its faces was called the front did.
+T-1497 asked the prior question — whether the deep-plan gable-front cottage stood in this town
+at all — and answered no: no source reached attests a Chicago *dwelling* gable-end to a street
+before 1 July 1835, the only gable fronts attested here are the Gifford store row's, and the
+plat's 80 ft median lot frontage removes the one non-stylistic reason to turn a house. So the
+rectangle was wrong, not the archetype. D5's crosswalk row is repaired to the eaves-front
+family its 32 standing roofs already were, the recipe re-authors the slot at 20 × 30 — two feet
+off the depth, the smaller of the two moves the band permits, and the same repair T-1445 made
+to `recon_1835_west_009` at the identical rectangle — and `generate_west_infill.py` no longer
+turns anything. See `docs/RESEARCH/d5_gable_front_1835.md`.
 **What the release did NOT settle.** The recipe's fourth terrain rule deferred a reading of the
 two conjectural west-prairie swales to "after the west terrain extension". T-1444 took it, and it
 does not say what the rule assumed — see T-1460. Both invented alignments now begin in open
