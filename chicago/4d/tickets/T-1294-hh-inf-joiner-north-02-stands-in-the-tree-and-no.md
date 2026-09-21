@@ -1,7 +1,7 @@
 ---
 id: T-1294
 title: hh_inf_joiner_north_02 stands in the tree and no pass derives it: the register deal seats four roofs where its own docstring says five, and J. W. Reed's household is owned by nobody
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1616
 claimed_by: run 9/21/2026, 3:24:04 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T09:14:19.649Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35577446868
 ---
 
