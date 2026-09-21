@@ -88,12 +88,20 @@ SKIP_DIRS = {".git", "node_modules", "site", "assets", "renderers/web/vendor"}
 #   * A FIXTURE. `execute_roof_redeal.py`'s self-test and docstring use
 #     `recon_1835_south_c1_003` as the worked example of an id that moves. A fixture id
 #     is an argument to a function, not a claim that a record exists.
+#   * PROSE ABOUT THE RENAME ITSELF. The west recipe's `redealt` block and the
+#     changelog both explain the migration by naming the id that moved and the id it
+#     moved to. Rewriting the first half of "`..._c1_003` becomes `..._d1_003`" makes
+#     the sentence say nothing. The west recipe's copy is re-derived by
+#     `execute_roof_redeal.py --apply` in any case, so a rewrite here would not survive
+#     the next run of it.
 #   * THIS FILE, for the same reason.
 KEEPS_THE_OLD_NAME = (
     "renderers/unreal/receipts/",
     "docs/unreal/prototype/import_report.json.txt",
     "tools/execute_roof_redeal.py",
     "tools/migrate_roof_ids.py",
+    "data/reconstruction/1835_phase2_west_wolf_point_approaches.json",
+    "renderers/web/js/changelog.js",
 )
 REDERIVED = (
     "data/reconstruction/1835_roof_redeal.json",
@@ -195,7 +203,13 @@ def read_utf8(path: Path) -> str | None:
 
 
 def names_of(ids: list[str]) -> dict[str, list[str]]:
-    """Which committed files name each id today, a record's own file excluded."""
+    """Which committed files name each id today, a record's own file excluded.
+
+    An empty list returns an empty answer rather than an alternation of nothing, which
+    is a regex that matches at every position in every file.
+    """
+    if not ids:
+        return {}
     pattern = re.compile("|".join(re.escape(i) for i in ids))
     found: dict[str, list[str]] = {i: [] for i in ids}
     for path in text_files():
@@ -290,6 +304,15 @@ def move_files(plan: list[dict]) -> list[str]:
 def apply() -> int:
     parcel = load(PARCEL)
     plan = moves(parcel)
+    if not plan:
+        # And this is the ordinary state once the migration has run, not an error. The
+        # adjudication is re-derived over the town as it stands: carry a verdict out and
+        # the roof conforms, so the next re-derivation returns `keep` and there is
+        # nothing outstanding to carry. `--check` reads the committed migration ledger,
+        # which is what holds the record of what happened.
+        print("no outstanding phase-one South refamily verdict carries an id that "
+              "moves — nothing to migrate")
+        return 0
     named = names_of([m["from"] for m in plan])
     dump(PARCEL, refamily(parcel, plan))
     moved_files = move_files(plan)

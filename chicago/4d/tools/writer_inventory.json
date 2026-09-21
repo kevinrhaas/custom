@@ -292,14 +292,14 @@
       "write_mode": "bare",
       "measured": "2026-09-20",
       "finding": "Reproduces, and the perturbation test tells idempotence from inertia. Run BARE on a clean tree it rewrote data/traces/vectors/north_division_tier_lots.json and `git status` came back empty; block 1's committed depth was then bent from 131.33 m to 999, `--check` went red (\"STALE ... not what tools/cut_north_division_tier.py re-derives\"), a bare run re-derived the file and `git status` came back empty again. Its only output is that one file; it reads data/traces/thompson_north_division_streets.json, data/streets/1835.json, data/traces/street_control.json and the committed heightfield, and writes none of them.",
-      "placed": "not yet \u2014 measured to reproduce, and its inputs are all committed readings rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is still the ordering pass's call and not this ticket's."
+      "placed": "not yet — measured to reproduce, and its inputs are all committed readings rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is still the ordering pass's call and not this ticket's."
     },
     "cut_school_section_tier.py": {
       "placement": "pending",
       "write_mode": "bare",
       "measured": "2026-09-20",
       "finding": "Reproduces, and the perturbation test tells idempotence from inertia. Run BARE on a clean tree it rewrote data/traces/vectors/school_section_tier_lots.json and `git status` came back empty; block 24's first lot frontage was then bent from 30.14 m to 999, `--check` went red (\"STALE ... not what tools/cut_school_section_tier.py re-derives\"), a bare run re-derived the file and `git status` came back empty again. Its only output is that one file; it reads data/traces/vectors/school_section_blocks_1834.json, data/research/land_sales/entries.json, data/traces/vectors/school_section_tier_skew_1834.json and the committed heightfield, and writes none of them.",
-      "placed": "not yet \u2014 measured to reproduce, and every input it reads is a committed reading rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is the ordering pass's call and not this ticket's."
+      "placed": "not yet — measured to reproduce, and every input it reads is a committed reading rather than anything a later stage writes, so it has no ordering hazard of its own; placing it is the ordering pass's call and not this ticket's."
     },
     "date_norris_1844_businesses.py": {
       "placement": "manifest",
@@ -602,6 +602,12 @@
       "write_mode": null,
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
+    "migrate_roof_ids.py": {
+      "placement": "not_derivable",
+      "write_mode": "--apply",
+      "measured": "2026-09-21",
+      "finding": "Does NOT reproduce, and by design: `--apply` is a one-shot migration, not a re-derivation. Run on the committed tree it wrote nothing in 0s and said so — the adjudication it reads is itself re-derived, so a verdict carried out returns `keep` and the work list is empty. Perturbed (the recipe and the eleven records reverted to their pre-migration state) it rewrote the committed output exactly, which is what T-1494 shipped. It is kept out of the manifest deliberately: rederive.mjs re-running a migration every lap is the one thing this tool must never be asked to do. tools/migrate_roof_ids.py --check is what holds its output, and it is gated."
     },
     "mint_civic_residents.py": {
       "placement": "manifest",
@@ -958,13 +964,6 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
-    "reprogramme_roofs_1835.py": {
-      "placement": "pending",
-      "write_mode": "--build",
-      "measured": "2026-09-20",
-      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia \u2014 A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
-      "placed": "not yet \u2014 measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
-    },
     "reconstruct_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--group <group> --build",
@@ -1091,6 +1090,13 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "reprogramme_roofs_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia — A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
+      "placed": "not yet — measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
+    },
     "research_domains.py": {
       "placement": "manifest",
       "write_mode": "--build",
@@ -1158,6 +1164,12 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "seat_reconstructed_trades_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after — not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one."
     },
     "seat_wabansia_streets.py": {
       "placement": "manifest",
@@ -1307,37 +1319,31 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
-    "seat_reconstructed_trades_1835.py": {
-   "placement": "pending",
-   "write_mode": "--build",
-   "measured": "2026-09-20",
-   "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one."
-  },
-    "staffing_mint_order_1835.py": {
-      "placement": "pending",
-      "write_mode": "--build",
-      "measured": "2026-09-20",
-      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_staffing_mint_order.json and nothing else, and `git status --porcelain` was otherwise identical before and after \u2014 not one committed byte moved, no person card was touched and no bucket's `filled` changed. T-1448. PENDING rather than manifest for the reason its two siblings staff_businesses_1835.py and seat_reconstructed_trades_1835.py are: it reads the compiled business layer, the staffing model and the order book and writes an adjudication beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one."
-    },
-  "staff_the_houses_1835.py": {
-      "placement": "pending",
-      "write_mode": "--build",
-      "measured": "2026-09-20",
-      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_business_staff_overlay.json and nothing else, and `git status --porcelain` was identical before and after \u2014 not one committed byte moved, no person was written, no business was raised and no seat was invented. T-1462. PENDING rather than manifest for the reason its three siblings staff_businesses_1835.py, seat_reconstructed_trades_1835.py and staffing_mint_order_1835.py are: it reads the reconstructed seating, the staffing model and T-1422's ruling and writes an overlay beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one. What is already known about that slot: it has to run BEFORE compile_businesses.py, which reads what it writes."
-    },
-  "staff_businesses_1835.py": {
+    "staff_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
       "finding": "Reproduces: `--build` on a clean tree rewrote persons[].workplaces across 109 household records and data/reconstruction/1835_staffing_join.json, and `git status --porcelain` was identical before and after — not one committed byte moved. T-1432. PENDING rather than manifest because its slot is an ordering question this run did not measure: it reads the compiled business layer and writes INTO the resident layer, so it has to sit after compile_businesses.py and after every mint, and the manifest's dependency order is a measured pass of its own."
     },
+    "staff_the_houses_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_business_staff_overlay.json and nothing else, and `git status --porcelain` was identical before and after — not one committed byte moved, no person was written, no business was raised and no seat was invented. T-1462. PENDING rather than manifest for the reason its three siblings staff_businesses_1835.py, seat_reconstructed_trades_1835.py and staffing_mint_order_1835.py are: it reads the reconstructed seating, the staffing model and T-1422's ruling and writes an overlay beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one. What is already known about that slot: it has to run BEFORE compile_businesses.py, which reads what it writes."
+    },
+    "staffing_mint_order_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/reconstruction/1835_staffing_mint_order.json and nothing else, and `git status --porcelain` was otherwise identical before and after — not one committed byte moved, no person card was touched and no bucket's `filled` changed. T-1448. PENDING rather than manifest for the reason its two siblings staff_businesses_1835.py and seat_reconstructed_trades_1835.py are: it reads the compiled business layer, the staffing model and the order book and writes an adjudication beside them, so its slot in the re-derivation order is a question a measured pass of the manifest owns rather than this one."
+    },
     "substitute_reconstruction.py": {
       "placement": "not_a_writer",
       "write_mode": "(none declared)",
       "measured": "2026-09-20",
-      "finding": "Not a writer, and deliberately cannot become one: it reads what a new attested record would retire and prints the plan. Run BARE it printed the substitutable population and the liberty re-count, exited 0, and `git status --porcelain` was identical before and after \u2014 not one byte moved. There is no write mode to measure because there is no --build beside the dry run: a retirement runs through the retired record's OWN generator (reconstruct_businesses_1835.py, reconstruct_trade_households.py), which re-derives a whole population from the order book, and a second tool deleting one record would put the layer off the fixed point this gate holds it to. T-1441."
+      "finding": "Not a writer, and deliberately cannot become one: it reads what a new attested record would retire and prints the plan. Run BARE it printed the substitutable population and the liberty re-count, exited 0, and `git status --porcelain` was identical before and after — not one byte moved. There is no write mode to measure because there is no --build beside the dry run: a retirement runs through the retired record's OWN generator (reconstruct_businesses_1835.py, reconstruct_trade_households.py), which re-derives a whole population from the order book, and a second tool deleting one record would put the layer off the fixed point this gate holds it to. T-1441."
     },
-  "supersede_arrival.py": {
+    "supersede_arrival.py": {
       "placement": "not_a_writer",
       "write_mode": "(none declared)",
       "measured": "2026-09-19",
