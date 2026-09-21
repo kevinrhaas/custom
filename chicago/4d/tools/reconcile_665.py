@@ -147,6 +147,15 @@ UNSCHEDULED_PLATS = {
                           "tract's own name and platter are still unsettled (T-1080)"),
     "wabansia": ("data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one "
                  "unplaced household in the whole survey"),
+    # T-1455. The West Division's own grid, and it is unscheduled for a different reason
+    # from the two above: this district is not short of evidence, it is already spoken
+    # for. `west_wolf_point_outer` holds the West recipe's remaining reviewed placements
+    # and T-1444 is the open ticket that instantiates them; dealing this district's
+    # remainder onto new lot lines would bid against placements already written. And the
+    # density is not measured here either — see the block comment in `programme_document`.
+    "west_division": ("data/reconstruction/1835_phase2_west_wolf_point_approaches.json, "
+                      "whose reviewed placements already hold this district's remainder, "
+                      "with T-1444 open to instantiate them"),
 }
 
 
@@ -846,6 +855,11 @@ DIVISION_BY_PLAT = {
     "kinzies_addition": "north",
     "michigan_st_tract": "north",
     "wabansia": "west",
+    # T-1455. The easting test would read these nine cells `west` and be right, but for
+    # the reason the docstring gives below it would be right by arithmetic rather than by
+    # evidence. This grid is the West Division — the sheet's own name for the ground it
+    # reads — so the survey answers instead of the origin.
+    "west_division": "west",
 }
 
 
@@ -1120,6 +1134,19 @@ def programme_document():
         # would put a density nothing measured onto a survey nobody is recorded on, and
         # move the 665 target's district split on the strength of it. What the seats are
         # worth is T-1198's and T-1199's question, with the placement policy behind it.
+        # T-1455. AND THE WEST DIVISION'S OWN GRID JOINS THEM, for a reason of its own.
+        # Its nine cut cells arrived with the lot lines three of them print figures for,
+        # and dealt on the Original Town's units-per-lot they proposed 136 roofs into a
+        # West Division whose whole remainder is 87 — refused, and rightly. Twice over
+        # again. `ROW_UNITS_PER_LOT` is a density read off Original Town lots, which are
+        # four to a ~320 ft face with an east-west alley; the West Division lot is 75 3/5
+        # ft on the front and 180 ft deep in two columns backing onto a north-south one
+        # (data/traces/thompson_west_division_lots.json § the_west_division_block), a
+        # different arrangement and not a density anybody has measured on it. And this
+        # district's remainder is not unspoken for: `west_wolf_point_outer` below holds
+        # the West recipe's reviewed placements, T-1444 is the open ticket that releases
+        # them onto the extended ground, and T-1207/T-1208 are the tickets that seat the
+        # West Division's own households. Ground carried, headroom withheld.
         if block["grid"] in UNSCHEDULED_PLATS:
             unit["kind"] = "platted_block_unscheduled"
             unit["state"] = "gated"

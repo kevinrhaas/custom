@@ -1185,7 +1185,7 @@ def adopted_line(block: dict, face: dict, adopts: list[str], records: list[dict]
         raise SystemExit(f"{block['block_id']}: the records the run adopts do not stand "
                          f"on one line — " + ", ".join(f"{k} at {v:.3f} m"
                                                        for k, v in sorted(walls.items())))
-    return round(sum(walls.values()) / len(walls), 3)
+    return round(math.fsum(walls.values()) / len(walls), 3)
 
 
 def check_frontage(block: dict, face: dict, strip: dict, records: list[dict],

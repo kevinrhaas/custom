@@ -105,3 +105,18 @@ reason a run can act on.
 
 **Links:** T-1302 (built this gate; PR #1470) · T-1179 (the ordering finding) · T-1447 (a
 figure nobody measured) · PR #1560 · `tools/derived_manifest.json` `_a_writer_belongs_here`.
+
+**Re-measured 2026-09-20, and the gap has GROWN.** `audit_manifest_coverage.mjs` now reports
+**218 gated tools** and accounts for 215 of them: 152 in the manifest, 25 measured and not
+yet placed, 15 that cannot rebuild, 23 that write nothing. Three are unaccounted, up from
+the two in this ticket's title. The audit still says `OK`, which is the fault — it prints a
+total and a breakdown that do not reconcile and passes anyway. The sum is the assertion.
+
+**The placement gap is the expensive half.** Three gated writers outside the manifest bit in
+one evening: `complete_inwindow_trades.py` must run BEFORE `rederive.mjs --run` and
+`reprogramme_roofs_1835.py` after it, with nothing sequencing either; and
+`employment_coverage_1835.py` was left stale by T-1463's re-cut, so the gate read fifteen
+people carrying no employment answer and the red was found by CI rather than by the
+manifest. A fourth ordering fault sits in the manifest itself — step 154,
+`rebuild_closing_set.py --build`, refuses unless the published mirror exists, and
+`rederive.mjs --run` does not publish, so a bare manifest run cannot complete.

@@ -855,7 +855,12 @@ def cross_checks(polys, tracts):
     # assumed, and a plat that arrives without a ring here is a failure and not a skip.
     GRID_RING = {"original_town": "canal_commissioners_1830",
                  "kinzies_addition": "kinzies_addition",
-                 "wabansia": "wabansia"}
+                 "wabansia": "wabansia",
+                 # T-1455. The West Division is the same 1830 plat as the Original Town —
+                 # Thompson drew both sides of the river on one sheet — so it is tested
+                 # against the same ring. It is a separate GRID because its block is a
+                 # different block, not because it is a separate survey.
+                 "west_division": "canal_commissioners_1830"}
     # A PLAT THIS LAYER HOLDS NO POLYGON FOR IS NAMED, NOT SKIPPED. The test above is
     # "does a block fall inside its own plat", and it cannot be asked of a plat whose
     # bounds are not committed anywhere — the Michigan Street tract is seated in the lot

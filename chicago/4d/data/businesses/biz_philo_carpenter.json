@@ -74,8 +74,60 @@
     }
   ],
   "partners": [],
-  "staff": [],
-  "staffing": null,
+  "staff": [
+    {
+      "name": "Orrin Dickinson",
+      "person_id": "rc_dickinson_orrin",
+      "role": "clerk",
+      "occupation": "clerk",
+      "tier": "reconstructed",
+      "basis": "The staffing model puts 1 of this role in a drug store at the typical band and 1 at the high end, on directory_1839. 13 druggists in 1839 and the commerce clerk share over them. The druggist's clerk is often reading medicine, which is why he boards in the house. This person is a reconstructed resident of the trade with no workplace of their own; the house is one the business layer already holds, and this row points at it rather than raising anything. Seated by tools/seat_reconstructed_trades_1835.py (T-1433) off 1835_business_staffing_model#drug_store.clerk; carried onto this record by tools/staff_the_houses_1835.py (T-1462).",
+      "seed": "rc_dickinson_orrin:employment",
+      "replaceable_by": "a source naming where this person worked, which retires the draw"
+    }
+  ],
+  "staffing": {
+    "class": "drug_store",
+    "reads_as": "a drug store",
+    "principal_role": null,
+    "principal_is": null,
+    "hands": [
+      {
+        "role": "clerk",
+        "occupation": "clerk",
+        "household_relationship": "clerk",
+        "count_low": 0,
+        "count_typical": 1,
+        "count_high": 1,
+        "seats_drawn": 1,
+        "drawn": true,
+        "basis": "directory_1839"
+      }
+    ],
+    "writes_no_person": true,
+    "basis": "the 1835 business staffing model's band for this class, with the reconstructed seats T-1433 put in this house marked drawn",
+    "replaceable_by": "a source naming the hands of this house, which retires every reconstructed seat it covers",
+    "shortfall": {
+      "typical_wanted": 1,
+      "seats_taken": 1,
+      "seats_against_the_band": 1,
+      "short_by": 0,
+      "by_role": [
+        {
+          "occupation": "clerk",
+          "household_relationship": "clerk",
+          "count_low": 0,
+          "count_typical": 1,
+          "count_high": 1,
+          "seats_drawn": 1,
+          "short_by": 0
+        }
+      ],
+      "statement": "The staffing model puts 1 hand(s) about this kind of house at its typical band and this house carries 1. It is at its band.",
+      "counted_here": "the reconstructed hands this overlay seats. A hand a SOURCE names carries its own citation in staff[] and is counted by the attested join, not by this.",
+      "replaceable_by": "a source naming a hand at this house, which retires the seat it replaces, or the mint T-1448 ordered, which draws the rest"
+    }
+  },
   "locations": [
     {
       "kind": "premises",

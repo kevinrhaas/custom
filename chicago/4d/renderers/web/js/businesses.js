@@ -607,12 +607,52 @@ export async function mountBusinesses({
     const name = p.person_id && onPerson
       ? `<button type="button" class="link biz-person" data-person="${escapeHtml(p.person_id)}">${escapeHtml(p.name || p.person_id)}</button>`
       : `<b>${escapeHtml(p.name || 'unnamed')}</b>`;
+    // THE STANDING AND THE TRADE ARE TWO WORDS AND THE CARD PRINTS BOTH (T-1462). `role`
+    // is what this person IS at the house — a journeyman, a servant, a clerk — and
+    // `occupation` is the trade they work there. One without the other reads as half a
+    // row: "journeyman" of what, or "baker" on whose account.
+    const trade = p.occupation && p.occupation !== p.role
+      ? ` <span class="biz-role">${escapeHtml(words(p.occupation))}</span>` : '';
+    // A DRAWN HAND SAYS IT WAS DRAWN, and hands a reader the seed that drew it. The
+    // grade dot alone is a claim; the seed is what makes it unpickable, which is the
+    // same bargain "Why this house is here" strikes for a reconstructed firm.
+    const seed = p.tier === 'reconstructed' && p.seed
+      ? `<span class="biz-drawn" title="${escapeHtml(p.replaceable_by || 'a source naming who worked here')}">drawn · <code>${escapeHtml(p.seed)}</code></span>`
+      : '';
     return `<li><i class="grade-dot grade-${escapeHtml(p.tier || 'inferred')}" title="${escapeHtml(p.tier || '')}"></i>
-      ${name} <span class="biz-role">${escapeHtml(words(p.role || 'proprietor'))}</span>${dates}${
-      p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}${
+      ${name} <span class="biz-role">${escapeHtml(words(p.role || 'proprietor'))}</span>${trade}${dates}${
+      p.person_id ? '' : '<span class="person-mark mark-unplaceable" title="The register prints this name and the resident layer holds no card for it">no town card</span>'}${seed}${
       (p.also_printed_as || []).length
         ? `<span class="biz-styles" title="The same person, printed another way in the same papers">also printed ${
           p.also_printed_as.map((s) => escapeHtml(s)).join(', ')}</span>` : ''}</li>`;
+  }
+
+  /** WHO WORKED THERE, AND WHAT THE HOUSE STILL WANTS (T-1462). The keepers are the
+   *  register's own reading and they have their own heading above; this is the other
+   *  half of the house — the hands a source names, and the hands T-1433's seating drew
+   *  where the town had a person of the trade and nowhere to follow it.
+   *
+   *  THE SHORTFALL PRINTS WHETHER OR NOT ANYBODY IS SEATED, and that is the point of it.
+   *  A house carrying one of the two hands its class wants and a house carrying both
+   *  printed exactly the same card until this block: a reader had to hold the staffing
+   *  model in their head and subtract. Now the house says it, in the model's own numbers
+   *  and in a sentence, and an undrawn hand names who would have to print one first. */
+  function staffingHtml(staff, block) {
+    if (!staff.length && !block) return '';
+    const short = block && block.shortfall;
+    const undrawn = ((block && block.hands) || []).filter((h) => !h.drawn);
+    return `<h4 class="people-card-h">Who worked there</h4>
+      ${staff.length
+    ? `<ul class="biz-people">${staff.map(personHtml).join('')}</ul>`
+    : '<p class="legend-note">No hand of this house is named or seated.</p>'}
+      ${short ? `<p class="legend-note biz-shortfall${short.short_by > 0 ? ' biz-short' : ''}">${
+    escapeHtml(short.statement)}</p>` : ''}
+      ${undrawn.length
+    ? `<ul class="biz-claims">${undrawn.map((h) => `<li>${
+      escapeHtml(words(h.occupation || h.role))} <span class="biz-role">${
+      escapeHtml(words(h.household_relationship))}</span> — ${
+      escapeHtml(h.why_not_drawn || 'nobody has named one')}</li>`).join('')}</ul>`
+    : ''}`;
   }
 
   /** What community the house is read as, and the whole of what it was read off.
@@ -656,11 +696,16 @@ export async function mountBusinesses({
   }
 
   function recordHtml(rec, row) {
+    // THE KEEPERS AND THE HANDS ARE TWO READINGS AND THE CARD KEEPS THEM APART (T-1462).
+    // A proprietor is what the paper printed; a hand is what a later source attested or
+    // what the staffing model seated. Folding all three lists into one "Who kept it"
+    // made a drawn journeyman read like a named owner at a glance, which is exactly the
+    // conflation the grade dot exists to prevent.
     const people = [
       ...(rec.proprietors || []).map((p) => ({ ...p, role: p.role || 'proprietor' })),
       ...(rec.partners || []).map((p) => ({ ...p, role: p.role || 'partner' })),
-      ...(rec.staff || []).map((p) => ({ ...p, role: p.role || 'staff' })),
     ];
+    const staff = (rec.staff || []).map((p) => ({ ...p, role: p.role || 'staff' }));
     const liberties = Object.entries(rec.liberties || {}).filter(([, on]) => on);
     const ev = rec.evidence || {};
     return [
@@ -668,6 +713,7 @@ export async function mountBusinesses({
         ? `<h4 class="people-card-h">Who kept it</h4><ul class="biz-people">${people.map(personHtml).join('')}</ul>`
         : '<h4 class="people-card-h">Who kept it</h4><p class="legend-note">The printings name nobody. '
           + 'A house with no keeper on its record is a reading about the register, not about the town.</p>',
+      staffingHtml(staff, rec.staffing),
       communityHtml(rec.proprietor_community),
       `<h4 class="people-card-h">Where it stood</h4><ul class="biz-locs">${
         (rec.locations || []).map(locationHtml).join('') || '<li class="legend-note">No location on the record.</li>'}</ul>`,

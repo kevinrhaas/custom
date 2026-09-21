@@ -12874,21 +12874,31 @@ likeliest), and the stage picks none. Nothing was reduced to fit.
 Related: tickets **T-1349**, from **T-1176** and **T-1167**; **T-1348** is the officers' half of
 the same parent; **L247** is the stage above it in the programme. **Recorded:** 2026-09-19.
 
-### L252 — Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept
+### L252 — Forty-seven people are put to bed in houses that had the beds, and forty-seven the town already counts are told where they slept
 
 **Decision:** `tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night
 capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each
-is an invention of a different size. (1) It **seats seventeen people the layer already
-holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew
-at a household size of one — into a named or reconstructed lodging house, writing
+is an invention of a different size. (1) It **seats forty-seven people the layer already
+holds** — the heads T-1171 drew as `solitary` and those T-1173 drew at a household size of
+one — into a named or reconstructed lodging house, writing
 `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints
-seventy of them as boarders and lodgers** nobody names, drawn against the order book's own
+forty-two of them as boarders and lodgers** nobody names, drawn against the order book's own
 `household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this
 programme itself raised as a lodging place, at the trade that roof's own `function`
 states. Nothing is hand-authored: every value comes from a seed a reader can retype, and
 `--check` re-derives all twelve cards and the ledger byte for byte.
 
-**Scope:** `residents.persons[lodgers]` — 75 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
+**Scope:** `residents.persons[lodgers]` — 47 people in 12 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. The forty-seven of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life.
+
+**The liberty SHRANK on 2026-09-20, and the reason is worth keeping (T-1171).** It stood at
+75 minted against 17 seated. `reconstruct_modelled_families.py` had been refusing 822
+households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated in
+`data/reconstruction/1835_presence_rulings.json`; once this stage reads that file the model
+draws 30 more of the town's own named men as living alone, and `seat_lodgers_1835.py` puts
+THEM in the beds it would otherwise have invented somebody for. Twenty-eight invented people
+are gone and twenty-eight real ones sleep in their place. The beds did not move — 94 of 135
+ordinary-night beds are filled either way — only the question of who is in them, and this is
+the direction that question is supposed to travel.
 
 **Why:** because T-1370 counted 135 ordinary-night beds across those fifteen houses and
 found thirty people in them — eight keepers and their families, and not one boarder. The
@@ -13851,3 +13861,67 @@ parent audit **T-1197**, the roof programme **T-1196**, the order book **T-1166*
 placement policy **T-1195**; the twenty-six verdicts whose record id carries its family,
 and whose execution is therefore an id migration across the derived layer, are **T-1452**.
 **Recorded:** 2026-09-20.
+
+### L266 — The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 69 roofs that are not framed
+
+**Scope:** `structures.phases[log_or_fort_archetype]` — 69 phases: 55 log dwellings and
+14 fort structures. Nothing about their geometry, their roof type,
+their pitch or their weathering moves. This entry is about one thing: which of the two
+coverings this project can argue each of those roofs is drawn on.
+
+**Decision:** `generators/common/materials.py`'s `roof_substrate()` deals the `shingle`
+substrate to every roofed building that is not an outbuilding. For the 195 framed roofs
+that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 69
+it is a claim, and this is the claim.
+
+**What §2.2 actually grades, and where it stops.** It grades a shingled covering
+**attested** on the North Side school of 1833 — *"a frame building twenty-six by
+thirty-eight feet; twelve-foot posts; sheeted and shingled roof"* — and **inferred** as
+*the ordinary covering of a framed building here*. The second half of that sentence says
+**framed**. A log cabin is not a framed building, and the fort's eight garrison kinds are
+not all framed either. So the rule reaches these 69 roofs by an argument and not by the
+grading, and the argument is set out here rather than left implicit in a selector.
+
+**The argument.** The two coverings this project can argue split on **what a roof is for**,
+not on what the walls beneath it are made of. The board roof is argued — by
+`generators/archetypes/outbuilding.py`, which §2.2 grades on — as the covering of a
+**shed**: *"a shingle field on an outbuilding would be claiming a finish."* A privy, a
+stable, a wagon shed and a smokehouse are roofed to keep rain off a thing. A log cabin is
+a **dwelling**: it carries a family through a Chicago winter, and it meets the same demand
+the framed dwelling's roof meets, at the same cost to whoever built it. The fort's
+garrison buildings are quarters, a magazine, a storehouse and a guardhouse — buildings the
+United States Army roofed to keep, not sheds. Reading the split as wall-fabric rather than
+purpose would put a shed's covering on fifty-five homes because their walls were cheap, which
+is a claim in the other direction and a worse one.
+
+**Which way it is wrong if it is wrong.** Toward a town that reads slightly better built
+than it was. If a share of the 1835 cabins were roofed with riven clapboards weighted
+under poles rather than with a nailed shingle field — a covering this project holds no
+source for at all, and therefore has no row for — then those roofs are drawn with a finer
+and more regular rhythm than they had. The error is bounded and visible: it is one
+substrate row on 69 roofs, and every one of them is reachable through this scope line.
+
+**What is NOT claimed.** No exposure — that is **L263**, taken separately and on the
+owner's ruling of 2026-09-20. No weathering: `roof_finish()` grades the roof's condition
+from the 218 records that state one and this entry does not touch it. No colour: no
+substrate owns one (§1.1). And no confidence moves — a covering dealt by rule does not
+make a roof better attested, and every one of these 69 phases keeps the grade it had.
+
+**What would discharge it:** a source stating the covering of any log building or any Fort
+Dearborn building of the period. It is one membership test in one frozenset; nothing else
+has to move when it arrives.
+
+**Related:** **L263** (the exposure, and the ruling that took it), **L264** (the brick
+course, taken the same day and still unwired), T-1487 (this parcel), T-1488 (the relief
+binding that makes it visible), T-1465 (the parent ask), T-1450 (the vendored maps),
+`docs/RESEARCH/materials.md` §2.2 and §3.1.
+
+**Recorded:** 2026-09-20.
+
+**The count moved on 2026-09-21, and it moved for a reason this entry expects (T-1444).**
+It stood at 63 — 49 log dwellings and 14 fort structures — against 182 framed roofs. The
+West Division release instantiated its held slots and six of them are log cabins, so the
+liberty now reaches **69**, and the framed population it is measured against is **195**.
+The argument is untouched: it was never about how many roofs there are, and the scope line
+is counted off the records' own `archetype` precisely so a release like this one restates
+it rather than leaving the entry saying what it reached the day it was written.

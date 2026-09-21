@@ -32,6 +32,7 @@
 import * as THREE from 'three';
 import { enuToWorld, bearingToYaw, toFloatAttribute } from './terrain.js';
 import { dealTones, toneFor, toneFactors, NEUTRAL_TONE } from './facades.js';
+import { loadRoofRelief } from './roof-relief.js';
 
 /** Walk up until something claims a structure_id. Returns null if nothing does. */
 export function structureIdOf(object) {
@@ -215,10 +216,14 @@ function albedoAttribute(base, factors, count) {
  * substituted into `<roughnessmap_fragment>` by hand.
  *
  * A material with a `roughnessMap` would break the substitution — the chunk it
- * replaces multiplies the map's green channel in. Nothing in this dataset ships
- * one (R-W2a: 1,353 material slots, zero textures of any kind), the batch key
- * still separates on `roughnessMap`, and `PER_VERTEX_ROUGHNESS` refuses to
- * install itself on a material that has one rather than silently dropping it.
+ * replaces multiplies the map's green channel in. No ASSET ships one (R-W2a:
+ * 1,353 material slots, zero textures of any kind) and none is expected to, but
+ * since T-1488 the RENDERER binds one to the two roof coverings, so the refusal
+ * below is live rather than theoretical: a roof batch reads its roughness from
+ * the shared uniform. That is only sound because the sheet deals exactly one
+ * roughness per covering, which `roof-relief.js` re-checks as it binds and
+ * reports if it ever stops being true. The batch key still separates on
+ * `roughnessMap`, so a mapped material can never merge with an unmapped one.
  */
 function roughnessAttribute(material, count) {
   const r = typeof material?.roughness === 'number' ? material.roughness : 1;
@@ -297,9 +302,13 @@ function perVertexRoughness(material) {
  * altogether; nothing in the dataset uses two roughness values closer than 0.01
  * on purpose, which is why the quantisation was safe while it lasted.)
  *
- * `roughnessMap` stays in the key even though no asset in this dataset carries
- * one, because `perVertexRoughness` cannot substitute for a chunk that samples
- * a texture — so a mapped material must not be merged with an unmapped one.
+ * `roughnessMap` stays in the key because `perVertexRoughness` cannot substitute
+ * for a chunk that samples a texture — so a mapped material must not be merged
+ * with an unmapped one. It was a precaution against an asset that might one day
+ * carry a map; since T-1488 it is what SEPARATES the town's three batches, and
+ * `normalMap` and `aoMap` beside it do the same work. Two roof coverings, two
+ * shared texture pairs, two extra batches for 369 roofs — measured in
+ * `tickets/T-1488-*.md` at the critic stations.
  */
 function materialKey(m) {
   const near = (v) => (typeof v === 'number' ? v.toFixed(3) : '-');
@@ -335,6 +344,17 @@ export async function createBuildings({ registry, confidence, terrain, checkpoin
    * `placement`, so it needs no GLB and no batch, and it is the same answer on
    * every load — see `facades.js` § the repulsion pass.
    */
+  /**
+   * The two roof coverings' relief maps, loaded once for the whole town
+   * (T-1488). It has to be in hand BEFORE the load loop, because `apply()` runs
+   * on every material before `materialKey()` reads it — that is what puts the
+   * shingled roofs in one batch of their own rather than leaving them in the
+   * town's untextured one. A load that fails degrades to today's flat roofs and
+   * reports itself; see roof-relief.js.
+   */
+  const relief = await loadRoofRelief();
+  if (relief.problem) problems.push(relief.problem);
+
   const dealt = dealTones([...registry.values()]
     // Only what will actually be drawn: a record with no GLB stands in nobody's
     // neighbourhood, and letting it hold a tone clear would move a wall a
@@ -384,6 +404,10 @@ export async function createBuildings({ registry, confidence, terrain, checkpoin
     for (const { mesh, matrix } of meshes) {
       const label = `${record.id}/${mesh.name || 'mesh'}`;
       const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+      // Before the key is taken, and only ever by name — T-1488 and
+      // docs/GLB-CONTRACT.md § Roof coverings.
+      const reliefWarning = relief.apply(material);
+      if (reliefWarning) problems.push(`${label}: ${reliefWarning}`);
       let prepared;
       try {
         prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label, tone);

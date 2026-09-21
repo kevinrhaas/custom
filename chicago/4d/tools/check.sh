@@ -355,6 +355,28 @@ step "no committed list carries the same id twice" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/check_unique_ids.py --self-test
 
+# NO DERIVED FIGURE HAS ITS LAST DIGIT DECIDED BY ACCUMULATION ORDER (T-1486). `sum()`
+# adds left to right and drifts a few parts in 10^15 — nothing on a height or an easting
+# until the true value sits exactly on the rounding boundary, at which point the drift,
+# and not the measurement, prints the last digit. Two gated writers flapped their
+# committed output between this loop's machine and CI's for that reason (T-1477): a
+# ground reading that printed a mean OUTSIDE its own min and max, which rounding being
+# monotonic says is impossible, and twenty block centroids sitting precisely on the 2 dp
+# boundary because Kinzie's Addition is platted in feet. Measuring it found the cause the
+# fix had only guessed at: CPython 3.12 compensates `sum()` for floats and 3.11 does not,
+# and chicago-4d-check.yml pins 3.11 — so the same code on the same data genuinely
+# printed a different digit in CI than on the machine that committed it. This step keeps
+# the sweep swept (an AST census, because four of the sites put `round(` and `sum(` on
+# different lines and no grep can see them), re-adds the committed aggregates whose
+# components are committed beside them and reports any figure sitting within a part in
+# 10^12 of its boundary, and mutation-tests the min-max-mean refusal by restoring the
+# uncompensated sum and watching it fire.
+step "no derived figure is rounded by accumulation drift" \
+  python3 tools/check_exact_sums.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_exact_sums.py --self-test
+
 # THE STRUCTURE FUNCTION VOCABULARY IS CLOSED (T-1311). `function.value` was a free
 # string and 384 records had spelled it 109 ways — three of them the same word twice
 # (`blacksmith_shop` and `blacksmith shop`, `store_residence` and `store-residence`,
@@ -1473,6 +1495,25 @@ step "the North Division tier's blocks and lots re-derive from the reading and t
 selftest "the North Division tier's cut is still four to a face, still a wedge, and still seated on committed Kinzie" \
   python3 tools/cut_north_division_tier.py --self-test
 
+# T-1477. The School Section's northernmost tier — the thirteen blocks between Madison and
+# Monroe, the row Section 16 turns toward the town — cut into lots. The block grid has been
+# committed since T-0797 and stopped at blocks, because Wright rules the section into blocks
+# and letters their numbers without ruling a single lot line inside one. The lot COUNT is
+# therefore not a module here: it is read, block by block, out of the Illinois State
+# Archives' register of the state's own October 1833 sale, which prints the plat's language
+# (`LOT3BL71`, `BL106`) and so says how many pieces each block was cut into. Nine blocks
+# sold eight lots, two sold four, and the two the sheet letters `Reserved` sold nothing and
+# are left whole. The assertions worth naming: the blocks the sale never names are EXACTLY
+# the blocks the sheet reserves — two records, neither consulted about the other; the two
+# four-lot blocks are the two at the South Branch end, and the one block the committed
+# heightfield calls wet is one of them; and every block boundary is the committed grid's
+# own vertex for vertex, which is what keeps this a cut and not a second survey.
+step "the School Section tier's lots re-derive from the committed grid and the 1833 register" \
+  python3 tools/cut_school_section_tier.py --check
+
+selftest "the School Section tier is still cut into the lots the sale witnesses, and no others" \
+  python3 tools/cut_school_section_tier.py --self-test
+
 # T-0827, the ticket the reading above could only name. `market` is the one street on this
 # grid no sheet fixes directly — its west side is the river bank its whole length — and until
 # this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
@@ -2246,6 +2287,28 @@ step "a lap that could not ask never reports that it found nothing" \
 # the REAL script against a faked `gh` and asserts exactly that.
 step "the merger merges what GitHub calls clean, and nothing else" \
   node tools/test_merge_ready.mjs
+
+# AND THE PULL REQUEST NOTHING CAN MOVE, WHICH IS THE HOLE BETWEEN THOSE TWO
+# (T-1368). A `dirty` PR has no merge ref; the gate runs on `pull_request`, which
+# needs one, so it never starts and the PR carries ZERO check runs; `gate` is a
+# required check, so GitHub never calls the PR `clean`; merge-ready merges only on
+# `clean`; and the lap correctly refuses a conflict no tool owns. Nothing in that
+# loop advances. Six pull requests hit it in two days — #1495 and #1497 on
+# 2026-09-19, #1587, #1585, #1584 and #1590 on 2026-09-20 — and every one needed a
+# person. Both of the first two merged THEMSELVES within minutes of a human
+# pushing the merge, which is the proof that the rest of the automation is sound:
+# the only missing piece was anyone being told.
+#
+# .github/steward/pr-stuck.sh is the telling, and the hard part is not finding the
+# shape but REFUSING the three things that wear it — a `hold` PR (#1533, #1576,
+# both mistaken for this on 2026-09-20), a PR whose own run is still going (#1499,
+# which cleared itself), and a PR that is merely `unknown` (#1518, which merged
+# fine when asked). This runs the REAL script against a faked `gh` and holds it to
+# all three, and it found a live fault while being written: GNU `date -d ""`
+# answers midnight today rather than failing, so an unreadable timestamp read as
+# hours old and would have had the reporter declaring PRs stuck on no evidence.
+step "a pull request nothing can move is reported, and nothing else is touched" \
+  node tools/test_pr_stuck.mjs
 
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
@@ -4606,6 +4669,22 @@ step "the location spend re-derives: no placement past its evidence, four retent
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
 
+# T-1491. THE ADDRESS BOOK IS THE SPEND'S OTHER HALF, and it is gated for the same reason:
+# it says where every known household and firm stands, and the whole of its value is that it
+# never says more than the evidence does. Three limits carry the weight. A row at the `owed`
+# rung MAY NOT CARRY A SEAT — that is the rung, and a seat appearing on one is exactly how a
+# reconstructed band would come to be read as a reading. The business half is a strict
+# restatement of the adjudication gated above, so a firm whose rung stops agreeing with its
+# grade fails here rather than drifting into a second opinion. And rung 2 stands empty by
+# MEASUREMENT, not assumption: the step re-reads the committed lot-address ledger, so the day
+# a second lot address arrives naming somebody the gate fails rather than the rung quietly
+# staying empty.
+step "the address book re-derives: every household and firm at the rung its evidence reaches, no seat invented" \
+  python3 tools/seat_known_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/seat_known_1835.py --self-test
+
 # T-1144 acceptance 7, and the owner asked for it in those words on 2026-09-17: the
 # convergence report must NAME, per person, which of the plural roles[] and which home,
 # work and other locations reach 1 July 1835, so the sign-off reads coverage per axis off
@@ -4769,6 +4848,29 @@ step "the 1835 reconstructed seating re-derives, and staffs no house past its ba
 selftest "…and each of its five assertions still fires when broken" \
   python3 tools/seat_reconstructed_trades_1835.py --self-test
 
+# T-1462, piece 2 of 2 of T-1449, of T-1434, of T-1189. THE BUSINESS SIDE OF THAT SEATING.
+# The pass above seated 124 reconstructed hands in 84 houses and wrote every seat in a
+# join BESIDE the layer, keyed on the person. So the town knew where those people worked
+# and the HOUSES did not: open any one of the 84 business cards and `staff` was empty,
+# "Who kept it" printed the keeper alone, and a house standing at half the hands its
+# class wants read exactly like a house standing at all of them. This lays the seats onto
+# the records as an overlay — the compiler rewrites a compiled record whole, so a hand
+# can only be laid over one — and puts each house's shortfall against the staffing model
+# beside them, measured at the model's typical band and never its high end.
+#
+# WHY A GATE. It is an overlay over two derived files that both move: the seating re-draws
+# whenever the business layer recompiles or the staffing model re-cuts, and the compiler
+# refuses a committed record a rebuild would not produce. `--check` re-derives the overlay
+# byte for byte, and the two failures that matter are refusals rather than warnings — a
+# seat past every band the model gives the class, which would be a person invented by a
+# pass that invents nobody, and an entry that would drop a row T-1422's RULING put on a
+# record, because a derived pass may add to a judgement and may not overwrite one.
+step "the reconstructed hands re-derive onto their houses, and each house states its shortfall" \
+  python3 tools/staff_the_houses_1835.py --check
+
+selftest "…and each of its seven assertions still fires when broken" \
+  python3 tools/staff_the_houses_1835.py --self-test
+
 # T-1461, piece 1 of T-1449, of T-1434, of T-1189. THE EMPLOYMENT COVERAGE ANSWER. The
 # two joins above are both true and neither covers the town: 112 cards a source names in
 # a house, 524 reconstructed trade-holders seated or told why not — 636 people of 3,243.
@@ -4914,6 +5016,26 @@ step "the lot-and-block address re-derives, and seating it promotes no roof" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/lot_addresses.py --self-test
+
+# AND THE FOURTH THING A RECORD CAN SAY ABOUT A LOT, WHICH IS THE ONE NOBODY SAID (T-1478).
+# The three above are all CLAIMS — a face adopted, an ordinal off a corner, a printed lot and
+# block. This is a MEASUREMENT: until T-1194 the only lot layer stopped at the main stem, so a
+# documented building north or west of the river stood on a bare coordinate; there are now
+# five more grids out there and `stands_on_lot` records which lot of them each documented
+# footprint turned out to fall on. It is gated rather than committed once because every step
+# of it moves when the town does — a lot line redrawn, a block renumbered, a footprint
+# corrected, a numeral re-read. The assertions worth naming: the seat is plat_occupancy's own
+# rule IMPORTED rather than a second copy of it; only `research`-layer records carry one, so
+# this project's reconstruction can never read back as evidence about the town; the grade is
+# the WEAKER of the lot lines and the numeral, which is why the West Division's documented
+# numerals still give inferred seats; and a grid that numbers nothing — Wabansia, the Michigan
+# Street tract — seats the block and withholds the numeral rather than counting one off the
+# polygon list.
+step "every documented north-or-west record's lot re-derives from the committed grid" \
+  python3 tools/record_lot_seating.py --check
+
+selftest "…and a seat still may not claim a lot, outrank its lot lines, or invent a numeral" \
+  python3 tools/record_lot_seating.py --self-test
 
 # THE 1840 CENSUS LINE -> IPUMS SERIAL JOIN (T-0504). IPUMS holds 964 Chicago households as
 # age-band counts with no names; every one of them is also a ruled line on a page image that

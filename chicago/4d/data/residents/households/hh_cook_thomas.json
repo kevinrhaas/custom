@@ -106,6 +106,15 @@
   },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap. AND THE BRACKET THIS CARD ONCE HAD IS WITHDRAWN, NOT LOST: its at-or-before leg was tax_1833 alone. THE 1833 TAX LIST IS A PROPERTY ROLL, NOT A RESIDENCE CHECK (T-1117): it names the owner of ground inside the town, resident or not, and its own entry 110 is a man three years dead. It bounds the town's RECORD of this name and not the day this person reached Chicago, so it cannot say this person was here to be followed across the day. Withdrawn to `uncertain` and not to `absent` — no source places this person anywhere else on 1 July 1835 either, and a man who was taxed for ground in the town may perfectly well have been standing on it."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "solitary",
+  "size_drawn": 1,
+  "kin_seated": 1,
+  "seed": "hh_cook_thomas:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "cook_thomas",

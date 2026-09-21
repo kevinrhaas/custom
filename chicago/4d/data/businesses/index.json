@@ -33,8 +33,8 @@
       "street_only": 89,
       "unplaceable": 109
     },
-    "named_people": 277,
-    "named_people_linked_to_a_town_card": 224,
+    "named_people": 401,
+    "named_people_linked_to_a_town_card": 348,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 36,
     "by_grade": {
@@ -175,7 +175,17 @@
         "Hollow Ware"
       ],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "William Sheldon",
+          "person_id": "rc_sheldon_william",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -227,6 +237,15 @@
           "tier": "attested",
           "from": "1833-12-10",
           "to": "1833-12-10",
+          "also_printed_as": []
+        },
+        {
+          "name": "Ezra Hastings",
+          "person_id": "rc_hastings_ezra",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -334,6 +353,24 @@
           "from": "1834-12-17",
           "to": "1834-12-24",
           "also_printed_as": []
+        },
+        {
+          "name": "Hugh Brady",
+          "person_id": "rc_brady_hugh",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Patrick Mahoney",
+          "person_id": "rc_mahoney_patrick",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -381,6 +418,15 @@
           "tier": "attested",
           "from": "1835-08-22",
           "to": "1835-08-22",
+          "also_printed_as": []
+        },
+        {
+          "name": "George Nichols",
+          "person_id": "rc_nichols_george",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -522,6 +568,33 @@
           "from": "1835-06-27",
           "to": "1835-08-15",
           "also_printed_as": []
+        },
+        {
+          "name": "Clarissa Gilbert",
+          "person_id": "rc_gilbert_clarissa",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Ruth Gilbert",
+          "person_id": "rc_gilbert_ruth",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Rufus Newell",
+          "person_id": "rc_newell_rufus",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -646,7 +719,17 @@
         "Wines"
       ],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Dennis Murphy",
+          "person_id": "rc_murphy_dennis",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
@@ -730,7 +813,35 @@
       "firm_styles": [
         "Andrews & Eells"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Luther Fisk",
+          "person_id": "rc_fisk_luther",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Madeleine Lecuyer",
+          "person_id": "rc_lecuyer_madeleine",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Maria Parmelee",
+          "person_id": "rc_parmelee_maria",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
@@ -882,6 +993,24 @@
           "tier": "attested",
           "from": "1833-11-26",
           "to": "1833-11-26",
+          "also_printed_as": []
+        },
+        {
+          "name": "Chauncey Ingalls",
+          "person_id": "rc_ingalls_chauncey",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "David Leland",
+          "person_id": "rc_leland_david",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -1371,6 +1500,15 @@
           "from": "1835-06-08",
           "to": "1835-08-15",
           "also_printed_as": []
+        },
+        {
+          "name": "George Lyman",
+          "person_id": "rc_lyman_george",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -1521,7 +1659,17 @@
       "firm_styles": [
         "C. & I. Harmon"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Bryan Hayes",
+          "person_id": "rc_hayes_bryan",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -1562,7 +1710,17 @@
         "Window Glass"
       ],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Thomas Hayes",
+          "person_id": "rc_hayes_thomas",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -1746,6 +1904,24 @@
           "tier": "attested",
           "from": "1834-04-01",
           "to": "1834-09-10",
+          "also_printed_as": []
+        },
+        {
+          "name": "Otis Dickinson",
+          "person_id": "rc_dickinson_otis",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Bryan Flynn",
+          "person_id": "rc_flynn_bryan",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -2320,7 +2496,44 @@
       "firm_styles": [
         "Cooley and Halsman"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Antoine Dufresne",
+          "person_id": "rc_dufresne_antoine",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Michel Dufresne",
+          "person_id": "rc_dufresne_michel",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Margaret Flynn",
+          "person_id": "rc_flynn_margaret",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Therese Gagnier",
+          "person_id": "rc_gagnier_therese",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
@@ -2375,6 +2588,33 @@
           "tier": "attested",
           "from": "1835-08-05",
           "to": "1835-08-05",
+          "also_printed_as": []
+        },
+        {
+          "name": "Bridget Lynch",
+          "person_id": "rc_lynch_bridget",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Mary Ryan",
+          "person_id": "rc_ryan_mary",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Ira Woodruff",
+          "person_id": "rc_woodruff_ira",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -2576,6 +2816,24 @@
           "from": "1834-03-25",
           "to": "1834-12-10",
           "also_printed_as": []
+        },
+        {
+          "name": "Samuel Gilbert",
+          "person_id": "rc_gilbert_samuel",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Alvah Pratt",
+          "person_id": "rc_pratt_alvah",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -2681,7 +2939,17 @@
       "firm_styles": [
         "Dally & Youngs"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Ezra Nash",
+          "person_id": "rc_nash_ezra",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -2864,6 +3132,15 @@
           "from": "1833-12-03",
           "to": "1835-07-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Jared Cobb",
+          "person_id": "rc_cobb_jared",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3014,6 +3291,15 @@
           "from": "1835-06-04",
           "to": "1835-06-13",
           "also_printed_as": []
+        },
+        {
+          "name": "Elisha Metcalf",
+          "person_id": "rc_metcalf_elisha",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3069,6 +3355,15 @@
           "also_printed_as": [
             "W. G. Austin"
           ]
+        },
+        {
+          "name": "Joseph Laframboise",
+          "person_id": "rc_laframboise_joseph",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3223,6 +3518,15 @@
           "from": "1834-03-18",
           "to": "1834-03-18",
           "also_printed_as": []
+        },
+        {
+          "name": "Jean Vieau",
+          "person_id": "rc_vieau_jean",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3275,6 +3579,33 @@
           "from": "1834-12-10",
           "to": "1834-12-10",
           "also_printed_as": []
+        },
+        {
+          "name": "Mary Cavanagh",
+          "person_id": "rc_cavanagh_mary",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Abigail Cobb",
+          "person_id": "rc_cobb_abigail",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "James Quinn",
+          "person_id": "rc_quinn_james",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3325,6 +3656,24 @@
           "tier": "attested",
           "from": "1834-04-08",
           "to": "1834-04-08",
+          "also_printed_as": []
+        },
+        {
+          "name": "Anna Chapin",
+          "person_id": "rc_chapin_anna",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Johanna Corrigan",
+          "person_id": "rc_corrigan_johanna",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -3377,6 +3726,24 @@
           "from": "1834-07-02",
           "to": "1834-07-02",
           "also_printed_as": []
+        },
+        {
+          "name": "Phebe Bardwell",
+          "person_id": "rc_bardwell_phebe",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Honora Corrigan",
+          "person_id": "rc_corrigan_honora",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3428,6 +3795,24 @@
           "tier": "attested",
           "from": "1833-12-17",
           "to": "1834-01-07",
+          "also_printed_as": []
+        },
+        {
+          "name": "Betsey Bacon",
+          "person_id": "rc_bacon_betsey",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Susan Barnes",
+          "person_id": "rc_barnes_susan",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -3536,6 +3921,24 @@
           "from": "1834-06-18",
           "to": "1834-09-10",
           "also_printed_as": []
+        },
+        {
+          "name": "Clarissa Cobb",
+          "person_id": "rc_cobb_clarissa",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Alice Connor",
+          "person_id": "rc_connor_alice",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -3583,6 +3986,15 @@
           "tier": "attested",
           "from": "1835-07-04",
           "to": "1835-07-04",
+          "also_printed_as": []
+        },
+        {
+          "name": "Seth Parmelee",
+          "person_id": "rc_parmelee_seth",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -3733,6 +4145,24 @@
           "tier": "attested",
           "from": "1834-11-05",
           "to": "1834-11-05",
+          "also_printed_as": []
+        },
+        {
+          "name": "Hannah Gilbert",
+          "person_id": "rc_gilbert_hannah",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Archange Laframboise",
+          "person_id": "rc_laframboise_archange",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -4335,6 +4765,24 @@
           "from": "1835-08-19",
           "to": "1835-08-19",
           "also_printed_as": []
+        },
+        {
+          "name": "Archange Lecuyer",
+          "person_id": "rc_lecuyer_archange",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Ruth Newell",
+          "person_id": "rc_newell_ruth",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -4532,7 +4980,17 @@
       "firm_styles": [
         "H. Doty & Co."
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Edward Sullivan",
+          "person_id": "rc_sullivan_edward",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
@@ -4818,6 +5276,15 @@
           "from": "1835-08-05",
           "to": "1835-08-05",
           "also_printed_as": []
+        },
+        {
+          "name": "Alexis Chevalier",
+          "person_id": "rc_chevalier_alexis",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -5019,6 +5486,15 @@
           "from": "1834-07-02",
           "to": "1835-08-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Martin McCarthy",
+          "person_id": "rc_mccarthy_martin",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -5203,6 +5679,33 @@
           "from": "1833-11-26",
           "to": "1833-11-26",
           "also_printed_as": []
+        },
+        {
+          "name": "Catherine Brady",
+          "person_id": "rc_brady_catherine",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Johanna Connor",
+          "person_id": "rc_connor_johanna",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Luther Kellogg",
+          "person_id": "rc_kellogg_luther",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -5250,6 +5753,15 @@
           "tier": "attested",
           "from": "1834-11-19",
           "to": "1834-11-19",
+          "also_printed_as": []
+        },
+        {
+          "name": "Johanna McCarthy",
+          "person_id": "rc_mccarthy_johanna",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -5379,6 +5891,15 @@
           "from": "1834-07-16",
           "to": "1834-08-20",
           "also_printed_as": []
+        },
+        {
+          "name": "James Sullivan",
+          "person_id": "rc_sullivan_james",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -5474,6 +5995,15 @@
           "tier": "attested",
           "from": "1835-05-20",
           "to": "1835-07-01",
+          "also_printed_as": []
+        },
+        {
+          "name": "Medard Lecuyer",
+          "person_id": "rc_lecuyer_medard",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -5692,6 +6222,15 @@
           "also_printed_as": [
             "Mulford, J. H."
           ]
+        },
+        {
+          "name": "Orrin Eastman",
+          "person_id": "rc_eastman_orrin",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -6060,6 +6599,15 @@
           "also_printed_as": [
             "J. S. C. Hogan"
           ]
+        },
+        {
+          "name": "Rufus Crandall",
+          "person_id": "rc_crandall_rufus",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -6165,6 +6713,15 @@
           "tier": "attested",
           "from": "1835-07-11",
           "to": "1835-07-11",
+          "also_printed_as": []
+        },
+        {
+          "name": "Bryan Keegan",
+          "person_id": "rc_keegan_bryan",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -6274,6 +6831,15 @@
           "tier": "attested",
           "from": "1833-11-26",
           "to": "1834-06-11",
+          "also_printed_as": []
+        },
+        {
+          "name": "Owen Flynn",
+          "person_id": "rc_flynn_owen",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -6493,6 +7059,24 @@
           "from": "1834-04-16",
           "to": "1835-07-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Daniel Gallagher",
+          "person_id": "rc_gallagher_daniel",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Samuel Newell",
+          "person_id": "rc_newell_samuel",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -6595,6 +7179,24 @@
           "from": "1833-12-10",
           "to": "1833-12-10",
           "also_printed_as": []
+        },
+        {
+          "name": "Otis Bardwell",
+          "person_id": "rc_bardwell_otis",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Martin Reilly",
+          "person_id": "rc_reilly_martin",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -6645,6 +7247,15 @@
           "tier": "attested",
           "from": "1834-07-09",
           "to": "1834-07-09",
+          "also_printed_as": []
+        },
+        {
+          "name": "Victoire Pothier",
+          "person_id": "rc_pothier_victoire",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -6945,6 +7556,15 @@
           "from": "1835-05-27",
           "to": "1835-08-05",
           "also_printed_as": []
+        },
+        {
+          "name": "Michael Reilly",
+          "person_id": "rc_reilly_michael",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -7046,6 +7666,15 @@
           "from": "1834-07-09",
           "to": "1834-07-09",
           "also_printed_as": []
+        },
+        {
+          "name": "Harriet Dickinson",
+          "person_id": "rc_dickinson_harriet",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -7136,7 +7765,17 @@
       "firm_styles": [
         "Kinzie & Forsyth"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Owen Burke",
+          "person_id": "rc_burke_owen",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "anchored",
         "structure_id": null,
@@ -7338,6 +7977,15 @@
           "tier": "attested",
           "from": "1835-08-05",
           "to": "1835-08-05",
+          "also_printed_as": []
+        },
+        {
+          "name": "Thomas Lynch",
+          "person_id": "rc_lynch_thomas",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -7615,6 +8263,24 @@
           "from": "1835-06-10",
           "to": "1835-07-01",
           "also_printed_as": []
+        },
+        {
+          "name": "Hugh Burke",
+          "person_id": "rc_burke_hugh",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Levi Rice",
+          "person_id": "rc_rice_levi",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -7727,6 +8393,15 @@
           "tier": "attested",
           "from": "1833-11-26",
           "to": "1834-12-10",
+          "also_printed_as": []
+        },
+        {
+          "name": "Lemuel Lyman",
+          "person_id": "rc_lyman_lemuel",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -7961,6 +8636,15 @@
           "from": "1834-07-23",
           "to": "1834-07-23",
           "also_printed_as": []
+        },
+        {
+          "name": "Ruth Lyman",
+          "person_id": "rc_lyman_ruth",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -8013,6 +8697,24 @@
           "from": "1835-06-24",
           "to": "1835-06-24",
           "also_printed_as": []
+        },
+        {
+          "name": "Erastus Cobb",
+          "person_id": "rc_cobb_erastus",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Bryan Lynch",
+          "person_id": "rc_lynch_bryan",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -8058,6 +8760,24 @@
           "tier": "attested",
           "from": "1834-12-03",
           "to": "1834-12-03",
+          "also_printed_as": []
+        },
+        {
+          "name": "Almira Leland",
+          "person_id": "rc_leland_almira",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Lydia Pratt",
+          "person_id": "rc_pratt_lydia",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -8111,6 +8831,24 @@
           "tier": "attested",
           "from": "1834-11-26",
           "to": "1834-11-26",
+          "also_printed_as": []
+        },
+        {
+          "name": "Margaret Connor",
+          "person_id": "rc_connor_margaret",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Lydia Fairbanks",
+          "person_id": "rc_fairbanks_lydia",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -8483,6 +9221,15 @@
           "from": "1833-12-03",
           "to": "1834-12-10",
           "also_printed_as": []
+        },
+        {
+          "name": "Edward Doyle",
+          "person_id": "rc_doyle_edward",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -8610,6 +9357,15 @@
           "also_printed_as": [
             "Peter Pruyne"
           ]
+        },
+        {
+          "name": "Patrick Corrigan",
+          "person_id": "rc_corrigan_patrick",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -8660,6 +9416,15 @@
           "tier": "attested",
           "from": "1834-07-09",
           "to": "1834-07-09",
+          "also_printed_as": []
+        },
+        {
+          "name": "Owen Fitzgerald",
+          "person_id": "rc_fitzgerald_owen",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -8727,6 +9492,15 @@
           "tier": "attested",
           "from": "1833-11-26",
           "to": "1835-07-08",
+          "also_printed_as": []
+        },
+        {
+          "name": "Samuel Williams",
+          "person_id": "rc_fb_williams_samuel",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -8858,6 +9632,15 @@
           "from": "1833-11-26",
           "to": "1835-07-22",
           "also_printed_as": []
+        },
+        {
+          "name": "Orrin Dickinson",
+          "person_id": "rc_dickinson_orrin",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -8981,6 +9764,15 @@
           "tier": "attested",
           "from": "1834-06-25",
           "to": "1834-12-17",
+          "also_printed_as": []
+        },
+        {
+          "name": "Joseph Lecuyer",
+          "person_id": "rc_lecuyer_joseph",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -9451,6 +10243,15 @@
           "from": "1834-08-27",
           "to": "1835-08-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Asa Sheldon",
+          "person_id": "rc_sheldon_asa",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -9497,6 +10298,15 @@
           "tier": "attested",
           "from": "1835-05-27",
           "to": "1835-07-29",
+          "also_printed_as": []
+        },
+        {
+          "name": "Benjamin Newell",
+          "person_id": "rc_newell_benjamin",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -9606,6 +10416,15 @@
           "tier": "attested",
           "from": "1835-08-05",
           "to": "1835-08-05",
+          "also_printed_as": []
+        },
+        {
+          "name": "Asa Rice",
+          "person_id": "rc_rice_asa",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -9773,6 +10592,24 @@
           "from": "1833-11-26",
           "to": "1834-03-04",
           "also_printed_as": []
+        },
+        {
+          "name": "Ira Bardwell",
+          "person_id": "rc_bardwell_ira",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Chauncey Cobb",
+          "person_id": "rc_cobb_chauncey",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -9820,6 +10657,24 @@
           "tier": "attested",
           "from": "1834-12-03",
           "to": "1834-12-03",
+          "also_printed_as": []
+        },
+        {
+          "name": "Almira Sawyer",
+          "person_id": "rc_sawyer_almira",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Lydia Whitcomb",
+          "person_id": "rc_whitcomb_lydia",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -9872,6 +10727,15 @@
           "also_printed_as": [
             "Lewis, Samuel"
           ]
+        },
+        {
+          "name": "Johanna Carroll",
+          "person_id": "rc_carroll_johanna",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -9922,6 +10786,24 @@
           "also_printed_as": [
             "Sarah D. Howe"
           ]
+        },
+        {
+          "name": "Sophronia Sawyer",
+          "person_id": "rc_sawyer_sophronia",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Esther Stiles",
+          "person_id": "rc_stiles_esther",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -10441,6 +11323,15 @@
           "from": "1834-08-13",
           "to": "1834-08-13",
           "also_printed_as": []
+        },
+        {
+          "name": "Jared Bardwell",
+          "person_id": "rc_bardwell_jared",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -10488,6 +11379,15 @@
           "tier": "attested",
           "from": "1833-12-03",
           "to": "1834-01-07",
+          "also_printed_as": []
+        },
+        {
+          "name": "Polly Fairbanks",
+          "person_id": "rc_fairbanks_polly",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -10616,6 +11516,33 @@
           "from": "1835-06-20",
           "to": "1835-06-20",
           "also_printed_as": []
+        },
+        {
+          "name": "Thomas Cavanagh",
+          "person_id": "rc_cavanagh_thomas",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Cornelius Shea",
+          "person_id": "rc_shea_cornelius",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Joseph Stebbins",
+          "person_id": "rc_stebbins_joseph",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -10724,7 +11651,17 @@
       "occupation": "auctioneer",
       "goods": [],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Alanson Kellogg",
+          "person_id": "rc_kellogg_alanson",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "street_only",
         "structure_id": null,
@@ -10932,6 +11869,15 @@
           "from": "1833-12-10",
           "to": "1834-01-07",
           "also_printed_as": []
+        },
+        {
+          "name": "Nathaniel Crandall",
+          "person_id": "rc_crandall_nathaniel",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -11073,7 +12019,26 @@
       "occupation": "tavern_keeper",
       "goods": [],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Almira Barnes",
+          "person_id": "rc_barnes_almira",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Honora Carroll",
+          "person_id": "rc_carroll_honora",
+          "role": "servant",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -11120,6 +12085,42 @@
           "from": "1834-07-23",
           "to": "1834-10-01",
           "also_printed_as": []
+        },
+        {
+          "name": "Hyacinthe Gagnier",
+          "person_id": "rc_gagnier_hyacinthe",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Hannah Thayer",
+          "person_id": "rc_thayer_hannah",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Maria Thayer",
+          "person_id": "rc_thayer_maria",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Alanson Wilcox",
+          "person_id": "rc_wilcox_alanson",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -11163,7 +12164,17 @@
         "single horse carriages"
       ],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Owen Hayes",
+          "person_id": "rc_hayes_owen",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -11409,7 +12420,26 @@
       "firm_styles": [
         "[uncertain: Noble & Wesencaft]"
       ],
-      "people": [],
+      "people": [
+        {
+          "name": "Ira Barnes",
+          "person_id": "rc_barnes_ira",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "George Askie",
+          "person_id": "rc_fb_askie_george",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -11459,6 +12489,15 @@
           "tier": "attested",
           "from": "1834-07-09",
           "to": "1834-07-09",
+          "also_printed_as": []
+        },
+        {
+          "name": "Joseph Gilbert",
+          "person_id": "rc_gilbert_joseph",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -11598,6 +12637,15 @@
           "tier": "attested",
           "from": "1834-07-16",
           "to": "1834-07-16",
+          "also_printed_as": []
+        },
+        {
+          "name": "Alanson Pratt",
+          "person_id": "rc_pratt_alanson",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -11808,7 +12856,17 @@
         "upper leather"
       ],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "David Nichols",
+          "person_id": "rc_nichols_david",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -11958,7 +13016,17 @@
       "occupation": "grocer",
       "goods": [],
       "firm_styles": [],
-      "people": [],
+      "people": [
+        {
+          "name": "Owen Reilly",
+          "person_id": "rc_reilly_owen",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
       "where": {
         "kind": "unplaceable",
         "structure_id": null,
@@ -12218,6 +13286,15 @@
           "from": "1833-12-10",
           "to": "1834-01-21",
           "also_printed_as": []
+        },
+        {
+          "name": "Bryan Burke",
+          "person_id": "rc_burke_bryan",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -12266,6 +13343,15 @@
           "from": "1835-07-08",
           "to": "1835-07-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Dennis Walsh",
+          "person_id": "rc_walsh_dennis",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -12313,6 +13399,15 @@
           "tier": "attested",
           "from": "1835-08-05",
           "to": "1835-08-05",
+          "also_printed_as": []
+        },
+        {
+          "name": "Joseph Hubbard",
+          "person_id": "rc_hubbard_joseph",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],
@@ -12710,6 +13805,15 @@
           "from": "1835-05-20",
           "to": "1835-05-20",
           "also_printed_as": []
+        },
+        {
+          "name": "Pierre Dufresne",
+          "person_id": "rc_dufresne_pierre",
+          "role": "journeyman",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -12839,6 +13943,15 @@
           "from": "1834-09-03",
           "to": "1835-07-29",
           "also_printed_as": []
+        },
+        {
+          "name": "Antoine Bourassa",
+          "person_id": "rc_bourassa_antoine",
+          "role": "clerk",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
         }
       ],
       "where": {
@@ -12888,6 +14001,24 @@
           "tier": "attested",
           "from": "1835-06-13",
           "to": "1835-07-11",
+          "also_printed_as": []
+        },
+        {
+          "name": "Martin Flynn",
+          "person_id": "rc_flynn_martin",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Alvah Wadsworth",
+          "person_id": "rc_wadsworth_alvah",
+          "role": "household_member",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
           "also_printed_as": []
         }
       ],

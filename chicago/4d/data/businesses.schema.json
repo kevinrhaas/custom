@@ -37,6 +37,12 @@
         "register_person_id": {"type": ["string", "null"], "pattern": "^person_[a-z0-9_]+$",
           "description": "The register's own id for the printed name, kept so a reader can walk back to the notice."},
         "role": {"$ref": "#/$defs/role"},
+        "occupation": {"type": ["string", "null"],
+          "description": "THE TRADE THIS HAND WORKS, where `role` is what they ARE at the house. The 1835 business staffing model carries both words for every hand it gives a class \u2014 `role`, the trade (a baker, a dressmaker), and `household_relationship`, the standing (a journeyman, an apprentice, a servant) \u2014 and the enum above is the second vocabulary, held in common with the resident layer's relationships so that a person's household role and their workplace role are one word. So the standing goes in `role`, the trade goes here, and the row reads as what it is: a journeyman baker at this bakery. Null on every row the register printed, which names a man and not his craft. Written by tools/staff_the_houses_1835.py (T-1462)."},
+        "seed": {"type": ["string", "null"],
+          "description": "The seed a reader retypes to redraw a RECONSTRUCTED row \u2014 asked of one by T-1158, which wants a tier, a basis, a seed and what would replace it on every reconstructed value. Null on an attested or an inferred row: a printed name was not drawn and has no seed to give."},
+        "replaceable_by": {"type": ["string", "null"],
+          "description": "What would retire this row, in prose \u2014 the fourth of T-1158's four. On a reconstructed hand it is the source that would name the real one, after which the draw is withdrawn rather than corrected."},
         "from": {"$ref": "#/$defs/date"},
         "to": {"$ref": "#/$defs/date"},
         "tier": {"$ref": "#/$defs/tier"},
@@ -51,7 +57,7 @@
       "type": ["object", "null"],
       "required": ["class", "reads_as", "hands", "writes_no_person", "basis", "replaceable_by"],
       "additionalProperties": false,
-      "description": "WHAT THE STAFFING MODEL SAYS THIS KIND OF HOUSE EMPLOYED, NAMING NOBODY. `staff` above is a list of PEOPLE, filled from a source that names one or \u2014 at T-1189 \u2014 from the reconstruction programme. This block is the layer between the model and that list, and it exists because splitting T-1411 found there was nowhere else to put the answer: the register COMPILES the schools and the printing offices, so a reading about their hands had no home at all \u2014 data/businesses/authored/ holds whole records and not additions to compiled ones. It is carried onto a record from data/businesses/rulings/establishment_staffing.json and is null on every record no ruling covers. IT IS NOT A ROSTER AND MAY NOT BECOME ONE BY ITSELF: a hand a source names goes in `staff` with its citation; a hand only the model implies stands here, undrawn, with `drawn: false` and the name of whoever would have to print it first.",
+      "description": "WHAT THE STAFFING MODEL SAYS THIS KIND OF HOUSE EMPLOYED, NAMING NOBODY. `staff` above is a list of PEOPLE, filled from a source that names one or \u2014 at T-1189 \u2014 from the reconstruction programme. This block is the layer between the model and that list, and it exists because splitting T-1411 found there was nowhere else to put the answer: the register COMPILES the schools and the printing offices, so a reading about their hands had no home at all \u2014 data/businesses/authored/ holds whole records and not additions to compiled ones. It is carried onto a record from data/businesses/rulings/establishment_staffing.json, and onto the 84 houses the reconstructed seating seats a hand in from data/reconstruction/1835_business_staff_overlay.json, which is DERIVED rather than ruled; where both name a house the derived overlay carries the ruling's rows and block forward and the compiler asserts that it did. It is null on every record neither covers. IT IS NOT A ROSTER AND MAY NOT BECOME ONE BY ITSELF: a hand a source names goes in `staff` with its citation; a hand only the model implies stands here, undrawn, with `drawn: false` and the name of whoever would have to print it first.",
       "properties": {
         "class": {"type": "string", "minLength": 1,
           "description": "The establishment class of data/reconstruction/1835_business_staffing_model.json, so a reader can join the two."},
@@ -69,12 +75,16 @@
             "additionalProperties": false,
             "properties": {
               "role": {"$ref": "#/$defs/role"},
+              "occupation": {"type": ["string", "null"],
+                "description": "The staffing model's own word for the TRADE of this hand, where `role` above is the standing it holds at the house. Null on a hand a ruling wrote before the two words were kept apart."},
               "household_relationship": {"type": "string", "minLength": 1},
               "count_low": {"type": "integer", "minimum": 0},
               "count_typical": {"type": "integer", "minimum": 0},
               "count_high": {"type": "integer", "minimum": 0},
               "drawn": {"type": "boolean",
                 "description": "True only when a row of `staff` stands for this hand. False is the ordinary answer and it is a statement rather than a gap."},
+              "seats_drawn": {"type": ["integer", "null"], "minimum": 0,
+                "description": "How many rows of `staff` stand for this hand. `drawn` says WHETHER and this says HOW MANY, which is the whole difference between a house carrying one of the two hands its class wants and a house carrying both. Null where nobody has counted."},
               "basis": {"type": "string", "minLength": 1},
               "why_not_drawn": {"type": ["string", "null"], "minLength": 1,
                 "description": "Required whenever `drawn` is false: who would have to name this hand before it is written down."}
@@ -92,6 +102,39 @@
             "on_date": {"type": ["string", "null"],
               "description": "What the figure is a figure FOR. A count off the scene date is carried with its own date rather than quietly read as July 1835."},
             "basis": {"type": "string", "minLength": 1}
+          }
+        },
+        "shortfall": {
+          "type": ["object", "null"],
+          "required": ["typical_wanted", "seats_taken", "short_by", "by_role", "statement"],
+          "additionalProperties": false,
+          "description": "WHAT THIS HOUSE STILL WANTS, STATED RATHER THAN LEFT TO BE COMPUTED (T-1462). `hands` says what the model puts about the class and `staff` says who is actually here; until this block, a house standing at half its band and a house standing at all of it printed the same card, and the difference was recoverable only by a reader willing to subtract one list from the other. Measured against the model's TYPICAL band and never its high end \u2014 the ceiling is what a house of the class COULD carry, and a shortfall read off it would report every ordinary house as short. The keeper is never counted: the model's bands exclude the principal, which is the shop-household rule it states for itself. Written by tools/staff_the_houses_1835.py, laid on by tools/compile_businesses.py, and null on every record no overlay covers.",
+          "properties": {
+            "typical_wanted": {"type": "integer", "minimum": 0},
+            "seats_taken": {"type": "integer", "minimum": 0},
+            "seats_against_the_band": {"type": "integer", "minimum": 0,
+              "description": "How many of `seats_taken` fall inside a role's own typical band. The shortfall is summed PER ROLE and never off the totals \u2014 a second dressmaker does not stand in for the clerk this house has not got \u2014 so a house can carry the model's number of hands and still be short, and this is the figure that makes that arithmetic legible: typical_wanted minus this is short_by, always."},
+            "short_by": {"type": "integer", "minimum": 0},
+            "by_role": {"type": "array",
+              "description": "One row per hand above, so the shortfall reads by role and not only as a total.",
+              "items": {
+                "type": "object",
+                "required": ["household_relationship", "count_typical", "seats_drawn", "short_by"],
+                "additionalProperties": false,
+                "properties": {
+                  "occupation": {"type": ["string", "null"]},
+                  "household_relationship": {"type": "string", "minLength": 1},
+                  "count_low": {"type": "integer", "minimum": 0},
+                  "count_typical": {"type": "integer", "minimum": 0},
+                  "count_high": {"type": "integer", "minimum": 0},
+                  "seats_drawn": {"type": "integer", "minimum": 0},
+                  "short_by": {"type": "integer", "minimum": 0}
+                }
+              }},
+            "statement": {"type": "string", "minLength": 1,
+              "description": "The same answer in a sentence, so a card can print it without doing the arithmetic itself."},
+            "counted_here": {"type": ["string", "null"]},
+            "replaceable_by": {"type": ["string", "null"]}
           }
         },
         "writes_no_person": {"const": true,
@@ -172,7 +215,7 @@
     "proprietors": {"type": "array", "items": {"$ref": "#/$defs/person"}},
     "partners": {"type": "array", "items": {"$ref": "#/$defs/person"}},
     "staff": {"type": "array", "items": {"$ref": "#/$defs/person"},
-      "description": "Empty on every compiled record: the newspapers name proprietors and partners and almost never a clerk. T-1183 rules the staffing model and T-1189 fills this."},
+      "description": "The newspapers name proprietors and partners and almost never a clerk, so the register itself fills this on one record in 196 \u2014 the Democrat's advertised apprentice. Everything else here is laid on by an overlay and says which: T-1422's ruling for a hand a source outside the notice attests, and T-1462's derived overlay for the 124 reconstructed hands T-1433's seating seated, each at its own tier with its own seed and basis. A row here is a PERSON; what the model says the class employed, naming nobody, is `staffing` below."},
     "staffing": {"$ref": "#/$defs/staffing"},
     "locations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/location"}},
     "dates": {
