@@ -1,7 +1,7 @@
 ---
 id: T-1453
 title: Two gated writers carry a placement the coverage audit does not count, so it says 208 measured and accounts for 206 — and the one whose ordering is unrecorded cost three gate cycles today
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1606
 claimed_by: run 9/20/2026, 8:47:51 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T02:49:28.954Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35551917772
 ---
 
