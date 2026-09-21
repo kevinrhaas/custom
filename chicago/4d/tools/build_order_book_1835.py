@@ -115,6 +115,18 @@ AGE_BANDS = (
 )
 ADULT_FROM = 20
 
+# The resident layer's own age labels, folded onto the book's bands. The layer cuts
+# finer than the book at the bottom (0-4, 5-9, 10-14, 15-19) and coarser at the top
+# (50+), so the fold is written here rather than guessed at a call site: a label this
+# table does not hold is a Fault, never a silent drop.
+LAYER_AGE_BANDS = {
+    "0-4": "under_10", "5-9": "under_10", "0-9": "under_10",
+    "10-14": "10_19", "15-19": "10_19", "10-19": "10_19",
+    "20-29": "20_29", "30-39": "30_39", "40-49": "40_49",
+    "50-59": "50_plus", "50+": "50_plus", "60-69": "50_plus",
+    "70-79": "50_plus", "80-89": "50_plus", "80+": "50_plus",
+}
+
 # The household types a person can be seated in. `transient` is the summer of
 # 1835's own cohort and the model does not bound it: T-1178 does.
 HOUSEHOLD_TYPES = (
@@ -407,6 +419,126 @@ def age_shares(composition: dict) -> dict[str, dict[str, float]]:
     return out
 
 
+def _flat(value):
+    """A layer attribute is either the bare value or a {value, confidence, ...} block."""
+    if isinstance(value, dict):
+        return value.get("value")
+    return value
+
+
+def trade_participation(model: dict, composition: dict, root: Path = ROOT) -> dict:
+    """WHO THIS TOWN'S OWN SOURCES RECORD AT WORK — read, not assumed (T-1459).
+
+    The book's first cut drew its employed persons out of the ADULT cells alone, on
+    the reading that an occupation is an adult's. That is an assumption, and the 1840
+    schedule cannot settle it: its seven industry columns count `persons in each
+    family employed`, carry no sex and no age at all (composition_1840.json
+    `industry.note`), and the extract holds them only as household totals. So the age
+    floor of the trade cut has to come from somewhere, and the honest somewhere is
+    the town's own record.
+
+    This reads it: every person in the resident layer whose OCCUPATION is `attested`
+    or `inferred` — read from a source rather than drawn by a reconstruction stage —
+    counted by the book's own bands. A person the layer grades `reconstructed` is
+    skipped by name: they exist only because a stage drew them against this book, and
+    a cut calibrated on its own output is not a reading.
+
+    It returns a participation FACTOR per band: the band's workers per unit of the
+    1840 pyramid's population in that band, against the same rate among adults. Both
+    halves come from the same instrument, so the survivorship that inflates a record
+    of trades — the sources that print an occupation print proprietors and heads of
+    household — inflates numerator and denominator alike and cancels to first order.
+    That cancellation is the argument, and it is why the factor is a RELATIVE rate
+    rather than the record's own 94.5% male, which is survivorship and nothing else.
+
+    A band the record does not reach gets 0.0 and orders nobody. The floor is
+    therefore measured on every build: if a later reading finds a working child, the
+    band opens by itself; if the nine youths here were withdrawn, it shuts.
+    """
+    households = root / "data" / "residents" / "households"
+    if not households.is_dir():
+        raise Fault("the resident layer's households/ is missing — the trade cut cannot be read")
+    workers: Counter = Counter()
+    by_sex: Counter = Counter()
+    labels: Counter = Counter()
+    skipped_reconstructed = 0
+    for path in sorted(households.glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        for person in record.get("persons", []):
+            occupation = person.get("occupation") or {}
+            if occupation.get("confidence") not in ("attested", "inferred"):
+                continue
+            value = occupation.get("value")
+            if not value or value == "none_recorded":
+                continue
+            if person.get("grade") == "reconstructed":
+                skipped_reconstructed += 1
+                continue
+            label = _flat(person.get("age_band"))
+            if label not in LAYER_AGE_BANDS:
+                raise Fault(f"the resident layer ages {person.get('id')} in a band the book "
+                            f"cannot fold: {label!r}")
+            band = LAYER_AGE_BANDS[label]
+            workers[band] += 1
+            labels[label] += 1
+            by_sex[_flat(person.get("sex")) or "unrecorded"] += 1
+
+    sexes = sex_shares(model)
+    ages = age_shares(composition)
+    shares = {band: sum(sexes[sex] * ages[sex][band] for sex in sexes)
+              for band, _, _, _ in AGE_BANDS}
+    adult_bands = [band for band, low, _, _ in AGE_BANDS if low >= ADULT_FROM]
+    adult_workers = sum(workers[b] for b in adult_bands)
+    adult_share = sum(shares[b] for b in adult_bands)
+    if adult_workers <= 0 or adult_share <= 0:
+        raise Fault("the resident layer records no adult at a trade, so the book has no rate "
+                    "to cut the younger bands against")
+    adult_rate = adult_workers / adult_share
+
+    factors = {}
+    for band, low, _, _ in AGE_BANDS:
+        if low >= ADULT_FROM:
+            factors[band] = 1.0
+        elif workers[band] and shares[band] > 0:
+            factors[band] = min(1.0, (workers[band] / shares[band]) / adult_rate)
+        else:
+            factors[band] = 0.0
+
+    reached = [band for band, low, _, _ in AGE_BANDS if low < ADULT_FROM and factors[band] > 0]
+    return {
+        "read_from": "data/residents/households/*.json — every person whose occupation is "
+                     "attested or inferred, which is to say read from a source",
+        "workers": dict(sorted(workers.items())),
+        "workers_total": sum(workers.values()),
+        "workers_by_sex": dict(sorted(by_sex.items())),
+        "layer_labels": dict(sorted(labels.items())),
+        "reconstructed_skipped": skipped_reconstructed,
+        "pyramid_shares": {k: round(v, 6) for k, v in sorted(shares.items())},
+        "adult_workers": adult_workers,
+        "factors": {k: round(v, 6) for k, v in sorted(factors.items())},
+        "bands_reopened": reached,
+        "the_age_argument": (
+            f"{sum(workers.values())} people in the resident layer carry an occupation a source "
+            f"records. {workers['10_19']} of them are in the book's 10_19 band — and every one of "
+            f"those is labelled 15-19 by the layer, so the record reaches below twenty and stops "
+            f"at fifteen. Per unit of the 1840 pyramid's population that is "
+            f"{factors['10_19']:.4f} of the adult rate, which is the weight the band enters the "
+            f"cut at. The band under ten has no worker in the record at all and is left shut."),
+        "the_sex_argument_is_refused": (
+            f"{by_sex.get('male', 0)} of the {sum(by_sex.values())} are men. That is not a licence "
+            f"to cut the trade remainder male: the sources that print an occupation — notices, "
+            f"poll lists, the trade census, the directories — print PROPRIETORS and heads of "
+            f"household, and a record of who advertised is not a record of who worked. The town "
+            f"model's own occupations section says the same thing from the other side: the 1840 "
+            f"schedule's seven columns have no row for domestic service, 'which a port with this "
+            f"adult sex ratio certainly had', and the trade split understates household labour "
+            f"'by an amount this model cannot bound'. Both arguments point one way and neither "
+            f"bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps "
+            f"the population's own split, and the hands a shop wants that only a man can fill "
+            f"stand short with the reason said out loud."),
+    }
+
+
 def division_shares(inventory: dict) -> dict[str, float]:
     """Where the civilian town was, taken from the roof programme's own district targets."""
     districts = inventory.get("districts", {})
@@ -539,7 +671,8 @@ def known_layer(residents: dict, rulings: dict | None = None) -> dict:
 
 # -------------------------------------------------------------------- buckets --
 
-def person_buckets(model: dict, composition: dict, inventory: dict, known: dict) -> dict:
+def person_buckets(model: dict, composition: dict, inventory: dict, known: dict,
+                   participation: dict | None = None) -> dict:
     pop_fig = figure(model, "population", "population_on_1_july_1835")
     town, town_basis = point_of(pop_fig)
     lodging_fig = figure(model, "lodging_and_institutions", "share_of_the_town_in_lodging")
@@ -579,6 +712,22 @@ def person_buckets(model: dict, composition: dict, inventory: dict, known: dict)
                     f"adults number {sum(adult.values()):,}")
     employed_by_cell = largest_remainder(employed, {k: float(v) for k, v in adult.items() if v > 0})
 
+    # THE RE-CUT'S WANT (T-1459), computed beside the standing cut rather than in place of
+    # it. `employed_by_cell` above is what the book ordered before the owner's ruling of
+    # 2026-09-20 and is the baseline every refusal is measured from; this is the same draw
+    # with the younger bands entering at the participation the town's own record measures
+    # (`trade_participation`). Nothing here moves a bucket — `build` does that, and only
+    # across each bucket's UNFILLED remainder, because the ruling protects what is drawn.
+    recut_by_cell: dict[str, int] = {}
+    if participation:
+        factors = participation["factors"]
+        eligible = {k: float(targets[k]) * factors[axes[k]["age_band"]] for k in targets}
+        eligible = {k: v for k, v in eligible.items() if v > 0}
+        if sum(targets[k] for k in eligible) < employed:
+            raise Fault(f"the model wants {employed:,} employed persons and the bands the record "
+                        f"reaches hold {sum(targets[k] for k in eligible):,}")
+        recut_by_cell = largest_remainder(employed, eligible)
+
     # The known, subtracted. What the layer resolves onto a division is subtracted
     # there; what it cannot is spread pro rata (rule 2).
     resolved = {d: known["persons_present_by_division"][d] for d in CIVIL_DIVISIONS}
@@ -596,9 +745,10 @@ def person_buckets(model: dict, composition: dict, inventory: dict, known: dict)
     for key in sorted(targets):
         a = axes[key]
         cell_employed = employed_by_cell.get(key, 0)
+        wants = recut_by_cell.get(key, 0)
         for trade in ("trade", "none"):
             target = cell_employed if trade == "trade" else targets[key] - cell_employed
-            if target <= 0 and trade == "trade":
+            if target <= 0 and wants <= 0 and trade == "trade":
                 continue
             share_of_cell = (target / targets[key]) if targets[key] else 0.0
             k_total = int(round(known_by_cell[key] * share_of_cell))
@@ -616,6 +766,13 @@ def person_buckets(model: dict, composition: dict, inventory: dict, known: dict)
                 "owning_ticket": owner,
                 "basis": why,
             })
+            if trade == "trade":
+                buckets[-1]["recut_wants"] = wants
+                if target <= 0:
+                    # A CELL THE FIRST CUT SHUT. It exists because T-1459's re-cut reached
+                    # the band; it has no quota in the cut that came before it, so it is
+                    # marked rather than left to look like a bucket that has always been here.
+                    buckets[-1]["reopened_by_the_re_cut"] = True
 
     buckets.append({
         "key": "persons/garrison/fort",
@@ -657,6 +814,153 @@ def person_buckets(model: dict, composition: dict, inventory: dict, known: dict)
         "lodging_share": round(lodging_share, 4),
         "lodging_share_range": [lodging_low, lodging_high],
         "buckets": buckets,
+    }
+
+
+def _hand_out(total: int, wants: dict[str, int], caps: dict[str, int]) -> dict[str, int]:
+    """Hand `total` out in proportion to `wants`, and never past a key's `caps`.
+
+    A plain largest-remainder cannot do this: the moment one key is capped its surplus
+    has to go back into the pot and be re-shared among the keys still open, or the sum
+    handed out is short of the total. So this rounds, caps, and re-shares what capping
+    freed until either the total is spent or every key is full.
+    """
+    out = {k: 0 for k in wants}
+    live = {k: v for k, v in wants.items() if v > 0 and caps.get(k, 0) > 0}
+    remaining = int(total)
+    while remaining > 0 and live:
+        moved = 0
+        for key, share in largest_remainder(remaining, {k: float(v) for k, v in live.items()}).items():
+            room = caps[key] - out[key]
+            take = min(share, room)
+            out[key] += take
+            moved += take
+            if out[key] >= caps[key]:
+                live.pop(key, None)
+        remaining -= moved
+        if moved == 0:
+            break
+    return out
+
+
+def recut_trade_remainder(buckets: list, participation: dict) -> dict:
+    """THE OWNER'S RULING OF 2026-09-20 APPLIED: only the unfilled remainder moves (T-1459).
+
+    The re-cut wants trade slots in a band the first cut shut. It cannot simply take
+    them: every slot it would move out of an adult cell, and every slot it would move
+    into a younger one, may already have a person standing on it. So the move is
+    bounded on BOTH sides by what is undrawn —
+
+      * an adult trade bucket gives up at most `to_reconstruct - filled`;
+      * a younger cell takes at most what its own NON-trade sibling has undrawn, because
+        a child already drawn as a child is not re-drawn as a shop boy.
+
+    — and the total moved is the smaller of the two sides, so the book's employed total
+    is exactly preserved and no cell's population changes. Every cap that bound the
+    re-cut is NAMED with both numbers. That is the whole of the ruling: the cut changes,
+    and the 1,370 people standing in the book do not move.
+    """
+    pairs: dict[str, dict] = {}
+    for bucket in buckets:
+        if bucket["axes"].get("trade") not in ("trade", "none"):
+            continue
+        cell, kind = bucket["key"].rsplit("/", 1)
+        pairs.setdefault(cell, {})[kind] = bucket
+
+    def undrawn(bucket):
+        return max(0, (bucket.get("to_reconstruct") or 0) - (bucket.get("filled") or 0))
+
+    wants_gain, caps_gain, wants_lose, caps_lose = {}, {}, {}, {}
+    for cell, pair in pairs.items():
+        trade = pair.get("trade")
+        if trade is None:
+            continue
+        delta = int(trade.get("recut_wants", trade["target"])) - int(trade["target"])
+        if delta > 0:
+            wants_gain[cell] = delta
+            caps_gain[cell] = undrawn(pair["none"]) if "none" in pair else 0
+        elif delta < 0:
+            wants_lose[cell] = -delta
+            caps_lose[cell] = undrawn(trade)
+
+    # THE ROOM IS THE BAND'S, NOT THE CELL'S. A cell that cannot take its share of the
+    # re-cut — because the people who would have filled it are already drawn — does not
+    # forfeit the band's slots; they spill to the cells of the same move that still have a
+    # remainder, which is the book's own rule for a quantity that cannot sit where it was
+    # apportioned (rule 2). The cell that could not take its share is named in `refusals`
+    # so the spill is visible rather than inferred, and the sum is still bounded by what
+    # is undrawn on BOTH sides, which is the ruling.
+    room_to_gain = sum(caps_gain.values())
+    room_to_lose = sum(caps_lose.values())
+    moved = min(sum(wants_gain.values()), room_to_gain, room_to_lose)
+
+    gained = _hand_out(moved, wants_gain, caps_gain)
+    lost = _hand_out(moved, wants_lose, caps_lose)
+
+    refusals = []
+    for cell, want in sorted(wants_gain.items()):
+        got = gained.get(cell, 0)
+        if got < want:
+            sibling = pairs[cell].get("none")
+            refusals.append({
+                "cell": cell,
+                "direction": "into",
+                "owning_ticket": pairs[cell]["trade"].get("owning_ticket"),
+                "the_re_cut_wanted": want,
+                "the_remainder_could_pay": got,
+                "already_drawn_in_the_way": (sibling or {}).get("filled", 0),
+                "why": "the re-cut would seat a working youth where the band is already drawn "
+                       "out as children. The owner's ruling of 2026-09-20 protects a person "
+                       "already drawn, so the band takes only what is undrawn and the rest is "
+                       "refused here by name rather than clamped in silence.",
+            })
+    for cell, want in sorted(wants_lose.items()):
+        took = lost.get(cell, 0)
+        if took < want and caps_lose.get(cell, 0) < want:
+            refusals.append({
+                "cell": cell,
+                "direction": "out of",
+                "owning_ticket": pairs[cell]["trade"].get("owning_ticket"),
+                "the_re_cut_wanted": want,
+                "the_remainder_could_pay": took,
+                "already_drawn_in_the_way": pairs[cell]["trade"].get("filled", 0),
+                "why": "the re-cut would take this cell's order below the people already drawn "
+                       "against it. It is held at what was drawn, and the slots it could not "
+                       "give up were taken from cells that still had a remainder.",
+            })
+
+    for cell, delta in list(gained.items()) + [(k, -v) for k, v in lost.items()]:
+        if not delta:
+            continue
+        pairs[cell]["trade"]["target"] += delta
+        pairs[cell]["trade"]["to_reconstruct"] += delta
+        pairs[cell]["none"]["target"] -= delta
+        pairs[cell]["none"]["to_reconstruct"] -= delta
+
+    # A CELL THE RE-CUT REOPENED AND COULD NOT PAY FOR IS NOT A BUCKET. It orders nobody
+    # and holds nobody, and the reason it is empty is already in `refusals` with both
+    # numbers — so it is dropped rather than carried as a row of noughts.
+    dropped = [b for b in buckets
+               if b["axes"].get("trade") == "trade" and not b["target"] and not b["filled"]]
+    for bucket in dropped:
+        buckets.remove(bucket)
+
+    return {
+        "ruling": "the owner's ruling of 2026-09-20 on T-1448's three answers: re-cut the book "
+                  "(option 1), and re-cut JUST THE REMAINDER",
+        "ticket": "T-1459",
+        "what_moved": moved,
+        "the_re_cut_wanted": sum(wants_gain.values()),
+        "the_younger_bands_had_undrawn": room_to_gain,
+        "the_adult_cells_had_undrawn": room_to_lose,
+        "bands_reopened": participation["bands_reopened"],
+        "participation": participation,
+        "into": {k: v for k, v in sorted(gained.items()) if v},
+        "out_of": {k: v for k, v in sorted(lost.items()) if v},
+        "refusals": refusals,
+        "cells_reopened_and_left_empty": sorted(b["key"] for b in dropped),
+        "nobody_already_drawn_moved": True,
+        "the_sex_axis": participation["the_sex_argument_is_refused"],
     }
 
 
@@ -1263,7 +1567,9 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     before = known_layer(data["residents"])
     presence_agrees(known, before, data["presence_rulings"])
     occ = occupancy if occupancy is not None else occupancy_of()
-    persons = person_buckets(data["model"], data["composition"], data["inventory"], known)
+    participation = trade_participation(data["model"], data["composition"])
+    persons = person_buckets(data["model"], data["composition"], data["inventory"], known,
+                             participation)
     households = household_buckets(data["model"], data["inventory"], known)
     # THE QUOTAS AS THEY STOOD BEFORE THE RULINGS WERE SUMMED IN, for one purpose only:
     # telling a re-cut apart from an overfill. Every person already drawn was drawn
@@ -1305,6 +1611,18 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
         buckets = payload.pop("buckets")
         for b in buckets:
             b["filled"] = counted.get(b["key"], 0)
+        families.append({"key": key, "title": title, "lead": lead,
+                         "summary": payload, "buckets": buckets})
+
+    # THE TRADE RE-CUT RUNS BETWEEN THE COUNTERS AND THE QUOTA CHECK, and it has to: it is
+    # bounded by each bucket's undrawn remainder, so it cannot run before `filled` is
+    # known — and the quota a bucket is judged against is the re-cut one, so it cannot run
+    # after the check either. A bucket the re-cut GROWS is not overfilled by a counter that
+    # sat inside its new order.
+    trade_re_cut = recut_trade_remainder(families[0]["buckets"], participation)
+
+    for family in families:
+        for b in family["buckets"]:
             todo = b.get("to_reconstruct", b.get("to_build"))
             if todo is not None and b["filled"] > todo:
                 was = quota_before.get(b["key"])
@@ -1326,8 +1644,13 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
                     b["recut_refused"] = True
                 else:
                     raise Fault(f"the bucket {b['key']} is overfilled: {b['filled']} of {todo}")
-        families.append({"key": key, "title": title, "lead": lead,
-                         "summary": payload, "buckets": buckets})
+
+    spent = Counter()
+    for fill in fills:
+        spent[fill["ticket"]] += int(fill.get("records") or 0)
+    spent_by = [{"ticket": t, "records": n,
+                 "buckets": sorted({f["bucket"] for f in fills if f["ticket"] == t})}
+                for t, n in sorted(spent.items(), key=lambda kv: (-kv[1], kv[0]))]
 
     roster = data["roster"].get("counts", {}).get("by_class", {})
     offered = {k: v for k, v in sorted(roster.items()) if k in ROSTER_TICKETS}
@@ -1432,6 +1755,15 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
         # order would have fallen under the people already drawn against it, held at what
         # was drawn and named here with both numbers.
         "recut_refusals": recut_refusals,
+        # THE TRADE RE-CUT (T-1459), carried whole: the record it was read from, the factor
+        # it put on each band, what moved, and every cell where a person already drawn stood
+        # in its way. The SEX of the remainder is not re-cut and the block says why in terms.
+        "trade_re_cut": trade_re_cut,
+        # WHO HAS ALREADY SPENT AGAINST THIS BOOK, named with what they spent, so a reader can
+        # tell the settled parts of the book from the open ones. A re-cut that moved a quota
+        # under a stage which already spent is the one failure T-1459 exists to make
+        # impossible, and this is the list it is measured against.
+        "spent_by": spent_by,
         "roster_offered": {
             "total": int(data["roster"].get("counts", {}).get("offered") or 0),
             "by_class": offered,
@@ -1626,6 +1958,63 @@ def report_text(doc: dict) -> str:
             out.append(f"| `{r['bucket']}` | {r['owning_ticket']} | "
                        f"{r['quota_before_the_rulings']:,} | "
                        f"{r['the_re_cut_would_have_ordered']:,} | {r['already_drawn']:,} |")
+    rc = doc.get("trade_re_cut") or {}
+    if rc:
+        pt = rc["participation"]
+        out += [
+            "", "## The trade cut, re-cut on its remainder", "",
+            "> **T-1459**, on the owner's ruling of 2026-09-20: take option 1 — re-cut the book — "
+            "and re-cut **just the remainder**.", "",
+            "### The age of a working person is read, not assumed", "",
+            pt["the_age_argument"], "",
+            "| band | workers the sources record | share of the 1840 pyramid | weight in the trade cut |",
+            "|---|---:|---:|---:|",
+        ]
+        for band, _, _, _ in AGE_BANDS:
+            out.append(f"| `{band}` | {pt['workers'].get(band, 0):,} | "
+                       f"{pt['pyramid_shares'][band]:.4f} | {pt['factors'][band]:.4f} |")
+        out += [
+            "", f"Read from {pt['read_from']}. "
+            f"{pt['reconstructed_skipped']:,} person(s) the layer grades `reconstructed` were "
+            "skipped: a stage's own draw is not evidence for the cut that produced it.", "",
+            "### The sex of the remainder is NOT re-cut", "",
+            pt["the_sex_argument_is_refused"], "",
+            "### What moved", "",
+            f"The re-cut wanted **{rc['the_re_cut_wanted']:,}** trade slots in the bands it "
+            f"reopened. The younger bands held **{rc['the_younger_bands_had_undrawn']:,}** undrawn "
+            f"and the adult cells it would draw from held **{rc['the_adult_cells_had_undrawn']:,}**, "
+            f"so **{rc['what_moved']:,}** moved and the book's employed total did not change. "
+            "Every cell below is a `lodging` cell on both sides, because every `family` cell of "
+            "the reopened band is drawn out: the working youths this book still orders are "
+            "BOARDERS — an apprentice or a shop hand sleeping where he works — which is a "
+            "consequence of what is already drawn and not a claim about 1835.", "",
+            "| into | slots |", "|---|---:|",
+        ]
+        for cell, n in rc["into"].items():
+            out.append(f"| `{cell}` | {n:,} |")
+        out += ["", "| out of | slots |", "|---|---:|"]
+        for cell, n in rc["out_of"].items():
+            out.append(f"| `{cell}` | {n:,} |")
+        out += ["", f"**{len(rc['refusals'])} cell(s) could not take or give their share**, "
+                "because the people who would have filled them are already drawn. Each is named "
+                "with both numbers; none was clamped in silence, and no person already drawn "
+                "moved.", ""]
+        if rc["refusals"]:
+            out += ["| cell | ticket | the re-cut wanted | the remainder could pay | already drawn |",
+                    "|---|---|---:|---:|---:|"]
+            for r in rc["refusals"]:
+                out.append(f"| `{r['cell']}` ({r['direction']}) | {r['owning_ticket']} | "
+                           f"{r['the_re_cut_wanted']:,} | {r['the_remainder_could_pay']:,} | "
+                           f"{r['already_drawn_in_the_way']:,} |")
+        out += ["", "### Who has already spent against this book", "",
+                "The re-cut's one forbidden move is to pull a quota out from under a stage that "
+                "has already drawn on it. These are the stages that have, so a reader can tell "
+                "the settled parts of the book from the open ones:", "",
+                "| ticket | persons drawn | buckets |", "|---|---:|---:|"]
+        for row in doc.get("spent_by", []):
+            out.append(f"| {row['ticket']} | {row['records']:,} | {len(row['buckets']):,} |")
+        out.append("")
+
     out += [
         "",
         "## The rules this book adds",
@@ -1780,7 +2169,18 @@ def cmd_self_test() -> int:
     # reaching work already done, and that is REFUSED by name rather than faulted. Only a
     # figure above both is a filler that bypassed the book, so the fixture clears both.
     doc = build(data, [], occ)
-    first = doc["bucket_families"][0]["buckets"][0]
+    # A BUCKET IN A BAND THE TRADE RE-CUT CANNOT REACH, which the book's first row no longer
+    # is. T-1459 made a 10_19 bucket's quota a function of what is DRAWN against it — the
+    # re-cut is bounded by each bucket's undrawn remainder — so a fixture that varies the
+    # ledger there varies the quota it is testing against, and measures nothing. A band the
+    # record reaches nobody working in weighs 0.0 and neither side of the move touches it;
+    # that is the stable ground the overfill fixtures stand on. Picked off the factors
+    # rather than typed, so it follows the reading if a later source opens or shuts a band.
+    shut_bands = [band for band, _, _, _ in AGE_BANDS
+                  if doc["trade_re_cut"]["participation"]["factors"][band] == 0.0]
+    assert shut_bands, "every band is in the trade cut; the overfill fixtures have no fixed bucket"
+    first = next(b for b in doc["bucket_families"][0]["buckets"]
+                 if b["axes"].get("age_band") in shut_bands and (b["to_reconstruct"] or 0) > 0)
     BYPASS = 10_000
     fires("a bucket filled past its quota",
           lambda: build(data, [{"ticket": "T-1347", "bucket": first["key"],
@@ -1795,7 +2195,12 @@ def cmd_self_test() -> int:
     # have fired, because it was reading the same replaced number.
     halves = [{"ticket": "T-1171", "bucket": first["key"], "records": 1},
               {"ticket": "T-1174", "bucket": first["key"], "records": 2}]
-    assert build(data, halves, occ)["bucket_families"][0]["buckets"][0]["filled"] == 3
+    # LOOKED UP BY KEY, NOT BY POSITION: the book's first row moves whenever the cut does,
+    # and T-1459 moved it.
+    def row(doc_, key):
+        return next(b for b in doc_["bucket_families"][0]["buckets"] if b["key"] == key)
+
+    assert row(build(data, halves, occ), first["key"])["filled"] == 3
     fires("two tickets overfilling one bucket between them",
           lambda: build(data, [{"ticket": "T-1171", "bucket": first["key"],
                                 "records": first["to_reconstruct"] or 0},
@@ -1809,7 +2214,7 @@ def cmd_self_test() -> int:
                            "records": (first["to_reconstruct"] or 0) + 1}], occ)
     named = [r for r in inside["recut_refusals"] if r["bucket"] == first["key"]]
     assert len(named) == 1 and named[0]["held_at"] == (first["to_reconstruct"] or 0) + 1, named
-    bucket = inside["bucket_families"][0]["buckets"][0]
+    bucket = row(inside, first["key"])
     assert bucket["to_reconstruct"] == bucket["filled"] and bucket["recut_refused"], bucket
 
     # THE PRESENCE RULINGS AND THE BOOK'S `known` MUST AGREE (T-1463). This is the guard
@@ -1848,6 +2253,70 @@ def cmd_self_test() -> int:
                  if x["key"] == r["bucket"])
         assert b["to_reconstruct"] == b["filled"] and b["recut_refused"], b
     assert shipped["totals"]["persons_known"] == shipped["population_ruled_in"]["persons_known_now"]
+
+    # ---- THE TRADE RE-CUT (T-1459) -------------------------------------------------
+    # The ruling has two halves and both are guarded: the cut changes, and nothing already
+    # drawn moves. These fire on the SHIPPED book, so they are a statement about what is
+    # committed and not about a fixture.
+    rc = shipped["trade_re_cut"]
+
+    # 1. THE AGE FLOOR IS READ, NOT ASSUMED. A band the sources record nobody working in
+    #    weighs nothing and orders nobody; a band they do reach weighs what the record
+    #    measures, and never more than an adult.
+    pt = rc["participation"]
+    for band, low, _, _ in AGE_BANDS:
+        if low >= ADULT_FROM:
+            assert pt["factors"][band] == 1.0, band
+        elif pt["workers"].get(band):
+            assert 0 < pt["factors"][band] <= 1.0, (band, pt["factors"][band])
+        else:
+            assert pt["factors"][band] == 0.0, band
+    assert pt["workers_total"] == sum(pt["workers"].values()) > 0
+    assert rc["bands_reopened"], "the record reaches under twenty and the book shut every band"
+
+    # 2. THE RE-CUT NEVER LOWERS A BUCKET BELOW ITS `filled` — the guard the ticket asks
+    #    for by name. Asserted over every person bucket of the shipped book, not just the
+    #    ones that moved, because the failure this forbids is a quota going under a stage
+    #    that already spent.
+    for b in shipped["bucket_families"][0]["buckets"]:
+        if b["to_reconstruct"] is None:
+            continue
+        assert b["to_reconstruct"] >= b["filled"], b
+
+    # 3. THE TOWN DOES NOT CHANGE SIZE. A re-cut moves slots between a cell's `trade` and
+    #    `none` buckets; it never mints or retires a person, so what goes in equals what
+    #    comes out and the book's employed total is the model's, before and after.
+    assert sum(rc["into"].values()) == sum(rc["out_of"].values()) == rc["what_moved"]
+    employed = sum(b["target"] for b in shipped["bucket_families"][0]["buckets"]
+                   if b["axes"].get("trade") == "trade")
+    assert employed == shipped["bucket_families"][0]["summary"]["employed_target"], employed
+
+    # 4. EVERY CAP THAT BOUND THE RE-CUT IS NAMED, with both numbers and the drawn figure
+    #    that stood in its way. A refusal that paid in full is not a refusal.
+    for r in rc["refusals"]:
+        assert r["the_remainder_could_pay"] < r["the_re_cut_wanted"], r
+        assert r["direction"] in ("into", "out of") and r["cell"] and r["owning_ticket"], r
+    assert rc["what_moved"] <= min(rc["the_re_cut_wanted"],
+                                   rc["the_younger_bands_had_undrawn"],
+                                   rc["the_adult_cells_had_undrawn"]), rc
+
+    # 5. AND A RECORD THAT REACHED NOBODY UNDER TWENTY SHUTS THE BAND AGAIN. The floor is
+    #    a reading, so withdrawing the reading has to withdraw the order — otherwise the
+    #    band would stand open on a sentence somebody typed once.
+    shut = copy.deepcopy(pt)
+    shut["factors"] = {k: (1.0 if v == 1.0 else 0.0) for k, v in shut["factors"].items()}
+    reverted = person_buckets(data["model"], data["composition"], data["inventory"],
+                              known_layer(data["residents"], data["presence_rulings"]), shut)
+    assert not [b for b in reverted["buckets"]
+                if b["axes"].get("trade") == "trade" and b["axes"]["age_band"] == "10_19"], \
+        "the reopened band survived the record that opened it being withdrawn"
+
+    # 6. AND THE SEVEN STAGES THAT HAVE SPENT ARE NAMED WITH WHAT THEY SPENT, which is the
+    #    list the re-cut is audited against.
+    assert shipped["spent_by"] and all(row["records"] > 0 and row["buckets"]
+                                       for row in shipped["spent_by"]), shipped["spent_by"]
+    assert sum(row["records"] for row in shipped["spent_by"]) == sum(
+        int(f.get("records") or 0) for f in _fills_on_disk())
 
     # A SHORTFALL THE EVIDENCE EXPLAINS IS NOT A QUOTA (T-1428). The December census
     # prints seven schools; the register holds five at the scene date and names two more

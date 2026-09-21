@@ -500,7 +500,25 @@ def _redealt_roof_count() -> int:
     return len(recipe.get("redealt", {}).get("roofs", []))
 
 
+def _trade_recut_slot_count() -> int:
+    """The employed-person slots T-1459's re-cut moved into the bands the record reopened.
+
+    Counted off the book's own `trade_re_cut.what_moved` rather than by re-adding the
+    band's trade buckets, because the liberty is about the MOVE and not about the band:
+    a later stage filling those slots leaves the move where it was, and a re-cut that
+    the remainder could pay less of would shrink it. The book re-derives on every
+    `--check`, so this number follows the reading.
+    """
+    book = json.loads(
+        (RECON_DIR / "1835_reconstruction_order_book.json").read_text())
+    return int((book.get("trade_re_cut") or {}).get("what_moved") or 0)
+
+
 SCOPE_SOURCES = {
+    "order_book.persons[trade_re_cut_moved]": (
+        _trade_recut_slot_count,
+        "data/reconstruction/1835_reconstruction_order_book.json, itself re-derived by "
+        "tools/build_order_book_1835.py --check"),
     "register_1835.businesses[survival_liberty_required]": (
         _register_survival_liberty_count,
         "data/research/newspapers/register_1835.json, itself re-derived by "
