@@ -3,20 +3,20 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 273,
+    "records": 272,
     "compiled_from_register": 196,
-    "authored": 77,
-    "present_at_scene_date": 256,
+    "authored": 76,
+    "present_at_scene_date": 255,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
       "church": 4,
-      "civic": 3,
+      "civic": 4,
       "druggist": 4,
       "iron_foundry": 2,
       "lawyer": 20,
       "not_stated": 5,
-      "other": 122,
+      "other": 120,
       "physician": 9,
       "printing_office": 3,
       "school": 7,
@@ -28,23 +28,23 @@
       "tin_and_copper_manufactory": 4
     },
     "by_location_kind": {
-      "anchored": 26,
-      "premises": 53,
+      "anchored": 27,
+      "premises": 52,
       "street_only": 89,
       "unplaceable": 109
     },
-    "named_people": 402,
-    "named_people_linked_to_a_town_card": 349,
+    "named_people": 406,
+    "named_people_linked_to_a_town_card": 352,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 36,
     "by_grade": {
-      "attested": 165,
-      "inferred": 74,
+      "attested": 166,
+      "inferred": 72,
       "reconstructed": 34
     },
     "by_where_kind": {
-      "anchored": 26,
-      "premises": 53,
+      "anchored": 27,
+      "premises": 51,
       "street_only": 89,
       "unplaceable": 105
     },
@@ -66,10 +66,10 @@
       "french_canadian": 5,
       "irish": 10,
       "metis": 1,
-      "new_york": 51,
+      "new_york": 50,
       "other": 11,
-      "southern": 10,
-      "unknown": 99,
+      "southern": 9,
+      "unknown": 100,
       "yankee": 73
     }
   },
@@ -119,7 +119,7 @@
       {
         "value": "new_york",
         "label": "New York State",
-        "count": 51
+        "count": 50
       },
       {
         "value": "irish",
@@ -139,7 +139,7 @@
       {
         "value": "southern",
         "label": "Southern",
-        "count": 10
+        "count": 9
       },
       {
         "value": "other",
@@ -149,7 +149,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 99
+        "count": 100
       }
     ]
   },
@@ -5518,6 +5518,108 @@
       "liberties": []
     },
     {
+      "id": "biz_indian_agency_chicago",
+      "file": "biz_indian_agency_chicago.json",
+      "name": "The United States Indian Agency at Chicago",
+      "register_id": null,
+      "provenance": "authored",
+      "type": [
+        "civic"
+      ],
+      "present_at_scene_date": true,
+      "grade": "attested",
+      "trade": "the United States Indian agency for Chicago — the agent, his sub-agents, the interpreter and the government blacksmith kept under the treaty obligation",
+      "occupation": null,
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Thomas Jefferson Vance Owen",
+          "person_id": "owen_thomas_jv",
+          "role": "indian_agent",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": [
+            "Col. T. J. V. Owen"
+          ]
+        },
+        {
+          "name": "Gholson Kercheval",
+          "person_id": "kercheval_gholson",
+          "role": "sub_agent",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "James Stuart",
+          "person_id": null,
+          "role": "sub_agent",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Billy Caldwell (Sauganash)",
+          "person_id": "caldwell_billy",
+          "role": "interpreter",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": [
+            "Sauganash"
+          ]
+        },
+        {
+          "name": "David McKee",
+          "person_id": "mckee_david",
+          "role": "blacksmith",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        },
+        {
+          "name": "Joseph Porthier",
+          "person_id": "porthier_joseph",
+          "role": "blacksmith",
+          "tier": "attested",
+          "from": null,
+          "to": null,
+          "also_printed_as": [
+            "Joseph Porthick"
+          ]
+        }
+      ],
+      "where": {
+        "kind": "anchored",
+        "structure_id": null,
+        "anchor": {
+          "kind": "structure",
+          "id": "cobweb_castle",
+          "title": "Indian Agency House",
+          "streets": []
+        },
+        "street_id": null,
+        "street": null,
+        "tier": "inferred",
+        "from": null,
+        "to": null,
+        "limit_reason": "A LANDMARK AND NO OFFICE. Nothing this project holds says where the agent's business was transacted on any date in 1835, and the agency's own buildings had been lent to other uses by 1832. The anchor is the Agency House because that is the thing every source in this cluster measures from, and `structure_id` stays null because the house is what the establishment stood beside and not a roof of the establishment's own."
+      },
+      "locations": 2,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "inferred",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": true,
+      "liberties": []
+    },
+    {
       "id": "biz_inf_cooper_north_04_cooper",
       "file": "biz_inf_cooper_north_04_cooper.json",
       "name": "J. Garland, cooper",
@@ -8419,52 +8521,6 @@
       ]
     },
     {
-      "id": "biz_mckee_david_blacksmith",
-      "file": "biz_mckee_david_blacksmith.json",
-      "name": "David McKee, blacksmith",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "other"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "blacksmith",
-      "occupation": "blacksmith",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "David McKee",
-          "person_id": "mckee_david",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "premises",
-        "structure_id": "blacksmith_shop_state_st",
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": null
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "southern",
-      "proprietor_community_tier": "inferred",
-      "review_required": false,
-      "liberties": []
-    },
-    {
       "id": "biz_meeker_joseph_carpenter",
       "file": "biz_meeker_joseph_carpenter.json",
       "name": "Joseph Meeker, carpenter",
@@ -9788,52 +9844,6 @@
       "liberties": [
         "survival_required"
       ]
-    },
-    {
-      "id": "biz_porthier_joseph_blacksmith",
-      "file": "biz_porthier_joseph_blacksmith.json",
-      "name": "Joseph Porthier, blacksmith",
-      "register_id": null,
-      "provenance": "authored",
-      "type": [
-        "other"
-      ],
-      "present_at_scene_date": true,
-      "grade": "inferred",
-      "trade": "blacksmith",
-      "occupation": "blacksmith",
-      "goods": [],
-      "firm_styles": [],
-      "people": [
-        {
-          "name": "Joseph Porthier",
-          "person_id": "porthier_joseph",
-          "role": "proprietor",
-          "tier": "inferred",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        }
-      ],
-      "where": {
-        "kind": "premises",
-        "structure_id": "blacksmith_shop_state_st",
-        "anchor": null,
-        "street_id": null,
-        "street": null,
-        "tier": "inferred",
-        "from": null,
-        "to": null,
-        "limit_reason": null
-      },
-      "locations": 1,
-      "opened": null,
-      "closed": null,
-      "dates_tier": "inferred",
-      "proprietor_community": "new_york",
-      "proprietor_community_tier": "reconstructed",
-      "review_required": false,
-      "liberties": []
     },
     {
       "id": "biz_r_a_kinzie",
@@ -15935,8 +15945,7 @@
       "head": "mckee_david",
       "structure_id": "blacksmith_shop_state_st",
       "business_ids": [
-        "biz_mckee_david_blacksmith",
-        "biz_porthier_joseph_blacksmith"
+        "biz_indian_agency_chicago"
       ]
     },
     {
@@ -15994,8 +16003,7 @@
       "head": "porthier_joseph",
       "structure_id": "blacksmith_shop_state_st",
       "business_ids": [
-        "biz_mckee_david_blacksmith",
-        "biz_porthier_joseph_blacksmith"
+        "biz_indian_agency_chicago"
       ]
     },
     {

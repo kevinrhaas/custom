@@ -7,17 +7,17 @@
  "not_a_reading": "DERIVED, never hand-edited. Every row is read off a committed role on a committed card and a committed ruling. No page of any source is read here, nobody is minted, nothing is reconstructed and no confidence is promoted: a house raised from a role is `inferred` and says so on its own record.",
  "scene_date": "1835-07-01",
  "counts": {
-  "already_holds_a_workplace": 84,
+  "already_holds_a_workplace": 88,
   "held": 3,
-  "no_premises": 29,
+  "no_premises": 27,
   "not_ruled": 3,
-  "raise": 41,
-  "houses_raised": 35,
-  "houses_seated_on_a_committed_structure": 12
+  "raise": 39,
+  "houses_raised": 33,
+  "houses_seated_on_a_committed_structure": 10
  },
  "houses_by_census_class": {
   "iron_foundry": 1,
-  "other": 16,
+  "other": 14,
   "physician": 5,
   "store": 6,
   "tavern": 7
@@ -309,20 +309,6 @@
    ]
   },
   {
-   "business_id": "biz_mckee_david_blacksmith",
-   "occupation": "blacksmith",
-   "census_classes": [
-    "other"
-   ],
-   "keepers": [
-    "mckee_david"
-   ],
-   "seated_at": "blacksmith_shop_state_st",
-   "sources": [
-    "andreas_1884_v1"
-   ]
-  },
-  {
    "business_id": "biz_meeker_joseph_carpenter",
    "occupation": "carpenter",
    "census_classes": [
@@ -365,20 +351,6 @@
    "sources": [
     "andreas_1884_v1",
     "drloih_hotels"
-   ]
-  },
-  {
-   "business_id": "biz_porthier_joseph_blacksmith",
-   "occupation": "blacksmith",
-   "census_classes": [
-    "other"
-   ],
-   "keepers": [
-    "porthier_joseph"
-   ],
-   "seated_at": "blacksmith_shop_state_st",
-   "sources": [
-    "andreas_1884_v1"
    ]
   },
   {
@@ -563,13 +535,6 @@
    "basis": "A printer is employed in a printing office, and the town's printing offices are already in the register — the December census counts two and the register holds three. worked on somebody else's premises. The workplace link is T-1189's, which staffs every business with real persons; nothing here raises a house."
   },
   {
-   "person_id": "caldwell_billy",
-   "name": "Billy Caldwell (Sauganash)",
-   "role": "interpreter",
-   "kind": "profession",
-   "basis": "An interpreter is retained by the Agency or by a treaty commission. exercised at an establishment the person does not keep."
-  },
-  {
    "person_id": "crocker_h",
    "name": "H. Crocker",
    "role": "schoolteacher",
@@ -666,13 +631,6 @@
    "role": "ship_carpenter",
    "kind": "trade",
    "basis": "A vessel is built in a yard belonging to her owner or to a lumber yard; T-1187 owns the river trades and the pier-works gang."
-  },
-  {
-   "person_id": "owen_thomas_jv",
-   "name": "Thomas Jefferson Vance Owen",
-   "role": "indian_agent",
-   "kind": "office",
-   "basis": "A CIVIC SEAT, NOT A HOUSE OF TRADE. Where the seat was held is a person's other significant location and is written as `associated_with[]` by T-1405; the post office, the land office and the county offices are ESTABLISHMENTS and T-1188 raises them as businesses with their staff."
   },
   {
    "person_id": "porter_eliza_chappel",
@@ -890,8 +848,8 @@
     "class": "other",
     "census_count": null,
     "town_before_T-1404": 72,
-    "raised_here": 16,
-    "town_after_T-1404": 88,
+    "raised_here": 14,
+    "town_after_T-1404": 86,
     "still_short": null,
     "documented_zero": false,
     "owed_to": null
