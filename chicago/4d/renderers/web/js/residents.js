@@ -2178,6 +2178,10 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const withheldByPerson = new Map();
     let ladderRules = [];
     const seatByHousehold = new Map();
+  // …and the same book's firms, keyed by the REGISTER id the business index
+  // crosswalks to (`register_id`), which is the id the address book files them
+  // under. T-1493: the business card reads this the way the person card does.
+  const seatByBusiness = new Map();
     const [joined, pilot, found, index, agencies, withheld, addressBook] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
@@ -2224,9 +2228,10 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     ladderRules = index?.vocabulary?.ladder_rules || [];
     for (const row of addressBook?.rows || []) {
       if (row.kind === 'household') seatByHousehold.set(row.id, row);
+      else if (row.kind === 'business') seatByBusiness.set(row.id, row);
     }
     return { citationsById, researchByPerson, directoryByPerson, withheldByPerson, ladderRules,
-      agencies, seatByHousehold, getJson };
+      agencies, seatByHousehold, seatByBusiness, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;

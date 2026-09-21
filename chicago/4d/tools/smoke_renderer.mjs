@@ -12225,12 +12225,44 @@ for (const [label, viewport, touch] of [
       const firstUnplaceable = rows()[0]?.dataset.businessId ?? null;
       dir.filter('place', '');
       out.pill.cleared = dir.state?.matched;
-      // A roofless firm first: its card must say where the record stops.
+      // A roofless firm first: its card must say where the record stops. The seat
+      // fill is awaited before the button is counted, so "offers no building" is a
+      // reading about a settled card and not a race the address book would win.
       const openedLimit = await dir.open(firstUnplaceable);
+      await dir.seated();
       const card = document.getElementById('businesses-card');
       out.roofless = { opened: openedLimit, id: firstUnplaceable,
         limit: card?.querySelector('.biz-limit')?.textContent.trim() ?? '',
         go: !!card?.querySelector('.biz-go') };
+      dir.close();
+      // T-1493. THE FIRM THE PAPER REACHES TO A STREET AND NO FURTHER. 40 of these
+      // are housed by the street-face adoption on a block-face roof — seated in the
+      // address book, printed on the card in words, and until this ticket offering
+      // the visitor nowhere to stand. The card must now carry them there, and must
+      // say in the VERB that a block face is not an address.
+      const book = await (await fetch(new URL('reconstruction/1835_address_book.json', api.dataBase))).json();
+      const byRegister = new Map(idx.businesses.filter((b) => b.register_id).map((b) => [b.register_id, b]));
+      const faces = book.rows.filter((r) => r.kind === 'business' && r.rung === 'face'
+        && r.seat?.kind === 'structure' && byRegister.has(r.id));
+      const reachable = faces.filter((r) => api.registry.has(r.seat.id));
+      const pick = reachable[0] ?? null;
+      const openedFace = pick ? await dir.open(byRegister.get(pick.id).id) : false;
+      await dir.seated();
+      const seatGo = card?.querySelector('.biz-seat-slot .seat-go');
+      out.face = {
+        faces: faces.length, reachable: reachable.length,
+        opened: openedFace, id: pick?.id ?? null,
+        // the record itself reaches no roof — which is why the seat is the only way out
+        locationGo: !!card?.querySelector('.biz-locs .biz-go'),
+        go: seatGo?.dataset.structure ?? null, want: pick?.seat?.id ?? null,
+        verb: seatGo?.querySelector('.people-go-verb')?.textContent.trim() ?? '',
+        sub: seatGo?.querySelector('.seat-go-sub')?.textContent.trim() ?? '',
+        rung: card?.querySelector('.biz-seat-slot .people-seat')?.dataset.rung ?? '',
+        words: card?.querySelector('.biz-seat-slot .people-seat-words')?.textContent.trim() ?? '',
+      };
+      // The press itself needs no separate reading: the seat button carries the
+      // card's own `.biz-go` class, so it travels the one handler the premises
+      // button above is already checked through.
       dir.close();
       // …then one with a roof of its own, which must offer the way to it.
       const withRoof = idx.businesses.find((b) => b.where?.kind === 'premises' && b.where.structure_id
@@ -12265,6 +12297,15 @@ for (const [label, viewport, touch] of [
       && biz.pill.rows === biz.pill.matched && !biz.pill.offKind.length
       && biz.pill.pressed === 'unplaceable' && biz.pill.cleared === biz.pill.all,
       JSON.stringify(biz.pill));
+    check(`${label}: a firm the paper reaches to a street is carried to the block face it is housed on`,
+      biz.face.faces > 0 && biz.face.reachable > 0 && biz.face.opened
+      && biz.face.locationGo === false
+      && biz.face.go === biz.face.want
+      && /block face/i.test(biz.face.verb)
+      && /substitutable/i.test(biz.face.sub)
+      && biz.face.rung === 'face'
+      && /Housed on a face of|street-face adoption/i.test(biz.face.words),
+      JSON.stringify(biz.face));
     check(`${label}: a firm the register could not place says how far the record goes, and offers no building`,
       biz.roofless.opened && /How far the record goes:/.test(biz.roofless.limit)
       && biz.roofless.limit.length > 40 && !biz.roofless.go,
