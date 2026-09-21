@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The card named a firm\u2019s street and could not take you there', kind: 'feature', ts: '',
+  { v: 1065, title: 'The card named a firm\u2019s street and could not take you there', kind: 'feature', ts: '2026-09-21T15:34:23.399Z', date: 'Sep 21, 2026, 10:34 AM CT',
     items: [
       'Every household and every house of business in this town has a card, and each card says where it stood at the rung its evidence actually reaches. Some are seated at a named roof. Some are reached by the paper only as far as a street \u2014 South Water Street, Lake Street \u2014 and are housed on a face of that street, which the card has always said plainly is housing rather than a reading: a place to stand, substitutable, chosen by rule and not by any source.',
       'Forty firms are seated that way, and until now their cards printed the street, printed the caution, and stopped. There was no way to go there. The forty-five firms with a roof of their own had a button and went straight to it. So the town was walkable precisely where the evidence was strongest and a dead end everywhere else \u2014 which is backwards. The weaker rungs are the ones a visitor most needs shown, because a card that names a street and offers nothing is read as the town being empty there, when what is actually empty is the record.',
