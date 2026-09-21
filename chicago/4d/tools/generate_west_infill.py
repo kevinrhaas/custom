@@ -78,6 +78,7 @@ from band_notes import split_notes  # noqa: E402
 # generator used to retype one eave and one pitch per family into Python, and eleven of
 # those constants sat outside the band the note under them cited (T-0172, T-0272). The
 # band is now used as the range it was authored as.
+from family_bands import admits_loft  # noqa: E402
 from family_bands import (eave_floor, eave_for_ridge, eave_limits,  # noqa: E402
                           families, pitch_deg, wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
@@ -356,7 +357,10 @@ def _form_body(family: str, seq: int, paint: str, width: float, depth: float) ->
         "roof_pitch_deg": inferred(pitch(), why),
         "construction": inferred(construction, why), "door": inferred(door, why),
         "door_side": inferred("front", why),
-        "loft": inferred(family in ("W2", "W3", "W5", "A1", "A2"), why),
+        # ASKED OF THE CROSSWALK, not of a literal (T-0179's lesson, one line below the
+        # comment that draws it): the hand-kept set gave a loft to W3 and W5, both
+        # authored `levels '1'`, and west_rec_036 reached the band gate on it.
+        "loft": inferred(admits_loft(family), why),
         "board_gap_m": inferred(.012, why), "paint": inferred(paint, why),
     }
 
