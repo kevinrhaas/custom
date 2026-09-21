@@ -1699,6 +1699,40 @@ switch (cmd) {
       console.error(`usage: ticket.mjs split ${t.id} "first piece" "second piece" [...]`);
       process.exit(1);
     }
+
+    // A SPLIT IS NOT REPEATABLE (T-1481, 2026-09-21). There was no guard on the
+    // parent's own state, so a ticket that already carried children could be split
+    // a SECOND time — and on 2026-09-20 T-1452 was, four hours apart:
+    //
+    //   13:48  run 35529393603 claims T-1452 and splits it into T-1480/T-1481/T-1482
+    //   17:52  run 35542539851 reads T-1452, finds it splittable, and splits it AGAIN
+    //          into T-1494/T-1495/T-1496 — the same twenty-six roofs, renumbered
+    //
+    // Six tickets and six queue rows for one parcel of work, in pairs that read as
+    // unrelated rows: T-1481/T-1494 (the South parcel's eleven roofs), T-1495 against
+    // T-1480's live child T-1484 (the North parcel's nine), T-1482/T-1496 (the three
+    // platted blocks' six). T-1494 migrated the South eleven and merged as #1600; its
+    // twin T-1481 was still `open` at the head of `list --workable` the next morning,
+    // and two slices were working T-1482 while T-1496 waited below it for a third.
+    //
+    // THE CLAIM LOCK CANNOT CATCH THIS. Both runs claimed legitimately, hours apart,
+    // and the duplicate is minted by the split itself — the lock guards the parent
+    // for one run's lifetime, not for the life of the children it leaves behind.
+    // The children ARE the ticket once the split lands, so a parent that is still
+    // too big is split one level DOWN: that is what T-1480 -> T-1483/T-1484 did.
+    if (t.state === 'split') {
+      const kids = tickets.filter((k) => k.parent === t.id);
+      console.error(`${t.id} is already split — splitting it again mints a duplicate of every piece.`);
+      console.error(`Its children carry the work${kids.length ? ':' : '.'}`);
+      for (const k of kids) console.error(`  ${k.id}  ${String(k.state).padEnd(10)} ${k.title}`);
+      console.error(`Split one of THOSE if a piece is still more than one run's demonstration.`);
+      process.exit(1);
+    }
+    if (['done', 'withdrawn'].includes(t.state)) {
+      console.error(`${t.id} is ${t.state} — a finished ticket has no work left to split.`);
+      console.error(`File what remains with \`ticket.mjs new\` instead.`);
+      process.exit(1);
+    }
     const minted = mintIds(tickets, titles.length);
     const rows = [];
     titles.forEach((title, n) => {
