@@ -85,6 +85,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from resident_mint_carry import carry_seats  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
@@ -789,6 +790,16 @@ def fill() -> tuple:
                    for hid in sorted(cards)],
         "fills": dict(sorted(fills.items())),
     }
+    # T-1489. THE SEAT ANOTHER PASS DREW FOR THESE PEOPLE, CARRIED THROUGH THE REBUILD.
+    # `tools/seat_reconstructed_trades_1835.py` points a reconstructed trade-holder with
+    # no attested workplace at a house the business layer already holds, and writes the
+    # answer onto the person as `persons[].employment`. It runs AFTER this stage, and
+    # this stage derives its directory whole and compares it byte for byte — so without
+    # this the key would be deleted on the next --build and reported as drift by the
+    # pass that wrote it. It is the same fixed-slot carry the four `households/` mints
+    # already use for `workplaces`; what the block may CONTAIN is that pass's --check to
+    # decide, never this one's.
+    carry_seats(cards, MINTED)
     return cards, ledger
 
 

@@ -1279,6 +1279,44 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
     # -------------------------------------------------------------------------
+    # T-1489 carried the drawn employment seat back onto the card of the person holding
+    # it — 123 of them, 33 in this directory — because the join beside the layer said
+    # where a reconstructed trade-holder worked and the card itself said nothing. The
+    # walkthrough was already showing the seat, and it shows it from the join, which
+    # carries the whole adjudication: the term of the order rule that chose the house,
+    # the class, the candidates considered, the model row that allows the hand. The five
+    # keys the CARD carries are a strict subset of that, so a renderer reading them would
+    # show a visitor nothing they are not being shown, out of a second copy that moves
+    # whenever the business layer moves. The card's copy is for the LAYER — a card that
+    # loses the join still says where its holder worked, and the four stages that derive
+    # a directory whole now carry it through their rebuilds. `note` is the sixth key and
+    # is machinery here, as a note is everywhere in this census. There is no
+    # `business_name`: `tools/replace_invented_residents.py` reads the raw text of these
+    # cards as a name pool, and writing one there refused a documented tailor from its
+    # deal — `employment_block`'s own docstring carries the measurement.
+    "residents/household:persons[].employment.business_id": (
+        "The house this project POINTED a reconstructed trade-holder at, where no source "
+        "names one. `residents.js` shows the seat already and shows it from "
+        "data/residents/reconstructed_seating.json, which holds the reasoning this "
+        "pointer is the conclusion of; reading the card's copy instead would put a "
+        "second, thinner statement of the same claim in front of a visitor. The copy "
+        "exists so the resident layer carries its own answer."
+    ),
+    "residents/household:persons[].employment.role": (
+        "The staffing model's own term for the hand this person stands in as — clerk, "
+        "domestic, teamster. Shown to a visitor from the join, for the reason above."
+    ),
+    "residents/household:persons[].employment.tier": (
+        "`reconstructed`, on every one of them, because a drawn seat has no other grade. "
+        "The confidence a visitor reads is the join's, which states it in a sentence "
+        "rather than a word."
+    ),
+    "residents/household:persons[].employment.seed": (
+        "The seed the draw was made under — what makes the seat reproducible and what "
+        "lets a gate tell a re-derivation from a hand-edit. Provenance for a tool, never "
+        "a figure about a person, and in the same class as `stated_family.pass` below."
+    ),
+    # -------------------------------------------------------------------------
     # T-1320 reads the book corpus for kinship. A kin row it writes or corroborates names
     # the book claim behind it, so `--check` can hold the row to a live ruling and a row
     # that outlived its ruling goes red. It is a foreign key into

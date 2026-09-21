@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import ast
 from functools import lru_cache
+import json
 import pathlib
 import sys
 
@@ -36,6 +37,18 @@ TOOLS = ROOT / "tools"
 # ``old_settlers.py`` is an evidence writer rather than a ``spend_*.py`` pass.  Its
 # marker function chooses between these two literals, and its own --check holds them.
 OLD_SETTLER_MARKERS = ("OLD SETTLERS, 1882", "OLD SETTLERS, 1879")
+#: The reconstruction STAGES that derive a resident directory whole and therefore have
+#: to carry `employment` through it (T-1489). They are not mints and do not take the
+#: per-card route above: they call ``carry_seats`` once, on the set they are about to
+#: write or compare. Four directories and four stages, because `underdocumented/` is
+#: shared by two of them on an id prefix and `households/` is where this stage's own
+#: `hh_rc_*` cards stand beside the four mints' cards.
+SEAT_CARRIERS = (
+    "reconstruct_free_black.py",
+    "reconstruct_trade_households.py",
+    "reconstruct_underdocumented.py",
+    "reconstruct_women_children.py",
+)
 MINTS = (
     "mint_civic_residents.py",
     "mint_documented_residents.py",
@@ -110,6 +123,56 @@ def _insert_after(row: dict, key: str, value, after: str) -> None:
         rebuilt[key] = value
     row.clear()
     row.update(rebuilt)
+
+
+#: Where `employment` sits on a person, most-preferred first. The literal is shared
+#: with `tools/seat_reconstructed_trades_1835.AFTER_KEYS`, whose --self-test asserts the
+#: two agree: the writer and the carrier disagreeing about a slot is exactly the drift
+#: the fixed slots exist to prevent.
+EMPLOYMENT_AFTER = ("workplaces", "occupation", "roles")
+
+
+def _employment_slot(person: dict) -> str:
+    """The key `employment` is inserted after, for this person as they now stand."""
+    return next((key for key in EMPLOYMENT_AFTER if key in person),
+                EMPLOYMENT_AFTER[-1])
+
+
+def carry_seats(cards: dict, directory: pathlib.Path) -> int:
+    """Carry `persons[].employment` through a WHOLE directory's re-derivation (T-1489).
+
+    ``carry_resident_mint`` above is the four ``households/`` mints' route, and it takes
+    one card and its own prior. The six other resident directories are owned by
+    reconstruction STAGES, which derive a whole directory from a programme and compare
+    it byte for byte — `reconstruct_trade_households.py` alone owns 308 cards and 88 of
+    the seats. They have no per-card prior to hand in, so they get this instead: the
+    committed file IS the prior, and a stage calls this once, on the set it is about to
+    write or compare.
+
+    THE AUTHORITY FOR WHAT THE BLOCK SAYS IS NOT HERE, which is the whole reason this is
+    safe. A stage carrying the committed block forward would, on its own, let a
+    hand-edited seat through its gate — so it does not own one:
+    `seat_reconstructed_trades_1835.py --check` re-derives every block from the business
+    layer and the staffing model and asserts it both ways, a fossil and a silence alike.
+    This function keeps the field alive across a rebuild; that gate decides what it may
+    contain.
+    """
+    carried = 0
+    for hid, card in cards.items():
+        path = directory / f"{hid}.json"
+        if not path.exists():
+            continue
+        prior = json.loads(path.read_text(encoding="utf-8"))
+        by_id = {person.get("id"): person for person in prior.get("persons") or []}
+        for person in card.get("persons") or []:
+            if "employment" in person:
+                continue
+            block = (by_id.get(person.get("id")) or {}).get("employment")
+            if block is None:
+                continue
+            _insert_after(person, "employment", block, _employment_slot(person))
+            carried += 1
+    return carried
 
 
 def carry_resident_mint(doc: dict, prior: dict | None, *,
@@ -239,6 +302,22 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             person.pop("workplaces", None)
             _insert_after(person, "workplaces", workplaces,
                           "occupation" if "occupation" in person else "roles")
+
+        # T-1489: AND THE FOURTH, FOR THE DRAWN HALF OF THE SAME QUESTION.
+        # `tools/seat_reconstructed_trades_1835.py` writes `persons[].employment` — the
+        # house this project POINTED a reconstructed trade-holder at, where no source
+        # names one — and it runs after every mint for the same reason T-1432 does. The
+        # slot is immediately after `workplaces` where the card carries one, so the two
+        # halves of one question stand together and in a fixed order, which is what
+        # stops two passes writing beside `occupation` from disagreeing about which
+        # comes first and reporting drift by turns. A seated person has no `workplaces`
+        # by construction — that absence is what put them in scope — so in practice this
+        # lands beside `occupation`; the ordered fallback is there because the scope rule
+        # is that pass's to change and this slot must not quietly move when it does.
+        employment = old.get("employment")
+        if employment is not None and "employment" not in owned:
+            person.pop("employment", None)
+            _insert_after(person, "employment", employment, _employment_slot(person))
 
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
@@ -406,13 +485,74 @@ def self_test() -> int:
         want(f"{name} uses the shared preservation contract",
              "carry_resident_mint(" in source)
 
+    # T-1489. THE FOURTH FIXED SLOT, AND THE DIRECTORY ROUTE TO IT.
+    seat = {"business_id": "biz_x", "role": "clerk", "note": "a drawn seat"}
+    minted = {"persons": [{"id": "p1", "grade": "reconstructed", "name": "P",
+                           "occupation": {"value": "clerk"}, "sources": []}]}
+    carried = carry_resident_mint(minted, {"persons": [
+        {"id": "p1", "occupation": {"value": "clerk"}, "employment": seat}]})
+    person = carried["persons"][0]
+    want("a mint's rebuild keeps the seat another pass drew",
+         person.get("employment") == seat)
+    want("and puts it immediately after the trade, never at the end of the card",
+         list(person).index("employment") == list(person).index("occupation") + 1)
+
+    owner = {"persons": [{"id": "p1", "occupation": {"value": "clerk"}, "sources": []}]}
+    kept = carry_resident_mint(owner, {"persons": [{"id": "p1", "employment": seat}]},
+                               owned_person_keys=("employment",))
+    want("a caller that owns the key is not overruled by an older derivation",
+         "employment" not in kept["persons"][0])
+
+    with_workplaces = {"persons": [{"id": "p1", "occupation": {"value": "clerk"},
+                                    "workplaces": [{"business_id": "biz_y"}],
+                                    "sources": []}]}
+    both = carry_resident_mint(with_workplaces,
+                               {"persons": [{"id": "p1", "employment": seat}]})
+    keys = list(both["persons"][0])
+    want("where a card holds both halves the drawn one follows the attested one",
+         keys.index("employment") == keys.index("workplaces") + 1)
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = pathlib.Path(tmp)
+        (folder / "hh_a.json").write_text(json.dumps(
+            {"id": "hh_a", "persons": [{"id": "p1", "employment": seat}]}),
+            encoding="utf-8")
+        (folder / "hh_b.json").write_text(json.dumps(
+            {"id": "hh_b", "persons": [{"id": "p2", "employment": seat}]}),
+            encoding="utf-8")
+        fresh = {
+            "hh_a": {"id": "hh_a", "persons": [{"id": "p1",
+                                                "occupation": {"value": "clerk"}}]},
+            "hh_b": {"id": "hh_b", "persons": [{"id": "p2",
+                                                "occupation": {"value": "clerk"},
+                                                "employment": {"role": "mine"}}]},
+            "hh_c": {"id": "hh_c", "persons": [{"id": "p3"}]},
+        }
+        moved = carry_seats(fresh, folder)
+        want("a whole directory's rebuild keeps the seats the committed cards hold",
+             moved == 1 and fresh["hh_a"]["persons"][0].get("employment") == seat)
+        want("a stage that derives its own block is never overwritten by the old one",
+             fresh["hh_b"]["persons"][0]["employment"] == {"role": "mine"})
+        want("a card the directory has never held is not invented to carry one",
+             "employment" not in fresh["hh_c"]["persons"][0])
+
+    # The six directories the four MINTS above do not own, and the stages that do. A
+    # shared helper no stage calls is the same defect with a function beside it — the
+    # reason the four-mint assertion above exists, arriving on the other route.
+    for name in SEAT_CARRIERS:
+        source = (TOOLS / name).read_text(encoding="utf-8")
+        want(f"{name} carries the seats through its own re-derivation",
+             "carry_seats(" in source)
+
     for failure in failures:
         print(f"   FAIL: {failure}")
     if failures:
         print(f"   {len(failures)} assertion(s) failed")
         return 1
     print(f"   OK: changed prose preserves foreign findings at {len(markers)} writer "
-          "boundaries, and all four resident mints use the contract")
+          f"boundaries, all four resident mints use the contract, and "
+          f"{len(SEAT_CARRIERS)} reconstruction stage(s) carry the drawn seats")
     return 0
 
 
