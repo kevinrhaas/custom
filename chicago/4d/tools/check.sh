@@ -1199,6 +1199,22 @@ step "the 26 moving roof ids' migration surface still describes the tree" \
 selftest "…and it still tells a pointer from an assertion about what a roof is" \
   python3 tools/measure_roof_id_migration.py --self-test
 
+# T-1494, and it is the OTHER half of the same execution. The step above covers the six
+# verdicts whose id stayed put; these eleven changed name, and a renamed roof is a
+# different kind of risk — a file that still says `recon_1835_south_c1_003` points at
+# nothing, and nothing else here would notice, because a dangling id in an enclosure or
+# a signage run reads as a record about a building this scene simply does not draw.
+# So the step asks two things: that the recipe still derives each migrated id at the
+# sequence it was migrated at, and that NO committed file names an old one. The
+# handful that deliberately keep the old name — the Unreal receipts of an import that
+# really did load it, the executor's own fixture — are listed in the tool with the
+# reason, not skipped silently.
+step "the migrated roof ids re-derive, and nothing still names an old one" \
+  python3 tools/migrate_roof_ids.py --check
+
+selftest "…and the migration's own refusals still fire on a moved recipe" \
+  python3 tools/migrate_roof_ids.py --self-test
+
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
 # their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,

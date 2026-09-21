@@ -895,7 +895,7 @@
         {
           "lot": "blk_lake_dearborn_lot2",
           "structures": [
-            "recon_1835_south_c1_018"
+            "recon_1835_south_d1_018"
           ],
           "households": [],
           "side": "north-east",
@@ -920,7 +920,7 @@
         {
           "lot": "blk_lake_dearborn_lot2",
           "structures": [
-            "recon_1835_south_c1_018"
+            "recon_1835_south_d1_018"
           ],
           "households": [],
           "side": "north-west",
@@ -1382,13 +1382,13 @@
         {
           "lot": "blk_lake_dearborn_lot2",
           "structures": [
-            "recon_1835_south_c1_018"
+            "recon_1835_south_d1_018"
           ],
           "households": [],
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_lake_dearborn_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_south_c1_018 — and the yard behind those buildings is 12.19 m deep by 25.91 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_lake_dearborn_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_south_d1_018 — and the yard behind those buildings is 12.19 m deep by 25.91 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "rear_blk_lake_dearborn_lot1_1",
@@ -1456,13 +1456,13 @@
         {
           "lot": "blk_lake_dearborn_lot2",
           "structures": [
-            "recon_1835_south_c1_018"
+            "recon_1835_south_d1_018"
           ],
           "households": [],
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_lake_dearborn_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_south_c1_018 — and the yard behind those buildings is 12.19 m deep by 25.91 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_lake_dearborn_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_south_d1_018 — and the yard behind those buildings is 12.19 m deep by 25.91 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "rear_blk_lake_dearborn_lot4",
@@ -5097,12 +5097,12 @@
   },
   "refused": [
     "blk_lake_clark_lot3 (recon_1835_south_d6_031): the committed buildings reach 4.58 m past the lot's own rear line",
-    "blk_lake_clark_lot5 (recon_1835_south_w4_032): the committed buildings reach 2.70 m past the lot's own rear line",
+    "blk_lake_clark_lot5 (recon_1835_south_d1_032): the committed buildings reach 1.87 m past the lot's own rear line",
     "blk_lake_dearborn_lot3 (recon_1835_south_d5_034): the committed buildings reach 6.49 m past the lot's own rear line",
     "blk_lake_franklin_lot3 (recon_1835_south_d3_022): only 0.00 m of lot is left behind them",
     "blk_lake_lasalle_lot3 (recon_1835_south_d5_028): the committed buildings reach 2.25 m past the lot's own rear line",
     "blk_lake_wells_lot3 (recon_1835_south_d4_025): the committed buildings reach 0.38 m past the lot's own rear line",
-    "blk_lake_wells_lot5 (recon_1835_south_w2_026): the committed buildings reach 2.70 m past the lot's own rear line",
+    "blk_lake_wells_lot5 (recon_1835_south_d4_026): the committed buildings reach 0.97 m past the lot's own rear line",
     "blk_south_water_dearborn_lot6 (chappel_infant_school): only 3.23 m of lot is left behind them"
   ],
   "research_note": "THE EVIDENCE HERE IS A NORM AND NOT A LOCATION, which is why this record is generated from a rule instead of authored lot by lot. Read the rule in tools/generate_lot_line_fences.py — it is the answer to 'why this lot and why this fence', and it is enforced on every commit, because tools/check.sh re-derives this file byte for byte. In short: a platted lot, improved by at least one committed building, with room behind those buildings for a yard, on a line no fence already stands on; and the TYPE follows the traffic class the project already grades its own streets with — board and picket where the town's made streets meet, split rail where a light-worn lane runs. WHAT WOULD CHANGE IT: a Chicago or Cook County fence ordinance of the 1830s, which would settle the heights and probably the rhythms; any tax, insurance or sale description of a town lot naming a fence; and the North Division street control docs/ROADMAP.md S9 still records as owed, which is what keeps two thirds of the plat off this grid."

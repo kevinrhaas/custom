@@ -11,11 +11,11 @@ parent: T-1446
 opened: 2026-09-20
 closed: 2026-09-20
 pr: null
-claimed_by: run 9/20/2026, 1:35:30 PM CT
+claimed_by: run 9/20/2026, 5:47:35 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-20T18:48:43.157Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35529393603
+closed_at: 2026-09-20T22:52:31.329Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35542539851
 ---
 
 Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark.

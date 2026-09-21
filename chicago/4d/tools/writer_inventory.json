@@ -610,6 +610,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "migrate_roof_ids.py": {
+      "placement": "not_derivable",
+      "write_mode": "--apply",
+      "measured": "2026-09-21",
+      "finding": "Does NOT reproduce, and by design: `--apply` is a one-shot migration, not a re-derivation. Run on the committed tree it wrote nothing in 0s and said so — the adjudication it reads is itself re-derived, so a verdict carried out returns `keep` and the work list is empty. Perturbed (the recipe and the eleven records reverted to their pre-migration state) it rewrote the committed output exactly, which is what T-1494 shipped. It is kept out of the manifest deliberately: rederive.mjs re-running a migration every lap is the one thing this tool must never be asked to do. tools/migrate_roof_ids.py --check is what holds its output, and it is gated."
+    },
     "mint_civic_residents.py": {
       "placement": "manifest",
       "write_mode": null,
