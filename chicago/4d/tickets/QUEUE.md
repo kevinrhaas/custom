@@ -70,7 +70,6 @@ T-1354 — The six documented departures from Chicago, read against present_on_s
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1469 — Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
 T-1470 — Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach
 T-1471 — Answer the tavern identity question the roof programme is owed: whether the register's 15 scene-date tavern records are that many HOUSES, with the fold or the refusal to fold on the records and the inns_taverns group re-cut or left alone on the measurement
 
