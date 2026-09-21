@@ -81,6 +81,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 # imported rather than retyped: a group total computed under a second opinion
 # about which letter is a workshop would not be the town's.
 from reconcile_665 import group_of  # noqa: E402
+# The one list of names a roof-id sweep may not move (T-1499).
+import roof_id_pins  # noqa: E402
 
 TICKET = "T-1451"
 ARCHETYPE_OF = {f["id"]: f["current_placeholder_archetype"]
@@ -489,11 +491,9 @@ NORTH_PREFIX = "recon_1835_north_"
 MIGRATION_TICKET = "T-1480"
 
 # Derived from the roofs themselves, so they cannot be rewritten into agreement.
-MIGRATION_REDERIVED = (
-    "data/reconstruction/1835_roof_redeal.json",
-    "docs/RESEARCH/1835_anonymous_roof_redeal.md",
-    "docs/RESEARCH/1835_roof_redeal_execution.md",
-)
+# A DIFFERENT IDEA FROM A PIN, and the shared list's gate refuses any overlap: a pin
+# says "keep the old name", a re-derivation says "regenerate until it holds the new".
+MIGRATION_REDERIVED = roof_id_pins.REDERIVED
 
 # Where a record's id is part of a FILE NAME. Each is renamed beside the
 # substitution, because a file called after a roof that no longer exists is the
@@ -506,29 +506,26 @@ MIGRATION_FILENAMES = (
     ("assets/web", "{id}__inferred_1835.glb"),
 )
 
-# True as written on the day they were written: a dated receipt, the import
-# report it produced, a ticket's account of what it found, and this tool's own
-# prose about the ids it moves.
-MIGRATION_PINNED = (
-    "tickets/",
-    "renderers/unreal/receipts/",
-    "docs/unreal/prototype/",
-    "patches/",
-    "tools/execute_roof_redeal.py",
-    # Same kind as the line above, and for both of its reasons at once (T-1483):
-    # measure_roof_id_migration.py's docstring explains the surface by naming a
-    # move — "`recon_1835_north_c1_020` becomes `..._d3_020`" — and its self-test
-    # passes the old id to new_id() as the worked example of a north id keeping
-    # its sequence. Rewriting the fixture leaves it asserting
-    # new_id("..._d3_020", "D3") == "..._d3_020", true of any already-migrated id
-    # and a test of nothing. The tool measures the surface; it makes no claim
-    # that a record still stands under the old name.
-    "tools/measure_roof_id_migration.py",
-)
-# A transcript of a run and a patch against a tree are the same kind of thing as
-# a receipt: they say what a named moment looked like. Migrating an id inside one
-# would make it say something that never happened.
-MIGRATION_PINNED_SUFFIXES = (".log", ".patch")
+# TRUE AS WRITTEN ON THE DAY THEY WERE WRITTEN, and the list of them is no longer
+# kept here. It was, and `tools/migrate_roof_ids.py` kept its own beside it, with
+# overlapping contents, the same reasoning written out twice and nothing holding
+# the two in agreement but somebody remembering to edit both — which twice nobody
+# did. T-1499 made it one list: `tools/roof_id_pins.py`, every pin carrying its own
+# reason and the kind of name it is, read by both sweeps, with a gate step that
+# asserts the two of them answer alike for every file in the tree.
+#
+# The North recipe's own `migrated` block was NOT in either list: it was skipped
+# inline, two branches below the list, with its reason in a trailing comment. It is
+# a pin. It is written down as one now, which also means `--check-migration` NAMES
+# it among the pinned rather than passing it over in silence.
+
+
+def keeps_the_old_name(rel: str) -> bool:
+    """This sweep's verdict, and it is the shared list's — asked through this tool's
+    own name so that `roof_id_pins --check` is putting the question to the SWEEP.
+    A run that re-introduces a private list here diverges from the other sweep and
+    fails that step rather than quietly disagreeing with it."""
+    return roof_id_pins.is_pinned(rel)
 
 ANCILLARY_GROUPS = ("barns_stables", "small_outbuildings")
 
@@ -714,14 +711,12 @@ def migrate_tree(plan: list[dict]) -> tuple[list[str], list[str]]:
                 renamed.append(str(new.relative_to(ROOT)))
 
     skip = {ROOT / rel for rel in MIGRATION_REDERIVED}
-    skip.add(NORTH_RECIPE)
     rewritten = []
     for path in sorted(ROOT.rglob("*")):
         if not path.is_file() or path in skip:
             continue
         rel = path.relative_to(ROOT).as_posix()
-        if (rel.startswith((".git/", "node_modules/", "site/") + MIGRATION_PINNED)
-                or path.suffix.lower() in MIGRATION_PINNED_SUFFIXES):
+        if rel.startswith(roof_id_pins.NOT_THE_SOURCE_TREE) or keeps_the_old_name(rel):
             continue
         if path.suffix.lower() not in (".json", ".md", ".py", ".js", ".mjs",
                                        ".html", ".css", ".txt", ".sh", ".csv"):
@@ -803,16 +798,13 @@ def check_migration() -> int:
         if not path.is_file():
             continue
         rel = path.relative_to(ROOT).as_posix()
-        if rel.startswith((".git/", "node_modules/", "site/")):
+        if rel.startswith(roof_id_pins.NOT_THE_SOURCE_TREE):
             continue
-        if (rel.startswith(MIGRATION_PINNED)
-                or path.suffix.lower() in MIGRATION_PINNED_SUFFIXES):
+        if keeps_the_old_name(rel):
             text = path.read_text(encoding="utf-8", errors="ignore")
             if any(re.search(rf"{old}(?![0-9A-Za-z])", text) for old in old_ids):
                 pinned.append(rel)
             continue
-        if rel == NORTH_RECIPE.relative_to(ROOT).as_posix():
-            continue          # the `migrated` block records what each roof WAS
         if path.suffix.lower() in (".glb", ".png", ".jpg", ".jpeg", ".pdf",
                                    ".webp", ".tif", ".tiff", ".zip", ".xlsx"):
             if any(path.name.startswith(old) for old in old_ids):
