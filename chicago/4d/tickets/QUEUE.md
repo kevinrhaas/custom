@@ -97,7 +97,6 @@ T-1215 — Converge the reconstructed town: every person housed, every business 
 # Arrival/jaunts: read docs/ARRIVAL-JAUNTS-EXECUTION.md; honor ticket dependencies.
 # Finish each subsection; unavoidable successors stay beside their dependency, not at the tail.
 # --- 6A. ARRIVAL AND SOURCES — measured loading, time rollback, source library, free start
-T-1292 — Move the town census off the loader into an Evidence → City summary topic
 T-1247 — Roll the year back into a restrained time-machine arrival
 T-1248 — Compile the sources used and their reconstruction backlinks
 T-1275 — Give the loading journey 160 varied source and reconstruction statuses
@@ -221,4 +220,3 @@ T-1511 — The trade share counts buildings that front no street: nineteen Fort 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1515 — Read Fergus 1839 as a dated directory role like its 1843 and 1844 siblings, so a printing is carried as evidence whether or not the 1835 field is empty
 T-1514 — Tier the anonymous compiled business records in compile_businesses.py: 37 records whose only link to the advertisement that compiled them is an untiered claim_ids at the record root, so the 49 readings that built them can never be asserted
-

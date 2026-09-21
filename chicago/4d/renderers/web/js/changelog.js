@@ -1,11 +1,16 @@
 export const CHANGELOG = [ // newest first
-  { v: 1069, title: 'A quota nobody could re-cut without re-dealing the people standing on it', kind: 'fix', ts: '2026-09-21T17:53:25.178Z', date: 'Sep 21, 2026, 12:53 PM CT',
+  { v: 1070, title: 'A quota nobody could re-cut without re-dealing the people standing on it', kind: 'fix', ts: '2026-09-21T18:20:17.972Z', date: 'Sep 21, 2026, 1:20 PM CT',
     items: [
       'This town is reconstructed against an order book \u2014 a ledger of how many people of each sex, age, division and household the sources cannot name but the 1840 census says were here. Every reconstruction stage draws out of it, and the book counts what each has spent so it can never be spent twice.',
       'Part of that book was cut wrong. It ordered no working people aged ten to nineteen at all, and the town certainly had them: the shops want two dozen apprentices and shop boys, and there was no order any of them could be drawn from. The town\u2019s own record of who worked reopened the band \u2014 nine of the people the sources name with a trade were teenagers \u2014 and the correction was made, and it moved nothing.',
       'It moved nothing because of how one stage read the book. The boarding houses and taverns were filled by dealing lodgers in proportion to the room each cell of the book had left, so the deal depended on every figure in it. Change one number anywhere and the whole deal came out differently \u2014 and the deal had already been made: fifty-six invented boarders, thirteen houses, and one of them since adopted by name as the keeper of her own boarding house and answered for by three other parts of the project. Re-cutting the book by thirty-five slots re-dealt twenty-five of those people out from under all of it.',
       'So the stage now records the room it dealt against, once, and deals against that record for good. The book can be re-cut underneath it and not one card moves; where the two have drifted apart the ledger says so bucket by bucket rather than absorbing it; and it refuses outright if a re-cut ever falls below what it actually drew. Its own tests prove the point by re-cutting a throwaway copy of the book and checking that nobody moved.',
       'With that in place the correction ran: thirty-five of the thirty-six slots moved into the ten-to-nineteen band, all of them lodging trades, and the fifty-six boarders are byte for byte where they were. The twenty-seven that could not move are held by three other stages that still read the book the old way, and the book now names them, cell by cell, instead of saying only that something somewhere had been drawn.',
+    ] },
+  { v: 1069, title: 'The town’s numbers moved into Evidence', kind: 'feature', ts: '2026-09-21T17:17:27.000Z', date: 'Sep 21, 2026, 12:17 PM CT',
+    items: [
+      'The loading screen is an arrival again, not a coverage dashboard. Its building and population ladders have moved intact to a new City topic in Evidence, where the same committed census supplies every numerator, denominator and evidence-grade segment.',
+      'City also names the reconstruction date, the program that derived the figures and the exact published build. The two census files are no longer fetched during startup; opening Evidence requests them, so a visitor who goes straight into the town downloads less before arriving.',
     ] },
   { v: 1068, title: 'Six sheds stay sheds, and the town says why', kind: 'fix', ts: '2026-09-21T17:20:21.301Z', date: 'Sep 21, 2026, 12:20 PM CT',
     items: [

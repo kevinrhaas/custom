@@ -52,7 +52,7 @@ import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
 import { mountGround } from './ground.js';
-import { mountGateCensus } from './census.js';
+import { mountCityCensus } from './census.js';
 import { mountLiberties } from './liberties.js';
 import { createRouter } from './route.js';
 import { createTravel } from './travel.js';
@@ -805,9 +805,9 @@ const api = {
             altitude: 0, flying: false },
   problems,
   budget: BUDGET,
-  // The town's own two numbers, as the gate showed them (T-0036). Null until the
-  // census resolves, and null forever if it could not be read — the smoke asserts
-  // the DISPLAYED figures against this, so a silent failure reads as one.
+  // The town's two City ladders (T-0036/T-1292). Null until Evidence first opens,
+  // and null forever if it could not be read — the smoke asserts the displayed
+  // figures against this, so a silent failure reads as one.
   census: null,
   // T-1126: the town's roll call — indexed, expected to draw, and actually
   // standing, with every absentee named. Null until the buildings are batched.
@@ -909,19 +909,6 @@ async function boot() {
   const scene3d = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(62, 1, NEAR.min, 3000);
 
-  // The gate's two numbers (T-0036). Started here and NOT awaited: it is one
-  // small JSON beside a scene load that fetches hundreds of files, and the row
-  // it fills sits above the progress bar — a visitor should be reading how big
-  // the town is while the town loads, not after. It fails soft to a hidden row,
-  // so nothing downstream depends on it and no rejection reaches the boot chain.
-  bootController.start('census');
-  void mountGateCensus({ dataBase: bases.dataBase,
-    onError: err => bootController.fail('census', err),
-  }).then((c) => {
-    api.census = c;
-    bootController.end('census');
-    return c;
-  }).catch(err => { bootController.fail('census', err); return null; });
   const loaded = await loadScene(YEAR, bases, {
     onProgress: (done, total) => bootController.progress('scene', done, total),
   });
@@ -1655,8 +1642,26 @@ async function boot() {
     root: hudRoot.querySelector('[data-panel="evidence"]'),
     onTitle: (text, onBack) => hud.setTitle(text, onBack),
   });
+  // The town summary used to be part of the loader. It now costs nothing on a
+  // cold boot: the first visit to Evidence starts it, once, and the hub's
+  // MutationObserver replaces the City tile's ellipsis when both files paint.
+  let cityCensusPromise = null;
+  const ensureCityCensus = () => {
+    if (!cityCensusPromise) {
+      cityCensusPromise = mountCityCensus({
+        dataBase: bases.dataBase,
+        root: document.getElementById('city'),
+        buildStamp: document.getElementById('gate-build')?.textContent.trim() || `build ${VERSION}`,
+        onError: err => problems.push(`city census: ${err?.message || err}`),
+      }).then((c) => { api.census = c; return c; });
+    }
+    return cityCensusPromise;
+  };
   hud.onTabChange((tab) => {
-    if (tab === 'evidence') api.evidenceHub?.showHub?.({ keep: true });
+    if (tab === 'evidence') {
+      void ensureCityCensus();
+      api.evidenceHub?.showHub?.({ keep: true });
+    }
     if (tab === 'goto') hud.goTo?.refreshDistances?.();
   });
 
