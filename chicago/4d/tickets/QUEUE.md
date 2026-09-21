@@ -226,3 +226,4 @@ T-1502 — The register deal reads the raw text of every household card as a nam
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1504 — A stage that reads the St Mary's baptismal register: the four R6 rows whose Indigenous identity the source states in its own hand are refused only because underdocumented reads the 1832 muster roll and nothing reads the register
 T-1505 — The borderline roster refuses 254 rows as 'a surname and no person' and three of them are forenames: Matanacqua, Lieu and Miranda are each named as the parent of a named child, so the refusal is right and its sentence is false
+T-1506 — Retire the surplus reconstructed lawyer: businesses/lawyer is held at 2 drawn against an order of 1, because T-1299 admitted a documented attorney the town can name

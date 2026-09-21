@@ -163,32 +163,35 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Eighteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 18 businesses
+### L218 — Twenty-three businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 23 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
 street **face**. The placement is graded `reconstructed`, the note says how many years it
 was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
-**Why:** the town prints trades far more often than it prints doors. Twenty of 825
+**Why:** the town prints trades far more often than it prints doors. Thirty-one of 1,393
 households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
 later addresses sitting on the record with nothing reading them. The volumes that print
 doors are all later than the scene, so the choice was a stated back-projection or no
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Eighteen businesses therefore stand
-on a face on the authority of a volume printed four to nine years after the scene, and
-nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names, one stands on a corner the volume prints, and the other fifteen have no
-point at all. A reader who thinks that is too far to carry a shop is reading the
-`reconstructed` chip exactly as intended.
+frontage and numbered its streets for the first time. Twenty-three businesses therefore
+stand on a face on the authority of a volume printed after the scene, and every one of
+the twenty-three is carried back four years, from Fergus's directory of 1839 — the
+narrowest gap the three volumes offer, and the whole of the set as it now stands. Two are
+anchored on a crossing the directory names and two stand on a corner the volume prints,
+so four carry a point; the other nineteen have no point at all. A reader who thinks four
+years is too far to carry a shop is reading the `reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The refusals and stand-offs are on the record beside the eighteen, so the arithmetic
-is visible and not just the successes.
+The refusals and stand-offs are on the record beside the twenty-three, so the arithmetic
+is visible and not just the successes: 162 addresses adjudicated, 23 placed, 29 already
+better placed by a source nearer the scene, and 110 refused — 94 of them under clause 1,
+a person the 1835 record gives no trade for.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
 rather than overstating "rendered".
@@ -197,6 +200,16 @@ tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sa
 all closer to 1835 than a directory is, and any one of them that places one of these
 businesses supersedes this entry under the policy's clause 2 without an argument.
 **Recorded:** 2026-09-04 (T-0633).
+**Restated:** 2026-09-21 (T-1299), from eighteen to twenty-three, and the reason is a
+reading rather than a change of rule. Clause 1 places a shop only where the 1835 record
+attests a trade for the person. T-1299 admitted the trades the 1833-1835 press printed
+against ten names over a run containing 1 July 1835 — Curtiss an attorney, King a
+clothier, Mulford a jeweller, Taylor a boot and shoe maker, and six more — into the field
+clause 1 reads. Five of the ten then had both halves this liberty needs: an 1835 trade,
+and a street printed against the same name in 1839. Nothing about the back-projection
+moved, no grade was raised, and the five are carried on exactly the argument the other
+eighteen are. The set is now wholly 1839, so the four-to-nine-year spread the consequence
+used to state is four years flat.
 **Restated:** 2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather
 than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass
 binds a later entry to a resident only where the surname reaches one person. A bigger town made

@@ -41,8 +41,8 @@ role once, and the survivor names the other wording in its note.
 
 ## What the roles now carry
 
-- `173` people carry two or more roles, listed below.
-- `98` of their roles reach 1835-07-01, of which `97` stand in the 1835 compatibility view.
+- `172` people carry two or more roles, listed below.
+- `97` of their roles reach 1835-07-01, of which `96` stand in the 1835 compatibility view.
 - The `1` that reach the day WITHOUT filling the
   field are the migration's open question, and they are held open on purpose. Four
   tools derive `persons[].occupation` and only one of them was taught about roles:
@@ -54,7 +54,7 @@ role once, and the survivor names the other wording in its note.
   lawyer no practitioner ruling held. T-1296 makes the four agree; until it does,
   the rows say plainly that the evidence reaches the day and the field does not
   carry it, which is a state that can be read and argued with.
-- `164` carry a stated `place` and `56` a stated
+- `165` carry a stated `place` and `55` a stated
   `employer_or_body`. Both default to `not_stated`, which is an assertion:
   the record does not say. Places come from the directories' own address and
   place-of-business columns and bodies from the register's `body` column and the
@@ -167,7 +167,7 @@ least one source in common, with corroborators beside it.
 | `holsman_george` | 2 | 0 | saloon; tailor |
 | `howe_sarah_d` | 4 | 0 | cloak maker; dress maker; dressmaker; habit maker |
 | `hubbard_ahira` | 3 | 0 | Baptist pastor; book-keeper at G. S. Hubbard's; book-keeper, Gurdon S. Hubbard |
-| `hubbard_elijah_kent` | 6 | 2 | banker, 47-; fire insurance agent; land agent; merchant |
+| `hubbard_elijah_kent` | 5 | 2 | fire insurance agent; land agent; merchant |
 | `hubbard_gurdon` | 8 | 4 | commission and forwarding merchant; forwarding and commission merchant; forwarding and commission, South Water; merchant; packer; railroad commissioner |
 | `hubbard_henry_g` | 4 | 2 | at clerk's office; clerk, Circuit Court; commission and forwarding merchant; merchant |
 | `hugunin_leonard_c` | 2 | 0 | at United States Hotel; speculator |
@@ -183,13 +183,13 @@ least one source in common, with corroborators beside it.
 | `johnson_seth` | 2 | 0 | deputy collector and inspector of Port of Chicago; deputy-collector and inspector Port of Chicago |
 | `jones_benjamin` | 3 | 0 | grocer; of B. J. & Co |
 | `jones_m` | 2 | 0 | founder; stove dealer |
-| `jones_william` | 7 | 2 | (B. J. & Co.); hardware merchant; justice of the peace; merchant; of B. Jones & Co; stove and hollow ware dealer |
+| `jones_william` | 6 | 2 | (B. J. & Co.); hardware merchant; merchant; of B. Jones & Co; stove and hollow ware dealer |
 | `jordan_j_b` | 2 | 0 | sailor |
 | `kennicott_william_h` | 6 | 0 | dentist; dentist, 133 Lake; physician; surgeon dentist |
 | `kercheval_gholson` | 2 | 1 | real estate dealer; sub_agent |
 | `kimball_walter` | 2 | 0 | dry_goods_merchant; probate judge, cor. Clark and |
 | `king_j_d` | 2 | 0 | carpenter |
-| `king_tuthill` | 4 | 1 | New York clothing store; clothier; clothing, dry goods, &c; ready-made clothing, dry goods, etc., 115 Lake |
+| `king_tuthill` | 3 | 1 | clothier; clothing, dry goods, &c; ready-made clothing, dry goods, etc., 115 Lake |
 | `kinzie_john_h` | 5 | 3 | President, Board of Trustees of the Town of Chicago; forwarding and commission merchant; forwarding_and_commission; merchant; register land office |
 | `kinzie_robert_a` | 2 | 1 | merchant |
 | `lacey_j_s` | 3 | 0 | baker |
@@ -209,7 +209,7 @@ least one source in common, with corroborators beside it.
 | `morris_b_s` | 3 | 0 | (alderman,) attorney, etc., Saloon Bdgs; attorney at law; attorney, 59 Clark |
 | `morrison_james_m` | 3 | 0 | carpenter |
 | `morrison_orsemus` | 3 | 0 | carpenter; street com., collector, coroner |
-| `mulford_james_h` | 9 | 3 | & Edward; jeweller; merchant; shopkeeper; silversmith; watchmaker; watchmaker and jeweller |
+| `mulford_james_h` | 8 | 3 | jeweller; merchant; shopkeeper; silversmith; watchmaker; watchmaker and jeweller |
 | `murphy_john` | 2 | 1 | alderman; tavern_keeper |
 | `myers_frederick` | 3 | 1 | clerk; laborer |
 | `newberry_walter_loomis` | 2 | 0 | (N. & Burch); att'yand real est., office Newberry & Dole |
@@ -230,7 +230,6 @@ least one source in common, with corroborators beside it.
 | `rider_eli_a` | 4 | 0 | clerk at C. L. P. Hojran; clerk, C. L. P. Hogan; clerk, Charles L. P. Hogan; merchant |
 | `rue_john_c` | 3 | 0 | carpenter; carpenter and builder; carpenter, 156 Clark |
 | `scott_john` | 4 | 0 | carpenter; carpenter, South Branch, west side; school inspector |
-| `sherman_silas_w` | 2 | 1 | Sheriff of Cook County; ex-sheriff |
 | `sherman_william_george` | 2 | 0 | clerk, Sherman & Pitkin; clerk, at Sherman & Pitkin's |
 | `simons_e` | 3 | 0 | butcher; butcher, Archibald Clybourn; provision dealer |
 | `simpson_john_p` | 3 | 0 | mason |
@@ -245,7 +244,7 @@ least one source in common, with corroborators beside it.
 | `taylor_charles` | 3 | 1 | carpenter; currier, Johonnett, Wells & Co; currier, at Johonnett, Wells, & Co.'s |
 | `taylor_augustine` | 3 | 1 | builder; carpenter; carpenter and builder |
 | `taylor_edmund_d` | 4 | 0 | Receiver of Public Moneys; Taylor, Breese Co; coft'ee house; receiver, United States Land Office |
-| `taylor_william_h` | 6 | 2 | (Dan. Taylor); agent, Dan. Taylor, 120 Lake; boot and shoe maker; leather dealer |
+| `taylor_william_h` | 5 | 2 | agent, Dan. Taylor, 120 Lake; boot and shoe maker; leather dealer |
 | `temple_john_t` | 6 | 1 | land owner; physician; physician, 218 Lake; school trustee |
 | `temple_peter` | 2 | 1 | dentist |
 | `thompson_lieut_j_l` | 3 | 0 | caulker; soldier |
