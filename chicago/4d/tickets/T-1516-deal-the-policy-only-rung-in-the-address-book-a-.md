@@ -1,7 +1,7 @@
 ---
 id: T-1516
 title: Deal the policy-only rung in the address book: a class from the town model's employment shape where the head's record carries none, a division from the order book's own apportionment of the unplaced, seeded, tier-marked and said in words on every one of the 1,186 households no source places
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1513
 opened: 2026-09-21
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 9:43:53 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35612058191
 ---
 
 Deal the policy-only rung in the address book: a class from the town model's employment shape where the head's record carries none, a division from the order book's own apportionment of the unplaced, seeded, tier-marked and said in words on every one of the 1,186 households no source places.
