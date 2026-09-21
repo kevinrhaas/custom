@@ -161,7 +161,7 @@ difference is a refusal the measurement could not see.** Refusal 5 refuses a roo
 `data/residents/` seats a NAMED household in — and the inferred-household programme's 101
 households are not in `data/residents/` under a name, so its roofs were invisible to this
 pass and counted as free supply. The very first re-derivation under the widened reading
-handed Elmira Fowler's Dearborn Street millinery `recon_1835_south_w4_032`, a roof the
+handed Elmira Fowler's Dearborn Street millinery `recon_1835_south_d1_032`, a roof the
 inferred layer already holds, and `tools/inferred_occupancy.py` — the ledger that spends
 both programmes into the structure records — raised on it, which is exactly what that
 ledger exists for. Two of the twelve were that shape, and the refusal now covers both

@@ -4180,6 +4180,7 @@
       "section": "per_subject",
       "subjects": [
         "recon_1835_south_a1_046",
+        "recon_1835_south_a2_037",
         "recon_1835_south_a2_047",
         "recon_1835_south_a3_041",
         "recon_1835_south_a3_043",
@@ -4187,15 +4188,13 @@
         "recon_1835_south_a4_042",
         "recon_1835_south_a4_048",
         "recon_1835_south_a5_044",
-        "recon_1835_south_c1_003",
-        "recon_1835_south_c1_010",
-        "recon_1835_south_c1_018",
-        "recon_1835_south_c2_007",
-        "recon_1835_south_c2_036",
         "recon_1835_south_c3_015",
-        "recon_1835_south_c3_037",
         "recon_1835_south_c3_040",
+        "recon_1835_south_d1_003",
+        "recon_1835_south_d1_010",
+        "recon_1835_south_d1_018",
         "recon_1835_south_d1_021",
+        "recon_1835_south_d1_032",
         "recon_1835_south_d1_033",
         "recon_1835_south_d2_005",
         "recon_1835_south_d2_024",
@@ -4211,22 +4210,23 @@
         "recon_1835_south_d4_014",
         "recon_1835_south_d4_019",
         "recon_1835_south_d4_025",
+        "recon_1835_south_d4_026",
         "recon_1835_south_d4_030",
         "recon_1835_south_d5_004",
+        "recon_1835_south_d5_007",
         "recon_1835_south_d5_011",
         "recon_1835_south_d5_016",
+        "recon_1835_south_d5_023",
         "recon_1835_south_d5_028",
         "recon_1835_south_d5_034",
         "recon_1835_south_d6_012",
         "recon_1835_south_d6_020",
         "recon_1835_south_d6_031",
+        "recon_1835_south_d6_036",
         "recon_1835_south_d7_035",
         "recon_1835_south_f1_038",
-        "recon_1835_south_f2_039",
-        "recon_1835_south_w1_023",
-        "recon_1835_south_w2_026",
-        "recon_1835_south_w3_029",
-        "recon_1835_south_w4_032"
+        "recon_1835_south_h1_029",
+        "recon_1835_south_h2_039"
       ],
       "covers": [
         {
@@ -4249,6 +4249,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_south_a2_037",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_a2_037",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_a2_037",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_south_a2_047",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -4375,96 +4393,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_c1_003",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_003",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_003",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_010",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_010",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_010",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_018",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_018",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c1_018",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_007",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_007",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_007",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_036",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_036",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c2_036",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_south_c3_015",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -4478,24 +4406,6 @@
         {
           "domain": "structure",
           "structure": "recon_1835_south_c3_015",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c3_037",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c3_037",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_c3_037",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -4519,6 +4429,60 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_south_d1_003",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_003",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_003",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_010",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_010",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_010",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_018",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_018",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_018",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_south_d1_021",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -4532,6 +4496,24 @@
         {
           "domain": "structure",
           "structure": "recon_1835_south_d1_021",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_032",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_032",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d1_032",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -4807,6 +4789,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_south_d4_026",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d4_026",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d4_026",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_south_d4_030",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -4843,6 +4843,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_south_d5_007",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d5_007",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d5_007",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_south_d5_011",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -4874,6 +4892,24 @@
         {
           "domain": "structure",
           "structure": "recon_1835_south_d5_016",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d5_023",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d5_023",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d5_023",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -4969,6 +5005,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_south_d6_036",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d6_036",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_south_d6_036",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_south_d7_035",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -5005,91 +5059,37 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_f2_039",
+          "structure": "recon_1835_south_h1_029",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_f2_039",
+          "structure": "recon_1835_south_h1_029",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_f2_039",
+          "structure": "recon_1835_south_h1_029",
           "phase": "inferred_1835",
           "aspect": "position"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_w1_023",
+          "structure": "recon_1835_south_h2_039",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_w1_023",
+          "structure": "recon_1835_south_h2_039",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_w1_023",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w2_026",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w2_026",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w2_026",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w3_029",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w3_029",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w3_029",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w4_032",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w4_032",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_south_w4_032",
+          "structure": "recon_1835_south_h2_039",
           "phase": "inferred_1835",
           "aspect": "position"
         }
@@ -5115,7 +5115,7 @@
         },
         {
           "label": "Covers",
-          "text": "`recon_1835_south_a1_046.inferred_1835.documented_range`, `recon_1835_south_a1_046.inferred_1835.position`, `recon_1835_south_a1_046.inferred_1835.footprint`, `recon_1835_south_a2_047.inferred_1835.documented_range`, `recon_1835_south_a2_047.inferred_1835.position`, `recon_1835_south_a2_047.inferred_1835.footprint`, `recon_1835_south_a3_041.inferred_1835.documented_range`, `recon_1835_south_a3_041.inferred_1835.position`, `recon_1835_south_a3_041.inferred_1835.footprint`, `recon_1835_south_a3_043.inferred_1835.documented_range`, `recon_1835_south_a3_043.inferred_1835.position`, `recon_1835_south_a3_043.inferred_1835.footprint`, `recon_1835_south_a3_045.inferred_1835.documented_range`, `recon_1835_south_a3_045.inferred_1835.position`, `recon_1835_south_a3_045.inferred_1835.footprint`, `recon_1835_south_a4_042.inferred_1835.documented_range`, `recon_1835_south_a4_042.inferred_1835.position`, `recon_1835_south_a4_042.inferred_1835.footprint`, `recon_1835_south_a4_048.inferred_1835.documented_range`, `recon_1835_south_a4_048.inferred_1835.position`, `recon_1835_south_a4_048.inferred_1835.footprint`, `recon_1835_south_a5_044.inferred_1835.documented_range`, `recon_1835_south_a5_044.inferred_1835.position`, `recon_1835_south_a5_044.inferred_1835.footprint`, `recon_1835_south_c1_003.inferred_1835.documented_range`, `recon_1835_south_c1_003.inferred_1835.position`, `recon_1835_south_c1_003.inferred_1835.footprint`, `recon_1835_south_c1_010.inferred_1835.documented_range`, `recon_1835_south_c1_010.inferred_1835.position`, `recon_1835_south_c1_010.inferred_1835.footprint`, `recon_1835_south_c1_018.inferred_1835.documented_range`, `recon_1835_south_c1_018.inferred_1835.position`, `recon_1835_south_c1_018.inferred_1835.footprint`, `recon_1835_south_c2_007.inferred_1835.documented_range`, `recon_1835_south_c2_007.inferred_1835.position`, `recon_1835_south_c2_007.inferred_1835.footprint`, `recon_1835_south_c2_036.inferred_1835.documented_range`, `recon_1835_south_c2_036.inferred_1835.position`, `recon_1835_south_c2_036.inferred_1835.footprint`, `recon_1835_south_c3_015.inferred_1835.documented_range`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.footprint`, `recon_1835_south_c3_037.inferred_1835.documented_range`, `recon_1835_south_c3_037.inferred_1835.position`, `recon_1835_south_c3_037.inferred_1835.footprint`, `recon_1835_south_c3_040.inferred_1835.documented_range`, `recon_1835_south_c3_040.inferred_1835.position`, `recon_1835_south_c3_040.inferred_1835.footprint`, `recon_1835_south_d1_021.inferred_1835.documented_range`, `recon_1835_south_d1_021.inferred_1835.position`, `recon_1835_south_d1_021.inferred_1835.footprint`, `recon_1835_south_d1_033.inferred_1835.documented_range`, `recon_1835_south_d1_033.inferred_1835.position`, `recon_1835_south_d1_033.inferred_1835.footprint`, `recon_1835_south_d2_005.inferred_1835.documented_range`, `recon_1835_south_d2_005.inferred_1835.position`, `recon_1835_south_d2_005.inferred_1835.footprint`, `recon_1835_south_d2_024.inferred_1835.documented_range`, `recon_1835_south_d2_024.inferred_1835.position`, `recon_1835_south_d2_024.inferred_1835.footprint`, `recon_1835_south_d3_001.inferred_1835.documented_range`, `recon_1835_south_d3_001.inferred_1835.position`, `recon_1835_south_d3_001.inferred_1835.footprint`, `recon_1835_south_d3_008.inferred_1835.documented_range`, `recon_1835_south_d3_008.inferred_1835.position`, `recon_1835_south_d3_008.inferred_1835.footprint`, `recon_1835_south_d3_013.inferred_1835.documented_range`, `recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d3_013.inferred_1835.footprint`, `recon_1835_south_d3_017.inferred_1835.documented_range`, `recon_1835_south_d3_017.inferred_1835.position`, `recon_1835_south_d3_017.inferred_1835.footprint`, `recon_1835_south_d3_022.inferred_1835.documented_range`, `recon_1835_south_d3_022.inferred_1835.position`, `recon_1835_south_d3_022.inferred_1835.footprint`, `recon_1835_south_d3_027.inferred_1835.documented_range`, `recon_1835_south_d3_027.inferred_1835.position`, `recon_1835_south_d3_027.inferred_1835.footprint`, `recon_1835_south_d4_002.inferred_1835.documented_range`, `recon_1835_south_d4_002.inferred_1835.position`, `recon_1835_south_d4_002.inferred_1835.footprint`, `recon_1835_south_d4_006.inferred_1835.documented_range`, `recon_1835_south_d4_006.inferred_1835.position`, `recon_1835_south_d4_006.inferred_1835.footprint`, `recon_1835_south_d4_009.inferred_1835.documented_range`, `recon_1835_south_d4_009.inferred_1835.position`, `recon_1835_south_d4_009.inferred_1835.footprint`, `recon_1835_south_d4_014.inferred_1835.documented_range`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.footprint`, `recon_1835_south_d4_019.inferred_1835.documented_range`, `recon_1835_south_d4_019.inferred_1835.position`, `recon_1835_south_d4_019.inferred_1835.footprint`, `recon_1835_south_d4_025.inferred_1835.documented_range`, `recon_1835_south_d4_025.inferred_1835.position`, `recon_1835_south_d4_025.inferred_1835.footprint`, `recon_1835_south_d4_030.inferred_1835.documented_range`, `recon_1835_south_d4_030.inferred_1835.position`, `recon_1835_south_d4_030.inferred_1835.footprint`, `recon_1835_south_d5_004.inferred_1835.documented_range`, `recon_1835_south_d5_004.inferred_1835.position`, `recon_1835_south_d5_004.inferred_1835.footprint`, `recon_1835_south_d5_011.inferred_1835.documented_range`, `recon_1835_south_d5_011.inferred_1835.position`, `recon_1835_south_d5_011.inferred_1835.footprint`, `recon_1835_south_d5_016.inferred_1835.documented_range`, `recon_1835_south_d5_016.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.footprint`, `recon_1835_south_d5_028.inferred_1835.documented_range`, `recon_1835_south_d5_028.inferred_1835.position`, `recon_1835_south_d5_028.inferred_1835.footprint`, `recon_1835_south_d5_034.inferred_1835.documented_range`, `recon_1835_south_d5_034.inferred_1835.position`, `recon_1835_south_d5_034.inferred_1835.footprint`, `recon_1835_south_d6_012.inferred_1835.documented_range`, `recon_1835_south_d6_012.inferred_1835.position`, `recon_1835_south_d6_012.inferred_1835.footprint`, `recon_1835_south_d6_020.inferred_1835.documented_range`, `recon_1835_south_d6_020.inferred_1835.position`, `recon_1835_south_d6_020.inferred_1835.footprint`, `recon_1835_south_d6_031.inferred_1835.documented_range`, `recon_1835_south_d6_031.inferred_1835.position`, `recon_1835_south_d6_031.inferred_1835.footprint`, `recon_1835_south_d7_035.inferred_1835.documented_range`, `recon_1835_south_d7_035.inferred_1835.position`, `recon_1835_south_d7_035.inferred_1835.footprint`, `recon_1835_south_f1_038.inferred_1835.documented_range`, `recon_1835_south_f1_038.inferred_1835.position`, `recon_1835_south_f1_038.inferred_1835.footprint`, `recon_1835_south_f2_039.inferred_1835.documented_range`, `recon_1835_south_f2_039.inferred_1835.position`, `recon_1835_south_f2_039.inferred_1835.footprint`, `recon_1835_south_w1_023.inferred_1835.documented_range`, `recon_1835_south_w1_023.inferred_1835.position`, `recon_1835_south_w1_023.inferred_1835.footprint`, `recon_1835_south_w2_026.inferred_1835.documented_range`, `recon_1835_south_w2_026.inferred_1835.position`, `recon_1835_south_w2_026.inferred_1835.footprint`, `recon_1835_south_w3_029.inferred_1835.documented_range`, `recon_1835_south_w3_029.inferred_1835.position`, `recon_1835_south_w3_029.inferred_1835.footprint`, `recon_1835_south_w4_032.inferred_1835.documented_range`, `recon_1835_south_w4_032.inferred_1835.position`, `recon_1835_south_w4_032.inferred_1835.footprint`"
+          "text": "`recon_1835_south_a1_046.inferred_1835.documented_range`, `recon_1835_south_a1_046.inferred_1835.position`, `recon_1835_south_a1_046.inferred_1835.footprint`, `recon_1835_south_a2_047.inferred_1835.documented_range`, `recon_1835_south_a2_047.inferred_1835.position`, `recon_1835_south_a2_047.inferred_1835.footprint`, `recon_1835_south_a3_041.inferred_1835.documented_range`, `recon_1835_south_a3_041.inferred_1835.position`, `recon_1835_south_a3_041.inferred_1835.footprint`, `recon_1835_south_a3_043.inferred_1835.documented_range`, `recon_1835_south_a3_043.inferred_1835.position`, `recon_1835_south_a3_043.inferred_1835.footprint`, `recon_1835_south_a3_045.inferred_1835.documented_range`, `recon_1835_south_a3_045.inferred_1835.position`, `recon_1835_south_a3_045.inferred_1835.footprint`, `recon_1835_south_a4_042.inferred_1835.documented_range`, `recon_1835_south_a4_042.inferred_1835.position`, `recon_1835_south_a4_042.inferred_1835.footprint`, `recon_1835_south_a4_048.inferred_1835.documented_range`, `recon_1835_south_a4_048.inferred_1835.position`, `recon_1835_south_a4_048.inferred_1835.footprint`, `recon_1835_south_a5_044.inferred_1835.documented_range`, `recon_1835_south_a5_044.inferred_1835.position`, `recon_1835_south_a5_044.inferred_1835.footprint`, `recon_1835_south_d1_003.inferred_1835.documented_range`, `recon_1835_south_d1_003.inferred_1835.position`, `recon_1835_south_d1_003.inferred_1835.footprint`, `recon_1835_south_d1_010.inferred_1835.documented_range`, `recon_1835_south_d1_010.inferred_1835.position`, `recon_1835_south_d1_010.inferred_1835.footprint`, `recon_1835_south_d1_018.inferred_1835.documented_range`, `recon_1835_south_d1_018.inferred_1835.position`, `recon_1835_south_d1_018.inferred_1835.footprint`, `recon_1835_south_d5_007.inferred_1835.documented_range`, `recon_1835_south_d5_007.inferred_1835.position`, `recon_1835_south_d5_007.inferred_1835.footprint`, `recon_1835_south_d6_036.inferred_1835.documented_range`, `recon_1835_south_d6_036.inferred_1835.position`, `recon_1835_south_d6_036.inferred_1835.footprint`, `recon_1835_south_c3_015.inferred_1835.documented_range`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.footprint`, `recon_1835_south_a2_037.inferred_1835.documented_range`, `recon_1835_south_a2_037.inferred_1835.position`, `recon_1835_south_a2_037.inferred_1835.footprint`, `recon_1835_south_c3_040.inferred_1835.documented_range`, `recon_1835_south_c3_040.inferred_1835.position`, `recon_1835_south_c3_040.inferred_1835.footprint`, `recon_1835_south_d1_021.inferred_1835.documented_range`, `recon_1835_south_d1_021.inferred_1835.position`, `recon_1835_south_d1_021.inferred_1835.footprint`, `recon_1835_south_d1_033.inferred_1835.documented_range`, `recon_1835_south_d1_033.inferred_1835.position`, `recon_1835_south_d1_033.inferred_1835.footprint`, `recon_1835_south_d2_005.inferred_1835.documented_range`, `recon_1835_south_d2_005.inferred_1835.position`, `recon_1835_south_d2_005.inferred_1835.footprint`, `recon_1835_south_d2_024.inferred_1835.documented_range`, `recon_1835_south_d2_024.inferred_1835.position`, `recon_1835_south_d2_024.inferred_1835.footprint`, `recon_1835_south_d3_001.inferred_1835.documented_range`, `recon_1835_south_d3_001.inferred_1835.position`, `recon_1835_south_d3_001.inferred_1835.footprint`, `recon_1835_south_d3_008.inferred_1835.documented_range`, `recon_1835_south_d3_008.inferred_1835.position`, `recon_1835_south_d3_008.inferred_1835.footprint`, `recon_1835_south_d3_013.inferred_1835.documented_range`, `recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d3_013.inferred_1835.footprint`, `recon_1835_south_d3_017.inferred_1835.documented_range`, `recon_1835_south_d3_017.inferred_1835.position`, `recon_1835_south_d3_017.inferred_1835.footprint`, `recon_1835_south_d3_022.inferred_1835.documented_range`, `recon_1835_south_d3_022.inferred_1835.position`, `recon_1835_south_d3_022.inferred_1835.footprint`, `recon_1835_south_d3_027.inferred_1835.documented_range`, `recon_1835_south_d3_027.inferred_1835.position`, `recon_1835_south_d3_027.inferred_1835.footprint`, `recon_1835_south_d4_002.inferred_1835.documented_range`, `recon_1835_south_d4_002.inferred_1835.position`, `recon_1835_south_d4_002.inferred_1835.footprint`, `recon_1835_south_d4_006.inferred_1835.documented_range`, `recon_1835_south_d4_006.inferred_1835.position`, `recon_1835_south_d4_006.inferred_1835.footprint`, `recon_1835_south_d4_009.inferred_1835.documented_range`, `recon_1835_south_d4_009.inferred_1835.position`, `recon_1835_south_d4_009.inferred_1835.footprint`, `recon_1835_south_d4_014.inferred_1835.documented_range`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.footprint`, `recon_1835_south_d4_019.inferred_1835.documented_range`, `recon_1835_south_d4_019.inferred_1835.position`, `recon_1835_south_d4_019.inferred_1835.footprint`, `recon_1835_south_d4_025.inferred_1835.documented_range`, `recon_1835_south_d4_025.inferred_1835.position`, `recon_1835_south_d4_025.inferred_1835.footprint`, `recon_1835_south_d4_030.inferred_1835.documented_range`, `recon_1835_south_d4_030.inferred_1835.position`, `recon_1835_south_d4_030.inferred_1835.footprint`, `recon_1835_south_d5_004.inferred_1835.documented_range`, `recon_1835_south_d5_004.inferred_1835.position`, `recon_1835_south_d5_004.inferred_1835.footprint`, `recon_1835_south_d5_011.inferred_1835.documented_range`, `recon_1835_south_d5_011.inferred_1835.position`, `recon_1835_south_d5_011.inferred_1835.footprint`, `recon_1835_south_d5_016.inferred_1835.documented_range`, `recon_1835_south_d5_016.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.footprint`, `recon_1835_south_d5_028.inferred_1835.documented_range`, `recon_1835_south_d5_028.inferred_1835.position`, `recon_1835_south_d5_028.inferred_1835.footprint`, `recon_1835_south_d5_034.inferred_1835.documented_range`, `recon_1835_south_d5_034.inferred_1835.position`, `recon_1835_south_d5_034.inferred_1835.footprint`, `recon_1835_south_d6_012.inferred_1835.documented_range`, `recon_1835_south_d6_012.inferred_1835.position`, `recon_1835_south_d6_012.inferred_1835.footprint`, `recon_1835_south_d6_020.inferred_1835.documented_range`, `recon_1835_south_d6_020.inferred_1835.position`, `recon_1835_south_d6_020.inferred_1835.footprint`, `recon_1835_south_d6_031.inferred_1835.documented_range`, `recon_1835_south_d6_031.inferred_1835.position`, `recon_1835_south_d6_031.inferred_1835.footprint`, `recon_1835_south_d7_035.inferred_1835.documented_range`, `recon_1835_south_d7_035.inferred_1835.position`, `recon_1835_south_d7_035.inferred_1835.footprint`, `recon_1835_south_f1_038.inferred_1835.documented_range`, `recon_1835_south_f1_038.inferred_1835.position`, `recon_1835_south_f1_038.inferred_1835.footprint`, `recon_1835_south_h2_039.inferred_1835.documented_range`, `recon_1835_south_h2_039.inferred_1835.position`, `recon_1835_south_h2_039.inferred_1835.footprint`, `recon_1835_south_d5_023.inferred_1835.documented_range`, `recon_1835_south_d5_023.inferred_1835.position`, `recon_1835_south_d5_023.inferred_1835.footprint`, `recon_1835_south_d4_026.inferred_1835.documented_range`, `recon_1835_south_d4_026.inferred_1835.position`, `recon_1835_south_d4_026.inferred_1835.footprint`, `recon_1835_south_h1_029.inferred_1835.documented_range`, `recon_1835_south_h1_029.inferred_1835.position`, `recon_1835_south_h1_029.inferred_1835.footprint`, `recon_1835_south_d1_032.inferred_1835.documented_range`, `recon_1835_south_d1_032.inferred_1835.position`, `recon_1835_south_d1_032.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",
@@ -5544,7 +5544,6 @@
         "recon_1835_north_a1_008",
         "recon_1835_north_a1_032",
         "recon_1835_north_a1_036",
-        "recon_1835_north_a1_047",
         "recon_1835_north_a1_050",
         "recon_1835_north_a2_033",
         "recon_1835_north_a2_048",
@@ -5570,17 +5569,13 @@
         "recon_1835_north_d3_002",
         "recon_1835_north_d3_006",
         "recon_1835_north_d3_016",
-        "recon_1835_north_d3_020",
         "recon_1835_north_d3_024",
         "recon_1835_north_d3_038",
         "recon_1835_north_d3_042",
         "recon_1835_north_d3_055",
         "recon_1835_north_d4_004",
-        "recon_1835_north_d4_005",
         "recon_1835_north_d4_012",
-        "recon_1835_north_d4_015",
         "recon_1835_north_d4_017",
-        "recon_1835_north_d4_018",
         "recon_1835_north_d4_025",
         "recon_1835_north_d4_039",
         "recon_1835_north_d4_043",
@@ -5591,15 +5586,11 @@
         "recon_1835_north_d5_041",
         "recon_1835_north_d5_057",
         "recon_1835_north_d6_021",
-        "recon_1835_north_d6_027",
         "recon_1835_north_d6_044",
         "recon_1835_north_d6_058",
         "recon_1835_north_d7_031",
         "recon_1835_north_h1_007",
-        "recon_1835_north_h2_022",
-        "recon_1835_north_h2_028",
         "recon_1835_north_h2_030",
-        "recon_1835_north_h2_045",
         "recon_1835_north_w5_040"
       ],
       "covers": [
@@ -5659,24 +5650,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_a1_047",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_a1_047",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_a1_047",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_north_a1_050",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -5888,6 +5861,60 @@
         {
           "domain": "structure",
           "structure": "recon_1835_north_a5_049",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6127,24 +6154,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_d3_020",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d3_020",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d3_020",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_north_d3_024",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6235,24 +6244,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_d4_005",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_005",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_005",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_north_d4_012",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6271,24 +6262,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_d4_015",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_015",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_015",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_north_d4_017",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6302,24 +6275,6 @@
         {
           "domain": "structure",
           "structure": "recon_1835_north_d4_017",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_018",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_018",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d4_018",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6505,24 +6460,6 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_d6_027",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d6_027",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_d6_027",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
           "structure": "recon_1835_north_d6_044",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6577,55 +6514,37 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_f1_022",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_f1_022",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_f1_022",
           "phase": "inferred_1835",
           "aspect": "position"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_022",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_022",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_022",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_h2_028",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_h2_028",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_h2_028",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6649,19 +6568,91 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_045",
+          "structure": "recon_1835_north_h3_045",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_045",
+          "structure": "recon_1835_north_h3_045",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_045",
+          "structure": "recon_1835_north_h3_045",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6705,7 +6696,7 @@
         },
         {
           "label": "Covers",
-          "text": "`recon_1835_north_a1_008.inferred_1835.documented_range`, `recon_1835_north_a1_008.inferred_1835.position`, `recon_1835_north_a1_008.inferred_1835.footprint`, `recon_1835_north_a1_032.inferred_1835.documented_range`, `recon_1835_north_a1_032.inferred_1835.position`, `recon_1835_north_a1_032.inferred_1835.footprint`, `recon_1835_north_a1_036.inferred_1835.documented_range`, `recon_1835_north_a1_036.inferred_1835.position`, `recon_1835_north_a1_036.inferred_1835.footprint`, `recon_1835_north_a1_050.inferred_1835.documented_range`, `recon_1835_north_a1_050.inferred_1835.position`, `recon_1835_north_a1_050.inferred_1835.footprint`, `recon_1835_north_a2_033.inferred_1835.documented_range`, `recon_1835_north_a2_033.inferred_1835.position`, `recon_1835_north_a2_033.inferred_1835.footprint`, `recon_1835_north_a2_048.inferred_1835.documented_range`, `recon_1835_north_a2_048.inferred_1835.position`, `recon_1835_north_a2_048.inferred_1835.footprint`, `recon_1835_north_a2_059.inferred_1835.documented_range`, `recon_1835_north_a2_059.inferred_1835.position`, `recon_1835_north_a2_059.inferred_1835.footprint`, `recon_1835_north_a3_009.inferred_1835.documented_range`, `recon_1835_north_a3_009.inferred_1835.position`, `recon_1835_north_a3_009.inferred_1835.footprint`, `recon_1835_north_a3_034.inferred_1835.documented_range`, `recon_1835_north_a3_034.inferred_1835.position`, `recon_1835_north_a3_034.inferred_1835.footprint`, `recon_1835_north_a3_051.inferred_1835.documented_range`, `recon_1835_north_a3_051.inferred_1835.position`, `recon_1835_north_a3_051.inferred_1835.footprint`, `recon_1835_north_a4_010.inferred_1835.documented_range`, `recon_1835_north_a4_010.inferred_1835.position`, `recon_1835_north_a4_010.inferred_1835.footprint`, `recon_1835_north_a4_035.inferred_1835.documented_range`, `recon_1835_north_a4_035.inferred_1835.position`, `recon_1835_north_a4_035.inferred_1835.footprint`, `recon_1835_north_a4_052.inferred_1835.documented_range`, `recon_1835_north_a4_052.inferred_1835.position`, `recon_1835_north_a4_052.inferred_1835.footprint`, `recon_1835_north_a5_011.inferred_1835.documented_range`, `recon_1835_north_a5_011.inferred_1835.position`, `recon_1835_north_a5_011.inferred_1835.footprint`, `recon_1835_north_a5_049.inferred_1835.documented_range`, `recon_1835_north_a5_049.inferred_1835.position`, `recon_1835_north_a5_049.inferred_1835.footprint`, `recon_1835_north_d3_020.inferred_1835.documented_range`, `recon_1835_north_d3_020.inferred_1835.position`, `recon_1835_north_d3_020.inferred_1835.footprint`, `recon_1835_north_a1_047.inferred_1835.documented_range`, `recon_1835_north_a1_047.inferred_1835.position`, `recon_1835_north_a1_047.inferred_1835.footprint`, `recon_1835_north_d6_027.inferred_1835.documented_range`, `recon_1835_north_d6_027.inferred_1835.position`, `recon_1835_north_d6_027.inferred_1835.footprint`, `recon_1835_north_d1_001.inferred_1835.documented_range`, `recon_1835_north_d1_001.inferred_1835.position`, `recon_1835_north_d1_001.inferred_1835.footprint`, `recon_1835_north_d1_013.inferred_1835.documented_range`, `recon_1835_north_d1_013.inferred_1835.position`, `recon_1835_north_d1_013.inferred_1835.footprint`, `recon_1835_north_d1_023.inferred_1835.documented_range`, `recon_1835_north_d1_023.inferred_1835.position`, `recon_1835_north_d1_023.inferred_1835.footprint`, `recon_1835_north_d1_053.inferred_1835.documented_range`, `recon_1835_north_d1_053.inferred_1835.position`, `recon_1835_north_d1_053.inferred_1835.footprint`, `recon_1835_north_d1_054.inferred_1835.documented_range`, `recon_1835_north_d1_054.inferred_1835.position`, `recon_1835_north_d1_054.inferred_1835.footprint`, `recon_1835_north_d1_060.inferred_1835.documented_range`, `recon_1835_north_d1_060.inferred_1835.position`, `recon_1835_north_d1_060.inferred_1835.footprint`, `recon_1835_north_d2_003.inferred_1835.documented_range`, `recon_1835_north_d2_003.inferred_1835.position`, `recon_1835_north_d2_003.inferred_1835.footprint`, `recon_1835_north_d2_014.inferred_1835.documented_range`, `recon_1835_north_d2_014.inferred_1835.position`, `recon_1835_north_d2_014.inferred_1835.footprint`, `recon_1835_north_d2_029.inferred_1835.documented_range`, `recon_1835_north_d2_029.inferred_1835.position`, `recon_1835_north_d2_029.inferred_1835.footprint`, `recon_1835_north_d2_046.inferred_1835.documented_range`, `recon_1835_north_d2_046.inferred_1835.position`, `recon_1835_north_d2_046.inferred_1835.footprint`, `recon_1835_north_d3_002.inferred_1835.documented_range`, `recon_1835_north_d3_002.inferred_1835.position`, `recon_1835_north_d3_002.inferred_1835.footprint`, `recon_1835_north_d3_006.inferred_1835.documented_range`, `recon_1835_north_d3_006.inferred_1835.position`, `recon_1835_north_d3_006.inferred_1835.footprint`, `recon_1835_north_d3_016.inferred_1835.documented_range`, `recon_1835_north_d3_016.inferred_1835.position`, `recon_1835_north_d3_016.inferred_1835.footprint`, `recon_1835_north_d3_024.inferred_1835.documented_range`, `recon_1835_north_d3_024.inferred_1835.position`, `recon_1835_north_d3_024.inferred_1835.footprint`, `recon_1835_north_d3_038.inferred_1835.documented_range`, `recon_1835_north_d3_038.inferred_1835.position`, `recon_1835_north_d3_038.inferred_1835.footprint`, `recon_1835_north_d3_042.inferred_1835.documented_range`, `recon_1835_north_d3_042.inferred_1835.position`, `recon_1835_north_d3_042.inferred_1835.footprint`, `recon_1835_north_d3_055.inferred_1835.documented_range`, `recon_1835_north_d3_055.inferred_1835.position`, `recon_1835_north_d3_055.inferred_1835.footprint`, `recon_1835_north_d4_004.inferred_1835.documented_range`, `recon_1835_north_d4_004.inferred_1835.position`, `recon_1835_north_d4_004.inferred_1835.footprint`, `recon_1835_north_d4_012.inferred_1835.documented_range`, `recon_1835_north_d4_012.inferred_1835.position`, `recon_1835_north_d4_012.inferred_1835.footprint`, `recon_1835_north_d4_017.inferred_1835.documented_range`, `recon_1835_north_d4_017.inferred_1835.position`, `recon_1835_north_d4_017.inferred_1835.footprint`, `recon_1835_north_d4_025.inferred_1835.documented_range`, `recon_1835_north_d4_025.inferred_1835.position`, `recon_1835_north_d4_025.inferred_1835.footprint`, `recon_1835_north_d4_039.inferred_1835.documented_range`, `recon_1835_north_d4_039.inferred_1835.position`, `recon_1835_north_d4_039.inferred_1835.footprint`, `recon_1835_north_d4_043.inferred_1835.documented_range`, `recon_1835_north_d4_043.inferred_1835.position`, `recon_1835_north_d4_043.inferred_1835.footprint`, `recon_1835_north_d4_056.inferred_1835.documented_range`, `recon_1835_north_d4_056.inferred_1835.position`, `recon_1835_north_d4_056.inferred_1835.footprint`, `recon_1835_north_d5_019.inferred_1835.documented_range`, `recon_1835_north_d5_019.inferred_1835.position`, `recon_1835_north_d5_019.inferred_1835.footprint`, `recon_1835_north_d5_026.inferred_1835.documented_range`, `recon_1835_north_d5_026.inferred_1835.position`, `recon_1835_north_d5_026.inferred_1835.footprint`, `recon_1835_north_d5_037.inferred_1835.documented_range`, `recon_1835_north_d5_037.inferred_1835.position`, `recon_1835_north_d5_037.inferred_1835.footprint`, `recon_1835_north_d5_041.inferred_1835.documented_range`, `recon_1835_north_d5_041.inferred_1835.position`, `recon_1835_north_d5_041.inferred_1835.footprint`, `recon_1835_north_d5_057.inferred_1835.documented_range`, `recon_1835_north_d5_057.inferred_1835.position`, `recon_1835_north_d5_057.inferred_1835.footprint`, `recon_1835_north_d6_021.inferred_1835.documented_range`, `recon_1835_north_d6_021.inferred_1835.position`, `recon_1835_north_d6_021.inferred_1835.footprint`, `recon_1835_north_d6_044.inferred_1835.documented_range`, `recon_1835_north_d6_044.inferred_1835.position`, `recon_1835_north_d6_044.inferred_1835.footprint`, `recon_1835_north_d6_058.inferred_1835.documented_range`, `recon_1835_north_d6_058.inferred_1835.position`, `recon_1835_north_d6_058.inferred_1835.footprint`, `recon_1835_north_d7_031.inferred_1835.documented_range`, `recon_1835_north_d7_031.inferred_1835.position`, `recon_1835_north_d7_031.inferred_1835.footprint`, `recon_1835_north_h2_022.inferred_1835.documented_range`, `recon_1835_north_h2_022.inferred_1835.position`, `recon_1835_north_h2_022.inferred_1835.footprint`, `recon_1835_north_h1_007.inferred_1835.documented_range`, `recon_1835_north_h1_007.inferred_1835.position`, `recon_1835_north_h1_007.inferred_1835.footprint`, `recon_1835_north_h2_030.inferred_1835.documented_range`, `recon_1835_north_h2_030.inferred_1835.position`, `recon_1835_north_h2_030.inferred_1835.footprint`, `recon_1835_north_h2_045.inferred_1835.documented_range`, `recon_1835_north_h2_045.inferred_1835.position`, `recon_1835_north_h2_045.inferred_1835.footprint`, `recon_1835_north_d4_015.inferred_1835.documented_range`, `recon_1835_north_d4_015.inferred_1835.position`, `recon_1835_north_d4_015.inferred_1835.footprint`, `recon_1835_north_h2_028.inferred_1835.documented_range`, `recon_1835_north_h2_028.inferred_1835.position`, `recon_1835_north_h2_028.inferred_1835.footprint`, `recon_1835_north_d4_018.inferred_1835.documented_range`, `recon_1835_north_d4_018.inferred_1835.position`, `recon_1835_north_d4_018.inferred_1835.footprint`, `recon_1835_north_d4_005.inferred_1835.documented_range`, `recon_1835_north_d4_005.inferred_1835.position`, `recon_1835_north_d4_005.inferred_1835.footprint`, `recon_1835_north_w5_040.inferred_1835.documented_range`, `recon_1835_north_w5_040.inferred_1835.position`, `recon_1835_north_w5_040.inferred_1835.footprint`"
+          "text": "`recon_1835_north_a1_008.inferred_1835.documented_range`, `recon_1835_north_a1_008.inferred_1835.position`, `recon_1835_north_a1_008.inferred_1835.footprint`, `recon_1835_north_a1_032.inferred_1835.documented_range`, `recon_1835_north_a1_032.inferred_1835.position`, `recon_1835_north_a1_032.inferred_1835.footprint`, `recon_1835_north_a1_036.inferred_1835.documented_range`, `recon_1835_north_a1_036.inferred_1835.position`, `recon_1835_north_a1_036.inferred_1835.footprint`, `recon_1835_north_a1_050.inferred_1835.documented_range`, `recon_1835_north_a1_050.inferred_1835.position`, `recon_1835_north_a1_050.inferred_1835.footprint`, `recon_1835_north_a2_033.inferred_1835.documented_range`, `recon_1835_north_a2_033.inferred_1835.position`, `recon_1835_north_a2_033.inferred_1835.footprint`, `recon_1835_north_a2_048.inferred_1835.documented_range`, `recon_1835_north_a2_048.inferred_1835.position`, `recon_1835_north_a2_048.inferred_1835.footprint`, `recon_1835_north_a2_059.inferred_1835.documented_range`, `recon_1835_north_a2_059.inferred_1835.position`, `recon_1835_north_a2_059.inferred_1835.footprint`, `recon_1835_north_a3_009.inferred_1835.documented_range`, `recon_1835_north_a3_009.inferred_1835.position`, `recon_1835_north_a3_009.inferred_1835.footprint`, `recon_1835_north_a3_034.inferred_1835.documented_range`, `recon_1835_north_a3_034.inferred_1835.position`, `recon_1835_north_a3_034.inferred_1835.footprint`, `recon_1835_north_a3_051.inferred_1835.documented_range`, `recon_1835_north_a3_051.inferred_1835.position`, `recon_1835_north_a3_051.inferred_1835.footprint`, `recon_1835_north_a4_010.inferred_1835.documented_range`, `recon_1835_north_a4_010.inferred_1835.position`, `recon_1835_north_a4_010.inferred_1835.footprint`, `recon_1835_north_a4_035.inferred_1835.documented_range`, `recon_1835_north_a4_035.inferred_1835.position`, `recon_1835_north_a4_035.inferred_1835.footprint`, `recon_1835_north_a4_052.inferred_1835.documented_range`, `recon_1835_north_a4_052.inferred_1835.position`, `recon_1835_north_a4_052.inferred_1835.footprint`, `recon_1835_north_a5_011.inferred_1835.documented_range`, `recon_1835_north_a5_011.inferred_1835.position`, `recon_1835_north_a5_011.inferred_1835.footprint`, `recon_1835_north_a5_049.inferred_1835.documented_range`, `recon_1835_north_a5_049.inferred_1835.position`, `recon_1835_north_a5_049.inferred_1835.footprint`, `recon_1835_north_c1_020.inferred_1835.documented_range`, `recon_1835_north_c1_020.inferred_1835.position`, `recon_1835_north_c1_020.inferred_1835.footprint`, `recon_1835_north_c1_047.inferred_1835.documented_range`, `recon_1835_north_c1_047.inferred_1835.position`, `recon_1835_north_c1_047.inferred_1835.footprint`, `recon_1835_north_c2_027.inferred_1835.documented_range`, `recon_1835_north_c2_027.inferred_1835.position`, `recon_1835_north_c2_027.inferred_1835.footprint`, `recon_1835_north_d1_001.inferred_1835.documented_range`, `recon_1835_north_d1_001.inferred_1835.position`, `recon_1835_north_d1_001.inferred_1835.footprint`, `recon_1835_north_d1_013.inferred_1835.documented_range`, `recon_1835_north_d1_013.inferred_1835.position`, `recon_1835_north_d1_013.inferred_1835.footprint`, `recon_1835_north_d1_023.inferred_1835.documented_range`, `recon_1835_north_d1_023.inferred_1835.position`, `recon_1835_north_d1_023.inferred_1835.footprint`, `recon_1835_north_d1_053.inferred_1835.documented_range`, `recon_1835_north_d1_053.inferred_1835.position`, `recon_1835_north_d1_053.inferred_1835.footprint`, `recon_1835_north_d1_054.inferred_1835.documented_range`, `recon_1835_north_d1_054.inferred_1835.position`, `recon_1835_north_d1_054.inferred_1835.footprint`, `recon_1835_north_d1_060.inferred_1835.documented_range`, `recon_1835_north_d1_060.inferred_1835.position`, `recon_1835_north_d1_060.inferred_1835.footprint`, `recon_1835_north_d2_003.inferred_1835.documented_range`, `recon_1835_north_d2_003.inferred_1835.position`, `recon_1835_north_d2_003.inferred_1835.footprint`, `recon_1835_north_d2_014.inferred_1835.documented_range`, `recon_1835_north_d2_014.inferred_1835.position`, `recon_1835_north_d2_014.inferred_1835.footprint`, `recon_1835_north_d2_029.inferred_1835.documented_range`, `recon_1835_north_d2_029.inferred_1835.position`, `recon_1835_north_d2_029.inferred_1835.footprint`, `recon_1835_north_d2_046.inferred_1835.documented_range`, `recon_1835_north_d2_046.inferred_1835.position`, `recon_1835_north_d2_046.inferred_1835.footprint`, `recon_1835_north_d3_002.inferred_1835.documented_range`, `recon_1835_north_d3_002.inferred_1835.position`, `recon_1835_north_d3_002.inferred_1835.footprint`, `recon_1835_north_d3_006.inferred_1835.documented_range`, `recon_1835_north_d3_006.inferred_1835.position`, `recon_1835_north_d3_006.inferred_1835.footprint`, `recon_1835_north_d3_016.inferred_1835.documented_range`, `recon_1835_north_d3_016.inferred_1835.position`, `recon_1835_north_d3_016.inferred_1835.footprint`, `recon_1835_north_d3_024.inferred_1835.documented_range`, `recon_1835_north_d3_024.inferred_1835.position`, `recon_1835_north_d3_024.inferred_1835.footprint`, `recon_1835_north_d3_038.inferred_1835.documented_range`, `recon_1835_north_d3_038.inferred_1835.position`, `recon_1835_north_d3_038.inferred_1835.footprint`, `recon_1835_north_d3_042.inferred_1835.documented_range`, `recon_1835_north_d3_042.inferred_1835.position`, `recon_1835_north_d3_042.inferred_1835.footprint`, `recon_1835_north_d3_055.inferred_1835.documented_range`, `recon_1835_north_d3_055.inferred_1835.position`, `recon_1835_north_d3_055.inferred_1835.footprint`, `recon_1835_north_d4_004.inferred_1835.documented_range`, `recon_1835_north_d4_004.inferred_1835.position`, `recon_1835_north_d4_004.inferred_1835.footprint`, `recon_1835_north_d4_012.inferred_1835.documented_range`, `recon_1835_north_d4_012.inferred_1835.position`, `recon_1835_north_d4_012.inferred_1835.footprint`, `recon_1835_north_d4_017.inferred_1835.documented_range`, `recon_1835_north_d4_017.inferred_1835.position`, `recon_1835_north_d4_017.inferred_1835.footprint`, `recon_1835_north_d4_025.inferred_1835.documented_range`, `recon_1835_north_d4_025.inferred_1835.position`, `recon_1835_north_d4_025.inferred_1835.footprint`, `recon_1835_north_d4_039.inferred_1835.documented_range`, `recon_1835_north_d4_039.inferred_1835.position`, `recon_1835_north_d4_039.inferred_1835.footprint`, `recon_1835_north_d4_043.inferred_1835.documented_range`, `recon_1835_north_d4_043.inferred_1835.position`, `recon_1835_north_d4_043.inferred_1835.footprint`, `recon_1835_north_d4_056.inferred_1835.documented_range`, `recon_1835_north_d4_056.inferred_1835.position`, `recon_1835_north_d4_056.inferred_1835.footprint`, `recon_1835_north_d5_019.inferred_1835.documented_range`, `recon_1835_north_d5_019.inferred_1835.position`, `recon_1835_north_d5_019.inferred_1835.footprint`, `recon_1835_north_d5_026.inferred_1835.documented_range`, `recon_1835_north_d5_026.inferred_1835.position`, `recon_1835_north_d5_026.inferred_1835.footprint`, `recon_1835_north_d5_037.inferred_1835.documented_range`, `recon_1835_north_d5_037.inferred_1835.position`, `recon_1835_north_d5_037.inferred_1835.footprint`, `recon_1835_north_d5_041.inferred_1835.documented_range`, `recon_1835_north_d5_041.inferred_1835.position`, `recon_1835_north_d5_041.inferred_1835.footprint`, `recon_1835_north_d5_057.inferred_1835.documented_range`, `recon_1835_north_d5_057.inferred_1835.position`, `recon_1835_north_d5_057.inferred_1835.footprint`, `recon_1835_north_d6_021.inferred_1835.documented_range`, `recon_1835_north_d6_021.inferred_1835.position`, `recon_1835_north_d6_021.inferred_1835.footprint`, `recon_1835_north_d6_044.inferred_1835.documented_range`, `recon_1835_north_d6_044.inferred_1835.position`, `recon_1835_north_d6_044.inferred_1835.footprint`, `recon_1835_north_d6_058.inferred_1835.documented_range`, `recon_1835_north_d6_058.inferred_1835.position`, `recon_1835_north_d6_058.inferred_1835.footprint`, `recon_1835_north_d7_031.inferred_1835.documented_range`, `recon_1835_north_d7_031.inferred_1835.position`, `recon_1835_north_d7_031.inferred_1835.footprint`, `recon_1835_north_f1_022.inferred_1835.documented_range`, `recon_1835_north_f1_022.inferred_1835.position`, `recon_1835_north_f1_022.inferred_1835.footprint`, `recon_1835_north_h1_007.inferred_1835.documented_range`, `recon_1835_north_h1_007.inferred_1835.position`, `recon_1835_north_h1_007.inferred_1835.footprint`, `recon_1835_north_h2_030.inferred_1835.documented_range`, `recon_1835_north_h2_030.inferred_1835.position`, `recon_1835_north_h2_030.inferred_1835.footprint`, `recon_1835_north_h3_045.inferred_1835.documented_range`, `recon_1835_north_h3_045.inferred_1835.position`, `recon_1835_north_h3_045.inferred_1835.footprint`, `recon_1835_north_i2_015.inferred_1835.documented_range`, `recon_1835_north_i2_015.inferred_1835.position`, `recon_1835_north_i2_015.inferred_1835.footprint`, `recon_1835_north_t1_028.inferred_1835.documented_range`, `recon_1835_north_t1_028.inferred_1835.position`, `recon_1835_north_t1_028.inferred_1835.footprint`, `recon_1835_north_w1_018.inferred_1835.documented_range`, `recon_1835_north_w1_018.inferred_1835.position`, `recon_1835_north_w1_018.inferred_1835.footprint`, `recon_1835_north_w2_005.inferred_1835.documented_range`, `recon_1835_north_w2_005.inferred_1835.position`, `recon_1835_north_w2_005.inferred_1835.footprint`, `recon_1835_north_w5_040.inferred_1835.documented_range`, `recon_1835_north_w5_040.inferred_1835.position`, `recon_1835_north_w5_040.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",
@@ -12091,7 +12082,7 @@
         },
         {
           "label": "How to resolve",
-          "text": "a source that states the town's building count on or near the scene date, or a division-by-division count. Andreas's November 1835 town census gives **3,265 people in 398 dwellings** four months later, which this project already quotes on the gate screen as the *town's* recorded figure and deliberately does not convert into a roof count for 1 July — dwellings are not roofs, four months is a building season in a town that was doubling, and the conversion would be a third invention stacked on two. If a new public building is ever attested it arrives as a named record, and the gate now forces the target, the district row and the town total to move with it consciously rather than quietly. Related: **L93** (the anonymous civic roof this project refused to build, and the one anonymous I2 it kept until T-1445 re-dealt that roof into a dwelling and T-1480 carried it out) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**, **T-I3(a)**."
+          "text": "a source that states the town's building count on or near the scene date, or a division-by-division count. Andreas's November 1835 town census gives **3,265 people in 398 dwellings** four months later, which this project already quotes on the gate screen as the *town's* recorded figure and deliberately does not convert into a roof count for 1 July — dwellings are not roofs, four months is a building season in a town that was doubling, and the conversion would be a third invention stacked on two. If a new public building is ever attested it arrives as a named record, and the gate now forces the target, the district row and the town total to move with it consciously rather than quietly. Related: **L93** (the anonymous civic roof this project refused to build, and the one anonymous I2 it keeps) · **L79** (the platted corridors are measured, the rest is drawn) · tickets **T-0032**, **T-I3(a)**."
         },
         {
           "label": "Recorded",
@@ -12143,14 +12134,11 @@
         "inf_butcher_market",
         "inf_sawpit_shed",
         "physicians_office",
-        "recon_1835_north_a1_047",
-        "recon_1835_north_d3_020",
-        "recon_1835_north_h2_022",
         "recon_1835_north_w5_040",
         "recon_1835_south_a5_044",
-        "recon_1835_south_c1_003",
-        "recon_1835_south_c1_010",
-        "recon_1835_south_c1_018",
+        "recon_1835_south_d1_003",
+        "recon_1835_south_d1_010",
+        "recon_1835_south_d1_018",
         "recon_1835_south_f1_038",
         "recon_1835_west_007"
       ],
@@ -12181,19 +12169,19 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_a1_047",
+          "structure": "recon_1835_north_c1_020",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_d3_020",
+          "structure": "recon_1835_north_c1_047",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h2_022",
+          "structure": "recon_1835_north_f1_022",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
@@ -12205,19 +12193,19 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_c1_003",
+          "structure": "recon_1835_south_d1_003",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_c1_010",
+          "structure": "recon_1835_south_d1_010",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_south_c1_018",
+          "structure": "recon_1835_south_d1_018",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
@@ -12255,7 +12243,7 @@
         },
         {
           "label": "Covers",
-          "text": "`inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_d3_020.inferred_1835.form.roof_type`, `recon_1835_north_a1_047.inferred_1835.form.roof_type`, `recon_1835_north_h2_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_c1_003.inferred_1835.form.roof_type`, `recon_1835_south_c1_010.inferred_1835.form.roof_type`, `recon_1835_south_c1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`."
+          "text": "`inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_c1_020.inferred_1835.form.roof_type`, `recon_1835_north_c1_047.inferred_1835.form.roof_type`, `recon_1835_north_f1_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_d1_003.inferred_1835.form.roof_type`, `recon_1835_south_d1_010.inferred_1835.form.roof_type`, `recon_1835_south_d1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`."
         },
         {
           "label": "Recorded",
@@ -15170,7 +15158,7 @@
     },
     {
       "id": "L252",
-      "title": "Seventy-five people are put to bed in houses that had the beds, and seventeen the town already counts are told where they slept",
+      "title": "Forty-seven people are put to bed in houses that had the beds, and forty-seven the town already counts are told where they slept",
       "section": "per_subject",
       "subjects": [
         "new_york_house",
@@ -15189,11 +15177,11 @@
       "fields": [
         {
           "label": "Decision",
-          "text": "`tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each is an invention of a different size. (1) It **seats seventeen people the layer already holds** — the five heads T-1171 drew as `solitary` and twelve of the fourteen T-1173 drew at a household size of one — into a named or reconstructed lodging house, writing `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints the rest of them as boarders and lodgers** nobody names, drawn against the order book's own `household_type: lodging` buckets. (3) It **mints a keeper** for each roof this programme itself raised as a lodging place, at the trade that roof's own `function` states. The two counts are re-derived rather than stated here, because the house list they are drawn from moves whenever the roof programme is re-dealt — as T-1480 re-dealt it. Nothing is hand-authored: every value comes from a seed a reader can retype, and `--check` re-derives all twelve cards and the ledger byte for byte."
+          "text": "`tools/seat_lodgers_1835.py` (T-1371, of T-1175) fills the ordinary-night capacity of the fifteen BUILT lodging places of 1 July 1835. It does three things and each is an invention of a different size. (1) It **seats forty-seven people the layer already holds** — the heads T-1171 drew as `solitary` and those T-1173 drew at a household size of one — into a named or reconstructed lodging house, writing `lives_at` at the reconstructed tier over a card that said nothing. (2) It **mints forty-two of them as boarders and lodgers** nobody names, drawn against the order book's own `household_type: lodging` buckets. (3) It **mints five keepers**, one for each roof this programme itself raised as a lodging place, at the trade that roof's own `function` states. Nothing is hand-authored: every value comes from a seed a reader can retype, and `--check` re-derives all twelve cards and the ledger byte for byte."
         },
         {
           "label": "Scope",
-          "text": "`residents.persons[lodgers]` — 56 people in 13 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check` (47 seats come from the layer; these 56 are the mint on top of them). The count has moved TWICE this week and in opposite directions, which is why it is re-derived and not stated. It read 75 in 12. **T-1171 shrank it to 47**: `reconstruct_modelled_families.py` had been refusing 822 households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated, and once that stage reads the rulings the model draws 30 more of the town's own named men as living alone — so `seat_lodgers_1835.py` puts THEM in beds it would otherwise have invented somebody for. Twenty-eight invented people gone, twenty-eight real ones in their place, and that is the direction this question is supposed to travel. **T-1480 then grew it to 56 in 13**: the redeal made `recon_1835_north_h2_045` an H2 rather than an H3, and `recon_1835_north_h2_022` and `recon_1835_north_h2_028` boarding houses at all, so the lodging model apportioned one more house and the capacity that came with it. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life."
+          "text": "`residents.persons[lodgers]` — 56 people in 13 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check` (47 seats come from the layer; these 56 are the mint on top of them). The count has moved TWICE this week and in opposite directions, which is why it is re-derived and never stated. It read 75 in 12. **T-1171 shrank it to 47**: `reconstruct_modelled_families.py` had been refusing 822 households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated, and once that stage reads the rulings the model draws 30 more of the town's own named men as living alone — so `seat_lodgers_1835.py` puts THEM in beds it would otherwise have invented somebody for. Twenty-eight invented people gone, twenty-eight real ones in their place, and that is the direction this question is supposed to travel. **T-1480 then grew it to 56 in 13**: the redeal made `recon_1835_north_h2_045` an H2 rather than an H3, and `recon_1835_north_h2_022` and `recon_1835_north_h2_028` boarding houses at all, so the lodging model apportioned one more house and the capacity that came with it. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life. **The liberty SHRANK on 2026-09-20, and the reason is worth keeping (T-1171).** It stood at 75 minted against 17 seated. `reconstruct_modelled_families.py` had been refusing 822 households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated in `data/reconstruction/1835_presence_rulings.json`; once this stage reads that file the model draws 30 more of the town's own named men as living alone, and `seat_lodgers_1835.py` puts THEM in the beds it would otherwise have invented somebody for. Twenty-eight invented people are gone and twenty-eight real ones sleep in their place. The beds did not move — 94 of 135 ordinary-night beds are filled either way — only the question of who is in them, and this is the direction that question is supposed to travel."
         },
         {
           "label": "Why",
@@ -15247,7 +15235,7 @@
       "fields": [
         {
           "label": "Scope",
-          "text": "`businesses.records[reconstructed]` — 34 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, six are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions, four are **L260**'s liveries and lumber yards and fifteen are **L262**'s services, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total"
+          "text": "`businesses.records[reconstructed]` — 34 houses of trade. TWO are this entry's, each with an adopted keeper; two are **L255**'s Black-owned firms, four are **L257**'s boarding houses, two are **L258**'s mechanics' houses, three are **L259**'s professions, four are **L260**'s liveries and lumber yards and fifteen are **L262**'s services, all of which this selector counts because it reads the whole layer. The count is restated rather than the selector narrowed, so the register keeps saying how many reconstructed houses of trade the town carries in total"
         },
         {
           "label": "Decision",
@@ -15327,7 +15315,7 @@
     },
     {
       "id": "L257",
-      "title": "Four boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them",
+      "title": "Six boarding houses become houses of trade because the buildings were already standing and nothing in the business layer could see them",
       "section": "per_subject",
       "subjects": [
         "new_york_house"
@@ -15346,7 +15334,7 @@
         },
         {
           "label": "Decision",
-          "text": "`tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed business record for each of the four standing reconstructed boarding houses — *Bardwell's boarding house* and *Newell's boarding house* on the north side, *Ellen Cavanagh's boarding house* on the north side, *Martin Fitzgerald's boarding house* in the west division. Each is seated as the PREMISES of the roof it belongs to, adopts that roof's existing keeper as its proprietor, and is bought by a new third form of the reconstruction contract: a STANDING ROOF, beside the quota row of **L254** and the documented floor of **L255**. **Why a third form was needed.** The order book buys a reconstructed house with a census shortfall, and it can only do that for a class the census enumerated. The December 1835 State census counts **eight taverns** — all eight attested, and the town keeps eight — and never counts a boarding house at all. So no shortfall of this class can be counted, and under the first two forms the only ways to raise one were to spend the tavern quota, which would put a ninth tavern in a town whose census says eight, or to file a model as a documented count. Both are worse than naming the third thing that actually bought these houses. **What actually bought them.** The buildings. Five boarding houses stand in `data/structures/`; the lodging model (T-1370) apportioned each of them an ordinary-night capacity out of a bracket the town model already owned; the lodgers stage (T-1371) put people in those beds and named a keeper for every reconstructed one. What did not exist was the FIRM. A house with beds, lodgers and a keeper and no house of trade behind it is an establishment the business layer cannot see: it is absent from the Businesses view, its building card names no trade, and the keeper's own card can say she keeps a boarding house while nothing in the town holds one. **What is invented here, exactly.** Two things, and no more. (1) **The firm style** — the keeper's possessive, form 5 of `docs/RESEARCH/business-naming-1835.md`, dealt on the record's own seed between the possessive in full and the possessive with the forename cut. (2) **That the keeping was a house of trade** rather than a roof with lodgers in it. Nothing else: the building was already committed, the beds were already apportioned, and the keeper was already drawn and already carries `boarding_house_keeper` as her occupation. **NO HONORIFIC IS DEALT, and that is a refusal rather than an omission.** Three of the four keepers are women. The register prints *Mrs. H. Sherman* and *Miss Bayne's Boarding and Day School*, so both forms are attested in this town — and both assert a marital status. The lodgers stage minted these four as solitary keepers and nothing on their cards says whether they were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inventing a husband to make a shopfront read well, which is the exact shape of invention this project refuses. The possessive stands on the name alone. **The census class is `other`, and it is not a fudge.** `type` is the ONE taxonomy — the census's own eighteen classes — so a business counts against the December 1835 State census without a second crosswalk, and `other` is that document's own bucket for a class it never put a figure against. Typing these houses `tavern` would spend a count the register already fills; minting a nineteenth class would put a line in the taxonomy that the document it mirrors does not have. The trade is carried in `trade` and `occupation`, which are free of the census. **What this deliberately does NOT do.** It raises **no house on a slot the roof programme has scheduled and not built**: the 37 unbuilt boarding houses are 333 beds with no roof over them, and a firm in a building site is a fiction of a different kind (T-1196 re-derives the programme, T-1409 raises the houses). It writes **no keeper into a documented house** — who kept the New York House or the Sauganash on 1 July 1835 is a research question, the lodgers stage refused to answer it on exactly that ground, and the attested keepers the sources DO name arrive through T-1404. It gives **no firm to the one standing reconstructed inn**, because the tavern count is eight and full. It writes **no staff**, which is T-1183's model and T-1189's fill, and **no dates**: a keeping is not an opening, so `precision` is `unbounded` and the record claims only that the house was letting beds on the scene date. And it **mints nobody** — a roof whose keeper the lodgers stage never named is refused a firm rather than given an invented proprietor, and the ledger's `lodging` table states the shortfall by name. **Which way it is wrong if it is wrong.** Toward a town with too FEW houses of trade. Four of the fifteen standing lodging places gain a firm; the other eleven are counted in the ledger's beds-against-keepers table with the reason each one carries none, and seven of those are documented houses waiting on the register rather than on a draw. Related: **L254** (the quota row), **L255** (the documented floor), **L252** (the beds these keepers were drawn to fill), the naming guide `docs/RESEARCH/business-naming-1835.md`, and the seating tickets **T-1198** and **T-1199**."
+          "text": "`tools/reconstruct_businesses_1835.py` (T-1408) writes a reconstructed business record for each of the six standing reconstructed boarding houses — *Bardwell's boarding house* and *Newell's boarding house* on the north side, *Ellen Cavanagh's boarding house* on the north side, *Martin Fitzgerald's boarding house* in the west division, and — since T-1480 — *Barnes's* and *Gilbert's*, which the North Division redeal turned into boarding houses at all. Each is seated as the PREMISES of the roof it belongs to, adopts that roof's existing keeper as its proprietor, and is bought by a new third form of the reconstruction contract: a STANDING ROOF, beside the quota row of **L254** and the documented floor of **L255**. **Why a third form was needed.** The order book buys a reconstructed house with a census shortfall, and it can only do that for a class the census enumerated. The December 1835 State census counts **eight taverns** — all eight attested, and the town keeps eight — and never counts a boarding house at all. So no shortfall of this class can be counted, and under the first two forms the only ways to raise one were to spend the tavern quota, which would put a ninth tavern in a town whose census says eight, or to file a model as a documented count. Both are worse than naming the third thing that actually bought these houses. **What actually bought them.** The buildings. Five boarding houses stand in `data/structures/`; the lodging model (T-1370) apportioned each of them an ordinary-night capacity out of a bracket the town model already owned; the lodgers stage (T-1371) put people in those beds and named a keeper for every reconstructed one. What did not exist was the FIRM. A house with beds, lodgers and a keeper and no house of trade behind it is an establishment the business layer cannot see: it is absent from the Businesses view, its building card names no trade, and the keeper's own card can say she keeps a boarding house while nothing in the town holds one. **What is invented here, exactly.** Two things, and no more. (1) **The firm style** — the keeper's possessive, form 5 of `docs/RESEARCH/business-naming-1835.md`, dealt on the record's own seed between the possessive in full and the possessive with the forename cut. (2) **That the keeping was a house of trade** rather than a roof with lodgers in it. Nothing else: the building was already committed, the beds were already apportioned, and the keeper was already drawn and already carries `boarding_house_keeper` as her occupation. **NO HONORIFIC IS DEALT, and that is a refusal rather than an omission.** Three of the four keepers are women. The register prints *Mrs. H. Sherman* and *Miss Bayne's Boarding and Day School*, so both forms are attested in this town — and both assert a marital status. The lodgers stage minted these four as solitary keepers and nothing on their cards says whether they were married, widowed or single. A sign reading *Mrs. Bardwell's* would be inventing a husband to make a shopfront read well, which is the exact shape of invention this project refuses. The possessive stands on the name alone. **The census class is `other`, and it is not a fudge.** `type` is the ONE taxonomy — the census's own eighteen classes — so a business counts against the December 1835 State census without a second crosswalk, and `other` is that document's own bucket for a class it never put a figure against. Typing these houses `tavern` would spend a count the register already fills; minting a nineteenth class would put a line in the taxonomy that the document it mirrors does not have. The trade is carried in `trade` and `occupation`, which are free of the census. **What this deliberately does NOT do.** It raises **no house on a slot the roof programme has scheduled and not built**: the 37 unbuilt boarding houses are 333 beds with no roof over them, and a firm in a building site is a fiction of a different kind (T-1196 re-derives the programme, T-1409 raises the houses). It writes **no keeper into a documented house** — who kept the New York House or the Sauganash on 1 July 1835 is a research question, the lodgers stage refused to answer it on exactly that ground, and the attested keepers the sources DO name arrive through T-1404. It gives **no firm to the one standing reconstructed inn**, because the tavern count is eight and full. It writes **no staff**, which is T-1183's model and T-1189's fill, and **no dates**: a keeping is not an opening, so `precision` is `unbounded` and the record claims only that the house was letting beds on the scene date. And it **mints nobody** — a roof whose keeper the lodgers stage never named is refused a firm rather than given an invented proprietor, and the ledger's `lodging` table states the shortfall by name. **Which way it is wrong if it is wrong.** Toward a town with too FEW houses of trade. Four of the fifteen standing lodging places gain a firm; the other eleven are counted in the ledger's beds-against-keepers table with the reason each one carries none, and seven of those are documented houses waiting on the register rather than on a draw. Related: **L254** (the quota row), **L255** (the documented floor), **L252** (the beds these keepers were drawn to fill), the naming guide `docs/RESEARCH/business-naming-1835.md`, and the seating tickets **T-1198** and **T-1199**."
         },
         {
           "label": "Recorded",
@@ -15637,24 +15625,24 @@
     },
     {
       "id": "L266",
-      "title": "The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 63 roofs that are not framed",
+      "title": "The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 67 roofs that are not framed",
       "section": "per_subject",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "structures.phases[log_or_fort_archetype]",
-        "count": 63
+        "count": 67
       },
       "recorded": "2026-09-20",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`structures.phases[log_or_fort_archetype]` — 63 phases: 49 log dwellings and 14 fort structures. Nothing about their geometry, their roof type, their pitch or their weathering moves. This entry is about one thing: which of the two coverings this project can argue each of those roofs is drawn on."
+          "text": "`structures.phases[log_or_fort_archetype]` — 67 phases: 53 log dwellings and 14 fort structures. Nothing about their geometry, their roof type, their pitch or their weathering moves. This entry is about one thing: which of the two coverings this project can argue each of those roofs is drawn on."
         },
         {
           "label": "Decision",
-          "text": "`generators/common/materials.py`'s `roof_substrate()` deals the `shingle` substrate to every roofed building that is not an outbuilding. For the 182 framed roofs that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 63 it is a claim, and this is the claim. **What §2.2 actually grades, and where it stops.** It grades a shingled covering **attested** on the North Side school of 1833 — *\"a frame building twenty-six by thirty-eight feet; twelve-foot posts; sheeted and shingled roof\"* — and **inferred** as *the ordinary covering of a framed building here*. The second half of that sentence says **framed**. A log cabin is not a framed building, and the fort's eight garrison kinds are not all framed either. So the rule reaches these 63 roofs by an argument and not by the grading, and the argument is set out here rather than left implicit in a selector. **The argument.** The two coverings this project can argue split on **what a roof is for**, not on what the walls beneath it are made of. The board roof is argued — by `generators/archetypes/outbuilding.py`, which §2.2 grades on — as the covering of a **shed**: *\"a shingle field on an outbuilding would be claiming a finish.\"* A privy, a stable, a wagon shed and a smokehouse are roofed to keep rain off a thing. A log cabin is a **dwelling**: it carries a family through a Chicago winter, and it meets the same demand the framed dwelling's roof meets, at the same cost to whoever built it. The fort's garrison buildings are quarters, a magazine, a storehouse and a guardhouse — buildings the United States Army roofed to keep, not sheds. Reading the split as wall-fabric rather than purpose would put a shed's covering on fifty homes because their walls were cheap, which is a claim in the other direction and a worse one. **Which way it is wrong if it is wrong.** Toward a town that reads slightly better built than it was. If a share of the 1835 cabins were roofed with riven clapboards weighted under poles rather than with a nailed shingle field — a covering this project holds no source for at all, and therefore has no row for — then those roofs are drawn with a finer and more regular rhythm than they had. The error is bounded and visible: it is one substrate row on 63 roofs, and every one of them is reachable through this scope line. **What is NOT claimed.** No exposure — that is **L263**, taken separately and on the owner's ruling of 2026-09-20. No weathering: `roof_finish()` grades the roof's condition from the 218 records that state one and this entry does not touch it. No colour: no substrate owns one (§1.1). And no confidence moves — a covering dealt by rule does not make a roof better attested, and every one of these 63 phases keeps the grade it had."
+          "text": "`generators/common/materials.py`'s `roof_substrate()` deals the `shingle` substrate to every roofed building that is not an outbuilding. For the 180 framed roofs that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 67 it is a claim, and this is the claim. **What §2.2 actually grades, and where it stops.** It grades a shingled covering **attested** on the North Side school of 1833 — *\"a frame building twenty-six by thirty-eight feet; twelve-foot posts; sheeted and shingled roof\"* — and **inferred** as *the ordinary covering of a framed building here*. The second half of that sentence says **framed**. A log cabin is not a framed building, and the fort's eight garrison kinds are not all framed either. So the rule reaches these 67 roofs by an argument and not by the grading, and the argument is set out here rather than left implicit in a selector. **The argument.** The two coverings this project can argue split on **what a roof is for**, not on what the walls beneath it are made of. The board roof is argued — by `generators/archetypes/outbuilding.py`, which §2.2 grades on — as the covering of a **shed**: *\"a shingle field on an outbuilding would be claiming a finish.\"* A privy, a stable, a wagon shed and a smokehouse are roofed to keep rain off a thing. A log cabin is a **dwelling**: it carries a family through a Chicago winter, and it meets the same demand the framed dwelling's roof meets, at the same cost to whoever built it. The fort's garrison buildings are quarters, a magazine, a storehouse and a guardhouse — buildings the United States Army roofed to keep, not sheds. Reading the split as wall-fabric rather than purpose would put a shed's covering on fifty-three homes because their walls were cheap, which is a claim in the other direction and a worse one. **Which way it is wrong if it is wrong.** Toward a town that reads slightly better built than it was. If a share of the 1835 cabins were roofed with riven clapboards weighted under poles rather than with a nailed shingle field — a covering this project holds no source for at all, and therefore has no row for — then those roofs are drawn with a finer and more regular rhythm than they had. The error is bounded and visible: it is one substrate row on 67 roofs, and every one of them is reachable through this scope line. **What is NOT claimed.** No exposure — that is **L263**, taken separately and on the owner's ruling of 2026-09-20. No weathering: `roof_finish()` grades the roof's condition from the 218 records that state one and this entry does not touch it. No colour: no substrate owns one (§1.1). And no confidence moves — a covering dealt by rule does not make a roof better attested, and every one of these 67 phases keeps the grade it had."
         },
         {
           "label": "What would discharge it",
@@ -15662,7 +15650,7 @@
         },
         {
           "label": "Related",
-          "text": "**L263** (the exposure, and the ruling that took it), **L264** (the brick course, taken the same day and still unwired), T-1487 (this parcel), T-1488 (the relief binding that makes it visible), T-1465 (the parent ask), T-1450 (the vendored maps), `docs/RESEARCH/materials.md` §2.2 and §3.1."
+          "text": "**L263** (the exposure, and the ruling that took it), **L264** (the brick course, taken the same day and still unwired), T-1487 (this parcel), T-1488 (the relief binding that makes it visible), T-1465 (the parent ask), T-1450 (the vendored maps), `docs/RESEARCH/materials.md` §2.2 and §3.1. **Counts restated 2026-09-20 (T-1494)**, and nothing else here moved. The phase-one South redeal re-dealt eleven anonymous roofs into the families T-1445 adjudicated for them, and four of the eleven became `log_dwelling` cabins: 49 log dwellings became 53, the scope 63 became 67, and the framed roofs §2.2 grades directly fell from 182 to 180 as seven storefronts and four workshop sheds left those archetypes. Every figure above is measured over `data/structures/*.json`, which is what `tools/compile_liberties.py --check` re-derives this scope from; the argument, the direction of the error and the discharge condition are untouched."
         },
         {
           "label": "Recorded",

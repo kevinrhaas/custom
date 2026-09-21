@@ -276,7 +276,7 @@
       "ordinal": 1,
       "of": 20,
       "lives_at": "recon_1835_south_d3_001",
-      "works_at": "recon_1835_south_w2_026",
+      "works_at": "recon_1835_south_d4_026",
       "extras": [
         {
           "relationship": "journeyman",
@@ -336,7 +336,7 @@
       "ordinal": 1,
       "of": 2,
       "lives_at": "recon_1835_south_d3_022",
-      "works_at": "recon_1835_south_w4_032",
+      "works_at": "recon_1835_south_d1_032",
       "extras": []
     },
     {
@@ -386,7 +386,7 @@
       "ordinal": 2,
       "of": 3,
       "lives_at": "recon_1835_south_d4_014",
-      "works_at": "recon_1835_south_c1_003",
+      "works_at": "recon_1835_south_d1_003",
       "extras": []
     },
     {
@@ -425,8 +425,8 @@
       "division": "south",
       "ordinal": 1,
       "of": 4,
-      "lives_at": "recon_1835_south_c2_007",
-      "works_at": "recon_1835_south_c2_007",
+      "lives_at": "recon_1835_south_d5_007",
+      "works_at": "recon_1835_south_d5_007",
       "extras": []
     },
     {
@@ -435,8 +435,8 @@
       "division": "south",
       "ordinal": 2,
       "of": 4,
-      "lives_at": "recon_1835_south_c2_036",
-      "works_at": "recon_1835_south_c2_036",
+      "lives_at": "recon_1835_south_d6_036",
+      "works_at": "recon_1835_south_d6_036",
       "extras": []
     },
     {
@@ -446,7 +446,7 @@
       "ordinal": 1,
       "of": 4,
       "lives_at": "recon_1835_south_d4_025",
-      "works_at": "recon_1835_south_w3_029",
+      "works_at": "recon_1835_south_h1_029",
       "extras": [
         {
           "relationship": "apprentice",
@@ -476,7 +476,7 @@
       "ordinal": 1,
       "of": 3,
       "lives_at": "recon_1835_south_d5_016",
-      "works_at": "recon_1835_south_w1_023",
+      "works_at": "recon_1835_south_d5_023",
       "extras": [
         {
           "relationship": "journeyman",
@@ -581,7 +581,7 @@
       "ordinal": 2,
       "of": 3,
       "lives_at": "recon_1835_south_d5_034",
-      "works_at": "recon_1835_south_c3_037",
+      "works_at": "recon_1835_south_a2_037",
       "extras": []
     },
     {
@@ -611,7 +611,7 @@
       "ordinal": 1,
       "of": 1,
       "lives_at": "inf_packer_dwelling",
-      "works_at": "recon_1835_south_f2_039",
+      "works_at": "recon_1835_south_h2_039",
       "extras": []
     },
     {
