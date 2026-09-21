@@ -2776,6 +2776,9 @@
     "tools/migrate_attribute_tiers.py": {
       "wrote": []
     },
+    "tools/migrate_roof_ids.py": {
+      "wrote": []
+    },
     "tools/mint_civic_residents.py": {
       "wrote": []
     },

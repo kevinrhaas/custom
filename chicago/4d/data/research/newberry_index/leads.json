@@ -9,12 +9,12 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "da8281f5f3d50bcad4c2474ffa9536281fe52a1e935e70ae751a5f07a7bb1eb9",
+    "fingerprint": "c521a85429ade897dfa5860381860d22d7ba5e4789952ad015d86c3732a0a6e0",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
       "residents": 1285,
-      "structures": 414,
+      "structures": 384,
       "voters": 345
     }
   },
@@ -24908,26 +24908,6 @@
         {
           "id": "recon_1835_north_w2_005",
           "name": "Reconstructed W2 carpenter or joiner shop #005",
-          "rule": "OCR variant (0.89 similarity to 'shop')"
-        },
-        {
-          "id": "recon_1835_south_w1_023",
-          "name": "Reconstructed W1 blacksmith shop #023",
-          "rule": "OCR variant (0.89 similarity to 'shop')"
-        },
-        {
-          "id": "recon_1835_south_w2_026",
-          "name": "Reconstructed W2 carpenter or joiner shop #026",
-          "rule": "OCR variant (0.89 similarity to 'shop')"
-        },
-        {
-          "id": "recon_1835_south_w3_029",
-          "name": "Reconstructed W3 cooper, wagon, or wheelwright shop #029",
-          "rule": "OCR variant (0.89 similarity to 'shop')"
-        },
-        {
-          "id": "recon_1835_south_w4_032",
-          "name": "Reconstructed W4 small artisan shop #032",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         }
       ],

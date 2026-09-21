@@ -332,7 +332,7 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
-| `structures/barns_stables/south` | 35 | 19 | 16 | 0 | T-1212 |
+| `structures/barns_stables/south` | 35 | 20 | 15 | 0 | T-1212 |
 | `structures/barns_stables/west` | 20 | 11 | 9 | 0 | T-1212 |
 | `structures/barns_stables/north` | 17 | 7 | 10 | 0 | T-1212 |
 | `structures/barns_stables/fort` | 1 | 1 | 0 | 0 | T-1204 |
@@ -343,24 +343,24 @@ The roofs the 668-roof programme still owes, by archetype group and division.
 | `structures/institutional_public/south` | 5 | 5 | 0 | 0 | T-1202 |
 | `structures/institutional_public/west` | 1 | 1 | 0 | 0 | T-1208 |
 | `structures/institutional_public/north` | 3 | 3 | 0 | 0 | T-1205 |
-| `structures/larger_boarding_houses/south` | 28 | 7 | 21 | 0 | T-1209 |
+| `structures/larger_boarding_houses/south` | 28 | 9 | 19 | 0 | T-1209 |
 | `structures/larger_boarding_houses/west` | 6 | 1 | 5 | 0 | T-1209 |
 | `structures/larger_boarding_houses/north` | 8 | 4 | 4 | 0 | T-1209 |
-| `structures/ordinary_dwellings/south` | 176 | 110 | 66 | 0 | T-1203 |
+| `structures/ordinary_dwellings/south` | 176 | 118 | 58 | 0 | T-1203 |
 | `structures/ordinary_dwellings/west` | 75 | 48 | 27 | 0 | T-1208 |
 | `structures/ordinary_dwellings/north` | 84 | 42 | 42 | 0 | T-1206 |
 | `structures/small_outbuildings/south` | 48 | 25 | 23 | 0 | T-1212 |
 | `structures/small_outbuildings/west` | 14 | 4 | 10 | 0 | T-1212 |
 | `structures/small_outbuildings/north` | 20 | 9 | 11 | 0 | T-1212 |
 | `structures/small_outbuildings/fort` | 3 | 3 | 0 | 0 | T-1204 |
-| `structures/stores_mixed_use/south` | 42 | 32 | 10 | 0 | T-1201 |
+| `structures/stores_mixed_use/south` | 42 | 26 | 16 | 0 | T-1201 |
 | `structures/stores_mixed_use/west` | 6 | 4 | 2 | 0 | T-1207 |
 | `structures/stores_mixed_use/north` | 4 | 4 | 0 | 0 | T-1205 |
 | `structures/stores_mixed_use/fort` | 1 | 1 | 0 | 0 | T-1204 |
-| `structures/warehouses_freight/south` | 11 | 5 | 6 | 0 | T-1200 |
+| `structures/warehouses_freight/south` | 11 | 4 | 7 | 0 | T-1200 |
 | `structures/warehouses_freight/west` | 2 | 1 | 1 | 0 | T-1207 |
 | `structures/warehouses_freight/north` | 7 | 7 | 0 | 0 | T-1205 |
-| `structures/workshops/south` | 15 | 14 | 1 | 0 | T-1201 |
+| `structures/workshops/south` | 15 | 10 | 5 | 0 | T-1201 |
 | `structures/workshops/west` | 8 | 5 | 3 | 0 | T-1207 |
 | `structures/workshops/north` | 7 | 7 | 0 | 0 | T-1205 |
 | `structures/workshops/fort` | 1 | 1 | 0 | 0 | T-1204 |

@@ -3475,15 +3475,15 @@
             "division": "south"
           },
           "target": 35,
-          "standing": 19,
-          "to_build": 16,
+          "standing": 20,
+          "to_build": 15,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 35; the 668-roof programme leaves 16 of them to build"
+          "basis": "the inventory's district/group matrix sets 35; the 668-roof programme leaves 15 of them to build"
         },
         {
           "key": "structures/barns_stables/west",
@@ -3670,15 +3670,15 @@
             "division": "south"
           },
           "target": 28,
-          "standing": 7,
-          "to_build": 21,
+          "standing": 9,
+          "to_build": 19,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1209",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 28; the 668-roof programme leaves 21 of them to build"
+          "basis": "the inventory's district/group matrix sets 28; the 668-roof programme leaves 19 of them to build"
         },
         {
           "key": "structures/larger_boarding_houses/west",
@@ -3725,15 +3725,15 @@
             "division": "south"
           },
           "target": 176,
-          "standing": 110,
-          "to_build": 66,
+          "standing": 118,
+          "to_build": 58,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1203",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 176; the 668-roof programme leaves 66 of them to build"
+          "basis": "the inventory's district/group matrix sets 176; the 668-roof programme leaves 58 of them to build"
         },
         {
           "key": "structures/ordinary_dwellings/west",
@@ -3850,15 +3850,15 @@
             "division": "south"
           },
           "target": 42,
-          "standing": 32,
-          "to_build": 10,
+          "standing": 26,
+          "to_build": 16,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1201",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 42; the 668-roof programme leaves 10 of them to build"
+          "basis": "the inventory's district/group matrix sets 42; the 668-roof programme leaves 16 of them to build"
         },
         {
           "key": "structures/stores_mixed_use/west",
@@ -3920,15 +3920,15 @@
             "division": "south"
           },
           "target": 11,
-          "standing": 5,
-          "to_build": 6,
+          "standing": 4,
+          "to_build": 7,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1200",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 11; the 668-roof programme leaves 6 of them to build"
+          "basis": "the inventory's district/group matrix sets 11; the 668-roof programme leaves 7 of them to build"
         },
         {
           "key": "structures/warehouses_freight/west",
@@ -3975,15 +3975,15 @@
             "division": "south"
           },
           "target": 15,
-          "standing": 14,
-          "to_build": 1,
+          "standing": 10,
+          "to_build": 5,
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1201",
           "ground_waits_on": [
             "T-1194"
           ],
-          "basis": "the inventory's district/group matrix sets 15; the 668-roof programme leaves 1 of them to build"
+          "basis": "the inventory's district/group matrix sets 15; the 668-roof programme leaves 5 of them to build"
         },
         {
           "key": "structures/workshops/west",

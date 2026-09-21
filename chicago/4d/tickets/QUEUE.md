@@ -87,9 +87,10 @@ T-1479 — Move blk_lake_clinton and blk_randolph_clinton onto the West Division
 T-1429 — The nearest-street reading crosses the river: a bank test for nearest_frontage, so a roof is not credited with a corridor on the far side of the water
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
-T-1452 — Migrate the 26 refamilied roofs whose id moves — the phase-one South parcel, the North Division parcel and the three platted blocks — against the measured reference list: sidecars, enclosures, liberties, signage, yard, frontage, lodgers, seating and business files all name these ids, and blk ancillary slots cross the principal/ancillary line; with the screenshot from Lake and Clark
 T-1492 — Seat the reach: the address book's reconstructed rungs — a block face for a street-only row, a division band where only the division is known, the policy's band where nothing is — seeded, tier-marked, and every household's division re-derived from its row so the People view's division filter fills
 T-1493 — Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
+T-1495 — Migrate the North Division parcel's 9 refamilied roofs whose id moves: the recipe's suffix, family, inventory class and authored footprint re-dealt against the new bands, the parcel's group and family totals recomputed, every file naming an old id moved with it, rebaked and published
+T-1496 — Re-deal the three platted blocks' 6 refamilied roofs across the principal/ancillary line: generate_block_infill gates a block's claimed schedule and refuses a second principal roof on a lot that already has one, so an ancillary yard building moved into a dwelling family is a re-deal of the block's mix, not a field edit; with the screenshot from Lake and Clark
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
 # --- 5C. STRUCTURES — build, one district per run, baked, successor handed on (frame budget measured before every push)
 T-1200 — Build the South Water Street river front to its seats: the forwarding houses, warehouses, stores and store-residences on the party lines from Market to State, the freight sheds and landings behind, every roof with its firm and its keeper
@@ -217,3 +218,4 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
+
