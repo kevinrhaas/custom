@@ -1199,8 +1199,8 @@
     "seat_reconstructed_trades_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
-      "measured": "2026-09-20",
-      "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and nothing else, and `git status --porcelain` was identical before and after — not one committed byte moved, and not one person card was touched. T-1433. PENDING rather than manifest for the same reason its piece-1 sibling staff_businesses_1835.py is: it reads the compiled business layer, the staffing model and the whole resident layer and writes a join beside that layer, so its slot is an ordering question a measured pass of the manifest owns rather than this one.",
+      "measured": "2026-09-21",
+      "finding": "Reproduces: `--build` on a clean tree rewrote data/residents/reconstructed_seating.json and the 123 person cards that hold a seat, and `git status --porcelain` was identical before and after — not one committed byte moved. T-1433, and T-1489 for the card leg: until then this pass wrote NO person card, and the previous measurement here said so. It writes `persons[].employment` now, on the card of every person a row seats and on no other card in the layer; it still mints nobody and raises no business. The four reconstruction stages that derive a resident directory whole carry that key through their own re-derivations via tools/resident_mint_carry.py, which is why their byte-for-byte --check stays green beside it.",
       "placed": "not yet — measured to reproduce. T-1433, piece 2 of 3 of T-1189: it writes persons[].employment for the residents this project reconstructed, so it follows every stage that mints a reconstructed person and precedes the coverage join that reads the result. the manifest's order is its own measured pass — on #1452 three reconstruction stages oscillated until they sat in the right slot — so this cannot be appended blind."
     },
     "seat_wabansia_streets.py": {

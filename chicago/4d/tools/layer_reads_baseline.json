@@ -248,6 +248,18 @@
     "residents/household:persons[].dated_bounds[].side_of_scene_date": {
       "records": 225
     },
+    "residents/household:persons[].employment.business_id": {
+      "records": 33
+    },
+    "residents/household:persons[].employment.role": {
+      "records": 33
+    },
+    "residents/household:persons[].employment.seed": {
+      "records": 33
+    },
+    "residents/household:persons[].employment.tier": {
+      "records": 33
+    },
     "residents/household:persons[].occupation.basis.kind": {
       "records": 203
     },

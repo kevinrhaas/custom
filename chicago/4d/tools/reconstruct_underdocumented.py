@@ -44,14 +44,23 @@ THREE THINGS THIS STAGE DOES DIFFERENTLY FROM T-1172, AND WHY.
      `Crafts`, `Chamblee`, `Francois` — because there the roll clipped a name this town
      carries several of, and the row gives nothing to tell which man it is.
 
-  2. THE TERM MUST BE A STATEMENT AND NOT A WORD IN THE PROSE. The roster's R6 rule is
-     `community_term_in_the_reading`, a text match, and a text match over-catches: the
-     biography of a white Indian agent contains the word `Indian` too. Charles Jouett,
+  2. THE TERM MUST BE A STATEMENT AND NOT A WORD IN THE PROSE. The roster's older R6
+     rule is `community_term_in_the_reading`, a text match, and a text match over-catches:
+     the biography of a white Indian agent contains the word `Indian` too. Charles Jouett,
      John Tipton, Daniel W. Beckwith and the 1843 directory's two advertisers reach R6
      that way. This stage mints only where the SOURCE'S OWN STRUCTURE says it — a company
      column reading `INDIAN` is a field the clerk filled in about this man; a paragraph
      that mentions Indians is not. Every other row is withheld with the reason named, and
      the count of them is a finding about the roster's rule rather than about the people.
+
+     SINCE T-1383 THE ROSTER HAS A SECOND R6 RULE, and it is not a text match:
+     `community_term_written_onto_the_name` fires only where the term follows the row's
+     OWN name — the priest's parenthesis, "Marianne (sauvage)". That IS the source's own
+     structure, by this stage's own test, so those rows may not be refused as prose. This
+     stage still cannot mint them, because the only book it reads is the 1832 muster roll
+     and a baptismal register is not on it; they are withheld saying exactly that, and
+     they are a finding about a stage this project does not have yet rather than about
+     the strength of the reading. See rule 6.
 
   3. NO NATION IS WRITTEN. The roll heads the company `INDIAN` and says no more. The
      Potawatomi, the Ottawa and the Ojibwe of this country were three nations and a united
@@ -85,6 +94,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from resident_mint_carry import carry_seats  # noqa: E402
 
 from reconstruct_residents_1835 import (  # noqa: E402
     RECONSTRUCTED, UNDERDOCUMENTED_STAGE, check_reconstructed_person, load_programme, stages)
@@ -152,6 +162,14 @@ REFUSALS = {
         "person's community — the biography of an Indian agent, a treaty commissioner or "
         "a trader who dealt with Native customers carries the same word — and this stage "
         "mints only where the source's own structure says it."),
+    "the_statement_is_not_on_the_roll_this_stage_reads": (
+        "The source states this person's community in its own structure — the term is "
+        "written onto this name and onto no other on the line — so the refusal above, "
+        "that a term in prose is not a statement, would be untrue of this row. What "
+        "holds it out is this stage's SCOPE: the only book it reads is the 1832 muster "
+        "roll, and this reading is a baptismal register entry. The row is owed a stage "
+        "that reads the register, and until one exists the person stays out of the town "
+        "for want of a reader rather than for want of evidence."),
     "a_card_of_that_name_already_stands": (
         "A person already in the layer shares this reading's surname and first given "
         "initial, the discriminator this project's directory crosswalks match on. The "
@@ -423,6 +441,10 @@ def derive() -> tuple[dict, dict]:
                 withhold(row, "later_only_and_this_stage_does_not_back_project")
             elif when < WINDOW_OPENS:
                 withhold(row, "earlier_than_the_window_and_nothing_follows_the_person_forward")
+            elif row.get("rule") == "community_term_written_onto_the_name":
+                # A FIFTH thing, and the reason above would be a lie about it: the term
+                # is not in the prose, it is written onto this name. T-1383.
+                withhold(row, "the_statement_is_not_on_the_roll_this_stage_reads")
             else:
                 withhold(row, "the_term_is_prose_and_not_a_statement")
             continue
@@ -640,6 +662,16 @@ def derive() -> tuple[dict, dict]:
         "already_on_a_card": sorted(already, key=lambda a: a["row_id"]),
         "withheld": sorted(withheld, key=lambda w: w["row_id"]),
     }
+    # T-1489. THE SEAT ANOTHER PASS DREW FOR THESE PEOPLE, CARRIED THROUGH THE REBUILD.
+    # `tools/seat_reconstructed_trades_1835.py` points a reconstructed trade-holder with
+    # no attested workplace at a house the business layer already holds, and writes the
+    # answer onto the person as `persons[].employment`. It runs AFTER this stage, and
+    # this stage derives its directory whole and compares it byte for byte — so without
+    # this the key would be deleted on the next --build and reported as drift by the
+    # pass that wrote it. It is the same fixed-slot carry the four `households/` mints
+    # already use for `workplaces`; what the block may CONTAIN is that pass's --check to
+    # decide, never this one's.
+    carry_seats(cards, CARDS)
     return record, cards
 
 
@@ -780,6 +812,23 @@ def self_test() -> int:
          all(w["reason"] in REFUSALS for w in record["withheld"]))
     case("the counted-but-unnamed remainder is refused and says what would retire it",
          bool(record["the_counted_but_unnamed"]["what_would_retire_this_refusal"]))
+    # T-1383. The roster's two R6 rules do not mean the same thing, and the refusal that
+    # says "a term in prose is not a statement" is only true of the text-matched one.
+    roster_rule = {r["row_id"]: r.get("rule") for r in load(ROSTER)["rows"]
+                   if r.get("class") == CLASS}
+    case("no row whose term was written onto its own name is refused as prose",
+         not any(w["reason"] == "the_term_is_prose_and_not_a_statement"
+                 and roster_rule.get(w["row_id"]) == "community_term_written_onto_the_name"
+                 for w in record["withheld"]))
+    case("a row held out for this stage's scope came in on the name-borne rule",
+         all(roster_rule.get(w["row_id"]) == "community_term_written_onto_the_name"
+             for w in record["withheld"]
+             if w["reason"] == "the_statement_is_not_on_the_roll_this_stage_reads"))
+    case("the register's two mothers reach this stage and are refused in its own words",
+         {w["name_as_read"] for w in record["withheld"]
+          if w["reason"] == "the_statement_is_not_on_the_roll_this_stage_reads"}
+         >= {"Marianne (sauvage)", "Jaespquaa (sauvage de Green Bay)"})
+
     case("no person drawn here is invented — every id is a read name",
          all(not p["id"].startswith("rc_") for c in cards.values() for p in c["persons"]))
 

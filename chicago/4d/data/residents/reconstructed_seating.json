@@ -1,15 +1,16 @@
 {
   "$schema_note": "DERIVED — regenerate with tools/seat_reconstructed_trades_1835.py --build; tools/check.sh re-derives it. Do not hand-edit.",
-  "not_a_card": "A JOIN BESIDE THE RESIDENT LAYER, NOT A FIELD ON IT. Every block here is keyed on `person_id` and nothing is written onto a person card: two thirds of the people in scope stand on cards a reconstruction stage derives whole and compares byte for byte, so a key appended to one of those cards does not add a field, it breaks that stage's gate. The walkthrough loads this file the way it loads residents/directories.json, and losing it costs the block on a card and never the card.",
+  "the_join_and_the_card": "A JOIN BESIDE THE RESIDENT LAYER, AND SINCE T-1489 ONE KEY ON IT. Every block here is keyed on `person_id`; the `seated` ones ALSO stand on the person's own card as `persons[].employment`, carrying the house, the role, the tier and the seed and leaving the reasoning here. The other four kinds are statements about an absence and no card carries one. Two thirds of the people in scope stand on cards a reconstruction stage derives whole and compares byte for byte, which is why the key stopped at `households/` until T-1489 gave those stages the same fixed carry slot tools/resident_mint_carry.py already gave `workplaces`. The walkthrough loads this file the way it loads residents/directories.json, and losing it costs the block on a card and never the card.",
   "id": "1835_reconstructed_seating",
   "ticket": "T-1433",
   "parent_ticket": "T-1189",
   "target_date": "1835-07-01",
   "generated_by": "tools/seat_reconstructed_trades_1835.py --build",
-  "not_a_reading": "an adjudication over committed files — no page of any source is read here, no person is written and no business is raised",
-  "writes_no_person": true,
+  "not_a_reading": "an adjudication over committed files — no page of any source is read here, nobody is minted and no business is raised",
+  "mints_nobody": true,
   "raises_no_business": true,
   "what_it_writes": "one row per reconstructed trade-holder with no workplaces — a pointer at a house the business layer already holds, or a stated reason there is none",
+  "what_it_writes_onto_a_card": "persons[].employment, on the card of every person a row here seats and on no other card in the layer — the house, the role, the tier and the seed, in a fixed slot beside the trade. T-1489. It creates nobody and moves no other byte of a card: the stage that owns the card still refuses a differing byte in everything it derives.",
   "inputs": [
     "data/residents/{households,reconstructed_trades,lodgers,underdocumented,transients,readmitted,merged}/*.json",
     "data/businesses/*.json",
@@ -27,6 +28,7 @@
       "seated": 123
     },
     "houses_taking_a_reconstructed_hand": 84,
+    "seats_carried_onto_a_card": 123,
     "seats_by_house_and_role": [
       {
         "business_id": "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835",
