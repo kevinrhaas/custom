@@ -1,7 +1,7 @@
 ---
 id: T-1488
 title: Bind the roof relief maps in the web renderer: the metric roof UVs a 4.48 m tile needs — the smart-project atlas is a per-object island pack and cannot tile one — one shared material per roof substrate, the two maps published, and the draw count measured at the critic stations at both viewports
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-1465
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1597
 claimed_by: run 9/20/2026, 6:26:56 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-21T00:27:41.752Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35544501763
 ---
 
