@@ -33,11 +33,11 @@ That one is a property of the mirror rather than an oversight — it is the one 
 | member | tracked files written | claimed by the manifest | unowned |
 |---|---:|---:|---:|
 | `data/residents/index.json` and its `merged` redirect table | 1 | 1 | 0 |
-| the 1835 sidecars, `data/sidecars/1835/` | 391 | 1 | 390 |
+| the 1835 sidecars, `data/sidecars/1835/` | 421 | 1 | 420 |
 | the town census, `data/town_census.json` | 1 | 1 | 0 |
 | the final resident audit, `chicago/reference/resident-research/final/audit/` | 3 | 3 | 0 |
 
-390 tracked closing-set file(s) are written by a manifest step and not claimed by it — in `sidecars_1835`. Widening `resolves` to the whole sidecar directory is a decision about what the lap may overwrite, not a bookkeeping fix, and the manifest is explicit that "being run by the manifest and owning your outputs are separate decisions" — so this states the number rather than taking that decision. The row moves the moment the count does.
+420 tracked closing-set file(s) are written by a manifest step and not claimed by it — in `sidecars_1835`. Widening `resolves` to the whole sidecar directory is a decision about what the lap may overwrite, not a bookkeeping fix, and the manifest is explicit that "being run by the manifest and owning your outputs are separate decisions" — so this states the number rather than taking that decision. The row moves the moment the count does.
 
 ## 3. The deltas
 
@@ -47,18 +47,18 @@ Baseline: `07605197356ccd8d8b4f547eccb2d1dc619ef06f` on `dev`, taken 2026-09-18 
 |---|---:|---:|---:|
 | households in `index.json` | 1258 | 1393 | +135 |
 | household cards on disk | 1258 | 1393 | +135 |
-| persons in `index.json` | 1288 | 2269 | +981 |
+| persons in `index.json` | 1288 | 2265 | +977 |
 | rows in the `merged` redirect table | 66 | 66 | 0 |
 | redirects that do not arrive | 0 | 0 | 0 |
 | persons graded `attested` | 410 | 410 | 0 |
 | persons graded `inferred` | 875 | 875 | 0 |
-| persons graded `reconstructed` | 3 | 984 | +981 |
-| 1835 sidecar files | 391 | 391 | 0 |
-| people in the 1835 people sidecar | 1288 | 3209 | +1921 |
-| buildings standing in the town census | 371 | 371 | 0 |
+| persons graded `reconstructed` | 3 | 980 | +977 |
+| 1835 sidecar files | 391 | 421 | +30 |
+| people in the 1835 people sidecar | 1288 | 3205 | +1917 |
+| buildings standing in the town census | 371 | 401 | +30 |
 | people housed in the town census | 34 | 181 | +147 |
 | households housed in the town census | 20 | 31 | +11 |
-| rows in the final resident audit | 1288 | 2269 | +981 |
+| rows in the final resident audit | 1288 | 2265 | +977 |
 | published resident files in the mirror | 1336 | 2155 | +819 |
 
 ## 4. T-1144's banked acceptances, as deltas

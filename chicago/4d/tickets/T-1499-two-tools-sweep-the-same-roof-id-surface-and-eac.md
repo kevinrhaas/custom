@@ -26,9 +26,9 @@ overlapping contents and the same reasoning written out twice.
 
 **Measured on 2026-09-21.** `tools/measure_roof_id_migration.py` names an old id in
 two places, both legitimate: its docstring explains the surface by naming a move
-(`recon_1835_south_c1_003` becomes `..._d1_003`), and its self-test passes the old id
+(a south id becoming its new family in place), and its self-test passes the old id
 to `new_id()` as the worked example. Rewriting the fixture leaves it asserting
-`new_id("..._d1_003", "D1") == "..._d1_003"`, which is true of any already-migrated
+`new_id(<new id>, <its family>) == <the same new id>`, which is true of any already-migrated
 id and therefore tests nothing.
 
 It had to be added to `KEEPS_THE_OLD_NAME` on **#1588** and, an hour later and for
@@ -60,3 +60,12 @@ edits both.
    agreement step refuse it.
 5. `./tools/check.sh` green, and no committed file changes as a result — this is a
    consolidation, not a re-migration.
+
+**This ticket demonstrated its own finding while being filed.** The first draft quoted the
+migrated id literally, as the sibling tool's prose does. `execute_roof_redeal.py`'s
+`MIGRATION_PINNED` exempts `tickets/` — "a ticket's account of what it found on a day [is]
+TRUE as written" — and `migrate_roof_ids.py`'s `KEEPS_THE_OLD_NAME` does NOT. So one sweep
+accepted the file and the other refused it, on the same tree, for the same text. The draft
+was reworded rather than fix it here, because adding `tickets/` to the second list is a
+behaviour change that belongs in this ticket's own slice and not in an unrelated PR — but
+the divergence is now measured twice rather than argued once.
