@@ -7,6 +7,638 @@
  "target_date": "1835-07-01",
  "generated_by": "tools/seat_lodgers_1835.py",
  "not_a_reading": "This file reads no source. It spends a capacity the lodging model already apportioned and an order the book already made, and it names nobody the sources name.",
+ "quota_basis": {
+  "$note": "DERIVED, and the room this stage deals against. T-1503: the deal is proportional to the room, so reading the room live would re-deal boarders the business layer and the employment join already name. The basis is recorded once and carried, the book may be re-cut under it, and every divergence is stated below.",
+  "owning_ticket": "T-1503",
+  "read_from": "the book's `to_reconstruct` on the build that first recorded it; this block on every build after",
+  "buckets": [
+   {
+    "bucket": "persons/female/10_19/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 6
+   },
+   {
+    "bucket": "persons/female/20_29/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 6
+   },
+   {
+    "bucket": "persons/female/20_29/north/lodging/trade",
+    "division": "north",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/30_39/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/30_39/north/lodging/trade",
+    "division": "north",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/female/40_49/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/40_49/north/lodging/trade",
+    "division": "north",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/50_plus/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/50_plus/north/lodging/trade",
+    "division": "north",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/under_10/north/lodging/none",
+    "division": "north",
+    "sex": "female",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 9
+   },
+   {
+    "bucket": "persons/male/10_19/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 7
+   },
+   {
+    "bucket": "persons/male/20_29/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 10
+   },
+   {
+    "bucket": "persons/male/20_29/north/lodging/trade",
+    "division": "north",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 5
+   },
+   {
+    "bucket": "persons/male/30_39/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 7
+   },
+   {
+    "bucket": "persons/male/30_39/north/lodging/trade",
+    "division": "north",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/male/40_49/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/male/40_49/north/lodging/trade",
+    "division": "north",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/50_plus/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/50_plus/north/lodging/trade",
+    "division": "north",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/under_10/north/lodging/none",
+    "division": "north",
+    "sex": "male",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 11
+   },
+   {
+    "bucket": "persons/female/10_19/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 13
+   },
+   {
+    "bucket": "persons/female/20_29/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 14
+   },
+   {
+    "bucket": "persons/female/20_29/south/lodging/trade",
+    "division": "south",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 7
+   },
+   {
+    "bucket": "persons/female/30_39/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 7
+   },
+   {
+    "bucket": "persons/female/30_39/south/lodging/trade",
+    "division": "south",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/40_49/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/40_49/south/lodging/trade",
+    "division": "south",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/50_plus/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/female/50_plus/south/lodging/trade",
+    "division": "south",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/under_10/south/lodging/none",
+    "division": "south",
+    "sex": "female",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 22
+   },
+   {
+    "bucket": "persons/male/10_19/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 14
+   },
+   {
+    "bucket": "persons/male/20_29/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 24
+   },
+   {
+    "bucket": "persons/male/20_29/south/lodging/trade",
+    "division": "south",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 12
+   },
+   {
+    "bucket": "persons/male/30_39/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 14
+   },
+   {
+    "bucket": "persons/male/30_39/south/lodging/trade",
+    "division": "south",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 7
+   },
+   {
+    "bucket": "persons/male/40_49/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 4
+   },
+   {
+    "bucket": "persons/male/40_49/south/lodging/trade",
+    "division": "south",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/male/50_plus/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/male/50_plus/south/lodging/trade",
+    "division": "south",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/under_10/south/lodging/none",
+    "division": "south",
+    "sex": "male",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 25
+   },
+   {
+    "bucket": "persons/female/10_19/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 5
+   },
+   {
+    "bucket": "persons/female/20_29/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 6
+   },
+   {
+    "bucket": "persons/female/20_29/west/lodging/trade",
+    "division": "west",
+    "sex": "female",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/30_39/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/female/30_39/west/lodging/trade",
+    "division": "west",
+    "sex": "female",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/40_49/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/40_49/west/lodging/trade",
+    "division": "west",
+    "sex": "female",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/50_plus/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/50_plus/west/lodging/trade",
+    "division": "west",
+    "sex": "female",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/female/under_10/west/lodging/none",
+    "division": "west",
+    "sex": "female",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 9
+   },
+   {
+    "bucket": "persons/male/10_19/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "10_19",
+    "trade": "none",
+    "to_reconstruct": 6
+   },
+   {
+    "bucket": "persons/male/20_29/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "none",
+    "to_reconstruct": 9
+   },
+   {
+    "bucket": "persons/male/20_29/west/lodging/trade",
+    "division": "west",
+    "sex": "male",
+    "age_band": "20_29",
+    "trade": "trade",
+    "to_reconstruct": 5
+   },
+   {
+    "bucket": "persons/male/30_39/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "none",
+    "to_reconstruct": 6
+   },
+   {
+    "bucket": "persons/male/30_39/west/lodging/trade",
+    "division": "west",
+    "sex": "male",
+    "age_band": "30_39",
+    "trade": "trade",
+    "to_reconstruct": 3
+   },
+   {
+    "bucket": "persons/male/40_49/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "none",
+    "to_reconstruct": 2
+   },
+   {
+    "bucket": "persons/male/40_49/west/lodging/trade",
+    "division": "west",
+    "sex": "male",
+    "age_band": "40_49",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/50_plus/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "none",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/50_plus/west/lodging/trade",
+    "division": "west",
+    "sex": "male",
+    "age_band": "50_plus",
+    "trade": "trade",
+    "to_reconstruct": 1
+   },
+   {
+    "bucket": "persons/male/under_10/west/lodging/none",
+    "division": "west",
+    "sex": "male",
+    "age_band": "under_10",
+    "trade": "none",
+    "to_reconstruct": 10
+   }
+  ],
+  "re_cut_since": {
+   "statement": "The book has been re-cut in these cells since the deal was dealt. Nobody moves: the cards stand on the basis, and the re-cut spends what this stage did not.",
+   "the_book_moved": [
+    {
+     "bucket": "persons/female/10_19/north/lodging/none",
+     "the_deal_was_dealt_against": 6,
+     "the_book_orders_now": 3
+    },
+    {
+     "bucket": "persons/male/10_19/north/lodging/none",
+     "the_deal_was_dealt_against": 7,
+     "the_book_orders_now": 3
+    },
+    {
+     "bucket": "persons/male/20_29/north/lodging/none",
+     "the_deal_was_dealt_against": 10,
+     "the_book_orders_now": 13
+    },
+    {
+     "bucket": "persons/male/20_29/north/lodging/trade",
+     "the_deal_was_dealt_against": 5,
+     "the_book_orders_now": 2
+    },
+    {
+     "bucket": "persons/female/10_19/south/lodging/none",
+     "the_deal_was_dealt_against": 13,
+     "the_book_orders_now": 4
+    },
+    {
+     "bucket": "persons/female/20_29/south/lodging/none",
+     "the_deal_was_dealt_against": 14,
+     "the_book_orders_now": 19
+    },
+    {
+     "bucket": "persons/female/20_29/south/lodging/trade",
+     "the_deal_was_dealt_against": 7,
+     "the_book_orders_now": 2
+    },
+    {
+     "bucket": "persons/female/30_39/south/lodging/none",
+     "the_deal_was_dealt_against": 7,
+     "the_book_orders_now": 10
+    },
+    {
+     "bucket": "persons/female/30_39/south/lodging/trade",
+     "the_deal_was_dealt_against": 3,
+     "the_book_orders_now": 0
+    },
+    {
+     "bucket": "persons/female/40_49/south/lodging/none",
+     "the_deal_was_dealt_against": 3,
+     "the_book_orders_now": 4
+    },
+    {
+     "bucket": "persons/female/40_49/south/lodging/trade",
+     "the_deal_was_dealt_against": 1,
+     "the_book_orders_now": 0
+    },
+    {
+     "bucket": "persons/male/10_19/south/lodging/none",
+     "the_deal_was_dealt_against": 14,
+     "the_book_orders_now": 4
+    },
+    {
+     "bucket": "persons/male/20_29/south/lodging/none",
+     "the_deal_was_dealt_against": 24,
+     "the_book_orders_now": 34
+    },
+    {
+     "bucket": "persons/male/20_29/south/lodging/trade",
+     "the_deal_was_dealt_against": 12,
+     "the_book_orders_now": 2
+    },
+    {
+     "bucket": "persons/male/30_39/south/lodging/none",
+     "the_deal_was_dealt_against": 14,
+     "the_book_orders_now": 18
+    },
+    {
+     "bucket": "persons/male/30_39/south/lodging/trade",
+     "the_deal_was_dealt_against": 7,
+     "the_book_orders_now": 3
+    },
+    {
+     "bucket": "persons/female/10_19/west/lodging/none",
+     "the_deal_was_dealt_against": 5,
+     "the_book_orders_now": 1
+    },
+    {
+     "bucket": "persons/female/20_29/west/lodging/none",
+     "the_deal_was_dealt_against": 6,
+     "the_book_orders_now": 9
+    },
+    {
+     "bucket": "persons/female/20_29/west/lodging/trade",
+     "the_deal_was_dealt_against": 3,
+     "the_book_orders_now": 0
+    },
+    {
+     "bucket": "persons/female/30_39/west/lodging/none",
+     "the_deal_was_dealt_against": 3,
+     "the_book_orders_now": 4
+    },
+    {
+     "bucket": "persons/female/30_39/west/lodging/trade",
+     "the_deal_was_dealt_against": 1,
+     "the_book_orders_now": 0
+    },
+    {
+     "bucket": "persons/male/10_19/west/lodging/none",
+     "the_deal_was_dealt_against": 6,
+     "the_book_orders_now": 1
+    },
+    {
+     "bucket": "persons/male/20_29/west/lodging/none",
+     "the_deal_was_dealt_against": 9,
+     "the_book_orders_now": 13
+    },
+    {
+     "bucket": "persons/male/20_29/west/lodging/trade",
+     "the_deal_was_dealt_against": 5,
+     "the_book_orders_now": 1
+    },
+    {
+     "bucket": "persons/male/40_49/west/lodging/none",
+     "the_deal_was_dealt_against": 2,
+     "the_book_orders_now": 3
+    },
+    {
+     "bucket": "persons/male/40_49/west/lodging/trade",
+     "the_deal_was_dealt_against": 1,
+     "the_book_orders_now": 0
+    }
+   ],
+   "gone_from_the_book": [],
+   "new_since_the_deal": [
+    "persons/female/10_19/north/lodging/trade",
+    "persons/female/10_19/south/lodging/trade",
+    "persons/female/10_19/west/lodging/trade",
+    "persons/male/10_19/north/lodging/trade",
+    "persons/male/10_19/south/lodging/trade",
+    "persons/male/10_19/west/lodging/trade"
+   ],
+   "note": "`new_since_the_deal` is deliberately OUTSIDE the room. A cell the re-cut re-opened is work for the stage that asked for it — T-1448's shop boys — and letting it back into these weights would re-deal this stage's own draw, which is the fault T-1503 fixed."
+  }
+ },
  "inputs": [
   "data/reconstruction/1835_lodging_model.json",
   "data/reconstruction/1835_reconstruction_order_book.json",

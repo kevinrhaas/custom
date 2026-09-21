@@ -248,7 +248,7 @@ const COVERAGE = [
   ['renderers/web/js/agencies.js', [3, 13], 'the agency on the card, and on the person'],
   ['renderers/web/js/people.js', [13], 'the directory of everyone in the town'],
   ['data/reconstruction/1835_agencies.json', [3, 13], 'the compiled relation both cards read'],
-  // T-1160. The Evidence hub is asserted in PART 12 (nine tiles since T-1166, each
+  // T-1160. The Evidence hub is asserted in PART 12 (ten tiles since T-1292, each
   // counting its own mount) and its mounts are stress-measured for overflow in PART 13, so the
   // population profile and the hub itself are read by both and by nothing else.
   ['renderers/web/js/evidence.js', [12, 13], 'the Evidence hub and its tiles'],
@@ -264,15 +264,21 @@ const COVERAGE = [
   // searches, filters and opens a card from. Mapped on arrival — unmapped, every diff
   // touching a business record priced the whole gate, and the 196 records move together.
   ['renderers/web/js/businesses.js', [3, 12], 'the firms directory, and the crosswalk the card reads'],
+  // T-1493. The address book's seat block, shared by the business card (the firms
+  // directory, part 12) and the person card (the People directory, part 13). The
+  // BUILDING card never renders it — a roof is the seat, not a reading about one —
+  // so part 3 is not pinned here even though `businesses.js` is pinned to it.
+  ['renderers/web/js/seat.js', [12, 13], 'the seat a card prints, and the way to it'],
+  ['data/reconstruction/1835_address_book.json', [12, 13], 'the rung each household and firm is seated at'],
   ['data/businesses/', [3, 12], 'the compiled business records and their index'],
   ['data/businesses.schema.json', [3, 12], 'the shape those records are refused against'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
-  ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],
+  ['renderers/web/js/census.js', [12], 'the town census in Evidence → City'],
   ['data/terrain/', [3], 'the heightfield'],
   ['data/liberties.json', [3, 13], 'what we made up about THAT building'],
   ['docs/LIBERTIES.md', [3, 13], 'the source the liberties are compiled from'],
-  ['data/residents/', [3, 13], 'the invented residents have names now (K18)'],
+  ['data/residents/', [3, 12, 13], 'the resident cards and Evidence → City count'],
   ['data/sources/', [3], 'the citation -> its document'],
   ['data/sidecars/', [3], 'the record\'s own account, on the card'],
 
@@ -303,7 +309,7 @@ const COVERAGE = [
   ['data/fauna/', [10, 13], 'the wildlife'],
   ['data/streets/', [2, 7, 8, 10, 11], 'the street records'],
   ['data/traces/', [2, 7, 8, 10, 11], 'the traced lines the streets and the bank are built from'],
-  ['data/town_census.json', [10], 'the drawn population'],
+  ['data/town_census.json', [12], 'the two ladders in Evidence → City'],
 
   // --- PART 12: the settings, the Go-to tab and What's-new
   ['renderers/web/js/whatsnew.js', [12], "what's new"],
