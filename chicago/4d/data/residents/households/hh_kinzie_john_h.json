@@ -94,7 +94,9 @@
     "note": "His own 1834 advertisement is for J. H. Kinzie, forwarding and commission merchant. He had been the Indian sub-agent at Fort Winnebago before returning to Chicago, and in 1835 became a member of the hardware firm of Kinzie, Davis & Hyde.",
     "derived_from": "roles",
     "roles_at_scene_date": [
-     "forwarding_and_commission"
+     "forwarding_and_commission",
+     "merchant",
+     "town_president"
     ]
    },
    "workplaces": [
@@ -477,7 +479,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_american_1835"
@@ -485,7 +487,7 @@
      "claim": "person_j_h_kinzie",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-03-04 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-03-04 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     },
     {
@@ -497,7 +499,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_american_1835"
@@ -505,7 +507,7 @@
      "claim": "person_j_h_kinzie",
      "place": "not_stated",
      "employer_or_body": "town_of_chicago",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-03-04 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-03-04 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "no_fixed_premises"
     },
     {

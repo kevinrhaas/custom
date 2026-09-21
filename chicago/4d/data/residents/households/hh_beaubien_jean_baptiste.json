@@ -100,7 +100,9 @@
     "note": "'J. B. Beaubien, merchant' in the 1833 roster; a licensed trader from the county court's earliest permits - the clerk 'granted permits to sell goods to Alexander Robinson, John B. Beaubien, and Madore B. Beaubien' in 1831 - and before that the American Fur Company's man at Chicago.",
     "derived_from": "roles",
     "roles_at_scene_date": [
-     "trader"
+     "trader",
+     "merchant",
+     "public_administrator"
     ]
    },
    "sources": [
@@ -675,7 +677,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -683,7 +685,7 @@
      "claim": "person_j_b_beaubien",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-17 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-17 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     },
     {
@@ -695,7 +697,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -703,7 +705,7 @@
      "claim": "person_j_b_beaubien",
      "place": "not_stated",
      "employer_or_body": "cook_county",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-17 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-17 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "no_fixed_premises"
     },
     {

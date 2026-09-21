@@ -70,13 +70,10 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1509 — Refuse or tier the business readings the layer does not carry at a tiered block: the 49 whose only reach is a record's untiered claim_ids and the 52 that reach no business record at all, each with its reason on the unit
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
 T-1513 — Seat the policy-only rung: the 1,186 households no source places anywhere, banded by the policy's class rule and dealt a division from the town model — seeded, order-book-counted, and every card's division re-derived so the People view's division filter fills
 T-1493 — Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
-T-1484 — Carry the North Division parcel's nine roofs across that surface: the recipe's family, suffix, inventory_class and totals re-dealt, generate_north_infill re-deriving byte for byte, the assets renamed, the household workplaces resolved, rebaked and published
-T-1499 — Two tools sweep the same roof-id surface and each keeps its own exemption list, so a file that is legitimately pinned must be named twice
 T-1481 — Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published
 T-1482 — Migrate the three platted blocks' six refamilied roofs, whose ancillary slots cross the principal/ancillary line: generate_block_infill's claimed principal/ancillary mix re-dealt rather than field-edited, the ids carried across the reference list, rebaked and published — with the screenshot from Lake and Clark
 T-1495 — Migrate the North Division parcel's 9 refamilied roofs whose id moves: the recipe's suffix, family, inventory class and authored footprint re-dealt against the new bands, the parcel's group and family totals recomputed, every file naming an old id moved with it, rebaked and published
@@ -260,6 +257,7 @@ T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foregr
 T-1502 — The register deal reads the raw text of every household card as a name pool, so any pass writing a proper name onto one can silently retire a documented man from it
 T-1504 — A stage that reads the St Mary's baptismal register: the four R6 rows whose Indigenous identity the source states in its own hand are refused only because underdocumented reads the 1832 muster roll and nothing reads the register
 T-1505 — The borderline roster refuses 254 rows as 'a surname and no person' and three of them are forenames: Matanacqua, Lieu and Miranda are each named as the parent of a named child, so the refusal is right and its sentence is false
+T-1506 — Retire the surplus reconstructed lawyer: businesses/lawyer is held at 2 drawn against an order of 1, because T-1299 admitted a documented attorney the town can name
 T-1507 — Hiram Pearsons is a house painter a reminiscence names and a speculator this project inferred, and the card carries the inference at attested: re-adjudicate the 1835 trade field through the role readings
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
@@ -277,3 +275,9 @@ T-0251 — first_presbyterian_church cannot come onto the Lake Street plat witho
 T-0135 — The draw-call ceiling is checked at one camera, and it is not the worst one
 T-0141 — A mast reads over the Green Tree's own roofline, which its committed placement forbids
 T-1087 — place_vocabulary's B4 names Wabansia and Kinzie's Addition as surveys this project commits none of, and it commits both: the owner's ruling, at a cost of one person
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1514 — Tier the anonymous compiled business records in compile_businesses.py: 37 records whose only link to the advertisement that compiled them is an untiered claim_ids at the record root, so the 49 readings that built them can never be asserted
+T-1515 — Read Fergus 1839 as a dated directory role like its 1843 and 1844 siblings, so a printing is carried as evidence whether or not the 1835 field is empty
+T-1521 — The PR lap can never finish a rebuild that reaches manifest step 156: it runs rederive without publishing, so rebuild_closing_set refuses and the PR is left alone on every lap for ever

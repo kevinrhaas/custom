@@ -1678,6 +1678,24 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
                     person_buckets(data["model"], data["composition"], data["inventory"],
                                    before)["buckets"]
                     + household_buckets(data["model"], data["inventory"], before)["buckets"]}
+    # AND FOR THE FAMILIES THAT PRE-RULING CUT CANNOT REACH, THE QUOTA THE WORK WAS
+    # DRAWN AGAINST IS THE BOOK'S OWN LAST ORDER (T-1299). `quota_before` is built from
+    # the person and household buckets, because the rulings it holds constant are about
+    # people; a BUSINESS bucket's order moves for a different reason — the town reads a
+    # documented practitioner and `known` rises — and the same thing then happens to it.
+    # T-1299 admitted a press reading of 1 July 1835 that named L. G. Curtiss an attorney,
+    # the lawyer line's `known` went from 13 to 14, and the order fell to 1 under the 2
+    # T-1418 had already drawn against the 2 this book ordered. That is the re-cut's case
+    # exactly — a quota shrinking under work already done — and the owner's ruling of
+    # 2026-09-20 covers it: nothing already drawn moves. What stays a FAULT, and the
+    # distinction this whole mechanism exists to keep, is a `filled` above even the order
+    # the book carried when the work was drawn: that is a filler bypassing the book.
+    committed_order = {}
+    if BOOK.exists():
+        committed_order = {
+            b["key"]: b.get("to_reconstruct", b.get("to_build"))
+            for fam in json.loads(BOOK.read_text(encoding="utf-8"))["bucket_families"]
+            for b in fam["buckets"]}
     recut_refusals = []
     businesses = business_buckets(data["crosswalk"], data["register"], data["trade_spend"],
                                   data["model"])
@@ -1723,16 +1741,28 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
             todo = b.get("to_reconstruct", b.get("to_build"))
             if todo is not None and b["filled"] > todo:
                 was = quota_before.get(b["key"])
+                cause = "the_re_cut_reached_work_already_drawn"
+                if was is None:
+                    was = committed_order.get(b["key"])
+                    cause = "a_documented_reading_shrank_the_order"
                 if was is not None and b["filled"] <= was:
                     recut_refusals.append({
                         "bucket": b["key"],
                         "owning_ticket": b.get("owning_ticket"),
-                        "quota_before_the_rulings": was,
+                        "cause": cause,
+                        "quota_it_was_drawn_against": was,
                         "the_re_cut_would_have_ordered": todo,
                         "already_drawn": b["filled"],
                         "held_at": b["filled"],
-                        "why": "the re-cut would put this bucket's order under the people "
-                               "already drawn against it. The owner's ruling of 2026-09-20 "
+                        "why": ("the re-cut would put this bucket's order under the people "
+                                "already drawn against it."
+                                if cause == "the_re_cut_reached_work_already_drawn" else
+                                "the town read a practitioner it can name and this bucket's "
+                                "order fell under the records already drawn against it. The "
+                                "town over-supplies this class by the difference, and the "
+                                "surplus is retired by the ticket that owns the bucket rather "
+                                "than by this one.") +
+                               " The owner's ruling of 2026-09-20 "
                                "(T-1459) holds here: no bucket's target falls below what has "
                                "been drawn against it, and the refusal is named with both "
                                "numbers rather than clamped in silence.",
@@ -2139,11 +2169,12 @@ def report_text(doc: dict) -> str:
             "of 2026-09-20 refuses that by name rather than clamping it: each is held at what "
             "was drawn, and the surplus is retired or re-familied by T-1196, T-1197 and T-1179.", ""]
     if refusals:
-        out += ["| bucket | ticket | quota before the rulings | the re-cut would order | drawn |",
-                "|---|---|---:|---:|---:|"]
+        out += ["| bucket | ticket | cause | quota it was drawn against | the re-cut would "
+                "order | drawn |", "|---|---|---|---:|---:|---:|"]
         for r in refusals:
             out.append(f"| `{r['bucket']}` | {r['owning_ticket']} | "
-                       f"{r['quota_before_the_rulings']:,} | "
+                       f"{r.get('cause', 'the_re_cut_reached_work_already_drawn')} | "
+                       f"{r['quota_it_was_drawn_against']:,} | "
                        f"{r['the_re_cut_would_have_ordered']:,} | {r['already_drawn']:,} |")
     rc = doc.get("trade_re_cut") or {}
     if rc:
@@ -2437,7 +2468,7 @@ def cmd_self_test() -> int:
     shipped = build(data, _fills_on_disk(), occ)
     for r in shipped["recut_refusals"]:
         assert r["already_drawn"] == r["held_at"] > r["the_re_cut_would_have_ordered"], r
-        assert r["already_drawn"] <= r["quota_before_the_rulings"], r
+        assert r["already_drawn"] <= r["quota_it_was_drawn_against"], r
         b = next(x for fam in shipped["bucket_families"] for x in fam["buckets"]
                  if x["key"] == r["bucket"])
         assert b["to_reconstruct"] == b["filled"] and b["recut_refused"], b
