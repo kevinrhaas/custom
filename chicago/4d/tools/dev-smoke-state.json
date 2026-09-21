@@ -2,6 +2,99 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 93,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 1656,
+      "takenAt": "2026-09-21T13:21:06.067Z",
+      "ref": "steward/t-1497-d5-eaves-front-repair",
+      "commit": "836f15158ecc",
+      "devCommit": "2435e1455701",
+      "treeHash": "sha256:64f5533775b91e5b",
+      "treeDirty": false,
+      "changelogHash": "sha256:022877b2db11ce4c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.3,
+          2.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 157,
+      "takenAt": "2026-09-21T13:21:05.967Z",
+      "ref": "steward/t-1497-d5-eaves-front-repair",
+      "commit": "836f15158ecc",
+      "devCommit": "2435e1455701",
+      "treeHash": "sha256:64f5533775b91e5b",
+      "treeDirty": false,
+      "changelogHash": "sha256:022877b2db11ce4c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.3,
+          2.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_m1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 281,
+      "takenAt": "2026-09-21T13:21:05.875Z",
+      "ref": "steward/t-1497-d5-eaves-front-repair",
+      "commit": "836f15158ecc",
+      "devCommit": "2435e1455701",
+      "treeHash": "sha256:64f5533775b91e5b",
+      "treeDirty": false,
+      "changelogHash": "sha256:022877b2db11ce4c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.3,
+          2.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "11-12",
       "parts": [
@@ -1440,75 +1533,6 @@
       "source": "/Users/khaas/Chicago4D/t1246/final-desktop-1-6-13.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "11-12",
-      "parts": [
-        11,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 90,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
-      ],
-      "wallSeconds": 360,
-      "takenAt": "2026-09-20T18:31:16.554Z",
-      "ref": "steward/t-1463-order-book-known-recut",
-      "commit": "0abdec43ea45",
-      "devCommit": "937cb9994dfe",
-      "treeHash": "sha256:a45a2f6bc74e67b7",
-      "treeDirty": false,
-      "changelogHash": "sha256:4e773f20c8083d4a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.3,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke_m1112.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 77,
-      "failed": 2,
-      "failures": [
-        "desktop 1280x800: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3228,\"file\":3228,\"stated\":3228,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2921,\"countText\":\"3,228 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 359 with a known address\"}",
-        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
-      ],
-      "wallSeconds": 383,
-      "takenAt": "2026-09-20T18:25:10.236Z",
-      "ref": "steward/t-1463-order-book-known-recut",
-      "commit": "0abdec43ea45",
-      "devCommit": "937cb9994dfe",
-      "treeHash": "sha256:a45a2f6bc74e67b7",
-      "treeDirty": false,
-      "changelogHash": "sha256:4e773f20c8083d4a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          3.3,
-          2.1
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
       "viewport": "desktop",
       "stage": "all",
       "parts": [
@@ -1668,37 +1692,6 @@
         ]
       },
       "source": "/tmp/smoke_d_11_12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 90,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 100,
-      "takenAt": "2026-09-18T01:35:46.792Z",
-      "ref": "steward/t-1158-attribute-tiers",
-      "commit": "48aeea64f201",
-      "devCommit": "2e0d534c5d0a",
-      "treeHash": "sha256:95a486fdd16283c8",
-      "treeDirty": false,
-      "changelogHash": "sha256:36b270af5b3aad94",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.5,
-          3.5,
-          2.4
-        ]
-      },
-      "source": "/tmp/smoke_d3.txt"
     },
     {
       "viewport": "mobile",
