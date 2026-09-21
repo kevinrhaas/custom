@@ -1237,6 +1237,18 @@ function roleRowHtml(role, citationsById) {
   const at = Boolean(role.covers_scene_date);
   const precision = role.precision && role.precision !== 'unknown'
     ? ` to the ${escapeHtml(words(role.precision))}` : '';
+  // T-1299 — WHERE THE ROLE WAS WORKED, AND FOR WHOM. Both figures have been on every
+  // row since T-1254 and banked unread since T-1255 shipped this renderer beside it;
+  // 164 roles state a place and 56 a body. `not_stated` is the record's assertion that
+  // its source does not say, and it prints as nothing rather than as an empty line.
+  const place = role.place && role.place !== 'not_stated' ? String(role.place) : '';
+  const body = role.employer_or_body && role.employer_or_body !== 'not_stated'
+    ? String(role.employer_or_body) : '';
+  const where = place || body
+    ? `<span class="res-why">${place ? `Worked at ${escapeHtml(place)}` : 'Worked'}${
+        body ? `${place ? ', ' : ' '}for ${escapeHtml(body)}` : ''}, as the record that
+        prints this role states it.</span>`
+    : '';
   return `<li class="res-role-row${at ? ' res-role-at' : ''}">
     <span class="res-role-when">${escapeHtml(roleBound(role))}</span>
     ${swatch(role.confidence)}${said}
@@ -1248,6 +1260,7 @@ function roleRowHtml(role, citationsById) {
       ? '' : '<span class="res-chip res-role-off">wording not adjudicated</span>'}</span>
     <span class="res-why">Dated by ${escapeHtml(words(role.dated_by || 'undated'))}${precision}.${
       role.note ? ` ${escapeHtml(role.note)}` : ''}</span>
+    ${where}
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
 }
 
@@ -1265,8 +1278,9 @@ export function rolesHtml(roles, citationsById) {
         bound its own sources permit. This is the record; the <q>Occupation</q> row
         above is a generated view of the roles that cover 1 July 1835, which is why a
         role printed in another year does not fill it. A role outside the window is
-        kept and marked, not dropped. Where the work was done is the row below, and
-        only for the houses a source names this person in.</span>
+        kept and marked, not dropped. Where a source states the place a role was worked
+        or the body it was worked for, the row says so. The houses a source names this
+        person IN are the row below.</span>
       <ol class="res-roles">${ordered.map((r) => roleRowHtml(r, citationsById)).join('')}</ol></dd>`;
 }
 

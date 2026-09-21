@@ -938,6 +938,15 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].roles[].premises": (
         "shown", "role.premises === 'no_fixed_premises'"),
     "persons[].roles[].note": ("shown", "escapeHtml(role.note)"),
+    # T-1299. WHERE THE ROLE WAS WORKED AND FOR WHOM, un-banked here in the commit that
+    # renders them. Both arrived on the rows with T-1254 and were banked unread because
+    # T-1255 shipped `rolesHtml` while T-1254 was still in flight — not because a
+    # visitor should not see them. 164 roles state a place and 56 a body; the rest carry
+    # `not_stated`, which is this layer's assertion that the record does not say, and
+    # the row prints nothing rather than an empty line for it.
+    "persons[].roles[].place": ("shown", "role.place && role.place !== 'not_stated'"),
+    "persons[].roles[].employer_or_body": (
+        "shown", "role.employer_or_body && role.employer_or_body !== 'not_stated'"),
     # T-1432. THE HOUSES A SOURCE NAMES THIS PERSON IN, on the same card and directly
     # under the roles. Every figure on the row is shown, because the row exists to be
     # read: the house and what they were in it, the run of notices that carry it, the
