@@ -79,8 +79,10 @@ from band_notes import split_notes  # noqa: E402
 # those constants sat outside the band the note under them cited (T-0172, T-0272). The
 # band is now used as the range it was authored as.
 from family_bands import admits_loft  # noqa: E402
-from family_bands import (eave_floor, eave_for_ridge, eave_limits,  # noqa: E402
-                          families, pitch_deg, wall_height_m)
+from family_bands import (eave_floor, eave_for_ridge,  # noqa: E402
+                          eave_limits, eaves_front_refusal_ratio,
+                          eaves_front_width_m, families, pitch_deg,
+                          wall_height_m)
 from ridge_model import ridge_run_m  # noqa: E402
 from roof_form import note_refusal, roof_kind  # noqa: E402
 from inferred_occupancy import occupancy  # noqa: E402
@@ -420,15 +422,50 @@ STREET_ADJUSTMENTS = {
     "west_rec_036": (-0.48, -0.57),  # Randolph Street, 0.6 m in
 }
 
-# west_rec_033 is a 20 x 32 ft D5 dwelling, and 32/20 is past the 1.5 at which
-# frame_dwelling_params refuses to build an eaves-front house on a front narrower than
-# its own range — "rotate the footprint or record the building as something else". The
-# footprint does not move: the same rectangle stands on the same ground, turned so that
-# the long side is the facade, which is what an 1835 eaves-front house is. Swapping the
-# two dimensions and turning the bearing a quarter circle is that statement and nothing
-# more. Frozen here rather than edited into the recipe, because the recipe is the
-# authored layout and this is the archetype's form rule applied to it.
-FACING_CORRECTIONS = {"west_rec_033"}
+# THE EAVES-FRONT HOLD — T-1497, and it replaces a quarter-circle turn.
+#
+# This parcel is the one that takes its rectangle STRAIGHT FROM THE RECIPE instead of
+# sampling it through `tools/family_bands.py`, so the rule the platted blocks and the
+# North parcel already carry — hold a D- or H-family rectangle to a proportion the
+# eaves-front frame dwelling can actually build — never reached it. What stood in its
+# place was `FACING_CORRECTIONS`, a frozen set of one: west_rec_033, whose recipe slot
+# is 20 x 32 ft, a ratio of 1.6 past the 1.5 `frame_dwelling_params` refuses. The
+# generator swapped width for depth and turned the bearing a quarter circle to get an
+# eaves-front house through at all, and the result stood as 32.00 x 20.00 ft — OUT of
+# the 18x28-24x34 ft band its own note cites, which is the row
+# `tools/band_claims_baseline.json` has been carrying with `waiting_on: T-1497`.
+#
+# The swap existed because the crosswalk asked D5 for a FRONT GABLE the archetype would
+# not build. `docs/RESEARCH/d5_gable_front_cottage_1835.md` withdrew that: no source in
+# this corpus records a gable-front dwelling at Chicago before 1836, and the narrow lot
+# that produces the form on a cottage was not a condition of a town whose committed lots
+# read a median 80.9 ft of frontage. With the front gable gone the swap has nothing to be
+# a workaround for.
+#
+# So the rectangle is held rather than turned: the recipe's DEPTH is kept exactly, and
+# the FRONT is widened inside the family's own band until the range is one the archetype
+# builds. west_rec_033 re-derives at 21.92 x 32.00 ft — both figures inside D5's band,
+# no swap, no rotation. Nothing is recorded standing a different way round from the way
+# the recipe laid it out.
+#
+# IT FIRES ONLY WHERE THE ARCHETYPE REFUSES. Nineteen other west slots sit between
+# family_bands' 1.46 proportion and the archetype's 1.5 refusal; their archetype builds
+# them, so they keep the recipe's rectangle and are not re-derived for a proportion
+# nothing is complaining about. Re-sampling the whole parcel through `dimensions_m` is a
+# different and larger change; T-1497 records it as a finding rather than doing it here.
+def eaves_front_hold(family: str, width_ft: float, depth_ft: float) -> float:
+    """The front this recipe rectangle must carry, in feet. Unchanged where it fits."""
+    spec = families().get(family) or {}
+    refusal = eaves_front_refusal_ratio(spec.get("archetype"))
+    if refusal is None or depth_ft <= width_ft * refusal:
+        return width_ft
+    band = spec.get("band_ft")
+    if not band:
+        return width_ft
+    hi_w_ft = float(band[2])
+    held_m = eaves_front_width_m(family, width_ft * .3048, depth_ft * .3048,
+                                 hi_w_ft * .3048)
+    return held_m / .3048
 
 # FIVE SLOTS STAY HELD, AND NOT FOR TERRAIN. The corporate boundary of 7 November 1833
 # resolves its west leg on Jefferson Street, whose committed centreline ends far south
@@ -468,12 +505,12 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
     center_n = float(row["center_local_enu_m"][1]) + dn
     width_ft, depth_ft = (float(v) for v in row["footprint_ft"])
     bearing = float(row["rotation_deg"])
-    if row["id"] in FACING_CORRECTIONS:
-        width_ft, depth_ft = depth_ft, width_ft
-        bearing -= 90.0
+    family = row["family"]
+    recipe_width_ft = width_ft
+    width_ft = eaves_front_hold(family, width_ft, depth_ft)
+    held = width_ft != recipe_width_ft
     width, depth = round(width_ft * .3048, 3), round(depth_ft * .3048, 3)
     local_e, local_n = footprint_origin(center_e, center_n, width, depth, bearing)
-    family = row["family"]
     finish_key, paint = finish_for(seq)
     function = FUNCTIONS[family]
     label = LABELS[family]
@@ -482,11 +519,16 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                "placed it inside a platted street corridor; the move is well inside the "
                "±20 m uncertainty the recipe states for its own layout controls."
                if de or dn else "")
-    if row["id"] in FACING_CORRECTIONS:
-        setback += (" The rectangle the recipe gives stands where it gives it; its long "
-                    "side is read as the facade, because an 1835 dwelling is eaves-front "
-                    "and a front narrower than its own range would build the gable-front "
-                    "house of a later decade.")
+    if held:
+        setback += (f" The recipe's {recipe_width_ft:.0f} ft front is widened to "
+                    f"{width_ft:.2f} ft here, its {depth_ft:.0f} ft depth kept exactly. "
+                    "An 1835 dwelling is eaves-front — ridge parallel to the facade — and "
+                    "the recipe's rectangle is deeper than that roof will carry on that "
+                    "front, so the front is held to the proportion the archetype builds. "
+                    "Both figures stay inside the family's authored band; the building is "
+                    "not turned, and nothing is recorded standing a different way round "
+                    "from the way the recipe laid it out. See "
+                    "docs/RESEARCH/d5_gable_front_cottage_1835.md.")
     reconstruction = {
         "status": "inferred_anonymous", "family": family, "district": "west",
         "inventory_class": row["inventory_class"], "programme_phase": PROGRAMME_PHASE,
@@ -520,7 +562,9 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
                 "confidence": "reconstructed",
-                "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
+                "note": (f"A {width_ft:.2f} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
+                         if held else
+                         f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented.")
             },
             "form": form_for(family, seq, paint, width, depth),
             "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."

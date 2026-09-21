@@ -79,12 +79,66 @@ def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, floa
     width_ft = lo_w + (hi_w - lo_w) * (.18 + .70 * stable_fraction(key, 1))
     depth_ft = lo_d + (hi_d - lo_d) * (.15 + .72 * stable_fraction(key, 2))
     width, depth = width_ft * .3048, depth_ft * .3048
-    # The implemented frame dwelling is eaves-front. Families whose band reaches a
-    # gable-front proportion are held inside the archetype that exists rather than
-    # being drawn as something the generator cannot build.
-    if family.startswith(("D", "H")) and family not in ("D1", "D2") and depth > width * 1.46:
-        width = min(hi_w * .3048, depth / 1.46)
+    width = eaves_front_width_m(family, width, depth, hi_w * .3048)
     return round(width, 3), round(depth, 3)
+
+
+# The proportion a deep rectangle is held to when it has to stand as an EAVES-FRONT
+# house — ridge parallel to the facade, which is the 1835 form (see
+# docs/RESEARCH/d5_gable_front_cottage_1835.md, T-1497). It sits deliberately BELOW the
+# archetype's own refusal, `frame_dwelling_params.EAVES_FRONT_DEPTH_RATIO_MAX`: a value
+# drawn exactly AT a refusal threshold is one float away from being refused, and the
+# margin is what keeps a sampled rectangle buildable. `eaves_front_refusal_ratio` reads
+# the archetype's number so the two can be compared rather than assumed equal.
+EAVES_FRONT_MAX_RATIO = 1.46
+
+# D1 is a log cabin and D2 a plank shanty; neither is built by the eaves-front frame
+# dwelling and neither is held to its proportion.
+_EAVES_FRONT_EXEMPT = ("D1", "D2")
+
+
+def holds_eaves_front(family: str) -> bool:
+    """Is this a family the eaves-front frame dwelling has to be able to build?"""
+    return family.startswith(("D", "H")) and family not in _EAVES_FRONT_EXEMPT
+
+
+def eaves_front_refusal_ratio(archetype: str | None) -> float | None:
+    """The depth:front ratio the archetype itself refuses past, or None if it names none.
+
+    Asked of the module rather than retyped here, the same way `eave_limits` asks for
+    `wall_height_band_m`. Only `frame_dwelling` publishes one today.
+    """
+    if not archetype:
+        return None
+    try:
+        module = importlib.import_module(f"archetypes.{archetype}_params")
+    except ModuleNotFoundError:
+        return None
+    value = getattr(module, "EAVES_FRONT_DEPTH_RATIO_MAX", None)
+    return None if value is None else float(value)
+
+
+def eaves_front_width_m(family: str, width_m: float, depth_m: float,
+                        max_width_m: float) -> float:
+    """The frontage a deep rectangle must carry to stand as an eaves-front house.
+
+    THE SINGLE RULE, and the reason it is here rather than in each parcel generator: a
+    rectangle deeper than `EAVES_FRONT_MAX_RATIO` times its own front is not a house
+    this project can build, and the honest repair is to widen the front inside the
+    family's band — never to turn the building a quarter circle, which silently records
+    a different building standing a different way round.
+
+    The depth is never shortened: it is the recipe's or the sampler's own figure and it
+    is inside the family band. Only the front moves, and only up to `max_width_m`, which
+    is the band's own ceiling. Where the band's ceiling cannot reach the proportion the
+    rectangle stays as it is and the caller's gate reports it, because a rule that can be
+    satisfied by leaving the band is not a rule.
+    """
+    if not holds_eaves_front(family):
+        return width_m
+    if depth_m <= width_m * EAVES_FRONT_MAX_RATIO:
+        return width_m
+    return min(max_width_m, depth_m / EAVES_FRONT_MAX_RATIO)
 
 
 def storeys(levels: str, key: str | None = None) -> tuple[float, bool]:
