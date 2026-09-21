@@ -1,7 +1,7 @@
 ---
 id: T-1499
 title: Two tools sweep the same roof-id surface and each keeps its own exemption list, so a file that is legitimately pinned must be named twice
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 10:22:26 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35617821153
 ---
 
 `tools/migrate_roof_ids.py` and `tools/execute_roof_redeal.py --check-migration`
