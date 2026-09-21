@@ -1,7 +1,7 @@
 ---
 id: T-1499
 title: Two tools sweep the same roof-id surface and each keeps its own exemption list, so a file that is legitimately pinned must be named twice
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1631
 claimed_by: run 9/21/2026, 10:22:26 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T15:50:55.442Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35617821153
 ---
 
