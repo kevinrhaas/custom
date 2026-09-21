@@ -51,7 +51,13 @@ const RUNG_LABEL = {
   division_band: (row) => (row.seat && row.seat.clause
     ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
     : `Banded in the ${row.reach_value} division, and no class dealt`),
-  policy_only: () => 'Seated by the placement policy alone',
+  // T-1522. The weakest seat this ladder makes, and the label must not let it
+  // pass for the rung above. There the division is the household's own record
+  // and only the ground inside it is drawn; here BOTH halves are dealt, off the
+  // order book's household shape and the town model's employment distribution.
+  policy_only: (row) => (row.seat && row.seat.division
+    ? `Dealt a place in the ${row.seat.division} division, on nothing its record says`
+    : 'Dealt a place, on nothing its record says'),
   unplaceable: () => 'Not seated in this town',
 };
 
