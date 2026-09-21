@@ -2494,7 +2494,18 @@ step "no two tickets in this tree carry the same id" \
 # tree, a file claimed by two steps, or a hand_authored file listed as derivable
 # would each let the lap overwrite something nobody derives. The REBUILD itself is
 # proved by the ordinary --check steps throughout this file; this holds the list.
-step "the derived-layer manifest names real files, one owner each, none hand-authored" \
+#
+# AND SINCE T-1363 it also holds the manifest's SECOND PASS — the short list of steps
+# re-run after the sequence because they read a file the sequence rebuilds under them.
+# The arrival stage is the one that needs it: it draws from the town model, and the
+# town model is rebuilt further down from a profile of the cards it writes, so a single
+# pass ends with ~1,400 cards drawn from a model that no longer exists. No ordering
+# fixes a cycle; the pass walks it once more from a settled model. What this step holds
+# is that the pass stays honest — every entry re-runs a command the sequence already
+# gates and proves, the lagging reader leads it, and the file it lags on is genuinely
+# rebuilt below it. That the pass SETTLES is proved elsewhere in this file, by the
+# resident, tier, profile and town-model --check steps all being green after it.
+step "the derived-layer manifest names real files, one owner each, none hand-authored, and its second pass is a real lag" \
   node tools/rederive.mjs --check
 
 selftest "…and its own assertions fire when the manifest is made unsafe" \
