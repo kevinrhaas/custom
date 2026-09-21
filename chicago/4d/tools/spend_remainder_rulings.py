@@ -263,25 +263,6 @@ RULES = {
             "name."
             " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
     },
-    "the_enrichment_names_a_trade_or_premises_no_field_carries": {
-        "disposition": "unresolved",
-        "ticket": "T-1468",
-        "statement": (
-            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
-            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
-            "extends the card and that no exact source-bearing structured field on that card "
-            "carries today. It is not refused, because it is true research; it is not written here, "
-            "because writing one attribute at a time, out of one pass and without the other sources "
-            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
-            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
-            "fact it names; this unit's own note says which field that is. This one names a TRADE, "
-            "a firm, a shop, a tavern, a store or the premises one was kept at, and T-1182 is the "
-            "audit of every attested and inferred business against the research -- proprietors, "
-            "partners, dates and premises -- which also raises an inferred business for an in- "
-            "window trade that has none."
-            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."
-            " AND T-1190 IS SPENT SINCE 2026-09-20: its three pieces (T-1440, T-1441 and T-1442) all closed, so the split parent is finished work and a unit cannot defer to it (T-1237). The hand-off is T-1468, which carries the same ask under a live id and takes the tavern identity question the roof programme is owed with it."),
-    },
     "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": {
         "disposition": "unresolved",
         "ticket": "T-1189",
@@ -679,6 +660,32 @@ RULES = {
 }
 
 
+# T-1469 SPENT THE 37 TRADE AND PREMISES ENRICHMENTS, AND THIS FILE STOPPED ROUTING THEM.
+# The single rule that used to stand here -- `the_enrichment_names_a_trade_or_premises_no_
+# field_carries` -- said the finding named a fact "that no exact source-bearing structured
+# field on that card carries today", and handed all 37 to a business ticket: T-1182, then
+# its five children, then T-1190, then its three, then T-1468. Every one of those hand-offs
+# was forced by the last named ticket closing, and not one of them read a card.
+#
+# It is no longer true that no field carries them. The business layer is built and converged
+# (T-1310, T-1440..T-1442), the one-occupation field became dated plural roles with a
+# `covers_scene_date` flag and a written withdrawal (T-0837, T-0991), and the candidate-fact
+# table is committed (T-1232). tools/spend_trade_premises.py reads all 37 against those
+# fields and gives each one of SIX outcomes, 36 of them terminal. Its rules are folded in
+# here rather than restated, for the same reason `wrote_by_spend` imports the arrival pass's
+# table: the pass that read the card is the pass that says what the card answered with, and
+# a rule renamed there cannot drift out of the register that vouches for it.
+from spend_trade_premises import (BOUNDED as TRADE_BOUNDED,  # noqa: E402
+                                  CARRIED as TRADE_CARRIED,
+                                  HANDED as TRADE_HANDED,
+                                  LATER as TRADE_LATER,
+                                  PROFILE as TRADE_PROFILE,
+                                  RULES as TRADE_RULES,
+                                  UNREACHED as TRADE_UNREACHED)
+
+RULES.update(TRADE_RULES)
+
+
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -728,7 +735,10 @@ WRITTEN = "the_enrichment_is_written_onto_the_card_it_names"
 CARRIED = "the_enrichment_dates_an_appearance_the_card_already_carries"
 DEPARTURE = "the_enrichment_names_a_departure_from_chicago_no_field_carries"
 KIN = "the_enrichment_names_kin_no_field_carries"
-TRADE = "the_enrichment_names_a_trade_or_premises_no_field_carries"
+# TRADE IS A ROUTING MARKER AND NO LONGER A RULE. The rule a trade enrichment falls
+# under is decided by tools/spend_trade_premises.py, which reads the card; this
+# constant only says which of the 96 enrichments go to it (T-1469).
+TRADE = "routed_to_the_trade_and_premises_spend"
 CIVIC = "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"
 LAND = "the_enrichment_names_a_landholding_no_field_carries"
 LATER = "the_later_volume_enriches_a_biography_and_names_no_1835_field"
@@ -884,6 +894,12 @@ def rule_residents(unit: dict, finding: dict | None, preamble: str) -> tuple[str
             "adjudicated. An enrichment may not be routed by default: add it to "
             "ENRICHMENT_ROUTE with the field its own summary names.")
     rule, field = route
+    if rule == TRADE:
+        # THE OUTCOME AND THE NOTE ARE THE READING PASS'S TO GIVE, not this one's. T-1469
+        # read each of these 37 against the card it names; this register carries what it
+        # found, and its note prints the finding beside the field that answers it.
+        from spend_trade_premises import carrier_sentence, rule_for
+        return (rule_for(key), carrier_sentence(key))
     return (rule,
             f"The pass on {unit['source_record_id']} returned: “{summary}” "
             f"Sources as recorded: {clip(sources, 180)}. T-1301 reads that as {field}.")
@@ -1427,7 +1443,15 @@ def self_test() -> int:
             ("an arrival written onto the card", "02", "peck_philip", "the_enrichment_is_written_onto_the_card_it_names"),
             ("a departure", "04", "sweet_alanson", "the_enrichment_names_a_departure_from_chicago_no_field_carries"),
             ("a marriage", "08", "hobson_jesse", "the_enrichment_names_kin_no_field_carries"),
-            ("a trade", "14", "sabine_wm", "the_enrichment_names_a_trade_or_premises_no_field_carries"),
+            # T-1469: one probe per outcome the trade pass can reach, because the rule a
+            # trade enrichment falls under is now a reading of the card rather than a
+            # constant, and a router that collapsed them all to one would look fine here.
+            ("a trade the card carries", "02", "couch_ira", TRADE_CARRIED),
+            ("a trade bounded outside the window", "04", "mason_matthias", TRADE_BOUNDED),
+            ("a trade carried as a profile fact", "06", "mitchell_henry", TRADE_PROFILE),
+            ("a trade printed for a later year", "14", "sabine_wm", TRADE_LATER),
+            ("a pre-scene engagement", "04", "handy_major", TRADE_UNREACHED),
+            ("a reading the card contradicts", "02", "pearsons_hiram", TRADE_HANDED),
             ("a county office", "04", "steele_ashbel", "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"),
             ("a landholding", "05", "wright_john_s", "the_enrichment_names_a_landholding_no_field_carries"),
             ("a later volume", "15", "doolittle_ehjah", "the_later_volume_enriches_a_biography_and_names_no_1835_field")):

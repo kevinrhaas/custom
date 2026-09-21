@@ -10,10 +10,10 @@ Registered reading units: **23,693**, as of 2026-09-15. Unclassified: **0**. Ass
 | --- | ---: |
 | aggregate_only | 185 |
 | asserted | 807 |
-| later_only | 12,574 |
+| later_only | 12,577 |
 | outside_chicago | 109 |
-| refused | 8,662 |
-| unresolved | 1,356 |
+| refused | 8,695 |
+| unresolved | 1,320 |
 
 Every asserted unit names the record and field it wrote to. Grouped by the layer that file belongs to:
 
@@ -122,7 +122,8 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | T-1315 | 3 | open | yes |
 | T-1335 | 169 | open | yes |
 | T-1354 | 6 | open | yes |
-| T-1468 | 601 | split_live | yes |
+| T-1468 | 564 | split_live | yes |
+| T-1507 | 1 | open | yes |
 
 The rest defer to no ticket, and that is the second legitimate shape rather than a gap (T-1423): a name the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, whose open question is whether the person was in the town on 1 July 1835. No ticket can answer that — only a document can — so each states the document instead. The pointer that used to stand here was renamed four times as the ticket it named kept closing, and no source came any nearer.
 

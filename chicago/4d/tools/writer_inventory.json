@@ -1352,6 +1352,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "spend_trade_premises.py": {
+      "placement": "manifest",
+      "write_mode": "--write",
+      "measured": "continuously",
+      "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
+    },
     "staff_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--build",
