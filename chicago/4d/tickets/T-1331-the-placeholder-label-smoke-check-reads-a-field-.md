@@ -93,7 +93,15 @@ later check sees the mutation. That is the acceptance's "prove the second by bre
   is the `api.walker.teleport` / evidence-only-households block — T-1369's ground, about
   1,200 lines BEFORE anything this branch touches — and dev's own standing record already
   carries part 3 as `page.evaluate: Target page, context or browser has been closed`
-  (2026-09-20T21:25, steward-runner, load 4.7). The wedge is filed with `record`.
+  (2026-09-20T21:25, steward-runner, load 4.7).
+
+  `dev-smoke-state.mjs record` DID take the wedge —
+  `recorded desktop stage 3: killed (11 passed, 0 failed)` — and then the branch had to be
+  rebased onto a `dev` that had moved (T-1368 x2, T-1466), and `dev-smoke-state.json`
+  conflicted. The reading was dropped in favour of dev's copy rather than re-stamped,
+  because re-running `record` after the rebase would have keyed a `killed` verdict to a tree
+  hash the run never actually tested. The record's own convention is that a reading names
+  the tree it was taken on; a wrong hash is worse there than a missing entry.
 
   So the changed lines were proved DIRECTLY instead, against the same published tree the
   leg serves, booting the same way and running this block and nothing else:
