@@ -1,7 +1,7 @@
 {
   "$note": "ROADMAP K25(a). Every form value in this project's reconstructed buildings that sits outside the family band its own note cites. This file is a RATCHET, not an allowance: tools/check.sh fails on any offender that is not here and on any listed offender whose value has moved. K25(b) empties it and deletes it. Regenerate with tools/measure_band_claims.py --write-baseline, and only ever to record a repair \u2014 or an offender carrying `waiting_on`, which is a DEADLINE and not an allowance: the tool refuses this file once the ticket it names is no longer open, so a recorded compromise cannot outlive its excuse.",
   "counts": {
-    "footprint": 3,
+    "footprint": 2,
     "levels": 1
   },
   "measured": "2026-08-15",
@@ -26,17 +26,6 @@
       "family": "W5",
       "marginal": false,
       "value": "loft = true"
-    },
-    "recon_1835_west_033:footprint": {
-      "band": "18x28-24x34 ft",
-      "detail": "32.00 ft wide against 18-24; 20.00 ft deep against 28-34",
-      "family": "D5",
-      "marginal": false,
-      "value": "32.00x20.00 ft",
-      "waiting_on": {
-        "ticket": "T-1497",
-        "why": "the recipe's 20 x 32 ft is inside D5's own 18x28-24x34 band; the value reads out of band only because frame_dwelling is an EAVES-FRONT placeholder that refuses a front-gable house (32/20 is past its 1.5 ceiling), so generate_west_infill swaps width and depth to build it at all. T-1497 builds the canonical dwelling_frame/deep_plan_gable_front archetype the crosswalk asks for, or repairs the D5 row if the form is not 1835. Either way this row leaves the file."
-      }
     }
   }
 }
