@@ -602,6 +602,13 @@
       "finding": "Reproduces, and the perturbation test tells reproduction from inertia. On a clean tree `--build` rewrote docs/RESEARCH/1835_roof_id_migration.md and nothing else, and `git status --porcelain` came back to the same single entry it started at. The measurement was then bent — the header's \"26 moving id(s)\" to 999 — a bare run went red (\"DRIFT: ... is not what a re-measurement produces\"), `--build` re-derived the file, and the tree came back clean. Its ONLY output is that one document; it reads the roof id reference list and the 75 files that name a moving id, and writes none of them.",
       "placed": "not yet — measured to reproduce, and it is a pure reader: every input it touches is a committed file some other stage owns, so it has no ordering hazard of its own. Its slot is the ordering pass's call, not this ticket's."
     },
+    "measure_west_grid_migration.py": {
+      "placement": "manifest",
+      "write_mode": "--write",
+      "measured": "2026-09-21",
+      "finding": "Reproduces: ran `--write` on a clean tree in 1s, wrote its output, changed no committed byte.",
+      "placed": "by layer, 2026-09-21 \u2014 reasoned, not derived. It reads tools/generate_plat_lots.py's output (the block and lot grid, and the omissions carrying `already_derived_as`) and is placed immediately after it; run earlier it would measure a stale pair. Nothing reads what it writes, so nothing constrains it from below."
+    },
     "measure_wright_lighthouse.py": {
       "placement": "not_a_writer",
       "write_mode": null,
