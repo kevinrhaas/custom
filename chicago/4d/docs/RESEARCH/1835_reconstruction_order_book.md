@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 1,283 | 1,721 |
 | Households | 643 | 1,256 | 124 |
-| Businesses (enumerated classes) | 108 | 134 | 7 |
+| Businesses (enumerated classes) | 108 | 130 | 7 |
 | Roofs | 668 | 414 | 267 |
 
 **2,263 people stand in the layer today** and **505** are still owed after the counters, so the town this book converges to is **2,768** — inside the model's 2,353-3,265. `--build` and `--check` both refuse a remainder that lands outside it.
@@ -192,15 +192,15 @@ The re-cut's one forbidden move is to pull a quota out from under a stage that h
 
 ## Real names before invented ones
 
-The roster offers 1,816 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,770 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
 | `R1_in_window_uncertain` | 804 | T-1172 |
-| `R2_in_window_single_source` | 343 | T-1172 |
-| `R3_1834_return_or_muster` | 30 | T-1172 |
-| `R4_surname_only_census` | 441 | T-1170 |
-| `R5_later_only_backprojectable` | 55 | T-1172 |
+| `R2_in_window_single_source` | 309 | T-1172 |
+| `R3_1834_return_or_muster` | 29 | T-1172 |
+| `R4_surname_only_census` | 432 | T-1170 |
+| `R5_later_only_backprojectable` | 53 | T-1172 |
 | `R6_native_metis_black` | 143 | T-1177 |
 
 ## Persons
@@ -374,7 +374,7 @@ The households the model wants, by kind and division.
 The December 1835 State census set against the register the town already holds.
 
 - `register_total`: 196
-- `at_scene_date`: 216
+- `at_scene_date`: 212
 - `census_enumerated_total`: 118
 - `register_businesses_read`: 196
 - `division_note`: EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.
@@ -398,7 +398,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/steam_saw_mill` | 1 | 2 | 0 | 0 | T-1187 |
 | `businesses/storage_and_forwarding` | 4 | 7 | 0 | 0 | T-1187 |
 | `businesses/store` | 44 | 65 | 0 | 0 | T-1184 |
-| `businesses/tavern` | 8 | 15 | 0 | 0 | T-1187 |
+| `businesses/tavern` | 8 | 11 | 0 | 0 | T-1187 |
 | `businesses/tin_and_copper_manufactory` | 2 | 4 | 0 | 0 | T-1185 |
 
 ## Structures
@@ -497,7 +497,7 @@ The book carries THE MODEL. Every difference is listed here for T-1196, which re
 |---|---:|---:|---:|---|
 | **households_against_dwellings** — The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many. | 643 | 335 | +308 | `ordinary_dwellings` |
 | **boarding_houses** — NOT A CHECK: the model's 42 larger boarding houses ARE district_group_matrix.larger_boarding_houses — model_town_1835.build_lodging reads the figure straight off the roof programme — so this row cannot disagree, and its zero says nothing about whether 42 is the right number of boarding roofs. An independent count is owed to T-1196 with the re-cut. | 42 | 42 | +0 | `larger_boarding_houses` |
-| **inns_and_taverns** — The model reads 15-15 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme. | 15 | 10 | +5 | `inns_taverns` |
+| **inns_and_taverns** — The model reads 11-11 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme. | 11 | 10 | +1 | `inns_taverns` |
 | **institutional_and_public** — NOT A CHECK: the model reads 9-19 institutional and public roofs — 9 outside the fort and 10 principal roofs inside it — and the programme schedules those same two groups, institutional_public (9) and fort_principal (10), for 19. Both ends of the model are read off that matrix, so the row cannot disagree. Until T-1439 it reported a delta of ten by taking the fort's roofs on the model's side and not on the programme's, which is the schedule charged for ten roofs it already had. | 19 | 19 | +0 | `institutional_public`, `fort_principal` |
 | **people_per_roof** — 2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,536 | 668 | +0 | — |
 

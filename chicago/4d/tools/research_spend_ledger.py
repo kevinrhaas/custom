@@ -340,8 +340,93 @@ def town_records(root):
 UNIT_TOKEN = re.compile(r"[A-Za-z0-9_.:#-]+")
 
 
+# T-1508. THE BUSINESS LAYER IS A TARGET SURFACE, and until this it was not. The ledger
+# indexed the residents layer alone, so a reading whose whole content is an enterprise --
+# a firm style, a partner, a trade kept at a named house -- had nowhere to land even after
+# T-1310 BUILT the layer out of those very readings. 485 units stood `unresolved` behind a
+# routing ticket while the record compiled from them cited them by claim id.
+#
+# It is indexed on a STRICTER rule than the residents walk below uses, and deliberately.
+# There the match is a token found anywhere in a confident block's prose, which is why
+# TOKEN_BLIND_KEYS had to be invented when a derived restatement started matching ids it
+# never asserted. A business block does not need the loose reading: it carries the claims
+# it was compiled from in its own `claim_ids` list, so the claim is either named there or
+# it is not reached. Nothing is inferred from prose.
+#
+# The two layers state the same thing in two vocabularies -- a resident block says
+# `confidence` and cites `sources`, a business block says `tier` and cites `source_id` --
+# and `field_confidence` and `field_sources` are where that translation lives, so a reader
+# downstream sees one kind of assertion.
+BUSINESS_LAYER = ("data", "businesses")
+BUSINESS_INDEX_FILES = {"index.json"}
+
+
+def field_confidence(field) -> str | None:
+    """What a structured block claims for itself, under either layer's word for it."""
+    if not isinstance(field, dict):
+        return None
+    for key in ("confidence", "tier"):
+        value = field.get(key)
+        if isinstance(value, str):
+            return value
+    return None
+
+
+def field_sources(field) -> set[str]:
+    """`cited_sources`, plus the single `source_id` a business block names instead."""
+    found = cited_sources(field)
+    if isinstance(field, dict):
+        value = field.get("source_id")
+        if isinstance(value, str) and value:
+            found.add(value)
+    return found
+
+
+def business_target_index(root: Path, keys: set[str]) -> dict[str, list[dict]]:
+    """Index the business layer's tiered, source-bearing blocks by the claims they name."""
+    found = defaultdict(list)
+    base = root.joinpath(*BUSINESS_LAYER)
+    if not base.is_dir():
+        return found
+
+    def walk(node, parts, root_id, rel):
+        if isinstance(node, dict):
+            claims = node.get("claim_ids")
+            if isinstance(claims, list) and field_confidence(node) in STRUCTURED_CONFIDENCE:
+                sources_here = field_sources(node)
+                if sources_here:
+                    for claim in claims:
+                        if isinstance(claim, str) and claim in keys:
+                            found[claim].append({
+                                "kind": "business_record",
+                                "id": root_id,
+                                "file": rel,
+                                "field_path": "".join("/" + pointer_part(p) for p in parts),
+                                "sources": sorted(sources_here),
+                            })
+            for key, value in node.items():
+                walk(value, parts + [key], root_id, rel)
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                walk(value, parts + [index], root_id, rel)
+
+    for path in sorted(base.rglob("*.json")):
+        if path.name in BUSINESS_INDEX_FILES:
+            continue
+        doc = read_json(path)
+        if not isinstance(doc, dict) or not doc.get("id"):
+            continue
+        walk(doc, [], str(doc["id"]), path.relative_to(root).as_posix())
+    return found
+
+
 def target_index(root: Path, keys: set[str]) -> dict[str, list[dict]]:
-    """Index source-bearing structured resident assertions by the unit keys they name."""
+    """Index source-bearing structured assertions by the unit keys they name.
+
+    The residents layer first, then the business layer, so a reading a resident card
+    already carries keeps the target it had and a reading only the business layer carries
+    reaches the block that carries it (T-1508).
+    """
     found = defaultdict(list)
 
     def walk(node, parts, root_id, rel):
@@ -376,6 +461,8 @@ def target_index(root: Path, keys: set[str]) -> dict[str, list[dict]]:
         if not isinstance(doc, dict) or not doc.get("id"):
             continue
         walk(doc, [], str(doc["id"]), path.relative_to(root).as_posix())
+    for key, rows in business_target_index(root, keys).items():
+        found[key].extend(rows)
     return found
 
 
@@ -648,9 +735,9 @@ def asserted_ruling_faults(root: Path, unit_id: str, record_id: str, row: dict) 
         if not isinstance(block, dict):
             faults.append(f"{where} names {at}, which carries no block")
             continue
-        if block.get("confidence") not in STRUCTURED_CONFIDENCE:
+        if field_confidence(block) not in STRUCTURED_CONFIDENCE:
             faults.append(f"{where} {at} is not attested, inferred or documented")
-        if not cited_sources(block):
+        if not field_sources(block):
             faults.append(f"{where} {at} cites no source")
         if record_id not in json.dumps(block, ensure_ascii=False):
             faults.append(f"{where} {at} does not say {record_id}")
@@ -943,9 +1030,9 @@ def validate_document(doc: dict, root: Path = ROOT,
             except (KeyError, IndexError, TypeError, ValueError):
                 faults.append(f"{where}: asserted field_path is dead")
                 continue
-            if not isinstance(field, dict) or field.get("confidence") not in STRUCTURED_CONFIDENCE:
+            if field_confidence(field) not in STRUCTURED_CONFIDENCE:
                 faults.append(f"{where}: asserted fact exists only in prose or lacks attested/inferred confidence")
-            if not cited_sources(field):
+            if not field_sources(field):
                 faults.append(f"{where}: asserted structured field names no source")
         elif disposition == "unresolved":
             owner_faults = unresolved_owner_faults(where, row)
@@ -1223,6 +1310,47 @@ def self_test() -> int:
         else:
             print("  holds: a field that carries the reading is still a target")
 
+        # T-1508: THE BUSINESS LAYER AS A TARGET SURFACE, and the boundary it is read on.
+        # The residents walk above matches a token found anywhere in a confident block,
+        # which is the reading TOKEN_BLIND_KEYS had to be invented to narrow. A business
+        # block is read on its own `claim_ids` list and on nothing else, so the three
+        # cases that matter are: the claim is in the list and the block is tiered and
+        # sourced (a target); the claim is in the block's prose only (not a target); the
+        # claim is in the RECORD's top-level list, which carries no tier (not a target,
+        # and the population T-1509 owns).
+        write_json(root / "data/businesses/biz_fixture.json", {
+            "id": "biz_fixture", "name": "Fixture & Co.",
+            "claim_ids": ["gazette_1835_06_08#c101"],
+            "proprietors": [{"name": "A. Fixture", "tier": "attested",
+                             "source_id": "fixture_press",
+                             "claim_ids": ["gazette_1835_06_08#c100"]}],
+            "partners": [{"name": "B. Fixture", "tier": "attested",
+                          "source_id": "fixture_press", "claim_ids": [],
+                          "basis": "Printed over gazette_1835_06_08#c102."}]})
+        biz = business_target_index(
+            root, {"gazette_1835_06_08#c100", "gazette_1835_06_08#c101",
+                   "gazette_1835_06_08#c102"})
+        reached = {key: {t["field_path"] for t in rows} for key, rows in biz.items()}
+        if reached.get("gazette_1835_06_08#c100") != {"/proprietors/0"}:
+            failures.append(
+                f"a tiered, sourced business block did not carry its own claim: {reached!r}")
+        else:
+            print("  holds: a business block naming the claim in its claim_ids is a target")
+        if "gazette_1835_06_08#c101" in reached:
+            failures.append("an untiered record-level claim_ids list stood as a target")
+        else:
+            print("  fires: a record's untiered claim_ids closes nothing (T-1509's population)")
+        if "gazette_1835_06_08#c102" in reached:
+            failures.append("a claim named only in a business block's prose stood as a target")
+        else:
+            print("  fires: a claim in a business block's prose alone is no target")
+        block = {"tier": "inferred", "source_id": "fixture_press"}
+        if field_confidence(block) != "inferred" or field_sources(block) != {"fixture_press"}:
+            failures.append("the business vocabulary did not read as confidence and sources")
+        else:
+            print("  holds: `tier` and `source_id` read as confidence and a cited source")
+        (root / "data/businesses/biz_fixture.json").unlink()
+
         # T-1342: THE FILE-LOCAL KEY, over the exact shape that made 142 false assertions —
         # two issue files each carrying a claim `c007`, and one card citing one of them.
         registry = {"domains": [{"id": "press", "path": "data/research/press/", "ledger_units": [
@@ -1281,5 +1409,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 19 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 23 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0

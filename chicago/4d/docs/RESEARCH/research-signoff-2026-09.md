@@ -32,27 +32,27 @@ Reproduce: `python3 tools/report_research_signoff.py --check`.
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 185 |
-| asserted | 807 |
+| asserted | 1,292 |
 | later_only | 12,574 |
 | outside_chicago | 109 |
-| refused | 8,662 |
-| unresolved | 1,356 |
+| refused | 8,701 |
+| unresolved | 832 |
 
-Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 807 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
+Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 1,292 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
 
 An `unresolved` unit is research read and not yet spent, and it is only legitimate while the ticket it defers to is still going to happen. Read the owners column carefully — it is the most informative table in this report:
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1468 | 601 | split_live | yes |
-| T-1198 | 298 | split_live | yes |
+| T-1198 | 279 | split_live | yes |
 | T-1335 | 169 | open | yes |
+| T-1468 | 101 | split_live | yes |
 | T-1189 | 12 | split_live | yes |
-| T-1354 | 6 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | claimed | yes |
+| T-1507 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1468 (601), T-1198 (298), T-1335 (169), T-1189 (12), T-1354 (6) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1198 (279), T-1335 (169), T-1468 (101), T-1189 (12), T-1315 (3) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
 
 **266** further unresolved unit(s) name no ticket at all, because no ticket can settle them: they are names the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, and what is open is whether the person was in the town on 1 July 1835. Each states the document that would reopen it (T-1423):
 
@@ -104,8 +104,8 @@ Reproduce: `python3 tools/measure_research_spend.py --check` · `python3 tools/s
 
 | Confidence | Rows |
 | --- | ---: |
-| `attested` | 259 |
-| `inferred` | 428 |
+| `attested` | 258 |
+| `inferred` | 429 |
 
 Of the rows that reach the scene date, every one names a source that describes it (C5) — 127 by `source_describes_date`, 33 by `stated_date`.
 
@@ -195,8 +195,8 @@ Then every location claim the research makes, reconciled: **1,840** rows, each c
 | --- | ---: |
 | `limited` | 299 |
 | `no_claim` | 1,186 |
-| `refused` | 190 |
-| `resolved` | 165 |
+| `refused` | 185 |
+| `resolved` | 170 |
 
 Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. Rows called resolved that resolve onto nothing: **0** (C7). This is the answer to *how many attested location facts sit in prose with no structured target*: none — every claim in the corpus is a row here, and a row that could not be placed says so with its reason rather than being dropped or guessed past.
 
@@ -225,20 +225,20 @@ Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. 
 
 | Roles naming a printed place | Rows |
 | --- | ---: |
-| dated away from it | 164 |
+| dated away from it | 165 |
 
 Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/compile_agencies.py --check`.
 
 ## 5. Withheld is legible
 
-**21,530** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
+**21,569** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
 
 | Withheld as | Units |
 | --- | ---: |
 | `aggregate_only` | 185 |
 | `later_only` | 12,574 |
 | `outside_chicago` | 109 |
-| `refused` | 8,662 |
+| `refused` | 8,701 |
 
 The same rule over the gate itself: of **180** tools carrying a `--check`, **173** are run by `tools/check.sh` and **7** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 

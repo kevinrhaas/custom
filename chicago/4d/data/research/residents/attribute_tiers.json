@@ -26,10 +26,10 @@
   },
   "counts": {
     "cards": 1393,
-    "blocks": 18233,
+    "blocks": 18239,
     "tiers_written_on_the_card": 8121,
     "by_tier": {
-      "attested": 583,
+      "attested": 589,
       "inferred": 3319,
       "reconstructed": 8305,
       "unknown": 6026
@@ -60,7 +60,7 @@
         "unknown": 0
       },
       "directories.people[].occupation_later": {
-        "attested": 127,
+        "attested": 133,
         "inferred": 0,
         "reconstructed": 0,
         "unknown": 0

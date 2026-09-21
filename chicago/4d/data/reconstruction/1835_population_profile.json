@@ -2161,7 +2161,7 @@
   {
    "id": "completeness",
    "title": "Per-attribute completeness",
-   "lead": "THE NINE QUESTIONS ASKED OF EVERY ONE OF THE 2265 PEOPLE, TOGETHER. 6 of the nine axes leave nobody unanswered. Sex leaves 6 and age band 7 — the collective rows, \"the rest of the Beaubien household, unnamed\" and their kind, which name nobody and so can carry neither; every one of them is named below. Division leaves 1408, the people of the 1186 households no source puts on a side of the river, and that is the layer's largest remaining hole: T-1198 seats the households the evidence places and T-1199 the reconstructed ones, and until they run this column cannot read zero without inventing ground. 850 people are answered on all nine. Two axes answer in a bare string that carries no confidence anywhere on the card — they are counted under \"stated, no tier written\" and not under a tier, because a value with no tier is not a value at a tier.",
+   "lead": "THE NINE QUESTIONS ASKED OF EVERY ONE OF THE 2265 PEOPLE, TOGETHER. 6 of the nine axes leave nobody unanswered. Sex leaves 6 and age band 7 — the collective rows, \"the rest of the Beaubien household, unnamed\" and their kind, which name nobody and so can carry neither, and one row that names one woman and still earns no band; every one of them is named below. Division leaves 1408, the people of the 1186 households no source puts on a side of the river, and that is the layer's largest remaining hole: T-1198 seats the households the evidence places and T-1199 the reconstructed ones, and until they run this column cannot read zero without inventing ground. 850 people are answered on all nine. Two axes answer in a bare string that carries no confidence anywhere on the card — they are counted under \"stated, no tier written\" and not under a tier, because a value with no tier is not a value at a tier.",
    "tables": [
     {
      "title": "Every person, every attribute",
@@ -2238,8 +2238,8 @@
        "person",
        2265,
        "100.0%",
-       254,
-       73,
+       253,
+       74,
        1938,
        0,
        0
@@ -2342,7 +2342,7 @@
        "The Harmon daughter later known as Mrs A. G. Burley",
        "hh_harmon_elijah_d",
        "age band",
-       "The card refuses an age band as a COLLECTIVE description naming nobody, and this row names one woman — Andreas's informant, seated as a daughter and carrying one sex."
+       "NO BAND IS DRAWN, AND THE REASON IS THIS CARD'S OWN."
       ],
       [
        "heacock_household_unnamed",
@@ -2373,7 +2373,7 @@
        "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw."
       ]
      ],
-     "note": "Named rather than summed away, which is the whole of this section. One of them, `harmon_daughter_burley`, carries a reason its own card contradicts: the refusal is written for a collective row and she is one named woman. The refusal's effect is right and its reason is wrong; the fix belongs to the pass that writes the note."
+     "note": "Named rather than summed away, which is the whole of this section. Every reason printed here is the one its own card gives, and no row argues with itself: `harmon_daughter_burley` carried a collective refusal over a row naming one woman until T-1395 gave her the refusal her own evidence earns — a household's child word and a later source's married style, neither dated to the scene and neither an age."
     },
     {
      "title": "The unplaced, by the roll they were minted off",

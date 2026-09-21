@@ -914,6 +914,29 @@ step "the platted block and lot grid re-derives from the module" \
 selftest "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# T-1479. Two cells stand in both plat grids — blk_lake_clinton (plat block 28) and
+# blk_randolph_clinton (block 45), between Clinton and Canal, which is West Division
+# ground already emitted by the Original Town's grid on the SOUTH Division module. The
+# sheet counts TEN lot numerals in each, two columns by five rows; the layer cuts EIGHT,
+# four to a face. That gap is a ticket, and what this pair gates is the REFUSAL that
+# keeps it open, so the refusal cannot quietly stop being true. Nothing moves: the tool
+# writes numbers, exactly as measure_west_division_module.py did for T-0444.
+# The assertions worth naming: both halves of the module refusal must BIND — the two
+# 180 ft lot columns alone must not fit the committed face, and the depth must not
+# divide into five whole lots of the printed frontage — because if either stopped
+# holding, the re-cut would be derivable and this gate would be guarding a stale no.
+# The seating is gated too (17 structures and 46 rows across 13 lots), since a withheld
+# re-cut strands exactly that and a count which fell to nothing would make the move
+# cheap. And the last one is the sharpest: NO withheld block anywhere in town may carry
+# a seating. That is what makes the ticket's own first question — what a structure on a
+# withdrawn lot is seated on — genuinely unanswered rather than answered somewhere this
+# ticket failed to look.
+step "the West Division re-cut of blocks 28 and 45 is still refused by the committed lines" \
+  python3 tools/measure_west_grid_migration.py --check
+
+selftest "…and both halves of that refusal, the seating it would strand and the unanswered first question still fire" \
+  python3 tools/measure_west_grid_migration.py --self-test
+
 # The band the two halves of that plat leave between them (T-0419). Since the owner ruled
 # on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's corridor
 # stands 8.58 m north of block faces still offset from the DRAWN line, and 6,132 m2 of
@@ -3211,6 +3234,39 @@ step "the enrichment arrival and origin spend re-derives onto its nine cards (T-
 selftest "…and its citation, naming and retirement rules still fire when broken" \
   python3 tools/spend_enrichment_arrivals.py --self-test
 
+# T-1469. THE SAME INSTRUMENT OVER THE TRADE AND PREMISES HALF. Thirty-seven of T-1301's
+# `corroborated_enrichment` findings named a trade, a firm, a shop, a tavern, a store or
+# the premises one was kept at, and they were handed from business ticket to business
+# ticket — T-1182, its five children, T-1190, its three, T-1468 — without being read
+# against the cards they name. They are read now, against fields that did not exist when
+# the hand-off was written: the converged business layer (T-1310, T-1440..T-1442), the
+# dated plural roles with their `covers_scene_date` flag and their written withdrawal
+# (T-0837, T-0991), and the committed candidate-fact table (T-1232). Nothing here writes a
+# card, so what this gate proves is that every field the register NAMES still stands on the
+# card, graded and cited: a carrier that has moved is a note that no longer says what the
+# card says, which is the only way a read-only register can go wrong.
+step "the trade and premises spend re-derives from the cards it names (T-1469)" \
+  python3 tools/spend_trade_premises.py --check
+
+selftest "…and its carrier, outcome and coverage rules still fire when broken" \
+  python3 tools/spend_trade_premises.py --self-test
+
+# T-1354. THE OTHER HALF OF T-1330's SPEND. Six of its thirty enrichments name a DEPARTURE
+# from Chicago and no field on a resident card carries one — the only thing a removal bears
+# on is `present_on_scene_date`. They were handed to T-1144, then to whichever child of its
+# split happened to be open, and a hand-off is not a spend. These six are now ruled one at
+# a time, each with the removal read BESIDE the other sources on its card rather than out
+# of the one late compiler that carries it, because a departure read alone is the one way
+# this dataset can delete a documented person on a single say-so. Five do not reach the
+# scene date and the sixth was already written onto its card by T-0478, so nothing moves —
+# and the gate is here precisely so that stays true: --check re-reads all six cards, and a
+# presence that moves out from under one of these rulings turns it red.
+step "the six departure rulings re-derive from the register and the cards (T-1354)" \
+  python3 tools/spend_departure_rulings.py --check --quiet
+
+selftest "…and its corpus, outcome and read-beside rules still fire when broken" \
+  python3 tools/spend_departure_rulings.py --self-test
+
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
 # findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718
@@ -4733,7 +4789,16 @@ selftest "…and its own assertions still fire when broken" \
 # MEASUREMENT, not assumption: the step re-reads the committed lot-address ledger, so the day
 # a second lot address arrives naming somebody the gate fails rather than the rung quietly
 # staying empty.
-step "the address book re-derives: every household and firm at the rung its evidence reaches, no seat invented" \
+#
+# T-1512 ADDED THE TWO RUNGS THE EVIDENCE STILL BOUNDS, and three more limits with them.
+# A BAND MAY NOT MOVE A HOUSEHOLD OUT OF THE DIVISION ITS OWN CARD NAMES — the division is
+# the reading and the band is the reconstruction, and a pass that could change the first
+# while dealing the second is a pass that can rewrite evidence. A BAND MAY ONLY CITE A
+# CLAUSE THE COMMITTED PLACEMENT POLICY HOLDS, and a head whose trade no clause reaches is
+# banded to the division's own ground rather than dealt a class its record never carried.
+# AND NO RECONSTRUCTED SEAT MAY GROW A LOT, A ROOF OR A COORDINATE: the step refuses the
+# field by name, because that is the shape the drift would take.
+step "the address book re-derives: every household and firm at the rung its evidence reaches, no band out of its division, no seat invented" \
   python3 tools/seat_known_1835.py --check
 
 selftest "…and its own assertions still fire when broken" \

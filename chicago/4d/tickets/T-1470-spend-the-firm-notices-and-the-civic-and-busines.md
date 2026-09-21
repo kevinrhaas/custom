@@ -1,7 +1,7 @@
 ---
 id: T-1470
 title: Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1468
 opened: 2026-09-20
-closed: null
+closed: 2026-09-21
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 4:46:12 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T09:50:10.075Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35584680679
 ---
 
 Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach.

@@ -4,6 +4,14 @@
 # nothing. Its whole job is that a pull request no automation in this repository
 # can move is never SILENT about it.
 #
+# IT REPORTS TWO SHAPES. The first is the deadlock below. The second (T-1510) is a
+# PR whose `gate` has COMPLETED with a failing conclusion while the steward run that
+# owns the branch has finished — the one state with no owner at all in this repo, as
+# the lap does not gate, `merge-ready` merges only `clean`, and the run is over.
+# Measured 2026-09-21 on #1616 and #1618: both runs completed SUCCESS around the
+# minute their own gate went red, and both PRs sat until a person read the logs. It
+# names the failing steps, because having to open the logs is most of the cost.
+#
 # THE DEADLOCK IT REPORTS, stated as the cycle it is:
 #
 #   1. The PR is `dirty`, so GitHub cannot compute a merge ref for it.
@@ -202,7 +210,37 @@ owning_run_alive() {
   return 0
 }
 
-STUCK=0; HELD=0; MIDRUN=0; YOUNG=0; FINE=0; CLEARED=0
+# The newest `gate` check run on a head, as `status:conclusion\tdetails_url`, or
+# nothing at all when the head carries none. NEWEST BY `started_at` AND NOT BY
+# ARRAY ORDER: a head that was re-gated carries several, and the first one the API
+# hands back is not reliably the one that decided the PR.
+gate_verdict() {
+  gh api "repos/$REPO/commits/$1/check-runs?per_page=100" \
+    --jq '[.check_runs[]? | select(.name=="gate")]
+          | sort_by(.started_at // "") | last
+          | if . == null then empty
+            else "\(.status):\(.conclusion // "none")\t\(.details_url // "")" end' \
+    2>/dev/null
+}
+
+# The steps that actually failed, read from the job the check run points at. WHY
+# THIS AND NOT "the gate is red": the whole cost of this state is that somebody
+# has to open the logs to find out what broke, and the reporter has just been
+# there. Measured 2026-09-21 on the two PRs that prompted T-1510 — #1616 failed
+# one step (`Does this change carry a changelog entry?`) and #1618 failed another
+# (`Run the gate`), and those two words are the difference between a five-minute
+# fix and a re-derivation. It answers nothing when the job cannot be read; a
+# comment with no step list is still worth more than no comment.
+failing_steps() {
+  local jid
+  jid=$(printf '%s' "${1:-}" | sed -n 's|.*/job/\([0-9][0-9]*\).*|\1|p')
+  [ -n "$jid" ] || return 1
+  gh api "repos/$REPO/actions/jobs/$jid" \
+    --jq '.steps[]? | select(.conclusion=="failure" or .conclusion=="timed_out")
+          | "  * \(.name)"' 2>/dev/null
+}
+
+STUCK=0; RED=0; HELD=0; MIDRUN=0; YOUNG=0; FINE=0; CLEARED=0
 
 while IFS=$'\t' read -r N BR SHA LABELS; do
   [ -n "${N:-}" ] || continue
@@ -227,14 +265,47 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
     sleep "$RETRY_SLEEP"
   done
 
-  # ONLY `dirty`. `unknown` is NOT a diagnosis — #1518 read `unknown` indefinitely
-  # and merged fine when asked directly, so calling it stuck would be a lie with a
-  # label on it. `behind` and `blocked` are the lap's and the gate's business and
-  # both have something moving them.
-  if [ "$STATE" != "dirty" ]; then
+  # TWO SHAPES OF STUCK, and the second was added by T-1510 after a queue grew
+  # 1 -> 5 open PRs in two hours with `dev` still for 95 minutes of it.
+  #
+  #   A. `dirty` — the T-1368 deadlock the header sets out at length.
+  #   B. A RED GATE under a run that has finished. The lap merges the base in and
+  #      pushes; it does not gate, deliberately (that cost ~7 min a PR and was why
+  #      the queue never converged). `merge-ready` merges only `clean` and a red PR
+  #      never is. So nothing in this repository is coming for it — which is this
+  #      reporter's whole subject, arriving in a state it used to wave through.
+  #      Measured 2026-09-21: #1616's steward run completed SUCCESS 28 seconds
+  #      after its gate went red, #1618's four minutes BEFORE its own did, and
+  #      both sat until a person read the logs.
+  #
+  # `unknown` is still NOT a diagnosis — #1518 read `unknown` indefinitely and
+  # merged fine when asked directly. `behind` is the lap's. `blocked` is the one
+  # that needed splitting: blocked-while-gating has the gate moving it, and
+  # blocked-because-the-gate-failed has nothing.
+  SHAPE=
+  if [ "$STATE" = "dirty" ]; then
+    SHAPE=deadlock
+  else
+    VERDICT=$(gate_verdict "$SHA")
+    GATE_STATUS=${VERDICT%%:*}
+    GATE_REST=${VERDICT#*:}
+    GATE_CONC=${GATE_REST%%$'\t'*}
+    GATE_URL=${GATE_REST#*$'\t'}
+    # A GATE STILL RUNNING IS NOT A RED ONE, and neither is a head with no gate
+    # on it at all — that one belongs to shape A or to a PR the gate has not
+    # reached. Only a COMPLETED, failing verdict counts.
+    if [ "$GATE_STATUS" = "completed" ]; then
+      case "$GATE_CONC" in
+        failure|timed_out|cancelled|action_required) SHAPE=redgate ;;
+      esac
+    fi
+  fi
+
+  if [ -z "$SHAPE" ]; then
     if [ -n "$HAS_LABEL" ]; then
       # A LABEL THAT OUTLIVES ITS REASON IS WORSE THAN NO LABEL. Something moved
-      # this PR after all, so the reporter takes its own word back.
+      # this PR after all, so the reporter takes its own word back — and that now
+      # covers a gate that has gone green as well as a merge that has come clean.
       say "#$N  $STATE — no longer stuck; taking the \`$LABEL\` label back off"
       [ -z "$DRY" ] && gh api -X DELETE "repos/$REPO/issues/$N/labels/$LABEL" >/dev/null 2>&1
       CLEARED=$((CLEARED+1))
@@ -251,27 +322,38 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
   # parse, and 0 would make every such PR read as decades old and get reported.
   # A reporter that shouts when it cannot see is the fault this script is built
   # around, so it holds its tongue instead and the next sweep asks again.
+  # THE THREE REFUSALS BELOW GUARD BOTH SHAPES, and that is the reason the shape
+  # is decided above rather than acted on there: an unreadable date, a head the
+  # lap has not reached, and a run still working are wrong to report whether the
+  # PR is conflicted or red, and each was learned the expensive way once already.
+  SAW="$SHAPE"
+  [ "$SHAPE" = "redgate" ] && SAW="$STATE with a red gate"
   if [ "${HEAD_EPOCH:-0}" -eq 0 ]; then
-    say "#$N  dirty, but its head commit date could not be read — not reporting on a PR whose age is unknown"
+    say "#$N  $SAW, but its head commit date could not be read — not reporting on a PR whose age is unknown"
     YOUNG=$((YOUNG+1)); continue
   fi
   AGE_MIN=$(( (now_epoch - HEAD_EPOCH) / 60 ))
   if [ "$AGE_MIN" -lt "$MIN_AGE_MIN" ]; then
-    say "#$N  dirty, and its head is ${AGE_MIN}m old — every PR is dirty for a while after a merge into $BASE (T-0857); the lap has not had its turn"
+    say "#$N  $SAW, and its head is ${AGE_MIN}m old — every PR is dirty for a while after a merge into $BASE (T-0857) and a fresh red gate is often re-pushed within the minute; neither the lap nor the run has had its turn"
     YOUNG=$((YOUNG+1)); continue
   fi
 
   LIVE_WHY=
   if owning_run_alive "$BR"; then
-    say "#$N  dirty, but $LIVE_WHY — left alone (#1499 cleared itself exactly like this)"
+    say "#$N  $SAW, but $LIVE_WHY — left alone (#1499 cleared itself exactly like this)"
     MIDRUN=$((MIDRUN+1)); continue
   fi
 
   CHECKS=$(gh api "repos/$REPO/commits/$SHA/check-runs" --jq '.total_count' 2>/dev/null || echo 0)
   [ -n "$CHECKS" ] || CHECKS=0
 
-  say "#$N  STUCK — dirty, $CHECKS check run(s), ${AGE_MIN}m old, and $LIVE_WHY"
-  STUCK=$((STUCK+1))
+  if [ "$SHAPE" = "redgate" ]; then
+    say "#$N  STUCK — $STATE, gate $GATE_CONC, ${AGE_MIN}m old, and $LIVE_WHY"
+    RED=$((RED+1))
+  else
+    say "#$N  STUCK — dirty, $CHECKS check run(s), ${AGE_MIN}m old, and $LIVE_WHY"
+    STUCK=$((STUCK+1))
+  fi
   [ -n "$DRY" ] && continue
 
   if [ -z "$HAS_LABEL" ]; then
@@ -283,12 +365,69 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
   # ONE COMMENT PER STUCK HEAD. Once-ever would go quiet if a PR came unstuck and
   # then stuck again on a later head; once-per-sweep would bury the PR. The head
   # sha is in the marker, so each distinct stuck head is said exactly once.
-  MARK="PR stuck: no automation in this repository can move this pull request (\`${SHA:0:8}\`)"
+  if [ "$SHAPE" = "redgate" ]; then
+    MARK="PR stuck: the gate is red and the run that owned it has finished (\`${SHA:0:8}\`)"
+  else
+    MARK="PR stuck: no automation in this repository can move this pull request (\`${SHA:0:8}\`)"
+  fi
   if gh api --paginate "repos/$REPO/issues/$N/comments" --jq '.[].body' 2>/dev/null | grep -qF "$MARK"; then
     say "     already said so on this head"
     continue
   fi
 
+  if [ "$SHAPE" = "redgate" ]; then
+    { printf '%s.\n\n' "$MARK"
+      printf 'The `gate` check run on this head completed **%s**, and the steward run that\n' "$GATE_CONC"
+      printf 'owns this branch has finished. Nothing in this repository is coming back for it:\n\n'
+      printf '* `.github/steward/pr-lap.sh` merges `%s` in and pushes. It does NOT gate — that\n' "$BASE"
+      printf '  cost ~7 minutes a PR and was why the queue never converged — so a red gate is\n'
+      printf '  not something it can notice, let alone fix.\n'
+      printf '* `.github/steward/merge-ready.sh` merges only what GitHub calls `clean`, and a PR\n'
+      printf '  with a failing required check is never `clean`.\n'
+      printf '* The run that would have pushed a fix is over. On 2026-09-21 two runs finished\n'
+      printf '  SUCCESS while leaving a red PR behind (#1616, #1618), which is what this\n'
+      printf '  report exists to stop being silent about.\n\n'
+      STEPS=$(failing_steps "$GATE_URL")
+      if [ -n "$STEPS" ]; then
+        printf 'The step(s) that failed:\n\n%s\n\n' "$STEPS"
+        # A STEP `preflight.sh` ALREADY ASKS is worth naming, because the run that
+        # opened this PR could have found it in seconds and did not. The changelog-
+        # entry question is asked ONLY on the `pull_request` event, where a base ref
+        # exists, and is deliberately out of tools/check.sh — the nightly bake
+        # regenerates data/ and correctly ships no entry, so a gate inside check.sh
+        # would fail every bake (T-0409). Out of check.sh is not out of reach:
+        # tools/preflight.sh asks it against the merge base, which is the same pair
+        # of shas the workflow passes. AGENTS.md has required it before opening a PR
+        # since 2026-09-10 and PR #1049 sat red for 2h19m on the one-line trailer it
+        # would have caught. Six more did on 2026-09-21. A rule with no enforcement
+        # is the fault check-changelog-entry.mjs was written to end, arriving one
+        # level up.
+        if printf '%s' "$STEPS" | grep -q 'carry a changelog entry'; then
+          printf '`./tools/preflight.sh` asks that question BEFORE the PR is opened, against the\n'
+          printf 'merge base and with the same shas the workflow uses. It is out of `check.sh` on\n'
+          printf 'purpose — the bake regenerates `data/` and correctly ships no entry — which is\n'
+          printf 'why running the gate alone cannot find it. AGENTS.md has required preflight\n'
+          printf 'before a PR is opened since 2026-09-10.\n\n'
+        fi
+      else
+        printf 'The failing step could not be read from the job; open the gate run from the\n'
+        printf 'Checks tab.\n\n'
+      fi
+      printf 'This reporter does not re-run, revert or repair anything, and that is deliberate:\n'
+      printf 'both of the PRs above needed real judgement (a rule that had stopped firing and\n'
+      printf 'had to be retired; a report whose prose contradicted its own table), and a robot\n'
+      printf 'that had guessed at either would have been worse than the silence.\n\n'
+      printf 'What clears it:\n\n'
+      printf '1. Reproduce the failing step in a clone of this branch with `%s` merged in,\n' "$BASE"
+      printf '   fix it, and push. The gate re-runs on the push and `merge-ready` takes it.\n'
+      printf '2. If the failure is not this PR'"'"'s — red on `%s` too — say so on the PR and\n' "$BASE"
+      printf '   port the fix rather than widening this branch.\n'
+      printf '3. Or close it and re-cut the work on a current `%s`.\n\n' "$BASE"
+      printf 'Park it with the `hold` label if it is waiting on the owner on purpose — this\n'
+      printf 'reporter reads labels first and will leave a held PR alone.\n\n'
+      printf -- '---\n_Generated by [Claude Code](https://claude.ai/code)_\n'
+    } > /tmp/pr-stuck-comment.md
+  else
   { printf '%s.\n\n' "$MARK"
     printf 'GitHub reports this PR `dirty`'
     if [ "$CHECKS" -eq 0 ]; then
@@ -326,6 +465,7 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
     printf 'reporter reads labels first and will leave a held PR alone.\n\n'
     printf -- '---\n_Generated by [Claude Code](https://claude.ai/code)_\n'
   } > /tmp/pr-stuck-comment.md
+  fi
 
   # `jq -Rs` wraps the file as a JSON string: the body carries backticks, a fenced
   # block and paths, and none of that survives interpolation into a shell argument.
@@ -339,5 +479,5 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
 done <<< "$PRS"
 
 say ""
-say "PR stuck: stuck=$STUCK held=$HELD mid-run=$MIDRUN too-young=$YOUNG moving=$FINE unlabelled=$CLEARED"
+say "PR stuck: deadlocked=$STUCK red-gate=$RED held=$HELD mid-run=$MIDRUN too-young=$YOUNG moving=$FINE unlabelled=$CLEARED"
 say "  (it reports; it never merges, pushes or resolves. The lap and merge-ready do those.)"

@@ -1,7 +1,7 @@
 ---
 id: T-1469
 title: Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1468
 opened: 2026-09-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-21
+pr: 1619
+claimed_by: run 9/21/2026, 4:32:09 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T10:40:43.639Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35583489983
 ---
 
 Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason.

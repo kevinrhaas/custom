@@ -72,6 +72,16 @@ those words. Three conditionings, each naming what it assumes:
 A COLLECTIVE DESCRIPTION IS STILL REFUSED. "The four Temple children" is a row about
 four people and has no sex and no band of its own. Six such rows get an explicit
 `unknown` block that says why, rather than a draw that would make a group into a person.
+A group is a group WORD — rest, household, children, unnamed, four — and since T-1395 it
+is not a leading article: "The Harmon daughter later known as Mrs A. G. Burley" is one
+woman and was reading as a seventh group.
+
+AND ONE ROW NAMES ONE PERSON AND STILL EARNS NO BAND (T-1395). Where a household seats
+somebody as its child and the same record prints them in a married style — Mrs, Madam,
+Widow — the kinship word and the style cannot both be read as an age, and neither is
+dated to the scene: the style is a later source's, and `dependent_child_under_15` would
+make a married woman a child under fifteen. No conditioning fits, so the band is refused
+with that said, and the sex is left to whatever rule would have settled it anyway.
 """
 from __future__ import annotations
 
@@ -107,6 +117,10 @@ SEED_SEX = "sex_ratio"
 SEED_AGE = "age_bands_1840"
 
 CHILD_RELATIONSHIPS = ("child", "son", "daughter")
+
+# The styles a married life puts on a name. Read only against a kinship word, and only to
+# REFUSE a band — never to draw one. See `married_style_over_a_kinship_word` below.
+MARRIED_STYLES = ("mrs", "madam", "madame", "widow")
 
 CONDITIONINGS = {
     "civic_list_20_and_over": {
@@ -308,6 +322,37 @@ def collective(person: dict) -> bool:
     """A row that describes a group rather than a person."""
     _, _, why = read_name(person.get("name") or "")
     return why == "a_group_not_a_person"
+
+
+def married_style_over_a_kinship_word(person: dict) -> bool:
+    """A row a household seats as its child whose own name is printed in a married style.
+
+    `dependent_child_under_15` assumes "nothing beyond what the record already says": the
+    record calls them a child, so the child bands are drawn. Where the SAME record also
+    prints a married style — Mrs, Madam, Widow — it does not say child. It says a married
+    woman whom a household seats as its daughter, and the two readings cannot both be an
+    age. T-1179 is this finding from the other side (a kinship word is not an age, and a
+    grown man in his father's house is still that household's son); this is the case where
+    the contradiction stands on the face of the name.
+
+    Nor does the married style bound an age at the scene in the other direction. It is a
+    style the card carries because a LATER source used it — a husband's initials, a
+    widowhood, a recollection written down decades on — and no marriage on these cards is
+    dated to 1 July 1835. `named_on_a_roll_15_and_over` therefore cannot claim the row
+    either. So none of the three conditionings fits and no band is drawn.
+
+    A register that calls the person an infant or a baptised child is a RECORD of
+    childhood rather than a household's word for somebody, and it is read first: a row
+    with one keeps its conditioning and its draw.
+    """
+    church = person.get("church_evidence") or []
+    if any((e.get("locator") or "") in ("infant", "baptised", "child") for e in church):
+        return False
+    if str(person.get("relationship") or "").lower() not in CHILD_RELATIONSHIPS:
+        return False
+    if named_in_their_own_right(person):
+        return False
+    return any(tok in MARRIED_STYLES for tok in tokens(person.get("name") or ""))
 
 
 def named_in_their_own_right(person: dict) -> bool:
@@ -601,6 +646,25 @@ def refusal_block(what: str) -> dict:
     }
 
 
+def kinship_refusal_block() -> dict:
+    """T-1395's refusal: the row names one person and still earns no band."""
+    return {
+        "value": None,
+        "confidence": RECONSTRUCTED,
+        "tier": "unknown",
+        "note": "NO BAND IS DRAWN, AND THE REASON IS THIS CARD'S OWN. A household seats "
+                "this person as its child and the same record names them in a married "
+                "style, printed by a source later than the scene. A KINSHIP WORD IS NOT "
+                "AN AGE (T-1179) and a married style is not one either: neither is dated "
+                "to 1 July 1835, and they cannot both be read as a band. None of this "
+                "pass's three conditionings fits, and a band drawn from the schedule's "
+                "child columns would make a married woman a child under fifteen. This "
+                "row names ONE person, which is why it does not carry the collective "
+                "refusal it used to: the refusal is T-1395's and the reason is the "
+                "card's.",
+    }
+
+
 def band_for_age(age: int, sex: str, bands: list) -> dict:
     """The 1840 band an age falls in, for the sex given (male where none is known)."""
     want = sex if sex in ("male", "female") else "male"
@@ -726,6 +790,9 @@ def fill(base: dict) -> tuple:
                     tier_of_block(person.get("age_on_scene_date")), "STATED AGE",
                     (person.get("age_on_scene_date") or {}).get("sources") or [])
                 counts["age_read"]["age_on_scene_date"] += 1
+            elif married_style_over_a_kinship_word(person):
+                person["age_band"] = kinship_refusal_block()
+                counts["age_refused"]["a_married_style_over_a_kinship_word"] += 1
             else:
                 conditioning = conditioning_of(person)
                 cond = CONDITIONINGS[conditioning]
@@ -785,7 +852,7 @@ def check() -> int:
               % (people - placed - refused, people))
         return 1
     print("  ok    %d of %d people carry a sex; %d a birth year or an age band; %d "
-          "collective row(s) refused, and say so" % (sexed, people, placed, refused))
+          "row(s) refused a band, and say why" % (sexed, people, placed, refused))
     print("  ok    the model, the rates and every drawn block re-derive")
     return 0
 
@@ -843,6 +910,32 @@ def self_test() -> int:
 
     ok("a group is refused a sex", collective({"name": "The four Temple children"}))
     ok("a person is not", not collective({"name": "John Wilson"}))
+    # T-1395: a leading article made one named woman into a group.
+    ok("a leading article is not a group on its own",
+       not collective({"name": "The Harmon daughter later known as Mrs A. G. Burley"}))
+    ok("a married style over a kinship word refuses a band",
+       married_style_over_a_kinship_word(
+           {"name": "The Harmon daughter later known as Mrs A. G. Burley",
+            "relationship": "daughter"}))
+    ok("a plain daughter keeps her conditioning",
+       not married_style_over_a_kinship_word({"name": "Eliza Harmon",
+                                              "relationship": "daughter"})
+       and conditioning_of({"name": "Eliza Harmon", "relationship": "daughter"})
+       == "dependent_child_under_15")
+    ok("a married style outside a household's child word refuses nothing",
+       not married_style_over_a_kinship_word({"name": "Mrs Rufus Brown",
+                                              "relationship": "wife"}))
+    ok("a register calling the person an infant is read before the style is",
+       not married_style_over_a_kinship_word(
+           {"name": "Mrs A. B.", "relationship": "daughter",
+            "church_evidence": [{"locator": "infant"}]}))
+    ok("a roll of her own is read before the style is",
+       not married_style_over_a_kinship_word(
+           {"name": "Mrs A. B.", "relationship": "daughter", "roles": [{"role": "milliner"}]}))
+    ok("the refusal says it names one person and names its reason",
+       "ONE person" in kinship_refusal_block()["note"]
+       and kinship_refusal_block()["value"] is None
+       and kinship_refusal_block()["tier"] == "unknown")
 
     ok("a drawn sex block is graded reconstructed and this pass owns it",
        ours_sex(sex_block({}, "letter_list", 0.94, "male", "s", True)))

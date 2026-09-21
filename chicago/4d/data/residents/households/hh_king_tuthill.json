@@ -96,6 +96,15 @@
    "occupation": {
     "value": "clothier",
     "confidence": "inferred",
+    "later_occupation": {
+     "value": "New York clothing store",
+     "describes_date": 1839,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "A TRADE RECORDED FOR 1839, BESIDE A TRADE READ FOR 1835. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. The 1835 field above no longer reads `none_recorded`: T-1299 admitted the press roles whose bound contains the scene date into it, and that field is a GENERATED VIEW of `roles[]` rather than a second assertion. The pointer stays anyway, and this is the second clause of rule 2. `roles[]` derives the card's 1839 row FROM this pointer and from nowhere else, so taking it off would not tidy the card, it would delete the 1839 printing off the timeline. It is still not a claim about the scene date: a directory of 1839 is evidence about 1839 (T-0693, second clause by T-1299)."
+    },
     "note": "A TRADE READ FOR 1835-07-01 OUT OF THIS CARD'S OWN ROLES. `clothier` is the strongest claiming role in `roles[]` whose bound contains the scene date, and the grade above is that row's: `inferred` where the evidence is a trade printed against this name in the 1833-1835 press, because the paper printed the trade and the resident programme's identity rule tied the printing to this card. The field used to read `none_recorded` while the row beneath it said the evidence reached the day — the four tools that derive this field disagreed, and T-1299 is where they were made to agree (written by tools/derive_resident_roles.py).",
     "derived_from": "roles",
     "roles_at_scene_date": [
@@ -191,6 +200,26 @@
      "employer_or_body": "not_stated",
      "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-06-20 to 1835-07-04, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
+    },
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "New York clothing store",
+     "from": "1839",
+     "to": "1839",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "claim": null,
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839.",
+     "premises": null
     },
     {
      "role": null,
@@ -673,6 +702,15 @@
   "people": [
    {
     "person_id": "king_tuthill",
+    "occupation_later": {
+     "value": "New York clothing store",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'King, Tuthill, New York clothing store, 115 Lake st'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
     "address_later": {
      "value": "115 Lake st",
      "confidence": "attested",

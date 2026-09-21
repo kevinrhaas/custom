@@ -718,6 +718,11 @@ export async function mountPeople({
     structure: () => 'Seated at a named roof',
     lot: () => 'Placed on a lot the plat holds',
     face: (row) => `Housed on a face of ${row.reach_value || 'its street'}`,
+    // T-1512. The division is the record's; the band inside it is the placement
+    // policy's, and the label says which of the two a reader is looking at.
+    division_band: (row) => (row.seat && row.seat.clause
+      ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
+      : `Banded in the ${row.reach_value} division, and no class dealt`),
     unplaceable: () => 'Not seated in this town',
   };
 

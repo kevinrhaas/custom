@@ -2578,13 +2578,21 @@ def cmd_self_test() -> int:
     # AND A ROW THAT CANNOT DISAGREE IS NOT REPORTED AS AN AGREEMENT. Both institutional
     # ends and the boarding-house figure are read off `district_group_matrix` by
     # model_town_1835.build_lodging, so setting them beside that matrix is the matrix
-    # agreeing with itself. `inns_and_taverns` names the same file and goes PAST it — 15
+    # agreeing with itself. `inns_and_taverns` names the same file and goes PAST it — 11
     # from the business layer against the matrix's 10 — so it is a real comparison, and
     # the flag has to tell the two apart rather than blanket every lodging row.
+    #
+    # THE DELTA WAS 5 UNTIL T-1471 (2026-09-21) AND IS 1, because the business layer's
+    # figure stopped counting one house twice. Four of its fifteen scene-date tavern
+    # records were re-settings of two standing advertisements — E. Wentworth's Flag Creek
+    # notice and the Eagle Tavern's chair-and-harness notice — and trade_class_rulings.json
+    # now folds them, so fifteen records read as eleven houses. The flag below is
+    # unchanged and is the point of the assertion: a smaller real disagreement is still a
+    # real disagreement, and it must not start reading as the matrix agreeing with itself.
     assert inst["restates_the_programme"] is True, inst
     assert deltas["boarding_houses"]["restates_the_programme"] is True, deltas["boarding_houses"]
     assert deltas["inns_and_taverns"]["restates_the_programme"] is False, deltas["inns_and_taverns"]
-    assert deltas["inns_and_taverns"]["delta"] == 5, deltas["inns_and_taverns"]
+    assert deltas["inns_and_taverns"]["delta"] == 1, deltas["inns_and_taverns"]
     for d in doc["programme_deltas"]:
         assert d["statement"].startswith("NOT A CHECK:") == d["restates_the_programme"], d
     p_sum, h_sum = doc["bucket_families"][0]["summary"], doc["bucket_families"][1]["summary"]

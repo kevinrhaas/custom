@@ -189,7 +189,7 @@ RULES = {
             "card, which is why a ruling on one of them would be a fault."),
     },
     "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
-        "disposition": "unresolved",
+        "disposition": "refused",
         # T-1144 SPLIT ON 2026-09-18 AND THIS LINE WAS LEFT POINTING AT THE PARENT.
         # The split (#1471) found the one deferral it was looking for — the
         # `identity_open_one_letter_apart` ruling in data/research/spend_rulings.json —
@@ -207,24 +207,41 @@ RULES = {
         # open would have failed again the moment that child closed, which is precisely
         # what T-1333's own closing run hit.
         #
-        # T-1354 was filed for it and owns it: six rulings, each reading the removal
-        # beside the other sources on the card, each either moving present_on_scene_date
-        # with its tier and reason or recording why the removal does not bear on
-        # 1 July 1835.
-        "ticket": "T-1354",
+        # T-1354 WAS FILED FOR IT AND HAS NOW SPENT IT, which is why this line is no
+        # longer a hand-off. Six rulings, each reading the removal BESIDE the other
+        # sources on the card rather than out of the one volume it came in, stand in
+        # data/research/residents/departure_rulings.json and re-derive under
+        # tools/spend_departure_rulings.py --check. This register says `refused`
+        # because none of the six asks anything further of the layer — not because a
+        # departure is worthless evidence. It is the disposition the sibling rule
+        # `the_enrichment_dates_an_appearance_the_card_already_carries` already uses
+        # for a finished answer, and the one spend among the six is stated here rather
+        # than left for a reader to find.
         "statement": (
             "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from "
             "Chicago -- a removal, a migration to another town, a prospecting journey that "
             "ended somewhere else -- for a person this town holds a card for. T-1330 read all "
             "thirty arrival-and-origin enrichments one at a time and these six name a going "
             "rather than a coming. No field on a resident card carries a departure: the only "
-            "thing a removal bears on is `present_on_scene_date`, and whether a man "
-            "documented as leaving in 1835 was at Chicago on 1 July of that year is the "
-            "question T-1144 asked -- \"no false Chicago resident, and no 1835 claim above "
-            "its dated evidence\" -- which neither child of its split banked. T-1354 owns "
-            "it. It is handed there and asserted nowhere: this pass does "
-            "not move a presence, because a removal read out of one volume without the "
-            "others beside it is how a layer loses a resident it had evidence for."),
+            "thing a removal bears on is `present_on_scene_date`. T-1354 SPENT ALL SIX, one "
+            "at a time, each read beside the other sources on its card -- because a removal "
+            "read alone, out of the single late compiler that carries it, is how a layer "
+            "loses a resident it had evidence for. FIVE DO NOT REACH THE SCENE DATE, and "
+            "they miss in three different ways: Caldwell's removal and Jones's Manitowoc "
+            "settlement are dated AFTER 1 July 1835, Sweet's removal to Milwaukee is dated "
+            "only to the year the scene falls in and stands on both sides of the day, and "
+            "Pugsley's return to Paw Paw and Cleland's move to Niles carry no departure date "
+            "at all -- Pugsley's volume in fact dates a journey TO Chicago in the month of "
+            "the card's own bound. THE SIXTH REACHES IT AND WAS ALREADY WRITTEN: Porthier "
+            "left with Horace Chase on 27 February 1835 and reached Milwaukee on 23 March, "
+            "and T-0478 had already moved his presence to `absent` at `attested` citing this "
+            "volume. So no presence moves under this rule, no grade moves and no card is "
+            "retired, which is the answer and not a deferral. The six rulings, what each was "
+            "read beside, and the presence each stands on are in "
+            "data/research/residents/departure_rulings.json, re-derived by "
+            "tools/spend_departure_rulings.py -- whose --check re-reads every one of the six "
+            "cards, so a presence that moves out from under one of these rulings turns the "
+            "gate red."),
     },
     "the_enrichment_names_kin_no_field_carries": {
         "disposition": "unresolved",
@@ -262,25 +279,6 @@ RULES = {
             "T-1170 is the pass that gives the attested and inferred heads the families the sources "
             "name."
             " THE HANDOFF WAS T-1170, THEN T-1320, AND IS T-1335 SINCE 2026-09-18: T-1170's split is spent, and T-1320 is scoped to the BOOK corpus by its own title, so it never covered this domain. T-1335 is the family pass proper."),
-    },
-    "the_enrichment_names_a_trade_or_premises_no_field_carries": {
-        "disposition": "unresolved",
-        "ticket": "T-1468",
-        "statement": (
-            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
-            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
-            "extends the card and that no exact source-bearing structured field on that card "
-            "carries today. It is not refused, because it is true research; it is not written here, "
-            "because writing one attribute at a time, out of one pass and without the other sources "
-            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
-            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
-            "fact it names; this unit's own note says which field that is. This one names a TRADE, "
-            "a firm, a shop, a tavern, a store or the premises one was kept at, and T-1182 is the "
-            "audit of every attested and inferred business against the research -- proprietors, "
-            "partners, dates and premises -- which also raises an inferred business for an in- "
-            "window trade that has none."
-            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."
-            " AND T-1190 IS SPENT SINCE 2026-09-20: its three pieces (T-1440, T-1441 and T-1442) all closed, so the split parent is finished work and a unit cannot defer to it (T-1237). The hand-off is T-1468, which carries the same ask under a live id and takes the tavern identity question the roof programme is owed with it."),
     },
     "the_enrichment_names_a_civic_church_or_school_post_no_field_carries": {
         "disposition": "unresolved",
@@ -469,24 +467,6 @@ RULES = {
             "roster records the withholding; it does not decide the residency. The hand-off "
             "named T-1172, the ticket that re-admits the roster's single-source names, "
             "because T-1159 closes with the roster it builds." + HANDED_ON),
-    },
-    "the_notice_names_a_firm": {
-        "disposition": "unresolved",
-        "ticket": "T-1468",
-        "statement": (
-            "The unit carries a `business` block: the reading pulled a firm name, and "
-            "where it could a trade, a proprietor and a street placement, out of the "
-            "advertisement or notice. That is enterprise evidence, and the ledger routes "
-            "every business unit to the authored business layer, which is the piece that "
-            "still has this corpus to spend -- one record per firm, compiled beside the "
-            "newspaper-derived register. "
-            "IT READ T-1180 UNTIL T-1311 CLOSED ON 2026-09-18: that ticket split into T-1310, which BUILT the layer, and T-1311, and with both done the parent is spent work a unit cannot defer to. What is left for these notices is reconciling them against the layer rather than building it, which is T-1182's audit. "
-            "It read T-1147 until the place and enterprise "
-            "completion pass closed (T-1241). A firm is not minted here, a placement is "
-            "not written here, and a contradiction between two notices is not resolved "
-            "here."
-            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."
-            " AND T-1190 IS SPENT SINCE 2026-09-20: its three pieces (T-1440, T-1441 and T-1442) all closed, so the split parent is finished work and a unit cannot defer to it (T-1237). The hand-off is T-1468, which carries the same ask under a live id and takes the tavern identity question the roof programme is owed with it."),
     },
     "the_family_column_names_kin": {
         "disposition": "unresolved",
@@ -679,6 +659,32 @@ RULES = {
 }
 
 
+# T-1469 SPENT THE 37 TRADE AND PREMISES ENRICHMENTS, AND THIS FILE STOPPED ROUTING THEM.
+# The single rule that used to stand here -- `the_enrichment_names_a_trade_or_premises_no_
+# field_carries` -- said the finding named a fact "that no exact source-bearing structured
+# field on that card carries today", and handed all 37 to a business ticket: T-1182, then
+# its five children, then T-1190, then its three, then T-1468. Every one of those hand-offs
+# was forced by the last named ticket closing, and not one of them read a card.
+#
+# It is no longer true that no field carries them. The business layer is built and converged
+# (T-1310, T-1440..T-1442), the one-occupation field became dated plural roles with a
+# `covers_scene_date` flag and a written withdrawal (T-0837, T-0991), and the candidate-fact
+# table is committed (T-1232). tools/spend_trade_premises.py reads all 37 against those
+# fields and gives each one of SIX outcomes, 36 of them terminal. Its rules are folded in
+# here rather than restated, for the same reason `wrote_by_spend` imports the arrival pass's
+# table: the pass that read the card is the pass that says what the card answered with, and
+# a rule renamed there cannot drift out of the register that vouches for it.
+from spend_trade_premises import (BOUNDED as TRADE_BOUNDED,  # noqa: E402
+                                  CARRIED as TRADE_CARRIED,
+                                  HANDED as TRADE_HANDED,
+                                  LATER as TRADE_LATER,
+                                  PROFILE as TRADE_PROFILE,
+                                  RULES as TRADE_RULES,
+                                  UNREACHED as TRADE_UNREACHED)
+
+RULES.update(TRADE_RULES)
+
+
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -728,7 +734,10 @@ WRITTEN = "the_enrichment_is_written_onto_the_card_it_names"
 CARRIED = "the_enrichment_dates_an_appearance_the_card_already_carries"
 DEPARTURE = "the_enrichment_names_a_departure_from_chicago_no_field_carries"
 KIN = "the_enrichment_names_kin_no_field_carries"
-TRADE = "the_enrichment_names_a_trade_or_premises_no_field_carries"
+# TRADE IS A ROUTING MARKER AND NO LONGER A RULE. The rule a trade enrichment falls
+# under is decided by tools/spend_trade_premises.py, which reads the card; this
+# constant only says which of the 96 enrichments go to it (T-1469).
+TRADE = "routed_to_the_trade_and_premises_spend"
 CIVIC = "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"
 LAND = "the_enrichment_names_a_landholding_no_field_carries"
 LATER = "the_later_volume_enriches_a_biography_and_names_no_1835_field"
@@ -884,6 +893,12 @@ def rule_residents(unit: dict, finding: dict | None, preamble: str) -> tuple[str
             "adjudicated. An enrichment may not be routed by default: add it to "
             "ENRICHMENT_ROUTE with the field its own summary names.")
     rule, field = route
+    if rule == TRADE:
+        # THE OUTCOME AND THE NOTE ARE THE READING PASS'S TO GIVE, not this one's. T-1469
+        # read each of these 37 against the card it names; this register carries what it
+        # found, and its note prints the finding beside the field that answers it.
+        from spend_trade_premises import carrier_sentence, rule_for
+        return (rule_for(key), carrier_sentence(key))
     return (rule,
             f"The pass on {unit['source_record_id']} returned: “{summary}” "
             f"Sources as recorded: {clip(sources, 180)}. T-1301 reads that as {field}.")
@@ -972,11 +987,32 @@ def rule_newspapers(unit: dict, printed: str | None,
                 f"{clip(', '.join(entity_names(row)) or line, 200)}")
     business = row.get("business") or {}
     if business:
-        return ("the_notice_names_a_firm",
-                f"{where}: the notice of {printed} carries the firm "
-                f"“{clip(business.get('name'), 80) or 'unnamed in the block'}” "
-                f"(trade as read: {clip(business.get('trade'), 60) or 'none'}; street as read: "
-                f"{clip(business.get('street'), 60) or 'none'}).")
+        # T-1508. This register ruled these until the ledger learned to reach the
+        # AUTHORED BUSINESS LAYER as a target surface, matching a block on its own
+        # `claim_ids`. Every business unit over the committed corpora is spent there
+        # now, so the rule here fired zero times and was removed rather than left
+        # standing as judgement it never makes. It refuses instead of falling through:
+        # the branches below read a notice as a person or a family column, and a firm
+        # answered by one of those is a wrong ruling arriving quietly.
+        # A PROBE ASKS A QUESTION AND HAS TO GET AN ANSWER. `is_dated_press_appearance`
+        # runs every unit in the corpus past this function to ask one thing — is this a
+        # named person on a dated day? — and tools/spend_press_bounds.py asks it of the
+        # WHOLE newspaper corpus, firm notices included. The answer for a firm is no.
+        # Raising at a caller that is only asking stops a build that was right to ask,
+        # which is what happened on the first cut of this change: the gate went red on
+        # `chicago_american_1835_06_08 c006` — a real Goss & Cobb notice — from a probe,
+        # not from a ruling. The refusal below is for the RULING path alone, and the
+        # early return above in press_appearance_rule is the same distinction already
+        # drawn once in this file.
+        if (cache or {}).get("press_probe"):
+            return (None, f"{where}: a notice carrying a firm is not a dated press "
+                          "appearance; it is the ledger's to spend on the business layer")
+        raise SystemExit(
+            f"{where}: the notice of {printed} carries the firm "
+            f"“{clip(business.get('name'), 80) or 'unnamed in the block'}”, and since "
+            "T-1508 a business unit is the ledger's to SPEND on the business layer, not "
+            "this register's to rule. Run tools/research_spend_ledger.py --build; if it "
+            "still arrives here, no business record claims it, which is T-1468's.")
     if kind == "person":
         if FAMILY_COLUMN.match(str(row.get("normalized") or "")):
             return ("the_family_column_names_kin",
@@ -1274,9 +1310,29 @@ def self_test() -> int:
          {**paper, "record": {**paper["record"], "letter_list_only": True}},
          "the_issue_is_printed_after_the_scene_date",
          fn=lambda u: rule_newspapers(u, "1835-08-05"))
-    held("a notice carrying a firm",
-         {**paper, "record": {**paper["record"], "business": {"name": "Goss & Cobb"}}},
-         "the_notice_names_a_firm", fn=lambda u: rule_newspapers(u, "1835-06-10"))
+    firm_unit = {**paper, "record": {**paper["record"],
+                                     "business": {"name": "Goss & Cobb"}}}
+    try:
+        rule_newspapers(firm_unit, "1835-06-10")
+        failures.append("a notice carrying a firm: was ruled rather than refused")
+        print("  FAIL: a notice carrying a firm")
+    except SystemExit:
+        print("  ok:   a notice carrying a firm stops the build (T-1508)")
+    # AND THE PROBE GETS AN ANSWER RATHER THAN THE REFUSAL. tools/spend_press_bounds.py
+    # runs the WHOLE newspaper corpus past is_dated_press_appearance, firm notices
+    # included, to ask one question; raising at a caller that is only asking took the
+    # gate red on the real Goss & Cobb notice (chicago_american_1835_06_08 c006) on the
+    # first cut of T-1508. Both halves are held here because either alone is a bug.
+    try:
+        if is_dated_press_appearance(firm_unit, "1835-06-10"):
+            failures.append("a firm notice probes as a dated press appearance")
+            print("  FAIL: a firm notice probes as a dated press appearance")
+        else:
+            print("  ok:   a firm notice answers the probe with no, and does not raise at it")
+    except SystemExit:
+        failures.append("the probe on a firm notice raised instead of answering — "
+                        "spend_press_bounds asks this of every unit and cannot be refused")
+        print("  FAIL: the probe on a firm notice raised instead of answering")
     held("the married column",
          {**paper, "record": {**paper["record"], "kind": "person",
                               "normalized": "MARRIED, In this town, on the 12th inst."}},
@@ -1427,7 +1483,15 @@ def self_test() -> int:
             ("an arrival written onto the card", "02", "peck_philip", "the_enrichment_is_written_onto_the_card_it_names"),
             ("a departure", "04", "sweet_alanson", "the_enrichment_names_a_departure_from_chicago_no_field_carries"),
             ("a marriage", "08", "hobson_jesse", "the_enrichment_names_kin_no_field_carries"),
-            ("a trade", "14", "sabine_wm", "the_enrichment_names_a_trade_or_premises_no_field_carries"),
+            # T-1469: one probe per outcome the trade pass can reach, because the rule a
+            # trade enrichment falls under is now a reading of the card rather than a
+            # constant, and a router that collapsed them all to one would look fine here.
+            ("a trade the card carries", "02", "couch_ira", TRADE_CARRIED),
+            ("a trade bounded outside the window", "04", "mason_matthias", TRADE_BOUNDED),
+            ("a trade carried as a profile fact", "06", "mitchell_henry", TRADE_PROFILE),
+            ("a trade printed for a later year", "14", "sabine_wm", TRADE_LATER),
+            ("a pre-scene engagement", "04", "handy_major", TRADE_UNREACHED),
+            ("a reading the card contradicts", "02", "pearsons_hiram", TRADE_HANDED),
             ("a county office", "04", "steele_ashbel", "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"),
             ("a landholding", "05", "wright_john_s", "the_enrichment_names_a_landholding_no_field_carries"),
             ("a later volume", "15", "doolittle_ehjah", "the_later_volume_enriches_a_biography_and_names_no_1835_field")):
