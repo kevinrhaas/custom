@@ -1,7 +1,7 @@
 ---
 id: T-1292
 title: Move the town census off the loader into an Evidence → City summary topic
-state: open
+state: claimed
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: steward 9/21/2026, 11:24:14 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
