@@ -93,7 +93,9 @@
     "note": "'Russel E. Heacock, who had come in 1827' - the first of the six lawyers Andreas counts, and a justice of the peace for Cook County who administered the oaths at the incorporation meeting of 5 August 1833. Under date of 5 August 1835 - five weeks after the scene date - Andreas finds him 'advertised as attorney, which is perhaps an indication that he did not seek re-election as a Justice'. He was licensed to keep a tavern at Heacock's Point on the South Branch in April 1831 and cultivated land there, and Judge Goodrich records that 'Heacock in those first years, 1827 to 1835, made more money as a carpenter than as a lawyer or justice'.",
     "derived_from": "roles",
     "roles_at_scene_date": [
-     "attorney"
+     "attorney",
+     "justice_of_the_peace",
+     "land_agent"
     ]
    },
    "workplaces": [
@@ -529,7 +531,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -537,7 +539,7 @@
      "claim": "person_russell_e_heacock",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run. SYNONYM-FOLDED (T-1254): the same source prints this role as attorney at law, counsellor at law as well, and one source asserting one role over one bound is one row.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299). SYNONYM-FOLDED (T-1254): the same source prints this role as attorney at law, counsellor at law as well, and one source asserting one role over one bound is one row.",
      "premises": "own_premises"
     },
     {
@@ -549,7 +551,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -557,7 +559,7 @@
      "claim": "person_russell_e_heacock",
      "place": "not_stated",
      "employer_or_body": "cook_county",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "no_fixed_premises"
     },
     {
@@ -569,7 +571,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -577,7 +579,7 @@
      "claim": "person_russell_e_heacock",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     }
    ],

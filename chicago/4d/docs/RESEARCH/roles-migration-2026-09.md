@@ -42,8 +42,8 @@ role once, and the survivor names the other wording in its note.
 ## What the roles now carry
 
 - `173` people carry two or more roles, listed below.
-- `98` of their roles reach 1835-07-01, of which `67` stand in the 1835 compatibility view.
-- The `31` that reach the day WITHOUT filling the
+- `98` of their roles reach 1835-07-01, of which `97` stand in the 1835 compatibility view.
+- The `1` that reach the day WITHOUT filling the
   field are the migration's open question, and they are held open on purpose. Four
   tools derive `persons[].occupation` and only one of them was taught about roles:
   this generator, T-0693's `tools/qualify_later_trades.py`, the ladder resident
@@ -54,7 +54,7 @@ role once, and the survivor names the other wording in its note.
   lawyer no practitioner ruling held. T-1296 makes the four agree; until it does,
   the rows say plainly that the evidence reaches the day and the field does not
   carry it, which is a state that can be read and argued with.
-- `164` carry a stated `place` and `56` a stated
+- `165` carry a stated `place` and `56` a stated
   `employer_or_body`. Both default to `not_stated`, which is an assertion:
   the record does not say. Places come from the directories' own address and
   place-of-business columns and bodies from the register's `body` column and the

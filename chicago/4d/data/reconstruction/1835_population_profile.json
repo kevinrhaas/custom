@@ -428,6 +428,12 @@
        "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
+       "hh_hubbard_elijah_kent",
+       "directories.people[].back_projection",
+       "Dearborn Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_inf_cooper_north_04",
        "present_on_scene_date",
        "present",
@@ -470,6 +476,12 @@
        "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS"
       ],
       [
+       "hh_jones_william",
+       "directories.people[].back_projection",
+       "Dearborn Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_jordan_j_b",
        "directories.people[].residence_back_projection",
        "Washington Street",
@@ -480,6 +492,12 @@
        "directories.people[].residence_back_projection",
        "Lake Street",
        "A LATER HOME ADDRESS, READ BACKWARDS 9 YEARS"
+      ],
+      [
+       "hh_king_tuthill",
+       "directories.people[].back_projection",
+       "Lake Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
        "hh_kinzie_james",
@@ -527,6 +545,12 @@
        "hh_moore_henry",
        "directories.people[].back_projection",
        "Clark Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
+       "hh_mulford_james_h",
+       "directories.people[].back_projection",
+       "Dearborn Street",
        "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
@@ -2102,6 +2126,12 @@
        "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
       ],
       [
+       "hh_sherman_silas_w",
+       "directories.people[].back_projection",
+       "Clark Street",
+       "A LATER ADDRESS, READ BACKWARDS 4 YEARS"
+      ],
+      [
        "hh_smith_george",
        "directories.people[].back_projection",
        "North Water Street",
@@ -2125,7 +2155,7 @@
    ],
    "notes": [
     "THE TABLE ABOVE IS THE STRICTEST READING AND IT IS NOT THE POPULATION (T-1386). 820 of these households stand `uncertain` on the card because no record follows the person to 1 July 1835 — unadjudicated, never disputed. Every one of them has attested or inferred evidence of living in this town and none has evidence of being elsewhere that day, so all 833 of their people are ruled into the town, each at the tier its own readings reach. Exactly 2 cards are out on evidence of absence. The ruling is data/reconstruction/1835_presence_rulings.json; the cards keep the inferred `uncertain` the research wrote.",
-    "No PERSON carries the `reconstructed` grade (980) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 297 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+    "No PERSON carries the `reconstructed` grade (980) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 302 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
    ]
   },
   {
@@ -2208,8 +2238,8 @@
        "person",
        2265,
        "100.0%",
-       254,
-       73,
+       253,
+       74,
        1938,
        0,
        0
@@ -3124,7 +3154,7 @@
      "rows": [
       [
        "army_posting",
-       5,
+       6,
        "ordered here by the Army"
       ],
       [
@@ -3139,7 +3169,7 @@
       ],
       [
        "public_office",
-       7,
+       8,
        "a county, town or court office"
       ],
       [
@@ -3149,7 +3179,7 @@
       ],
       [
        "trade_or_forwarding",
-       9,
+       10,
        "the fur trade, a store, forwarding and commission"
       ],
       [
@@ -3184,17 +3214,17 @@
       ],
       [
        "land_purchase",
-       5,
+       6,
        "to buy land at the sales"
       ],
       [
        "season_not_apportioned",
-       1248,
+       1239,
        "the arrival season's draws, with no source apportioning the town between them"
       ],
       [
        "a_store_or_provision_trade",
-       23,
+       26,
        "to keep a store or provision house"
       ],
       [
@@ -3204,12 +3234,12 @@
       ],
       [
        "a_mechanics_trade",
-       34,
+       35,
        "a mechanic's trade the town had few of"
       ],
       [
        "a_professional_practice",
-       12,
+       13,
        "a professional practice in a new county seat"
       ],
       [
@@ -3535,6 +3565,12 @@
        "reconstructed"
       ],
       [
+       "The Taylor household — a name the town's own records carry",
+       "a_mechanics_trade",
+       "A mechanic's trade in a town that had few of it",
+       "reconstructed"
+      ],
+      [
        "Evidence-only household — Dr. Josiah C. Goodhue",
        "a_professional_practice",
        "A professional practice in a new county seat",
@@ -3566,6 +3602,12 @@
       ],
       [
        "The Curtiss household — a documented attorney, unplaced in the town",
+       "a_professional_practice",
+       "A professional practice in a new county seat",
+       "reconstructed"
+      ],
+      [
+       "The Curtiss household — a name the town's own records carry",
        "a_professional_practice",
        "A professional practice in a new county seat",
        "reconstructed"
@@ -3679,13 +3721,31 @@
        "reconstructed"
       ],
       [
+       "The Hale household — a name the town's own records carry",
+       "a_store_or_provision_trade",
+       "A store for the traffic of a town filling up",
+       "reconstructed"
+      ],
+      [
        "The James Kinzie household",
        "a_store_or_provision_trade",
        "A store for the traffic of a town filling up",
        "reconstructed"
       ],
       [
+       "The Jones household — a name the town's own records carry",
+       "a_store_or_provision_trade",
+       "A store for the traffic of a town filling up",
+       "reconstructed"
+      ],
+      [
        "The King household — a documented hardware merchant, unplaced in the town",
+       "a_store_or_provision_trade",
+       "A store for the traffic of a town filling up",
+       "reconstructed"
+      ],
+      [
+       "The King household — a name the town's own records carry",
        "a_store_or_provision_trade",
        "A store for the traffic of a town filling up",
        "reconstructed"
@@ -3758,6 +3818,12 @@
       ],
       [
        "The Baxley household — a documented army officer, unplaced in the town",
+       "army_posting",
+       "A posting to Fort Dearborn or the Indian Agency",
+       "reconstructed"
+      ],
+      [
+       "The Jamison household — a name the town's own records carry",
        "army_posting",
        "A posting to Fort Dearborn or the Indian Agency",
        "reconstructed"
@@ -3913,6 +3979,12 @@
        "reconstructed"
       ],
       [
+       "The Hubbard household — a name the town's own records carry",
+       "land_purchase",
+       "The land sales and the canal expectation",
+       "reconstructed"
+      ],
+      [
        "The Hugunin household — a documented insurance agent, unplaced in the town",
        "land_purchase",
        "The land sales and the canal expectation",
@@ -3974,6 +4046,12 @@
       ],
       [
        "The Salisbury household — a documented justice of the peace, unplaced in the town",
+       "public_office",
+       "A county office in a newly organised county",
+       "reconstructed"
+      ],
+      [
+       "The Sherman household — a name the town's own records carry",
        "public_office",
        "A county office in a newly organised county",
        "reconstructed"
@@ -6355,12 +6433,6 @@
        "reconstructed"
       ],
       [
-       "The Curtiss household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The trading post, the fort and the country trade — the town before the boom",
-       "reconstructed"
-      ],
-      [
        "The Cusick household — a name the town's own records carry",
        "season_not_apportioned",
        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
@@ -7393,12 +7465,6 @@
        "reconstructed"
       ],
       [
-       "The Hale household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
-       "reconstructed"
-      ],
-      [
        "The Hall household — a name the town's own records carry",
        "season_not_apportioned",
        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
@@ -7791,18 +7857,6 @@
       [
        "The Hubbard household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
-       "reconstructed"
-      ],
-      [
-       "The Hubbard household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
-       "reconstructed"
-      ],
-      [
-       "The Hubbard household — a name the town's own records carry",
-       "season_not_apportioned",
        "The trading post, the fort and the country trade — the town before the boom",
        "reconstructed"
       ],
@@ -7969,12 +8023,6 @@
        "reconstructed"
       ],
       [
-       "The Jamison household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
-       "reconstructed"
-      ],
-      [
        "The Janea household — a name from the post office's letter lists",
        "season_not_apportioned",
        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
@@ -8086,12 +8134,6 @@
        "The Jones household — a name the town's own records carry",
        "season_not_apportioned",
        "The trading post, the fort and the country trade — the town before the boom",
-       "reconstructed"
-      ],
-      [
-       "The Jones household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
        "reconstructed"
       ],
       [
@@ -8260,12 +8302,6 @@
        "The King household — a name the town's own records carry",
        "season_not_apportioned",
        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
-       "reconstructed"
-      ],
-      [
-       "The King household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",
        "reconstructed"
       ],
       [
@@ -10227,12 +10263,6 @@
       [
        "The Sherman household — a name the town's own records carry",
        "season_not_apportioned",
-       "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
-       "reconstructed"
-      ],
-      [
-       "The Sherman household — a name the town's own records carry",
-       "season_not_apportioned",
        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
@@ -10714,12 +10744,6 @@
        "The Taylor household — a name the town's own records carry",
        "season_not_apportioned",
        "The trading post, the fort and the country trade — the town before the boom",
-       "reconstructed"
-      ],
-      [
-       "The Taylor household — a name the town's own records carry",
-       "season_not_apportioned",
-       "The 1834 season: the harbour works, the opening of the bar and the trade that followed them",
        "reconstructed"
       ],
       [
@@ -11569,6 +11593,12 @@
        "reconstructed"
       ],
       [
+       "The Hubbard household — a name the town's own records carry",
+       "trade_or_forwarding",
+       "The carrying trade at the head of the lake",
+       "reconstructed"
+      ],
+      [
        "The Jean Baptiste Beaubien household",
        "trade_or_forwarding",
        "The fur trade",
@@ -11714,7 +11744,7 @@
       ],
       [
        "inferred",
-       8
+       18
       ],
       [
        "reconstructed",
@@ -11752,20 +11782,20 @@
        13
       ],
       [
+       "attorney",
+       12
+      ],
+      [
        "milliner",
        12
       ],
       [
-       "attorney",
-       11
+       "merchant",
+       8
       ],
       [
        "tavern_keeper",
        8
-      ],
-      [
-       "merchant",
-       7
       ],
       [
        "carpenter",
@@ -11776,7 +11806,15 @@
        5
       ],
       [
+       "army_officer",
+       4
+      ],
+      [
        "blacksmith",
+       4
+      ],
+      [
+       "forwarding_and_commission",
        4
       ],
       [
@@ -11784,11 +11822,7 @@
        4
       ],
       [
-       "army_officer",
-       3
-      ],
-      [
-       "forwarding_and_commission",
+       "clothier",
        3
       ],
       [
@@ -11796,7 +11830,15 @@
        3
       ],
       [
+       "hardware_merchant",
+       3
+      ],
+      [
        "postmaster",
+       3
+      ],
+      [
+       "shoemaker",
        3
       ],
       [
@@ -11820,10 +11862,6 @@
        2
       ],
       [
-       "clothier",
-       2
-      ],
-      [
        "druggist",
        2
       ],
@@ -11832,7 +11870,7 @@
        2
       ],
       [
-       "hardware_merchant",
+       "insurance_agent",
        2
       ],
       [
@@ -11856,7 +11894,7 @@
        2
       ],
       [
-       "shoemaker",
+       "sheriff",
        2
       ],
       [
@@ -11912,11 +11950,11 @@
        1
       ],
       [
-       "insurance_agent",
+       "interpreter",
        1
       ],
       [
-       "interpreter",
+       "jeweller",
        1
       ],
       [
@@ -11953,10 +11991,6 @@
       ],
       [
        "saddler",
-       1
-      ],
-      [
-       "sheriff",
        1
       ],
       [

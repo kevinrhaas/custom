@@ -53,14 +53,14 @@
   "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": "The trading post, the fort and the country trade — the town before the boom",
+  "value": "A professional practice in a new county seat",
   "confidence": "reconstructed",
   "tier": "reconstructed",
-  "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as attorney, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
   "basis": {
    "kind": "rule",
-   "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1818) is the only thing about it this value rests on."
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_practice_in_a_new_county_seat — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
   },
   "replaceable_by": {
    "kind": "person",
@@ -104,11 +104,23 @@
    "civic_mint": true,
    "ladder_rule": "G1b",
    "occupation": {
-    "value": "none_recorded",
-    "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "value": "attorney",
+    "confidence": "inferred",
+    "note": "A TRADE READ FOR 1835-07-01 OUT OF THIS CARD'S OWN ROLES. `attorney` is the strongest claiming role in `roles[]` whose bound contains the scene date, and the grade above is that row's: `inferred` where the evidence is a trade printed against this name in the 1833-1835 press, because the paper printed the trade and the resident programme's identity rule tied the printing to this card. The field used to read `none_recorded` while the row beneath it said the evidence reached the day — the four tools that derive this field disagreed, and T-1299 is where they were made to agree (written by tools/derive_resident_roles.py).",
     "derived_from": "roles",
-    "roles_at_scene_date": []
+    "roles_at_scene_date": [
+     "attorney"
+    ],
+    "sources": [
+     "chicago_democrat_1833_1835"
+    ],
+    "promoted_from_roles": {
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ticket": "T-1299",
+     "note": "THE CITATIONS ARE THE ROWS', NOT THE BLOCK'S OWN. This field was promoted out of `roles[]` by tools/derive_resident_roles.py and holds nothing those rows do not already say; it is recorded here so the block cannot be mistaken for a second, independently sourced assertion of the same trade, and so that tools/derive_resident_roles.py reads its own write as a view rather than as evidence on the next run."
+    }
    },
    "workplaces": [
     {
@@ -199,7 +211,7 @@
      "precision": "day",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -207,7 +219,7 @@
      "claim": "person_l_curtiss",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     },
     {
