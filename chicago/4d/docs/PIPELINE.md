@@ -199,6 +199,12 @@ the queue has stopped and nothing is pushing to `dev` — labels such a PR `stuc
 comments once per stuck head with the recipe below. It takes the label back off when
 something moves the PR.
 
+A sweep that cannot SEE the queue fails the job on `dev` and on a dispatch, and only
+annotates on a steward-branch push — because a run started by a push creates a check run on
+that head sha, which there is an open PR's head, and a failing non-required check makes that
+PR `unstable`, which `merge-ready.sh` will never merge. A reporter built to stop pull requests
+rotting must not be the thing that rots one.
+
 It reports and does nothing else. In particular it never touches:
 
 * **a `hold` PR.** That is the owner's park switch, and from outside a held PR is `dirty`

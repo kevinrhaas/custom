@@ -3,7 +3,7 @@
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
   "measured": "2026-09-21",
   "gate_verdict": "CHECK FAIL",
-  "declared_steps": 586,
+  "declared_steps": 593,
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
@@ -2179,13 +2179,61 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build 9ab808c6b · Sep 20, 2026, 3:53 PM CT"
+        "- ../../site/chicago/4d/walk/index.html build 6d55f08e3 · Sep 20, 2026, 8:45 PM CT"
       ]
     },
-    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-dev-preview.mjs": {
+    "/tmp/claude-0/wt1588/.github/chicago-4d-dev-preview.mjs": {
       "wrote": []
     },
-    "/home/runner/work/polecat-platform/polecat-platform/custom/.github/chicago-4d-url-check.mjs": {
+    "/tmp/claude-0/wt1588/.github/chicago-4d-url-check.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-051u7Y/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-1u8ndH/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-5in905/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-C2rtxN/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-CW22my/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-CmSBFn/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-KsRu3n/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-LtZ7Su/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-MLZokX/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-Qgumlf/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-Xm1xT1/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-inqr67/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-luTk8M/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-oyE3q7/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-xaoiDB/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-zx68EU/gh.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -2695,6 +2743,9 @@
     "tools/measure_rights_derivation.py": {
       "wrote": []
     },
+    "tools/measure_roof_id_migration.py": {
+      "wrote": []
+    },
     "tools/measure_sauganash_plate.py": {
       "wrote": []
     },
@@ -2774,6 +2825,9 @@
       "wrote": []
     },
     "tools/migrate_attribute_tiers.py": {
+      "wrote": []
+    },
+    "tools/migrate_roof_ids.py": {
       "wrote": []
     },
     "tools/mint_civic_residents.py": {
@@ -3190,7 +3244,7 @@
         "site/chicago/4d/walk/js/changelog.js"
       ],
       "wrote_by": [
-        "/home/runner/work/polecat-platform/polecat-platform/custom/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
+        "/tmp/claude-0/wt1588/chicago/4d/tools/stamp-changelog.mjs --write-mirrors"
       ]
     },
     "tools/substitute_reconstruction.py": {
@@ -3272,7 +3326,12 @@
       "wrote": []
     },
     "tools/ticket.mjs": {
-      "wrote": []
+      "wrote": [
+        "site/chicago/4d/tickets.json"
+      ],
+      "wrote_by": [
+        "/tmp/claude-0/wt1588/chicago/4d/tools/ticket.mjs board"
+      ]
     },
     "tools/tiebreak.py": {
       "wrote": []
