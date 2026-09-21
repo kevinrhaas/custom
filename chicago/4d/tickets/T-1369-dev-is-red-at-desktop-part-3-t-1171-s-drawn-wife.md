@@ -1,7 +1,7 @@
 ---
 id: T-1369
 title: Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1605
 claimed_by: run 9/20/2026, 7:32:38 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T05:08:14.566Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35547828284
 ---
 
@@ -27,6 +27,17 @@ person any stage drew, the refusal is counted in the ledger and stated in L244 a
 own list of what it may not do, the whole derived layer re-derives (`check.sh` green), and
 `SMOKE_VIEWPORT=desktop SMOKE_STAGE=3` passes `nothing was drawn into an evidence-only household`.
 The label check named in the title is T-1331's and is out of scope here.
+
+**Closed, 2026-09-21, and re-measured before closing.** The fix merged on #1605 at
+03:12Z but the run that made it ended without closing the ticket, so T-1369 sat `claimed` at
+row 0 of the queue with its work already on dev — the shape AUTOMATION.md calls rotting, and
+the reason every slice-1 run since has re-opened it. Re-measured on dev at 2d4ea3d05 before
+closing, rather than taken on the merge: `reconstruct_modelled_families.py --self-test` is
+25/25 green including all four evidence-only rules; the layer on disk carries 5 evidence-only
+containers and **none** of them holds a reconstructed person; and the desktop part 3 leg the
+acceptance names was run here and its reading filed in `tools/dev-smoke-state.json`, which had
+no reading newer than 2026-09-20T21:25 — a browser-crash verdict taken *before* #1605 landed,
+which is why the assertion still read red to `smoke_budget`.
 
 **Done, 2026-09-21.** The stage was the wrong half: `division: unplaced` was admitted and nothing
 knew what an `hh_inf_` record is. A seventh refusal was added beside the letter-list one, which it

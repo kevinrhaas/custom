@@ -44,14 +44,16 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 0. BLOCKING THE QUEUE (owner, 2026-09-20). These rows are first because the loop
-# --- cannot judge its own work until they are done. FOUR assertions have been standing
+# --- cannot judge its own work until they are done. THREE assertions have been standing
 # --- red on dev for days, and because they are red, smoke_budget reports every leg that
 # --- covers them as 'already red on dev' and runs skip it — so a real regression in those
 # --- parts would look exactly like the reds already there. The gate is not measuring.
 # --- Below them: the deadlock that needed hands on four PRs in one evening, and the two
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
-T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
+# --- FOUR was the count until 2026-09-21: `nothing was drawn into an evidence-only
+# --- household` is green on today's dev — T-1369's fix landed on #1605 and the ticket
+# --- was closed against it here, after the assertion was re-measured on dev.
 T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
 
 
@@ -218,4 +220,3 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
-
