@@ -1,7 +1,7 @@
 ---
 id: T-1466
 title: The People directory's count identity is short by 162: stated 3,228 against manifest 2,269 + readmitted 182 + trades 308 + transients 307, and the smoke has been red on dev at both viewports
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1598
 claimed_by: run 9/20/2026, 7:11:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T00:32:37.342Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35546585485
 ---
 
