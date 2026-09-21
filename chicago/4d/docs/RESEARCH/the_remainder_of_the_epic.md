@@ -123,6 +123,14 @@ record carries its own `tier` and `basis` for what it read out of a post-scene p
 which is where that judgement belongs. The scene-date question is the record's, not the
 register's.
 
+The rule is gone from the CODE as well, and not silently. A rule that fires zero times
+over the committed corpora is judgement the register never makes, and this one's own
+self-test refuses to let such a rule stand. So the branch that carried it now REFUSES: a
+unit arriving here with a `business` block stops the build and says the ledger owes it a
+spend. Falling through would have been the quiet failure — the branches below read a
+notice as a person or as a family column, and a firm answered by one of those is a wrong
+ruling that nothing would have caught.
+
 What did NOT move is the other half of the same reading and is T-1509: 49 units whose
 only reach is a record's top-level `claim_ids`, which carries no tier, and 52 that reach
 no business record at all. They stand unresolved until they are refused or tiered with
