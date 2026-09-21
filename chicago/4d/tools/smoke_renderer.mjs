@@ -4812,8 +4812,19 @@ for (const [label, viewport, touch] of [
         // crossings, fences and posts do not move, and that is the point of the
         // migration — nothing on the ground changed, only what the record says
         // about the roofs it can now see.
+        // T-1494 refamilied eleven of the phase-one South parcel's anonymous roofs
+        // into the families the redeal adjudication reached for them, and three of
+        // them were TRADES that stopped being trades: two store-residences and a
+        // blacksmith's shop became cottages. A hitching-post refusal is a sentence
+        // about a trade frontage — "the trade at X is reconstructed ... a post there
+        // would be furniture standing on an invention" — so when the trade goes, the
+        // refusal does not become a post, it stops being asked: 92 refusals to 89,
+        // naming recon_1835_south_c2_007, _c2_036 and _w1_023 as they were. Walks,
+        // crossings, fences and posts do not move. None of the three was ever a street
+        // wall the fence rule refused, each stands where it stood, and a cottage on a
+        // block face carries no frontage furniture of its own.
         && frontage.census?.posts === 19 && frontage.census?.fences === 31
-        && frontage.census?.refused === 92
+        && frontage.census?.refused === 89
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
