@@ -2216,7 +2216,7 @@ Every household carries an arrival block and 95.3% of them (1327) hold a `not_la
 
 ## Where they meet the buildings
 
-181 persons resolve into a dwelling that stands in the scene, in 31 households; 1362 households have no dwelling. 371 roofs stand against a programme of 668.
+181 persons resolve into a dwelling that stands in the scene, in 31 households; 1362 households have no dwelling. 401 roofs stand against a programme of 668.
 
 ### Households by division and seating
 
@@ -2236,7 +2236,7 @@ Every household carries an arrival block and 95.3% of them (1327) hold a `not_la
 |---|---:|
 | people | 3265 |
 | dwellings | 398 |
-| roofs standing in the scene | 371 |
+| roofs standing in the scene | 401 |
 | roofs the programme targets | 668 |
 
 *1186 of 1393 households are `unplaced` — not in any division. A person without a division cannot be housed, which is why the division axis and the lodging axis fail together.*

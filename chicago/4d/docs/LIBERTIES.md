@@ -2864,35 +2864,57 @@ or surveyed building register.
 **Covers:** `recon_1835_south_a1_046.inferred_1835.documented_range`, `recon_1835_south_a1_046.inferred_1835.position`, `recon_1835_south_a1_046.inferred_1835.footprint`, `recon_1835_south_a2_047.inferred_1835.documented_range`, `recon_1835_south_a2_047.inferred_1835.position`, `recon_1835_south_a2_047.inferred_1835.footprint`, `recon_1835_south_a3_041.inferred_1835.documented_range`, `recon_1835_south_a3_041.inferred_1835.position`, `recon_1835_south_a3_041.inferred_1835.footprint`, `recon_1835_south_a3_043.inferred_1835.documented_range`, `recon_1835_south_a3_043.inferred_1835.position`, `recon_1835_south_a3_043.inferred_1835.footprint`, `recon_1835_south_a3_045.inferred_1835.documented_range`, `recon_1835_south_a3_045.inferred_1835.position`, `recon_1835_south_a3_045.inferred_1835.footprint`, `recon_1835_south_a4_042.inferred_1835.documented_range`, `recon_1835_south_a4_042.inferred_1835.position`, `recon_1835_south_a4_042.inferred_1835.footprint`, `recon_1835_south_a4_048.inferred_1835.documented_range`, `recon_1835_south_a4_048.inferred_1835.position`, `recon_1835_south_a4_048.inferred_1835.footprint`, `recon_1835_south_a5_044.inferred_1835.documented_range`, `recon_1835_south_a5_044.inferred_1835.position`, `recon_1835_south_a5_044.inferred_1835.footprint`, `recon_1835_south_d1_003.inferred_1835.documented_range`, `recon_1835_south_d1_003.inferred_1835.position`, `recon_1835_south_d1_003.inferred_1835.footprint`, `recon_1835_south_d1_010.inferred_1835.documented_range`, `recon_1835_south_d1_010.inferred_1835.position`, `recon_1835_south_d1_010.inferred_1835.footprint`, `recon_1835_south_d1_018.inferred_1835.documented_range`, `recon_1835_south_d1_018.inferred_1835.position`, `recon_1835_south_d1_018.inferred_1835.footprint`, `recon_1835_south_d5_007.inferred_1835.documented_range`, `recon_1835_south_d5_007.inferred_1835.position`, `recon_1835_south_d5_007.inferred_1835.footprint`, `recon_1835_south_d6_036.inferred_1835.documented_range`, `recon_1835_south_d6_036.inferred_1835.position`, `recon_1835_south_d6_036.inferred_1835.footprint`, `recon_1835_south_c3_015.inferred_1835.documented_range`, `recon_1835_south_c3_015.inferred_1835.position`, `recon_1835_south_c3_015.inferred_1835.footprint`, `recon_1835_south_a2_037.inferred_1835.documented_range`, `recon_1835_south_a2_037.inferred_1835.position`, `recon_1835_south_a2_037.inferred_1835.footprint`, `recon_1835_south_c3_040.inferred_1835.documented_range`, `recon_1835_south_c3_040.inferred_1835.position`, `recon_1835_south_c3_040.inferred_1835.footprint`, `recon_1835_south_d1_021.inferred_1835.documented_range`, `recon_1835_south_d1_021.inferred_1835.position`, `recon_1835_south_d1_021.inferred_1835.footprint`, `recon_1835_south_d1_033.inferred_1835.documented_range`, `recon_1835_south_d1_033.inferred_1835.position`, `recon_1835_south_d1_033.inferred_1835.footprint`, `recon_1835_south_d2_005.inferred_1835.documented_range`, `recon_1835_south_d2_005.inferred_1835.position`, `recon_1835_south_d2_005.inferred_1835.footprint`, `recon_1835_south_d2_024.inferred_1835.documented_range`, `recon_1835_south_d2_024.inferred_1835.position`, `recon_1835_south_d2_024.inferred_1835.footprint`, `recon_1835_south_d3_001.inferred_1835.documented_range`, `recon_1835_south_d3_001.inferred_1835.position`, `recon_1835_south_d3_001.inferred_1835.footprint`, `recon_1835_south_d3_008.inferred_1835.documented_range`, `recon_1835_south_d3_008.inferred_1835.position`, `recon_1835_south_d3_008.inferred_1835.footprint`, `recon_1835_south_d3_013.inferred_1835.documented_range`, `recon_1835_south_d3_013.inferred_1835.position`, `recon_1835_south_d3_013.inferred_1835.footprint`, `recon_1835_south_d3_017.inferred_1835.documented_range`, `recon_1835_south_d3_017.inferred_1835.position`, `recon_1835_south_d3_017.inferred_1835.footprint`, `recon_1835_south_d3_022.inferred_1835.documented_range`, `recon_1835_south_d3_022.inferred_1835.position`, `recon_1835_south_d3_022.inferred_1835.footprint`, `recon_1835_south_d3_027.inferred_1835.documented_range`, `recon_1835_south_d3_027.inferred_1835.position`, `recon_1835_south_d3_027.inferred_1835.footprint`, `recon_1835_south_d4_002.inferred_1835.documented_range`, `recon_1835_south_d4_002.inferred_1835.position`, `recon_1835_south_d4_002.inferred_1835.footprint`, `recon_1835_south_d4_006.inferred_1835.documented_range`, `recon_1835_south_d4_006.inferred_1835.position`, `recon_1835_south_d4_006.inferred_1835.footprint`, `recon_1835_south_d4_009.inferred_1835.documented_range`, `recon_1835_south_d4_009.inferred_1835.position`, `recon_1835_south_d4_009.inferred_1835.footprint`, `recon_1835_south_d4_014.inferred_1835.documented_range`, `recon_1835_south_d4_014.inferred_1835.position`, `recon_1835_south_d4_014.inferred_1835.footprint`, `recon_1835_south_d4_019.inferred_1835.documented_range`, `recon_1835_south_d4_019.inferred_1835.position`, `recon_1835_south_d4_019.inferred_1835.footprint`, `recon_1835_south_d4_025.inferred_1835.documented_range`, `recon_1835_south_d4_025.inferred_1835.position`, `recon_1835_south_d4_025.inferred_1835.footprint`, `recon_1835_south_d4_030.inferred_1835.documented_range`, `recon_1835_south_d4_030.inferred_1835.position`, `recon_1835_south_d4_030.inferred_1835.footprint`, `recon_1835_south_d5_004.inferred_1835.documented_range`, `recon_1835_south_d5_004.inferred_1835.position`, `recon_1835_south_d5_004.inferred_1835.footprint`, `recon_1835_south_d5_011.inferred_1835.documented_range`, `recon_1835_south_d5_011.inferred_1835.position`, `recon_1835_south_d5_011.inferred_1835.footprint`, `recon_1835_south_d5_016.inferred_1835.documented_range`, `recon_1835_south_d5_016.inferred_1835.position`, `recon_1835_south_d5_016.inferred_1835.footprint`, `recon_1835_south_d5_028.inferred_1835.documented_range`, `recon_1835_south_d5_028.inferred_1835.position`, `recon_1835_south_d5_028.inferred_1835.footprint`, `recon_1835_south_d5_034.inferred_1835.documented_range`, `recon_1835_south_d5_034.inferred_1835.position`, `recon_1835_south_d5_034.inferred_1835.footprint`, `recon_1835_south_d6_012.inferred_1835.documented_range`, `recon_1835_south_d6_012.inferred_1835.position`, `recon_1835_south_d6_012.inferred_1835.footprint`, `recon_1835_south_d6_020.inferred_1835.documented_range`, `recon_1835_south_d6_020.inferred_1835.position`, `recon_1835_south_d6_020.inferred_1835.footprint`, `recon_1835_south_d6_031.inferred_1835.documented_range`, `recon_1835_south_d6_031.inferred_1835.position`, `recon_1835_south_d6_031.inferred_1835.footprint`, `recon_1835_south_d7_035.inferred_1835.documented_range`, `recon_1835_south_d7_035.inferred_1835.position`, `recon_1835_south_d7_035.inferred_1835.footprint`, `recon_1835_south_f1_038.inferred_1835.documented_range`, `recon_1835_south_f1_038.inferred_1835.position`, `recon_1835_south_f1_038.inferred_1835.footprint`, `recon_1835_south_h2_039.inferred_1835.documented_range`, `recon_1835_south_h2_039.inferred_1835.position`, `recon_1835_south_h2_039.inferred_1835.footprint`, `recon_1835_south_d5_023.inferred_1835.documented_range`, `recon_1835_south_d5_023.inferred_1835.position`, `recon_1835_south_d5_023.inferred_1835.footprint`, `recon_1835_south_d4_026.inferred_1835.documented_range`, `recon_1835_south_d4_026.inferred_1835.position`, `recon_1835_south_d4_026.inferred_1835.footprint`, `recon_1835_south_h1_029.inferred_1835.documented_range`, `recon_1835_south_h1_029.inferred_1835.position`, `recon_1835_south_h1_029.inferred_1835.footprint`, `recon_1835_south_d1_032.inferred_1835.documented_range`, `recon_1835_south_d1_032.inferred_1835.position`, `recon_1835_south_d1_032.inferred_1835.footprint`
 **Recorded:** 2026-08-11.
 
-### L90 — Twenty West Division roofs, and thirty-five held back for want of ground
+### L90 — Fifty-five West Division roofs: twenty built on the ground there was, thirty-five released onto the ground T-1416 made
 **Decision:** instantiate the West Division approaches parcel from
-`data/reconstruction/1835_phase2_west_wolf_point_approaches.json` — but only the 20 placements
-(15 principal or functional, 5 ancillary) whose centres fall inside the modelled terrain. The
-other 35 are NOT built. Aggregate mix follows the reconstruction specification; every individual
-presence, position, footprint, finish and detail remains conjectural.
-**Why 35 are missing, which is the more interesting half.** The recipe's own
-`terrain_and_hydrology_gate` blocks any placement west of local E -300 m until the heightfield,
-collision surface, vegetation sampler, minimap and water mask share a box extended to E -700 m.
-The committed ground still stops at E -320 m. A roof beyond it would stand on nothing, sample no
-terrain, and the ground-contact gate would have no surface to test it against — so the honest
-West Division is a partial one until the ground is extended. The held slots keep their ids and
-their family allocation and instantiate unchanged the day it is.
-**What else moved, and why.** Eight of the twenty stood inside a platted street corridor, by 2.2
-to 11.7 m. That is the recipe's date rather than its judgement: it was authored before ROADMAP K7
-generated the Thompson block and lot geometry, so nothing could check a layout against a street
-until now. Each is set back to the nearest position clearing the corridor that still passes every
-other gate; the largest move is 12.5 m, inside the ±20 m working uncertainty the recipe states for
-its own coordinates, so no slot leaves its allocated block. The shifts are frozen constants in
-`tools/generate_west_infill.py`, not a search run at generation time, because a placement that
-moves when an unrelated gate changes is not reproducible.
-**Consequence:** the west bank reads as approached and worked rather than empty, while remaining
-inspectably interpretive. No numbered roof identifies an owner, address, use or observed building.
-A later named discovery substitutes for a compatible anonymous slot rather than increasing the
-665-roof programme. H2 boarding-house massing uses a flagged generic frame block pending a
-canonical archetype.
+`data/reconstruction/1835_phase2_west_wolf_point_approaches.json` — all 55 placements
+(44 principal or functional, 11 ancillary). Aggregate mix follows the reconstruction
+specification; every individual presence, position, footprint, finish and detail remains
+conjectural.
+**AMENDED BY T-1444, 2026-09-20. This entry used to be titled "Twenty West Division roofs, and
+thirty-five held back for want of ground", and the thirty-five were the more interesting half.**
+The recipe's own `terrain_and_hydrology_gate` blocked any placement west of local E -300 m until
+the modelled surfaces shared a box extended to E -700 m, and the committed ground stopped at
+E -320 m. A roof beyond it would have stood on nothing, sampled no terrain, and the
+ground-contact gate would have had no surface to test it against — so the honest West
+Division was a partial one. T-1416 carried the field to E -705 m; T-1444 retired the block
+rather than waiving it and released the 35. They instantiated on their own recipe ids and their
+own recipe families, exactly as the hold promised, and **the twenty built under the hold did not
+move**: the generator deals its sequence over the held half first, so no committed roof was
+redealt because its neighbours arrived.
+**What moved, and why.** Eight of the original twenty stood inside a platted street corridor, by
+2.2 to 11.7 m. That was the recipe's date rather than its judgement: it was authored before
+ROADMAP K7 generated the Thompson block and lot geometry, so nothing could check a layout
+against a street until then. **Five of the released thirty-five stand in one now, and four of
+those five are in corridors that only reached them because T-1443 carried Lake and Randolph west
+off their own E -320 clip** — a street arriving after a layout, which is the ordinary
+consequence of building a town outwards. Each is set back to the nearest position clearing the
+corridor that still passes every other gate; the largest move in the release is 5.5 m, against
+12.5 m in the original twenty, and every one is inside the ±20 m working uncertainty the
+recipe states for its own coordinates, so no slot leaves its allocated block. The shifts are
+frozen constants in `tools/generate_west_infill.py`, not a search run at generation time,
+because a placement that moves when an unrelated gate changes is not reproducible.
+**One roof was turned, and only turned.** `recon_1835_west_033` is a 20 × 32 ft D5 dwelling,
+and 32/20 is past the ratio at which `frame_dwelling_params` refuses to build an eaves-front
+house — a front narrower than its own range would produce the gable-front house of a later
+decade. The rectangle the recipe gives stands exactly where it gives it, on the same ground, with
+its long side read as the facade. Nothing about the building moved; which of its faces is called
+the front did.
+**What the release did NOT settle.** The recipe's fourth terrain rule deferred a reading of the
+two conjectural west-prairie swales to "after the west terrain extension". T-1444 took it, and it
+does not say what the rule assumed — see T-1460. Both invented alignments now begin in open
+modelled prairie at E -320, where the field's west wall used to be, and `west_prairie_swale_a`'s
+30 m corridor already holds seven of the twenty roofs seated under the hold, plus one released
+here. No roof stands in a hole (the cut is about 0.008 m per metre and every footprint passes the
+0.35 m relief contract with room), so this is a provenance question and not a geometry defect.
+The generator freezes the eight it measured and refuses a ninth while the owner rules.
+**Consequence:** the west bank reads as approached and worked out to the prairie edge rather than
+stopping at an invisible line, while remaining inspectably interpretive. No numbered roof
+identifies an owner, address, use or observed building. A later named discovery substitutes for a
+compatible anonymous slot rather than increasing the 665-roof programme. H2 boarding-house massing
+uses a flagged generic frame block pending a canonical archetype.
 **How to resolve:** parcel-specific tax, deed, assessment or surveyed building evidence for any
-individual roof; extending the terrain box west releases the other 35 without re-authoring them.
-**Covers:** `recon_1835_west_001.inferred_1835.documented_range`, `recon_1835_west_001.inferred_1835.position`, `recon_1835_west_001.inferred_1835.footprint`, `recon_1835_west_002.inferred_1835.documented_range`, `recon_1835_west_002.inferred_1835.position`, `recon_1835_west_002.inferred_1835.footprint`, `recon_1835_west_003.inferred_1835.documented_range`, `recon_1835_west_003.inferred_1835.position`, `recon_1835_west_003.inferred_1835.footprint`, `recon_1835_west_005.inferred_1835.documented_range`, `recon_1835_west_005.inferred_1835.position`, `recon_1835_west_005.inferred_1835.footprint`, `recon_1835_west_006.inferred_1835.documented_range`, `recon_1835_west_006.inferred_1835.position`, `recon_1835_west_006.inferred_1835.footprint`, `recon_1835_west_007.inferred_1835.documented_range`, `recon_1835_west_007.inferred_1835.position`, `recon_1835_west_007.inferred_1835.footprint`, `recon_1835_west_008.inferred_1835.documented_range`, `recon_1835_west_008.inferred_1835.position`, `recon_1835_west_008.inferred_1835.footprint`, `recon_1835_west_009.inferred_1835.documented_range`, `recon_1835_west_009.inferred_1835.position`, `recon_1835_west_009.inferred_1835.footprint`, `recon_1835_west_010.inferred_1835.documented_range`, `recon_1835_west_010.inferred_1835.position`, `recon_1835_west_010.inferred_1835.footprint`, `recon_1835_west_011.inferred_1835.documented_range`, `recon_1835_west_011.inferred_1835.position`, `recon_1835_west_011.inferred_1835.footprint`, `recon_1835_west_012.inferred_1835.documented_range`, `recon_1835_west_012.inferred_1835.position`, `recon_1835_west_012.inferred_1835.footprint`, `recon_1835_west_014.inferred_1835.documented_range`, `recon_1835_west_014.inferred_1835.position`, `recon_1835_west_014.inferred_1835.footprint`, `recon_1835_west_015.inferred_1835.documented_range`, `recon_1835_west_015.inferred_1835.position`, `recon_1835_west_015.inferred_1835.footprint`, `recon_1835_west_016.inferred_1835.documented_range`, `recon_1835_west_016.inferred_1835.position`, `recon_1835_west_016.inferred_1835.footprint`, `recon_1835_west_018.inferred_1835.documented_range`, `recon_1835_west_018.inferred_1835.position`, `recon_1835_west_018.inferred_1835.footprint`, `recon_1835_west_019.inferred_1835.documented_range`, `recon_1835_west_019.inferred_1835.position`, `recon_1835_west_019.inferred_1835.footprint`, `recon_1835_west_021.inferred_1835.documented_range`, `recon_1835_west_021.inferred_1835.position`, `recon_1835_west_021.inferred_1835.footprint`, `recon_1835_west_022.inferred_1835.documented_range`, `recon_1835_west_022.inferred_1835.position`, `recon_1835_west_022.inferred_1835.footprint`, `recon_1835_west_023.inferred_1835.documented_range`, `recon_1835_west_023.inferred_1835.position`, `recon_1835_west_023.inferred_1835.footprint`, `recon_1835_west_024.inferred_1835.documented_range`, `recon_1835_west_024.inferred_1835.position`, `recon_1835_west_024.inferred_1835.footprint`
+individual roof.
+**Covers:** `recon_1835_west_001.inferred_1835.documented_range`, `recon_1835_west_001.inferred_1835.position`, `recon_1835_west_001.inferred_1835.footprint`, `recon_1835_west_002.inferred_1835.documented_range`, `recon_1835_west_002.inferred_1835.position`, `recon_1835_west_002.inferred_1835.footprint`, `recon_1835_west_003.inferred_1835.documented_range`, `recon_1835_west_003.inferred_1835.position`, `recon_1835_west_003.inferred_1835.footprint`, `recon_1835_west_004.inferred_1835.documented_range`, `recon_1835_west_004.inferred_1835.position`, `recon_1835_west_004.inferred_1835.footprint`, `recon_1835_west_005.inferred_1835.documented_range`, `recon_1835_west_005.inferred_1835.position`, `recon_1835_west_005.inferred_1835.footprint`, `recon_1835_west_006.inferred_1835.documented_range`, `recon_1835_west_006.inferred_1835.position`, `recon_1835_west_006.inferred_1835.footprint`, `recon_1835_west_007.inferred_1835.documented_range`, `recon_1835_west_007.inferred_1835.position`, `recon_1835_west_007.inferred_1835.footprint`, `recon_1835_west_008.inferred_1835.documented_range`, `recon_1835_west_008.inferred_1835.position`, `recon_1835_west_008.inferred_1835.footprint`, `recon_1835_west_009.inferred_1835.documented_range`, `recon_1835_west_009.inferred_1835.position`, `recon_1835_west_009.inferred_1835.footprint`, `recon_1835_west_010.inferred_1835.documented_range`, `recon_1835_west_010.inferred_1835.position`, `recon_1835_west_010.inferred_1835.footprint`, `recon_1835_west_011.inferred_1835.documented_range`, `recon_1835_west_011.inferred_1835.position`, `recon_1835_west_011.inferred_1835.footprint`, `recon_1835_west_012.inferred_1835.documented_range`, `recon_1835_west_012.inferred_1835.position`, `recon_1835_west_012.inferred_1835.footprint`, `recon_1835_west_013.inferred_1835.documented_range`, `recon_1835_west_013.inferred_1835.position`, `recon_1835_west_013.inferred_1835.footprint`, `recon_1835_west_014.inferred_1835.documented_range`, `recon_1835_west_014.inferred_1835.position`, `recon_1835_west_014.inferred_1835.footprint`, `recon_1835_west_015.inferred_1835.documented_range`, `recon_1835_west_015.inferred_1835.position`, `recon_1835_west_015.inferred_1835.footprint`, `recon_1835_west_016.inferred_1835.documented_range`, `recon_1835_west_016.inferred_1835.position`, `recon_1835_west_016.inferred_1835.footprint`, `recon_1835_west_017.inferred_1835.documented_range`, `recon_1835_west_017.inferred_1835.position`, `recon_1835_west_017.inferred_1835.footprint`, `recon_1835_west_018.inferred_1835.documented_range`, `recon_1835_west_018.inferred_1835.position`, `recon_1835_west_018.inferred_1835.footprint`, `recon_1835_west_019.inferred_1835.documented_range`, `recon_1835_west_019.inferred_1835.position`, `recon_1835_west_019.inferred_1835.footprint`, `recon_1835_west_020.inferred_1835.documented_range`, `recon_1835_west_020.inferred_1835.position`, `recon_1835_west_020.inferred_1835.footprint`, `recon_1835_west_021.inferred_1835.documented_range`, `recon_1835_west_021.inferred_1835.position`, `recon_1835_west_021.inferred_1835.footprint`, `recon_1835_west_022.inferred_1835.documented_range`, `recon_1835_west_022.inferred_1835.position`, `recon_1835_west_022.inferred_1835.footprint`, `recon_1835_west_023.inferred_1835.documented_range`, `recon_1835_west_023.inferred_1835.position`, `recon_1835_west_023.inferred_1835.footprint`, `recon_1835_west_024.inferred_1835.documented_range`, `recon_1835_west_024.inferred_1835.position`, `recon_1835_west_024.inferred_1835.footprint`, `recon_1835_west_025.inferred_1835.documented_range`, `recon_1835_west_025.inferred_1835.position`, `recon_1835_west_025.inferred_1835.footprint`, `recon_1835_west_026.inferred_1835.documented_range`, `recon_1835_west_026.inferred_1835.position`, `recon_1835_west_026.inferred_1835.footprint`, `recon_1835_west_028.inferred_1835.documented_range`, `recon_1835_west_028.inferred_1835.position`, `recon_1835_west_028.inferred_1835.footprint`, `recon_1835_west_030.inferred_1835.documented_range`, `recon_1835_west_030.inferred_1835.position`, `recon_1835_west_030.inferred_1835.footprint`, `recon_1835_west_031.inferred_1835.documented_range`, `recon_1835_west_031.inferred_1835.position`, `recon_1835_west_031.inferred_1835.footprint`, `recon_1835_west_033.inferred_1835.documented_range`, `recon_1835_west_033.inferred_1835.position`, `recon_1835_west_033.inferred_1835.footprint`, `recon_1835_west_034.inferred_1835.documented_range`, `recon_1835_west_034.inferred_1835.position`, `recon_1835_west_034.inferred_1835.footprint`, `recon_1835_west_036.inferred_1835.documented_range`, `recon_1835_west_036.inferred_1835.position`, `recon_1835_west_036.inferred_1835.footprint`, `recon_1835_west_038.inferred_1835.documented_range`, `recon_1835_west_038.inferred_1835.position`, `recon_1835_west_038.inferred_1835.footprint`, `recon_1835_west_039.inferred_1835.documented_range`, `recon_1835_west_039.inferred_1835.position`, `recon_1835_west_039.inferred_1835.footprint`, `recon_1835_west_040.inferred_1835.documented_range`, `recon_1835_west_040.inferred_1835.position`, `recon_1835_west_040.inferred_1835.footprint`, `recon_1835_west_041.inferred_1835.documented_range`, `recon_1835_west_041.inferred_1835.position`, `recon_1835_west_041.inferred_1835.footprint`, `recon_1835_west_042.inferred_1835.documented_range`, `recon_1835_west_042.inferred_1835.position`, `recon_1835_west_042.inferred_1835.footprint`, `recon_1835_west_043.inferred_1835.documented_range`, `recon_1835_west_043.inferred_1835.position`, `recon_1835_west_043.inferred_1835.footprint`, `recon_1835_west_044.inferred_1835.documented_range`, `recon_1835_west_044.inferred_1835.position`, `recon_1835_west_044.inferred_1835.footprint`, `recon_1835_west_045.inferred_1835.documented_range`, `recon_1835_west_045.inferred_1835.position`, `recon_1835_west_045.inferred_1835.footprint`, `recon_1835_west_046.inferred_1835.documented_range`, `recon_1835_west_046.inferred_1835.position`, `recon_1835_west_046.inferred_1835.footprint`, `recon_1835_west_047.inferred_1835.documented_range`, `recon_1835_west_047.inferred_1835.position`, `recon_1835_west_047.inferred_1835.footprint`, `recon_1835_west_048.inferred_1835.documented_range`, `recon_1835_west_048.inferred_1835.position`, `recon_1835_west_048.inferred_1835.footprint`, `recon_1835_west_049.inferred_1835.documented_range`, `recon_1835_west_049.inferred_1835.position`, `recon_1835_west_049.inferred_1835.footprint`, `recon_1835_west_050.inferred_1835.documented_range`, `recon_1835_west_050.inferred_1835.position`, `recon_1835_west_050.inferred_1835.footprint`, `recon_1835_west_051.inferred_1835.documented_range`, `recon_1835_west_051.inferred_1835.position`, `recon_1835_west_051.inferred_1835.footprint`, `recon_1835_west_052.inferred_1835.documented_range`, `recon_1835_west_052.inferred_1835.position`, `recon_1835_west_052.inferred_1835.footprint`, `recon_1835_west_053.inferred_1835.documented_range`, `recon_1835_west_053.inferred_1835.position`, `recon_1835_west_053.inferred_1835.footprint`, `recon_1835_west_054.inferred_1835.documented_range`, `recon_1835_west_054.inferred_1835.position`, `recon_1835_west_054.inferred_1835.footprint`, `recon_1835_west_055.inferred_1835.documented_range`, `recon_1835_west_055.inferred_1835.position`, `recon_1835_west_055.inferred_1835.footprint`
 **Recorded:** 2026-08-13.
 
 ### L82 — Sixty North Division roofs are count-units, not recovered buildings
@@ -13720,7 +13742,7 @@ the tickets **T-1419**, **T-1186** (the parent), **T-1404** (the premises ruling
 
 ### L263 — The shingle exposure is set at 0.14 m, which gives every shingled roof in this town its rhythm from a period stock and not from a source
 
-**Scope:** `structures.phases[roof_type_stated]` — 364 phases. Every phase that states a
+**Scope:** `structures.phases[roof_type_stated]` — 394 phases. Every phase that states a
 roof type takes this exposure the moment the `roof_plane` substrate carries a tile, which is
 why the population is counted here rather than described. No record's `roof_type` or pitch
 moves: this entry is about the SURFACE drawn on a roof already argued elsewhere.
@@ -13756,6 +13778,13 @@ course count on any Chicago roof of the period. The number is one constant in on
 row; nothing else has to move when it arrives.
 
 **Recorded:** 2026-09-20.
+
+**The count moved to 394 on 2026-09-21 (T-1444).** It read 364 when this liberty was
+taken. The West Division release instantiated its held slots and every one of the thirty
+states a roof type, so the exposure this entry commits is drawn on thirty more roofs. The
+commitment itself is unchanged — 0.14 m of exposure on a 4.48 m tile — and the scope is
+counted off the records' own `roof_type` so that a release restates it rather than leaving
+the entry claiming a population it no longer has.
 
 ### L264 — The brick course is set from a period common brick, because the rhythm of a brick wall cannot be drawn without one and this project holds no Chicago brick
 
@@ -13856,16 +13885,16 @@ placement policy **T-1195**; the twenty-six verdicts whose record id carries its
 and whose execution is therefore an id migration across the derived layer, are **T-1452**.
 **Recorded:** 2026-09-20.
 
-### L266 — The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 67 roofs that are not framed
+### L266 — The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 73 roofs that are not framed
 
-**Scope:** `structures.phases[log_or_fort_archetype]` — 67 phases: 53 log dwellings and
+**Scope:** `structures.phases[log_or_fort_archetype]` — 73 phases: 59 log dwellings and
 14 fort structures. Nothing about their geometry, their roof type,
 their pitch or their weathering moves. This entry is about one thing: which of the two
 coverings this project can argue each of those roofs is drawn on.
 
 **Decision:** `generators/common/materials.py`'s `roof_substrate()` deals the `shingle`
 substrate to every roofed building that is not an outbuilding. For the 180 framed roofs
-that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 67
+that is `docs/RESEARCH/materials.md` §2.2's own grading and takes no liberty. For these 73
 it is a claim, and this is the claim.
 
 **What §2.2 actually grades, and where it stops.** It grades a shingled covering
@@ -13873,7 +13902,7 @@ it is a claim, and this is the claim.
 thirty-eight feet; twelve-foot posts; sheeted and shingled roof"* — and **inferred** as
 *the ordinary covering of a framed building here*. The second half of that sentence says
 **framed**. A log cabin is not a framed building, and the fort's eight garrison kinds are
-not all framed either. So the rule reaches these 67 roofs by an argument and not by the
+not all framed either. So the rule reaches these 73 roofs by an argument and not by the
 grading, and the argument is set out here rather than left implicit in a selector.
 
 **The argument.** The two coverings this project can argue split on **what a roof is for**,
@@ -13885,7 +13914,7 @@ a **dwelling**: it carries a family through a Chicago winter, and it meets the s
 the framed dwelling's roof meets, at the same cost to whoever built it. The fort's
 garrison buildings are quarters, a magazine, a storehouse and a guardhouse — buildings the
 United States Army roofed to keep, not sheds. Reading the split as wall-fabric rather than
-purpose would put a shed's covering on fifty-three homes because their walls were cheap, which
+purpose would put a shed's covering on fifty-nine homes because their walls were cheap, which
 is a claim in the other direction and a worse one.
 
 **Which way it is wrong if it is wrong.** Toward a town that reads slightly better built
@@ -13893,13 +13922,13 @@ than it was. If a share of the 1835 cabins were roofed with riven clapboards wei
 under poles rather than with a nailed shingle field — a covering this project holds no
 source for at all, and therefore has no row for — then those roofs are drawn with a finer
 and more regular rhythm than they had. The error is bounded and visible: it is one
-substrate row on 67 roofs, and every one of them is reachable through this scope line.
+substrate row on 73 roofs, and every one of them is reachable through this scope line.
 
 **What is NOT claimed.** No exposure — that is **L263**, taken separately and on the
 owner's ruling of 2026-09-20. No weathering: `roof_finish()` grades the roof's condition
 from the 218 records that state one and this entry does not touch it. No colour: no
 substrate owns one (§1.1). And no confidence moves — a covering dealt by rule does not
-make a roof better attested, and every one of these 67 phases keeps the grade it had.
+make a roof better attested, and every one of these 73 phases keeps the grade it had.
 
 **What would discharge it:** a source stating the covering of any log building or any Fort
 Dearborn building of the period. It is one membership test in one frozenset; nothing else
@@ -13920,3 +13949,11 @@ which is what `tools/compile_liberties.py --check` re-derives this scope from; t
 argument, the direction of the error and the discharge condition are untouched.
 
 **Recorded:** 2026-09-20.
+
+**The count moved to 73 on 2026-09-21 (T-1444).** It read 67 — 53 log dwellings and 14
+fort structures — when the South migration last restated it. The West Division release
+instantiated its held slots and six of them are log cabins, so the liberty now reaches
+**73**: 59 log dwellings and the same 14 fort structures. The argument does not move with
+the number, and it is not supposed to: the scope is counted off the records' own
+`archetype` precisely so a release restates it instead of leaving the entry asserting what
+it reached the day it was written.
