@@ -13,7 +13,7 @@
   "from_a_pool_only": 75,
   "contractions": 15,
   "not_a_forename": 22,
-  "collective": 7
+  "collective": 6
  },
  "male": [
   {
@@ -1514,10 +1514,6 @@
   {
    "token": "rest",
    "why": "'the rest of the household, unnamed' is a count, not a name"
-  },
-  {
-   "token": "the",
-   "why": "an article, and the names that carry it describe people rather than name one"
   },
   {
    "token": "unnamed",
