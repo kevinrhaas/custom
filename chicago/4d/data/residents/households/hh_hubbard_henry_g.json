@@ -575,7 +575,7 @@
     },
     "back_projection": {
      "outcome": "refused",
-     "clause": "1",
+     "clause": "2",
      "value": null,
      "describes_date": 1843,
      "read_back_years": 8,
@@ -584,7 +584,7 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 2)."
     },
     "residence_back_projection": {
      "outcome": "refused",

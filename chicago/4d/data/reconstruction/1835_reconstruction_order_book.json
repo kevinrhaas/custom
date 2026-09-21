@@ -90,7 +90,8 @@
     {
       "bucket": "persons/female/10_19/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 26,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 26,
       "the_re_cut_would_have_ordered": 16,
       "already_drawn": 26,
       "held_at": 26,
@@ -99,7 +100,8 @@
     {
       "bucket": "persons/female/10_19/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 61,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 61,
       "the_re_cut_would_have_ordered": 36,
       "already_drawn": 61,
       "held_at": 61,
@@ -108,7 +110,8 @@
     {
       "bucket": "persons/female/10_19/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 24,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 24,
       "the_re_cut_would_have_ordered": 14,
       "already_drawn": 24,
       "held_at": 24,
@@ -117,7 +120,8 @@
     {
       "bucket": "persons/female/20_29/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 15,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 15,
       "the_re_cut_would_have_ordered": 9,
       "already_drawn": 15,
       "held_at": 15,
@@ -126,7 +130,8 @@
     {
       "bucket": "persons/female/20_29/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 28,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 28,
       "the_re_cut_would_have_ordered": 18,
       "already_drawn": 28,
       "held_at": 28,
@@ -135,7 +140,8 @@
     {
       "bucket": "persons/female/20_29/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 35,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 35,
       "the_re_cut_would_have_ordered": 21,
       "already_drawn": 35,
       "held_at": 35,
@@ -144,7 +150,8 @@
     {
       "bucket": "persons/female/20_29/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 66,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 66,
       "the_re_cut_would_have_ordered": 39,
       "already_drawn": 66,
       "held_at": 66,
@@ -153,7 +160,8 @@
     {
       "bucket": "persons/female/20_29/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 13,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 13,
       "the_re_cut_would_have_ordered": 8,
       "already_drawn": 13,
       "held_at": 13,
@@ -162,7 +170,8 @@
     {
       "bucket": "persons/female/20_29/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 25,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 25,
       "the_re_cut_would_have_ordered": 15,
       "already_drawn": 25,
       "held_at": 25,
@@ -171,7 +180,8 @@
     {
       "bucket": "persons/female/30_39/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 6,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 6,
       "the_re_cut_would_have_ordered": 4,
       "already_drawn": 6,
       "held_at": 6,
@@ -180,7 +190,8 @@
     {
       "bucket": "persons/female/30_39/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 13,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 13,
       "the_re_cut_would_have_ordered": 8,
       "already_drawn": 13,
       "held_at": 13,
@@ -189,7 +200,8 @@
     {
       "bucket": "persons/female/30_39/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 16,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 16,
       "the_re_cut_would_have_ordered": 10,
       "already_drawn": 16,
       "held_at": 16,
@@ -198,7 +210,8 @@
     {
       "bucket": "persons/female/30_39/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 31,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 31,
       "the_re_cut_would_have_ordered": 18,
       "already_drawn": 31,
       "held_at": 31,
@@ -207,7 +220,8 @@
     {
       "bucket": "persons/female/30_39/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 6,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 6,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 6,
       "held_at": 6,
@@ -216,7 +230,8 @@
     {
       "bucket": "persons/female/30_39/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 12,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 12,
       "the_re_cut_would_have_ordered": 7,
       "already_drawn": 12,
       "held_at": 12,
@@ -225,7 +240,8 @@
     {
       "bucket": "persons/female/40_49/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 3,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 3,
       "the_re_cut_would_have_ordered": 2,
       "already_drawn": 3,
       "held_at": 3,
@@ -234,7 +250,8 @@
     {
       "bucket": "persons/female/40_49/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 5,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 5,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 5,
       "held_at": 5,
@@ -243,7 +260,8 @@
     {
       "bucket": "persons/female/40_49/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 6,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 6,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 6,
       "held_at": 6,
@@ -252,7 +270,8 @@
     {
       "bucket": "persons/female/40_49/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 11,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 11,
       "the_re_cut_would_have_ordered": 7,
       "already_drawn": 11,
       "held_at": 11,
@@ -261,7 +280,8 @@
     {
       "bucket": "persons/female/40_49/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 3,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 3,
       "the_re_cut_would_have_ordered": 1,
       "already_drawn": 3,
       "held_at": 3,
@@ -270,7 +290,8 @@
     {
       "bucket": "persons/female/40_49/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 4,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 4,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 4,
       "held_at": 4,
@@ -279,7 +300,8 @@
     {
       "bucket": "persons/female/50_plus/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 2,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 2,
       "the_re_cut_would_have_ordered": 1,
       "already_drawn": 2,
       "held_at": 2,
@@ -288,7 +310,8 @@
     {
       "bucket": "persons/female/50_plus/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 3,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 3,
       "the_re_cut_would_have_ordered": 2,
       "already_drawn": 3,
       "held_at": 3,
@@ -297,7 +320,8 @@
     {
       "bucket": "persons/female/50_plus/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 4,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 4,
       "the_re_cut_would_have_ordered": 2,
       "already_drawn": 4,
       "held_at": 4,
@@ -306,7 +330,8 @@
     {
       "bucket": "persons/female/50_plus/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 8,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 8,
       "the_re_cut_would_have_ordered": 4,
       "already_drawn": 8,
       "held_at": 8,
@@ -315,7 +340,8 @@
     {
       "bucket": "persons/female/50_plus/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 2,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 2,
       "the_re_cut_would_have_ordered": 1,
       "already_drawn": 2,
       "held_at": 2,
@@ -324,7 +350,8 @@
     {
       "bucket": "persons/female/under_10/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 46,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 46,
       "the_re_cut_would_have_ordered": 28,
       "already_drawn": 45,
       "held_at": 45,
@@ -333,7 +360,8 @@
     {
       "bucket": "persons/female/under_10/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 107,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 107,
       "the_re_cut_would_have_ordered": 63,
       "already_drawn": 107,
       "held_at": 107,
@@ -342,7 +370,8 @@
     {
       "bucket": "persons/female/under_10/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 40,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 40,
       "the_re_cut_would_have_ordered": 25,
       "already_drawn": 40,
       "held_at": 40,
@@ -351,7 +380,8 @@
     {
       "bucket": "persons/male/10_19/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 30,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 30,
       "the_re_cut_would_have_ordered": 19,
       "already_drawn": 30,
       "held_at": 30,
@@ -360,7 +390,8 @@
     {
       "bucket": "persons/male/10_19/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 71,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 71,
       "the_re_cut_would_have_ordered": 43,
       "already_drawn": 71,
       "held_at": 71,
@@ -369,7 +400,8 @@
     {
       "bucket": "persons/male/10_19/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 26,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 26,
       "the_re_cut_would_have_ordered": 16,
       "already_drawn": 26,
       "held_at": 26,
@@ -378,7 +410,8 @@
     {
       "bucket": "persons/male/20_29/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 25,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 25,
       "the_re_cut_would_have_ordered": 15,
       "already_drawn": 25,
       "held_at": 25,
@@ -387,7 +420,8 @@
     {
       "bucket": "persons/male/20_29/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 60,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 60,
       "the_re_cut_would_have_ordered": 35,
       "already_drawn": 60,
       "held_at": 60,
@@ -396,7 +430,8 @@
     {
       "bucket": "persons/male/20_29/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 23,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 23,
       "the_re_cut_would_have_ordered": 14,
       "already_drawn": 23,
       "held_at": 23,
@@ -405,7 +440,8 @@
     {
       "bucket": "persons/male/30_39/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 15,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 15,
       "the_re_cut_would_have_ordered": 9,
       "already_drawn": 15,
       "held_at": 15,
@@ -414,7 +450,8 @@
     {
       "bucket": "persons/male/30_39/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 35,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 35,
       "the_re_cut_would_have_ordered": 21,
       "already_drawn": 35,
       "held_at": 35,
@@ -423,7 +460,8 @@
     {
       "bucket": "persons/male/30_39/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 13,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 13,
       "the_re_cut_would_have_ordered": 8,
       "already_drawn": 13,
       "held_at": 13,
@@ -432,7 +470,8 @@
     {
       "bucket": "persons/male/40_49/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 4,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 4,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 4,
       "held_at": 4,
@@ -441,7 +480,8 @@
     {
       "bucket": "persons/male/40_49/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 10,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 10,
       "the_re_cut_would_have_ordered": 6,
       "already_drawn": 10,
       "held_at": 10,
@@ -450,7 +490,8 @@
     {
       "bucket": "persons/male/40_49/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 3,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 3,
       "the_re_cut_would_have_ordered": 2,
       "already_drawn": 3,
       "held_at": 3,
@@ -459,7 +500,8 @@
     {
       "bucket": "persons/male/50_plus/north/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 2,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 2,
       "the_re_cut_would_have_ordered": 1,
       "already_drawn": 2,
       "held_at": 2,
@@ -468,7 +510,8 @@
     {
       "bucket": "persons/male/50_plus/south/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 5,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 5,
       "the_re_cut_would_have_ordered": 3,
       "already_drawn": 5,
       "held_at": 5,
@@ -477,7 +520,8 @@
     {
       "bucket": "persons/male/50_plus/west/family/trade",
       "owning_ticket": "T-1347",
-      "quota_before_the_rulings": 2,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 2,
       "the_re_cut_would_have_ordered": 1,
       "already_drawn": 2,
       "held_at": 2,
@@ -486,7 +530,8 @@
     {
       "bucket": "persons/male/under_10/north/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 51,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 51,
       "the_re_cut_would_have_ordered": 30,
       "already_drawn": 51,
       "held_at": 51,
@@ -495,7 +540,8 @@
     {
       "bucket": "persons/male/under_10/south/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 120,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 120,
       "the_re_cut_would_have_ordered": 71,
       "already_drawn": 120,
       "held_at": 120,
@@ -504,7 +550,8 @@
     {
       "bucket": "persons/male/under_10/west/family/none",
       "owning_ticket": "T-1174",
-      "quota_before_the_rulings": 46,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 46,
       "the_re_cut_would_have_ordered": 28,
       "already_drawn": 43,
       "held_at": 43,
@@ -513,7 +560,8 @@
     {
       "bucket": "households/family_dwelling/north",
       "owning_ticket": "T-1171",
-      "quota_before_the_rulings": 41,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 41,
       "the_re_cut_would_have_ordered": 0,
       "already_drawn": 26,
       "held_at": 26,
@@ -522,7 +570,8 @@
     {
       "bucket": "households/family_dwelling/south",
       "owning_ticket": "T-1171",
-      "quota_before_the_rulings": 77,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 77,
       "the_re_cut_would_have_ordered": 0,
       "already_drawn": 65,
       "held_at": 65,
@@ -531,18 +580,29 @@
     {
       "bucket": "households/family_dwelling/west",
       "owning_ticket": "T-1171",
-      "quota_before_the_rulings": 39,
+      "cause": "the_re_cut_reached_work_already_drawn",
+      "quota_it_was_drawn_against": 39,
       "the_re_cut_would_have_ordered": 0,
       "already_drawn": 33,
       "held_at": 33,
       "why": "the re-cut would put this bucket's order under the people already drawn against it. The owner's ruling of 2026-09-20 (T-1459) holds here: no bucket's target falls below what has been drawn against it, and the refusal is named with both numbers rather than clamped in silence."
+    },
+    {
+      "bucket": "businesses/lawyer",
+      "owning_ticket": "T-1418",
+      "cause": "a_documented_reading_shrank_the_order",
+      "quota_it_was_drawn_against": 2,
+      "the_re_cut_would_have_ordered": 1,
+      "already_drawn": 2,
+      "held_at": 2,
+      "why": "the town read a practitioner it can name and this bucket's order fell under the records already drawn against it. The town over-supplies this class by the difference, and the surplus is retired by the ticket that owns the bucket rather than by this one. The owner's ruling of 2026-09-20 (T-1459) holds here: no bucket's target falls below what has been drawn against it, and the refusal is named with both numbers rather than clamped in silence."
     }
   ],
   "trade_re_cut": {
     "ruling": "the owner's ruling of 2026-09-20 on T-1448's three answers: re-cut the book (option 1), and re-cut JUST THE REMAINDER",
     "ticket": "T-1459",
     "what_moved": 0,
-    "the_re_cut_wanted": 35,
+    "the_re_cut_wanted": 36,
     "the_younger_bands_had_undrawn": 0,
     "the_adult_cells_had_undrawn": 35,
     "bands_reopened": [
@@ -551,22 +611,22 @@
     "participation": {
       "read_from": "data/residents/households/*.json — every person whose occupation is attested or inferred, which is to say read from a source",
       "workers": {
-        "10_19": 9,
-        "20_29": 58,
-        "30_39": 45,
-        "40_49": 9,
+        "10_19": 10,
+        "20_29": 61,
+        "30_39": 50,
+        "40_49": 10,
         "50_plus": 6
       },
-      "workers_total": 127,
+      "workers_total": 137,
       "workers_by_sex": {
         "female": 7,
-        "male": 120
+        "male": 130
       },
       "layer_labels": {
-        "15-19": 9,
-        "20-29": 58,
-        "30-39": 45,
-        "40-49": 9,
+        "15-19": 10,
+        "20-29": 61,
+        "30-39": 50,
+        "40-49": 10,
         "50-59": 5,
         "70-79": 1
       },
@@ -579,9 +639,9 @@
         "50_plus": 0.029204,
         "under_10": 0.266227
       },
-      "adult_workers": 118,
+      "adult_workers": 127,
       "factors": {
-        "10_19": 0.282785,
+        "10_19": 0.291939,
         "20_29": 1.0,
         "30_39": 1.0,
         "40_49": 1.0,
@@ -591,8 +651,8 @@
       "bands_reopened": [
         "10_19"
       ],
-      "the_age_argument": "127 people in the resident layer carry an occupation a source records. 9 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2828 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.",
-      "the_sex_argument_is_refused": "120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
+      "the_age_argument": "137 people in the resident layer carry an occupation a source records. 10 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2919 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.",
+      "the_sex_argument_is_refused": "130 of the 137 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
     },
     "into": {},
     "out_of": {},
@@ -641,7 +701,7 @@
         "cell": "persons/female/10_19/west/family",
         "direction": "into",
         "owning_ticket": "T-1347",
-        "the_re_cut_wanted": 2,
+        "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 24,
         "drawn_by": "T-1174",
@@ -751,7 +811,7 @@
         "cell": "persons/female/30_39/south/family",
         "direction": "out of",
         "owning_ticket": "T-1347",
-        "the_re_cut_wanted": 1,
+        "the_re_cut_wanted": 2,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 16,
         "drawn_by": "T-1347",
@@ -895,7 +955,7 @@
       "persons/male/10_19/west/lodging/trade"
     ],
     "nobody_already_drawn_moved": true,
-    "the_sex_axis": "120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
+    "the_sex_axis": "130 of the 137 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
   },
   "spent_by": [
     {
@@ -1063,7 +1123,7 @@
     "households_known": 1256,
     "households_to_reconstruct": 124,
     "businesses_target": 108,
-    "businesses_known": 133,
+    "businesses_known": 134,
     "businesses_to_reconstruct": 7,
     "roofs_target": 668,
     "roofs_standing": 414,
@@ -1101,7 +1161,7 @@
         2353,
         3265
       ],
-      "measured": "2,263 standing plus 505 still owed is 2,768, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 232 above the model's 2,536 point, and that surplus is the 586 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book."
+      "measured": "2,263 standing plus 505 still owed is 2,768, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 232 above the model's 2,536 point, and that surplus is the 587 people drawn into 51 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book."
     },
     {
       "id": "households_are_counted_in_two_different_units",
@@ -1548,7 +1608,7 @@
           "filled": 16,
           "owning_ticket": "T-1347",
           "basis": "an adult at a trade",
-          "recut_wants": 19,
+          "recut_wants": 18,
           "recut_refused": true
         },
         {
@@ -3702,7 +3762,7 @@
             "unit": "person",
             "unit_basis": "'Lawyers' and 'physicians' are the two lines of the enumeration that count PEOPLE and not premises, which is why the register's record count cannot be set against them directly: nineteen lawyer records are fourteen men, five of them second printings of one office.",
             "census_count": 22,
-            "held_in_the_counted_unit": 13,
+            "held_in_the_counted_unit": 14,
             "register_records": 18,
             "low": 15,
             "high": 21,
@@ -3717,7 +3777,7 @@
             "ticket": "T-1418"
           },
           "target": 15,
-          "known": 13,
+          "known": 14,
           "to_reconstruct": 2,
           "records_opening_after_scene_date": 0,
           "filled": 2,
@@ -3727,7 +3787,8 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 22 — a line that counts MEN and not premises (T-1007). The town holds 13 of them at the scene date against 18 register records, and the scene date's population brackets the class between 15 and 21. The book orders to the low end, 15"
+          "basis": "the December 1835 State census prints 22 — a line that counts MEN and not premises (T-1007). The town holds 14 of them at the scene date against 18 register records, and the scene date's population brackets the class between 15 and 21. The book orders to the low end, 15",
+          "recut_refused": true
         },
         {
           "key": "businesses/lottery_office",
