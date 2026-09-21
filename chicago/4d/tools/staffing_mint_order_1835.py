@@ -362,9 +362,12 @@ def order(data: dict) -> dict:
         "what_the_book_can_pay": {
             "what_it_is": "The order book's `.../trade` person buckets with slots left. "
                           "Every one of them is a `lodging/trade` bucket and every one "
-                          "is owned by T-1175, the lodgers stage — so a mint that spends "
+                          "is owned by T-1500, the lodgers stage — so a mint that spends "
                           "them spends another stage's quota, which is itself part of "
-                          "the question above.",
+                          "the question above. T-1500 because T-1175, which held these "
+                          "buckets when this sentence was written, split and left them "
+                          "ordered by nobody; T-1420 swept the book onto live owners on "
+                          "2026-09-21 and the stage is the same stage.",
             "slots_outstanding": sum(slot["outstanding"] for slot in slots),
             "by_sex": dict(sorted(purse_by_sex.items())),
             "owning_tickets": sorted({slot["owning_ticket"] for slot in slots
