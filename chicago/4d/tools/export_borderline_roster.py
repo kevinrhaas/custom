@@ -190,6 +190,30 @@ NOT_A_COMMUNITY = (
     "menominee, mich", "menominee mich",
 )
 
+# THE TERMS A CLERK WROTE ONTO ONE NAME, read only where he attached them (T-1383).
+#
+# COMMUNITY_TERMS above is read over the unit's whole words, which is right for a term
+# that describes the reading — an 1840 column heading, a certificate's subject. It is
+# WRONG for St Mary's register, the only source this project holds in which a
+# contemporary states an Indigenous identity for a named person at Chicago. There the
+# term is the priest's parenthesis on ONE name, and every row of an entry carries the
+# same `entry_as_read`: entry 14 of 1833 names the mother, the father, the child and two
+# sponsors on one line, so reading `sauvage` over the unit's words would credit Augustin
+# Bonné and Monique Nodeau with a community the clerk said nothing about. That is the
+# same careless reading NOT_A_COMMUNITY exists to prevent, run the other way.
+#
+# So these terms are credited to a row only where the term FOLLOWS that row's own name —
+# "Marianne (sauvage)", "Jaespquaa (sauvage de Green Bay)", and in the claim that quotes
+# entry 18, "de Jaespquaa (sauvage de Green Bay)" and not the "Paul Vieaux" before it.
+# Attachment is the guard here, in place of the recall the shared-text list can afford.
+#
+# `sauvage` is the register's own vocabulary and not this project's; the readings say so
+# themselves and it is kept only because refusing to read the clerk's word is what left
+# these two women out of the town while their husbands and children stood in it.
+NAME_BORNE_COMMUNITY_TERMS = {
+    "native_or_metis": ("sauvage", "sauvages", "sauvagesse", "sauvagesses"),
+}
+
 BEAR_CREEK = "bear creek"
 
 DATE = re.compile(r"\b(1[678]\d\d|19\d\d)(?:-(\d\d))?(?:-(\d\d))?\b")
@@ -466,6 +490,31 @@ def community_of(text: str) -> tuple[str | None, str | None]:
     return None, None
 
 
+def community_written_onto_the_name(read: str, normalised: str,
+                                    text: str) -> tuple[str | None, str | None]:
+    """A community term the clerk attached to THIS name, and to no other on the line.
+
+    The term counts only where it follows the row's own name — the parenthesis as the
+    register prints it. A name that merely stands on the same entry as one gets nothing,
+    which is the whole point: a sponsor is not what the priest wrote the word about.
+    NOT_A_COMMUNITY is struck out first, exactly as `community_of` strikes it, so an
+    office that carries a community word ("indian agent") cannot be read as a community
+    even when it stands where a parenthesis would.
+    """
+    for phrase in NOT_A_COMMUNITY:
+        text = text.replace(phrase, " ")
+    candidates = [n for n in (normalised, normalise_name(read)) if n]
+    for community, terms in NAME_BORNE_COMMUNITY_TERMS.items():
+        for term in terms:
+            for name in candidates:
+                # the name, then punctuation or an opening parenthesis only, then the
+                # term. Nothing else may stand between them.
+                attached = rf"\b{re.escape(name)}\b[\s,.;:]*\(?\s*{re.escape(term)}\b"
+                if re.search(attached, text):
+                    return community, term
+    return None, None
+
+
 def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
              text: str, rulings_1830: dict | None = None) -> dict:
     """One row's class and the rule that put it there. Order is the ruling order."""
@@ -531,6 +580,24 @@ def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
                     "The reading's own words carry one of this file's declared community "
                     "terms, so the row goes to T-1177's review rather than into a general "
                     "pool. The term is named on the row; the judgement is T-1177's."),
+                   community=community, community_term=term,
+                   review_required=(community == "native_or_metis"))
+
+    # 4b. The same step, for a term the clerk wrote onto this name alone (T-1383). It
+    #     stands here and not lower for the reason 4 does: an evidence limit must never
+    #     be the reason a community goes unbuilt. Before this, the two women St Mary's
+    #     priest marked reached rule 9 and were refused there as "a surname and no
+    #     person" — their names are mononyms — so the town carried their husbands and
+    #     their children and not them.
+    community, term = community_written_onto_the_name(read, normalised, text)
+    if community:
+        return out("R6_native_metis_black",
+                   ("community_term_written_onto_the_name",
+                    "The reading carries one of this file's declared community terms "
+                    "attached to THIS name — the clerk's own parenthesis — so the row "
+                    "goes to T-1177's review rather than into a general pool. Names "
+                    "standing elsewhere on the same entry are not credited with it. "
+                    "The term is named on the row; the judgement is T-1177's."),
                    community=community, community_term=term,
                    review_required=(community == "native_or_metis"))
 
@@ -1192,6 +1259,38 @@ def self_test() -> int:
     baptist = [r for r in every_row(doc) if r.get("claim_or_record_id") == "bk_mose2_010"]
     expect("the Baptist catalogue keeps every name it prints on the roster",
            len(baptist) >= 12)
+
+    # 7. T-1383: the term the priest wrote onto a name reaches that name and no other.
+    #    Both directions, because a recall-only assertion would pass on a rule that
+    #    credited the whole entry — which is the bug this pass was written to avoid.
+    onto = [r for r in doc["rows"]
+            if r.get("rule") == "community_term_written_onto_the_name"]
+    expect("the name-borne community terms reach the roster at all", bool(onto))
+    expect("every name-borne row names the term that put it there and its community",
+           all(r.get("community") and r.get("community_term") for r in onto))
+    expect("a name-borne term the file does not declare cannot appear",
+           all(r["community_term"] in NAME_BORNE_COMMUNITY_TERMS[r["community"]]
+               for r in onto))
+    # The two St Mary's mothers, by name: the only contemporary statement of an
+    # Indigenous identity for a named person at Chicago this project holds.
+    mothers = {r["normalised"] for r in onto}
+    expect(f"the St Mary's mothers the priest marked are offered (got {sorted(mothers)})",
+           {"marianne", "jaespquaa"} <= mothers)
+    # ...and the twelve other names on entries 14, 17 and 18 — two fathers, three
+    # children, five sponsors and two godparents — are credited with nothing. The term
+    # rides on `entry_as_read`, which every row of an entry carries.
+    entries = ("st_marys_bapt_1833_14_", "st_marys_bapt_1833_17_",
+               "st_marys_bapt_1833_18_")
+    siblings = [r for r in every_row(doc)
+                if any(e in r["row_id"] for e in entries)
+                and not r["row_id"].endswith("_3_mother#0")]
+    expect("the entries carrying the parenthesis are reached", len(siblings) >= 12)
+    expect("no name sharing the entry line is credited with the clerk's parenthesis",
+           not any(r.get("community") for r in siblings))
+    # An office that carries a community word is not a community, here as in rule 4.
+    expect("NOT_A_COMMUNITY is struck before a name-borne term is read",
+           community_written_onto_the_name(
+               "John Doe", "john doe", "john doe, indian agent") == (None, None))
 
     for line in failures:
         print(f"SELF-TEST FAILED: {line}")
