@@ -914,6 +914,29 @@ step "the platted block and lot grid re-derives from the module" \
 selftest "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# T-1479. Two cells stand in both plat grids — blk_lake_clinton (plat block 28) and
+# blk_randolph_clinton (block 45), between Clinton and Canal, which is West Division
+# ground already emitted by the Original Town's grid on the SOUTH Division module. The
+# sheet counts TEN lot numerals in each, two columns by five rows; the layer cuts EIGHT,
+# four to a face. That gap is a ticket, and what this pair gates is the REFUSAL that
+# keeps it open, so the refusal cannot quietly stop being true. Nothing moves: the tool
+# writes numbers, exactly as measure_west_division_module.py did for T-0444.
+# The assertions worth naming: both halves of the module refusal must BIND — the two
+# 180 ft lot columns alone must not fit the committed face, and the depth must not
+# divide into five whole lots of the printed frontage — because if either stopped
+# holding, the re-cut would be derivable and this gate would be guarding a stale no.
+# The seating is gated too (17 structures and 46 rows across 13 lots), since a withheld
+# re-cut strands exactly that and a count which fell to nothing would make the move
+# cheap. And the last one is the sharpest: NO withheld block anywhere in town may carry
+# a seating. That is what makes the ticket's own first question — what a structure on a
+# withdrawn lot is seated on — genuinely unanswered rather than answered somewhere this
+# ticket failed to look.
+step "the West Division re-cut of blocks 28 and 45 is still refused by the committed lines" \
+  python3 tools/measure_west_grid_migration.py --check
+
+selftest "…and both halves of that refusal, the seating it would strand and the unanswered first question still fire" \
+  python3 tools/measure_west_grid_migration.py --self-test
+
 # The band the two halves of that plat leave between them (T-0419). Since the owner ruled
 # on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's corridor
 # stands 8.58 m north of block faces still offset from the DRAWN line, and 6,132 m2 of
