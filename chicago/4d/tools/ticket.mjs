@@ -1278,6 +1278,51 @@ function check(tickets) {
   const dupQ = q.filter((id, i) => q.indexOf(id) !== i);
   for (const id of new Set(dupQ)) problems.push(`QUEUE.md lists ${id} twice`);
 
+  // T-1518. A BLOCKED TICKET IS VISIBLE OR IT IS LOST, and for a month thirteen of
+  // them were lost. `blocked-owner` and `blocked-tech` are deliberately outside
+  // WORKABLE — they must not be offered as work — and the consequence was never
+  // decided: QUEUE.md carries the workable states, so a block dropped the ticket out
+  // of the file altogether. Measured on dev 2026-09-21: NINETEEN live tickets in no
+  // band at all, thirteen of them waiting on an owner ruling, the oldest opened
+  // 2026-08-21. The one class that most needs the owner's eyes was the one class the
+  // owner could not see.
+  //
+  // Band 8b carries them as COMMENTED lines, the way band 8's HOLD list does, so they
+  // are visible to a reader and still invisible to the parser. This asks both
+  // directions, because either alone rots: a blocked ticket missing from the band is
+  // the fault itself returning, and a band line for a ticket that has since unblocked
+  // is the band describing a queue that no longer exists.
+  // THE TEST IS "NAMED ANYWHERE IN THE FILE", not "carries my prefix". Band 8's HOLD
+  // list already holds seven blocked-tech tickets and has since long before this, and
+  // a first cut that demanded `# BLOCKED-TECH` reported every one of them as invisible
+  // while they sat two screens up in plain sight. A gate that would force a migration
+  // to satisfy itself is measuring its own convention rather than the thing it is for.
+  const queueSrc = readFileSync(QUEUE, 'utf8');
+  const named = new Set([...queueSrc.matchAll(/\bT-\d{3,5}\b/g)].map((m) => m[0]));
+  for (const t of tickets) {
+    if (!t.state?.startsWith('blocked')) continue;
+    if (!named.has(t.id)) {
+      problems.push(`${t.id} is ${t.state} and is named nowhere in QUEUE.md — add it to `
+        + '`--- 8b. BLOCKED AND WAITING` as a commented `# BLOCKED-OWNER`/`# BLOCKED-TECH` '
+        + 'line (or to band 8s HOLD list where it belongs there). A block nobody can see '
+        + 'is an abandonment with a state on it.');
+    }
+  }
+  // …AND THE OTHER DIRECTION, scoped to band 8b's own lines, because those are the ones
+  // this file writes and is therefore answerable for. A line saying a ticket waits on
+  // the owner, for a ticket that has since unblocked, is worse than no line: it is read
+  // as current.
+  for (const m of queueSrc.matchAll(/^#\s*BLOCKED-(?:OWNER|TECH)\s+(T-\d+)/gm)) {
+    const t = ledger.get(m[1]);
+    if (!t) {
+      problems.push(`QUEUE.md band 8b lists ${m[1]}, which no ticket file carries`);
+    } else if (!t.state?.startsWith('blocked')) {
+      problems.push(`QUEUE.md band 8b lists ${m[1]} as blocked, but it is ${t.state} — `
+        + 'take the line out; a band that describes a queue which has moved on is read '
+        + 'as current.');
+    }
+  }
+
   // THE LABEL HAS TO NAME THE TICKET (T-0217). Every gate above reads the id and
   // nothing else, so a line carrying one ticket's id and another's title passes
   // all of them: both ids are real, both are open, neither is duplicated. That is
