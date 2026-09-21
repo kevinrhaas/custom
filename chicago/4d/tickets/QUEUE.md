@@ -223,3 +223,4 @@ T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foregr
 T-1502 — The register deal reads the raw text of every household card as a name pool, so any pass writing a proper name onto one can silently retire a documented man from it
 T-1504 — A stage that reads the St Mary's baptismal register: the four R6 rows whose Indigenous identity the source states in its own hand are refused only because underdocumented reads the 1832 muster roll and nothing reads the register
 T-1505 — The borderline roster refuses 254 rows as 'a surname and no person' and three of them are forenames: Matanacqua, Lieu and Miranda are each named as the parent of a named child, so the refusal is right and its sentence is false
+T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and whose owning run has finished is the one state no automation in this repo owns
