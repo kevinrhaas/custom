@@ -4490,6 +4490,10 @@
       "model": 643,
       "programme": 335,
       "delta": 308,
+      "programme_groups": [
+        "ordinary_dwellings"
+      ],
+      "restates_the_programme": false,
       "statement": "The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many."
     },
     {
@@ -4498,7 +4502,11 @@
       "model": 42,
       "programme": 42,
       "delta": 0,
-      "statement": "The lodging model and the programme agree on the larger boarding houses."
+      "programme_groups": [
+        "larger_boarding_houses"
+      ],
+      "restates_the_programme": true,
+      "statement": "NOT A CHECK: the model's 42 larger boarding houses ARE district_group_matrix.larger_boarding_houses — model_town_1835.build_lodging reads the figure straight off the roof programme — so this row cannot disagree, and its zero says nothing about whether 42 is the right number of boarding roofs. An independent count is owed to T-1196 with the re-cut."
     },
     {
       "id": "inns_and_taverns",
@@ -4506,15 +4514,24 @@
       "model": 15,
       "programme": 10,
       "delta": 5,
-      "statement": "The model reads 15-15 inns and taverns; the programme schedules 10."
+      "programme_groups": [
+        "inns_taverns"
+      ],
+      "restates_the_programme": false,
+      "statement": "The model reads 15-15 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme."
     },
     {
       "id": "institutional_and_public",
       "owning_ticket": "T-1196",
       "model": 19,
-      "programme": 9,
-      "delta": 10,
-      "statement": "The model reads 9-19 institutional and public roofs; the programme schedules 9."
+      "programme": 19,
+      "delta": 0,
+      "programme_groups": [
+        "institutional_public",
+        "fort_principal"
+      ],
+      "restates_the_programme": true,
+      "statement": "NOT A CHECK: the model reads 9-19 institutional and public roofs — 9 outside the fort and 10 principal roofs inside it — and the programme schedules those same two groups, institutional_public (9) and fort_principal (10), for 19. Both ends of the model are read off that matrix, so the row cannot disagree. Until T-1439 it reported a delta of ten by taking the fort's roofs on the model's side and not on the programme's, which is the schedule charged for ten roofs it already had."
     },
     {
       "id": "people_per_roof",
@@ -4522,6 +4539,8 @@
       "model": 2536,
       "programme": 668,
       "delta": 0,
+      "programme_groups": [],
+      "restates_the_programme": false,
       "statement": "2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
     }
   ],

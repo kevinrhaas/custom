@@ -425,13 +425,13 @@
     },
     {
       "id": "institutional_and_public",
-      "owed_to": "the order book's own comparison",
-      "statement": "build_order_book_1835.programme_deltas reads the town model's institutional HIGH end — which includes the fort's ten principal roofs — against district_group_matrix.institutional_public alone, and reports a delta of ten where the two files agree. The comparison needs the fort group added to its programme side, or the model's low end taken."
+      "owed_to": "T-1196",
+      "statement": "The false delta of ten is GONE (T-1439, 2026-09-21): build_order_book_1835.programme_deltas now sums institutional_public and fort_principal on its programme side, which is where the model's high end already had them, and the two files read 19 against 19. What is still owed is a COUNT: both ends of the model's figure are read off district_group_matrix, so the corrected zero is a restatement and the book prints it as one. Nothing outside the roof programme has said how many institutional and public roofs the town had."
     },
     {
       "id": "boarding_houses",
-      "owed_to": "the town model's own derivation",
-      "statement": "model_town_1835.build_lodging takes larger_boarding_houses straight off district_group_matrix, so that figure can never disagree with the programme and the order book's delta of zero is a tautology. A figure that cannot fail is not a check on 42 roofs."
+      "owed_to": "T-1196",
+      "statement": "model_town_1835.build_lodging takes larger_boarding_houses straight off district_group_matrix, so that figure can never disagree with the programme and the order book's delta of zero is a tautology. A figure that cannot fail is not a check on 42 roofs. The book stopped printing it as a pass with T-1439 and marks the row NOT A CHECK; an independent count of the town's boarding houses is still owed to the re-cut."
     }
   ]
 }

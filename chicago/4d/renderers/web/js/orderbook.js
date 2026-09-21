@@ -134,9 +134,16 @@ export async function mountOrderBook({ mount, noteMount = null, dataBase, proble
 
   if (mount) {
     const families = (doc.bucket_families || []).map(familyHtml);
-    const deltas = (doc.programme_deltas || []).map((d) => `<p class="legend-note pop-note">`
-      + `<b>${escapeHtml(d.id.replace(/_/g, ' '))}</b> — ${escapeHtml(d.statement)} `
-      + `<span class="ob-delta">model ${num(d.model)} · programme ${num(d.programme)}</span></p>`);
+    // `programme groups` names what the programme side actually sums, and a row that reads
+    // its model figure off those same groups says so rather than showing a zero that looks
+    // like an agreement (T-1439).
+    const deltas = (doc.programme_deltas || []).map((d) => {
+      const groups = (d.programme_groups || []).join(' + ');
+      return `<p class="legend-note pop-note">`
+        + `<b>${escapeHtml(d.id.replace(/_/g, ' '))}</b> — ${escapeHtml(d.statement)} `
+        + `<span class="ob-delta">model ${num(d.model)} · programme ${num(d.programme)}`
+        + `${groups ? ` (${escapeHtml(groups)})` : ''}</span></p>`;
+    });
     const invariants = (doc.invariants || []).map((i) => `<p class="legend-note pop-note">`
       + `<b>${escapeHtml(i.id.replace(/_/g, ' '))}</b> (${escapeHtml(i.owning_ticket)}) — `
       + `${escapeHtml(i.statement)} <i>Now: ${escapeHtml(i.measured_now)}</i></p>`);
