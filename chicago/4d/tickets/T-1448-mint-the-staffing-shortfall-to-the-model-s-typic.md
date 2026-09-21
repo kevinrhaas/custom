@@ -130,3 +130,39 @@ one.
 lodging stage draws against its own remainder, the 10_19 band's 35 undrawn slots become
 spendable and the mint can run against them. Until then the shops stand short and the
 business card says so, which was always the third of the three answers.
+
+
+## WHAT T-1503 RETURNED, 2026-09-21 — the band has a remainder now, and it is 35
+
+T-1503 gave the lodging stage a committed `quota_basis` and re-ran the re-cut. **35 of
+the 36 slots the re-cut wanted moved.** The 10-19 trade band is no longer a row of
+noughts: it carries 35 orders, all of them `lodging/trade`, and nobody already drawn
+moved to make room — `seat_lodgers_1835.py --check` is clean and its 56 boarders are
+byte for byte what they were.
+
+| cell | slots |
+|---|---|
+| `persons/male/10_19/south/lodging/trade` | 10 |
+| `persons/female/10_19/south/lodging/trade` | 9 |
+| `persons/male/10_19/west/lodging/trade` | 5 |
+| `persons/male/10_19/north/lodging/trade` | 4 |
+| `persons/female/10_19/west/lodging/trade` | 4 |
+| `persons/female/10_19/north/lodging/trade` | 3 |
+
+**So the age argument is now paid for as well as made.** The 24 shop boys this ticket
+counts have somewhere to be minted from, which is more than the book could say
+yesterday.
+
+**What is still short, and it is the two other axes, not the band.** The mint wants 129
+hands; 40 of the book's outstanding slots are women's and every one of the 129 is a man
+or a predominantly male role, and the count was 20 short before any axis was looked at.
+The 35 above narrow the gap; they do not close it. Price the mint against the book as it
+now stands before deciding between the typical band and `count_low`.
+
+**And the remaining 27 slots are held by a named cause, not by a decision.** The re-cut
+wanted 27 more out of the `10_19 family` cells and could not take them: `T-1171`,
+`T-1174` and `T-1347` deal against the book's live `to_reconstruct` the way the lodging
+stage used to, so re-cutting a cell they have drawn against re-deals their whole draw.
+The book names them bucket by bucket in `trade_re_cut.held_by_an_unaudited_stage`, and
+the fix for each is the one T-1503 made: a committed basis, then a line in
+`REMAINDER_STABLE_STAGES`.
