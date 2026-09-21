@@ -72,26 +72,26 @@
  "counts": {
   "offered": {
    "R1_in_window_uncertain": 804,
-   "R2_in_window_single_source": 343,
-   "R3_1834_return_or_muster": 30,
-   "R5_later_only_backprojectable": 55
+   "R2_in_window_single_source": 309,
+   "R3_1834_return_or_muster": 29,
+   "R5_later_only_backprojectable": 53
   },
   "readmitted": {
    "R1_in_window_uncertain": 725,
-   "R2_in_window_single_source": 123,
+   "R2_in_window_single_source": 120,
    "R3_1834_return_or_muster": 20,
    "R5_later_only_backprojectable": 39
   },
   "withheld": {
    "R1_in_window_uncertain": 79,
-   "R2_in_window_single_source": 220,
-   "R3_1834_return_or_muster": 10,
-   "R5_later_only_backprojectable": 16
+   "R2_in_window_single_source": 189,
+   "R3_1834_return_or_muster": 9,
+   "R5_later_only_backprojectable": 14
   },
   "presence_ruled_present": 688,
   "presence_ruled_absent": 37,
-  "cards_minted": 182,
-  "minted_present": 162
+  "cards_minted": 179,
+  "minted_present": 160
  },
  "the_tension_this_leaves": {
   "what": "The order book (T-1166) models 643 households in the town on 1 July 1835 and the layer carries 436 present today. Ruling 787 more cards present takes that to 1,223, which is nearly twice the model.",
@@ -20402,27 +20402,6 @@
  ],
  "minted": [
   {
-   "row_id": "books:data/research/books/claims/fergus_26_29_first_half.json#claims/bk_fer_024#0",
-   "class": "R2_in_window_single_source",
-   "rule": "readmission_r2_single_source_read_name",
-   "household_id": "hh_billy_caldwell",
-   "person_id": "billy_caldwell",
-   "name_as_read": "Billy Caldwell",
-   "name": "Billy Caldwell",
-   "file": "readmitted/hh_billy_caldwell.json",
-   "sources": [
-    "fergus_historical_series_26_29"
-   ],
-   "dated_evidence": "1833",
-   "dated_evidence_read_as": "1833-01-01",
-   "present_on_scene_date": {
-    "value": "present",
-    "persistence": 0.8443,
-    "years_before_the_scene": 2.4942,
-    "seed": "hh_billy_caldwell:persistence"
-   }
-  },
-  {
    "row_id": "books:data/research/books/claims/fergus_26_29_first_half.json#claims/bk_fer_024#1",
    "class": "R2_in_window_single_source",
    "rule": "readmission_r2_single_source_read_name",
@@ -20462,27 +20441,6 @@
     "persistence": 0.8443,
     "years_before_the_scene": 2.4942,
     "seed": "hh_henry_whitehead:persistence"
-   }
-  },
-  {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_005#12",
-   "class": "R2_in_window_single_source",
-   "rule": "readmission_r2_single_source_read_name",
-   "household_id": "hh_john_t_temple",
-   "person_id": "john_t_temple",
-   "name_as_read": "Dr. John T. Temple",
-   "name": "John T. Temple",
-   "file": "readmitted/hh_john_t_temple.json",
-   "sources": [
-    "moses_kirkland_history_of_chicago_v1"
-   ],
-   "dated_evidence": "1833",
-   "dated_evidence_read_as": "1833-01-01",
-   "present_on_scene_date": {
-    "value": "absent",
-    "persistence": 0.8443,
-    "years_before_the_scene": 2.4942,
-    "seed": "hh_john_t_temple:persistence"
    }
   },
   {
@@ -20798,27 +20756,6 @@
     "persistence": 0.8443,
     "years_before_the_scene": 2.4942,
     "seed": "hh_ebenezer_crane:persistence"
-   }
-  },
-  {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018#0",
-   "class": "R2_in_window_single_source",
-   "rule": "readmission_r2_single_source_read_name",
-   "household_id": "hh_william_b_egan",
-   "person_id": "william_b_egan",
-   "name_as_read": "Dr. William B. Egan",
-   "name": "William B. Egan",
-   "file": "readmitted/hh_william_b_egan.json",
-   "sources": [
-    "moses_kirkland_history_of_chicago_v2"
-   ],
-   "dated_evidence": "1834",
-   "dated_evidence_read_as": "1834-01-01",
-   "present_on_scene_date": {
-    "value": "present",
-    "persistence": 0.9036,
-    "years_before_the_scene": 1.4949,
-    "seed": "hh_william_b_egan:persistence"
    }
   },
   {
@@ -24233,20 +24170,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_005#1",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "John K. Botsford",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v1.json#claims/bk_mose1_005#4",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Walter Kimball",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Rev. Allen B. Freeman",
@@ -24268,13 +24191,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_010#3",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Martin D. Harmon",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018#10",
    "class": "R2_in_window_single_source",
    "name_as_read": "Hans Crocker",
@@ -24282,30 +24198,9 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018#3",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "John H. Kinzie",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018#5",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Gurdon S. Hubbard",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_018#6",
    "class": "R2_in_window_single_source",
    "name_as_read": "John L. Wilcox",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "books:data/research/books/claims/moses_kirkland_history_of_chicago_v2.json#claims/bk_mose2_020#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "James H. Collins",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -24877,13 +24772,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "church:data/research/church/claims/st_marys_baptisms_town_findings.json#claims/st_marys_town_04#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Doctor Egan",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "church:data/research/church/claims/st_marys_baptisms_town_findings.json#claims/st_marys_town_08#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Paul Vieau",
@@ -25192,23 +25080,9 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_18_4_sponsor#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Doctor Egan",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_19_3_mother#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Monique Nodou",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_19_4_godfather#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "Jean Marie Irénée Saint Cyr",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -25223,13 +25097,6 @@
    "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_21_2_father#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "Charles Beaubien",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "church:data/research/church/records/st_marys_baptisms_1833_1835.json#records/st_marys_bapt_1834_21_4_sponsor#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "John Mary I. Saint Cyr",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -25321,13 +25188,6 @@
    "row_id": "civic:data/research/civic/records/blackhawk_war_1832_chicago.json#records/blackhawk_1832_004#0",
    "class": "R3_1834_return_or_muster",
    "name_as_read": "BOND, HEMAN S",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "civic:data/research/civic/records/blackhawk_war_1832_chicago.json#records/blackhawk_1832_022#0",
-   "class": "R3_1834_return_or_muster",
-   "name_as_read": "DOLE, GEORGE W",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -25703,13 +25563,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r13e_t38n_t41n_r14e_t38n_r15e_through_1836.json#records/ls0869#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "HEACOCK RUSSELL E",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r13e_t38n_t41n_r14e_t38n_r15e_through_1836.json#records/ls0871#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "NEWBERRY WALTER L",
@@ -25969,34 +25822,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0147#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "DOLE GEORGE W",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0148#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "DOLE GEORGE W",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0149#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "DOLE GEORGE W",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0150#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "DOLE GEORGE W",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0155#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "FOOT STAN",
@@ -26081,20 +25906,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0239#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "HUBBARD GURDON S",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0262#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "KIMBALL WALTER",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0272#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "KNICKERBACKER ABRM V",
@@ -26105,34 +25916,6 @@
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0273#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "KNICKERBACKER ABRM V",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0297#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "OWEN THOMAS J V",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0298#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "OWEN THOMAS J V",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0299#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "OWEN THOMAS J V",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0300#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "OWEN THOMAS J V",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -26175,62 +25958,6 @@
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0327#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "REED JAMES W",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0353#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0354#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0355#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0356#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0357#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0358#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0359#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0360#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "TEMPLE JOHN T",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
@@ -26333,20 +26060,6 @@
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },
   {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0477#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "HEACOCK RUSSELL E",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0478#0",
-   "class": "R2_in_window_single_source",
-   "name_as_read": "HEACOCK RUSSELL E",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
    "row_id": "land_sales:data/research/land_sales/records/entries_t39n_t40n_r14e_through_1836.json#records/ls0487#0",
    "class": "R2_in_window_single_source",
    "name_as_read": "SMITH JEBUTHOM",
@@ -26420,20 +26133,6 @@
    "row_id": "old_settlers:data/research/old_settlers/people.json#people/os1879r067#0",
    "class": "R5_later_only_backprojectable",
    "name_as_read": "Harmon, Isaac N.",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "old_settlers:data/research/old_settlers/people.json#people/os1879r078#0",
-   "class": "R5_later_only_backprojectable",
-   "name_as_read": "Hubbard, Gurdon S.",
-   "reason": "a_card_of_that_name_already_stands",
-   "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
-  },
-  {
-   "row_id": "old_settlers:data/research/old_settlers/people.json#people/os1879r084#0",
-   "class": "R5_later_only_backprojectable",
-   "name_as_read": "Kimball, Walter",
    "reason": "a_card_of_that_name_already_stands",
    "why": "A person already in the layer shares this surname and first given initial — the same discriminator this project's directory crosswalks match on — so minting a second card would risk carrying one person into the town twice."
   },

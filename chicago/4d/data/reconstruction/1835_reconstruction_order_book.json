@@ -539,13 +539,13 @@
     }
   ],
   "roster_offered": {
-    "total": 1812,
+    "total": 1766,
     "by_class": {
       "R1_in_window_uncertain": 804,
-      "R2_in_window_single_source": 343,
-      "R3_1834_return_or_muster": 30,
-      "R4_surname_only_census": 441,
-      "R5_later_only_backprojectable": 55,
+      "R2_in_window_single_source": 309,
+      "R3_1834_return_or_muster": 29,
+      "R4_surname_only_census": 432,
+      "R5_later_only_backprojectable": 53,
       "R6_native_metis_black": 139
     },
     "tickets": {
