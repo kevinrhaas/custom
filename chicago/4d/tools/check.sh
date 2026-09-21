@@ -3228,6 +3228,22 @@ step "the trade and premises spend re-derives from the cards it names (T-1469)" 
 selftest "…and its carrier, outcome and coverage rules still fire when broken" \
   python3 tools/spend_trade_premises.py --self-test
 
+# T-1354. THE OTHER HALF OF T-1330's SPEND. Six of its thirty enrichments name a DEPARTURE
+# from Chicago and no field on a resident card carries one — the only thing a removal bears
+# on is `present_on_scene_date`. They were handed to T-1144, then to whichever child of its
+# split happened to be open, and a hand-off is not a spend. These six are now ruled one at
+# a time, each with the removal read BESIDE the other sources on its card rather than out
+# of the one late compiler that carries it, because a departure read alone is the one way
+# this dataset can delete a documented person on a single say-so. Five do not reach the
+# scene date and the sixth was already written onto its card by T-0478, so nothing moves —
+# and the gate is here precisely so that stays true: --check re-reads all six cards, and a
+# presence that moves out from under one of these rulings turns it red.
+step "the six departure rulings re-derive from the register and the cards (T-1354)" \
+  python3 tools/spend_departure_rulings.py --check --quiet
+
+selftest "…and its corpus, outcome and read-beside rules still fire when broken" \
+  python3 tools/spend_departure_rulings.py --self-test
+
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
 # findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718
