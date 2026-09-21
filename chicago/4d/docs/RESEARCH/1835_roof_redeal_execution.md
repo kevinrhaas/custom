@@ -4,9 +4,9 @@ DERIVED — regenerate with `tools/execute_roof_redeal.py --apply`. T-1451.
 
 T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execution: the verdicts carried back into the authored recipes so the generators re-derive the records. It adjudicates nothing — every family below is the `to_family` T-1445 reached.
 
-- refamily verdicts standing: **21**
+- refamily verdicts standing: **12**
 - carried out here: **6** (the West Division parcel)
-- outstanding, and why: **15** — the record id carries the family, so executing them renames a roof other files name (T-1452)
+- outstanding, and why: **6** — the record id carries the family, so executing them renames a roof other files name (T-1481/T-1482/T-1484, over the surface `tools/measure_roof_id_migration.py` measures)
 - retired: **0** — the guard stands empty and that is a measurement, not an omission
 
 ## Carried out
@@ -20,7 +20,7 @@ T-1445 adjudicated 285 anonymous roofs and moved none of them. This is the execu
 | `recon_1835_west_021` | W3 | D6 | workshops → ordinary_dwellings | 22x33 | the placement policy refuses this family here — stands 30.47 m off the street line (2.71 m), and mechanics_streets puts it on the line; the slot is wanted and the position stands |
 | `recon_1835_west_022` | W4 | A1 | workshops → barns_stables | 18x26 | the placement policy refuses this family here — stands on a light street, which mechanics_streets avoids; the slot is wanted and the position stands |
 
-## Outstanding — the id migration T-1452 owns
+## Outstanding — the id migration T-1481, T-1482 and T-1484 own
 
 Each of these becomes a new id when its family moves, and the id is not private to its record. The files below name it today and would point at a roof that no longer exists. Counted over the committed tree; a record's own `data/structures/<id>.json` is not listed.
 
@@ -32,15 +32,6 @@ Each of these becomes a new id when its family moves, and the id is not private 
 | `recon_1835_blk_randolph_market_a4_06` | `recon_1835_blk_randolph_market_d2_06` | 4 |
 | `recon_1835_blk_south_water_lasalle_a1_06` | `recon_1835_blk_south_water_lasalle_d3_06` | 5 |
 | `recon_1835_blk_south_water_wells_a1_07` | `recon_1835_blk_south_water_wells_d1_07` | 4 |
-| `recon_1835_north_c1_020` | `recon_1835_north_d3_020` | 5 |
-| `recon_1835_north_c1_047` | `recon_1835_north_a1_047` | 5 |
-| `recon_1835_north_c2_027` | `recon_1835_north_d6_027` | 7 |
-| `recon_1835_north_f1_022` | `recon_1835_north_h2_022` | 6 |
-| `recon_1835_north_h3_045` | `recon_1835_north_h2_045` | 14 |
-| `recon_1835_north_i2_015` | `recon_1835_north_d4_015` | 7 |
-| `recon_1835_north_t1_028` | `recon_1835_north_h2_028` | 12 |
-| `recon_1835_north_w1_018` | `recon_1835_north_d4_018` | 8 |
-| `recon_1835_north_w2_005` | `recon_1835_north_d4_005` | 7 |
 
 The 6 platted-block roofs among them, across 3 block(s) (`blk_randolph_market`, `blk_south_water_lasalle`, `blk_south_water_wells`), carry a second difficulty the West parcel does not. Their slots are `ancillary` — yard buildings off the block alley — and the family each is moved into is a dwelling. `generate_block_infill` gates a block's principal/ancillary split against the schedule the recipe claims, and refuses a second principal roof on a lot that already has one, so whether a rear cottage counts as the one or the other is a re-deal of the block and its claimed mix, not a field edit.
 

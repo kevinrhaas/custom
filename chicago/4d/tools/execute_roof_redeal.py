@@ -515,6 +515,15 @@ MIGRATION_PINNED = (
     "docs/unreal/prototype/",
     "patches/",
     "tools/execute_roof_redeal.py",
+    # Same kind as the line above, and for both of its reasons at once (T-1483):
+    # measure_roof_id_migration.py's docstring explains the surface by naming a
+    # move — "`recon_1835_north_c1_020` becomes `..._d3_020`" — and its self-test
+    # passes the old id to new_id() as the worked example of a north id keeping
+    # its sequence. Rewriting the fixture leaves it asserting
+    # new_id("..._d3_020", "D3") == "..._d3_020", true of any already-migrated id
+    # and a test of nothing. The tool measures the surface; it makes no claim
+    # that a record still stands under the old name.
+    "tools/measure_roof_id_migration.py",
 )
 # A transcript of a run and a patch against a tree are the same kind of thing as
 # a receipt: they say what a named moment looked like. Migrating an id inside one
