@@ -12098,15 +12098,24 @@ for (const [label, viewport, touch] of [
     // the Go-to above resolves — and no home at all. Before the address book the card
     // said nothing whatever about where these people lived; a reader could not tell that
     // from a household nobody has looked for. It now says which division the evidence
-    // reaches, that it reaches nothing narrower, who owes the seat, and what would move
-    // it up the ladder. The bare "No known address" must be GONE, not sitting beside it.
+    // reaches, that it reaches nothing narrower, and what would move it up the ladder.
+    // The bare "No known address" must be GONE, not sitting beside it.
+    //
+    // T-1512 SEATED IT, and the card has to keep the two halves apart. The DIVISION is
+    // the reading and comes off the household's own record; the BAND inside it is this
+    // project's reconstruction. Hogan's record gives his head no trade, so no clause of
+    // the placement policy reaches him — and the card must say that no class was dealt
+    // rather than quietly dealing one. A card that stopped distinguishing the division
+    // from the band, or that started naming a class for a head with no trade, is the
+    // drift this assertion exists to catch.
     check(`${label}: the household card says how far the evidence places its people`,
-      people.card.seat.rung === 'owed'
+      people.card.seat.rung === 'division_band'
       && /south division/.test(people.card.seat.label)
-      && /no nearer/.test(people.card.seat.label)
+      && /no class dealt/.test(people.card.seat.label)
       && /reaches the south division and nothing narrower/.test(people.card.seat.words)
-      && /owed to T-1492/.test(people.card.seat.words)
-      && /Would move it up the ladder: a source naming a street, a corner or a building/
+      && /not one the placement policy has a dwelling clause for/.test(people.card.seat.words)
+      && /The division is the evidence/.test(people.card.seat.words)
+      && /Would move it up the ladder: a source giving this household's head a trade/
         .test(people.card.seat.next)
       && people.card.seat.noaddr === false,
       JSON.stringify(people.card.seat));

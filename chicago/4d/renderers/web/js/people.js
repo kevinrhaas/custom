@@ -872,9 +872,17 @@ export async function mountPeople({
       // T-1493 adds the way there. The record's own `lives_at`/`works_at` already
       // carry a household seated at a named roof, so the seat button is offered
       // only where the actions block found NOTHING to offer — which is every rung
-      // below a roof. No household reads that way today (all 31 seated households
-      // are seated at a roof their record already names); every one T-1492 seats
-      // on a lot, a face or a band will, and gets the button without another edit.
+      // below a roof.
+      //
+      // NO HOUSEHOLD TAKES IT TODAY, and the reason is worth stating because it
+      // looks like coverage otherwise. The 31 seated at a roof already have their
+      // button off their own record. The 175 T-1492 banded carry a `division_band`
+      // seat, which is a CLASS OF GROUND and not a place — there is no point on it
+      // to stand a visitor at, so `seatTarget` refuses it and the card says where
+      // they are in words alone. The same holds for the 21 firms on a `street_face`
+      // seat. When the walk learns to frame a band or a face, they light up here
+      // with no further edit; inventing a point on one to fill this button would be
+      // exactly the fabricated coordinate T-1198 forbids.
       const seatRow = joins.seatByHousehold?.get(r.household);
       if (seatRow) {
         const actions = cardEl.querySelector('.people-card-actions');
