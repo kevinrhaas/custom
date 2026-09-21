@@ -1,7 +1,7 @@
 ---
 id: T-1489
 title: Carry a reconstructed employment seat back onto the card of the person who holds it: the six mint-owned resident directories re-derive whole, so workplaces[] stops at households/ and 91 of the 124 seated people say nothing about work on their own card
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1612
 claimed_by: run 9/21/2026, 1:10:00 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T07:34:55.667Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35566824444
 ---
 
