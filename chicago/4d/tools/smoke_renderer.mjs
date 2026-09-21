@@ -4818,8 +4818,9 @@ for (const [label, viewport, touch] of [
         // blacksmith's shop became cottages. A hitching-post refusal is a sentence
         // about a trade frontage — "the trade at X is reconstructed ... a post there
         // would be furniture standing on an invention" — so when the trade goes, the
-        // refusal does not become a post, it stops being asked: 92 refusals to 89,
-        // naming recon_1835_south_c2_007, _c2_036 and _w1_023 as they were. Walks,
+        // refusal does not become a post, it stops being asked: 92 refusals to 89.
+        // The three stand today as recon_1835_south_d5_007 and _d6_036, the two
+        // store-residences, and _d5_023, the smithy. Walks,
         // crossings, fences and posts do not move. None of the three was ever a street
         // wall the fence rule refused, each stands where it stood, and a cottage on a
         // block face carries no frontage furniture of its own.

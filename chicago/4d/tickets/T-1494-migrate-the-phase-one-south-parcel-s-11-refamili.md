@@ -1,7 +1,7 @@
 ---
 id: T-1494
 title: Migrate the phase-one South parcel's 11 refamilied roofs whose id moves: the recipe refamilied, generate_inferred_infill taught the two boarding-house families the redeal sends it, the records re-derived, every file naming an old id moved with it, rebaked and published
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1452
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1600
 claimed_by: run 9/20/2026, 5:52:44 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T00:58:32.936Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35542539851
 ---
 
