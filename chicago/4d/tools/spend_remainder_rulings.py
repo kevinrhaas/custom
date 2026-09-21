@@ -189,7 +189,7 @@ RULES = {
             "card, which is why a ruling on one of them would be a fault."),
     },
     "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
-        "disposition": "unresolved",
+        "disposition": "refused",
         # T-1144 SPLIT ON 2026-09-18 AND THIS LINE WAS LEFT POINTING AT THE PARENT.
         # The split (#1471) found the one deferral it was looking for — the
         # `identity_open_one_letter_apart` ruling in data/research/spend_rulings.json —
@@ -207,24 +207,41 @@ RULES = {
         # open would have failed again the moment that child closed, which is precisely
         # what T-1333's own closing run hit.
         #
-        # T-1354 was filed for it and owns it: six rulings, each reading the removal
-        # beside the other sources on the card, each either moving present_on_scene_date
-        # with its tier and reason or recording why the removal does not bear on
-        # 1 July 1835.
-        "ticket": "T-1354",
+        # T-1354 WAS FILED FOR IT AND HAS NOW SPENT IT, which is why this line is no
+        # longer a hand-off. Six rulings, each reading the removal BESIDE the other
+        # sources on the card rather than out of the one volume it came in, stand in
+        # data/research/residents/departure_rulings.json and re-derive under
+        # tools/spend_departure_rulings.py --check. This register says `refused`
+        # because none of the six asks anything further of the layer — not because a
+        # departure is worthless evidence. It is the disposition the sibling rule
+        # `the_enrichment_dates_an_appearance_the_card_already_carries` already uses
+        # for a finished answer, and the one spend among the six is stated here rather
+        # than left for a reader to find.
         "statement": (
             "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from "
             "Chicago -- a removal, a migration to another town, a prospecting journey that "
             "ended somewhere else -- for a person this town holds a card for. T-1330 read all "
             "thirty arrival-and-origin enrichments one at a time and these six name a going "
             "rather than a coming. No field on a resident card carries a departure: the only "
-            "thing a removal bears on is `present_on_scene_date`, and whether a man "
-            "documented as leaving in 1835 was at Chicago on 1 July of that year is the "
-            "question T-1144 asked -- \"no false Chicago resident, and no 1835 claim above "
-            "its dated evidence\" -- which neither child of its split banked. T-1354 owns "
-            "it. It is handed there and asserted nowhere: this pass does "
-            "not move a presence, because a removal read out of one volume without the "
-            "others beside it is how a layer loses a resident it had evidence for."),
+            "thing a removal bears on is `present_on_scene_date`. T-1354 SPENT ALL SIX, one "
+            "at a time, each read beside the other sources on its card -- because a removal "
+            "read alone, out of the single late compiler that carries it, is how a layer "
+            "loses a resident it had evidence for. FIVE DO NOT REACH THE SCENE DATE, and "
+            "they miss in three different ways: Caldwell's removal and Jones's Manitowoc "
+            "settlement are dated AFTER 1 July 1835, Sweet's removal to Milwaukee is dated "
+            "only to the year the scene falls in and stands on both sides of the day, and "
+            "Pugsley's return to Paw Paw and Cleland's move to Niles carry no departure date "
+            "at all -- Pugsley's volume in fact dates a journey TO Chicago in the month of "
+            "the card's own bound. THE SIXTH REACHES IT AND WAS ALREADY WRITTEN: Porthier "
+            "left with Horace Chase on 27 February 1835 and reached Milwaukee on 23 March, "
+            "and T-0478 had already moved his presence to `absent` at `attested` citing this "
+            "volume. So no presence moves under this rule, no grade moves and no card is "
+            "retired, which is the answer and not a deferral. The six rulings, what each was "
+            "read beside, and the presence each stands on are in "
+            "data/research/residents/departure_rulings.json, re-derived by "
+            "tools/spend_departure_rulings.py -- whose --check re-reads every one of the six "
+            "cards, so a presence that moves out from under one of these rulings turns the "
+            "gate red."),
     },
     "the_enrichment_names_kin_no_field_carries": {
         "disposition": "unresolved",
