@@ -218,8 +218,21 @@ NOT_A_FORENAME = {
 # the Beaubien household, unnamed", "The four Temple children". A collective fires
 # nothing, and it may not be read past either: walking on to the next token would sex
 # four Temple children by the surname Temple, which the table holds as a man's forename.
+#
+# A GROUP WORD, NOT AN ARTICLE (T-1395). `the` stood in this table until 2026-09-21,
+# on the reading that "the names that carry it describe people rather than name one".
+# It does not: an article is how English introduces a noun and it says nothing about how
+# many people the noun stands for. Every genuine collective row here carries a group WORD
+# as well — rest, household, children, unnamed — and keeps its refusal unchanged with the
+# article gone. What the article caught besides them was one woman, "The Harmon daughter
+# later known as Mrs A. G. Burley", whom Andreas takes his particulars of Dr Harmon from:
+# one sex, one seat in her father's house, and an age band refused for standing "for more
+# than one person". She stands for exactly one, and a card that states a false reason for
+# a true refusal is a provenance defect. The refusal she earns is written where the age is
+# drawn, in tools/reconstruct_sex_age.py. The article would also have swallowed rule 1's
+# own example, "The Widow Wells" — read as a group before the title it prints could sex
+# her — which is the same defect one step earlier.
 COLLECTIVE = {
-    "the": "an article, and the names that carry it describe people rather than name one",
     "rest": "'the rest of the household, unnamed' is a count, not a name",
     "four": "'the four Temple children' is a count, not a name",
     "children": "a description of a group",
@@ -1027,6 +1040,20 @@ def self_test() -> int:
          read_name("The four Temple children")[1] is None
          and read_name("The rest of the Beaubien household, unnamed")[1] is None
          and sex_for({"name": "The four Temple children"}, table, lookup)[0] is None)
+    # T-1395: a group is a group WORD, not a leading article.
+    want("a leading article is not a group on its own",
+         read_name("The Harmon daughter later known as Mrs A. G. Burley")[2] != \
+         "a_group_not_a_person")
+    want("the article gone, a title behind it still fires",
+         read_name("The Widow Wells")[0] == "female")
+    want("every genuine collective row still names nobody",
+         all(read_name(n)[2] == "a_group_not_a_person" for n in (
+             "The rest of the Beaubien household, unnamed",
+             "Mark Beaubien's family, unnamed",
+             "Heacock's wife and children, unnamed",
+             "Owen's household, unnamed",
+             "The rest of the Robinson household, unnamed",
+             "The four Temple children")))
     want("a title anywhere in the name fires",
          read_name("Nelson mary Miss")[0] == "female"
          and read_name("Mrs Rufus Brown")[0] == "female")
