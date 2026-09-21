@@ -35,7 +35,7 @@
   "ties_narrowed_by_a_trade": 2,
   "of_those_contested": 0,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 66,
+  "could_carry_occupation": 63,
   "could_carry_address": 83
  },
  "set_aside_for_want_of_a_surname": [
@@ -1240,8 +1240,8 @@
    "person_id": "hubbard_henry_g",
    "household_id": "hh_hubbard_henry_g",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
+   "occupation_1835": "forwarding_and_commission",
+   "occupation_1835_confidence": "inferred",
    "lives_at_1835": null,
    "works_at_1835": null,
    "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins H.",
@@ -1256,7 +1256,6 @@
     }
    ],
    "could_carry": [
-    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -2722,8 +2721,8 @@
    "person_id": "king_tuthill",
    "household_id": "hh_king_tuthill",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
+   "occupation_1835": "clothier",
+   "occupation_1835_confidence": "inferred",
    "lives_at_1835": null,
    "works_at_1835": null,
    "rule": "Surname 'King' folds to the same string as the 1844 entry's, and the given name of both begins T.",
@@ -2738,7 +2737,6 @@
     }
    ],
    "could_carry": [
-    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -2938,8 +2936,8 @@
    "person_id": "jones_william",
    "household_id": "hh_jones_william",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
+   "occupation_1835": "hardware_merchant",
+   "occupation_1835_confidence": "inferred",
    "lives_at_1835": null,
    "works_at_1835": null,
    "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins W.",
@@ -2954,7 +2952,6 @@
     }
    ],
    "could_carry": [
-    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -3094,8 +3091,8 @@
    "person_id": "taylor_william_h",
    "household_id": "hh_taylor_william_h",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
+   "occupation_1835": "shoemaker",
+   "occupation_1835_confidence": "inferred",
    "lives_at_1835": null,
    "works_at_1835": null,
    "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
@@ -3109,9 +3106,7 @@
      "address_1844": null
     }
    ],
-   "could_carry": [
-    "occupation"
-   ],
+   "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false,
    "contested_with": [
@@ -3130,7 +3125,7 @@
      {
       "key": "taylor_william_h",
       "agrees": false,
-      "why": "no trade on one side"
+      "why": "two trades that do not agree"
      }
     ]
    }
@@ -3176,7 +3171,7 @@
      {
       "key": "taylor_william_h",
       "agrees": false,
-      "why": "no trade on one side"
+      "why": "two trades that do not agree"
      }
     ]
    }

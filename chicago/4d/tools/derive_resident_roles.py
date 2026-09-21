@@ -182,6 +182,14 @@ def scene_role(occ: dict, person_id: str, person: dict | None = None) -> dict | 
     run and then, finding `none_recorded`, delete the role carrying it on the next —
     losing the very evidence the withdrawal was written to preserve.
     """
+    if isinstance(occ.get("promoted_from_roles"), dict):
+        # A PROMOTED BLOCK IS NOT A SOURCE, IT IS THIS TOOL'S OWN VIEW (T-1299). Its value
+        # and its citations came off the role rows that filled it, and those rows are
+        # still in `roles[]`. Reading the block back would emit a second row asserting the
+        # same trade out of the same printing, with a bound read off the source's
+        # `describes_date` rather than the run of the person's own mentions — the same
+        # non-idempotence the withdrawal below is read first to avoid.
+        return None
     withdrawn = occ.get("withdrawn_from_scene_date")
     if isinstance(withdrawn, dict) and withdrawn.get("value"):
         role, confidence = withdrawn.get("value"), withdrawn.get("confidence")
@@ -554,7 +562,12 @@ def gazetteer_roles(person: dict, index: dict[str, dict]) -> list[dict]:
                 "precision": _precision(frm, to),
                 "dated_by": "stated_date" if frm else "undated",
                 "covers_scene_date": covers,
-                "fills_scene_view": False,
+                # T-1299: A PRESS READING THAT REACHES THE DAY STANDS IN THE FIELD. This
+                # was `False` for every row while T-1254's other three derivers were
+                # untaught — the row said its evidence reached 1 July 1835 and said in
+                # the same breath that it did not count. All four agree now, so the two
+                # flags say the same thing here as they do on the card's own block.
+                "fills_scene_view": covers,
                 "confidence": "inferred",
                 "sources": [source] if source else [],
                 "claim": record.get("id"),
@@ -568,7 +581,8 @@ def gazetteer_roles(person: dict, index: dict[str, dict]) -> list[dict]:
                     + (frm + " to " + to if frm and to else "which the record does not give")
                     + ", and the grade is `inferred`: the paper printed the trade, and the "
                     "resident programme's identity rule tied the printing to this card.",
-                    "The scene date falls inside that run." if covers else
+                    "The scene date falls inside that run, so this role stands in the "
+                    "1835 view (T-1299)." if covers else
                     "The scene date falls outside that run, so this role does not stand in "
                     "the 1835 view."),
                 "_disposition": disposition,
@@ -788,6 +802,24 @@ def roles_for(person: dict, gazetteer: dict[str, dict] | None = None) -> list[di
     return rows
 
 
+def filling(roles: list[dict]) -> list[dict]:
+    """The admitted rows standing behind the singular field, one per role, in row order.
+
+    The field names a role once however many rows assert it, and T-1299 needs the ROWS
+    and not only the names: a promoted block cites the sources of the roles that filled
+    it, and the grade it is held at is the grade of the row it took the value from.
+    """
+    seen, kept = set(), []
+    for r in roles:
+        if not (r["fills_scene_view"] and r["confidence"] in CLAIMING and r["role"]):
+            continue
+        if r["role"] in seen:
+            continue
+        seen.add(r["role"])
+        kept.append(r)
+    return kept
+
+
 def view(roles: list[dict]) -> tuple[str, list[str]]:
     """The 1835 compatibility view: the claiming roles that cover the scene date.
 
@@ -806,15 +838,8 @@ def view(roles: list[dict]) -> tuple[str, list[str]]:
     not simply the first, so that an inferred reading can never displace an attested one
     by sorting earlier.
     """
-    covering = [r for r in roles
-                if r["fills_scene_view"] and r["confidence"] in CLAIMING and r["role"]]
-    seen, at, kept = set(), [], []
-    for r in covering:
-        if r["role"] in seen:
-            continue
-        seen.add(r["role"])
-        at.append(r["role"])
-        kept.append(r)
+    kept = filling(roles)
+    at = [r["role"] for r in kept]
     strongest = next((r["role"] for r in kept if r["confidence"] == "attested"), None)
     return (strongest or (at[0] if at else ABSENT)), at
 
@@ -848,8 +873,61 @@ def proposed(households: Path = HOUSEHOLDS) -> dict[str, dict]:
             withdrawn = occ.get("withdrawn_from_scene_date")
             held = (withdrawn.get("value") if isinstance(withdrawn, dict)
                     and withdrawn.get("value") else occ.get("value"))
-            if held != value:
+            was_promoted = isinstance(occ.get("promoted_from_roles"), dict)
+            # A PROMOTED BLOCK IS RE-DERIVED EVERY RUN, not only on the run that first
+            # filled the field. `held` equals `value` the moment the promotion is
+            # committed, so a branch keyed on `held != value` alone would write the block
+            # once and then never touch it again — and a correction to its citations, its
+            # grade or its prose would sit uncommitted while `--check` called the card
+            # clean. The write below is idempotent, so re-deriving it costs a comparison.
+            if value != ABSENT and (held != value or was_promoted):
+                # THE FIELD GAINS A TRADE ITS ROLES REACH (T-1299). Until the four
+                # derivers of this field agreed, a press reading that covered 1 July 1835
+                # stood in `roles[]` saying so and was kept out of the field anyway. It is
+                # admitted here, and the block is made to carry what the write gate
+                # (tools/audit_scene_window_trades.py, T-0837) asks of any standing 1835
+                # trade: the sources the rows that filled it cite, at least one of which
+                # describes 1835, because that is what admitted the rows.
+                kept = filling(roles)
+                grade = next((r["confidence"] for r in kept if r["role"] == value),
+                             "inferred")
+                cites = sorted({s for r in kept for s in (r.get("sources") or []) if s})
+                occ.pop("withdrawn_from_scene_date", None)
+                occ["value"] = value
+                occ["confidence"] = grade
+                occ["sources"] = cites
+                occ["promoted_from_roles"] = {
+                    # NOT `roles`: `roles_at_scene_date` two lines below names exactly the
+                    # rows this was promoted out of, and the card prints that one. A second
+                    # copy of the same list would be a figure nobody reads.
+                    "sources": cites,
+                    "ticket": "T-1299",
+                    "note": (
+                        "THE CITATIONS ARE THE ROWS', NOT THE BLOCK'S OWN. This field was "
+                        "promoted out of `roles[]` by " + GENERATOR + " and holds nothing "
+                        "those rows do not already say; it is recorded here so the block "
+                        "cannot be mistaken for a second, independently sourced assertion "
+                        "of the same trade, and so that " + GENERATOR + " reads its own "
+                        "write as a view rather than as evidence on the next run."),
+                }
+                occ["note"] = (
+                    "A TRADE READ FOR " + SCENE_DATE + " OUT OF THIS CARD'S OWN ROLES. "
+                    "`" + str(value) + "` is the strongest claiming role in `roles[]` "
+                    "whose bound contains the scene date, and the grade above is that "
+                    "row's: `inferred` where the evidence is a trade printed against this "
+                    "name in the 1833-1835 press, because the paper printed the trade and "
+                    "the resident programme's identity rule tied the printing to this "
+                    "card. The field used to read `" + ABSENT + "` while the row beneath "
+                    "it said the evidence reached the day — the four tools that derive "
+                    "this field disagreed, and T-1299 is where they were made to agree "
+                    "(written by " + GENERATOR + ").")
+            elif held != value:
                 verdict, ledger_note = VERDICTS.get(person.get("id"), ("unadjudicated", None))
+                # A PROMOTION THAT NO LONGER HOLDS LEAVES THE CARD (T-1299), along with
+                # the citations it put on the block. A field reading `none_recorded` may
+                # not go on citing the sources of a trade it has stopped asserting.
+                if occ.pop("promoted_from_roles", None) is not None:
+                    occ.pop("sources", None)
                 occ["withdrawn_from_scene_date"] = {
                     "value": held,
                     # The grade the trade was held at, which after the first withdrawal

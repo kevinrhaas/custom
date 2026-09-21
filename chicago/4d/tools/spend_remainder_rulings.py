@@ -41,10 +41,31 @@ A letter-list name is handed to T-1159, whose field is the roster of names the r
 READ AND WITHHELD, with `letter-list-only` as a declared re-admission class -- recording
 that a name was read and withheld is not ruling on whether its bearer lived here.
 
+AND A SECOND CORPUS SINCE T-1509: the 100 `business` readings the ledger routes to
+T-1468. T-1508 taught `research_spend_ledger` to reach the BUSINESS layer as a target
+surface and 485 units landed there; these 100 did not, and they stood `unresolved` behind
+a routing pointer with nothing said about any one of them. They fall in the newspapers
+(77) and books (23) corpora -- the two registers this file already writes -- and
+`ruling_registers` allows exactly one register per domain directory, so the tool that
+owns the file is the tool that has to rule them. They get four answers, and the layer
+decides which:
+
+    49  the layer holds a record compiled from the reading, and names the claim ONLY at
+        the record root where no tier stands -- handed to T-1514, which owns putting the
+        tier on in tools/compile_businesses.py
+    25  the layer compiled no record from the reading and it is in the window -- spent in
+        aggregate, the way a price or a shipping reading is
+    20  the reading's own describes_date is earlier than the scene -- refused
+     6  the issue is printed after the scene date and no record was compiled -- later_only
+
+The record OUTRANKS the date here, which is the order T-1508 set on this corpus: a record
+carries its own tier and basis for what it read out of a post-scene printing, and that
+judgement is the record's rather than this register's.
+
 THE CORPUS IS DERIVED FROM THE CORPUS, not from the committed ledger: this tool asks
 `research_spend_ledger.natural_disposition` -- the derivation that reads no ruling
-register at all -- which units end unresolved and owned by T-1298, and rules exactly
-those. So writing the registers cannot change what the registers are asked to cover, and
+register at all -- which units end unresolved and owned by T-1298, and which of T-1468's are
+`business` readings, and rules exactly those. So writing the registers cannot change what the registers are asked to cover, and
 `--check` re-derives the same answer from the same readings.
 """
 from __future__ import annotations
@@ -61,6 +82,14 @@ import research_spend_ledger as L  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 TICKET = "T-1298"
+# T-1509. THE BUSINESS REMAINDER IS THE SECOND CORPUS THIS TOOL OWNS. T-1508 taught the
+# ledger to reach the business layer, and 485 units landed there; 100 did not, and they
+# stood `unresolved` behind the routing pointer T-1468 with nothing said about any one
+# of them. They live in the newspapers and books corpora -- the two registers this file
+# already writes -- and `ruling_registers` allows exactly one register per domain
+# directory, so the tool that owns the file is the tool that must rule them.
+BUSINESS_TICKET = "T-1468"
+BUSINESS_TIER_OWNER = "T-1514"
 SCENE_DATE = "1835-07-01"
 HAND_AUTHORED = ROOT / "data" / "research" / "spend_rulings.json"
 DOMAINS = ("residents", "newspapers", "church", "books", "genealogytrails")
@@ -404,6 +433,20 @@ RULES = {
             "there is no structured record for it to land on. It is spent in aggregate as "
             "scene chronology, which is a finished answer."),
     },
+    "a_trade_reading_the_business_layer_holds_no_record_for": {
+        "disposition": "aggregate_only",
+        "statement": (
+            "The unit is a BUSINESS reading -- a trade, a stock, a firm's own "
+            "advertisement, a historian's paragraph about the trade of the place -- "
+            "whose claim NO record of data/businesses/ names in its `claim_ids`. The "
+            "layer is the compiled answer to this corpus (T-1310 built it out of these "
+            "very readings) and it did not compile a record from this one, so there is no "
+            "business record for the ledger to land it on and inventing one off the "
+            "reading is the move this project refuses everywhere else. It is in the "
+            "window and it is true, so it is not refused: it sizes the town's trade the "
+            "way the price and shipping readings do, and it is spent in aggregate. "
+            "Nothing here mints a firm, edits a business record or moves a tier."),
+    },
     "the_column_names_nobody": {
         "disposition": "aggregate_only",
         "statement": (
@@ -415,6 +458,24 @@ RULES = {
             "spent as."),
     },
     # ---- hand-offs ---------------------------------------------------------------
+    "the_compiled_record_names_this_claim_and_tiers_no_field_to_it": {
+        "disposition": "unresolved",
+        "ticket": "T-1514",
+        "statement": (
+            "A compiled business record DOES name this claim -- and only at its root, in "
+            "`claim_ids`, beside a root `sources` list that carries no tier. The ledger "
+            "reaches the business layer on a block that carries a tier AND cites a source "
+            "(T-1508), and on these records there is no such block: `proprietors` and "
+            "`partners` are empty because the advertisement is anonymous, and `locations` "
+            "and `dates` are `inferred` from the placement policy and cite nothing. So the "
+            "reading compiled a whole record and no field of that record is attested from "
+            "it. This is a fault in the LAYER and not in the reading, and it is not closed "
+            "by calling the root a tier: that would be minting a confidence the generator "
+            "never derived. T-1514 owns putting the tier on in "
+            "tools/compile_businesses.py, where the layer re-derives; the day it does, the "
+            "ledger asserts these units with no ruling at all and these rows go red, which "
+            "is what a hand-off closing is supposed to look like."),
+    },
     "the_letter_list_name_belongs_to_the_borderline_roster": {
         "disposition": "unresolved",
         # T-1159 CLOSES WITH THE ROSTER IT BUILDS, so a hand-off cannot name it: this
@@ -1155,6 +1216,89 @@ def rule_books(unit: dict) -> tuple[str, str]:
             f"naming no record this layer holds. It reads: “{line}”")
 
 
+_BUSINESS_REACH: dict[str, list[str]] = {}
+
+
+def business_claim_reach(root: Path = ROOT) -> dict[str, list[str]]:
+    """Claim id -> the compiled business records that name it, at ANY depth (T-1509).
+
+    Deliberately LOOSER than `research_spend_ledger.business_target_index`, which is the
+    point of the pair. That index answers "is this reading asserted?" and so demands a
+    block carrying a tier and citing a source. This one answers the different question a
+    ruling has to answer first: "does the layer hold a record for this reading at all?"
+    Between the two answers sit the units T-1514 owns -- reached by a record, asserted by
+    no block of it -- and outside both sit the readings the layer compiled nothing from.
+    Nothing is read out of prose here either: a record reaches a claim only where it
+    names that claim in a `claim_ids` list.
+    """
+    key = str(root)
+    if key in _BUSINESS_REACH:
+        return _BUSINESS_REACH[key]
+    found: dict[str, list[str]] = {}
+
+    def walk(node, record_id):
+        if isinstance(node, dict):
+            claims = node.get("claim_ids")
+            if isinstance(claims, list):
+                for claim in claims:
+                    if isinstance(claim, str) and claim:
+                        seen = found.setdefault(claim, [])
+                        if record_id not in seen:
+                            seen.append(record_id)
+            for value in node.values():
+                walk(value, record_id)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value, record_id)
+
+    base = root.joinpath(*L.BUSINESS_LAYER)
+    for path in sorted(base.rglob("*.json")) if base.is_dir() else []:
+        if path.name in L.BUSINESS_INDEX_FILES:
+            continue
+        doc = read_json(path)
+        if isinstance(doc, dict) and doc.get("id"):
+            walk(doc, str(doc["id"]))
+    _BUSINESS_REACH[key] = found
+    return found
+
+
+def rule_business(unit: dict, reach: dict[str, list[str]],
+                  printed: str | None) -> tuple[str, str]:
+    """The written answer for a business reading the ledger could not assert (T-1509).
+
+    THE RECORD OUTRANKS THE DATE, which is the order T-1508 already set on this corpus:
+    where the layer holds a record compiled from the reading, that record carries its own
+    `tier` and `basis` for what it read out of a printing, and the scene-date question is
+    the record's rather than this register's.
+    """
+    row = unit["record"]
+    where = f"{unit['source_file'].rsplit('/', 1)[-1].removesuffix('.json')} {row.get('id')}"
+    block = row.get("business") or {}
+    named = clip(block.get("name") or block.get("trade"), 80) or "unnamed in the block"
+    line = clip(row.get("normalized"), 180)
+
+    records = reach.get(unit["record_key"]) or []
+    if records:
+        return ("the_compiled_record_names_this_claim_and_tiers_no_field_to_it",
+                f"{where}: the layer holds {', '.join(records)}, compiled from this very "
+                f"reading of “{named}” — and it names this claim only at the record root, "
+                f"where no tier stands. It reads: “{line}”")
+    if printed and printed > SCENE_DATE:
+        return ("the_issue_is_printed_after_the_scene_date",
+                f"{where}: the issue is dated {printed}, after the scene date, and the "
+                f"layer compiled no record from it. The notice of “{named}” reads: “{line}”")
+    year = L.year_in(row)
+    if year is not None and year < 1835:
+        dated = clip(row.get("describes_date"), 60)
+        return ("the_reading_is_earlier_than_the_scene_and_does_not_reach_it",
+                f"{where}: a business reading whose own describes_date is “{dated}”, "
+                f"earlier than the scene date. It reads: “{line}”")
+    return ("a_trade_reading_the_business_layer_holds_no_record_for",
+            f"{where}: a business reading of “{named}”, dated "
+            f"{clip(row.get('describes_date'), 60) or (printed or 'undated')}, that no "
+            f"record of data/businesses/ names in its claim_ids. It reads: “{line}”")
+
+
 def mine(root: Path = ROOT) -> list[dict]:
     """Every unit the derivation leaves unresolved and owned by T-1298.
 
@@ -1177,13 +1321,31 @@ def mine(root: Path = ROOT) -> list[dict]:
         if unit["unit_id"] in already:
             continue
         natural = L.natural_disposition(root, unit, targets)
-        if natural.get("disposition") == "unresolved" and natural.get("ticket") == TICKET:
+        if natural.get("disposition") != "unresolved":
+            continue
+        if natural.get("ticket") == TICKET:
+            out.append(unit)
+        elif (natural.get("ticket") == BUSINESS_TICKET
+                and unit["record"].get("kind") == "business"):
+            # T-1509. The `business` half of T-1468's routing, and only that half: the
+            # same pointer also carries the civic corpus, which is another tool's file
+            # and another ticket's question. `kind` is the readings' own word, and it is
+            # what `research_spend_ledger.PLACE_AND_ENTERPRISE` routes on.
             out.append(unit)
     return out
 
 
 def classify(root: Path, unit: dict, cache: dict) -> tuple[str, str]:
     domain = unit["domain"]
+    if unit["record"].get("kind") == "business":
+        # T-1509, and BEFORE the domain rules: a business unit is the same question in
+        # both corpora -- does the compiled layer hold a record for it? -- and answering
+        # it twice, once in `rule_newspapers` and once in `rule_books`, is how the two
+        # would drift. `rule_newspapers` refuses a business block outright (T-1508) for
+        # exactly this reason.
+        doc = cache.setdefault(unit["source_file"], read_json(root / unit["source_file"]))
+        printed = issue_date(doc) if domain == "newspapers" else None
+        return rule_business(unit, business_claim_reach(root), printed)
     if domain == "residents":
         preamble = cache.setdefault(
             unit["source_file"], read_json(root / unit["source_file"])).get("_doc") or ""
@@ -1205,12 +1367,18 @@ def wrote_by_spend(person_id: str) -> list[dict]:
             for field in sorted(row["writes"])]
 
 
+def corpus_ticket(unit: dict) -> str:
+    """Which ticket's remainder this unit is (T-1509). The readings' own `kind` decides."""
+    return BUSINESS_TICKET if unit["record"].get("kind") == "business" else TICKET
+
+
 def build_documents(root: Path = ROOT) -> dict[str, dict]:
     cache: dict = {}
     per_domain: dict[str, list[dict]] = {domain: [] for domain in DOMAINS}
+    per_domain_tickets: dict[str, set[str]] = {domain: set() for domain in DOMAINS}
     for unit in mine(root):
         if unit["domain"] not in per_domain:
-            raise SystemExit(f"{unit['unit_id']}: T-1298 owns a domain this tool does not rule")
+            raise SystemExit(f"{unit['unit_id']}: this tool rules a domain it does not write")
         rule, note = classify(root, unit, cache)
         if rule is None:                   # spent on a card; see church_appearance_rule
             continue
@@ -1222,10 +1390,17 @@ def build_documents(root: Path = ROOT) -> dict[str, dict]:
             # there cannot drift out of the register that vouches for it.
             row["wrote"] = wrote_by_spend(unit["source_record_id"])
         per_domain[unit["domain"]].append(row)
+        per_domain_tickets[unit["domain"]].add(corpus_ticket(unit))
     documents = {}
     for domain, rulings in per_domain.items():
         rulings.sort(key=lambda row: row["unit"])
         tally = Counter(row["rule"] for row in rulings)
+        # T-1509: WHOSE UNITS ARE IN THIS FILE, derived from the rows rather than declared.
+        # The register carried one ticket's remainder until the business half of T-1468's
+        # routing arrived in the two corpora this tool already writes, and a reader who
+        # cannot tell which ticket a row answers cannot tell what closing that ticket
+        # should do to the file.
+        tickets = sorted(per_domain_tickets[domain])
         documents[domain] = {
             "schema": "research-spend-rulings-v1",
             "_doc": (
@@ -1240,8 +1415,13 @@ def build_documents(root: Path = ROOT) -> dict[str, dict]:
                 "themselves carry. NOTHING HERE EDITS A RESIDENT, MINTS A PERSON, MOVES A "
                 "CONFIDENCE OR INVENTS A CITATION, and nothing here decides the blocked "
                 "letter-list question of T-0660 -> T-0691. "
+                "T-1509 ADDED A SECOND CORPUS to the newspapers and books registers: the "
+                "100 `business` readings the ledger's own derivation routes to T-1468 and "
+                "that T-1508 could not spend on the business layer. `tickets` above says "
+                "which tickets the rows in THIS file answer. "
                 + TWO_HAND_OFF_SHAPES),
             "ticket": TICKET,
+            "tickets": tickets,
             "generated_by": "tools/spend_remainder_rulings.py",
             "counts": {rule: tally[rule] for rule in sorted(tally)},
             "rules": {name: RULES[name] for name in sorted(tally)},
@@ -1447,6 +1627,45 @@ def self_test() -> int:
         failures.append("an uncrosswalked appearance: was handed on anyway")
     except SystemExit:
         pass
+
+    # T-1509: the four answers a business reading can get, each held over a fixture, and
+    # the reach index held over the layer as it stands. The reach fixture is synthetic on
+    # purpose -- the real claim ids move as the corpora are read, and a self-test pinned
+    # to one of them goes red on work that is nothing to do with it.
+    trade = {"source_file": "x/chicago_democrat_1835_01_21.json", "record_key": "c900",
+             "record": {"id": "c900", "kind": "business", "normalized": "Iron and hardware.",
+                        "business": {"name": "an iron and hardware stock"}}}
+    held("a business the layer compiled a record from", trade,
+         "the_compiled_record_names_this_claim_and_tiers_no_field_to_it",
+         fn=lambda u: rule_business(u, {"c900": ["biz_fixture"]}, "1835-06-13"))
+    held("a business notice printed after the scene date", trade,
+         "the_issue_is_printed_after_the_scene_date",
+         fn=lambda u: rule_business(u, {}, "1835-08-05"))
+    held("a business reading of an earlier year",
+         {**trade, "record": {**trade["record"], "describes_date": "1828"}},
+         "the_reading_is_earlier_than_the_scene_and_does_not_reach_it",
+         fn=lambda u: rule_business(u, {}, None))
+    held("a business reading the layer holds no record for", trade,
+         "a_trade_reading_the_business_layer_holds_no_record_for",
+         fn=lambda u: rule_business(u, {}, "1835-06-13"))
+    # THE RECORD OUTRANKS THE DATE, and that order is the ruling, not an accident of the
+    # branch order: a post-scene printing the layer compiled a record from is the
+    # record's question and not this register's (T-1508).
+    if rule_business(trade, {"c900": ["biz_fixture"]}, "1835-08-05")[0] != \
+            "the_compiled_record_names_this_claim_and_tiers_no_field_to_it":
+        failures.append("a compiled record lost to the scene-date fallback")
+
+    # ...and the reach index reads the layer that is committed, not one in a fixture.
+    reach = business_claim_reach(ROOT)
+    if not reach:
+        failures.append("the business layer reaches no claim at all")
+    else:
+        unreached = [unit for unit in mine(ROOT)
+                     if unit["record"].get("kind") == "business"
+                     and not reach.get(unit["record_key"])]
+        ruled = {rule_business(unit, reach, None)[0] for unit in unreached}
+        if "the_compiled_record_names_this_claim_and_tiers_no_field_to_it" in ruled:
+            failures.append("a unit no record reaches was handed to T-1514 anyway")
 
     book = {"source_file": "x/hubbard_autobiography_1911.json",
             "record": {"id": "b1", "kind": "landscape", "normalized": "The prairie.",

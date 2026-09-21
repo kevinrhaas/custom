@@ -70,13 +70,10 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
-T-1509 — Refuse or tier the business readings the layer does not carry at a tiered block: the 49 whose only reach is a record's untiered claim_ids and the 52 that reach no business record at all, each with its reason on the unit
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
 T-1517 — Write the policy-only rung's dealt division back onto the household card and data/residents/index.json through the mint carry slot, so the stages that derive a card whole still re-derive it byte for byte and the People view's division filter fills
 T-1493 — Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
-T-1484 — Carry the North Division parcel's nine roofs across that surface: the recipe's family, suffix, inventory_class and totals re-dealt, generate_north_infill re-deriving byte for byte, the assets renamed, the household workplaces resolved, rebaked and published
-T-1499 — Two tools sweep the same roof-id surface and each keeps its own exemption list, so a file that is legitimately pinned must be named twice
 T-1481 — Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published
 T-1482 — Migrate the three platted blocks' six refamilied roofs, whose ancillary slots cross the principal/ancillary line: generate_block_infill's claimed principal/ancillary mix re-dealt rather than field-edited, the ids carried across the reference list, rebaked and published — with the screenshot from Lake and Clark
 T-1495 — Migrate the North Division parcel's 9 refamilied roofs whose id moves: the recipe's suffix, family, inventory class and authored footprint re-dealt against the new bands, the parcel's group and family totals recomputed, every file naming an old id moved with it, rebaked and published
@@ -217,6 +214,7 @@ T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foregr
 T-1502 — The register deal reads the raw text of every household card as a name pool, so any pass writing a proper name onto one can silently retire a documented man from it
 T-1504 — A stage that reads the St Mary's baptismal register: the four R6 rows whose Indigenous identity the source states in its own hand are refused only because underdocumented reads the 1832 muster roll and nothing reads the register
 T-1505 — The borderline roster refuses 254 rows as 'a surname and no person' and three of them are forenames: Matanacqua, Lieu and Miranda are each named as the parent of a named child, so the refusal is right and its sentence is false
+T-1506 — Retire the surplus reconstructed lawyer: businesses/lawyer is held at 2 drawn against an order of 1, because T-1299 admitted a documented attorney the town can name
 T-1507 — Hiram Pearsons is a house painter a reminiscence names and a speculator this project inferred, and the card carries the inference at attested: re-adjudicate the 1835 trade field through the role readings
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
@@ -224,3 +222,8 @@ T-1507 — Hiram Pearsons is a house painter a reminiscence names and a speculat
 T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and whose owning run has finished is the one state no automation in this repo owns
 T-1511 — The trade share counts buildings that front no street: nineteen Fort Dearborn reservation roofs 270-420 m from Lake Street vote in the principal class, because nearest_frontage has no distance bound
 T-1519 — smoke_budget --for-diff maps renderers/web/js/people.js to part 13, but the People directory's checks are guarded by stageOn(12), so a run that trusts the mapping runs the wrong leg
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1514 — Tier the anonymous compiled business records in compile_businesses.py: 37 records whose only link to the advertisement that compiled them is an untiered claim_ids at the record root, so the 49 readings that built them can never be asserted
+T-1515 — Read Fergus 1839 as a dated directory role like its 1843 and 1844 siblings, so a printing is carried as evidence whether or not the 1835 field is empty

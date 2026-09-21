@@ -1496,7 +1496,15 @@ def gate_problems(docs: dict, index: dict) -> list:
             if not any(p.get(k) for k in BLOCK_KEYS):
                 problems.append(f"{where}/{p.get('id')}: carries no evidence block; a person "
                                 f"minted here is minted FROM a reading and must show it")
-            if p.get("occupation", {}).get("value") != "none_recorded":
+            occ = p.get("occupation") or {}
+            # A TRADE THE ROLES VIEW PROMOTED IS NOT A TRADE THIS PASS READ IN (T-1299).
+            # `promoted_from_roles` is tools/derive_resident_roles.py's own record that
+            # the value came off a role row whose bound contains 1 July 1835, with that
+            # row's citations on the block; the refusal below is about a trade arriving
+            # from nowhere, and it still fires on one, because a hand-typed value carries
+            # no such record.
+            if occ.get("value") != "none_recorded" \
+                    and not isinstance(occ.get("promoted_from_roles"), dict):
                 problems.append(f"{where}/{p.get('id')}: gained a trade; no source in this "
                                 f"pass records one")
             if p.get("grade") not in MINTABLE_GRADES:
