@@ -1,7 +1,7 @@
 ---
 id: T-1459
 title: Re-cut the order book's unfilled remainder to the adult sex ratio the town model already states, and reopen the 10-19 trade band the 1840 schedule drew out — the 78 filled buckets and their 1,370 drawn persons do not move
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1611
 claimed_by: run 9/21/2026, 12:29:43 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T06:57:03.178Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35564560037
 ---
 
