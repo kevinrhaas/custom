@@ -1,7 +1,7 @@
 ---
 id: T-1522
 title: Deal the policy-only rung's seat: every one of the 1,186 households no source places reaches rung 5, its division dealt from the order book's own household division shape and its class from the town model's employment distribution, seeded per household and stated as reconstruction
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1513
 opened: 2026-09-21
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1638
 claimed_by: run 9/21/2026, 12:19:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T18:14:15.752Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35629289735
 ---
 
