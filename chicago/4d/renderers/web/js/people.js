@@ -42,6 +42,7 @@ import { TIER_TITLE } from './attribute-tiers.js';
 import { escapeHtml } from './citations.js';
 import { displayName } from './display-name.js';
 import { householdHtml, loadResidentJoins, words } from './residents.js';
+import { seatHtml, seatTarget } from './seat.js';
 
 const PAGE = 80;
 
@@ -701,55 +702,9 @@ export async function mountPeople({
       <span class="people-go-title">${escapeHtml(title)}</span></button>`;
   }
 
-  /**
-   * Where this household stood, at the rung its evidence reaches (T-1491).
-   *
-   * Before the address book, 1,186 of the 1,393 household cards said "No known
-   * address" and stopped. That reads as an absence in the TOWN when it is an absence
-   * in the RECORD, and the three absences it flattens are not the same thing: nobody
-   * wrote down where these people lived; the paper names their street and no more; the
-   * evidence puts them outside the town altogether. The address book keeps them apart
-   * and this is where a visitor reads the difference.
-   *
-   * The rung label is derived here rather than carried in the file, because it is a
-   * label and not a reading — the reading is `row.words`, written where the seat was.
-   */
-  const RUNG_LABEL = {
-    structure: () => 'Seated at a named roof',
-    lot: () => 'Placed on a lot the plat holds',
-    face: (row) => `Housed on a face of ${row.reach_value || 'its street'}`,
-    // T-1512. The division is the record's; the band inside it is the placement
-    // policy's, and the label says which of the two a reader is looking at.
-    division_band: (row) => (row.seat && row.seat.clause
-      ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
-      : `Banded in the ${row.reach_value} division, and no class dealt`),
-    // T-1522. The weakest seat this ladder makes: nothing in the record reaches
-    // anywhere, so BOTH halves of the band are dealt. The label says dealt, not
-    // banded, because a reader must not mistake it for the rung above — there the
-    // division is the household's own record and only the ground inside it is drawn.
-    policy_only: (row) => `Dealt a place in the ${row.seat?.division || 'town'}, on nothing this household's record says`,
-    unplaceable: () => 'Not seated in this town',
-  };
-
-  function rungLabel(row) {
-    const known = RUNG_LABEL[row.rung];
-    if (known) return known(row);
-    if (row.reach === 'division') return `Reaches the ${row.reach_value} division, and no nearer`;
-    if (row.reach === 'face') return `Reaches ${row.reach_value}, and no nearer`;
-    if (row.reach === 'structure_owed') return 'Reaches a roof this town has not built';
-    return 'No source places this household';
-  }
-
-  function seatHtml(row) {
-    if (!row) return '';
-    const owed = row.owed_to
-      ? `<span class="people-seat-owed">The seat is owed to ${escapeHtml(row.owed_to)}.</span>`
-      : '';
-    return `<p class="people-seat" data-rung="${escapeHtml(row.rung)}">
-      <span class="people-seat-rung">${escapeHtml(rungLabel(row))}</span>
-      <span class="people-seat-words">${escapeHtml(row.words)} ${owed}</span>
-      <span class="people-seat-next">Would move it up the ladder: ${escapeHtml(row.replaceable_by)}.</span></p>`;
-  }
+  // Where this household stood, at the rung its evidence reaches: the words and,
+  // since T-1493, the way there. Both live in `seat.js`, because the business
+  // card prints the same block from the same address book.
 
   function actionsHtml(r) {
     const livesTitle = r.lives_at ? buildingTitle(r.lives_at) : null;
@@ -913,12 +868,33 @@ export async function mountPeople({
       // T-1491. The seat, in words, under whatever the actions block could offer —
       // replacing the bare "No known address" where there was nothing to go to, and
       // standing beneath the Go-to button where there was.
+      //
+      // T-1493 adds the way there. The record's own `lives_at`/`works_at` already
+      // carry a household seated at a named roof, so the seat button is offered
+      // only where the actions block found NOTHING to offer — which is every rung
+      // below a roof.
+      //
+      // NO HOUSEHOLD TAKES IT TODAY, and the reason is worth stating because it
+      // looks like coverage otherwise. The 31 seated at a roof already have their
+      // button off their own record. The 175 T-1492 banded carry a `division_band`
+      // seat, which is a CLASS OF GROUND and not a place — there is no point on it
+      // to stand a visitor at, so `seatTarget` refuses it and the card says where
+      // they are in words alone. The same holds for the 21 firms on a `street_face`
+      // seat. When the walk learns to frame a band or a face, they light up here
+      // with no further edit; inventing a point on one to fill this button would be
+      // exactly the fabricated coordinate T-1198 forbids.
       const seatRow = joins.seatByHousehold?.get(r.household);
       if (seatRow) {
         const actions = cardEl.querySelector('.people-card-actions');
         actions?.querySelector('.people-noaddr')?.remove();
         actions?.querySelector('.people-seat')?.remove();
-        actions?.insertAdjacentHTML('beforeend', seatHtml(seatRow));
+        const target = seatTarget(seatRow);
+        const offered = !!actions?.querySelector('.people-go');
+        const goable = !offered && !!target && !!registry?.has?.(target.id);
+        actions?.insertAdjacentHTML('beforeend', seatHtml(seatRow, {
+          goable,
+          title: goable ? (buildingTitle(target.id) || target.id) : null,
+        }));
       }
     } catch (err) {
       if (seq !== openSeq) return false;
@@ -951,6 +927,10 @@ export async function mountPeople({
     if (go && state.open) {
       const r = byId.get(state.open);
       const which = go.dataset.go;
+      // The seat button (T-1493) is not the person's own address — the record has
+      // none, which is why it is there — so it goes to the structure it names and
+      // never through the person route, which would resolve to nothing.
+      if (which === 'seat') { onGoTo?.({ kind: 'structure', id: go.dataset.structure }); return; }
       onGoTo?.({
         kind: 'person',
         id: r.id,
