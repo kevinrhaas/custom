@@ -342,8 +342,8 @@
       "census_line": "eight taverns",
       "census_count": 8,
       "compared": true,
-      "town_records_in_town": 16,
-      "town_records_at_scene_date": 15,
+      "town_records_in_town": 12,
+      "town_records_at_scene_date": 11,
       "town_records_outside_town": 0,
       "records_opening_after_scene_date": 0,
       "business_ids_opening_after_scene_date": [],
@@ -355,18 +355,31 @@
         "biz_stow_william_h_hotel_keeper",
         "biz_sweet_alanson_tavern_keeper",
         "biz_walters_william_tavern_keeper",
-        "business_e_wentworth",
-        "business_e_wentworth_s_public_house_on_flag_creek",
-        "business_e_wentworth_s_tavern_flag_creek",
         "business_e_wentworth_s_tavern_on_flag_creek",
         "business_eagle_hotel",
         "business_eagle_tavern",
         "business_ingersoll_s_tavern_stand",
-        "business_p_s_carli_eagle_tavern",
         "business_the_traveller_s_home"
       ],
-      "folded_business_ids": [],
-      "delta": 7,
+      "folded_business_ids": [
+        {
+          "business_id": "business_e_wentworth",
+          "into": "business_e_wentworth_s_tavern_on_flag_creek"
+        },
+        {
+          "business_id": "business_e_wentworth_s_public_house_on_flag_creek",
+          "into": "business_e_wentworth_s_tavern_on_flag_creek"
+        },
+        {
+          "business_id": "business_e_wentworth_s_tavern_flag_creek",
+          "into": "business_e_wentworth_s_tavern_on_flag_creek"
+        },
+        {
+          "business_id": "business_p_s_carli_eagle_tavern",
+          "into": "business_eagle_tavern"
+        }
+      ],
+      "delta": 3,
       "shortfall_explained_by_later_openings": 0,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": null
@@ -685,12 +698,12 @@
     "businesses_counted": 236,
     "in_town": 233,
     "outside_town": 3,
-    "at_scene_date": 216,
-    "folded_into_another_house": 1,
+    "at_scene_date": 212,
+    "folded_into_another_house": 5,
     "carrying_no_enumerated_class": 89,
     "not_stated": 5,
     "census_enumerated_total": 118,
-    "town_enumerated_total_at_scene_date": 134
+    "town_enumerated_total_at_scene_date": 130
   },
   "classes_the_town_holds_nothing_for": [
     "bank",
@@ -714,6 +727,14 @@
         "business_m_cormick_moon"
       ],
       "detail": "Two St. Joseph steam saw mills and a Detroit hat house advertised in Chicago papers. The census counted the town; these are scoped `outside_town` and are counted apart from it."
+    },
+    {
+      "what": "two houses under one name, a keeper apart — NAMED, NOT RULED",
+      "business_ids": [
+        "business_eagle_hotel",
+        "business_eagle_tavern"
+      ],
+      "detail": "The register carries an 'Eagle Hotel' kept by P. B. F. Cable and J. Shrigley (1834-04-16 to 1834-10-08) and an 'Eagle Tavern' kept by Carli (1834-06-18 to 1834-09-10), and the two overlap in the same months: on 1834-07-02 the Eagle Hotel is 'taken' by Cable while a visiting dentist keeps his office 'at the Eagle Tavern'. One house under two names with a change of keeper, or two houses trading on the same bird, is exactly the question this project will not answer off a name — and NO IDENTITY RULING IS MADE HERE (T-1471). It bears on `town_records_in_town` only: the Eagle Hotel is already excluded from the scene date as contradicted before it, so the pair cannot move the scene-date tavern count either way. Reading the 1834-07-02 and 1834-10-08 pages against each other is what would settle it."
     }
   ],
   "classification": [
@@ -2144,8 +2165,10 @@
       "present_at_scene_date": true,
       "scene_date_exclusion": null,
       "opened_after_scene_date": false,
-      "folded_into": null,
-      "folded_in_classes": []
+      "folded_into": "business_e_wentworth_s_tavern_on_flag_creek",
+      "folded_in_classes": [
+        "tavern"
+      ]
     },
     {
       "business_id": "business_e_wentworth_s_public_house_on_flag_creek",
@@ -2160,8 +2183,10 @@
       "present_at_scene_date": true,
       "scene_date_exclusion": null,
       "opened_after_scene_date": false,
-      "folded_into": null,
-      "folded_in_classes": []
+      "folded_into": "business_e_wentworth_s_tavern_on_flag_creek",
+      "folded_in_classes": [
+        "tavern"
+      ]
     },
     {
       "business_id": "business_e_wentworth_s_tavern_flag_creek",
@@ -2176,8 +2201,10 @@
       "present_at_scene_date": true,
       "scene_date_exclusion": null,
       "opened_after_scene_date": false,
-      "folded_into": null,
-      "folded_in_classes": []
+      "folded_into": "business_e_wentworth_s_tavern_on_flag_creek",
+      "folded_in_classes": [
+        "tavern"
+      ]
     },
     {
       "business_id": "business_e_wentworth_s_tavern_on_flag_creek",
@@ -3364,8 +3391,10 @@
       "present_at_scene_date": true,
       "scene_date_exclusion": null,
       "opened_after_scene_date": false,
-      "folded_into": null,
-      "folded_in_classes": []
+      "folded_into": "business_eagle_tavern",
+      "folded_in_classes": [
+        "tavern"
+      ]
     },
     {
       "business_id": "business_peter_cohen",
