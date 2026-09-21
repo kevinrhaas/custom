@@ -5,8 +5,8 @@ DERIVED — regenerate with `tools/measure_roof_id_migration.py --build`. T-1483
 T-1445 returned 32 refamily verdicts; T-1451 carried out the 6 whose record id does not encode its family. These are the other 26. Each becomes a new id the moment its family moves, and the id is named across the tree. NOTHING IS MOVED HERE: this is the measurement the three carry-out tickets (T-1481 south, T-1482 the platted blocks, T-1484 north) each stand on.
 
 - roofs whose id moves: **26**
-- files that name one: **74**
-- of those, **2** hold a reference a rename would falsify, **19** rename, **49** are re-derived by their own tool, **4** are frozen records of a past run
+- files that name one: **75**
+- of those, **2** hold a reference a rename would falsify, **19** rename, **50** are re-derived by their own tool, **4** are frozen records of a past run
 
 ## The rows that cost judgement
 
@@ -44,9 +44,9 @@ A reference is not always a pointer. These assert what the roof IS, and the verd
 | `recon_1835_north_c1_047` | `recon_1835_north_a1_047` | 0 | 7 | 4 | 1 |
 | `recon_1835_north_c2_027` | `recon_1835_north_d6_027` | 0 | 9 | 4 | 1 |
 | `recon_1835_north_f1_022` | `recon_1835_north_h2_022` | 2 | 8 | 4 | 1 |
-| `recon_1835_north_h3_045` | `recon_1835_north_h2_045` | 4 | 13 | 4 | 1 |
+| `recon_1835_north_h3_045` | `recon_1835_north_h2_045` | 4 | 14 | 4 | 1 |
 | `recon_1835_north_i2_015` | `recon_1835_north_d4_015` | 5 | 10 | 4 | 0 |
-| `recon_1835_north_t1_028` | `recon_1835_north_h2_028` | 2 | 12 | 4 | 1 |
+| `recon_1835_north_t1_028` | `recon_1835_north_h2_028` | 2 | 13 | 4 | 1 |
 | `recon_1835_north_w1_018` | `recon_1835_north_d4_018` | 0 | 10 | 4 | 1 |
 | `recon_1835_north_w2_005` | `recon_1835_north_d4_005` | 0 | 9 | 4 | 1 |
 | `recon_1835_south_c1_003` | `recon_1835_south_d1_003` | 3 | 9 | 4 | 1 |
@@ -87,7 +87,7 @@ A plain pointer at the record. The migration rewrites the string and nothing els
 | `tools/smoke_renderer.mjs` | 1 | a plain pointer at the record |
 | `tools/step_isolation.json` | 2 | a plain pointer at the record |
 
-## Re-derived — 49 file(s)
+## Re-derived — 50 file(s)
 
 Written by a tool, which `check.sh` re-runs. The migration must NOT hand-edit these; it re-runs the tool and commits what comes out.
 
@@ -108,6 +108,7 @@ Written by a tool, which `check.sh` re-runs. The migration must NOT hand-edit th
 | `data/research/land_sales/ground.json` | 26 | generated_by tools/resolve_land_tracts.py --build |
 | `data/research/newberry_index/lead_crosswalk.json` | 7 | GENERATED |
 | `data/research/newberry_index/leads.json` | 7 | GENERATED |
+| `data/residents/employment_coverage.json` | 2 | DERIVED — regenerate with tools/employment_coverage_1835 |
 | `data/residents/reconstructed_seating.json` | 2 | DERIVED — regenerate with tools/seat_reconstructed_trades_1835 |
 | `data/sidecars/1835/index.json` | 26 | compiled from the structure records by tools/compile_scene.py --all |
 | `data/sidecars/1835/people.json` | 2 | compiled from the structure records by tools/compile_scene.py --all |
