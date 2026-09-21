@@ -20,7 +20,21 @@ claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/3554782
 
 Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset.
 
-**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+**Acceptance:** the rule the smoke asserts and the rule `reconstruct_modelled_families.py`
+applies are the same rule — an evidence-only container (`hh_inf_*`, named "Evidence-only
+household — <head>") is refused by the stage's own eligibility, no `hh_inf_*` record carries a
+person any stage drew, the refusal is counted in the ledger and stated in L244 and in the module's
+own list of what it may not do, the whole derived layer re-derives (`check.sh` green), and
+`SMOKE_VIEWPORT=desktop SMOKE_STAGE=3` passes `nothing was drawn into an evidence-only household`.
+The label check named in the title is T-1331's and is out of scope here.
+
+**Done, 2026-09-21.** The stage was the wrong half: `division: unplaced` was admitted and nothing
+knew what an `hh_inf_` record is. A seventh refusal was added beside the letter-list one, which it
+is the sibling of — both refuse a record that argues for a person and not for a household. Ten
+drawn kin were retired from four of the five containers; the order book re-spent their quota on
+documented heads it had been refusing, so the stage now draws for 119 heads instead of 89 and
+writes 296 people instead of 300. The whole derived layer was re-derived behind it, and the order
+book's self-test stopped carrying a hand-typed town figure (2,267) that this change moved.
 
 **Found by** T-1347's run, 2026-09-19, on the first `SMOKE_VIEWPORT=desktop SMOKE_STAGE=3`
 leg anybody has run since 2026-09-18T01:35. Two checks fail, and BOTH are dev's, not that
