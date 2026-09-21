@@ -1,7 +1,7 @@
 ---
 id: T-1395
 title: The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-19
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 2:38:31 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35573712444
 ---
 
 The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row.
