@@ -53,7 +53,7 @@ const iso = (minutesAgo) => new Date(Date.now() - minutesAgo * 60_000)
  * file the caller reads back, because "what did it SAY about this PR" is the
  * only question that matters here.
  */
-function run({ prs = [], claims = {}, comments = {}, listExit = 0, only = '', dry = '' }) {
+function run({ prs = [], claims = {}, comments = {}, listExit = 0, only = '', dry = '', soft = '' }) {
   const box = mkdtempSync(path.join(tmpdir(), 'prstuck-'));
   const bin = path.join(box, 'bin');
   mkdirSync(bin, { recursive: true });
@@ -161,7 +161,7 @@ process.exit(0);
     encoding: 'utf8',
     env: { ...process.env, PATH: `${bin}:${process.env.PATH}`,
            GH_TOKEN: 'fake', STUCK_ONLY: only, STUCK_DRY_RUN: dry,
-           STUCK_RETRY_SLEEP: '0',
+           STUCK_RETRY_SLEEP: '0', STUCK_SOFT_FAIL: soft,
            GITHUB_REPOSITORY: 'kevinrhaas/custom' },
   });
   const did = existsSync(acted) ? readFileSync(acted, 'utf8') : '';
@@ -311,6 +311,23 @@ console.log('pr-stuck.sh — a PR nothing can move is never silent, and nothing 
   const r = run({ prs: [], listExit: 1 });
   check('a failed PR-list call fails the run', r.code !== 0, `exit ${r.code}`);
   check('…and never reports a quiet queue it never saw', !/stuck=0 held=0/.test(r.out));
+}
+
+/* 10b. …EXCEPT WHEN THAT FAILURE WOULD LAND ON SOMEBODY ELSE'S PULL REQUEST. A
+ *      run started by a push creates a check run on the pushed head sha, and for
+ *      a `steward/**` branch that sha is an open PR's head. A failing non-required
+ *      check makes the PR `unstable`, and merge-ready.sh merges only on `clean` —
+ *      so a rate-limited sweep would leave a FINISHED pull request waiting on
+ *      checks for ever. The workflow sets STUCK_SOFT_FAIL on that trigger alone;
+ *      the same sweep on a push to `dev` still fails hard, and a rate limit does
+ *      not outlast the gap between the two. */
+{
+  const r = run({ prs: [], listExit: 1, soft: '1' });
+  check('a blind sweep on a steward branch does not fail the job', r.code === 0, `exit ${r.code}`);
+  check('…and is still loud about it', /::error::/.test(r.out));
+  check('…and says why it is not failing, rather than looking healthy',
+        /would attach to an open PR's head sha/.test(r.out));
+  check('…and still never reports a queue it never saw', !/stuck=0 held=0/.test(r.out));
 }
 
 /* 11. The honest empty queue still passes — the guard above must not cost that. */
