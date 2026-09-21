@@ -12474,23 +12474,23 @@ Related: ticket **T-1352**, piece 1 of **T-1178**; stage `transients` of **T-116
 `docs/RESEARCH/1835_transient_cohort.md`.
 **Recorded:** 2026-09-19.
 
-### L246 — 820 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
+### L246 — 904 names the research withheld are re-admitted to the town at the reconstructed tier, and the rate that prices them is fitted to three points
 
-**Decision:** the borderline roster (T-1159) holds 1,490 names the corpus PRINTED and this
+**Decision:** the borderline roster (T-1159) holds 1,766 names the corpus PRINTED and this
 project's research READ and WITHHELD. Stage `readmissions` of the resident reconstruction
-programme (T-1167) spends four of its seven classes and re-admits **820** of them:
-**734** cards whose presence on 1 July 1835 the research left `uncertain` are given a
-**second**, reconstructed presence beside it (697 `present`, 37 `absent`), and **86** new
-cards are minted under read names the town carried on no row — 19 from a single in-window
-appearance, 23 from the 1832 Black Hawk muster at Chicago, 44 from later rolls whose own
-biography dates an arrival before the scene. **117** offered rows are withheld, each with
-its reason: 37 because a card already in the layer shares the surname and first given
-initial — the discriminator this project's own directory crosswalks match on — 41 because
-the row carries no readable date at all, and 39 because T-1144's reading of the row shows
-its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day
+programme (T-1167) spends four of its seven classes — 1,195 of those rows — and re-admits
+**904** of them: **725** cards whose presence on 1 July 1835 the research left `uncertain`
+are given a **second**, reconstructed presence beside it (688 `present`, 37 `absent`), and
+**179** new cards are minted under read names the town carried on no row — 120 from a single
+in-window appearance, 20 from the 1832 Black Hawk muster at Chicago, 39 from later rolls
+whose own biography dates an arrival before the scene. **291** offered rows are withheld,
+each with its reason: 212 because a card already in the layer shares the surname and first
+given initial — the discriminator this project's own directory crosswalks match on — 40
+because the row carries no readable date at all, and 39 because T-1144's reading of the row
+shows its evidence is a source SPAN that runs through 1 July 1835 and therefore pins no day
 before it. A lag nothing measures is not a lag a persistence rate may be applied to.
 
-**Scope:** `residents.persons[readmissions]` — 182 people, in 182 cards of their own in `data/residents/readmitted/`, re-derivable from `tools/readmit_borderline_roster.py --check`. The 820 of the title is what the stage RE-ADMITS and the 182 is what it MINTS: 734 of the 820 are a second presence written beside a reading on a card this layer already held, and only the 86 new names and the 96 rows that carry their own household get a card here. The stage's own ledger prints both figures; this one is the count of people who exist because this stage ran.
+**Scope:** `residents.persons[readmissions]` — 179 people, in 179 cards of their own in `data/residents/readmitted/`, re-derivable from `tools/readmit_borderline_roster.py --check`. The 904 of the title is what the stage RE-ADMITS and the 179 is what it MINTS: 725 of the 904 are a second presence written beside a reading on a card this layer already held, and only the rows carrying a read name no card of this layer holds get a card here. The stage's own ledger prints both figures; this one is the count of people who exist because this stage ran.
 
 **What is invented, exactly.** Two things and no more. First, **that these people were in
 Chicago on 1 July 1835**, which no source says of any of them — that is what "withheld"
@@ -12541,6 +12541,19 @@ row's ruling on its own.
 Related: **L214** (what a letter-list name is worth), ticket **T-1172**, the roster
 **T-1159**, the programme **T-1167**.
 **Recorded:** 2026-09-19.
+**Restated:** 2026-09-21 (T-1379), from 182 minted cards to 179, and the three that went are
+the point of the restatement rather than a loss. The roster keyed the resident layer by the
+name a source PRINTS, so a read name a crosswalk had merged into a card spelt otherwise
+missed that index and was offered back — and three of those offers had been taken. **Billy
+Caldwell**, **Dr. John T. Temple** and **Dr. William B. Egan** were minted as new cards while
+`hh_caldwell_billy`, `hh_temple_john_t` and `hh_egan_william_b` already held them, each join
+written down in `data/research/books/crosswalk.json` or `church/crosswalk.json` before the
+mint ran. Each card's own `withdrawn_if` named this condition and the generator retired them
+on its own stale path; nothing was deleted by hand and no refusal was overturned. The other
+figures above are restated in the same pass against the ledger the gate re-derives — they had
+been carried from an earlier build and the roster has grown under them (820 re-admissions to
+904, 1,490 offered names to 1,766); no number here is now anything but a reading of
+`data/reconstruction/1835_readmissions.json`.
 
 ### L247 — A hundred and twenty-four women keep a house nobody wrote down, and four hundred and thirty-two children and young people live in them
 

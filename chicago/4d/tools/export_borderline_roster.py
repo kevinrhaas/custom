@@ -190,6 +190,30 @@ NOT_A_COMMUNITY = (
     "menominee, mich", "menominee mich",
 )
 
+# THE TERMS A CLERK WROTE ONTO ONE NAME, read only where he attached them (T-1383).
+#
+# COMMUNITY_TERMS above is read over the unit's whole words, which is right for a term
+# that describes the reading — an 1840 column heading, a certificate's subject. It is
+# WRONG for St Mary's register, the only source this project holds in which a
+# contemporary states an Indigenous identity for a named person at Chicago. There the
+# term is the priest's parenthesis on ONE name, and every row of an entry carries the
+# same `entry_as_read`: entry 14 of 1833 names the mother, the father, the child and two
+# sponsors on one line, so reading `sauvage` over the unit's words would credit Augustin
+# Bonné and Monique Nodeau with a community the clerk said nothing about. That is the
+# same careless reading NOT_A_COMMUNITY exists to prevent, run the other way.
+#
+# So these terms are credited to a row only where the term FOLLOWS that row's own name —
+# "Marianne (sauvage)", "Jaespquaa (sauvage de Green Bay)", and in the claim that quotes
+# entry 18, "de Jaespquaa (sauvage de Green Bay)" and not the "Paul Vieaux" before it.
+# Attachment is the guard here, in place of the recall the shared-text list can afford.
+#
+# `sauvage` is the register's own vocabulary and not this project's; the readings say so
+# themselves and it is kept only because refusing to read the clerk's word is what left
+# these two women out of the town while their husbands and children stood in it.
+NAME_BORNE_COMMUNITY_TERMS = {
+    "native_or_metis": ("sauvage", "sauvages", "sauvagesse", "sauvagesses"),
+}
+
 BEAR_CREEK = "bear creek"
 
 DATE = re.compile(r"\b(1[678]\d\d|19\d\d)(?:-(\d\d))?(?:-(\d\d))?\b")
@@ -257,6 +281,84 @@ def after_scene(date: str | None) -> bool:
     return bool(date) and date > SCENE_DATE[:len(date)]
 
 
+# ---------------------------------------------------------------- the crosswalk merges
+
+# A crosswalk MERGE is the project's written ruling that two spellings are one person.
+# This roster keys the resident layer by the name a source PRINTS, so a read name a merge
+# joined to a card spelt otherwise misses that index and is offered for re-admission
+# beside the card that already holds the person — the Baptist catalogue's
+# `Martin D. Harmon` against `hh_harmon_m_d`, which is the exact double-mint rule 1 of
+# `classify` exists to prevent (T-1379, found by T-1367).
+#
+# READ THE MERGES AND NOTHING ELSE. A crosswalk's REFUSALS are the opposite ruling — the
+# catalogue's Peter Moore was weighed against Henry Moore and refused — and a refused name
+# is not carried by anybody's card, so it stays offered. The key test is the one
+# `consolidate_resident_evidence.py` already makes over this same corpus: a list-valued
+# key whose name carries "merge" and does not carry "refus".
+#
+# A MERGE IS SYMMETRIC, and the declared direction of `into`/`from` is not uniform across
+# the corpus: `books/crosswalk.json` writes the card's name into `into`, while
+# `newspapers/identity.json` writes the printed form there (`A[n]drew W. Borland` into
+# `Andrew W. Borland`). 119 pairs name the card on one side, 11 on the other. Reading only
+# one side would carry 11 of them and miss the rest for a convention neither file promises,
+# so both sides are read: whichever spelling the layer holds, the other is that card's.
+MERGE_KEY = "merge"
+REFUSAL_KEY = "refus"
+
+
+def crosswalk_merges(root: Path = ROOT) -> list[dict]:
+    """Every committed name-to-name merge in the research corpus, as read/other pairs.
+
+    `newspapers/identity.json` is named because it holds this domain's merges under a
+    file name the crosswalk glob does not match; everything else is discovered, so a
+    crosswalk filed after this is read without editing a list."""
+    research = root / "data" / "research"
+    paths = [research / "newspapers" / "identity.json"]
+    paths += sorted(research.rglob("*crosswalk*.json"))
+    merges: list[dict] = []
+    for path in paths:
+        doc = read_json(path)
+        if not isinstance(doc, dict):
+            continue
+        where = str(path.relative_to(research))
+        for key, rows in sorted(doc.items()):
+            if not isinstance(rows, list):
+                continue
+            if MERGE_KEY not in key or REFUSAL_KEY in key:
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                into, came_from = row.get("into"), row.get("from")
+                if not (isinstance(into, str) and isinstance(came_from, str)):
+                    continue
+                if not (normalise_name(into) and normalise_name(came_from)):
+                    continue
+                if normalise_name(into) == normalise_name(came_from):
+                    continue
+                merges.append({"into": into, "from": came_from,
+                               "declared_in": f"{where}#{key}"})
+    return merges
+
+
+def merged_name_index(by_name: dict[str, dict], root: Path = ROOT) -> dict[str, dict]:
+    """normalised read name -> the card a crosswalk merge says already holds it.
+
+    A spelling the layer holds DIRECTLY is never rewritten here: `by_name` is the reading
+    of first resort and this index only answers where it is silent. First declaration
+    wins, in the file order `crosswalk_merges` fixes, so the answer is deterministic."""
+    index: dict[str, dict] = {}
+    for merge in crosswalk_merges(root):
+        for read_side, card_side in (("from", "into"), ("into", "from")):
+            key = normalise_name(merge[read_side])
+            card = by_name.get(normalise_name(merge[card_side]))
+            if card is None or key in by_name or key in index:
+                continue
+            index[key] = {"card": card, "merge": merge,
+                          "card_name": merge[card_side], "read_name": merge[read_side]}
+    return index
+
+
 # ---------------------------------------------------------------- the resident layer
 
 def resident_layer(root: Path = ROOT) -> dict:
@@ -296,6 +398,7 @@ def resident_layer(root: Path = ROOT) -> dict:
     return {
         "cards": cards,
         "by_name": by_name,
+        "by_merged_name": merged_name_index(by_name, root),
         "by_surname": by_surname,
         "researched_not_resident": index.get("researched_not_resident") or [],
     }
@@ -466,6 +569,31 @@ def community_of(text: str) -> tuple[str | None, str | None]:
     return None, None
 
 
+def community_written_onto_the_name(read: str, normalised: str,
+                                    text: str) -> tuple[str | None, str | None]:
+    """A community term the clerk attached to THIS name, and to no other on the line.
+
+    The term counts only where it follows the row's own name — the parenthesis as the
+    register prints it. A name that merely stands on the same entry as one gets nothing,
+    which is the whole point: a sponsor is not what the priest wrote the word about.
+    NOT_A_COMMUNITY is struck out first, exactly as `community_of` strikes it, so an
+    office that carries a community word ("indian agent") cannot be read as a community
+    even when it stands where a parenthesis would.
+    """
+    for phrase in NOT_A_COMMUNITY:
+        text = text.replace(phrase, " ")
+    candidates = [n for n in (normalised, normalise_name(read)) if n]
+    for community, terms in NAME_BORNE_COMMUNITY_TERMS.items():
+        for term in terms:
+            for name in candidates:
+                # the name, then punctuation or an opening parenthesis only, then the
+                # term. Nothing else may stand between them.
+                attached = rf"\b{re.escape(name)}\b[\s,.;:]*\(?\s*{re.escape(term)}\b"
+                if re.search(attached, text):
+                    return community, term
+    return None, None
+
+
 def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
              text: str, rulings_1830: dict | None = None) -> dict:
     """One row's class and the rule that put it there. Order is the ruling order."""
@@ -500,6 +628,34 @@ def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
                     f"{card['presence']!r}; there is nothing here to re-admit."),
                    existing_household_id=card["id"], presence_today=card["presence"])
 
+    # 1b. The town carries this person under ANOTHER SPELLING, and a crosswalk has said so
+    #     in writing (T-1379). This is rule 1 read through the merges rather than a new
+    #     kind of ruling: the name index is the layer's first reading and the merges are
+    #     the project's own correction to it. The row names the merge AND the card, so a
+    #     reader can go to the file that made the join and disagree with it. A crosswalk
+    #     REFUSAL never reaches here — `crosswalk_merges` reads merge keys only — so a
+    #     name weighed against a card and refused stays offered, which is the point.
+    #
+    #     IT SITS WITH RULE 1, ABOVE THE COMMUNITY CHECK, for rule 4's own stated reason:
+    #     a person the town already carries is a fact about WHO and not a limit on
+    #     evidence, and a name on a card is a person BUILT, not a community left unbuilt.
+    #     Measured on this corpus, one such row is a community row — the Baptist
+    #     catalogue's Billy Caldwell, whom the layer already holds at hh_caldwell_billy as
+    #     `Billy Caldwell (Sauganash)` — and the R6 count is unchanged by this rule.
+    merged = layer.get("by_merged_name", {}).get(normalised)
+    if merged is not None:
+        held = merged["card"]
+        return out("R0_ineligible",
+                   ("carried_under_a_crosswalk_merged_name",
+                    "A committed crosswalk merge joins this read name to a card spelt "
+                    "otherwise, so the town already carries the person under that other "
+                    "spelling and re-admitting the name would mint a second copy. The "
+                    "merge and the card it names are on the row."),
+                   existing_household_id=held["id"],
+                   presence_today=held["presence"],
+                   merged_into=merged["card_name"],
+                   merge_declared_in=merged["merge"]["declared_in"])
+
     # 2. The ledger placed it outside Chicago, or a source did.
     if disposition == "outside_chicago":
         return out("R0_ineligible",
@@ -531,6 +687,24 @@ def classify(unit: dict, read: str, normalised: str, led: dict, layer: dict,
                     "The reading's own words carry one of this file's declared community "
                     "terms, so the row goes to T-1177's review rather than into a general "
                     "pool. The term is named on the row; the judgement is T-1177's."),
+                   community=community, community_term=term,
+                   review_required=(community == "native_or_metis"))
+
+    # 4b. The same step, for a term the clerk wrote onto this name alone (T-1383). It
+    #     stands here and not lower for the reason 4 does: an evidence limit must never
+    #     be the reason a community goes unbuilt. Before this, the two women St Mary's
+    #     priest marked reached rule 9 and were refused there as "a surname and no
+    #     person" — their names are mononyms — so the town carried their husbands and
+    #     their children and not them.
+    community, term = community_written_onto_the_name(read, normalised, text)
+    if community:
+        return out("R6_native_metis_black",
+                   ("community_term_written_onto_the_name",
+                    "The reading carries one of this file's declared community terms "
+                    "attached to THIS name — the clerk's own parenthesis — so the row "
+                    "goes to T-1177's review rather than into a general pool. Names "
+                    "standing elsewhere on the same entry are not credited with it. "
+                    "The term is named on the row; the judgement is T-1177's."),
                    community=community, community_term=term,
                    review_required=(community == "native_or_metis"))
 
@@ -875,7 +1049,7 @@ def build_document(root: Path = ROOT) -> dict:
     # refused it — because "no unit is silently dropped" has to be checkable and a refusal
     # carries no fields a builder would use.
     LEAN = ("row_id", "name_as_read", "normalised", "domain",
-            "existing_household_id", "note")
+            "existing_household_id", "merged_into", "merge_declared_in", "note")
     offer = [row for row in rows if row["class"] != "R0_ineligible"]
     refused: dict[str, list[dict]] = defaultdict(list)
     for row in rows:
@@ -1102,6 +1276,20 @@ def check(root: Path = ROOT) -> list[str]:
         if row["class"] == "R6_native_metis_black" and "community" not in row:
             faults.append(f"{row['row_id']}: an R6 row must name its community")
             break
+
+    # T-1379. A name carried by a card only because a crosswalk said so has to say WHICH
+    # merge and WHICH card, or the ruling cannot be argued with.
+    for row in every_row(doc):
+        if row.get("rule") != "carried_under_a_crosswalk_merged_name":
+            continue
+        if row["class"] != "R0_ineligible":
+            faults.append(f"{row['row_id']}: a crosswalk-merged name must not be offered")
+            break
+        if not (row.get("existing_household_id") and row.get("merged_into")
+                and row.get("merge_declared_in")):
+            faults.append(f"{row['row_id']}: a crosswalk-merged name must name the card, "
+                          "the spelling it was merged into and the merge that did it")
+            break
     return faults
 
 
@@ -1189,9 +1377,105 @@ def self_test() -> int:
                if r.get("ledger_disposition") == "asserted"))
     # The Baptist catalogue of 19 October 1833 is the ticket's own case: fourteen names,
     # spent on three cards, and the rest must still be here.
-    baptist = [r for r in every_row(doc) if r.get("claim_or_record_id") == "bk_mose2_010"]
-    expect("the Baptist catalogue keeps every name it prints on the roster",
-           len(baptist) >= 12)
+    # STATED OVER THE ROW IDS, not over `claim_or_record_id`: a refusal is projected to
+    # LEAN fields and loses that key, so counting it would only ever count the OFFER — and
+    # then a name correctly moving to a card would read as a name lost. T-1379 moved one
+    # (Martin D. Harmon), which is how that was found. The catalogue prints fourteen names
+    # and all fourteen must be on the roster, offered or refused with a rule.
+    baptist = [r for r in every_row(doc) if "#claims/bk_mose2_010#" in r["row_id"]]
+    expect(f"the Baptist catalogue keeps every name it prints on the roster "
+           f"(has {len(baptist)})", len(baptist) == 14)
+    expect("the Baptist catalogue's carried names are refused, not offered",
+           len([r for r in baptist if r["class"] == "R0_ineligible"]) == 3)
+
+    # 7. T-1379: a read name a crosswalk merged into a differently-spelt card is carried
+    #    by that card, and a crosswalk REFUSAL is not a merge.
+    merged_index = layer["by_merged_name"]
+    expect("the crosswalk merge index is built and reaches cards", bool(merged_index))
+    expect("a merge never rewrites a spelling the layer holds directly",
+           not (set(merged_index) & set(layer["by_name"])))
+    expect("every merged read name resolves to a card the layer holds",
+           all(entry["card"]["id"] for entry in merged_index.values()))
+
+    merged_rows = [r for r in every_row(doc)
+                   if r.get("rule") == "carried_under_a_crosswalk_merged_name"]
+    expect("the merged-name rule reaches the roster at all", bool(merged_rows))
+    expect("no merged-name row is offered for re-admission",
+           not any(r["class"] != "R0_ineligible" for r in merged_rows))
+    expect("every merged-name row names the card and the merge that made the join",
+           all(r.get("existing_household_id") and r.get("merged_into")
+               and r.get("merge_declared_in") for r in merged_rows))
+
+    # The ticket's own case, both ways round. `Martin D. Harmon` is on no card under that
+    # spelling and `books/crosswalk.json` committed him to hh_harmon_m_d, so he leaves the
+    # offer; `Augustus Garrett` is the same join declared in the other direction and must
+    # be read too, or 11 of the corpus's 130 card-reaching merges go uncarried.
+    harmon = [r for r in every_row(doc) if r["normalised"] == normalise_name("Martin D. Harmon")]
+    expect("the Baptist catalogue's Martin D. Harmon is on the roster at all", bool(harmon))
+    expect("Martin D. Harmon is carried by hh_harmon_m_d, not offered",
+           all(r["rule"] == "carried_under_a_crosswalk_merged_name"
+               and r.get("existing_household_id") == "hh_harmon_m_d" for r in harmon))
+    expect("a merge declared with the card's name in `from` is read as well",
+           normalise_name("Augustus Garrett") in merged_index)
+
+    # A REFUSAL IS NOT A MERGE. The catalogue's Peter Moore was weighed against Henry
+    # Moore and refused, so no card carries him and he stays offered.
+    expect("a crosswalk refusal does not put a name on a card",
+           normalise_name("Peter Moore") not in merged_index)
+    expect("the refused Peter Moore is still offered for re-admission",
+           any(r["normalised"] == normalise_name("Peter Moore") for r in doc["rows"]))
+
+    # Break the filter and require it to fire: the same pair under a merge key and under a
+    # refusal key must not read the same way.
+    with tempfile.TemporaryDirectory() as tmp:
+        sandbox = Path(tmp) / "tree"
+        crosswalks = sandbox / "data" / "research" / "probe"
+        crosswalks.mkdir(parents=True)
+        (sandbox / "data" / "research" / "newspapers").mkdir(parents=True)
+        pair = [{"into": "Probe Alpha", "from": "Probe Beta"}]
+        (crosswalks / "crosswalk.json").write_text(
+            json.dumps({"merges": pair}), encoding="utf-8")
+        expect("a merge key is read", len(crosswalk_merges(sandbox)) == 1)
+        (crosswalks / "crosswalk.json").write_text(
+            json.dumps({"refused_merges": pair}), encoding="utf-8")
+        expect("a refusal key is NOT read as a merge", crosswalk_merges(sandbox) == [])
+        (crosswalks / "crosswalk.json").write_text(
+            json.dumps({"merges": [{"into": "Probe Alpha", "from": "Probe Alpha"}]}),
+            encoding="utf-8")
+        expect("a merge of a spelling with itself is no merge",
+               crosswalk_merges(sandbox) == [])
+
+    # 7. T-1383: the term the priest wrote onto a name reaches that name and no other.
+    #    Both directions, because a recall-only assertion would pass on a rule that
+    #    credited the whole entry — which is the bug this pass was written to avoid.
+    onto = [r for r in doc["rows"]
+            if r.get("rule") == "community_term_written_onto_the_name"]
+    expect("the name-borne community terms reach the roster at all", bool(onto))
+    expect("every name-borne row names the term that put it there and its community",
+           all(r.get("community") and r.get("community_term") for r in onto))
+    expect("a name-borne term the file does not declare cannot appear",
+           all(r["community_term"] in NAME_BORNE_COMMUNITY_TERMS[r["community"]]
+               for r in onto))
+    # The two St Mary's mothers, by name: the only contemporary statement of an
+    # Indigenous identity for a named person at Chicago this project holds.
+    mothers = {r["normalised"] for r in onto}
+    expect(f"the St Mary's mothers the priest marked are offered (got {sorted(mothers)})",
+           {"marianne", "jaespquaa"} <= mothers)
+    # ...and the twelve other names on entries 14, 17 and 18 — two fathers, three
+    # children, five sponsors and two godparents — are credited with nothing. The term
+    # rides on `entry_as_read`, which every row of an entry carries.
+    entries = ("st_marys_bapt_1833_14_", "st_marys_bapt_1833_17_",
+               "st_marys_bapt_1833_18_")
+    siblings = [r for r in every_row(doc)
+                if any(e in r["row_id"] for e in entries)
+                and not r["row_id"].endswith("_3_mother#0")]
+    expect("the entries carrying the parenthesis are reached", len(siblings) >= 12)
+    expect("no name sharing the entry line is credited with the clerk's parenthesis",
+           not any(r.get("community") for r in siblings))
+    # An office that carries a community word is not a community, here as in rule 4.
+    expect("NOT_A_COMMUNITY is struck before a name-borne term is read",
+           community_written_onto_the_name(
+               "John Doe", "john doe", "john doe, indian agent") == (None, None))
 
     for line in failures:
         print(f"SELF-TEST FAILED: {line}")
