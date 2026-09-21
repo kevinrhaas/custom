@@ -66,6 +66,68 @@
     },
     {
       "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 304,
+      "takenAt": "2026-09-21T15:50:13.276Z",
+      "ref": "steward/t-1499-one-roof-id-exemption-list",
+      "commit": "eca5a0cd7f4a",
+      "devCommit": "c2fa31c70d63",
+      "treeHash": "sha256:889f8eb55021a44f",
+      "treeDirty": false,
+      "changelogHash": "sha256:5944324656afd87f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.5,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 175,
+      "takenAt": "2026-09-21T15:50:13.199Z",
+      "ref": "steward/t-1499-one-roof-id-exemption-list",
+      "commit": "eca5a0cd7f4a",
+      "devCommit": "c2fa31c70d63",
+      "treeHash": "sha256:889f8eb55021a44f",
+      "treeDirty": false,
+      "changelogHash": "sha256:5944324656afd87f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.5,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke-mobile-12.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13

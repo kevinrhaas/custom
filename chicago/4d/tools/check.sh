@@ -1268,6 +1268,23 @@ step "the platted blocks' six outstanding verdicts still have nowhere to be carr
 selftest "…and it would say so the moment a re-deal had somewhere to go" \
   python3 tools/measure_block_redeal_remedies.py --self-test
 
+# T-1499, and the silence it closes. Two tools sweep that same surface — the
+# migrator above and `execute_roof_redeal.py --check-migration` — and until now each
+# kept its OWN list of the files that legitimately keep an old name, with the same
+# reasoning written out twice. They could disagree, and a disagreement was silent in
+# the direction that hurts: a file pinned in one and not the other is red on whichever
+# gate happens to run, and a file that should be stale but is pinned in both is a
+# dangling id nothing catches. `tools/roof_id_pins.py` is the one list; this step asks
+# BOTH sweeps their own verdict for every file in the tree and refuses a disagreement,
+# so a future run that re-introduces a private list fails here instead of quietly
+# diverging. It also refuses a dead pin and a pin that reaches outside the kind of
+# name it claims to be.
+step "the two roof-id sweeps read one list of pinned names, and agree on all of it" \
+  python3 tools/roof_id_pins.py --check
+
+selftest "…and the pin list's own refusals fire on a mutated list" \
+  python3 tools/roof_id_pins.py --self-test
+
 # T-0233, and the question the recipes cannot answer by being read: does a party-line
 # run stand on the lots it was dealt? It does not — 8 of the 19 dealt lots carry none of
 # their own run's roofs — and the ticket ruled that a RESERVATION rather than a defect,

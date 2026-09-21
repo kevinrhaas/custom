@@ -3128,6 +3128,9 @@
     "tools/road_band_movement.mjs": {
       "wrote": []
     },
+    "tools/roof_id_pins.py": {
+      "wrote": []
+    },
     "tools/rule_fuzzy_card_pairs.py": {
       "wrote": []
     },

@@ -614,7 +614,7 @@
       "write_mode": "--write",
       "measured": "2026-09-21",
       "finding": "Reproduces: ran `--write` on a clean tree in 1s, wrote its output, changed no committed byte.",
-      "placed": "by layer, 2026-09-21 \u2014 reasoned, not derived. It reads tools/generate_plat_lots.py's output (the block and lot grid, and the omissions carrying `already_derived_as`) and is placed immediately after it; run earlier it would measure a stale pair. Nothing reads what it writes, so nothing constrains it from below."
+      "placed": "by layer, 2026-09-21 — reasoned, not derived. It reads tools/generate_plat_lots.py's output (the block and lot grid, and the omissions carrying `already_derived_as`) and is placed immediately after it; run earlier it would measure a stale pair. Nothing reads what it writes, so nothing constrains it from below."
     },
     "measure_wright_lighthouse.py": {
       "placement": "not_a_writer",
@@ -1155,6 +1155,12 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "roof_id_pins.py": {
+      "placement": "not_a_writer",
+      "write_mode": null,
+      "measured": "2026-09-21",
+      "finding": "Run bare it prints the pin list, exits 0 and moves no committed byte (measured on a clean tree, T-1499). It declares no write flag; --check and --self-test are its only other modes. A checker."
     },
     "rule_fuzzy_card_pairs.py": {
       "placement": "not_a_writer",
