@@ -40,9 +40,26 @@ gives, with `seat: null` and the ticket that owed the seat.
     dwelling clause for — the band is the division's own ground and nothing narrower,
     and the row says that rather than dealing a class the record does not carry.
 
-**Rung 5 is NOT dealt here.** 1,186 households carry no division at all, and banding them
-means dealing a division AND a class no source gives, counted against the reconstruction
-order book. That is T-1513, and until it runs those rows stay `owed` and say so.
+**T-1516 seats rung 5 — the weakest rung, and the largest.** 1,186 households carry no
+`lives_at` and no division at all: five of every six this town holds. Their seat is the
+placement policy's band by CLASS alone, inside a division that is DEALT:
+
+  * the DIVISION from `data/reconstruction/1835_reconstruction_order_book.json`, and from
+    that book's own apportionment rather than a share this file invents. The book already
+    spreads these same 1,186 — it calls them `households_present_unplaced` — pro rata
+    across its `households/<type>/<division>` cells, so the weights here ARE its targets
+    and the rule is its own largest remainder. The fort is left out, on the book's own
+    `the_fort_is_read_not_apportioned`.
+  * the CLASS from `1835_town_model.json`'s `employment_shape_1840`, the 1840 schedule's
+    count of persons in families by pursuit, mapped column by column onto the placement
+    policy's dwelling clauses with the reason each mapping holds — and only for the 1,137
+    heads whose record carries no trade. A head the record DOES give a trade keeps it.
+
+Nothing on a rung-5 row is evidence. `reach` stays `none`, the words lead with "no source
+places this household anywhere in the town", and both deals carry the seed that redeals
+them. Writing the dealt division back onto the household card and onto
+`data/residents/index.json` is T-1517's, not this pass's — so a card still reads
+`unplaced` and the row says whose job that is.
 
 No coordinate is invented by this file, no household record is written to by it, and the
 division on a rung-4 seat is always the one the household's own card already carries.
@@ -87,6 +104,7 @@ ledger on every run: the day a second lot address arrives naming somebody, the g
 here rather than the rung quietly staying empty.
 """
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -105,14 +123,22 @@ OUT = ROOT / "data" / "reconstruction" / "1835_address_book.json"
 POLICY = ROOT / "data" / "reconstruction" / "1835_placement_policy.json"
 
 SCENE_DATE = "1835-07-01"
-TICKET = "T-1512"
-TICKETS = ["T-1491", "T-1512"]
+TICKET = "T-1516"
+TICKETS = ["T-1491", "T-1512", "T-1516"]
+
+TOWN_MODEL = ROOT / "data" / "reconstruction" / "1835_town_model.json"
+ORDER_BOOK = ROOT / "data" / "reconstruction" / "1835_reconstruction_order_book.json"
 
 # Who owes the seat a row does not have. A roof the paper reaches but the town has not
-# raised is owed to the district build tickets; a household no source places anywhere is
-# owed to T-1513, which deals the division AND the class rung 5 needs.
-OWED_POLICY_ONLY = "T-1513"
+# raised is owed to the district build tickets. Rung 5 — the household no source places
+# anywhere — was owed to T-1513 until T-1516 dealt it; nothing household-shaped is owed
+# here any more, and assertion 11 refuses the rung's return.
 OWED_BUILD = "T-1200..T-1209"
+
+# T-1517 owns the write-back of a rung-5 division onto the household card and onto
+# data/residents/index.json. This pass writes no household record, so a card still reads
+# `unplaced` and the row says whose job that is.
+CARD_WRITE_BACK = "T-1517"
 
 # The business grade -> (rung, reach, owed_to). A strict restatement of T-1239's
 # adjudication; assertion 4 refuses any drift between this table and that file.
@@ -301,6 +327,238 @@ def band_for(division: str, trade: str | None, clauses: dict[str, dict]) -> dict
     }
 
 
+# ---- the policy-only rung (T-1516) ----------------------------------------- #
+#
+# 1,186 households — five of every six this town holds — carry no `lives_at` and no
+# division at all. T-1512 left them `owed` and said so on the card, which was honest and
+# was not a seat. This is the seat, and it is the weakest rung the ladder has: the
+# placement policy's band by CLASS alone, inside a division that is DEALT rather than
+# read. Nothing about it is evidence, every part of it says so, and the words on the card
+# lead with the absence rather than with the band.
+#
+# TWO DEALS, AND EACH ONE SPENDS A COMMITTED QUOTA RATHER THAN DRAWING FREE.
+#
+#   the class     from `1835_town_model.json` -> occupations.employment_shape_1840, the
+#                 1840 schedule's own count of persons in families by pursuit. The
+#                 columns are mapped onto the placement policy's DWELLING clauses below,
+#                 one row per column with the reason the mapping holds, and the 1,137
+#                 households whose head's record carries no trade at all are apportioned
+#                 across those clauses by largest remainder. A head the record DOES give
+#                 a trade keeps it: the class is read for them and the deal never reaches
+#                 them, exactly as at rung 4.
+#
+#   the division  from `1835_reconstruction_order_book.json`, and from the book's own
+#                 apportionment rather than from a share this file invents. The book
+#                 holds one `households/<type>/<division>` bucket per cell, and its
+#                 `unresolved_known` rule already spreads these same 1,186 households
+#                 across those cells pro rata — `households_present_unplaced: 1186` is
+#                 the book's own name for this rung's population. So the weights here ARE
+#                 the book's targets, summed by division, and the apportionment is the
+#                 book's own largest-remainder rule. The deal materialises a spread the
+#                 book already made; it does not make a second one.
+#
+# WHY NOTHING IS WRITTEN TO `fills`. The book's `filled` counts RECONSTRUCTED records
+# drawn against a quota. These 1,186 households are known — they stand in the layer, the
+# book counts them in `known`, and its own method says it "must not order a replacement
+# for somebody already standing in the town". Adding them to `filled` would count them
+# twice: once as known and once as reconstructed. What the deal owes the book is that it
+# spend the book's apportionment and no other, and assertion 14 re-derives that from the
+# committed book on every run.
+#
+# The garrison is left out of both deals by the book's own method line — "the fort is
+# read, not apportioned" — so no letter-list household is dealt onto the military
+# reservation. The three civil divisions are the whole of the ground this rung reaches.
+
+POLICY_ONLY_STAGE = "policy_only_band"
+
+# The order book's household bucket types that hold a civilian household. `garrison` is
+# excluded here and `fort` below, on the book's own `the_fort_is_read_not_apportioned`.
+CIVIL_HOUSEHOLD_TYPES = ("boarding_house", "family_dwelling", "inn_tavern",
+                         "institutional", "store_residence")
+CIVIL_DIVISIONS = ("north", "south", "west")
+
+# The 1840 schedule's pursuit columns, each mapped onto the placement-policy dwelling
+# clause a household of that pursuit falls under, with the reason the mapping holds.
+# Assertion 13 refuses a clause the policy does not hold and refuses a column the model
+# does not print.
+EMPLOYMENT_TO_CLAUSE = [
+    {"column": "Commerce",
+     "clause": "merchant_and_professional_dwellings",
+     "why": "the merchants and the men in trade are the policy's own better-houses "
+            "clause, which names them"},
+    {"column": "Learned professions and engineers",
+     "clause": "merchant_and_professional_dwellings",
+     "why": "the same clause names the professions beside the merchants, and the town "
+            "register puts the physicians and attorneys on that tier"},
+    {"column": "Manufactures and trades",
+     "clause": "tradesman_dwellings",
+     "why": "the crafts that keep a shop and a cottage — the clause's own subject"},
+    {"column": "Agriculture",
+     "clause": "labourer_dwellings",
+     "why": "a farming household inside an 1835 town plat is on its fringe, on the "
+            "small lots and the ground nobody is bidding on, which is what this clause "
+            "says. It is the nearest clause the policy holds and it is an adjudication, "
+            "not a reading: the policy has no farm clause and this file does not invent "
+            "one"},
+    {"column": "Navigation of canals, lakes and rivers",
+     "clause": "labourer_dwellings",
+     "why": "the boatmen and the river hands: the clause's trade list names boatman and "
+            "sailor under it"},
+    {"column": "Navigation of the ocean",
+     "clause": "labourer_dwellings",
+     "why": "the same, for the lake sailors the 1840 column separates"},
+    {"column": "Mining",
+     "clause": "labourer_dwellings",
+     "why": "two persons in the whole 1840 column, and no clause of the policy is nearer"},
+]
+
+
+def seeded_draw(seed: str) -> int:
+    """The integer a seed draws. The same rule the resident programme uses, so a reader
+    who can retype one seed can retype every one of them."""
+    return int.from_bytes(hashlib.blake2s(seed.encode("utf-8"), digest_size=8).digest(),
+                          "big")
+
+
+def largest_remainder(total: int, weights: dict[str, float]) -> dict[str, int]:
+    """Apportion `total` across `weights` so the parts sum to it exactly.
+
+    Restated from `tools/build_order_book_1835.py`, tie-broken on the key, so the two
+    files apportion the same population the same way and assertion 14 can compare them.
+    """
+    mass = sum(weights.values())
+    if mass <= 0:
+        raise Refused("an apportionment across weights that sum to zero")
+    exact = {k: total * (w / mass) for k, w in weights.items()}
+    out = {k: int(v) for k, v in exact.items()}
+    short = total - sum(out.values())
+    for key in sorted(weights, key=lambda k: (-(exact[k] - out[k]), k))[:short]:
+        out[key] += 1
+    if sum(out.values()) != total:
+        raise Refused(f"an apportionment that does not close: {sum(out.values())} of {total}")
+    return out
+
+
+def division_weights() -> dict[str, float]:
+    """The order book's own household targets, summed over the civil divisions."""
+    book = read_json(ORDER_BOOK)
+    weights = {d: 0.0 for d in CIVIL_DIVISIONS}
+    seen = set()
+    for family in book["bucket_families"]:
+        for bucket in family.get("buckets") or []:
+            key = bucket["key"]
+            if not key.startswith("households/"):
+                continue
+            axes = bucket["axes"]
+            seen.add(axes["household_type"])
+            if axes["household_type"] not in CIVIL_HOUSEHOLD_TYPES:
+                continue
+            if axes["division"] not in weights:
+                continue
+            weights[axes["division"]] += float(bucket["target"])
+    missing = [t for t in CIVIL_HOUSEHOLD_TYPES if t not in seen]
+    if missing:
+        raise Refused("the order book holds no household bucket for "
+                      f"{missing} — the division weights would be read off a book that "
+                      "has changed shape")
+    if any(w <= 0 for w in weights.values()):
+        raise Refused("a civil division carries no household target in the order book")
+    return weights
+
+
+def employment_weights() -> dict[str, float]:
+    """The clause weights the 1840 employment shape gives, by policy clause."""
+    model = read_json(TOWN_MODEL)
+    section = next(s for s in model["sections"] if s["key"] == "occupations")
+    rows = {r["column"]: r for r in section["tables"]["employment_shape_1840"]["rows"]}
+    weights: dict[str, float] = {}
+    for mapped in EMPLOYMENT_TO_CLAUSE:
+        row = rows.get(mapped["column"])
+        if row is None:
+            raise Refused(f"the town model prints no {mapped['column']!r} column — the "
+                          "employment shape has changed and the mapping is stale")
+        weights[mapped["clause"]] = weights.get(mapped["clause"], 0.0) + float(row["persons"])
+    if len(rows) != len(EMPLOYMENT_TO_CLAUSE):
+        raise Refused("the employment shape prints a column this mapping does not place "
+                      f"({sorted(set(rows) - {m['column'] for m in EMPLOYMENT_TO_CLAUSE})})")
+    return weights
+
+
+def deal_in_order(ids: list[str], quota: dict[str, int], bucket: str) -> dict[str, str]:
+    """Hand each id one label so the labels close on `quota` exactly.
+
+    The ids are ordered by their OWN seed, so which household gets which label is a
+    seeded deal a reader can retrace, and the totals are the quota's rather than a
+    draw's — which is the whole difference between spending an apportionment and
+    minting free.
+    """
+    if sum(quota.values()) != len(ids):
+        raise Refused(f"the {bucket} quota is {sum(quota.values())} for {len(ids)} rows")
+    order = sorted(ids, key=lambda hid: (seeded_draw(f"{hid}|{bucket}|T-1516"), hid))
+    out: dict[str, str] = {}
+    cursor = 0
+    for label in sorted(quota):
+        for hid in order[cursor:cursor + quota[label]]:
+            out[hid] = label
+        cursor += quota[label]
+    return out
+
+
+_DEAL_CACHE: dict | None = None
+
+
+def policy_only_deal() -> dict:
+    """The whole of rung 5's deal, computed once over the committed layer."""
+    global _DEAL_CACHE
+    if _DEAL_CACHE is not None:
+        return _DEAL_CACHE
+    rung5 = [hh for hh in household_records()
+             if not (hh.get("lives_at") or {}).get("value")
+             and (hh.get("division") or "unplaced") not in TOWN_DIVISIONS
+             and hh.get("division") != "outside_town"]
+    ids = [hh["id"] for hh in rung5]
+    division_quota = largest_remainder(len(ids), division_weights())
+    divisions = deal_in_order(ids, division_quota, "policy_only_division")
+
+    no_trade = sorted(hh["id"] for hh in rung5 if head_trade(hh) is None)
+    class_quota = largest_remainder(len(no_trade), employment_weights())
+    classes = deal_in_order(no_trade, class_quota, "policy_only_class")
+
+    _DEAL_CACHE = {
+        "rung5_ids": ids,
+        "division_weights": division_weights(),
+        "division_quota": division_quota,
+        "divisions": divisions,
+        "class_weights": employment_weights(),
+        "class_quota": class_quota,
+        "classes": classes,
+        "heads_with_a_recorded_trade": len(ids) - len(no_trade),
+    }
+    return _DEAL_CACHE
+
+
+def policy_only_band(division: str, dealt_class: str, clauses: dict[str, dict]) -> dict:
+    """The band a rung-5 household falls in when its CLASS was dealt.
+
+    `band_for` above reads the clause off a trade the record carries. Here there is no
+    trade to read, so the clause is the one the employment shape dealt, and the band says
+    that in its own statement rather than borrowing rung 4's wording.
+    """
+    clause = clauses[dealt_class]
+    prefers = [t.split(":", 1)[1] for t in clause.get("prefers") or []
+               if t.startswith("division:")]
+    return {
+        "band": f"{division}/{dealt_class}",
+        "clause": dealt_class,
+        "clause_applies_to": list(clause.get("applies_to") or []),
+        "clause_tier": clause.get("tier"),
+        "statement": clause.get("note"),
+        "division_is_the_clause_preference": (division in prefers) if prefers else None,
+        "from_trade": None,
+        "from_dealt_class": dealt_class,
+    }
+
+
 def business_names() -> dict[str, str]:
     """register_id -> the firm's name, for the rows the spend adjudicates."""
     names = {}
@@ -319,8 +577,9 @@ def household_row(hh: dict, committed: set[str], clauses: dict[str, dict]) -> di
 
     Rung 1 fires on `lives_at`, the only field that names a roof. Rung 4 fires on the
     card's own `division` — the band inside it is reconstructed, the division is not.
-    Rung 5 is T-1513's and does not fire here: a household with no division at all
-    stays `owed` and says whose it is.
+    Rung 5 fires on nothing at all (T-1516): the division is dealt from the order book's
+    apportionment and the class, where the record gives no trade, from the town model's
+    employment shape. Nothing on a rung-5 row is evidence and every field says so.
     """
     lives = hh.get("lives_at") or {}
     works = hh.get("works_at") or {}
@@ -398,14 +657,64 @@ def household_row(hh: dict, committed: set[str], clauses: dict[str, dict]) -> di
             row["replaceable_by"] = ("a source giving this household's head a trade, or "
                                      "naming a street, a corner or a building for them")
         return row
-    row["rung"] = "owed"
-    row["owed_to"] = OWED_POLICY_ONLY
+    # Rung 5 (T-1516). No source places this household anywhere, so the seat is the
+    # weakest the ladder has: a DEALT division and, where the head's record gives no
+    # trade, a DEALT class, banded by the placement policy's clause for that class.
+    deal = policy_only_deal()
+    division = deal["divisions"][hh["id"]]
+    trade = head_trade(hh)
+    dealt_class = deal["classes"].get(hh["id"])
+    clause_id = TRADE_CLAUSE.get(trade or "") if trade else dealt_class
+    band = (band_for(division, trade, clauses) if trade
+            else policy_only_band(division, dealt_class, clauses))
+    row["rung"] = "policy_only"
+    row["seat"] = {"kind": "division_band", "id": band["band"], "division": division,
+                   "clause": band["clause"]}
     row["reach"] = "none"
-    row["words"] = ("No source places this household anywhere in the town — the record "
-                    "gives a name and no address. Banding them needs a division AND a "
-                    "class no source carries, counted against the reconstruction order "
-                    f"book; that is owed to {OWED_POLICY_ONLY} and is not guessed here.")
-    row["replaceable_by"] = "any source that places this household in a division or nearer"
+    row["tier"] = "reconstructed"
+    row["basis"] = band["statement"]
+    row["band"] = band
+    row["division_is_dealt"] = True
+    row["class_is_dealt"] = dealt_class is not None
+    row["seed"] = (f"{hh['id']}|policy_only_division|T-1516"
+                   + (f" + {hh['id']}|policy_only_class|T-1516" if dealt_class else ""))
+    nothing_places = ("No source places this household anywhere in the town — the record "
+                      "gives a name and no address, and nothing below is a reading. ")
+    if dealt_class:
+        row["words"] = (
+            nothing_places
+            + f"The division is DEALT: the {division} division is one of three, "
+              "apportioned across the 1,186 households in this position on the "
+              "reconstruction order book's own household targets, which is where the "
+              "book already spread them. The class is DEALT too, because the head's "
+              "record carries no trade: the 1840 schedule's own count of persons by "
+              f"pursuit puts this household under the policy's {clause_id} clause. "
+              "Both are seeded and both would be retired by one line of paper.")
+        row["replaceable_by"] = ("any source that places this household in a division or "
+                                 "nearer, or that gives its head a trade")
+    elif clause_id:
+        row["words"] = (
+            nothing_places
+            + f"The division is DEALT: the {division} division is one of three, "
+              "apportioned across the 1,186 households in this position on the "
+              "reconstruction order book's own household targets. The class is NOT "
+              f"dealt — the record gives the head a trade ({trade}) and the policy's "
+              f"{clause_id} clause is the one it falls under.")
+        row["replaceable_by"] = ("any source that places this household in a division or "
+                                 "nearer")
+    else:
+        row["words"] = (
+            nothing_places
+            + f"The division is DEALT: the {division} division is one of three, "
+              "apportioned across the 1,186 households in this position on the "
+              "reconstruction order book's own household targets. The record gives the "
+              f"head a trade ({trade}) that no dwelling clause of the placement policy "
+              "reaches, so the band is that division's own ground and no class is dealt "
+              "for them.")
+        row["replaceable_by"] = ("any source that places this household in a division or "
+                                 "nearer")
+    row["words"] += (f" The household card still reads `unplaced`: writing this division "
+                     f"back onto the record is {CARD_WRITE_BACK}'s, not this pass's.")
     return row
 
 
@@ -510,9 +819,14 @@ def build() -> dict:
             "record already made. Rung 3 for a refused street-only firm and rung 4 are "
             "RECONSTRUCTION (T-1512): each carries tier `reconstructed`, the clause it "
             "rests on, a seed and what would retire it, and neither adds a street or a "
-            "division the record did not already carry. Rung 5 belongs to "
-            + OWED_POLICY_ONLY + " and is not dealt here. No coordinate, no lot and no "
-            "roof is invented by this pass, and no household record is written to."),
+            "division the record did not already carry. Rung 5 is reconstruction too "
+            "and the weakest of it (T-1516): its division is DEALT from the order "
+            "book's own apportionment and, where the head's record gives no trade, its "
+            "class is DEALT from the town model's 1840 employment shape. Its `reach` "
+            "stays `none` because the evidence still reaches nothing. No coordinate, no "
+            "lot and no roof is invented by this pass, and no household record is "
+            "written to: the write-back onto the card and onto data/residents/index.json "
+            "is " + CARD_WRITE_BACK + "'s."),
         "bands": {
             "what_a_band_is": (
                 "an adjudication over data/reconstruction/1835_placement_policy.json — "
@@ -528,9 +842,12 @@ def build() -> dict:
             "trade_to_clause": dict(sorted(TRADE_CLAUSE.items())),
             "clauses_used": sorted({c for c in TRADE_CLAUSE.values()}),
         },
+        "the_policy_only_deal": policy_only_deal_record(),
         "inputs": [
             "data/residents/households/",
             "data/reconstruction/1835_placement_policy.json",
+            "data/reconstruction/1835_reconstruction_order_book.json",
+            "data/reconstruction/1835_town_model.json",
             "data/research/location_spend.json",
             "data/research/newspapers/lot_addresses.json",
             "data/businesses/",
@@ -557,6 +874,15 @@ def build() -> dict:
                           "it by the placement policy clause its head's trade falls "
                           "under — or by the division's own ground where no clause "
                           "reaches that trade. Reconstruction, seeded, no coordinate."},
+                {"rung": "policy_only", "ladder": 5,
+                 "means": "nothing in the evidence places this household. The division "
+                          "is dealt from the reconstruction order book's own "
+                          "apportionment of the 1,186 it calls "
+                          "`households_present_unplaced`, and the class — where the "
+                          "head's record carries no trade — from the town model's 1840 "
+                          "employment shape, mapped onto the placement policy's dwelling "
+                          "clauses. Both deals are seeded, both close on a committed "
+                          "quota rather than drawing free, and neither is evidence."},
                 {"rung": "unplaceable", "ladder": 6,
                  "means": "the evidence contradicts every band inside the town"},
                 {"rung": "owed", "ladder": None,
@@ -591,8 +917,63 @@ def build() -> dict:
                  if r["seat"] and r["seat"]["kind"] == "division_band"}.items())),
             "reconstructed_seats": sum(1 for r in rows
                                        if r["seat"] and r["tier"] == "reconstructed"),
+            "policy_only": sum(1 for r in rows if r["rung"] == "policy_only"),
+            "policy_only_class_dealt": sum(1 for r in rows if r.get("class_is_dealt")),
+            "policy_only_class_read": sum(1 for r in rows
+                                          if r["rung"] == "policy_only"
+                                          and not r.get("class_is_dealt")),
         },
         "rows": rows,
+    }
+
+
+def policy_only_deal_record() -> dict:
+    """What rung 5 dealt, and out of whose quota — written into the book so a reader can
+    re-add the columns without running anything."""
+    deal = policy_only_deal()
+    return {
+        "what_it_is": (
+            "the weakest rung's two deals, stated as quotas. Neither is a draw: each "
+            "apportions a committed total by largest remainder and hands the rows out in "
+            "a seeded order, so the totals belong to the source and only WHICH household "
+            "got which label belongs to the seed."),
+        "households": len(deal["rung5_ids"]),
+        "division": {
+            "from": "data/reconstruction/1835_reconstruction_order_book.json",
+            "rule": (
+                "the book's own `households/<type>/<division>` targets, summed over the "
+                "three civil divisions, apportioned by the book's own largest-remainder "
+                "rule. The book's `unresolved_known` method already spreads these same "
+                "1,186 households — its `households_present_unplaced` — across those "
+                "cells pro rata, so this deal materialises the book's apportionment "
+                "rather than making a second one."),
+            "the_fort_is_left_out": (
+                "the book's own method says the fort is read, not apportioned, so no "
+                "household is dealt onto the military reservation"),
+            "weights": deal["division_weights"],
+            "quota": deal["division_quota"],
+        },
+        "class": {
+            "from": "data/reconstruction/1835_town_model.json"
+                    "#occupations.employment_shape_1840",
+            "rule": (
+                "the 1840 schedule's count of persons in families by pursuit, each column "
+                "mapped onto the placement policy's dwelling clause a household of that "
+                "pursuit falls under, apportioned by largest remainder across the heads "
+                "whose record carries no trade at all."),
+            "dealt_for": len(deal["classes"]),
+            "read_from_the_record_for": deal["heads_with_a_recorded_trade"],
+            "column_to_clause": EMPLOYMENT_TO_CLAUSE,
+            "weights": deal["class_weights"],
+            "quota": deal["class_quota"],
+        },
+        "nothing_is_written_to_the_order_book": (
+            "the book's `filled` counts reconstructed records drawn against a quota. "
+            "These households are KNOWN — the book counts them in `known` and its own "
+            "method refuses to order a replacement for somebody already standing in the "
+            "town — so adding them to `filled` would count them twice. What the deal "
+            "owes the book is that it spend the book's apportionment and no other, and "
+            "assertion 14 re-derives that from the committed book on every run."),
     }
 
 
@@ -741,13 +1122,93 @@ def assertions(doc: dict) -> None:
         if not in_division and row["rung"] == "division_band":
             raise Refused(f"{hh['id']}: banded into a division its record does not name")
 
-    # 11 (T-1512). Rung 5 is not dealt here. Every household with no division at all is
-    # still owed, and it is owed to the ticket that deals it.
+    # 11 (T-1516, replacing T-1512's). Rung 5 IS dealt now, so no household is owed at
+    # all: every one with no roof and no division stands on a policy-only band.
+    deal = policy_only_deal()
+    rung5 = {r["id"] for r in rows if r["rung"] == "policy_only"}
+    if rung5 != set(deal["rung5_ids"]):
+        raise Refused("the policy-only rows are not the households with no roof and no "
+                      "division — that set is the rung's whole definition")
     for row in rows:
         if row["kind"] == "household" and row["rung"] == "owed":
-            if row["reach"] != "none" or row["owed_to"] != OWED_POLICY_ONLY:
-                raise Refused(f"{row['id']}: an owed household must reach nothing and "
-                              f"owe {OWED_POLICY_ONLY}")
+            raise Refused(f"{row['id']}: a household left owed. Rung 5 is dealt "
+                          "(T-1516) and there is nothing for a household to wait for.")
+
+    # 13 (T-1516). A policy-only band cites a clause the committed policy holds, stands
+    # in a civil division, reaches NOTHING, and carries the tier and the seed that
+    # redeal it. A dealt class never lands on a head whose record carries a trade.
+    for row in rows:
+        if row["rung"] != "policy_only":
+            continue
+        hh = hh_by_id[row["id"]]
+        seat = row["seat"]
+        if not seat or seat["kind"] != "division_band":
+            raise Refused(f"{row['id']}: rung 5 and the seat is not a band")
+        if seat["division"] not in CIVIL_DIVISIONS:
+            raise Refused(f"{row['id']}: dealt into {seat['division']!r}, which is not "
+                          "one of the three civil divisions this rung reaches")
+        if seat["division"] != deal["divisions"][row["id"]]:
+            raise Refused(f"{row['id']}: its division is not the one the order book's "
+                          "apportionment dealt it")
+        if row["reach"] != "none":
+            raise Refused(f"{row['id']}: rung 5 and it claims to reach "
+                          f"{row['reach']!r} — nothing places this household")
+        if row["tier"] != "reconstructed" or not row["seed"]:
+            raise Refused(f"{row['id']}: a dealt seat with no tier or no seed")
+        if not row.get("division_is_dealt"):
+            raise Refused(f"{row['id']}: rung 5 and the row does not say its division "
+                          "was dealt")
+        trade = head_trade(hh)
+        if row.get("class_is_dealt") and trade is not None:
+            raise Refused(f"{row['id']}: a class was dealt over a head the record gives "
+                          f"a trade ({trade}) — the record wins")
+        if trade is None and not row.get("class_is_dealt"):
+            raise Refused(f"{row['id']}: its head carries no trade and no class was "
+                          "dealt, so the band rests on nothing at all")
+        clause_id = seat["clause"]
+        if clause_id is not None and clause_id not in clauses:
+            raise Refused(f"{row['id']}: cites placement-policy clause {clause_id!r}, "
+                          "which that file does not hold")
+        if row.get("class_is_dealt") and clause_id != deal["classes"][row["id"]]:
+            raise Refused(f"{row['id']}: banded on {clause_id!r} while the employment "
+                          f"shape dealt it {deal['classes'][row['id']]!r}")
+
+    # 14 (T-1516). The deals CLOSE on their committed quotas. A deal that drifts off the
+    # order book's apportionment, or off the town model's employment shape, is minting
+    # free and this is where that is caught.
+    by_division: dict[str, int] = {}
+    by_clause: dict[str, int] = {}
+    for row in rows:
+        if row["rung"] != "policy_only":
+            continue
+        by_division[row["seat"]["division"]] = by_division.get(row["seat"]["division"], 0) + 1
+        if row.get("class_is_dealt"):
+            by_clause[row["seat"]["clause"]] = by_clause.get(row["seat"]["clause"], 0) + 1
+    if by_division != {k: v for k, v in deal["division_quota"].items() if v}:
+        raise Refused("the dealt divisions do not close on the order book's own "
+                      f"apportionment: dealt {by_division}, book {deal['division_quota']}")
+    if by_clause != {k: v for k, v in deal["class_quota"].items() if v}:
+        raise Refused("the dealt classes do not close on the town model's employment "
+                      f"shape: dealt {by_clause}, shape {deal['class_quota']}")
+
+    # 15 (T-1516). The mapping from the 1840 pursuit columns to the policy's clauses is
+    # an adjudication over two committed files, and it fails the moment either moves.
+    model_columns = {m["column"] for m in EMPLOYMENT_TO_CLAUSE}
+    printed = {r["column"] for r in next(
+        sec for sec in read_json(TOWN_MODEL)["sections"] if sec["key"] == "occupations"
+    )["tables"]["employment_shape_1840"]["rows"]}
+    if model_columns != printed:
+        raise Refused("the 1840 employment shape's columns are not the ones this "
+                      f"mapping places ({sorted(model_columns ^ printed)})")
+    for mapped in EMPLOYMENT_TO_CLAUSE:
+        if mapped["clause"] not in clauses:
+            raise Refused(f"the {mapped['column']!r} column is mapped onto "
+                          f"{mapped['clause']!r}, which the placement policy does not hold")
+        if not mapped["why"]:
+            raise Refused(f"the {mapped['column']!r} column is mapped onto a clause with "
+                          "no reason given — a mapping is an adjudication and must argue")
+    if doc["the_policy_only_deal"] != policy_only_deal_record():
+        raise Refused("the committed record of the deal is not what the deal says now")
 
     # 12 (T-1512). No reconstructed seat carries a coordinate, a lot or a roof.
     for row in rows:
@@ -840,24 +1301,24 @@ def self_test() -> int:
         d["rows"].append(json.loads(json.dumps(d["rows"][0])))
 
     def a_household_vanishes(d):
-        d["rows"].remove(pick("household", "owed")(d))
+        d["rows"].remove(pick("household", "policy_only")(d))
 
     def a_firm_vanishes(d):
         d["rows"].remove(pick("business", "unplaceable")(d))
 
     def an_invented_seat(d):
-        pick("household", "owed")(d)["seat"] = {"kind": "structure",
-                                                "id": "a_building_nobody_holds"}
+        pick("household", "policy_only")(d)["seat"] = {"kind": "structure",
+                                                       "id": "a_building_nobody_holds"}
 
     def an_owed_row_takes_a_roof(d):
-        row = pick("household", "owed")(d)
+        row = pick("business", "owed")(d)
         row["seat"] = {"kind": "structure", "id": sorted(committed_structures())[0]}
 
     def an_owed_row_owes_nobody(d):
-        pick("household", "owed")(d)["owed_to"] = None
+        pick("business", "owed")(d)["owed_to"] = None
 
     def a_row_says_nothing(d):
-        pick("household", "owed")(d)["words"] = ""
+        pick("household", "policy_only")(d)["words"] = ""
 
     def a_row_cannot_be_retired(d):
         pick("business", "unplaceable")(d)["replaceable_by"] = ""
@@ -871,11 +1332,11 @@ def self_test() -> int:
         row["reach"] = "structure"
 
     def a_household_is_seated_from_nowhere(d):
-        row = pick("household", "owed")(d)
+        row = pick("household", "policy_only")(d)
         row["rung"] = "structure"
 
     def a_row_climbs_to_rung_two(d):
-        pick("household", "owed")(d)["rung"] = "lot"
+        pick("household", "policy_only")(d)["rung"] = "lot"
 
     def the_lot_ledger_claim_goes_stale(d):
         claimed = next(v for v in d["vocabulary"]["rungs"] if v["rung"] == "lot")
@@ -903,10 +1364,10 @@ def self_test() -> int:
 
     def a_household_in_a_division_is_left_owed(d):
         row = pick("household", "division_band")(d)
-        row["rung"], row["seat"], row["owed_to"] = "owed", None, OWED_POLICY_ONLY
+        row["rung"], row["seat"], row["owed_to"] = "owed", None, CARD_WRITE_BACK
 
     def an_unplaced_household_is_banded(d):
-        row = pick("household", "owed")(d)
+        row = pick("household", "policy_only")(d)
         row["rung"] = "division_band"
         row["seat"] = {"kind": "division_band", "id": "south/x",
                        "division": "south", "clause": None}
@@ -925,6 +1386,50 @@ def self_test() -> int:
     def a_reconstructed_seat_grows_a_lot(d):
         row = pick("household", "division_band")(d)
         row["seat"] = {**row["seat"], "lot": "blk_16_lot_7"}
+
+    # ---- T-1516's own limits ---- #
+
+    def a_dealt_division_leaves_the_civil_town(d):
+        row = pick("household", "policy_only")(d)
+        row["seat"] = {**row["seat"], "division": "fort", "id": "fort/x"}
+
+    def a_dealt_division_is_not_the_one_the_book_apportioned(d):
+        row = pick("household", "policy_only")(d)
+        other = next(v for v in CIVIL_DIVISIONS if v != row["seat"]["division"])
+        row["seat"] = {**row["seat"], "division": other}
+
+    def a_policy_only_row_claims_a_reach(d):
+        pick("household", "policy_only")(d)["reach"] = "division"
+
+    def a_policy_only_row_stops_saying_its_division_was_dealt(d):
+        pick("household", "policy_only")(d)["division_is_dealt"] = False
+
+    def a_dealt_class_lands_on_a_head_with_a_trade(d):
+        row = next(r for r in d["rows"]
+                   if r["rung"] == "policy_only" and not r.get("class_is_dealt"))
+        row["class_is_dealt"] = True
+
+    def a_band_ignores_the_class_the_shape_dealt(d):
+        row = next(r for r in d["rows"]
+                   if r["rung"] == "policy_only" and r.get("class_is_dealt"))
+        other = next(c for c in sorted(set(TRADE_CLAUSE.values()))
+                     if c != row["seat"]["clause"])
+        row["seat"] = {**row["seat"], "clause": other}
+
+    def the_dealt_divisions_stop_closing_on_the_book(d):
+        rows = [r for r in d["rows"] if r["rung"] == "policy_only"]
+        held = rows[0]["seat"]["division"]
+        other = next(v for v in CIVIL_DIVISIONS if v != held)
+        for row in rows:
+            if row["seat"]["division"] == held:
+                row["seat"] = {**row["seat"], "division": other}
+
+    def a_household_is_left_owed_again(d):
+        row = pick("household", "policy_only")(d)
+        row["rung"], row["seat"], row["owed_to"] = "owed", None, "T-1517"
+
+    def the_committed_record_of_the_deal_goes_stale(d):
+        d["the_policy_only_deal"]["households"] += 1
 
     fires("a duplicated row", duplicate)
     fires("a household that loses its row", a_household_vanishes)
@@ -954,10 +1459,28 @@ def self_test() -> int:
           a_face_firm_stops_saying_it_is_reconstruction)
     fires("a reconstructed seat that grows a lot", a_reconstructed_seat_grows_a_lot)
 
+    fires("a division dealt outside the three civil divisions",
+          a_dealt_division_leaves_the_civil_town)
+    fires("a division that is not the one the order book apportioned",
+          a_dealt_division_is_not_the_one_the_book_apportioned)
+    fires("a policy-only row that claims the evidence reaches something",
+          a_policy_only_row_claims_a_reach)
+    fires("a policy-only row that stops saying its division was dealt",
+          a_policy_only_row_stops_saying_its_division_was_dealt)
+    fires("a class dealt over a head whose record carries a trade",
+          a_dealt_class_lands_on_a_head_with_a_trade)
+    fires("a band that ignores the class the employment shape dealt",
+          a_band_ignores_the_class_the_shape_dealt)
+    fires("dealt divisions that stop closing on the book's apportionment",
+          the_dealt_divisions_stop_closing_on_the_book)
+    fires("a household left owed after rung 5 is dealt", a_household_is_left_owed_again)
+    fires("a committed record of the deal that has gone stale",
+          the_committed_record_of_the_deal_goes_stale)
+
     if faults:
         print("SELF-TEST FAILED — these assertions did not fire: " + ", ".join(faults))
         return 1
-    print("all 23 assertions fire when broken")
+    print("all 32 assertions fire when broken")
     return 0
 
 

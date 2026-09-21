@@ -723,6 +723,12 @@ export async function mountPeople({
     division_band: (row) => (row.seat && row.seat.clause
       ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
       : `Banded in the ${row.reach_value} division, and no class dealt`),
+    // T-1516. Rung 5 is the weakest the ladder has, and the label leads with the
+    // absence rather than with the band: nothing places this household, and the
+    // division under it was dealt. `row.words` carries the rest of the working.
+    policy_only: (row) => (row.class_is_dealt
+      ? `No source places them — dealt the ${row.seat.division} division and a class`
+      : `No source places them — dealt the ${row.seat.division} division`),
     unplaceable: () => 'Not seated in this town',
   };
 

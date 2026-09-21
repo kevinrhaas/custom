@@ -12040,6 +12040,20 @@ for (const [label, viewport, touch] of [
           next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
           noaddr: !!card?.querySelector('.people-noaddr'),
         } };
+      // T-1516. The weakest rung, on a card. Five of every six households in this
+      // town are here: nobody wrote down where they lived, so the division under
+      // them is DEALT and the class with it. The card has to lead with that
+      // absence — a reader who sees "south division" and no warning has been told
+      // the record says something it does not.
+      const dealt = await dir.open('abbot_8_g');
+      out.policyOnly = { opened: dealt,
+        rung: card?.querySelector('.people-seat')?.dataset.rung ?? null,
+        label: card?.querySelector('.people-seat-rung')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        words: card?.querySelector('.people-seat-words')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        noaddr: !!card?.querySelector('.people-noaddr') };
+      dir.close();
+      await dir.open('hogan_john_s_c');
       return out;
     });
     check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
@@ -12119,6 +12133,20 @@ for (const [label, viewport, touch] of [
         .test(people.card.seat.next)
       && people.card.seat.noaddr === false,
       JSON.stringify(people.card.seat));
+
+    // T-1516. Rung 5 — dealt a division and a class, and saying so first.
+    check(`${label}: a household no source places says its division was dealt, not read`,
+      people.policyOnly.opened && people.policyOnly.rung === 'policy_only'
+      && /No source places them/.test(people.policyOnly.label)
+      && /dealt the south division and a class/.test(people.policyOnly.label)
+      && /No source places this household anywhere in the town/.test(people.policyOnly.words)
+      && /The division is DEALT/.test(people.policyOnly.words)
+      && /The class is DEALT too/.test(people.policyOnly.words)
+      && /reconstruction order book's own household targets/.test(people.policyOnly.words)
+      && /Would move it up the ladder: any source that places this household/
+        .test(people.policyOnly.next)
+      && people.policyOnly.noaddr === false,
+      JSON.stringify(people.policyOnly));
 
     check(`${label}: searching "Beaubien" finds Mark Beaubien`,
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
