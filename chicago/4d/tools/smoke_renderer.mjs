@@ -11912,6 +11912,12 @@ for (const [label, viewport, touch] of [
         manifest: manifest.counts?.persons, readmitted: pj.counts?.readmitted_persons ?? 0,
         trades: pj.counts?.reconstructed_trade_heads ?? 0, transients: pj.counts?.transients ?? 0,
         residents: pj.counts?.residents ?? 0,
+        // T-1466. The six loops that append rows to this file, counted where they
+        // append them (compile_scene.py `seal`). Read as a KEY SET and a TOTAL, not as
+        // a remembered list of addends — see the check below.
+        sourceKeys: Object.keys(pj.counts?.by_source ?? {}).sort().join(','),
+        sourceTotal: Object.values(pj.counts?.by_source ?? {}).reduce((a, b) => a + b, 0),
+        bySource: pj.counts?.by_source ?? null,
         countText: document.getElementById('people-count')?.textContent ?? '' };
       out.search = { matched: dir.search('Beaubien'),
         mark: document.querySelector('#people-results [data-person-id="beaubien_mark"] .person-name')?.textContent.trim() ?? null,
@@ -11991,8 +11997,36 @@ for (const [label, viewport, touch] of [
       // outside data/residents/households/ for the same reason the re-admissions are.
       // The identity is the same identity: the directory lists the manifest's people plus
       // every card the reconstruction minted, and nothing else has a path into it.
-      && people.counts.stated === people.counts.manifest + people.counts.readmitted
-        + people.counts.trades + people.counts.transients
+      //
+      // T-1466: AND IT IS NO LONGER A LIST SOMEBODY REMEMBERED TO EXTEND. The three
+      // lines above are the history of this assertion — one addend per stage, added by
+      // hand — and two further loops were written into compile_scene.py without a
+      // fourth and fifth line here. The identity then read
+      //
+      //     3228 != 2269 + 182 + 308 + 307
+      //
+      // and stayed red on dev at BOTH viewports for a day. The missing 134 were the
+      // lodging stage's 47 and the under-documented company's 87, both minted outside
+      // data/residents/households/ exactly as the other three are and both entirely
+      // correct. The identity was short; the town was not. So it is not weakened to the
+      // new number — it is read off `by_source`, which compile_scene.py seals at each
+      // of the six loops, and asserted in two halves:
+      //
+      //   THE KEY SET, spelled out here. A seventh path into the directory changes it
+      //   and fails this check by name, which is the drift that went unnoticed.
+      //   THE TOTAL, which must be the stated count. A seventh path added WITHOUT a
+      //   `seal()` beside it leaves the sum short and fails here instead.
+      //
+      // The four named counts are then held against their own source entries, so the
+      // figures the rest of this file and model_town_1835.py read cannot disagree with
+      // the loop that produced them.
+      && people.counts.sourceKeys
+         === 'lodgers,manifest,readmitted,reconstructed_trades,transients,underdocumented'
+      && people.counts.sourceTotal === people.counts.stated
+      && people.counts.bySource.manifest === people.counts.manifest
+      && people.counts.bySource.readmitted === people.counts.readmitted
+      && people.counts.bySource.reconstructed_trades === people.counts.trades
+      && people.counts.bySource.transients === people.counts.transients
       // T-1353. The visitors are counted apart from the town's own people, and the two
       // rows must partition the directory exactly — a transient that also counts as a
       // resident is the failure this cohort exists to make impossible.

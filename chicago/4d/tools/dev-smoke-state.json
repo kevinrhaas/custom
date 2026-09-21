@@ -2168,6 +2168,72 @@
         ]
       },
       "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 79,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 126,
+      "takenAt": "2026-09-21T00:32:04.840Z",
+      "ref": "steward/t-1466-people-count-identity",
+      "commit": "b453bbbb2492",
+      "devCommit": "fece762b0952",
+      "treeHash": "sha256:72c8315a10864a4c",
+      "treeDirty": false,
+      "changelogHash": "sha256:16e1a8b0e1b00ffb",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.2,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke-m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 79,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 245,
+      "takenAt": "2026-09-21T00:32:04.762Z",
+      "ref": "steward/t-1466-people-count-identity",
+      "commit": "b453bbbb2492",
+      "devCommit": "fece762b0952",
+      "treeHash": "sha256:72c8315a10864a4c",
+      "treeDirty": false,
+      "changelogHash": "sha256:16e1a8b0e1b00ffb",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.2,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke-d12.log"
     }
   ]
 }
