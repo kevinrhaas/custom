@@ -1034,6 +1034,28 @@ def ground_buckets(programme: dict) -> dict:
     }
 
 
+INVENTORY_FILE = "data/reconstruction/1835_building_inventory.json"
+
+
+def restates_the_programme(fig: dict, model_value: int, programme_value: int) -> bool:
+    """True when a delta row sets the roof programme beside a figure read OFF it.
+
+    The town model's lodging figures are built straight from
+    `district_group_matrix` (model_town_1835.build_lodging reads
+    `larger_boarding_houses`, `inns_taverns`, `institutional_public` and
+    `fort_principal` out of it), so putting one of them beside that same matrix
+    is not a check on the roofs — it is the matrix agreeing with itself. A figure
+    that CANNOT fail must not be printed as though it passed (T-1439).
+
+    Two conditions, because naming the inventory as a source is not on its own
+    disqualifying: `inns_and_taverns` reads the inventory AND the trade-census
+    crosswalk and goes past the matrix (15 against its 10), so that row is a real
+    disagreement. Only a figure that names the inventory AND lands exactly on the
+    groups it is compared against is a restatement rather than a comparison.
+    """
+    return INVENTORY_FILE in (fig.get("derived_from") or []) and model_value == programme_value
+
+
 def programme_deltas(model: dict, inventory: dict, programme: dict,
                      persons: dict, households: dict) -> list[dict]:
     """Where a model target and the 668-roof programme disagree.
@@ -1041,21 +1063,53 @@ def programme_deltas(model: dict, inventory: dict, programme: dict,
     The book carries THE MODEL — that is what the band above it is for — and
     lists the difference here so T-1196 can re-cut the schedule against it rather
     than discover the disagreement halfway through a district.
+
+    EVERY ROW NAMES BOTH SIDES (T-1439). `programme_groups` is the list of
+    `district_group_matrix` groups summed on the programme side, and
+    `restates_the_programme` says whether the model side was read off those same
+    groups. Both exist because the row they were written for was wrong twice over:
+    `institutional_and_public` reported a delta of ten roofs by taking the model's
+    high end — which counts the fort's ten principal roofs — against
+    `institutional_public` alone, while the programme schedules those ten under
+    `fort_principal`. 9 + 10 = 19 and the two files already agreed. Naming the
+    groups makes that omission impossible to make silently; and once the units
+    match, the corrected zero is a restatement rather than an agreement, which is
+    the same thing the `boarding_houses` row beside it had been reporting as a
+    pass for a year.
     """
     matrix = inventory.get("district_group_matrix", {})
+
+    def group(*names: str) -> int:
+        total = 0
+        for name in names:
+            if name not in matrix:
+                raise Fault(f"the roof programme's district_group_matrix carries no group "
+                            f"{name!r}, so a delta row compares against nothing")
+            total += int(matrix[name].get("total") or 0)
+        return total
+
     dwellings = figure(model, "households_and_families", "dwellings_the_programme_schedules")
     per_dwelling = figure(model, "households_and_families", "people_per_dwelling_november_1835")
-    ordinary = int(matrix.get("ordinary_dwellings", {}).get("total") or 0)
+    ordinary = group("ordinary_dwellings")
     boarding_model = figure(model, "lodging_and_institutions", "larger_boarding_houses")
-    boarding_programme = int(matrix.get("larger_boarding_houses", {}).get("total") or 0)
+    boarding_programme = group("larger_boarding_houses")
     institutional = figure(model, "lodging_and_institutions", "institutional_and_public_roofs")
-    institutional_programme = int(matrix.get("institutional_public", {}).get("total") or 0)
+    # BOTH GROUPS. The model's high end is "9 institutional or public roofs outside the
+    # fort and 10 principal roofs inside it", and the programme schedules the inside ten
+    # under `fort_principal`. Reading only `institutional_public` here charged the roof
+    # programme ten roofs it already had.
+    institutional_groups = ["institutional_public", "fort_principal"]
+    institutional_programme = group(*institutional_groups)
+    fort_principal = group("fort_principal")
     inns = figure(model, "lodging_and_institutions", "inns_and_taverns")
-    inns_programme = int(matrix.get("inns_taverns", {}).get("total") or 0)
+    inns_programme = group("inns_taverns")
+    roof_total = int(inventory.get("targets", {}).get("roof_total") or 0)
     out = [
         {"id": "households_against_dwellings", "owning_ticket": "T-1196",
          "model": households["households_target"], "programme": ordinary,
          "delta": households["households_target"] - ordinary,
+         "programme_groups": ["ordinary_dwellings"],
+         "restates_the_programme": False,
          "statement": f"The household model wants {households['households_target']:,} households "
                       f"and the programme schedules {ordinary:,} ordinary dwellings "
                       f"({dwellings['low']}-{dwellings['high']} in the model's own reading). More "
@@ -1063,31 +1117,66 @@ def programme_deltas(model: dict, inventory: dict, programme: dict,
                       f"{per_dwelling['low']} people per dwelling implies; T-1196 re-cuts the "
                       "schedule to say how many."},
         {"id": "boarding_houses", "owning_ticket": "T-1196",
-         "model": boarding_model["low"], "programme": boarding_programme,
+         "model": int(boarding_model["low"]), "programme": boarding_programme,
          "delta": int(boarding_model["low"]) - boarding_programme,
-         "statement": "The lodging model and the programme agree on the larger boarding houses."
-                      if int(boarding_model["low"]) == boarding_programme else
-                      "The lodging model and the programme disagree on the larger boarding houses."},
+         "programme_groups": ["larger_boarding_houses"],
+         "restates_the_programme": restates_the_programme(
+             boarding_model, int(boarding_model["low"]), boarding_programme),
+         "statement": f"NOT A CHECK: the model's {int(boarding_model['low'])} larger boarding "
+                      f"houses ARE district_group_matrix.larger_boarding_houses — "
+                      "model_town_1835.build_lodging reads the figure straight off the roof "
+                      f"programme — so this row cannot disagree, and its zero says nothing "
+                      f"about whether {boarding_programme} is the right number of boarding "
+                      "roofs. An independent count is owed to T-1196 with the re-cut."},
         {"id": "inns_and_taverns", "owning_ticket": "T-1196",
-         "model": inns["high"], "programme": inns_programme,
+         "model": int(inns["high"]), "programme": inns_programme,
          "delta": int(inns["high"]) - inns_programme,
+         "programme_groups": ["inns_taverns"],
+         "restates_the_programme": restates_the_programme(
+             inns, int(inns["high"]), inns_programme),
          "statement": f"The model reads {inns['low']}-{inns['high']} inns and taverns; the "
-                      f"programme schedules {inns_programme}."},
+                      f"programme schedules {inns_programme}. This one is a real disagreement: "
+                      "the model's ceiling is the business layer's count at the scene date, "
+                      "not a figure read back off the programme."},
         {"id": "institutional_and_public", "owning_ticket": "T-1196",
-         "model": institutional["high"], "programme": institutional_programme,
+         "model": int(institutional["high"]), "programme": institutional_programme,
          "delta": int(institutional["high"]) - institutional_programme,
-         "statement": f"The model reads {institutional['low']}-{institutional['high']} "
-                      f"institutional and public roofs; the programme schedules "
-                      f"{institutional_programme}."},
+         "programme_groups": institutional_groups,
+         "restates_the_programme": restates_the_programme(
+             institutional, int(institutional["high"]), institutional_programme),
+         "statement": f"NOT A CHECK: the model reads {institutional['low']}-"
+                      f"{institutional['high']} institutional and public roofs — "
+                      f"{institutional['low']} outside the fort and {fort_principal} principal "
+                      f"roofs inside it — and the programme schedules those same two groups, "
+                      f"institutional_public ({group('institutional_public')}) and "
+                      f"fort_principal ({fort_principal}), for {institutional_programme}. Both "
+                      "ends of the model are read off that matrix, so the row cannot disagree. "
+                      "Until T-1439 it reported a delta of ten by taking the fort's roofs on "
+                      "the model's side and not on the programme's, which is the schedule "
+                      "charged for ten roofs it already had."},
         {"id": "people_per_roof", "owning_ticket": "T-1196",
          "model": persons["town_target"],
-         "programme": int(inventory.get("targets", {}).get("roof_total") or 0),
+         "programme": roof_total,
          "delta": 0,
+         "programme_groups": [],
+         "restates_the_programme": False,
          "statement": f"{persons['town_target']:,} people under "
-                      f"{int(inventory.get('targets', {}).get('roof_total') or 0):,} roofs is the "
+                      f"{roof_total:,} roofs is the "
                       "ratio the completed town must meet; the census's own reading for November "
                       f"1835 is {per_dwelling['low']} people per dwelling over 398 dwellings."},
     ]
+    # A ROW THAT CANNOT DISAGREE MUST SAY SO IN ITS OWN TEXT, or the table reads as five
+    # comparisons when it carries three. The flag and the sentence are written by the same
+    # hand and drift apart silently; this is what stops them.
+    for row in out:
+        says = row["statement"].startswith("NOT A CHECK:")
+        if says != bool(row["restates_the_programme"]):
+            raise Fault(f"the delta row {row['id']!r} is "
+                        f"{'a restatement' if row['restates_the_programme'] else 'a comparison'} "
+                        f"and its statement says otherwise")
+        if row["restates_the_programme"] and row["delta"] != 0:
+            raise Fault(f"the delta row {row['id']!r} restates the programme and still reports "
+                        f"a delta of {row['delta']}")
     return out
 
 
@@ -1572,13 +1661,19 @@ def report_text(doc: dict) -> str:
             out.append(f"| `{b['key']}` | {fmt(target)} | {fmt(known)} | {fmt(todo)} "
                        f"| {b['filled']:,} | {owner} |")
 
+    restatements = [d for d in doc["programme_deltas"] if d.get("restates_the_programme")]
     out += ["", "## Where the model and the roof programme disagree", "",
             "The book carries THE MODEL. Every difference is listed here for T-1196, which "
-            "re-cuts the 668-roof schedule against it.", "",
-            "| | model | programme | delta |", "|---|---:|---:|---:|"]
+            "re-cuts the 668-roof schedule against it. `programme groups` names the "
+            "`district_group_matrix` groups summed on the programme side; a row marked NOT A "
+            "CHECK reads its model figure off those same groups and therefore cannot "
+            f"disagree ({len(restatements)} of {len(doc['programme_deltas'])} do).", "",
+            "| | model | programme | delta | programme groups |",
+            "|---|---:|---:|---:|---|"]
     for d in doc["programme_deltas"]:
+        groups = ", ".join(f"`{g}`" for g in d.get("programme_groups") or []) or "—"
         out.append(f"| **{d['id']}** — {d['statement']} | {d['model']:,} | {d['programme']:,} "
-                   f"| {d['delta']:+,} |")
+                   f"| {d['delta']:+,} | {groups} |")
 
     out += ["", "## The invariants the convergence tickets assert", ""]
     for inv in doc["invariants"]:
@@ -1765,6 +1860,44 @@ def cmd_self_test() -> int:
     assert school["records_opening_after_scene_date"] == 2, school
     assert school["to_reconstruct"] == 0, school
     assert "opening announced" in school["basis"].lower(), school["basis"]
+
+    # THE FORT'S TEN PRINCIPAL ROOFS ARE ON BOTH SIDES OR NEITHER (T-1439). The model's
+    # institutional high end counts them; the programme schedules them under
+    # `fort_principal`. Reading `institutional_public` alone on the programme side charged
+    # the roof schedule ten roofs it already had, and that false delta stood in the book
+    # and on the page for a year. The two files agree, and the row must say 19 against 19.
+    deltas = {d["id"]: d for d in doc["programme_deltas"]}
+    inst = deltas["institutional_and_public"]
+    assert inst["programme_groups"] == ["institutional_public", "fort_principal"], inst
+    assert inst["model"] == inst["programme"] == 19 and inst["delta"] == 0, inst
+
+    # AND A ROW THAT CANNOT DISAGREE IS NOT REPORTED AS AN AGREEMENT. Both institutional
+    # ends and the boarding-house figure are read off `district_group_matrix` by
+    # model_town_1835.build_lodging, so setting them beside that matrix is the matrix
+    # agreeing with itself. `inns_and_taverns` names the same file and goes PAST it — 15
+    # from the business layer against the matrix's 10 — so it is a real comparison, and
+    # the flag has to tell the two apart rather than blanket every lodging row.
+    assert inst["restates_the_programme"] is True, inst
+    assert deltas["boarding_houses"]["restates_the_programme"] is True, deltas["boarding_houses"]
+    assert deltas["inns_and_taverns"]["restates_the_programme"] is False, deltas["inns_and_taverns"]
+    assert deltas["inns_and_taverns"]["delta"] == 5, deltas["inns_and_taverns"]
+    for d in doc["programme_deltas"]:
+        assert d["statement"].startswith("NOT A CHECK:") == d["restates_the_programme"], d
+    p_sum, h_sum = doc["bucket_families"][0]["summary"], doc["bucket_families"][1]["summary"]
+    unsourced = copy.deepcopy(data)
+    figure(unsourced["model"], "lodging_and_institutions",
+           "institutional_and_public_roofs")["derived_from"] = []
+    fires("a delta row whose NOT A CHECK sentence no longer matches its flag",
+          lambda: programme_deltas(unsourced["model"], unsourced["inventory"],
+                                   unsourced["programme"], p_sum, h_sum))
+
+    # A PROGRAMME SIDE THAT NAMES A GROUP THE MATRIX DOES NOT CARRY IS A FAULT, not a
+    # silent nought — which is the shape a typo in a group name would take.
+    bent = copy.deepcopy(data)
+    bent["inventory"]["district_group_matrix"].pop("fort_principal")
+    fires("a delta row summing a matrix group that does not exist",
+          lambda: programme_deltas(bent["model"], bent["inventory"], bent["programme"],
+                                   p_sum, h_sum))
 
     # A CLASS THE CROSSWALK DECLINES TO COMPARE ORDERS NOTHING (T-1442). The December
     # census prints five churches and the register holds four, but T-0988 rules a church a
