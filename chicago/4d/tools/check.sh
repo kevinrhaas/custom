@@ -4802,7 +4802,19 @@ selftest "…and its own assertions still fire when broken" \
 # roster being offered to T-1172. The self-test also holds the one place the 1840
 # age pyramid could silently disagree with the 1835 model — the child share — inside
 # the model's own bracket.
-step "the 1835 reconstruction order book re-derives, and no bucket is overfilled" \
+#
+# AND EVERY WORK ORDER IN IT NAMES A TICKET A RUN CAN STILL CLAIM (T-1420, 2026-09-21).
+# `ticket.mjs done` already prints a NOTE when a close leaves a split parent with no
+# live child — "any research unit that defers to it by id is now stranded (T-1237).
+# That fails the re-derivation, in a tool this PR does not run" — and until now no tool
+# ran it against the order book, so the note was advice a closing run could walk past.
+# Thirteen of the twenty-four ids the book's owner tables named had closed or split
+# under it by 2026-09-21. `--check` now re-reads the queue and REFUSES a bucket that
+# still has work left whose `owning_ticket`, `owning_tickets` or `ground_waits_on`
+# names a `done`, `split` or `withdrawn` ticket. Forward-looking ids only: `fills`,
+# `recut_refusals`, `programme_deltas` and `roster_offered` record who DID the work and
+# never move, and a discharged bucket keeps the id of whoever discharged it.
+step "the 1835 reconstruction order book re-derives, no bucket is overfilled, and every work order names a live ticket" \
   python3 tools/build_order_book_1835.py --check
 
 selftest "…and its own assertions still fire when broken" \
