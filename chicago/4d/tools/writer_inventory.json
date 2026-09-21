@@ -964,6 +964,20 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
+    "record_lot_seating.py": {
+      "placement": "pending",
+      "write_mode": "--write",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and the perturbation test tells reproduction from inertia: on a clean tree --write is a no-op and a no-op proves nothing. cobweb_castle's stands_on_lot block was dropped outright and goss_cobb_saddlery's lot_number bent to 99; --check went red naming both records, --write restored both, and the tree came back to the same nine files and 144 lines it started at. It writes only the stands_on_lot key of data/structures/*.json, in each file's own indent, and refuses a record carrying a key its order does not name rather than reformatting it.",
+      "placed": "not yet \u2014 measured to reproduce, but it reads the lot layers and every committed footprint and must run before compile_scene.py carries the seat onto the card, so its slot is the ordering pass's call and not this ticket's."
+    },
+    "reprogramme_roofs_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia \u2014 A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
+      "placed": "not yet \u2014 measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
+    },
     "reconstruct_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--group <group> --build",
@@ -1150,6 +1164,13 @@
       "measured": "2026-09-18",
       "finding": "Reproduces: ran `--write` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
+    },
+    "seat_known_1835.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 1s, rewrote data/reconstruction/1835_address_book.json and changed no committed byte; the perturbation test says that is idempotence rather than inertia \u2014 the file was deleted, `--check` went red on it (\"is missing or unreadable \u2014 run --build\"), `--build` restored it, and `git status` came back clean.",
+      "placed": "not yet \u2014 measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/residents/households/, which several reconstruction stages write, as well as data/research/location_spend.json and data/structures/. It has to sit after all of them."
     },
     "seat_lodgers_1835.py": {
       "placement": "pending",

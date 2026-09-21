@@ -1,7 +1,7 @@
 ---
 id: T-1435
 title: The in-window crosswalk still hands its lawyer and physician shortfall to T-1186, whose two children are both closed: re-point owed_to at the ticket that actually reconciles the crosswalk
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Already inside T-1420's scope. T-1420 asks for the order book's dead owner ids to be re-pointed AND for 'the same sweep for any other ticket id the order book names that has since closed or split'. T-1435's finding is exactly that: the in-window crosswalk hands its lawyer and physician shortfall to T-1186, which is now split. Verified both today — T-1192 (named at build_order_book_1835.py:272) and T-1186 (named in compile_businesses.py and complete_inwindow_trades.py) are both in state split. One sweep, one ticket.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T23:17:06.248Z
 claimed_run: null
 ---
 

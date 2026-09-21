@@ -2160,7 +2160,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
  *   withheldByPerson: Map, ladderRules: object[], agencies: object|null,
- *   getJson: (rel: string) => Promise<any>}>}
+ *   seatByHousehold: Map, getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -2177,7 +2177,8 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const directoryByPerson = new Map();
     const withheldByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index, agencies, withheld] = await Promise.all([
+    const seatByHousehold = new Map();
+    const [joined, pilot, found, index, agencies, withheld, addressBook] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -2202,6 +2203,14 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
         problems.push(`people: ${err.message} — the withheld research facts are not shown`);
         return null;
       }),
+      // T-1491. The address book: one row per household and per firm, at the rung its
+      // evidence reaches. A card WITHOUT it falls back to "No known address", which is
+      // the sentence this join exists to replace — so its absence costs the sentence
+      // and never the card.
+      getJson('reconstruction/1835_address_book.json').catch((err) => {
+        problems.push(`people: ${err.message} — the address book's seats are not shown on person cards`);
+        return null;
+      }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
@@ -2213,8 +2222,11 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
+    for (const row of addressBook?.rows || []) {
+      if (row.kind === 'household') seatByHousehold.set(row.id, row);
+    }
     return { citationsById, researchByPerson, directoryByPerson, withheldByPerson, ladderRules,
-      agencies, getJson };
+      agencies, seatByHousehold, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;
