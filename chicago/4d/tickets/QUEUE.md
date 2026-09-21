@@ -51,9 +51,11 @@
 # --- Below them: the deadlock that needed hands on four PRs in one evening, and the two
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
-# --- FOUR was the count until 2026-09-21: `nothing was drawn into an evidence-only
-# --- household` is green on today's dev — T-1369's fix landed on #1605 and the ticket
-# --- was closed against it here, after the assertion was re-measured on dev.
+# --- FOUR was the count until 2026-09-21, and it is THREE because T-1369 closed, not
+# --- because its leg went green: the fix landed on #1605 and is proved on dev by the
+# --- stage's own 25 rules and by the layer on disk, but desktop part 3 can no longer be
+# --- RUN inside the foreground ceiling — it is killed in the block before the assertion,
+# --- which has therefore been unevaluated since 2026-09-18. That is T-1501, at the bottom.
 T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
 
 
@@ -220,3 +222,4 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
+T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foreground ceiling: it stalls in the reconstruction-contract block and reports the body-completion sentinel, so no steward run can measure it
