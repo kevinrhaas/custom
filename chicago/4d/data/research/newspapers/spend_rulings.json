@@ -6,10 +6,9 @@
   "counts": {
     "the_column_names_nobody": 60,
     "the_family_column_names_kin": 13,
-    "the_issue_is_printed_after_the_scene_date": 57,
+    "the_issue_is_printed_after_the_scene_date": 54,
     "the_letter_list_name_belongs_to_the_borderline_roster": 69,
     "the_market_and_the_port_in_aggregate": 61,
-    "the_notice_names_a_firm": 19,
     "the_press_name_is_a_person_the_town_does_not_hold": 22,
     "the_press_name_replaces_an_invented_card": 6
   },
@@ -36,11 +35,6 @@
       "disposition": "aggregate_only",
       "statement": "The unit is a PRICE or a SHIPPING reading -- a marine journal's arrivals and clearances, a wholesale list by the cask, a freight or a rate. This is the question T-1298 was asked to answer: what a reading of the harbour or the price of flour does for the 1835 scene when no person unit owns it. It sizes the town's trade -- what came in, in what bottoms, and what it cost -- and it names no person, household, business or structure record, so the person ledger has nothing to write from it. It is true, it is spent in aggregate, and it is closed: the scene reads it as texture and the vessels and stocks it counts are not thereby minted as records."
     },
-    "the_notice_names_a_firm": {
-      "disposition": "unresolved",
-      "ticket": "T-1468",
-      "statement": "The unit carries a `business` block: the reading pulled a firm name, and where it could a trade, a proprietor and a street placement, out of the advertisement or notice. That is enterprise evidence, and the ledger routes every business unit to the authored business layer, which is the piece that still has this corpus to spend -- one record per firm, compiled beside the newspaper-derived register. IT READ T-1180 UNTIL T-1311 CLOSED ON 2026-09-18: that ticket split into T-1310, which BUILT the layer, and T-1311, and with both done the parent is spent work a unit cannot defer to. What is left for these notices is reconciling them against the layer rather than building it, which is T-1182's audit. It read T-1147 until the place and enterprise completion pass closed (T-1241). A firm is not minted here, a placement is not written here, and a contradiction between two notices is not resolved here. T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need. AND T-1190 IS SPENT SINCE 2026-09-20: its three pieces (T-1440, T-1441 and T-1442) all closed, so the split parent is finished work and a unit cannot defer to it (T-1237). The hand-off is T-1468, which carries the same ask under a live id and takes the tavern identity question the roof programme is owed with it."
-    },
     "the_press_name_is_a_person_the_town_does_not_hold": {
       "disposition": "refused",
       "statement": "The claim puts a named person in the town's print on a dated day, and the committed newspapers-to-residents register -- data/research/newspapers/register_1835.json, derived from the gazetteer and the committed town by tools/compile_register.py -- says of every person it names here that THIS LAYER HOLDS NO CARD FOR THEM: the register's action is `new_resident`, which is a person to be minted and not a person to be written on. There is nothing to spend because there is nothing to spend it onto. The refusal is about the SPEND and not about the name: the register's row stands, the reading is not withdrawn, and nothing here decides whether the person lived in the town. WHAT REOPENS IT is the mint: the day this layer holds a card for that name the register re-derives to `enrich`, this unit leaves the register, and tools/spend_press_bounds.py writes the bound. Nothing here mints, regrades or reopens."
@@ -62,11 +56,6 @@
       "note": "chicago_american_1835_06_08 c002: a event of 1835-06-08 whose entities array is empty. It reads: “[… the late arrival] of printing materials [made it] al[most] impossible to publish at an ea[rlier date] than the present. We shall [… on] Saturday morning, hope to be able to lay …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_08.json#claims/c006",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_american_1835_06_08 c006: the notice of 1835-06-08 carries the firm “Goss & Cobb” (trade as read: none; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_13.json#claims/c001",
       "rule": "the_column_names_nobody",
       "note": "chicago_american_1835_06_13 c001: a notice of 1835-06-13 whose entities array is empty. It reads: “The actual population of Chicago we cannot estimate with any degree of accuracy, but it is now supposed to [be] between 2500 and 3000. Strangers, to the a[mo]unt of some hundreds …”"
@@ -77,19 +66,9 @@
       "note": "chicago_american_1835_06_13 c007: a event of 1835-06-13 whose entities array is empty. It reads: “Great Sale of Chic[ago Real] Estate. [WI]LL be sold at auction on […] the 16[t]h [i]n[s]t[ant …] Chicago, many of which are [va]l[uab]l[e] […] lots having a front of […] from 15 …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_13.json#claims/c015",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_american_1835_06_13 c015: the notice of 1835-06-13 carries the firm “Goss & Cobb” (trade as read: none; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_20.json#claims/c012",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_american_1835_06_20 c012: a shipping reading of 1835-06-20. It reads: “Marine Journal. PORT OF CHICAGO. ARRIVED. June 13. Sch[r] Philips, Howe, from […] with […]; Sch[r] Llewel[l]in[g], Cla[rk], for[…] with passengers, &c.; Sloop Westward Ho, Bank[s, …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_20.json#claims/c014",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_american_1835_06_20 c014: the notice of 1835-06-20 carries the firm “Newberry & Dole” (trade as read: steamboat agents, forwarding; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_20.json#claims/c018",
@@ -100,11 +79,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_27.json#claims/c004",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_american_1835_06_27 c004: a shipping reading of 1835-06-27. It reads: “THE STEAMBOA[T UNITED STATES …] Capt. […] [will le]ave [this] place on Wednesday the [8]th day […] The United States i[s] [3]75 to[n]s b[urthen], with [su]perior [ac]commodations, …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_27.json#claims/c006",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_american_1835_06_27 c006: the notice of 1835-06-27 carries the firm “Lathrop Johnson & Co., livery” (trade as read: livery; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_06_27.json#claims/c014",
@@ -205,11 +179,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_08_29.json#claims/c002",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_american_1835_08_29 c002: the issue is dated 1835-08-29, after the scene date. The notice reads: “[A SCHOOL FOR] YOUNG LADIES. [CH]ARLES HUNT proposes to estab[lish … a schoo]l […] on a perma[n]ent Fou[n]dation, for Young Ladies, should [s]u[ffi]ci[en]t [encouragem]e[n]t be …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_american_1835_08_29.json#claims/c005",
-      "rule": "the_issue_is_printed_after_the_scene_date",
-      "note": "chicago_american_1835_08_29 c005: the issue is dated 1835-08-29, after the scene date. The notice reads: “[…] Th[i]s valuable [preparation …] [the public] are frequently i[m]po[s]ed [upon by …] to ob[vi]a[te] […] which the public are hereby expo[s]ed. [No] m[e]dicine ve[n]dor[s] are …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1833_11_26.json#claims/c001",
@@ -377,16 +346,6 @@
       "note": "chicago_democrat_1834_02_25 c004: a event of 1834-02-25 naming J. Bates, jr.. It reads: “Auction Sale. [The] following pro[perty w]ill [be disposed] of at Auction, [on … ]day, the tenth da[y] of March next, commencin[g at … o'clock] A. M. at the Store adjoinin[g] the …” The register carries: J. Bates, jr. → new_resident"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_04.json#claims/c010",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_03_04 c010: the notice of 1834-03-04 carries the firm “Brewster, Hogan & Co.” (trade as read: general store; street as read: South Water Street)."
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_04.json#claims/c011",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_03_04 c011: the notice of 1834-03-04 carries the firm “J. Wellmaker & Co.” (trade as read: unstated — the notice announces only its closing; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_04.json#claims/c018",
       "rule": "the_press_name_is_a_person_the_town_does_not_hold",
       "note": "chicago_democrat_1834_03_04 c018: a event of 1834-03-04 naming John Bates, Jr.. It reads: “Auction Sale. [Wil]l be sold at Fort Dearborn, on Tuesday the 11th inst. at 11 o'clock, A. M. [uncertain: … Barrels of Mess Pork], [and] do. hard bread, [also, a] quantity of …” The register carries: John Bates, jr. → new_resident"
@@ -425,16 +384,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_18.json#claims/c007",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_03_18 c007: a price reading of 1834-03-18. It reads: “CHICAGO PRICES CURRENT, Reported for the Democrat by P. F. Peck. CORRECTED WEEKLY. […] Building Materials — Lumber, poplar, [assort]ed, [per] 1000 [feet] [$]20 00 a [$]23 00; …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_18.json#claims/c008",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_03_18 c008: the notice of 1834-03-18 carries the firm “Taylor & Handy” (trade as read: unstated — the notice announces only its dissolution; street as read: none)."
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_25.json#claims/c004",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_03_25 c004: the notice of 1834-03-25 carries the firm “J. Wellmaker & Co.” (trade as read: unstated — the notice announces only its dissolution; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_03_25.json#claims/c012",
@@ -495,11 +444,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_08.json#claims/c004",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_04_08 c004: a event of 1834-04-08 whose entities array is empty. It reads: “A man [b]y the [n]a[m]e of [Ni]les Ross[, living] a[bo]ut si[x] miles up the north bra[nch of the] Chicag[o] river, [d]ie[d] o[n] Wednesday of l[ast week] in conseq[ue]nce of …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_08.json#claims/c013",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_04_08 c013: the notice of 1834-04-08 carries the firm “John Wellmaker & Co.” (trade as read: co-partnership, trade not stated; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_04_16.json#claims/c010",
@@ -577,16 +521,6 @@
       "note": "chicago_democrat_1834_05_07 c006: a notice of 1834-05-07 naming […] Salisbury, Laughton's. It reads: “[N]OTICE. […] the Au Plaine river, about […] [ab]ove Laughton's two [m]ares, […] and bridles about their […] […] a light chesnut color, […] the forehead, a small scar […] [a]bout …” The register carries: Laughton's → new_resident; […] Salisbury → new_resident"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_07.json#claims/c011",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_05_07 c011: the notice of 1834-05-07 carries the firm “J. K. Botsford” (trade as read: consignment goods; whiskey, cider, dried apples, glass, …; street as read: none)."
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_07.json#claims/c012",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_05_07 c012: the notice of 1834-05-07 carries the firm “P. Pruyne” (trade as read: timber merchant; squared timber and thills; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_05_14.json#claims/c003",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_05_14 c003: a shipping reading of 1834-05-14. It reads: “Salt, Nails, Wind[ow Glass,] IRON, &c. […] BARRELS of SA[LT …] the Huron, to be […] from the wharf. […] [1]0 kegs Juniata Nails, […] [4]0 boxes Window Glass, 8 by [10 …] Roll'd …”"
@@ -615,11 +549,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_04.json#claims/c029",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_06_04 c029: a event of 1834-06-04 whose entities array is empty. It reads: “Arrangements have been made by the propri[etors, by which] Chicago is to be visited by a Steam Boat [from] Buffalo once a week until the 25th of August. The Steam Boat Uncle Sam …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_11.json#claims/c015",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_06_11 c015: the notice of 1834-06-11 carries the firm “John Bates, Jr.” (trade as read: auctioneer; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_06_18.json#claims/c001",
@@ -720,11 +649,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_02.json#claims/c044",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1834_07_02 c044: a event of 1834-07-02 whose entities array is empty. It reads: “Fourth of July. Dinner will be on the table at the Mansion House, (2 o'clock P. M.) Tickets to be obtained at the Bar. Chicago, July 2, 1834.”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_02.json#claims/c049",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_07_02 c049: the notice of 1834-07-02 carries the firm “G. W. & W. Laird” (trade as read: merchants; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_09.json#claims/c001",
@@ -872,11 +796,6 @@
       "note": "chicago_democrat_1834_07_23 c001: a price reading of 1834-07-23. It reads: “[CHICAGO] PRICES CURRENT, [corrected for] the Democrat by P. F. Peck. CORRECTED WEEKLY. […] [Flour, superfine?] bbl 9[.]00 [a] 2 75 […] [Flour,] S[t.] fine bbl 5 00 […] [Flour,] …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_23.json#claims/c005",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_07_23 c005: the notice of 1834-07-23 carries the firm “Deacon & McCaleb” (trade as read: steam saw mill and lumber, St. Joseph; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_07_23.json#claims/c008",
       "rule": "the_letter_list_name_belongs_to_the_borderline_roster",
       "note": "chicago_democrat_1834_07_23 c008: a post-office letter list printed 1834-07-23. Names as read: [H]arvey Crain, Elias Hy[de], Charles Titterington, Thomas Jones, Cornelius C. Van Horn"
@@ -952,11 +871,6 @@
       "note": "chicago_democrat_1834_08_13 c007: a event of 1834-08-13 naming J. Bates, jr.. It reads: “Sale of Town Lots. WIL[L] be sold a[t] Haddock's Man[s]ion-House, in Chica[go, on the] [1]5th inst. from 2 to […] [a] number of which lay on the south Branch of th[e Ch]icago …” The register carries: J. Bates, jr. → new_resident"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_13.json#claims/c008",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_08_13 c008: the notice of 1834-08-13 carries the firm “Marsh & Simons” (trade as read: provision dealers at the Boston Market; street as read: none)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_20.json#claims/c001",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_08_20 c001: a shipping reading of 1834-08-20. It reads: “MARINE LIST. PORT OF CHICAGO. ARRIVED. [A]ug. 13. Sloop Westward Ho, Banks, [Mil]wa[u]kee / 13. Brig Jo[h]n Kinzie, Bristol, [Buffalo] / [Schr.] Phillips, Howe, St. [Joseph] / …”"
@@ -992,11 +906,6 @@
       "note": "chicago_democrat_1834_08_27 c006: a notice of 1834-08-27 whose entities array is empty. It reads: “Wants[.] A SITUATION [a]s Clerk in a Dry Go[ods or] Grocery Store[, by] a young man who [is …] [uncertain: (acqu)ainted with the (business)] […] a good hand, and is well …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_08_27.json#claims/c009",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_08_27 c009: the notice of 1834-08-27 carries the firm “The Chicago Democrat” (trade as read: newspaper and printing office; street as read: South Water Street)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_03.json#claims/c002",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_09_03 c002: a shipping reading of 1834-09-03. It reads: “MARINE LIST. PORT OF CHICAGO. 1834. ARRIVED. Sept. […] Mariah Antonette, Sco[v]ille, [from] Detroit. CLEARED. Aug. 30. Schr. Detroit, […] lower lake. Lorain, Kim[b]all, do.”"
@@ -1025,11 +934,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_10.json#claims/c002",
       "rule": "the_market_and_the_port_in_aggregate",
       "note": "chicago_democrat_1834_09_10 c002: a price reading of 1834-09-10. It reads: “Bacon! Bacon!! [A] LARGE [qua]nt[it]y of Prime cured Bacon, [will] be [sold for six] c[en]ts per [lb]. at Mr. Ho[gan's] Stor[e]. S[ep]t. 10, 183[4].”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_10.json#claims/c010",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_09_10 c010: the notice of 1834-09-10 carries the firm “D. Carver & Co.” (trade as read: lumber merchant; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_09_17.json#claims/c001",
@@ -1172,11 +1076,6 @@
       "note": "chicago_democrat_1834_12_03 c020: a shipping reading of 1834-12-03. It reads: “MARINE LIST. PORT OF CHICAGO. ARRIVED. [Dec. 2?] Schr. Phillips, Howe, [from] St. Joseph. CLEARED. Sch[oone]r Phillips, Howe, [for] St. Joseph.”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_03.json#claims/c023",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1834_12_03 c023: the notice of 1834-12-03 carries the firm “Chicago Democrat” (trade as read: newspaper printing office; street as read: South Water street)."
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1834_12_10.json#claims/c003",
       "rule": "the_press_name_is_a_person_the_town_does_not_hold",
       "note": "chicago_democrat_1834_12_10 c003: a notice of 1834-12-10 naming E. Wentworth, Jr.. It reads: “[S]tray Oxen. [Came into] my enclosure the 30th of Novem[ber last, two … one] a brindle Ox, about five years [old … they] appear to be mates: both [… ] about 8 years old. [O]ne of …” The register carries: E. Wentworth, Jr. → new_resident"
@@ -1280,11 +1179,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_27.json#claims/c012",
       "rule": "the_column_names_nobody",
       "note": "chicago_democrat_1835_05_27 c012: a event of 1835-05-27 whose entities array is empty. It reads: “The May Term of the Circuit C[ourt com]menced in this town on Monday last, [Judge Breese] presiding. There is [considera]ble business [bef]ore the court, most of [the caus]es …”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_05_27.json#claims/c013",
-      "rule": "the_notice_names_a_firm",
-      "note": "chicago_democrat_1835_05_27 c013: the notice of 1835-05-27 carries the firm “Chicago & St. Joseph Packet (schooner Llewellyn)” (trade as read: packet service for freight and passengers between Chicago …; street as read: none)."
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_06_04.json#claims/c001",
@@ -1467,11 +1361,6 @@
       "note": "chicago_democrat_1835_07_22 c002: the issue is dated 1835-07-22, after the scene date. The price reads: “CHICAGO PRICES CURRENT, [COR]RECTED WEEKLY. [Flour and Meal—] Super fine [per bbl] 8 00 a 10 00 fine 8 00 Buckwheat flour none. Indian [meal per] bush 1 00 a 1 50 [corn per] bush …”"
     },
     {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c007",
-      "rule": "the_issue_is_printed_after_the_scene_date",
-      "note": "chicago_democrat_1835_07_22 c007: the issue is dated 1835-07-22, after the scene date. The notice reads: “Dissolution. [THE] fir[m] of [W]m. Hogu[e] & co. ha[s] been [d]i[ss]olved by mutual consent. All persons [having] unsettled accounts with, o[r] who a[r]e in[debted] to the …”"
-    },
-    {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_22.json#claims/c010",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_democrat_1835_07_22 c010: the issue is dated 1835-07-22, after the scene date. The person reads: “List of Letters [R]EMAINING in the Post Office at Juli[e]t, [Illinois,] 1[st] [of] July, 1[8]35, […] A. W. BOWEN, P.M. — the list as printed, its two alphabetical columns arriving …”"
@@ -1495,11 +1384,6 @@
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_29.json#claims/c005",
       "rule": "the_issue_is_printed_after_the_scene_date",
       "note": "chicago_democrat_1835_07_29 c005: the issue is dated 1835-07-29, after the scene date. The notice reads: “Mill Wright[s] Wanted. Apply t[o] […] [J.] Curti[s]s, Attorne[y] […] Attorney at Law,”"
-    },
-    {
-      "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_29.json#claims/c010",
-      "rule": "the_issue_is_printed_after_the_scene_date",
-      "note": "chicago_democrat_1835_07_29 c010: the issue is dated 1835-07-29, after the scene date. The notice reads: “Dissolution. [THE firm of Wm. Hogue & co. has been] di[ss]olved by mutual con[s]ent. All pers[ons] having [uns]ett[l]e[d] accounts with, or who are in[debted] to the [c]oncern, …”"
     },
     {
       "unit": "newspapers:data/research/newspapers/extracted/chicago_democrat_1835_07_29.json#claims/c017",
