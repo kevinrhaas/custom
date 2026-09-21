@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The headcount check learns two cohorts nobody had told it about', kind: 'fix', ts: '',
+  { v: 1043, title: 'The headcount check learns two cohorts nobody had told it about', kind: 'fix', ts: '2026-09-21T01:21:31.564Z', date: 'Sep 20, 2026, 8:21 PM CT',
     items: [
       'The People directory is checked on every commit against a sum: the town\u2019s people should be the manifest of researched households plus every card the reconstruction minted outside it. For a day that sum has not added up \u2014 3,228 people against 3,066 accounted for \u2014 and the check has been failing on both the phone and the desktop.',
       'The 134 people it could not account for had done nothing wrong. Forty-seven of them are the lodgers seated in the town\u2019s boarding houses; eighty-seven are the men of the company the 1832 muster roll heads INDIAN, carded under the same licence that put the rest of that page into the town. Both cohorts were written as records of their own rather than into the researched households, for the same reason the re-admitted names, the drawn tradesmen and the summer\u2019s visitors are. The check had simply never been told they existed.',
