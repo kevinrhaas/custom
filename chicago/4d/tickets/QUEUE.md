@@ -44,14 +44,18 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 0. BLOCKING THE QUEUE (owner, 2026-09-20). These rows are first because the loop
-# --- cannot judge its own work until they are done. FOUR assertions have been standing
+# --- cannot judge its own work until they are done. THREE assertions have been standing
 # --- red on dev for days, and because they are red, smoke_budget reports every leg that
 # --- covers them as 'already red on dev' and runs skip it — so a real regression in those
 # --- parts would look exactly like the reds already there. The gate is not measuring.
 # --- Below them: the deadlock that needed hands on four PRs in one evening, and the two
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
-T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
+# --- FOUR was the count until 2026-09-21, and it is THREE because T-1369 closed, not
+# --- because its leg went green: the fix landed on #1605 and is proved on dev by the
+# --- stage's own 25 rules and by the layer on disk, but desktop part 3 can no longer be
+# --- RUN inside the foreground ceiling — it is killed in the block before the assertion,
+# --- which has therefore been unevaluated since 2026-09-18. That is T-1501, at the bottom.
 
 
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
@@ -217,3 +221,4 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
 T-1500 — The 278 persons the order book's bed buckets still order have no live owner: T-1175 split, and every piece of its tree that fills a bed has closed
+T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foreground ceiling: it stalls in the reconstruction-contract block and reports the body-completion sentinel, so no steward run can measure it
