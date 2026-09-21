@@ -1025,6 +1025,38 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         return row
 
     rows: list[dict] = []
+
+    # T-1466. ONE COUNTER PER PATH INTO THIS DIRECTORY, taken where the rows are
+    # appended rather than assembled afterwards from whatever counts happen to exist.
+    #
+    # WHY IT IS DONE HERE AND NOT IN THE COUNTS BLOCK. `smoke_renderer.mjs` holds an
+    # identity over the People directory — stated == manifest + everything minted
+    # outside the manifest's directory — and that identity was written by hand and
+    # EXTENDED by hand, once per stage: T-1172 added the re-admissions, T-1347 the
+    # drawn trade heads, T-1353 the summer crowd. Two later loops were added below and
+    # nobody extended it again, so the assertion read
+    #
+    #     3228 != 2269 + 182 + 308 + 307        (short by 162; 134 by 2026-09-21)
+    #
+    # and had been RED on dev at both viewports for a day. The 134 were the lodging
+    # stage's 47 and the under-documented company's 87 — both minted outside
+    # data/residents/households/ for exactly the reason the other three are, and both
+    # perfectly correct. NOTHING WAS WRONG WITH THE LAYER: the identity was short.
+    #
+    # A hand-written sum of the paths a person remembered is the fault, so the sum
+    # stops being hand-written. Every loop below seals its own contribution into
+    # `by_source`, the smoke asserts the KEY SET as well as the total, and a SEVENTH
+    # loop added without a `seal()` beside it makes `stated` disagree with the sum —
+    # while a seventh loop added WITH one fails the key-set check until the assertion
+    # is told about it. Either way the next stage is stopped rather than absorbed.
+    by_source: dict[str, int] = {}
+    _mark = 0
+
+    def seal(name: str) -> None:
+        nonlocal _mark
+        by_source[name] = len(rows) - _mark
+        _mark = len(rows)
+
     households = 0
     for entry in index.get("households", []):
         rel = entry.get("file", "")
@@ -1035,6 +1067,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, rel, ruling=ruling_for.get(hh.get("id"))))
+    seal("manifest")
 
     readmitted_households = 0
     for minted in minted_rows:
@@ -1046,6 +1079,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], minted=minted))
+    seal("readmitted")
 
     trade_households = 0
     for minted in trade_rows_minted:
@@ -1057,6 +1091,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], trade=minted))
+    seal("reconstructed_trades")
 
     lodging_households = 0
     for minted in lodger_rows_minted:
@@ -1068,6 +1103,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], lodging=minted))
+    seal("lodgers")
 
     underdocumented_households = 0
     for minted in underdocumented_rows_minted:
@@ -1079,6 +1115,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], underdocumented=minted))
+    seal("underdocumented")
 
     transient_households = 0
     for minted in transient_rows_minted:
@@ -1089,6 +1126,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
         transient_households += 1
         for person in hh.get("persons", []) or []:
             rows.append(row_for(hh, person, minted["file"], transient=minted))
+    seal("transients")
 
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
 
@@ -1174,6 +1212,15 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "by_stage": {k: stage_counts.get(k, 0) for k in stage_order},
             "read_from_a_source": stage_counts.get(None, 0),
             "reconstructed_by_a_stage": sum(v for k, v in stage_counts.items() if k),
+            # T-1466. THE SIX PATHS A PERSON REACHES THIS FILE BY, each counted where
+            # its rows are appended (see `seal` above). `by_stage` answers WHO DREW a
+            # person; this answers WHICH LOOP PUT THE ROW HERE, and only the second of
+            # those can be held against `people` as an identity — a stage may fill
+            # attributes on a card the manifest already carries, a loop never can.
+            # Sums to `people` by construction, which is the point: the smoke reads the
+            # key set as well as the total, so a seventh path is a red gate rather than
+            # a number that quietly drifts.
+            "by_source": by_source,
             "by_division": divisions,
             "by_presence": presence,
             "by_arrival_year": {str(k): v for k, v in sorted(tally("arrival_year").items())},
@@ -2147,6 +2194,25 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "confidence": st["lot_address"]["confidence"],
                 "sources": st["lot_address"]["sources"],
                 "note": st["lot_address"]["note"],
+            }
+
+        # T-1478. AND WHICH LOT IT TURNED OUT TO STAND ON, which is the row above's
+        # opposite number: `lot_address` is a lot a SOURCE printed, this is a lot the
+        # grid drew afterwards and found a committed footprint already on. It travels as
+        # an attribute for the same reason — a visitor asking "where is this, exactly?"
+        # is asking one question and should not have to know which of the two answers the
+        # building happens to have. `sources` is EMPTY and that is the honest value: no
+        # source names this lot, which is what the row's own note says at length and what
+        # its grade (the weaker of the lot lines and the numeral) already prices in.
+        if "stands_on_lot" in st:
+            seat = st["stands_on_lot"]
+            where = ("lot %d" % seat["lot_number"]) if seat["lot_number"] is not None \
+                else "an unnumbered lot"
+            attributes["stands_on_lot"] = {
+                "value": "%s, %s" % (where, seat["grid"].replace("_", " ")),
+                "confidence": seat["confidence"],
+                "sources": [],
+                "note": seat["note"],
             }
 
         # T-0609. WHO ENTERED THE GROUND UNDER THE ROOF is an attribute of the building

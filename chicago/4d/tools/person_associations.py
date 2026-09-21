@@ -68,6 +68,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -494,8 +495,9 @@ def derive_land(households) -> tuple:
             continue
         for tract, regs in sorted(by_tract.items()):
             dates = sorted(r.get("date_purchased") for r in regs if r.get("date_purchased"))
-            acres = round(sum((r.get("parcel_acres") or 0) * (r.get("share_of_the_parcel") or 0)
-                              for r in regs), 2)
+            acres = round(math.fsum((r.get("parcel_acres") or 0)
+                                    * (r.get("share_of_the_parcel") or 0)
+                                    for r in regs), 2)
             ids = ", ".join(sorted(r["record_id"] for r in regs))
             note = (
                 f"GROUND HE BOUGHT, WHICH IS NOT GROUND HE STOOD ON — the rung is `tract` "

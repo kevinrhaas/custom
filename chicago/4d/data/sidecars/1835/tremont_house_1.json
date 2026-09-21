@@ -180,6 +180,25 @@
       "research_note": ""
     },
     {
+      "household": "hh_carver_david",
+      "name": "David Carver",
+      "division": "",
+      "relation": "lodged here",
+      "why": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at lumber_merchant in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
+      "sources": [],
+      "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
+      "persons": [
+        {
+          "name": "David Carver",
+          "relationship": "lodger",
+          "grade": "attested",
+          "occupation": "lumber_merchant",
+          "note": ""
+        }
+      ],
+      "research_note": ""
+    },
+    {
       "household": "hh_couch_ira",
       "name": "The Couch household",
       "division": "south",
@@ -207,25 +226,6 @@
         }
       ],
       "research_note": "THE TREMONT'S FIRST PROPRIETOR, AND A CLEAN EXAMPLE OF THE derived GRADE DOING WORK. Ira Couch is documented in the house across 1 July 1835 by two independent sources. His brother James is a real, named man, documented as a co-purchaser and later as the proprietor, whose residence at Chicago on the scene date is reconstructed from the joint purchase rather than stated. Two men, two grades, one household. THE BUILDING THIS HOUSEHOLD IS ATTACHED TO IS THE FIRST TREMONT at Lake and Dearborn, built in 1833 by Alanson Sweet - not the later houses of 1840 and 1850 that carry the same name."
-    },
-    {
-      "household": "hh_fullerton_alexander",
-      "name": "Alexander N. Fullerton",
-      "division": "",
-      "relation": "lodged here",
-      "why": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at attorney in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
-      "sources": [],
-      "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
-      "persons": [
-        {
-          "name": "Alexander N. Fullerton",
-          "relationship": "lodger",
-          "grade": "attested",
-          "occupation": "attorney",
-          "note": ""
-        }
-      ],
-      "research_note": ""
     },
     {
       "household": "hh_lodging_tremont_house_1",
@@ -275,38 +275,38 @@
       "research_note": "WRITTEN BY tools/seat_lodgers_1835.py (T-1371, of T-1175), the `lodgers` stage of the 1835 resident reconstruction programme. This file is NOT research and is not a mint output: data/residents/households/ is re-derived by the mint writers and data/residents/index.json is derived from that directory, so a reconstruction lives here instead and is overlaid onto the scene by tools/compile_scene.py. docs/LIBERTIES.md carries the invention."
     },
     {
-      "household": "hh_rc_crandall_william",
-      "name": "William Crandall",
+      "household": "hh_rc_brady_hugh",
+      "name": "Hugh Brady",
       "division": "",
       "relation": "lodged here",
-      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at land_agent in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
+      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at clerk in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
       "sources": [],
       "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
       "persons": [
         {
-          "name": "William Crandall",
+          "name": "Hugh Brady",
           "relationship": "lodger",
           "grade": "reconstructed",
-          "occupation": "land_agent",
+          "occupation": "clerk",
           "note": ""
         }
       ],
       "research_note": ""
     },
     {
-      "household": "hh_rc_stebbins_abigail",
-      "name": "Abigail Stebbins",
+      "household": "hh_rc_hayes_patrick",
+      "name": "Patrick Hayes",
       "division": "",
       "relation": "lodged here",
-      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at hardware_merchant in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
+      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at dry_goods_merchant in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
       "sources": [],
       "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
       "persons": [
         {
-          "name": "Abigail Stebbins",
+          "name": "Patrick Hayes",
           "relationship": "lodger",
           "grade": "reconstructed",
-          "occupation": "hardware_merchant",
+          "occupation": "dry_goods_merchant",
           "note": ""
         }
       ],

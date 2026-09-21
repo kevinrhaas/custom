@@ -1,7 +1,7 @@
 ---
 id: T-1467
 title: derive_hay_limits.py re-derives four block centres one centimetre off in a steward sandbox and not in CI, so check.sh is red on a clean dev checkout for a PROJ version rather than a reading
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
+closed: 2026-09-20
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Fixed, and the diagnosis in the title is wrong. The four Kinzie's Addition centroids were not a PROJ version difference: they sit exactly on the 2 dp rounding boundary, and sum()'s left-to-right accumulation drift — a few parts in 10^15 — was picking the digit, so the file read one value in a steward sandbox and the other in CI. derive_hay_limits.programme_blocks now sums with math.fsum (correctly rounded, order-independent) and the file re-derives exactly on both; merged in #1585. T-1486 owns the sweep of the remaining sites and is in flight as #1593.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-20T23:16:56.584Z
 claimed_run: null
 ---
 

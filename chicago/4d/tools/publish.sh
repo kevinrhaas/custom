@@ -135,6 +135,27 @@ if compgen -G "assets/web/*.glb" > /dev/null; then
   cp -f assets/web/*.glb "$SITE/data/gltf/"
 fi
 
+# The two roof coverings' relief maps (T-1488). `renderers/web/js/roof-relief.js`
+# resolves them against the ASSET base — ../../assets/ in the dev tree, ../data/
+# in the published one — so they land here under data/textures/ and the same
+# relative URL answers in both. FOUR FILES AND NOT SIXTEEN: the module binds
+# `normal_gl` plus the packed `orm`, so the basecolor, height16, metallic,
+# roughness, ao and normal_dx of each covering stay in the repository and out of
+# the payload. material.json travels with them because the renderer reads the
+# tile rate (`span_m`) off it rather than holding a constant of its own —
+# leaving it behind is roofs with no relief on the deployed site while the dev
+# tree shingles every one of them, which is the scenes/, fauna/ and residents/
+# failure again.
+for covering in wood_shingles_weathered roof_boards_weathered; do
+  src="assets/textures/chicago_1835_pbr/roofs/$covering"
+  dst="$SITE/data/textures/chicago_1835_pbr/roofs/$covering"
+  mkdir -p "$dst"
+  cp -f "$src/material.json" \
+        "$src/${covering}_normal_gl.png" \
+        "$src/${covering}_orm.png" \
+        "$dst/"
+done
+
 # scenes, sidecars, datum (the renderer needs the origin for sun position).
 # Keep the scenes/ subdirectory — the renderer fetches data/scenes/<year>.json,
 # and flattening it here 404s the published build while the source tree works.
@@ -181,6 +202,13 @@ cp -f data/reconstruction/1835_population_profile.json "$SITE/data/reconstructio
 # reconstruction bands fill — so leaving it behind is a 404 and a tile that counts
 # zero on the deployed site while the dev tree shows seven.
 cp -f data/reconstruction/1835_reconstruction_order_book.json "$SITE/data/reconstruction/"
+
+# And the address book (T-1491). Derived by tools/seat_known_1835.py and re-derived by
+# tools/check.sh; people.js fetches it at data/reconstruction/1835_address_book.json so
+# that a household card can say where its household stood and at which rung. Leaving it
+# behind is a 404 and 1,186 cards reading "No known address" with nothing after it —
+# which is the sentence this file exists to replace.
+cp -f data/reconstruction/1835_address_book.json "$SITE/data/reconstruction/"
 
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —

@@ -15182,7 +15182,7 @@
       "covers": [],
       "scope": {
         "enumeration": "residents.persons[lodgers]",
-        "count": 84
+        "count": 56
       },
       "recorded": "2026-09-19",
       "revised": null,
@@ -15193,7 +15193,7 @@
         },
         {
           "label": "Scope",
-          "text": "`residents.persons[lodgers]` — 84 people in 13 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check`. It read 75 in 12 until T-1480: the redeal made `recon_1835_north_h2_045` an H2 rather than an H3 and `recon_1835_north_h2_022` and `recon_1835_north_h2_028` boarding houses at all, so the lodging model apportioned one more house and the capacity that came with it. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life."
+          "text": "`residents.persons[lodgers]` — 56 people in 13 lodging-household cards, re-derivable from `tools/seat_lodgers_1835.py --check` (47 seats come from the layer; these 56 are the mint on top of them). The count has moved TWICE this week and in opposite directions, which is why it is re-derived and not stated. It read 75 in 12. **T-1171 shrank it to 47**: `reconstruct_modelled_families.py` had been refusing 822 households on a `present_on_scene_date` of `uncertain` that T-1386 had already adjudicated, and once that stage reads the rulings the model draws 30 more of the town's own named men as living alone — so `seat_lodgers_1835.py` puts THEM in beds it would otherwise have invented somebody for. Twenty-eight invented people gone, twenty-eight real ones in their place, and that is the direction this question is supposed to travel. **T-1480 then grew it to 56 in 13**: the redeal made `recon_1835_north_h2_045` an H2 rather than an H3, and `recon_1835_north_h2_022` and `recon_1835_north_h2_028` boarding houses at all, so the lodging model apportioned one more house and the capacity that came with it. The seventeen of the title are not in it and must not be: they are people the town already counts, and this stage wrote them a `lives_at` rather than a life."
         },
         {
           "label": "Why",

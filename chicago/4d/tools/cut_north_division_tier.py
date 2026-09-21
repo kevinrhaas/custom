@@ -63,6 +63,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import pathlib
 import sys
 
@@ -451,7 +452,7 @@ def document() -> dict:
                                                if b["depth_from"] == "carried"),
             "lots": sum(len(b["lots"]) for b in blocks),
             "lots_per_face": sorted({b["lots_per_face"] for b in blocks}),
-            "tier_ground_m2": round(sum(b["area_m2"] for b in blocks), 1),
+            "tier_ground_m2": round(math.fsum(b["area_m2"] for b in blocks), 1),
             "blocks_with_ground_below_datum": [b["thompson_block_number"] for b in blocks
                                                if b["ground"]["below_datum"]],
         },

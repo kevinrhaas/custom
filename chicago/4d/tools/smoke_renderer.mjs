@@ -612,8 +612,28 @@ const STANDS = [
  * per-vertex now and nothing else in the 1,353 measured material slots differs
  * (R-W2a). A textured asset would legitimately raise this, and raising it is
  * then a deliberate edit with a reach measurement beside it.
+ *
+ * **1 -> 3 ON 2026-09-20 (T-1488), which is that deliberate edit, with the
+ * measurement.** `roof-relief.js` binds a shared normal + ORM pair to each of
+ * the two roof coverings, so `materialKey()` — which separates on map uuids —
+ * splits the town into the untextured batch it always was plus ONE shingle batch
+ * and ONE board batch. That is two batches for 241 shingled and 128 boarded roof
+ * materials, not 369; the whole point of sharing the pair is that a roof costs
+ * nothing to add. Measured through `critic_shots.mjs --metrics` before and after,
+ * source tree: lake_market 144 -> 148 and south_water 165 -> 169 at mobile, 162 ->
+ * 166 and 189 -> 193 at desktop — **+4 everywhere**, which is the two new batches
+ * paying once in the colour pass and once in the shadow pass, exactly as the
+ * paragraph above predicts. The reach's headroom is 4 calls smaller and its
+ * budget is 80.
  */
-const STRUCTURE_BATCHES = 1;
+const STRUCTURE_BATCHES = 3;
+/**
+ * …and of those three, exactly two are roof coverings — T-1488. The count above
+ * would pass identically on a town that had split into three batches by LOSING
+ * the merge, which is the failure R-W5a2 wrote it to catch; this says WHICH
+ * three, so a regression that re-splits the walls cannot hide behind the raise.
+ */
+const TEXTURED_STRUCTURE_BATCHES = 2;
 /**
  * How many distinct roughness values the merged batch must still carry, and how
  * far the frame must move when they are flattened.
@@ -9140,11 +9160,16 @@ for (const [label, viewport, touch] of [
           if (v > max) max = v;
         }
       }
-      return { batches: bs.length, values: seen.size, min, max };
+      return {
+        batches: bs.length, values: seen.size, min, max,
+        textured: bs.filter((b) => b.material?.normalMap).length,
+      };
     });
-    check(`${label}: the untextured town is one batch`,
-      batchCensus.batches === STRUCTURE_BATCHES,
-      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}`);
+    check(`${label}: the town is its one untextured batch and its two roof coverings`,
+      batchCensus.batches === STRUCTURE_BATCHES
+        && batchCensus.textured === TEXTURED_STRUCTURE_BATCHES,
+      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}, of which `
+      + `${batchCensus.textured} carry a relief map, want ${TEXTURED_STRUCTURE_BATCHES}`);
     check(`${label}: the batch still carries the town's finishes`,
       batchCensus.values >= ROUGHNESS_VALUES_MIN
         && batchCensus.min <= 0.30 && batchCensus.max >= 0.95,
@@ -11875,6 +11900,12 @@ for (const [label, viewport, touch] of [
         manifest: manifest.counts?.persons, readmitted: pj.counts?.readmitted_persons ?? 0,
         trades: pj.counts?.reconstructed_trade_heads ?? 0, transients: pj.counts?.transients ?? 0,
         residents: pj.counts?.residents ?? 0,
+        // T-1466. The six loops that append rows to this file, counted where they
+        // append them (compile_scene.py `seal`). Read as a KEY SET and a TOTAL, not as
+        // a remembered list of addends — see the check below.
+        sourceKeys: Object.keys(pj.counts?.by_source ?? {}).sort().join(','),
+        sourceTotal: Object.values(pj.counts?.by_source ?? {}).reduce((a, b) => a + b, 0),
+        bySource: pj.counts?.by_source ?? null,
         countText: document.getElementById('people-count')?.textContent ?? '' };
       out.search = { matched: dir.search('Beaubien'),
         mark: document.querySelector('#people-results [data-person-id="beaubien_mark"] .person-name')?.textContent.trim() ?? null,
@@ -11929,7 +11960,16 @@ for (const [label, viewport, touch] of [
         title: document.getElementById('panel-title')?.textContent.trim() ?? '',
         backShown: !document.getElementById('panel-back')?.hasAttribute('hidden'),
         go: go?.dataset.structure ?? null, goText: go?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-        fields: !!card?.querySelector('.res-fields') };
+        fields: !!card?.querySelector('.res-fields'),
+        // T-1491. The seat, in words, under the actions block — and the bare
+        // "No known address" it replaces, which must not be standing beside it.
+        seat: {
+          rung: card?.querySelector('.people-seat')?.dataset.rung ?? null,
+          label: card?.querySelector('.people-seat-rung')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          words: card?.querySelector('.people-seat-words')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          noaddr: !!card?.querySelector('.people-noaddr'),
+        } };
       return out;
     });
     check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
@@ -11945,8 +11985,36 @@ for (const [label, viewport, touch] of [
       // outside data/residents/households/ for the same reason the re-admissions are.
       // The identity is the same identity: the directory lists the manifest's people plus
       // every card the reconstruction minted, and nothing else has a path into it.
-      && people.counts.stated === people.counts.manifest + people.counts.readmitted
-        + people.counts.trades + people.counts.transients
+      //
+      // T-1466: AND IT IS NO LONGER A LIST SOMEBODY REMEMBERED TO EXTEND. The three
+      // lines above are the history of this assertion — one addend per stage, added by
+      // hand — and two further loops were written into compile_scene.py without a
+      // fourth and fifth line here. The identity then read
+      //
+      //     3228 != 2269 + 182 + 308 + 307
+      //
+      // and stayed red on dev at BOTH viewports for a day. The missing 134 were the
+      // lodging stage's 47 and the under-documented company's 87, both minted outside
+      // data/residents/households/ exactly as the other three are and both entirely
+      // correct. The identity was short; the town was not. So it is not weakened to the
+      // new number — it is read off `by_source`, which compile_scene.py seals at each
+      // of the six loops, and asserted in two halves:
+      //
+      //   THE KEY SET, spelled out here. A seventh path into the directory changes it
+      //   and fails this check by name, which is the drift that went unnoticed.
+      //   THE TOTAL, which must be the stated count. A seventh path added WITHOUT a
+      //   `seal()` beside it leaves the sum short and fails here instead.
+      //
+      // The four named counts are then held against their own source entries, so the
+      // figures the rest of this file and model_town_1835.py read cannot disagree with
+      // the loop that produced them.
+      && people.counts.sourceKeys
+         === 'lodgers,manifest,readmitted,reconstructed_trades,transients,underdocumented'
+      && people.counts.sourceTotal === people.counts.stated
+      && people.counts.bySource.manifest === people.counts.manifest
+      && people.counts.bySource.readmitted === people.counts.readmitted
+      && people.counts.bySource.reconstructed_trades === people.counts.trades
+      && people.counts.bySource.transients === people.counts.transients
       // T-1353. The visitors are counted apart from the town's own people, and the two
       // rows must partition the directory exactly — a transient that also counts as a
       // resident is the failure this cohort exists to make impossible.
@@ -11955,6 +12023,24 @@ for (const [label, viewport, touch] of [
       && people.counts.manifest > 1000
       && new RegExp(`^${String(people.counts.stated).replace(/\B(?=(\d{3})+$)/g, ',?')} people`).test(people.counts.countText),
       JSON.stringify(people.counts));
+    // T-1491. The address book on the card. John S. C. Hogan's household is the case
+    // the row exists for: it has a WORKPLACE the sources name — his store, which is why
+    // the Go-to above resolves — and no home at all. Before the address book the card
+    // said nothing whatever about where these people lived; a reader could not tell that
+    // from a household nobody has looked for. It now says which division the evidence
+    // reaches, that it reaches nothing narrower, who owes the seat, and what would move
+    // it up the ladder. The bare "No known address" must be GONE, not sitting beside it.
+    check(`${label}: the household card says how far the evidence places its people`,
+      people.card.seat.rung === 'owed'
+      && /south division/.test(people.card.seat.label)
+      && /no nearer/.test(people.card.seat.label)
+      && /reaches the south division and nothing narrower/.test(people.card.seat.words)
+      && /owed to T-1492/.test(people.card.seat.words)
+      && /Would move it up the ladder: a source naming a street, a corner or a building/
+        .test(people.card.seat.next)
+      && people.card.seat.noaddr === false,
+      JSON.stringify(people.card.seat));
+
     check(`${label}: searching "Beaubien" finds Mark Beaubien`,
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
       && /Beaubien/.test(people.search.note),
