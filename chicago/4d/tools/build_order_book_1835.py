@@ -2675,8 +2675,17 @@ def cmd_self_test() -> int:
     fires("a bucket ordered by an id that is not a ticket at all",
           lambda: every_work_order_names_a_live_ticket(
               doc, {k: v for k, v in states.items() if k != owed_by["owning_ticket"]}))
+    # A DONE TICKET ON A FULLY DISCHARGED BUCKET IS FINE — that is what this asserts.
+    # It has to pick a ticket that owns NO bucket with work left, not merely A bucket
+    # with none: the gate is asked per TICKET, so marking one done fails the moment it
+    # also owns a live bucket, and the fixture would then be measuring the wrong thing.
+    # This fixture builds with NO fills, so which quotas sit at nought is a property of
+    # the re-cut rather than of the town, and T-1459 moved it — the 10-19 bands became a
+    # function of what is drawn against them. Choosing by ticket rather than by bucket
+    # is what makes the case survive that.
+    live_owners = {t for b in buckets if left(b) > 0 for t in named(b)}
     discharged = next(b for b in buckets if b.get("owning_ticket") and left(b) <= 0
-                      and b["owning_ticket"] != owed_by["owning_ticket"])
+                      and b["owning_ticket"] not in live_owners)
     every_work_order_names_a_live_ticket(doc, {**states, discharged["owning_ticket"]: "done"})
     assert "T-1166" not in {t for b in buckets for t in named(b)}, \
         "the book's own authoring ticket is provenance and must not be a work order"
