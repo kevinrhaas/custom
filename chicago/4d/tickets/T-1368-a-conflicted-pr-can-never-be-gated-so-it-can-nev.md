@@ -1,7 +1,7 @@
 ---
 id: T-1368
 title: A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1601
 claimed_by: run 9/20/2026, 7:44:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T01:06:42.120Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35548071057
 ---
 

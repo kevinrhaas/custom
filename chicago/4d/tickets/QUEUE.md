@@ -51,7 +51,6 @@
 # --- Below them: the deadlock that needed hands on four PRs in one evening, and the two
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
-T-1368 — A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
 T-1466 — The People directory's count identity is short by 162: stated 3,228 against manifest 2,269 + readmitted 182 + trades 308 + transients 307, and the smoke has been red on dev at both viewports
 T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
