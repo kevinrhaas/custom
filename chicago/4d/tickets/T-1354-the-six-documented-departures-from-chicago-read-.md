@@ -1,7 +1,7 @@
 ---
 id: T-1354
 title: The six documented departures from Chicago, read against present_on_scene_date: whether a man recorded leaving in 1835 was at the town on 1 July, each ruled with the removal beside the other sources rather than out of one volume
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1620
 claimed_by: run 9/21/2026, 4:26:52 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T11:01:59.997Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35583036319
 ---
 
