@@ -206,8 +206,18 @@ export async function measure({ root = ROOT, epoch = 'e1834_harbor_cut', scene =
     ?? JSON.parse(await readFile(path.join(root, `data/streets/${scene}.json`), 'utf8')).streets;
 
   // --- 1. the held slots, which are what the wall is for -------------------
-  const limit = Number(recipe.terrain_and_hydrology_gate.instantiation_block
-    .match(/centre E < (-?\d+(?:\.\d+)?) m/)[1]);
+  // T-1444 retired the instantiation block, so the recipe now carries its text under
+  // `instantiation_block_retired.was`. This reading is a DERIVATION OF THE WALL and
+  // the wall was derived to hold those 35 slots: read the retired text rather than
+  // re-deriving the wall from a parcel that no longer holds anything, which would
+  // silently change what T-1415 measured.
+  const gate = recipe.terrain_and_hydrology_gate;
+  const blockText = gate.instantiation_block ?? gate.instantiation_block_retired?.was;
+  if (!blockText) {
+    throw new Error('the West recipe carries neither an instantiation block nor the '
+      + 'retired text of one; the west wall cannot state what it was derived to hold');
+  }
+  const limit = Number(blockText.match(/centre E < (-?\d+(?:\.\d+)?) m/)[1]);
   const placements = recipe.placements.map((p) => ({
     id: p.id,
     family: p.family,
@@ -360,9 +370,12 @@ export async function measure({ root = ROOT, epoch = 'e1834_harbor_cut', scene =
     wall,
     field_cost,
     held_slots: {
-      _doc: 'generate_west_infill.py holds a placement whose CENTRE is west of its '
-        + 'instantiation block. The wall is derived from the westernmost FOOTPRINT edge, '
-        + 'because a roof is contained when all of it is.',
+      _doc: 'generate_west_infill.py HELD a placement whose CENTRE was west of its '
+        + 'instantiation block, and the wall is derived from the westernmost FOOTPRINT '
+        + 'edge of those, because a roof is contained when all of it is. T-1444 released '
+        + 'all 35 onto the ground T-1416 built and retired the block; the figures below '
+        + 'are kept as the derivation of the wall, which is what they always were, and '
+        + 'no longer describe anything the generator withholds.',
       instantiation_block_e_m: limit,
       placements: placements.length,
       held: held.length,

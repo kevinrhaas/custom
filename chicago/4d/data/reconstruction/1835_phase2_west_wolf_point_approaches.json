@@ -187,14 +187,34 @@
     "precision_warning": "Decimal coordinates are machine-readable layout controls, not historical precision. Every instance position is conjectural and the 1834 map georeference itself carries about 20 m working uncertainty."
   },
   "terrain_and_hydrology_gate": {
-    "current_terrain_box_local_enu_m": {"e": [-320.0, 1700.0], "n": [-400.0, 400.0]},
+    "boundary_hold": {
+      "block": "Do not emit a structure record or mesh for the placements listed below. The corporate boundary of 7 November 1833 resolves its west leg on Jefferson Street, and tools/measure_corporation_limits.py must carry that leg 1188.8 m past the end of its own committed centreline to reach Ohio Street. Each of these placements stands closer to the extended leg than the leg's own drift, so the EXTRAPOLATION rather than the ordinance would decide whether the roof stood inside the town limits or outside them. The reconstruction leaves that side unstated by not building the roof.",
+      "imposed_by": "T-1444, 2026-09-20",
+      "measured_by": "tools/measure_corporation_limits.py --gate, 2026-09-20",
+      "lifted_when": "Jefferson Street is traced north to Ohio from a committed source, at which point the leg is no longer an extrapolation and its drift falls to the trace tolerance. The held slots keep their ids, their families and their dealt sequence numbers, and instantiate unchanged. T-1490 owns it.",
+      "slots": {
+        "west_rec_027": {"clearance_m": 12.9, "drift_m": 23.8},
+        "west_rec_029": {"clearance_m": 19.2, "drift_m": 23.2},
+        "west_rec_032": {"clearance_m": 22.6, "drift_m": 22.7},
+        "west_rec_035": {"clearance_m": 6.9, "drift_m": 22.0},
+        "west_rec_037": {"clearance_m": 7.4, "drift_m": 22.4}
+      },
+      "next_roof_out": "recon_1835_west_033 clears the leg at 24.8 m against 22.7 m of drift, and is decided."
+    },
+    "current_terrain_box_local_enu_m": {"e": [-705.0, 1700.0], "n": [-3800.0, 1120.0]},
     "required_west_box_local_enu_m": {"e": [-700.0, 1700.0], "n": [-400.0, 400.0]},
-    "instantiation_block": "Do not emit structure records or meshes for any placement with centre E < -300 m until the heightfield, collision surface, vegetation sampler, minimap, and water mask share the extended box.",
+    "instantiation_block_retired": {
+      "was": "Do not emit structure records or meshes for any placement with centre E < -300 m until the heightfield, collision surface, vegetation sampler, minimap, and water mask share the extended box.",
+      "retired_by": "T-1444, 2026-09-20",
+      "why": "The condition is met, so the block is retired rather than waived. T-1416 regenerated the field to E -705 m: data/terrain/epochs/e1834_harbor_cut/terrain_spec.json now grids e_min_m -705, and heightfield.json carries 963 x 1969 samples from origin_e -705. The collision surface, the water mask and the vegetation sampler are not separate extents to be carried out one by one \u2014 all three are readings of that one committed field, and z01/z02, the two communities this prairie falls in, are elevation bands with no box to clip. The minimap the block named is not a feature this renderer has; a surface that does not exist cannot gate one that does, and saying so is better than counting it as carried.",
+      "held_and_released": "35 of the 55 placements were held. All 35 instantiate on their own recipe ids and their own recipe families, which is what the hold promised. The 20 built under the hold are byte-identical after the release: tools/generate_west_infill.py deals seq over the held half first, so no committed roof is redealt because its neighbours arrived.",
+      "what_still_gates": "tools/generate_west_infill.py --check re-derives all 55 and asks the committed field directly: every footprint corner covered, no corner below -0.10 m, no footprint spanning more than 0.35 m of relief, no collision with this parcel or with any committed record, no intrusion into a platted street corridor, and the terrain box still reaching E -705. The ground-contact question the block stood in for is now asked of the ground."
+    },
     "rules": [
       "Reject every footprint intersecting the authoritative 1834 river mask; do not infer dry ground from a positive decorative plane.",
       "Keep principal roofs at least 8 m from the traced waterline unless a named source explicitly documents a landing or waterside building; this 8 m is a modelling safety band, not a historical measurement.",
       "Keep anonymous ancillary roofs at least 5 m from the waterline and attach them to a principal yard group.",
-      "Do not place a roof in the two conjectural west-prairie swales until their alignments are reviewed after the west terrain extension; move the roof rather than flattening the swale.",
+      "Do not place a roof in the two conjectural west-prairie swales until their alignments are reviewed after the west terrain extension; move the roof rather than flattening the swale. THE REVIEW WAS TAKEN BY T-1444 AND DID NOT SAY WHAT THIS RULE ASSUMED: both alignments now begin in open modelled prairie at E -320, where the field's west wall used to be, and west_prairie_swale_a's 30 m corridor already holds seven of the twenty roofs seated under the hold plus one released by T-1444. The swale is the conjectural half of the pair (no source; T-0795 walked the Wright sheet and it draws no watercourse on this prairie), so the alignment and not the roofs is what goes to the owner \u2014 T-1460. Meanwhile generate_west_infill.py freezes the eight it measured and refuses a ninth.",
       "Sample building grade, collision height, and vegetation root height from the same extended terrain surface."
     ]
   },

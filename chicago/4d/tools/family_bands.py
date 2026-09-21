@@ -115,6 +115,30 @@ def storeys(levels: str, key: str | None = None) -> tuple[float, bool]:
         raise SystemExit(f"cannot read a storey count from levels '{levels}'")
 
 
+def admits_loft(family: str) -> bool:
+    """May this family's records carry `loft = true` at all?
+
+    ASKED OF THE CROSSWALK, never of a list kept by hand. The parcel generators used to
+    carry the answer as a literal set of family ids, and the same drift T-0179 found in
+    the roof literal was sitting in the loft one: `("W2", "W3", "W5", "A1", "A2")` gave a
+    loft to W3 (`levels '1'`, cooper/wagon/wheelwright shop) and W5 (`levels '1'`,
+    sawmill/boat-repair shop), both of which the crosswalk authors at a single storey.
+    west_rec_036 reached the band gate on that literal.
+
+    The test is `tools/measure_band_claims.py`'s own, so the generator and the gate cannot
+    disagree: a loft is worth half a level, "1 + loft" raises the ceiling by that half,
+    and a family admits one when its band reaches `lo + 0.5` — which is true of W2's
+    `1-1.5` without the word appearing in it, and false of a bare `1`.
+    """
+    levels = (families().get(family) or {}).get("levels")
+    text = str(levels or "1").strip()
+    head = text.split("+")[0].strip()
+    band = RANGE_RE.match(head)
+    lo, hi = (float(band.group(1)), float(band.group(2))) if band else (float(head),) * 2
+    ceiling = hi + 0.5 if "loft" in text.lower() else hi
+    return ceiling >= lo + 0.5 - 1e-9
+
+
 # A door has to fit under a wall, and two of the small ancillary families are authored
 # with an eave band whose bottom is below the height the implemented outbuilding needs
 # to carry its own man door plus a header — A3 runs 6-7 ft, and a sample at 1.891 m is

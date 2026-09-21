@@ -157,13 +157,21 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # derived at load from committed numbers, so THE ASSET COUNT DOES NOT MOVE and nothing re-stales:
 # this layer, like the other nine, owes a generator half and has none.
 #
+# 384 -> 414 and 382 -> 412 on 2026-09-20 (T-1444): the West Division parcel's terrain hold
+# is retired and thirty of its thirty-five held slots are built — `recon_1835_west_004`,
+# `_013`, `_017`, `_020` and `_025`..`_055` less the five the corporate boundary's
+# extrapolated west leg cannot decide (T-1490). Thirty new structure assets, so thirty more
+# meshes a change to the shared generator modules or to build.py would re-stale; the terrain
+# and pier_crib reaches stay at 2 each. The five held slots add nothing here for the same
+# reason blocks B and C above add nothing: measured, dealt, and deliberately not built.
+#
 STATED = {
-    "assets": 384,
+    "assets": 414,
     "restales": {
-        "generators/common/*.py": 384,
+        "generators/common/*.py": 414,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 382,
+        "generators/build.py": 412,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
