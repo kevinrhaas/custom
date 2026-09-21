@@ -1,7 +1,7 @@
 ---
 id: T-1383
 title: The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1614
 claimed_by: run 9/21/2026, 2:02:52 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T08:19:52.867Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35570784801
 ---
 
