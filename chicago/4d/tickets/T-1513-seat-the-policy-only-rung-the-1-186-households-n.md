@@ -1,7 +1,7 @@
 ---
 id: T-1513
 title: Seat the policy-only rung: the 1,186 households no source places anywhere, banded by the policy's class rule and dealt a division from the town model — seeded, order-book-counted, and every card's division re-derived so the People view's division filter fills
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1492
 opened: 2026-09-21
-closed: null
+closed: 2026-09-21
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 9:29:15 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T14:43:45.689Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35612058191
 ---
 
 Seat the policy-only rung: the 1,186 households no source places anywhere, banded by the policy's class rule and dealt a division from the town model — seeded, order-book-counted, and every card's division re-derived so the People view's division filter fills.
