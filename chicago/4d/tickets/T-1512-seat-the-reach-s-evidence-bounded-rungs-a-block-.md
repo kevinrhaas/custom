@@ -1,7 +1,7 @@
 ---
 id: T-1512
 title: Seat the reach's evidence-bounded rungs: a block face for every street-only row the face adoption refused, and the placement policy's band for every household whose own record already names a division — seeded, tier-marked, and said on the card in words
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1492
 opened: 2026-09-21
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1626
 claimed_by: run 9/21/2026, 7:44:03 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T13:41:50.185Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35600413508
 ---
 
