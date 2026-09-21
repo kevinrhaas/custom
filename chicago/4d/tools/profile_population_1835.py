@@ -1055,25 +1055,22 @@ COMPLETENESS_AXES = [
 
 COMPLETENESS_COLUMNS = [t for t in TIERS if t != "unknown"] + [UNTIERED]
 
-# THE ROW WHOSE STATED REASON ITS OWN CARD CONTRADICTS. `reconstruct_sex_age.collective()`
-# reads a name as a group when any token of it is in that pass's COLLECTIVE table, and
-# `the` is in that table because "the rest of the household, unnamed" is a count and not a
-# name. "The Harmon daughter later known as Mrs A. G. Burley" begins with the same article
+# THE ROWS WHOSE STATED REASON THEIR OWN CARD CONTRADICTS — and there are none (T-1395,
+# 2026-09-21). This table existed for exactly one row. `reconstruct_sex_age.collective()`
+# read a name as a group when any token of it stood in the sex pass's COLLECTIVE table, and
+# `the` stood in that table because "the rest of the household, unnamed" is a count and not
+# a name. "The Harmon daughter later known as Mrs A. G. Burley" begins with the same article
 # and is ONE woman: Andreas names her singly, the card gives her one sex and seats her as a
-# daughter. So her age band carries the collective refusal — "this row stands for more than
-# one person" — over a row that stands for exactly one, and the true reason is the one her
-# own note gives: no birth year is claimed and nothing bounds it. The refusal's EFFECT is
-# right (no band may be drawn) and its STATED REASON is wrong, which is a provenance defect
-# and not a rounding error. It is named here rather than quietly patched: the fix belongs
-# to the pass that writes the note.
-CONTRADICTED_ROWS = {
-    "harmon_daughter_burley": (
-        "The card refuses an age band as a COLLECTIVE description naming nobody, and this "
-        "row names one woman — Andreas's informant, seated as a daughter and carrying one "
-        "sex. The refusal stands; its reason does not. The true reason is the card's own: "
-        "no birth year is claimed and the marriage of 1808 bounds her birth after it and "
-        "nothing bounds it before 1835."),
-}
+# daughter. So her age band carried the collective refusal — "this row stands for more than
+# one person" — over a row that stands for exactly one. The refusal's EFFECT was right (no
+# band may be drawn) and its STATED REASON was wrong, which is a provenance defect and not a
+# rounding error, so it was named here rather than quietly patched and the fix was left with
+# the pass that writes the note. That pass has made it: a group is a group WORD and not an
+# article, and her band is now refused for the reason her own card earns — a household's
+# child word and a later source's married style, neither of them dated to the scene and
+# neither of them an age. THE TABLE IS KEPT, EMPTY, because it is this report's standing
+# question: a row whose note argues with its own card belongs here the day one appears.
+CONTRADICTED_ROWS = {}
 
 
 def sec_completeness(L) -> dict:
@@ -1136,8 +1133,9 @@ def sec_completeness(L) -> dict:
         "lead": ("THE NINE QUESTIONS ASKED OF EVERY ONE OF THE %d PEOPLE, TOGETHER. %d of "
                  "the nine axes leave nobody unanswered. Sex leaves %d and age band %d — "
                  "the collective rows, \"the rest of the Beaubien household, unnamed\" and "
-                 "their kind, which name nobody and so can carry neither; every one of them "
-                 "is named below. Division leaves %d, the people of the %d households no "
+                 "their kind, which name nobody and so can carry neither, and one row that "
+                 "names one woman and still earns no band; every one of them is named "
+                 "below. Division leaves %d, the people of the %d households no "
                  "source puts on a side of the river, and that is the layer's largest "
                  "remaining hole: T-1198 seats the households the evidence places and "
                  "T-1199 the reconstructed ones, and until they run this column cannot "
@@ -1170,10 +1168,12 @@ def sec_completeness(L) -> dict:
                 ["person", "as the card names them", "household", "axes left unanswered",
                  "what the card gives as the reason"], silent_rows, "lllll",
                 note=("Named rather than summed away, which is the whole of this section. "
-                      "One of them, `harmon_daughter_burley`, carries a reason its own card "
-                      "contradicts: the refusal is written for a collective row and she is "
-                      "one named woman. The refusal's effect is right and its reason is "
-                      "wrong; the fix belongs to the pass that writes the note."))},
+                      "Every reason printed here is the one its own card gives, and no row "
+                      "argues with itself: `harmon_daughter_burley` carried a collective "
+                      "refusal over a row naming one woman until T-1395 gave her the "
+                      "refusal her own evidence earns — a household's child word and a "
+                      "later source's married style, neither dated to the scene and "
+                      "neither an age."))},
             {"title": "The unplaced, by the roll they were minted off", **plain_table(
                 ["roll", "persons", "share of the unplaced"], roll_rows, "lrr",
                 note=("%d persons in households standing `unplaced`. `unplaced` is a term "
