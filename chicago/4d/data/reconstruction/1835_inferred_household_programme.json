@@ -641,7 +641,7 @@
       "ordinal": 5,
       "of": 20,
       "lives_at": "recon_1835_north_d3_002",
-      "works_at": "recon_1835_north_w2_005",
+      "works_at": "recon_1835_north_d4_005",
       "extras": [
         {
           "relationship": "journeyman",
@@ -916,7 +916,7 @@
       "ordinal": 4,
       "of": 4,
       "lives_at": "recon_1835_north_d5_026",
-      "works_at": "recon_1835_north_c1_020",
+      "works_at": "recon_1835_north_d3_020",
       "extras": []
     },
     {
@@ -926,7 +926,7 @@
       "ordinal": 3,
       "of": 4,
       "lives_at": "recon_1835_north_d5_037",
-      "works_at": "recon_1835_north_c2_027",
+      "works_at": "recon_1835_north_d6_027",
       "extras": []
     },
     {
@@ -936,7 +936,7 @@
       "ordinal": 3,
       "of": 3,
       "lives_at": "recon_1835_north_d5_041",
-      "works_at": "recon_1835_north_f1_022",
+      "works_at": "recon_1835_north_h2_022",
       "extras": []
     },
     {
@@ -946,7 +946,7 @@
       "ordinal": 1,
       "of": 1,
       "lives_at": "recon_1835_north_d5_057",
-      "works_at": "recon_1835_north_c1_047",
+      "works_at": "recon_1835_north_a1_047",
       "extras": []
     },
     {
@@ -956,7 +956,7 @@
       "ordinal": 2,
       "of": 3,
       "lives_at": "recon_1835_north_d6_021",
-      "works_at": "recon_1835_north_w1_018",
+      "works_at": "recon_1835_north_d4_018",
       "extras": []
     },
     {
@@ -976,7 +976,7 @@
       "ordinal": 1,
       "of": 1,
       "lives_at": "recon_1835_north_d7_031",
-      "works_at": "recon_1835_north_t1_028",
+      "works_at": "recon_1835_north_h2_028",
       "extras": []
     },
     {
@@ -1005,8 +1005,8 @@
       "division": "north",
       "ordinal": 3,
       "of": 3,
-      "lives_at": "recon_1835_north_h3_045",
-      "works_at": "recon_1835_north_h3_045",
+      "lives_at": "recon_1835_north_h2_045",
+      "works_at": "recon_1835_north_h2_045",
       "extras": []
     },
     {

@@ -51,7 +51,7 @@
       "adopted": 10,
       "delta": 0,
       "moved": false,
-      "why": "The structure layer holds 10 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 15 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out."
+      "why": "The structure layer holds 9 standing public houses and the programme schedules 10: in roofs the two already agree. The model's 15 is the business register's count of RECORDS at the scene date, which the trade-census crosswalk folds none of, and the register counts notices where a roof count counts houses. Folding a notice into a house is an identity ruling; this tool makes none and owes the delta out."
     },
     {
       "group": "institutional_public",

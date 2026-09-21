@@ -63,6 +63,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -431,6 +432,429 @@ def apply_retirements(retire: list[dict]) -> dict:
 
 
 # --------------------------------------------------------------------------
+# the id migration --- T-1480, the North Division parcel
+# --------------------------------------------------------------------------
+#
+# WHY THIS IS A SECOND MODE AND NOT A SECOND TOOL. Everything above carries a
+# verdict out where the record id does not move. `generate_north_infill` builds
+# the id out of the family and the sequence (`recon_1835_north_c1_020` ->
+# `..._d3_020`), so carrying the same verdict out here RENAMES a record that
+# twenty-odd other committed files name. The rules that decide the new family
+# and the new footprint are the ones above, imported rather than restated: a
+# migration that adjudicated anything of its own would be a second opinion about
+# a town this tool does not adjudicate.
+#
+# WHAT THE MIGRATION OWNS, AND WHAT IT REFUSES:
+#
+#   * THE ARCHETYPE IS ASKED OF THE GENERATOR THAT BUILDS THE PARCEL, not of the
+#     crosswalk. They disagree about H2 --- the crosswalk's placeholder is
+#     `frame_dwelling` and `generate_north_infill.archetype_for` returns
+#     `frame_tavern` --- and it is the generator's answer that decides whether
+#     `frame_dwelling_params`' eaves-front refusal applies to a roof. Asking the
+#     crosswalk here would have cut two boarding houses to a proportion nothing
+#     was going to enforce on them.
+#
+#   * THE INVENTORY CLASS FOLLOWS THE GROUP. `recon_1835_north_c1_047` is moved
+#     from a store to a stable, and a stable is not a principal functional roof.
+#     The north recipe authors the class per placement and gates its own 45/15
+#     mix, so the class moves with the family and the mix is recounted --- it is
+#     not a number chosen to keep the old total. This is the same principal /
+#     ancillary line T-1482 has to re-deal for the platted blocks; here it is one
+#     roof and the recipe's own counter is the whole of the arithmetic.
+#
+#   * A YARD GROUP NAMED AFTER A MIGRATED ROOF MOVES WITH IT. Three ancillary
+#     placements sit in `nw_w2_005_yard`, `wk_w1_018_yard` and `re_c1_047_yard`
+#     --- yards named for the roof they stand behind. Leaving those strings
+#     behind would leave three yards named for buildings that no longer exist,
+#     which is the rot this ticket is about.
+#
+#   * A RECEIPT IS NOT A REFERENCE. `renderers/unreal/receipts/` pins a signed
+#     build to a `scene_source_commit`, `docs/unreal/prototype/` holds the import
+#     report that build produced, and `tickets/` records what was found on a day.
+#     All three name these roofs by the id they had then, and all three are
+#     TRUE as written. Rewriting a dated measurement so it agrees with today is
+#     falsifying it, so they are pinned and `--check-migration` counts them as
+#     pinned rather than stale --- and names them, so the exemption is visible
+#     rather than silent.
+#
+#   * THE DERIVED FILES ARE RE-DERIVED, NEVER REWRITTEN. The adjudication ledger
+#     and its two reports name every migrated roof, and they are the measurement
+#     of whether the migration worked: a rewritten ledger would agree with the
+#     migration by construction. They are excluded from the substitution and
+#     regenerated, which is how `--check` can ask the live adjudication whether
+#     each migrated roof now returns `keep`.
+
+NORTH_RECIPE = RECON / "1835_north_division_initial_parcel.json"
+NORTH_PREFIX = "recon_1835_north_"
+MIGRATION_TICKET = "T-1480"
+
+# Derived from the roofs themselves, so they cannot be rewritten into agreement.
+MIGRATION_REDERIVED = (
+    "data/reconstruction/1835_roof_redeal.json",
+    "docs/RESEARCH/1835_anonymous_roof_redeal.md",
+    "docs/RESEARCH/1835_roof_redeal_execution.md",
+)
+
+# Where a record's id is part of a FILE NAME. Each is renamed beside the
+# substitution, because a file called after a roof that no longer exists is the
+# same dangling reference as a line of JSON that names one.
+MIGRATION_FILENAMES = (
+    ("data/structures", "{id}.json"),
+    ("data/sidecars/1835", "{id}.json"),
+    ("data/residents/lodgers", "hh_lodging_{id}.json"),
+    ("assets/gltf", "{id}__inferred_1835.glb"),
+    ("assets/web", "{id}__inferred_1835.glb"),
+)
+
+# True as written on the day they were written: a dated receipt, the import
+# report it produced, a ticket's account of what it found, and this tool's own
+# prose about the ids it moves.
+MIGRATION_PINNED = (
+    "tickets/",
+    "renderers/unreal/receipts/",
+    "docs/unreal/prototype/",
+    "patches/",
+    "tools/execute_roof_redeal.py",
+    # Same kind as the line above, and for both of its reasons at once (T-1483):
+    # measure_roof_id_migration.py's docstring explains the surface by naming a
+    # move — "`recon_1835_north_c1_020` becomes `..._d3_020`" — and its self-test
+    # passes the old id to new_id() as the worked example of a north id keeping
+    # its sequence. Rewriting the fixture leaves it asserting
+    # new_id("..._d3_020", "D3") == "..._d3_020", true of any already-migrated id
+    # and a test of nothing. The tool measures the surface; it makes no claim
+    # that a record still stands under the old name.
+    "tools/measure_roof_id_migration.py",
+)
+# A transcript of a run and a patch against a tree are the same kind of thing as
+# a receipt: they say what a named moment looked like. Migrating an id inside one
+# would make it say something that never happened.
+MIGRATION_PINNED_SUFFIXES = (".log", ".patch")
+
+ANCILLARY_GROUPS = ("barns_stables", "small_outbuildings")
+
+
+def north_archetype(family: str) -> str:
+    """The archetype the parcel's own generator deals this family.
+
+    Imported, never retyped: which roofs `frame_dwelling_params` will refuse for
+    depth is decided by the generator that writes the records, and this tool has
+    to predict the same answer or it computes a footprint nothing enforces.
+    """
+    sys.path.insert(0, str(ROOT / "tools"))
+    import generate_north_infill  # noqa: PLC0415
+    return generate_north_infill.archetype_for(family)
+
+
+def plan_north(recipe: dict, outstanding: list[dict]) -> list[dict]:
+    fields = recipe["placement_fields"]
+    rows = {dict(zip(fields, row))["id_suffix"]: dict(zip(fields, row))
+            for row in recipe["placements"]}
+    plan = []
+    for v in sorted(outstanding, key=lambda v: v["id"]):
+        if not v["id"].startswith(NORTH_PREFIX):
+            continue
+        suffix = v["id"][len(NORTH_PREFIX):]
+        row = rows.get(suffix)
+        if row is None:
+            raise SystemExit(f"{v['id']}: refamilied by the adjudication but no "
+                             f"placement in {NORTH_RECIPE.name} carries it")
+        if row["family"] != v["family"]:
+            raise SystemExit(f"{v['id']}: the placement stands as {row['family']}, "
+                             f"not the {v['family']} the adjudication describes")
+        fp = [int(row["width_ft"]), int(row["depth_ft"])]
+        to_fp = fp if v["band_already_fits"] else band_corner_nearest(
+            float(v["footprint_ft2"]), v["to_band_ft"])
+        if north_archetype(v["to_family"]) in PROPORTIONED_ARCHETYPES:
+            to_fp = buildable_in_band(int(to_fp[0]), int(to_fp[1]), v["to_band_ft"])
+        new_suffix = f"{v['to_family'].lower()}_{int(row['sequence']):03d}"
+        to_class = ("ancillary" if v["to_group"] in ANCILLARY_GROUPS
+                    else "principal_functional")
+        plan.append({
+            "id": v["id"], "new_id": NORTH_PREFIX + new_suffix,
+            "sequence": int(row["sequence"]),
+            "suffix": suffix, "new_suffix": new_suffix,
+            "from_family": v["family"], "to_family": v["to_family"],
+            "from_group": v["group"], "to_group": v["to_group"],
+            "from_footprint_ft": fp, "to_footprint_ft": [int(x) for x in to_fp],
+            "from_inventory_class": row["inventory_class"],
+            "to_inventory_class": to_class,
+            "band_already_fits": bool(v["band_already_fits"]),
+            "why": v["reason"],
+        })
+    seen = [e["new_id"] for e in plan]
+    if len(set(seen)) != len(seen):
+        raise SystemExit("two migrated roofs would take the same id; the "
+                         "sequence no longer makes the id unique")
+    return plan
+
+
+WHY_MIGRATED = (
+    "THE SAME 60 ROOFS STAND AND NINE OF THEM ARE CALLED SOMETHING ELSE. T-1445 "
+    "adjudicated the town's 285 anonymous roofs and returned 32 refamily "
+    "verdicts; T-1451 carried out the six whose ids do not move. These nine are "
+    "the North Division's, and `generate_north_infill` builds a record's id out "
+    "of its family and sequence, so refamilying one RENAMES it and every "
+    "committed file that names it --- the sidecars, the liberties, the signage "
+    "and trade goods, the lodging model and the lodgers seated under two of "
+    "these roofs, the reconstructed seating, the business layer and the "
+    "boarding house authored over `..._h3_045`, the hay limits, the Newberry "
+    "leads, the land-sale ground index, the asset manifests and the two GLBs "
+    "per roof. NOTHING IS ADJUDICATED HERE: every family below is the "
+    "`to_family` T-1445 reached and every reason beside it is T-1445's own, "
+    "quoted. The parcel still builds 60 roofs at the same coordinates, "
+    "rotations and clusters. What moves is which family stands where, THREE "
+    "FOOTPRINTS that the family they join cannot carry at the depth they had "
+    "--- `..._c2_027` 20x32 to 20x30 ft, `..._w1_018` 18x28 to 18x27 ft, and "
+    "`..._h3_045` 32x48 to the 30x42 ft ceiling of the H2 band --- and ONE "
+    "INVENTORY CLASS: `..._c1_047` is moved from a store to a stable and a "
+    "stable is ancillary, so the parcel's mix is recounted from 45/15 to 44/16 "
+    "rather than the class being held to keep an old total. Three yards named "
+    "after a migrated roof are renamed with it. Everything here is still "
+    "conjectural exactly as it was --- that any building stood on this ground, "
+    "which building it was, and every dimension of it. Recorded in "
+    "docs/LIBERTIES.md."
+)
+
+
+def migrate_recipe(recipe: dict, plan: list[dict]) -> dict:
+    """The recipe, re-dealt. Loaded and dumped whole: this file is already
+    one-value-per-line at indent 2 and a round trip reproduces it byte for byte,
+    so the surgical span editing the west recipe needs buys nothing here."""
+    fields = recipe["placement_fields"]
+    by_suffix = {e["suffix"]: e for e in plan}
+    renamed_yards = {f"{tag}_{e['suffix']}_yard": f"{tag}_{e['new_suffix']}_yard"
+                     for e in plan for tag in ("nw", "wk", "re", "km", "ke", "rf")}
+    for row in recipe["placements"]:
+        r = dict(zip(fields, row))
+        e = by_suffix.get(r["id_suffix"])
+        if e is not None:
+            r["id_suffix"] = e["new_suffix"]
+            r["family"] = e["to_family"]
+            r["width_ft"], r["depth_ft"] = e["to_footprint_ft"]
+            r["inventory_class"] = e["to_inventory_class"]
+        if r["yard_group"] in renamed_yards:
+            r["yard_group"] = renamed_yards[r["yard_group"]]
+        row[:] = [r[f] for f in fields]
+
+    fams: dict[str, int] = {}
+    groups: dict[str, int] = {}
+    classes: dict[str, int] = {}
+    for row in recipe["placements"]:
+        r = dict(zip(fields, row))
+        fams[r["family"]] = fams.get(r["family"], 0) + 1
+        g = group_of(r["family"])
+        groups[g] = groups.get(g, 0) + 1
+        classes[r["inventory_class"]] = classes.get(r["inventory_class"], 0) + 1
+
+    inv = recipe["inventory"]
+    inv["principal_functional"] = classes.get("principal_functional", 0)
+    inv["ancillary"] = classes.get("ancillary", 0)
+    # Both totals keep the FILE's key order --- the schedule's, not the alphabet's ---
+    # and a family the redeal empties drops out rather than standing at zero.
+    inv["group_totals"] = ({k: groups[k] for k in inv["group_totals"] if groups.get(k)}
+                           | {k: groups[k] for k in sorted(groups)
+                              if k not in inv["group_totals"]})
+    inv["family_totals"] = ({k: fams[k] for k in inv["family_totals"] if fams.get(k)}
+                            | {k: fams[k] for k in sorted(fams)
+                               if k not in inv["family_totals"]})
+
+    recipe["migrated"] = {
+        "on": "2026-09-20",
+        "ticket": MIGRATION_TICKET,
+        "adjudicated_by": "T-1445",
+        "executed_under": TICKET,
+        "ledger": "data/reconstruction/1835_roof_redeal.json",
+        "why": WHY_MIGRATED,
+        "yard_groups_renamed": dict(sorted(
+            (k, v) for k, v in renamed_yards.items()
+            if any(k == dict(zip(fields, row))["yard_group"] or
+                   v == dict(zip(fields, row))["yard_group"]
+                   for row in recipe["placements"]))),
+        "roofs": [
+            {
+                "was_id": e["id"], "id": e["new_id"], "sequence": e["sequence"],
+                "was": e["from_family"], "now": e["to_family"],
+                "was_group": e["from_group"], "now_group": e["to_group"],
+                "was_footprint_ft": e["from_footprint_ft"],
+                "footprint_ft": e["to_footprint_ft"],
+                "footprint_moved": e["from_footprint_ft"] != e["to_footprint_ft"],
+                "was_inventory_class": e["from_inventory_class"],
+                "inventory_class": e["to_inventory_class"],
+                "why": e["why"],
+            }
+            for e in plan
+        ],
+    }
+    return recipe
+
+
+def migrate_tree(plan: list[dict]) -> tuple[list[str], list[str]]:
+    """Carry every committed reference across, and rename every file called
+    after a migrated roof. Returns (files rewritten, files renamed)."""
+    moves = {e["id"]: e["new_id"] for e in plan}
+    yards = {}
+    for e in plan:
+        for tag in ("nw", "wk", "re", "km", "ke", "rf"):
+            yards[f"{tag}_{e['suffix']}_yard"] = f"{tag}_{e['new_suffix']}_yard"
+
+    # A MANIFEST ENTRY IS THE RECORD OF A BAKE, and a bake whose output has been
+    # renamed leaves one pointing at a file that is not there. The substitution
+    # below carries the key across with everything else; the entry then holds the
+    # OLD mesh's hash under the new name, which `validate.py --stale` reads as
+    # "re-bake me" — exactly right, because that is what has to happen next.
+    # Dropping the entry instead would let an unbaked roof through the staleness
+    # gate by having nothing to compare against.
+    renamed = []
+    for folder, pattern in MIGRATION_FILENAMES:
+        for e in plan:
+            old = ROOT / folder / pattern.format(id=e["id"])
+            if old.exists():
+                new = ROOT / folder / pattern.format(id=e["new_id"])
+                old.rename(new)
+                renamed.append(str(new.relative_to(ROOT)))
+
+    skip = {ROOT / rel for rel in MIGRATION_REDERIVED}
+    skip.add(NORTH_RECIPE)
+    rewritten = []
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file() or path in skip:
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        if (rel.startswith((".git/", "node_modules/", "site/") + MIGRATION_PINNED)
+                or path.suffix.lower() in MIGRATION_PINNED_SUFFIXES):
+            continue
+        if path.suffix.lower() not in (".json", ".md", ".py", ".js", ".mjs",
+                                       ".html", ".css", ".txt", ".sh", ".csv"):
+            continue
+        try:
+            text = path.read_text(encoding="utf-8", errors="strict")
+        except UnicodeDecodeError:
+            continue     # not text after all; --check-migration sweeps for misses
+        out = text
+        for old, new in moves.items():
+            # The lookahead refuses a LONGER id, not a longer string. Every id in
+            # this parcel ends `_<3 digits>`, so only a digit can extend one —
+            # and `_` must be allowed through, because both manifests key their
+            # entries `<id>__inferred_1835.glb` and an underscore-excluding
+            # lookahead walked straight past all 18 of them (measured, T-1480).
+            out = re.sub(rf"{old}(?![0-9A-Za-z])", new, out)
+        for old, new in yards.items():
+            out = out.replace(old, new)
+        if out != text:
+            path.write_text(out, encoding="utf-8")
+            rewritten.append(rel)
+    return sorted(rewritten), sorted(renamed)
+
+
+def check_migration() -> int:
+    """Did the migration work, and is anything still pointing at a roof that
+    no longer exists?"""
+    recipe = load(NORTH_RECIPE)
+    block = recipe.get("migrated")
+    if not block:
+        print(f"DRIFT: no migration recorded in {NORTH_RECIPE.name} — run --migrate")
+        return 1
+    fields = recipe["placement_fields"]
+    rows = {dict(zip(fields, row))["id_suffix"]: dict(zip(fields, row))
+            for row in recipe["placements"]}
+    verdict = {v["id"]: v for v in load(LEDGER)["verdicts"]}
+
+    for r in block["roofs"]:
+        suffix = r["id"][len(NORTH_PREFIX):]
+        row = rows.get(suffix)
+        if row is None:
+            print(f"DRIFT: {r['id']} was migrated but no placement carries it")
+            return 1
+        if row["family"] != r["now"]:
+            print(f"DRIFT: {r['id']} was migrated to {r['now']} and stands as "
+                  f"{row['family']}")
+            return 1
+        if [int(row["width_ft"]), int(row["depth_ft"])] != [int(x) for x in r["footprint_ft"]]:
+            print(f"DRIFT: {r['id']} was migrated at {r['footprint_ft']} ft and "
+                  f"stands at {[row['width_ft'], row['depth_ft']]}")
+            return 1
+        if row["inventory_class"] != r["inventory_class"]:
+            print(f"DRIFT: {r['id']} was migrated as {r['inventory_class']} and "
+                  f"stands as {row['inventory_class']}")
+            return 1
+        # THE EXECUTION HAS TO HAVE WORKED --- the same question --check asks of
+        # the west parcel. A migrated roof the live adjudication still wants to
+        # refamily was moved into a family refused where it stands.
+        v = verdict.get(r["id"])
+        if v is None:
+            print(f"DRIFT: the adjudication no longer audits {r['id']}")
+            return 1
+        if v["verdict"] != "keep":
+            print(f"FAIL: {r['id']} was migrated {r['was']} -> {r['now']} and the "
+                  f"adjudication still says {v['verdict']} — the migration did "
+                  f"not settle it")
+            return 1
+        if verdict.get(r["was_id"]) is not None:
+            print(f"DRIFT: {r['was_id']} is still audited, so the old record "
+                  f"still stands")
+            return 1
+
+    # NOTHING MAY STILL NAME A ROOF THAT NO LONGER EXISTS. This is the check the
+    # ticket is for: the migration is not "the recipe says D4", it is "no
+    # committed file is left pointing at `recon_1835_north_w2_005`".
+    stale, pinned = [], []
+    old_ids = [r["was_id"] for r in block["roofs"]]
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        if rel.startswith((".git/", "node_modules/", "site/")):
+            continue
+        if (rel.startswith(MIGRATION_PINNED)
+                or path.suffix.lower() in MIGRATION_PINNED_SUFFIXES):
+            text = path.read_text(encoding="utf-8", errors="ignore")
+            if any(re.search(rf"{old}(?![0-9A-Za-z])", text) for old in old_ids):
+                pinned.append(rel)
+            continue
+        if rel == NORTH_RECIPE.relative_to(ROOT).as_posix():
+            continue          # the `migrated` block records what each roof WAS
+        if path.suffix.lower() in (".glb", ".png", ".jpg", ".jpeg", ".pdf",
+                                   ".webp", ".tif", ".tiff", ".zip", ".xlsx"):
+            if any(path.name.startswith(old) for old in old_ids):
+                stale.append(rel)
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        for old in old_ids:
+            if re.search(rf"{old}(?![0-9A-Za-z])", text):
+                stale.append(f"{rel} names {old}")
+                break
+    if stale:
+        print("MIGRATION INCOMPLETE — these still name a migrated roof:")
+        for s in stale[:40]:
+            print(f"  - {s}")
+        return 1
+
+    classes: dict[str, int] = {}
+    fams: dict[str, int] = {}
+    for row in recipe["placements"]:
+        r = dict(zip(fields, row))
+        classes[r["inventory_class"]] = classes.get(r["inventory_class"], 0) + 1
+        fams[r["family"]] = fams.get(r["family"], 0) + 1
+    inv = recipe["inventory"]
+    if (inv["principal_functional"] != classes.get("principal_functional", 0)
+            or inv["ancillary"] != classes.get("ancillary", 0)):
+        print("DRIFT: the recipe's inventory-class mix does not count its own "
+              "placements")
+        return 1
+    if inv["family_totals"] != {k: v for k, v in fams.items()
+                                if k in inv["family_totals"]} or \
+            sum(inv["family_totals"].values()) != len(recipe["placements"]):
+        print("DRIFT: family_totals does not count the placements it claims")
+        return 1
+
+    print(f"verified {len(block['roofs'])} migrated roof(s), every one now `keep`, "
+          f"and no live reference names an id they left behind")
+    for rel in pinned:
+        print(f"  pinned, true as written on its own date: {rel}")
+    return 0
+
+
+# --------------------------------------------------------------------------
 # the report
 # --------------------------------------------------------------------------
 
@@ -574,16 +998,35 @@ def self_test() -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--migrate", action="store_true",
+                    help="carry the North Division's nine id-moving verdicts out")
+    ap.add_argument("--check-migration", action="store_true")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.check_migration:
+        return check_migration()
 
     ledger = load(LEDGER)
     here, outstanding, retire = partition(ledger)
     recipe = load(WEST_RECIPE)
+
+    if args.migrate:
+        north = load(NORTH_RECIPE)
+        plan = plan_north(north, outstanding)
+        if not plan:
+            print("no North Division verdict is outstanding; nothing to migrate")
+            return 0
+        rewritten, renamed = migrate_tree(plan)
+        dump(NORTH_RECIPE, migrate_recipe(north, plan))
+        print(f"{len(plan)} North Division roof(s) migrated; "
+              f"{len(renamed)} file(s) renamed, {len(rewritten)} rewritten")
+        for rel in rewritten:
+            print(f"  ~ {rel}")
+        return 0
 
     if args.apply:
         plan = plan_west(recipe, here)

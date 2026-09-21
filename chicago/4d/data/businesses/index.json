@@ -3,10 +3,10 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
   "generated_by": "tools/compile_businesses.py",
   "counts": {
-    "records": 271,
+    "records": 273,
     "compiled_from_register": 196,
-    "authored": 75,
-    "present_at_scene_date": 254,
+    "authored": 77,
+    "present_at_scene_date": 256,
     "by_type": {
       "book_store": 2,
       "brewery": 2,
@@ -16,7 +16,7 @@
       "iron_foundry": 2,
       "lawyer": 20,
       "not_stated": 5,
-      "other": 120,
+      "other": 122,
       "physician": 9,
       "printing_office": 3,
       "school": 7,
@@ -29,22 +29,22 @@
     },
     "by_location_kind": {
       "anchored": 26,
-      "premises": 51,
+      "premises": 53,
       "street_only": 89,
       "unplaceable": 109
     },
-    "named_people": 401,
-    "named_people_linked_to_a_town_card": 348,
+    "named_people": 402,
+    "named_people_linked_to_a_town_card": 349,
     "works_at_households": 50,
     "works_at_households_resolving_to_a_business": 36,
     "by_grade": {
       "attested": 165,
       "inferred": 74,
-      "reconstructed": 32
+      "reconstructed": 34
     },
     "by_where_kind": {
       "anchored": 26,
-      "premises": 51,
+      "premises": 53,
       "street_only": 89,
       "unplaceable": 105
     },
@@ -69,7 +69,7 @@
       "new_york": 51,
       "other": 11,
       "southern": 10,
-      "unknown": 97,
+      "unknown": 99,
       "yankee": 73
     }
   },
@@ -149,7 +149,7 @@
       {
         "value": "unknown",
         "label": "Unknown",
-        "count": 97
+        "count": 99
       }
     ]
   },
@@ -5693,15 +5693,6 @@
           "name": "Johanna Connor",
           "person_id": "rc_connor_johanna",
           "role": "servant",
-          "tier": "reconstructed",
-          "from": null,
-          "to": null,
-          "also_printed_as": []
-        },
-        {
-          "name": "Luther Kellogg",
-          "person_id": "rc_kellogg_luther",
-          "role": "household_member",
           "tier": "reconstructed",
           "from": null,
           "to": null,
@@ -14135,6 +14126,52 @@
       "liberties": []
     },
     {
+      "id": "rcb_barnes_boarding_house",
+      "file": "rcb_barnes_boarding_house.json",
+      "name": "Barnes's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Ezra Barnes",
+          "person_id": "rc_barnes_ezra",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_north_h2_022",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
       "id": "rcb_brady_barbers_shop",
       "file": "rcb_brady_barbers_shop.json",
       "name": "Daniel Brady, barber",
@@ -14185,7 +14222,7 @@
     {
       "id": "rcb_cavanagh_boarding_house",
       "file": "rcb_cavanagh_boarding_house.json",
-      "name": "Ellen Cavanagh's boarding house",
+      "name": "Johanna Cavanagh's boarding house",
       "register_id": null,
       "provenance": "reconstructed",
       "type": [
@@ -14199,8 +14236,8 @@
       "firm_styles": [],
       "people": [
         {
-          "name": "Ellen Cavanagh",
-          "person_id": "rc_cavanagh_ellen",
+          "name": "Johanna Cavanagh",
+          "person_id": "rc_cavanagh_johanna",
           "role": "proprietor",
           "tier": "reconstructed",
           "from": null,
@@ -14210,7 +14247,7 @@
       ],
       "where": {
         "kind": "premises",
-        "structure_id": "recon_1835_north_h3_045",
+        "structure_id": "recon_1835_north_h2_028",
         "anchor": null,
         "street_id": null,
         "street": null,
@@ -14685,6 +14722,52 @@
       "where": {
         "kind": "premises",
         "structure_id": "recon_1835_west_006",
+        "anchor": null,
+        "street_id": null,
+        "street": null,
+        "tier": "reconstructed",
+        "from": null,
+        "to": null,
+        "limit_reason": null
+      },
+      "locations": 1,
+      "opened": null,
+      "closed": null,
+      "dates_tier": "reconstructed",
+      "proprietor_community": "unknown",
+      "proprietor_community_tier": null,
+      "review_required": false,
+      "liberties": []
+    },
+    {
+      "id": "rcb_gilbert_boarding_house",
+      "file": "rcb_gilbert_boarding_house.json",
+      "name": "Benjamin Gilbert's boarding house",
+      "register_id": null,
+      "provenance": "reconstructed",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true,
+      "grade": "reconstructed",
+      "trade": "boarding house",
+      "occupation": "boarding_house_keeper",
+      "goods": [],
+      "firm_styles": [],
+      "people": [
+        {
+          "name": "Benjamin Gilbert",
+          "person_id": "rc_gilbert_benjamin",
+          "role": "proprietor",
+          "tier": "reconstructed",
+          "from": null,
+          "to": null,
+          "also_printed_as": []
+        }
+      ],
+      "where": {
+        "kind": "premises",
+        "structure_id": "recon_1835_north_h2_045",
         "anchor": null,
         "street_id": null,
         "street": null,

@@ -154,19 +154,19 @@
   },
   "residents": [
     {
-      "household": "hh_rc_lyman_george",
-      "name": "George Lyman",
+      "household": "hh_rc_gilbert_samuel",
+      "name": "Samuel Gilbert",
       "division": "",
       "relation": "lodged here",
-      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at painter in the mechanic group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
+      "why": "The household model drew this head as living alone (T-1173) and no source gives them a roof. The mix puts a person at baker in the mechanic group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed.",
       "sources": [],
       "basis": "SEATED HERE, NOT RECORDED HERE. This person is one the residents layer already holds and no source says where they slept; the bed is the invention and the person is not. Their own card carries their evidence and is not touched by the seat.",
       "persons": [
         {
-          "name": "George Lyman",
+          "name": "Samuel Gilbert",
           "relationship": "lodger",
           "grade": "reconstructed",
-          "occupation": "painter",
+          "occupation": "baker",
           "note": ""
         }
       ],

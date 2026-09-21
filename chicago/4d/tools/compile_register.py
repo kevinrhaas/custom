@@ -2133,7 +2133,7 @@ def self_test():
              "occupant_text": "John Bates Jr.; auctioneer", "function": "store",
              "identity_text": "Bates's Auction Room ; John Bates Jr.; auctioneer",
              "occupation": None, "anonymous": False},
-            {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
+            {"id": "recon_1835_north_d4_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
              "occupant_words_all": set(),

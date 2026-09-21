@@ -1185,6 +1185,19 @@ step "the redeal's carried-out verdicts hold, and every re-dealt roof now confor
 selftest "…and the executor's own refusals still fire on an unbuildable deal" \
   python3 tools/execute_roof_redeal.py --self-test
 
+# T-1480, and the half of the redeal the step above CANNOT ask about. Nine North
+# Division roofs carry their family in their id, so carrying their verdicts out
+# renamed them — and the id was named by the sidecars, the liberties, the signage
+# and trade goods, the lodging model, two lodger households, the reconstructed
+# seating, the business layer, the hay limits, the Newberry leads, the land-sale
+# ground index and both asset manifests. The failure this step exists to catch is
+# not "the recipe says D4": it is a committed file still pointing at a roof that
+# no longer exists, which reads as a merged migration and renders as a gap. So it
+# sweeps the whole tree for the ids the nine left behind, and it says which dated
+# receipts and transcripts are PINNED rather than quietly skipping them.
+step "the redeal's migrated ids left nothing behind, and every migrated roof conforms" \
+  python3 tools/execute_roof_redeal.py --check-migration
+
 # T-1483, and the step that had to exist before the 26 outstanding verdicts could be
 # carried out at all. Their record ids encode the family, so executing them RENAMES a
 # roof some seventy files name — and a scripted rename over those files would pass every
