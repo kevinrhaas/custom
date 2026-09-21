@@ -45,3 +45,11 @@ not a reproduction failure.
 **Why it stood a day.** Part 3 has no reading in `dev-smoke-state.json` newer than the tree
 T-1171 and T-1172 landed on. The readings are now filed: desktop 3 `fail`, desktop 13 and
 mobile 13 `pass`, all on sha256:733344d4499f0392.
+
+**Scope note (2026-09-20).** Of the two failures in the title, the second — *the placeholder
+label agrees with the asset it describes* — has since been root-caused by **T-1331**: the
+check reads a field that does not exist, so it has been permanently red on a typo rather
+than on anything about the asset. Take the evidence-only household here and leave the label
+to T-1331; the two sit together at the top of the queue. Both are among the four assertions
+that have been standing red on dev, which is why every PR's smoke budget reports its legs
+"already red on dev" and skips them.
