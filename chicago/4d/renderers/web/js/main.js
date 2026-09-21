@@ -1770,6 +1770,10 @@ async function boot() {
     index: api.businessIndex,
     registry: loaded.registry,
     dataBase: bases.dataBase,
+    // The scene id the resident join is cached under: the business card reads the
+    // SAME address book the person card does (T-1493), so it must ask for it by
+    // the same key or fetch a megabyte twice.
+    sceneId: loaded.scene.id ?? YEAR,
     onGoTo: (target) => { hud.setPanel(false); goToTarget(target); },
     // A proprietor the town holds a card for is one tap from their firm: the
     // People view already knows how to open them, so this only has to ask.
