@@ -85,10 +85,31 @@ later check sees the mutation. That is the acceptance's "prove the second by bre
 - fails when a real bake is given a placeholder label — yes, and that is now a standing
   assertion (`a real bake told it is a stand-in is caught saying so`) rather than a
   one-time demonstration, so the next rename of the flag's wording cannot quietly retire it.
-- the leg is re-run and filed with `dev-smoke-state.mjs record` — yes.
+- the leg is re-run and filed with `dev-smoke-state.mjs record` — **PARTLY, and this is the
+  one place the acceptance was not met as written.** `SMOKE_VIEWPORT=desktop SMOKE_STAGE=3`
+  was started in the foreground and did not finish: it wedged after
+  `the ground was conformed to the field, with nothing left over` and produced no further
+  line in 30 minutes, with the node driver asleep on zero CPU and the browser still up. That
+  is the `api.walker.teleport` / evidence-only-households block — T-1369's ground, about
+  1,200 lines BEFORE anything this branch touches — and dev's own standing record already
+  carries part 3 as `page.evaluate: Target page, context or browser has been closed`
+  (2026-09-20T21:25, steward-runner, load 4.7). The wedge is filed with `record`.
+
+  So the changed lines were proved DIRECTLY instead, against the same published tree the
+  leg serves, booting the same way and running this block and nothing else:
+
+      {"real":false,"realFlag":false,"recommended":false,"placeholderFlag":false,
+       "mislabelledFlag":true,"restoredFlag":false}
+      FAIL  AS ON DEV (the typo): the placeholder label agrees with the asset it describes
+      pass  FIXED: the placeholder label agrees with the asset it describes
+      pass  FIXED: and a real bake told it is a stand-in is caught saying so
+      pass  TEETH: a real bake wearing the label would fail the corrected assertion
+
+  The first line is the standing red reproduced verbatim on this tree, which is what makes
+  the other three mean anything: same page, same records, one field name apart.
 
 **The other red in this leg is not this ticket and is still there.** `hh_inf_cooper_north_04`
 is T-1369, claimed by another run as this was written. Part 3 therefore does not go green on
-this branch; what this ticket owns is that the placeholder line is no longer one of its reds,
-and that `dev-smoke-state.json` — which records only a leg's FIRST failure — stops having two
-reds and one entry.
+this branch — it does not currently run to completion at all — and what this ticket owns is
+that the placeholder line is no longer one of its reds, and that `dev-smoke-state.json` —
+which records only a leg's FIRST failure — stops having two reds and one entry.
