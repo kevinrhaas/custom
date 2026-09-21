@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1393,
-    "blocks": 18247,
-    "tiers_written_on_the_card": 8129,
+    "blocks": 18235,
+    "tiers_written_on_the_card": 8121,
     "by_tier": {
       "attested": 590,
       "inferred": 3309,
-      "reconstructed": 8308,
-      "unknown": 6040
+      "reconstructed": 8300,
+      "unknown": 6036
     },
     "by_attribute": {
       "arrival": {
@@ -98,7 +98,7 @@
       "persons[].age_band": {
         "attested": 7,
         "inferred": 54,
-        "reconstructed": 2201,
+        "reconstructed": 2197,
         "unknown": 7
       },
       "persons[].age_on_scene_date": {
@@ -128,14 +128,14 @@
       "persons[].name_basis": {
         "attested": 0,
         "inferred": 0,
-        "reconstructed": 981,
+        "reconstructed": 977,
         "unknown": 0
       },
       "persons[].occupation": {
         "attested": 119,
         "inferred": 9,
         "reconstructed": 203,
-        "unknown": 1938
+        "unknown": 1934
       },
       "persons[].profile_facts[]": {
         "attested": 1,
@@ -5641,19 +5641,20 @@
       },
       "values": 1309,
       "by_value": {
-        "1834": 556,
-        "1835": 421,
-        "1833": 232,
-        "1832": 38,
-        "1831": 27,
-        "1818": 6,
-        "1824": 6,
-        "1826": 6,
-        "1816": 5,
-        "1830": 5,
-        "1812": 4,
-        "1820": 2,
-        "1823": 1
+        "1834": 523,
+        "1835": 420,
+        "1833": 256,
+        "1832": 44,
+        "1831": 28,
+        "1812": 7,
+        "1824": 7,
+        "1826": 5,
+        "1827": 5,
+        "1818": 4,
+        "1830": 4,
+        "1816": 3,
+        "1823": 2,
+        "1820": 1
       },
       "a_seed": "hh_abbot_8_g:arrival_year",
       "a_card": "hh_abbot_8_g"
@@ -5760,13 +5761,13 @@
         "kind": "person",
         "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
       },
-      "values": 2198,
+      "values": 2194,
       "by_value": {
         "20-29": 776,
         "30-39": 429,
         "10-19": 238,
         "0-9": 222,
-        "0-4": 170,
+        "0-4": 166,
         "40-49": 133,
         "15-19": 108,
         "50-59": 41,
@@ -5806,9 +5807,9 @@
       },
       "replaceable_by": {
         "kind": "person",
-        "match": "a source naming a member of Elizabeth Adams's family"
+        "match": "a source naming a member of Titus H Abbott's family"
       },
-      "values": 981,
+      "values": 977,
       "by_value": {
         "Mary Nolan": 4,
         "Alice Nolan": 2,
@@ -5905,11 +5906,13 @@
         "Amos Taylor": 1,
         "Amos Thayer": 1,
         "Amos Woodruff": 1,
+        "Angelique Andrews": 1,
         "Angelique Chevalier": 1,
         "Angelique Johnson": 1,
         "Angelique Laframboise": 1,
         "Angelique Newberry": 1,
         "Angelique Vieau": 1,
+        "Anna Abell": 1,
         "Anna Collins": 1,
         "Anna Courtney": 1,
         "Anna Crandall": 1,
@@ -5976,7 +5979,6 @@
         "Bridget Walsh": 1,
         "Bryan Doyle": 1,
         "Bryan Nolan": 1,
-        "Bryan Reed": 1,
         "Bryan Tobin": 1,
         "Calvin Cobb": 1,
         "Calvin Eastman": 1,
@@ -6012,7 +6014,6 @@
         "Charles Dufresne": 1,
         "Charles Eastman": 1,
         "Charles Gilbert": 1,
-        "Charles Goodhue": 1,
         "Charles Leland": 1,
         "Charles Newberry": 1,
         "Charles Pothier": 1,
@@ -6053,7 +6054,6 @@
         "Cornelius Murphy": 1,
         "Cornelius Nolan": 1,
         "Cornelius Quinn": 1,
-        "Cornelius Reed": 1,
         "Cornelius Sullivan": 1,
         "Cornelius Tobin": 1,
         "Cornelius Walsh": 1,
@@ -6157,6 +6157,7 @@
         "Erastus Sheldon": 1,
         "Erastus Tucker": 1,
         "Erastus Woodruff": 1,
+        "Esther Abbott": 1,
         "Esther Barnes": 1,
         "Esther Cobb": 1,
         "Esther Davis": 1,
@@ -6181,9 +6182,9 @@
         "Ezra Wadsworth": 1,
         "Ezra Woodruff": 1,
         "Francois Chevalier": 1,
-        "Francois Goodhue": 1,
         "Francois Lecuyer": 1,
         "Francois Pelletier": 1,
+        "George Abrams": 1,
         "George Fisk": 1,
         "George Gilbert": 1,
         "George Ingalls": 1,
@@ -6252,7 +6253,6 @@
         "Honora McCarthy": 1,
         "Honora Murphy": 1,
         "Honora Nolan": 1,
-        "Honora Reed": 1,
         "Honora Reilly": 1,
         "Honora Ryan": 1,
         "Honora Shea": 1,
@@ -6366,7 +6366,6 @@
         "Joseph Pothier": 1,
         "Joseph Thayer": 1,
         "Joseph Wilcox": 1,
-        "Josette Goodhue": 1,
         "Josette Newberry": 1,
         "Josette Pelletier": 1,
         "Josette Thompson": 1,
@@ -6387,7 +6386,6 @@
         "Levi Nichols": 1,
         "Levi Wilcox": 1,
         "Levi Woodruff": 1,
-        "Louis Goodhue": 1,
         "Louis Laframboise": 1,
         "Louis Lecuyer": 1,
         "Louis Pelletier": 1,
@@ -6409,6 +6407,7 @@
         "Lucy Taylor": 1,
         "Lucy Thayer": 1,
         "Lucy Woodruff": 1,
+        "Luther Abell": 1,
         "Luther Fairbanks": 1,
         "Luther Gilbert": 1,
         "Luther Hastings": 1,
@@ -6470,7 +6469,6 @@
         "Maria Wadsworth": 1,
         "Maria Whitlock": 1,
         "Maria Wilcox": 1,
-        "Marie Garland": 1,
         "Marie Lecuyer": 1,
         "Marie Newberry": 1,
         "Martha Bowen": 1,
@@ -6523,7 +6521,6 @@
         "Mary Nash": 1,
         "Mary Nichols": 1,
         "Mary Quinn": 1,
-        "Mary Reed": 1,
         "Mary Reilly": 1,
         "Mary Ryan": 1,
         "Mary Sheldon": 1,
@@ -6661,6 +6658,7 @@
         "Rufus Pearsons": 1,
         "Rufus Sawyer": 1,
         "Rufus Stebbins": 1,
+        "Ruth Abrams": 1,
         "Ruth Barnes": 1,
         "Ruth Cobb": 1,
         "Ruth Davis": 1,
@@ -6753,7 +6751,6 @@
         "Thomas Sullivan": 1,
         "Toussaint Laframboise": 1,
         "Toussaint Vieau": 1,
-        "Victoire Eels": 1,
         "Victoire Lloyd": 1,
         "Victoire Newberry": 1,
         "Victoire Norton": 1,
@@ -6783,8 +6780,8 @@
         "William Wellmaker": 1,
         "William Wilcox": 1
       },
-      "a_seed": "hh_adams_elizabeth:wife_forename",
-      "a_card": "hh_adams_elizabeth"
+      "a_seed": "hh_abbott_titus_h:wife_forename",
+      "a_card": "hh_abbott_titus_h"
     },
     {
       "attribute": "persons[].occupation",
@@ -6873,9 +6870,9 @@
       },
       "values": 1248,
       "by_value": {
-        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 531,
-        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 399,
-        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 222,
+        "The 1834 season: the harbour works, the opening of the bar and the trade that followed them": 500,
+        "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated": 402,
+        "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers": 250,
         "The trading post, the fort and the country trade — the town before the boom": 96
       },
       "a_seed": null,

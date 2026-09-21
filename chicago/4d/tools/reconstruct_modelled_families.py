@@ -15,7 +15,7 @@ man alone. This stage gives the head the family the household model says he had,
 in every record that it did so.
 
 WHAT IT MAY NOT DO. Only the head's own household is filled, and only where the record
-admits one. Four refusals, each with a reason a reader can check:
+admits one. Seven refusals, each with a reason a reader can check:
 
   1. A household whose presence on the scene date is still unsettled gets nothing. The
      order book counts only present households as known (its rule 3) and offers the
@@ -38,6 +38,20 @@ admits one. Four refusals, each with a reason a reader can check:
   3. A household that already holds a second person gets nothing. A head whose family a
      source names, counts or rules on is not a head the sources leave alone: T-1313 and
      T-1314 own those, and this stage draws only where they do not.
+  3a. AN EVIDENCE-ONLY CONTAINER GETS NOTHING, since 2026-09-21 (T-1369). The five
+     `hh_inf_*` records are not households the sources record — the occupation census
+     raised each roof because a town of 3,265 people in 398 dwellings needed that trade,
+     and the register then put a documented man under it. The man and his trade are
+     attested; the dwelling is a hypothesis, and `hh_inf_cooper_north_04`'s own
+     `party_size_on_arrival` has always said what follows from that: "The layer infers
+     households, not families: the person entries here are the ones the trade argument
+     requires and nothing counts wives or children, because counting them would multiply a
+     hypothesis by an invention." This stage's rules did not know that and drew ten kin
+     into four of the five, which is the red `nothing was drawn into an evidence-only
+     household` stood at on dev from 2026-09-18. The rule the smoke asserts and the rule
+     this stage applies are the same rule now. A dwelling these men are DOCUMENTED to have
+     kept retires the container, not the refusal; until a source says one did, the trade
+     argument is met by naming the man and stops there.
   4. The fort and the country outside the town get nothing. T-1176 musters the garrison
      and the order book never apportions the fort division.
   5. A household under a standing review gets nothing, and neither does a head whose own
@@ -112,6 +126,12 @@ KIN_MAX = 8
 # the one kind of draw a model may never make. Protestant ministers married and are not
 # here: Jeremiah Porter's household is a family the sources name.
 CELIBATE_TRADES = ("priest",)
+
+# The evidence-only containers T-0489 kept: `hh_inf_*`, named "Evidence-only household
+# — <head>", one head the papers name and no dwelling that is anything but hypothesis.
+# Both markers are asserted to agree in `--check`, so neither can drift alone.
+EVIDENCE_ONLY_ID = "hh_inf_"
+EVIDENCE_ONLY_NAME = "Evidence-only household"
 
 # The order book's own six bands, so a drawn person can be counted into its buckets.
 BOOK_BANDS = (("under_10", 0, 10), ("10_19", 10, 20), ("20_29", 20, 30),
@@ -250,6 +270,18 @@ def settled_present(card: dict, ruled=None) -> bool:
     return card.get("id") in ruled
 
 
+def evidence_only(card: dict) -> bool:
+    """Is this record an evidence-only container rather than a household? T-0489 kept five
+    of them: the occupation census raised a roof because the town of 3,265 in 398 dwellings
+    needed a cooper, a joiner, a physician, a tailor and a tavern keeper, and the register
+    later put a documented man under each. What is attested there is the MAN and his trade;
+    the dwelling, its position and its footprint are conjectural and no source says he kept
+    a house at all. Read by either marker, because a record that lost one and kept the other
+    is a drift `--check` should refuse rather than a household this stage may fill."""
+    return (str(card.get("id") or "").startswith(EVIDENCE_ONLY_ID)
+            or str(card.get("name") or "").startswith(EVIDENCE_ONLY_NAME))
+
+
 def eligibility(card: dict, ruled=None) -> tuple:
     """(eligible, the refusal). One rule a line, in the docstring's order.
 
@@ -261,6 +293,9 @@ def eligibility(card: dict, ruled=None) -> tuple:
         return False, "presence on the scene date is not settled (T-1172's roster holds it)"
     if str(card.get("source_pass") or "") == "letter_list":
         return False, "a letter-list mint argues for a person and not for a household"
+    if evidence_only(card):
+        return False, ("an evidence-only container holds read evidence and not a "
+                       "household to draw a family into")
     persons = card.get("persons") or []
     if len(persons) > 1:
         return False, "a source already names, counts or rules on this household's family"
@@ -919,6 +954,18 @@ def self_test() -> int:
           len(ruled_present()) == 820)
     fires("a letter-list mint is refused",
           eligibility(card(source_pass="letter_list"))[0] is False)
+    fires("an evidence-only container is refused by its id",
+          eligibility(card(id="hh_inf_cooper_north_04"), frozenset({"hh_inf_cooper_north_04"}))[0] is False)
+    fires("an evidence-only container is refused by its name alone",
+          eligibility(card(name="Evidence-only household — John Smith"))[0] is False)
+    fires("the two evidence-only markers name the same five records",
+          sorted(hid for hid, c in cards().items() if str(hid).startswith(EVIDENCE_ONLY_ID))
+          == sorted(hid for hid, c in cards().items()
+                    if str(c.get("name") or "").startswith(EVIDENCE_ONLY_NAME)))
+    fires("no evidence-only container carries a person this stage drew",
+          not [p_["id"] for c in cards().values() if evidence_only(c)
+               for p_ in c.get("persons") or []
+               if (p_.get("reconstruction") or {}).get("stage") == STAGE])
     fires("a household that already holds a second person is refused",
           eligibility(card(persons=base["persons"] + [dict(base["persons"][0], id="y")]))[0] is False)
     fires("the fort is refused", eligibility(card(division="fort"))[0] is False)

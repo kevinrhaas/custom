@@ -47,18 +47,18 @@ Baseline: `07605197356ccd8d8b4f547eccb2d1dc619ef06f` on `dev`, taken 2026-09-18 
 |---|---:|---:|---:|
 | households in `index.json` | 1258 | 1393 | +135 |
 | household cards on disk | 1258 | 1393 | +135 |
-| persons in `index.json` | 1288 | 2269 | +981 |
+| persons in `index.json` | 1288 | 2265 | +977 |
 | rows in the `merged` redirect table | 66 | 66 | 0 |
 | redirects that do not arrive | 0 | 0 | 0 |
 | persons graded `attested` | 410 | 410 | 0 |
 | persons graded `inferred` | 875 | 875 | 0 |
-| persons graded `reconstructed` | 3 | 984 | +981 |
+| persons graded `reconstructed` | 3 | 980 | +977 |
 | 1835 sidecar files | 391 | 391 | 0 |
-| people in the 1835 people sidecar | 1288 | 3200 | +1912 |
+| people in the 1835 people sidecar | 1288 | 3196 | +1908 |
 | buildings standing in the town census | 371 | 371 | 0 |
 | people housed in the town census | 34 | 181 | +147 |
 | households housed in the town census | 20 | 31 | +11 |
-| rows in the final resident audit | 1288 | 2269 | +981 |
+| rows in the final resident audit | 1288 | 2265 | +977 |
 | published resident files in the mirror | 1336 | 2154 | +818 |
 
 ## 4. T-1144's banked acceptances, as deltas
