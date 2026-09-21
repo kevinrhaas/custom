@@ -723,6 +723,11 @@ export async function mountPeople({
     division_band: (row) => (row.seat && row.seat.clause
       ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
       : `Banded in the ${row.reach_value} division, and no class dealt`),
+    // T-1522. The weakest seat this ladder makes: nothing in the record reaches
+    // anywhere, so BOTH halves of the band are dealt. The label says dealt, not
+    // banded, because a reader must not mistake it for the rung above — there the
+    // division is the household's own record and only the ground inside it is drawn.
+    policy_only: (row) => `Dealt a place in the ${row.seat?.division || 'town'}, on nothing this household's record says`,
     unplaceable: () => 'Not seated in this town',
   };
 
