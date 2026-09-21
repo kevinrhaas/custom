@@ -110,7 +110,7 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 ## Real names before invented ones
 
-The roster offers 1,812 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,816 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
@@ -119,7 +119,7 @@ The roster offers 1,812 names the corpus printed and this project withheld. Each
 | `R3_1834_return_or_muster` | 30 | T-1172 |
 | `R4_surname_only_census` | 441 | T-1170 |
 | `R5_later_only_backprojectable` | 55 | T-1172 |
-| `R6_native_metis_black` | 139 | T-1177 |
+| `R6_native_metis_black` | 143 | T-1177 |
 
 ## Persons
 
