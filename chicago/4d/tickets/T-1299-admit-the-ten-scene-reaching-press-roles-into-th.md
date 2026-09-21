@@ -68,3 +68,33 @@ in its own right, not a clause of a migration.
    they did not exist when the renderer was written, not because nobody should see them.
    164 roles carry a place and 56 a body. Declare both in `measure_layer_reads.py` READS
    with the expression that renders them, in the commit that renders them.
+
+## WHERE THIS STANDS, 2026-09-21 (PR #1617, on `hold`)
+
+Acceptance 1, 2, 3, 4 and 6 are done and demonstrated. The four tools agree, the ten
+cards carry their trade, T-0837's write gate passes on the evidence with 0 standing rows,
+the census count sees Curtiss and Mulford and rules the other eight out in writing, and
+`place` / `employer_or_body` are rendered and un-banked.
+
+**Acceptance 5 is violated and that is why the PR is held.** Six cards lose the row
+carrying the trade Fergus's 1839 directory printed against them —
+`hubbard_elijah_kent`, `jones_william`, `king_tuthill`, `mulford_james_h`,
+`sherman_silas_w`, `taylor_william_h`. The chain, root first:
+
+1. `crosswalk_fergus_1839` drops `could_carry: ["occupation"]` to `[]` once the card holds
+   an 1835 trade (91 -> 84). Its rule is about filling a gap, and the gap is now filled.
+2. `spend_directories` reads `could_carry`, so it writes no
+   `directories.people[].occupation_later`.
+3. `derive_resident_roles.later_role()` reads that pointer and nothing else, so the 1839
+   printing leaves `roles[]`.
+
+`qualify_later_trades` is NOT the root — this branch already taught it to keep its pointer
+on a promoted view, and that half works.
+
+**The fix that looks right.** The 1843 and 1844 directories are already read as dated roles
+straight from their crosswalks by `directory_roles()`. Fergus 1839 is the only one routed
+through a pointer whose rule is about filling a gap. Reading 1839 the same way as its two
+siblings would carry the printing whatever the 1835 field holds. It offers rows for every
+1839 match and not only these six, so SIZE IT before starting — it may want a `split`.
+
+Handed on: **T-1506**, the surplus reconstructed lawyer the census count now leaves over.
