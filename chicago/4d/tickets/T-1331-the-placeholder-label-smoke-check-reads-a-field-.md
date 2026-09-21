@@ -1,7 +1,7 @@
 ---
 id: T-1331
 title: The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-20
+pr: 1604
 claimed_by: run 9/20/2026, 8:02:29 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T01:57:19.120Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35549436682
 ---
 
