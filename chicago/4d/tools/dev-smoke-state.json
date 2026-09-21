@@ -3,132 +3,69 @@
   "readings": [
     {
       "viewport": "mobile",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 85,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 196,
-      "takenAt": "2026-09-21T01:06:05.593Z",
-      "ref": "steward/t-1368-stuck-pr-reporter",
-      "commit": "9088d64da578",
-      "devCommit": "e7ace3b7546b",
-      "treeHash": "sha256:c3eebd5195652ad2",
-      "treeDirty": false,
-      "changelogHash": "sha256:e0a7dc079da8a4df",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.2,
-          3.1
-        ]
-      },
-      "source": "/tmp/smoke-m1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8-9",
-      "parts": [
-        8,
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 32,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 357,
-      "takenAt": "2026-09-21T00:26:20.920Z",
-      "ref": "steward/t-1488-roof-relief-maps",
-      "commit": "1dd3e191092b",
-      "devCommit": "d4cdbbd29da6",
-      "treeHash": "sha256:c462acd31bb56bda",
-      "treeDirty": true,
-      "changelogHash": "sha256:699aee697406c96e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          4.1,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke-d89.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "8-9",
-      "parts": [
-        8,
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 32,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 206,
-      "takenAt": "2026-09-21T00:26:20.834Z",
-      "ref": "steward/t-1488-roof-relief-maps",
-      "commit": "1dd3e191092b",
-      "devCommit": "d4cdbbd29da6",
-      "treeHash": "sha256:c462acd31bb56bda",
-      "treeDirty": true,
-      "changelogHash": "sha256:699aee697406c96e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          4.1,
-          3.4
-        ]
-      },
-      "source": "/tmp/smoke-m89b.log"
-    },
-    {
-      "viewport": "mobile",
       "stage": "12",
       "parts": [
         12
       ],
       "verdict": "fail",
       "target": "published",
-      "passed": 78,
-      "failed": 2,
+      "passed": 79,
+      "failed": 1,
       "failures": [
-        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3200,\"file\":3200,\"stated\":3200,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2893,\"countText\":\"3,200 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 361 with a known address\"}",
         "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
       ],
-      "wallSeconds": 207,
-      "takenAt": "2026-09-21T00:12:38.500Z",
-      "ref": "steward/t-1488-roof-relief-maps",
-      "commit": "1dd3e191092b",
-      "devCommit": "d4cdbbd29da6",
-      "treeHash": "sha256:c462acd31bb56bda",
+      "wallSeconds": 126,
+      "takenAt": "2026-09-21T00:32:04.840Z",
+      "ref": "steward/t-1466-people-count-identity",
+      "commit": "b453bbbb2492",
+      "devCommit": "fece762b0952",
+      "treeHash": "sha256:72c8315a10864a4c",
       "treeDirty": false,
-      "changelogHash": "sha256:699aee697406c96e",
+      "changelogHash": "sha256:16e1a8b0e1b00ffb",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          3.1,
-          2.3
+          3.6,
+          3.2,
+          1.8
         ]
       },
       "source": "/tmp/smoke-m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 79,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 245,
+      "takenAt": "2026-09-21T00:32:04.762Z",
+      "ref": "steward/t-1466-people-count-identity",
+      "commit": "b453bbbb2492",
+      "devCommit": "fece762b0952",
+      "treeHash": "sha256:72c8315a10864a4c",
+      "treeDirty": false,
+      "changelogHash": "sha256:16e1a8b0e1b00ffb",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.2,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke-d12.log"
     },
     {
       "viewport": "desktop",
@@ -1814,6 +1751,37 @@
       "source": "/tmp/smoke_d23.log"
     },
     {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 24,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 95,
+      "takenAt": "2026-09-15T21:31:52.052Z",
+      "ref": "steward/t-1148-southern-stand-ceilings",
+      "commit": "bf79c5bb4e6b",
+      "devCommit": "d3cfb42328d3",
+      "treeHash": "sha256:26b411eb1141d488",
+      "treeDirty": false,
+      "changelogHash": "sha256:cefa2e661ed05a67",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3.2,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_m9b.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "3,10",
       "parts": [
@@ -1975,6 +1943,169 @@
         ]
       },
       "source": "/tmp/s_d5.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "5-8",
+      "parts": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 51,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 519,
+      "takenAt": "2026-08-30T08:43:06.219Z",
+      "ref": "steward/t-0379-letter-list-scale",
+      "commit": "b8a7d540d43d",
+      "devCommit": "afa7c2f6e1da",
+      "treeHash": "sha256:f04d3ae0d12a9edb",
+      "treeDirty": true,
+      "changelogHash": "sha256:e90cede42bb20ab1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.5,
+          3.6
+        ]
+      },
+      "source": "/tmp/s_m5_8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 85,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 196,
+      "takenAt": "2026-09-21T01:06:05.593Z",
+      "ref": "steward/t-1368-stuck-pr-reporter",
+      "commit": "9088d64da578",
+      "devCommit": "e7ace3b7546b",
+      "treeHash": "sha256:c3eebd5195652ad2",
+      "treeDirty": false,
+      "changelogHash": "sha256:e0a7dc079da8a4df",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.2,
+          3.1
+        ]
+      },
+      "source": "/tmp/smoke-m1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8-9",
+      "parts": [
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 32,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 357,
+      "takenAt": "2026-09-21T00:26:20.920Z",
+      "ref": "steward/t-1488-roof-relief-maps",
+      "commit": "1dd3e191092b",
+      "devCommit": "d4cdbbd29da6",
+      "treeHash": "sha256:c462acd31bb56bda",
+      "treeDirty": true,
+      "changelogHash": "sha256:699aee697406c96e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          4.1,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke-d89.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "8-9",
+      "parts": [
+        8,
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 32,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 206,
+      "takenAt": "2026-09-21T00:26:20.834Z",
+      "ref": "steward/t-1488-roof-relief-maps",
+      "commit": "1dd3e191092b",
+      "devCommit": "d4cdbbd29da6",
+      "treeHash": "sha256:c462acd31bb56bda",
+      "treeDirty": true,
+      "changelogHash": "sha256:699aee697406c96e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          4.1,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke-m89b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 78,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the People directory lists the town, and its count is the file's and the manifest's — {\"rows\":80,\"api\":3200,\"file\":3200,\"stated\":3200,\"manifest\":2269,\"readmitted\":182,\"trades\":308,\"transients\":307,\"residents\":2893,\"countText\":\"3,200 people in 1,982 households\\n        · 736 known only from the letter lists\\n        · 361 with a known address\"}",
+        "mobile 390x780: the Trade row offers the documented trades AND the town's commonest — 13 pill(s): [attorney, tavern_keeper, merchant, schoolteacher, carpenter, physician, blacksmith, hotel_keeper, soldier, domestic, boarding_house_keeper, laundress, clerk]"
+      ],
+      "wallSeconds": 207,
+      "takenAt": "2026-09-21T00:12:38.500Z",
+      "ref": "steward/t-1488-roof-relief-maps",
+      "commit": "1dd3e191092b",
+      "devCommit": "d4cdbbd29da6",
+      "treeHash": "sha256:c462acd31bb56bda",
+      "treeDirty": false,
+      "changelogHash": "sha256:699aee697406c96e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3.1,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke-m12.log"
     }
   ]
 }
