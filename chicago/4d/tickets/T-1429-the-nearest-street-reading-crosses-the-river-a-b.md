@@ -1,7 +1,7 @@
 ---
 id: T-1429
 title: The nearest-street reading crosses the river: a bank test for nearest_frontage, so a roof is not credited with a corridor on the far side of the water
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-20
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/21/2026, 6:07:19 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35591950221
 ---
 
 The nearest-street reading crosses the river: a bank test for nearest_frontage, so a roof is not credited with a corridor on the far side of the water.
