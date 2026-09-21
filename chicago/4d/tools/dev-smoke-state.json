@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 114,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 446,
+      "takenAt": "2026-09-21T09:04:41.842Z",
+      "ref": "steward/t-1374-indian-agency-establishment",
+      "commit": "99f915f36477",
+      "devCommit": "8c771aad3bce",
+      "treeHash": "sha256:fb301a03af409d2b",
+      "treeDirty": false,
+      "changelogHash": "sha256:9533e0dc81083682",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.4,
+          2.3,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "3",
       "parts": [
         3
@@ -1521,37 +1552,6 @@
         ]
       },
       "source": "/tmp/smoke-d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 85,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 300,
-      "takenAt": "2026-09-20T11:20:44.944Z",
-      "ref": "steward/t-1433-seat-reconstructed-staff",
-      "commit": "801e65f92679",
-      "devCommit": "703263b9f6b3",
-      "treeHash": "sha256:01611b9fee8e8ecd",
-      "treeDirty": false,
-      "changelogHash": "sha256:862e9056ea94eb97",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.6,
-          3.9
-        ]
-      },
-      "source": "/tmp/smoke-d1.log"
     },
     {
       "viewport": "desktop",
