@@ -88,6 +88,7 @@ T-1429 — The nearest-street reading crosses the river: a bank test for nearest
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1492 — Seat the reach: the address book's reconstructed rungs — a block face for a street-only row, a division band where only the division is known, the policy's band where nothing is — seeded, tier-marked, and every household's division re-derived from its row so the People view's division filter fills
 T-1493 — Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
+T-1484 — Carry the North Division parcel's nine roofs across that surface: the recipe's family, suffix, inventory_class and totals re-dealt, generate_north_infill re-deriving byte for byte, the assets renamed, the household workplaces resolved, rebaked and published
 T-1481 — Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published
 T-1482 — Migrate the three platted blocks' six refamilied roofs, whose ancillary slots cross the principal/ancillary line: generate_block_infill's claimed principal/ancillary mix re-dealt rather than field-edited, the ids carried across the reference list, rebaked and published — with the screenshot from Lake and Clark
 T-1495 — Migrate the North Division parcel's 9 refamilied roofs whose id moves: the recipe's suffix, family, inventory class and authored footprint re-dealt against the new bands, the parcel's group and family totals recomputed, every file naming an old id moved with it, rebaked and published
@@ -214,4 +215,3 @@ T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-11
 T-1335 — Spend the kin the church registers, the papers' family columns and the completed resident enrichments state — the 166 units T-1320's book pass was never scoped for, plus the two book relatives it left unruled: ties written onto held cards, nobody minted
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
-

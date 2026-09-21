@@ -591,6 +591,13 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "measure_roof_id_migration.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-21",
+      "finding": "Reproduces, and the perturbation test tells reproduction from inertia. On a clean tree `--build` rewrote docs/RESEARCH/1835_roof_id_migration.md and nothing else, and `git status --porcelain` came back to the same single entry it started at. The measurement was then bent — the header's \"26 moving id(s)\" to 999 — a bare run went red (\"DRIFT: ... is not what a re-measurement produces\"), `--build` re-derived the file, and the tree came back clean. Its ONLY output is that one document; it reads the roof id reference list and the 75 files that name a moving id, and writes none of them.",
+      "placed": "not yet — measured to reproduce, and it is a pure reader: every input it touches is a committed file some other stage owns, so it has no ordering hazard of its own. Its slot is the ordering pass's call, not this ticket's."
+    },
     "measure_wright_lighthouse.py": {
       "placement": "not_a_writer",
       "write_mode": null,
@@ -964,20 +971,6 @@
       "finding": "Reproduces: ran `(bare)` on a clean tree in 12s, wrote its outputs, changed no committed byte.",
       "placed": "by layer, 2026-09-18 — reasoned, not derived; see the manifest step"
     },
-    "record_lot_seating.py": {
-      "placement": "pending",
-      "write_mode": "--write",
-      "measured": "2026-09-20",
-      "finding": "Reproduces, and the perturbation test tells reproduction from inertia: on a clean tree --write is a no-op and a no-op proves nothing. cobweb_castle's stands_on_lot block was dropped outright and goss_cobb_saddlery's lot_number bent to 99; --check went red naming both records, --write restored both, and the tree came back to the same nine files and 144 lines it started at. It writes only the stands_on_lot key of data/structures/*.json, in each file's own indent, and refuses a record carrying a key its order does not name rather than reformatting it.",
-      "placed": "not yet \u2014 measured to reproduce, but it reads the lot layers and every committed footprint and must run before compile_scene.py carries the seat onto the card, so its slot is the ordering pass's call and not this ticket's."
-    },
-    "reprogramme_roofs_1835.py": {
-      "placement": "pending",
-      "write_mode": "--build",
-      "measured": "2026-09-20",
-      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 0s, wrote its record and its report and changed no committed byte; the perturbation test tells idempotence from inertia \u2014 A5's target_roofs was put back to the 14 it had drifted to, `--check` went red naming the three fields (\"A5 (priority_rank, remaining_roofs, target_roofs)\"), `--build` re-derived them, and `git status` came back empty.",
-      "placed": "not yet \u2014 measured to reproduce, but this tool reads the order book and the lodging model, both of which later reconstruction stages write, so its place in the manifest's order is that pass's to settle. It edits only the five count fields of 1835_family_archetype_crosswalk.json, in place, and refuses a layout it cannot edit rather than reformatting the file."
-    },
     "reconstruct_businesses_1835.py": {
       "placement": "pending",
       "write_mode": "--group <group> --build",
@@ -1039,6 +1032,13 @@
       "measured": "2026-09-19",
       "finding": "Reproduces: `--build` on a settled tree wrote its own outputs and changed no committed byte, and `--check` re-derives all 124 cards and 556 people from their seeds. In the manifest directly after `modelled_families`, which fills the same order-book buckets and has to go first.",
       "placed": "by stage order, 2026-09-19 — it draws against the quota the stage above it spends"
+    },
+    "record_lot_seating.py": {
+      "placement": "pending",
+      "write_mode": "--write",
+      "measured": "2026-09-20",
+      "finding": "Reproduces, and the perturbation test tells reproduction from inertia: on a clean tree --write is a no-op and a no-op proves nothing. cobweb_castle's stands_on_lot block was dropped outright and goss_cobb_saddlery's lot_number bent to 99; --check went red naming both records, --write restored both, and the tree came back to the same nine files and 144 lines it started at. It writes only the stands_on_lot key of data/structures/*.json, in each file's own indent, and refuses a record carrying a key its order does not name rather than reformatting it.",
+      "placed": "not yet — measured to reproduce, but it reads the lot layers and every committed footprint and must run before compile_scene.py carries the seat onto the card, so its slot is the ordering pass's call and not this ticket's."
     },
     "redeal_anonymous_roofs.py": {
       "placement": "pending",
@@ -1169,8 +1169,8 @@
       "placement": "pending",
       "write_mode": "--build",
       "measured": "2026-09-20",
-      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 1s, rewrote data/reconstruction/1835_address_book.json and changed no committed byte; the perturbation test says that is idempotence rather than inertia \u2014 the file was deleted, `--check` went red on it (\"is missing or unreadable \u2014 run --build\"), `--build` restored it, and `git status` came back clean.",
-      "placed": "not yet \u2014 measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/residents/households/, which several reconstruction stages write, as well as data/research/location_spend.json and data/structures/. It has to sit after all of them."
+      "finding": "Reproduces, and it is a REAL writer rather than an idempotent no-op. `--build` on a clean tree ran in 1s, rewrote data/reconstruction/1835_address_book.json and changed no committed byte; the perturbation test says that is idempotence rather than inertia — the file was deleted, `--check` went red on it (\"is missing or unreadable — run --build\"), `--build` restored it, and `git status` came back clean.",
+      "placed": "not yet — measured to reproduce, but the manifest's order is its own measured pass and this tool reads data/residents/households/, which several reconstruction stages write, as well as data/research/location_spend.json and data/structures/. It has to sit after all of them."
     },
     "seat_lodgers_1835.py": {
       "placement": "pending",

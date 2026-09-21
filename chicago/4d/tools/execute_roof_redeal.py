@@ -25,7 +25,10 @@ executable here only if carrying it out leaves the RECORD ID alone:
     `data/sidecars/1835/`, `data/enclosures/`, `data/liberties.json`,
     `data/signage/`, `data/yard/`, `data/frontage/`, the lodger and seating
     files and the business layer. Those 26 verdicts are an ID MIGRATION across
-    the derived layer, not an edit, and they are T-1452's unit of work.
+    the derived layer, not an edit. T-1452 was split once the surface was
+    measured: `tools/measure_roof_id_migration.py` classifies every reference
+    they stand on, and T-1481 (south), T-1482 (the platted blocks) and T-1484
+    (north) carry them out.
 
 So the tool executes the six West Division verdicts, RECORDS the other 26 as
 outstanding with the files that name each one, and refuses to pretend the
@@ -874,7 +877,9 @@ def write_report(plan: list[dict], outstanding: list[dict], retire: list[dict]) 
     out.append(f"- refamily verdicts standing: **{len(plan) + len(outstanding)}**")
     out.append(f"- carried out here: **{len(plan)}** (the West Division parcel)")
     out.append(f"- outstanding, and why: **{len(outstanding)}** — the record id carries "
-               f"the family, so executing them renames a roof other files name (T-1452)")
+               f"the family, so executing them renames a roof other files name "
+               f"(T-1481/T-1482/T-1484, over the surface "
+               f"`tools/measure_roof_id_migration.py` measures)")
     out.append(f"- retired: **{len(retire)}** — the guard stands empty and that is a "
                f"measurement, not an omission\n")
     out.append("## Carried out\n")
@@ -887,7 +892,7 @@ def write_report(plan: list[dict], outstanding: list[dict], retire: list[dict]) 
         out.append(f"| `{e['id']}` | {e['from_family']} | {e['to_family']} | "
                    f"{e['from_group']} → {e['to_group']} | {fp} | {e['why']} |")
     out.append("")
-    out.append("## Outstanding — the id migration T-1452 owns\n")
+    out.append("## Outstanding — the id migration T-1481, T-1482 and T-1484 own\n")
     out.append(
         "Each of these becomes a new id when its family moves, and the id is not "
         "private to its record. The files below name it today and would point at a "
@@ -1038,7 +1043,7 @@ def main() -> int:
         dump(EXCLUSIONS, apply_retirements(retire))
         REPORT.write_text(write_report(plan, outstanding, retire), encoding="utf-8")
         print(f"{len(plan)} West Division verdict(s) carried out; "
-              f"{len(outstanding)} outstanding as an id migration (T-1452); "
+              f"{len(outstanding)} outstanding as an id migration; "
               f"{len(retire)} retired")
         return 0
 
@@ -1110,7 +1115,7 @@ def main() -> int:
         return 1
 
     print(f"verified {len(executed)} carried-out verdict(s), every one now `keep`; "
-          f"{len(outstanding)} outstanding as an id migration (T-1452); "
+          f"{len(outstanding)} outstanding as an id migration; "
           f"{len(retire)} retired roof(s) under the guard")
     return 0
 
