@@ -44,23 +44,24 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 0. BLOCKING THE QUEUE (owner, 2026-09-20). These rows are first because the loop
-# --- cannot judge its own work until they are done. FOUR assertions have been standing
+# --- cannot judge its own work until they are done. THREE assertions have been standing
 # --- red on dev for days, and because they are red, smoke_budget reports every leg that
 # --- covers them as 'already red on dev' and runs skip it — so a real regression in those
 # --- parts would look exactly like the reds already there. The gate is not measuring.
 # --- Below them: the deadlock that needed hands on four PRs in one evening, and the two
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
-T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
-T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
+# --- FOUR was the count until 2026-09-21, and it is THREE because T-1369 closed, not
+# --- because its leg went green: the fix landed on #1605 and is proved on dev by the
+# --- stage's own 25 rules and by the layer on disk, but desktop part 3 can no longer be
+# --- RUN inside the foreground ceiling — it is killed in the block before the assertion,
+# --- which has therefore been unevaluated since 2026-09-18. That is T-1501, at the bottom.
 
 
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
-T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
-T-1489 — Carry a reconstructed employment seat back onto the card of the person who holds it: the six mint-owned resident directories re-derive whole, so workplaces[] stops at households/ and 91 of the 124 seated people say nothing about work on their own card
 T-1379 — The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
 T-1383 — The two women the St Mary's priest wrote down as Indigenous are the only adults on their own entries the borderline roster ruled ineligible, so the town carries their husbands and children and not them
 T-1395 — The name reader calls one named woman a group: 'The Harmon daughter later known as Mrs A. G. Burley' trips the COLLECTIVE article rule, so her age band carries a refusal written for a collective row
@@ -218,3 +219,6 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
 T-1503 — The lodging stage draws against a bucket's whole to_reconstruct and ignores filled, so re-cutting one undrawn slot re-deals all 56 seated lodgers and breaks the business layer's links to them
+T-1500 — The 278 persons the order book's bed buckets still order have no live owner: T-1175 split, and every piece of its tree that fills a bed has closed
+T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foreground ceiling: it stalls in the reconstruction-contract block and reports the body-completion sentinel, so no steward run can measure it
+T-1502 — The register deal reads the raw text of every household card as a name pool, so any pass writing a proper name onto one can silently retire a documented man from it

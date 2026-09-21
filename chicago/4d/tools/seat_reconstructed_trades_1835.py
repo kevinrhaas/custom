@@ -22,14 +22,38 @@ already holds, drawn by a stated rule and reproducible from the seed it carries.
 no house can be pointed at, the block says that instead, in the words of the ruling
 that decided it — a stated absence, never a blank.
 
-AND IT WRITES NOT ONE BYTE ONTO A PERSON CARD, which is a decision the resident layer
-forced and is right on its own account. Two thirds of the people in scope stand on
-cards a reconstruction STAGE owns whole — `reconstruct_trade_households.py` derives its
-308 cards and its `--check` compares each one byte for byte against what the stage
-derives, and the garrison, the women and children, the free Black cohort, the boarders
-and the re-admissions all do the same for theirs. A later pass appending a key to those
-cards does not add a field; it breaks seven gates, because the card IS the stage's
-output and nothing else may be in it. The join therefore lives beside the layer and is
+AND SINCE T-1489 IT ALSO PUTS THE SEAT ON THE PERSON'S OWN CARD, as one key,
+`persons[].employment`, and only for the `seated` answer. It did not, and the reason it
+did not was a real one: two thirds of the people in scope stand on cards a
+reconstruction STAGE owns whole — `reconstruct_trade_households.py` derives its 308
+cards and its `--check` compares each one byte for byte against what the stage derives,
+and the garrison, the women and children, the free Black cohort, the boarders and the
+re-admissions all do the same for theirs. A later pass appending a key to one of those
+cards did not add a field, it broke that stage's gate, so the key stopped at
+`households/` and 90 of the 123 seated people said nothing about work on their own
+card while the join beside them said where they worked.
+
+THE FIX IS THE ONE THE LAYER ALREADY USES FOR `workplaces`, not an exception carved for
+this pass. `tools/staff_businesses_1835.py` writes `workplaces` after every mint has
+run, and `tools/resident_mint_carry.py` gives the four `households/` mints a fixed slot
+that CARRIES it through their next re-derivation, so the byte comparison stays a byte
+comparison and the foreign key survives. T-1489 extends that module with the same fixed
+slot for `employment` and hands the four stages that derive a directory whole —
+`reconstruct_trade_households.py`, `reconstruct_underdocumented.py`,
+`reconstruct_free_black.py` and `reconstruct_women_children.py`, whose own `hh_rc_*`
+cards stand inside `households/` and hold 33 of the seats — one call, `carry_seats()`,
+that does it for a whole set at once. The three directories no stage was given a call
+for — `lodgers/`, `transients/`, `readmitted/` and `merged/` — hold no seat today, and
+if one ever lands there the stage that drops it fails `verify_cards` below by name
+rather than quietly: a seated person whose own card is silent is an assertion here, not
+a warning. Two gates then own one field between them and neither is weakened:
+the stage still refuses a differing byte in everything IT derives, and `--check` here
+is the sole authority for what the `employment` block says, asserted both ways — a
+block on a card this pass does not seat is a fossil, and a seated person whose card is
+silent is a card that has lost its answer.
+
+The join itself is unchanged and is still the record of the OTHER four answers, which
+no card carries because they are statements about an absence. It lives beside the layer
 keyed on `person_id`, in the same idiom as `residents/directories.json` and
 `residents/person_facts_withheld.json` — a derived join the walkthrough loads and can
 lose without losing the card.
@@ -104,6 +128,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -119,6 +144,30 @@ JOIN_OUT = RESIDENTS / "reconstructed_seating.json"
 SCENE_DATE = "1835-07-01"
 TICKET = "T-1433"
 PARENT_TICKET = "T-1189"
+
+#: T-1489, the ticket that carried the seat back onto the card of the person holding it.
+CARD_TICKET = "T-1489"
+
+#: Where `employment` sits on a person, in the layer's conventional order: beside the
+#: trade and the attested houses of it, never tacked on the end. The end is where
+#: `spend_old_settlers` and `reconstruct_sex_age` pop and re-append their own keys, so a
+#: block left there moves under those passes and reads as drift on both sides — the
+#: lesson `tools/resident_mint_carry.py` records for `dated_bounds` and `workplaces`.
+AFTER_KEYS = ("workplaces", "occupation", "roles")
+
+#: The sentence the card itself carries, so a reader who never opens the join still
+#: knows what kind of claim this is.
+CARD_NOTE = (
+    "A SEAT THIS PROJECT DREW, NOT A WORKPLACE A SOURCE NAMES. Nobody put this person "
+    "in this house. tools/seat_reconstructed_trades_1835.py pointed them at it under "
+    "the staffing model's own rule for their trade, and the reasoning — the term of the "
+    "order rule that chose it, the class of house, the count of candidates considered "
+    "and the model row that allows the hand — stands beside this person's id in "
+    "data/residents/reconstructed_seating.json. It is deliberately NOT a `workplaces` "
+    "entry: that field is the attested and inferred join, and its gate asserts a "
+    "business record naming the person back, which no drawn seat has. A source naming "
+    "where this person actually worked retires it."
+)
 
 #: Every directory of the resident layer that holds household-shaped records with a
 #: `persons[]` list. T-1432 read only `households/`; the reconstructed people this
@@ -531,6 +580,129 @@ def derive(data: dict) -> dict:
     return {"by_person": by_person, "filled": context["filled"], "context": context}
 
 
+# -------------------------------------------------------------- the card --
+
+def employment_block(block: dict) -> dict:
+    """The seat as the PERSON'S OWN CARD carries it — a pointer and its grade, and not
+    one word of the adjudication that produced it.
+
+    The card says where and in what role, at what tier, under which seed; the join says
+    why. Keeping the reasoning in one place is not tidiness: `candidates_considered`,
+    `chosen_by` and the model row's whole `basis` note move whenever the business layer
+    moves, and a copy of them on 123 cards would be 123 more things to keep in step with
+    no gate able to tell a stale copy from a re-derivation that has not run.
+
+    AND THE HOUSE'S NAME IS NOT HERE, WHICH IS A MEASURED REFUSAL RATHER THAN A CHOICE.
+    The block carried `business_name` when it was first written, and it took
+    `tools/replace_invented_residents.py --check` red on
+    `hh_inf_tailor_north_02`. That pass's `town_surnames()` reads EVERY capitalised word
+    out of the raw TEXT of every non-`hh_inf_` household card — prose included, and
+    deliberately, because "this project has already said something about that name" is
+    the guard it wants — and refuses a register candidate whose surname is in the set.
+    Writing "Thomas S. Eels" onto the 33 seated cards that stand in `households/` put
+    `eels` there, and the deal then refused the documented tailor Thomas S. Eels as
+    "already named in the town" and quietly stopped seating him on the roof the
+    settlement says he heads. A SEAT IS A POINTER AND `business_id` IS THE POINTER:
+    `biz_thomas_s_eels` carries no capitalised word, resolves to the name in one lookup,
+    and cannot go stale when a business record is renamed. Nothing that names a PERSON
+    belongs in this block.
+    """
+    return {
+        "business_id": block["business_id"],
+        "role": block["role"],
+        "tier": block["tier"],
+        "seed": block["seed"],
+        "note": CARD_NOTE,
+    }
+
+
+def card_seats(seating: dict) -> dict:
+    """person_id -> the block their card should carry. ONLY the `seated` answer.
+
+    The other four kinds are statements about an ABSENCE — a class of house the town
+    does not hold, a trade that keeps its own premises, a ruling that employs it
+    nowhere, a trade never ruled on. None of them is a fact about this person's work,
+    and writing one onto a card would put a reason for having no seat where a reader
+    looks for a seat. They stay in the join, where the question they answer is asked.
+    """
+    return {pid: employment_block(block)
+            for pid, block in sorted(seating["by_person"].items())
+            if block["kind"] == "seated"}
+
+
+def place(person: dict, block) -> dict:
+    """Return the person with `employment` in its conventional slot, or without it."""
+    out: dict = {}
+    placed = False
+    after = next((key for key in AFTER_KEYS if key in person), None)
+    for key, value in person.items():
+        if key == "employment":
+            continue
+        out[key] = value
+        if block and not placed and key == after:
+            out["employment"] = block
+            placed = True
+    if block and not placed:
+        out["employment"] = block
+    return out
+
+
+def apply_to_cards(data: dict, seats: dict) -> list:
+    """The resident layer as it should stand, as (path, text) pairs.
+
+    ONLY the records this pass has something to say about: a card holding a seated
+    person, or a card holding a block this pass no longer seats. Every other card is
+    left untouched rather than re-serialised, because seven stages own these
+    directories byte for byte and a pass that rewrote 2,140 files to change 90 of them
+    would be daring one of those gates to disagree about whitespace.
+    """
+    out = []
+    for path, record in data["records"]:
+        persons = record.get("persons") or []
+        if not any(person.get("id") in seats or "employment" in person
+                   for person in persons):
+            continue
+        rebuilt = dict(record)
+        rebuilt["persons"] = [place(person, seats.get(person.get("id")))
+                              for person in persons]
+        out.append((path, json.dumps(rebuilt, indent=1, ensure_ascii=False) + "\n"))
+    return out
+
+
+def verify_cards(data: dict, seats: dict) -> int:
+    """The card side of the join, asserted BOTH ways, exactly as `verify` asserts the
+    join side. A block on a card this pass does not seat is a FOSSIL — the card has
+    since gained a `workplaces` entry, lost its trade, or been merged away, and its
+    seat has outlived it. A seated person whose card is silent is the failure T-1489
+    exists to close, arriving again."""
+    seen: dict = {}
+    for path, record in data["records"]:
+        for person in record.get("persons") or []:
+            block = person.get("employment")
+            if block is None:
+                continue
+            if not isinstance(block, dict) or not block:
+                raise Fault(f"{path.name}/{person.get('id')}: employment is present and "
+                            "empty — a person with no seat carries no key at all")
+            pid = person.get("id")
+            if pid in seen:
+                raise Fault(f"{pid} carries an employment seat on two cards")
+            seen[pid] = block
+    for pid, block in sorted(seen.items()):
+        if pid not in seats:
+            raise Fault(f"{pid} carries an employment seat on their card and this pass "
+                        "seats them nowhere — a card with a workplace, or with no "
+                        "reconstructed trade, keeps none. The card has a fossil on it")
+        if json.dumps(block, sort_keys=True) != json.dumps(seats[pid], sort_keys=True):
+            raise Fault(f"{pid}'s employment block no longer re-derives from the "
+                        "seating — run tools/seat_reconstructed_trades_1835.py --build")
+    for pid in sorted(seats):
+        if pid not in seen:
+            raise Fault(f"{pid} is seated and their own card says nothing about work — "
+                        "run tools/seat_reconstructed_trades_1835.py --build")
+    return len(seen)
+
+
 # ------------------------------------------------------------------- report --
 
 def report(data: dict, seating: dict) -> dict:
@@ -554,26 +726,40 @@ def report(data: dict, seating: dict) -> dict:
     return {
         "$schema_note": "DERIVED — regenerate with tools/seat_reconstructed_trades_1835.py "
                         "--build; tools/check.sh re-derives it. Do not hand-edit.",
-        "not_a_card": "A JOIN BESIDE THE RESIDENT LAYER, NOT A FIELD ON IT. Every block "
-                      "here is keyed on `person_id` and nothing is written onto a person "
-                      "card: two thirds of the people in scope stand on cards a "
-                      "reconstruction stage derives whole and compares byte for byte, so "
-                      "a key appended to one of those cards does not add a field, it "
-                      "breaks that stage's gate. The walkthrough loads this file the way "
-                      "it loads residents/directories.json, and losing it costs the block "
-                      "on a card and never the card.",
+        "the_join_and_the_card": "A JOIN BESIDE THE RESIDENT LAYER, AND SINCE T-1489 ONE "
+                                 "KEY ON IT. Every block here is keyed on `person_id`; "
+                                 "the `seated` ones ALSO stand on the person's own card "
+                                 "as `persons[].employment`, carrying the house, the "
+                                 "role, the tier and the seed and leaving the reasoning "
+                                 "here. The other four kinds are statements about an "
+                                 "absence and no card carries one. Two thirds of the "
+                                 "people in scope stand on cards a reconstruction stage "
+                                 "derives whole and compares byte for byte, which is why "
+                                 "the key stopped at `households/` until T-1489 gave "
+                                 "those stages the same fixed carry slot "
+                                 "tools/resident_mint_carry.py already gave `workplaces`. "
+                                 "The walkthrough loads this file the way it loads "
+                                 "residents/directories.json, and losing it costs the "
+                                 "block on a card and never the card.",
         "id": "1835_reconstructed_seating",
         "ticket": TICKET,
         "parent_ticket": PARENT_TICKET,
         "target_date": SCENE_DATE,
         "generated_by": "tools/seat_reconstructed_trades_1835.py --build",
         "not_a_reading": "an adjudication over committed files — no page of any source is "
-                         "read here, no person is written and no business is raised",
-        "writes_no_person": True,
+                         "read here, nobody is minted and no business is raised",
+        "mints_nobody": True,
         "raises_no_business": True,
         "what_it_writes": "one row per reconstructed trade-holder with no workplaces — a "
                           "pointer at a house the business layer already holds, or a "
                           "stated reason there is none",
+        "what_it_writes_onto_a_card": "persons[].employment, on the card of every person "
+                                      "a row here seats and on no other card in the "
+                                      "layer — the house, the role, the tier and the "
+                                      "seed, in a fixed slot beside the trade. T-1489. "
+                                      "It creates nobody and moves no other byte of a "
+                                      "card: the stage that owns the card still refuses "
+                                      "a differing byte in everything it derives.",
         "inputs": [
             "data/residents/{" + ",".join(RESIDENT_DIRS) + "}/*.json",
             "data/businesses/*.json",
@@ -586,6 +772,7 @@ def report(data: dict, seating: dict) -> dict:
             "by_kind": dict(sorted(by_kind.items())),
             "houses_taking_a_reconstructed_hand": len({bid for (bid, _r) in
                                                        seating["filled"]}),
+            "seats_carried_onto_a_card": len(card_seats(seating)),
             "seats_by_house_and_role": [
                 {"business_id": bid, "role": role, "seats": n}
                 for (bid, role), n in houses
@@ -702,13 +889,21 @@ def cmd_build() -> int:
     JOIN_OUT.parent.mkdir(parents=True, exist_ok=True)
     JOIN_OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n",
                         encoding="utf-8")
+    seats = card_seats(seating)
+    written = 0
+    for path, text in apply_to_cards(data, seats):
+        if path.read_text(encoding="utf-8") != text:
+            path.write_text(text, encoding="utf-8")
+            written += 1
     counts = doc["counts"]
     kinds = counts["by_kind"]
     print(f"OK: the 1835 reconstructed seating — {counts['people_in_scope']} reconstructed "
           f"trade-holders answered, {kinds.get('seated', 0)} seated in "
           f"{counts['houses_taking_a_reconstructed_hand']} houses, "
           f"{counts['people_in_scope'] - kinds.get('seated', 0)} given a stated reason "
-          "there is no house to point at; nobody minted, no business raised")
+          f"there is no house to point at; {counts['seats_carried_onto_a_card']} seats "
+          f"on their holders' own cards over {written} record(s) rewritten; nobody "
+          "minted, no business raised")
     return 0
 
 
@@ -724,8 +919,21 @@ def cmd_check() -> int:
     if json.dumps(was, sort_keys=True) != json.dumps(now, sort_keys=True):
         raise Fault(f"{JOIN_OUT.relative_to(ROOT)} no longer re-derives — run "
                     "tools/seat_reconstructed_trades_1835.py --build")
+    # T-1489. THE CARD SIDE, AND IT IS TWO ASSERTIONS RATHER THAN ONE. The bytes must
+    # be what --build writes, AND the set of cards carrying a block must be exactly the
+    # set of people this pass seats — a stage that re-derived a card and dropped the
+    # carried key would still produce a file this comparison walks past, because the
+    # comparison only visits cards that hold a seat or a block.
+    seats = card_seats(seating)
+    for path, text in apply_to_cards(data, seats):
+        if path.read_text(encoding="utf-8") != text:
+            raise Fault(f"data/residents/{path.parent.name}/{path.name} no longer "
+                        "carries the employment seat this pass derives — run "
+                        "tools/seat_reconstructed_trades_1835.py --build")
+    on_cards = verify_cards(data, seats)
     print(f"OK: {now['counts']['people_in_scope']} reconstructed trade-holders re-derive "
-          "to the seats and stated absences the join carries")
+          f"to the seats and stated absences the join carries, and {on_cards} of them "
+          "carry that seat on their own card")
     return 0
 
 
@@ -785,7 +993,84 @@ def cmd_self_test() -> int:
         derive({**data, "model": bent})
     _fires("a role the resident vocabulary does not hold", bad_role)
 
-    print("OK: all five assertions of the reconstructed seating fire when broken")
+    # T-1489, the card side. SIX: a fossil on a CARD — a block for somebody this pass
+    # seats nowhere. The stages carry `employment` forward without knowing what it may
+    # say, so this is the only assertion standing between a retired seat and a card that
+    # keeps it for good.
+    seats = card_seats(seating)
+
+    def card_fossil():
+        bent = [(path, json.loads(json.dumps(record))) for path, record in data["records"]]
+        persons = next(r.get("persons") for _p, r in bent if r.get("persons"))
+        persons[0] = dict(persons[0])
+        persons[0]["employment"] = {"business_id": "biz_nobody", "note": "a fossil"}
+        persons[0]["id"] = "nobody_this_town_holds"
+        verify_cards({**data, "records": bent}, seats)
+    _fires("an employment block on a card this pass seats nowhere", card_fossil)
+
+    # SEVEN: a silence — a seated person whose own card says nothing about work. This is
+    # the finding T-1489 was filed for, asserted so it cannot return unnoticed.
+    def card_silence():
+        bent = [(path, json.loads(json.dumps(record))) for path, record in data["records"]]
+        for _path, record in bent:
+            for person in record.get("persons") or []:
+                person.pop("employment", None)
+        verify_cards({**data, "records": bent}, seats)
+    _fires("a seated person whose own card carries no seat", card_silence)
+
+    # EIGHT: a block that no longer says what this pass derives.
+    def card_drift():
+        bent = [(path, json.loads(json.dumps(record))) for path, record in data["records"]]
+        moved = False
+        for _path, record in bent:
+            for person in record.get("persons") or []:
+                if "employment" in person and not moved:
+                    person["employment"]["role"] = "shop_walker"
+                    moved = True
+        if not moved:
+            raise Fault("the self-test found no committed block to bend")
+        verify_cards({**data, "records": bent}, seats)
+    _fires("an employment block that no longer re-derives", card_drift)
+
+    # NINE: the block is a POINTER and the reasoning stays in the join. A card that grew
+    # `candidates_considered` or `chosen_by` would be a second copy of an adjudication
+    # that moves whenever the business layer moves, with no gate able to tell a stale
+    # copy from a re-derivation that has not run.
+    sample = next(iter(seats.values()), None)
+    if sample is None:
+        raise Fault("the self-test found no seat to inspect")
+    if set(sample) != {"business_id", "role", "tier", "seed", "note"}:
+        raise Fault("the card's employment block has changed shape and "
+                    "tools/measure_layer_reads.py has not been told")
+    if any(block["kind"] != "seated"
+           for pid, block in seating["by_person"].items() if pid in seats):
+        raise Fault("a stated absence reached a card; only the `seated` answer may")
+
+    # ELEVEN: NOT ONE CAPITALISED WORD IN A VALUE, which is the refusal
+    # `employment_block` records in its own docstring, asserted so it cannot be undone by
+    # somebody adding a name back for a reader's convenience.
+    # `tools/replace_invented_residents.py` harvests every `[A-Z][a-z]{2,}` word out of
+    # the raw text of these cards and refuses a register candidate whose surname is in
+    # the set, so a proper name written here retires a documented man from that deal
+    # silently. `note` is exempt: it is prose, it is read by the same harvest, and the
+    # one word it contributes — "Nobody" — is not a surname this corpus holds.
+    for key, value in sorted(sample.items()):
+        if key == "note" or not isinstance(value, str):
+            continue
+        if re.search(r"\b[A-Z][a-z]{2,}\b", value):
+            raise Fault(f"the card's employment block carries a capitalised word in "
+                        f"`{key}` — tools/replace_invented_residents.py reads these "
+                        "cards as a name pool and will refuse a documented man for it")
+
+    # TEN: the writer and the carrier agree about the slot. They are two modules and one
+    # convention, and the fixed slots exist precisely because two passes disagreeing
+    # about an order report drift by turns.
+    import resident_mint_carry
+    if resident_mint_carry.EMPLOYMENT_AFTER != AFTER_KEYS:
+        raise Fault("tools/resident_mint_carry.py and this pass disagree about where "
+                    "`employment` sits on a person")
+
+    print("OK: all eleven assertions of the reconstructed seating fire when broken")
     return 0
 
 

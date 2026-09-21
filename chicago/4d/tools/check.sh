@@ -2494,7 +2494,18 @@ step "no two tickets in this tree carry the same id" \
 # tree, a file claimed by two steps, or a hand_authored file listed as derivable
 # would each let the lap overwrite something nobody derives. The REBUILD itself is
 # proved by the ordinary --check steps throughout this file; this holds the list.
-step "the derived-layer manifest names real files, one owner each, none hand-authored" \
+#
+# AND SINCE T-1363 it also holds the manifest's SECOND PASS — the short list of steps
+# re-run after the sequence because they read a file the sequence rebuilds under them.
+# The arrival stage is the one that needs it: it draws from the town model, and the
+# town model is rebuilt further down from a profile of the cards it writes, so a single
+# pass ends with ~1,400 cards drawn from a model that no longer exists. No ordering
+# fixes a cycle; the pass walks it once more from a settled model. What this step holds
+# is that the pass stays honest — every entry re-runs a command the sequence already
+# gates and proves, the lagging reader leads it, and the file it lags on is genuinely
+# rebuilt below it. That the pass SETTLES is proved elsewhere in this file, by the
+# resident, tier, profile and town-model --check steps all being green after it.
+step "the derived-layer manifest names real files, one owner each, none hand-authored, and its second pass is a real lag" \
   node tools/rederive.mjs --check
 
 selftest "…and its own assertions fire when the manifest is made unsafe" \
@@ -4791,7 +4802,19 @@ selftest "…and its own assertions still fire when broken" \
 # roster being offered to T-1172. The self-test also holds the one place the 1840
 # age pyramid could silently disagree with the 1835 model — the child share — inside
 # the model's own bracket.
-step "the 1835 reconstruction order book re-derives, and no bucket is overfilled" \
+#
+# AND EVERY WORK ORDER IN IT NAMES A TICKET A RUN CAN STILL CLAIM (T-1420, 2026-09-21).
+# `ticket.mjs done` already prints a NOTE when a close leaves a split parent with no
+# live child — "any research unit that defers to it by id is now stranded (T-1237).
+# That fails the re-derivation, in a tool this PR does not run" — and until now no tool
+# ran it against the order book, so the note was advice a closing run could walk past.
+# Thirteen of the twenty-four ids the book's owner tables named had closed or split
+# under it by 2026-09-21. `--check` now re-reads the queue and REFUSES a bucket that
+# still has work left whose `owning_ticket`, `owning_tickets` or `ground_waits_on`
+# names a `done`, `split` or `withdrawn` ticket. Forward-looking ids only: `fills`,
+# `recut_refusals`, `programme_deltas` and `roster_offered` record who DID the work and
+# never move, and a discharged bucket keeps the id of whoever discharged it.
+step "the 1835 reconstruction order book re-derives, no bucket is overfilled, and every work order names a live ticket" \
   python3 tools/build_order_book_1835.py --check
 
 selftest "…and its own assertions still fire when broken" \

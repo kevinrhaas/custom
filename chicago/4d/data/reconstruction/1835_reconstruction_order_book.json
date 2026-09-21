@@ -610,11 +610,11 @@
       {
         "cell": "persons/female/10_19/north/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 3,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -630,11 +630,11 @@
       {
         "cell": "persons/female/10_19/south/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 2,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 4,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -650,11 +650,11 @@
       {
         "cell": "persons/female/10_19/west/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 1,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -670,11 +670,11 @@
       {
         "cell": "persons/male/10_19/north/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 3,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -690,11 +690,11 @@
       {
         "cell": "persons/male/10_19/south/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 4,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -710,11 +710,11 @@
       {
         "cell": "persons/male/10_19/west/lodging",
         "direction": "into",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 1,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
@@ -790,11 +790,11 @@
       {
         "cell": "persons/male/20_29/north/lodging",
         "direction": "out of",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 2,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
@@ -820,11 +820,11 @@
       {
         "cell": "persons/male/20_29/west/lodging",
         "direction": "out of",
-        "owning_ticket": "T-1175",
+        "owning_ticket": "T-1500",
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 1,
-        "drawn_by": "T-1175",
+        "drawn_by": "T-1500",
         "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
@@ -1171,7 +1171,7 @@
           "known_inferred": 3,
           "to_reconstruct": 6,
           "filled": 3,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1206,7 +1206,7 @@
           "known_inferred": 10,
           "to_reconstruct": 13,
           "filled": 4,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1241,7 +1241,7 @@
           "known_inferred": 3,
           "to_reconstruct": 5,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1295,7 +1295,7 @@
           "known_inferred": 2,
           "to_reconstruct": 3,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 6
         },
@@ -1313,7 +1313,7 @@
           "known_inferred": 4,
           "to_reconstruct": 6,
           "filled": 3,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1367,7 +1367,7 @@
           "known_inferred": 5,
           "to_reconstruct": 7,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 14
         },
@@ -1385,7 +1385,7 @@
           "known_inferred": 10,
           "to_reconstruct": 14,
           "filled": 5,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1439,7 +1439,7 @@
           "known_inferred": 2,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 5
         },
@@ -1457,7 +1457,7 @@
           "known_inferred": 3,
           "to_reconstruct": 6,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1511,7 +1511,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 2,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 3
         },
@@ -1529,7 +1529,7 @@
           "known_inferred": 2,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1583,7 +1583,7 @@
           "known_inferred": 3,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 6
         },
@@ -1601,7 +1601,7 @@
           "known_inferred": 4,
           "to_reconstruct": 7,
           "filled": 2,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1655,7 +1655,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 2
         },
@@ -1673,7 +1673,7 @@
           "known_inferred": 1,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1727,7 +1727,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -1745,7 +1745,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1799,7 +1799,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 2
         },
@@ -1817,7 +1817,7 @@
           "known_inferred": 1,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1871,7 +1871,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -1889,7 +1889,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -1943,7 +1943,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -1961,7 +1961,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2015,7 +2015,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 2
         },
@@ -2033,7 +2033,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2086,7 +2086,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -2104,7 +2104,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2139,7 +2139,7 @@
           "known_inferred": 7,
           "to_reconstruct": 9,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2174,7 +2174,7 @@
           "known_inferred": 16,
           "to_reconstruct": 22,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2209,7 +2209,7 @@
           "known_inferred": 5,
           "to_reconstruct": 9,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2244,7 +2244,7 @@
           "known_inferred": 4,
           "to_reconstruct": 7,
           "filled": 3,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2279,7 +2279,7 @@
           "known_inferred": 12,
           "to_reconstruct": 14,
           "filled": 4,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2314,7 +2314,7 @@
           "known_inferred": 3,
           "to_reconstruct": 6,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2367,7 +2367,7 @@
           "known_inferred": 4,
           "to_reconstruct": 5,
           "filled": 2,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 10
         },
@@ -2385,7 +2385,7 @@
           "known_inferred": 7,
           "to_reconstruct": 10,
           "filled": 6,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2438,7 +2438,7 @@
           "known_inferred": 10,
           "to_reconstruct": 12,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 24
         },
@@ -2456,7 +2456,7 @@
           "known_inferred": 17,
           "to_reconstruct": 24,
           "filled": 7,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2509,7 +2509,7 @@
           "known_inferred": 3,
           "to_reconstruct": 5,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 9
         },
@@ -2527,7 +2527,7 @@
           "known_inferred": 6,
           "to_reconstruct": 9,
           "filled": 2,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2580,7 +2580,7 @@
           "known_inferred": 2,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 6
         },
@@ -2598,7 +2598,7 @@
           "known_inferred": 3,
           "to_reconstruct": 7,
           "filled": 3,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2651,7 +2651,7 @@
           "known_inferred": 5,
           "to_reconstruct": 7,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 14
         },
@@ -2669,7 +2669,7 @@
           "known_inferred": 10,
           "to_reconstruct": 14,
           "filled": 4,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2722,7 +2722,7 @@
           "known_inferred": 1,
           "to_reconstruct": 3,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 5
         },
@@ -2740,7 +2740,7 @@
           "known_inferred": 3,
           "to_reconstruct": 6,
           "filled": 1,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2793,7 +2793,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 2
         },
@@ -2811,7 +2811,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2864,7 +2864,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 4
         },
@@ -2882,7 +2882,7 @@
           "known_inferred": 3,
           "to_reconstruct": 4,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -2935,7 +2935,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -2953,7 +2953,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3006,7 +3006,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -3024,7 +3024,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3077,7 +3077,7 @@
           "known_inferred": 1,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 2
         },
@@ -3095,7 +3095,7 @@
           "known_inferred": 1,
           "to_reconstruct": 2,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3148,7 +3148,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household",
           "recut_wants": 1
         },
@@ -3166,7 +3166,7 @@
           "known_inferred": 0,
           "to_reconstruct": 1,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3201,7 +3201,7 @@
           "known_inferred": 7,
           "to_reconstruct": 11,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3236,7 +3236,7 @@
           "known_inferred": 18,
           "to_reconstruct": 25,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3271,7 +3271,7 @@
           "known_inferred": 6,
           "to_reconstruct": 10,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "a bed rather than a household"
         },
         {
@@ -3335,7 +3335,7 @@
           "known": 12,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the north division"
         },
         {
@@ -3348,7 +3348,7 @@
           "known": 46,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the south division"
         },
         {
@@ -3361,7 +3361,7 @@
           "known": 10,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the west division"
         },
         {
@@ -3416,7 +3416,7 @@
           "known": 3,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the north division"
         },
         {
@@ -3429,7 +3429,7 @@
           "known": 8,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the south division"
         },
         {
@@ -3442,7 +3442,7 @@
           "known": 4,
           "to_reconstruct": 0,
           "filled": 0,
-          "owning_ticket": "T-1175",
+          "owning_ticket": "T-1500",
           "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the west division"
         },
         {
@@ -4026,9 +4026,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 35; the 668-roof programme leaves 15 of them to build"
         },
         {
@@ -4044,9 +4042,8 @@
           "filled": 0,
           "owning_ticket": "T-1212",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 20; the 668-roof programme leaves 9 of them to build"
         },
@@ -4062,11 +4059,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 17; the 668-roof programme leaves 9 of them to build"
         },
         {
@@ -4111,9 +4104,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1201",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 5; the 668-roof programme leaves 0 of them to build"
         },
         {
@@ -4129,9 +4120,8 @@
           "filled": 0,
           "owning_ticket": "T-1207",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 3; the 668-roof programme leaves 0 of them to build"
         },
@@ -4147,11 +4137,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1205",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 2; the 668-roof programme leaves 1 of them to build"
         },
         {
@@ -4166,9 +4152,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1202",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 5; the 668-roof programme leaves 0 of them to build"
         },
         {
@@ -4184,9 +4168,8 @@
           "filled": 0,
           "owning_ticket": "T-1208",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 1; the 668-roof programme leaves 0 of them to build"
         },
@@ -4202,11 +4185,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1205",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 3; the 668-roof programme leaves 0 of them to build"
         },
         {
@@ -4221,9 +4200,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1209",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 28; the 668-roof programme leaves 19 of them to build"
         },
         {
@@ -4239,9 +4216,8 @@
           "filled": 0,
           "owning_ticket": "T-1209",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 6; the 668-roof programme leaves 5 of them to build"
         },
@@ -4257,11 +4233,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1209",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 2 of them to build"
         },
         {
@@ -4276,9 +4248,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1203",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 176; the 668-roof programme leaves 58 of them to build"
         },
         {
@@ -4294,9 +4264,8 @@
           "filled": 0,
           "owning_ticket": "T-1208",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 27 of them to build"
         },
@@ -4312,11 +4281,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1206",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 84; the 668-roof programme leaves 38 of them to build"
         },
         {
@@ -4331,9 +4296,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 48; the 668-roof programme leaves 23 of them to build"
         },
         {
@@ -4349,9 +4312,8 @@
           "filled": 0,
           "owning_ticket": "T-1212",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 10 of them to build"
         },
@@ -4367,11 +4329,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1212",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 20; the 668-roof programme leaves 11 of them to build"
         },
         {
@@ -4401,9 +4359,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1201",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 42; the 668-roof programme leaves 16 of them to build"
         },
         {
@@ -4419,9 +4375,8 @@
           "filled": 0,
           "owning_ticket": "T-1207",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 6; the 668-roof programme leaves 2 of them to build"
         },
@@ -4437,11 +4392,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1205",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 4; the 668-roof programme leaves 3 of them to build"
         },
         {
@@ -4471,9 +4422,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1200",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 11; the 668-roof programme leaves 7 of them to build"
         },
         {
@@ -4489,9 +4438,8 @@
           "filled": 0,
           "owning_ticket": "T-1207",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 2; the 668-roof programme leaves 1 of them to build"
         },
@@ -4507,11 +4455,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1205",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 7; the 668-roof programme leaves 1 of them to build"
         },
         {
@@ -4526,9 +4470,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1201",
-          "ground_waits_on": [
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 15; the 668-roof programme leaves 5 of them to build"
         },
         {
@@ -4544,9 +4486,8 @@
           "filled": 0,
           "owning_ticket": "T-1207",
           "ground_waits_on": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 3 of them to build"
         },
@@ -4562,11 +4503,7 @@
           "to_retire_or_redeal": 0,
           "filled": 0,
           "owning_ticket": "T-1205",
-          "ground_waits_on": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "ground_waits_on": [],
           "basis": "the inventory's district/group matrix sets 7; the 668-roof programme leaves 2 of them to build"
         },
         {
@@ -4604,9 +4541,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4618,9 +4554,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4632,9 +4567,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4646,9 +4580,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4660,9 +4593,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4674,9 +4606,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4688,9 +4619,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4702,9 +4632,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4716,9 +4645,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/reconstruction/1835_phase2_west_wolf_point_approaches.json, whose reviewed placements already hold this district's remainder, with T-1444 open to instantiate them. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4729,11 +4657,7 @@
           },
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
-          "owning_tickets": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -4743,11 +4667,7 @@
           },
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
-          "owning_tickets": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -4757,11 +4677,7 @@
           },
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
-          "owning_tickets": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -4771,11 +4687,7 @@
           },
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/michigan_st_tract_seated.json § open, where the tract's own name and platter are still unsettled (T-1080). Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
-          "owning_tickets": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -4786,9 +4698,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4800,9 +4711,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4814,9 +4724,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4828,9 +4737,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4842,9 +4750,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4856,9 +4763,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4870,9 +4776,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4884,9 +4789,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4898,9 +4802,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4912,9 +4815,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4926,9 +4828,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4940,9 +4841,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4954,9 +4854,8 @@
           "roofs_gated": 0,
           "waiting_on": "a placement policy for this survey. The lot lines are the sheet's and they are on the grid; what is missing is any evidence of who stood on them — see data/traces/wabansia_seating.json § occupancy_before_1835_07_01, one unplaced household in the whole survey. Dealing this district's remainder onto them at the Original Town's units-per-lot would be a density read off other ground, and these lots are not that size.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4967,9 +4866,7 @@
           },
           "roofs_gated": 27,
           "waiting_on": "South Water Street's committed centreline stops 32 m short of this block — the street control ROADMAP S9 records as owed. Measured dry: tools/measure_block_gating.py carries South Water toward this block over 25 m of ground with no wet sample on it, so this one really is waiting on a trace. What is missing is one control point at Market and South Water: the committed set holds four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and NONE anywhere on South Water, and Market's centreline stops at its single control point where Lake crosses it. AND THAT POINT CANNOT BE DERIVED, MEASURED 2026-08-27 BY T-0183. Under the node rule in data/traces/street_control.json the two modern successors — North Upper Wacker Drive and West Upper Wacker Drive — share exactly two nodes, and they are lake_market's own committed pair: Wacker changes name through a bend at the Lake Street junction rather than crossing at South Water, so the rule returns a plausible point 110 m south of the corner it names. Re-run it with tools/refetch_control.py --discover market_south_water, which now refuses the set rather than reporting it; the reading is filed under `refused_control` in street_control.json. So this block is NOT waiting on somebody fetching a junction. It is waiting on an owner decision — close South Water's west end onto Market from the 1834 sheets and the committed bank, which is what the rest of that curve already stands on, or return these 27 roofs to the South balance. HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED IT. Executed on the line as committed, the closure emits this block as a bowtie — South Water has converged on Lake Street before it reaches Market and their platted corridors overlap by 14.9 m there — and carried as far north as the committed waterline allows it leaves 2.8 m of block depth at Market against the 24.384 m one platted lot fronts. So these 27 roofs are not on the ground the ruling was about: the block is a wedge the South Branch pinches out at its west corner, and only its eastern two thirds could ever carry a lot. The refusal now fires in tools/generate_plat_lots.py --self-test rather than emitting a 4,411 m2 block with a plausible depth; the measurement is under `refused_control.market_south_water` in street_control.json and in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with the wedge is back with the owner.",
-          "owning_tickets": [
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -4980,9 +4877,8 @@
           "roofs_gated": 5,
           "waiting_on": "unified terrain, hydrology, collision, flora and map coverage west to local E -700 m; the recipe's placements are already written and reviewed",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -4993,9 +4889,7 @@
           },
           "roofs_gated": 104,
           "waiting_on": "STREET CONTROL — the S9 line ROADMAP has recorded as owed since before this schedule was written — and, for the first time, nothing else. THE TERRAIN IS NO LONGER THE BLOCKER: T-0219 carried the heightfield south to local N -3800.0 m, 3274.8 m past Madison Street's line at State, and the plat's last tier — 6 blocks and 48 lots between Market and State, 6.31 ha — now stands on modelled ground at all 24 of its 24 block-boundary points. Washington Street's platted corridor is fully on the field (0.00 ha off it, against 0.33 ha before), and south of that corridor the field holds 697.3569 ha of land above the water surface, 437.3369 ha of it in the South Division — where the same measurement returned 0.0000 ha before. What is left is the control itself: the plat's north-south columns still end at local N -400, -400, -400, -400, -400, -400, -400, the OLD south edge of the field, because they were cut where the ground used to stop. Carrying them to Madison is street work on ground that is now under them, and tools/generate_block_infill.py will accept what it emits. Ground east of State is still not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-          "owning_tickets": [
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         },
         {
@@ -5006,9 +4900,8 @@
           "roofs_gated": 52,
           "waiting_on": "West Division ground beyond the Wolf Point approaches: no committed street control west of Clinton and Canal, and no unified terrain, hydrology or map coverage past the recipe's own gate at local E -700 m.",
           "owning_tickets": [
-            "T-1192",
-            "T-1193",
-            "T-1194"
+            "T-1414",
+            "T-1444"
           ],
           "filled": 0
         },
@@ -5019,11 +4912,7 @@
           },
           "roofs_gated": 67,
           "waiting_on": "North Division ground beyond the initial parcel: the plat grid covers no North Division block at all — that street control is what ROADMAP S9 records as owed — and terrain, hydrology, flora and map coverage stop short of local N +760 m.",
-          "owning_tickets": [
-            "T-1191",
-            "T-1193",
-            "T-1194"
-          ],
+          "owning_tickets": [],
           "filled": 0
         }
       ]

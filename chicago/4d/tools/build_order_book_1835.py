@@ -76,6 +76,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -142,7 +143,16 @@ HOUSEHOLD_TYPES = (
 PERSON_TICKET_RULES = (
     ("fort division", lambda a: a["division"] == "fort", "T-1176"),
     ("the transient cohort", lambda a: a["household_type"] == "transient", "T-1178"),
-    ("a bed rather than a household", lambda a: a["household_type"] == "lodging", "T-1175"),
+    # T-1500 repointed this off its split parent on 2026-09-21 (T-1420), the same
+    # sweep and the same reason as T-1347's two lines below. T-1175 — fill the beds —
+    # split into T-1370 (the lodging model), T-1371 (seat the boarders) and T-1372,
+    # and every piece of that tree that fills a bed has since closed; its one live
+    # descendant, T-1407, is the crews and the harbour-works gang and nothing else.
+    # So the 278 persons these 59 buckets still order were ordered by nobody, which
+    # is the hole `every_work_order_names_a_live_ticket` refuses. T-1500 carries the
+    # remainder to the queue as a row the owner can rank. Who fills WHICH bed is a
+    # modelling decision and is not taken here.
+    ("a bed rather than a household", lambda a: a["household_type"] == "lodging", "T-1500"),
     # T-1347 repointed this off its split parent. T-1173 was the epic; it split into
     # T-1346 (read the 1839 trade table) and T-1347 (draw the heads), and a bucket whose
     # owning ticket is a SPLIT parent names nobody who can act on it (T-1237).
@@ -168,8 +178,12 @@ ROSTER_TICKETS = {
 HOUSEHOLD_BUCKETS = (
     ("family_dwelling", "ordinary_dwellings", "T-1171"),
     ("store_residence", "stores_mixed_use", "T-1171"),
-    ("boarding_house", "larger_boarding_houses", "T-1175"),
-    ("inn_tavern", "inns_taverns", "T-1175"),
+    # Swept with the person rule above (T-1420 -> T-1500). Both of these rows are
+    # discharged — every boarding house and inn the model wants is standing — so the
+    # gate does not reach them; they move only so that one household type does not
+    # answer to two different tickets depending on which family you read.
+    ("boarding_house", "larger_boarding_houses", "T-1500"),
+    ("inn_tavern", "inns_taverns", "T-1500"),
     # T-1188 split (T-1410, T-1411); the institutional HOUSEHOLDS are the people who
     # lived at a church, a parsonage or a school. T-1410's three establishments — post
     # office, land office, county rooms — house nobody. T-1411 split in turn (T-1421,
@@ -279,10 +293,38 @@ BUSINESS_TICKETS = {
 }
 
 # The ground each division waits on before its structure buckets can be built.
+#
+# SWEPT TO LIVE OWNERS ON 2026-09-21 (T-1420). Every id here was a closed or split
+# ticket, which is the T-1237 failure this file already carries twice above: a bucket
+# whose owning ticket is a split parent names nobody who can act on it. `ticket.mjs
+# done` prints the warning at the moment the last child closes and says in as many
+# words that it "fails the re-derivation, in a tool this PR does not run" — so the
+# re-derivation now runs it: `every_work_order_names_a_live_ticket` below refuses a
+# dead work order on every --build and --check, and this table cannot silt again.
+#
+# What the sweep found, read off the ticket tree rather than asserted:
+#   T-1191  done 2026-09-20 — the North Division's platted corridors ARRIVED.
+#   T-1194  split, and all three children (T-1436, T-1437, T-1438) have closed
+#           through their own grandchildren: the lot grid north and west of the
+#           river ARRIVED. Ground that has arrived is not a wait.
+#   T-1192  split; its live piece is T-1414, the West Division's and Wabansia's
+#           corridors and small lots. That is the successor T-1420 was filed for.
+#   T-1193  split; its live frontier is T-1444 (via T-1417 and T-1431), and all
+#           three of those say West Division in their own titles. The north half of
+#           T-1193 — the field regenerated to N +760 so the North Division's second
+#           parcel has ground — closed with T-1416.
+#
+# SOUTH AND NORTH ARE EMPTY, AND THAT IS NOT A CLAIM THAT THEIR GROUND IS WHOLE. It
+# is the narrower statement this table can make: no LIVE ticket owns what they still
+# wait on. The programme's own `waiting_on` prose on each gated row is where the gap
+# is recorded and is unchanged by this sweep — the south's last tier waits on the S9
+# street control ROADMAP has recorded as owed, and the Michigan Street tract's four
+# north rows wait on T-1080, the tract's own unsettled name and platter. Filing an
+# owner for either would be inventing one; naming a closed ticket was worse.
 GROUND_TICKETS = {
-    "south": ["T-1194"],
-    "west": ["T-1192", "T-1193", "T-1194"],
-    "north": ["T-1191", "T-1193", "T-1194"],
+    "south": [],
+    "west": ["T-1414", "T-1444"],
+    "north": [],
     "fort": [],
 }
 
@@ -1891,6 +1933,96 @@ def converges_inside_the_model(doc: dict) -> str:
     return said
 
 
+DEAD_TICKET_STATES = ("done", "split", "withdrawn")
+TICKETS = ROOT / "tickets"
+
+
+def ticket_states(directory: Path = TICKETS) -> dict[str, str]:
+    """Every ticket id in the queue against its state, read off the front matter.
+
+    A CHECK INPUT AND NEVER A BUILD INPUT. Nothing the book EMITS may depend on what
+    the queue happens to hold this morning, or two builds of the same data would
+    differ and `--check` would be measuring the queue instead of the arithmetic. So
+    this is read by the gate below and by nothing else; the owner tables above stay
+    hand-written, with their reasoning beside them, exactly as they were.
+    """
+    out = {}
+    if not directory.is_dir():
+        return out
+    for path in sorted(directory.glob("T-*.md")):
+        head = path.read_text(encoding="utf-8").split("---")
+        if len(head) < 3:
+            continue
+        fields = dict(re.findall(r"^(\w+): (.*)$", head[1], re.M))
+        if fields.get("id"):
+            out[fields["id"].strip()] = fields.get("state", "").strip()
+    return out
+
+
+def every_work_order_names_a_live_ticket(doc: dict, states: dict[str, str] | None = None) -> str:
+    """THE WORK-ORDER GATE (T-1420), asked on every --build and --check.
+
+    THE FAILURE IT REMOVES. `ticket.mjs done` already prints a NOTE when a close
+    leaves a split parent with no live child: "any research unit that defers to it by
+    id is now stranded (T-1237). That fails the re-derivation, in a tool this PR does
+    not run." This is that tool. Until now nothing re-derived the order book against
+    the queue, so the note was advice a closing run could read and walk past, and by
+    2026-09-21 thirteen of the twenty-four ids the book's owner tables named had
+    closed or split under it — the west ground still waiting on T-1192 eight days
+    after T-1192 became two tickets, which is what T-1420 was filed for.
+
+    WHAT IS A WORK ORDER, AND WHAT IS NOT. A bucket's `owning_ticket`,
+    `owning_tickets` and `ground_waits_on` say who MUST DO the work that is left.
+    They are the only forward-looking ticket ids in this book, and a forward-looking
+    id naming a ticket nobody can claim is a hole. Everything else the book stamps
+    with a ticket is BACKWARD-looking and must never move: `fills[].ticket` is who
+    actually filled a bucket, `recut_refusals` and `programme_deltas` record who made
+    a ruling, `roster_offered.tickets` records who a licence was offered to, and the
+    book's own `ticket` is who wrote it. Those are provenance, and rewriting
+    provenance to keep a gate quiet would be the worse defect by far.
+
+    AND ONLY WHERE THERE IS WORK LEFT. A bucket the town has already filled keeps the
+    id of the ticket that filled it, because that is the same fact `fills` carries and
+    there is nothing left to order. So the gate fires exactly when a run is told to do
+    something by a ticket that no longer exists — which is also why it stays quiet
+    through the ordinary close, where a ticket ends by discharging its own buckets.
+
+    A BLOCKED TICKET IS LIVE. `blocked-owner` and `blocked-tech` are on the board,
+    carry a `blocked_on`, and unblock; `done`, `split` and `withdrawn` name nobody.
+    """
+    states = ticket_states() if states is None else states
+    holes = []
+    for family in doc.get("bucket_families", []):
+        for bucket in family.get("buckets", []):
+            owed = bucket.get("to_reconstruct")
+            if owed is None:
+                owed = bucket.get("to_build")
+            if owed is None:
+                owed = bucket.get("roofs_gated")
+            left = max(0, (owed or 0) - (bucket.get("filled") or 0))
+            if left <= 0:
+                continue
+            named = [bucket.get("owning_ticket")] + list(bucket.get("owning_tickets") or [])
+            named += list(bucket.get("ground_waits_on") or [])
+            for ticket in named:
+                if not ticket:
+                    continue
+                state = states.get(ticket)
+                if state is None:
+                    holes.append(f"{bucket['key']} is ordered by {ticket}, which is not a ticket")
+                elif state in DEAD_TICKET_STATES:
+                    holes.append(f"{bucket['key']} has {left} left and is ordered by "
+                                 f"{ticket}, which is {state}")
+    if holes:
+        raise Fault("the book orders work from tickets nobody can claim — sweep the owner "
+                    "tables onto the live successors (T-1420): " + "; ".join(sorted(holes)[:8])
+                    + (f" (+{len(holes) - 8} more)" if len(holes) > 8 else ""))
+    if not states:
+        return "the queue could not be read, so no work order was checked"
+    ordered = sum(1 for f in doc.get("bucket_families", []) for b in f.get("buckets", []))
+    return f"every work order across {ordered} buckets names a ticket a run can still claim"
+
+
 def recut_findings(known: dict, before: dict, families: list, refusals: list) -> list[dict]:
     """The three things summing T-1386 into `known` made measurable (T-1463)."""
     def owed(fam, ticket=None):
@@ -2141,6 +2273,7 @@ def _fills_on_disk() -> list:
 def cmd_build() -> int:
     doc = build(load(), _fills_on_disk())
     lands = converges_inside_the_model(doc)
+    owners = every_work_order_names_a_live_ticket(doc)
     BOOK.parent.mkdir(parents=True, exist_ok=True)
     BOOK.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -2150,7 +2283,7 @@ def cmd_build() -> int:
           f"{len(doc['bucket_families'])} families; {doc['totals']['persons_to_reconstruct']:,} "
           f"persons, {doc['totals']['households_to_reconstruct']:,} households, "
           f"{doc['totals']['businesses_to_reconstruct']:,} businesses and "
-          f"{doc['totals']['roofs_to_build']:,} roofs to reconstruct; {lands}")
+          f"{doc['totals']['roofs_to_build']:,} roofs to reconstruct; {lands}; {owners}")
     return 0
 
 
@@ -2174,7 +2307,8 @@ def cmd_check() -> int:
     print(f"OK: 1835 reconstruction order book — {t['persons_to_reconstruct']:,} persons, "
           f"{t['households_to_reconstruct']:,} households, "
           f"{t['businesses_to_reconstruct']:,} businesses, {t['roofs_to_build']:,} roofs to go; "
-          f"{converges_inside_the_model(expected)}")
+          f"{converges_inside_the_model(expected)}; "
+          f"{every_work_order_names_a_live_ticket(expected)}")
     return 0
 
 
@@ -2513,6 +2647,39 @@ def cmd_self_test() -> int:
 
     # TWO BUILDS ARE BYTE-IDENTICAL.
     assert json.dumps(build(data, [], occ), sort_keys=True) == json.dumps(doc, sort_keys=True)
+
+    # A WORK ORDER FROM A TICKET NOBODY CAN CLAIM IS A HOLE (T-1420), and the gate
+    # fires on the STATE rather than on a list of ids, so it catches the next split
+    # as well as the thirteen this sweep found. The three cases that must NOT fire
+    # matter as much as the one that must: a blocked ticket is a live owner, a
+    # discharged bucket keeps the id of whoever discharged it, and a backward-looking
+    # stamp — `fills[].ticket`, `roster_offered.tickets` — is provenance and is never
+    # read by this gate at all.
+    def named(b):
+        return [t for t in [b.get("owning_ticket"), *(b.get("owning_tickets") or []),
+                            *(b.get("ground_waits_on") or [])] if t]
+
+    def left(b):
+        owed = b.get("to_reconstruct") or b.get("to_build") or b.get("roofs_gated") or 0
+        return owed - (b.get("filled") or 0)
+
+    buckets = [b for f in doc["bucket_families"] for b in f["buckets"]]
+    owed_by = next(b for b in buckets if left(b) > 0 and b.get("owning_ticket"))
+    states = {t: "open" for b in buckets for t in named(b)}
+    every_work_order_names_a_live_ticket(doc, states)
+    every_work_order_names_a_live_ticket(doc, {**states, owed_by["owning_ticket"]: "blocked-tech"})
+    for dead in ("done", "split", "withdrawn"):
+        fires(f"a bucket with work left ordered by a {dead} ticket",
+              lambda d=dead: every_work_order_names_a_live_ticket(
+                  doc, {**states, owed_by["owning_ticket"]: d}))
+    fires("a bucket ordered by an id that is not a ticket at all",
+          lambda: every_work_order_names_a_live_ticket(
+              doc, {k: v for k, v in states.items() if k != owed_by["owning_ticket"]}))
+    discharged = next(b for b in buckets if b.get("owning_ticket") and left(b) <= 0
+                      and b["owning_ticket"] != owed_by["owning_ticket"])
+    every_work_order_names_a_live_ticket(doc, {**states, discharged["owning_ticket"]: "done"})
+    assert "T-1166" not in {t for b in buckets for t in named(b)}, \
+        "the book's own authoring ticket is provenance and must not be a work order"
 
     print(f"build_order_book_1835 self-tests pass ({fired} guards fired, "
           f"{sum(len(f['buckets']) for f in doc['bucket_families'])} buckets, "

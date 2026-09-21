@@ -136,17 +136,17 @@ The re-cut wanted **35** trade slots in the bands it reopened. The younger bands
 | cell | the re-cut wanted | the remainder could pay | already drawn | by |
 |---|---:|---:|---:|---|
 | `persons/female/10_19/north/family` (into) | 3 | 0 | 26 | T-1174 |
-| `persons/female/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1175 |
+| `persons/female/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
 | `persons/female/10_19/south/family` (into) | 7 | 0 | 61 | T-1174 |
-| `persons/female/10_19/south/lodging` (into) | 2 | 0 | 4 | T-1175 |
+| `persons/female/10_19/south/lodging` (into) | 2 | 0 | 4 | T-1500 |
 | `persons/female/10_19/west/family` (into) | 2 | 0 | 24 | T-1174 |
-| `persons/female/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1175 |
+| `persons/female/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1500 |
 | `persons/male/10_19/north/family` (into) | 3 | 0 | 30 | T-1174 |
-| `persons/male/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1175 |
+| `persons/male/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
 | `persons/male/10_19/south/family` (into) | 8 | 0 | 71 | T-1174 |
-| `persons/male/10_19/south/lodging` (into) | 3 | 0 | 4 | T-1175 |
+| `persons/male/10_19/south/lodging` (into) | 3 | 0 | 4 | T-1500 |
 | `persons/male/10_19/west/family` (into) | 3 | 0 | 26 | T-1174 |
-| `persons/male/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1175 |
+| `persons/male/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1500 |
 | `persons/female/20_29/north/family` (out of) | 1 | 0 | 15 | T-1347 |
 | `persons/female/20_29/south/family` (out of) | 3 | 0 | 35 | T-1347 |
 | `persons/female/20_29/west/family` (out of) | 1 | 0 | 13 | T-1347 |
@@ -154,10 +154,10 @@ The re-cut wanted **35** trade slots in the bands it reopened. The younger bands
 | `persons/female/40_49/west/family` (out of) | 1 | 0 | 3 | T-1347 |
 | `persons/female/50_plus/south/family` (out of) | 1 | 0 | 4 | T-1347 |
 | `persons/male/20_29/north/family` (out of) | 2 | 0 | 25 | T-1347 |
-| `persons/male/20_29/north/lodging` (out of) | 1 | 0 | 2 | T-1175 |
+| `persons/male/20_29/north/lodging` (out of) | 1 | 0 | 2 | T-1500 |
 | `persons/male/20_29/south/family` (out of) | 5 | 0 | 60 | T-1347 |
 | `persons/male/20_29/west/family` (out of) | 2 | 0 | 23 | T-1347 |
-| `persons/male/20_29/west/lodging` (out of) | 1 | 0 | 1 | T-1175 |
+| `persons/male/20_29/west/lodging` (out of) | 1 | 0 | 1 | T-1500 |
 | `persons/male/30_39/north/family` (out of) | 1 | 0 | 15 | T-1347 |
 | `persons/male/30_39/south/family` (out of) | 3 | 0 | 35 | T-1347 |
 | `persons/male/30_39/west/family` (out of) | 1 | 0 | 13 | T-1347 |
@@ -217,125 +217,125 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
 | `persons/female/10_19/north/family/none` | 32 | 16 | 26 | 26 | T-1174 |
-| `persons/female/10_19/north/lodging/none` | 11 | 5 | 6 | 3 | T-1175 |
+| `persons/female/10_19/north/lodging/none` | 11 | 5 | 6 | 3 | T-1500 |
 | `persons/female/10_19/south/family/none` | 76 | 40 | 61 | 61 | T-1174 |
-| `persons/female/10_19/south/lodging/none` | 27 | 14 | 13 | 4 | T-1175 |
+| `persons/female/10_19/south/lodging/none` | 27 | 14 | 13 | 4 | T-1500 |
 | `persons/female/10_19/west/family/none` | 28 | 14 | 24 | 24 | T-1174 |
-| `persons/female/10_19/west/lodging/none` | 10 | 5 | 5 | 1 | T-1175 |
+| `persons/female/10_19/west/lodging/none` | 10 | 5 | 5 | 1 | T-1500 |
 | `persons/female/20_29/north/family/trade` | 18 | 9 | 15 | 15 | T-1347 |
 | `persons/female/20_29/north/family/none` | 34 | 16 | 28 | 28 | T-1174 |
-| `persons/female/20_29/north/lodging/trade` | 6 | 3 | 3 | 1 | T-1175 |
-| `persons/female/20_29/north/lodging/none` | 12 | 6 | 6 | 3 | T-1175 |
+| `persons/female/20_29/north/lodging/trade` | 6 | 3 | 3 | 1 | T-1500 |
+| `persons/female/20_29/north/lodging/none` | 12 | 6 | 6 | 3 | T-1500 |
 | `persons/female/20_29/south/family/trade` | 43 | 22 | 35 | 35 | T-1347 |
 | `persons/female/20_29/south/family/none` | 81 | 42 | 66 | 66 | T-1174 |
-| `persons/female/20_29/south/lodging/trade` | 15 | 8 | 7 | 0 | T-1175 |
-| `persons/female/20_29/south/lodging/none` | 29 | 15 | 14 | 5 | T-1175 |
+| `persons/female/20_29/south/lodging/trade` | 15 | 8 | 7 | 0 | T-1500 |
+| `persons/female/20_29/south/lodging/none` | 29 | 15 | 14 | 5 | T-1500 |
 | `persons/female/20_29/west/family/trade` | 16 | 8 | 13 | 13 | T-1347 |
 | `persons/female/20_29/west/family/none` | 30 | 15 | 25 | 25 | T-1174 |
-| `persons/female/20_29/west/lodging/trade` | 6 | 3 | 3 | 0 | T-1175 |
-| `persons/female/20_29/west/lodging/none` | 10 | 4 | 6 | 1 | T-1175 |
+| `persons/female/20_29/west/lodging/trade` | 6 | 3 | 3 | 0 | T-1500 |
+| `persons/female/20_29/west/lodging/none` | 10 | 4 | 6 | 1 | T-1500 |
 | `persons/female/30_39/north/family/trade` | 8 | 4 | 6 | 6 | T-1347 |
 | `persons/female/30_39/north/family/none` | 16 | 8 | 13 | 13 | T-1174 |
-| `persons/female/30_39/north/lodging/trade` | 3 | 1 | 2 | 2 | T-1175 |
-| `persons/female/30_39/north/lodging/none` | 6 | 3 | 3 | 0 | T-1175 |
+| `persons/female/30_39/north/lodging/trade` | 3 | 1 | 2 | 2 | T-1500 |
+| `persons/female/30_39/north/lodging/none` | 6 | 3 | 3 | 0 | T-1500 |
 | `persons/female/30_39/south/family/trade` | 20 | 10 | 16 | 16 | T-1347 |
 | `persons/female/30_39/south/family/none` | 38 | 20 | 31 | 31 | T-1174 |
-| `persons/female/30_39/south/lodging/trade` | 7 | 4 | 3 | 0 | T-1175 |
-| `persons/female/30_39/south/lodging/none` | 13 | 6 | 7 | 2 | T-1175 |
+| `persons/female/30_39/south/lodging/trade` | 7 | 4 | 3 | 0 | T-1500 |
+| `persons/female/30_39/south/lodging/none` | 13 | 6 | 7 | 2 | T-1500 |
 | `persons/female/30_39/west/family/trade` | 7 | 4 | 6 | 6 | T-1347 |
 | `persons/female/30_39/west/family/none` | 14 | 7 | 12 | 12 | T-1174 |
-| `persons/female/30_39/west/lodging/trade` | 3 | 2 | 1 | 0 | T-1175 |
-| `persons/female/30_39/west/lodging/none` | 5 | 2 | 3 | 0 | T-1175 |
+| `persons/female/30_39/west/lodging/trade` | 3 | 2 | 1 | 0 | T-1500 |
+| `persons/female/30_39/west/lodging/none` | 5 | 2 | 3 | 0 | T-1500 |
 | `persons/female/40_49/north/family/trade` | 3 | 1 | 3 | 3 | T-1347 |
 | `persons/female/40_49/north/family/none` | 6 | 3 | 5 | 5 | T-1174 |
-| `persons/female/40_49/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/female/40_49/north/lodging/none` | 2 | 1 | 1 | 0 | T-1175 |
+| `persons/female/40_49/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/female/40_49/north/lodging/none` | 2 | 1 | 1 | 0 | T-1500 |
 | `persons/female/40_49/south/family/trade` | 7 | 4 | 6 | 6 | T-1347 |
 | `persons/female/40_49/south/family/none` | 14 | 7 | 11 | 11 | T-1174 |
-| `persons/female/40_49/south/lodging/trade` | 3 | 2 | 1 | 0 | T-1175 |
-| `persons/female/40_49/south/lodging/none` | 5 | 2 | 3 | 0 | T-1175 |
+| `persons/female/40_49/south/lodging/trade` | 3 | 2 | 1 | 0 | T-1500 |
+| `persons/female/40_49/south/lodging/none` | 5 | 2 | 3 | 0 | T-1500 |
 | `persons/female/40_49/west/family/trade` | 3 | 2 | 3 | 3 | T-1347 |
 | `persons/female/40_49/west/family/none` | 5 | 2 | 4 | 4 | T-1174 |
-| `persons/female/40_49/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/female/40_49/west/lodging/none` | 2 | 1 | 1 | 0 | T-1175 |
+| `persons/female/40_49/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/female/40_49/west/lodging/none` | 2 | 1 | 1 | 0 | T-1500 |
 | `persons/female/50_plus/north/family/trade` | 2 | 1 | 2 | 2 | T-1347 |
 | `persons/female/50_plus/north/family/none` | 4 | 2 | 3 | 3 | T-1174 |
-| `persons/female/50_plus/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/female/50_plus/north/lodging/none` | 1 | 0 | 1 | 0 | T-1175 |
+| `persons/female/50_plus/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/female/50_plus/north/lodging/none` | 1 | 0 | 1 | 0 | T-1500 |
 | `persons/female/50_plus/south/family/trade` | 5 | 3 | 4 | 4 | T-1347 |
 | `persons/female/50_plus/south/family/none` | 9 | 5 | 8 | 8 | T-1174 |
-| `persons/female/50_plus/south/lodging/trade` | 2 | 1 | 1 | 0 | T-1175 |
-| `persons/female/50_plus/south/lodging/none` | 3 | 1 | 2 | 0 | T-1175 |
+| `persons/female/50_plus/south/lodging/trade` | 2 | 1 | 1 | 0 | T-1500 |
+| `persons/female/50_plus/south/lodging/none` | 3 | 1 | 2 | 0 | T-1500 |
 | `persons/female/50_plus/west/family/trade` | 2 | 1 | 2 | 2 | T-1347 |
 | `persons/female/50_plus/west/family/none` | 3 | 1 | 2 | 2 | T-1174 |
-| `persons/female/50_plus/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/female/50_plus/west/lodging/none` | 1 | 0 | 1 | 0 | T-1175 |
+| `persons/female/50_plus/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/female/50_plus/west/lodging/none` | 1 | 0 | 1 | 0 | T-1500 |
 | `persons/female/under_10/north/family/none` | 55 | 27 | 45 | 45 | T-1174 |
-| `persons/female/under_10/north/lodging/none` | 19 | 10 | 9 | 0 | T-1175 |
+| `persons/female/under_10/north/lodging/none` | 19 | 10 | 9 | 0 | T-1500 |
 | `persons/female/under_10/south/family/none` | 132 | 69 | 107 | 107 | T-1174 |
-| `persons/female/under_10/south/lodging/none` | 46 | 24 | 22 | 0 | T-1175 |
+| `persons/female/under_10/south/lodging/none` | 46 | 24 | 22 | 0 | T-1500 |
 | `persons/female/under_10/west/family/none` | 49 | 24 | 40 | 40 | T-1174 |
-| `persons/female/under_10/west/lodging/none` | 17 | 8 | 9 | 0 | T-1175 |
+| `persons/female/under_10/west/lodging/none` | 17 | 8 | 9 | 0 | T-1500 |
 | `persons/male/10_19/north/family/none` | 37 | 18 | 30 | 30 | T-1174 |
-| `persons/male/10_19/north/lodging/none` | 13 | 6 | 7 | 3 | T-1175 |
+| `persons/male/10_19/north/lodging/none` | 13 | 6 | 7 | 3 | T-1500 |
 | `persons/male/10_19/south/family/none` | 88 | 45 | 71 | 71 | T-1174 |
-| `persons/male/10_19/south/lodging/none` | 31 | 17 | 14 | 4 | T-1175 |
+| `persons/male/10_19/south/lodging/none` | 31 | 17 | 14 | 4 | T-1500 |
 | `persons/male/10_19/west/family/none` | 32 | 16 | 26 | 26 | T-1174 |
-| `persons/male/10_19/west/lodging/none` | 11 | 5 | 6 | 1 | T-1175 |
+| `persons/male/10_19/west/lodging/none` | 11 | 5 | 6 | 1 | T-1500 |
 | `persons/male/20_29/north/family/trade` | 30 | 15 | 25 | 25 | T-1347 |
 | `persons/male/20_29/north/family/none` | 58 | 28 | 30 | 0 | T-1171 |
-| `persons/male/20_29/north/lodging/trade` | 11 | 6 | 5 | 2 | T-1175 |
-| `persons/male/20_29/north/lodging/none` | 20 | 10 | 10 | 6 | T-1175 |
+| `persons/male/20_29/north/lodging/trade` | 11 | 6 | 5 | 2 | T-1500 |
+| `persons/male/20_29/north/lodging/none` | 20 | 10 | 10 | 6 | T-1500 |
 | `persons/male/20_29/south/family/trade` | 73 | 38 | 60 | 60 | T-1347 |
 | `persons/male/20_29/south/family/none` | 139 | 72 | 67 | 0 | T-1171 |
-| `persons/male/20_29/south/lodging/trade` | 26 | 14 | 12 | 0 | T-1175 |
-| `persons/male/20_29/south/lodging/none` | 49 | 25 | 24 | 7 | T-1175 |
+| `persons/male/20_29/south/lodging/trade` | 26 | 14 | 12 | 0 | T-1500 |
+| `persons/male/20_29/south/lodging/none` | 49 | 25 | 24 | 7 | T-1500 |
 | `persons/male/20_29/west/family/trade` | 27 | 13 | 23 | 23 | T-1347 |
 | `persons/male/20_29/west/family/none` | 51 | 24 | 27 | 0 | T-1171 |
-| `persons/male/20_29/west/lodging/trade` | 10 | 5 | 5 | 1 | T-1175 |
-| `persons/male/20_29/west/lodging/none` | 18 | 9 | 9 | 2 | T-1175 |
+| `persons/male/20_29/west/lodging/trade` | 10 | 5 | 5 | 1 | T-1500 |
+| `persons/male/20_29/west/lodging/none` | 18 | 9 | 9 | 2 | T-1500 |
 | `persons/male/30_39/north/family/trade` | 18 | 9 | 15 | 15 | T-1347 |
 | `persons/male/30_39/north/family/none` | 34 | 16 | 18 | 0 | T-1171 |
-| `persons/male/30_39/north/lodging/trade` | 6 | 3 | 3 | 0 | T-1175 |
-| `persons/male/30_39/north/lodging/none` | 12 | 5 | 7 | 3 | T-1175 |
+| `persons/male/30_39/north/lodging/trade` | 6 | 3 | 3 | 0 | T-1500 |
+| `persons/male/30_39/north/lodging/none` | 12 | 5 | 7 | 3 | T-1500 |
 | `persons/male/30_39/south/family/trade` | 43 | 22 | 35 | 35 | T-1347 |
 | `persons/male/30_39/south/family/none` | 81 | 42 | 39 | 0 | T-1171 |
-| `persons/male/30_39/south/lodging/trade` | 15 | 8 | 7 | 0 | T-1175 |
-| `persons/male/30_39/south/lodging/none` | 29 | 15 | 14 | 4 | T-1175 |
+| `persons/male/30_39/south/lodging/trade` | 15 | 8 | 7 | 0 | T-1500 |
+| `persons/male/30_39/south/lodging/none` | 29 | 15 | 14 | 4 | T-1500 |
 | `persons/male/30_39/west/family/trade` | 16 | 8 | 13 | 13 | T-1347 |
 | `persons/male/30_39/west/family/none` | 30 | 15 | 15 | 0 | T-1171 |
-| `persons/male/30_39/west/lodging/trade` | 5 | 2 | 3 | 0 | T-1175 |
-| `persons/male/30_39/west/lodging/none` | 11 | 5 | 6 | 1 | T-1175 |
+| `persons/male/30_39/west/lodging/trade` | 5 | 2 | 3 | 0 | T-1500 |
+| `persons/male/30_39/west/lodging/none` | 11 | 5 | 6 | 1 | T-1500 |
 | `persons/male/40_49/north/family/trade` | 5 | 2 | 4 | 4 | T-1347 |
 | `persons/male/40_49/north/family/none` | 10 | 5 | 5 | 0 | T-1171 |
-| `persons/male/40_49/north/lodging/trade` | 2 | 1 | 1 | 0 | T-1175 |
-| `persons/male/40_49/north/lodging/none` | 3 | 1 | 2 | 0 | T-1175 |
+| `persons/male/40_49/north/lodging/trade` | 2 | 1 | 1 | 0 | T-1500 |
+| `persons/male/40_49/north/lodging/none` | 3 | 1 | 2 | 0 | T-1500 |
 | `persons/male/40_49/south/family/trade` | 12 | 6 | 10 | 10 | T-1347 |
 | `persons/male/40_49/south/family/none` | 24 | 13 | 11 | 0 | T-1171 |
-| `persons/male/40_49/south/lodging/trade` | 4 | 2 | 2 | 0 | T-1175 |
-| `persons/male/40_49/south/lodging/none` | 9 | 5 | 4 | 0 | T-1175 |
+| `persons/male/40_49/south/lodging/trade` | 4 | 2 | 2 | 0 | T-1500 |
+| `persons/male/40_49/south/lodging/none` | 9 | 5 | 4 | 0 | T-1500 |
 | `persons/male/40_49/west/family/trade` | 4 | 2 | 3 | 3 | T-1347 |
 | `persons/male/40_49/west/family/none` | 9 | 4 | 5 | 0 | T-1171 |
-| `persons/male/40_49/west/lodging/trade` | 2 | 1 | 1 | 0 | T-1175 |
-| `persons/male/40_49/west/lodging/none` | 3 | 1 | 2 | 0 | T-1175 |
+| `persons/male/40_49/west/lodging/trade` | 2 | 1 | 1 | 0 | T-1500 |
+| `persons/male/40_49/west/lodging/none` | 3 | 1 | 2 | 0 | T-1500 |
 | `persons/male/50_plus/north/family/trade` | 2 | 1 | 2 | 2 | T-1347 |
 | `persons/male/50_plus/north/family/none` | 5 | 2 | 3 | 0 | T-1171 |
-| `persons/male/50_plus/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/male/50_plus/north/lodging/none` | 1 | 0 | 1 | 0 | T-1175 |
+| `persons/male/50_plus/north/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/male/50_plus/north/lodging/none` | 1 | 0 | 1 | 0 | T-1500 |
 | `persons/male/50_plus/south/family/trade` | 6 | 3 | 5 | 5 | T-1347 |
 | `persons/male/50_plus/south/family/none` | 11 | 6 | 5 | 0 | T-1171 |
-| `persons/male/50_plus/south/lodging/trade` | 2 | 1 | 1 | 0 | T-1175 |
-| `persons/male/50_plus/south/lodging/none` | 4 | 2 | 2 | 0 | T-1175 |
+| `persons/male/50_plus/south/lodging/trade` | 2 | 1 | 1 | 0 | T-1500 |
+| `persons/male/50_plus/south/lodging/none` | 4 | 2 | 2 | 0 | T-1500 |
 | `persons/male/50_plus/west/family/trade` | 2 | 1 | 2 | 2 | T-1347 |
 | `persons/male/50_plus/west/family/none` | 4 | 2 | 2 | 0 | T-1171 |
-| `persons/male/50_plus/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/male/50_plus/west/lodging/none` | 1 | 0 | 1 | 0 | T-1175 |
+| `persons/male/50_plus/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1500 |
+| `persons/male/50_plus/west/lodging/none` | 1 | 0 | 1 | 0 | T-1500 |
 | `persons/male/under_10/north/family/none` | 61 | 31 | 51 | 51 | T-1174 |
-| `persons/male/under_10/north/lodging/none` | 22 | 11 | 11 | 0 | T-1175 |
+| `persons/male/under_10/north/lodging/none` | 22 | 11 | 11 | 0 | T-1500 |
 | `persons/male/under_10/south/family/none` | 148 | 77 | 120 | 120 | T-1174 |
-| `persons/male/under_10/south/lodging/none` | 52 | 27 | 25 | 0 | T-1175 |
+| `persons/male/under_10/south/lodging/none` | 52 | 27 | 25 | 0 | T-1500 |
 | `persons/male/under_10/west/family/none` | 55 | 27 | 43 | 43 | T-1174 |
-| `persons/male/under_10/west/lodging/none` | 19 | 9 | 10 | 0 | T-1175 |
+| `persons/male/under_10/west/lodging/none` | 19 | 9 | 10 | 0 | T-1500 |
 | `persons/garrison/fort` | — | 2 | — | 0 | T-1176 |
 | `persons/transient/town` | — | 0 | — | 0 | T-1178 |
 
@@ -351,15 +351,15 @@ The households the model wants, by kind and division.
 
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
-| `households/boarding_house/north` | 11 | 12 | 0 | 0 | T-1175 |
-| `households/boarding_house/south` | 40 | 46 | 0 | 0 | T-1175 |
-| `households/boarding_house/west` | 9 | 10 | 0 | 0 | T-1175 |
+| `households/boarding_house/north` | 11 | 12 | 0 | 0 | T-1500 |
+| `households/boarding_house/south` | 40 | 46 | 0 | 0 | T-1500 |
+| `households/boarding_house/west` | 9 | 10 | 0 | 0 | T-1500 |
 | `households/family_dwelling/north` | 121 | 129 | 26 | 26 | T-1171 |
 | `households/family_dwelling/south` | 253 | 289 | 65 | 65 | T-1171 |
 | `households/family_dwelling/west` | 108 | 113 | 33 | 33 | T-1171 |
-| `households/inn_tavern/north` | 3 | 3 | 0 | 0 | T-1175 |
-| `households/inn_tavern/south` | 7 | 8 | 0 | 0 | T-1175 |
-| `households/inn_tavern/west` | 4 | 4 | 0 | 0 | T-1175 |
+| `households/inn_tavern/north` | 3 | 3 | 0 | 0 | T-1500 |
+| `households/inn_tavern/south` | 7 | 8 | 0 | 0 | T-1500 |
+| `households/inn_tavern/west` | 4 | 4 | 0 | 0 | T-1500 |
 | `households/institutional/north` | 4 | 4 | 0 | 0 | T-1189 |
 | `households/institutional/south` | 7 | 8 | 0 | 0 | T-1189 |
 | `households/institutional/west` | 1 | 1 | 0 | 0 | T-1189 |
@@ -456,37 +456,37 @@ The streets, terrain and lots a structure bucket waits on.
 
 | bucket | target | known | to do | filled | ticket |
 |---|---:|---:|---:|---:|---|
-| `ground/blk_west_fulton_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_fulton_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_fulton_clinton` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_lake_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_lake_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_lake_canal` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_randolph_des_plaines` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_randolph_jefferson` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_west_randolph_canal` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_michigan_st_tract_west_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
-| `ground/blk_michigan_st_tract_west_south` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
-| `ground/blk_michigan_st_tract_east_north` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
-| `ground/blk_michigan_st_tract_east_south` | 0 | — | — | 0 | T-1191, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t1` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t1` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t2` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t2` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t3` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t3` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t4` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t5` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t5` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t6` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t6` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_b_t7` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_wabansia_c_t7` | 0 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/blk_south_water_market` | 27 | — | — | 0 | T-1194 |
-| `ground/west_wolf_point_outer` | 5 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/south_plat_beyond_committed_control` | 104 | — | — | 0 | T-1194 |
-| `ground/west_division_beyond_committed_control` | 52 | — | — | 0 | T-1192, T-1193, T-1194 |
-| `ground/north_division_beyond_modelled_ground` | 67 | — | — | 0 | T-1191, T-1193, T-1194 |
+| `ground/blk_west_fulton_des_plaines` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_fulton_jefferson` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_fulton_clinton` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_lake_des_plaines` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_lake_jefferson` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_lake_canal` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_randolph_des_plaines` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_randolph_jefferson` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_west_randolph_canal` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_michigan_st_tract_west_north` | 0 | — | — | 0 |  |
+| `ground/blk_michigan_st_tract_west_south` | 0 | — | — | 0 |  |
+| `ground/blk_michigan_st_tract_east_north` | 0 | — | — | 0 |  |
+| `ground/blk_michigan_st_tract_east_south` | 0 | — | — | 0 |  |
+| `ground/blk_wabansia_b_t1` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t1` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t2` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t2` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t3` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t3` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t4` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t5` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t5` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t6` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t6` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_b_t7` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_wabansia_c_t7` | 0 | — | — | 0 | T-1414, T-1444 |
+| `ground/blk_south_water_market` | 27 | — | — | 0 |  |
+| `ground/west_wolf_point_outer` | 5 | — | — | 0 | T-1414, T-1444 |
+| `ground/south_plat_beyond_committed_control` | 104 | — | — | 0 |  |
+| `ground/west_division_beyond_committed_control` | 52 | — | — | 0 | T-1414, T-1444 |
+| `ground/north_division_beyond_modelled_ground` | 67 | — | — | 0 |  |
 
 ## Where the model and the roof programme disagree
 

@@ -1,7 +1,7 @@
 ---
 id: T-1369
 title: Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1605
 claimed_by: run 9/20/2026, 7:32:38 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T05:08:14.566Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35547828284
 ---
 
@@ -27,6 +27,33 @@ person any stage drew, the refusal is counted in the ledger and stated in L244 a
 own list of what it may not do, the whole derived layer re-derives (`check.sh` green), and
 `SMOKE_VIEWPORT=desktop SMOKE_STAGE=3` passes `nothing was drawn into an evidence-only household`.
 The label check named in the title is T-1331's and is out of scope here.
+
+**Closed, 2026-09-21, and re-measured before closing.** The fix merged on #1605 at
+03:12Z but the run that made it ended without calling `ticket.mjs done`, so T-1369 sat
+`claimed` at row 0 of the queue with its work already on dev — the shape AUTOMATION.md
+calls rotting, and the reason slice 1 kept landing on it. Re-measured on dev at 2d4ea3d05
+before closing, rather than taken on the merge:
+
+- `reconstruct_modelled_families.py --self-test` — 25 rules, 0 failed, including all four
+  evidence-only rules: refused by id, refused by name alone, the two markers name the same
+  five records, and no container carries a person this stage drew.
+- The layer on disk: 5 evidence-only containers, 0 of them holding a reconstructed person.
+- `./tools/check.sh` — CHECK PASS, 596 steps, none red.
+
+**What was NOT demonstrated, and it is half the acceptance.** The acceptance also asks that
+`SMOKE_VIEWPORT=desktop SMOKE_STAGE=3` pass `nothing was drawn into an evidence-only
+household`. **That leg was not run to completion and this close does not claim it.** It was
+attempted twice here and killed by the 600 s foreground ceiling both times, stalling in the
+reconstruction-contract block *before* the evidence-only assertion is reached — so the
+assertion is not red, it is unevaluated, and has been since 2026-09-18. That is a defect in
+the part, not in this fix, and it is now **T-1501**. The reading is filed in
+`tools/dev-smoke-state.json` naming the body-completion sentinel as the sole failure, so
+the record shows a leg that could not finish rather than a town that is wrong.
+
+The substance of the acceptance — that the rule the smoke asserts and the rule the stage
+applies are the same rule — is demonstrated by the three checks above, on the same layer
+the smoke would read. Closing on that, with the gap stated, rather than leaving row 0 to
+burn another run.
 
 **Done, 2026-09-21.** The stage was the wrong half: `division: unplaced` was admitted and nothing
 knew what an `hh_inf_` record is. A seventh refusal was added beside the letter-list one, which it
