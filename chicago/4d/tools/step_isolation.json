@@ -3230,6 +3230,9 @@
     "tools/spend_stated_families.py": {
       "wrote": []
     },
+    "tools/spend_trade_premises.py": {
+      "wrote": []
+    },
     "tools/spend_write_once.py": {
       "wrote": []
     },

@@ -3234,6 +3234,23 @@ step "the enrichment arrival and origin spend re-derives onto its nine cards (T-
 selftest "…and its citation, naming and retirement rules still fire when broken" \
   python3 tools/spend_enrichment_arrivals.py --self-test
 
+# T-1469. THE SAME INSTRUMENT OVER THE TRADE AND PREMISES HALF. Thirty-seven of T-1301's
+# `corroborated_enrichment` findings named a trade, a firm, a shop, a tavern, a store or
+# the premises one was kept at, and they were handed from business ticket to business
+# ticket — T-1182, its five children, T-1190, its three, T-1468 — without being read
+# against the cards they name. They are read now, against fields that did not exist when
+# the hand-off was written: the converged business layer (T-1310, T-1440..T-1442), the
+# dated plural roles with their `covers_scene_date` flag and their written withdrawal
+# (T-0837, T-0991), and the committed candidate-fact table (T-1232). Nothing here writes a
+# card, so what this gate proves is that every field the register NAMES still stands on the
+# card, graded and cited: a carrier that has moved is a note that no longer says what the
+# card says, which is the only way a read-only register can go wrong.
+step "the trade and premises spend re-derives from the cards it names (T-1469)" \
+  python3 tools/spend_trade_premises.py --check
+
+selftest "…and its carrier, outcome and coverage rules still fire when broken" \
+  python3 tools/spend_trade_premises.py --self-test
+
 # T-1354. THE OTHER HALF OF T-1330's SPEND. Six of its thirty enrichments name a DEPARTURE
 # from Chicago and no field on a resident card carries one — the only thing a removal bears
 # on is `present_on_scene_date`. They were handed to T-1144, then to whichever child of its

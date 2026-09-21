@@ -2045,6 +2045,22 @@
       ]
     },
     {
+      "why": "T-1469's reading of the 37 trade and premises enrichments against the cards that answer them. It derives from the resident layer alone and writes no card, so it is cheap and must be rebuilt whenever a card it names moves — and it goes immediately BEFORE the remainder registers, because tools/spend_remainder_rulings.py asks it which rule each of those 37 units falls under and prints the note it built.",
+      "command": [
+        "python3",
+        "tools/spend_trade_premises.py",
+        "--write"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/trade_premises_spend.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_trade_premises.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The five DERIVED ruling registers of T-1298's remainder, and the name-on-a-roll registers of T-1297. Both read `natural_disposition`, so anything that resolves a unit on the layer drops it out of their corpus — and the ledger then refuses every unit left deferring to a ticket those registers no longer cover. They must be rewritten BEFORE the ledger reads them. Added 2026-09-18: neither was in this manifest, which is how #1448 reached a state where 190 units deferred to a done T-1298 and no `--run` could mend it.",
       "command": [
         "python3",

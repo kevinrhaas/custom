@@ -67,7 +67,6 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1469 — Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
 
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
@@ -219,9 +218,9 @@ T-1501 — The desktop smoke's part 3 no longer finishes inside the 600 s foregr
 T-1502 — The register deal reads the raw text of every household card as a name pool, so any pass writing a proper name onto one can silently retire a documented man from it
 T-1504 — A stage that reads the St Mary's baptismal register: the four R6 rows whose Indigenous identity the source states in its own hand are refused only because underdocumented reads the 1832 muster roll and nothing reads the register
 T-1505 — The borderline roster refuses 254 rows as 'a surname and no person' and three of them are forenames: Matanacqua, Lieu and Miranda are each named as the parent of a named child, so the refusal is right and its sentence is false
-T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and whose owning run has finished is the one state no automation in this repo owns
+T-1507 — Hiram Pearsons is a house painter a reminiscence names and a speculator this project inferred, and the card carries the inference at attested: re-adjudicate the 1835 trade field through the role readings
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and whose owning run has finished is the one state no automation in this repo owns
 T-1511 — The trade share counts buildings that front no street: nineteen Fort Dearborn reservation roofs 270-420 m from Lake Street vote in the principal class, because nearest_frontage has no distance bound
-
