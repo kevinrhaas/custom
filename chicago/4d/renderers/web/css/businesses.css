@@ -166,3 +166,9 @@
   border-left: 2px solid var(--con);
   padding-left: 9px;
 }
+
+/* T-1493. The seat block under "Where it stood": the address book's answer for a
+   firm whose own locations reached no roof. Indented to the locations list it
+   answers for, so it reads as the last rung of that ladder and not a new claim. */
+.biz-seat-slot:empty { display: none; }
+.biz-seat-slot { margin: 6px 0 0; display: grid; gap: 0; }

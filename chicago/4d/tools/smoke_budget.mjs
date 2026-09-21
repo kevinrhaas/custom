@@ -264,6 +264,12 @@ const COVERAGE = [
   // searches, filters and opens a card from. Mapped on arrival — unmapped, every diff
   // touching a business record priced the whole gate, and the 196 records move together.
   ['renderers/web/js/businesses.js', [3, 12], 'the firms directory, and the crosswalk the card reads'],
+  // T-1493. The address book's seat block, shared by the business card (the firms
+  // directory, part 12) and the person card (the People directory, part 13). The
+  // BUILDING card never renders it — a roof is the seat, not a reading about one —
+  // so part 3 is not pinned here even though `businesses.js` is pinned to it.
+  ['renderers/web/js/seat.js', [12, 13], 'the seat a card prints, and the way to it'],
+  ['data/reconstruction/1835_address_book.json', [12, 13], 'the rung each household and firm is seated at'],
   ['data/businesses/', [3, 12], 'the compiled business records and their index'],
   ['data/businesses.schema.json', [3, 12], 'the shape those records are refused against'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
