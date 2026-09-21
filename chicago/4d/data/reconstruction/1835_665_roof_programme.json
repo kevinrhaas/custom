@@ -29,14 +29,14 @@
      "share": 0.6429
     },
     "ordinary": {
-     "n": 43,
-     "trade": 12,
-     "share": 0.2791
+     "n": 24,
+     "trade": 10,
+     "share": 0.4167
     },
     "principal": {
-     "n": 20,
-     "trade": 13,
-     "share": 0.65
+     "n": 39,
+     "trade": 15,
+     "share": 0.3846
     }
    },
    "moved": [
@@ -47,9 +47,9 @@
      "blocks_redealt": 4,
      "quota": {
       "blk_south_water_franklin": 1,
-      "blk_south_water_wells": 0,
+      "blk_south_water_wells": 1,
       "blk_south_water_dearborn": 1,
-      "blk_south_water_market": 6
+      "blk_south_water_market": 5
      }
     }
    ],
@@ -371,7 +371,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.4645,
+   "frontage_weight": 0.4006,
    "trade_roofs": 1,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
@@ -397,14 +397,14 @@
    "roofs": 4,
    "families": {
     "A4": 1,
+    "C1": 1,
     "D5": 1,
-    "D6": 1,
-    "D7": 1
+    "D6": 1
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.4645,
-   "trade_roofs": 0,
+   "frontage_weight": 0.4006,
+   "trade_roofs": 1,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
   },
@@ -479,13 +479,13 @@
    "roofs": 4,
    "families": {
     "A1": 1,
-    "C1": 1,
-    "H1": 1,
-    "H3": 1
+    "C3": 1,
+    "D7": 1,
+    "H1": 1
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.5555,
+   "frontage_weight": 0.4572,
    "trade_roofs": 1,
    "lot_ceiling_principal": 1,
    "row_lots_required": 1
@@ -2223,7 +2223,6 @@
     "A5": 1,
     "C1": 1,
     "C2": 1,
-    "C3": 1,
     "C4": 1,
     "D1": 1,
     "D2": 1,
@@ -2235,13 +2234,13 @@
     "F2": 1,
     "H1": 1,
     "H2": 1,
-    "H3": 1,
+    "H3": 2,
     "W2": 1
    },
    "principal": 21,
    "ancillary": 6,
-   "frontage_weight": 0.5573,
-   "trade_roofs": 6,
+   "frontage_weight": 0.3926,
+   "trade_roofs": 5,
    "lot_ceiling_principal": 7,
    "row_lots_required": 7
   },
