@@ -49,7 +49,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1514 | 49 | open | yes |
 | T-1189 | 12 | split_live | yes |
 | T-1315 | 3 | open | yes |
-| T-1299 | 1 | open | yes |
+| T-1299 | 1 | claimed | yes |
 | T-1507 | 1 | open | yes |
 
 Not one of those owners asks for another READING. The heaviest are T-1198 (279), T-1335 (169), T-1514 (49), T-1189 (12), T-1315 (3) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
@@ -104,8 +104,8 @@ Reproduce: `python3 tools/measure_research_spend.py --check` · `python3 tools/s
 
 | Confidence | Rows |
 | --- | ---: |
-| `attested` | 259 |
-| `inferred` | 428 |
+| `attested` | 258 |
+| `inferred` | 429 |
 
 Of the rows that reach the scene date, every one names a source that describes it (C5) — 127 by `source_describes_date`, 33 by `stated_date`.
 
@@ -195,8 +195,8 @@ Then every location claim the research makes, reconciled: **1,840** rows, each c
 | --- | ---: |
 | `limited` | 299 |
 | `no_claim` | 1,186 |
-| `refused` | 190 |
-| `resolved` | 165 |
+| `refused` | 185 |
+| `resolved` | 170 |
 
 Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. Rows called resolved that resolve onto nothing: **0** (C7). This is the answer to *how many attested location facts sit in prose with no structured target*: none — every claim in the corpus is a row here, and a row that could not be placed says so with its reason rather than being dropped or guessed past.
 
@@ -225,7 +225,7 @@ Rows with no disposition: **0**. Limited or refused rows with no clause: **0**. 
 
 | Roles naming a printed place | Rows |
 | --- | ---: |
-| dated away from it | 164 |
+| dated away from it | 165 |
 
 Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/compile_agencies.py --check`.
 
