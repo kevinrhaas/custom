@@ -56,7 +56,6 @@
 # --- stage's own 25 rules and by the layer on disk, but desktop part 3 can no longer be
 # --- RUN inside the foreground ceiling — it is killed in the block before the assertion,
 # --- which has therefore been unevaluated since 2026-09-18. That is T-1501, at the bottom.
-T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
 
 
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
