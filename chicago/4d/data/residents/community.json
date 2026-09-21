@@ -15,15 +15,15 @@
  },
  "not_a_reading": "Derived, never hand-edited. Every value is read off a committed field — a household's origin block or a reconstructed person's own pool community — and graded no higher than the field it came from. No source was read to write this file and nobody was minted.",
  "counts": {
-  "persons": 2857,
-  "households": 1977,
+  "persons": 2854,
+  "households": 1974,
   "known": 2659,
-  "unknown": 198,
+  "unknown": 195,
   "by_community": {
    "yankee": 1248,
    "new_york": 502,
    "irish": 401,
-   "unknown": 198,
+   "unknown": 195,
    "other": 123,
    "french_canadian": 121,
    "british": 97,
@@ -34,14 +34,14 @@
   },
   "by_tier": {
    "reconstructed": 2600,
-   "null": 198,
+   "null": 195,
    "inferred": 56,
    "attested": 3
   },
   "by_rule": {
    "reconstruction_community": 1390,
    "origin_region": 1262,
-   "no_origin_recorded": 182,
+   "no_origin_recorded": 179,
    "origin_does_not_speak_for_this_person": 12,
    "stated_community": 7,
    "origin_unreadable": 4
@@ -49,7 +49,7 @@
   "households_by_community": {
    "yankee": 698,
    "new_york": 501,
-   "unknown": 185,
+   "unknown": 182,
    "irish": 163,
    "other": 123,
    "british": 97,
@@ -785,11 +785,6 @@
    "value": "other",
    "tier": "reconstructed",
    "rule": "origin_region"
-  },
-  "billy_caldwell": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded"
   },
   "bishop_j_e": {
    "value": "new_york",
@@ -3852,11 +3847,6 @@
    "rule": "origin_region"
   },
   "john_t_kingston": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded"
-  },
-  "john_t_temple": {
    "value": "unknown",
    "tier": null,
    "rule": "no_origin_recorded"
@@ -14121,11 +14111,6 @@
    "tier": "reconstructed",
    "rule": "origin_region"
   },
-  "william_b_egan": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded"
-  },
   "william_bond": {
    "value": "unknown",
    "tier": null,
@@ -15313,13 +15298,6 @@
    "rule": "origin_region",
    "head": "bigelow_david",
    "file": "households/hh_bigelow_david.json"
-  },
-  "hh_billy_caldwell": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded",
-   "head": "billy_caldwell",
-   "file": "readmitted/hh_billy_caldwell.json"
   },
   "hh_bishop_j_e": {
    "value": "new_york",
@@ -19527,13 +19505,6 @@
    "rule": "no_origin_recorded",
    "head": "john_t_kingston",
    "file": "readmitted/hh_john_t_kingston.json"
-  },
-  "hh_john_t_temple": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded",
-   "head": "john_t_temple",
-   "file": "readmitted/hh_john_t_temple.json"
   },
   "hh_john_welch": {
    "value": "unknown",
@@ -27878,13 +27849,6 @@
    "rule": "origin_region",
    "head": "wilkes_alexander",
    "file": "households/hh_wilkes_alexander.json"
-  },
-  "hh_william_b_egan": {
-   "value": "unknown",
-   "tier": null,
-   "rule": "no_origin_recorded",
-   "head": "william_b_egan",
-   "file": "readmitted/hh_william_b_egan.json"
   },
   "hh_william_bond": {
    "value": "unknown",
