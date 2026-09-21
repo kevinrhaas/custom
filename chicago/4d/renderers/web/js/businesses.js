@@ -43,7 +43,8 @@
 
 import { escapeHtml } from './citations.js';
 import { displayName } from './display-name.js';
-import { words } from './residents.js';
+import { loadResidentJoins, words } from './residents.js';
+import { seatHtml, seatTarget } from './seat.js';
 
 /** Diacritics folded, lower-cased, one space between words — the same reduction
  *  people.js applies, so the two directories answer a query the same way. */
@@ -268,7 +269,7 @@ function filterSpecs(rows, counts, vocabulary) {
  * @param {string[]} [o.problems]
  */
 export async function mountBusinesses({
-  mount, index, registry, dataBase, onGoTo, onPerson = null, onTitle = null, problems = [],
+  mount, index, registry, dataBase, sceneId, onGoTo, onPerson = null, onTitle = null, problems = [],
 } = {}) {
   const idle = {
     search() { return 0; }, open() { return Promise.resolve(false); }, close() {},
@@ -306,6 +307,8 @@ export async function mountBusinesses({
   const state = {
     q: '', filters: {}, open: null, matched: 0, lastOpened: null,
     filtersOpen: !(compact && compact.matches),
+    // The in-flight address-book seat fill for the open card (T-1493).
+    seatPending: null,
   };
 
   mount.innerHTML = `
@@ -716,7 +719,8 @@ export async function mountBusinesses({
       staffingHtml(staff, rec.staffing),
       communityHtml(rec.proprietor_community),
       `<h4 class="people-card-h">Where it stood</h4><ul class="biz-locs">${
-        (rec.locations || []).map(locationHtml).join('') || '<li class="legend-note">No location on the record.</li>'}</ul>`,
+        (rec.locations || []).map(locationHtml).join('') || '<li class="legend-note">No location on the record.</li>'}</ul>
+       <div class="biz-seat-slot"></div>`,
       `<h4 class="people-card-h">When</h4>
        <p class="biz-dates"><i class="grade-dot grade-${escapeHtml(rec.dates?.tier || 'inferred')}"></i>
          opened ${escapeHtml(day(rec.dates?.opened))} · closed ${rec.dates?.closed ? escapeHtml(day(rec.dates.closed)) : 'no close recorded'}${
@@ -783,6 +787,18 @@ export async function mountBusinesses({
       const rec = await getJson(`businesses/${r.file}`);
       if (seq !== openSeq) return false;
       body.innerHTML = recordHtml(rec, r);
+      // T-1493. THE SEAT, AND THE WAY TO IT. The record's own locations reach a
+      // roof for 45 of these 179 firms; the address book seats 40 more on a block
+      // face of the street the paper names, and until now the card printed that
+      // street and offered nowhere to stand. The seat block goes in only where the
+      // locations above it offered NOTHING — a firm with premises already has its
+      // button, and two would read as two addresses.
+      //
+      // Awaited AFTER the record is painted, the way the person card does it: the
+      // join is megabytes and the card must not wait on it. A firm whose row the
+      // book has no seat for (the 62 unplaceable, the 32 owed) gets nothing here,
+      // which is the honest answer and not a degradation.
+      state.seatPending = seatSlot(cardEl, r).catch(() => {});
     } catch (err) {
       if (seq !== openSeq) return false;
       problems.push(`businesses: ${err.message} — one business record is missing`);
@@ -792,6 +808,26 @@ export async function mountBusinesses({
       if (seq === openSeq) body.removeAttribute('aria-busy');
     }
     return true;
+  }
+
+  /** Fill the card's seat slot from the address book, once the join settles.
+   *  Keyed on `register_id`, the crosswalk `compile_businesses.py` commits
+   *  between a business record (`biz_*`) and the register row the address book
+   *  files it under (`business_*`); nothing here invents that mapping. */
+  async function seatSlot(card, r) {
+    if (!r.register_id) return;
+    const joins = await loadResidentJoins(dataBase, sceneId, problems);
+    const row = joins.seatByBusiness?.get(r.register_id);
+    const slot = card.querySelector('.biz-seat-slot');
+    if (!row || !slot || card.hidden) return;
+    const target = seatTarget(row);
+    const offered = !!card.querySelector('.biz-locs .biz-go');
+    const goable = !offered && !!target && !!registry?.has?.(target.id);
+    if (!goable && row.rung === 'structure') return; // the premises button already said it
+    slot.innerHTML = seatHtml(row, {
+      goable,
+      title: goable ? (buildingTitle(target.id) || words(target.id)) : null,
+    });
   }
 
   function close() {
@@ -824,6 +860,10 @@ export async function mountBusinesses({
   return {
     businesses: rows.length,
     error: null,
+    /** Resolves when the open card's address-book seat has been filled in — the
+     *  fetch is deliberately NOT awaited by `open`, so the harness needs a handle
+     *  on it to assert about the seat block (T-1493). */
+    seated: () => state.seatPending || Promise.resolve(),
     search(q) { input.value = String(q ?? ''); state.q = input.value; paint(); return state.matched; },
     open,
     close,
