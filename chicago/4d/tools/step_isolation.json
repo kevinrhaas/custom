@@ -3,7 +3,7 @@
   "_doc": "MEASURED by tools/measure_step_isolation.mjs --build (T-1339). One row per tool the gate ran, listing every file it opened for writing INSIDE the repo. A row with an empty `wrote` was measured and wrote nothing here; a tool absent from this file was never measured, which is what the coverage half of tools/audit_step_isolation.mjs refuses. Writes to a tempdir are not recorded and are not findings — that is the distinction the measurement turns on. Regenerate when a tool changes; this is too slow for a per-commit gate and does not belong in one, the same call T-1302 made for writer_inventory.json. WHAT THIS DOES NOT PROVE: it is one tree state, so a CONDITIONAL writer is invisible to it — ticket.mjs check writes nothing on a consistent tree and REPAIRS tickets.json on a stale one, and measures clean here purely because the mirror was current when this ran (T-1341). So this file says no tool wrote on the tree it was measured on, which is weaker than saying no tool writes, and the difference is the conditional case.",
   "measured": "2026-09-21",
   "gate_verdict": "CHECK FAIL",
-  "declared_steps": 600,
+  "declared_steps": 604,
   "exempt": {
     "site/": {
       "reason": "THE PUBLISHED MIRROR, AND THE GATE'S OWN FIRST STEP REGENERATES IT WHOLESALE. site/chicago/4d/ is generated (T-0938) and check.sh opens by running publish.sh over it; the single check_flush barrier T-1289 added sits directly after that step, with the comment 'everything below reads the mirror the step above writes'. So these writes are ordered rather than racing, and they are the one mutation this gate is built around instead of against. A write anywhere OUTSIDE site/ is not covered by this."
@@ -2177,7 +2177,7 @@
       ],
       "wrote_by": [
         "- ../../site/chicago/4d/data/residents",
-        "- ../../site/chicago/4d/walk/index.html build 33b7d31b8 · Sep 21, 2026, 6:51 AM CT"
+        "- ../../site/chicago/4d/walk/index.html build 8d5c95039 · Sep 21, 2026, 11:31 AM CT"
       ]
     },
     "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-dev-preview.mjs": {
@@ -2186,52 +2186,76 @@
     "/home/runner/work/polecat-platform/polecat-platform/custom-repo/.github/chicago-4d-url-check.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-4pkZqf/gh.mjs": {
+    "/tmp/prstuck-0SJA1j/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-68L0iB/gh.mjs": {
+    "/tmp/prstuck-4Q5iLi/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-6H3dj4/gh.mjs": {
+    "/tmp/prstuck-4WtZkH/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-8Qvobh/gh.mjs": {
+    "/tmp/prstuck-5dJiP3/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-9t94UI/gh.mjs": {
+    "/tmp/prstuck-9RVYk5/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-BJ3Oaa/gh.mjs": {
+    "/tmp/prstuck-AqJDy7/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-GHdX0w/gh.mjs": {
+    "/tmp/prstuck-DUYAiD/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-Mwy0I2/gh.mjs": {
+    "/tmp/prstuck-IC9ag9/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-TZTxdu/gh.mjs": {
+    "/tmp/prstuck-JmGj58/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-bdNd6p/gh.mjs": {
+    "/tmp/prstuck-K3K0gE/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-gBQWzL/gh.mjs": {
+    "/tmp/prstuck-POXImG/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-gqR249/gh.mjs": {
+    "/tmp/prstuck-Q2Jpyn/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-o1v2xP/gh.mjs": {
+    "/tmp/prstuck-QB1j1v/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-tfCBP8/gh.mjs": {
+    "/tmp/prstuck-TiCH6U/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-uDHP5Q/gh.mjs": {
+    "/tmp/prstuck-ZdPiov/gh.mjs": {
       "wrote": []
     },
-    "/tmp/prstuck-wSw9B6/gh.mjs": {
+    "/tmp/prstuck-ZijKcP/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-dxq7YU/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-gTY79T/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-gj2xcO/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-k5YbFZ/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-m7L3DS/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-sMZDsv/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-tIrkhl/gh.mjs": {
+      "wrote": []
+    },
+    "/tmp/prstuck-tSVary/gh.mjs": {
       "wrote": []
     },
     "generators/ao_export.py": {
@@ -2604,6 +2628,9 @@
       "wrote": []
     },
     "tools/measure_block_gating.py": {
+      "wrote": []
+    },
+    "tools/measure_block_redeal_remedies.py": {
       "wrote": []
     },
     "tools/measure_canal_control_spread.py": {
