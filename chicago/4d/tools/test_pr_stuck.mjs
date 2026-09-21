@@ -398,6 +398,31 @@ const redGated = (over = {}) => ({
         r.acted.split('\n').filter((l) => l && !/^(ensure-label|label|comment|unlabel)/.test(l)).join(' | '));
 }
 
+/* 12b-ii. …AND WHEN THE FAILING STEP IS ONE `preflight.sh` ALREADY ASKS, it says so.
+ *         The changelog-entry question is asked only on the `pull_request` event,
+ *         where a base ref exists, and is out of tools/check.sh on purpose — the
+ *         bake regenerates data/ and correctly ships no entry (T-0409). So a run
+ *         that runs the gate alone CANNOT find it, which is why #1049 sat red for
+ *         2h19m and six more PRs did on 2026-09-21. Naming the rehearsal is the
+ *         only enforcement a reporter that writes nothing can offer. */
+{
+  const r = run({ prs: [redGated()] });
+  check('a changelog-entry failure names the rehearsal that would have caught it',
+        /preflight\.sh/.test(r.acted), 'the run could have found this in seconds');
+  check('…and says why running the gate alone could not',
+        /out of `check\.sh` on\\npurpose/.test(r.acted) || /bake regenerates/.test(r.acted));
+}
+
+/* 12b-iii. …and it does NOT say it for a failure preflight does not ask about.
+ *          A rehearsal named for every red is advice that stops being read. */
+{
+  const r = run({ prs: [redGated({ gate: { status: 'completed', conclusion: 'failure',
+                                           steps: ['Run the gate'] } })] });
+  check('a failure preflight does not rehearse is not told to run preflight',
+        !/preflight\.sh/.test(r.acted), 'advice given for everything is advice for nothing');
+  check('…and the step is still named', /Run the gate/.test(r.acted));
+}
+
 /* 12c. A GATE STILL RUNNING IS NOT A RED ONE. `blocked` is what a PR reads while
  *      its gate runs, and that is the gate's business — reporting it would shout
  *      at every PR in the queue within a minute of every push. */

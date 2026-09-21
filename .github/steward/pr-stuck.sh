@@ -390,6 +390,25 @@ while IFS=$'\t' read -r N BR SHA LABELS; do
       STEPS=$(failing_steps "$GATE_URL")
       if [ -n "$STEPS" ]; then
         printf 'The step(s) that failed:\n\n%s\n\n' "$STEPS"
+        # A STEP `preflight.sh` ALREADY ASKS is worth naming, because the run that
+        # opened this PR could have found it in seconds and did not. The changelog-
+        # entry question is asked ONLY on the `pull_request` event, where a base ref
+        # exists, and is deliberately out of tools/check.sh — the nightly bake
+        # regenerates data/ and correctly ships no entry, so a gate inside check.sh
+        # would fail every bake (T-0409). Out of check.sh is not out of reach:
+        # tools/preflight.sh asks it against the merge base, which is the same pair
+        # of shas the workflow passes. AGENTS.md has required it before opening a PR
+        # since 2026-09-10 and PR #1049 sat red for 2h19m on the one-line trailer it
+        # would have caught. Six more did on 2026-09-21. A rule with no enforcement
+        # is the fault check-changelog-entry.mjs was written to end, arriving one
+        # level up.
+        if printf '%s' "$STEPS" | grep -q 'carry a changelog entry'; then
+          printf '`./tools/preflight.sh` asks that question BEFORE the PR is opened, against the\n'
+          printf 'merge base and with the same shas the workflow uses. It is out of `check.sh` on\n'
+          printf 'purpose — the bake regenerates `data/` and correctly ships no entry — which is\n'
+          printf 'why running the gate alone cannot find it. AGENTS.md has required preflight\n'
+          printf 'before a PR is opened since 2026-09-10.\n\n'
+        fi
       else
         printf 'The failing step could not be read from the job; open the gate run from the\n'
         printf 'Checks tab.\n\n'
