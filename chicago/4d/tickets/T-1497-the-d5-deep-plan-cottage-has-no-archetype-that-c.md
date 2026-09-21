@@ -1,7 +1,7 @@
 ---
 id: T-1497
 title: The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-20
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-21
+pr: 1632
+claimed_by: run 9/21/2026, 10:13:03 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T16:25:34.959Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35616096832
 ---
 
 The crosswalk has been asking for this in writing. `D5 — Deep-plan frame cottage` carries:

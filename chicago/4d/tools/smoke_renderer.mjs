@@ -2083,176 +2083,23 @@ for (const [label, viewport, touch] of [
       `antialias=${multisample.asked} SAMPLES=${multisample.samples} `
       + `pointer:coarse=${multisample.coarse}`);
 
-    // --- the gate counts the town (T-0036) --------------------------------
-    // The owner asked for the number of buildings and the number of people
-    // living in them on the FRONT screen. The assertion that matters is not
-    // "a row appeared" — it is that the row's NUMERALS are the committed
-    // data's, read back out of the rendered DOM and compared against the JSON
-    // the page fetched. A gate screen quoting a stale count is the failure this
-    // is here to catch, and it is invisible to every other check in this file.
-    //
-    // The gate is still open at this point in the run (the walk tests click
-    // through it much later), which is the only moment the row is on screen.
-    //
-    // T-0491. THE ROW COUNT IS NOT HARDCODED, and it was: this read `shown.length === 2`
-    // and T-0490 added a third row — the evidence population, out of the residents
-    // manifest — so the assertion failed on `dev` from 2 September without a word about
-    // the row it had not been told about. A test that names how many figures there are
-    // rots the next time the row is right; one that reads the same files the page read
-    // and compares figure for figure cannot. The residents manifest is fetched here
-    // rather than taken off the harness handle because `census.js` reads it directly and
-    // nothing puts it on `window`.
-    //
-    // T-0782 rebuilt the card as TWO rows — buildings, then people — and demoted `people
-    // housed` from a headline figure to a placement note under the people row, because
-    // set against the town total it read as population coverage and is nothing of the
-    // kind. So the headline figures are now the two numerators, and the housed count is
-    // asserted where it moved to rather than dropped: it is the number this whole check
-    // exists to keep honest. The two strings the owner asked be struck are asserted
-    // ABSENT, because either of them coming back is a silent regression of the reading.
-    const gateCensus = await page.evaluate(() => {
-      const host = document.getElementById('gate-census');
-      const visible = !!host && !host.hasAttribute('hidden');
-      const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
-      const seg = (sel) => [...(host?.querySelectorAll(sel) || [])].map((el) => el.style.width);
+    // T-1292: the loader is an arrival screen, not a coverage dashboard. The census
+    // mount no longer exists there, and no count, percentage or completeness bar may
+    // return to either the loading or ready state.
+    const loaderSummary = await page.evaluate(() => {
+      const gate = document.getElementById('gate');
       return {
-        visible,
-        figures,
-        text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
-        aria: host ? (host.getAttribute('aria-label') || '') : '',
-        note: host ? [...host.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()) : [],
-        bars: host ? host.querySelectorAll('.gc-bar').length : 0,
-        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
-        keys: host ? [...host.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()) : [],
-        gateSub: (document.getElementById('gate-sub')?.textContent || '').trim(),
-        box: host ? host.getBoundingClientRect().width : 0,
-        data: window.__chicago4d.census,
+        censusMount: !!gate?.querySelector('.city-census'),
+        censusLoaded: window.__chicago4d.census !== null,
+        figures: gate?.querySelectorAll('.gc-n').length ?? 0,
+        bars: gate?.querySelectorAll('.gc-bar').length ?? 0,
+        text: gate?.textContent.replace(/\s+/g, ' ').trim() ?? '',
       };
     });
-    // T-1365: BOTH ENDS OF THE PEOPLE ROW ARE THE SCENE POPULATION. The row used to
-    // read every card in the residents index against the November 1835 town census —
-    // two different populations, one of which `town_census.json` forbids reading as the
-    // scene's, in a sentence that said "who lived here". The figures now come out of
-    // `people.scene`, which counts the residents the layer records present on 1 July
-    // against the town model's point for that day, and the cards the project holds are
-    // said one line down as cards. The residents index is still read, to assert what the
-    // card must NOT be showing.
-    //
-    // T-1386: THE HEADLINE IS THE POPULATION, AND THE STRICTER FIGURE IS KEPT BESIDE IT.
-    // `scene.persons` counts the people a record ESTABLISHES here on 1 July and is the
-    // strictest reading the layer supports; it left 827 people the project had already
-    // attested or inferred outside the town on an unadjudicated `uncertain`, which is not
-    // the town's population. Those are ruled in now, so the row's numerator is
-    // `scene.population.persons` and the established count moved to a note under the bar.
-    // Both are asserted, figure for figure, out of the same file the page fetched — and
-    // the established figure is asserted to be SMALLER than the population, because the
-    // day the two collapse into one number one of them has stopped being computed.
-    const scene = gateCensus.data?.people?.scene || null;
-    const population = scene?.population || null;
-    let residentCounts = null;
-    try {
-      residentCounts = JSON.parse(
-        fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
-      ).counts || null;
-    } catch { residentCounts = null; }
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing,
-      population ? population.persons : scene?.persons]
-      .filter((n) => Number.isFinite(Number(n))).map(Number);
-    check(`${label}: the gate shows the town census`,
-      gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
-      `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
-    check(`${label}: the gate's figures are the committed data's`,
-      want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
-      `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
-    // Each numerator carries a bar it is a portion of, and the people bar carries the
-    // three grades as segments of the town total — a key alone would let the bar rot.
-    const housed = Number(gateCensus.data?.people?.housed);
-    const byGrade = population?.by_grade || scene?.by_grade || {};
-    const gradeWant = ['attested', 'inferred', 'reconstructed']
-      .filter((g) => Number.isFinite(Number(byGrade[g])));
-    check(`${label}: both rows carry a completeness bar, the people bar graded`,
-      gateCensus.bars === want.length && gateCensus.grades.length === gradeWant.length
-      && gateCensus.keys.length === gradeWant.length
-      && gradeWant.every((g, i) => gateCensus.keys[i]
-        === `${grouped(Number(byGrade[g]))} ${g}`),
-      `bars=${gateCensus.bars} segments=${JSON.stringify(gateCensus.grades)} keys=${JSON.stringify(gateCensus.keys)}`);
-    // The placement figure survives as a note under the people row, in the committed
-    // data's own number, and never again as a share of the town.
-    check(`${label}: people housed reads as placement, under the people row`,
-      Number.isFinite(housed) && gateCensus.note.length === (population ? 3 : 2)
-      && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
-      && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
-      `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
-    // T-1386. The two measures the project needs, on the card at once: the population is
-    // the headline and the stricter established figure is the line under the bar, with the
-    // count ruled in beside it. Asserted as the committed data's own numbers AND as an
-    // inequality, because a population equal to the established count is the defect this
-    // ticket fixed coming back.
-    check(`${label}: the established figure survives under the population, and is smaller`,
-      !population || (Number.isFinite(Number(population.established))
-        && Number.isFinite(Number(population.ruled_in))
-        && Number(population.established) + Number(population.ruled_in)
-          === Number(population.persons)
-        && Number(population.established) < Number(population.persons)
-        && gateCensus.note[1]
-          === `${grouped(population.established)} of them are established here by a record `
-            + `dated across that day; ${grouped(population.ruled_in)} are ruled into the `
-            + 'town on their own evidence'
-        && gateCensus.aria.includes(`${grouped(population.ruled_in)} are ruled into the town`)),
-      `note=${JSON.stringify(gateCensus.note)} population=${JSON.stringify(population)}`);
-    // T-1365's second note: the cards the layer holds without establishing the person in
-    // the town that day. These were the people row's numerator and are now stated as
-    // what they are. The check is that the CARD COUNT is not the RESIDENT COUNT — if the
-    // two ever collapse back into one figure the defect has returned.
-    // T-1386 changed WHAT the residue is. It was 829 cards nobody had adjudicated; it is
-    // now the people a source places OUTSIDE the town, and two is the whole of it. The
-    // card still says how many cards the layer holds in all, still out of the residents
-    // manifest, and the sentence it says it in is asserted so the residue cannot silently
-    // go back to being a heap of unruled cards.
-    check(`${label}: the cards the layer holds are stated as cards, not as residents`,
-      Number.isFinite(Number(scene?.cards_total))
-      && Number(scene.cards_total) === Number(residentCounts?.persons)
-      && (population
-        ? (Number.isFinite(Number(population.absent_on_evidence))
-          && gateCensus.note[2]
-            === `${grouped(scene.cards_total)} cards are held in all; `
-              + `${grouped(population.absent_on_evidence)} name someone a source places `
-              + 'outside the town that day')
-        : (Number.isFinite(Number(scene?.cards_not_established))
-          && gateCensus.note[1]
-            === `${grouped(scene.cards_total)} cards are held in all; `
-              + `${grouped(scene.cards_not_established)} name someone not yet established `
-              + 'here on that day'))
-      && !gateCensus.text.includes('who lived here'),
-      `note=${JSON.stringify(gateCensus.note)} scene=${JSON.stringify(scene)}`);
-    // T-0782's two strikes, asserted as absences. `structures` was the ready line's
-    // record count, which contradicted the buildings figure below it.
-    check(`${label}: the card drops the projected count and the structures line`,
-      !/projected/i.test(gateCensus.text) && !/projected/i.test(gateCensus.aria)
-      && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
-      `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
-    // Neither figure is a total, and the row has to say so or it misleads: the
-    // buildings are counted against the programme's target and the people against the
-    // town model's point for the scene date, both quoted out of the same file. T-1365
-    // moved the second one off the November count, so the November count is asserted
-    // ABSENT from the card in the same breath — a bar filling toward 3,265 is the
-    // regression, and it is invisible to every other check here.
-    check(`${label}: the gate names both denominators`,
-      Number.isFinite(gateCensus.data?.buildings?.target)
-      && Number.isFinite(Number(scene?.target))
-      && gateCensus.text.includes(grouped(gateCensus.data.buildings.target))
-      && gateCensus.text.includes(`roughly ${grouped(scene.target)}`),
-      gateCensus.text);
-    check(`${label}: the people bar fills toward the scene's population, not November's`,
-      Number.isFinite(Number(scene?.target))
-      && Number.isFinite(Number(gateCensus.data?.people?.town_total))
-      && Number(scene.target) !== Number(gateCensus.data.people.town_total)
-      && !gateCensus.text.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`)
-      && !gateCensus.aria.includes(`roughly ${grouped(gateCensus.data.people.town_total)}`),
-      `target=${scene?.target} november=${gateCensus.data?.people?.town_total} card=${gateCensus.text}`);
-
+    check(`${label}: the loader carries no town census or coverage dashboard`,
+      !loaderSummary.censusMount && !loaderSummary.censusLoaded
+      && loaderSummary.figures === 0 && loaderSummary.bars === 0,
+      JSON.stringify(loaderSummary));
     // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
     // A bridge's local y = 0 is the design water surface, not the ground, so
     // the renderer must NOT sample the heightfield for it. Mid-channel the
@@ -12452,11 +12299,9 @@ for (const [label, viewport, touch] of [
       roofFirms.fromSign === true && /^The board hangs/.test(roofFirms.signLead),
       JSON.stringify({ fromSign: roofFirms.fromSign, signLead: roofFirms.signLead }));
 
-    // T-0710: the Evidence hub — nine tiles whose counts are their mounts'
-    // entries, a topic that searches, and a way back. The eighth is T-1160's
-    // population profile, whose "entries" are the axes it is profiled on; the
-    // ninth is T-1166's order book, whose entries are its five bucket families
-    // plus the programme deltas and the closing invariants.
+    // T-0710/T-1292: the Evidence hub — ten tiles whose counts are their mounts'
+    // entries, a topic that searches, and a way back. City is second and its two
+    // ladders are fetched only when this tab opens.
     await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
     await clickChrome('.panel-tab[data-tab="evidence"]');
     const hub = await page.evaluate(async () => {
@@ -12468,6 +12313,7 @@ for (const [label, viewport, touch] of [
       }
       const mountCount = (id) => (id === 'grades'
         ? document.querySelectorAll('.ev-topic[data-topic="grades"] .legend-list > li').length
+        : id === 'city' ? document.querySelectorAll('#city .gc-row').length
         // The mount's id is not always the topic's: the order book's topic is
         // `orderbook` and its mount is `#order-book`, so the count is taken from
         // the topic's own mount rather than from a guessed id.
@@ -12478,6 +12324,29 @@ for (const [label, viewport, touch] of [
           mount: mountCount(t.dataset.topic), title: t.querySelector('.ev-tile-title')?.textContent.trim(),
           h3: document.querySelector(`.ev-topic[data-topic="${t.dataset.topic}"] .ev-topic-title`)?.textContent.trim() })),
       };
+      api.evidenceHub.showTopic('city');
+      const city = document.getElementById('city');
+      const panelScroll = city.closest('.panel-scroll');
+      const seg = (sel) => [...city.querySelectorAll(sel)].map((el) => el.style.width);
+      out.city = {
+        visible: city.checkVisibility(),
+        figures: [...city.querySelectorAll('.gc-n')].map((el) => el.textContent),
+        text: city.textContent.replace(/\s+/g, ' ').trim(),
+        aria: city.getAttribute('aria-label') || '',
+        note: [...city.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()),
+        definitions: [...city.querySelectorAll('.gc-definition')].map((el) => el.textContent.trim()),
+        bars: city.querySelectorAll('.gc-bar').length,
+        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
+        keys: [...city.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()),
+        targetDate: city.querySelector('.city-meta time')?.getAttribute('datetime') || '',
+        derivedBy: city.querySelector('.city-meta code')?.textContent.trim() || '',
+        build: city.querySelector('.city-meta > div:last-child dd')?.textContent.trim() || '',
+        data: api.census,
+        oldMount: !!document.getElementById('gate-census'),
+        fits: city.scrollWidth <= city.clientWidth + 1,
+        scrollsInSheet: panelScroll?.id === 'panel-scroll',
+      };
+      document.getElementById('panel-back').click();
       api.evidenceHub.showTopic('liberties');
       const total = document.querySelectorAll('#liberties details.lib').length;
       const search = document.querySelector('.ev-topic[data-topic="liberties"] .ev-search');
@@ -12499,10 +12368,76 @@ for (const [label, viewport, touch] of [
         topic: api.evidenceHub.topic, backHidden: document.getElementById('panel-back').hasAttribute('hidden') };
       return out;
     });
-    check(`${label}: the Evidence hub shows nine topics, each counting its own entries`,
-      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 9
+    check(`${label}: the Evidence hub shows ten topics, each counting its own entries`,
+      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 10
+      && hub.tiles[0]?.id === 'grades' && hub.tiles[1]?.id === 'city'
       && hub.tiles.every((t) => Number.isFinite(t.count) && t.count > 0 && t.count === t.mount && t.title && t.title === t.h3),
       JSON.stringify(hub.tiles.map((t) => `${t.id} ${t.count}/${t.mount}`)));
+    const cityScene = hub.city.data?.people?.scene || null;
+    const cityPopulation = cityScene?.population || null;
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const cityShown = hub.city.figures.map((t) => Number(String(t).replace(/,/g, '')));
+    const cityWanted = [hub.city.data?.buildings?.standing,
+      cityPopulation ? cityPopulation.persons : cityScene?.persons]
+      .filter((n) => Number.isFinite(Number(n))).map(Number);
+    check(`${label}: Evidence → City shows the town census`,
+      hub.city.visible && !hub.city.oldMount && cityShown.length === cityWanted.length
+      && cityWanted.length === 2 && hub.city.definitions.length === cityWanted.length,
+      JSON.stringify({ shown: hub.city.figures, wanted: cityWanted, definitions: hub.city.definitions }));
+    check(`${label}: Evidence → City's figures are the committed data's`,
+      cityShown.length === cityWanted.length && cityShown.every((n, i) => n === cityWanted[i]),
+      `showed ${JSON.stringify(cityShown)}, data says ${JSON.stringify(cityWanted)}`);
+    const cityGrades = cityPopulation?.by_grade || cityScene?.by_grade || {};
+    const gradeWant = ['attested', 'inferred', 'reconstructed']
+      .filter((g) => Number.isFinite(Number(cityGrades[g])));
+    check(`${label}: both City ladders carry completeness bars and the people ladder's grade key`,
+      hub.city.bars === cityWanted.length && hub.city.grades.length === gradeWant.length
+      && hub.city.keys.length === gradeWant.length
+      && gradeWant.every((g, i) => hub.city.keys[i] === `${grouped(Number(cityGrades[g]))} ${g}`),
+      JSON.stringify({ bars: hub.city.bars, grades: hub.city.grades, keys: hub.city.keys }));
+    const housed = Number(hub.city.data?.people?.housed);
+    check(`${label}: people housed remains a placement note under the people ladder`,
+      Number.isFinite(housed) && hub.city.note[0]
+        === `${grouped(housed)} of them are placed in a building that stands`
+      && hub.city.aria.includes(`${grouped(housed)} of them are placed`),
+      JSON.stringify(hub.city.note));
+    let residentCounts = null;
+    try {
+      residentCounts = JSON.parse(
+        fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
+      ).counts || null;
+    } catch { residentCounts = null; }
+    check(`${label}: cards held remain stated as cards, not residents`,
+      Number(cityScene?.cards_total) === Number(residentCounts?.persons)
+      && (!cityPopulation || hub.city.note[2]
+        === `${grouped(cityScene.cards_total)} cards are held in all; `
+          + `${grouped(cityPopulation.absent_on_evidence)} name someone a source places `
+          + 'outside the town that day'),
+      JSON.stringify({ notes: hub.city.note, scene: cityScene, residentCounts }));
+    check(`${label}: the established and ruled-in population measures remain stated`,
+      !cityPopulation || (Number(cityPopulation.established) + Number(cityPopulation.ruled_in)
+        === Number(cityPopulation.persons)
+        && Number(cityPopulation.established) < Number(cityPopulation.persons)
+        && hub.city.note[1]?.includes(`${grouped(cityPopulation.ruled_in)} are ruled into the town`)),
+      JSON.stringify({ notes: hub.city.note, population: cityPopulation }));
+    check(`${label}: City names both denominators and never substitutes November's count`,
+      Number.isFinite(Number(hub.city.data?.buildings?.target))
+      && Number.isFinite(Number(cityScene?.target))
+      && hub.city.text.includes(grouped(hub.city.data.buildings.target))
+      && hub.city.text.includes(`roughly ${grouped(cityScene.target)}`)
+      && !hub.city.text.includes(`roughly ${grouped(hub.city.data?.people?.town_total)}`),
+      hub.city.text);
+    check(`${label}: City drops the projected count and structures line`,
+      !/projected/i.test(hub.city.text) && !/projected/i.test(hub.city.aria)
+      && !/structures?\b/i.test(hub.city.text),
+      hub.city.text);
+    check(`${label}: City identifies its date, derivation and published build`,
+      hub.city.targetDate === hub.city.data?.target_date
+      && hub.city.derivedBy === hub.city.data?.derived_by && /^build\s+\S+/.test(hub.city.build),
+      JSON.stringify({ date: hub.city.targetDate, derivedBy: hub.city.derivedBy, build: hub.city.build }));
+    check(`${label}: City fits a phone-width topic and scrolls inside the sheet`,
+      hub.city.fits && hub.city.scrollsInSheet,
+      JSON.stringify({ fits: hub.city.fits, scrollsInSheet: hub.city.scrollsInSheet }));
     check(`${label}: a topic opens with the hub gone, and its search narrows the list and says so`,
       hub.topic.hubHidden && hub.topic.libShown && hub.topic.topic === 'liberties'
       && hub.topic.title === 'What we made up' && hub.topic.backShown
