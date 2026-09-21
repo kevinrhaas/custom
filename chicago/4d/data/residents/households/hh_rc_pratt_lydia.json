@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_mrs_h_sherman",
-    "business_name": "Mrs. H. Sherman",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_pratt_lydia:employment",

@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_garrett",
-    "business_name": "A. Garrett",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_brady_hugh:employment",

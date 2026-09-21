@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
-    "business_name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
     "role": "shoemaker",
     "tier": "reconstructed",
     "seed": "rc_pratt_alanson:employment",

@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_the_chicago_academy",
-    "business_name": "the Chicago Academy",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_fairbanks_polly:employment",

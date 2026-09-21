@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_s_lincoln",
-    "business_name": "S. Lincoln",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_sawyer_almira:employment",

@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_clybourn_s_market_on_the_market_square",
-    "business_name": "A. Clybourn's market on the market square",
     "role": "butcher",
     "tier": "reconstructed",
     "seed": "rc_hastings_ezra:employment",

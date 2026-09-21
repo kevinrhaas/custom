@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_thomas_s_eels",
-    "business_name": "Thomas S. Eels",
     "role": "tailor",
     "tier": "reconstructed",
     "seed": "rc_wilcox_alanson:employment",

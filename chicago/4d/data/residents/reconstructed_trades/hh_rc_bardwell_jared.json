@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_the_boston_market",
-    "business_name": "The Boston Market",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_bardwell_jared:employment",

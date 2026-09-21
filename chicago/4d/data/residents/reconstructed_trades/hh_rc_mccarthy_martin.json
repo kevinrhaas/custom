@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_hubbard_co",
-    "business_name": "Hubbard & Co.",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_mccarthy_martin:employment",

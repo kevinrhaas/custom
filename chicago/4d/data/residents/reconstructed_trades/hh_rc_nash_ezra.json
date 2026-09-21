@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_dally_youngs",
-    "business_name": "Dally & Youngs",
     "role": "blacksmith",
     "tier": "reconstructed",
     "seed": "rc_nash_ezra:employment",

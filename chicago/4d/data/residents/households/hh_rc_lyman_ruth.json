@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_miss_bayne_s_boarding_and_day_school",
-    "business_name": "Miss Bayne's Boarding and Day School",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_lyman_ruth:employment",

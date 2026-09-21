@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_w_h_brown",
-    "business_name": "W. H. Brown",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_reilly_owen:employment",

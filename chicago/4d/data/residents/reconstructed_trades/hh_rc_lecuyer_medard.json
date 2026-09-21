@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_j_curtiss",
-    "business_name": "J. Curtiss",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_lecuyer_medard:employment",

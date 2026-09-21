@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_cooley_and_halsman",
-    "business_name": "Cooley and Halsman",
     "role": "tailor",
     "tier": "reconstructed",
     "seed": "rc_dufresne_michel:employment",

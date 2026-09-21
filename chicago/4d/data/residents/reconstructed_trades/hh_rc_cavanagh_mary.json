@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_e_wentworth",
-    "business_name": "E. Wentworth",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_cavanagh_mary:employment",

@@ -1290,7 +1290,10 @@ REFUSALS: dict[str, str] = {
     # whenever the business layer moves. The card's copy is for the LAYER — a card that
     # loses the join still says where its holder worked, and the four stages that derive
     # a directory whole now carry it through their rebuilds. `note` is the sixth key and
-    # is machinery here, as a note is everywhere in this census.
+    # is machinery here, as a note is everywhere in this census. There is no
+    # `business_name`: `tools/replace_invented_residents.py` reads the raw text of these
+    # cards as a name pool, and writing one there refused a documented tailor from its
+    # deal — `employment_block`'s own docstring carries the measurement.
     "residents/household:persons[].employment.business_id": (
         "The house this project POINTED a reconstructed trade-holder at, where no source "
         "names one. `residents.js` shows the seat already and shows it from "
@@ -1298,10 +1301,6 @@ REFUSALS: dict[str, str] = {
         "pointer is the conclusion of; reading the card's copy instead would put a "
         "second, thinner statement of the same claim in front of a visitor. The copy "
         "exists so the resident layer carries its own answer."
-    ),
-    "residents/household:persons[].employment.business_name": (
-        "The house's name beside its id, for a reader of the card with no business layer "
-        "open. Shown to a visitor from the join, for the reason above."
     ),
     "residents/household:persons[].employment.role": (
         "The staffing model's own term for the hand this person stands in as — clerk, "

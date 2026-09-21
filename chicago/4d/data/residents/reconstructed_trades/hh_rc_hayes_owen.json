@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_thos_emerson_co",
-    "business_name": "Thos. Emerson & Co.",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_hayes_owen:employment",

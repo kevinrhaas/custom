@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_john_h_kinzie",
-    "business_name": "John H. Kinzie",
     "role": "teamster",
     "tier": "reconstructed",
     "seed": "rc_gallagher_daniel:employment",

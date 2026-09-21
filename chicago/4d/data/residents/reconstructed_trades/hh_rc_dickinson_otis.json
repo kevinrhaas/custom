@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_chicago_bakery",
-    "business_name": "Chicago Bakery",
     "role": "baker",
     "tier": "reconstructed",
     "seed": "rc_dickinson_otis:employment",

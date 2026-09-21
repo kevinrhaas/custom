@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_uncertain_noble_wesencaft",
-    "business_name": "[uncertain: Noble & Wesencaft]",
     "role": "sawyer",
     "tier": "reconstructed",
     "seed": "rc_barnes_ira:employment",

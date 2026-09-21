@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_the_chicago_brewery",
-    "business_name": "the Chicago Brewery",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_stebbins_joseph:employment",

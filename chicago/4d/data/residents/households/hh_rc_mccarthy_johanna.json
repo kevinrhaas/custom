@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_j_a_marshall_s_dancing_school",
-    "business_name": "J. A. Marshall's dancing school",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_mccarthy_johanna:employment",

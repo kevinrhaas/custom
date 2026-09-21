@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_cooley_and_halsman",
-    "business_name": "Cooley and Halsman",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_flynn_margaret:employment",

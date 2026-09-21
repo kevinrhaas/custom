@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_ebenezer_s_more_attorney_at_law",
-    "business_name": "Ebenezer S. More, attorney at law",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_parmelee_seth:employment",

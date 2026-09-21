@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_john_s_kinzie_forwarding_and_commission_merchant",
-    "business_name": "John S. Kinzie, forwarding and commission merchant",
     "role": "teamster",
     "tier": "reconstructed",
     "seed": "rc_bardwell_otis:employment",

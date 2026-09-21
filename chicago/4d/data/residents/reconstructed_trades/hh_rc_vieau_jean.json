@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_e_w_haddock",
-    "business_name": "E. W. Haddock",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_vieau_jean:employment",

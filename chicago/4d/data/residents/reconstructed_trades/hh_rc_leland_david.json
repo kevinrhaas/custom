@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_b_jones_storage_and_forwarding",
-    "business_name": "B. Jones, storage and forwarding",
     "role": "teamster",
     "tier": "reconstructed",
     "seed": "rc_leland_david:employment",

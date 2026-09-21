@@ -93,7 +93,6 @@
    },
    "employment": {
     "business_id": "biz_peter_cohen",
-    "business_name": "Peter Cohen",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_fb_williams_samuel:employment",

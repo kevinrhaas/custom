@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_new_tailoring_establishment_chicago_june_1835",
-    "business_name": "a new tailoring establishment, Chicago, June 1835",
     "role": "tailor",
     "tier": "reconstructed",
     "seed": "rc_newell_rufus:employment",

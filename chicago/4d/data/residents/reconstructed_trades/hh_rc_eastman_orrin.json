@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_j_h_mulford",
-    "business_name": "J. H. Mulford",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_eastman_orrin:employment",

@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_montgomery_auction_and_commission_house",
-    "business_name": "Montgomery, auction and commission house",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_lynch_bryan:employment",

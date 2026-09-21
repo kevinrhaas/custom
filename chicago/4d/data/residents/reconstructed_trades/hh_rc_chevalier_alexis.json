@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_henry_moore_attorney_counsellor_at_law",
-    "business_name": "Henry Moore, Attorney & Counsellor at Law",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_chevalier_alexis:employment",

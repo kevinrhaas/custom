@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835",
-    "business_name": "a Chicago stove and hollow ware dealer, August 1835",
     "role": "tinsmith",
     "tier": "reconstructed",
     "seed": "rc_sheldon_william:employment",

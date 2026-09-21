@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_andrews_eells",
-    "business_name": "Andrews & Eells",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_parmelee_maria:employment",

@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_wm_hogue_co",
-    "business_name": "Wm. Hogue & Co.",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_bourassa_antoine:employment",

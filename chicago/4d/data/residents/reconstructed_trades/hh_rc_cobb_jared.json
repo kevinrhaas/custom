@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_david_carver",
-    "business_name": "David Carver",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_cobb_jared:employment",

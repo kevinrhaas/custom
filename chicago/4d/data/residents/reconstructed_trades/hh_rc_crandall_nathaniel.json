@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_the_new_blacksmith_shop_opposite_the_chicago_hotel",
-    "business_name": "the new blacksmith shop opposite the Chicago Hotel",
     "role": "blacksmith",
     "tier": "reconstructed",
     "seed": "rc_crandall_nathaniel:employment",

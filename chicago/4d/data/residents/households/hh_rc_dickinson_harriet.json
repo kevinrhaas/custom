@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_kercheval_hamilton",
-    "business_name": "Kercheval & Hamilton",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_dickinson_harriet:employment",

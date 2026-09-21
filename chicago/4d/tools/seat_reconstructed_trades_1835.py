@@ -128,6 +128,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -590,10 +591,24 @@ def employment_block(block: dict) -> dict:
     `chosen_by` and the model row's whole `basis` note move whenever the business layer
     moves, and a copy of them on 123 cards would be 123 more things to keep in step with
     no gate able to tell a stale copy from a re-derivation that has not run.
+
+    AND THE HOUSE'S NAME IS NOT HERE, WHICH IS A MEASURED REFUSAL RATHER THAN A CHOICE.
+    The block carried `business_name` when it was first written, and it took
+    `tools/replace_invented_residents.py --check` red on
+    `hh_inf_tailor_north_02`. That pass's `town_surnames()` reads EVERY capitalised word
+    out of the raw TEXT of every non-`hh_inf_` household card — prose included, and
+    deliberately, because "this project has already said something about that name" is
+    the guard it wants — and refuses a register candidate whose surname is in the set.
+    Writing "Thomas S. Eels" onto the 33 seated cards that stand in `households/` put
+    `eels` there, and the deal then refused the documented tailor Thomas S. Eels as
+    "already named in the town" and quietly stopped seating him on the roof the
+    settlement says he heads. A SEAT IS A POINTER AND `business_id` IS THE POINTER:
+    `biz_thomas_s_eels` carries no capitalised word, resolves to the name in one lookup,
+    and cannot go stale when a business record is renamed. Nothing that names a PERSON
+    belongs in this block.
     """
     return {
         "business_id": block["business_id"],
-        "business_name": block["business_name"],
         "role": block["role"],
         "tier": block["tier"],
         "seed": block["seed"],
@@ -1024,12 +1039,28 @@ def cmd_self_test() -> int:
     sample = next(iter(seats.values()), None)
     if sample is None:
         raise Fault("the self-test found no seat to inspect")
-    if set(sample) != {"business_id", "business_name", "role", "tier", "seed", "note"}:
+    if set(sample) != {"business_id", "role", "tier", "seed", "note"}:
         raise Fault("the card's employment block has changed shape and "
                     "tools/measure_layer_reads.py has not been told")
     if any(block["kind"] != "seated"
            for pid, block in seating["by_person"].items() if pid in seats):
         raise Fault("a stated absence reached a card; only the `seated` answer may")
+
+    # ELEVEN: NOT ONE CAPITALISED WORD IN A VALUE, which is the refusal
+    # `employment_block` records in its own docstring, asserted so it cannot be undone by
+    # somebody adding a name back for a reader's convenience.
+    # `tools/replace_invented_residents.py` harvests every `[A-Z][a-z]{2,}` word out of
+    # the raw text of these cards and refuses a register candidate whose surname is in
+    # the set, so a proper name written here retires a documented man from that deal
+    # silently. `note` is exempt: it is prose, it is read by the same harvest, and the
+    # one word it contributes — "Nobody" — is not a surname this corpus holds.
+    for key, value in sorted(sample.items()):
+        if key == "note" or not isinstance(value, str):
+            continue
+        if re.search(r"\b[A-Z][a-z]{2,}\b", value):
+            raise Fault(f"the card's employment block carries a capitalised word in "
+                        f"`{key}` — tools/replace_invented_residents.py reads these "
+                        "cards as a name pool and will refuse a documented man for it")
 
     # TEN: the writer and the carrier agree about the slot. They are two modules and one
     # convention, and the fixed slots exist precisely because two passes disagreeing
@@ -1039,7 +1070,7 @@ def cmd_self_test() -> int:
         raise Fault("tools/resident_mint_carry.py and this pass disagree about where "
                     "`employment` sits on a person")
 
-    print("OK: all ten assertions of the reconstructed seating fire when broken")
+    print("OK: all eleven assertions of the reconstructed seating fire when broken")
     return 0
 
 

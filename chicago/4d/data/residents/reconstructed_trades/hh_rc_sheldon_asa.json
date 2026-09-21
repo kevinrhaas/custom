@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_russell_clift",
-    "business_name": "Russell & Clift",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_sheldon_asa:employment",

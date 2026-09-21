@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_e_wentworth_s_public_house_on_flag_creek",
-    "business_name": "E. Wentworth's public house on Flag Creek",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_chapin_anna:employment",

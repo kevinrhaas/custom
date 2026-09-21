@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_d_graves",
-    "business_name": "D. Graves",
     "role": "baker",
     "tier": "reconstructed",
     "seed": "rc_gilbert_samuel:employment",

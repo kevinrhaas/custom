@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_brown_painter",
-    "business_name": "Brown, painter",
     "role": "painter",
     "tier": "reconstructed",
     "seed": "rc_lyman_george:employment",

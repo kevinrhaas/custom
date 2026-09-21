@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_w_kimball_s_new_store",
-    "business_name": "W. Kimball's New Store",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_burke_bryan:employment",

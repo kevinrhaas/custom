@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_jones_king_co",
-    "business_name": "Jones, King & Co.",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_reilly_michael:employment",

@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_e_wentworth_s_tavern_on_flag_creek",
-    "business_name": "E. Wentworth's tavern on Flag Creek",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_barnes_susan:employment",

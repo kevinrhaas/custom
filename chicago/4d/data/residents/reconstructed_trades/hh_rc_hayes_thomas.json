@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_carpenter_chicago_merchant",
-    "business_name": "Carpenter, Chicago merchant",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_hayes_thomas:employment",

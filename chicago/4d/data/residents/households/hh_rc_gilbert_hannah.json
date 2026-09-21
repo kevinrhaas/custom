@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_elmira_fowler",
-    "business_name": "Elmira Fowler",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_gilbert_hannah:employment",

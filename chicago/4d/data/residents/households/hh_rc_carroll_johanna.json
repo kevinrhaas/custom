@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_samuel_lewis",
-    "business_name": "Samuel Lewis",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_carroll_johanna:employment",

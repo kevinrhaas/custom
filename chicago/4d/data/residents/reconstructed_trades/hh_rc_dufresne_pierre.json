@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_wm_h_taylor",
-    "business_name": "Wm. H. Taylor",
     "role": "shoemaker",
     "tier": "reconstructed",
     "seed": "rc_dufresne_pierre:employment",

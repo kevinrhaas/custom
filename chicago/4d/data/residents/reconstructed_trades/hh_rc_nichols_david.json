@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
-    "business_name": "[unsigned] Boot, Shoe & Leather Store, two doors north of Lake street",
     "role": "shoemaker",
     "tier": "reconstructed",
     "seed": "rc_nichols_david:employment",

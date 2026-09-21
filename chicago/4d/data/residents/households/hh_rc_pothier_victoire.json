@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_john_watkins",
-    "business_name": "John Watkins",
     "role": "schoolteacher",
     "tier": "reconstructed",
     "seed": "rc_pothier_victoire:employment",

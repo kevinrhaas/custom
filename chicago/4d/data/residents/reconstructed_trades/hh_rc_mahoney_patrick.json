@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_garrett",
-    "business_name": "A. Garrett",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_mahoney_patrick:employment",

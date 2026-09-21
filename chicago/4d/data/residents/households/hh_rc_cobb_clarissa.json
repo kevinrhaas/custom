@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_eagle_tavern",
-    "business_name": "Eagle Tavern",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_cobb_clarissa:employment",

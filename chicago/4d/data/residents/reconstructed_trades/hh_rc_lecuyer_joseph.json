@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_pierce_french",
-    "business_name": "Pierce & French",
     "role": "blacksmith",
     "tier": "reconstructed",
     "seed": "rc_lecuyer_joseph:employment",

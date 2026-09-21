@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_ingersoll_s_tavern_stand",
-    "business_name": "Ingersoll's tavern stand",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_connor_johanna:employment",

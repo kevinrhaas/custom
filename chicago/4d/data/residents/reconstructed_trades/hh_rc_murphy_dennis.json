@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_wholesale_wine_and_liquor_store_dearborn_street",
-    "business_name": "a wholesale wine and liquor store, Dearborn Street",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_murphy_dennis:employment",

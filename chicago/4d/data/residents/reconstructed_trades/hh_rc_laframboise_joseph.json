@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_dr_w_g_austin",
-    "business_name": "Dr. W. G. Austin",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_laframboise_joseph:employment",

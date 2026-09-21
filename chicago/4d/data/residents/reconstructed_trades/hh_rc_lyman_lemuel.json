@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_matthias_mason_co",
-    "business_name": "Matthias Mason & Co.",
     "role": "blacksmith",
     "tier": "reconstructed",
     "seed": "rc_lyman_lemuel:employment",

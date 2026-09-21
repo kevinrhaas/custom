@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_philo_carpenter",
-    "business_name": "Philo Carpenter",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_dickinson_orrin:employment",

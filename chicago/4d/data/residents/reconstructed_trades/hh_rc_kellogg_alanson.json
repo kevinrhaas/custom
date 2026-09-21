@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_the_dearborn_street_auction_and_commission_rooms",
-    "business_name": "the Dearborn Street auction and commission rooms",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_kellogg_alanson:employment",

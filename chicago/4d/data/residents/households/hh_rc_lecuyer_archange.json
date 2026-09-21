@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_george_holsman",
-    "business_name": "George Holsman",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_lecuyer_archange:employment",

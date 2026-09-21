@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_andrews_eells",
-    "business_name": "Andrews & Eells",
     "role": "tailor",
     "tier": "reconstructed",
     "seed": "rc_fisk_luther:employment",

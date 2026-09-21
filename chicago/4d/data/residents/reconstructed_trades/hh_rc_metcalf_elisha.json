@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_dr_j_h_barnard",
-    "business_name": "Dr. J. H. Barnard",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_metcalf_elisha:employment",

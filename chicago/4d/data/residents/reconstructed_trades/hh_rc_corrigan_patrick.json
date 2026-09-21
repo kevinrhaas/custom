@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_p_pruyne_co",
-    "business_name": "P. Pruyne & Co.",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_corrigan_patrick:employment",

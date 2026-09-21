@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_magie_wilkinson",
-    "business_name": "Magie & Wilkinson",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_rice_levi:employment",

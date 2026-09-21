@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_w_montgomery",
-    "business_name": "W. Montgomery",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_walsh_dennis:employment",

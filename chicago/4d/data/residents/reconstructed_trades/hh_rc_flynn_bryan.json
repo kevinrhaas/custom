@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_chicago_bakery",
-    "business_name": "Chicago Bakery",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_flynn_bryan:employment",

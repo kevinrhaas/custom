@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_d_graves",
-    "business_name": "D. Graves",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_pratt_alvah:employment",

@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_sarah_d_howe",
-    "business_name": "Sarah D. Howe",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_stiles_esther:employment",

@@ -251,9 +251,6 @@
     "residents/household:persons[].employment.business_id": {
       "records": 33
     },
-    "residents/household:persons[].employment.business_name": {
-      "records": 33
-    },
     "residents/household:persons[].employment.role": {
       "records": 33
     },

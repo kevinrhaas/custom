@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_a_garrett_auctioneer",
-    "business_name": "A. Garrett, auctioneer",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_nichols_george:employment",

@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_p_s_carli_eagle_tavern",
-    "business_name": "P. S. Carli, Eagle Tavern",
     "role": "harness_maker",
     "tier": "reconstructed",
     "seed": "rc_fitzgerald_owen:employment",

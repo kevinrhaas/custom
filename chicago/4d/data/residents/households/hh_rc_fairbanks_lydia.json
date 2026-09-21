@@ -135,7 +135,6 @@
    },
    "employment": {
     "business_id": "biz_mrs_herman",
-    "business_name": "[Mrs.] Herman",
     "role": "dressmaker",
     "tier": "reconstructed",
     "seed": "rc_fairbanks_lydia:employment",

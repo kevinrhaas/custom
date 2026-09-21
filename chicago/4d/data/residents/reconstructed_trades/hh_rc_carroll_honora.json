@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_the_traveller_s_home",
-    "business_name": "the Traveller's Home",
     "role": "domestic",
     "tier": "reconstructed",
     "seed": "rc_carroll_honora:employment",

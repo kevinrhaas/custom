@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_john_bates_jr",
-    "business_name": "John Bates, Jr.",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_flynn_owen:employment",

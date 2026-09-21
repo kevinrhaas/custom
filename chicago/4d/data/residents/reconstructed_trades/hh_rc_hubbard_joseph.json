@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_w_montgomery_auction_and_commission_house",
-    "business_name": "W. Montgomery, Auction and Commission House",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_hubbard_joseph:employment",

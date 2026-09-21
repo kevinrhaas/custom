@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_j_bates_jr_auction_store",
-    "business_name": "J. Bates jr., Auction Store",
     "role": "clerk",
     "tier": "reconstructed",
     "seed": "rc_sullivan_james:employment",

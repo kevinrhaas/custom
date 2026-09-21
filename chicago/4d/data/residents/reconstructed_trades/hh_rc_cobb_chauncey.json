@@ -97,7 +97,6 @@
    },
    "employment": {
     "business_id": "biz_s_foot",
-    "business_name": "S. Foot",
     "role": "labourer",
     "tier": "reconstructed",
     "seed": "rc_cobb_chauncey:employment",
