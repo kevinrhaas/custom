@@ -66,6 +66,7 @@ from collections import Counter, OrderedDict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from resident_mint_carry import carry_seats  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
@@ -694,6 +695,14 @@ def fill(base: dict) -> tuple:
         "fills": dict(sorted(fills.items())),
         "buckets_left_short": {k: v for k, v in sorted(left.items()) if v > 0},
     }
+    # T-1489. THE SEAT ANOTHER PASS DREW FOR THESE PEOPLE, CARRIED THROUGH THE REBUILD.
+    # This stage's cards stand in `households/` and 33 of the 123 seats
+    # `tools/seat_reconstructed_trades_1835.py` draws land on them. `owned_view` compares
+    # `persons` whole, so without this the key that pass writes would read as drift here
+    # and be deleted by the next --build. Same fixed-slot carry the four mints of this
+    # directory already use for `workplaces`; what the block may CONTAIN is that pass's
+    # --check to decide, never this one's.
+    carry_seats(made, HOUSEHOLDS)
     return made, ledger
 
 
