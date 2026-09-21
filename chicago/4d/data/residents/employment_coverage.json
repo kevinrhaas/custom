@@ -80,12 +80,12 @@
     "at_work_is_not_placed": "`at_a_trade_with_no_house_to_join` is in neither set and that is the point of it. Those people follow a trade; what is missing is a house in the business layer to join them to. Counting them as unemployed would be false and counting them as placed would be an invention."
   },
   "counts": {
-    "people": 3220,
+    "people": 3217,
     "by_status": {
       "at_a_named_house": 112,
       "at_a_seat_this_project_drew": 123,
       "at_a_trade_with_no_house_to_join": 266,
-      "no_trade_recorded": 2512,
+      "no_trade_recorded": 2509,
       "on_their_own_account": 207
     },
     "by_reason": {
@@ -94,12 +94,12 @@
       "named_by_a_source": 112,
       "no_employer_named": 162,
       "no_ruling_on_the_trade": 5,
-      "no_trade_recorded": 2512,
+      "no_trade_recorded": 2509,
       "seated_by_the_staffing_model": 123,
       "trade_attested_no_house_named": 28
     },
     "by_age_scope": {
-      "age_is_not_settled": 603,
+      "age_is_not_settled": 600,
       "below_working_age": 479,
       "working_age": 2138
     },
@@ -107,7 +107,7 @@
       "age_is_not_settled": {
         "at_a_seat_this_project_drew": 2,
         "at_a_trade_with_no_house_to_join": 20,
-        "no_trade_recorded": 581
+        "no_trade_recorded": 578
       },
       "below_working_age": {
         "no_trade_recorded": 479
@@ -144,7 +144,7 @@
   },
   "what_this_does_not_do": {
     "the_business_side_is_T-1462s": "Nothing is written onto a business record here. `staff[]` stays as the register left it, and the order book's employment buckets stay unfilled until T-1459's re-cut lets the mint run.",
-    "it_supplies_no_trade": "2512 people carry no trade and leave here carrying none. Reading one in from the household would be the reconstruction doing by inference what its own stages do under a quota.",
+    "it_supplies_no_trade": "2509 people carry no trade and leave here carrying none. Reading one in from the household would be the reconstruction doing by inference what its own stages do under a quota.",
     "it_re_decides_nothing": "Every answer is already implied by a committed file. T-1432's join, T-1433's seating and premises_rulings.json each keep their own words; this pass only guarantees that one of them reaches every card."
   },
   "rows": [
@@ -2039,19 +2039,6 @@
       "record_folder": "households",
       "age_band": "20-29",
       "age_scope": "working_age",
-      "trade": null,
-      "trade_confidence": "reconstructed",
-      "status": "no_trade_recorded",
-      "reason": "no_trade_recorded",
-      "decided_by": "the card's occupation, which records none",
-      "houses": []
-    },
-    {
-      "person_id": "billy_caldwell",
-      "household_id": "hh_billy_caldwell",
-      "record_folder": "readmitted",
-      "age_band": null,
-      "age_scope": "age_is_not_settled",
       "trade": null,
       "trade_confidence": "reconstructed",
       "status": "no_trade_recorded",
@@ -10144,19 +10131,6 @@
     {
       "person_id": "john_t_kingston",
       "household_id": "hh_john_t_kingston",
-      "record_folder": "readmitted",
-      "age_band": null,
-      "age_scope": "age_is_not_settled",
-      "trade": null,
-      "trade_confidence": "reconstructed",
-      "status": "no_trade_recorded",
-      "reason": "no_trade_recorded",
-      "decided_by": "the card's occupation, which records none",
-      "houses": []
-    },
-    {
-      "person_id": "john_t_temple",
-      "household_id": "hh_john_t_temple",
       "record_folder": "readmitted",
       "age_band": null,
       "age_scope": "age_is_not_settled",
@@ -41915,19 +41889,6 @@
       "record_folder": "households",
       "age_band": "20-29",
       "age_scope": "working_age",
-      "trade": null,
-      "trade_confidence": "reconstructed",
-      "status": "no_trade_recorded",
-      "reason": "no_trade_recorded",
-      "decided_by": "the card's occupation, which records none",
-      "houses": []
-    },
-    {
-      "person_id": "william_b_egan",
-      "household_id": "hh_william_b_egan",
-      "record_folder": "readmitted",
-      "age_band": null,
-      "age_scope": "age_is_not_settled",
       "trade": null,
       "trade_confidence": "reconstructed",
       "status": "no_trade_recorded",

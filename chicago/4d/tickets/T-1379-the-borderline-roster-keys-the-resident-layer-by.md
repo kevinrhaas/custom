@@ -1,7 +1,7 @@
 ---
 id: T-1379
 title: The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-21
+pr: 1613
+claimed_by: run 9/21/2026, 1:46:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T07:36:05.962Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35569613071
 ---
 
 The borderline roster keys the resident layer by the name a source prints, so a read name a crosswalk merged into a differently-spelt card is offered for re-admission beside the card that already holds the person.

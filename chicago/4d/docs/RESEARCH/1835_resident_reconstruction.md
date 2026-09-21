@@ -191,7 +191,7 @@ turned out not to be in the register at all: `### L-rc-sex-rate` and
 | `attribute_fill_arrival` | attribute blocks | — | — | **L243** |
 | `named_families` | persons | 3 | 2 | **L242** |
 | `modelled_families` | persons | 296 | 84 | **L244** |
-| `readmissions` | persons | 182 | 182 | **L246** |
+| `readmissions` | persons | 179 | 179 | **L246** |
 | `trade_households` | persons | 308 | 308 | **L248** |
 | `women_and_children` | persons | 556 | 124 | **L247** |
 | `lodgers` | persons | 56 | 13 | **L252** |
