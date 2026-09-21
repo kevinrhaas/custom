@@ -1,7 +1,7 @@
 ---
 id: T-1476
 title: A household record and a household in the town model are not the same unit: the layer holds 1,391 records where the model wants 643 houses, because 814 of the 820 rulings are one person and 424 of those are one name off a letter list
-state: blocked-owner
+state: open
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-09-20
 closed: null
 pr: null
 claimed_by: null
-blocked_on: Is a one-person letter-list record a household in the model's sense, or a person still awaiting one? The layer holds 1,391 records against a model of 643 houses, and the book's household quota reads 0 owed until this is ruled.
+blocked_on: null
 needs_bake: false
 closed_at: null
 claimed_run: null
@@ -68,3 +68,27 @@ quota means something again. Nothing is re-graded and no record is deleted to re
 **Links:** T-1463 (found it, and carries the measurement in the book's
 `what_the_re_cut_found`) · T-1386 (the rulings) · T-1166 (owns the book) · T-1171 ·
 T-1175 · T-1179.
+
+## THE OWNER'S RULING, 2026-09-21: a one-person letter-list record is a PERSON AWAITING A HOUSEHOLD
+
+A name on a post-office letter list is evidence that a man was at Chicago. It is not
+evidence that he kept a house. The 814 one-person records are people the model has still
+to seat, not houses the model has failed to count.
+
+So 1,391 against 643 is a BACKLOG, not a contradiction, and that is the whole of what this
+ruling changes. The book's household quota stops reading `0 owed` — which was never true
+and was the symptom that raised this — and starts reading what the town actually still owes
+once the one-person records are held out of the count of houses.
+
+WHAT THIS DOES NOT DO, stated because the opposite reading is the tempting one: it does not
+retire a single record, and it does not downgrade anybody. Every one of the 814 stays
+exactly as it is, with its evidence and its grade. What changes is which QUESTION the
+record answers — it answers 'was this man here', and it does not answer 'how many houses
+stood in this town'. A record may hold both answers later, when something seats him.
+
+THE TEST IS THE EVIDENCE, NOT THE HEAD COUNT. A one-person record is not held out because
+it has one person in it — a man may well have lived alone. It is held out where its whole
+evidence is a name on a list that says nothing about a dwelling. A one-person record that
+carries a street, a tax line, a trade with a premises or any other reading about where he
+WAS is a household, and the run must say which of the 814 those are rather than assuming
+the count is the criterion.
