@@ -42,12 +42,15 @@ at all, and the largest of them is the most misleading:
     with the programme here is the programme agreeing with itself. A tautology is
     not corroboration and this record says so rather than banking it.
 
-  * `inns_and_taverns` (delta 6) compares a ROOF COUNT against a NOTICE COUNT.
-    The town's structure layer holds exactly as many standing public houses as
-    the programme schedules; the register's larger figure counts advertisements,
-    several of which repeat one house, and no committed file folds them. Folding
-    them is an identity ruling and this tool refuses to make one -- the delta is
-    owed out, not acted on.
+  * `inns_and_taverns` was a delta of 6 and is a delta of 2, BECAUSE THE FOLD RAN
+    (T-1471, 2026-09-21). It compares a ROOF COUNT against a NOTICE COUNT, and
+    the notice count was counting one house four times: five settings of E.
+    Wentworth's standing Flag Creek advertisement had raised four businesses, and
+    three settings of the Eagle Tavern's chair-and-harness notice had raised two.
+    trade_class_rulings.json now folds them, so the register's 15 scene-date
+    tavern records are 11 HOUSES. The identity ruling this tool refused to make
+    has been made elsewhere, on the records, with its sources; what is left is
+    still owed out and still not acted on -- see `deltas_owed_out`.
 
 THE ONE THING THIS TOOL OWNS AND WRITES. The family-archetype crosswalk's COUNT
 fields -- `target_roofs`, `remaining_roofs`, `priority_rank`, `priority_band` and
@@ -115,6 +118,12 @@ def load(root: Path = ROOT) -> dict:
         "lodging": root / "data" / "reconstruction" / "1835_lodging_model.json",
         "crosswalk": root / "data" / "reconstruction" / "1835_family_archetype_crosswalk.json",
         "composition": root / "data" / "research" / "census_1840" / "composition_1840.json",
+        # THE FOLD LIVES HERE, NOT IN THIS TOOL (T-1471). The identity ruling that
+        # turns tavern NOTICES into tavern HOUSES is made in
+        # trade_class_rulings.json and taken by tools/trade_census_1835.py; this
+        # file reads the folded count so the inns_taverns row can say how much of
+        # its old delta was one house advertising twice.
+        "trade_census": root / "data" / "research" / "books" / "trade_census_1835_crosswalk.json",
     }
     out = {}
     for key, path in paths.items():
@@ -289,6 +298,10 @@ def group_rows(data: dict) -> list[dict]:
 
     households = int(book["totals"]["households_target"])
     standing_inns = sum(1 for p in data["lodging"]["places"] if p["class"] == "inn_tavern")
+    tavern_row = next(c for c in data["trade_census"]["classes"] if c["class"] == "tavern")
+    tavern_folded = len(tavern_row["folded_business_ids"])
+    tavern_houses = int(tavern_row["town_records_at_scene_date"])
+    tavern_notices = tavern_houses + tavern_folded
     trade_roofs = spec["stores_mixed_use"] + spec["workshops"] + spec["warehouses_freight"]
 
     def row(group, model_says, model_figure, unit, adopted, why):
@@ -325,12 +338,18 @@ def group_rows(data: dict) -> list[dict]:
             "lodging_and_institutions.inns_and_taverns",
             "roofs against printed notices",
             spec["inns_taverns"],
-            f"The structure layer holds {standing_inns} standing public houses and the "
-            f"programme schedules {spec['inns_taverns']}: in roofs the two already agree. The "
-            f"model's {int(inns['high'])} is the business register's count of RECORDS at the "
-            "scene date, which the trade-census crosswalk folds none of, and the register "
-            "counts notices where a roof count counts houses. Folding a notice into a house is "
-            "an identity ruling; this tool makes none and owes the delta out."),
+            f"THE FOLD RAN AND THE GROUP MEETS THE TOWN EXACTLY (T-1471). The model's "
+            f"{int(inns['high'])} is the business register's count of HOUSES at the scene "
+            f"date: {tavern_notices} records folded to {tavern_houses} by {tavern_folded} "
+            "one-house rulings in trade_class_rulings.json, which is where an identity ruling "
+            "belongs and this tool still makes none of its own. One of those "
+            f"{tavern_houses} is E. Wentworth's house on Flag Creek, eighteen miles south of "
+            "Chicago on the Ottawa road — all five of its printings say so — and a house "
+            f"outside the plat is no roof inside it. That leaves {tavern_houses - 1} public "
+            f"houses in the town against the {spec['inns_taverns']} this programme schedules: "
+            "the two figures MEET, and the group is left exactly as it is. The layer stands at "
+            f"{standing_inns} of those {spec['inns_taverns']}, which is the schedule's own "
+            "remaining build and not a disagreement about how many there should be."),
         row("institutional_public", int(institutional["low"]),
             "lodging_and_institutions.institutional_and_public_roofs",
             "roofs outside the fort against roofs outside the fort",
@@ -425,15 +444,47 @@ def dwellings_reconciliation(data: dict) -> dict:
 def owed_out(rows: list[dict], data: dict) -> list[dict]:
     """Deltas this re-derivation does not act on, and who owns each."""
     inns = next(r for r in rows if r["group"] == "inns_taverns")
+    tavern_row = next(c for c in data["trade_census"]["classes"] if c["class"] == "tavern")
+    folded = len(tavern_row["folded_business_ids"])
+    houses = int(tavern_row["town_records_at_scene_date"])
     return [
-        {"id": "inns_and_taverns", "owed_to": "T-1468",
-         "statement": f"The business register holds {inns['model']} tavern records at the "
-                      f"scene date and folds none of them, against "
-                      f"{inns['spec']} scheduled roofs and the same number standing. Whether "
-                      "those records are that many HOUSES is an identity question the business "
-                      "layer's reconciliation owns (T-1190's convergence is spent as of T-1442, "
-                      "2026-09-20, and T-1468 carries what it did not finish); if it folds them the roof programme needs no "
-                      "change, and if it does not, this group re-cuts against the folded count."},
+        {"id": "inns_and_taverns", "owed_to": None, "settled_by": "T-1471",
+         "statement": "THE IDENTITY QUESTION IS ANSWERED AND THE GROUP IS LEFT ALONE. It was "
+                      f"asked as: the register holds {houses + folded} tavern records at the "
+                      "scene date and folds none of them — are they that many HOUSES? They are "
+                      f"not. {folded} of them are re-settings of two standing advertisements, "
+                      "ruled one house apiece in trade_class_rulings.json with the printed copy "
+                      "beside each ruling. Five settings of E. Wentworth's Flag Creek notice — "
+                      "the same four sentences every time, signing themselves 'Dec. 17, 1833' "
+                      "a year after that date — had raised four businesses; three settings of "
+                      "the Eagle Tavern's chair-and-harness notice — signing themselves 'June "
+                      "11, 1834' and differing only in the keeper's middle initial — had raised "
+                      f"two. So {houses + folded} records are {houses} houses, and the delta "
+                      f"against {inns['spec']} scheduled roofs falls from "
+                      f"{houses + folded - inns['spec']} to {houses - inns['spec']}. "
+                      "AND THE LAST ONE IS NOT IN THE TOWN. E. Wentworth's house stood "
+                      "eighteen miles south of Chicago on the Ottawa road, which all five of "
+                      "its printings state and which no roof inside the plat can be. The "
+                      f"town's own figure is therefore {houses - 1} public houses against the "
+                      f"{inns['spec']} this programme schedules: they MEET, and there is "
+                      "nothing left to re-cut. "
+                      "THE REMAINDER RECONCILES TOO, which is the check on that. Six of the "
+                      "town's ten records already sit on a standing public house (Couch on the "
+                      "Tremont, Davis on the Steamboat, Murphy on the Exchange, Stow on the "
+                      "Western, Walters on Wolf Point, Ingersoll on the Green Tree). Three "
+                      "standing houses carry no register record at all — the Sauganash, the "
+                      "Mansion House and the New York House — and the schedule has one roof "
+                      f"still to raise ({inns['spec']} scheduled against the layer's nine "
+                      "standing). Three unlinked houses plus one unbuilt roof is four, and "
+                      "four is exactly the number of town records with no house yet: Beaubien, "
+                      "Sweet, the Eagle Tavern and the Traveller's Home. Linking a keeper to "
+                      "the house he kept is a person-to-house ruling and is not made here. "
+                      "WHAT IS STILL OPEN, and named rather than ruled: the register's 'Eagle "
+                      "Hotel' (Cable and Shrigley) and 'Eagle Tavern' (Carli) trade in the same "
+                      "months under the same bird. That pair sits in trade_class_rulings.json's "
+                      "`register_cautions` and cannot move this count either way — the Eagle "
+                      "Hotel is already excluded from the scene date as contradicted before "
+                      "it."},
         {"id": "institutional_and_public", "owed_to": "T-1196",
          "statement": "The false delta of ten is GONE (T-1439, 2026-09-21): "
                       "build_order_book_1835.programme_deltas now sums institutional_public "
@@ -586,7 +637,14 @@ def report_text(doc: dict) -> str:
                    f"{row['priority_band']} |")
     out += ["", "## Deltas this re-derivation does not act on", ""]
     for item in doc["deltas_owed_out"]:
-        out.append(f"**`{item['id']}`** → {item['owed_to']}. {item['statement']}")
+        # A DELTA CAN BE SETTLED RATHER THAN OWED (T-1471). It stays in this section
+        # because the section is "deltas this re-derivation does not act on", and a
+        # settled delta it still does not act on is exactly that; what changes is that
+        # nobody is carrying it any more, and the line has to say so or a reader will
+        # go looking for an owner who has already finished.
+        owner = (f"SETTLED by {item['settled_by']}" if item.get("settled_by")
+                 else str(item["owed_to"]))
+        out.append(f"**`{item['id']}`** → {owner}. {item['statement']}")
         out.append("")
     return "\n".join(out).rstrip() + "\n"
 

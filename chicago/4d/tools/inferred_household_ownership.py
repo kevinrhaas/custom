@@ -381,6 +381,57 @@ def check_replace_pass(seated: dict[str, dict]) -> list[str]:
         # half B: the ruling left him unplaced.
         for block in spec["withdrawn"]:
             drift += assert_shape(doc, block.get("assert_instead", {}), hid)
+    drift += check_refused_and_standing(seated, spec)
+    return drift
+
+
+def check_refused_and_standing(seated: dict[str, dict], spec: dict) -> list[str]:
+    """A roof this deal ONCE seated, refused today, and standing in the tree anyway.
+
+    T-1294. The deal seats four and once seated five. The fifth — J. W. Reed's
+    hh_inf_joiner_north_02 — is refused under refusal 5, `already named in the
+    town`, because six committed cards outside the hh_inf_ layer now speak that
+    surname, all of them written after the roof was. The household did not go
+    away with the deal that made it: the man's evidence is the poll books' and
+    the press's, not this pass's, so the record stands and is the resident
+    layer's. It read as OWNERLESS until this settled it, which is the whole of
+    T-1294.
+
+    Three things are asserted, because all three are ways the finding could
+    silently stop being true: the household is still there with that head; the
+    deal still does NOT reach it (if a refusal stops firing, the deal would seat
+    it and this settlement would be describing the wrong tree); and the cards
+    that fire the refusal have not all left. This gate does not assert the
+    head's grade or its placement — those are the synthesizer's, which is the
+    point of naming it the owner.
+    """
+    drift: list[str] = []
+    for row in spec.get("refused_and_standing", []):
+        hid = row["household"]
+        if hid in seated:
+            drift.append(f"{hid}: the deal seats it again — it is settled as refused "
+                         f"({row['refusal']}), so the settlement is out of date")
+        path = HOUSEHOLDS / f"{hid}.json"
+        if not path.exists():
+            drift.append(f"data/residents/households/{hid}.json is missing — a refused "
+                         f"roof this deal once seated may not be dropped to tidy a pass")
+            continue
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        head = next((p for p in doc.get("persons", [])
+                     if p.get("relationship") == "head"), {})
+        for field in ("id", "name"):
+            if head.get(field) != row[f"person_{field}"]:
+                drift.append(f"{hid}: the tree's head has {field} {head.get(field)!r}, "
+                             f"settled as {row[f'person_{field}']!r}")
+        speakers = [c for c in row.get("named_by", [])
+                    if (HOUSEHOLDS / f"{c}.json").exists()
+                    and re.search(rf"\b{re.escape(row['surname'])}\b",
+                                  (HOUSEHOLDS / f"{c}.json").read_text(encoding="utf-8"),
+                                  re.I)]
+        if not speakers:
+            drift.append(f"{hid}: no card named in the settlement still says "
+                         f"{row['surname']!r} — the refusal that took this roof out of "
+                         f"the deal may no longer stand, so the reading needs re-taking")
     return drift
 
 
@@ -405,6 +456,9 @@ def summary() -> str:
                          f"on {block['structure']}")
         for block in spec.get("no_longer_owns", []):
             lines.append(f"      no longer owns {block['what']} (now {block['to']})")
+        for block in spec.get("refused_and_standing", []):
+            lines.append(f"      {block['household']} is refused ({block['refusal']}) "
+                         f"and stands — owned by {block['owner']} ({block['settled_by']})")
     return "\n".join(lines)
 
 
@@ -444,8 +498,30 @@ def self_test() -> int:
     case("a retired household that stays retired is silent",
          not absent([HOUSEHOLDS / "hh_inf_carpenter_south_01.json"], "it was retired"))
 
+    # T-1294: the refused roof that stands anyway. Five ways it could quietly
+    # stop being true, and the gate has to speak for every one of them.
+    spec = settlement()["passes"]["tools/replace_invented_residents.py"]
+    row = spec["refused_and_standing"][0]
+    case("a refused roof that stands as settled is silent",
+         not check_refused_and_standing({}, spec))
+    case("a refused roof the deal seats again is reported",
+         check_refused_and_standing({row["household"]: {}}, spec))
+    case("a refused roof whose head has changed is reported",
+         check_refused_and_standing({}, {"refused_and_standing": [
+             dict(row, person_name="Somebody Else")]}))
+    case("a refused roof that has left the tree is reported",
+         check_refused_and_standing({}, {"refused_and_standing": [
+             dict(row, household="hh_inf_not_a_household")]}))
+    case("a refusal no card fires any more is reported",
+         check_refused_and_standing({}, {"refused_and_standing": [
+             dict(row, named_by=["hh_no_such_card"])]}))
+
     doc = settlement()
     case("the settlement names all three passes", len(doc["passes"]) == 3)
+    case("the settlement leaves no record ownerless",
+         not any("nobody" in block["to"]
+                 for spec_ in doc["passes"].values()
+                 for block in spec_.get("no_longer_owns", [])))
     case("the settlement cites the ruling behind it",
          any(r["ticket"] == "T-0489" for r in doc["rulings"]))
 

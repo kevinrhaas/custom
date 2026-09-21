@@ -1063,7 +1063,7 @@
     "households_known": 1256,
     "households_to_reconstruct": 124,
     "businesses_target": 108,
-    "businesses_known": 133,
+    "businesses_known": 129,
     "businesses_to_reconstruct": 7,
     "roofs_target": 668,
     "roofs_standing": 414,
@@ -3544,7 +3544,7 @@
       "lead": "The December 1835 State census set against the register the town already holds.",
       "summary": {
         "register_total": 196,
-        "at_scene_date": 216,
+        "at_scene_date": 212,
         "census_enumerated_total": 118,
         "register_businesses_read": 196,
         "division_note": "EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.",
@@ -3964,7 +3964,7 @@
           "unit": "establishment",
           "scene_bracket": null,
           "target": 8,
-          "known": 15,
+          "known": 11,
           "to_reconstruct": 0,
           "records_opening_after_scene_date": 0,
           "filled": 0,
@@ -3974,7 +3974,7 @@
           "staff_owning_ticket": "T-1183",
           "compared_by_the_crosswalk": true,
           "crosswalk_note": null,
-          "basis": "the December 1835 State census prints 8; the register holds 15 at the scene date"
+          "basis": "the December 1835 State census prints 8; the register holds 11 at the scene date"
         },
         {
           "key": "businesses/tin_and_copper_manufactory",
@@ -4946,14 +4946,14 @@
     {
       "id": "inns_and_taverns",
       "owning_ticket": "T-1196",
-      "model": 15,
+      "model": 11,
       "programme": 10,
-      "delta": 5,
+      "delta": 1,
       "programme_groups": [
         "inns_taverns"
       ],
       "restates_the_programme": false,
-      "statement": "The model reads 15-15 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme."
+      "statement": "The model reads 11-11 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme."
     },
     {
       "id": "institutional_and_public",
