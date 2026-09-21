@@ -2206,6 +2206,69 @@
         ]
       },
       "source": "/tmp/smoke_m1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 93,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 375,
+      "takenAt": "2026-09-21T17:19:52.844Z",
+      "ref": "steward/t-1482-platted-blocks-migration",
+      "commit": "781fb6b23c9c",
+      "devCommit": "c5b5e3e67d06",
+      "treeHash": "sha256:1666667eb77950c8",
+      "treeDirty": false,
+      "changelogHash": "sha256:5d39aba23e41a829",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          4,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke_m1112.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 420,
+      "takenAt": "2026-09-21T17:19:52.735Z",
+      "ref": "steward/t-1482-platted-blocks-migration",
+      "commit": "781fb6b23c9c",
+      "devCommit": "c5b5e3e67d06",
+      "treeHash": "sha256:1666667eb77950c8",
+      "treeDirty": false,
+      "changelogHash": "sha256:5d39aba23e41a829",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          4,
+          4.3
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
     }
   ]
 }

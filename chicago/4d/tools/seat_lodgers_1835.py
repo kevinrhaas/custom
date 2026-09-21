@@ -95,12 +95,22 @@ stage's ledger, which is the same shape T-1172's presence rulings already use.
 EVERY VALUE IS REPRODUCIBLE. Each drawn value comes from `blake2s(seed)` over a seed a
 reader can retype, and the seed is printed on the record that carries it. `--check`
 re-derives the whole directory and refuses a single differing byte.
+
+AND THE ROOM IT IS ALL DEALT AGAINST IS COMMITTED (T-1503). The deal is proportional to
+what the order book has left in each cell, so reading the book live made the whole draw
+move whenever the book was re-cut — and a re-cut of 35 undrawn slots on 2026-09-21
+re-dealt 25 of the 56 boarders below, which other layers had by then adopted by name.
+The quota this stage deals against is therefore recorded once, in `quota_basis` in its
+own ledger, and carried: the book may be re-cut underneath it and not one card moves.
+`committed_basis()` states the whole argument, `refuse_a_recut_under_the_draw()` is the
+floor under it, and the `--self-test` proves it by re-cutting a copy of the book.
 """
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import tempfile
 import json
 import sys
 from collections import Counter
@@ -347,17 +357,17 @@ def solitary_heads() -> list:
     return out
 
 
-def lodging_buckets() -> dict:
-    """(division, sex, band, trade axis) -> how many people the book still orders there.
+def book_lodging_room() -> dict:
+    """(division, sex, band, trade axis) -> (bucket key, how many the book orders there NOW.
 
-    `to_reconstruct` IS READ AND `filled` IS IGNORED, which is the opposite of what
+    `to_reconstruct` is read and `filled` is ignored, which is the opposite of what
     T-1347 does with the same file and is deliberate. The book derives `to_reconstruct`
     from the town model's target less the KNOWN layer, and this stage's cards are not in
     the known layer — they live outside `data/residents/index.json`, like every
     reconstruction — so a build does not move it. `filled` is the counter this stage
-    writes back; adding it to the room would make the second build draw against a bigger
-    quota than the first, and `--check` would read that as drift. It did, once: the
-    Steamboat Hotel's card came out differently on the build and the check.
+    writes back; taking it off the room would make the second build draw against a
+    smaller quota than the first, and `--check` would read that as drift. It did, once:
+    the Steamboat Hotel's card came out differently on the build and the check.
     """
     book = load(BOOK)
     out = {}
@@ -371,6 +381,102 @@ def lodging_buckets() -> dict:
             out[(axes["division"], axes["sex"], axes["age_band"], axes["trade"])] = (
                 bucket["key"], int(bucket.get("to_reconstruct") or 0))
     return out
+
+
+def committed_basis() -> list:
+    """The room THIS STAGE'S DEAL WAS MADE AGAINST, read off this stage's own committed
+    ledger. `[]` before the first build has recorded one.
+
+    T-1503, AND THE REASON THE ROOM IS NOT READ LIVE. The deal below is proportional: a
+    lodger's sex and band come from `allocate()` over the room each cell has left, and a
+    minted keeper's from `pick()` over the same weights. So the deal moves whenever ANY
+    lodging bucket's `to_reconstruct` moves — and the book is re-cut: T-1459 re-cuts the
+    trade axis under the owner's ruling of 2026-09-20 and T-1166 owns the book. Measured
+    on 2026-09-21: a re-cut of 35 undrawn slots re-dealt 25 of this stage's 56 invented
+    boarders, and six further gate steps went red with them, because
+    `rcb_cavanagh_boarding_house` adopts the invented `rc_cavanagh_johanna` as its keeper
+    by name, the employment join seats her there and the employment coverage pass answers
+    for her. An invented lodger another layer has adopted is not re-dealable.
+
+    So the room is the BASIS RECORDED WHEN THE DEAL WAS MADE, carried forward figure for
+    figure, and the book may be re-cut underneath it without moving one card. Four things
+    keep that honest rather than merely convenient:
+
+      * the basis is COMMITTED, in this stage's own ledger, one row per bucket with the
+        axes it was dealt on — so `--check` re-derives the same deal from the same
+        numbers, `--build` twice in a row is a fixed point, and a reader can retype it;
+      * it is CLOSED. The deal was dealt against exactly these buckets, so a bucket that
+        appears in the book afterwards is not in the room — otherwise a cell the re-cut
+        re-opened would walk back into the keeper weights and move the cards, which is
+        the whole fault this is fixing;
+      * where the book has since been re-cut, the divergence is STATED bucket by bucket
+        in `quota_basis.re_cut_since` rather than silently absorbed; and
+      * the one thing a re-cut may NOT do is take the order out from under somebody
+        already standing, so `refuse()` fails if the book's live `to_reconstruct` for a
+        bucket has fallen below what this stage drew out of it.
+    """
+    if not LEDGER.exists():
+        return []
+    rows = (load(LEDGER).get("quota_basis") or {}).get("buckets") or []
+    return [dict(row) for row in rows]
+
+
+def lodging_buckets() -> dict:
+    """(division, sex, band, trade axis) -> (bucket key, the room the deal is dealt against).
+
+    The committed basis where there is one, the book's live figures on the first build —
+    `committed_basis()` above is the whole argument.
+    """
+    basis = committed_basis()
+    if not basis:
+        return book_lodging_room()
+    return {(row["division"], row["sex"], row["age_band"], row["trade"]):
+            (row["bucket"], int(row["to_reconstruct"])) for row in basis}
+
+
+def basis_block(room: dict) -> dict:
+    """The basis as it will be committed, and every way the book has moved away from it.
+
+    `buckets` is the room the deal above was dealt against, which on a first build is the
+    book's own `to_reconstruct` and on every build after that is this same block read
+    back. `re_cut_since` is the difference between that and the live book, in the three
+    shapes it can take, each stated rather than absorbed.
+    """
+    live = book_lodging_room()
+    live_by_key = {key: n for key, n in live.values()}
+    rows = [{"bucket": key, "division": div, "sex": sex, "age_band": band, "trade": axis,
+             "to_reconstruct": n}
+            for (div, sex, band, axis), (key, n) in sorted(room.items())]
+    moved = [{"bucket": row["bucket"], "the_deal_was_dealt_against": row["to_reconstruct"],
+              "the_book_orders_now": live_by_key[row["bucket"]]}
+             for row in rows
+             if row["bucket"] in live_by_key
+             and live_by_key[row["bucket"]] != row["to_reconstruct"]]
+    gone = sorted(row["bucket"] for row in rows if row["bucket"] not in live_by_key)
+    fresh = sorted(set(live_by_key) - {row["bucket"] for row in rows})
+    return {
+        "$note": "DERIVED, and the room this stage deals against. T-1503: the deal is "
+                 "proportional to the room, so reading the room live would re-deal "
+                 "boarders the business layer and the employment join already name. The "
+                 "basis is recorded once and carried, the book may be re-cut under it, "
+                 "and every divergence is stated below.",
+        "owning_ticket": "T-1503",
+        "read_from": "the book's `to_reconstruct` on the build that first recorded it; "
+                     "this block on every build after",
+        "buckets": rows,
+        "re_cut_since": {
+            "statement": "The book has been re-cut in these cells since the deal was "
+                         "dealt. Nobody moves: the cards stand on the basis, and the "
+                         "re-cut spends what this stage did not.",
+            "the_book_moved": moved,
+            "gone_from_the_book": gone,
+            "new_since_the_deal": fresh,
+            "note": "`new_since_the_deal` is deliberately OUTSIDE the room. A cell the "
+                    "re-cut re-opened is work for the stage that asked for it — T-1448's "
+                    "shop boys — and letting it back into these weights would re-deal "
+                    "this stage's own draw, which is the fault T-1503 fixed.",
+        },
+    }
 
 
 # -------------------------------------------------------------------- the plan --
@@ -804,6 +910,10 @@ def fill() -> tuple:
         seated_by_house.setdefault(seat["place"], []).append(seat["person"])
 
     room = lodging_buckets()
+    # THE ROOM AS DEALT, before the loop below spends it. This is what gets committed as
+    # the basis, and on every build after the first it is what was read back — see
+    # `committed_basis()`.
+    room_as_dealt = dict(room)
     fills = Counter()
     cards: dict[str, dict] = {}
     refusals = list(seat_refusals)
@@ -878,6 +988,7 @@ def fill() -> tuple:
         "not_a_reading": "This file reads no source. It spends a capacity the lodging "
                          "model already apportioned and an order the book already made, "
                          "and it names nobody the sources name.",
+        "quota_basis": basis_block(room_as_dealt),
         "inputs": [
             "data/reconstruction/1835_lodging_model.json",
             "data/reconstruction/1835_reconstruction_order_book.json",
@@ -1049,8 +1160,34 @@ def build() -> int:
     return 0
 
 
+def refuse_a_recut_under_the_draw(fills: dict, live: dict) -> None:
+    """THE FLOOR UNDER THE BASIS (T-1503): a re-cut may not leave this stage's draw
+    standing outside the book.
+
+    The committed basis makes the deal immune to a re-cut, and that immunity has to have
+    a floor — otherwise a bucket could be re-cut down to nothing while seven invented
+    boarders stand on it and nothing in this tool would say so. `no_bucket_overfilled` is
+    the book's own invariant over the same arithmetic (T-1166); this is the stage
+    asserting it about its own fills, which is the half the book cannot see until its
+    counters are carried.
+    """
+    for key, drew in sorted(fills.items()):
+        if key not in live:
+            raise SystemExit(
+                "  FAIL %s drew %d person(s) out of %s and the book no longer carries "
+                "that bucket at all" % (TICKET, drew, key))
+        if drew > live[key]:
+            raise SystemExit(
+                "  FAIL %s drew %d person(s) out of %s and the book now orders only %d "
+                "there: a re-cut has taken the order out from under people already "
+                "standing" % (TICKET, drew, key, live[key]))
+
+
 def refuse(cards: dict, ledger: dict) -> None:
     """The assertions that are the point of the stage. Each is a case in --self-test."""
+    refuse_a_recut_under_the_draw(
+        {k: int(v) for k, v in (ledger.get("fills") or {}).items()},
+        {key: n for key, n in book_lodging_room().values()})
     for house in ledger["houses"]:
         if house["occupancy_after"] > house["beds_crowded"]:
             raise SystemExit(
@@ -1233,6 +1370,78 @@ def self_test() -> int:
     again, _ = fill()
     case("two builds over one layer write the same bytes",
          {k: dumps(v) for k, v in cards.items()} == {k: dumps(v) for k, v in again.items()})
+
+    # 11. THE DEMONSTRATION T-1503 EXISTS FOR. The book is re-cut in a throwaway copy —
+    # one undrawn slot out of every lodging bucket that has one — and the deal is
+    # re-derived against it. Not one card may move.
+    global BOOK
+    original, perturbed, touched, moved_buckets = BOOK, load(BOOK), 0, set()
+    for family in perturbed.get("bucket_families", []):
+        if family.get("key") != "persons":
+            continue
+        for bucket in family.get("buckets", []):
+            if bucket["axes"].get("household_type") != "lodging":
+                continue
+            if (bucket.get("to_reconstruct") or 0) - (bucket.get("filled") or 0) > 0:
+                bucket["to_reconstruct"] -= 1
+                moved_buckets.add(bucket["key"])
+                touched += 1
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "1835_reconstruction_order_book.json"
+        path.write_text(json.dumps(perturbed, indent=2, ensure_ascii=False) + "\n",
+                        encoding="utf-8")
+        BOOK = path
+        try:
+            recut_cards, recut_ledger = fill()
+        finally:
+            BOOK = original
+    case("a re-cut of the book moves nobody this stage has already dealt",
+         touched > 0 and {k: dumps(v) for k, v in cards.items()}
+         == {k: dumps(v) for k, v in recut_cards.items()})
+
+    # 12. And the re-cut is not absorbed in silence: it is stated, bucket by bucket. The
+    # expected set is every bucket whose live figure now differs from the basis, which is
+    # the buckets perturbed above PLUS the ones the committed book has already re-cut.
+    basis_now = {row["bucket"]: int(row["to_reconstruct"])
+                 for row in ledger["quota_basis"]["buckets"]}
+    live_perturbed = {b["key"]: int(b.get("to_reconstruct") or 0)
+                      for fam in perturbed.get("bucket_families", [])
+                      if fam.get("key") == "persons"
+                      for b in fam.get("buckets", [])
+                      if b["axes"].get("household_type") == "lodging"}
+    want_stated = {key for key, n in basis_now.items()
+                   if key in live_perturbed and live_perturbed[key] != n}
+    case("a re-cut the basis stands against is stated in `re_cut_since`",
+         touched > 0 and bool(moved_buckets) and want_stated == {
+             row["bucket"]
+             for row in recut_ledger["quota_basis"]["re_cut_since"]["the_book_moved"]})
+
+    # 13. The basis the ledger commits is read back as the same room, which is what makes
+    # a second build a fixed point rather than a drift.
+    rows = ledger["quota_basis"]["buckets"]
+    reread = {(r["division"], r["sex"], r["age_band"], r["trade"]):
+              (r["bucket"], int(r["to_reconstruct"])) for r in rows}
+    case("the committed basis is read back as the room the deal was dealt against",
+         bool(reread) and reread == lodging_buckets())
+
+    # 14. A re-cut that falls BELOW what this stage drew is refused — the floor.
+    fills_now = {k: int(v) for k, v in ledger["fills"].items()}
+    live_now = {key: n for key, n in book_lodging_room().values()}
+    a_bucket = sorted(fills_now)[0]
+    try:
+        refuse_a_recut_under_the_draw(
+            fills_now, live_now | {a_bucket: fills_now[a_bucket] - 1})
+        case("a bucket re-cut below its own draw is refused", False)
+    except SystemExit:
+        case("a bucket re-cut below its own draw is refused", True)
+
+    # 15. And a bucket dropped from under a fill is refused rather than ignored.
+    try:
+        refuse_a_recut_under_the_draw(
+            fills_now, {k: v for k, v in live_now.items() if k != a_bucket})
+        case("a bucket dropped from under a fill is refused", False)
+    except SystemExit:
+        case("a bucket dropped from under a fill is refused", True)
 
     print("  %d case(s), %d failure(s)" % (cases, failures))
     return 1 if failures else 0

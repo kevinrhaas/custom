@@ -859,6 +859,23 @@ def person_buckets(model: dict, composition: dict, inventory: dict, known: dict,
     }
 
 
+#: THE STAGES WHOSE DRAW IS STABLE UNDER A QUOTA CHANGE, so the re-cut below may spend
+#: what they have left undrawn. A stage earns a place here ONE WAY: by dealing against a
+#: COMMITTED BASIS rather than against the book's live `to_reconstruct`, so re-cutting a
+#: bucket it has drawn against cannot re-deal the people standing on it. T-1503 did that
+#: for the lodging stage and proves it — `seat_lodgers_1835.py --self-test` re-cuts a
+#: throwaway copy of this book and asserts that not one card moves.
+#:
+#: NOTHING GOES ON THIS LIST WITHOUT THAT DEMONSTRATION. A stage that reads the room live
+#: re-deals its ENTIRE draw when one slot of it moves, and the cost is measured: the
+#: re-cut of 2026-09-21 re-dealt 25 of 56 invented boarders and took six further gate
+#: steps red with them, because other layers had adopted them by name.
+REMAINDER_STABLE_STAGES = {
+    "T-1371": "tools/seat_lodgers_1835.py — deals against the committed `quota_basis` in "
+              "data/reconstruction/1835_lodgers_seated.json (T-1503)",
+}
+
+
 def _hand_out(total: int, wants: dict[str, int], caps: dict[str, int]) -> dict[str, int]:
     """Hand `total` out in proportion to `wants`, and never past a key's `caps`.
 
@@ -885,7 +902,7 @@ def _hand_out(total: int, wants: dict[str, int], caps: dict[str, int]) -> dict[s
     return out
 
 
-def recut_trade_remainder(buckets: list, participation: dict) -> dict:
+def recut_trade_remainder(buckets: list, participation: dict, drawn_by: dict) -> dict:
     """THE OWNER'S RULING OF 2026-09-20 APPLIED: only the unfilled remainder moves (T-1459).
 
     The re-cut wants trade slots in a band the first cut shut. It cannot simply take
@@ -909,34 +926,43 @@ def recut_trade_remainder(buckets: list, participation: dict) -> dict:
         cell, kind = bucket["key"].rsplit("/", 1)
         pairs.setdefault(cell, {})[kind] = bucket
 
+    unaudited: dict[str, list] = {}
+
     def undrawn(bucket):
-        """What this bucket can give up or take: its remainder, and 0 once a stage has drawn.
+        """What this bucket can give up or take: its remainder — unless the stage that drew
+        there re-deals its whole draw when the quota moves, in which case nothing.
 
-        THE SECOND CLAUSE IS THE CONSERVATIVE ONE AND IT WAS MEASURED, not assumed. The
-        arithmetic of the ruling says a bucket's remainder is `to_reconstruct - filled`,
-        and a re-cut confined to that reaches nobody already drawn. But a STAGE is not
-        confined to it: `tools/seat_lodgers_1835.py` reads a lodging bucket's whole
-        `to_reconstruct` and ignores `filled` — deliberately, and its docstring says why —
-        so moving one slot of a bucket it has drawn against re-derives its ENTIRE draw.
+        THE ARITHMETIC OF THE RULING is that a bucket's remainder is
+        `to_reconstruct - filled`, and a re-cut confined to that reaches nobody already
+        drawn. A STAGE, though, need not be confined to it, and the one that was not cost
+        the whole re-cut: `tools/seat_lodgers_1835.py` used to read a lodging bucket's
+        WHOLE `to_reconstruct`, so moving one slot of a bucket it had drawn against
+        re-derived its ENTIRE draw. Run on 2026-09-21, that re-cut moved 35 slots into the
+        reopened 10_19 band, `seat_lodgers_1835.py --check` went red at once, and
+        re-deriving it re-dealt 25 of its 56 invented boarders — the same count in the same
+        13 houses, nobody retired — after which SIX further gate steps failed, because
+        `rc_cavanagh_johanna`, a boarder the stage had invented, is adopted by name as the
+        keeper of `rcb_cavanagh_boarding_house` in the business layer, seated by the
+        employment join and answered for by the employment coverage pass.
 
-        Run on 2026-09-21 without this clause, the re-cut moved 35 slots out of the adult
-        lodging cells and into the reopened 10_19 band. `seat_lodgers_1835.py --check`
-        went red at once, and re-deriving it re-dealt 25 of its 56 invented boarders — the
-        same count in the same 13 houses, nobody retired — after which SIX further gate
-        steps failed, because `rc_cavanagh_johanna`, a boarder the stage had invented, is
-        adopted by name as the keeper of `rcb_cavanagh_boarding_house` in the business
-        layer, seated by the employment join, and answered for by the employment coverage
-        pass. A quota with a counter on it is not undrawn work in any sense that matters:
-        it is work somebody has spent, and the ruling of 2026-09-20 protects it.
-
-        So the book declines to move it and says so, which is what the ticket asks for
-        where the remainder cannot pay. What would unlock it is stated in the block: a
-        stage that draws against `to_reconstruct - filled` rather than `to_reconstruct`,
-        or the owner ruling that T-1175's seated lodgers may be re-dealt.
+        So the test is not "has anything been drawn here" — it is "is the stage that drew
+        here STABLE UNDER A QUOTA CHANGE". T-1503 made the lodging stage stable, by
+        committing the room its deal was dealt against and dealing against that; the list
+        of stages that have earned the same is `REMAINDER_STABLE_STAGES`, and a bucket
+        whose fills all come from that list gives up its remainder like any other. A
+        bucket a stage NOT on the list has drawn against still gives up nothing, and the
+        stage is named in `unaudited` so the refusal says whose draw it is protecting
+        rather than that something, somewhere, was drawn.
         """
-        if bucket.get("filled"):
+        remainder = max(0, (bucket.get("to_reconstruct") or 0) - (bucket.get("filled") or 0))
+        if not bucket.get("filled"):
+            return remainder
+        drew = sorted(drawn_by.get(bucket["key"], ()))
+        loose = [t for t in drew if t not in REMAINDER_STABLE_STAGES]
+        if loose or not drew:
+            unaudited[bucket["key"]] = loose or ["(a fill naming no ticket)"]
             return 0
-        return max(0, (bucket.get("to_reconstruct") or 0) - (bucket.get("filled") or 0))
+        return remainder
 
     wants_gain, caps_gain, wants_lose, caps_lose = {}, {}, {}, {}
     for cell, pair in pairs.items():
@@ -978,11 +1004,15 @@ def recut_trade_remainder(buckets: list, participation: dict) -> dict:
                 "the_remainder_could_pay": got,
                 "already_drawn_in_the_way": (sibling or {}).get("filled", 0),
                 "drawn_by": (sibling or {}).get("owning_ticket"),
-                "why": "the re-cut would seat a working youth in a cell a stage has already "
-                       "drawn against. The owner's ruling of 2026-09-20 protects what is "
-                       "drawn, and a stage that reads a bucket's whole `to_reconstruct` "
-                       "re-deals its entire draw when one slot of it moves — so the cell is "
-                       "refused by name rather than clamped in silence.",
+                "the_unaudited_stages_that_drew_here":
+                    unaudited.get((sibling or {}).get("key"), []),
+                "why": "the re-cut would seat a working youth in a cell drawn against by a "
+                       "stage that is NOT stable under a quota change: it reads the "
+                       "bucket's whole `to_reconstruct`, so re-cutting one undrawn slot "
+                       "re-deals its entire draw. The stages that HAVE been made stable "
+                       "are in `REMAINDER_STABLE_STAGES` and their remainder is spent "
+                       "freely (T-1503 put the lodging stage there). This cell's is not, "
+                       "so it is refused by name rather than clamped in silence.",
             })
     for cell, want in sorted(wants_lose.items()):
         took = lost.get(cell, 0)
@@ -995,9 +1025,12 @@ def recut_trade_remainder(buckets: list, participation: dict) -> dict:
                 "the_remainder_could_pay": took,
                 "already_drawn_in_the_way": pairs[cell]["trade"].get("filled", 0),
                 "drawn_by": pairs[cell]["trade"].get("owning_ticket"),
-                "why": "the re-cut would take this cell's order out from under a stage that "
-                       "has already drawn against it. It is held where it stands, and the "
-                       "slots it could not give up were sought from cells nobody has spent.",
+                "the_unaudited_stages_that_drew_here":
+                    unaudited.get(pairs[cell]["trade"]["key"], []),
+                "why": "the re-cut wanted more out of this cell than it has undrawn, or "
+                       "than a stage not yet stable under a quota change will let go. It "
+                       "is held where it stands, and the slots it could not give up were "
+                       "sought from cells with a remainder to spend.",
             })
 
     if moved == sum(wants_gain.values()):
@@ -1048,13 +1081,18 @@ def recut_trade_remainder(buckets: list, participation: dict) -> dict:
         "out_of": {k: v for k, v in sorted(lost.items()) if v},
         "refusals": refusals,
         "why_it_stopped": why_it_stopped,
+        "remainder_stable_stages": dict(sorted(REMAINDER_STABLE_STAGES.items())),
+        "held_by_an_unaudited_stage": {k: v for k, v in sorted(unaudited.items())},
         "what_would_unlock_it": (
-            "either a lodging stage that draws against `to_reconstruct - filled` rather than "
-            "against the whole of `to_reconstruct` — `tools/seat_lodgers_1835.py` reads the "
-            "whole quota and re-deals its entire draw when one slot of it moves — or the "
-            "owner's ruling that T-1175's seated lodgers may be re-dealt. Neither is this "
-            "ticket's to take: the first re-opens a stage that has closed and the second is "
-            "a decision about what the town IS."),
+            "THE FIRST HALF OF THIS IS DONE (T-1503). The lodging stage now deals against a "
+            "committed `quota_basis` instead of the book's live `to_reconstruct`, so its "
+            "buckets' remainder is spendable and re-cutting them moves none of its 56 "
+            "boarders — its own `--self-test` re-cuts a copy of this book and asserts it. "
+            "What is left is the stages still reading the room live, named bucket by bucket "
+            "in `held_by_an_unaudited_stage`: give each of them a committed basis of its own "
+            "and add it to `REMAINDER_STABLE_STAGES`. The alternative — an owner ruling that "
+            "people already drawn may be re-dealt — is still not this ticket's to take, and "
+            "is no longer needed for the lodging band."),
         "cells_reopened_and_left_empty": sorted(b["key"] for b in dropped),
         "nobody_already_drawn_moved": True,
         "the_sex_axis": participation["the_sex_argument_is_refused"],
@@ -1710,8 +1748,14 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     # number, so the one gate that is supposed to refuse an overfilled bucket could not
     # have seen an overfill made by two tickets between them.
     counted = Counter()
+    # WHO DREW, NOT JUST HOW MANY. The re-cut below spends a bucket's remainder only where
+    # every stage that has drawn there is stable under a quota change, so it needs the
+    # tickets and not only the counter — see `REMAINDER_STABLE_STAGES`.
+    drawn_by: dict[str, set] = {}
     for fill in fills:
         counted[fill["bucket"]] += int(fill.get("records") or 0)
+        if int(fill.get("records") or 0):
+            drawn_by.setdefault(fill["bucket"], set()).add(fill.get("ticket") or "")
     families = []
     for key, title, lead, payload in (
         ("persons", "Persons", "Who the town still has to be given, by sex, age, division, "
@@ -1734,7 +1778,7 @@ def build(data: dict, fills: list | None = None, occupancy: dict | None = None) 
     # known — and the quota a bucket is judged against is the re-cut one, so it cannot run
     # after the check either. A bucket the re-cut GROWS is not overfilled by a counter that
     # sat inside its new order.
-    trade_re_cut = recut_trade_remainder(families[0]["buckets"], participation)
+    trade_re_cut = recut_trade_remainder(families[0]["buckets"], participation, drawn_by)
 
     for family in families:
         for b in family["buckets"]:
@@ -2536,15 +2580,35 @@ def cmd_self_test() -> int:
                 if b["axes"].get("trade") == "trade" and b["axes"]["age_band"] == "10_19"], \
         "the reopened band survived the record that opened it being withdrawn"
 
-    # 5b. AND A CELL A STAGE HAS SPENT IN IS REFUSED WHOLE, not shaved. This is the clause
-    #     that stopped the re-cut on 2026-09-21: a bucket carrying a counter cannot give up
-    #     or take a slot, because a stage that reads its whole `to_reconstruct` re-deals its
-    #     entire draw when one slot of it moves.
-    spent_cells = {b["key"].rsplit("/", 1)[0] for b in shipped["bucket_families"][0]["buckets"]
-                   if b.get("filled")}
+    # 5b. AND A CELL SPENT IN BY A STAGE THAT IS NOT REMAINDER-STABLE IS REFUSED WHOLE, not
+    #     shaved. This is the clause that stopped the re-cut on 2026-09-21: a stage reading a
+    #     bucket's whole `to_reconstruct` re-deals its ENTIRE draw when one slot of it moves.
+    #     T-1503 gave the lodging stage a committed basis instead, so its cells are shaved to
+    #     their remainder like any unspent one — and what this asserts now is the narrower,
+    #     true thing: every cell the re-cut touched is spent in only by stages on
+    #     `REMAINDER_STABLE_STAGES`, and no bucket of one was shaved below its own counter.
+    fills_on_disk = _fills_on_disk()
+    drew_in_cell: dict[str, set] = {}
+    for fill in fills_on_disk:
+        if int(fill.get("records") or 0):
+            cell = fill["bucket"].rsplit("/", 1)[0]
+            drew_in_cell.setdefault(cell, set()).add(fill.get("ticket") or "")
+    by_key = {b["key"]: b for b in shipped["bucket_families"][0]["buckets"]}
     for cell, n in list(rc["into"].items()) + list(rc["out_of"].items()):
-        assert cell not in spent_cells, (cell, n)
+        loose = sorted(t for t in drew_in_cell.get(cell, ())
+                       if t not in REMAINDER_STABLE_STAGES)
+        assert not loose, (cell, n, loose)
+        for kind in ("trade", "none"):
+            bucket = by_key.get("%s/%s" % (cell, kind))
+            if bucket is not None:
+                assert (bucket.get("to_reconstruct") or 0) >= (bucket.get("filled") or 0), bucket
+    #     And a cell the block says is HELD names the stage holding it, which is the half the
+    #     old clause could not say — it knew only that something, somewhere, had been drawn.
+    for key, held_by in rc["held_by_an_unaudited_stage"].items():
+        assert held_by and all(t not in REMAINDER_STABLE_STAGES for t in held_by), (key, held_by)
+        assert key.rsplit("/", 1)[0] not in rc["into"], key
     assert rc["why_it_stopped"] and rc["what_would_unlock_it"]
+    assert rc["remainder_stable_stages"] == REMAINDER_STABLE_STAGES
 
     # 6. AND THE SEVEN STAGES THAT HAVE SPENT ARE NAMED WITH WHAT THEY SPENT, which is the
     #    list the re-cut is audited against.
