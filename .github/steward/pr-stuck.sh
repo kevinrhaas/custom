@@ -73,6 +73,23 @@ RUN_HOURS="${STUCK_RUN_HOURS:-3}"
 # A variable only so the harness can drive the retry without sleeping 15 seconds
 # a PR; nothing in the workflow sets it.
 RETRY_SLEEP="${STUCK_RETRY_SLEEP:-3}"
+# MAY A BLIND SWEEP FAIL THIS JOB? On `dev` and on a dispatch, yes, loudly. On a
+# push to a steward branch, NO — and that is not squeamishness, it is that the
+# failure would land on somebody else's pull request.
+#
+# A workflow run started by a push creates a check run on the pushed head sha,
+# and for a steward branch that sha is an open PR's head. A non-required check
+# that FAILS makes the PR `unstable`, and merge-ready.sh merges only on `clean`,
+# so it would leave that PR "waiting on checks" for ever — until the branch is
+# pushed again, which for a finished unit never happens. A reporter built to stop
+# pull requests rotting must not be the thing that rots one, and a rate limit on
+# the list call is exactly the transient that would do it.
+#
+# Nothing is lost by softening it THERE, because the two triggers cover each
+# other: the same sweep runs on every push to `dev`, where it fails hard and where
+# a failure poisons nothing. A rate limit outlasts one steward push and does not
+# outlast the day.
+SOFT_FAIL="${STUCK_SOFT_FAIL:-}"
 
 say() { printf '%s\n' "$*"; }
 
@@ -115,6 +132,12 @@ if [ "$LIST_RC" -ne 0 ]; then
   echo "::error::the PR-list call failed (exit $LIST_RC) — the stuck reporter cannot see the queue."
   echo "::error::A rate limit or an auth failure here is indistinguishable from an empty queue:"
   echo "::error::both leave the list empty and this would print 'stuck=0' and exit 0."
+  if [ -n "$SOFT_FAIL" ]; then
+    echo "::error::Not failing the job: this sweep was started by a push to a steward branch,"
+    echo "::error::so the failure would attach to an open PR's head sha, make it \`unstable\`"
+    echo "::error::and stall merge-ready.sh on it. The next push to \`dev\` fails hard instead."
+    exit 0
+  fi
   exit 1
 fi
 
