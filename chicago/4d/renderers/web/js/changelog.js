@@ -1,4 +1,9 @@
 export const CHANGELOG = [ // newest first
+  { v: 1069, title: 'The town’s numbers moved into Evidence', kind: 'feature', ts: '2026-09-21T17:17:27.000Z', date: 'Sep 21, 2026, 12:17 PM CT',
+    items: [
+      'The loading screen is an arrival again, not a coverage dashboard. Its building and population ladders have moved intact to a new City topic in Evidence, where the same committed census supplies every numerator, denominator and evidence-grade segment.',
+      'City also names the reconstruction date, the program that derived the figures and the exact published build. The two census files are no longer fetched during startup; opening Evidence requests them, so a visitor who goes straight into the town downloads less before arriving.',
+    ] },
   { v: 1068, title: 'Six sheds stay sheds, and the town says why', kind: 'fix', ts: '2026-09-21T17:20:21.301Z', date: 'Sep 21, 2026, 12:20 PM CT',
     items: [
       'An audit of this town\u2019s 285 invented buildings found 32 of them standing somewhere their own kind of building does not stand, and proposed a new kind for each. Twenty-six have since been carried out. Six have not, and until today the only record of that was a line in a report saying they were outstanding \u2014 which reads exactly like somebody forgetting.',

@@ -56,11 +56,6 @@
     <p class="gate-eyebrow">4D Chicago</p>
     <h1 id="gate-title">Chicago, summer 1835</h1>
     <p class="gate-sub" id="gate-sub">Loading the scene…</p>
-    <!-- What the town holds, counted at load from data/town_census.json (T-0036).
-         Empty in the markup on purpose: every figure AND every denominator comes
-         out of the committed census, so there is no number here to go stale.
-         Stays hidden if the census cannot be read — see js/census.js. -->
-    <div class="gate-census" id="gate-census" hidden></div>
     <div class="gate-bar" id="gate-bar" role="progressbar" aria-labelledby="gate-sub"
          aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
     <button id="gate-btn" class="gate-btn" disabled>Tap to walk</button>
@@ -269,7 +264,7 @@
       <div id="businesses-directory"></div>
     </section>
     <section class="panel-body" data-panel="evidence" hidden>
-      <!-- The Evidence hub (evidence.js). Seven topics, one shown at a time; the
+      <!-- The Evidence hub (evidence.js). Ten topics, one shown at a time; the
            tiles render into #evidence-hub. Each topic is a container whose mounts
            keep their ids — liberties.js, ground.js, fauna.js, plants.js and
            exclusions.js still render into them, and the smoke reads them by id.
@@ -292,6 +287,14 @@
         <p class="legend-note">Every building is clickable. The tint and the citation come from the
           same record, so they cannot drift apart. Dimensional uncertainty is separate: a building
           can be well documented in character and still have a guessed size, and the popup says so.</p>
+      </div>
+
+      <div class="ev-topic" data-topic="city">
+        <h3 class="legend-h ev-topic-title">City</h3>
+        <p class="legend-note ev-lead">The town in numbers: what stands, who is named, and what each grade promises.</p>
+        <div class="city-census" id="city" aria-busy="true">
+          <p class="legend-note">Loading…</p>
+        </div>
       </div>
 
       <div class="ev-topic" data-topic="liberties">

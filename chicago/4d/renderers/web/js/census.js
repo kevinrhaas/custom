@@ -1,5 +1,5 @@
 /**
- * census.js — live town/population statistics on the gate screen.
+ * census.js — the Evidence → City summary of the town in numbers.
  *
  * T-0036 established the rule: the front screen never carries hand-typed population
  * numbers. Buildings standing comes from `data/town_census.json`. T-0490 extends the
@@ -50,11 +50,10 @@
  * `people.scene.population` — 2,267 of a modelled 2,536. The established figure is not
  * overwritten: it keeps its own line under the bar, because they are two real measures and
  * the project needs both. Each figure carries its own `question` string from the census as
- * its tooltip, so a visitor can read what they are looking at without leaving the gate.
+ * its tooltip, so a visitor can read what they are looking at without leaving City.
  *
  * FAIL SOFT, ALWAYS. Either source may be absent while a branch is being built. Show the
- * rows that can be read and never turn a census nicety into a page error on the first
- * screen a visitor sees.
+ * rows that can be read and never turn a census nicety into a page error in Evidence.
  */
 
 /** `3265` → `3,265`, in the locale-independent form the rest of the UI uses. */
@@ -89,13 +88,14 @@ async function readJson(url, onError) {
 }
 
 /**
- * Fill the gate census/evidence rows from committed derived data.
+ * Fill Evidence → City from committed derived data. This function is called only after
+ * the Evidence tab is opened, so neither JSON belongs to the boot payload.
  *
- * @param {{ dataBase: URL|string, root?: Element|null }} opts
+ * @param {{ dataBase: URL|string, root?: Element|null, buildStamp?: string }} opts
  * @returns {Promise<object|null>} the town census as loaded, or null if it could not be read
  */
-export async function mountGateCensus({ dataBase, root, onError }) {
-  const host = root ?? document.getElementById('gate-census');
+export async function mountCityCensus({ dataBase, root, buildStamp = '', onError }) {
+  const host = root ?? document.getElementById('city');
   if (!host) return null;
 
   const [census, residents] = await Promise.all([
@@ -123,6 +123,7 @@ export async function mountGateCensus({ dataBase, root, onError }) {
           + `<i class="gc-seg gc-seg-built" style="width:${pct(standing, target)}"></i></div>`
         : '')
       + (of ? `<p class="gc-of">${of}</p>` : '')
+      + '<p class="gc-definition">Physical roofs standing in the scene; bridges, piers and grounds are not counted.</p>'
       + '</section>',
     );
     aria.push(`${group(standing)} buildings standing${of ? ` ${of}` : ''}`);
@@ -184,6 +185,7 @@ export async function mountGateCensus({ dataBase, root, onError }) {
           + '</div>'
         : '')
       + (of ? `<p class="gc-of"${titleAttr(ofTitle)}>${of}</p>` : '')
+      + '<p class="gc-definition">People the project’s evidence puts in Chicago on the target date.</p>'
       + (key.length
         ? `<ul class="gc-key">${key.map(([k, n, label]) =>
           `<li><i class="gc-sw gc-sw-${k}"></i>${group(n)} ${label}</li>`).join('')}</ul>`
@@ -253,8 +255,17 @@ export async function mountGateCensus({ dataBase, root, onError }) {
 
   if (!rows.length) return null;
 
-  host.innerHTML = rows.join('');
+  const targetDate = attr(census?.target_date || '');
+  const meta = census ? '<dl class="city-meta">'
+    + `<div><dt>Target date</dt><dd><time datetime="${targetDate}">`
+    + `${targetDate || 'not recorded'}</time></dd></div>`
+    + '<div><dt>Derived by</dt><dd><code>'
+    + `${attr(census.derived_by || 'not recorded')}</code></dd></div>`
+    + `<div><dt>Build</dt><dd>${attr(buildStamp || 'development build')}</dd></div>`
+    + '</dl>' : '';
+  host.innerHTML = meta + rows.join('');
   host.setAttribute('aria-label', aria.join('. '));
+  host.removeAttribute('aria-busy');
   host.removeAttribute('hidden');
   return census;
 }
