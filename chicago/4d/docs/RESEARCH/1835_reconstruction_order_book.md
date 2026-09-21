@@ -7,12 +7,12 @@
 
 | | target | known | to reconstruct |
 |---|---:|---:|---:|
-| Persons | 2,536 | 1,283 | 1,725 |
+| Persons | 2,536 | 1,283 | 1,721 |
 | Households | 643 | 1,256 | 124 |
 | Businesses (enumerated classes) | 108 | 133 | 7 |
 | Roofs | 668 | 414 | 267 |
 
-**2,267 people stand in the layer today** and **514** are still owed after the counters, so the town this book converges to is **2,781** — inside the model's 2,353-3,265. `--build` and `--check` both refuse a remainder that lands outside it.
+**2,263 people stand in the layer today** and **514** are still owed after the counters, so the town this book converges to is **2,777** — inside the model's 2,353-3,265. `--build` and `--check` both refuse a remainder that lands outside it.
 
 ## What the re-cut found
 
@@ -31,7 +31,7 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 *What does the town converge to if every remaining order is filled?*
 
-2,267 standing plus 514 still owed is 2,781, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,267 + 843 = 3,110, and the book was ordering a replacement for 826 people already in the layer. It is 245 above the model's 2,536 point, and that surplus is the 590 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book.
+2,263 standing plus 514 still owed is 2,777, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 241 above the model's 2,536 point, and that surplus is the 586 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book.
 
 ### households are counted in two different units
 
@@ -73,7 +73,7 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 | `persons/female/50_plus/south/family/trade` | T-1347 | 4 | 2 | 4 |
 | `persons/female/50_plus/south/family/none` | T-1174 | 8 | 4 | 8 |
 | `persons/female/50_plus/west/family/trade` | T-1347 | 2 | 1 | 2 |
-| `persons/female/under_10/north/family/none` | T-1174 | 46 | 28 | 46 |
+| `persons/female/under_10/north/family/none` | T-1174 | 46 | 28 | 45 |
 | `persons/female/under_10/south/family/none` | T-1174 | 107 | 63 | 107 |
 | `persons/female/under_10/west/family/none` | T-1174 | 40 | 25 | 40 |
 | `persons/male/10_19/north/family/none` | T-1174 | 30 | 19 | 30 |
@@ -93,7 +93,7 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 | `persons/male/50_plus/west/family/trade` | T-1347 | 2 | 1 | 2 |
 | `persons/male/under_10/north/family/none` | T-1174 | 51 | 30 | 51 |
 | `persons/male/under_10/south/family/none` | T-1174 | 120 | 71 | 120 |
-| `persons/male/under_10/west/family/none` | T-1174 | 46 | 28 | 46 |
+| `persons/male/under_10/west/family/none` | T-1174 | 46 | 28 | 43 |
 | `households/family_dwelling/north` | T-1171 | 41 | 0 | 26 |
 | `households/family_dwelling/south` | T-1171 | 77 | 0 | 65 |
 | `households/family_dwelling/west` | T-1171 | 39 | 0 | 33 |
@@ -110,16 +110,16 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 ## Real names before invented ones
 
-The roster offers 1,811 names the corpus printed and this project withheld. Each class is a licence, not a quota:
+The roster offers 1,812 names the corpus printed and this project withheld. Each class is a licence, not a quota:
 
 | class | offered | ticket |
 |---|---:|---|
-| `R1_in_window_uncertain` | 805 | T-1172 |
+| `R1_in_window_uncertain` | 804 | T-1172 |
 | `R2_in_window_single_source` | 343 | T-1172 |
 | `R3_1834_return_or_muster` | 30 | T-1172 |
-| `R4_surname_only_census` | 440 | T-1170 |
+| `R4_surname_only_census` | 441 | T-1170 |
 | `R5_later_only_backprojectable` | 55 | T-1172 |
-| `R6_native_metis_black` | 138 | T-1177 |
+| `R6_native_metis_black` | 139 | T-1177 |
 
 ## Persons
 
@@ -189,7 +189,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/female/50_plus/west/family/none` | 3 | 1 | 2 | 2 | T-1174 |
 | `persons/female/50_plus/west/lodging/trade` | 1 | 0 | 1 | 0 | T-1175 |
 | `persons/female/50_plus/west/lodging/none` | 1 | 0 | 1 | 0 | T-1175 |
-| `persons/female/under_10/north/family/none` | 55 | 27 | 46 | 46 | T-1174 |
+| `persons/female/under_10/north/family/none` | 55 | 27 | 45 | 45 | T-1174 |
 | `persons/female/under_10/north/lodging/none` | 19 | 10 | 9 | 0 | T-1175 |
 | `persons/female/under_10/south/family/none` | 132 | 69 | 107 | 107 | T-1174 |
 | `persons/female/under_10/south/lodging/none` | 46 | 24 | 22 | 0 | T-1175 |
@@ -253,7 +253,7 @@ Who the town still has to be given, by sex, age, division, household and trade.
 | `persons/male/under_10/north/lodging/none` | 22 | 11 | 11 | 0 | T-1175 |
 | `persons/male/under_10/south/family/none` | 148 | 77 | 120 | 120 | T-1174 |
 | `persons/male/under_10/south/lodging/none` | 52 | 27 | 25 | 0 | T-1175 |
-| `persons/male/under_10/west/family/none` | 55 | 27 | 46 | 46 | T-1174 |
+| `persons/male/under_10/west/family/none` | 55 | 27 | 43 | 43 | T-1174 |
 | `persons/male/under_10/west/lodging/none` | 19 | 9 | 10 | 0 | T-1175 |
 | `persons/garrison/fort` | — | 2 | — | 0 | T-1176 |
 | `persons/transient/town` | — | 0 | — | 0 | T-1178 |

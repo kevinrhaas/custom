@@ -95,10 +95,19 @@ SKIP_DIRS = {".git", "node_modules", "site", "assets", "renderers/web/vendor"}
 #     `execute_roof_redeal.py --apply` in any case, so a rewrite here would not survive
 #     the next run of it.
 #   * THIS FILE, for the same reason.
+#   * `measure_roof_id_migration.py`, for BOTH of the two reasons above at once
+#     (T-1483). Its docstring explains the surface by naming the move —
+#     "`recon_1835_south_c1_003` becomes `..._d1_003`" — which is prose about the
+#     rename, and its self-test passes the old id to `new_id()` as the worked example
+#     of a south id taking its new family in place. Rewriting the fixture would leave
+#     it asserting `new_id("..._d1_003", "D1") == "..._d1_003"`, which is true of any
+#     id already migrated and therefore tests nothing. The tool measures the surface;
+#     it makes no claim that the record still stands under the old name.
 KEEPS_THE_OLD_NAME = (
     "renderers/unreal/receipts/",
     "docs/unreal/prototype/import_report.json.txt",
     "tools/execute_roof_redeal.py",
+    "tools/measure_roof_id_migration.py",
     "tools/migrate_roof_ids.py",
     "data/reconstruction/1835_phase2_west_wolf_point_approaches.json",
     "renderers/web/js/changelog.js",

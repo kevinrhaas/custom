@@ -7345,6 +7345,29 @@ for (const [label, viewport, touch] of [
       window.__chicago4d.pick('recon_1835_south_d3_001');
       const recommendedFlags = [...document.querySelectorAll('#popup .pop-flag')]
         .map((f) => f.textContent);
+      // THE CONTROL, and the only way THIS tree can exercise the other
+      // direction. Not one asset in the town carries `extras.placeholder`
+      // today — every roof below is a real bake — so "the label is claimed
+      // when the asset IS one" has no live example, and the honest reading
+      // above would go green on a renderer that had stopped emitting the
+      // label at all. So the fault is manufactured rather than waited for: a
+      // real bake is told it is a stand-in, the card is re-rendered through
+      // the same popup code, the flag is read back, and the lie is put away
+      // again. `assetIsPlaceholder` is a registry field the loader writes and
+      // nothing re-reads from the file, so restoring it restores the truth.
+      const wearsLabel = () => [...document.querySelectorAll('#popup .pop-flag')]
+        .some((f) => /placeholder massing/i.test(f.textContent));
+      const victim = window.__chicago4d.registry.get('sauganash_hotel');
+      const wasPlaceholder = victim?.assetIsPlaceholder;
+      const control = {};
+      if (victim) {
+        victim.assetIsPlaceholder = true;
+        window.__chicago4d.pick('sauganash_hotel');
+        control.mislabelledFlag = wearsLabel();
+        victim.assetIsPlaceholder = wasPlaceholder;
+        window.__chicago4d.pick('sauganash_hotel');
+        control.restoredFlag = wearsLabel();
+      }
       return {
         real: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
         realFlag: realFlags.some((t) => /placeholder massing/i.test(t)),
@@ -7365,6 +7388,7 @@ for (const [label, viewport, touch] of [
         flagNamesTheGrade: recommendedFlags.some((t) => new RegExp(
           window.__chicago4d.registry.get('recon_1835_south_d3_001')
             ?.sidecar?.documented_range?.confidence ?? 'x', 'i').test(t)),
+        ...control,
       };
     });
     check(`${label}: established assets remain identified as real bakes`,
@@ -7386,8 +7410,24 @@ for (const [label, viewport, touch] of [
     // massing is claimed when the asset IS one, and — the half that was missing —
     // never claimed when it is not. A real bake wearing a placeholder label is a
     // lie in the opposite direction, and would previously have passed.
+    //
+    // T-1331. It did not check either direction, because it read
+    // `placeholder.whereholderFlag` — a field that has never existed on the
+    // object built twenty lines above, whose name is `placeholderFlag`. The
+    // comparison was `undefined === false` on every tree since the check was
+    // written, so parts 2-3 carried a permanent red that every run had to
+    // triage past, and `dev-smoke-state.json` records only a leg's FIRST
+    // failure, so this one never reached the standing record at all.
     check(`${label}: the placeholder label agrees with the asset it describes`,
-      placeholder.whereholderFlag === (placeholder.recommended === true),
+      placeholder.placeholderFlag === (placeholder.recommended === true),
+      JSON.stringify(placeholder));
+    // The control is the assertion's teeth, and without it the line above is
+    // green on a town of real bakes whether the renderer emits the label or
+    // not — which is the shape of the fault it was written to catch. This is
+    // the manufactured half: a real bake wearing a placeholder label must be
+    // seen wearing it, and must stop wearing it when the lie is withdrawn.
+    check(`${label}: and a real bake told it is a stand-in is caught saying so`,
+      placeholder.mislabelledFlag === true && placeholder.restoredFlag === false,
       JSON.stringify(placeholder));
 
     // --- the standing constraint, on the card ------------------------------
@@ -11932,6 +11972,24 @@ for (const [label, viewport, touch] of [
       // the two rows as one.
       out.offer = [...document.querySelectorAll('#people-filters .people-frow[data-row="occupation"] .pill')]
         .map((p) => p.dataset.value).filter(Boolean);
+      // T-1396. The TOWN half of the offer, counted here out of the same sidecar
+      // the view counts it out of, instead of named by hand. T-1382 asserted this
+      // half with a literal list that happened to carry `labourer`; then the
+      // garrison stage minted 102 soldiers — a real trade held by real people —
+      // which took a town slot and left `labourer` seventh, losing an
+      // alphabetical tie with `clerk` at 26 apiece. The row was right and the
+      // assertion was wrong, and every later pass that mints a numerous trade
+      // would have broken it again the same way. Four, not the view's six: this
+      // is a FLOOR on the property, so narrowing the rule's own cut stays green
+      // while dropping the reconstructed half entirely does not.
+      const townCounts = new Map();
+      for (const r of pj.people || []) {
+        if (!r.occupation) continue;
+        townCounts.set(r.occupation, (townCounts.get(r.occupation) || 0) + 1);
+      }
+      out.townTop = [...townCounts.entries()]
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, 4).map(([v]) => v);
       out.pill = { all, matched: dir.filter('occupation', 'tavern_keeper'),
         pressed: document.querySelector('.pill[data-filter="occupation"][aria-pressed="true"]')?.dataset.value,
         offTrade: rows().filter((r) => !/^tavern keeper/.test(r.querySelector('.person-sub')?.textContent.trim() ?? ''))
@@ -12065,10 +12123,20 @@ for (const [label, viewport, touch] of [
     // halves: the trades a reader looks for and this project can name people in,
     // and the numerous reconstructed groups. Bounded, because a row that offers
     // all 83 trades is not an offer.
+    // T-1396. Both halves asserted as PROPERTIES. The evidenced half is probed by
+    // name, and may be: it is ranked over the people the sources name, which a
+    // reconstruction pass cannot push on — tavern keepers, physicians and lawyers
+    // are the trades a reader looks for and the ones this project can name people
+    // in, so losing one of those pills is a real red. The town half is the half
+    // the reconstruction DOES move, so nothing about it is typed in here: it is
+    // counted off the sidecar, and a pass that mints a numerous new trade adds a
+    // pill to the row and to this assertion in the same breath.
     check(`${label}: the Trade row offers the documented trades AND the town's commonest`,
-      ['tavern_keeper', 'physician', 'attorney', 'domestic', 'labourer'].every((t) => people.offer.includes(t))
+      ['tavern_keeper', 'physician', 'attorney'].every((t) => people.offer.includes(t))
+      && people.townTop.length === 4 && people.townTop.every((t) => people.offer.includes(t))
       && people.offer.length >= 10 && people.offer.length <= 16,
-      `${people.offer.length} pill(s): [${people.offer.join(', ')}]`);
+      `${people.offer.length} pill(s): [${people.offer.join(', ')}]`
+      + ` · town's commonest: [${people.townTop.join(', ')}]`);
     check(`${label}: the tavern-keeper pill narrows the list to tavern keepers`,
       people.pill.matched > 0 && people.pill.matched < people.pill.all && people.pill.rows === people.pill.matched
       && !people.pill.offTrade.length && people.pill.pressed === 'tavern_keeper' && people.pill.cleared === people.pill.all,

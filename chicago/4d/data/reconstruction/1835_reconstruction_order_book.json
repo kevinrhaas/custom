@@ -34,8 +34,8 @@
     "households_ruled_present": 820,
     "households_evidenced_absent": 2,
     "households_reconstructed": 135,
-    "persons_total": 2269,
-    "persons_standing": 2267,
+    "persons_total": 2265,
+    "persons_standing": 2263,
     "persons_ruled_present": 826,
     "persons_present": 1283,
     "persons_present_attested": 409,
@@ -62,17 +62,17 @@
     "source": "data/reconstruction/1835_presence_rulings.json",
     "summed_into_known": true,
     "summed_by": "T-1463",
-    "persons_ruled_present": 827,
+    "persons_ruled_present": 833,
     "households_ruled_present": 820,
     "by_presence_tier": {
-      "reconstructed": 679,
+      "reconstructed": 685,
       "inferred": 87,
       "attested": 61
     },
     "by_residence_grade": {
       "inferred": 550,
       "attested": 276,
-      "reconstructed": 1
+      "reconstructed": 7
     },
     "what_known_takes": "the 826 attested and inferred; the 1 reconstructed is a fill",
     "persons_known_before_the_rulings": 457,
@@ -326,8 +326,8 @@
       "owning_ticket": "T-1174",
       "quota_before_the_rulings": 46,
       "the_re_cut_would_have_ordered": 28,
-      "already_drawn": 46,
-      "held_at": 46,
+      "already_drawn": 45,
+      "held_at": 45,
       "why": "the re-cut would put this bucket's order under the people already drawn against it. The owner's ruling of 2026-09-20 (T-1459) holds here: no bucket's target falls below what has been drawn against it, and the refusal is named with both numbers rather than clamped in silence."
     },
     {
@@ -506,8 +506,8 @@
       "owning_ticket": "T-1174",
       "quota_before_the_rulings": 46,
       "the_re_cut_would_have_ordered": 28,
-      "already_drawn": 46,
-      "held_at": 46,
+      "already_drawn": 43,
+      "held_at": 43,
       "why": "the re-cut would put this bucket's order under the people already drawn against it. The owner's ruling of 2026-09-20 (T-1459) holds here: no bucket's target falls below what has been drawn against it, and the refusal is named with both numbers rather than clamped in silence."
     },
     {
@@ -539,14 +539,14 @@
     }
   ],
   "roster_offered": {
-    "total": 1811,
+    "total": 1812,
     "by_class": {
-      "R1_in_window_uncertain": 805,
+      "R1_in_window_uncertain": 804,
       "R2_in_window_single_source": 343,
       "R3_1834_return_or_muster": 30,
-      "R4_surname_only_census": 440,
+      "R4_surname_only_census": 441,
       "R5_later_only_backprojectable": 55,
-      "R6_native_metis_black": 138
+      "R6_native_metis_black": 139
     },
     "tickets": {
       "R1_in_window_uncertain": "T-1172",
@@ -560,7 +560,7 @@
   "totals": {
     "persons_target": 2536,
     "persons_known": 1283,
-    "persons_to_reconstruct": 1725,
+    "persons_to_reconstruct": 1721,
     "households_target": 643,
     "households_known": 1256,
     "households_to_reconstruct": 124,
@@ -570,9 +570,9 @@
     "roofs_target": 668,
     "roofs_standing": 414,
     "roofs_to_build": 267,
-    "persons_standing": 2267,
+    "persons_standing": 2263,
     "persons_still_owed": 514,
-    "persons_when_the_book_is_filled": 2781,
+    "persons_when_the_book_is_filled": 2777,
     "persons_target_range": [
       2353,
       3265
@@ -595,15 +595,15 @@
     {
       "id": "the_remainder_said_out_loud",
       "asks": "What does the town converge to if every remaining order is filled?",
-      "persons_standing_in_the_layer": 2267,
+      "persons_standing_in_the_layer": 2263,
       "persons_still_owed": 514,
-      "converges_to": 2781,
+      "converges_to": 2777,
       "model_point": 2536,
       "model_range": [
         2353,
         3265
       ],
-      "measured": "2,267 standing plus 514 still owed is 2,781, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,267 + 843 = 3,110, and the book was ordering a replacement for 826 people already in the layer. It is 245 above the model's 2,536 point, and that surplus is the 590 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book."
+      "measured": "2,263 standing plus 514 still owed is 2,777, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 241 above the model's 2,536 point, and that surplus is the 586 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book."
     },
     {
       "id": "households_are_counted_in_two_different_units",
@@ -1597,8 +1597,8 @@
           "target": 55,
           "known_attested": 9,
           "known_inferred": 18,
-          "to_reconstruct": 46,
-          "filled": 46,
+          "to_reconstruct": 45,
+          "filled": 45,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty",
           "recut_refused": true
@@ -2705,8 +2705,8 @@
           "target": 55,
           "known_attested": 9,
           "known_inferred": 18,
-          "to_reconstruct": 46,
-          "filled": 46,
+          "to_reconstruct": 43,
+          "filled": 43,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty",
           "recut_refused": true
@@ -4826,7 +4826,7 @@
       "bucket": "persons/female/under_10/north/family/none",
       "ticket": "T-1171",
       "stage": "modelled_families",
-      "records": 30,
+      "records": 29,
       "by": "tools/reconstruct_modelled_families.py --build"
     },
     {
@@ -4882,7 +4882,7 @@
       "bucket": "persons/male/under_10/west/family/none",
       "ticket": "T-1171",
       "stage": "modelled_families",
-      "records": 23,
+      "records": 20,
       "by": "tools/reconstruct_modelled_families.py --build"
     },
     {

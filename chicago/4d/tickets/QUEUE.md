@@ -52,9 +52,6 @@
 # --- derivation faults that cost cycles on every branch that re-derives.
 # --- The old note here described the terrain fossil on #1521/#1518, cleared 2026-09-19.
 T-1369 — Dev is red at desktop part 3: T-1171's drawn wife lands on an evidence-only household (hh_inf_cooper_north_04), and the placeholder label no longer agrees with its asset
-T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
-T-1396 — Dev is red at part 12 on both viewports: the garrison's 102 soldiers pushed 'labourer' off the Trade row, and T-1382's assertion names labourer by hand
-T-1453 — Two gated writers carry a placement the coverage audit does not count, so it says 208 measured and accounts for 206 — and the one whose ordering is unrecorded cost three gate cycles today
 T-1363 — rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
 
 
@@ -89,6 +86,9 @@ T-1444 — Release generate_west_infill's 35 held slots onto the extended ground
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
 T-1492 — Seat the reach: the address book's reconstructed rungs — a block face for a street-only row, a division band where only the division is known, the policy's band where nothing is — seeded, tier-marked, and every household's division re-derived from its row so the People view's division filter fills
 T-1493 — Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
+T-1484 — Carry the North Division parcel's nine roofs across that surface: the recipe's family, suffix, inventory_class and totals re-dealt, generate_north_infill re-deriving byte for byte, the assets renamed, the household workplaces resolved, rebaked and published
+T-1481 — Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published
+T-1482 — Migrate the three platted blocks' six refamilied roofs, whose ancillary slots cross the principal/ancillary line: generate_block_infill's claimed principal/ancillary mix re-dealt rather than field-edited, the ids carried across the reference list, rebaked and published — with the screenshot from Lake and Clark
 T-1495 — Migrate the North Division parcel's 9 refamilied roofs whose id moves: the recipe's suffix, family, inventory class and authored footprint re-dealt against the new bands, the parcel's group and family totals recomputed, every file naming an old id moved with it, rebaked and published
 T-1496 — Re-deal the three platted blocks' 6 refamilied roofs across the principal/ancillary line: generate_block_infill gates a block's claimed schedule and refuses a second principal roof on a lot that already has one, so an ancillary yard building moved into a dwelling family is a re-deal of the block's mix, not a field edit; with the screenshot from Lake and Clark
 T-1199 — Seat every reconstructed household, business, lodging house and camp by the placement policy into the extended lot grid: multiple buildings per main-street lot, single roofs on the back streets, labourers on the small lots and fringes, the noxious trades on the branches — deterministic, order-book-counted
@@ -218,4 +218,3 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
-
