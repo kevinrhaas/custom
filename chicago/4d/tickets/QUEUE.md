@@ -68,7 +68,6 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1469 — Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
-T-1509 — Refuse or tier the business readings the layer does not carry at a tiered block: the 49 whose only reach is a record's untiered claim_ids and the 52 that reach no business record at all, each with its reason on the unit
 
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
