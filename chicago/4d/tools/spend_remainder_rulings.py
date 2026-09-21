@@ -961,6 +961,19 @@ def rule_newspapers(unit: dict, printed: str | None,
         # standing as judgement it never makes. It refuses instead of falling through:
         # the branches below read a notice as a person or a family column, and a firm
         # answered by one of those is a wrong ruling arriving quietly.
+        # A PROBE ASKS A QUESTION AND HAS TO GET AN ANSWER. `is_dated_press_appearance`
+        # runs every unit in the corpus past this function to ask one thing — is this a
+        # named person on a dated day? — and tools/spend_press_bounds.py asks it of the
+        # WHOLE newspaper corpus, firm notices included. The answer for a firm is no.
+        # Raising at a caller that is only asking stops a build that was right to ask,
+        # which is what happened on the first cut of this change: the gate went red on
+        # `chicago_american_1835_06_08 c006` — a real Goss & Cobb notice — from a probe,
+        # not from a ruling. The refusal below is for the RULING path alone, and the
+        # early return above in press_appearance_rule is the same distinction already
+        # drawn once in this file.
+        if (cache or {}).get("press_probe"):
+            return (None, f"{where}: a notice carrying a firm is not a dated press "
+                          "appearance; it is the ledger's to spend on the business layer")
         raise SystemExit(
             f"{where}: the notice of {printed} carries the firm "
             f"“{clip(business.get('name'), 80) or 'unnamed in the block'}”, and since "
@@ -1264,14 +1277,29 @@ def self_test() -> int:
          {**paper, "record": {**paper["record"], "letter_list_only": True}},
          "the_issue_is_printed_after_the_scene_date",
          fn=lambda u: rule_newspapers(u, "1835-08-05"))
+    firm_unit = {**paper, "record": {**paper["record"],
+                                     "business": {"name": "Goss & Cobb"}}}
     try:
-        rule_newspapers({**paper, "record": {**paper["record"],
-                                             "business": {"name": "Goss & Cobb"}}},
-                        "1835-06-10")
+        rule_newspapers(firm_unit, "1835-06-10")
         failures.append("a notice carrying a firm: was ruled rather than refused")
         print("  FAIL: a notice carrying a firm")
     except SystemExit:
         print("  ok:   a notice carrying a firm stops the build (T-1508)")
+    # AND THE PROBE GETS AN ANSWER RATHER THAN THE REFUSAL. tools/spend_press_bounds.py
+    # runs the WHOLE newspaper corpus past is_dated_press_appearance, firm notices
+    # included, to ask one question; raising at a caller that is only asking took the
+    # gate red on the real Goss & Cobb notice (chicago_american_1835_06_08 c006) on the
+    # first cut of T-1508. Both halves are held here because either alone is a bug.
+    try:
+        if is_dated_press_appearance(firm_unit, "1835-06-10"):
+            failures.append("a firm notice probes as a dated press appearance")
+            print("  FAIL: a firm notice probes as a dated press appearance")
+        else:
+            print("  ok:   a firm notice answers the probe with no, and does not raise at it")
+    except SystemExit:
+        failures.append("the probe on a firm notice raised instead of answering — "
+                        "spend_press_bounds asks this of every unit and cannot be refused")
+        print("  FAIL: the probe on a firm notice raised instead of answering")
     held("the married column",
          {**paper, "record": {**paper["record"], "kind": "person",
                               "normalized": "MARRIED, In this town, on the 12th inst."}},
