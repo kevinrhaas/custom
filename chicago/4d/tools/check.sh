@@ -4789,7 +4789,16 @@ selftest "…and its own assertions still fire when broken" \
 # MEASUREMENT, not assumption: the step re-reads the committed lot-address ledger, so the day
 # a second lot address arrives naming somebody the gate fails rather than the rung quietly
 # staying empty.
-step "the address book re-derives: every household and firm at the rung its evidence reaches, no seat invented" \
+#
+# T-1512 ADDED THE TWO RUNGS THE EVIDENCE STILL BOUNDS, and three more limits with them.
+# A BAND MAY NOT MOVE A HOUSEHOLD OUT OF THE DIVISION ITS OWN CARD NAMES — the division is
+# the reading and the band is the reconstruction, and a pass that could change the first
+# while dealing the second is a pass that can rewrite evidence. A BAND MAY ONLY CITE A
+# CLAUSE THE COMMITTED PLACEMENT POLICY HOLDS, and a head whose trade no clause reaches is
+# banded to the division's own ground rather than dealt a class its record never carried.
+# AND NO RECONSTRUCTED SEAT MAY GROW A LOT, A ROOF OR A COORDINATE: the step refuses the
+# field by name, because that is the shape the drift would take.
+step "the address book re-derives: every household and firm at the rung its evidence reaches, no band out of its division, no seat invented" \
   python3 tools/seat_known_1835.py --check
 
 selftest "…and its own assertions still fire when broken" \
