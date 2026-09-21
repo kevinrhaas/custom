@@ -40,6 +40,10 @@
     "merge_target_withdrawn_from_the_layer": {
       "disposition": "refused",
       "statement": "A row of Moses and Kirkland's table of actual settlers prior to 1830 whose landed crosswalk merge names a resident card THIS LAYER NO LONGER HOLDS, the card having been withdrawn by a later refusal rather than renamed or folded. There is no card for the row to be spent onto, and minting one from it would put back the resident the withdrawal removed — on pre-1830 evidence that under the ladder ratified 2026-09-03 cannot place anybody on 1835-07-01 by itself. The row is withheld from the town and carried to the borderline roster (T-1159) as a name the research read and did not admit, and the stale merge is left standing in the crosswalk because a merge is an identity statement inside the research layer and was not wrong when it was made."
+    },
+    "the_reading_is_spent_on_the_yard_and_not_on_a_person_or_a_firm": {
+      "disposition": "aggregate_only",
+      "statement": "The unit is a town reading the SCENE has already taken and the person ledger cannot take. This ledger indexes two target surfaces — the residents layer and, since T-1508, the business layer — and a reading spent on the yard, the terrain or the shore lands on neither, so it stands `unresolved` while being, in fact, finished work. That is the same answer a ground reading gets: it is true, it is in the window, it is committed chronology that the layer citing it names by claim id, and it attaches to no person and no firm. Spending it in aggregate records what it did rather than leaving it queued behind a ticket that has closed. Nothing here edits the record that cites it, raises a trade, or moves a tier."
     }
   },
   "rulings": [
@@ -292,6 +296,11 @@
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_036",
       "rule": "identity_refused_in_the_crosswalk",
       "note": "Welch, Michael — nativity Ire, year 1829, no remarks, against Michael P Welch, a civic-mint card with a middle initial and a bound of 24 December 1834. The crosswalk says what it would take to spend the row and this pass does not supply it."
+    },
+    {
+      "unit": "civic:data/research/civic/claims/town_findings_andreas_v1.json#claims/c013",
+      "rule": "the_reading_is_spent_on_the_yard_and_not_on_a_person_or_a_firm",
+      "note": "Andreas on how Chicago got its water between the public well of November 1834 and the Hydraulic Company's works of 1842: two-wheeled carts with a mounted hogshead driven into the lake at the foot of Randolph, filled by pail and run off through a leathern hose into barrels at a customer's door at five to ten cents. T-0759 took it and is closed: data/yard/town_water_cart.json cites this claim by id, and data/liberties.json and docs/LIBERTIES.md carry what was inferred from it. The cart is yard furniture, not a household and not a firm — the reading's own notes say the trade was never minuted and name no waterman — so there is no record on either indexed layer for this unit to be asserted against. It routed to T-1468 as 'a trade the town ran that no business record carries'; T-1468's last live child closed on 2026-09-21 (T-1509) and the routing had nowhere left to point."
     },
     {
       "unit": "residents:data/research/residents/letter_list_reading_suspicions.json#rows/~1rows~10",

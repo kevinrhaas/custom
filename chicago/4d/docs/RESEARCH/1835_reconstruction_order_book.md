@@ -374,7 +374,7 @@ The households the model wants, by kind and division.
 The December 1835 State census set against the register the town already holds.
 
 - `register_total`: 196
-- `at_scene_date`: 212
+- `at_scene_date`: 210
 - `census_enumerated_total`: 118
 - `register_businesses_read`: 196
 - `division_note`: EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.

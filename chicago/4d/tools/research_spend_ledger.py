@@ -562,6 +562,14 @@ PLACE_AND_ENTERPRISE = {
                            "enterprise claim."
                            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and all five are DONE, so the pointer moves again rather than going quiet with the ticket. T-1190 since 2026-09-20 (owner's call): the business layer's convergence is what is left to reconcile a trade or a premises against the layer once the audit is spent."
                         " AND T-1190 IS SPENT SINCE 2026-09-20, its three pieces T-1440, T-1441 and T-1442 all closed; the pointer moves once more, to T-1468, which owns the reconciliation itself rather than the convergence that has now finished."),
+    # T-1509, 2026-09-21: T-1468's last live child closed and BOTH ROUTES ABOVE ARE NOW
+    # UNREACHED. The `business` half was spent into the newspapers and books registers by
+    # tools/spend_remainder_rulings.py; the one civic reading left is ruled in the
+    # hand-authored register, because what took it was the YARD layer (a water cart),
+    # which this ledger does not index as a target surface. A unit arriving here tomorrow
+    # would name a ticket that is `split` and not live, and the gate would say so on the
+    # unit rather than on the pointer — so the next reading that lands here is a ticket
+    # of its own, not a rename.
     "building": ("T-1198", "The seating pass owns this unasserted place claim."),
     "street": ("T-1198", "The seating pass owns this unasserted place claim."),
     "infrastructure": ("T-1198", "The seating pass owns this unasserted place claim."),

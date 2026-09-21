@@ -62,7 +62,6 @@
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
-T-1374 — The Indian Agency establishment of 1835: the agent, sub-agent, interpreter and agency blacksmith as the sources name them, and the Native and Metis employees and families the records only count, through T-1177's review rules
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
 # --- 3C. RECONSTRUCT RESIDENTS — converge
@@ -73,7 +72,6 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
 
 
-T-1509 — Refuse or tier the business readings the layer does not carry at a tiered block: the 49 whose only reach is a record's untiered claim_ids and the 52 that reach no business record at all, each with its reason on the unit
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
 T-1513 — Seat the policy-only rung: the 1,186 households no source places anywhere, banded by the policy's class rule and dealt a division from the town model — seeded, order-book-counted, and every card's division re-derived so the People view's division filter fills
@@ -228,3 +226,7 @@ T-1507 — Hiram Pearsons is a house painter a reminiscence names and a speculat
 T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and whose owning run has finished is the one state no automation in this repo owns
 T-1511 — The trade share counts buildings that front no street: nineteen Fort Dearborn reservation roofs 270-420 m from Lake Street vote in the principal class, because nearest_frontage has no distance bound
 T-1515 — Read Fergus 1839 as a dated directory role like its 1843 and 1844 siblings, so a printing is carried as evidence whether or not the 1835 field is empty
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1514 — Tier the anonymous compiled business records in compile_businesses.py: 37 records whose only link to the advertisement that compiled them is an untiered claim_ids at the record root, so the 49 readings that built them can never be asserted
