@@ -104,3 +104,29 @@ remain to reconstruct and are the re-cut's subject.
 than on a decision. The re-cut is T-1166's successor and is filed separately; this
 ticket's own work — minting the shortfall into cards — runs once the remainder can pay
 for it.
+
+
+## WHAT THE RE-CUT RETURNED, 2026-09-21 (T-1459, PR #1611)
+
+The re-cut ran and **moved nothing**, so the mint this ticket asks for still cannot be paid
+for — but the reason has changed from a decision to a measurement, and it is now a specific
+one.
+
+- **The age argument was made and holds.** The trade cut's age floor is now read off the
+  town's own record rather than assumed: 127 people in the layer carry an occupation a
+  source records, nine of them aged 15-19, so the `10_19` band is open at 0.2828 of the
+  adult participation rate. The 24 shop boys are no longer barred by a band that does not
+  exist.
+- **The sex argument was refused, and that refusal is final for this book.** 120 of the 127
+  are men, and that figure is survivorship — the sources that print an occupation print
+  proprietors. The remainder is not re-cut male. The hands a shop wants that only a man can
+  fill stand short.
+- **And the band has no remainder.** Every cell of it has been drawn against: T-1174 drew
+  its children at home and T-1175 seated its boarders. A bucket carrying a counter cannot be
+  re-cut at all, because `seat_lodgers_1835.py` reads a bucket's whole `to_reconstruct` and
+  re-deals its entire draw when one slot of it moves — measured, and filed as **T-1503**.
+
+**So this ticket now waits on T-1503**, not on the re-cut and not on a ruling. When the
+lodging stage draws against its own remainder, the 10_19 band's 35 undrawn slots become
+spendable and the mint can run against them. Until then the shops stand short and the
+business card says so, which was always the third of the three answers.

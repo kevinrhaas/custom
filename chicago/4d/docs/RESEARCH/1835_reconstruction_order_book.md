@@ -98,6 +98,87 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 | `households/family_dwelling/south` | T-1171 | 77 | 0 | 65 |
 | `households/family_dwelling/west` | T-1171 | 39 | 0 | 33 |
 
+## The trade cut, re-cut on its remainder
+
+> **T-1459**, on the owner's ruling of 2026-09-20: take option 1 — re-cut the book — and re-cut **just the remainder**.
+
+### The age of a working person is read, not assumed
+
+127 people in the resident layer carry an occupation a source records. 9 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2828 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.
+
+| band | workers the sources record | share of the 1840 pyramid | weight in the trade cut |
+|---|---:|---:|---:|
+| `under_10` | 0 | 0.2662 | 0.0000 |
+| `10_19` | 9 | 0.1559 | 0.2828 |
+| `20_29` | 58 | 0.3202 | 1.0000 |
+| `30_39` | 45 | 0.1737 | 1.0000 |
+| `40_49` | 9 | 0.0547 | 1.0000 |
+| `50_plus` | 6 | 0.0292 | 1.0000 |
+
+Read from data/residents/households/*.json — every person whose occupation is attested or inferred, which is to say read from a source. 0 person(s) the layer grades `reconstructed` were skipped: a stage's own draw is not evidence for the cut that produced it.
+
+### The sex of the remainder is NOT re-cut
+
+120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud.
+
+### What moved
+
+The re-cut wanted **35** trade slots in the bands it reopened. The younger bands held **0** undrawn and the adult cells it would draw from held **35**, so **0** moved and the book's employed total did not change. Every cell below is a `lodging` cell on both sides, because every `family` cell of the reopened band is drawn out: the working youths this book still orders are BOARDERS — an apprentice or a shop hand sleeping where he works — which is a consequence of what is already drawn and not a claim about 1835.
+
+| into | slots |
+|---|---:|
+
+| out of | slots |
+|---|---:|
+
+**28 cell(s) could not take or give their share**, because the people who would have filled them are already drawn. Each is named with both numbers; none was clamped in silence, and no person already drawn moved.
+
+| cell | the re-cut wanted | the remainder could pay | already drawn | by |
+|---|---:|---:|---:|---|
+| `persons/female/10_19/north/family` (into) | 3 | 0 | 26 | T-1174 |
+| `persons/female/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
+| `persons/female/10_19/south/family` (into) | 7 | 0 | 61 | T-1174 |
+| `persons/female/10_19/south/lodging` (into) | 2 | 0 | 4 | T-1500 |
+| `persons/female/10_19/west/family` (into) | 2 | 0 | 24 | T-1174 |
+| `persons/female/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1500 |
+| `persons/male/10_19/north/family` (into) | 3 | 0 | 30 | T-1174 |
+| `persons/male/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
+| `persons/male/10_19/south/family` (into) | 8 | 0 | 71 | T-1174 |
+| `persons/male/10_19/south/lodging` (into) | 3 | 0 | 4 | T-1500 |
+| `persons/male/10_19/west/family` (into) | 3 | 0 | 26 | T-1174 |
+| `persons/male/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1500 |
+| `persons/female/20_29/north/family` (out of) | 1 | 0 | 15 | T-1347 |
+| `persons/female/20_29/south/family` (out of) | 3 | 0 | 35 | T-1347 |
+| `persons/female/20_29/west/family` (out of) | 1 | 0 | 13 | T-1347 |
+| `persons/female/30_39/south/family` (out of) | 1 | 0 | 16 | T-1347 |
+| `persons/female/40_49/west/family` (out of) | 1 | 0 | 3 | T-1347 |
+| `persons/female/50_plus/south/family` (out of) | 1 | 0 | 4 | T-1347 |
+| `persons/male/20_29/north/family` (out of) | 2 | 0 | 25 | T-1347 |
+| `persons/male/20_29/north/lodging` (out of) | 1 | 0 | 2 | T-1500 |
+| `persons/male/20_29/south/family` (out of) | 5 | 0 | 60 | T-1347 |
+| `persons/male/20_29/west/family` (out of) | 2 | 0 | 23 | T-1347 |
+| `persons/male/20_29/west/lodging` (out of) | 1 | 0 | 1 | T-1500 |
+| `persons/male/30_39/north/family` (out of) | 1 | 0 | 15 | T-1347 |
+| `persons/male/30_39/south/family` (out of) | 3 | 0 | 35 | T-1347 |
+| `persons/male/30_39/west/family` (out of) | 1 | 0 | 13 | T-1347 |
+| `persons/male/40_49/south/family` (out of) | 1 | 0 | 10 | T-1347 |
+| `persons/male/50_plus/south/family` (out of) | 1 | 0 | 5 | T-1347 |
+
+### Who has already spent against this book
+
+The re-cut's one forbidden move is to pull a quota out from under a stage that has already drawn on it. These are the stages that have, so a reader can tell the settled parts of the book from the open ones:
+
+| ticket | persons drawn | buckets |
+|---|---:|---:|
+| T-1174 | 680 | 27 |
+| T-1347 | 308 | 24 |
+| T-1171 | 296 | 19 |
+| T-1371 | 56 | 20 |
+| T-1418 | 3 | 2 |
+| T-1184 | 2 | 1 |
+| T-1185 | 2 | 2 |
+
+
 ## The rules this book adds
 
 - **point from range** — Where the town model gives a point the book takes it; where it gives only a range the book takes the MIDPOINT, rounded half up, and carries the range beside it. A quota cannot be a range.
