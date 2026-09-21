@@ -541,10 +541,10 @@
   "trade_re_cut": {
     "ruling": "the owner's ruling of 2026-09-20 on T-1448's three answers: re-cut the book (option 1), and re-cut JUST THE REMAINDER",
     "ticket": "T-1459",
-    "what_moved": 35,
+    "what_moved": 0,
     "the_re_cut_wanted": 35,
-    "the_younger_bands_had_undrawn": 47,
-    "the_adult_cells_had_undrawn": 45,
+    "the_younger_bands_had_undrawn": 0,
+    "the_adult_cells_had_undrawn": 35,
     "bands_reopened": [
       "10_19"
     ],
@@ -594,26 +594,8 @@
       "the_age_argument": "127 people in the resident layer carry an occupation a source records. 9 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2828 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.",
       "the_sex_argument_is_refused": "120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
     },
-    "into": {
-      "persons/female/10_19/north/lodging": 4,
-      "persons/female/10_19/south/lodging": 8,
-      "persons/female/10_19/west/lodging": 4,
-      "persons/male/10_19/north/lodging": 4,
-      "persons/male/10_19/south/lodging": 11,
-      "persons/male/10_19/west/lodging": 4
-    },
-    "out_of": {
-      "persons/female/20_29/south/lodging": 5,
-      "persons/female/20_29/west/lodging": 3,
-      "persons/female/30_39/south/lodging": 3,
-      "persons/female/30_39/west/lodging": 1,
-      "persons/female/40_49/south/lodging": 1,
-      "persons/male/20_29/north/lodging": 4,
-      "persons/male/20_29/south/lodging": 9,
-      "persons/male/20_29/west/lodging": 4,
-      "persons/male/30_39/south/lodging": 4,
-      "persons/male/40_49/west/lodging": 1
-    },
+    "into": {},
+    "out_of": {},
     "refusals": [
       {
         "cell": "persons/female/10_19/north/family",
@@ -622,7 +604,18 @@
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 26,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/female/10_19/north/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 3,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/female/10_19/south/family",
@@ -631,7 +624,18 @@
         "the_re_cut_wanted": 7,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 61,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/female/10_19/south/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 2,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 4,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/female/10_19/west/family",
@@ -640,7 +644,18 @@
         "the_re_cut_wanted": 2,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 24,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/female/10_19/west/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 1,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/male/10_19/north/family",
@@ -649,7 +664,18 @@
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 30,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/male/10_19/north/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 3,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/male/10_19/south/family",
@@ -658,7 +684,18 @@
         "the_re_cut_wanted": 8,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 71,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/male/10_19/south/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 3,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 4,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/male/10_19/west/family",
@@ -667,7 +704,18 @@
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 26,
-        "why": "the re-cut would seat a working youth where the band is already drawn out as children. The owner's ruling of 2026-09-20 protects a person already drawn, so the band takes only what is undrawn and the rest is refused here by name rather than clamped in silence."
+        "drawn_by": "T-1174",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
+      },
+      {
+        "cell": "persons/male/10_19/west/lodging",
+        "direction": "into",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 1,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would seat a working youth in a cell a stage has already drawn against. The owner's ruling of 2026-09-20 protects what is drawn, and a stage that reads a bucket's whole `to_reconstruct` re-deals its entire draw when one slot of it moves — so the cell is refused by name rather than clamped in silence."
       },
       {
         "cell": "persons/female/20_29/north/family",
@@ -676,7 +724,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 15,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/female/20_29/south/family",
@@ -685,7 +734,8 @@
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 35,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/female/20_29/west/family",
@@ -694,7 +744,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 13,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/female/30_39/south/family",
@@ -703,7 +754,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 16,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/female/40_49/west/family",
@@ -712,7 +764,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 3,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/female/50_plus/south/family",
@@ -721,7 +774,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 4,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/20_29/north/family",
@@ -730,7 +784,18 @@
         "the_re_cut_wanted": 2,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 25,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
+      },
+      {
+        "cell": "persons/male/20_29/north/lodging",
+        "direction": "out of",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 2,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/20_29/south/family",
@@ -739,7 +804,8 @@
         "the_re_cut_wanted": 5,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 60,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/20_29/west/family",
@@ -748,7 +814,18 @@
         "the_re_cut_wanted": 2,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 23,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
+      },
+      {
+        "cell": "persons/male/20_29/west/lodging",
+        "direction": "out of",
+        "owning_ticket": "T-1175",
+        "the_re_cut_wanted": 1,
+        "the_remainder_could_pay": 0,
+        "already_drawn_in_the_way": 1,
+        "drawn_by": "T-1175",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/30_39/north/family",
@@ -757,7 +834,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 15,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/30_39/south/family",
@@ -766,7 +844,8 @@
         "the_re_cut_wanted": 3,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 35,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/30_39/west/family",
@@ -775,7 +854,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 13,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/40_49/south/family",
@@ -784,7 +864,8 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 10,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       },
       {
         "cell": "persons/male/50_plus/south/family",
@@ -793,16 +874,25 @@
         "the_re_cut_wanted": 1,
         "the_remainder_could_pay": 0,
         "already_drawn_in_the_way": 5,
-        "why": "the re-cut would take this cell's order below the people already drawn against it. It is held at what was drawn, and the slots it could not give up were taken from cells that still had a remainder."
+        "drawn_by": "T-1347",
+        "why": "the re-cut would take this cell's order out from under a stage that has already drawn against it. It is held where it stands, and the slots it could not give up were sought from cells nobody has spent."
       }
     ],
+    "why_it_stopped": "**NOTHING MOVED, and that is the finding.** Every cell of the reopened band has been drawn against — by T-1174, which drew its children at home, and by T-1175, which seated its boarders — so the band has no remainder at all. The owner's ruling of 2026-09-20 re-cuts the remainder and nothing else, and here there is none: the town's whole 10-19 order is spent. The shop boys the staffing model wants therefore cannot be minted out of this book as it stands, and that is the answer T-1448 is owed — not a number, but the reason there is no number.",
+    "what_would_unlock_it": "either a lodging stage that draws against `to_reconstruct - filled` rather than against the whole of `to_reconstruct` — `tools/seat_lodgers_1835.py` reads the whole quota and re-deals its entire draw when one slot of it moves — or the owner's ruling that T-1175's seated lodgers may be re-dealt. Neither is this ticket's to take: the first re-opens a stage that has closed and the second is a decision about what the town IS.",
     "cells_reopened_and_left_empty": [
       "persons/female/10_19/north/family/trade",
+      "persons/female/10_19/north/lodging/trade",
       "persons/female/10_19/south/family/trade",
+      "persons/female/10_19/south/lodging/trade",
       "persons/female/10_19/west/family/trade",
+      "persons/female/10_19/west/lodging/trade",
       "persons/male/10_19/north/family/trade",
+      "persons/male/10_19/north/lodging/trade",
       "persons/male/10_19/south/family/trade",
-      "persons/male/10_19/west/family/trade"
+      "persons/male/10_19/south/lodging/trade",
+      "persons/male/10_19/west/family/trade",
+      "persons/male/10_19/west/lodging/trade"
     ],
     "nobody_already_drawn_moved": true,
     "the_sex_axis": "120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud."
@@ -901,21 +991,22 @@
       "records": 56,
       "buckets": [
         "persons/female/10_19/north/lodging/none",
-        "persons/female/10_19/north/lodging/trade",
         "persons/female/10_19/south/lodging/none",
+        "persons/female/10_19/west/lodging/none",
         "persons/female/20_29/north/lodging/none",
         "persons/female/20_29/north/lodging/trade",
         "persons/female/20_29/south/lodging/none",
         "persons/female/20_29/west/lodging/none",
-        "persons/female/30_39/north/lodging/none",
+        "persons/female/30_39/north/lodging/trade",
         "persons/female/30_39/south/lodging/none",
-        "persons/female/40_49/south/lodging/none",
         "persons/male/10_19/north/lodging/none",
-        "persons/male/10_19/north/lodging/trade",
-        "persons/male/10_19/west/lodging/trade",
+        "persons/male/10_19/south/lodging/none",
+        "persons/male/10_19/west/lodging/none",
         "persons/male/20_29/north/lodging/none",
+        "persons/male/20_29/north/lodging/trade",
         "persons/male/20_29/south/lodging/none",
         "persons/male/20_29/west/lodging/none",
+        "persons/male/20_29/west/lodging/trade",
         "persons/male/30_39/north/lodging/none",
         "persons/male/30_39/south/lodging/none",
         "persons/male/30_39/west/lodging/none"
@@ -1067,25 +1158,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/female/10_19/north/lodging/trade",
-          "axes": {
-            "sex": "female",
-            "age_band": "10_19",
-            "division": "north",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 4,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 4,
-          "filled": 1,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 1,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/female/10_19/north/lodging/none",
           "axes": {
             "sex": "female",
@@ -1094,11 +1166,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 7,
+          "target": 11,
           "known_attested": 2,
           "known_inferred": 3,
-          "to_reconstruct": 2,
-          "filled": 1,
+          "to_reconstruct": 6,
+          "filled": 3,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1121,25 +1193,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/female/10_19/south/lodging/trade",
-          "axes": {
-            "sex": "female",
-            "age_band": "10_19",
-            "division": "south",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 8,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 8,
-          "filled": 0,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 2,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/female/10_19/south/lodging/none",
           "axes": {
             "sex": "female",
@@ -1148,11 +1201,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 19,
+          "target": 27,
           "known_attested": 4,
           "known_inferred": 10,
-          "to_reconstruct": 5,
-          "filled": 2,
+          "to_reconstruct": 13,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1175,25 +1228,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/female/10_19/west/lodging/trade",
-          "axes": {
-            "sex": "female",
-            "age_band": "10_19",
-            "division": "west",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 4,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 4,
-          "filled": 0,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 1,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/female/10_19/west/lodging/none",
           "axes": {
             "sex": "female",
@@ -1202,11 +1236,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 6,
+          "target": 10,
           "known_attested": 2,
           "known_inferred": 3,
-          "to_reconstruct": 1,
-          "filled": 0,
+          "to_reconstruct": 5,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1260,7 +1294,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 3,
-          "filled": 2,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
           "recut_wants": 6
@@ -1278,7 +1312,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 6,
-          "filled": 4,
+          "filled": 3,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1328,10 +1362,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 10,
+          "target": 15,
           "known_attested": 3,
           "known_inferred": 5,
-          "to_reconstruct": 2,
+          "to_reconstruct": 7,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -1346,10 +1380,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 34,
+          "target": 29,
           "known_attested": 5,
           "known_inferred": 10,
-          "to_reconstruct": 19,
+          "to_reconstruct": 14,
           "filled": 5,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1400,10 +1434,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 3,
+          "target": 6,
           "known_attested": 1,
           "known_inferred": 2,
-          "to_reconstruct": 0,
+          "to_reconstruct": 3,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -1418,11 +1452,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 13,
+          "target": 10,
           "known_attested": 1,
           "known_inferred": 3,
-          "to_reconstruct": 9,
-          "filled": 2,
+          "to_reconstruct": 6,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1476,7 +1510,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 2,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
           "recut_wants": 3
@@ -1494,7 +1528,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 3,
-          "filled": 1,
+          "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1544,10 +1578,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 4,
+          "target": 7,
           "known_attested": 1,
           "known_inferred": 3,
-          "to_reconstruct": 0,
+          "to_reconstruct": 3,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -1562,11 +1596,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 16,
+          "target": 13,
           "known_attested": 2,
           "known_inferred": 4,
-          "to_reconstruct": 10,
-          "filled": 4,
+          "to_reconstruct": 7,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -1616,10 +1650,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 2,
+          "target": 3,
           "known_attested": 1,
           "known_inferred": 1,
-          "to_reconstruct": 0,
+          "to_reconstruct": 1,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -1634,10 +1668,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 6,
+          "target": 5,
           "known_attested": 1,
           "known_inferred": 1,
-          "to_reconstruct": 4,
+          "to_reconstruct": 3,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -1760,10 +1794,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 2,
+          "target": 3,
           "known_attested": 1,
           "known_inferred": 1,
-          "to_reconstruct": 0,
+          "to_reconstruct": 1,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -1778,11 +1812,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 6,
+          "target": 5,
           "known_attested": 1,
           "known_inferred": 1,
-          "to_reconstruct": 4,
-          "filled": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2197,25 +2231,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/male/10_19/north/lodging/trade",
-          "axes": {
-            "sex": "male",
-            "age_band": "10_19",
-            "division": "north",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 4,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 4,
-          "filled": 2,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 1,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/male/10_19/north/lodging/none",
           "axes": {
             "sex": "male",
@@ -2224,11 +2239,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 9,
+          "target": 13,
           "known_attested": 2,
           "known_inferred": 4,
-          "to_reconstruct": 3,
-          "filled": 1,
+          "to_reconstruct": 7,
+          "filled": 3,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2251,25 +2266,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/male/10_19/south/lodging/trade",
-          "axes": {
-            "sex": "male",
-            "age_band": "10_19",
-            "division": "south",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 11,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 11,
-          "filled": 0,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 3,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/male/10_19/south/lodging/none",
           "axes": {
             "sex": "male",
@@ -2278,11 +2274,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 20,
+          "target": 31,
           "known_attested": 5,
           "known_inferred": 12,
-          "to_reconstruct": 3,
-          "filled": 0,
+          "to_reconstruct": 14,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2305,25 +2301,6 @@
           "recut_refused": true
         },
         {
-          "key": "persons/male/10_19/west/lodging/trade",
-          "axes": {
-            "sex": "male",
-            "age_band": "10_19",
-            "division": "west",
-            "household_type": "lodging",
-            "trade": "trade"
-          },
-          "target": 4,
-          "known_attested": 0,
-          "known_inferred": 0,
-          "to_reconstruct": 4,
-          "filled": 1,
-          "owning_ticket": "T-1175",
-          "basis": "a bed rather than a household",
-          "recut_wants": 1,
-          "reopened_by_the_re_cut": true
-        },
-        {
           "key": "persons/male/10_19/west/lodging/none",
           "axes": {
             "sex": "male",
@@ -2332,11 +2309,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 7,
+          "target": 11,
           "known_attested": 2,
           "known_inferred": 3,
-          "to_reconstruct": 2,
-          "filled": 0,
+          "to_reconstruct": 6,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2385,11 +2362,11 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 7,
+          "target": 11,
           "known_attested": 2,
           "known_inferred": 4,
-          "to_reconstruct": 1,
-          "filled": 0,
+          "to_reconstruct": 5,
+          "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
           "recut_wants": 10
@@ -2403,10 +2380,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 24,
+          "target": 20,
           "known_attested": 3,
           "known_inferred": 7,
-          "to_reconstruct": 14,
+          "to_reconstruct": 10,
           "filled": 6,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -2456,10 +2433,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 17,
+          "target": 26,
           "known_attested": 4,
           "known_inferred": 10,
-          "to_reconstruct": 3,
+          "to_reconstruct": 12,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -2474,11 +2451,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 58,
+          "target": 49,
           "known_attested": 8,
           "known_inferred": 17,
-          "to_reconstruct": 33,
-          "filled": 9,
+          "to_reconstruct": 24,
+          "filled": 7,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2527,11 +2504,11 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 6,
+          "target": 10,
           "known_attested": 2,
           "known_inferred": 3,
-          "to_reconstruct": 1,
-          "filled": 0,
+          "to_reconstruct": 5,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
           "recut_wants": 9
@@ -2545,10 +2522,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 22,
+          "target": 18,
           "known_attested": 3,
           "known_inferred": 6,
-          "to_reconstruct": 13,
+          "to_reconstruct": 9,
           "filled": 2,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -2620,7 +2597,7 @@
           "known_attested": 2,
           "known_inferred": 3,
           "to_reconstruct": 7,
-          "filled": 5,
+          "filled": 3,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2669,10 +2646,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 11,
+          "target": 15,
           "known_attested": 3,
           "known_inferred": 5,
-          "to_reconstruct": 3,
+          "to_reconstruct": 7,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -2687,11 +2664,11 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 33,
+          "target": 29,
           "known_attested": 5,
           "known_inferred": 10,
-          "to_reconstruct": 18,
-          "filled": 5,
+          "to_reconstruct": 14,
+          "filled": 4,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2762,7 +2739,7 @@
           "known_attested": 2,
           "known_inferred": 3,
           "to_reconstruct": 6,
-          "filled": 2,
+          "filled": 1,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
         },
@@ -2953,10 +2930,10 @@
             "household_type": "lodging",
             "trade": "trade"
           },
-          "target": 1,
+          "target": 2,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 0,
+          "to_reconstruct": 1,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household",
@@ -2971,10 +2948,10 @@
             "household_type": "lodging",
             "trade": "none"
           },
-          "target": 4,
+          "target": 3,
           "known_attested": 0,
           "known_inferred": 1,
-          "to_reconstruct": 3,
+          "to_reconstruct": 2,
           "filled": 0,
           "owning_ticket": "T-1175",
           "basis": "a bed rather than a household"
@@ -5687,35 +5664,35 @@
       "bucket": "persons/female/10_19/north/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 1,
-      "by": "tools/seat_lodgers_1835.py --build"
-    },
-    {
-      "bucket": "persons/female/10_19/north/lodging/trade",
-      "ticket": "T-1371",
-      "stage": "lodgers",
-      "records": 1,
+      "records": 3,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/female/10_19/south/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 2,
+      "records": 4,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
+      "bucket": "persons/female/10_19/west/lodging/none",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/female/20_29/north/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 4,
+      "records": 3,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/female/20_29/north/lodging/trade",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 2,
+      "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
@@ -5729,46 +5706,39 @@
       "bucket": "persons/female/20_29/west/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 2,
+      "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
-      "bucket": "persons/female/30_39/north/lodging/none",
+      "bucket": "persons/female/30_39/north/lodging/trade",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 1,
+      "records": 2,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/female/30_39/south/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 4,
-      "by": "tools/seat_lodgers_1835.py --build"
-    },
-    {
-      "bucket": "persons/female/40_49/south/lodging/none",
-      "ticket": "T-1371",
-      "stage": "lodgers",
-      "records": 1,
+      "records": 2,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/male/10_19/north/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 1,
+      "records": 3,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
-      "bucket": "persons/male/10_19/north/lodging/trade",
+      "bucket": "persons/male/10_19/south/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 2,
+      "records": 4,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
-      "bucket": "persons/male/10_19/west/lodging/trade",
+      "bucket": "persons/male/10_19/west/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
       "records": 1,
@@ -5782,10 +5752,17 @@
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
+      "bucket": "persons/male/20_29/north/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 2,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
       "bucket": "persons/male/20_29/south/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 9,
+      "records": 7,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
@@ -5796,24 +5773,31 @@
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
+      "bucket": "persons/male/20_29/west/lodging/trade",
+      "ticket": "T-1371",
+      "stage": "lodgers",
+      "records": 1,
+      "by": "tools/seat_lodgers_1835.py --build"
+    },
+    {
       "bucket": "persons/male/30_39/north/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 5,
+      "records": 3,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/male/30_39/south/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 5,
+      "records": 4,
       "by": "tools/seat_lodgers_1835.py --build"
     },
     {
       "bucket": "persons/male/30_39/west/lodging/none",
       "ticket": "T-1371",
       "stage": "lodgers",
-      "records": 2,
+      "records": 1,
       "by": "tools/seat_lodgers_1835.py --build"
     }
   ]

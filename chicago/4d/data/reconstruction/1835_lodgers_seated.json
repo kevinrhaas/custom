@@ -207,7 +207,7 @@
     "thompson_o_i",
     "rc_gilbert_nancy"
    ],
-   "minted_keeper": "rc_cavanagh_ellen",
+   "minted_keeper": "rc_cavanagh_johanna",
    "minted_lodgers": 3,
    "occupancy_after": 12,
    "inside_its_band": true,
@@ -1526,25 +1526,26 @@
   }
  ],
  "fills": {
-  "persons/female/10_19/north/lodging/none": 1,
-  "persons/female/10_19/north/lodging/trade": 1,
-  "persons/female/10_19/south/lodging/none": 2,
-  "persons/female/20_29/north/lodging/none": 4,
-  "persons/female/20_29/north/lodging/trade": 2,
+  "persons/female/10_19/north/lodging/none": 3,
+  "persons/female/10_19/south/lodging/none": 4,
+  "persons/female/10_19/west/lodging/none": 1,
+  "persons/female/20_29/north/lodging/none": 3,
+  "persons/female/20_29/north/lodging/trade": 1,
   "persons/female/20_29/south/lodging/none": 5,
-  "persons/female/20_29/west/lodging/none": 2,
-  "persons/female/30_39/north/lodging/none": 1,
-  "persons/female/30_39/south/lodging/none": 4,
-  "persons/female/40_49/south/lodging/none": 1,
-  "persons/male/10_19/north/lodging/none": 1,
-  "persons/male/10_19/north/lodging/trade": 2,
-  "persons/male/10_19/west/lodging/trade": 1,
+  "persons/female/20_29/west/lodging/none": 1,
+  "persons/female/30_39/north/lodging/trade": 2,
+  "persons/female/30_39/south/lodging/none": 2,
+  "persons/male/10_19/north/lodging/none": 3,
+  "persons/male/10_19/south/lodging/none": 4,
+  "persons/male/10_19/west/lodging/none": 1,
   "persons/male/20_29/north/lodging/none": 6,
-  "persons/male/20_29/south/lodging/none": 9,
+  "persons/male/20_29/north/lodging/trade": 2,
+  "persons/male/20_29/south/lodging/none": 7,
   "persons/male/20_29/west/lodging/none": 2,
-  "persons/male/30_39/north/lodging/none": 5,
-  "persons/male/30_39/south/lodging/none": 5,
-  "persons/male/30_39/west/lodging/none": 2
+  "persons/male/20_29/west/lodging/trade": 1,
+  "persons/male/30_39/north/lodging/none": 3,
+  "persons/male/30_39/south/lodging/none": 4,
+  "persons/male/30_39/west/lodging/none": 1
  },
  "keepers": [
   {
@@ -1599,7 +1600,7 @@
   {
    "place": "recon_1835_north_h2_028",
    "name": "Reconstructed H2 medium boarding house #028",
-   "keeper": "rc_cavanagh_ellen",
+   "keeper": "rc_cavanagh_johanna",
    "persons_on_the_keeper_s_card": 1,
    "owed_by": "Minted by this stage as a solitary keeper. The family a keeper is owed is `family/none` in the order book and belongs to T-1171 and T-1174."
   },
@@ -1706,7 +1707,7 @@
   "houses_at_their_ordinary_night_figure": 14,
   "houses_over_their_crowded_ceiling": 0,
   "nobody_is_seated_twice": true,
-  "buckets_filled": 19,
+  "buckets_filled": 20,
   "people_ordered_into_lodging_still_owed": "The book orders 544 people into lodging households. This piece spends 56 of them; the rest wait on the 37 unbuilt boarding houses, the crews and the works gang (T-1372), the trades this stage does not deal, and the children who are keepers' families rather than boarders."
  }
 }

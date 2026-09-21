@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 269,
+  "count": 268,
   "liberties": [
     {
       "id": "L1",
@@ -16241,37 +16241,6 @@
         {
           "label": "Recorded",
           "text": "2026-09-20. **The count moved to 73 on 2026-09-21 (T-1444).** It read 67 — 53 log dwellings and 14 fort structures — when the South migration last restated it. The West Division release instantiated its held slots and six of them are log cabins, so the liberty now reaches **73**: 59 log dwellings and the same 14 fort structures. The argument does not move with the number, and it is not supposed to: the scope is counted off the records' own `archetype` precisely so a release restates it instead of leaving the entry asserting what it reached the day it was written."
-        }
-      ]
-    },
-    {
-      "id": "L267",
-      "title": "The trade cut's age floor is read off the town's own record of who worked, and the survivorship in that record is assumed to cancel",
-      "section": "per_subject",
-      "subjects": [],
-      "covers": [],
-      "scope": {
-        "enumeration": "order_book.persons[trade_re_cut_moved]",
-        "count": 35
-      },
-      "recorded": "2026-09-21",
-      "revised": null,
-      "fields": [
-        {
-          "label": "Scope",
-          "text": "`order_book.persons[trade_re_cut_moved]` — 35 slots: the employed-person slots T-1459's re-cut moved into the `10_19` band the town's own record reopened. It touches no structure record and covers no `conjectural` value; it is a decision about a QUOTA, which is exactly the kind this file exists for. **What is attested.** That people under twenty worked in this town is read, not assumed: nine persons in the resident layer carry an occupation a source records and an age the layer puts at 15-19 — Thomas Andrus a carpenter, Benjamin Hall a tanner, John Holbrook a shoemaker, George W. Snow a surveyor, Levi F. Arnold the postmaster among them. The book's first cut drew its employed persons out of the adult cells alone, on an assumption nothing stated; that assumption is what this re-cut removes, and removing it is evidence-led. **The liberty is the WEIGHT, not the band.** The band opens on the record. How heavily it opens is a rate: the band's recorded workers per unit of the 1840 pyramid's population in that band, against the same rate among adults — **0.2828** of the adult rate today. Both halves of that ratio are read through the same instrument, and the instrument is survivorship: the sources that print an occupation in 1835 Chicago — newspaper notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, who skew old and male. **The liberty is the assumption that the skew is the same in both halves and therefore cancels.** It is not measured and this project cannot measure it. If the record under-prints apprentices more than it under-prints masters, which is the likely direction, 0.2828 is too low and the band should open wider. **What was NOT taken on the same argument, and why the refusal matters more than the liberty.** 120 of the 127 recorded workers are men. That figure is not used, anywhere: a record of who advertised is not a record of who worked, and the town model says the same from the other side — the 1840 schedule's seven industry columns have no row for domestic service, \"which a port with this adult sex ratio certainly had\", and understate household labour \"by an amount this model cannot bound\". So the SEX of the trade remainder is not re-cut. The 129 hands the staffing model wants are all male or predominantly-male roles, and the book declines to become male to pay for them. That is the bargain this entry records: the age axis moves on evidence and takes a liberty on its weight; the sex axis does not move at all."
-        },
-        {
-          "label": "What would discharge it",
-          "text": "any 1835-1840 Chicago source that counts working persons by age rather than naming them — a muster of apprentices, an indenture series, an employer's book — or a reading that establishes how much less often a source printed a boy's trade than a master's. The factor is re-derived from the layer on every `--build`, so a reading that adds or withdraws a young worker moves it without anybody editing this entry."
-        },
-        {
-          "label": "Related",
-          "text": "T-1459 (this re-cut and the owner's ruling of 2026-09-20 it applies), T-1448 (the shortfall that asked for it), T-1166 (owns the book), T-1434, T-1293; `data/reconstruction/1835_reconstruction_order_book.json#trade_re_cut` carries every figure above and `docs/RESEARCH/1835_reconstruction_order_book.md` prints them."
-        },
-        {
-          "label": "Recorded",
-          "text": "2026-09-21."
         }
       ]
     },
