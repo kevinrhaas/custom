@@ -1,7 +1,7 @@
 ---
 id: T-1420
 title: build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: XS
 legacy_id: null
 parent: null
 opened: 2026-09-19
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1609
 claimed_by: run 9/20/2026, 11:53:24 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T06:02:32.039Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35562381510
 ---
 
