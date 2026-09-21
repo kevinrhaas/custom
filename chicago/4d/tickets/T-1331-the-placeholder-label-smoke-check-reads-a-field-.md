@@ -54,3 +54,41 @@ that is the finding and this ticket says so rather than deleting the check.
 **Not this ticket:** `the invented-name programme left nothing behind on this layer`, the other
 standing red in this leg (3 reconstructed people in the manifest, 0 on `hh_inf_cooper_north_04`).
 
+
+---
+
+## What was done (2026-09-21)
+
+`tools/smoke_renderer.mjs` part 3 — two lines, one fix and one control.
+
+**The fix.** `placeholder.whereholderFlag` → `placeholder.placeholderFlag`, the name the
+object twenty lines above actually carries. The old comparison was
+`undefined === (recommended === true)`; on today's tree that is `undefined === false`,
+which is `false` on every branch that has ever run it.
+
+**The control, and why the fix alone was not enough.** Not one asset in the town carries
+`extras.placeholder` today — `grep -l '"placeholder"' assets/web/*.glb` returns nothing,
+and `scene-loader.js` sets `assetIsPlaceholder` from that GLB field and from nowhere else.
+So the corrected assertion reduces to "no real bake wears a placeholder label", and it
+would read green on a renderer that had stopped emitting the label altogether. That is the
+same shape of fault as the typo: an assertion that cannot fail. So the other direction is
+MANUFACTURED rather than waited for — `sauganash_hotel` is told it is a stand-in, the card
+is re-rendered through the real `popup.js`, the flag is read back, and the lie is withdrawn
+and the card re-read to prove it was withdrawn. `assetIsPlaceholder` is a registry field the
+loader writes and nothing re-reads from the file, so restoring it restores the truth and no
+later check sees the mutation. That is the acceptance's "prove the second by breaking it".
+
+**Acceptance, against what shipped:**
+
+- the field name is corrected — yes, one character sequence, line 7377 as it now stands.
+- passes on a tree where the asset is a real bake — yes, see the part 3 reading below.
+- fails when a real bake is given a placeholder label — yes, and that is now a standing
+  assertion (`a real bake told it is a stand-in is caught saying so`) rather than a
+  one-time demonstration, so the next rename of the flag's wording cannot quietly retire it.
+- the leg is re-run and filed with `dev-smoke-state.mjs record` — yes.
+
+**The other red in this leg is not this ticket and is still there.** `hh_inf_cooper_north_04`
+is T-1369, claimed by another run as this was written. Part 3 therefore does not go green on
+this branch; what this ticket owns is that the placeholder line is no longer one of its reds,
+and that `dev-smoke-state.json` — which records only a leg's FIRST failure — stops having two
+reds and one entry.

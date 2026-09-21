@@ -7333,6 +7333,29 @@ for (const [label, viewport, touch] of [
       window.__chicago4d.pick('recon_1835_south_d3_001');
       const recommendedFlags = [...document.querySelectorAll('#popup .pop-flag')]
         .map((f) => f.textContent);
+      // THE CONTROL, and the only way THIS tree can exercise the other
+      // direction. Not one asset in the town carries `extras.placeholder`
+      // today — every roof below is a real bake — so "the label is claimed
+      // when the asset IS one" has no live example, and the honest reading
+      // above would go green on a renderer that had stopped emitting the
+      // label at all. So the fault is manufactured rather than waited for: a
+      // real bake is told it is a stand-in, the card is re-rendered through
+      // the same popup code, the flag is read back, and the lie is put away
+      // again. `assetIsPlaceholder` is a registry field the loader writes and
+      // nothing re-reads from the file, so restoring it restores the truth.
+      const wearsLabel = () => [...document.querySelectorAll('#popup .pop-flag')]
+        .some((f) => /placeholder massing/i.test(f.textContent));
+      const victim = window.__chicago4d.registry.get('sauganash_hotel');
+      const wasPlaceholder = victim?.assetIsPlaceholder;
+      const control = {};
+      if (victim) {
+        victim.assetIsPlaceholder = true;
+        window.__chicago4d.pick('sauganash_hotel');
+        control.mislabelledFlag = wearsLabel();
+        victim.assetIsPlaceholder = wasPlaceholder;
+        window.__chicago4d.pick('sauganash_hotel');
+        control.restoredFlag = wearsLabel();
+      }
       return {
         real: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
         realFlag: realFlags.some((t) => /placeholder massing/i.test(t)),
@@ -7353,6 +7376,7 @@ for (const [label, viewport, touch] of [
         flagNamesTheGrade: recommendedFlags.some((t) => new RegExp(
           window.__chicago4d.registry.get('recon_1835_south_d3_001')
             ?.sidecar?.documented_range?.confidence ?? 'x', 'i').test(t)),
+        ...control,
       };
     });
     check(`${label}: established assets remain identified as real bakes`,
@@ -7374,8 +7398,24 @@ for (const [label, viewport, touch] of [
     // massing is claimed when the asset IS one, and — the half that was missing —
     // never claimed when it is not. A real bake wearing a placeholder label is a
     // lie in the opposite direction, and would previously have passed.
+    //
+    // T-1331. It did not check either direction, because it read
+    // `placeholder.whereholderFlag` — a field that has never existed on the
+    // object built twenty lines above, whose name is `placeholderFlag`. The
+    // comparison was `undefined === false` on every tree since the check was
+    // written, so parts 2-3 carried a permanent red that every run had to
+    // triage past, and `dev-smoke-state.json` records only a leg's FIRST
+    // failure, so this one never reached the standing record at all.
     check(`${label}: the placeholder label agrees with the asset it describes`,
-      placeholder.whereholderFlag === (placeholder.recommended === true),
+      placeholder.placeholderFlag === (placeholder.recommended === true),
+      JSON.stringify(placeholder));
+    // The control is the assertion's teeth, and without it the line above is
+    // green on a town of real bakes whether the renderer emits the label or
+    // not — which is the shape of the fault it was written to catch. This is
+    // the manufactured half: a real bake wearing a placeholder label must be
+    // seen wearing it, and must stop wearing it when the lie is withdrawn.
+    check(`${label}: and a real bake told it is a stand-in is caught saying so`,
+      placeholder.mislabelledFlag === true && placeholder.restoredFlag === false,
       JSON.stringify(placeholder));
 
     // --- the standing constraint, on the card ------------------------------
