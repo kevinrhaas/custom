@@ -134,11 +134,10 @@ business card says so, which was always the third of the three answers.
 
 ## WHAT T-1503 RETURNED, 2026-09-21 — the band has a remainder now, and it is 35
 
-T-1503 gave the lodging stage a committed `quota_basis` and re-ran the re-cut. **35 of
-the 36 slots the re-cut wanted moved.** The 10-19 trade band is no longer a row of
-noughts: it carries 35 orders, all of them `lodging/trade`, and nobody already drawn
-moved to make room — `seat_lodgers_1835.py --check` is clean and its 56 boarders are
-byte for byte what they were.
+T-1503 gave the lodging stage a committed `quota_basis` and the re-cut was re-run. **35 of
+the 36 slots it wanted moved.** The 10-19 trade band is no longer a row of noughts, and
+nobody already drawn moved to make room — `seat_lodgers_1835.py --check` is clean and its
+56 boarders are byte for byte what they were.
 
 | cell | slots |
 |---|---|
@@ -149,20 +148,34 @@ byte for byte what they were.
 | `persons/female/10_19/west/lodging/trade` | 4 |
 | `persons/female/10_19/north/lodging/trade` | 3 |
 
-**So the age argument is now paid for as well as made.** The 24 shop boys this ticket
-counts have somewhere to be minted from, which is more than the book could say
-yesterday.
+**THE AGE ARGUMENT IS PAID FOR NOW, AND IT DOES NOT MAKE THIS MINT LARGER. That is the
+measurement and it is worth reading twice.** `1835_staffing_mint_order.json` re-derives to:
 
-**What is still short, and it is the two other axes, not the band.** The mint wants 129
-hands; 40 of the book's outstanding slots are women's and every one of the 129 is a man
-or a predominantly male role, and the count was 20 short before any axis was looked at.
-The 35 above narrow the gap; they do not close it. Price the mint against the book as it
-now stands before deciding between the typical band and `count_low`.
+| | before the re-cut | after |
+|---|---|---|
+| slots outstanding in a band that reaches the shop boys | **0** | **35** |
+| what the book could pay for today | 38 | **36** |
+| what would go unpaid | 92 | **94** |
+| payable, men's slots | 39 | 36 |
+| payable, women's slots | 22 | 25 |
+
+The band opened and the mint got two slots SMALLER, because the re-cut moves slots within
+a cell — `none` to `trade` — and never across the sex axis, which is the refusal T-1459
+made on the evidence and did not withdraw. 16 of the 35 landed in the three FEMALE 10-19
+cells, and every one of the 130 hands a shop wants is a man or a role the model calls
+predominantly male, so those 16 cannot be spent here at all. The adult male cells paid for
+them out of slots that could.
+
+**So the three answers are unchanged in kind, and the arithmetic against them is now
+current.** 130 hands wanted over 88 houses; 36 payable; 94 with nowhere to come from. The
+age bar is gone, the sex bar is where T-1459 left it, and the count is 94 short rather
+than 92. Price the choice between the typical band and the model's `count_low` of 65
+against THESE figures, not the 2026-09-20 ones above.
 
 **And the remaining 27 slots are held by a named cause, not by a decision.** The re-cut
 wanted 27 more out of the `10_19 family` cells and could not take them: `T-1171`,
 `T-1174` and `T-1347` deal against the book's live `to_reconstruct` the way the lodging
-stage used to, so re-cutting a cell they have drawn against re-deals their whole draw.
-The book names them bucket by bucket in `trade_re_cut.held_by_an_unaudited_stage`, and
-the fix for each is the one T-1503 made: a committed basis, then a line in
+stage used to, so re-cutting a cell they have drawn against re-deals their whole draw. The
+book names them bucket by bucket in `trade_re_cut.held_by_an_unaudited_stage`, and the fix
+for each is the one T-1503 made: a committed basis, then a line in
 `REMAINDER_STABLE_STAGES`.

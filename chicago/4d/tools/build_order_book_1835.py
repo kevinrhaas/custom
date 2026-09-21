@@ -2580,15 +2580,35 @@ def cmd_self_test() -> int:
                 if b["axes"].get("trade") == "trade" and b["axes"]["age_band"] == "10_19"], \
         "the reopened band survived the record that opened it being withdrawn"
 
-    # 5b. AND A CELL A STAGE HAS SPENT IN IS REFUSED WHOLE, not shaved. This is the clause
-    #     that stopped the re-cut on 2026-09-21: a bucket carrying a counter cannot give up
-    #     or take a slot, because a stage that reads its whole `to_reconstruct` re-deals its
-    #     entire draw when one slot of it moves.
-    spent_cells = {b["key"].rsplit("/", 1)[0] for b in shipped["bucket_families"][0]["buckets"]
-                   if b.get("filled")}
+    # 5b. AND A CELL SPENT IN BY A STAGE THAT IS NOT REMAINDER-STABLE IS REFUSED WHOLE, not
+    #     shaved. This is the clause that stopped the re-cut on 2026-09-21: a stage reading a
+    #     bucket's whole `to_reconstruct` re-deals its ENTIRE draw when one slot of it moves.
+    #     T-1503 gave the lodging stage a committed basis instead, so its cells are shaved to
+    #     their remainder like any unspent one — and what this asserts now is the narrower,
+    #     true thing: every cell the re-cut touched is spent in only by stages on
+    #     `REMAINDER_STABLE_STAGES`, and no bucket of one was shaved below its own counter.
+    fills_on_disk = _fills_on_disk()
+    drew_in_cell: dict[str, set] = {}
+    for fill in fills_on_disk:
+        if int(fill.get("records") or 0):
+            cell = fill["bucket"].rsplit("/", 1)[0]
+            drew_in_cell.setdefault(cell, set()).add(fill.get("ticket") or "")
+    by_key = {b["key"]: b for b in shipped["bucket_families"][0]["buckets"]}
     for cell, n in list(rc["into"].items()) + list(rc["out_of"].items()):
-        assert cell not in spent_cells, (cell, n)
+        loose = sorted(t for t in drew_in_cell.get(cell, ())
+                       if t not in REMAINDER_STABLE_STAGES)
+        assert not loose, (cell, n, loose)
+        for kind in ("trade", "none"):
+            bucket = by_key.get("%s/%s" % (cell, kind))
+            if bucket is not None:
+                assert (bucket.get("to_reconstruct") or 0) >= (bucket.get("filled") or 0), bucket
+    #     And a cell the block says is HELD names the stage holding it, which is the half the
+    #     old clause could not say — it knew only that something, somewhere, had been drawn.
+    for key, held_by in rc["held_by_an_unaudited_stage"].items():
+        assert held_by and all(t not in REMAINDER_STABLE_STAGES for t in held_by), (key, held_by)
+        assert key.rsplit("/", 1)[0] not in rc["into"], key
     assert rc["why_it_stopped"] and rc["what_would_unlock_it"]
+    assert rc["remainder_stable_stages"] == REMAINDER_STABLE_STAGES
 
     # 6. AND THE SEVEN STAGES THAT HAVE SPENT ARE NAMED WITH WHAT THEY SPENT, which is the
     #    list the re-cut is audited against.
