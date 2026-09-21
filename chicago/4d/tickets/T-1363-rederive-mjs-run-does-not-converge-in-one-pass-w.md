@@ -1,7 +1,7 @@
 ---
 id: T-1363
 title: rederive.mjs --run does not converge in one pass when the town model moves: the arrival stage draws from a file the sequence rebuilds after it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1608
 claimed_by: run 9/20/2026, 11:52:50 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T05:25:36.435Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35562378274
 ---
 
