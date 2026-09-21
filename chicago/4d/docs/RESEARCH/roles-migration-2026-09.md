@@ -42,8 +42,8 @@ role once, and the survivor names the other wording in its note.
 ## What the roles now carry
 
 - `173` people carry two or more roles, listed below.
-- `98` of their roles reach 1835-07-01, of which `67` stand in the 1835 compatibility view.
-- The `31` that reach the day WITHOUT filling the
+- `98` of their roles reach 1835-07-01, of which `97` stand in the 1835 compatibility view.
+- The `1` that reach the day WITHOUT filling the
   field are the migration's open question, and they are held open on purpose. Four
   tools derive `persons[].occupation` and only one of them was taught about roles:
   this generator, T-0693's `tools/qualify_later_trades.py`, the ladder resident

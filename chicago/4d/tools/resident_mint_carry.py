@@ -338,6 +338,25 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
                         and key not in owned:
                     person["occupation"][key] = derived[key]
 
+        # T-1299: AND THE VIEW CAN NOW FILL THE FIELD RATHER THAN ONLY EMPTY IT. Where a
+        # role's bound contains 1 July 1835, tools/derive_resident_roles.py promotes it
+        # into `occupation` itself and records the promotion beside it — the value, the
+        # grade of the row it came off, the citations of the rows behind it and a note
+        # saying all three. A mint rebuilds the block whole with `none_recorded` in it, so
+        # without this the two tools would revert each other every run, which is precisely
+        # the disagreement T-1299 exists to end. The withdrawal above is carried for the
+        # same reason and by the same rule: what the roles tool derives, the roles tool
+        # owns. `value`, `confidence` and `note` already exist on the mint's block and are
+        # overwritten in place, so the key order the mint committed is unchanged.
+        promotion = derived.get("promoted_from_roles")
+        if isinstance(promotion, dict) and isinstance(person.get("occupation"), dict) \
+                and "occupation" not in owned:
+            block = person["occupation"]
+            for key in ("value", "confidence", "note", "sources"):
+                if key in derived:
+                    block[key] = derived[key]
+            block["promoted_from_roles"] = promotion
+
         derived_sources = set(person.get("sources") or [])
         prior_sources = set(old.get("sources") or [])
         person["sources"] = sorted(
@@ -460,6 +479,48 @@ def self_test() -> int:
          [k for k in person["occupation"]
           if k in ("withdrawn_from_scene_date", "derived_from", "roles_at_scene_date")]
          == ["withdrawn_from_scene_date", "derived_from", "roles_at_scene_date"])
+    # T-1299. AND A PROMOTION SURVIVES THE REBUILD THE SAME WAY A WITHDRAWAL DOES —
+    # value, grade, citations and prose all — because a mint that put `none_recorded`
+    # back would revert the roles tool on every run.
+    promoted_prior = json.loads(json.dumps(prior))
+    promoted_prior["persons"][0]["occupation"].update({
+        "value": "attorney", "confidence": "inferred",
+        "note": "a trade read out of this card's own roles",
+        "sources": ["chicago_democrat_1833_1835"],
+        "promoted_from_roles": {"sources": ["chicago_democrat_1833_1835"],
+                                "ticket": "T-1299", "note": "promoted"},
+    })
+    promoted_prior["persons"][0]["occupation"].pop("withdrawn_from_scene_date")
+    # The four mints all derive `value`, `confidence` and a note of their own, and the
+    # order below is the one the roles tool commits against that block.
+    minted = {"id": "hh_x", "persons": [{
+        "id": "p_x", "grade": "attested",
+        "occupation": {"value": "none_recorded", "confidence": "reconstructed",
+                       "note": "the mint's own note"},
+        "sources": ["source_this_mint_derives"], "note": changed,
+    }]}
+    got = carry_resident_mint(minted, promoted_prior,
+                              owned_person_keys=("press_evidence",))["persons"][0]
+    want("a promoted trade is not reverted to none_recorded by the rebuild",
+         got["occupation"]["value"] == "attorney"
+         and got["occupation"]["confidence"] == "inferred")
+    want("the promotion carries the citations and the record of itself",
+         got["occupation"]["sources"] == ["chicago_democrat_1833_1835"]
+         and got["occupation"]["promoted_from_roles"]["ticket"] == "T-1299")
+    want("a promoted block keeps the order the generator writes it in",
+         [k for k in got["occupation"]]
+         == ["value", "confidence", "later_occupation", "note", "derived_from",
+             "roles_at_scene_date", "sources", "promoted_from_roles"])
+    plain = {"id": "hh_x", "persons": [{
+        "id": "p_x", "grade": "attested",
+        "occupation": {"value": "none_recorded", "confidence": "reconstructed",
+                       "note": "the mint's own note"},
+        "sources": ["source_this_mint_derives"], "note": changed,
+    }]}
+    want("an unpromoted block is still the mint's to empty",
+         carry_resident_mint(plain, prior, owned_person_keys=("press_evidence",)
+                             )["persons"][0]["occupation"]["value"] == "none_recorded")
+
     # T-1144 acceptance 9. The leg lives inside a block the mints rebuild whole.
     want("the presence leg survives inside the newly derived presence",
          kept["present_on_scene_date"].get("last_dated_appearance")

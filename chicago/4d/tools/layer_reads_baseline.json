@@ -266,6 +266,9 @@
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
     },
+    "residents/household:persons[].occupation.promoted_from_roles.ticket": {
+      "records": 10
+    },
     "residents/household:persons[].occupation.replaceable_by.kind": {
       "records": 203
     },
@@ -296,13 +299,7 @@
     "residents/household:persons[].roles[].claim": {
       "records": 420
     },
-    "residents/household:persons[].roles[].employer_or_body": {
-      "records": 687
-    },
     "residents/household:persons[].roles[].fills_scene_view": {
-      "records": 687
-    },
-    "residents/household:persons[].roles[].place": {
       "records": 687
     },
     "residents/household:persons[].stated_family.as_read": {

@@ -55,14 +55,14 @@
   "written_by_stage": "attribute_fill_arrival"
  },
  "reason_for_coming": {
-  "value": "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",
+  "value": "A county office in a newly organised county",
   "confidence": "reconstructed",
   "tier": "reconstructed",
-  "note": "ARGUED FROM THE SEASON AND NOTHING ELSE. No trade is recorded for this household and no source says why it came; the only thing the evidence gives is when it was here by. This states the draws that were operating in that season and chooses among them nowhere. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
+  "note": "ARGUED FROM THIS HOUSEHOLD'S OWN RECORDED TRADE, WHICH IS NOT ITS MOTIVE. The head is recorded as sheriff, and this names the documented draw that trade answered in this town in this decade. It does not claim to know why these people came. Which of these draws brought this household is not recorded, and no committed source apportions the town between them.",
   "basis": {
    "kind": "rule",
-   "id": "reason_from_arrival_cohort",
-   "note": "arrival_fill.cohort_reasons — the household's arrival year (1833) is the only thing about it this value rests on."
+   "id": "reason_from_recorded_trade",
+   "note": "arrival_fill.trade_reasons.a_county_office — the head's recorded trade is evidence about this household, and the draw it answered is the reason the record will carry until a source states one."
   },
   "replaceable_by": {
    "kind": "person",
@@ -108,8 +108,8 @@
    "civic_mint": true,
    "ladder_rule": "G1b",
    "occupation": {
-    "value": "none_recorded",
-    "confidence": "reconstructed",
+    "value": "sheriff",
+    "confidence": "inferred",
     "later_occupation": {
      "value": "ex-sheriff",
      "describes_date": 1839,
@@ -117,11 +117,23 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ],
-     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+     "note": "A TRADE RECORDED FOR 1839, BESIDE A TRADE READ FOR 1835. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. The 1835 field above no longer reads `none_recorded`: T-1299 admitted the press roles whose bound contains the scene date into it, and that field is a GENERATED VIEW of `roles[]` rather than a second assertion. The pointer stays anyway, and this is the second clause of rule 2. `roles[]` derives the card's 1839 row FROM this pointer and from nowhere else, so taking it off would not tidy the card, it would delete the 1839 printing off the timeline. It is still not a claim about the scene date: a directory of 1839 is evidence about 1839 (T-0693, second clause by T-1299)."
     },
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "note": "A TRADE READ FOR 1835-07-01 OUT OF THIS CARD'S OWN ROLES. `sheriff` is the strongest claiming role in `roles[]` whose bound contains the scene date, and the grade above is that row's: `inferred` where the evidence is a trade printed against this name in the 1833-1835 press, because the paper printed the trade and the resident programme's identity rule tied the printing to this card. The field used to read `none_recorded` while the row beneath it said the evidence reached the day — the four tools that derive this field disagreed, and T-1299 is where they were made to agree (written by tools/derive_resident_roles.py).",
     "derived_from": "roles",
-    "roles_at_scene_date": []
+    "roles_at_scene_date": [
+     "sheriff"
+    ],
+    "sources": [
+     "chicago_democrat_1833_1835"
+    ],
+    "promoted_from_roles": {
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ticket": "T-1299",
+     "note": "THE CITATIONS ARE THE ROWS', NOT THE BLOCK'S OWN. This field was promoted out of `roles[]` by tools/derive_resident_roles.py and holds nothing those rows do not already say; it is recorded here so the block cannot be mistaken for a second, independently sourced assertion of the same trade, and so that tools/derive_resident_roles.py reads its own write as a view rather than as evidence on the next run."
+    }
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -319,7 +331,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_democrat_1833_1835"
@@ -327,7 +339,7 @@
      "claim": "person_silas_w_sherman",
      "place": "not_stated",
      "employer_or_body": "cook_county",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-03 to 1835-07-15, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-03 to 1835-07-15, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "no_fixed_premises"
     },
     {
