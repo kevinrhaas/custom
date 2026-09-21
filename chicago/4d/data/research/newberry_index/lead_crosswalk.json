@@ -44,17 +44,17 @@
   }
  ],
  "counts": {
-  "leads_ruled": 1008,
+  "leads_ruled": 1006,
   "cards_ruled": 1414,
   "by_outcome": {
-   "refused": 747,
+   "refused": 745,
    "candidate": 261
   },
   "by_class": {
-   "ocr_variant_only": 360,
+   "ocr_variant_only": 359,
    "testable_in_a_held_work": 261,
    "locality_absent": 287,
-   "surname_only_chicago": 100
+   "surname_only_chicago": 99
   },
   "matched": 0,
   "discriminators_found": 0
@@ -17221,44 +17221,6 @@
    "discriminators": []
   },
   {
-   "lead_id": "lead_v02_hall_structures",
-   "surname_key": "hall",
-   "spellings_as_printed": [
-    "Hall"
-   ],
-   "layer": "structures",
-   "outcome": "refused",
-   "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Reconstructed I2 schoolhouse or meeting hall #015 exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Reconstructed I2 schoolhouse or meeting hall #015 is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold.",
-   "record_ids": [
-    "nbi_v02_0595",
-    "nbi_v02_0596",
-    "nbi_v02_0597",
-    "nbi_v02_0598",
-    "nbi_v02_0599",
-    "nbi_v02_0600",
-    "nbi_v02_0601",
-    "nbi_v02_0602",
-    "nbi_v02_0603",
-    "nbi_v02_0604",
-    "nbi_v02_0605"
-   ],
-   "candidates": [
-    {
-     "id": "recon_1835_north_i2_015",
-     "name": "Reconstructed I2 schoolhouse or meeting hall #015",
-     "rule": "exact surname"
-    }
-   ],
-   "person_ids": [],
-   "works_cited": [
-    "county_histories_kett_and_co",
-    "moses_kirkland_history_of_chicago"
-   ],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
    "lead_id": "lead_v03_hally_census_1840",
    "surname_key": "hally",
    "spellings_as_printed": [
@@ -17312,31 +17274,6 @@
     "hall_george",
     "hall_benjamin"
    ],
-   "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
-   "lead_id": "lead_v03_hally_structures",
-   "surname_key": "hally",
-   "spellings_as_printed": [
-    "Hally"
-   ],
-   "layer": "structures",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Hally' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Hally' at all. And if it were, a heading against Reconstructed I2 schoolhouse or meeting hall #015 would still be a surname against a person, which is always a refusal here.",
-   "record_ids": [
-    "nbi_v03_0875"
-   ],
-   "candidates": [
-    {
-     "id": "recon_1835_north_i2_015",
-     "name": "Reconstructed I2 schoolhouse or meeting hall #015",
-     "rule": "OCR variant (0.89 similarity to 'hall')"
-    }
-   ],
-   "person_ids": [],
    "works_cited": [],
    "held_works": [],
    "discriminators": []
@@ -31377,7 +31314,7 @@
    "layer": "structures",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Shoup' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Shoup' at all. And if it were, a heading against Government Blacksmith Shop; Fort Dearborn — the shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005 would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Shoup' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Shoup' at all. And if it were, a heading against Government Blacksmith Shop; Fort Dearborn — the shop would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v04_0079"
    ],
@@ -31390,16 +31327,6 @@
     {
      "id": "fort_dearborn_shop",
      "name": "Fort Dearborn — the shop",
-     "rule": "OCR variant (0.89 similarity to 'shop')"
-    },
-    {
-     "id": "recon_1835_north_w1_018",
-     "name": "Reconstructed W1 blacksmith shop #018",
-     "rule": "OCR variant (0.89 similarity to 'shop')"
-    },
-    {
-     "id": "recon_1835_north_w2_005",
-     "name": "Reconstructed W2 carpenter or joiner shop #005",
      "rule": "OCR variant (0.89 similarity to 'shop')"
     }
    ],
@@ -70702,19 +70629,17 @@
   {
    "record_id": "nbi_v02_0595",
    "a": "Hall | „,, Chicago, Nl. luietet, J._and Kirkland, J.) IC95:",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | „,, Chicago, Nl. luietet, J._and Kirkland, J.) IC95:' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | „,, Chicago, Nl. luietet, J._and Kirkland, J.) IC95:' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70740,19 +70665,17 @@
   {
    "record_id": "nbi_v02_0596",
    "a": "Hall | 79.6 Fulton Co, III. (Chapman, C. C. £1 Co.) I879t",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | 79.6 Fulton Co, III. (Chapman, C. C. £1 Co.) I879t' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | 79.6 Fulton Co, III. (Chapman, C. C. £1 Co.) I879t' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70778,19 +70701,17 @@
   {
    "record_id": "nbi_v02_0597",
    "a": "Hall | — f d f t r Co., III. (UBwen, tf., »., A Co., Pubi I 1313; ll",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | — f d f t r Co., III. (UBwen, tf., »., A Co., Pubi I 1313; ll' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | — f d f t r Co., III. (UBwen, tf., »., A Co., Pubi I 1313; ll' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70816,19 +70737,17 @@
   {
    "record_id": "nbi_v02_0598",
    "a": "Hall | 684.6 leáelle Co., Ill, (Baldwin, £,, 13,1, 395.",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | 684.6 leáelle Co., Ill, (Baldwin, £,, 13,1, 395.' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | 684.6 leáelle Co., Ill, (Baldwin, £,, 13,1, 395.' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70854,19 +70773,17 @@
   {
    "record_id": "nbi_v02_0599",
    "a": "Hall | Ogle Co., III. (Kett, H. F., 4 Co.) 1878: 02",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Ogle Co., III. (Kett, H. F., 4 Co.) 1878: 02' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Ogle Co., III. (Kett, H. F., 4 Co.) 1878: 02' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70892,19 +70809,17 @@
   {
    "record_id": "nbi_v02_0600",
    "a": "Hall | Pika Co., III. (Oxextxa, C. C. 6. Co., Pub,.) 1880: Hal",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Pika Co., III. (Oxextxa, C. C. 6. Co., Pub,.) 1880: Hal' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Pika Co., III. (Oxextxa, C. C. 6. Co., Pub,.) 1880: Hal' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70930,19 +70845,17 @@
   {
    "record_id": "nbi_v02_0601",
    "a": "Hall | —— R o c k f o r d und n l n n a b a g o C o . , 1 1 1 . lla",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | —— R o c k f o r d und n l n n a b a g o C o . , 1 1 1 . lla' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | —— R o c k f o r d und n l n n a b a g o C o . , 1 1 1 . lla' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -70968,19 +70881,17 @@
   {
    "record_id": "nbi_v02_0602",
    "a": "Hall | Winnebago Co., Ill, (Kelt, H. F„ 4 Co., Pub) —",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Winnebago Co., Ill, (Kelt, H. F„ 4 Co., Pub) —' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | Winnebago Co., Ill, (Kelt, H. F„ 4 Co., Pub) —' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -71006,19 +70917,17 @@
   {
    "record_id": "nbi_v02_0603",
    "a": "Hall | _o Sangamon Co., Ill, (Power,), C.) 1876. —",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | _o Sangamon Co., Ill, (Power,), C.) 1876. —' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Hall | _o Sangamon Co., Ill, (Power,), C.) 1876. —' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -71044,19 +70953,17 @@
   {
    "record_id": "nbi_v02_0604",
    "a": "Hall | laWfirkfJat.).6ae.r 'o. , ' , l I i . u l - l l f l . (t'..n. Hall fami",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Hall | laWfirkfJat.).6ae.r 'o. , ' , l I i . u l - l l f l . (t'..n. Hall fami\" against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Hall | laWfirkfJat.).6ae.r 'o. , ' , l I i . u l - l l f l . (t'..n. Hall fami\" against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -71082,19 +70989,17 @@
   {
    "record_id": "nbi_v02_0605",
    "a": "Hall | -±~2.' la letk» te,'», 111.19",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Hall | -±~2.' la letk» te,'», 111.19\" against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused. 1 of the 11 card(s) heading 'Hall' do name Chicago or Cook County and the heading is the surname of Henry Hall exactly, but the index files every family of a surname under one heading and gives no forename, so 'Hall' against Henry Hall is a surname against a person. It waits on county_histories_kett_and_co, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Hall | -±~2.' la letk» te,'», 111.19\" against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v02_hall_census_1840",
-    "lead_v02_hall_residents",
-    "lead_v02_hall_structures"
+    "lead_v02_hall_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -78131,19 +78036,17 @@
   {
    "record_id": "nbi_v03_0875",
    "a": "Hally | Fulton Co , III. (Chapman, C. C. & Co.) 187ll",
-   "b": "Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015",
+   "b": "Henry Hall; George Hall; Benjamin Hall",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Hally' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Hally' at all. And if it were, a heading against Henry Hall would still be a surname against a person, which is always a refusal here. Ruled on the card 'Hally | Fulton Co , III. (Chapman, C. C. & Co.) 187ll' against Henry Hall; George Hall; Benjamin Hall; Reconstructed I2 schoolhouse or meeting hall #015.",
+   "rule": "Refused twice over. No candidate reaches 'Hally' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Hally' at all. And if it were, a heading against Henry Hall would still be a surname against a person, which is always a refusal here. Ruled on the card 'Hally | Fulton Co , III. (Chapman, C. C. & Co.) 187ll' against Henry Hall; George Hall; Benjamin Hall.",
    "layers": [
     "census_1840",
-    "residents",
-    "structures"
+    "residents"
    ],
    "leads": [
     "lead_v03_hally_census_1840",
-    "lead_v03_hally_residents",
-    "lead_v03_hally_structures"
+    "lead_v03_hally_residents"
    ],
    "person_ids": [
     "hall_benjamin",
@@ -81853,10 +81756,10 @@
   {
    "record_id": "nbi_v04_0079",
    "a": "Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.",
-   "b": "Michael Shoup; Government Blacksmith Shop; Fort Dearborn — the shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005",
+   "b": "Michael Shoup; Government Blacksmith Shop; Fort Dearborn — the shop",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Shoup' name Illinois and neither Chicago nor Cook County, so the lead against Michael Shoup stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.' against Michael Shoup; Government Blacksmith Shop; Fort Dearborn — the shop; Reconstructed W1 blacksmith shop #018; Reconstructed W2 carpenter or joiner shop #005.",
+   "rule": "Refused. All 1 card(s) heading 'Shoup' name Illinois and neither Chicago nor Cook County, so the lead against Michael Shoup stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Shoup | — Sangamon Co,, Ill, (Power, J. C.) 1876.' against Michael Shoup; Government Blacksmith Shop; Fort Dearborn — the shop.",
    "layers": [
     "residents",
     "structures"
