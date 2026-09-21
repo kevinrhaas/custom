@@ -1251,6 +1251,23 @@ step "the migrated roof ids re-derive, and nothing still names an old one" \
 selftest "…and the migration's own refusals still fire on a moved recipe" \
   python3 tools/migrate_roof_ids.py --self-test
 
+# T-1482, and the step that says why the last six of the 32 refamily verdicts are still
+# outstanding. The two migrations above carried 20 of them out; these six are yard
+# buildings standing off a block alley behind the principal roof on their own lot, and
+# the adjudication moves every one into a dwelling family. `generate_block_infill` reads
+# a roof's inventory class from its group, so that promotion makes each one a SECOND
+# principal roof on an occupied lot, which the parcel gate refuses and the committed
+# `multi_building_lot` rule admits only on a principal-street lot in a party-line run.
+# A report that could be read as "somebody forgot" is the failure this guards against:
+# it holds the refusal, the 36 offered families that all land in the same class, the two
+# open lots the three blocks have between them, and the clause's own evidence — three of
+# whose four documented stables stand exactly where the six were refused for standing.
+step "the platted blocks' six outstanding verdicts still have nowhere to be carried to" \
+  python3 tools/measure_block_redeal_remedies.py --check
+
+selftest "…and it would say so the moment a re-deal had somewhere to go" \
+  python3 tools/measure_block_redeal_remedies.py --self-test
+
 # T-1499, and the silence it closes. Two tools sweep that same surface — the
 # migrator above and `execute_roof_redeal.py --check-migration` — and until now each
 # kept its OWN list of the files that legitimately keep an old name, with the same
