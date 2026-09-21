@@ -140,11 +140,29 @@ if (m) {
   if (pr.headAgeMin === null) out('');
   out(isoMin(pr.headAgeMin == null ? 600 : pr.headAgeMin));
 }
-// its check runs
+// its check runs — the bare count the deadlock branch asks for...
 m = pathArg.match(/^repos\\/[^/]+\\/[^/]+\\/commits\\/([0-9a-f]+)\\/check-runs$/);
 if (m) {
   const pr = Object.values(cfg.prs).find(p => p.sha === m[1]);
   out(pr ? (pr.checks == null ? 0 : pr.checks) : 0);
+}
+// ...and the newest \`gate\` verdict the red-gate branch asks for (T-1510). A head
+// with no gate answers NOTHING, not a null string, because the script decides the
+// shape on whether this call produced anything at all.
+m = pathArg.match(/^repos\\/[^/]+\\/[^/]+\\/commits\\/([0-9a-f]+)\\/check-runs\\?/);
+if (m) {
+  const pr = Object.values(cfg.prs).find(p => p.sha === m[1]);
+  const g = pr && pr.gate;
+  if (!g) process.exit(0);
+  out(g.status + ':' + (g.conclusion == null ? 'none' : g.conclusion) +
+      '\\t' + 'https://github.com/kevinrhaas/custom/actions/runs/7/job/' + (g.job == null ? 42 : g.job));
+}
+// the job behind that check run, for the step names
+m = pathArg.match(/^repos\\/[^/]+\\/[^/]+\\/actions\\/jobs\\/(\\d+)$/);
+if (m) {
+  const pr = Object.values(cfg.prs).find(p => p.gate && String(p.gate.job == null ? 42 : p.gate.job) === m[1]);
+  if (!pr || !pr.gate.steps) process.exit(1);
+  out(pr.gate.steps.map(s => '  * ' + s).join('\\n'));
 }
 // the run that owns a claim
 m = pathArg.match(/^repos\\/[^/]+\\/[^/]+\\/actions\\/runs\\/(\\d+)$/);
@@ -310,7 +328,7 @@ console.log('pr-stuck.sh — a PR nothing can move is never silent, and nothing 
 {
   const r = run({ prs: [], listExit: 1 });
   check('a failed PR-list call fails the run', r.code !== 0, `exit ${r.code}`);
-  check('…and never reports a quiet queue it never saw', !/stuck=0 held=0/.test(r.out));
+  check('…and never reports a quiet queue it never saw', !/deadlocked=0 red-gate=0/.test(r.out));
 }
 
 /* 10b. …EXCEPT WHEN THAT FAILURE WOULD LAND ON SOMEBODY ELSE'S PULL REQUEST. A
@@ -327,14 +345,14 @@ console.log('pr-stuck.sh — a PR nothing can move is never silent, and nothing 
   check('…and is still loud about it', /::error::/.test(r.out));
   check('…and says why it is not failing, rather than looking healthy',
         /would attach to an open PR's head sha/.test(r.out));
-  check('…and still never reports a queue it never saw', !/stuck=0 held=0/.test(r.out));
+  check('…and still never reports a queue it never saw', !/deadlocked=0 red-gate=0/.test(r.out));
 }
 
 /* 11. The honest empty queue still passes — the guard above must not cost that. */
 {
   const r = run({ prs: [], listExit: 0 });
   check('a genuinely empty queue is not an error', r.code === 0, `exit ${r.code}`);
-  check('…and still prints the summary', /PR stuck: stuck=0/.test(r.out));
+  check('…and still prints the summary', /PR stuck: deadlocked=0 red-gate=0/.test(r.out));
 }
 
 /* 12. DRY RUN WRITES NOTHING, so the first live sweep could be watched before it
@@ -343,6 +361,119 @@ console.log('pr-stuck.sh — a PR nothing can move is never silent, and nothing 
   const r = run({ prs: [deadlocked()], dry: '1' });
   check('a dry run labels and comments on nothing', r.acted === '', r.acted.trim());
   check('…and still says what it found', /#1587 {2}STUCK/.test(r.out));
+}
+
+/* ------------------------------------------------------------------ T-1510
+ * THE SECOND SHAPE: a RED GATE under a run that has finished. Nothing in this
+ * repository owns that state — the lap merges and pushes but does not gate,
+ * `merge-ready` merges only `clean`, and the run that would have fixed it is
+ * over. Measured 2026-09-21: #1616's steward run completed SUCCESS 28 seconds
+ * after its own gate went red, #1618's four minutes before, and both sat until
+ * somebody read the logs. The near-misses below are the reason this is four
+ * cases and not one: each of them looks the same from outside. */
+const redGated = (over = {}) => ({
+  n: 1616, branch: 'steward/t-1294-joiner-north-02-ownership', sha: SHA, labels: [],
+  state: 'blocked', headAgeMin: 600,
+  gate: { status: 'completed', conclusion: 'failure',
+          steps: ['Does this change carry a changelog entry?'] },
+  ...over,
+});
+
+/* 12b. The shape itself. */
+{
+  const r = run({ prs: [redGated()] });
+  check('a blocked PR with a failed gate and a finished run is reported',
+        /#1616 {2}STUCK/.test(r.out), (r.out.match(/^#1616.*$/m) || ['nothing said'])[0]);
+  check('…labelled `stuck`', /^label 1616 stuck$/m.test(r.acted), r.acted.trim() || 'no label');
+  check('…and counted apart from the deadlock, which has a different remedy',
+        /red-gate=1/.test(r.out) && /deadlocked=0/.test(r.out));
+  check('…NAMING THE FAILING STEP, so the reader is not sent back to the logs',
+        /Does this change carry a changelog entry\?/.test(r.acted),
+        'the step name is most of what the reporter is for');
+  check('…and saying why nothing is coming for it',
+        /merges only what GitHub calls `clean`/.test(r.acted) && /does NOT gate/.test(r.acted));
+  check('…and it still merges, pushes and resolves nothing',
+        r.acted.split('\n').filter(Boolean)
+          .every((l) => /^(ensure-label|label \d+ |comment \d+ |unlabel \d+ )/.test(l)),
+        r.acted.split('\n').filter((l) => l && !/^(ensure-label|label|comment|unlabel)/.test(l)).join(' | '));
+}
+
+/* 12b-ii. …AND WHEN THE FAILING STEP IS ONE `preflight.sh` ALREADY ASKS, it says so.
+ *         The changelog-entry question is asked only on the `pull_request` event,
+ *         where a base ref exists, and is out of tools/check.sh on purpose — the
+ *         bake regenerates data/ and correctly ships no entry (T-0409). So a run
+ *         that runs the gate alone CANNOT find it, which is why #1049 sat red for
+ *         2h19m and six more PRs did on 2026-09-21. Naming the rehearsal is the
+ *         only enforcement a reporter that writes nothing can offer. */
+{
+  const r = run({ prs: [redGated()] });
+  check('a changelog-entry failure names the rehearsal that would have caught it',
+        /preflight\.sh/.test(r.acted), 'the run could have found this in seconds');
+  check('…and says why running the gate alone could not',
+        /out of `check\.sh` on\\npurpose/.test(r.acted) || /bake regenerates/.test(r.acted));
+}
+
+/* 12b-iii. …and it does NOT say it for a failure preflight does not ask about.
+ *          A rehearsal named for every red is advice that stops being read. */
+{
+  const r = run({ prs: [redGated({ gate: { status: 'completed', conclusion: 'failure',
+                                           steps: ['Run the gate'] } })] });
+  check('a failure preflight does not rehearse is not told to run preflight',
+        !/preflight\.sh/.test(r.acted), 'advice given for everything is advice for nothing');
+  check('…and the step is still named', /Run the gate/.test(r.acted));
+}
+
+/* 12c. A GATE STILL RUNNING IS NOT A RED ONE. `blocked` is what a PR reads while
+ *      its gate runs, and that is the gate's business — reporting it would shout
+ *      at every PR in the queue within a minute of every push. */
+{
+  const r = run({ prs: [redGated({ gate: { status: 'in_progress', conclusion: null } })] });
+  check('a gate still in progress is not a red gate',
+        !/STUCK/.test(r.out) && /something can move this/.test(r.out),
+        (r.out.match(/^#1616.*$/m) || [''])[0]);
+  check('…and nothing was written to it', !/^label 1616/m.test(r.acted), r.acted.trim());
+}
+
+/* 12d. A RED GATE UNDER A LIVE RUN IS THE RUN'S TO FIX, and it commonly does —
+ *      that is the whole of #1499 reached from the other side. The liveness test
+ *      guards both shapes for exactly this reason. */
+{
+  const r = run({ prs: [redGated({ branch: 'steward/t-1343-something' })],
+                  claims: { 't-1343': { runStatus: 'in_progress', ageHours: 1 } } });
+  check('a red gate under a run that is still going is left alone',
+        !/STUCK/.test(r.out), (r.out.match(/^#1616.*$/m) || [''])[0]);
+  check('…and the log names the run, so the judgement can be checked',
+        /still in_progress/.test(r.out));
+  check('…and says what it saw, not merely that it skipped',
+        /blocked with a red gate/.test(r.out));
+}
+
+/* 12e. …and a freshly-red head is not one either. A run that pushes a fix within
+ *      the minute is the normal way this clears; MIN_AGE is what keeps the
+ *      reporter from being the noise it was built to replace. */
+{
+  const r = run({ prs: [redGated({ headAgeMin: 4 })] });
+  check('a freshly-red head is left for the run that owns it',
+        !/STUCK/.test(r.out) && /too-young=1/.test(r.out),
+        (r.out.match(/^#1616.*$/m) || [''])[0]);
+}
+
+/* 12f. AND THE LABEL COMES BACK OFF when the gate goes green, exactly as it does
+ *      when a dirty PR comes clean. A label that outlives its reason is worse
+ *      than no label, and a red-gate label is the easiest kind to strand. */
+{
+  const r = run({ prs: [redGated({ labels: ['stuck'],
+                                   gate: { status: 'completed', conclusion: 'success' } })] });
+  check('a PR whose gate went green loses the label',
+        /^unlabel 1616 stuck$/m.test(r.acted), r.acted.trim() || 'nothing');
+  check('…and the summary counts it', /unlabelled=1/.test(r.out));
+}
+
+/* 12g. A head with NO gate at all is not red. It is a PR the gate has not reached
+ *      — or shape A, which the `dirty` branch above has already claimed. */
+{
+  const r = run({ prs: [redGated({ gate: null })] });
+  check('a head carrying no gate is not called red', !/STUCK/.test(r.out));
 }
 
 /* 13. DRIFT GUARDS on the lines that carry the judgement. */
