@@ -389,17 +389,23 @@ MULTI_BUILDING_LOT = {
 #   fort_dearborn_out_building_a / _b   312 m and 323 m off Lake, a principal street the
 #                          ancillary clause avoids → 198.31 m and 195.52 m off Kinzie,
 #                          which is ordinary, so the clause stops firing and both read as
-#                          conforming. THIS ONE IS AN ARTEFACT AND IS RECORDED AS ONE.
-#                          Both stand inside the unplatted military reservation on the
-#                          SOUTH bank; Kinzie Street runs along the NORTH bank and the
-#                          river is between them. `nearest_frontage` measures a straight
-#                          line and has no water in it, so a south-side roof at the river
-#                          mouth can be credited with a north-side street and vice versa.
-#                          The reservation has no street to front either way — that was
-#                          the whole of these two reasons — but the assertion is a
-#                          measurement and the measurement no longer says so, so the
-#                          reasons cannot stay. See T-1191's ticket file § the river is
-#                          not in the reading, which carries this for the owner.
+#                          conforming. THIS ONE WAS AN ARTEFACT, WAS RECORDED AS ONE, AND
+#                          IS FIXED — T-1429, and the two reasons are restored below.
+#                          `nearest_frontage` now carries the bank test this paragraph
+#                          asked for: it refuses a corridor the river stands between, and
+#                          it refuses a stretch of corridor standing IN the river, which
+#                          is what Kinzie's east end is. Read that function's docstring
+#                          for both clauses and for why one of them does not reach.
+#
+# TWENTY-SIX READINGS MOVED WITH THAT FIX and all of them the same way: the whole Fort
+# Dearborn reservation, the Beaubien cluster east of it and the south pier were being
+# credited with Kinzie Street across the channel, and every one of them now measures to
+# Lake Street on its own bank. Three of the fort's ancillary roofs — beaubien_barn,
+# fort_dearborn_big_barn and fort_dearborn_wash_house — were conforming ONLY because
+# the street they were measured against was ordinary, and they are outliers with their
+# own reasons below now that the street is the one on their side of the water. Two
+# north-bank roofs moved the other way, off Kinzie's submerged end onto Michigan Street,
+# and both still conform. Nothing was retyped and no coordinate moved.
 
 OUTLIER_REASONS = {
     "blacksmith_shop_state_st":
@@ -418,10 +424,34 @@ OUTLIER_REASONS = {
         "harbour and not by a street.",
     "council_house":
         "on the lakefront reservation ground east of the platted town.",
+    "beaubien_barn":
+        "Jean Baptiste Beaubien's own barn on his own ground east of the fort, outside "
+        "the plat: an ancillary roof 347.65 m from Lake Street's corridor edge is behind "
+        "its own house and not on anybody's frontage. It read Kinzie at 80.93 m until "
+        "T-1429, which is a north-bank street across the channel.",
+    "fort_dearborn_big_barn":
+        "inside the unplatted military reservation, 270.75 m from Lake Street's corridor "
+        "edge: the garrison's own barn, seated behind the fort and not on a street. Same "
+        "correction as its neighbours — Kinzie at 95.89 m was across the water.",
     "fort_dearborn_shop":
         "inside the unplatted military reservation: the garrison's own workshop, not a "
-        "mechanic's shop on a street. The nearest committed corridor is now Kinzie's at "
-        "157.87 m, on the far bank, which is no more its frontage than State's 381 m was.",
+        "mechanic's shop on a street. Its nearest corridor is Lake Street's at 381.64 m "
+        "since T-1429 put the river in the reading; the Kinzie line at 157.87 m that "
+        "T-1191 briefly gave it is on the far bank and was never its frontage.",
+    "fort_dearborn_out_building_a":
+        "inside the unplatted military reservation, 312.17 m from Lake Street's corridor "
+        "edge: the ancillary clause's 'behind its own roof' is a statement about a "
+        "platted lot and there is no lot here. T-1191 read it 198.31 m off Kinzie and "
+        "this reason had to be withdrawn; T-1429's bank test refuses that line — it is "
+        "Kinzie's east end, which stands under the 1834 harbour cut — and restores it.",
+    "fort_dearborn_out_building_b":
+        "inside the unplatted military reservation, 322.71 m from Lake Street's corridor "
+        "edge, as its pair. Withdrawn by T-1191 and restored by T-1429 for the same "
+        "reason.",
+    "fort_dearborn_wash_house":
+        "inside the unplatted military reservation, 420.22 m from Lake Street's corridor "
+        "edge: the garrison washed its own linen behind its own palisade. It read Kinzie "
+        "at 144.13 m until T-1429, across the channel.",
     "fort_dearborn_us_factors_house":
         "inside the unplatted military reservation — see the garrison clause. No street "
         "crossed the reservation in 1835.",
