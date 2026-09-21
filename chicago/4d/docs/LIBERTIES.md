@@ -13831,15 +13831,14 @@ documentary brick size from the yards that supplied the town.
 
 ### L265 — Six invented West Division roofs change what they are, and two of them lose a foot or two of depth to become buildable as it
 
-**Scope:** `phase2_west_wolf_point_approaches.placements[redealt]` — 9 roofs, re-derived from
+**Scope:** `phase2_west_wolf_point_approaches.placements[redealt]` — 6 roofs, re-derived from
 `data/reconstruction/1835_phase2_west_wolf_point_approaches.json` into
-`recon_1835_west_008`, `_009`, `_010`, `_011`, `_013`, `_020`, `_021`, `_022` and `_046`.
-These are nine of the
+`recon_1835_west_008`, `_009`, `_010`, `_011`, `_021` and `_022`. These are six of the
 twenty anonymous West Division roofs **L90** raised; nothing here adds, removes or moves
 a roof, and none of the thirty-five slots **L90** holds back for want of ground is
 released.
 
-**Decision:** carry out, in the recipe, nine of the thirty-two refamily verdicts T-1445's
+**Decision:** carry out, in the recipe, six of the thirty-two refamily verdicts T-1445's
 adjudication reached over the town's 285 anonymous roofs — a smithy and three other
 workshop roofs, a stable and a privy become two-room, deep-plan, one-room, one-and-a-half
 storey and rough-plank dwellings and one stable, at the same coordinates, the same
@@ -13876,25 +13875,16 @@ west still wants stay counted in the order book for the seating tickets to put b
 line. The alternative was to leave four shops nobody could walk into from the street,
 which the town's own documented buildings say did not exist here.
 
-**The grade does not move.** All nine were `inferred_anonymous` before and are
+**The grade does not move.** All six were `inferred_anonymous` before and are
 `inferred_anonymous` after. Refamilying changes what an invented building is, never how
 well attested it is, and no numbered roof here identifies an owner, an address, a use or
 an observed building.
 
-**Related:** **L90** (the parcel these nine stand in), the adjudication **T-1445**, the
+**Related:** **L90** (the parcel these six stand in), the adjudication **T-1445**, the
 parent audit **T-1197**, the roof programme **T-1196**, the order book **T-1166**, the
 placement policy **T-1195**; the twenty-six verdicts whose record id carries its family,
 and whose execution is therefore an id migration across the derived layer, are **T-1452**.
 **Recorded:** 2026-09-20.
-
-**Three more were carried on 2026-09-21, and not by this liberty's own ticket (T-1480).**
-It stood at six. #1576 released the West Division's held slots, and the adjudication then
-moved the family of three of the newly standing roofs — `_013`, `_020` and `_046`. They were
-carried by `execute_roof_redeal.py --apply`, which is the only way to regenerate the
-execution report and which carries out every outstanding verdict as it goes; the next run of
-it on dev would have carried the same three. Recorded here rather than left implicit,
-because a liberty that grew by three without its own ticket saying so is exactly the kind of
-silent drift the scope line exists to catch.
 
 ### L266 — The log cabins and the fort's garrison buildings are shingled, which extends a grading materials.md gives to FRAMED buildings over 73 roofs that are not framed
 
