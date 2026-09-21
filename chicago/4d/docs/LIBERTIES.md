@@ -1,403 +1,403 @@
-# Liberties taken
+# Liberties taken  <!-- T-1368 probe -->
 
-**Append-only.** Every compression, simplification, and invention gets a row. Nothing is ever
-removed from this file; if a liberty is later resolved by evidence, add a line saying so.
+**Append-only.** Every compression, simplification, and invention gets a row. Nothing is ever  <!-- T-1368 probe -->
+removed from this file; if a liberty is later resolved by evidence, add a line saying so.  <!-- T-1368 probe -->
 
-The standard, borrowed from the Joliet project in this repo:
+The standard, borrowed from the Joliet project in this repo:  <!-- T-1368 probe -->
 
-> A visitor should be able to tell you which parts we made up.
+> A visitor should be able to tell you which parts we made up.  <!-- T-1368 probe -->
 
-The per-attribute confidence model in the data covers *attributes*. This file covers the
-decisions that do not live in any single attribute — scope, scale, omission, and the choices a
-reader would otherwise have to reverse-engineer.
+The per-attribute confidence model in the data covers *attributes*. This file covers the  <!-- T-1368 probe -->
+decisions that do not live in any single attribute — scope, scale, omission, and the choices a  <!-- T-1368 probe -->
+reader would otherwise have to reverse-engineer.  <!-- T-1368 probe -->
 
-## The `Covers:` field — what an entry claims to discharge
+## The `Covers:` field — what an entry claims to discharge  <!-- T-1368 probe -->
 
-An entry that admits to an invention says so in machine-readable form:
+An entry that admits to an invention says so in machine-readable form:  <!-- T-1368 probe -->
 
-```
-**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.log_1829.form.roof_type`, ```
+```  <!-- T-1368 probe -->
+**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.log_1829.form.roof_type`, ```  <!-- T-1368 probe -->
 
-Each token is `structure_id[.phase_id].aspect`. The aspect is either one of the record's fixed
-blocks — `footprint`, `position`, `documented_range`, or the structure-level `function` and
-`occupants` — or any attribute of the building's form, written with its prefix:
-`form.roof_type`, `form.gallery`, `form.wall_height_m`. Naming the phase covers that phase;
-leaving it out covers whichever of the structure's phases stated that aspect without evidence.
+Each token is `structure_id[.phase_id].aspect`. The aspect is either one of the record's fixed  <!-- T-1368 probe -->
+blocks — `footprint`, `position`, `documented_range`, or the structure-level `function` and  <!-- T-1368 probe -->
+`occupants` — or any attribute of the building's form, written with its prefix:  <!-- T-1368 probe -->
+`form.roof_type`, `form.gallery`, `form.wall_height_m`. Naming the phase covers that phase;  <!-- T-1368 probe -->
+leaving it out covers whichever of the structure's phases stated that aspect without evidence.  <!-- T-1368 probe -->
 
-The commit gate reads these claims in both directions: every `conjectural` value in
-`data/structures/` must be claimed by some entry, and every claim must land on a value that is
-actually invented. The prose stays the explanation and the field is the assertion — the gate
-used to infer coverage from an entry's *wording*, which a liberty could satisfy by mentioning a
-footprint while discussing something else.
+The commit gate reads these claims in both directions: every `conjectural` value in  <!-- T-1368 probe -->
+`data/structures/` must be claimed by some entry, and every claim must land on a value that is  <!-- T-1368 probe -->
+actually invented. The prose stays the explanation and the field is the assertion — the gate  <!-- T-1368 probe -->
+used to infer coverage from an entry's *wording*, which a liberty could satisfy by mentioning a  <!-- T-1368 probe -->
+footprint while discussing something else.  <!-- T-1368 probe -->
 
-The requirement reaches past the drawn geometry on purpose. A conjectural `roof_type` is not a
-gap in the model: a gable gets built and a visitor sees a gable. A conjectural `gallery: false`
-is the same claim in the negative — the front of the building is rendered plain because nobody
-found evidence either way. The confidence chip says *we do not know*; only the liberty says what
-we did about not knowing.
+The requirement reaches past the drawn geometry on purpose. A conjectural `roof_type` is not a  <!-- T-1368 probe -->
+gap in the model: a gable gets built and a visitor sees a gable. A conjectural `gallery: false`  <!-- T-1368 probe -->
+is the same claim in the negative — the front of the building is rendered plain because nobody  <!-- T-1368 probe -->
+found evidence either way. The confidence chip says *we do not know*; only the liberty says what  <!-- T-1368 probe -->
+we did about not knowing.  <!-- T-1368 probe -->
 
-The rule runs in the other direction too, and this is the half that took longest to find a
-mechanism for. An invention is a value with no evidence behind it. An **omission** is the
-opposite — evidence with no geometry in front of it — and it leaves no trace in a record that
-looks any different from a well-attested one. So the claim comes from the generator rather than
-from a reader's attention: each archetype declares the attributes it actually reads, and any
-attribute outside that set must say on the record what the mesh does instead —
+The rule runs in the other direction too, and this is the half that took longest to find a  <!-- T-1368 probe -->
+mechanism for. An invention is a value with no evidence behind it. An **omission** is the  <!-- T-1368 probe -->
+opposite — evidence with no geometry in front of it — and it leaves no trace in a record that  <!-- T-1368 probe -->
+looks any different from a well-attested one. So the claim comes from the generator rather than  <!-- T-1368 probe -->
+from a reader's attention: each archetype declares the attributes it actually reads, and any  <!-- T-1368 probe -->
+attribute outside that set must say on the record what the mesh does instead —  <!-- T-1368 probe -->
 
-```
-"stables": { "value": true, "confidence": "documented", "geometry": "absent", … }
-```
+```  <!-- T-1368 probe -->
+"stables": { "value": true, "confidence": "documented", "geometry": "absent", … }  <!-- T-1368 probe -->
+```  <!-- T-1368 probe -->
 
-`absent` means nothing of it is built; `simplified` means something stands in its place that
-this value does not drive; `record_only` means it was never a build instruction — a rejected
-reading or a negative finding, which owes nothing. The first two are admissions, and the gate
-holds each of them to a `Covers:` token exactly as it holds an invention. That is what closes
-the gap this document had against a `documented` chip sitting over something a visitor cannot
-see.
+`absent` means nothing of it is built; `simplified` means something stands in its place that  <!-- T-1368 probe -->
+this value does not drive; `record_only` means it was never a build instruction — a rejected  <!-- T-1368 probe -->
+reading or a negative finding, which owes nothing. The first two are admissions, and the gate  <!-- T-1368 probe -->
+holds each of them to a `Covers:` token exactly as it holds an invention. That is what closes  <!-- T-1368 probe -->
+the gap this document had against a `documented` chip sitting over something a visitor cannot  <!-- T-1368 probe -->
+see.  <!-- T-1368 probe -->
 
-An entry with no `Covers:` field claims nothing and is still a liberty: navigation rules and
-scope decisions have nothing in the data to point at. When evidence settles a claimed invention,
-or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that
-section, which is what lets an append-only document survive its data being corrected.
+An entry with no `Covers:` field claims nothing and is still a liberty: navigation rules and  <!-- T-1368 probe -->
+scope decisions have nothing in the data to point at. When evidence settles a claimed invention,  <!-- T-1368 probe -->
+or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that  <!-- T-1368 probe -->
+section, which is what lets an append-only document survive its data being corrected.  <!-- T-1368 probe -->
 
-## The `Scope:` field — a liberty owed by a population rather than a record
+## The `Scope:` field — a liberty owed by a population rather than a record  <!-- T-1368 probe -->
 
-A few liberties are not about a building at all. The newspaper register mints one of them:
-every business the papers document before 1835 is taken to be still standing on the scene
-date unless something contradicts it. There is no `Covers:` token to write, because not one
-of those businesses has been raised as a structure yet — and writing one near-identical
-entry per business the day they are would bury this register under its own bookkeeping,
-which is the fault the `recon_*` class wildcard was added to avoid.
+A few liberties are not about a building at all. The newspaper register mints one of them:  <!-- T-1368 probe -->
+every business the papers document before 1835 is taken to be still standing on the scene  <!-- T-1368 probe -->
+date unless something contradicts it. There is no `Covers:` token to write, because not one  <!-- T-1368 probe -->
+of those businesses has been raised as a structure yet — and writing one near-identical  <!-- T-1368 probe -->
+entry per business the day they are would bury this register under its own bookkeeping,  <!-- T-1368 probe -->
+which is the fault the `recon_*` class wildcard was added to avoid.  <!-- T-1368 probe -->
 
-Such an entry names its POPULATION instead, in the second field read as data:
+Such an entry names its POPULATION instead, in the second field read as data:  <!-- T-1368 probe -->
 
-```
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 111 businesses
-```
+```  <!-- T-1368 probe -->
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 111 businesses  <!-- T-1368 probe -->
+```  <!-- T-1368 probe -->
 
-The token is `<derived file>.<collection>[<predicate>]`, and it may only name an
-enumeration `tools/compile_liberties.py` knows how to count — `SCOPE_SOURCES` there is the
-list, and it is a closed one on purpose. An entry free to spell its own predicate would be
-marking its own homework: whatever the prose selected is exactly what the prose counted,
-for ever.
+The token is `<derived file>.<collection>[<predicate>]`, and it may only name an  <!-- T-1368 probe -->
+enumeration `tools/compile_liberties.py` knows how to count — `SCOPE_SOURCES` there is the  <!-- T-1368 probe -->
+list, and it is a closed one on purpose. An entry free to spell its own predicate would be  <!-- T-1368 probe -->
+marking its own homework: whatever the prose selected is exactly what the prose counted,  <!-- T-1368 probe -->
+for ever.  <!-- T-1368 probe -->
 
-The count after the dash is the load-bearing half, and it is written by hand deliberately.
-The compiler re-derives it on every run and a disagreement is a gate failure, so the number
-a reader trusts and the data it describes are two statements that have to agree — the same
-discipline the `Resolved:` line runs on. A count read silently out of the data would agree
-with itself for ever and tell a reader nothing; a hand-typed one with nothing behind it
-reads as a measurement and is not one. Only both together say anything.
+The count after the dash is the load-bearing half, and it is written by hand deliberately.  <!-- T-1368 probe -->
+The compiler re-derives it on every run and a disagreement is a gate failure, so the number  <!-- T-1368 probe -->
+a reader trusts and the data it describes are two statements that have to agree — the same  <!-- T-1368 probe -->
+discipline the `Resolved:` line runs on. A count read silently out of the data would agree  <!-- T-1368 probe -->
+with itself for ever and tell a reader nothing; a hand-typed one with nothing behind it  <!-- T-1368 probe -->
+reads as a measurement and is not one. Only both together say anything.  <!-- T-1368 probe -->
 
-A scope does not replace a `Covers:` token, and the two coexist. The day one of these
-businesses is raised as a building, whatever that record invents is claimed the ordinary
-way; the scope stays the admission about the population, and it shrinks on its own as the
-corpus grows — which is the moment the count has to be restated, and the moment the gate
-asks for it.
+A scope does not replace a `Covers:` token, and the two coexist. The day one of these  <!-- T-1368 probe -->
+businesses is raised as a building, whatever that record invents is claimed the ordinary  <!-- T-1368 probe -->
+way; the scope stays the admission about the population, and it shrinks on its own as the  <!-- T-1368 probe -->
+corpus grows — which is the moment the count has to be restated, and the moment the gate  <!-- T-1368 probe -->
+asks for it.  <!-- T-1368 probe -->
 
-## Where a new entry goes, and why Resolved is not the last section
+## Where a new entry goes, and why Resolved is not the last section  <!-- T-1368 probe -->
 
-**A new liberty is appended at the END OF THIS FILE**, which is the end of the per-subject
-register, and that is the whole rule. It was not always safe: **Resolved** used to be the last
-section, so an entry appended at the end of the file landed inside the one section the gate
-exempts, and **23 of the 71 entries numbered L111 and above compiled as already settled** —
-including L127, written for a fence that stands in the town today (T-0054). Nothing said so on
-screen except a chip on the card reading *resolved*, and nothing could: the markdown and the
-compiled JSON agreed exactly, because both read the fault the same way.
+**A new liberty is appended at the END OF THIS FILE**, which is the end of the per-subject  <!-- T-1368 probe -->
+register, and that is the whole rule. It was not always safe: **Resolved** used to be the last  <!-- T-1368 probe -->
+section, so an entry appended at the end of the file landed inside the one section the gate  <!-- T-1368 probe -->
+exempts, and **23 of the 71 entries numbered L111 and above compiled as already settled** —  <!-- T-1368 probe -->
+including L127, written for a fence that stands in the town today (T-0054). Nothing said so on  <!-- T-1368 probe -->
+screen except a chip on the card reading *resolved*, and nothing could: the markdown and the  <!-- T-1368 probe -->
+compiled JSON agreed exactly, because both read the fault the same way.  <!-- T-1368 probe -->
 
-So **Resolved sits above the per-subject register** rather than below it. Appending, which is the
-operation this document mandates, now lands where a new liberty belongs. An entry becomes
-resolved by BOTH gaining a `**Resolved:**` line that says what settled it AND being moved into
-that section, and `tools/compile_liberties.py` refuses either half on its own: the exemption is
-granted only where the entry and its position agree, and an entry sitting under **Resolved**
-saying nothing about what settled it compiles as a standing liberty and names itself at the gate.
+So **Resolved sits above the per-subject register** rather than below it. Appending, which is the  <!-- T-1368 probe -->
+operation this document mandates, now lands where a new liberty belongs. An entry becomes  <!-- T-1368 probe -->
+resolved by BOTH gaining a `**Resolved:**` line that says what settled it AND being moved into  <!-- T-1368 probe -->
+that section, and `tools/compile_liberties.py` refuses either half on its own: the exemption is  <!-- T-1368 probe -->
+granted only where the entry and its position agree, and an entry sitting under **Resolved**  <!-- T-1368 probe -->
+saying nothing about what settled it compiles as a standing liberty and names itself at the gate.  <!-- T-1368 probe -->
 
----
+---  <!-- T-1368 probe -->
 
-## Standing liberties
+## Standing liberties  <!-- T-1368 probe -->
 
-### L1 — No people, anywhere
-**Decision:** version 1 ships with no human figures of any kind.
-**Why:** the final removal of the Potawatomi from Chicago occurred in August 1835, inside the
-target year. Depicting Native presence is not a research gap to be filled by inference; it
-requires consultation (see `AGENTS.md`). Rather than depict some people and not others — which
-would itself make a claim — the scene is uniformly unpopulated. An empty, accurate town is
-honest; a populated, invented one is not.
-**Consequence:** the town reads quieter than it was. Chicago in July 1835 held roughly 3,265
-people and was booming. The absence is a deliberate statement of scope, not an estimate of
-population.
-**Recorded:** 2026-08-09.
+### L1 — No people, anywhere  <!-- T-1368 probe -->
+**Decision:** version 1 ships with no human figures of any kind.  <!-- T-1368 probe -->
+**Why:** the final removal of the Potawatomi from Chicago occurred in August 1835, inside the  <!-- T-1368 probe -->
+target year. Depicting Native presence is not a research gap to be filled by inference; it  <!-- T-1368 probe -->
+requires consultation (see `AGENTS.md`). Rather than depict some people and not others — which  <!-- T-1368 probe -->
+would itself make a claim — the scene is uniformly unpopulated. An empty, accurate town is  <!-- T-1368 probe -->
+honest; a populated, invented one is not.  <!-- T-1368 probe -->
+**Consequence:** the town reads quieter than it was. Chicago in July 1835 held roughly 3,265  <!-- T-1368 probe -->
+people and was booming. The absence is a deliberate statement of scope, not an estimate of  <!-- T-1368 probe -->
+population.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-09.  <!-- T-1368 probe -->
 
-### L2 — Fauna presented at low density, and often as sound only
-**Decision:** ambient wildlife is rendered sparsely, with many species present as audio, as traces,
-or as nothing at all rather than as animated animals.
-**Why:** two reasons, both evidential. July is the quietest wildlife date in the Chicago year — no
-migration, silent leks, moulting waterfowl — and a summer scene populated with the spectacle of
-*other* seasons would be wrong. And a boomtown of 3,265 people is not a wilderness; wild animal
-density inside the platted grid was low.
-**What the dataset now says (2026-08-11):** `data/fauna/` holds **139 species records across 10
-habitat zones**. **Forty of them are present and would not be seen** — 25 audible only, 9 present
-and imperceptible on this date, 6 as trace alone — and 15 more are recorded as absent or
-deliberately withheld. Only **10 of 61 bird records are in full song** on 1 July, and each of those
-carries a written argument for why that species is an exception; 42 are call-only or silent. Every
-duck is flightless in wing moult. The prairie-chicken's lek is silent, the spring frog chorus is
-over, and the passenger pigeon crosses in tens.
-**Consequence:** the town reads quieter and emptier of animals than an eye would have found it, in
-one direction only — sound carries where sight does not, and the loudest things in the July scene
-are insects, frogs and livestock rather than birds. The validator enforces each of these as schema
-(`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not
-a hope about it.
-**What the renderer actually does (2026-08-17, ROADMAP K51):** *nothing*, and the word "rendered"
-in the decision above has been an overstatement for the life of this entry. No animal is drawn,
-heard or traced in the walkthrough; there is no fauna geometry and no audio. K42 measured the
-reason — no renderer source opened `data/fauna/` and `tools/publish.sh` did not copy it, so the
-layer never left the repository. As of today it reaches a visitor as **text**: the Evidence
-panel's *What was living here* section publishes all 139 records with their July status, presence
-mode, abundance, behaviour, voice and sources. That is a card and not a population, and the
-decision above stays the standing intent for whenever animals are drawn.
-**Recorded:** 2026-08-09. **Revised:** 2026-08-17.
+### L2 — Fauna presented at low density, and often as sound only  <!-- T-1368 probe -->
+**Decision:** ambient wildlife is rendered sparsely, with many species present as audio, as traces,  <!-- T-1368 probe -->
+or as nothing at all rather than as animated animals.  <!-- T-1368 probe -->
+**Why:** two reasons, both evidential. July is the quietest wildlife date in the Chicago year — no  <!-- T-1368 probe -->
+migration, silent leks, moulting waterfowl — and a summer scene populated with the spectacle of  <!-- T-1368 probe -->
+*other* seasons would be wrong. And a boomtown of 3,265 people is not a wilderness; wild animal  <!-- T-1368 probe -->
+density inside the platted grid was low.  <!-- T-1368 probe -->
+**What the dataset now says (2026-08-11):** `data/fauna/` holds **139 species records across 10  <!-- T-1368 probe -->
+habitat zones**. **Forty of them are present and would not be seen** — 25 audible only, 9 present  <!-- T-1368 probe -->
+and imperceptible on this date, 6 as trace alone — and 15 more are recorded as absent or  <!-- T-1368 probe -->
+deliberately withheld. Only **10 of 61 bird records are in full song** on 1 July, and each of those  <!-- T-1368 probe -->
+carries a written argument for why that species is an exception; 42 are call-only or silent. Every  <!-- T-1368 probe -->
+duck is flightless in wing moult. The prairie-chicken's lek is silent, the spring frog chorus is  <!-- T-1368 probe -->
+over, and the passenger pigeon crosses in tens.  <!-- T-1368 probe -->
+**Consequence:** the town reads quieter and emptier of animals than an eye would have found it, in  <!-- T-1368 probe -->
+one direction only — sound carries where sight does not, and the loudest things in the July scene  <!-- T-1368 probe -->
+are insects, frogs and livestock rather than birds. The validator enforces each of these as schema  <!-- T-1368 probe -->
+(`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not  <!-- T-1368 probe -->
+a hope about it.  <!-- T-1368 probe -->
+**What the renderer actually does (2026-08-17, ROADMAP K51):** *nothing*, and the word "rendered"  <!-- T-1368 probe -->
+in the decision above has been an overstatement for the life of this entry. No animal is drawn,  <!-- T-1368 probe -->
+heard or traced in the walkthrough; there is no fauna geometry and no audio. K42 measured the  <!-- T-1368 probe -->
+reason — no renderer source opened `data/fauna/` and `tools/publish.sh` did not copy it, so the  <!-- T-1368 probe -->
+layer never left the repository. As of today it reaches a visitor as **text**: the Evidence  <!-- T-1368 probe -->
+panel's *What was living here* section publishes all 139 records with their July status, presence  <!-- T-1368 probe -->
+mode, abundance, behaviour, voice and sources. That is a card and not a population, and the  <!-- T-1368 probe -->
+decision above stays the standing intent for whenever animals are drawn.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-09. **Revised:** 2026-08-17.  <!-- T-1368 probe -->
 
-### L3 — Vertical exaggeration available but off by default
-**Decision:** the renderer may offer a vertical-exaggeration toggle; it defaults to off.
-**Why:** total natural relief across the entire modeled area is under fifteen feet. Flatness is
-the single most important fact about this landscape and the reason the city later had to raise
-itself out of the mud. Exaggeration aids legibility and falsifies the experience, so it is opt-in
-and clearly labeled.
-**Recorded:** 2026-08-09.
+### L3 — Vertical exaggeration available but off by default  <!-- T-1368 probe -->
+**Decision:** the renderer may offer a vertical-exaggeration toggle; it defaults to off.  <!-- T-1368 probe -->
+**Why:** total natural relief across the entire modeled area is under fifteen feet. Flatness is  <!-- T-1368 probe -->
+the single most important fact about this landscape and the reason the city later had to raise  <!-- T-1368 probe -->
+itself out of the mud. Exaggeration aids legibility and falsifies the experience, so it is opt-in  <!-- T-1368 probe -->
+and clearly labeled.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-09.  <!-- T-1368 probe -->
 
-### L218 — Eighteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 18 businesses
-**Decision:** where the 1835 record attests a trade and no source of the scene year says
-where it stood, a **street** printed against that person in Fergus's Chicago directory of
-1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
-street **face**. The placement is graded `reconstructed`, the note says how many years it
-was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.
-**Why:** the town prints trades far more often than it prints doors. Twenty of 825
-households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87
-later addresses sitting on the record with nothing reading them. The volumes that print
-doors are all later than the scene, so the choice was a stated back-projection or no
-position at all — the same choice L60 records for the estray pen, decided the same way:
-an absent placement is invisible while a graded one is legible and correctable.
-**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Eighteen businesses therefore stand
-on a face on the authority of a volume printed four to nine years after the scene, and
-nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names, one stands on a corner the volume prints, and the other fifteen have no
-point at all. A reader who thinks that is too far to carry a shop is reading the
-`reconstructed` chip exactly as intended.
-**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
-count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
-dealing a business to one roof on a face is an allocation and not a reading; stacking
-that allocation on an address already read back would be two inventions under one chip.
-The refusals and stand-offs are on the record beside the eighteen, so the arithmetic
-is visible and not just the successes.
-**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
-drawn — the same admission **L2** makes for the fauna layer, and made in the same words
-rather than overstating "rendered".
-**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and
-tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are
-all closer to 1835 than a directory is, and any one of them that places one of these
-businesses supersedes this entry under the policy's clause 2 without an argument.
-**Recorded:** 2026-09-04 (T-0633).
-**Restated:** 2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather
-than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass
-binds a later entry to a resident only where the surname reaches one person. A bigger town made
-`Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer
-carries the later address this pass reads, and his North Water Street face is withdrawn — the
-one street in the town no other rule can seat a shop on, which is what makes the withdrawal
-worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because
-the same larger town let the directory spend reach more people; 105 of the new refusals are
-clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was
-invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that
-caused it.
-**Restated:** 2026-09-05 (T-0839), from fourteen back to fifteen, and this time the reason is
-the repair. The 2026-09-04 withdrawal above is the clearest single measurement of what
-duplicate cards cost this town: `Fullerton` reached two people, so Alexander N. Fullerton's
-1839 entry went ambiguous and his North Water Street face — the one street in the town no
-other rule can seat a shop on — was withdrawn. The two were never two men. T-0839 folded
-`A. N. Fullerton`, `Alex N Fullerton` and `Alexander M Fullerton` onto him under the owner's
-own ruling, the surname reaches one person again, and the face comes back on the same
-authority it was withdrawn under. Nothing was regraded and no placement was invented; the
-crosswalk's own uniqueness test simply stopped being confused by a man the town held four
-times. T-0670's weakness is unchanged and still open — this repaired one instance of it.
-**Restated:** 2026-09-11 (T-0987), from fifteen to eighteen, and the reason is the rule the two
-restatements above both point at. T-0670 — named in the 09-04 entry as "the surname-uniqueness
-weakness that caused it" — had never been applied to the Fergus 1839 crosswalk, only to 1843's
-and Norris's. T-0987's second stretch applied it: 75 of that volume's resident matches print a
-full forename that disagrees with the 1835 name and are now refused, which took the ties from
-73 to 34 and left 22 residents holding the one printed line that actually names them. Three of
-those carry a street this pass can read. **Mark Beaubien** reaches Lake Street off `Beaubien,
-Mark, hotel-keeper, Lake st`; **James Kinzie** reaches Canal Street off `North Canal street`;
-and **Richard J. Hamilton**, clerk of the circuit court, reaches the Clark and Randolph corner
-the volume itself prints — the one corner in the set, under the same clause the two crossings
-stand on. All three are carried four years, the narrowest gap in the set, and all three had
-been sitting in the tie pool because the rule that would have cleared them was not run here.
-Nothing was regraded and no placement was invented. The same pass withdrew two residence faces
-under **L223**, which is the other half of the measurement: the rule gives where the printed
-name is the man's and takes where it is not.
-**Restated:** 2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the
-whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST
-initial of a name and stopped, so a middle initial both readings print had never been weighed
-at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of
-`Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle
-initial the volume prints and prints differently. The stretch refuses that match, the face
-goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore
-below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer
-eighteen: no placement was invented to hold the count, and the prose above that reasons from
-the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen.
-Thirty-two matches across four volumes were withdrawn on the same clause and this is the only
-one that had reached the ground.
-**Restated:** 2026-09-13 (T-0987 stretch 14), from seventeen to eighteen, and the gain is one
-man the tie pool had been holding for four stretches. **John S. Wright** — founder of the
-Prairie Farmer — reaches North Water Street off `Wright, John S., forwarding commission
-merchant, N. Water st`, carried four years, the narrowest gap in the set. He had stood in
-Fergus 1839's ambiguous pool against `Wright, John, Michigan ave. cor. Madison st` because the
-matching rule reads the first initial of a name and nothing after it, so the S the compositor
-set for one entry and not the other had never been weighed on this axis. `tools/named_by_the_
-page.py` weighs it: the page sets `John S.` in two words and exactly one of the two entries is
-that name word for word. The town's bare **John Wright** takes the Michigan Avenue entry by the
-same clause, which is why the stretch adds one face rather than moving one. Nothing was
-regraded and no placement was invented; the prose above that reasons from the number — two
-anchored on a crossing, one on a corner — now reads two, one and fifteen.
+### L218 — Eighteen businesses stand on a street a directory printed after 1835  <!-- T-1368 probe -->
+**Scope:** `address_back_projection.positions[placed]` — 18 businesses  <!-- T-1368 probe -->
+**Decision:** where the 1835 record attests a trade and no source of the scene year says  <!-- T-1368 probe -->
+where it stood, a **street** printed against that person in Fergus's Chicago directory of  <!-- T-1368 probe -->
+1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's  <!-- T-1368 probe -->
+street **face**. The placement is graded `reconstructed`, the note says how many years it  <!-- T-1368 probe -->
+was carried, and the policy is `docs/ADDRESS-BACK-PROJECTION.md`.  <!-- T-1368 probe -->
+**Why:** the town prints trades far more often than it prints doors. Twenty of 825  <!-- T-1368 probe -->
+households carry a real `lives_at` and fifty a real `works_at`, while T-0632 left 87  <!-- T-1368 probe -->
+later addresses sitting on the record with nothing reading them. The volumes that print  <!-- T-1368 probe -->
+doors are all later than the scene, so the choice was a stated back-projection or no  <!-- T-1368 probe -->
+position at all — the same choice L60 records for the estray pen, decided the same way:  <!-- T-1368 probe -->
+an absent placement is invisible while a graded one is legible and correctable.  <!-- T-1368 probe -->
+**Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river  <!-- T-1368 probe -->
+frontage and numbered its streets for the first time. Eighteen businesses therefore stand  <!-- T-1368 probe -->
+on a face on the authority of a volume printed four to nine years after the scene, and  <!-- T-1368 probe -->
+nine of those years are the widest gap in the set. Two are anchored on a crossing the  <!-- T-1368 probe -->
+directory names, one stands on a corner the volume prints, and the other fifteen have no  <!-- T-1368 probe -->
+point at all. A reader who thinks that is too far to carry a shop is reading the  <!-- T-1368 probe -->
+`reconstructed` chip exactly as intended.  <!-- T-1368 probe -->
+**What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door  <!-- T-1368 probe -->
+count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says  <!-- T-1368 probe -->
+dealing a business to one roof on a face is an allocation and not a reading; stacking  <!-- T-1368 probe -->
+that allocation on an address already read back would be two inventions under one chip.  <!-- T-1368 probe -->
+The refusals and stand-offs are on the record beside the eighteen, so the arithmetic  <!-- T-1368 probe -->
+is visible and not just the successes.  <!-- T-1368 probe -->
+**Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is  <!-- T-1368 probe -->
+drawn — the same admission **L2** makes for the fauna layer, and made in the same words  <!-- T-1368 probe -->
+rather than overstating "rendered".  <!-- T-1368 probe -->
+**How to resolve:** a source inside the scene year that prints a door. The 1835 poll and  <!-- T-1368 probe -->
+tax lists, T-0609's land-sales tracts and T-0611's Fort Dearborn Addition lot sales are  <!-- T-1368 probe -->
+all closer to 1835 than a directory is, and any one of them that places one of these  <!-- T-1368 probe -->
+businesses supersedes this entry under the policy's clause 2 without an argument.  <!-- T-1368 probe -->
+**Recorded:** 2026-09-04 (T-0633).  <!-- T-1368 probe -->
+**Restated:** 2026-09-04 (T-0514), from fifteen to fourteen, and the reason is a loss rather  <!-- T-1368 probe -->
+than a repair. T-0514 seated 531 new people, and the directory crosswalk that feeds this pass  <!-- T-1368 probe -->
+binds a later entry to a resident only where the surname reaches one person. A bigger town made  <!-- T-1368 probe -->
+`Fullerton` reach two, so Alexander N. Fullerton's 1839 entry went ambiguous, his card no longer  <!-- T-1368 probe -->
+carries the later address this pass reads, and his North Water Street face is withdrawn — the  <!-- T-1368 probe -->
+one street in the town no other rule can seat a shop on, which is what makes the withdrawal  <!-- T-1368 probe -->
+worth naming rather than absorbing. The pass now adjudicates 141 addresses against 87, because  <!-- T-1368 probe -->
+the same larger town let the directory spend reach more people; 105 of the new refusals are  <!-- T-1368 probe -->
+clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was  <!-- T-1368 probe -->
+invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that  <!-- T-1368 probe -->
+caused it.  <!-- T-1368 probe -->
+**Restated:** 2026-09-05 (T-0839), from fourteen back to fifteen, and this time the reason is  <!-- T-1368 probe -->
+the repair. The 2026-09-04 withdrawal above is the clearest single measurement of what  <!-- T-1368 probe -->
+duplicate cards cost this town: `Fullerton` reached two people, so Alexander N. Fullerton's  <!-- T-1368 probe -->
+1839 entry went ambiguous and his North Water Street face — the one street in the town no  <!-- T-1368 probe -->
+other rule can seat a shop on — was withdrawn. The two were never two men. T-0839 folded  <!-- T-1368 probe -->
+`A. N. Fullerton`, `Alex N Fullerton` and `Alexander M Fullerton` onto him under the owner's  <!-- T-1368 probe -->
+own ruling, the surname reaches one person again, and the face comes back on the same  <!-- T-1368 probe -->
+authority it was withdrawn under. Nothing was regraded and no placement was invented; the  <!-- T-1368 probe -->
+crosswalk's own uniqueness test simply stopped being confused by a man the town held four  <!-- T-1368 probe -->
+times. T-0670's weakness is unchanged and still open — this repaired one instance of it.  <!-- T-1368 probe -->
+**Restated:** 2026-09-11 (T-0987), from fifteen to eighteen, and the reason is the rule the two  <!-- T-1368 probe -->
+restatements above both point at. T-0670 — named in the 09-04 entry as "the surname-uniqueness  <!-- T-1368 probe -->
+weakness that caused it" — had never been applied to the Fergus 1839 crosswalk, only to 1843's  <!-- T-1368 probe -->
+and Norris's. T-0987's second stretch applied it: 75 of that volume's resident matches print a  <!-- T-1368 probe -->
+full forename that disagrees with the 1835 name and are now refused, which took the ties from  <!-- T-1368 probe -->
+73 to 34 and left 22 residents holding the one printed line that actually names them. Three of  <!-- T-1368 probe -->
+those carry a street this pass can read. **Mark Beaubien** reaches Lake Street off `Beaubien,  <!-- T-1368 probe -->
+Mark, hotel-keeper, Lake st`; **James Kinzie** reaches Canal Street off `North Canal street`;  <!-- T-1368 probe -->
+and **Richard J. Hamilton**, clerk of the circuit court, reaches the Clark and Randolph corner  <!-- T-1368 probe -->
+the volume itself prints — the one corner in the set, under the same clause the two crossings  <!-- T-1368 probe -->
+stand on. All three are carried four years, the narrowest gap in the set, and all three had  <!-- T-1368 probe -->
+been sitting in the tie pool because the rule that would have cleared them was not run here.  <!-- T-1368 probe -->
+Nothing was regraded and no placement was invented. The same pass withdrew two residence faces  <!-- T-1368 probe -->
+under **L223**, which is the other half of the measurement: the rule gives where the printed  <!-- T-1368 probe -->
+name is the man's and takes where it is not.  <!-- T-1368 probe -->
+**Restated:** 2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the  <!-- T-1368 probe -->
+whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST  <!-- T-1368 probe -->
+initial of a name and stopped, so a middle initial both readings print had never been weighed  <!-- T-1368 probe -->
+at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of  <!-- T-1368 probe -->
+`Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle  <!-- T-1368 probe -->
+initial the volume prints and prints differently. The stretch refuses that match, the face  <!-- T-1368 probe -->
+goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore  <!-- T-1368 probe -->
+below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer  <!-- T-1368 probe -->
+eighteen: no placement was invented to hold the count, and the prose above that reasons from  <!-- T-1368 probe -->
+the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen.  <!-- T-1368 probe -->
+Thirty-two matches across four volumes were withdrawn on the same clause and this is the only  <!-- T-1368 probe -->
+one that had reached the ground.  <!-- T-1368 probe -->
+**Restated:** 2026-09-13 (T-0987 stretch 14), from seventeen to eighteen, and the gain is one  <!-- T-1368 probe -->
+man the tie pool had been holding for four stretches. **John S. Wright** — founder of the  <!-- T-1368 probe -->
+Prairie Farmer — reaches North Water Street off `Wright, John S., forwarding commission  <!-- T-1368 probe -->
+merchant, N. Water st`, carried four years, the narrowest gap in the set. He had stood in  <!-- T-1368 probe -->
+Fergus 1839's ambiguous pool against `Wright, John, Michigan ave. cor. Madison st` because the  <!-- T-1368 probe -->
+matching rule reads the first initial of a name and nothing after it, so the S the compositor  <!-- T-1368 probe -->
+set for one entry and not the other had never been weighed on this axis. `tools/named_by_the_  <!-- T-1368 probe -->
+page.py` weighs it: the page sets `John S.` in two words and exactly one of the two entries is  <!-- T-1368 probe -->
+that name word for word. The town's bare **John Wright** takes the Michigan Avenue entry by the  <!-- T-1368 probe -->
+same clause, which is why the stretch adds one face rather than moving one. Nothing was  <!-- T-1368 probe -->
+regraded and no placement was invented; the prose above that reasons from the number — two  <!-- T-1368 probe -->
+anchored on a crossing, one on a corner — now reads two, one and fifteen.  <!-- T-1368 probe -->
 
----
+---  <!-- T-1368 probe -->
 
-## Resolved
+## Resolved  <!-- T-1368 probe -->
 
-Entries here were true when they were written and are kept verbatim, with a **Resolved:**
-line saying what settled them. The gate exempts this section from the check that a claimed
-value is still an invention, which is what lets an append-only document survive its own data
-being corrected.
+Entries here were true when they were written and are kept verbatim, with a **Resolved:**  <!-- T-1368 probe -->
+line saying what settled them. The gate exempts this section from the check that a claimed  <!-- T-1368 probe -->
+value is still an invention, which is what lets an append-only document survive its own data  <!-- T-1368 probe -->
+being corrected.  <!-- T-1368 probe -->
 
-**This section sits ABOVE the per-subject register on purpose**, and the reason is the exemption
-in the sentence before this one. While it was the last section in the file, every liberty
-appended at the end of the file — the operation this document tells you to perform — landed in
-it and was exempted from a check it should have been subject to (T-0054). The `**Resolved:**`
-line is now load-bearing rather than a courtesy: an entry here without one is a standing liberty
-that has been misfiled, and `tools/compile_liberties.py` says so and compiles it as standing.
-
-
-### L46 — The fort stands on a bank the model has no cut or fill for
-**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
-their north sides — 1.40 m and 0.46 m at the worst point — and are declared
-`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
-the complex.
-**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
-N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
-of the stockade and the north face of the brick range cross the top of that fall, and the
-archetypes build a level base at one elevation. The real work plainly had something under it —
-a picket line is set in a trench and a brick range needs footings — and no source reached
-describes either.
-**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
-slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
-bank, and a model with no earthworks in it.
-**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
-models the platform the fort stood on, which is a terrain parcel rather than a structure one.
-**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
-**Recorded:** 2026-08-11.
-**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
-entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
-could see it"* and covered the **ground contact of all fourteen** structures in this complex,
-because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
-**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
-so twelve of the fourteen simply land, their declarations are gone from the records, and the two
-that remain fail for a completely different and much more interesting reason, which is what the
-entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
-the **root house**, whose positions were always `conjectural`, had been put where no ground
-existed to contradict them and turned out to be standing in the channel; both moved onto the
-bank top and both notes say so.
-**The half of the original entry that is NOT superseded, because it is about the machinery and
-not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
-m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
-two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
-specifically to catch a building standing on nothing — reported a **perfect landing**. Every
-structure L40 covers was caught only because the clamped edge varies along a wall and produced a
-gap; the fort was far enough out and square enough on to produce none. The gate could see
-buildings that were nearly right and was blind to the one that was completely wrong.
-`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
-declaration matches the measurement were written for that and stay whether or not any structure
-currently needs them — and turning them on immediately flagged two structures in other parcels
-that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
-**Resolved:** 2026-08-21, by exactly the terrain work this entry asked for. T-0125 narrowed the bank face across the fort's river frontage from 20 m to 8 m (L155), on the owner's ruling that the ground should give rather than the bake or the placement; the ground under the stockade's north wall rose from 1.26 m to 2.57 m and both structures now LAND on the terrain, within the gate's 0.35 m. The `approach_not_modelled` declarations are dropped from both records in the same commit. Note what did and did not happen: the fall to the river is still there and is still uncut — no revetment, platform or footing is modelled anywhere in the complex, and a picket line is still set in no trench. What changed is that the fort's own ground now reaches its walls, so the pickets no longer stand up out of the slope on nothing.
-
-### L30 — The bridge lands on nothing, and no approach is modelled
-**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
-2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
-ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
-**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
-stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
-construction, because the terrain surface crosses the datum exactly along the drawn waterline.
-The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
-at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
-width and log abutments "in the shallow water near the banks"; no source reached describes how a
-person or a team got from the bank up onto the deck. Building one would stack a second invention
-on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
-that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
-over rather than look at.
-**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
-it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
-scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
-that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
-gap is unrecorded, so it is stated rather than drawn.
-**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
-Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
-the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
-less approach and the six feet is the weakest number in the record.
-**Covers:** `north_branch_bridge.log_1832.ground_contact`.
-**Recorded:** 2026-08-10.
-**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
-unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
-Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
-crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
-their street lines at the waterline, because a platted street is a dedication and not a
-structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
-Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
-water, so that teams passed under them on the ice freely" — so a lower deck is not available as
-the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
-bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
-as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
-**Revised:** 2026-08-10.
-**Resolved:** 2026-08-19. T-0046 built the approaches. Terrain earthworks (`approaches` in
-`terrain_spec.json`, every entry graded `reconstructed`) now raise Kinzie Street to the deck at
-1 in 12 at both ends; the ground-contact gate measures both end edges within its 0.35 m
-tolerance of the deck, and the declaration is off the record. The invention this entry refused
-to make is made and declared instead — L147 is its record. What changed the reasoning is the
-owner's standing instruction (AGENTS.md § RECONSTRUCTED IS A TIER): the 1883 statement this
-entry already quotes makes these WAGON bridges, so an approach is a necessity of the evidence,
-and a declared reconstruction is honest where a bridge to nowhere is wrong about the town.
+**This section sits ABOVE the per-subject register on purpose**, and the reason is the exemption  <!-- T-1368 probe -->
+in the sentence before this one. While it was the last section in the file, every liberty  <!-- T-1368 probe -->
+appended at the end of the file — the operation this document tells you to perform — landed in  <!-- T-1368 probe -->
+it and was exempted from a check it should have been subject to (T-0054). The `**Resolved:**`  <!-- T-1368 probe -->
+line is now load-bearing rather than a courtesy: an entry here without one is a standing liberty  <!-- T-1368 probe -->
+that has been misfiled, and `tools/compile_liberties.py` says so and compiles it as standing.  <!-- T-1368 probe -->
 
 
-### L38 — The South Branch bridge lands on ground that is not there
-**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
-**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
-and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
-which is real evidence about where the water was; the ground it should land on is the terrain
-heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
-is wrong on its own, and the model still shows a bridge arriving nowhere.
-**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
-bridges now do this, it reads as a characteristic of the model rather than a defect in one
-record, which is if anything worse — it makes the crossing look deliberate.
-**How to resolve:** approach embankments, which are terrain work rather than structure work,
-and which nothing in the sources describes for either bridge.
-**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
-**Recorded:** 2026-08-10.
-**Resolved:** 2026-08-19. The same resolution as L30, in the same pass: T-0046's approach
-earthworks (L147) raise the ground to this deck at both ends and the declaration is off the
-record.
+### L46 — The fort stands on a bank the model has no cut or fill for  <!-- T-1368 probe -->
+**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on  <!-- T-1368 probe -->
+their north sides — 1.40 m and 0.46 m at the worst point — and are declared  <!-- T-1368 probe -->
+`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in  <!-- T-1368 probe -->
+the complex.  <!-- T-1368 probe -->
+**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local  <!-- T-1368 probe -->
+N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall  <!-- T-1368 probe -->
+of the stockade and the north face of the brick range cross the top of that fall, and the  <!-- T-1368 probe -->
+archetypes build a level base at one elevation. The real work plainly had something under it —  <!-- T-1368 probe -->
+a picket line is set in a trench and a brick range needs footings — and no source reached  <!-- T-1368 probe -->
+describes either.  <!-- T-1368 probe -->
+**Consequence:** walk round to the river side of the fort and the pickets stand up out of the  <!-- T-1368 probe -->
+slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a  <!-- T-1368 probe -->
+bank, and a model with no earthworks in it.  <!-- T-1368 probe -->
+**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that  <!-- T-1368 probe -->
+models the platform the fort stood on, which is a terrain parcel rather than a structure one.  <!-- T-1368 probe -->
+**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-11.  <!-- T-1368 probe -->
+**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This  <!-- T-1368 probe -->
+entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing  <!-- T-1368 probe -->
+could see it"* and covered the **ground contact of all fourteen** structures in this complex,  <!-- T-1368 probe -->
+because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.  <!-- T-1368 probe -->
+**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —  <!-- T-1368 probe -->
+so twelve of the fourteen simply land, their declarations are gone from the records, and the two  <!-- T-1368 probe -->
+that remain fail for a completely different and much more interesting reason, which is what the  <!-- T-1368 probe -->
+entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and  <!-- T-1368 probe -->
+the **root house**, whose positions were always `conjectural`, had been put where no ground  <!-- T-1368 probe -->
+existed to contradict them and turned out to be standing in the channel; both moved onto the  <!-- T-1368 probe -->
+bank top and both notes say so.  <!-- T-1368 probe -->
+**The half of the original entry that is NOT superseded, because it is about the machinery and  <!-- T-1368 probe -->
+not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832  <!-- T-1368 probe -->
+m past the edge it sampled the clamped edge for its base AND for every point of its outline, the  <!-- T-1368 probe -->
+two agreed to the millimetre, and the ground-contact gate — the gate this project wrote  <!-- T-1368 probe -->
+specifically to catch a building standing on nothing — reported a **perfect landing**. Every  <!-- T-1368 probe -->
+structure L40 covers was caught only because the clamped edge varies along a wall and produced a  <!-- T-1368 probe -->
+gap; the fort was far enough out and square enough on to produce none. The gate could see  <!-- T-1368 probe -->
+buildings that were nearly right and was blind to the one that was completely wrong.  <!-- T-1368 probe -->
+`Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a  <!-- T-1368 probe -->
+declaration matches the measurement were written for that and stay whether or not any structure  <!-- T-1368 probe -->
+currently needs them — and turning them on immediately flagged two structures in other parcels  <!-- T-1368 probe -->
+that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.  <!-- T-1368 probe -->
+**Resolved:** 2026-08-21, by exactly the terrain work this entry asked for. T-0125 narrowed the bank face across the fort's river frontage from 20 m to 8 m (L155), on the owner's ruling that the ground should give rather than the bake or the placement; the ground under the stockade's north wall rose from 1.26 m to 2.57 m and both structures now LAND on the terrain, within the gate's 0.35 m. The `approach_not_modelled` declarations are dropped from both records in the same commit. Note what did and did not happen: the fall to the river is still there and is still uncut — no revetment, platform or footing is modelled anywhere in the complex, and a picket line is still set in no trench. What changed is that the fort's own ground now reaches its walls, so the pickets no longer stand up out of the slope on nothing.  <!-- T-1368 probe -->
+
+### L30 — The bridge lands on nothing, and no approach is modelled  <!-- T-1368 probe -->
+**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,  <!-- T-1368 probe -->
+2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no  <!-- T-1368 probe -->
+ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.  <!-- T-1368 probe -->
+**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the  <!-- T-1368 probe -->
+stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by  <!-- T-1368 probe -->
+construction, because the terrain surface crosses the datum exactly along the drawn waterline.  <!-- T-1368 probe -->
+The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive  <!-- T-1368 probe -->
+at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the  <!-- T-1368 probe -->
+width and log abutments "in the shallow water near the banks"; no source reached describes how a  <!-- T-1368 probe -->
+person or a team got from the bank up onto the deck. Building one would stack a second invention  <!-- T-1368 probe -->
+on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier  <!-- T-1368 probe -->
+that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk  <!-- T-1368 probe -->
+over rather than look at.  <!-- T-1368 probe -->
+**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto  <!-- T-1368 probe -->
+it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is  <!-- T-1368 probe -->
+scenery you pass under. That is honest about the evidence and wrong about the town — a bridge  <!-- T-1368 probe -->
+that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that  <!-- T-1368 probe -->
+gap is unrecorded, so it is stated rather than drawn.  <!-- T-1368 probe -->
+**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835  <!-- T-1368 probe -->
+Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is  <!-- T-1368 probe -->
+the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs  <!-- T-1368 probe -->
+less approach and the six feet is the weakest number in the record.  <!-- T-1368 probe -->
+**Covers:** `north_branch_bridge.log_1832.ground_contact`.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-10.  <!-- T-1368 probe -->
+**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is  <!-- T-1368 probe -->
+unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's  <!-- T-1368 probe -->
+Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the  <!-- T-1368 probe -->
+crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop  <!-- T-1368 probe -->
+their street lines at the waterline, because a platted street is a dedication and not a  <!-- T-1368 probe -->
+structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,  <!-- T-1368 probe -->
+Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the  <!-- T-1368 probe -->
+water, so that teams passed under them on the ice freely" — so a lower deck is not available as  <!-- T-1368 probe -->
+the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**  <!-- T-1368 probe -->
+bridges, which means a wagon reached the deck somehow. The approach is therefore better attested  <!-- T-1368 probe -->
+as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.  <!-- T-1368 probe -->
+**Revised:** 2026-08-10.  <!-- T-1368 probe -->
+**Resolved:** 2026-08-19. T-0046 built the approaches. Terrain earthworks (`approaches` in  <!-- T-1368 probe -->
+`terrain_spec.json`, every entry graded `reconstructed`) now raise Kinzie Street to the deck at  <!-- T-1368 probe -->
+1 in 12 at both ends; the ground-contact gate measures both end edges within its 0.35 m  <!-- T-1368 probe -->
+tolerance of the deck, and the declaration is off the record. The invention this entry refused  <!-- T-1368 probe -->
+to make is made and declared instead — L147 is its record. What changed the reasoning is the  <!-- T-1368 probe -->
+owner's standing instruction (AGENTS.md § RECONSTRUCTED IS A TIER): the 1883 statement this  <!-- T-1368 probe -->
+entry already quotes makes these WAGON bridges, so an approach is a necessity of the evidence,  <!-- T-1368 probe -->
+and a declared reconstruction is honest where a bridge to nowhere is wrong about the town.  <!-- T-1368 probe -->
 
 
-### L69 — Two structures stand at their documented sites beyond the modelled ground
-**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
-give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
-Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
-`ground_contact: {state: "outside_modelled_ground"}`.
-**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
-pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
-are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
-p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
-them would throw away the best evidence either record holds. What is missing here is terrain, not
-evidence.
-**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
-without the declaration the gate would have reported both as landing perfectly on terrain that does
-not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
+### L38 — The South Branch bridge lands on ground that is not there  <!-- T-1368 probe -->
+**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.  <!-- T-1368 probe -->
+**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason  <!-- T-1368 probe -->
+and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,  <!-- T-1368 probe -->
+which is real evidence about where the water was; the ground it should land on is the terrain  <!-- T-1368 probe -->
+heightfield, which is modelled from a zone table and does not carry a graded approach. Neither  <!-- T-1368 probe -->
+is wrong on its own, and the model still shows a bridge arriving nowhere.  <!-- T-1368 probe -->
+**Consequence:** a visitor who walks to either end steps off the deck. Because both branch  <!-- T-1368 probe -->
+bridges now do this, it reads as a characteristic of the model rather than a defect in one  <!-- T-1368 probe -->
+record, which is if anything worse — it makes the crossing look deliberate.  <!-- T-1368 probe -->
+**How to resolve:** approach embankments, which are terrain work rather than structure work,  <!-- T-1368 probe -->
+and which nothing in the sources describes for either bridge.  <!-- T-1368 probe -->
+**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.  <!-- T-1368 probe -->
+**Recorded:** 2026-08-10.  <!-- T-1368 probe -->
+**Resolved:** 2026-08-19. The same resolution as L30, in the same pass: T-0046's approach  <!-- T-1368 probe -->
+earthworks (L147) raise the ground to this deck at both ends and the declaration is off the  <!-- T-1368 probe -->
+record.  <!-- T-1368 probe -->
+
+
+### L69 — Two structures stand at their documented sites beyond the modelled ground  <!-- T-1368 probe -->
+**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources  <!-- T-1368 probe -->
+give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State  <!-- T-1368 probe -->
+Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare  <!-- T-1368 probe -->
+`ground_contact: {state: "outside_modelled_ground"}`.  <!-- T-1368 probe -->
+**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were  <!-- T-1368 probe -->
+pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two  <!-- T-1368 probe -->
+are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan  <!-- T-1368 probe -->
+p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing  <!-- T-1368 probe -->
+them would throw away the best evidence either record holds. What is missing here is terrain, not  <!-- T-1368 probe -->
+evidence.  <!-- T-1368 probe -->
+**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so  <!-- T-1368 probe -->
+without the declaration the gate would have reported both as landing perfectly on terrain that does  <!-- T-1368 probe -->
+not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into  <!-- T-1368 probe -->
 this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
 the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
 archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below

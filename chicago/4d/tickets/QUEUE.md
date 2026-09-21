@@ -1,5 +1,4 @@
 # QUEUE — top is next. The parser reads only T-NNNN lines; ticket files hold evidence and acceptance.
-# PROBE (T-1368): a deliberate conflict, to reconstruct the deadlock. Closed within minutes.
 # The owner sets the order. Work top-down, skipping a blocked or already-claimed ticket.
 # Add findings to an existing ticket first. Put new one-run work beside its dependency;
 # add new research readings to RESEARCH COMPLETION so the spend band can drain.
