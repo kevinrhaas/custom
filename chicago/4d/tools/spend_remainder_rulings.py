@@ -487,24 +487,6 @@ RULES = {
             "named T-1172, the ticket that re-admits the roster's single-source names, "
             "because T-1159 closes with the roster it builds." + HANDED_ON),
     },
-    "the_notice_names_a_firm": {
-        "disposition": "unresolved",
-        "ticket": "T-1468",
-        "statement": (
-            "The unit carries a `business` block: the reading pulled a firm name, and "
-            "where it could a trade, a proprietor and a street placement, out of the "
-            "advertisement or notice. That is enterprise evidence, and the ledger routes "
-            "every business unit to the authored business layer, which is the piece that "
-            "still has this corpus to spend -- one record per firm, compiled beside the "
-            "newspaper-derived register. "
-            "IT READ T-1180 UNTIL T-1311 CLOSED ON 2026-09-18: that ticket split into T-1310, which BUILT the layer, and T-1311, and with both done the parent is spent work a unit cannot defer to. What is left for these notices is reconciling them against the layer rather than building it, which is T-1182's audit. "
-            "It read T-1147 until the place and enterprise "
-            "completion pass closed (T-1241). A firm is not minted here, a placement is "
-            "not written here, and a contradiction between two notices is not resolved "
-            "here."
-            " T-1182 WAS SPLIT on 2026-09-19 into T-1401..T-1405 and ALL FIVE ARE DONE, so there is no heir among them and a unit cannot defer to spent work. The hand-off is T-1190 since 2026-09-20 (owner's call): the business layer's convergence, where register, businesses, persons and structures are made to agree by id, is what is left to reconcile a trade or a premises the cards do not carry. T-1189 staffs firms with people and T-1186 reconstructs the missing trades; neither reconciles an existing reading against the layer, which is what these units need."
-            " AND T-1190 IS SPENT SINCE 2026-09-20: its three pieces (T-1440, T-1441 and T-1442) all closed, so the split parent is finished work and a unit cannot defer to it (T-1237). The hand-off is T-1468, which carries the same ask under a live id and takes the tavern identity question the roof programme is owed with it."),
-    },
     "the_family_column_names_kin": {
         "disposition": "unresolved",
         # WAS T-1170 UNTIL T-1313 CLOSED ON 2026-09-18. That ticket was SPLIT into
@@ -989,11 +971,32 @@ def rule_newspapers(unit: dict, printed: str | None,
                 f"{clip(', '.join(entity_names(row)) or line, 200)}")
     business = row.get("business") or {}
     if business:
-        return ("the_notice_names_a_firm",
-                f"{where}: the notice of {printed} carries the firm "
-                f"“{clip(business.get('name'), 80) or 'unnamed in the block'}” "
-                f"(trade as read: {clip(business.get('trade'), 60) or 'none'}; street as read: "
-                f"{clip(business.get('street'), 60) or 'none'}).")
+        # T-1508. This register ruled these until the ledger learned to reach the
+        # AUTHORED BUSINESS LAYER as a target surface, matching a block on its own
+        # `claim_ids`. Every business unit over the committed corpora is spent there
+        # now, so the rule here fired zero times and was removed rather than left
+        # standing as judgement it never makes. It refuses instead of falling through:
+        # the branches below read a notice as a person or a family column, and a firm
+        # answered by one of those is a wrong ruling arriving quietly.
+        # A PROBE ASKS A QUESTION AND HAS TO GET AN ANSWER. `is_dated_press_appearance`
+        # runs every unit in the corpus past this function to ask one thing — is this a
+        # named person on a dated day? — and tools/spend_press_bounds.py asks it of the
+        # WHOLE newspaper corpus, firm notices included. The answer for a firm is no.
+        # Raising at a caller that is only asking stops a build that was right to ask,
+        # which is what happened on the first cut of this change: the gate went red on
+        # `chicago_american_1835_06_08 c006` — a real Goss & Cobb notice — from a probe,
+        # not from a ruling. The refusal below is for the RULING path alone, and the
+        # early return above in press_appearance_rule is the same distinction already
+        # drawn once in this file.
+        if (cache or {}).get("press_probe"):
+            return (None, f"{where}: a notice carrying a firm is not a dated press "
+                          "appearance; it is the ledger's to spend on the business layer")
+        raise SystemExit(
+            f"{where}: the notice of {printed} carries the firm "
+            f"“{clip(business.get('name'), 80) or 'unnamed in the block'}”, and since "
+            "T-1508 a business unit is the ledger's to SPEND on the business layer, not "
+            "this register's to rule. Run tools/research_spend_ledger.py --build; if it "
+            "still arrives here, no business record claims it, which is T-1468's.")
     if kind == "person":
         if FAMILY_COLUMN.match(str(row.get("normalized") or "")):
             return ("the_family_column_names_kin",
@@ -1291,9 +1294,29 @@ def self_test() -> int:
          {**paper, "record": {**paper["record"], "letter_list_only": True}},
          "the_issue_is_printed_after_the_scene_date",
          fn=lambda u: rule_newspapers(u, "1835-08-05"))
-    held("a notice carrying a firm",
-         {**paper, "record": {**paper["record"], "business": {"name": "Goss & Cobb"}}},
-         "the_notice_names_a_firm", fn=lambda u: rule_newspapers(u, "1835-06-10"))
+    firm_unit = {**paper, "record": {**paper["record"],
+                                     "business": {"name": "Goss & Cobb"}}}
+    try:
+        rule_newspapers(firm_unit, "1835-06-10")
+        failures.append("a notice carrying a firm: was ruled rather than refused")
+        print("  FAIL: a notice carrying a firm")
+    except SystemExit:
+        print("  ok:   a notice carrying a firm stops the build (T-1508)")
+    # AND THE PROBE GETS AN ANSWER RATHER THAN THE REFUSAL. tools/spend_press_bounds.py
+    # runs the WHOLE newspaper corpus past is_dated_press_appearance, firm notices
+    # included, to ask one question; raising at a caller that is only asking took the
+    # gate red on the real Goss & Cobb notice (chicago_american_1835_06_08 c006) on the
+    # first cut of T-1508. Both halves are held here because either alone is a bug.
+    try:
+        if is_dated_press_appearance(firm_unit, "1835-06-10"):
+            failures.append("a firm notice probes as a dated press appearance")
+            print("  FAIL: a firm notice probes as a dated press appearance")
+        else:
+            print("  ok:   a firm notice answers the probe with no, and does not raise at it")
+    except SystemExit:
+        failures.append("the probe on a firm notice raised instead of answering — "
+                        "spend_press_bounds asks this of every unit and cannot be refused")
+        print("  FAIL: the probe on a firm notice raised instead of answering")
     held("the married column",
          {**paper, "record": {**paper["record"], "kind": "person",
                               "normalized": "MARRIED, In this town, on the 12th inst."}},

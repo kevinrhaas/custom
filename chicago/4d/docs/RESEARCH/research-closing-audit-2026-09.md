@@ -9,11 +9,11 @@ Registered reading units: **23,693**, as of 2026-09-15. Unclassified: **0**. Ass
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 185 |
-| asserted | 807 |
-| later_only | 12,574 |
+| asserted | 1,292 |
+| later_only | 12,571 |
 | outside_chicago | 109 |
 | refused | 8,668 |
-| unresolved | 1,350 |
+| unresolved | 868 |
 
 Every asserted unit names the record and field it wrote to. Grouped by the layer that file belongs to:
 
@@ -21,11 +21,11 @@ Every asserted unit names the record and field it wrote to. Grouped by the layer
 | --- | ---: |
 | residents | 0 |
 | households | 807 |
-| businesses | 0 |
+| businesses | 485 |
 | structures | 0 |
 | outside the four layers | 0 |
 
-**Read this honestly.** Every asserted unit in the ledger lands on a household record of the resident layer, and nowhere else. That is not a claim that the business and structure layers are unresearched — the newspaper register below is compiled from the same readings by `tools/compile_register.py`, and the roofs carry their own graded attributes — but it does mean the unit-level ledger currently proves the second hop for residents alone. Sections 4 and 5 read those two layers directly for that reason.
+**Read this honestly.** The unit-level ledger proves the second hop for households and businesses. It proves nothing at unit level for residents and structures, which is not a claim that the layer is unresearched — the newspaper register below is compiled from the same readings by `tools/compile_register.py`, and the roofs carry their own graded attributes. Sections 4 and 5 read those layers directly for that reason.
 
 Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then `python3 tools/report_research_closing_audit.py --check`.
 
@@ -117,11 +117,11 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1189 | 12 | split_live | yes |
-| T-1198 | 298 | split_live | yes |
+| T-1198 | 279 | split_live | yes |
 | T-1299 | 1 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1335 | 169 | open | yes |
-| T-1468 | 601 | split_live | yes |
+| T-1468 | 138 | split_live | yes |
 
 The rest defer to no ticket, and that is the second legitimate shape rather than a gap (T-1423): a name the research READ and the town WITHHELD, since re-admitted at the reconstructed tier, whose open question is whether the person was in the town on 1 July 1835. No ticket can answer that — only a document can — so each states the document instead. The pointer that used to stand here was renamed four times as the ticket it named kept closing, and no source came any nearer.
 
@@ -137,7 +137,7 @@ Reproduce: `python3 tools/measure_research_spend.py --check`.
 
 ## 7. The gaps, stated
 
-1. **No unit-level ledger entry reaches the business or structure layers.** 807 asserted units land on residents and households and 0 on businesses and structures. Closing it means an authored business record (T-1180) and a seat on the ground (T-1198) for a claim to be asserted ONTO.
+1. **No unit-level ledger entry reaches the structures layer.** 807 asserted units land on residents and households, 485 on businesses and 0 on structures. Closing it means a seat on the ground (T-1198) for a claim to be asserted ONTO.
 2. **28 of the 179 firms standing on 1 July 1835 name nobody who kept them.** The paper advertised the goods and not the man. T-1182 audits this and T-1189 staffs it.
 3. **62 firms are unplaceable and 61 reach a street and no further.** Those 123 are the location limits the research preserved rather than guessed past; T-1198 seats what can be seated and the rest stay limits.
 4. **1,362 of 1,393 households have no `lives_at`.** Most are letter-list-only names (736) whose whole evidence is that a letter waited for them; where they live is T-1159's roster question, not a hole in the reading.
