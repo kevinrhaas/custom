@@ -10,11 +10,11 @@ legacy_id: null
 parent: T-1452
 opened: 2026-09-20
 closed: 2026-09-21
-pr: 1633
+pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: duplicate of T-1482 — T-1452 was split twice and both splits reached the queue; the demonstration and the owner's question live on T-1482
 needs_bake: false
-closed_at: 2026-09-21T16:05:32.033Z
+closed_at: 2026-09-21T16:08:07.158Z
 claimed_run: null
 ---
 
@@ -24,22 +24,11 @@ Piece 3 of 3 of **T-1452 — Migrate the 26 refamilied roofs whose id moves — 
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-## WITHDRAWN 2026-09-21 — A DUPLICATE T-1452 WAS SPLIT TWICE INTO EXISTENCE
+## WITHDRAWN 2026-09-21 — the same six roofs as T-1482
 
-`ticket.mjs split` had no guard on the state of the ticket it was splitting, so
-T-1452 was split twice, four hours apart on 2026-09-20:
-
-  13:48  run 35529393603 claims T-1452 and splits it into T-1480/T-1481/T-1482
-  17:52  run 35542539851 reads T-1452 and splits it AGAIN into T-1494/T-1495/T-1496
-
-Both cuts carve the SAME twenty-six roofs into the same three parcels, so the queue
-carried six rows for three pieces of work, in pairs that read as unrelated rows.
-This ticket is the second cut's copy of T-1482.
-
-**The work is not dropped — T-1482 is the first cut's copy of the three platted blocks' six roofs — the two are both headed "Piece 3 of 3 of T-1452" — and it is in flight as this is written.**** The guard that stops the next one is in
-`tools/ticket.mjs` (`split` refuses a parent that is already `split`, `done` or
-`withdrawn`) with assertions 24-27 of `tools/test_ticket_claim_split.mjs`.
-
-**Reopen rule.** If T-1482 ends without landing — withdrawn, or blocked and
-abandoned — set this ticket's `state` back to `open` and append its row at the foot of
-its band in QUEUE.md. Nothing here is lost, only deduplicated.
+T-1452 was split twice, and both splits are in the queue. This row and **T-1482** ask for
+the identical work — the three platted blocks' six refamilied roofs, across the
+principal/ancillary line, with the screenshot from Lake and Clark — and the same pair
+exists for the phase-one South parcel (T-1481 / the closed T-1494). T-1482 is the row the
+executor's own docstring names, so it is the one kept. Its demonstration stands there and
+the ticket is blocked on the owner; nothing is lost by closing this one.

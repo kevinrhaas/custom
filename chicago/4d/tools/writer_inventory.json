@@ -558,6 +558,13 @@
       "measured": "2026-09-18",
       "finding": "Run bare it exits 0 and writes nothing, so it does not write by default. Gated with --check; a reporter or a checker."
     },
+    "measure_block_redeal_remedies.py": {
+      "placement": "pending",
+      "write_mode": "--build",
+      "measured": "2026-09-21",
+      "finding": "Reproduces: ran `--build` on a clean tree in 4s, wrote its two outputs and changed no committed byte.",
+      "placed": "not yet — measured to reproduce, but it reads the roof redeal ledger, the platted-block recipe and the placement policy, and the first two are written by stages whose slot in the manifest's order is itself a measured question. It also reports on a ticket blocked on the owner: the day the six verdicts are carried out or withdrawn, this tool's outputs change or stop existing, and placing it before that is settled would order a step that may not be there."
+    },
     "measure_block_gating.py": {
       "placement": "not_a_writer",
       "write_mode": null,

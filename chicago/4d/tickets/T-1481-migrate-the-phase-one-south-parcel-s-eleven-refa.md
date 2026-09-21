@@ -1,7 +1,7 @@
 ---
 id: T-1481
 title: Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published
-state: withdrawn
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -10,12 +10,12 @@ legacy_id: null
 parent: T-1452
 opened: 2026-09-20
 closed: 2026-09-21
-pr: 1633
-claimed_by: run 9/21/2026, 11:03:42 AM CT
+pr: 1600
+claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-21T16:05:31.809Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35620852317
+closed_at: 2026-09-21T16:08:07.339Z
+claimed_run: null
 ---
 
 Migrate the phase-one South parcel's eleven refamilied roofs whose id moves, on the North parcel's executor: generate_inferred_infill re-deriving byte for byte, the assets and the measured reference list carried across, rebaked and published.
@@ -24,22 +24,10 @@ Piece 2 of 3 of **T-1452 — Migrate the 26 refamilied roofs whose id moves — 
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-## WITHDRAWN 2026-09-21 — A DUPLICATE T-1452 WAS SPLIT TWICE INTO EXISTENCE
+## CLOSED 2026-09-21 — carried out already, under T-1494 on PR #1600
 
-`ticket.mjs split` had no guard on the state of the ticket it was splitting, so
-T-1452 was split twice, four hours apart on 2026-09-20:
-
-  13:48  run 35529393603 claims T-1452 and splits it into T-1480/T-1481/T-1482
-  17:52  run 35542539851 reads T-1452 and splits it AGAIN into T-1494/T-1495/T-1496
-
-Both cuts carve the SAME twenty-six roofs into the same three parcels, so the queue
-carried six rows for three pieces of work, in pairs that read as unrelated rows.
-This ticket is the second cut's copy of T-1494.
-
-**The work is not dropped — T-1494 migrated the phase-one South parcel's eleven refamilied roofs and merged as #1600, and this ticket asks for those same eleven roofs.**** The guard that stops the next one is in
-`tools/ticket.mjs` (`split` refuses a parent that is already `split`, `done` or
-`withdrawn`) with assertions 24-27 of `tools/test_ticket_claim_split.mjs`.
-
-**Reopen rule.** If T-1494 ends without landing — withdrawn, or blocked and
-abandoned — set this ticket's `state` back to `open` and append its row at the foot of
-its band in QUEUE.md. Nothing here is lost, only deduplicated.
+T-1452 was split twice and both splits reached the queue, so the phase-one South parcel's
+eleven id-moving roofs are asked for by this row and by **T-1494**, which is `done` on
+PR #1600. The work is on `dev`: `tools/execute_roof_redeal.py --check` reports **6**
+outstanding verdicts and every one of them is a platted-block roof, so no South verdict
+is left to carry out. Closing the row so the next run does not rebuild a merged migration.
