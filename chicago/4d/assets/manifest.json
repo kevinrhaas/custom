@@ -3342,8 +3342,8 @@
     "recon_1835_west_033__inferred_1835.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
-      "bytes": 36072,
-      "inputs_sha256": "fad20d798dbdfaf394c0538e8119b911ba0d768291c3f95f04d48baf67412d36",
+      "bytes": 30456,
+      "inputs_sha256": "80ef78ccabf969062a3523e57435a0ff0d2be46544980986be575e934b98f19e",
       "kind": "generated",
       "phase_id": "inferred_1835",
       "structure_id": "recon_1835_west_033"

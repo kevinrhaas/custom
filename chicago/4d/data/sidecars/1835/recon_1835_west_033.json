@@ -16,12 +16,12 @@
   },
   "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
-    "local_e": -405.124,
-    "local_n": -202.98,
-    "rotation_deg": -88.0,
+    "local_e": -411.509,
+    "local_n": -202.757,
+    "rotation_deg": 2.0,
     "position_confidence": "reconstructed",
     "position_sources": [],
-    "position_note": "Interpretive placement within the reviewed West Division cluster w3_jefferson_lake_residential. The recipe coordinate is a production-layout control, not a recovered lot. The rectangle the recipe gives stands where it gives it; its long side is read as the facade, because an 1835 dwelling is eaves-front and a front narrower than its own range would build the gable-front house of a later decade.",
+    "position_note": "Interpretive placement within the reviewed West Division cluster w3_jefferson_lake_residential. The recipe coordinate is a production-layout control, not a recovered lot. The recipe's 20 ft front is widened to 21.92 ft here, its 32 ft depth kept exactly. An 1835 dwelling is eaves-front — ridge parallel to the facade — and the recipe's rectangle is deeper than that roof will carry on that front, so the front is held to the proportion the archetype builds. Both figures stay inside the family's authored band; the building is not turned, and nothing is recorded standing a different way round from the way the recipe laid it out. See docs/RESEARCH/d5_gable_front_cottage_1835.md.",
     "symbolic_location": "Anonymous reconstructed roof on the West Division approaches",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -35,21 +35,21 @@
         0
       ],
       [
-        9.754,
+        6.681,
         0
       ],
       [
-        9.754,
-        6.096
+        6.681,
+        9.754
       ],
       [
         0,
-        6.096
+        9.754
       ]
     ],
     "confidence": "reconstructed",
     "sources": [],
-    "note": "A 32 × 20 ft rectangle assigned by the reconstruction recipe within the D5 family band; no individual dimensions are documented."
+    "note": "A 21.92 × 32 ft rectangle assigned by the reconstruction recipe within the D5 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
@@ -77,7 +77,7 @@
       "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D5 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
     },
     "roof_pitch_deg": {
-      "value": 34.4,
+      "value": 30.4,
       "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
