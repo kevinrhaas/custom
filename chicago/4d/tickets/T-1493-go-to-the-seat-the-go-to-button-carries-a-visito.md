@@ -1,7 +1,7 @@
 ---
 id: T-1493
 title: Go to the seat: the Go-to button carries a visitor to the lot or the block face a household or firm is seated on, not only to a named roof
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1198
 opened: 2026-09-20
-closed: null
-pr: null
+closed: 2026-09-21
+pr: 1629
 claimed_by: run 9/21/2026, 8:59:08 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T14:50:28.606Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35608494625
 ---
 
