@@ -409,15 +409,15 @@ The streets, terrain and lots a structure bucket waits on.
 
 ## Where the model and the roof programme disagree
 
-The book carries THE MODEL. Every difference is listed here for T-1196, which re-cuts the 668-roof schedule against it.
+The book carries THE MODEL. Every difference is listed here for T-1196, which re-cuts the 668-roof schedule against it. `programme groups` names the `district_group_matrix` groups summed on the programme side; a row marked NOT A CHECK reads its model figure off those same groups and therefore cannot disagree (2 of 5 do).
 
-| | model | programme | delta |
-|---|---:|---:|---:|
-| **households_against_dwellings** — The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many. | 643 | 335 | +308 |
-| **boarding_houses** — The lodging model and the programme agree on the larger boarding houses. | 42 | 42 | +0 |
-| **inns_and_taverns** — The model reads 15-15 inns and taverns; the programme schedules 10. | 15 | 10 | +5 |
-| **institutional_and_public** — The model reads 9-19 institutional and public roofs; the programme schedules 9. | 19 | 9 | +10 |
-| **people_per_roof** — 2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,536 | 668 | +0 |
+| | model | programme | delta | programme groups |
+|---|---:|---:|---:|---|
+| **households_against_dwellings** — The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many. | 643 | 335 | +308 | `ordinary_dwellings` |
+| **boarding_houses** — NOT A CHECK: the model's 42 larger boarding houses ARE district_group_matrix.larger_boarding_houses — model_town_1835.build_lodging reads the figure straight off the roof programme — so this row cannot disagree, and its zero says nothing about whether 42 is the right number of boarding roofs. An independent count is owed to T-1196 with the re-cut. | 42 | 42 | +0 | `larger_boarding_houses` |
+| **inns_and_taverns** — The model reads 15-15 inns and taverns; the programme schedules 10. This one is a real disagreement: the model's ceiling is the business layer's count at the scene date, not a figure read back off the programme. | 15 | 10 | +5 | `inns_taverns` |
+| **institutional_and_public** — NOT A CHECK: the model reads 9-19 institutional and public roofs — 9 outside the fort and 10 principal roofs inside it — and the programme schedules those same two groups, institutional_public (9) and fort_principal (10), for 19. Both ends of the model are read off that matrix, so the row cannot disagree. Until T-1439 it reported a delta of ten by taking the fort's roofs on the model's side and not on the programme's, which is the schedule charged for ten roofs it already had. | 19 | 19 | +0 | `institutional_public`, `fort_principal` |
+| **people_per_roof** — 2,536 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings. | 2,536 | 668 | +0 | — |
 
 ## The invariants the convergence tickets assert
 

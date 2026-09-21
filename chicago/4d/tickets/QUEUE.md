@@ -57,7 +57,6 @@ T-1363 — rederive.mjs --run does not converge in one pass when the town model 
 
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
-T-1439 — The order book reports a false delta of ten institutional roofs: programme_deltas reads the town model's institutional HIGH end, which includes the fort's ten principal roofs, against district_group_matrix.institutional_public alone — and the boarding-house row beside it compares that matrix with a figure read off the same matrix, so it can never disagree
 T-1420 — build_order_book_1835.py hands the west ground units to T-1192, which is now split: the owner list needs its live successor T-1414 (and the same sweep for any other ticket id the order book names that has since closed or split)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1448 — Mint the staffing shortfall to the model's typical band: the 105 reconstructed hands 96 houses are still short, written as a stage of the resident reconstruction programme into cards of their own, each carrying its house, its role and where it slept, and nothing already committed written to
@@ -219,3 +218,4 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1460 — The two conjectural west-prairie swales now start in open ground at E -320 and swale_a's corridor covers eight West Division roofs: review the invented alignments the terrain extension stranded
 T-1490 — Trace Jefferson Street north to Ohio so the corporate boundary's west leg stops being a 1,188 m extrapolation, and seat the five West Division roofs held on it
+

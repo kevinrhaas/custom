@@ -30,11 +30,12 @@ at all, and the largest of them is the most misleading:
     dwelling roofs hold the order book's households at a rate the November census
     itself brackets. Nothing is built.
 
-  * `institutional_and_public` (delta 10) is a UNIT MISMATCH. The town model's
-    high end is 19 because it reads "9 institutional or public roofs outside the
-    fort and 10 principal roofs inside it" -- and the programme schedules those
-    ten under `fort_principal`, not under `institutional_public`. 9 + 10 = 19.
-    The programme and the model already agree; only the comparison was wrong.
+  * `institutional_and_public` was a UNIT MISMATCH, corrected by T-1439. The town
+    model's high end is 19 because it reads "9 institutional or public roofs
+    outside the fort and 10 principal roofs inside it" -- and the programme
+    schedules those ten under `fort_principal`, not under `institutional_public`.
+    9 + 10 = 19. The programme and the model already agreed; only the comparison
+    was wrong, and the order book now sums both groups on its programme side.
 
   * `boarding_houses` (delta 0) is CIRCULAR. `model_town_1835.build_lodging`
     takes the figure straight off `district_group_matrix`, so the model agreeing
@@ -433,17 +434,22 @@ def owed_out(rows: list[dict], data: dict) -> list[dict]:
                       "layer's reconciliation owns (T-1190's convergence is spent as of T-1442, "
                       "2026-09-20, and T-1468 carries what it did not finish); if it folds them the roof programme needs no "
                       "change, and if it does not, this group re-cuts against the folded count."},
-        {"id": "institutional_and_public", "owed_to": "the order book's own comparison",
-         "statement": "build_order_book_1835.programme_deltas reads the town model's "
-                      "institutional HIGH end — which includes the fort's ten principal roofs — "
-                      "against district_group_matrix.institutional_public alone, and reports a "
-                      "delta of ten where the two files agree. The comparison needs the fort "
-                      "group added to its programme side, or the model's low end taken."},
-        {"id": "boarding_houses", "owed_to": "the town model's own derivation",
+        {"id": "institutional_and_public", "owed_to": "T-1196",
+         "statement": "The false delta of ten is GONE (T-1439, 2026-09-21): "
+                      "build_order_book_1835.programme_deltas now sums institutional_public "
+                      "and fort_principal on its programme side, which is where the model's "
+                      "high end already had them, and the two files read 19 against 19. What "
+                      "is still owed is a COUNT: both ends of the model's figure are read off "
+                      "district_group_matrix, so the corrected zero is a restatement and the "
+                      "book prints it as one. Nothing outside the roof programme has said how "
+                      "many institutional and public roofs the town had."},
+        {"id": "boarding_houses", "owed_to": "T-1196",
          "statement": "model_town_1835.build_lodging takes larger_boarding_houses straight off "
                       "district_group_matrix, so that figure can never disagree with the "
                       "programme and the order book's delta of zero is a tautology. A figure "
-                      "that cannot fail is not a check on 42 roofs."},
+                      "that cannot fail is not a check on 42 roofs. The book stopped printing "
+                      "it as a pass with T-1439 and marks the row NOT A CHECK; an independent "
+                      "count of the town's boarding houses is still owed to the re-cut."},
     ]
 
 
