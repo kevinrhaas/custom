@@ -612,8 +612,28 @@ const STANDS = [
  * per-vertex now and nothing else in the 1,353 measured material slots differs
  * (R-W2a). A textured asset would legitimately raise this, and raising it is
  * then a deliberate edit with a reach measurement beside it.
+ *
+ * **1 -> 3 ON 2026-09-20 (T-1488), which is that deliberate edit, with the
+ * measurement.** `roof-relief.js` binds a shared normal + ORM pair to each of
+ * the two roof coverings, so `materialKey()` — which separates on map uuids —
+ * splits the town into the untextured batch it always was plus ONE shingle batch
+ * and ONE board batch. That is two batches for 241 shingled and 128 boarded roof
+ * materials, not 369; the whole point of sharing the pair is that a roof costs
+ * nothing to add. Measured through `critic_shots.mjs --metrics` before and after,
+ * source tree: lake_market 144 -> 148 and south_water 165 -> 169 at mobile, 162 ->
+ * 166 and 189 -> 193 at desktop — **+4 everywhere**, which is the two new batches
+ * paying once in the colour pass and once in the shadow pass, exactly as the
+ * paragraph above predicts. The reach's headroom is 4 calls smaller and its
+ * budget is 80.
  */
-const STRUCTURE_BATCHES = 1;
+const STRUCTURE_BATCHES = 3;
+/**
+ * …and of those three, exactly two are roof coverings — T-1488. The count above
+ * would pass identically on a town that had split into three batches by LOSING
+ * the merge, which is the failure R-W5a2 wrote it to catch; this says WHICH
+ * three, so a regression that re-splits the walls cannot hide behind the raise.
+ */
+const TEXTURED_STRUCTURE_BATCHES = 2;
 /**
  * How many distinct roughness values the merged batch must still carry, and how
  * far the frame must move when they are flattened.
@@ -9140,11 +9160,16 @@ for (const [label, viewport, touch] of [
           if (v > max) max = v;
         }
       }
-      return { batches: bs.length, values: seen.size, min, max };
+      return {
+        batches: bs.length, values: seen.size, min, max,
+        textured: bs.filter((b) => b.material?.normalMap).length,
+      };
     });
-    check(`${label}: the untextured town is one batch`,
-      batchCensus.batches === STRUCTURE_BATCHES,
-      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}`);
+    check(`${label}: the town is its one untextured batch and its two roof coverings`,
+      batchCensus.batches === STRUCTURE_BATCHES
+        && batchCensus.textured === TEXTURED_STRUCTURE_BATCHES,
+      `${batchCensus.batches} structure batch(es), want ${STRUCTURE_BATCHES}, of which `
+      + `${batchCensus.textured} carry a relief map, want ${TEXTURED_STRUCTURE_BATCHES}`);
     check(`${label}: the batch still carries the town's finishes`,
       batchCensus.values >= ROUGHNESS_VALUES_MIN
         && batchCensus.min <= 0.30 && batchCensus.max >= 0.95,

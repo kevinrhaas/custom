@@ -1,7 +1,7 @@
 ---
 id: T-1368
 title: A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-20
+pr: 1601
+claimed_by: run 9/20/2026, 7:44:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-21T01:06:42.120Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35548071057
 ---
 
 A conflicted PR can never be gated, so it can never be merged: no merge ref means no pull_request run, merge-ready only takes clean, and the lap stops at REAL CONFLICT — three PRs hit it in one evening and each needed hands.
@@ -198,3 +198,90 @@ that has no conflict at all.
 **A `hold` label looks identical from outside** — dirty plus zero check runs — and was twice
 mistaken for this deadlock on 2026-09-20 (#1533, #1576). Whatever clears this must read
 labels before declaring a PR stuck.
+
+---
+
+## DEMONSTRATED, 2026-09-21 — on a reconstructed deadlock, not on the workflow files
+
+Acceptance 4 asks for the deadlock to be RECONSTRUCTED and the zero-check state shown
+before and after. It was, against the live API.
+
+**The reconstruction.** Branch `steward/pr-stuck-probe`, cut from `dev~12`, rewriting the
+exact two lines of `docs/RESEARCH/1835_town_model.md` that `dev` had rewritten under it —
+PR **#1599**. Two earlier shapes were tried and REJECTED BY THE MEASUREMENT rather than
+by argument, which is worth recording because both look like conflicts and are not:
+
+| probe | GitHub's verdict |
+|---|---|
+| a line inserted at the top of `QUEUE.md` | `mergeable: true` — a three-way merge reconciled it |
+| every non-blank line of `LIBERTIES.md` annotated | `mergeable: true` — `dev`'s own edits were elsewhere in the file |
+| the same two lines `dev` rewrote | **`mergeable: false`, `mergeable_state: dirty`** |
+
+Only the third is the deadlock. "Touched a file `dev` touched" is not enough, which is the
+same lesson the ticket already records about `dirty` + zero checks not being a diagnosis.
+
+**BEFORE** — head `ec34caec`, read from the API:
+
+```
+state=dirty   check-runs=0   commit-statuses=0   labels=[]   comments=0
+```
+
+Zero check runs, and nothing anywhere reporting it. The `pull_request` gate never started,
+exactly as step 2 of the cycle above says it cannot.
+
+**AFTER** — one run of `.github/steward/pr-stuck.sh`:
+
+```
+#1599  STUCK — dirty, 0 check run(s), 0m old, and the branch names no ticket, so no claim can be read
+     labelled `stuck`
+     said so on the PR
+
+labels=[stuck]   comments=1
+```
+
+Run again on the same head: `already said so on this head`, and the comment count stays 1.
+
+**AND THE REFUSALS, on the real queue in the same sweep** — this is the half that matters
+more, because every one of these wears the deadlock's shape:
+
+```
+#1599  STUCK — dirty, 0 check run(s)
+#1598  STUCK — dirty, 1 check run(s), claim/t-1466 names a run that has completed
+#1596  held — the owner parked this on purpose; not a deadlock however much it looks like one
+#1588  held — …
+#1576  held — …
+```
+
+Three held pull requests, each `dirty` with few or no checks, each left alone — #1576 is
+one of the two the ticket records being mistaken for this deadlock on 2026-09-20. And at
+the real 45-minute floor the same sweep reports **nothing at all**, because #1599 and #1598
+had both been pushed minutes earlier and the lap had not had its turn:
+
+```
+PR stuck: stuck=0 held=3 mid-run=0 too-young=2 moving=0 unlabelled=0
+```
+
+**THE READING, as acceptance 1 requires it to be written down: LOUD, not gated.** The other
+option was to dispatch the gate for the branch. It was rejected on merit. A dispatched run
+gates the BRANCH, not the merge result, and attaches a `gate` check run to the PR's head
+sha — so a REQUIRED check would be satisfied by a verdict about a tree that is not the one
+that would land. And it still would not merge: `dirty` is not `clean`. A green tick that
+means less than the empty space it replaces is worse than a report.
+
+**Acceptance 2 — T-1288 is preserved and not merely left alone.** `chicago-4d-check.yml`'s
+triggers are not touched by this ticket, nothing here produces a check run on any head sha,
+and `test_pr_stuck.mjs` case 15 is a drift guard that fails if the `branches: [dev, main]`
+filter is ever reached for. The count T-1288 measured is unchanged because the trigger it
+measured is unchanged.
+
+**Acceptance 3** — the lap's `REAL CONFLICT — left alone` is untouched. **Acceptance 4b** —
+the liveness check is the one the ticket specifies: the branch's `claim/t-nnnn` marker names
+its run and GitHub is asked whether that run is still going; anything unreadable inside the
+three hours `ticket.mjs` already calls a run's life is treated as ALIVE. **Acceptance 5** —
+the hand path is in the comment the PR receives and in `docs/PIPELINE.md` § When a pull
+request will not move.
+
+Found while being written, and fixed: GNU `date -u -d "" +%s` does not fail, it answers
+midnight today at exit 0. An unreadable timestamp therefore read as a few hours old, and
+after 00:45 UTC that is old enough for the reporter to declare a pull request stuck on no
+evidence at all. `to_epoch` now checks the shape before trusting `date` with it.

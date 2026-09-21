@@ -2288,6 +2288,28 @@ step "a lap that could not ask never reports that it found nothing" \
 step "the merger merges what GitHub calls clean, and nothing else" \
   node tools/test_merge_ready.mjs
 
+# AND THE PULL REQUEST NOTHING CAN MOVE, WHICH IS THE HOLE BETWEEN THOSE TWO
+# (T-1368). A `dirty` PR has no merge ref; the gate runs on `pull_request`, which
+# needs one, so it never starts and the PR carries ZERO check runs; `gate` is a
+# required check, so GitHub never calls the PR `clean`; merge-ready merges only on
+# `clean`; and the lap correctly refuses a conflict no tool owns. Nothing in that
+# loop advances. Six pull requests hit it in two days — #1495 and #1497 on
+# 2026-09-19, #1587, #1585, #1584 and #1590 on 2026-09-20 — and every one needed a
+# person. Both of the first two merged THEMSELVES within minutes of a human
+# pushing the merge, which is the proof that the rest of the automation is sound:
+# the only missing piece was anyone being told.
+#
+# .github/steward/pr-stuck.sh is the telling, and the hard part is not finding the
+# shape but REFUSING the three things that wear it — a `hold` PR (#1533, #1576,
+# both mistaken for this on 2026-09-20), a PR whose own run is still going (#1499,
+# which cleared itself), and a PR that is merely `unknown` (#1518, which merged
+# fine when asked). This runs the REAL script against a faked `gh` and holds it to
+# all three, and it found a live fault while being written: GNU `date -d ""`
+# answers midnight today rather than failing, so an unreadable timestamp read as
+# hours old and would have had the reporter declaring PRs stuck on no evidence.
+step "a pull request nothing can move is reported, and nothing else is touched" \
+  node tools/test_pr_stuck.mjs
+
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
 # `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a
