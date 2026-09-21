@@ -68,11 +68,11 @@ T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation fie
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
 T-1469 — Spend the trade and premises enrichments against the finished business layer: every corroborated_enrichment naming a trade, a shop, a tavern, a store or the premises one was kept at reaches a structured field on its record or is refused with its reason
-T-1470 — Spend the firm notices and the civic and business ledger domains: every unit carrying a business block reconciled against the layer that now exists, minted nowhere and refused where the reading does not reach
 
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
 
 # --- 5B. STRUCTURES — seating: placement policy, roof programme re-derived, anonymous roofs redealt, everyone seated
+T-1509 — Refuse or tier the business readings the layer does not carry at a tiered block: the 49 whose only reach is a record's untiered claim_ids and the 52 that reach no business record at all, each with its reason on the unit
 T-1444 — Release generate_west_infill's 35 held slots onto the extended ground: the terrain gate retired, the placements instantiated and baked
 T-1497 — The D5 deep-plan cottage has no archetype that can build its front gable: dwelling_frame / deep_plan_gable_front, and the 58 roofs standing on an eaves-front placeholder until it exists
 T-1492 — Seat the reach: the address book's reconstructed rungs — a block face for a street-only row, a division band where only the division is known, the policy's band where nothing is — seeded, tier-marked, and every household's division re-derived from its row so the People view's division filter fills
@@ -224,3 +224,4 @@ T-1510 — The stuck reporter cannot see a red gate: a PR whose gate failed and 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1511 — The trade share counts buildings that front no street: nineteen Fort Dearborn reservation roofs 270-420 m from Lake Street vote in the principal class, because nearest_frontage has no distance bound
+

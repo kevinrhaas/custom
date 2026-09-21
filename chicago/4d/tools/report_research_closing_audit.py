@@ -53,9 +53,23 @@ LAYER_PREFIXES = (
     ("households", "data/residents/households/"),
     ("residents", "data/residents/"),
     ("businesses", "data/research/newspapers/register_1835.json"),
+    # T-1508 gave the ledger a SECOND business surface: the authored layer, one record
+    # per firm, reached by a block's own `claim_ids`. Without this prefix its units land
+    # in `elsewhere`, and the table below would report 0 businesses researched on the
+    # same run that spent 485 units on them.
+    ("businesses", "data/businesses/"),
     ("structures", "data/structures/"),
 )
 LAYERS = ("residents", "households", "businesses", "structures")
+
+
+def prose_list(names: list[str]) -> str:
+    """`a`, `a and b`, `a, b and c` — so the paragraph above reads as English."""
+    if not names:
+        return "none of the four layers"
+    if len(names) == 1:
+        return names[0]
+    return ", ".join(names[:-1]) + " and " + names[-1]
 
 
 def read_json(path: Path):
@@ -243,13 +257,22 @@ def render(model: dict) -> str:
                      [[layer, n(led["landed"][layer])] for layer in LAYERS]
                      + [["outside the four layers", n(led["landed_elsewhere"])]]))
     out.append("")
-    out.append("**Read this honestly.** Every asserted unit in the ledger lands on a household record of "
-               "the resident layer, and nowhere else. That is not a claim that the business and structure "
-               "layers are unresearched — the "
-               "newspaper register below is compiled from the same readings by `tools/compile_register.py`, "
-               "and the roofs carry their own graded attributes — but it does mean the unit-level ledger "
-               "currently proves the second hop for residents alone. Sections 4 and 5 read those two layers "
-               "directly for that reason.")
+    # READ FROM THE COUNTS, NOT ASSERTED BESIDE THEM. This paragraph used to state as a
+    # fixed sentence that every asserted unit lands on a household record and nowhere
+    # else. That was true when it was written, and T-1508 made it false in the same run
+    # that added 485 business landings — with the table two lines above saying so. A
+    # report that contradicts its own measurement is worse than one that omits it.
+    reached = [layer for layer in LAYERS if led["landed"][layer]]
+    unreached = [layer for layer in LAYERS if not led["landed"][layer]]
+    said = ["**Read this honestly.** The unit-level ledger proves the second hop for "
+            f"{prose_list(reached)}."]
+    if unreached:
+        said.append(f" It proves nothing at unit level for {prose_list(unreached)}, which is "
+                    "not a claim that the layer is unresearched — the newspaper register "
+                    "below is compiled from the same readings by `tools/compile_register.py`, "
+                    "and the roofs carry their own graded attributes. Sections 4 and 5 read "
+                    "those layers directly for that reason.")
+    out.append("".join(said))
     out.append("")
     out.append("Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then "
                "`python3 tools/report_research_closing_audit.py --check`.")
@@ -350,11 +373,23 @@ def render(model: dict) -> str:
     out.append("")
     unplaceable = biz["location_limit"].get("unplaceable", 0)
     street_only = biz["location_limit"].get("street_only", 0)
-    out.append(f"1. **No unit-level ledger entry reaches the business or structure layers.** "
-               f"{n(led['landed']['residents'] + led['landed']['households'])} asserted units land on "
-               f"residents and households and {n(led['landed']['businesses'] + led['landed']['structures'])} "
-               f"on businesses and structures. Closing it means an authored business record (T-1180) and a "
-               f"seat on the ground (T-1198) for a claim to be asserted ONTO.")
+    # T-1508 CLOSED HALF OF THIS FINDING and the headline had to stop asserting the whole
+    # of it: 485 units now reach the authored business layer. What is still true is the
+    # structures half, so the sentence is derived from which layers are actually unreached
+    # rather than fixed at the shape the finding had when it was first written.
+    unreached = [layer for layer in ("businesses", "structures") if not led["landed"][layer]]
+    if unreached:
+        out.append(f"1. **No unit-level ledger entry reaches the "
+                   f"{prose_list(unreached)} layer.** "
+                   f"{n(led['landed']['residents'] + led['landed']['households'])} asserted units "
+                   f"land on residents and households, {n(led['landed']['businesses'])} on "
+                   f"businesses and {n(led['landed']['structures'])} on structures. Closing it "
+                   f"means a seat on the ground (T-1198) for a claim to be asserted ONTO.")
+    else:
+        out.append(f"1. **Every layer is reached at unit level.** "
+                   f"{n(led['landed']['residents'] + led['landed']['households'])} asserted units "
+                   f"land on residents and households, {n(led['landed']['businesses'])} on "
+                   f"businesses and {n(led['landed']['structures'])} on structures.")
     out.append(f"2. **{n(biz['present_at_scene_date'] - biz['with_proprietors'])} of the "
                f"{n(biz['present_at_scene_date'])} firms standing on 1 July 1835 name nobody who kept them.** "
                f"The paper advertised the goods and not the man. T-1182 audits this and T-1189 staffs it.")
