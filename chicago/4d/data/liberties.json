@@ -5544,6 +5544,7 @@
         "recon_1835_north_a1_008",
         "recon_1835_north_a1_032",
         "recon_1835_north_a1_036",
+        "recon_1835_north_a1_047",
         "recon_1835_north_a1_050",
         "recon_1835_north_a2_033",
         "recon_1835_north_a2_048",
@@ -5569,13 +5570,17 @@
         "recon_1835_north_d3_002",
         "recon_1835_north_d3_006",
         "recon_1835_north_d3_016",
+        "recon_1835_north_d3_020",
         "recon_1835_north_d3_024",
         "recon_1835_north_d3_038",
         "recon_1835_north_d3_042",
         "recon_1835_north_d3_055",
         "recon_1835_north_d4_004",
+        "recon_1835_north_d4_005",
         "recon_1835_north_d4_012",
+        "recon_1835_north_d4_015",
         "recon_1835_north_d4_017",
+        "recon_1835_north_d4_018",
         "recon_1835_north_d4_025",
         "recon_1835_north_d4_039",
         "recon_1835_north_d4_043",
@@ -5586,11 +5591,15 @@
         "recon_1835_north_d5_041",
         "recon_1835_north_d5_057",
         "recon_1835_north_d6_021",
+        "recon_1835_north_d6_027",
         "recon_1835_north_d6_044",
         "recon_1835_north_d6_058",
         "recon_1835_north_d7_031",
         "recon_1835_north_h1_007",
+        "recon_1835_north_h2_022",
+        "recon_1835_north_h2_028",
         "recon_1835_north_h2_030",
+        "recon_1835_north_h2_045",
         "recon_1835_north_w5_040"
       ],
       "covers": [
@@ -5650,6 +5659,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_north_a1_047",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_047",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_047",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_north_a1_050",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -5861,60 +5888,6 @@
         {
           "domain": "structure",
           "structure": "recon_1835_north_a5_049",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_020",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_020",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_020",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_047",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_047",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c1_047",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c2_027",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c2_027",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_c2_027",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6154,6 +6127,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_north_d3_020",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_020",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_020",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_north_d3_024",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6244,6 +6235,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_north_d4_005",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_005",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_005",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_north_d4_012",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6262,6 +6271,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_north_d4_015",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_015",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_015",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_north_d4_017",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6275,6 +6302,24 @@
         {
           "domain": "structure",
           "structure": "recon_1835_north_d4_017",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_018",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_018",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_018",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6460,6 +6505,24 @@
         },
         {
           "domain": "structure",
+          "structure": "recon_1835_north_d6_027",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_027",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_027",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "recon_1835_north_d6_044",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -6514,37 +6577,55 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_f1_022",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_f1_022",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_f1_022",
+          "structure": "recon_1835_north_h1_007",
           "phase": "inferred_1835",
           "aspect": "position"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_h2_022",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_h2_022",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h1_007",
+          "structure": "recon_1835_north_h2_022",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_028",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_028",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_028",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6568,91 +6649,19 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h3_045",
+          "structure": "recon_1835_north_h2_045",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h3_045",
+          "structure": "recon_1835_north_h2_045",
           "phase": "inferred_1835",
           "aspect": "footprint"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_h3_045",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_i2_015",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_i2_015",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_i2_015",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_t1_028",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_t1_028",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_t1_028",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w1_018",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w1_018",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w1_018",
-          "phase": "inferred_1835",
-          "aspect": "position"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w2_005",
-          "phase": "inferred_1835",
-          "aspect": "documented_range"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w2_005",
-          "phase": "inferred_1835",
-          "aspect": "footprint"
-        },
-        {
-          "domain": "structure",
-          "structure": "recon_1835_north_w2_005",
+          "structure": "recon_1835_north_h2_045",
           "phase": "inferred_1835",
           "aspect": "position"
         },
@@ -6696,7 +6705,7 @@
         },
         {
           "label": "Covers",
-          "text": "`recon_1835_north_a1_008.inferred_1835.documented_range`, `recon_1835_north_a1_008.inferred_1835.position`, `recon_1835_north_a1_008.inferred_1835.footprint`, `recon_1835_north_a1_032.inferred_1835.documented_range`, `recon_1835_north_a1_032.inferred_1835.position`, `recon_1835_north_a1_032.inferred_1835.footprint`, `recon_1835_north_a1_036.inferred_1835.documented_range`, `recon_1835_north_a1_036.inferred_1835.position`, `recon_1835_north_a1_036.inferred_1835.footprint`, `recon_1835_north_a1_050.inferred_1835.documented_range`, `recon_1835_north_a1_050.inferred_1835.position`, `recon_1835_north_a1_050.inferred_1835.footprint`, `recon_1835_north_a2_033.inferred_1835.documented_range`, `recon_1835_north_a2_033.inferred_1835.position`, `recon_1835_north_a2_033.inferred_1835.footprint`, `recon_1835_north_a2_048.inferred_1835.documented_range`, `recon_1835_north_a2_048.inferred_1835.position`, `recon_1835_north_a2_048.inferred_1835.footprint`, `recon_1835_north_a2_059.inferred_1835.documented_range`, `recon_1835_north_a2_059.inferred_1835.position`, `recon_1835_north_a2_059.inferred_1835.footprint`, `recon_1835_north_a3_009.inferred_1835.documented_range`, `recon_1835_north_a3_009.inferred_1835.position`, `recon_1835_north_a3_009.inferred_1835.footprint`, `recon_1835_north_a3_034.inferred_1835.documented_range`, `recon_1835_north_a3_034.inferred_1835.position`, `recon_1835_north_a3_034.inferred_1835.footprint`, `recon_1835_north_a3_051.inferred_1835.documented_range`, `recon_1835_north_a3_051.inferred_1835.position`, `recon_1835_north_a3_051.inferred_1835.footprint`, `recon_1835_north_a4_010.inferred_1835.documented_range`, `recon_1835_north_a4_010.inferred_1835.position`, `recon_1835_north_a4_010.inferred_1835.footprint`, `recon_1835_north_a4_035.inferred_1835.documented_range`, `recon_1835_north_a4_035.inferred_1835.position`, `recon_1835_north_a4_035.inferred_1835.footprint`, `recon_1835_north_a4_052.inferred_1835.documented_range`, `recon_1835_north_a4_052.inferred_1835.position`, `recon_1835_north_a4_052.inferred_1835.footprint`, `recon_1835_north_a5_011.inferred_1835.documented_range`, `recon_1835_north_a5_011.inferred_1835.position`, `recon_1835_north_a5_011.inferred_1835.footprint`, `recon_1835_north_a5_049.inferred_1835.documented_range`, `recon_1835_north_a5_049.inferred_1835.position`, `recon_1835_north_a5_049.inferred_1835.footprint`, `recon_1835_north_c1_020.inferred_1835.documented_range`, `recon_1835_north_c1_020.inferred_1835.position`, `recon_1835_north_c1_020.inferred_1835.footprint`, `recon_1835_north_c1_047.inferred_1835.documented_range`, `recon_1835_north_c1_047.inferred_1835.position`, `recon_1835_north_c1_047.inferred_1835.footprint`, `recon_1835_north_c2_027.inferred_1835.documented_range`, `recon_1835_north_c2_027.inferred_1835.position`, `recon_1835_north_c2_027.inferred_1835.footprint`, `recon_1835_north_d1_001.inferred_1835.documented_range`, `recon_1835_north_d1_001.inferred_1835.position`, `recon_1835_north_d1_001.inferred_1835.footprint`, `recon_1835_north_d1_013.inferred_1835.documented_range`, `recon_1835_north_d1_013.inferred_1835.position`, `recon_1835_north_d1_013.inferred_1835.footprint`, `recon_1835_north_d1_023.inferred_1835.documented_range`, `recon_1835_north_d1_023.inferred_1835.position`, `recon_1835_north_d1_023.inferred_1835.footprint`, `recon_1835_north_d1_053.inferred_1835.documented_range`, `recon_1835_north_d1_053.inferred_1835.position`, `recon_1835_north_d1_053.inferred_1835.footprint`, `recon_1835_north_d1_054.inferred_1835.documented_range`, `recon_1835_north_d1_054.inferred_1835.position`, `recon_1835_north_d1_054.inferred_1835.footprint`, `recon_1835_north_d1_060.inferred_1835.documented_range`, `recon_1835_north_d1_060.inferred_1835.position`, `recon_1835_north_d1_060.inferred_1835.footprint`, `recon_1835_north_d2_003.inferred_1835.documented_range`, `recon_1835_north_d2_003.inferred_1835.position`, `recon_1835_north_d2_003.inferred_1835.footprint`, `recon_1835_north_d2_014.inferred_1835.documented_range`, `recon_1835_north_d2_014.inferred_1835.position`, `recon_1835_north_d2_014.inferred_1835.footprint`, `recon_1835_north_d2_029.inferred_1835.documented_range`, `recon_1835_north_d2_029.inferred_1835.position`, `recon_1835_north_d2_029.inferred_1835.footprint`, `recon_1835_north_d2_046.inferred_1835.documented_range`, `recon_1835_north_d2_046.inferred_1835.position`, `recon_1835_north_d2_046.inferred_1835.footprint`, `recon_1835_north_d3_002.inferred_1835.documented_range`, `recon_1835_north_d3_002.inferred_1835.position`, `recon_1835_north_d3_002.inferred_1835.footprint`, `recon_1835_north_d3_006.inferred_1835.documented_range`, `recon_1835_north_d3_006.inferred_1835.position`, `recon_1835_north_d3_006.inferred_1835.footprint`, `recon_1835_north_d3_016.inferred_1835.documented_range`, `recon_1835_north_d3_016.inferred_1835.position`, `recon_1835_north_d3_016.inferred_1835.footprint`, `recon_1835_north_d3_024.inferred_1835.documented_range`, `recon_1835_north_d3_024.inferred_1835.position`, `recon_1835_north_d3_024.inferred_1835.footprint`, `recon_1835_north_d3_038.inferred_1835.documented_range`, `recon_1835_north_d3_038.inferred_1835.position`, `recon_1835_north_d3_038.inferred_1835.footprint`, `recon_1835_north_d3_042.inferred_1835.documented_range`, `recon_1835_north_d3_042.inferred_1835.position`, `recon_1835_north_d3_042.inferred_1835.footprint`, `recon_1835_north_d3_055.inferred_1835.documented_range`, `recon_1835_north_d3_055.inferred_1835.position`, `recon_1835_north_d3_055.inferred_1835.footprint`, `recon_1835_north_d4_004.inferred_1835.documented_range`, `recon_1835_north_d4_004.inferred_1835.position`, `recon_1835_north_d4_004.inferred_1835.footprint`, `recon_1835_north_d4_012.inferred_1835.documented_range`, `recon_1835_north_d4_012.inferred_1835.position`, `recon_1835_north_d4_012.inferred_1835.footprint`, `recon_1835_north_d4_017.inferred_1835.documented_range`, `recon_1835_north_d4_017.inferred_1835.position`, `recon_1835_north_d4_017.inferred_1835.footprint`, `recon_1835_north_d4_025.inferred_1835.documented_range`, `recon_1835_north_d4_025.inferred_1835.position`, `recon_1835_north_d4_025.inferred_1835.footprint`, `recon_1835_north_d4_039.inferred_1835.documented_range`, `recon_1835_north_d4_039.inferred_1835.position`, `recon_1835_north_d4_039.inferred_1835.footprint`, `recon_1835_north_d4_043.inferred_1835.documented_range`, `recon_1835_north_d4_043.inferred_1835.position`, `recon_1835_north_d4_043.inferred_1835.footprint`, `recon_1835_north_d4_056.inferred_1835.documented_range`, `recon_1835_north_d4_056.inferred_1835.position`, `recon_1835_north_d4_056.inferred_1835.footprint`, `recon_1835_north_d5_019.inferred_1835.documented_range`, `recon_1835_north_d5_019.inferred_1835.position`, `recon_1835_north_d5_019.inferred_1835.footprint`, `recon_1835_north_d5_026.inferred_1835.documented_range`, `recon_1835_north_d5_026.inferred_1835.position`, `recon_1835_north_d5_026.inferred_1835.footprint`, `recon_1835_north_d5_037.inferred_1835.documented_range`, `recon_1835_north_d5_037.inferred_1835.position`, `recon_1835_north_d5_037.inferred_1835.footprint`, `recon_1835_north_d5_041.inferred_1835.documented_range`, `recon_1835_north_d5_041.inferred_1835.position`, `recon_1835_north_d5_041.inferred_1835.footprint`, `recon_1835_north_d5_057.inferred_1835.documented_range`, `recon_1835_north_d5_057.inferred_1835.position`, `recon_1835_north_d5_057.inferred_1835.footprint`, `recon_1835_north_d6_021.inferred_1835.documented_range`, `recon_1835_north_d6_021.inferred_1835.position`, `recon_1835_north_d6_021.inferred_1835.footprint`, `recon_1835_north_d6_044.inferred_1835.documented_range`, `recon_1835_north_d6_044.inferred_1835.position`, `recon_1835_north_d6_044.inferred_1835.footprint`, `recon_1835_north_d6_058.inferred_1835.documented_range`, `recon_1835_north_d6_058.inferred_1835.position`, `recon_1835_north_d6_058.inferred_1835.footprint`, `recon_1835_north_d7_031.inferred_1835.documented_range`, `recon_1835_north_d7_031.inferred_1835.position`, `recon_1835_north_d7_031.inferred_1835.footprint`, `recon_1835_north_f1_022.inferred_1835.documented_range`, `recon_1835_north_f1_022.inferred_1835.position`, `recon_1835_north_f1_022.inferred_1835.footprint`, `recon_1835_north_h1_007.inferred_1835.documented_range`, `recon_1835_north_h1_007.inferred_1835.position`, `recon_1835_north_h1_007.inferred_1835.footprint`, `recon_1835_north_h2_030.inferred_1835.documented_range`, `recon_1835_north_h2_030.inferred_1835.position`, `recon_1835_north_h2_030.inferred_1835.footprint`, `recon_1835_north_h3_045.inferred_1835.documented_range`, `recon_1835_north_h3_045.inferred_1835.position`, `recon_1835_north_h3_045.inferred_1835.footprint`, `recon_1835_north_i2_015.inferred_1835.documented_range`, `recon_1835_north_i2_015.inferred_1835.position`, `recon_1835_north_i2_015.inferred_1835.footprint`, `recon_1835_north_t1_028.inferred_1835.documented_range`, `recon_1835_north_t1_028.inferred_1835.position`, `recon_1835_north_t1_028.inferred_1835.footprint`, `recon_1835_north_w1_018.inferred_1835.documented_range`, `recon_1835_north_w1_018.inferred_1835.position`, `recon_1835_north_w1_018.inferred_1835.footprint`, `recon_1835_north_w2_005.inferred_1835.documented_range`, `recon_1835_north_w2_005.inferred_1835.position`, `recon_1835_north_w2_005.inferred_1835.footprint`, `recon_1835_north_w5_040.inferred_1835.documented_range`, `recon_1835_north_w5_040.inferred_1835.position`, `recon_1835_north_w5_040.inferred_1835.footprint`"
+          "text": "`recon_1835_north_a1_008.inferred_1835.documented_range`, `recon_1835_north_a1_008.inferred_1835.position`, `recon_1835_north_a1_008.inferred_1835.footprint`, `recon_1835_north_a1_032.inferred_1835.documented_range`, `recon_1835_north_a1_032.inferred_1835.position`, `recon_1835_north_a1_032.inferred_1835.footprint`, `recon_1835_north_a1_036.inferred_1835.documented_range`, `recon_1835_north_a1_036.inferred_1835.position`, `recon_1835_north_a1_036.inferred_1835.footprint`, `recon_1835_north_a1_050.inferred_1835.documented_range`, `recon_1835_north_a1_050.inferred_1835.position`, `recon_1835_north_a1_050.inferred_1835.footprint`, `recon_1835_north_a2_033.inferred_1835.documented_range`, `recon_1835_north_a2_033.inferred_1835.position`, `recon_1835_north_a2_033.inferred_1835.footprint`, `recon_1835_north_a2_048.inferred_1835.documented_range`, `recon_1835_north_a2_048.inferred_1835.position`, `recon_1835_north_a2_048.inferred_1835.footprint`, `recon_1835_north_a2_059.inferred_1835.documented_range`, `recon_1835_north_a2_059.inferred_1835.position`, `recon_1835_north_a2_059.inferred_1835.footprint`, `recon_1835_north_a3_009.inferred_1835.documented_range`, `recon_1835_north_a3_009.inferred_1835.position`, `recon_1835_north_a3_009.inferred_1835.footprint`, `recon_1835_north_a3_034.inferred_1835.documented_range`, `recon_1835_north_a3_034.inferred_1835.position`, `recon_1835_north_a3_034.inferred_1835.footprint`, `recon_1835_north_a3_051.inferred_1835.documented_range`, `recon_1835_north_a3_051.inferred_1835.position`, `recon_1835_north_a3_051.inferred_1835.footprint`, `recon_1835_north_a4_010.inferred_1835.documented_range`, `recon_1835_north_a4_010.inferred_1835.position`, `recon_1835_north_a4_010.inferred_1835.footprint`, `recon_1835_north_a4_035.inferred_1835.documented_range`, `recon_1835_north_a4_035.inferred_1835.position`, `recon_1835_north_a4_035.inferred_1835.footprint`, `recon_1835_north_a4_052.inferred_1835.documented_range`, `recon_1835_north_a4_052.inferred_1835.position`, `recon_1835_north_a4_052.inferred_1835.footprint`, `recon_1835_north_a5_011.inferred_1835.documented_range`, `recon_1835_north_a5_011.inferred_1835.position`, `recon_1835_north_a5_011.inferred_1835.footprint`, `recon_1835_north_a5_049.inferred_1835.documented_range`, `recon_1835_north_a5_049.inferred_1835.position`, `recon_1835_north_a5_049.inferred_1835.footprint`, `recon_1835_north_d3_020.inferred_1835.documented_range`, `recon_1835_north_d3_020.inferred_1835.position`, `recon_1835_north_d3_020.inferred_1835.footprint`, `recon_1835_north_a1_047.inferred_1835.documented_range`, `recon_1835_north_a1_047.inferred_1835.position`, `recon_1835_north_a1_047.inferred_1835.footprint`, `recon_1835_north_d6_027.inferred_1835.documented_range`, `recon_1835_north_d6_027.inferred_1835.position`, `recon_1835_north_d6_027.inferred_1835.footprint`, `recon_1835_north_d1_001.inferred_1835.documented_range`, `recon_1835_north_d1_001.inferred_1835.position`, `recon_1835_north_d1_001.inferred_1835.footprint`, `recon_1835_north_d1_013.inferred_1835.documented_range`, `recon_1835_north_d1_013.inferred_1835.position`, `recon_1835_north_d1_013.inferred_1835.footprint`, `recon_1835_north_d1_023.inferred_1835.documented_range`, `recon_1835_north_d1_023.inferred_1835.position`, `recon_1835_north_d1_023.inferred_1835.footprint`, `recon_1835_north_d1_053.inferred_1835.documented_range`, `recon_1835_north_d1_053.inferred_1835.position`, `recon_1835_north_d1_053.inferred_1835.footprint`, `recon_1835_north_d1_054.inferred_1835.documented_range`, `recon_1835_north_d1_054.inferred_1835.position`, `recon_1835_north_d1_054.inferred_1835.footprint`, `recon_1835_north_d1_060.inferred_1835.documented_range`, `recon_1835_north_d1_060.inferred_1835.position`, `recon_1835_north_d1_060.inferred_1835.footprint`, `recon_1835_north_d2_003.inferred_1835.documented_range`, `recon_1835_north_d2_003.inferred_1835.position`, `recon_1835_north_d2_003.inferred_1835.footprint`, `recon_1835_north_d2_014.inferred_1835.documented_range`, `recon_1835_north_d2_014.inferred_1835.position`, `recon_1835_north_d2_014.inferred_1835.footprint`, `recon_1835_north_d2_029.inferred_1835.documented_range`, `recon_1835_north_d2_029.inferred_1835.position`, `recon_1835_north_d2_029.inferred_1835.footprint`, `recon_1835_north_d2_046.inferred_1835.documented_range`, `recon_1835_north_d2_046.inferred_1835.position`, `recon_1835_north_d2_046.inferred_1835.footprint`, `recon_1835_north_d3_002.inferred_1835.documented_range`, `recon_1835_north_d3_002.inferred_1835.position`, `recon_1835_north_d3_002.inferred_1835.footprint`, `recon_1835_north_d3_006.inferred_1835.documented_range`, `recon_1835_north_d3_006.inferred_1835.position`, `recon_1835_north_d3_006.inferred_1835.footprint`, `recon_1835_north_d3_016.inferred_1835.documented_range`, `recon_1835_north_d3_016.inferred_1835.position`, `recon_1835_north_d3_016.inferred_1835.footprint`, `recon_1835_north_d3_024.inferred_1835.documented_range`, `recon_1835_north_d3_024.inferred_1835.position`, `recon_1835_north_d3_024.inferred_1835.footprint`, `recon_1835_north_d3_038.inferred_1835.documented_range`, `recon_1835_north_d3_038.inferred_1835.position`, `recon_1835_north_d3_038.inferred_1835.footprint`, `recon_1835_north_d3_042.inferred_1835.documented_range`, `recon_1835_north_d3_042.inferred_1835.position`, `recon_1835_north_d3_042.inferred_1835.footprint`, `recon_1835_north_d3_055.inferred_1835.documented_range`, `recon_1835_north_d3_055.inferred_1835.position`, `recon_1835_north_d3_055.inferred_1835.footprint`, `recon_1835_north_d4_004.inferred_1835.documented_range`, `recon_1835_north_d4_004.inferred_1835.position`, `recon_1835_north_d4_004.inferred_1835.footprint`, `recon_1835_north_d4_012.inferred_1835.documented_range`, `recon_1835_north_d4_012.inferred_1835.position`, `recon_1835_north_d4_012.inferred_1835.footprint`, `recon_1835_north_d4_017.inferred_1835.documented_range`, `recon_1835_north_d4_017.inferred_1835.position`, `recon_1835_north_d4_017.inferred_1835.footprint`, `recon_1835_north_d4_025.inferred_1835.documented_range`, `recon_1835_north_d4_025.inferred_1835.position`, `recon_1835_north_d4_025.inferred_1835.footprint`, `recon_1835_north_d4_039.inferred_1835.documented_range`, `recon_1835_north_d4_039.inferred_1835.position`, `recon_1835_north_d4_039.inferred_1835.footprint`, `recon_1835_north_d4_043.inferred_1835.documented_range`, `recon_1835_north_d4_043.inferred_1835.position`, `recon_1835_north_d4_043.inferred_1835.footprint`, `recon_1835_north_d4_056.inferred_1835.documented_range`, `recon_1835_north_d4_056.inferred_1835.position`, `recon_1835_north_d4_056.inferred_1835.footprint`, `recon_1835_north_d5_019.inferred_1835.documented_range`, `recon_1835_north_d5_019.inferred_1835.position`, `recon_1835_north_d5_019.inferred_1835.footprint`, `recon_1835_north_d5_026.inferred_1835.documented_range`, `recon_1835_north_d5_026.inferred_1835.position`, `recon_1835_north_d5_026.inferred_1835.footprint`, `recon_1835_north_d5_037.inferred_1835.documented_range`, `recon_1835_north_d5_037.inferred_1835.position`, `recon_1835_north_d5_037.inferred_1835.footprint`, `recon_1835_north_d5_041.inferred_1835.documented_range`, `recon_1835_north_d5_041.inferred_1835.position`, `recon_1835_north_d5_041.inferred_1835.footprint`, `recon_1835_north_d5_057.inferred_1835.documented_range`, `recon_1835_north_d5_057.inferred_1835.position`, `recon_1835_north_d5_057.inferred_1835.footprint`, `recon_1835_north_d6_021.inferred_1835.documented_range`, `recon_1835_north_d6_021.inferred_1835.position`, `recon_1835_north_d6_021.inferred_1835.footprint`, `recon_1835_north_d6_044.inferred_1835.documented_range`, `recon_1835_north_d6_044.inferred_1835.position`, `recon_1835_north_d6_044.inferred_1835.footprint`, `recon_1835_north_d6_058.inferred_1835.documented_range`, `recon_1835_north_d6_058.inferred_1835.position`, `recon_1835_north_d6_058.inferred_1835.footprint`, `recon_1835_north_d7_031.inferred_1835.documented_range`, `recon_1835_north_d7_031.inferred_1835.position`, `recon_1835_north_d7_031.inferred_1835.footprint`, `recon_1835_north_h2_022.inferred_1835.documented_range`, `recon_1835_north_h2_022.inferred_1835.position`, `recon_1835_north_h2_022.inferred_1835.footprint`, `recon_1835_north_h1_007.inferred_1835.documented_range`, `recon_1835_north_h1_007.inferred_1835.position`, `recon_1835_north_h1_007.inferred_1835.footprint`, `recon_1835_north_h2_030.inferred_1835.documented_range`, `recon_1835_north_h2_030.inferred_1835.position`, `recon_1835_north_h2_030.inferred_1835.footprint`, `recon_1835_north_h2_045.inferred_1835.documented_range`, `recon_1835_north_h2_045.inferred_1835.position`, `recon_1835_north_h2_045.inferred_1835.footprint`, `recon_1835_north_d4_015.inferred_1835.documented_range`, `recon_1835_north_d4_015.inferred_1835.position`, `recon_1835_north_d4_015.inferred_1835.footprint`, `recon_1835_north_h2_028.inferred_1835.documented_range`, `recon_1835_north_h2_028.inferred_1835.position`, `recon_1835_north_h2_028.inferred_1835.footprint`, `recon_1835_north_d4_018.inferred_1835.documented_range`, `recon_1835_north_d4_018.inferred_1835.position`, `recon_1835_north_d4_018.inferred_1835.footprint`, `recon_1835_north_d4_005.inferred_1835.documented_range`, `recon_1835_north_d4_005.inferred_1835.position`, `recon_1835_north_d4_005.inferred_1835.footprint`, `recon_1835_north_w5_040.inferred_1835.documented_range`, `recon_1835_north_w5_040.inferred_1835.position`, `recon_1835_north_w5_040.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",
@@ -12134,6 +12143,9 @@
         "inf_butcher_market",
         "inf_sawpit_shed",
         "physicians_office",
+        "recon_1835_north_a1_047",
+        "recon_1835_north_d3_020",
+        "recon_1835_north_h2_022",
         "recon_1835_north_w5_040",
         "recon_1835_south_a5_044",
         "recon_1835_south_d1_003",
@@ -12169,19 +12181,19 @@
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_c1_020",
+          "structure": "recon_1835_north_a1_047",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_c1_047",
+          "structure": "recon_1835_north_d3_020",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
         {
           "domain": "structure",
-          "structure": "recon_1835_north_f1_022",
+          "structure": "recon_1835_north_h2_022",
           "phase": "inferred_1835",
           "aspect": "form.roof_type"
         },
@@ -12243,7 +12255,7 @@
         },
         {
           "label": "Covers",
-          "text": "`inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_c1_020.inferred_1835.form.roof_type`, `recon_1835_north_c1_047.inferred_1835.form.roof_type`, `recon_1835_north_f1_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_d1_003.inferred_1835.form.roof_type`, `recon_1835_south_d1_010.inferred_1835.form.roof_type`, `recon_1835_south_d1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`."
+          "text": "`inf_bakery_lake.inferred_1835.form.roof_type`, `inf_butcher_market.inferred_1835.form.roof_type`, `inf_sawpit_shed.inferred_1835.form.roof_type`, `physicians_office.inferred_1835.form.roof_type`, `recon_1835_north_d3_020.inferred_1835.form.roof_type`, `recon_1835_north_a1_047.inferred_1835.form.roof_type`, `recon_1835_north_h2_022.inferred_1835.form.roof_type`, `recon_1835_north_w5_040.inferred_1835.form.roof_type`, `recon_1835_south_d1_003.inferred_1835.form.roof_type`, `recon_1835_south_d1_010.inferred_1835.form.roof_type`, `recon_1835_south_d1_018.inferred_1835.form.roof_type`, `recon_1835_south_f1_038.inferred_1835.form.roof_type`, `recon_1835_west_007.inferred_1835.form.roof_type`."
         },
         {
           "label": "Recorded",
