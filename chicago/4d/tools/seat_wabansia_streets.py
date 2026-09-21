@@ -199,7 +199,7 @@ def _extents(trace, blocks):
         ends = sorted((east[t] for t in ts), reverse=True)
         out[sid] = {
             "tiers": sorted(ts),
-            "west_px": round(sum(margin[t]["rule_px_x"][0] for t in ts) / len(ts), 2),
+            "west_px": round(math.fsum(margin[t]["rule_px_x"][0] for t in ts) / len(ts), 2),
             "east_px": ends[0], "east_px_nearer": ends[-1],
         }
     return out, tiers, margin, east
@@ -493,7 +493,8 @@ def _wedge(seat, south_row, wl, cbank, m_per_px):
                          "here it is answered rather than refused."),
             "stations": bank_check,
             "reach_covered": f"{len(covered)} of {len(bank_check)} stations",
-            "mean_abs_m": round(sum(abs(v) for v in covered) / len(covered), 1) if covered else None,
+            "mean_abs_m": (round(math.fsum(abs(v) for v in covered) / len(covered), 1)
+                           if covered else None),
             "max_abs_m": round(max(abs(v) for v in covered), 1) if covered else None,
             "reading": ("The strip's river edge and the committed west bank are the SAME "
                         "LINE over the reach they share: four of the five stations the "
@@ -787,7 +788,7 @@ def _invariants(poly, wedge, tract):
         if k["m_outside"] > 16.19:
             bad.append(f"water lot {k['figure']} seats {k['m_outside']} m outside the wedge "
                        f"outline, past the registration's own 16.19 m RMS")
-    tiled = round(sum(r["area_m2"] for r in wedge["ranks"]), 1)
+    tiled = round(math.fsum(r["area_m2"] for r in wedge["ranks"]), 1)
     if abs(tiled - wedge["area_m2"]) > 0.02 * wedge["area_m2"]:
         bad.append(f"the four ranks cover {tiled} m2 and the wedge outline "
                    f"{wedge['area_m2']} m2 — they should tile it")

@@ -45,7 +45,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1468 | 601 | split_live | yes |
-| T-1198 | 298 | open | yes |
+| T-1198 | 298 | split_live | yes |
 | T-1335 | 169 | open | yes |
 | T-1189 | 12 | split_live | yes |
 | T-1354 | 6 | open | yes |
@@ -240,11 +240,12 @@ Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/
 | `outside_chicago` | 109 |
 | `refused` | 8,662 |
 
-The same rule over the gate itself: of **179** tools carrying a `--check`, **173** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
+The same rule over the gate itself: of **180** tools carrying a `--check`, **173** are run by `tools/check.sh` and **7** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 
 | Ungated check | Owner | States why |
 | --- | ---: | ---: |
 | `tools/measure_boot_payload.mjs` | T-1156 | yes |
+| `tools/measure_boot_phases.mjs` | T-1246 | yes |
 | `tools/measure_street_widths.py` | — | yes |
 | `tools/mint_letter_list_residents.py` | T-1222 | yes |
 | `tools/rename_household_ids.py` | — | yes |

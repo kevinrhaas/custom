@@ -685,6 +685,7 @@ def build_arrival(people: dict, settlers: dict) -> dict:
                                            "different populations on purpose (T-1364).",
             "rows_total": sum(by_year.values()),
             "rows": [{"year": y, "people": by_year[y],
+                      # exact-sum-ok: a count of rows, summed in exact integers
                       "share": round(by_year[y] / sum(by_year.values()), 4)}
                      for y in sorted(by_year)],
         },

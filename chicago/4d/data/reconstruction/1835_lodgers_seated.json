@@ -44,9 +44,12 @@
    "occupied_before": 2,
    "keeper_household": "hh_brown_rufus",
    "keeper_persons": 2,
-   "seated": [],
+   "seated": [
+    "wright_robert_c",
+    "rc_stiles_abigail"
+   ],
    "minted_keeper": null,
-   "minted_lodgers": 3,
+   "minted_lodgers": 1,
    "occupancy_after": 5,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -124,10 +127,12 @@
    "occupied_before": 0,
    "keeper_household": null,
    "keeper_persons": 0,
-   "seated": [],
+   "seated": [
+    "rc_lyman_george"
+   ],
    "minted_keeper": null,
    "minted_lodgers": 0,
-   "occupancy_after": 0,
+   "occupancy_after": 1,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": false
   },
@@ -144,9 +149,15 @@
    "occupied_before": 0,
    "keeper_household": null,
    "keeper_persons": 0,
-   "seated": [],
+   "seated": [
+    "laird_william",
+    "montgomery_w",
+    "sasoton_a_b",
+    "thompson_o_i",
+    "rc_flynn_owen"
+   ],
    "minted_keeper": "rc_bardwell_esther",
-   "minted_lodgers": 6,
+   "minted_lodgers": 1,
    "occupancy_after": 7,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -165,10 +176,17 @@
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "rc_stiles_abigail"
+    "funk_absolom",
+    "goodrich_john",
+    "holsman_george",
+    "latzky_john",
+    "owen_j_v",
+    "shatttuck_walter",
+    "trowbridge_g_g",
+    "rc_gilbert_nancy"
    ],
    "minted_keeper": "rc_newell_lydia",
-   "minted_lodgers": 8,
+   "minted_lodgers": 1,
    "occupancy_after": 10,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -187,15 +205,23 @@
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "funk_absolom",
-    "smith_william",
-    "rc_flynn_owen",
-    "rc_gilbert_nancy",
-    "rc_mccarthy_ellen",
-    "rc_shea_mary"
+    "bailey_amos",
+    "barry_j_r",
+    "brown_jesse_b",
+    "butterfield_d_h",
+    "cook_thomas",
+    "donner_jacob",
+    "glaumbake_frank",
+    "harmon_m_d",
+    "hunter_david",
+    "laughton_david",
+    "perry_calvin",
+    "smith_george",
+    "ulrich_nicholas",
+    "rc_mccarthy_ellen"
    ],
    "minted_keeper": "rc_cavanagh_ellen",
-   "minted_lodgers": 9,
+   "minted_lodgers": 1,
    "occupancy_after": 16,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -214,7 +240,7 @@
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "rc_lyman_george"
+    "rc_dufresne_hyacinthe"
    ],
    "minted_keeper": "rc_kellogg_luther",
    "minted_lodgers": 7,
@@ -235,9 +261,15 @@
    "occupied_before": 0,
    "keeper_household": null,
    "keeper_persons": 0,
-   "seated": [],
+   "seated": [
+    "merrill_george_w",
+    "roberts_edmund",
+    "smith_william",
+    "vaughan_dow_w",
+    "rc_shea_mary"
+   ],
    "minted_keeper": "rc_fitzgerald_martin",
-   "minted_lodgers": 6,
+   "minted_lodgers": 1,
    "occupancy_after": 7,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -256,12 +288,13 @@
    "keeper_household": null,
    "keeper_persons": 0,
    "seated": [
-    "rc_brady_hugh",
-    "rc_hayes_patrick"
+    "fullerton_alexander",
+    "rc_crandall_william",
+    "rc_stebbins_abigail"
    ],
    "minted_keeper": null,
    "minted_lodgers": 0,
-   "occupancy_after": 2,
+   "occupancy_after": 3,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": false
   },
@@ -301,9 +334,9 @@
    "seated": [
     "bates_john_jr",
     "carpenter_philo",
-    "fullerton_alexander",
-    "rc_crandall_william",
-    "rc_stebbins_abigail"
+    "carver_david",
+    "rc_brady_hugh",
+    "rc_hayes_patrick"
    ],
    "minted_keeper": null,
    "minted_lodgers": 5,
@@ -325,11 +358,12 @@
    "keeper_household": "hh_stow_william_h",
    "keeper_persons": 4,
    "seated": [
-    "rc_dufresne_hyacinthe",
+    "brown_lemuel",
+    "handy_major",
     "rc_gilbert_samuel"
    ],
    "minted_keeper": null,
-   "minted_lodgers": 9,
+   "minted_lodgers": 8,
    "occupancy_after": 15,
    "inside_its_band": true,
    "at_its_ordinary_night_figure": true
@@ -357,6 +391,50 @@
  ],
  "seats": [
   {
+   "person": "bailey_amos",
+   "name": "Amos Bailey",
+   "household": "hh_bailey_amos",
+   "file": "households/hh_bailey_amos.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "barry_j_r",
+   "name": "J R Barry",
+   "household": "hh_barry_j_r",
+   "file": "households/hh_barry_j_r.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
    "person": "bates_john_jr",
    "name": "John Bates Jr.",
    "household": "hh_bates_john_jr",
@@ -372,6 +450,72 @@
     "kind": "rule",
     "id": "the_mix_of_the_lodging_model",
     "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at auctioneer in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "brown_jesse_b",
+   "name": "Jesse B Brown",
+   "household": "hh_brown_jesse_b",
+   "file": "households/hh_brown_jesse_b.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "brown_lemuel",
+   "name": "Lemuel Brown",
+   "household": "hh_brown_lemuel",
+   "file": "households/hh_brown_lemuel.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "blacksmith",
+   "group": "mechanic",
+   "place": "western_hotel",
+   "place_name": "Western Hotel",
+   "relationship": "lodger",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at blacksmith in the mechanic group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "butterfield_d_h",
+   "name": "D H Butterfield",
+   "household": "hh_butterfield_d_h",
+   "file": "households/hh_butterfield_d_h.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
    },
    "replaceable_by": {
     "kind": "person",
@@ -401,6 +545,72 @@
    }
   },
   {
+   "person": "carver_david",
+   "name": "David Carver",
+   "household": "hh_carver_david",
+   "file": "households/hh_carver_david.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "lumber_merchant",
+   "group": "professional",
+   "place": "tremont_house_1",
+   "place_name": "Tremont House (the first)",
+   "relationship": "lodger",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at lumber_merchant in the professional group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "cook_thomas",
+   "name": "Thomas Cook",
+   "household": "hh_cook_thomas",
+   "file": "households/hh_cook_thomas.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "donner_jacob",
+   "name": "Jacob Donner",
+   "household": "hh_donner_jacob",
+   "file": "households/hh_donner_jacob.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
    "person": "fullerton_alexander",
    "name": "Alexander N. Fullerton",
    "household": "hh_fullerton_alexander",
@@ -409,8 +619,8 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "attorney",
    "group": "professional",
-   "place": "tremont_house_1",
-   "place_name": "Tremont House (the first)",
+   "place": "sauganash_hotel",
+   "place_name": "Sauganash Hotel",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -431,6 +641,28 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "glaumbake_frank",
+   "name": "Frank Glaumbake",
+   "household": "hh_glaumbake_frank",
+   "file": "households/hh_glaumbake_frank.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
    "place": "recon_1835_north_h3_045",
    "place_name": "Reconstructed H3 large boarding house #045",
    "relationship": "boarder",
@@ -438,6 +670,358 @@
     "kind": "rule",
     "id": "the_mix_of_the_lodging_model",
     "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "goodrich_john",
+   "name": "John Goodrich",
+   "household": "hh_goodrich_john",
+   "file": "households/hh_goodrich_john.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "handy_major",
+   "name": "Major Handy",
+   "household": "hh_handy_major",
+   "file": "households/hh_handy_major.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "mason",
+   "group": "mechanic",
+   "place": "western_hotel",
+   "place_name": "Western Hotel",
+   "relationship": "lodger",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at mason in the mechanic group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "harmon_m_d",
+   "name": "M D Harmon",
+   "household": "hh_harmon_m_d",
+   "file": "households/hh_harmon_m_d.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "holsman_george",
+   "name": "George Holsman",
+   "household": "hh_holsman_george",
+   "file": "households/hh_holsman_george.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "hunter_david",
+   "name": "David Hunter",
+   "household": "hh_hunter_david",
+   "file": "households/hh_hunter_david.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "laird_william",
+   "name": "William Laird",
+   "household": "hh_laird_william",
+   "file": "households/hh_laird_william.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h1_007",
+   "place_name": "Reconstructed H1 small boarding house #007",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "latzky_john",
+   "name": "John Latzky",
+   "household": "hh_latzky_john",
+   "file": "households/hh_latzky_john.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "laughton_david",
+   "name": "David Laughton",
+   "household": "hh_laughton_david",
+   "file": "households/hh_laughton_david.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "merrill_george_w",
+   "name": "George W Merrill",
+   "household": "hh_merrill_george_w",
+   "file": "households/hh_merrill_george_w.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_west_006",
+   "place_name": "Reconstructed H1 small boarding house #005",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "montgomery_w",
+   "name": "W Montgomery",
+   "household": "hh_montgomery_w",
+   "file": "households/hh_montgomery_w.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h1_007",
+   "place_name": "Reconstructed H1 small boarding house #007",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "owen_j_v",
+   "name": "J V Owen",
+   "household": "hh_owen_j_v",
+   "file": "households/hh_owen_j_v.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "perry_calvin",
+   "name": "Calvin Perry",
+   "household": "hh_perry_calvin",
+   "file": "households/hh_perry_calvin.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "roberts_edmund",
+   "name": "Edmund Roberts",
+   "household": "hh_roberts_edmund",
+   "file": "households/hh_roberts_edmund.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_west_006",
+   "place_name": "Reconstructed H1 small boarding house #005",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "sasoton_a_b",
+   "name": "A B Sasoton",
+   "household": "hh_sasoton_a_b",
+   "file": "households/hh_sasoton_a_b.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h1_007",
+   "place_name": "Reconstructed H1 small boarding house #007",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "shatttuck_walter",
+   "name": "Walter Shatttuck",
+   "household": "hh_shatttuck_walter",
+   "file": "households/hh_shatttuck_walter.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "smith_george",
+   "name": "George Smith",
+   "household": "hh_smith_george",
+   "file": "households/hh_smith_george.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "coffee_house_keeper",
+   "group": "labour",
+   "place": "recon_1835_north_h3_045",
+   "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at coffee_house_keeper in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
    },
    "replaceable_by": {
     "kind": "person",
@@ -453,8 +1037,118 @@
    "drawn_solitary_in_stage": "modelled_families",
    "trade": "none_recorded",
    "group": "labour",
+   "place": "recon_1835_west_006",
+   "place_name": "Reconstructed H1 small boarding house #005",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "thompson_o_i",
+   "name": "O I Thompson",
+   "household": "hh_thompson_o_i",
+   "file": "households/hh_thompson_o_i.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h1_007",
+   "place_name": "Reconstructed H1 small boarding house #007",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "trowbridge_g_g",
+   "name": "G G Trowbridge",
+   "household": "hh_trowbridge_g_g",
+   "file": "households/hh_trowbridge_g_g.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "ulrich_nicholas",
+   "name": "Nicholas Ulrich",
+   "household": "hh_ulrich_nicholas",
+   "file": "households/hh_ulrich_nicholas.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
    "place": "recon_1835_north_h3_045",
    "place_name": "Reconstructed H3 large boarding house #045",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "vaughan_dow_w",
+   "name": "Dow W Vaughan",
+   "household": "hh_vaughan_dow_w",
+   "file": "households/hh_vaughan_dow_w.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "recon_1835_west_006",
+   "place_name": "Reconstructed H1 small boarding house #005",
+   "relationship": "boarder",
+   "basis": {
+    "kind": "rule",
+    "id": "the_mix_of_the_lodging_model",
+    "note": "The household model drew this head as living alone (T-1171) and no source gives them a roof. The mix puts a person at none_recorded in the labour group, and this house had the most free beds in it. A rule, not a draw: the seat reproduces without a seed."
+   },
+   "replaceable_by": {
+    "kind": "person",
+    "match": "a source that says where this person lived on 1 July 1835"
+   }
+  },
+  {
+   "person": "wright_robert_c",
+   "name": "Robert C Wright",
+   "household": "hh_wright_robert_c",
+   "file": "households/hh_wright_robert_c.json",
+   "drawn_solitary_by": "T-1171",
+   "drawn_solitary_in_stage": "modelled_families",
+   "trade": "none_recorded",
+   "group": "labour",
+   "place": "brown_boarding_house",
+   "place_name": "Rufus Brown's Boarding House",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -475,8 +1169,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "clerk",
    "group": "professional",
-   "place": "sauganash_hotel",
-   "place_name": "Sauganash Hotel",
+   "place": "tremont_house_1",
+   "place_name": "Tremont House (the first)",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -497,8 +1191,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "land_agent",
    "group": "professional",
-   "place": "tremont_house_1",
-   "place_name": "Tremont House (the first)",
+   "place": "sauganash_hotel",
+   "place_name": "Sauganash Hotel",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -519,8 +1213,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "boatman",
    "group": "mechanic",
-   "place": "western_hotel",
-   "place_name": "Western Hotel",
+   "place": "recon_1835_north_t1_028",
+   "place_name": "Reconstructed T1 small inn or tavern #028",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -541,8 +1235,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "labourer",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h1_007",
+   "place_name": "Reconstructed H1 small boarding house #007",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -563,8 +1257,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_north_h2_030",
+   "place_name": "Reconstructed H2 medium boarding house #030",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -607,8 +1301,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "dry_goods_merchant",
    "group": "professional",
-   "place": "sauganash_hotel",
-   "place_name": "Sauganash Hotel",
+   "place": "tremont_house_1",
+   "place_name": "Tremont House (the first)",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -629,8 +1323,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "painter",
    "group": "mechanic",
-   "place": "recon_1835_north_t1_028",
-   "place_name": "Reconstructed T1 small inn or tavern #028",
+   "place": "new_york_house",
+   "place_name": "New York House",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -673,8 +1367,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h3_045",
-   "place_name": "Reconstructed H3 large boarding house #045",
+   "place": "recon_1835_west_006",
+   "place_name": "Reconstructed H1 small boarding house #005",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -695,8 +1389,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "hardware_merchant",
    "group": "professional",
-   "place": "tremont_house_1",
-   "place_name": "Tremont House (the first)",
+   "place": "sauganash_hotel",
+   "place_name": "Sauganash Hotel",
    "relationship": "lodger",
    "basis": {
     "kind": "rule",
@@ -717,8 +1411,8 @@
    "drawn_solitary_in_stage": "trade_households",
    "trade": "domestic",
    "group": "labour",
-   "place": "recon_1835_north_h2_030",
-   "place_name": "Reconstructed H2 medium boarding house #030",
+   "place": "brown_boarding_house",
+   "place_name": "Rufus Brown's Boarding House",
    "relationship": "boarder",
    "basis": {
     "kind": "rule",
@@ -736,7 +1430,7 @@
    "id": "hh_lodging_brown_boarding_house",
    "file": "lodgers/hh_lodging_brown_boarding_house.json",
    "place": "brown_boarding_house",
-   "persons": 3
+   "persons": 1
   },
   {
    "id": "hh_lodging_exchange_coffee_house",
@@ -754,19 +1448,19 @@
    "id": "hh_lodging_recon_1835_north_h1_007",
    "file": "lodgers/hh_lodging_recon_1835_north_h1_007.json",
    "place": "recon_1835_north_h1_007",
-   "persons": 7
+   "persons": 2
   },
   {
    "id": "hh_lodging_recon_1835_north_h2_030",
    "file": "lodgers/hh_lodging_recon_1835_north_h2_030.json",
    "place": "recon_1835_north_h2_030",
-   "persons": 9
+   "persons": 2
   },
   {
    "id": "hh_lodging_recon_1835_north_h3_045",
    "file": "lodgers/hh_lodging_recon_1835_north_h3_045.json",
    "place": "recon_1835_north_h3_045",
-   "persons": 10
+   "persons": 2
   },
   {
    "id": "hh_lodging_recon_1835_north_t1_028",
@@ -778,7 +1472,7 @@
    "id": "hh_lodging_recon_1835_west_006",
    "file": "lodgers/hh_lodging_recon_1835_west_006.json",
    "place": "recon_1835_west_006",
-   "persons": 7
+   "persons": 2
   },
   {
    "id": "hh_lodging_steamboat_hotel",
@@ -796,7 +1490,7 @@
    "id": "hh_lodging_western_hotel",
    "file": "lodgers/hh_lodging_western_hotel.json",
    "place": "western_hotel",
-   "persons": 9
+   "persons": 8
   },
   {
    "id": "hh_lodging_wolf_point_tavern",
@@ -806,27 +1500,26 @@
   }
  ],
  "fills": {
-  "persons/female/10_19/north/lodging/none": 5,
-  "persons/female/10_19/south/lodging/none": 4,
-  "persons/female/10_19/west/lodging/none": 1,
-  "persons/female/20_29/north/lodging/none": 5,
-  "persons/female/20_29/north/lodging/trade": 2,
+  "persons/female/10_19/north/lodging/none": 1,
+  "persons/female/10_19/south/lodging/none": 3,
+  "persons/female/20_29/north/lodging/none": 1,
+  "persons/female/20_29/north/lodging/trade": 1,
   "persons/female/20_29/south/lodging/none": 4,
-  "persons/female/20_29/west/lodging/none": 2,
-  "persons/female/30_39/north/lodging/none": 4,
-  "persons/female/30_39/north/lodging/trade": 1,
+  "persons/female/20_29/west/lodging/none": 1,
+  "persons/female/30_39/north/lodging/none": 1,
+  "persons/female/30_39/north/lodging/trade": 2,
   "persons/female/30_39/south/lodging/none": 2,
-  "persons/male/10_19/north/lodging/none": 6,
-  "persons/male/10_19/south/lodging/none": 6,
+  "persons/male/10_19/north/lodging/none": 2,
+  "persons/male/10_19/south/lodging/none": 4,
   "persons/male/10_19/west/lodging/none": 1,
-  "persons/male/20_29/north/lodging/none": 8,
+  "persons/male/20_29/north/lodging/none": 5,
   "persons/male/20_29/north/lodging/trade": 1,
   "persons/male/20_29/south/lodging/none": 7,
-  "persons/male/20_29/west/lodging/none": 3,
+  "persons/male/20_29/west/lodging/none": 2,
   "persons/male/20_29/west/lodging/trade": 1,
-  "persons/male/30_39/north/lodging/none": 5,
+  "persons/male/30_39/north/lodging/none": 2,
   "persons/male/30_39/south/lodging/none": 4,
-  "persons/male/30_39/west/lodging/none": 2,
+  "persons/male/40_49/north/lodging/none": 1,
   "persons/male/40_49/south/lodging/none": 1
  },
  "keepers": [
@@ -952,13 +1645,13 @@
   {
    "place": "new_york_house",
    "refusal": "no division, no mint",
-   "beds_left_empty": 8,
+   "beds_left_empty": 7,
    "note": "The residents layer attaches no household to this house and the reconstruction programme did not raise it, so nothing this project holds says which division it stood in — data/structures/*.json carries no division field at all. A person drawn into a lodging house has to be ordered out of the book's bucket for a division, so this stage mints nobody here. Somebody the layer already counts may still be seated here, and the seats above are."
   },
   {
    "place": "sauganash_hotel",
    "refusal": "no division, no mint",
-   "beds_left_empty": 5,
+   "beds_left_empty": 4,
    "note": "The residents layer attaches no household to this house and the reconstruction programme did not raise it, so nothing this project holds says which division it stood in — data/structures/*.json carries no division field at all. A person drawn into a lodging house has to be ordered out of the book's bucket for a division, so this stage mints nobody here. Somebody the layer already counts may still be seated here, and the seats above are."
   }
  ],
@@ -974,15 +1667,15 @@
   "ordinary_night_beds": 135,
   "crowded_beds": 455,
   "occupied_before_this_stage": 30,
-  "seated_from_the_layer": 17,
-  "minted_here": 75,
+  "seated_from_the_layer": 47,
+  "minted_here": 47,
   "minted_keepers": 5,
-  "occupied_after_this_stage": 122,
-  "ordinary_night_beds_still_empty": 13,
+  "occupied_after_this_stage": 124,
+  "ordinary_night_beds_still_empty": 11,
   "houses_at_their_ordinary_night_figure": 13,
   "houses_over_their_crowded_ceiling": 0,
   "nobody_is_seated_twice": true,
-  "buckets_filled": 22,
-  "people_ordered_into_lodging_still_owed": "The book orders 544 people into lodging households. This piece spends 75 of them; the rest wait on the 37 unbuilt boarding houses, the crews and the works gang (T-1372), the trades this stage does not deal, and the children who are keepers' families rather than boarders."
+  "buckets_filled": 21,
+  "people_ordered_into_lodging_still_owed": "The book orders 544 people into lodging households. This piece spends 47 of them; the rest wait on the 37 unbuilt boarding houses, the crews and the works gang (T-1372), the trades this stage does not deal, and the children who are keepers' families rather than boarders."
  }
 }

@@ -1438,9 +1438,69 @@ function employmentHtml(seatingByPerson, personId) {
 }
 
 
+/**
+ * WAS THIS PERSON AT WORK, AND IF NOT, WHY NOT (T-1461, piece 1 of T-1449).
+ *
+ * The two blocks above are both true and neither covers the town. `workplaces` prints
+ * the 112 cards a SOURCE names in a house; the seating prints the 524 reconstructed
+ * trade-holders. That is 636 people of 3,243, and the other 2,607 carried no workplace,
+ * no seat and no reason — a card that had never been asked the question looked exactly
+ * like a card that had been asked and answered no.
+ *
+ * `tools/employment_coverage_1835.py` gives every person ONE answer from a closed set of
+ * five, and this prints it on every card, including the ones the blocks above already
+ * detail. That is deliberate: the guarantee is that a reader who opens any card finds
+ * the question answered, and a guarantee with exceptions is not one. Where a block above
+ * carries the houses, this carries the sentence and points at them.
+ *
+ * IT SAYS "AT WORK" AND "NOT PLACED" AS TWO DIFFERENT THINGS. The soldier at the post
+ * and the laundress over her own tub follow a trade and have no employer in the business
+ * layer. Printing them as unemployed would be false; printing them as placed would be an
+ * invention. `at_a_trade_with_no_house_to_join` is neither, and the sentence says which.
+ *
+ * Its own loader, degrading like every other join here: a miss costs this block on a
+ * card and never the card.
+ */
+const COVERAGE_HEADLINE = {
+  at_a_named_house: 'At a house a source names',
+  at_a_seat_this_project_drew: 'At a seat this project drew',
+  on_their_own_account: 'On their own account',
+  at_a_trade_with_no_house_to_join: 'At a trade with no house to join them to',
+  no_trade_recorded: 'No trade recorded',
+};
+
+const COVERAGE_AGE = {
+  below_working_age: 'The age band on this card lies wholly below the youngest age the '
+    + 'staffing model puts anybody to work at, so no employment is looked for.',
+  age_is_not_settled: 'The age band on this card does not settle whether this person was '
+    + 'of working age — it straddles the model\u2019s floor, or the card carries none. '
+    + 'They are answered anyway, and counted apart so a reader can take them out again.',
+};
+
+function employmentCoverageHtml(coverage, personId) {
+  const row = coverage && coverage.byPerson && coverage.byPerson.get(personId);
+  if (!row) return '';
+  const headline = COVERAGE_HEADLINE[row.status] || words(row.status || '');
+  const placed = !!(coverage.placed && coverage.placed.has(row.status));
+  const sentence = (coverage.words && coverage.words[row.reason]) || '';
+  const age = COVERAGE_AGE[row.age_scope] || '';
+  return `<dt>Were they at work?</dt>
+    <dd><span class="res-chip ${placed ? 'res-research' : 'res-role-off'}">${
+  escapeHtml(headline)}</span>
+      ${sentence ? `<br><span class="res-why">${escapeHtml(sentence)}</span>` : ''}
+      ${age ? `<br><span class="res-why">${escapeHtml(age)}</span>` : ''}
+      ${row.decided_by ? `<br><span class="res-why">Decided by <code>${
+    escapeHtml(row.decided_by)}</code>.</span>` : ''}
+      <br><span class="res-why">One answer, from a closed set of five, for every person in
+        the layer \u2014 so a card that has never been asked cannot read like a card that
+        was asked and answered no. Nothing here supplies a trade, seats anybody or writes
+        a byte onto a business record.</span></dd>`;
+}
+
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null,
-  seatingByPerson = new Map()) {
+  seatingByPerson = new Map(), coverage = null) {
   const occ = person.occupation || {};
   // The roles are the record and `occupation` is the view of them that covers the
   // scene date (T-1255): the summary says how many there are so a card with a
@@ -1495,6 +1555,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       ${rolesHtml(roles, citationsById)}
       ${workplacesHtml(person.workplaces, citationsById)}
       ${employmentHtml(seatingByPerson, person.id)}
+      ${employmentCoverageHtml(coverage, person.id)}
       ${associationsHtml(person.associated_with, citationsById,
         'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
@@ -1610,7 +1671,7 @@ function modelledFamilyHtml(block) {
 }
 
 export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
-  agencies = null, withheldByPerson = new Map(), seatingByPerson = new Map()) {
+  agencies = null, withheldByPerson = new Map(), seatingByPerson = new Map(), coverage = null) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -1651,7 +1712,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
     ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
     <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules,
-      withheldByPerson, hh.old_settler_deaths, seatingByPerson)).join('')}</div>`;
+      withheldByPerson, hh.old_settler_deaths, seatingByPerson, coverage)).join('')}</div>`;
 }
 
 /**
@@ -1882,6 +1943,27 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — the reconstructed trade seatings are not shown`);
   }
 
+  // T-1461. THE EMPLOYMENT COVERAGE ANSWER — one answer per person for all 3,243 of
+  // them, where the two joins above between them reach 636. Loaded and degraded exactly
+  // as the seating is: a miss costs the block on every card and never a card.
+  let coverage = null;
+  try {
+    const found = await getJson('residents/employment_coverage.json');
+    const byPerson = new Map();
+    for (const row of found.rows || []) byPerson.set(row.person_id, row);
+    const statuses = (found.vocabulary || {}).statuses || {};
+    coverage = {
+      byPerson,
+      words: (found.vocabulary || {}).reasons || {},
+      placed: new Set(Object.entries(statuses)
+        .filter(([, v]) => v && v.places_them_at_work).map(([k]) => k)),
+      counts: found.counts || {},
+      model: found.against_the_town_model || {},
+    };
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the employment coverage answers are not shown`);
+  }
+
   const directoryByPerson = new Map();
   let directoryCounts = {};
   let directoryVolumes = [];
@@ -1982,6 +2064,25 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `a door where the trade would go and ${
               directoryCounts.split_refused_addresses || 0} give an address that is only a `
           + `ditto, so those fields do not cross and the line is quoted instead. ` : '')
+      + (coverage && coverage.counts && coverage.counts.people
+        // T-1461. THE EMPLOYMENT COVER. Every person in the layer now carries one
+        // employment answer, and the number worth putting in front of a reader is not
+        // how many are at work but how many are NOT ACCOUNTED FOR — because until this
+        // pass ran, a card nobody had asked the question of and a card that had been
+        // asked and answered no were the same blank. The sentence leads with the cover
+        // and follows with what it is worth against the town model's own band.
+        ? `Every one of the ${coverage.counts.people} people here now carries one `
+          + `employment answer and none of them carries none: `
+          + `${coverage.counts.placed_at_work} are placed at work — at a house a source `
+          + `names, at a seat this project drew, or on their own account — and the rest `
+          + `carry a stated reason they are not, in the words of the rule that decided `
+          + `it. ${coverage.counts.working_age_with_no_trade_recorded} of those reasons `
+          + `are the same one: no source records a trade for them and no stage has given `
+          + `them one, which is a statement about the evidence rather than about the `
+          + `person. The town model puts ${coverage.model?.employed_persons?.model_low} `
+          + `to ${coverage.model?.employed_persons?.model_high} people of this town in `
+          + `work, so the cover falls inside the band — which is where the argument `
+          + `starts and not where it finishes. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
@@ -2006,7 +2107,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules, agencies, withheldByPerson, seatingByPerson);
+          vocab.ladder_rules, agencies, withheldByPerson, seatingByPerson, coverage);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -2059,7 +2160,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
  *   withheldByPerson: Map, ladderRules: object[], agencies: object|null,
- *   getJson: (rel: string) => Promise<any>}>}
+ *   seatByHousehold: Map, getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -2076,7 +2177,8 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const directoryByPerson = new Map();
     const withheldByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index, agencies, withheld] = await Promise.all([
+    const seatByHousehold = new Map();
+    const [joined, pilot, found, index, agencies, withheld, addressBook] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -2101,6 +2203,14 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
         problems.push(`people: ${err.message} — the withheld research facts are not shown`);
         return null;
       }),
+      // T-1491. The address book: one row per household and per firm, at the rung its
+      // evidence reaches. A card WITHOUT it falls back to "No known address", which is
+      // the sentence this join exists to replace — so its absence costs the sentence
+      // and never the card.
+      getJson('reconstruction/1835_address_book.json').catch((err) => {
+        problems.push(`people: ${err.message} — the address book's seats are not shown on person cards`);
+        return null;
+      }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
@@ -2112,8 +2222,11 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
+    for (const row of addressBook?.rows || []) {
+      if (row.kind === 'household') seatByHousehold.set(row.id, row);
+    }
     return { citationsById, researchByPerson, directoryByPerson, withheldByPerson, ladderRules,
-      agencies, getJson };
+      agencies, seatByHousehold, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;

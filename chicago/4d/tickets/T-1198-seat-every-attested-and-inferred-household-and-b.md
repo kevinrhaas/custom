@@ -1,7 +1,7 @@
 ---
 id: T-1198
 title: Seat every attested and inferred household and business on the ground its evidence allows: a structure where one is named, a lot on the right face where an address, corner or later directory narrows it, a division band where only that is known — plural, dated, no fabricated coordinates
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-20
 pr: null
-claimed_by: null
+claimed_by: run 9/20/2026, 4:34:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-20T21:37:57.871Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35538794207
 ---
 
 1,243 of 1,263 households have no `lives_at`; 1,213 no `works_at`; 1,191 are `unplaced`. T-1147

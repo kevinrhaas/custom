@@ -1037,6 +1037,14 @@ function factsHtml(s, firms = [], fromSign = false) {
   if (attrs.lot_address?.value) {
     row('Address', prettyValue(attrs.lot_address.value), attrs.lot_address.confidence, 'address');
   }
+  // T-1478. The other half of "where is this, exactly?": `Address` above is a lot a
+  // SOURCE printed, this is the lot the grid drew afterwards and found this footprint
+  // already standing on. Its own note says at length that nobody claimed it, and the
+  // chip carries the grade, so the label stays modest — "Stands on", not "Address".
+  if (attrs.stands_on_lot?.value) {
+    row('Stands on', prettyValue(attrs.stands_on_lot.value),
+      attrs.stands_on_lot.confidence, 'the lot it stands on');
+  }
   if (attrs.land_owner?.value) {
     row('Owner of the ground', prettyValue(attrs.land_owner.value),
       attrs.land_owner.confidence, 'ground');

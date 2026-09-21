@@ -46,6 +46,22 @@ THE JOIN IS BIDIRECTIONAL AND THE GATE ASSERTS IT BOTH WAYS. A `workplaces` entr
 no business record naming that person back in that role is a fossil, and a named row
 with no entry is a person whose card has quietly lost their trade. Either one is a
 failure here; neither is a warning.
+
+AND SINCE T-1462, `workplaces` IS THE ATTESTED AND INFERRED HALF AND SAYS SO. That
+ticket wrote the 124 reconstructed seats T-1433 drew onto the business records, which
+is where the houses needed them; this tool does not carry them back onto the cards. A
+`workplaces` row means a source puts this person in this house, and a drawn seat is not
+that — its person-side record is data/residents/reconstructed_seating.json, under its
+own gate. The practical half of the reason is the write set: three fifths of the seated
+people stand in `reconstructed_trades/`, `lodgers/` and the other mint-owned
+directories, each re-derived whole by its own mint and refusing a differing byte, so a
+foreign key there needs the carry tools/resident_mint_carry.py does for `households/`.
+Writing it for the 33 inside `households/` alone would make one seat read as a
+workplace and the identical seat next door read as nothing.
+
+WHAT IT RESOLVES AGAINST IS THE WHOLE LAYER, THOUGH. A business row may name a person
+in any of the seven card directories, and `person_cards` reads all seven — the write
+set is one directory and the resolve set is the town.
 """
 from __future__ import annotations
 
@@ -57,6 +73,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BUSINESSES = ROOT / "data" / "businesses"
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+RESIDENTS_ROOT = ROOT / "data" / "residents"
+
+#: Every directory of the resident layer that holds cards, in the reading
+#: compile_businesses.py and employment_coverage_1835.py both already take. A
+#: business row may name a person in any of them — the reconstruction programme
+#: writes its people BESIDE `households/` because the research mints re-derive it —
+#: and a join that could only RESOLVE a name in `households/` refused the town's own
+#: cards as danglers the moment T-1462 put a reconstructed hand on a record.
+RESIDENT_CARD_DIRS = ("households", "merged", "readmitted", "reconstructed_trades",
+                      "lodgers", "transients", "underdocumented")
 BUSINESS_SCHEMA = ROOT / "data" / "businesses.schema.json"
 RESIDENT_INDEX = ROOT / "data" / "residents" / "index.json"
 STAFFING_MODEL = ROOT / "data" / "reconstruction" / "1835_business_staffing_model.json"
@@ -109,11 +135,26 @@ def load() -> dict:
         households.append((path, json.loads(path.read_text(encoding="utf-8"))))
     if not households:
         raise Fault("the residents layer holds no household records")
+    # THE CARDS A NAME MAY RESOLVE TO AND THE CARDS THIS TOOL WRITES ARE TWO SETS,
+    # and they became two sets at T-1462. `households` is what gets `workplaces`
+    # written onto it; `all_cards` is every id the resident layer holds anywhere, and
+    # it exists so that a business row naming a reconstructed trade-holder resolves
+    # instead of reading as a dangling link. The write set is deliberately unchanged:
+    # the other six directories are re-derived whole by their own mints, and a foreign
+    # key on one of those cards needs that mint to carry it back.
+    all_cards = []
+    for folder in RESIDENT_CARD_DIRS:
+        folder_path = RESIDENTS_ROOT / folder
+        if not folder_path.is_dir():
+            continue
+        for path in sorted(folder_path.glob("*.json")):
+            all_cards.append((path, json.loads(path.read_text(encoding="utf-8"))))
     schema = json.loads(BUSINESS_SCHEMA.read_text(encoding="utf-8"))
     index = json.loads(RESIDENT_INDEX.read_text(encoding="utf-8"))
     return {
         "businesses": businesses,
         "households": households,
+        "all_cards": all_cards,
         "roles": list(schema["$defs"]["role"]["enum"]),
         "tiers": list(schema["$defs"]["tier"]["enum"]),
         "vocabulary": index["vocabulary"],
@@ -182,11 +223,12 @@ def fold(entries: list) -> list:
 
 def derive(data: dict) -> dict:
     """The join, from the business layer alone. Deterministic and order-free."""
-    cards = person_cards(data["households"])
+    cards = person_cards(data["all_cards"])
     roles = set(data["roles"])
     tiers = set(data["tiers"])
     by_person: dict = {}
     named_rows = 0
+    seats_not_carried = 0
     unresolved: dict = {}
     staffed_ids = []
     for business in data["businesses"]:
@@ -209,12 +251,33 @@ def derive(data: dict) -> dict:
                     raise Fault(f"{business['id']}/{key}: person_id '{pid}' names no town "
                                 f"card — the business layer and the residents layer disagree")
                 has_person = True
+                if row.get("tier") == "reconstructed":
+                    # A RECONSTRUCTED SEAT IS RECORDED ON THE PERSON'S SIDE ALREADY, AND
+                    # NOT HERE (T-1462). `workplaces` is the list of houses a SOURCE puts
+                    # a person in, and the 124 seats T-1433 drew are not that: their
+                    # person-side record is data/residents/reconstructed_seating.json,
+                    # which re-derives under its own gate and says, for every one of
+                    # them, which term of the order rule seated them where.
+                    #
+                    # THE REASON IT IS NOT SIMPLY BOTH. Three fifths of the seated people
+                    # stand in `reconstructed_trades/`, `lodgers/` and the other mint-owned
+                    # directories, each of which its own mint re-derives WHOLE and refuses
+                    # a differing byte of. Writing a foreign key onto one of those cards
+                    # needs that mint to carry it back the way tools/resident_mint_carry.py
+                    # carries it for `households/`, and that is a piece of work with its
+                    # own acceptance. Writing it onto the 33 in `households/` and not the
+                    # 91 outside it would be worse than not writing it: the same seat
+                    # would read as a workplace or as nothing at all depending on which
+                    # directory the mint happened to put the person in.
+                    seats_not_carried += 1
+                    continue
                 by_person.setdefault(pid, []).append(entry(business, row))
         if has_person:
             staffed_ids.append(business["id"])
     return {
         "by_person": {pid: fold(rows) for pid, rows in sorted(by_person.items())},
         "named_rows": named_rows,
+        "reconstructed_seats_not_carried": seats_not_carried,
         "unresolved": {k: sorted(v) for k, v in sorted(unresolved.items())},
         "businesses_with_people": sorted(staffed_ids),
         "businesses": [b["id"] for b in data["businesses"]],
@@ -393,6 +456,18 @@ def report(data: dict, join: dict) -> dict:
             "rows": asked,
         },
         "what_this_does_not_do": {
+            "it_does_not_carry_the_reconstructed_seats_onto_the_cards": (
+                f"T-1462 put {join['reconstructed_seats_not_carried']} reconstructed hands "
+                "on the business records — the seats T-1433 drew — and this join leaves "
+                "every one of them off `workplaces`. `workplaces` is the list of houses a "
+                "SOURCE puts a person in; the seats' person-side record is "
+                "data/residents/reconstructed_seating.json, which re-derives under its own "
+                "gate and states, for each one, which term of the order rule seated them "
+                "where. Three fifths of those people stand outside `households/` in "
+                "directories their own mints re-derive whole, so carrying the key back "
+                "needs those mints to carry it, and writing it for the minority that do "
+                "stand in `households/` would make one seat read as a workplace and the "
+                "next as nothing at all."),
             "the_shortfall_is_left_standing": (
                 f"The staffing model implies {dry['staff_total']['low']}–"
                 f"{dry['staff_total']['typical']}–{dry['staff_total']['high']} hands over "
