@@ -113,7 +113,9 @@
     "note": "A forwarding and packing merchant. data/structures/old_bank_building.json records that he packed there in the 1834 season; Andreas's chapter heading calls him 'Gurdon S. Hubbard, the oldest living resident of Chicago' and he supplied Andreas with the Ramsey Crooks correspondence on the early fur trade.",
     "derived_from": "roles",
     "roles_at_scene_date": [
-     "packer"
+     "packer",
+     "forwarding_and_commission",
+     "merchant"
     ]
    },
    "workplaces": [
@@ -542,7 +544,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_american_1835"
@@ -550,7 +552,7 @@
      "claim": "person_gurdon_s_hubbard",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     },
     {
@@ -562,7 +564,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_american_1835"
@@ -570,7 +572,7 @@
      "claim": "person_gurdon_s_hubbard",
      "place": "not_stated",
      "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": "own_premises"
     },
     {
@@ -582,7 +584,7 @@
      "precision": "source_span",
      "dated_by": "stated_date",
      "covers_scene_date": true,
-     "fills_scene_view": false,
+     "fills_scene_view": true,
      "confidence": "inferred",
      "sources": [
       "chicago_american_1835"
@@ -590,7 +592,7 @@
      "claim": "person_gurdon_s_hubbard",
      "place": "not_stated",
      "employer_or_body": "state_of_illinois",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run.",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-11, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run, so this role stands in the 1835 view (T-1299).",
      "premises": null
     },
     {

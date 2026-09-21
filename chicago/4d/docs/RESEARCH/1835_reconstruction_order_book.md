@@ -9,7 +9,7 @@
 |---|---:|---:|---:|
 | Persons | 2,536 | 1,283 | 1,721 |
 | Households | 643 | 1,256 | 124 |
-| Businesses (enumerated classes) | 108 | 129 | 7 |
+| Businesses (enumerated classes) | 108 | 130 | 7 |
 | Roofs | 668 | 414 | 267 |
 
 **2,263 people stand in the layer today** and **505** are still owed after the counters, so the town this book converges to is **2,768** — inside the model's 2,353-3,265. `--build` and `--check` both refuse a remainder that lands outside it.
@@ -31,7 +31,7 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 *What does the town converge to if every remaining order is filled?*
 
-2,263 standing plus 505 still owed is 2,768, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 232 above the model's 2,536 point, and that surplus is the 586 people drawn into 50 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book.
+2,263 standing plus 505 still owed is 2,768, inside the model's 2,353-3,265. Before the re-cut the same sum was 2,263 + 843 = 3,106, and the book was ordering a replacement for 826 people already in the layer. It is 232 above the model's 2,536 point, and that surplus is the 587 people drawn into 51 buckets past what the re-cut would now order — named in `recut_refusals`, held rather than clamped, and retired or re-familied by T-1196, T-1197 and T-1179 rather than by this book.
 
 ### households are counted in two different units
 
@@ -43,60 +43,61 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 ## Where the re-cut was refused
 
-50 buckets would have had their order cut below the people already drawn against them. The owner's ruling of 2026-09-20 refuses that by name rather than clamping it: each is held at what was drawn, and the surplus is retired or re-familied by T-1196, T-1197 and T-1179.
+51 buckets would have had their order cut below the people already drawn against them. The owner's ruling of 2026-09-20 refuses that by name rather than clamping it: each is held at what was drawn, and the surplus is retired or re-familied by T-1196, T-1197 and T-1179.
 
-| bucket | ticket | quota before the rulings | the re-cut would order | drawn |
-|---|---|---:|---:|---:|
-| `persons/female/10_19/north/family/none` | T-1174 | 26 | 16 | 26 |
-| `persons/female/10_19/south/family/none` | T-1174 | 61 | 36 | 61 |
-| `persons/female/10_19/west/family/none` | T-1174 | 24 | 14 | 24 |
-| `persons/female/20_29/north/family/trade` | T-1347 | 15 | 9 | 15 |
-| `persons/female/20_29/north/family/none` | T-1174 | 28 | 18 | 28 |
-| `persons/female/20_29/south/family/trade` | T-1347 | 35 | 21 | 35 |
-| `persons/female/20_29/south/family/none` | T-1174 | 66 | 39 | 66 |
-| `persons/female/20_29/west/family/trade` | T-1347 | 13 | 8 | 13 |
-| `persons/female/20_29/west/family/none` | T-1174 | 25 | 15 | 25 |
-| `persons/female/30_39/north/family/trade` | T-1347 | 6 | 4 | 6 |
-| `persons/female/30_39/north/family/none` | T-1174 | 13 | 8 | 13 |
-| `persons/female/30_39/south/family/trade` | T-1347 | 16 | 10 | 16 |
-| `persons/female/30_39/south/family/none` | T-1174 | 31 | 18 | 31 |
-| `persons/female/30_39/west/family/trade` | T-1347 | 6 | 3 | 6 |
-| `persons/female/30_39/west/family/none` | T-1174 | 12 | 7 | 12 |
-| `persons/female/40_49/north/family/trade` | T-1347 | 3 | 2 | 3 |
-| `persons/female/40_49/north/family/none` | T-1174 | 5 | 3 | 5 |
-| `persons/female/40_49/south/family/trade` | T-1347 | 6 | 3 | 6 |
-| `persons/female/40_49/south/family/none` | T-1174 | 11 | 7 | 11 |
-| `persons/female/40_49/west/family/trade` | T-1347 | 3 | 1 | 3 |
-| `persons/female/40_49/west/family/none` | T-1174 | 4 | 3 | 4 |
-| `persons/female/50_plus/north/family/trade` | T-1347 | 2 | 1 | 2 |
-| `persons/female/50_plus/north/family/none` | T-1174 | 3 | 2 | 3 |
-| `persons/female/50_plus/south/family/trade` | T-1347 | 4 | 2 | 4 |
-| `persons/female/50_plus/south/family/none` | T-1174 | 8 | 4 | 8 |
-| `persons/female/50_plus/west/family/trade` | T-1347 | 2 | 1 | 2 |
-| `persons/female/under_10/north/family/none` | T-1174 | 46 | 28 | 45 |
-| `persons/female/under_10/south/family/none` | T-1174 | 107 | 63 | 107 |
-| `persons/female/under_10/west/family/none` | T-1174 | 40 | 25 | 40 |
-| `persons/male/10_19/north/family/none` | T-1174 | 30 | 19 | 30 |
-| `persons/male/10_19/south/family/none` | T-1174 | 71 | 43 | 71 |
-| `persons/male/10_19/west/family/none` | T-1174 | 26 | 16 | 26 |
-| `persons/male/20_29/north/family/trade` | T-1347 | 25 | 15 | 25 |
-| `persons/male/20_29/south/family/trade` | T-1347 | 60 | 35 | 60 |
-| `persons/male/20_29/west/family/trade` | T-1347 | 23 | 14 | 23 |
-| `persons/male/30_39/north/family/trade` | T-1347 | 15 | 9 | 15 |
-| `persons/male/30_39/south/family/trade` | T-1347 | 35 | 21 | 35 |
-| `persons/male/30_39/west/family/trade` | T-1347 | 13 | 8 | 13 |
-| `persons/male/40_49/north/family/trade` | T-1347 | 4 | 3 | 4 |
-| `persons/male/40_49/south/family/trade` | T-1347 | 10 | 6 | 10 |
-| `persons/male/40_49/west/family/trade` | T-1347 | 3 | 2 | 3 |
-| `persons/male/50_plus/north/family/trade` | T-1347 | 2 | 1 | 2 |
-| `persons/male/50_plus/south/family/trade` | T-1347 | 5 | 3 | 5 |
-| `persons/male/50_plus/west/family/trade` | T-1347 | 2 | 1 | 2 |
-| `persons/male/under_10/north/family/none` | T-1174 | 51 | 30 | 51 |
-| `persons/male/under_10/south/family/none` | T-1174 | 120 | 71 | 120 |
-| `persons/male/under_10/west/family/none` | T-1174 | 46 | 28 | 43 |
-| `households/family_dwelling/north` | T-1171 | 41 | 0 | 26 |
-| `households/family_dwelling/south` | T-1171 | 77 | 0 | 65 |
-| `households/family_dwelling/west` | T-1171 | 39 | 0 | 33 |
+| bucket | ticket | cause | quota it was drawn against | the re-cut would order | drawn |
+|---|---|---|---:|---:|---:|
+| `persons/female/10_19/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 26 | 16 | 26 |
+| `persons/female/10_19/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 61 | 36 | 61 |
+| `persons/female/10_19/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 24 | 14 | 24 |
+| `persons/female/20_29/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 15 | 9 | 15 |
+| `persons/female/20_29/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 28 | 18 | 28 |
+| `persons/female/20_29/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 35 | 21 | 35 |
+| `persons/female/20_29/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 66 | 39 | 66 |
+| `persons/female/20_29/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 13 | 8 | 13 |
+| `persons/female/20_29/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 25 | 15 | 25 |
+| `persons/female/30_39/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 6 | 4 | 6 |
+| `persons/female/30_39/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 13 | 8 | 13 |
+| `persons/female/30_39/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 16 | 10 | 16 |
+| `persons/female/30_39/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 31 | 18 | 31 |
+| `persons/female/30_39/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 6 | 3 | 6 |
+| `persons/female/30_39/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 12 | 7 | 12 |
+| `persons/female/40_49/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 3 | 2 | 3 |
+| `persons/female/40_49/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 5 | 3 | 5 |
+| `persons/female/40_49/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 6 | 3 | 6 |
+| `persons/female/40_49/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 11 | 7 | 11 |
+| `persons/female/40_49/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 3 | 1 | 3 |
+| `persons/female/40_49/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 4 | 3 | 4 |
+| `persons/female/50_plus/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 2 | 1 | 2 |
+| `persons/female/50_plus/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 3 | 2 | 3 |
+| `persons/female/50_plus/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 4 | 2 | 4 |
+| `persons/female/50_plus/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 8 | 4 | 8 |
+| `persons/female/50_plus/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 2 | 1 | 2 |
+| `persons/female/under_10/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 46 | 28 | 45 |
+| `persons/female/under_10/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 107 | 63 | 107 |
+| `persons/female/under_10/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 40 | 25 | 40 |
+| `persons/male/10_19/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 30 | 19 | 30 |
+| `persons/male/10_19/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 71 | 43 | 71 |
+| `persons/male/10_19/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 26 | 16 | 26 |
+| `persons/male/20_29/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 25 | 15 | 25 |
+| `persons/male/20_29/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 60 | 35 | 60 |
+| `persons/male/20_29/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 23 | 14 | 23 |
+| `persons/male/30_39/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 15 | 9 | 15 |
+| `persons/male/30_39/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 35 | 21 | 35 |
+| `persons/male/30_39/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 13 | 8 | 13 |
+| `persons/male/40_49/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 4 | 3 | 4 |
+| `persons/male/40_49/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 10 | 6 | 10 |
+| `persons/male/40_49/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 3 | 2 | 3 |
+| `persons/male/50_plus/north/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 2 | 1 | 2 |
+| `persons/male/50_plus/south/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 5 | 3 | 5 |
+| `persons/male/50_plus/west/family/trade` | T-1347 | the_re_cut_reached_work_already_drawn | 2 | 1 | 2 |
+| `persons/male/under_10/north/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 51 | 30 | 51 |
+| `persons/male/under_10/south/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 120 | 71 | 120 |
+| `persons/male/under_10/west/family/none` | T-1174 | the_re_cut_reached_work_already_drawn | 46 | 28 | 43 |
+| `households/family_dwelling/north` | T-1171 | the_re_cut_reached_work_already_drawn | 41 | 0 | 26 |
+| `households/family_dwelling/south` | T-1171 | the_re_cut_reached_work_already_drawn | 77 | 0 | 65 |
+| `households/family_dwelling/west` | T-1171 | the_re_cut_reached_work_already_drawn | 39 | 0 | 33 |
+| `businesses/lawyer` | T-1418 | a_documented_reading_shrank_the_order | 2 | 1 | 2 |
 
 ## The trade cut, re-cut on its remainder
 
@@ -104,26 +105,26 @@ Of the 432, the household leg is DISCHARGED: T-1171's household quota was 182 ag
 
 ### The age of a working person is read, not assumed
 
-127 people in the resident layer carry an occupation a source records. 9 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2828 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.
+137 people in the resident layer carry an occupation a source records. 10 of them are in the book's 10_19 band — and every one of those is labelled 15-19 by the layer, so the record reaches below twenty and stops at fifteen. Per unit of the 1840 pyramid's population that is 0.2919 of the adult rate, which is the weight the band enters the cut at. The band under ten has no worker in the record at all and is left shut.
 
 | band | workers the sources record | share of the 1840 pyramid | weight in the trade cut |
 |---|---:|---:|---:|
 | `under_10` | 0 | 0.2662 | 0.0000 |
-| `10_19` | 9 | 0.1559 | 0.2828 |
-| `20_29` | 58 | 0.3202 | 1.0000 |
-| `30_39` | 45 | 0.1737 | 1.0000 |
-| `40_49` | 9 | 0.0547 | 1.0000 |
+| `10_19` | 10 | 0.1559 | 0.2919 |
+| `20_29` | 61 | 0.3202 | 1.0000 |
+| `30_39` | 50 | 0.1737 | 1.0000 |
+| `40_49` | 10 | 0.0547 | 1.0000 |
 | `50_plus` | 6 | 0.0292 | 1.0000 |
 
 Read from data/residents/households/*.json — every person whose occupation is attested or inferred, which is to say read from a source. 0 person(s) the layer grades `reconstructed` were skipped: a stage's own draw is not evidence for the cut that produced it.
 
 ### The sex of the remainder is NOT re-cut
 
-120 of the 127 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud.
+130 of the 137 are men. That is not a licence to cut the trade remainder male: the sources that print an occupation — notices, poll lists, the trade census, the directories — print PROPRIETORS and heads of household, and a record of who advertised is not a record of who worked. The town model's own occupations section says the same thing from the other side: the 1840 schedule's seven columns have no row for domestic service, 'which a port with this adult sex ratio certainly had', and the trade split understates household labour 'by an amount this model cannot bound'. Both arguments point one way and neither bounds a number, so the SEX of the trade remainder is NOT re-cut. The book keeps the population's own split, and the hands a shop wants that only a man can fill stand short with the reason said out loud.
 
 ### What moved
 
-The re-cut wanted **35** trade slots in the bands it reopened. The younger bands held **0** undrawn and the adult cells it would draw from held **35**, so **0** moved and the book's employed total did not change. Every cell below is a `lodging` cell on both sides, because every `family` cell of the reopened band is drawn out: the working youths this book still orders are BOARDERS — an apprentice or a shop hand sleeping where he works — which is a consequence of what is already drawn and not a claim about 1835.
+The re-cut wanted **36** trade slots in the bands it reopened. The younger bands held **0** undrawn and the adult cells it would draw from held **35**, so **0** moved and the book's employed total did not change. Every cell below is a `lodging` cell on both sides, because every `family` cell of the reopened band is drawn out: the working youths this book still orders are BOARDERS — an apprentice or a shop hand sleeping where he works — which is a consequence of what is already drawn and not a claim about 1835.
 
 | into | slots |
 |---|---:|
@@ -139,7 +140,7 @@ The re-cut wanted **35** trade slots in the bands it reopened. The younger bands
 | `persons/female/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
 | `persons/female/10_19/south/family` (into) | 7 | 0 | 61 | T-1174 |
 | `persons/female/10_19/south/lodging` (into) | 2 | 0 | 4 | T-1500 |
-| `persons/female/10_19/west/family` (into) | 2 | 0 | 24 | T-1174 |
+| `persons/female/10_19/west/family` (into) | 3 | 0 | 24 | T-1174 |
 | `persons/female/10_19/west/lodging` (into) | 1 | 0 | 1 | T-1500 |
 | `persons/male/10_19/north/family` (into) | 3 | 0 | 30 | T-1174 |
 | `persons/male/10_19/north/lodging` (into) | 1 | 0 | 3 | T-1500 |
@@ -150,7 +151,7 @@ The re-cut wanted **35** trade slots in the bands it reopened. The younger bands
 | `persons/female/20_29/north/family` (out of) | 1 | 0 | 15 | T-1347 |
 | `persons/female/20_29/south/family` (out of) | 3 | 0 | 35 | T-1347 |
 | `persons/female/20_29/west/family` (out of) | 1 | 0 | 13 | T-1347 |
-| `persons/female/30_39/south/family` (out of) | 1 | 0 | 16 | T-1347 |
+| `persons/female/30_39/south/family` (out of) | 2 | 0 | 16 | T-1347 |
 | `persons/female/40_49/west/family` (out of) | 1 | 0 | 3 | T-1347 |
 | `persons/female/50_plus/south/family` (out of) | 1 | 0 | 4 | T-1347 |
 | `persons/male/20_29/north/family` (out of) | 2 | 0 | 25 | T-1347 |
@@ -387,7 +388,7 @@ The December 1835 State census set against the register the town already holds.
 | `businesses/church` | 5 | 4 | 0 | 0 | T-1215 |
 | `businesses/druggist` | 4 | 2 | 2 | 2 | T-1184 |
 | `businesses/iron_foundry` | 1 | 2 | 0 | 0 | T-1185 |
-| `businesses/lawyer` | 15 | 13 | 2 | 2 | T-1418 |
+| `businesses/lawyer` | 15 | 14 | 2 | 2 | T-1418 |
 | `businesses/lottery_office` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/lyceum_and_reading_room` | 0 | 0 | 0 | 0 | T-1182 |
 | `businesses/physician` | 9 | 8 | 1 | 1 | T-1418 |
