@@ -1734,7 +1734,13 @@ def cmd_self_test() -> int:
     fires("a book whose remainder would order a town outside the model's range",
           lambda: converges_inside_the_model(
               build(data, [{"ticket": "T-1171", "bucket": first["key"], "records": 1}], occ)))
-    assert "2,267 standing" in converges_inside_the_model(build(data, _fills_on_disk(), occ))
+    # AND THE SHIPPED BOOK SAYS THE COMMITTED TOWN OUT LOUD. Read off the committed
+    # book rather than typed in here: the figure moves whenever a stage draws or
+    # retires a person, and a number written into a self-test goes stale silently —
+    # 2,267 was typed here on 2026-09-20 and was wrong four people later (T-1369).
+    committed_standing = json.loads(BOOK.read_text(encoding="utf-8"))["totals"]["persons_standing"]
+    assert (f"{committed_standing:,} standing"
+            in converges_inside_the_model(build(data, _fills_on_disk(), occ)))
 
     # THE RE-CUT IS REFUSED, NOT CLAMPED, WHERE IT REACHES WORK ALREADY DRAWN (T-1463).
     # Every refusal names its bucket, what the re-cut would have ordered and what was
