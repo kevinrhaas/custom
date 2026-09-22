@@ -51,15 +51,13 @@ const RUNG_LABEL = {
   division_band: (row) => (row.seat && row.seat.clause
     ? `Banded in the ${row.reach_value} division, on the policy's ground for its trade`
     : `Banded in the ${row.reach_value} division, and no class dealt`),
-  // T-1516. Rung 5 is the weakest the ladder has, and the label leads with the
-  // ABSENCE rather than with the band: nothing places this household, and the
-  // division under it was dealt. `row.words` carries the rest of the working.
-  // Written for people.js and re-homed here by the merge that moved this block
-  // into seat.js (T-1493, #1629) — taking dev's file whole would have dropped
-  // the reading this ticket exists to write.
-  policy_only: (row) => (row.class_is_dealt
-    ? `No source places them — dealt the ${row.seat.division} division and a class`
-    : `No source places them — dealt the ${row.seat.division} division`),
+  // T-1522. The weakest seat this ladder makes, and the label must not let it
+  // pass for the rung above. There the division is the household's own record
+  // and only the ground inside it is drawn; here BOTH halves are dealt, off the
+  // order book's household shape and the town model's employment distribution.
+  policy_only: (row) => (row.seat && row.seat.division
+    ? `Dealt a place in the ${row.seat.division} division, on nothing its record says`
+    : 'Dealt a place, on nothing its record says'),
   unplaceable: () => 'Not seated in this town',
 };
 

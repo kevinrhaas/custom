@@ -94,3 +94,22 @@ done. That is recorded, not repaired: moving a street line is not this ticket's 
 The gate asserts both tickets are still closed, so the day one is reopened this finding
 goes red rather than stale.
 
+## THE OWNER'S RULING, 2026-09-21 (question 1 of 3): FILE A SUCCESSOR for the street spacing
+
+Clinton to Canal stands at 367.9 ft against the plat's 458 ft. That 90 ft is a real defect and
+it is nobody's: T-0444 and T-0445 both closed without moving it, which is how a measured error
+becomes part of the town by default. A successor ticket owns it.
+
+SO THE WEST DIVISION GRID IS CUT AGAINST A SPACING THAT IS BEING FIXED, not against one that
+is known wrong and left. The successor is filed BEFORE blocks 28 and 45 move, and this ticket
+names it — re-cutting 32 lots against a grid 90 ft short would bake the error into everything
+seated on them, and unpicking that later is far dearer than waiting.
+
+THE SUCCESSOR OWNS THE WHOLE QUESTION, not just the number: which of the two is the control
+(the plat's figure or whatever produced 367.9), what moves if the plat wins, and what else in
+the West Division is seated on the short spacing today. A ticket that only says '458 not 367.9'
+will close the same way its two predecessors did.
+
+QUESTIONS 2 AND 3 ARE STILL OPEN — whether the documented module may cut a block printing no
+marginal figures of its own (T-1455's rule withholds it), and what a structure on a withdrawn
+lot is seated on. This ticket stays blocked on those two.

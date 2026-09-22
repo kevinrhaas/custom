@@ -1,7 +1,7 @@
 ---
 id: T-1517
 title: Write the policy-only rung's dealt division back onto the household card and data/residents/index.json through the mint carry slot, so the stages that derive a card whole still re-derive it byte for byte and the People view's division filter fills
-state: open
+state: withdrawn
 epic: TOWN
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1513
 opened: 2026-09-21
-closed: null
+closed: 2026-09-21
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Duplicate of T-1523, the carry-back child of T-1513, which is open on dev. T-1517 asks for the same thing — write the dealt division back onto the household card and data/residents/index.json — and was filed outside the T-1513 split. T-1523 owns it.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-21T23:39:43.018Z
 claimed_run: null
 ---
 
