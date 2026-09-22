@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 1075, title: 'The weakest seat in the town is now watched by a test', kind: 'add', ts: '2026-09-21T23:40:05.721Z', date: 'Sep 21, 2026, 6:40 PM CT',
+    items: [
+      'Five of every six households in this town have no address of any kind. Most are names off the post office\u2019s lists of letters waiting to be called for, which prove somebody was writing to that name at Chicago and say nothing about where they lived. A recent change gave all 1,186 of them a place anyway \u2014 a division and a class DEALT from this project\u2019s own models, because a town has to put its people somewhere.',
+      'The danger in that is entirely in how the card reads. A visitor who opens one of these people and sees \u201csouth division\u201d has been told something the record does not say. The card is written to lead with the absence first \u2014 no source places this household anywhere \u2014 and only then to say that what follows was dealt. Everything rests on that order of words.',
+      'Nothing was checking it. The browser test walked the directory, opened a card and read its seat, but every household it opened had a real address, so the one rung where the wording carries the whole weight was never looked at. A test that exercises only the cases that cannot go wrong is a test that will pass on the day this breaks.',
+      'It opens one of the dealt households now and reads the label back: that the rung is the weakest one, that the words lead with the absence, and that the card still shows its no-address mark. On both screen widths, as everything else here is checked.',
+    ] },
   { v: 1074, title: 'One parcel of work was written down as six jobs', kind: 'fix', ts: '2026-09-21T21:37:22.816Z', date: 'Sep 21, 2026, 4:37 PM CT',
     items: [
       'The work on this project is kept as tickets, and a ticket too big for one sitting is SPLIT into children that carry the pieces. Splitting is how a job that turned out to be three jobs stops blocking the queue.',

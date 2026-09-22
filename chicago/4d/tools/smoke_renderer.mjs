@@ -11887,6 +11887,23 @@ for (const [label, viewport, touch] of [
           next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
           noaddr: !!card?.querySelector('.people-noaddr'),
         } };
+      // T-1519. The weakest rung, on a card. Five of every six households in this
+      // town are here: nobody wrote down where they lived, so the division under
+      // them is DEALT and the class with it (T-1522 deals them). The card has to
+      // lead with that absence — a reader who sees "west division" and no warning
+      // has been told the record says something it does not, and NOTHING was
+      // checking that until this: every household the walk opened had a real
+      // address, so the one rung where the wording carries the weight was never
+      // looked at.
+      const dealt = await dir.open('abbot_8_g');
+      out.policyOnly = { opened: dealt,
+        rung: card?.querySelector('.people-seat')?.dataset.rung ?? null,
+        label: card?.querySelector('.people-seat-rung')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        words: card?.querySelector('.people-seat-words')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        next: card?.querySelector('.people-seat-next')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        noaddr: !!card?.querySelector('.people-noaddr') };
+      dir.close();
+      await dir.open('hogan_john_s_c');
       return out;
     });
     check(`${label}: the People directory lists the town, and its count is the file's and the manifest's`,
@@ -11966,6 +11983,28 @@ for (const [label, viewport, touch] of [
         .test(people.card.seat.next)
       && people.card.seat.noaddr === false,
       JSON.stringify(people.card.seat));
+
+    // T-1519. Rung 5 — dealt a division and a class, and saying so FIRST. Every
+    // assertion here is read off the committed address book and the label T-1522
+    // ships, not off what a ticket meant to write: `abbot_8_g` is rung
+    // `policy_only` in the WEST division, and its words lead with the absence
+    // before either deal is named.
+    check(`${label}: a household no source places says its division was dealt, not read`,
+      people.policyOnly.opened && people.policyOnly.rung === 'policy_only'
+      && /Dealt a place in the west division/.test(people.policyOnly.label)
+      && /on nothing its record says/.test(people.policyOnly.label)
+      && /^No source places this household anywhere/.test(people.policyOnly.words)
+      && /BOTH halves of this band are dealt rather than read/.test(people.policyOnly.words)
+      && /reconstruction order book's own household target by division/.test(people.policyOnly.words)
+      && /town model's employment distribution/.test(people.policyOnly.words),
+      JSON.stringify(people.policyOnly));
+    // TWO ASSERTIONS THE FIRST DRAFT CARRIED ARE GONE, AND SAYING SO IS THE POINT:
+    // it checked `next` for a "would move it up the ladder" line, and `noaddr` for
+    // false. On the committed book this row's `next` is NULL — rung 5 is the bottom,
+    // so there is no rung below it to name a way out of — and the draft was written
+    // against a label that never reached dev. An assertion that cannot pass is not
+    // coverage, and quietly deleting one is how a suite stops meaning anything, so
+    // the reason is here rather than in a commit message nobody reads twice.
 
     check(`${label}: searching "Beaubien" finds Mark Beaubien`,
       people.search.matched > 0 && people.search.matched < 100 && /Mark Beaubien/.test(people.search.mark ?? '')
