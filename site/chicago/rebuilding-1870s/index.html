@@ -1,27 +1,27 @@
 <!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Chicago Rebuilds, 1872–1879 — opening the explorer</title>
+<title>4D Chicago has moved — chicago.polecat.live</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<link rel="canonical" href="viewer/">
-<style>
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
-       font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;padding:24px}
-  a{color:#58a6ff}
-</style>
-<div>
-  <p>Opening the <strong>Chicago Rebuilds, 1872–1879</strong> explorer…</p>
-  <p><a id="go" href="viewer/">Continue to the explorer</a></p>
-</div>
+<link rel="canonical" href="https://chicago.polecat.live/">
 <script>
-  // Resolve against this directory whether or not the URL carried a trailing
-  // slash — without the slash, a bare "viewer/" resolves one level too high.
-  (function () {
-    var p = location.pathname;
-    if (p.slice(-1) !== '/') p += '/';
-    var target = p + 'viewer/' + location.search + location.hash;
-    document.getElementById('go').setAttribute('href', target);
-    location.replace(target);
-  })();
+/* 4D Chicago moved to its own home on 2026-09-23. Forward every old address —
+   path, ?query and #hash — to chicago.polecat.live. The walkthrough's /walk/
+   folder is gone from the new addresses: /chicago/4d/walk/?year=1835 → /4d/?year=1835.
+   Works under both kevinrhaas.github.io/custom/chicago/ and custom.polecat.live/chicago/. */
+(function () {
+  var p = location.pathname, i = p.indexOf('/chicago/');
+  var rest = i < 0 ? '/' : p.slice(i + '/chicago'.length);
+  rest = rest.replace(/^\/4d\/dev\/walk(\/|$)/, '/4d/dev/').replace(/^\/4d\/walk(\/|$)/, '/4d/');
+  location.replace('https://chicago.polecat.live' + rest + location.search + location.hash);
+})();
 </script>
-<noscript><meta http-equiv="refresh" content="0; url=viewer/"></noscript>
+<noscript><meta http-equiv="refresh" content="0; url=https://chicago.polecat.live/"></noscript>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:16px/1.6 system-ui,sans-serif;background:#0d1117;color:#e6edf3;text-align:center;padding:24px}a{color:#58a6ff}</style>
+</head>
+<body>
+<p>4D Chicago has moved to <a href="https://chicago.polecat.live/">chicago.polecat.live</a>.</p>
+</body>
+</html>
