@@ -10,6 +10,7 @@ A garden-themed landing page and the interactive **Hosta Gangway Guide** are pub
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
 - **Porchfest Planner:** `https://kevinrhaas.github.io/custom/porchfest/`
 - **Stay Finder:** `https://kevinrhaas.github.io/custom/stay/`
+- **Chicago Atlas / 4D Chicago:** moved on 2026-09-23 to its own repo, [kevinrhaas/chicago](https://github.com/kevinrhaas/chicago), at **https://chicago.polecat.live/** (the walkthrough is `/4d/`). The old `/chicago/…` addresses here forward there, keeping the rest of the link. Its history up to the move stays in this repo.
 - **Zion + Bryce Field Guide:** `https://kevinrhaas.github.io/custom/zion-bryce/`
 - **Wau-Bun:** `https://kevinrhaas.github.io/custom/wau-bun/`
 
