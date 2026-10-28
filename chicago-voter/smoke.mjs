@@ -32,6 +32,7 @@ for (const [w, h] of [[390, 780], [1280, 800]]) {
     const page = await ctx.newPage();
     const errs = []; page.on('pageerror', (e) => errs.push(e.message)); page.on('console', (m) => m.type() === 'error' && errs.push(m.text()));
     await page.goto(base);
+    if (shots && animated) { await page.waitForTimeout(500); await page.screenshot({ path: `${shots}/intro-${w}.png` }); }
     await page.click('#start');
     let n = 0;
     for (; n < 30; n++) {

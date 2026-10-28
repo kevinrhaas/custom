@@ -51,11 +51,11 @@ const LAYOUT = [
   { id: 'attorney-general', group: 'Federal & statewide', title: 'Attorney General', short: 'Attorney General', es: 'Fiscal General', src: statewide, nums: [7, 8],
     weights: { safety: 1, federal: 1, social: 0.5, change: 0.4 }, partyWeight: 0.6 },
   { id: 'secretary-of-state', group: 'Federal & statewide', title: 'Secretary of State', short: 'Secretary of State', es: 'Secretario del Estado', src: statewide, nums: [9, 10], writeIn: true,
-    weights: { change: 0.7, econ: 0.4, federal: 0.4, social: 0.3 }, partyWeight: 0.6 },
+    weights: { change: 0.5, econ: 0.4, federal: 0.4, social: 0.3 }, partyWeight: 0.6 },
   { id: 'comptroller', group: 'Federal & statewide', title: 'Comptroller', short: 'Comptroller', es: 'Contralor', src: statewide, nums: [11, 12], writeIn: true,
-    weights: { econ: 1, change: 0.6 }, partyWeight: 0.6 },
+    weights: { econ: 1, change: 0.5 }, partyWeight: 0.6 },
   { id: 'treasurer', group: 'Federal & statewide', title: 'Treasurer', short: 'State Treasurer', es: 'Tesorero', src: statewide, nums: [13, 14], writeIn: true,
-    weights: { econ: 1, change: 0.6, social: 0.2 }, partyWeight: 0.6 },
+    weights: { econ: 1, change: 0.5, social: 0.2 }, partyWeight: 0.6 },
   { id: 'us-house-3', group: 'Congress & Springfield', title: 'U.S. Representative, 3rd District', short: 'U.S. House (IL-3)', es: 'Representante de los EE. UU., Distrito 3', src: county, nums: [21, 22],
     weights: { econ: 1, federal: 1, social: 0.8, safety: 0.5, change: 0.3 }, partyWeight: 0.6 },
   { id: 'state-senate-2', group: 'Congress & Springfield', title: 'State Senator, 2nd District', short: 'State Senate (2nd)', es: 'Senador Estatal, Distrito 2', src: county, nums: [32],
@@ -154,7 +154,10 @@ const srcs = (x) => arr(x).filter((s) => s.url && /^https?:/.test(s.url)).map((s
 const SHORT = { 'Whitfield Harrington Jr': 'Harrington', 'Eira Lizeth Corral Sepúlveda': 'Corral Sepúlveda', 'Elizabeth "Liz" Nicholson': 'Nicholson',
   'Cameron "Cam" Davis': 'Davis', 'JB Pritzker': 'Pritzker' };
 const shortName = (n) => SHORT[n] || n.replace(/,?\s+(Jr\.?|Sr\.?|II|III)$/, '').split(' ').slice(-1)[0];
+// names as printed on the ballot, where a research file spells them differently
+const BALLOT_NAME = { 52: 'Timothy E. Rueckert' };
 function candidate(c, n, race) {
+  c = { ...c, name: BALLOT_NAME[n] || c.name };
   const party = c.party || '';
   const pkey = PARTY[party] || (party ? party.slice(0, 3).toUpperCase() : 'NP');
   return {

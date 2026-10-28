@@ -136,6 +136,9 @@ function evalRace(race, P, st = S) {
   }
   // candidate race
   const scored = race.candidates.map((c) => scoreCand(c, race, P)).sort((a, b) => b.s - a.s || (a.c.ballot - b.c.ballot));
+  // one scale per race, so a candidate with less on the record can't outrank on percent alone
+  const M = Math.max(0, ...scored.map((x) => x.max));
+  for (const x of scored) if (x.pct != null && M) x.pct = Math.round(clamp(50 + 50 * x.s / M, 0, 100));
   const n = race.voteFor || 1;
   const live = race.candidates.filter((c) => !c.withdrawn);
   const lock = st.picks[race.id];
@@ -143,7 +146,7 @@ function evalRace(race, P, st = S) {
   const any = scored.some((x) => x.max > 0);
   if (live.length === 1 && race.candidates.length === 1) {
     const x = scored[0]; picks = [x.c.id]; conf = 'unopposed';
-    if (x.max > 0 && x.pct < 35) { picks = []; conf = 'unopposed-blank'; }
+    if (x.max >= 1 && x.pct < 20) { picks = []; conf = 'unopposed-blank'; }
   } else if (!any) {
     picks = []; conf = 'nodata';
   } else {
