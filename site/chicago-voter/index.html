@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Voter — Ballot Match</title>
+<meta name="description" content="A short, adaptive scenario survey that fills in every race on a Chicago November 3, 2026 ballot (Ward 30, Precinct 04, ballot style 124) and tells you why: U.S. Senate to the water district, the first elected school board president, six public questions and 60 judges, each candidate researched and cited.">
+<meta property="og:title" content="Chicago Voter — Ballot Match">
+<meta property="og:description" content="About ten scenario questions, and every race on your November 3, 2026 Chicago ballot filled in, with the reasons and the sources.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#41b6e6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cpath fill='%23e4002b' d='M0 -48L10 -17.3L41.6 -24L20 0L41.6 24L10 17.3L0 48L-10 17.3L-41.6 24L-20 0L-41.6 -24L-10 -17.3Z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+<script>try{var t=localStorage.getItem('chivoter.theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-phase="intro">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- the Chicago star: six sharp points -->
+  <symbol id="star" viewBox="-50 -50 100 100"><path d="M0 -48L10 -17.3L41.6 -24L20 0L41.6 24L10 17.3L0 48L-10 17.3L-41.6 24L-20 0L-41.6 -24L-10 -17.3Z"/></symbol>
+  <symbol id="train" viewBox="0 0 48 24"><rect x="1" y="3" width="46" height="16" rx="5"/><rect x="6" y="7" width="7" height="5" rx="1" class="win"/><rect x="16" y="7" width="7" height="5" rx="1" class="win"/><rect x="26" y="7" width="7" height="5" rx="1" class="win"/><rect x="36" y="7" width="7" height="5" rx="1" class="win"/><circle cx="10" cy="21" r="2.5"/><circle cx="38" cy="21" r="2.5"/></symbol>
+</svg>
+
+<header class="flagband" aria-label="Chicago flag progress">
+  <div class="fb-stripe"></div>
+  <div class="fb-stars" id="flagStars">
+    <span class="fstar" data-i="0" title="Fort Dearborn, 1803"><svg><use href="#star"/></svg></span>
+    <span class="fstar" data-i="1" title="The Great Chicago Fire, 1871"><svg><use href="#star"/></svg></span>
+    <span class="fstar" data-i="2" title="The World’s Columbian Exposition, 1893"><svg><use href="#star"/></svg></span>
+    <span class="fstar" data-i="3" title="The Century of Progress Exposition, 1933–34"><svg><use href="#star"/></svg></span>
+  </div>
+  <div class="fb-stripe"></div>
+</header>
+
+<nav class="nav">
+  <a class="brand" href="./" id="homeLink">
+    <svg class="brand-star" aria-hidden="true"><use href="#star"/></svg>
+    <span class="brand-t">CHICAGO<b>VOTER</b></span>
+  </a>
+  <div class="nav-actions">
+    <a class="navlink" href="../">Workshop</a>
+    <button class="ballot-btn" id="ballotBtn" type="button" aria-controls="ballot">
+      <span class="bb-l">Ballot so far</span><span class="bb-n" id="ballotCount">0</span>
+    </button>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle light or dark">🌙</button>
+  </div>
+</nav>
+
+<div class="layout">
+  <main id="app" class="main"></main>
+  <aside id="ballot" class="ballot-pane" tabindex="-1" aria-label="Ballot so far"></aside>
+</div>
+<div class="scrim" id="scrim"></div>
+<dialog id="race" class="dlg" aria-label="Race detail"></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+<div class="skyline" aria-hidden="true"></div>
+<footer class="foot">
+  <p>Not affiliated with any campaign, party or the Chicago Board of Elections. Picks reflect your own answers; the research is cited on every
+  candidate. Check your registration and polling place at <a href="https://chicagoelections.gov/" target="_blank" rel="noopener">chicagoelections.gov</a>.
+  Polls are open 6 a.m. to 7 p.m. on Election Day.</p>
+</footer>
+<noscript><p class="foot">This app needs JavaScript.</p></noscript>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

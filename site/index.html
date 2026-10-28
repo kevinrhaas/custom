@@ -24,6 +24,7 @@
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
     <a href="https://chicago.polecat.live/">Chicago Atlas</a>
+    <a href="chicago-voter/">Chicago Voter</a>
     <a href="wau-bun/">Wau-Bun</a>
     <a href="stay/">Stay Finder</a>
     <a href="zion-bryce/">Zion + Bryce</a>
@@ -161,6 +162,13 @@
     { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
   ];
   var grid = document.getElementById('projectsGrid');
+  var voterCard = '<a class="app-card reveal" href="chicago-voter/" style="--c:#e4002b">' +
+    '<div class="app-top"><span class="app-glyph">\u2605</span>' +
+    '<div><div class="app-name">Chicago Voter</div><div class="app-sub">chicago-voter \u00b7 your Nov 3, 2026 ballot, matched</div></div></div>' +
+    '<p class="app-tagline">About ten scenario questions, and every race on a Ward 30 ballot fills in as you answer \u2014 U.S. Senate to the water district, ' +
+    'Chicago\u2019s first elected school board president, six public questions and sixty judges \u2014 each pick showing the answer that put it there, ' +
+    'with every candidate researched and cited. Watch your ballot fill in as you go, then print a cheat sheet for the booth.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 match your ballot \u2197</div></a>';
   var zionBryceCard = '<a class="app-card reveal" href="zion-bryce/" style="--c:#d96f45">' +
     '<div class="app-top"><span class="app-glyph"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 19 6.2-10 3.1 4.8L15.8 8 22 19H3Z"/><path d="m7.2 12.2 2 1.1 2.1-1.4M14.4 10.3l1.8 1.2 1.6-1"/></svg></span>' +
     '<div><div class="app-name">Zion + Bryce Field Guide</div><div class="app-sub">9 days · two parks · one canyon loop</div></div></div>' +
@@ -202,7 +210,7 @@
     'rooms and three king beds, not a house built for twenty. Eighty-nine carry a real eight-night price quoted for Dec 19\u201327. '  +
     'Mapped on a real coastline, and linked straight to the original listing with the dates already filled in.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the search \u2197</div></a>';
-  grid.innerHTML = zionBryceCard + chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
+  grid.innerHTML = voterCard + zionBryceCard + chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +

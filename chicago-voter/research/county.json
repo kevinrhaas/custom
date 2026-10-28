@@ -1,0 +1,1929 @@
+{
+ "generated": "2026-10-28",
+ "races": [
+  {
+   "id": "us-house-3",
+   "title": "U.S. Representative, 3rd Congressional District",
+   "vote_for": 1,
+   "context": "Two-year U.S. House seat covering much of Chicago's Northwest Side plus parts of suburban Cook and eastern DuPage counties; Democrats have held it for decades and forecasters rate it Safe/Solid Democratic. The member votes on federal immigration enforcement funding (DHS/ICE), tariffs, housing and health programs.",
+   "candidates": [
+    {
+     "name": "Angel Oakley",
+     "ballot": 21,
+     "party": "Republican",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Oakley, 50, is a former Winfield Village trustee who owns a marketing and communications firm and calls herself \"a conservative moderate who leads with American values, love, and compassion.\" Wikipedia describes her as a cannabis business consultant; she ran as a write-in for this seat in 2024 and was unopposed in the March 2026 Republican primary (13,991 votes).",
+     "qualifications": "Former Winfield village trustee; small-business owner; B.A. from Judson University and a master's in organizational leadership (per smarter.vote, citing her campaign site). Says her international corporate experience compensates for no national political experience (Tribune). No prior federal or state office.",
+     "positions": {
+      "federal_spending": "Wants every dollar Congress spends \"tracked, audited, and posted online\"; would reduce federal spending and waste.",
+      "money_in_politics": "Wants to \"get money out of politics\"; supports bans on foreign influence and dark money and more political-spending transparency.",
+      "economy_trade": "Backs \"true free markets with real competition\"; supports Trump's tariffs, which she called a nuanced position (the Tribune disagreed); wants lower taxes on working families and less small-business regulation.",
+      "immigration": "Supports both immigration reform and border security that she calls humane and effective; no specific position found on ICE tactics or Operation Midway Blitz.",
+      "civil_liberties": "Top priorities include restoring constitutional freedoms and ending \"the surveillance state\"; limits on government mass surveillance.",
+      "environment_health": "Emphasizes children's health, healthy food, clean air, water and soil as bipartisan goals; pollution cleanup; no emissions plan.",
+      "elections": "Supports a national voter-ID standard with free verification and easier ballot access for candidates.",
+      "foreign_policy": "Promote peace accords, end wars, focus the military on defending the homeland."
+     },
+     "endorsements": [
+      "Chicago Tribune Editorial Board (Oct. 4, 2026)"
+     ],
+     "gaps": [
+      "Very small campaign: about $5,000 raised as of April 2026 (Wikipedia/FEC); the Daily Herald reported she ended September with less than $1,000 on hand versus more than $927,000 for Ramirez (per search excerpt of the Oct. 24 article; not independently verified).",
+      "No detailed public stance found on ICE enforcement in Chicago or Operation Midway Blitz.",
+      "Abortion position not found.",
+      "Campaign site libertyangel.us could not be retrieved directly (403); positions here come from the Tribune interview and third-party summaries, including AI-compiled guides."
+     ],
+     "axes": {
+      "econ": {
+       "v": 1,
+       "why": "Would cut federal spending and waste and lower taxes on working families (smarter.vote summary of campaign site)."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": 1,
+       "why": "Pairs 'immigration reform' with 'border security'; no specific ICE stance, so scored only mildly toward enforcement."
+      },
+      "change": {
+       "v": 1,
+       "why": "Former village trustee running as a self-described moderate outsider with a tiny campaign against a well-funded incumbent."
+      },
+      "green": {
+       "v": 0,
+       "why": "Backs clean air/water and pollution cleanup but offers no climate or emissions plan."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Angel Oakley for U.S. House, District 3 (Oct. 4, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/04/editorial-angel-oakley-for-u-s-house-of-representatives-in-district-3/"
+      },
+      {
+       "title": "Chicago Tribune Editorial Board endorsements, 2026 general election (via Yahoo)",
+       "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"
+      },
+      {
+       "title": "Wikipedia: 2026 U.S. House elections in Illinois (District 3)",
+       "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Illinois"
+      },
+      {
+       "title": "smarter.vote: Angel Oakley profile (AI-compiled; cites campaign site, FEC)",
+       "url": "https://smarter.vote/races/il-house-03-2026/angel-oakley/"
+      },
+      {
+       "title": "The Ballot Brief: Angel Oakley (AI-written guide)",
+       "url": "https://theballotbrief.com/candidate/angel-oakley-eb9f1448-a19d-4746-a638-62acb5282ba4"
+      },
+      {
+       "title": "Daily Herald: In suburban congressional races, GOP fundraising continues to lag (Oct. 24, 2026)",
+       "url": "https://www.dailyherald.com/20261024/us-congress-politics/in-suburban-congressional-races-gop-fundraising-continues-to-lag-behind-dems/"
+      }
+     ]
+    },
+    {
+     "name": "Delia Ramirez",
+     "ballot": 22,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Ramirez, 43, born in Chicago to Guatemalan immigrant parents and raised in Humboldt Park, has represented the district since January 2023. Before Congress she led housing and community nonprofits (Center for Changing Lives, Latin United Community Housing Association) and served in the Illinois House for the 4th District, 2018-2022. She was unopposed in the March 2026 primary (72,443 votes).",
+     "qualifications": "Two terms in Congress (won 68.5% in 2022 and 67.3% in 2024); member of the House Homeland Security and Veterans' Affairs committees; Congressional Progressive Caucus and Hispanic Caucus member; four years as a state representative, where she worked on COVID-era eviction protections and Medicaid coverage for undocumented seniors.",
+     "positions": {
+      "immigration_ice": "Calls for abolishing ICE. Introduced the Melt ICE Act (Jan. 2026, with Rep. Yvette Clarke) to defund ICE detention and monitoring and redirect money to housing, health care and community programs, and the Reimagining Safety Act to dismantle DHS and create a Department of Community Safety; also a bill barring DHS from using or contracting new detention centers.",
+      "operation_midway_blitz": "In fall 2025 she and other Illinois Democrats sought oversight access to the Broadview ICE facility, citing reported overcrowding and restricted access to food, medication and attorneys; ICE said its field office could not support a planned Sept. 23, 2025 visit. She said the operation \"was not about safety.\"",
+      "housing": "In August 2026 reintroduced the Green New Deal for Public Housing Act with Rep. Alexandria Ocasio-Cortez and Sen. Bernie Sanders to rebuild public housing stock.",
+      "priorities": "Describes herself as \"a staunch advocate of housing as a human right, healthcare for all, climate justice\" and protecting democracy (Tribune).",
+      "israel_gaza": "Voted against a 2023 resolution reaffirming support for Israel and against an October 2023 resolution after the Hamas attack (412-10); the Tribune faulted her \"slow condemnation of Hamas.\""
+     },
+     "endorsements": [
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "Illinois AFL-CIO",
+      "Operating Engineers Locals 150 and 399",
+      "SEIU Healthcare and SEIU Illinois State Council",
+      "Plumbers Local 130",
+      "American Federation of Government Employees",
+      "Justice Democrats",
+      "Our Revolution",
+      "Planned Parenthood Action Fund",
+      "End Citizens United",
+      "J Street",
+      "Giffords (post-primary)",
+      "Not endorsed by the Chicago Tribune, which backed Oakley"
+     ],
+     "gaps": [
+      "In an August 2025 speech in Mexico City she called herself \"a proud Guatemalan before I am an American\"; she later tried to walk it back. Republicans filed resolutions to condemn her, which got no vote, and the Tribune cited the remark in endorsing her opponent.",
+      "Her signature ICE and DHS bills have no path in the current House; she conceded the detention bill won't advance unless Democrats take control (NBC).",
+      "Recent cash figures come from Daily Herald and FEC summaries, not filings checked directly."
+     ],
+     "axes": {
+      "econ": {
+       "v": -2,
+       "why": "Wants to redirect enforcement money into housing, health care and community programs; Green New Deal for Public Housing."
+      },
+      "safety": {
+       "v": -2,
+       "why": "Reimagining Safety Act would replace DHS with a Department of Community Safety; said 'the greatest threat to our safety is DHS.'"
+      },
+      "federal": {
+       "v": -2,
+       "why": "Calls for abolishing ICE; Melt ICE Act; sought oversight of Broadview during Midway Blitz."
+      },
+      "change": {
+       "v": -1,
+       "why": "Two-term incumbent backed by the major unions; came from the progressive wing (Justice Democrats) rather than the party machine."
+      },
+      "green": {
+       "v": 2,
+       "why": "Lists climate justice as a core cause; co-leads the Green New Deal for Public Housing Act."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: Delia Ramirez",
+       "url": "https://en.wikipedia.org/wiki/Delia_Ramirez"
+      },
+      {
+       "title": "Wikipedia: 2026 U.S. House elections in Illinois (District 3)",
+       "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Illinois"
+      },
+      {
+       "title": "Fox 32: Illinois congresswoman introduces 'Melt ICE Act' (Jan. 27, 2026)",
+       "url": "https://fox32chicago.com/news/illinois-congresswoman-introduces-melt-ice-act-dismantle-immigration-agency"
+      },
+      {
+       "title": "NBC News: Democratic lawmaker's bill would cripple DHS's ability to detain immigrants",
+       "url": "https://www.nbcnews.com/politics/congress/democratic-lawmaker-bill-crippling-dhs-detain-immigrants-rcna254998"
+      },
+      {
+       "title": "Rep. Ramirez press release: Illinois delegation requests meeting with ICE field office (2025)",
+       "url": "https://ramirez.house.gov/media/press-releases/ramirez-durbin-members-illinois-delegation-request-meeting-ice-field-office"
+      },
+      {
+       "title": "Rep. Ramirez press releases (Green New Deal for Public Housing reintroduction, Aug. 2026)",
+       "url": "https://ramirez.house.gov/media/press-releases"
+      },
+      {
+       "title": "Chicago Tribune editorial: Angel Oakley for U.S. House, District 3 (Oct. 4, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/04/editorial-angel-oakley-for-u-s-house-of-representatives-in-district-3/"
+      },
+      {
+       "title": "Daily Herald: In suburban congressional races, GOP fundraising continues to lag (Oct. 24, 2026)",
+       "url": "https://www.dailyherald.com/20261024/us-congress-politics/in-suburban-congressional-races-gop-fundraising-continues-to-lag-behind-dems/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "il-senate-2",
+   "title": "State Senator, 2nd District",
+   "vote_for": 1,
+   "context": "Illinois Senate seat for Chicago's Ukrainian Village, Humboldt Park and Belmont Cragin area; senators vote on the state budget, taxes, transit funding and state immigration-protection laws. The incumbent is unopposed.",
+   "candidates": [
+    {
+     "name": "Omar Aquino",
+     "ballot": 32,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": true,
+     "bio": "Aquino, born in 1987 and of Puerto Rican descent, grew up on Chicago's Northwest Side and has held this seat since July 2016, when he was appointed after winning the primary to succeed William Delgado. Before that he was a bilingual case manager for the Illinois Department on Aging, a House legislative aide and an outreach coordinator for then-Rep. Tammy Duckworth. He is unopposed in 2026 and won the March primary with 20,103 votes.",
+     "qualifications": "Ten years in the Illinois Senate; as of 2022 chaired the Appropriations-General Services, Executive-Procurement and Redistricting committees. B.S. in criminal justice and B.A. in sociology from Loyola University Chicago (2009).",
+     "positions": {
+      "legislation_2025": "The ILGA member page lists two of his 2025 bills as law (SB0406 education-tech, Public Act 104-0354; SB0798 state government-tech, Public Act 104-0365). Other 2025 bills, including SB1680 on transportation and greenhouse gases and SB1263 on outdoor access at health facilities, stalled in committee.",
+      "elections_jail_voting": "Earlier sponsored a 2019 law requiring election authorities to work with county jails so detained voters can vote by mail (Senate Democrats release, per search summary).",
+      "immigration_transit_taxes": "No specific 2025-2026 public statements found on Operation Midway Blitz, the 2025 transit funding package or property taxes."
+     },
+     "endorsements": [
+      "Not found for 2026 (unopposed). In 2016 he was backed by William Delgado, the Chicago Teachers Union and SEIU (Wikipedia)."
+     ],
+     "gaps": [
+      "Little recent news coverage of his legislative record; no 2026 questionnaire or interview found.",
+      "Unopposed in both the primary and the general election, so there has been no public vetting this cycle."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Ten-year incumbent, unopposed, originally elected with the backing of most local committeemen."
+      },
+      "green": {
+       "v": 1,
+       "why": "Filed 2025 bills on transportation and greenhouse gases (SB1680) and on energy storage (2023); thin evidence."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: Omar Aquino",
+       "url": "https://en.wikipedia.org/wiki/Omar_Aquino"
+      },
+      {
+       "title": "Wikipedia: 2026 Illinois Senate election (District 2)",
+       "url": "https://en.wikipedia.org/wiki/2026_Illinois_Senate_election"
+      },
+      {
+       "title": "Illinois General Assembly: Sen. Omar Aquino member page (104th GA)",
+       "url": "https://www.ilga.gov/Senate/Members/Details/3099"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "il-house-3",
+   "title": "State Representative, 3rd District",
+   "vote_for": 1,
+   "context": "Illinois House seat covering parts of Elmwood Park and the Chicago neighborhoods of Austin, Belmont Cragin, Dunning, Hermosa, Logan Square, Montclare and Portage Park; representatives vote on the state budget, taxes and transit. The incumbent is unopposed.",
+   "candidates": [
+    {
+     "name": "Eva-Dina Delgado",
+     "ballot": 42,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": true,
+     "bio": "Delgado has represented the 3rd District since November 2019, when she was appointed to replace Rep. Luis Arroyo, who resigned after a federal bribery indictment. Before that she was chief of staff and assistant to the president at Peoples Gas. She holds a B.A. in international relations from Wellesley College (1999) and a J.D. from DePaul (2003).",
+     "qualifications": "About seven years in the House; served on committees including Public Utilities, Consumer Protection, Appropriations-Public Safety and Transportation: Vehicles & Safety (as of 2022). Chief House sponsor of the 2025 regional transit overhaul.",
+     "positions": {
+      "transit": "Lead House sponsor of SB 2111, passed Oct. 31, 2025 (House vote 72-33, only Democrats in favor). It replaced the RTA with the Northern Illinois Transit Authority and raised about $1.5 billion through redirected motor-fuel sales tax, a quarter-percent Chicago-area sales tax and a 45-cent toll increase. Her spokesperson said the aim was to prevent fare hikes and service cuts.",
+      "housing_parking": "The bill began as her People Over Parking Act, which proposed eliminating parking minimums near transit hubs.",
+      "immigration_taxes": "No specific public statements found on Operation Midway Blitz or property taxes."
+     },
+     "endorsements": [
+      "Not found for 2026 (unopposed). She endorsed Liz Nicholson for Board of Review."
+     ],
+     "gaps": [
+      "Her 2019 appointment drew criticism because Arroyo's proxy votes were used to select her (Wikipedia).",
+      "Downstate lawmakers objected that her transit bill diverts Road Fund money, and suburban leaders criticized the new board's makeup.",
+      "Unopposed, with no 2026 questionnaire found."
+     ],
+     "axes": {
+      "econ": {
+       "v": -1,
+       "why": "Lead sponsor of a transit package raising about $1.5B through a regional sales tax, tolls and redirected fuel-tax money."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Appointed through the party process in 2019; incumbent; unopposed."
+      },
+      "green": {
+       "v": 1,
+       "why": "Transit expansion and her People Over Parking proposal to drop parking minimums near transit."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: Eva-Dina Delgado",
+       "url": "https://en.wikipedia.org/wiki/Eva-Dina_Delgado"
+      },
+      {
+       "title": "NPR Illinois / Capitol News Illinois: Lawmakers approve $1.5B transit funding package (Oct. 31, 2025)",
+       "url": "https://www.nprillinois.org/government-politics/2025-10-31/lawmakers-approve-1-5b-transit-funding-package-without-statewide-tax-increases"
+      },
+      {
+       "title": "WTTW: Lawmakers approve $1.5B transit funding package (Oct. 31, 2025)",
+       "url": "https://news.wttw.com/2025/10/31/lawmakers-approve-15b-transit-funding-package-without-statewide-tax-increases"
+      },
+      {
+       "title": "Bisnow: Illinois bill would eliminate parking minimums, streamline transit",
+       "url": "https://www.bisnow.com/news/chicago/commercial-real-estate/new-illinois-transit-bill-would-eliminate-some-parking-minimums-as-budget-crunch-looms-129574"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mwrd-6yr",
+   "title": "Commissioner, Metropolitan Water Reclamation District (full 6-year term)",
+   "vote_for": 3,
+   "context": "The nine-member MWRD board oversees Cook County's wastewater treatment, the Deep Tunnel and its reservoirs, and stormwater and flood control, funded largely by property taxes. Three Democratic incumbents face a coordinated three-person Republican slate. The Tribune urged ticket-splitting, and a new inspector general finding on commissioners' vehicle use has become a campaign issue.",
+   "candidates": [
+    {
+     "name": "Michelle Pennington",
+     "ballot": 51,
+     "party": "Republican",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Pennington, of Chicago, is managing director of Medill Partners, a real estate holding and development company, and studied economics at DePaul University. She was the Republican nominee for Cook County Clerk in 2024 and lost to Monica Gordon. She is running as part of a coordinated slate with Rueckert and Shestokas.",
+     "qualifications": "Real estate business experience; says she has worked with nonprofits supporting Chicago Public Schools and is a member of the Illinois Water Environment Association (per VoteStack, citing her campaign). No prior public office or water-agency experience found.",
+     "positions": {
+      "budget_dei": "Wants sweeping layoffs and budget cuts aimed at MWRD's DEI programs, employee resource groups, cultural events and internships, and wants to cut the legislative and intergovernmental affairs team (Tribune).",
+      "property_taxes": "Says every MWRD dollar should go to clean water and flood prevention \"instead of outside programs,\" and promises a waste review to lower tax bills.",
+      "harvey_properties": "In September 2026 called on MWRD to secure its abandoned properties in Harvey and be transparent with taxpayers and displaced residents.",
+      "ethics": "Joined Rueckert and Shestokas in demanding enforcement and a public review of commissioners' vehicle use after the IG finding: \"Accountability starts at the top.\"",
+      "green_infrastructure": "No specific stance found."
+     },
+     "endorsements": [
+      "Cook County Republican Party",
+      "Chicago Republican Party",
+      "Polish American Police Association (per her site)",
+      "Several township Republican organizations (Northfield, Wheeling, Schaumburg, Orland)",
+      "Not endorsed by the Tribune"
+     ],
+     "gaps": [
+      "The Tribune doubted her cuts would get any support on the board and warned against bringing \"culture-war politics\" into an agency that must reach underserved, flood-prone areas.",
+      "Small campaign: raised $6,952 from July to Sept. 2026, including $2,500 of her own money, with $6,125 on hand (VoteStack, citing ISBE filings).",
+      "No stated plan on green infrastructure, Deep Tunnel capacity or disinfection."
+     ],
+     "axes": {
+      "econ": {
+       "v": 2,
+       "why": "Wants layoffs and budget cuts (DEI programs, internships, the intergovernmental affairs team) to lower tax bills."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 2,
+       "why": "First-time Republican challenger to one-party Democratic control, running on accountability."
+      },
+      "green": {
+       "v": -1,
+       "why": "Cost-first: money should go only to core water and flood work 'instead of outside programs'; no green-infrastructure proposals."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "Michelle Pennington campaign site",
+       "url": "https://www.michelleforcleanwater.com/"
+      },
+      {
+       "title": "VoteStack: Michelle Pennington (AI-written; cites ISBE filings)",
+       "url": "https://votestack.org/candidates/michelle-pennington"
+      },
+      {
+       "title": "North Shore Weekly: Three Republicans seek MWRD board seats (July 24, 2026)",
+       "url": "https://northshoreweekly.com/articles/three-republicans-seek-mwrd-board-seats-as-deep-tunnel-hits-capacity-mrz1ct8l"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    },
+    {
+     "name": "Timothy C. Rueckert",
+     "ballot": 52,
+     "party": "Republican",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Rueckert, of unincorporated Glenview, served eight years as Northfield Township highway commissioner, working with MWRD on flood-control and drainage projects at Citation Lake, Northbrook West and the Central Road Drainage District. He lost that post to Democrat Mike Korman in April 2025. He has a law-enforcement background and owns a small business with his wife.",
+     "qualifications": "Eight years as a township highway commissioner overseeing flood and drainage work; former criminal investigator for state agencies (Secretary of State, Gaming Board, Department of Revenue, per VoteStack); bachelor's degree in accounting and finance (VoteStack).",
+     "positions": {
+      "flooding": "Direct MWRD resources to the drainage projects with the most impact and work with local governments to fix known problem areas before the next big storm.",
+      "infrastructure": "Create a grant program to replace or reline public sanitary sewer lines, cutting stormwater seepage and overflow risk.",
+      "fiscal_transparency": "Disciplined budgeting, competitive contracting, performance measures; livestream and record board meetings.",
+      "dei": "Would \"examine the individual programs, contracts, staffing and results before committing to eliminating every one of them\" (Tribune).",
+      "ethics": "After the IG finding, called for a public timetable, a named official responsible for checking records, a review of 2025 documentation, disclosure of vehicle costs, and a public board vote on unlimited personal use."
+     },
+     "endorsements": [
+      "Cook County Republican Party",
+      "Several township Republican organizations (Northfield, Wheeling, Schaumburg, Orland)",
+      "Not endorsed by the Tribune"
+     ],
+     "gaps": [
+      "The Tribune questioned whether he knows enough about the agency's regional operations to be effective from day one.",
+      "Did not take part in WTTW's 2026 general-election voters guide (per search result).",
+      "No campaign-finance data found (VoteStack, as of Oct. 26, 2026).",
+      "Name discrepancy: the ballot listing given reads 'Timothy C. Rueckert' but VoteStack and the Evanston RoundTable list 'Timothy E. Rueckert'. Verify against the official ballot."
+     ],
+     "axes": {
+      "econ": {
+       "v": 1,
+       "why": "Stresses disciplined budgeting and competitive contracting, but also proposes a new sewer-relining grant program."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 1,
+       "why": "Republican challenger promising 'an independent set of eyes,' though a former township officeholder."
+      },
+      "green": {
+       "v": 0,
+       "why": "Focuses on conventional drainage and sewer relining; no green-infrastructure or climate stance found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "Tim Rueckert campaign site (About)",
+       "url": "https://tim4mwrd.com/about"
+      },
+      {
+       "title": "VoteStack: Timothy E. Rueckert (AI-written)",
+       "url": "https://votestack.org/candidates/timothy-e-rueckert"
+      },
+      {
+       "title": "North Shore Weekly: Three Republicans seek MWRD board seats (July 24, 2026)",
+       "url": "https://northshoreweekly.com/articles/three-republicans-seek-mwrd-board-seats-as-deep-tunnel-hits-capacity-mrz1ct8l"
+      },
+      {
+       "title": "Journal & Topics: Withdrawn objection allows 3 GOP candidates to run for MWRD seats (July 15, 2026)",
+       "url": "https://www.journal-topics.com/articles/withdrawn-objection-allows-3-gop-candidates-to-run-for-mwrd-seats/"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      },
+      {
+       "title": "WTTW 2026 general voters guide: MWRD Commissioners (6-year term)",
+       "url": "https://news.wttw.com/elections/voters-guide/2026-general/races/mwrd-commissioner-6-year-term"
+      }
+     ]
+    },
+    {
+     "name": "Jill B. Shestokas",
+     "ballot": 53,
+     "party": "Republican",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Shestokas, of Orland Park, was MWRD's main spokesperson and public affairs manager/director from 2007 to 2010, handling policy, legislative affairs and public education; she says that work won national awards. Since then she has worked in political and public-affairs consulting as principal of Thomas & Joyce. This is her first run for office.",
+     "qualifications": "Three years inside MWRD explaining its engineering, policy and finances; co-chaired a committee of an international water association (Tribune); degree in journalism/human ecology from the University of Maryland.",
+     "positions": {
+      "transparency": "Create a single public project dashboard showing original and current costs, deadlines, progress and reasons for delays, and make MWRD's real-time data and maps easy to use.",
+      "storm_response": "Hold after-action reviews after every major storm: what worked, what failed, what must change.",
+      "climate_stormwater": "Update rainfall estimates and operating rules for changing weather instead of \"yesterday's standards\"; set and publish district-wide goals for stormwater capture, sewer protection and water reuse; prioritize communities with repeated flood damage.",
+      "budget_revenue": "Add checkpoints to contracts when costs rise or projects slip; redirect money from stalled projects; create a Resource Recovery & Revenue Team to sell reclaimed water, biosolids, fertilizer and gas, and connect water-heavy users such as data centers with reuse.",
+      "ethics": "After the IG finding, said commissioners should meet the record-keeping standard required of anyone claiming business expenses; wants any exception to board spending rules approved by a public vote with recusals on the record."
+     },
+     "endorsements": [
+      "Chicago Tribune Editorial Board (Oct. 15, 2026)",
+      "Cook County Republican Party"
+     ],
+     "gaps": [
+      "First-time candidate (Tribune).",
+      "Her site gives no specific stance on pensions, disinfection or Deep Tunnel capacity.",
+      "Sources differ on her title at MWRD (public affairs manager vs. director)."
+     ],
+     "axes": {
+      "econ": {
+       "v": 1,
+       "why": "Spending checkpoints and new non-property-tax revenue; mostly a fiscal-accountability platform."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 1,
+       "why": "Republican watchdog candidate, but a former MWRD insider."
+      },
+      "green": {
+       "v": 1,
+       "why": "Wants climate-updated rainfall standards, published stormwater capture and reuse goals, and resource recovery."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "Jill Shestokas campaign site",
+       "url": "https://jill4water.com/"
+      },
+      {
+       "title": "North Shore Weekly: Three Republicans seek MWRD board seats (July 24, 2026)",
+       "url": "https://northshoreweekly.com/articles/three-republicans-seek-mwrd-board-seats-as-deep-tunnel-hits-capacity-mrz1ct8l"
+      },
+      {
+       "title": "Journal & Topics: Withdrawn objection allows 3 GOP candidates to run for MWRD seats (July 15, 2026)",
+       "url": "https://www.journal-topics.com/articles/withdrawn-objection-allows-3-gop-candidates-to-run-for-mwrd-seats/"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    },
+    {
+     "name": "Precious Brady-Davis",
+     "ballot": 54,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Brady-Davis was appointed to the MWRD board by Gov. JB Pritzker in July 2023 and won the 2024 special election for an unexpired term with 67.8% of the vote. She is chief strategy officer at the Center on Halsted, a former Sierra Club regional communications director, and the author of the memoir I Have Always Been Me. She is the first Black transgender woman elected to public office in Cook County.",
+     "qualifications": "About three years on the MWRD board; environmental communications work at the Sierra Club. The Tribune calls her \"a visible, effective commissioner\" and \"a rising star.\"",
+     "positions": {
+      "climate": "Cut the agency's greenhouse-gas emissions by 50% and research wind power for MWRD plants (VoteStack, citing her campaign).",
+      "flooding_equity": "Direct more flood-prevention resources to the South and West sides; finish the McCook Reservoir by 2029.",
+      "green_infrastructure": "Build green infrastructure such as permeable playgrounds; told Friends of the Chicago River that aging gray infrastructure pushes communities toward conventional fixes and backed visible pilot projects and maintenance training.",
+      "pollution": "Stop leasing MWRD land to polluters.",
+      "disinfection": "Friends of the Chicago River's 2026 table lists a 'Yes' for her on requiring disinfection at the Stickney plant (only partly visible to us)."
+     },
+     "endorsements": [
+      "Chicago Tribune (primary and general)",
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "Operating Engineers Locals 150/399",
+      "SEIU",
+      "Sierra Club Illinois",
+      "Citizen Action/Illinois",
+      "Equality Illinois",
+      "LGBTQ+ Victory Fund",
+      "Jane Fonda Climate PAC",
+      "Secretary of State Alexi Giannoulias"
+     ],
+     "gaps": [
+      "Modest fundraising this cycle: $3,002 raised in Q3 2026, $39,527 on hand (VoteStack, citing ISBE).",
+      "In October 2026 MWRD's interim inspector general found that the mileage logs of all eight commissioners with district vehicles lacked the detail to separate business from personal use, and that the district wasn't enforcing its rule treating personal mileage as a taxable benefit. The report named no commissioners, and an allegation that one used a vehicle for concerts was found unfounded (Chicago City Wire).",
+      "We could not fully read her Friends of the Chicago River questionnaire (site error)."
+     ],
+     "axes": {
+      "econ": {
+       "v": -1,
+       "why": "Proposes expanded climate and green-infrastructure programs; no tax-cut proposals."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Governor-appointed incumbent slated by the county Democratic Party with broad union support."
+      },
+      "green": {
+       "v": 2,
+       "why": "50% GHG cut, wind power study, green infrastructure, stop leasing land to polluters; Sierra Club-endorsed."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "VoteStack: Precious Brady-Davis (AI-written; cites ISBE filings, campaign site)",
+       "url": "https://votestack.org/candidates/precious-brady-davis"
+      },
+      {
+       "title": "Wikipedia: Precious Brady-Davis",
+       "url": "https://en.wikipedia.org/wiki/Precious_Brady-Davis"
+      },
+      {
+       "title": "Daily Northwestern: 2024 MWRD results",
+       "url": "https://dailynorthwestern.com/?p=293684"
+      },
+      {
+       "title": "Friends of the Chicago River: River swimming, green infrastructure, disinfection - the stakes in the MWRD race (Feb. 2026)",
+       "url": "https://www.chicagoriver.org/blog/2026/2/river-swimming-green-infrastructure-disinfection-the-stakes-in-the-mwrd-race"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    },
+    {
+     "name": "Eira Lizeth Corral Sepúlveda",
+     "ballot": 55,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Corral Sepúlveda has been an MWRD commissioner since 2020, the first Latina elected to the board and the first commissioner in recent history from the Northwest suburbs. She was first elected Hanover Park village clerk at 23, as a single mother, and served three terms (2009-2021), championing the village's Arbor Day and Tree City USA programs. She graduated from DePaul University in 2007.",
+     "qualifications": "One six-year term on the MWRD board; chairs the Monitoring & Research and Municipalities committees (VoteStack); 12 years as a village clerk.",
+     "positions": {
+      "stormwater_water_quality": "Focuses on regional stormwater management, water quality and flood prevention; promotes MWRD's Restore the Canopy free native tree sapling program.",
+      "disinfection": "In her 2020 Sun-Times questionnaire she said MWRD should move toward disinfection at the Stickney plant but that cost was a hurdle; her current position was not visible to us.",
+      "environmental_justice": "Friends of the Chicago River's 2026 table includes a response from her on environmental-justice policy and staffing (only partly visible)."
+     },
+     "endorsements": [
+      "Chicago Tribune (primary and general)",
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "Operating Engineers Locals 150/399",
+      "SEIU",
+      "Sierra Club Illinois",
+      "Citizen Action/Illinois",
+      "Personal PAC",
+      "A City That Works (primary)"
+     ],
+     "gaps": [
+      "Few specific 2026 policy proposals found in public sources; her campaign site could not be read.",
+      "Low Q3 2026 fundraising: $476 raised, $40,413 on hand (VoteStack, citing ISBE).",
+      "In October 2026 MWRD's interim inspector general found that the mileage logs of all eight commissioners with district vehicles lacked the detail to separate business from personal use, and that the district wasn't enforcing its rule treating personal mileage as a taxable benefit. The report named no commissioners, and an allegation that one used a vehicle for concerts was found unfounded (Chicago City Wire)."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Six-year incumbent slated by the Democratic Party with full union support."
+      },
+      "green": {
+       "v": 1,
+       "why": "Tree-canopy and stormwater work; Sierra Club-endorsed; earlier backed moving toward disinfection with cost caveats."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "Chicago Tribune editorial: MWRD primary endorsements (Feb. 2026, via Yahoo)",
+       "url": "https://www.yahoo.com/news/articles/editorial-endorsements-metropolitan-water-reclamation-140600919.html"
+      },
+      {
+       "title": "MWRD: Commissioner Eira L. Corral Sepúlveda profile",
+       "url": "https://mwrd.org/board-commissioners/eira-l-corral-sepulveda"
+      },
+      {
+       "title": "VoteStack: Eira Lizeth Corral Sepúlveda (AI-written; cites ISBE filings)",
+       "url": "https://votestack.org/candidates/eira-lizeth-corral-sepulveda"
+      },
+      {
+       "title": "Chicago Sun-Times: Eira Corral Sepúlveda 2020 MWRD questionnaire",
+       "url": "https://chicago.suntimes.com/2020/1/24/21060608/eira-corral-sepulveda-metropolitan-water-reclamation-district-democrat-candidate-2020-primary-mwrd"
+      },
+      {
+       "title": "Friends of the Chicago River: River swimming, green infrastructure, disinfection - the stakes in the MWRD race (Feb. 2026)",
+       "url": "https://www.chicagoriver.org/blog/2026/2/river-swimming-green-infrastructure-disinfection-the-stakes-in-the-mwrd-race"
+      },
+      {
+       "title": "A City That Works (Substack): Guide to the 2026 March primaries",
+       "url": "https://citythatworks.substack.com/p/a-city-that-works-guide-to-the-2026"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    },
+    {
+     "name": "Beth McElroy Kirkwood",
+     "ballot": 56,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "McElroy Kirkwood was appointed by Gov. Pritzker in December 2024 to the seat Mariyana Spyropoulos vacated when she became Circuit Court Clerk. She has been Orland Township Democratic committeeperson since 2021, has worked across Orland Park village departments, and chairs the Moraine Valley Community College board of trustees. She left a job in Orland Park schools to focus on MWRD.",
+     "qualifications": "About two years on the MWRD board; administration, budgeting and management experience, including oversight of a $161 million college budget (VoteStack). The Tribune noted she had \"no special environmental credentials\" before her appointment and relies on staff lawyers and scientists for technical expertise.",
+     "positions": {
+      "green_space": "Wants to expand Space to Grow, which builds green-infrastructure schoolyards, to suburban townships and schools; supports preserving green space.",
+      "intergovernmental": "Says she uses her ties to elected officials in the Chicago area and Springfield in MWRD's lobbying efforts (Tribune, primary)."
+     },
+     "endorsements": [
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "SEIU",
+      "Operating Engineers Locals 150/399",
+      "Mid-America Carpenters",
+      "Citizen Action/Illinois",
+      "Secretary of State Alexi Giannoulias",
+      "Chicago Tribune in the primary only; for November the Tribune endorsed Shestokas over her, calling it a 'tough call'"
+     ],
+     "gaps": [
+      "Primary challenger Sarah Bury and A City That Works cast her as a party loyalist with little environmental background; she drew the fewest votes of the three incumbents in March.",
+      "Few detailed policy positions found; her campaign site could not be read.",
+      "In October 2026 MWRD's interim inspector general found that the mileage logs of all eight commissioners with district vehicles lacked the detail to separate business from personal use, and that the district wasn't enforcing its rule treating personal mileage as a taxable benefit. The report named no commissioners, and an allegation that one used a vehicle for concerts was found unfounded (Chicago City Wire)."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Governor appointee and township Democratic committeeperson slated by the party."
+      },
+      "green": {
+       "v": 1,
+       "why": "Wants to expand Space to Grow green schoolyards; no broader climate agenda found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Our endorsements for MWRD in midterms (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-our-endorsements-metropolitan-water-reclamation-district-midterms/"
+      },
+      {
+       "title": "Chicago Tribune editorial: MWRD primary endorsements (Feb. 2026, via Yahoo)",
+       "url": "https://www.yahoo.com/news/articles/editorial-endorsements-metropolitan-water-reclamation-140600919.html"
+      },
+      {
+       "title": "MWRD: Gov. Pritzker appoints Beth McElroy Kirkwood to fill vacant MWRD seat (Dec. 2024)",
+       "url": "https://mwrd.org/news/illinois-governor-jb-pritzker-appoints-beth-mcelroy-kirkwood-fill-vacant-mwrd-seat"
+      },
+      {
+       "title": "VoteStack: Beth McElroy Kirkwood (AI-written; cites ISBE filings)",
+       "url": "https://votestack.org/candidates/beth-mcelroy-kirkwood"
+      },
+      {
+       "title": "A City That Works (Substack): Guide to the 2026 March primaries",
+       "url": "https://citythatworks.substack.com/p/a-city-that-works-guide-to-the-2026"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mwrd-2yr",
+   "title": "Commissioner, Metropolitan Water Reclamation District (unexpired 2-year term)",
+   "vote_for": 1,
+   "context": "A separate MWRD seat with two years left on its term, which WTTW attributes to an unfinished term from a previous commissioner. The incumbent is unopposed.",
+   "candidates": [
+    {
+     "name": "Cameron \"Cam\" Davis",
+     "ballot": 57,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": true,
+     "bio": "Davis, of Evanston, has been an MWRD commissioner since 2018, when he won the Democratic primary as a write-in and then the general election. He served through both Obama terms as the EPA's senior adviser coordinating the Great Lakes Restoration Initiative (the \"Great Lakes czar\"). Before that he was president and CEO of the Alliance for the Great Lakes and a National Wildlife Federation litigator.",
+     "qualifications": "About eight years on the MWRD board; helped write the Great Lakes Restoration Initiative action plans and was a lead U.S. negotiator on the 2012 U.S.-Canada Great Lakes Water Quality Agreement; J.D. with environmental and energy law certification from Chicago-Kent.",
+     "positions": {
+      "green_infrastructure": "Has led an effort to extend MWRD's school green-infrastructure work from Chicago schools to suburban schoolyards (WTTW 2026 guide).",
+      "polluter_pays": "Pushes 'polluter pays' approaches that would shift cleanup costs for PFAS and pharmaceuticals from taxpayers to manufacturers.",
+      "overflows": "Notes that heavier storms fill the Deep Tunnel and reservoirs and sometimes force overflows into waterways.",
+      "equity": "Has pushed to elevate environmental equity within the agency (Wikipedia)."
+     },
+     "endorsements": [
+      "Cook County Democratic Party",
+      "Sierra Club Illinois",
+      "Citizen Action/Illinois",
+      "SEIU",
+      "Cook County College Teachers Union Local 1600",
+      "Chicago Federation of Labor, the Operating Engineers and Plumbers Local 130 declined to endorse him in the primary (Wikipedia)"
+     ],
+     "gaps": [
+      "Unopposed. Several building-trades unions withheld primary endorsements (reason not found).",
+      "Current 2026 position on Stickney disinfection not found.",
+      "In October 2026 MWRD's interim inspector general found that the mileage logs of all eight commissioners with district vehicles lacked the detail to separate business from personal use, and that the district wasn't enforcing its rule treating personal mileage as a taxable benefit. The report named no commissioners, and an allegation that one used a vehicle for concerts was found unfounded (Chicago City Wire)."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -1,
+       "why": "Incumbent with party backing, though he first won in 2018 as a write-in rather than as a slated candidate."
+      },
+      "green": {
+       "v": 2,
+       "why": "Career Great Lakes advocate; green schoolyards; polluter-pays for PFAS and pharmaceuticals."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: Cameron Davis (lawyer)",
+       "url": "https://en.wikipedia.org/wiki/Cameron_Davis_(lawyer)"
+      },
+      {
+       "title": "WTTW 2026 general voters guide: Cameron 'Cam' Davis",
+       "url": "https://news.wttw.com/elections/voters-guide/2026-general/cameron-cam-davis"
+      },
+      {
+       "title": "WTTW: Incumbents hold solid lead over lone challenger for MWRD seats (Mar. 17, 2026)",
+       "url": "https://news.wttw.com/2026/03/17/four-candidates-vying-three-seats-mwrd-board-commissioners"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Journal & Topics: Withdrawn objection allows 3 GOP candidates to run for MWRD seats (July 15, 2026)",
+       "url": "https://www.journal-topics.com/articles/withdrawn-objection-allows-3-gop-candidates-to-run-for-mwrd-seats/"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      },
+      {
+       "title": "Chicago City Wire: MWRD candidates question oversight after IG finds inadequate mileage records (Oct. 2026)",
+       "url": "https://chicagocitywire.com/mwrd-candidates-question-oversight-after-inspector-general-finds-inadequate-mileage-records"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-board-president",
+   "title": "President, Cook County Board of Commissioners",
+   "vote_for": 1,
+   "context": "The county's chief executive proposes the roughly $9.7 billion budget and runs Cook County Health, the forest preserves and county-wide policy on the jail, public defenders and immigration cooperation. It is the county's most powerful office. Preckwinkle is seeking a record-tying fifth term; no Republican is on the ballot.",
+   "candidates": [
+    {
+     "name": "Toni Preckwinkle",
+     "ballot": 62,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Preckwinkle, 79, has been board president since 2010, the first woman elected to the post, and has chaired the Cook County Democratic Party since 2018. She was Chicago's 4th Ward alderman from 1991 to 2010 and earlier taught high school history. She was runner-up for mayor in 2019 and beat Ald. Brendan Reilly in the March 2026 primary, 444,626 votes to 203,071.",
+     "qualifications": "Four terms as county board president; 19 years on the City Council; also president of the Forest Preserves of Cook County. Bachelor's and master's degrees from the University of Chicago.",
+     "positions": {
+      "budget_taxes": "Proposed a FY2027 budget of $9.69 billion, down from $10.12 billion, closing a $550.7 million gap with vacancy management, $35 million in cuts, investment gains and $18 million from reserves, with no new taxes. She blamed federal cuts and said the county will need to \"consider additional revenue\" in coming years. She says she has not raised property taxes and has cut county debt by $800 million.",
+      "health": "Credits her leadership for CountyCare, the county's Medicaid managed-care plan; the Tribune notes federal Medicaid changes are straining Cook County Health.",
+      "jail_public_safety": "Supports treating mental illness and addiction as illnesses rather than crimes, expanding the Justice Advisory Council, and reducing the jail population.",
+      "immigration": "In October 2025, during Operation Midway Blitz, signed Executive Order 2025-1 barring ICE from using county-owned buildings, lots and garages for civil immigration enforcement or staging, building on a 2011 ordinance.",
+      "property_tax_system": "Promised the Tribune a new, not-yet-announced initiative to get tax bills out on time after a technology fiasco delayed bills across several cycles."
+     },
+     "endorsements": [
+      "Chicago Tribune (general; it backed Reilly in the primary)",
+      "Gov. JB Pritzker",
+      "Sen. Dick Durbin",
+      "Rep. Delia Ramirez and other Chicago-area House members",
+      "Cook County Democratic Party",
+      "AFSCME Council 31",
+      "Chicago Federation of Labor",
+      "SEIU",
+      "Sierra Club Illinois",
+      "Daily Herald (primary)"
+     ],
+     "gaps": [
+      "The property-tax billing system rollout (vendor Tyler Technologies) sent bills out late across several cycles, forcing taxing bodies to borrow nearly $200 million from the county; the Tribune held her responsible.",
+      "The FY2027 budget relies on one-time fixes (Tribune).",
+      "Age (79) and length of tenure were primary issues (A City That Works).",
+      "Did not respond to Loyola Phoenix interview requests.",
+      "Her record includes the sweetened-beverage tax, later repealed (Wikipedia)."
+     ],
+     "axes": {
+      "econ": {
+       "v": -1,
+       "why": "No new taxes in FY2027, but she defends a large safety-net budget and signals 'additional revenue' later; past soda tax."
+      },
+      "safety": {
+       "v": -1,
+       "why": "Prioritizes reducing the jail population and treating addiction and mental illness as health issues."
+      },
+      "federal": {
+       "v": -2,
+       "why": "Executive order barring ICE from county property during Midway Blitz."
+      },
+      "change": {
+       "v": -2,
+       "why": "Fifth-term incumbent and chair of the county Democratic Party."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": 0,
+       "why": "Mixed: commissioned a study showing large Board of Review cuts for big commercial properties, but her party slated Hynes over reformer Kaegi."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Toni Preckwinkle for Cook County president (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-toni-preckwinkle-cook-county-president/"
+      },
+      {
+       "title": "North Shore Weekly: Preckwinkle seeks reelection (Oct. 9, 2026)",
+       "url": "https://northshoreweekly.com/articles/preckwinkle-seeks-reelection-as-cook-county-board-president-mv177nk1"
+      },
+      {
+       "title": "Cities 92.9: Cook County leader suggests future tax hikes at budget address (Oct. 8, 2026)",
+       "url": "https://www.cities929.com/2026/10/08/cook-county-leader-suggests-future-tax-hikes-at-budget-address/"
+      },
+      {
+       "title": "Cook County: President Preckwinkle signs executive order banning use of county property for ICE (Oct. 2025)",
+       "url": "https://www.cookcountyil.gov/news/president-preckwinkle-signs-executive-order-banning-use-cook-county-owned-property-and"
+      },
+      {
+       "title": "Loyola Phoenix: Preckwinkle faces Libertarian challenger Michael Murphy (Oct. 14, 2026)",
+       "url": "https://loyolaphoenix.com/2026/10/preckwinkle-faces-libertarian-challenger-michael-murphy-in-cook-county-board-presidential-race/"
+      },
+      {
+       "title": "Wikipedia: Toni Preckwinkle",
+       "url": "https://en.wikipedia.org/wiki/Toni_Preckwinkle"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "A City That Works (Substack): Guide to the 2026 March primaries",
+       "url": "https://citythatworks.substack.com/p/a-city-that-works-guide-to-the-2026"
+      },
+      {
+       "title": "The Real Deal: Commercial vs. residential tension in Cook County Board of Review races (Mar. 2, 2026)",
+       "url": "https://therealdeal.com/chicago/2026/03/02/who-are-the-cook-county-board-of-review-candidates/"
+      }
+     ]
+    },
+    {
+     "name": "Michael Murphy",
+     "ballot": 63,
+     "party": "Libertarian",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Murphy is an IT professional and systems administrator from Chicago's Austin neighborhood who has worked in information technology since 2015. He has never held public office. He won a contested Libertarian primary against Justin Tucker and says he entered the race because competitive elections are essential to democracy.",
+     "qualifications": "Technology career; no government experience found.",
+     "positions": {
+      "property_taxes": "Base property taxes on a home's purchase price at about 1%, with annual increases capped at 2% or inflation (a Prop 13-style system), phased in gradually; would need changes to state law.",
+      "budget": "Would keep the budget flat and avoid property tax increases; calls the county's situation a \"budget crisis\" built on temporary federal money; wants accountability for cost overruns in the property-tax system upgrade.",
+      "jail_courts": "Supports speedy trials so defendants don't wait years; favors mental-health services and root-cause approaches to violence; personal autonomy on drug use.",
+      "immigration_surveillance": "Would enforce county sanctuary policies so county resources aren't used for federal immigration enforcement; would remove automated license-plate reader (Flock) cameras.",
+      "housing_other": "By-right zoning so housing that meets codes is approved automatically; school choice; LGBTQ+ protections and reproductive rights."
+     },
+     "endorsements": [
+      "None found"
+     ],
+     "gaps": [
+      "No government experience; the Tribune said his platform is built on \"libertarian truisms\" with \"little practical referent\" to the office.",
+      "Did not take part in WTTW's 2026 primary voters guide (per search result).",
+      "No Libertarian has ever won county-wide office (Loyola Phoenix)."
+     ],
+     "axes": {
+      "econ": {
+       "v": 2,
+       "why": "Flat budget, no property tax increases, cap property taxes at 1% of purchase price."
+      },
+      "safety": {
+       "v": -1,
+       "why": "Speedy trials, mental-health and root-cause approaches, drug-policy liberty, remove Flock cameras."
+      },
+      "federal": {
+       "v": -1,
+       "why": "Would enforce county sanctuary policies against use of county resources for immigration enforcement."
+      },
+      "change": {
+       "v": 2,
+       "why": "First-time Libertarian challenger to a five-term party chair."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "His acquisition-value cap (Prop 13-style) doesn't map onto the commercial vs. residential axis."
+      }
+     },
+     "sources": [
+      {
+       "title": "Loyola Phoenix: Preckwinkle faces Libertarian challenger Michael Murphy (Oct. 14, 2026)",
+       "url": "https://loyolaphoenix.com/2026/10/preckwinkle-faces-libertarian-challenger-michael-murphy-in-cook-county-board-presidential-race/"
+      },
+      {
+       "title": "Cities 92.9: Cook County leader suggests future tax hikes at budget address (Oct. 8, 2026)",
+       "url": "https://www.cities929.com/2026/10/08/cook-county-leader-suggests-future-tax-hikes-at-budget-address/"
+      },
+      {
+       "title": "Chicago Tribune editorial: Toni Preckwinkle for Cook County president (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-toni-preckwinkle-cook-county-president/"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "WTTW 2026 primary voters guide: Cook County Board President",
+       "url": "https://news.wttw.com/elections/voters-guide/2026-primary/races/cook-county-board-president"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-clerk",
+   "title": "Cook County Clerk",
+   "vote_for": 1,
+   "context": "The Clerk keeps vital records, calculates property tax rates and administers elections in suburban Cook County. Chicago voters, including Ward 30, vote in elections run by the separate, court-appointed Chicago Board of Election Commissioners, not the Clerk. Gordon has no ballot opponent, though a write-in line is printed.",
+   "candidates": [
+    {
+     "name": "Monica Gordon",
+     "ballot": 64,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Gordon has been Cook County Clerk since December 2024. Democrats slated her after Clerk Karen Yarbrough died in April 2024, and she won the November 2024 election with about 65% of the vote, defeating Republican Michelle Pennington. She previously represented the 5th District on the county board (2022-2024) and was executive director of the Illinois Legislative Black Caucus Foundation.",
+     "qualifications": "Two years as clerk; former county commissioner (vice chair of Transportation); former board chair of Prairie State College; government affairs at Chicago State University; M.A. from Governors State University and B.A. from Northern Illinois University.",
+     "positions": {
+      "election_administration": "In August 2026 she highlighted election security and defended mail voting as secure and governed by state law, discussing postal changes and pending federal legal challenges to mail voting. In September 2026 she joined a national election-administration roundtable in Washington.",
+      "access_modernization": "Has said she wants to encourage more people to vote, put more documents online and use AI to free staff for other tasks (per search summary of her Democratic Party bio and reporting).",
+      "poll_workers": "Recruited election judges and polling-place technicians for the 2026 primary."
+     },
+     "endorsements": [
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "Operating Engineers Locals 150/399",
+      "Plumbers Local 130",
+      "SEIU Illinois State Council",
+      "Equality Illinois",
+      "Chicago Crusader (primary)",
+      "She endorsed Pat Hynes for assessor and George Cardenas for Board of Review"
+     ],
+     "gaps": [
+      "Did not take part in WTTW's 2026 general-election voters guide (per search result).",
+      "No Tribune general-election endorsement listed for this race.",
+      "No declared write-in opponent found; Hontas Farmer ran as a Libertarian write-in in the March primary, and whether she qualified for November was not found.",
+      "No public stance found on her office's role in the delayed property-tax bills."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Party-slated incumbent with full labor and party backing."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "The Clerk computes tax rates but sets no assessment policy; no evidence."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Cook County Democratic Party: Monica Gordon bio",
+       "url": "https://www.cookcountydems.com/?p=4979"
+      },
+      {
+       "title": "The Daily Line: Gordon elected Cook County clerk (Nov. 2024)",
+       "url": "https://www.thedailyline.com/cook-county-clerk-race-monica-gordon-commissioner-elected-democrat-results"
+      },
+      {
+       "title": "Lansing Journal: Clerk Monica Gordon highlights election security, readiness (Aug. 26, 2026)",
+       "url": "https://thelansingjournal.org/2026/08/26/clerk-monica-gordon-highlights-cook-countys-election-security-readiness/"
+      },
+      {
+       "title": "Cook County Clerk: Gordon represents county at national election roundtable (Sept. 30, 2026)",
+       "url": "https://www.cookcountyclerkil.gov/news/clerk-monica-gordon-represents-cook-county-national-election-roundtable-discussion-washington"
+      },
+      {
+       "title": "WTTW 2026 general voters guide: Cook County Clerk race",
+       "url": "https://news.wttw.com/elections/voters-guide/2026-general/races/cook-county-clerk"
+      },
+      {
+       "title": "Cook County: Board of Election Commissioners (City of Chicago) agency page",
+       "url": "https://www.cookcountyil.gov/agency/board-election-commissioners"
+      },
+      {
+       "title": "WTTW: Chicago, suburban Cook County seeking poll workers for November election (Sept. 28, 2026)",
+       "url": "https://news.wttw.com/2026/09/28/chicago-suburban-cook-county-seeking-poll-workers-november-midterm-election"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-sheriff",
+   "title": "Cook County Sheriff",
+   "vote_for": 1,
+   "context": "The sheriff runs Cook County Jail, court security, evictions and county police, and now leads CTA transit safety patrols under the 2025 Northern Illinois Transit Authority law. The office is on the front line of state limits on cooperation with ICE.",
+   "candidates": [
+    {
+     "name": "Thomas J. Dart",
+     "ballot": 65,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Dart, 64, has been sheriff since 2006. A former Cook County assistant state's attorney, he served in the Illinois Senate (1991-1993) and House (1993-2003) and was chief of staff to Sheriff Michael Sheahan. He was unopposed in the March 2026 primary (612,500 votes).",
+     "qualifications": "Twenty years as sheriff; former prosecutor and legislator; law degree from Loyola. Named to Time's 100 most influential people after suspending foreclosure evictions of renters in 2008.",
+     "positions": {
+      "immigration_ice": "In mid-2026 ICE and DHS sent letters demanding access to jail detainees and warned him of possible federal felony charges. He refused, citing state law and court orders that bar releasing people in custody to other agencies; he has not been charged (CBS, Aug. 2026). The Tribune praised him for standing up to \"the thuggish overreach\" of ICE.",
+      "transit_safety": "Since spring 2026 deputies have patrolled CTA trains (about 50 officers a day, focused on the Red, Green and Blue lines) under the new transit law, reporting 225 arrests and an 85% drop in Red Line fare evasion (his office's own survey). He says a dedicated transit police force may be needed.",
+      "jail_pretrial": "Said he was receiving more defendants accused of gun and violent crimes on electronic monitoring after the Pretrial Fairness Act; in December 2024 announced the sheriff's office would stop taking new electronic-monitoring participants, citing safety, and the county is consolidating monitoring under the courts."
+     },
+     "endorsements": [
+      "Chicago Tribune (Oct. 17, 2026)",
+      "Cook County Democratic Party",
+      "Operating Engineers Local 150",
+      "Chicago Crusader (primary)"
+     ],
+     "gaps": [
+      "Twenty-year incumbent; Sandefur argues deputy morale and on-duty injuries are at record levels (his claim, not verified).",
+      "The 85% fare-evasion figure comes from the sheriff's own survey of CTA workers."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": 0,
+       "why": "Mixed: expanded transit patrols and ended sheriff-run electronic monitoring over safety, but Sandefur runs to his right on bail law."
+      },
+      "federal": {
+       "v": -2,
+       "why": "Refused ICE demands for jail detainees despite threatened prosecution."
+      },
+      "change": {
+       "v": -2,
+       "why": "Twenty-year, party-endorsed incumbent."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Tom Dart for Cook County sheriff (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-tom-dart-cook-county-sheriff-midterms/"
+      },
+      {
+       "title": "CBS Chicago: Feds threaten Sheriff Dart with prosecution over ICE access to jail detainees (Aug. 7, 2026)",
+       "url": "https://www.cbsnews.com/chicago/news/cook-county-sheriff-tom-ice-jall-prosecution-threat/"
+      },
+      {
+       "title": "Axios Chicago: Cook County sheriff's new CTA patrols (June 25, 2026)",
+       "url": "https://www.axios.com/local/chicago/2026/06/25/cook-county-sheriff-dart-cta-crime-red-green-line-fare-evasion-smoking-trains"
+      },
+      {
+       "title": "WBEZ: Sheriff Dart to scrap electronic monitoring over safety concerns (Dec. 18, 2024)",
+       "url": "https://www.wbez.org/criminal-justice/2024/12/18/sheriff-tom-dart-scrap-electronic-monitoring-safety-concerns"
+      },
+      {
+       "title": "Wikipedia: Tom Dart",
+       "url": "https://en.wikipedia.org/wiki/Tom_Dart"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      }
+     ]
+    },
+    {
+     "name": "Brad Sandefur",
+     "ballot": 66,
+     "party": "Libertarian",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Sandefur, 66, is a sergeant in the Cook County Sheriff's Office and a former U.S. Marine; he says he has 37 years at the office and has worked in the jail, the courts and on the street, taught at the training academy, and served as a shift commander. He was the Libertarian nominee for sheriff in 2022, finishing with 2.9%. He calls himself a conservative libertarian, and the Independence Party has also endorsed him (his claim).",
+     "qualifications": "Decades of rank-and-file and supervisory law-enforcement experience inside the department; master's in criminal justice from Liberty University (his claim). Never held elected office.",
+     "positions": {
+      "bail_pretrial": "Says the SAFE-T Act and Pretrial Fairness Act \"do not keep citizens safe, nor are they reasonable\"; wants to modify pretrial policy for repeat offenders.",
+      "mental_health": "Crisis Intervention Training for all deputies; more residential psychiatric facilities; mental-health diversion without an arrest record; longer residential drug rehab stays.",
+      "department": "Rebuild morale and public trust; better pre-hire investigations; revamp the Sheriff's Merit Board.",
+      "immigration": "No stance found."
+     },
+     "endorsements": [
+      "Libertarian Party",
+      "Independence Party (per his statement)"
+     ],
+     "gaps": [
+      "The Tribune called his run \"the latest installment of a long-term protest against Dart\" rather than a credible alternative.",
+      "A North Shore Weekly profile calls this his first campaign, which conflicts with his 2022 candidacy (Wikipedia, Tribune).",
+      "No stance found on ICE, Operation Midway Blitz or CTA patrols."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": 1,
+       "why": "Wants to roll back parts of the Pretrial Fairness Act, while also expanding mental-health diversion."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 1,
+       "why": "Rank-and-file insider running against his own boss as a third-party protest candidate."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Not a property-tax office."
+      }
+     },
+     "sources": [
+      {
+       "title": "North Shore Weekly: Brad Sandefur seeks Cook County sheriff as Libertarian (Oct. 5, 2026)",
+       "url": "https://northshoreweekly.com/articles/brad-sandefur-seeks-cook-county-sheriff-as-libertarian-muvlsudx"
+      },
+      {
+       "title": "Libertarian Party: Brad Sandefur candidate page",
+       "url": "https://lp.org/candidate/brad-sandefur/"
+      },
+      {
+       "title": "Chicago Tribune editorial: Tom Dart for Cook County sheriff (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-tom-dart-cook-county-sheriff-midterms/"
+      },
+      {
+       "title": "Wikipedia: 2022 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2022_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-treasurer",
+   "title": "Cook County Treasurer",
+   "vote_for": 1,
+   "context": "The Treasurer collects property taxes and passes them to local taxing bodies (schools, villages, libraries and others), issues refunds, and runs the annual tax sale of delinquent taxes. Pappas is unopposed and is also running for Chicago mayor in February 2027.",
+   "candidates": [
+    {
+     "name": "Maria Pappas",
+     "ballot": 67,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": true,
+     "bio": "Pappas, 77, has been treasurer since 1998 and has been re-elected six times; before that she served two terms on the county board. She holds a Ph.D. from Loyola and a law degree from Chicago-Kent. In November 2025 she announced a 2027 run for Chicago mayor against Brandon Johnson and on Oct. 26, 2026 filed nearly 40,000 petition signatures.",
+     "qualifications": "Twenty-eight years as treasurer; pushed the 2009 Debt Disclosure Ordinance requiring taxing districts to publish their finances; hosts the WVON radio program Black Houses Matter to help owners claim overpaid property taxes.",
+     "positions": {
+      "tax_sale": "In 2025 got legislative approval to postpone the annual tax sale about seven months while pursuing foreclosure reform after a 2023 U.S. Supreme Court ruling on tax-sale equity.",
+      "late_bills": "Second-installment 2024 bills were four months late and 2025 bills about two months late amid the county's billing-system overhaul; she and Preckwinkle said in 2026 that most problems had been solved.",
+      "transparency": "Her FY2026 State of the Office report pledges in-depth studies of the property tax system and advocacy for property tax reform."
+     },
+     "endorsements": [
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Operating Engineers Locals 150/399",
+      "Plumbers Local 130",
+      "Chicago Crusader (primary)"
+     ],
+     "gaps": [
+      "She is running for re-election while openly campaigning for mayor; if she wins in 2027 the treasurer's office would need a successor.",
+      "Did not take part in WTTW's 2026 primary voters guide (per search result).",
+      "Unopposed."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -1,
+       "why": "28-year incumbent with party backing, though she has often acted as a maverick and is now challenging the sitting mayor."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "The treasurer collects taxes but doesn't set assessments; her refund outreach is homeowner-focused, with no evidence on the commercial/residential split."
+      }
+     },
+     "sources": [
+      {
+       "title": "Wikipedia: Maria Pappas",
+       "url": "https://en.wikipedia.org/wiki/Maria_Pappas"
+      },
+      {
+       "title": "Northfield Township: Cook County's annual tax sale to be postponed seven months (2025)",
+       "url": "https://northfieldtownship.com/?p=1497"
+      },
+      {
+       "title": "Cook County Treasurer: State of the Office FY2026 (PDF)",
+       "url": "https://www.cookcountytreasurer.com/pdfs/stateoftheoffice/StateOfTheOfficeFY2026.pdf"
+      },
+      {
+       "title": "WTTW: Second installment of 2025 property tax bills will be 2 months late (June 9, 2026)",
+       "url": "https://news.wttw.com/2026/06/09/second-installment-2025-cook-county-property-tax-bills-will-be-2-months-late-officials"
+      },
+      {
+       "title": "CBS Chicago: Cook County property tax bills finally out, due Dec. 15",
+       "url": "https://www.cbsnews.com/chicago/news/cook-county-property-tax-bills-payments-due-dec-15"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "WTTW 2026 primary voters guide: Cook County Treasurer",
+       "url": "https://news.wttw.com/elections/voters-guide/2026-primary/races/cook-county-treasurer"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-assessor",
+   "title": "Cook County Assessor",
+   "vote_for": 1,
+   "context": "The assessor values the county's roughly 1.8 million parcels, which decides how the fixed property tax levy is split among homeowners and commercial owners. Two-term reformer Fritz Kaegi lost the March 17 Democratic primary to Pat Hynes, about 52.5% to 47.5% (328,143 to 296,296). Hynes faces a Libertarian with no Republican on the ballot, and will take over just as the high-stakes Chicago reassessment begins.",
+   "candidates": [
+    {
+     "name": "Pat Hynes",
+     "ballot": 68,
+     "party": "Democratic",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Hynes, 53, started as a field inspector in the assessor's office in 1998 and worked there more than 20 years, under both Joe Berrios and Kaegi, before leaving in 2020 frustrated with Kaegi's leadership. He has been Lyons Township assessor since 2021 (re-elected 2025). His uncle Thomas Hynes was county assessor from 1979 to 1997.",
+     "qualifications": "More than two decades in the county assessor's office plus five years as an elected township assessor. The Tribune, which backed Kaegi in the primary, found him \"caustic and embittered\" then but now says it is \"forced to trust Hynes will give both sides a fair shake.\"",
+     "positions": {
+      "stability": "Promises \"stability\" and predictability after years of record assessment increases; on whether South and West Side home values will come down: \"We'll see what the data shows... some will, some won't.\"",
+      "board_of_review": "Wants a detente with the Board of Review; would stop sending staff to the board to fight appeals in person, as Kaegi did against data-center appeals (\"I don't know that we need to be adversarial\").",
+      "developers": "Signature pledge: a new office that would give developers custom estimates of a project's future assessment and tax bill, possibly for a fee, to spur investment.",
+      "data_and_errors": "More field inspections and fixing \"garbage\" property records instead of relying on desk modeling; a tracking system for certificates of error (refund corrections) that flags anything idle four months; would keep Kaegi's data team and many senior staff.",
+      "senior_freeze": "Opposes Kaegi's push to have Springfield auto-renew the senior freeze exemption without tighter verification.",
+      "campaign_finance": "Takes donations from property-tax appeal attorneys (each within the $1,500 county cap) and denies they will affect his work."
+     },
+     "endorsements": [
+      "Chicago Tribune (general; it backed Kaegi in the primary)",
+      "Cook County Democratic Party",
+      "Chicago Federation of Labor",
+      "Operating Engineers Locals 150/399",
+      "Teamsters Joint Council 25",
+      "SEIU Healthcare",
+      "Chicago Fire Fighters Local 2",
+      "Plumbers Local 130",
+      "Illinois House Speaker Chris Welch",
+      "Attorney General Kwame Raoul",
+      "Clerk Monica Gordon",
+      "Former U.S. Rep. Bobby Rush",
+      "BOMA/Chicago (donor)"
+     ],
+     "gaps": [
+      "Campaign finance: construction unions gave more than $1 million; wealthy Chicagoans and business groups more than $500,000; property-tax appeal attorneys and their firms (including Worsek & Vihon, Flanagan Bilton and Schiller Law) more than $130,000 combined; BOMA Chicago $50,000; Board of Review Commissioner Larry Rogers $10,000 (Tribune, Oct. 25, 2026).",
+      "Kaegi argues the attorney money signals a return to Berrios-era undervaluing of commercial buildings; Hynes denies it.",
+      "It is unclear how he would staff a new developer-estimate office while keeping up with the reassessment calendar.",
+      "Taking office as the most complex reassessment (Chicago) begins."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -1,
+       "why": "Ousted the incumbent, but did so as the party-slated, union- and business-backed candidate from a political family."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": 2,
+       "why": "Detente with the Board of Review, assessment estimates for developers, $130K+ from appeal attorneys and BOMA backing."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune (A.D. Quig): Assessor favorite Patrick Hynes vows 'stability,' detente with appeals board (Oct. 25, 2026, via Yahoo)",
+       "url": "https://www.yahoo.com/news/politics/articles/cook-county-assessor-favorite-patrick-100000842.html"
+      },
+      {
+       "title": "Chicago Tribune editorial: Patrick J. Hynes for Cook County assessor (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-patrick-j-hynes-cook-county-assessor/"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "ABC7: Kaegi concedes to Pat Hynes (Mar. 17, 2026)",
+       "url": "https://abc7chicago.com/amp/post/illinois-election-results-cook-county-assessor-candidates-pat-hynes-fritz-kaegi-vie-position-primary-2026/18726366/"
+      },
+      {
+       "title": "Loop North News: The Assessor's War - Kaegi vs. The Machine (cites Kaegi-campaign donation tallies)",
+       "url": "https://www.loopnorth.com/news/kaegi0219.htm"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    },
+    {
+     "name": "Nico Tsatsoulis",
+     "ballot": 69,
+     "party": "Libertarian",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Tsatsoulis, 61, is a property manager originally from Greece who lives in Hyde Park and is the Libertarian committeeperson for Chicago's 5th Ward. He ran for assessor in 2022, winning 17.7% against Kaegi, and for the Board of Review in 2024, winning 14% against Larry Rogers.",
+     "qualifications": "Property-management experience; no assessment or government office experience found.",
+     "positions": {
+      "prop13": "Overhaul the system to resemble California's Proposition 13: cap property taxes at 1% of value, limit annual assessment increases to about 2%, and reassess at market value only when a property sells. This would require changes to state law and would limit local revenue.",
+      "tif": "Abolish tax increment financing (TIF) districts.",
+      "philosophy": "Argues assessments are arbitrary, volatile and subjective, and that taxes should be limited to what homeowners can afford rather than what governments need to raise.",
+      "campaign_finance": "Has not formed a fundraising committee and takes no donations; calls Hynes's acceptance of tax-attorney money \"completely unacceptable.\""
+     },
+     "endorsements": [
+      "None found"
+     ],
+     "gaps": [
+      "His core proposals need state legislation the assessor can't enact; the Tribune said \"chaos would ensue\" if he were elected.",
+      "No campaign fundraising or organization."
+     ],
+     "axes": {
+      "econ": {
+       "v": 2,
+       "why": "Cap property taxes at 1% and limit revenue to what homeowners can afford; abolish TIFs."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 2,
+       "why": "Unfunded third-party outsider attacking a 'corrupt system.'"
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "Mixed: he rejects appeal-industry money, but his Prop 13-style cap would shift the burden by purchase date rather than between commercial and residential."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune (A.D. Quig): Assessor favorite Patrick Hynes vows 'stability,' detente with appeals board (Oct. 25, 2026, via Yahoo)",
+       "url": "https://www.yahoo.com/news/politics/articles/cook-county-assessor-favorite-patrick-100000842.html"
+      },
+      {
+       "title": "Chicago Tribune editorial: Patrick J. Hynes for Cook County assessor (Oct. 17, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/17/editorial-patrick-j-hynes-cook-county-assessor/"
+      },
+      {
+       "title": "GoodParty.org: Nico Tsatsoulis (unclaimed profile)",
+       "url": "https://goodparty.org/candidate/nico-tsatsoulis/cook-county-assessor"
+      },
+      {
+       "title": "Wikipedia: 2022 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2022_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "Evanston RoundTable: 2026 midterm ballot guide (Sept. 30, 2026)",
+       "url": "https://evanstonroundtable.com/2026/09/30/2026-midterm-ballot-guide-english/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cook-board-8",
+   "title": "Commissioner, Cook County Board, 8th District",
+   "vote_for": 1,
+   "context": "One of 17 county commissioners who adopt the county budget and tax rates and oversee Cook County Health, the jail and the forest preserves. The 8th District covers part of Chicago's Northwest Side. The incumbent was appointed in 2025.",
+   "candidates": [
+    {
+     "name": "Ramona Bonilla-Anaiel",
+     "ballot": 71,
+     "party": "Republican",
+     "incumbent": false,
+     "unopposed": false,
+     "bio": "Bonilla-Anaiel is a Chicago Public Schools chief union steward and an elected Republican ward committeewoman (listed for the 31st Ward). In March 2025 the SEIU board removed her as a third-term executive board member over Facebook posts it deemed racist, homophobic and transphobic; her attorney called that punishment for protected free speech, and supporters say the posts reflected pro-Trump views.",
+     "qualifications": "Union steward and SEIU Local 73 bargaining-team member; party committeewoman. No public office experience found. A 2022 Cook County Electoral Board agenda lists an objection against her candidacy for 8th District commissioner, which suggests she also ran in 2022 (outcome not confirmed).",
+     "positions": {
+      "all": "No campaign website, questionnaire or policy platform found; The Ballot Brief noted no campaign site as of Sept. 8, 2026."
+     },
+     "endorsements": [
+      "None found"
+     ],
+     "gaps": [
+      "The Tribune said she is \"short on actionable ideas.\"",
+      "The union removal over social media posts.",
+      "Essentially no public platform found."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": 1,
+       "why": "Republican challenger in a heavily Democratic district; little else known."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": null,
+       "why": "No evidence."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Jessica Vasquez for Cook County Board, 8th District (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-jessica-vasquez-cook-county-board-8th-district/"
+      },
+      {
+       "title": "Fox 32: SEIU board removes member over controversial Facebook posts (Mar. 29, 2025)",
+       "url": "https://www.fox32chicago.com/news/seiu-board-removes-member-over-controversial-facebook-posts"
+      },
+      {
+       "title": "Chicago's Morning Answer: Ramona Bonilla-Anaiel interview (Mar. 26, 2025)",
+       "url": "https://morninganswerchicago.com/ramona-bonilla-anaiel-on-cps-union-talks-and-being-targeted-for-social-media-posts/"
+      },
+      {
+       "title": "Change.org petition to restore Bonilla-Anaiel at SEIU Local 73 (advocacy source)",
+       "url": "https://www.change.org/p/restore-the-position-of-ms-ramona-t-bonilla-anaiel-at-seiu-local-73"
+      },
+      {
+       "title": "Cook County Republican Party: Ward committeepersons",
+       "url": "https://www.cookcountyrepublicans.com/ward-committeemen"
+      },
+      {
+       "title": "Cook County Officers Electoral Board agenda, Aug. 18, 2022 (challenge to Bonilla-Anaiel, 8th District)",
+       "url": "https://www.cookcountyclerkil.gov/sites/default/files/pdfs/Electoral%20Board%20-%20Agenda%20-%20081822.pdf"
+      },
+      {
+       "title": "The Ballot Brief: Cook County Commissioner District 8 (AI-written guide)",
+       "url": "https://theballotbrief.com/state/illinois/cook-county/commissioner-district-8"
+      }
+     ]
+    },
+    {
+     "name": "Jessica Vasquez",
+     "ballot": 72,
+     "party": "Democratic",
+     "incumbent": true,
+     "unopposed": false,
+     "bio": "Vasquez, raised in Belmont Cragin and living in Logan Square, was chosen by Democratic committeepersons in May 2025 to fill the seat Anthony Quezada vacated when he became 35th Ward alderman. She is the first woman to represent the district. She was chief of staff to former Ald. Carlos Ramirez-Rosa and worked at Adler University, the Illinois Coalition for Immigrant and Refugee Rights and People's Action Institute.",
+     "qualifications": "About 18 months on the county board, including the audit committee; B.A. from DePaul and M.A. from the University of Chicago; co-chairs the Northwest Side Rapid Response Team for immigrant families (her claim).",
+     "positions": {
+      "property_taxes": "Told the Tribune she will work to make county revenue less reliant on property taxes and provide audit oversight; helps residents with exemptions and offers free appeal help in English and Spanish; says she opposed a Mayor Johnson property-tax increase while a chief of staff.",
+      "immigration": "Introduced a resolution denouncing ICE tactics and requiring county agencies to report interactions with federal agents; in May 2026 denounced ICE arrests at county courthouses; in October 2026 co-sponsored a measure barring county contractors from selling county-held personal data for immigration enforcement; backs more funding for the Public Defender's immigration unit.",
+      "health_housing": "Prioritizes Cook County Health funding (\"Healthcare, it is the ultimate equalizer\"); voted for $8.6 million in down-payment assistance; wants to redevelop unused county property and protect tenants after tax sales.",
+      "forest_preserves": "Voted to acquire 62 acres; wants ADA access and more trails."
+     },
+     "endorsements": [
+      "Chicago Tribune (primary and general)",
+      "AFSCME Council 31",
+      "Chicago Federation of Labor",
+      "Chicago Teachers Union",
+      "SEIU",
+      "Operating Engineers Locals 150/399",
+      "Citizen Action/Illinois",
+      "Sierra Club Illinois",
+      "Run for Something"
+     ],
+     "gaps": [
+      "Appointed by party committeepersons rather than elected; March 2026 primary result against Nicholas Cade not found.",
+      "A City That Works backed Cade in the primary, saying her platform says nothing about building more housing.",
+      "Her accomplishments list is self-reported on her campaign site."
+     ],
+     "axes": {
+      "econ": {
+       "v": -1,
+       "why": "Champions Cook County Health funding and housing programs, while wanting less reliance on property taxes."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": -2,
+       "why": "ICE-reporting resolution, data-sale ban, courthouse-arrest denunciation, immigrant rapid-response work."
+      },
+      "change": {
+       "v": -1,
+       "why": "Appointed by the party and union-backed, but comes from the progressive Ramirez-Rosa camp."
+      },
+      "green": {
+       "v": 1,
+       "why": "Forest preserve acquisition and trails; Sierra Club-endorsed."
+      },
+      "taxfair": {
+       "v": -1,
+       "why": "Endorsed Juanita Irizarry, the Kaegi-backed Board of Review challenger, against incumbent George Cardenas."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Tribune editorial: Jessica Vasquez for Cook County Board, 8th District (Oct. 15, 2026)",
+       "url": "https://www.chicagotribune.com/2026/10/15/editorial-jessica-vasquez-cook-county-board-8th-district/"
+      },
+      {
+       "title": "Jessica Vásquez campaign site: About",
+       "url": "https://www.vasquezforcookcounty.org/about"
+      },
+      {
+       "title": "Chronicle Media: Jessica Vasquez talks priorities ahead of first budget (Sept. 24, 2025)",
+       "url": "https://chronicleillinois.com/news/cook-county-news/jessica-vasquez-talks-priorities-for-cook-county-forest-preserves-ahead-first-budget/"
+      },
+      {
+       "title": "WTTW: Jessica Vasquez picked to fill vacant 8th District seat (May 5, 2025)",
+       "url": "https://news.wttw.com/2025/05/05/jessica-vasquez-picked-fill-vacant-8th-district-cook-county-board-seat"
+      },
+      {
+       "title": "Block Club Chicago: Immigration agents return to courthouses (May 7, 2026)",
+       "url": "https://blockclubchicago.org/2026/05/07/immigration-agents-return-to-courthouses-make-arrest-local-officials-say/"
+      },
+      {
+       "title": "Cities 92.9: Cook County proposes banning data sales to ICE (Oct. 21, 2026)",
+       "url": "https://www.cities929.com/2026/10/21/cook-county-proposes-banning-data-sales-to-ice/"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County Board of Commissioners election",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County_Board_of_Commissioners_election"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "A City That Works (Substack): Guide to the 2026 March primaries",
+       "url": "https://citythatworks.substack.com/p/a-city-that-works-guide-to-the-2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bor-2",
+   "title": "Commissioner, Cook County Board of Review, 2nd District",
+   "vote_for": 1,
+   "context": "The three-member Board of Review hears property-tax appeals and often reverses the assessor's valuations; an independent county-commissioned study found 88% of appeals on central-Cook properties worth over $5 million won reductions (2020-2022). The 2nd District covers the northern part of the county. Nicholson ousted the incumbent in the primary and is unopposed.",
+   "candidates": [
+    {
+     "name": "Elizabeth \"Liz\" Nicholson",
+     "ballot": 82,
+     "party": "Democratic",
+     "incumbent": false,
+     "unopposed": true,
+     "bio": "Nicholson, a South Side native and first-time candidate, was a top adviser to former Illinois Senate President John Cullerton for three decades (Sun-Times) and has advised the National Democratic County Officials organization (The Real Deal). In March 2026 she beat incumbent Samantha Steele, about 62% to 38% (141,362 to 85,444), after the county Democratic Party slated her over Steele. No Republican filed, so she is unopposed.",
+     "qualifications": "Long experience in Springfield political and policy work; no prior property-assessment or appeals experience found (Steele argued she lacks relevant experience).",
+     "positions": {
+      "appeals_process": "Running to improve transparency, reduce backlogs, expand language access, and make sure appeals are reviewed thoroughly and resolved on time (WTTW statement); modernize appeals with online tools and multilingual support and publish more appeal data (The Ballot Brief summary).",
+      "ethics": "Ran against Steele's DUI arrest, a $180,000 whistleblower settlement with a former Steele aide, and inspector-general ethics findings: \"I'm the solution... She's the problem.\""
+     },
+     "endorsements": [
+      "Cook County Democratic Party",
+      "Toni Preckwinkle",
+      "Treasurer Maria Pappas",
+      "Board of Review Commissioners Larry Rogers Jr. and George Cardenas",
+      "U.S. Reps. Jan Schakowsky and Mike Quigley",
+      "State Rep. Eva-Dina Delgado",
+      "Chicago Fraternal Order of Police",
+      "Plumbers Local 130",
+      "A City That Works (primary)",
+      "The Tribune declined to endorse in the primary"
+     ],
+     "gaps": [
+      "BOMA Chicago's PAC, which represents commercial building owners, donated to her campaign, and Steele said she accepted thousands from property-tax appeal attorneys (Steele's claim; amounts not verified).",
+      "Backed by the two sitting commissioners who have clashed most with reform assessor Kaegi.",
+      "Unopposed; specific policy commitments on commercial appeals not found."
+     ],
+     "axes": {
+      "econ": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "safety": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "federal": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "change": {
+       "v": -2,
+       "why": "Party-slated former Senate President adviser with establishment endorsements."
+      },
+      "green": {
+       "v": null,
+       "why": "No evidence found."
+      },
+      "taxfair": {
+       "v": 1,
+       "why": "BOMA donation, appeal-attorney money (per her opponent) and backing from Kaegi critics Rogers and Cardenas; platform centers on faster, fuller appeals."
+      }
+     },
+     "sources": [
+      {
+       "title": "Chicago Sun-Times: Two Cook County property tax appeal commissioners face strong challengers (Feb. 26, 2026)",
+       "url": "https://chicago.suntimes.com/elections/2026/02/26/cook-county-board-of-review-march-17-primary-steele-cardenas-nicholson-irizarry"
+      },
+      {
+       "title": "The Real Deal: Commercial vs. residential tension in Cook County Board of Review races (Mar. 2, 2026)",
+       "url": "https://therealdeal.com/chicago/2026/03/02/who-are-the-cook-county-board-of-review-candidates/"
+      },
+      {
+       "title": "WTTW: Cardenas leads Irizarry and Nicholson bests Steele (Mar. 17, 2026)",
+       "url": "https://news.wttw.com/2026/03/17/incumbents-face-challengers-cook-county-board-review-seats-amid-debate-over-rising"
+      },
+      {
+       "title": "Wikipedia: 2026 Cook County, Illinois, elections",
+       "url": "https://en.wikipedia.org/wiki/2026_Cook_County,_Illinois,_elections"
+      },
+      {
+       "title": "A City That Works (Substack): Guide to the 2026 March primaries",
+       "url": "https://citythatworks.substack.com/p/a-city-that-works-guide-to-the-2026"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

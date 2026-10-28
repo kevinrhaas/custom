@@ -1,0 +1,724 @@
+{
+  "meta": {
+    "researched": "2026-10-28",
+    "election": "Illinois general election, Tuesday Nov. 3, 2026",
+    "notes": [
+      "Chicago Sun-Times does not endorse candidates (nonprofit policy, per 2022 editorial reported by press); it publishes questionnaires instead. The Chicago Tribune made formal endorsements for AG, SOS, Comptroller, Treasurer (Oct. 7, 2026) but, under a Tribune Publishing corporate policy, made NO formal endorsement for U.S. Senate or governor, publishing opinion pieces instead.",
+      "Only one independent statewide poll was found for most races: Public Policy Polling for Chicago News Weekly, Sept. 30-Oct. 1, 2026, 569 voters (Wikipedia labels PPP as a Democratic-aligned pollster). ActiVote online tracker numbers also exist for Senate and governor. Treasurer was not polled.",
+      "The Illinois AFL-CIO (July 2026) endorsed Pritzker and 'all Democrats on the statewide ticket' (Capitol News Illinois)."
+    ],
+    "general_sources": [
+      {"title": "Chicago News Weekly / PPP poll (Citizen Newspaper Group, Oct. 5, 2026)", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"},
+      {"title": "Tribune Editorial Board endorsements for the 2026 Illinois general election (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-121000359.html"},
+      {"title": "Illinois AFL-CIO issues endorsements after all (Capitol News Illinois, July 21, 2026)", "url": "https://insider.capitolnewsillinois.com/illinois-afl-cio-issues-endorsements-after-all/"},
+      {"title": "Statewide races: little-known GOP slate faces uphill battle against mostly incumbent Dems (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+      {"title": "Sun-Times 2026 voter guide", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/"},
+      {"title": "Sun-Times stops making endorsements (CBS Chicago)", "url": "https://cbsnews.com/chicago/news/sun-times-to-quit-making-endorsements"}
+    ]
+  },
+  "races": [
+    {
+      "id": "us-senate",
+      "title": "United States Senator",
+      "context": "Open seat: Sen. Dick Durbin (D), in office since 1997, is not seeking a sixth term — Illinois' first open Senate race since 2010. The senator votes on federal taxes, spending, judges and Cabinet nominees; this race turns heavily on how hard Illinois' senator should push back against the Trump administration, including on immigration enforcement and tariffs. Raters (Cook, Sabato, Inside Elections and others) call it Solid/Safe Democratic.",
+      "candidates": [
+        {
+          "name": "Don Tracy",
+          "ballot": 1,
+          "party": "Republican",
+          "incumbent": false,
+          "bio": "Springfield attorney, 76, senior counsel at Brown, Hay & Stephens and part of the family ownership group of Dot Foods, the food-redistribution company his father founded. He chaired the Illinois Republican Party from 2021 to 2024 and chaired the Illinois Gaming Board under Gov. Bruce Rauner (2015-2019). He won the March 2026 GOP primary with about 40% over five rivals.",
+          "qualifications": "50+ years as a lawyer; twice elected state GOP chairman; former Illinois Gaming Board chairman; chaired the Secretary of State's Corporate Acts Advisory Committee; president of the Oak Ridge Cemetery Board; ran unsuccessfully for lieutenant governor in 2010. Has never held elected public office.",
+          "positions": {
+            "taxes_budget": "Cut federal spending and waste, stop adding new debt, 'pro-growth tax policy'; 'Government cannot simply spend its way to affordability.' Opposes raising taxes; attacks Stratton as a tax-and-spend liberal. Calls a minimum-wage hike to $25 'a death sentence' for small businesses.",
+            "millionaire_tax": "Not addressed directly; opposes raising taxes generally.",
+            "tariffs_trade": "'The jury's still out' on tariffs; sees them as a tool to reset trade.",
+            "safety": "Pledges to 'support law enforcement'; has said the 'far-left lets violent criminals back onto the streets' (OnTheIssues). No federal sentencing or SAFE-T-specific proposal found.",
+            "immigration": "Called Operation Midway Blitz 'ugly and chaotic' but blamed Illinois Democrats and protesters for non-cooperation and defended the enforcement approach; said Memphis' cooperation with federal agents had 'gone pretty well.' Said most people shot or injured by ICE were obstructing officers but each shooting should be examined. Would 'support a change in the law' on birthright citizenship. Favors stronger borders and ending taxpayer-funded health care for non-citizens.",
+            "trump": "'It depends on the policy… I'm not going to be a rubber stamp for anybody.' Largely defended Trump's positions in the debate but said he'd have voted against a waiver of Russia sanctions. Not endorsed by Trump; would accept an endorsement. OnTheIssues records him supporting Trump's pardon of Jan. 6 defendants (Feb. 2026).",
+            "abortion": "Leave abortion to the states; 'I do not support nationalizing abortion law'; supports the Hyde Amendment (no federal funding except rape, incest, life of the mother).",
+            "guns": "No detailed position found.",
+            "energy_climate": "'All-of-the-above' energy policy; blames Democrats' policies and plant closures for higher utility bills.",
+            "healthcare": "Opposes overhauling the system ('one of the best systems in the world'); wants more market competition and price transparency; would end federal tax deductions for pharmaceutical advertising.",
+            "voting": "Supports government photo ID to vote and proof of citizenship at registration; stricter mail-in rules.",
+            "foreign_policy": "Iran must not get a nuclear weapon; advises Trump to pursue a clear endgame and avoid an open-ended war.",
+            "transit": "Not found.",
+            "pensions": "Cites Illinois pension obligations as a drag on the state economy (questionnaire); no federal proposal.",
+            "ethics": "Not found."
+          },
+          "endorsements": [
+            "No general-election newspaper endorsement found (Tribune made no Senate endorsement by corporate policy; its Oct. 16 opinion said flipping the seat to a Republican 'would be as irresponsible as it is unconscionable').",
+            "Trump has NOT endorsed him (Capitol News Illinois, Oct. 21, 2026)."
+          ],
+          "polling": "Trails: PPP/Chicago News Weekly (Sept. 30-Oct. 1) Stratton 49%, Tracy 36%, 15% undecided; ActiVote (Sept. 26-Oct. 20) Stratton 58.5%, Tracy 41.5%. Raised ~$4.1M through Sept. 30 vs. Stratton's ~$7.1M; has loaned his campaign $3.5M.",
+          "gaps": [
+            "Never held elected office; at 76 would be among the oldest new senators.",
+            "Thin or no stated positions found on guns, transit and ethics.",
+            "Supported Trump's Jan. 6 pardons and a change to birthright citizenship, per OnTheIssues and IPM — positions out of step with most Illinois voters in polling (Trump approval 33% in the PPP poll).",
+            "His 'worst of the worst' framing of Midway Blitz arrests is contradicted by analyses cited by Capitol News Illinois finding most people arrested had no criminal record.",
+            "Heavily self-funded ($3.5M in loans)."
+          ],
+          "axes": {
+            "econ": {"v": 2, "why": "Cut spending and waste, no new debt, lower taxes; opposes $25 minimum wage."},
+            "safety": {"v": 1, "why": "Runs on 'support law enforcement' and criticizes releasing violent offenders, but no specific sentencing/bail plan found."},
+            "federal": {"v": 1, "why": "Defends federal enforcement and blames sanctuary non-cooperation, though he called Midway Blitz 'ugly and chaotic.'"},
+            "change": {"v": 0, "why": "Challenger to the governing party, but a former state GOP chairman and party insider."},
+            "social": {"v": 1, "why": "Leave abortion to states, supports Hyde; opposes a national abortion ban; no detailed gun stance found."}
+          },
+          "sources": [
+            {"title": "Stratton, Tracy clash over Trump, affordability in lone U.S. Senate forum (Capitol News Illinois, Oct. 21, 2026)", "url": "https://capitolnewsillinois.com/news/stratton-tracy-clash-over-trump-affordability-in-lone-u-s-senate-forum/"},
+            {"title": "Sun-Times voter guide: Don Tracy questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/don-tracy/"},
+            {"title": "Democrat Juliana Stratton faces Don Tracy, former GOP chair (Sun-Times, Oct. 14, 2026)", "url": "https://chicago.suntimes.com/elections/2026/10/14/democrat-juliana-stratton-republican-don-tracy-us-senate-race-dick-durbin-seat"},
+            {"title": "GOP U.S. Senate candidate Don Tracy talks abortion, ICE shootings, and Iran war on 21st Show (IPM, Aug. 2026)", "url": "https://ipmnewsroom.org/gop-u-s-senate-candidate-don-tracy-talks-abortion-ice-shootings-and-iran-war-on-21st-show/"},
+            {"title": "Takeaways from the Senate debate (WBEZ, Oct. 21, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/21/takeaways-senate-debate-juliana-stratton-don-tracy-midterm-election"},
+            {"title": "Don Tracy on the issues (OnTheIssues)", "url": "https://ontheissues.org/Senate/Don_Tracy.htm"},
+            {"title": "Don Tracy (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Don_Tracy"},
+            {"title": "2026 U.S. Senate election in Illinois (Wikipedia: ratings, fundraising, polls)", "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Illinois"},
+            {"title": "Who is running for U.S. Senate in Illinois (CBS Chicago, Sept. 28, 2026)", "url": "https://www.cbsnews.com/chicago/news/who-is-running-us-senate-illinois-general-election-2026/"},
+            {"title": "PPP / Chicago News Weekly poll", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"}
+          ]
+        },
+        {
+          "name": "Juliana Stratton",
+          "ballot": 2,
+          "party": "Democratic",
+          "incumbent": false,
+          "bio": "Illinois' lieutenant governor since 2019 (Pritzker's running mate twice), the first Black person to hold the office. A South Side native and lawyer, she ran a mediation firm, led the Cook County Justice Advisory Council (2011-2014) and UIC's Center for Public Safety and Justice (2015-2017), then served one term in the Illinois House (2017-2019). She won the March 2026 primary with about 40% over Reps. Raja Krishnamoorthi and Robin Kelly; she would be Illinois' fourth Black U.S. senator.",
+          "qualifications": "Seven-plus years as lieutenant governor; one term as state representative (5th District); criminal-justice-reform administrator for Cook County and UIC; mediator/arbitrator and administrative law judge. J.D., DePaul.",
+          "positions": {
+            "taxes_budget": "Middle-class tax cut funded by higher taxes on income over $1 million; reverse the 2025 'Big Ugly bill' tax cuts and close corporate loopholes; opposes cuts to Social Security, Medicare, Medicaid and SNAP. Expand EITC and Child Tax Credit. $25 federal minimum wage. Says she rejects corporate PAC money.",
+            "millionaire_tax": "Supports higher federal taxes on income over $1 million.",
+            "tariffs_trade": "End Trump's tariffs; says refunds are owed to people, not 'big corporations like Amazon.'",
+            "safety": "Favors shifting the justice system 'from punitive to restorative practices' (OnTheIssues, 2026); as LG served alongside Pritzker through the SAFE-T Act era. No specific federal policing/sentencing plan found.",
+            "immigration": "Supports abolishing ICE ('can't be reformed') — the only candidate in the Democratic primary to do so. Wants comprehensive reform with a path to citizenship, including for Dreamers/DACA recipients, and more immigration judges. On Midway Blitz: Trump 'went after tamale vendors and daycare workers, our neighbors'; 'I don't want to see people killed by an agency that is paid for with our tax dollars.'",
+            "trump": "Calls Trump a 'wannabe dictator' with 'a real authoritarian agenda'; 'I will be a check on this president'; pledged not to confirm his nominees; would support impeachment. Will not back Chuck Schumer as Democratic leader.",
+            "abortion": "Supports restoring federal abortion protections (CBS Chicago); touts Illinois reproductive-freedom work with Pritzker.",
+            "guns": "Backs a national assault-weapons ban modeled on Illinois' 2023 law; 'stronger gun control.'",
+            "energy_climate": "Investment in clean energy and advanced manufacturing; opposed Trump EPA PFAS rollbacks.",
+            "healthcare": "Medicare for All / 'healthcare for all.'",
+            "voting": "Supports the John Lewis Voting Rights Act; opposes the SAVE Act.",
+            "foreign_policy": "Opposes the Iran war; 'I will not support any supplemental funding for this war'; Congress must authorize military action.",
+            "senate_rules": "'We need to abolish the filibuster, or at least seriously reform' it (per search-result excerpt of an interview; full text not reviewed).",
+            "transit": "Not found (federal infrastructure investment mentioned generally).",
+            "pensions": "Not found.",
+            "ethics": "Rejects corporate PAC money."
+          },
+          "endorsements": [
+            "Barack Obama (Sun-Times, Oct. 12, 2026)",
+            "Gov. JB Pritzker (endorsed at launch; put millions behind her primary)",
+            "Illinois AFL-CIO (all statewide Democrats)",
+            "Teamsters Joint Council 25, AFGE, Actors' Equity; Giffords; National Women's Political Caucus; Jewish Democratic Council of America; Chicago Crusader (per Wikipedia list)",
+            "Chicago Tribune: no formal endorsement (corporate policy), but its Oct. 16 opinion argued against flipping the seat to a Republican."
+          ],
+          "polling": "Heavy favorite: PPP/Chicago News Weekly 49%-36% over Tracy (15% undecided); ActiVote 58.5%-41.5%. Raised ~$7.1M through Sept. 30. Race rated Solid/Safe D by all major raters.",
+          "gaps": [
+            "Limited legislative experience (one two-year House term); her statewide wins came as Pritzker's running mate.",
+            "Abolishing ICE and a $25 minimum wage are positions further left than most of the Democratic primary field; Tracy calls her a socialist. Cost/financing of Medicare for All not detailed in sources reviewed.",
+            "Heavily dependent on Pritzker's money and backing in the primary.",
+            "Few specifics found on transit, pensions or federal crime policy."
+          ],
+          "axes": {
+            "econ": {"v": -2, "why": "Tax income over $1M, $25 minimum wage, Medicare for All, expanded credits."},
+            "safety": {"v": -1, "why": "Restorative-justice background and 'punitive system is not working' stance; no explicit federal decarceration plan."},
+            "federal": {"v": -2, "why": "Would abolish ICE; pledges to block Trump nominees and fight the administration."},
+            "change": {"v": -1, "why": "Sitting LG backed by Pritzker and Obama, though she distances herself from Schumer and corporate PACs."},
+            "social": {"v": -2, "why": "Restore federal abortion rights; national assault-weapons ban."}
+          },
+          "sources": [
+            {"title": "Stratton, Tracy clash over Trump, affordability (Capitol News Illinois, Oct. 21, 2026)", "url": "https://capitolnewsillinois.com/news/stratton-tracy-clash-over-trump-affordability-in-lone-u-s-senate-forum/"},
+            {"title": "Sun-Times voter guide: Juliana Stratton questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/juliana-stratton/"},
+            {"title": "Democrat Juliana Stratton faces Don Tracy (Sun-Times, Oct. 14, 2026)", "url": "https://chicago.suntimes.com/elections/2026/10/14/democrat-juliana-stratton-republican-don-tracy-us-senate-race-dick-durbin-seat"},
+            {"title": "Barack Obama endorses Juliana Stratton (Sun-Times, Oct. 12, 2026)", "url": "https://chicago.suntimes.com/elections/2026/10/12/barack-obama-endorsement-democrat-juliana-stratton-us-senate-gop-opponent-don-tracy"},
+            {"title": "Takeaways from the Senate debate (WBEZ, Oct. 21, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/21/takeaways-senate-debate-juliana-stratton-don-tracy-midterm-election"},
+            {"title": "Who is running for U.S. Senate in Illinois (CBS Chicago)", "url": "https://www.cbsnews.com/chicago/news/who-is-running-us-senate-illinois-general-election-2026/"},
+            {"title": "Juliana Stratton on the issues (OnTheIssues)", "url": "https://ontheissues.org/Senate/Juliana_Stratton.htm"},
+            {"title": "Juliana Stratton (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Juliana_Stratton"},
+            {"title": "2026 U.S. Senate election in Illinois (Wikipedia)", "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Illinois"},
+            {"title": "Exclusive: Stratton talks Trump, filibuster (Ground News aggregation of Purdue Exponent interview; search excerpt only)", "url": "https://ground.news/article/lt-gov-julianna-stratton-one-on-one-purdue-exponent"}
+          ]
+        },
+        {
+          "name": "Whitfield Harrington Jr",
+          "ballot": 3,
+          "party": "American Center Party",
+          "incumbent": false,
+          "bio": "Chicago pastor since 2013, from Schaumburg, born in Mississippi, who previously worked in banking and ran his own insurance practice. He is running to build a new centrist 'American Center Party' as an alternative to what he calls two extreme parties. He was excluded from the WTTW forum for missing its 15% polling threshold.",
+          "qualifications": "Political science degree (Delta State University); banking and insurance career; pastor. No prior elected office found.",
+          "positions": {
+            "taxes_budget": "Not found in detail. Affordability agenda: lower energy costs via domestic energy, keep tariffs off food, smaller mortgages for affordable homes.",
+            "millionaire_tax": "Not found.",
+            "economy": "Proposes banning or limiting speculation in oil markets to stabilize prices (ABC7).",
+            "safety": "Supports sealing criminal records of nonviolent offenders who completed their sentences (CBS).",
+            "immigration": "Supports enforcement and border security but says ICE must be reined in when its conduct is excessive; current enforcement 'has crossed the line.'",
+            "abortion": "Supports abortion rights (CBS Chicago). Note: he did not answer iVoterGuide's questionnaire, so any 'pro-life' characterization from that site is not his own statement.",
+            "guns": "Supports background checks for gun purchases.",
+            "education": "Supports school choice; discussed free community college on WTTW (per segment title; content not reviewed).",
+            "voting": "Supports voter ID; opposes universal mail-in voting.",
+            "healthcare": "Campaign emphasizes healthcare access and Direct Primary Care (Ballot Brief/WTTW descriptions); no detailed plan found.",
+            "energy_climate": "Domestic energy to lower costs; nothing on climate found.",
+            "trump": "Not found.",
+            "transit": "Not found.",
+            "pensions": "Not found.",
+            "ethics": "Campaign emphasizes 'government reform'; no specifics found."
+          },
+          "endorsements": ["None found."],
+          "polling": "Not included as a named option in the PPP poll; did not meet WTTW's 15% debate threshold. No fundraising figures found.",
+          "gaps": [
+            "Very thin campaign and few detailed positions; did not answer the iVoterGuide questionnaire; no Sun-Times questionnaire profile found.",
+            "Ballot label inconsistency: some profiles call him 'Independent' while the ballot lists the American Center Party.",
+            "No prior government experience."
+          ],
+          "axes": {
+            "econ": {"v": 0, "why": "Mixed: limit oil speculation and food tariffs (interventionist) plus school choice; no tax plan."},
+            "safety": {"v": -1, "why": "Thin evidence: only stated item is sealing records for nonviolent offenders."},
+            "federal": {"v": 0, "why": "Backs border enforcement but says ICE has 'crossed the line' and must be reined in."},
+            "change": {"v": 2, "why": "Third-party outsider founding a new centrist party."},
+            "social": {"v": -1, "why": "Supports abortion rights and gun background checks; also school choice."}
+          },
+          "sources": [
+            {"title": "Who is running for U.S. Senate in Illinois (CBS Chicago, Sept. 28, 2026)", "url": "https://www.cbsnews.com/chicago/news/who-is-running-us-senate-illinois-general-election-2026/"},
+            {"title": "Illinois Senate race 2026: candidates outline priorities (ABC7 Chicago, Oct. 9, 2026)", "url": "https://abc7chicago.com/post/illinois-senate-race-2026-candidates-juliana-stratton-don-tracy-whitfield-harrington-jr-outline-priorities-ahead-election/19925516/"},
+            {"title": "Whitfield Harrington Jr. profile (The Ballot Brief)", "url": "https://theballotbrief.com/candidate/whitfield-harrington-jr-il"},
+            {"title": "iVoterGuide profile (all questions 'Did not answer')", "url": "https://ivoterguide.com/candidate/93654"},
+            {"title": "Whitfield Harrington Jr. on His US Senate Run, Polarizing Politics and Free Community College (WTTW, Oct. 22, 2026 — title only; page blocked)", "url": "https://news.wttw.com/2026/10/22/whitfield-harrington-jr-his-us-senate-run-polarizing-politics-and-free-community-college"},
+            {"title": "Democrat Juliana Stratton faces Don Tracy (Sun-Times)", "url": "https://chicago.suntimes.com/elections/2026/10/14/democrat-juliana-stratton-republican-don-tracy-us-senate-race-dick-durbin-seat"},
+            {"title": "Stratton, Tracy clash… (Capitol News Illinois — Harrington excluded from forum)", "url": "https://capitolnewsillinois.com/news/stratton-tracy-clash-over-trump-affordability-in-lone-u-s-senate-forum/"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "governor",
+      "title": "Governor and Lieutenant Governor",
+      "context": "The governor proposes the state budget, signs or vetoes laws, runs state agencies and appoints hundreds of officials. Gov. JB Pritzker seeks a rare third term (the first since Jim Thompson's in 1982) in a rematch with Republican Darren Bailey, whom he beat by nearly 13 points in 2022; taxes and affordability, the SAFE-T Act, the response to Trump's 2025 immigration surge and National Guard push, the Bears stadium and data centers dominate.",
+      "candidates": [
+        {
+          "name": "Darren Bailey",
+          "ballot": 4,
+          "party": "Republican",
+          "running_mate": "Aaron B. Del Mar",
+          "incumbent": false,
+          "bio": "Downstate farmer from Clay County and former state representative and state senator who rose to prominence fighting Pritzker's COVID-19 restrictions. He was the 2022 GOP nominee (lost by about 12-13 points) and lost a 2024 GOP congressional primary to Rep. Mike Bost by about three points. In 2025 a helicopter crash killed his son, daughter-in-law and two grandchildren. Running mate Aaron Del Mar is Cook County Republican Party chair and Palatine Township highway commissioner.",
+          "qualifications": "School board president; Illinois House and Senate member; farmer/small-business owner. Associate degree in agricultural production (Lake Land College). No executive government experience.",
+          "positions": {
+            "taxes_budget": "Says Illinois has 'a spending problem, not a taxing problem'; promises tax relief first, then a review of spending; 'Illinois DOGE' and a 'forensic audit' of state finances and NGO grants. Wants to lower the estate tax. Has not said exactly how he would pay for tax cuts.",
+            "millionaire_tax": "Opposes: 'If we continue to tax the rich, that's a socialist mentality and we can't afford to do that.'",
+            "property_taxes": "Cap annual property tax increases at 1% (earlier proposed tying caps to mortgage rates); says the state could cover costs by reprioritizing spending.",
+            "safety": "Repeal the SAFE-T Act (which ended cash bail) and renegotiate it with law enforcement and state's attorneys; would change electronic-monitoring rules.",
+            "immigration": "Called the Illinois TRUST Act (limits on local cooperation with federal immigration agents) 'an unmitigated disaster' and called for repealing it (Sept. 2025). In the debate pressed Pritzker on deaths critics tie to non-cooperation. But he called masked immigration agents 'concerning' and said as governor 'there would be no one wearing masks.'",
+            "trump": "Endorsed by Trump in 2022 and again in 2026 ('I'm all for Bailey'); said in early 2026 he'd 'love to see JB Pritzker arrested because of tyranny.' Breaks with Trump on some points: says tariffs and the Iran war should end, and opposes masked agents.",
+            "abortion": "Longtime abortion opponent (called abortion protections 'pure evil' in 2023; rated 'fully pro-life' by Illinois Right to Life, meaning no rape/incest exceptions). In 2026 says he won't try to undo Illinois' abortion laws: 'I recognize and respect that, even though I may not agree with that.'",
+            "guns": "Says he 'will not waiver' in support of gun rights.",
+            "transit": "Not found.",
+            "pensions": "Not found (beyond general spending critique).",
+            "energy_climate": "Criticizes Illinois' climate law timeline: 'We're phasing out reliable energy far too soon.' Wants local control over data centers and concessions on water and electricity; blames Pritzker's data-center tax breaks for price spikes.",
+            "education": "Says Evidence-Based Funding isn't working; would replace the entire State Board of Education; wants CPS accountability before giving the $150M it requested.",
+            "ethics": "Calls the Welch/Benton allegations a symptom of a Springfield 'culture of corruption'; says existing ethics reforms lack enforcement. Did not say whether Welch should step down.",
+            "bears_stadium": "'I-Formation plan': privately financed stadium with up to $800M in infrastructure revenue bonds from a stadium tourism district, fixed property-tax payments, clawbacks and a 40-year commitment."
+          },
+          "endorsements": [
+            "Donald Trump (Sun-Times, Sept. 14, 2026)",
+            "No general-election newspaper endorsement found (Tribune made no governor endorsement by corporate policy)."
+          ],
+          "polling": "Trails: PPP/Chicago News Weekly Pritzker 54%, Bailey 34%, Corbett 6%; ActiVote Pritzker 58.7%-41.3%. Badly outspent — Pritzker has self-funded more than $90M; Bailey had roughly $482,000 entering October (secondary source citing MultiState).",
+          "gaps": [
+            "Has not detailed how he would cut taxes or cap property taxes (which are levied locally) while funding schools.",
+            "Past rhetoric: called Chicago a 'hellhole' in 2022 and said he'd like to see Pritzker 'arrested'; Pritzker ads cite a biblical textbook at his private school claiming dinosaurs and humans coexisted, which Bailey declined to dispute.",
+            "Abortion: personal record of opposing all abortion conflicts with his current pledge not to change Illinois law.",
+            "Positions on transit funding and pensions not found.",
+            "Lost his last two races (2022 governor, 2024 congressional primary)."
+          ],
+          "axes": {
+            "econ": {"v": 2, "why": "Cut spending via DOGE/audits, 1% property tax cap, opposes taxing the rich."},
+            "safety": {"v": 2, "why": "Repeal the SAFE-T Act and bring prosecutors/police into rewriting bail law."},
+            "federal": {"v": 2, "why": "Would repeal the TRUST Act ('unmitigated disaster'); caveat: opposes masked agents."},
+            "change": {"v": 1, "why": "Anti-Springfield downstate outsider pitch, though a two-time GOP nominee and Trump-endorsed."},
+            "social": {"v": 2, "why": "'Fully pro-life,' strong gun-rights stance; pledges not to change abortion law as governor."}
+          },
+          "sources": [
+            {"title": "Drinks and interruptions: Pritzker, Bailey meet in only governor debate (Capitol News Illinois, Oct. 2026)", "url": "https://capitolnewsillinois.com/news/drinks-and-interruptions-pritzker-bailey-meet-in-only-governor-debate-of-election-cycle/"},
+            {"title": "6 takeaways from the only gubernatorial debate (WBEZ, Oct. 13, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/13/watch-illinois-gov-debate-jb-pritzker-darren-bailey-takeaways"},
+            {"title": "Sun-Times voter guide: Darren Bailey questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/darren-bailey/"},
+            {"title": "'More listening and less talking': Bailey's 2nd run (Capitol News Illinois, Feb. 10, 2026)", "url": "https://capitolnewsillinois.com/news/more-listening-and-less-talking-darren-bailey-insists-results-will-be-different-in-2nd-run-for-governor/"},
+            {"title": "Bailey trying to stay on message as attacks from Pritzker mount (Capitol News Illinois, Oct. 7, 2026)", "url": "https://capitolnewsillinois.com/news/bailey-trying-to-stay-on-message-as-attacks-from-pritzker-mount/"},
+            {"title": "Pritzker signs bill protecting medical records for abortion patients (Capitol News Illinois, June 2026 — Bailey record)", "url": "https://capitolnewsillinois.com/news/pritzker-signs-bill-protecting-medical-records-for-abortion-patients-in-illinois/"},
+            {"title": "GOP candidates for governor call for repeal of Illinois TRUST Act (NBC Chicago, Sept. 24, 2025)", "url": "https://www.nbcchicago.com/news/local/gop-candidates-for-governor-call-for-repeal-of-illinois-trust-act/3829038/?amp=1"},
+            {"title": "Trump endorses Darren Bailey (Sun-Times, Sept. 14, 2026)", "url": "https://chicago.suntimes.com/elections/2026/09/14/trump-endorses-bailey-pritzker-illinois-governor-race"},
+            {"title": "What to know about the race for Illinois governor (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-llinois-governor-race-jb-pritzker-darren-bailey-collin-corbett"},
+            {"title": "Sources: Darren Bailey to run for governor again (NPR Illinois — Del Mar background)", "url": "https://www.nprillinois.org/government-politics/2025-09-09/sources-darren-bailey-to-run-for-governor-again-in-illinois"},
+            {"title": "PPP / Chicago News Weekly poll", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"}
+          ]
+        },
+        {
+          "name": "JB Pritzker",
+          "ballot": 5,
+          "party": "Democratic",
+          "running_mate": "Christian Mitchell",
+          "incumbent": true,
+          "bio": "Governor since 2019, a billionaire heir to the Hyatt hotel fortune and former entrepreneur and philanthropist, seeking a third term. He has clashed repeatedly with the Trump administration, including suing to block the 2025 National Guard deployment to Chicago, and is widely seen as a potential 2028 presidential contender. Running mate Christian Mitchell, 38, is a former state representative (2013-2019), former deputy governor (2019-2023) who negotiated the Climate and Equitable Jobs Act, University of Chicago executive and Air National Guard officer.",
+          "qualifications": "Two terms as governor; eight balanced budgets and 12 credit-rating upgrades (his campaign's claim; S&P cited 'good fiscal management'). Duke BA, Northwestern JD.",
+          "positions": {
+            "taxes_budget": "Pledges not to raise state income or sales taxes; touts eliminating the state grocery tax, a higher minimum wage and expanded tax credits. Critics (Tracy, Bailey) point to other tax and fee increases under his budgets and record spending.",
+            "millionaire_tax": "Championed the failed 2020 graduated-income-tax amendment; says he 'continues to support the concept' of a millionaire's tax but did not push lawmakers to put the 2026 amendment (3% on income over $1M for property-tax relief and K-12) on the ballot; it fell short in the House in April 2026. Sidestepped the question in the debate.",
+            "safety": "Signed the SAFE-T Act; says he is 'always open' to amending it but opposes returning to cash bail where violent offenders 'buy their way out'; judges and prosecutors should decide pretrial release. Touts expanding state police.",
+            "immigration": "Sued with Chicago to block Trump's 2025 National Guard deployment (the U.S. Supreme Court declined to let it proceed in Dec. 2025); signed a December 2025 law banning civil immigration arrests at or near courthouses and letting people sue federal agents for constitutional violations, plus protections at hospitals, colleges and day cares; created the Illinois Accountability Commission to document alleged abuses during Operation Midway Blitz. Accused Bailey of exploiting victims' 'pain for political gain' when pressed on non-cooperation.",
+            "abortion": "Strong abortion-rights record; signed the Reproductive Health Records Privacy Act (June 2026) shielding abortion and gender-dysphoria records from out-of-state access.",
+            "guns": "Signed the 2023 Protect Illinois Communities Act banning AR-15-style rifles and high-capacity magazines (upheld 2-1 by the 7th Circuit in July 2026).",
+            "transit": "Signed a $1.5B transit rescue (SB 2111, Dec. 2025) that averted CTA/Metra/Pace service cuts, created the Northern Illinois Transit Authority, and raised a Chicago-area sales tax 0.25% plus redirected gas-sales-tax revenue — 'no new statewide taxes.'",
+            "pensions": "Proposed (Feb. 2026) fully funding pensions by 2048 using tax-refund-fund surpluses and freed-up bond payments, extending buyouts, and fixing Tier 2 to meet federal Safe Harbor rules; the legislature had not acted.",
+            "energy_climate": "Signed the Climate and Equitable Jobs Act (fossil plants closed by 2045). Paused state data-center incentives; wants the POWER Act requiring data centers to bring their own clean power and closed-loop water; backs battery storage.",
+            "healthcare": "Calls for universal health care; blames federal Medicaid and SNAP cuts.",
+            "education": "Touts ~$3B added K-12 funding; won't commit to CPS's $150M request ('We can't just magically come up with $150 million').",
+            "ethics": "On sexual-misconduct allegations around House Speaker Welch/Rep. Benton, praised the women who came forward and said the House must address its culture, but did not say whether Welch should step down.",
+            "bears_stadium": "Won't subsidize the stadium itself ('not at the expense of the taxpayers') but open to state infrastructure help."
+          },
+          "endorsements": [
+            "Illinois AFL-CIO",
+            "Chicago Tribune: no formal endorsement (corporate policy), but an Oct. 18 opinion called him a 'fundamentally decent, moderate, perspicacious leader.'"
+          ],
+          "polling": "Clear favorite: PPP/Chicago News Weekly 54%-34%-6% (Corbett); ActiVote 58.7%-41.3%. Has self-funded more than $90M; spent ~$23.8M July-Sept. and had ~$44.4M entering October (secondary source).",
+          "gaps": [
+            "Seeking a rare third term while openly eyeing a 2028 presidential run; spending $40M+ of personal wealth on other Democrats' races.",
+            "Ducked a direct answer on putting a millionaire's tax on the ballot; no stated plan for CPS's $150M request.",
+            "Did not say whether Speaker Welch should step down amid misconduct allegations in his own party.",
+            "Bears stadium and data-center energy costs remain unresolved; Choate center service reductions criticized downstate.",
+            "Pension reform plan has not advanced in the legislature; unfunded liability still ~$143.5B."
+          ],
+          "axes": {
+            "econ": {"v": -1, "why": "Supports millionaire's-tax concept and universal health care, but pledges no income/sales tax hike and touts balanced budgets."},
+            "safety": {"v": -1, "why": "Signed and defends the end of cash bail, while expanding state police and staying 'open' to amendments."},
+            "federal": {"v": -2, "why": "Sued over the National Guard deployment; signed courthouse-arrest ban and right to sue federal agents."},
+            "change": {"v": -2, "why": "Two-term incumbent seeking a third term."},
+            "social": {"v": -2, "why": "Signed assault-weapons ban and abortion-records privacy law."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: JB Pritzker questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/jb-pritzker/"},
+            {"title": "Drinks and interruptions: only governor debate (Capitol News Illinois)", "url": "https://capitolnewsillinois.com/news/drinks-and-interruptions-pritzker-bailey-meet-in-only-governor-debate-of-election-cycle/"},
+            {"title": "6 takeaways from the only gubernatorial debate (WBEZ)", "url": "https://www.wbez.org/government-politics/elections/2026/10/13/watch-illinois-gov-debate-jb-pritzker-darren-bailey-takeaways"},
+            {"title": "Millionaire tax amendment fails to gain enough support from House Democrats (NPR Illinois, Apr. 23, 2026)", "url": "https://www.nprillinois.org/government-politics/2026-04-23/millionaire-tax-amendment-fails-to-gain-enough-support-from-house-democrats"},
+            {"title": "Pritzker signs $1.5B plan to overhaul public transportation (Capitol News Illinois, Dec. 2025)", "url": "https://capitolnewsillinois.com/news/pritzker-signs-1-5b-plan-to-overhaul-public-transportation-avoid-service-cuts"},
+            {"title": "Pritzker signs bill enacting immigrant protections in courthouses (NPR Illinois, Dec. 9, 2025)", "url": "https://www.nprillinois.org/illinois/2025-12-09/pritzker-signs-bill-enacting-immigrant-protections-in-courthouses"},
+            {"title": "Gov. Pritzker signs laws to better protect immigrants, sue federal agents after Midway Blitz (Borderless, Dec. 10, 2025)", "url": "https://borderlessmag.org/2025/12/10/gov-pritzker-signs-laws-to-better-protect-immigrants-sue-federal-agents-after-midway-blitz/"},
+            {"title": "Judge declines to immediately block National Guard after Pritzker, Johnson file suit (WTTW, Oct. 6, 2025)", "url": "https://news.wttw.com/2025/10/06/gov-jb-pritzker-mayor-brandon-johnson-ask-judge-block-trump-deploying-400-texas-national"},
+            {"title": "Trump one year: Kwame Raoul's lawsuits (WBEZ, Jan. 21, 2026 — Supreme Court National Guard outcome)", "url": "https://www.wbez.org/springfield/2026/01/21/trump-one-year-kwame-raoul-illinois-lawsuits-jb-pritzker"},
+            {"title": "Pritzker signs bill protecting medical records for abortion patients (Capitol News Illinois)", "url": "https://capitolnewsillinois.com/news/pritzker-signs-bill-protecting-medical-records-for-abortion-patients-in-illinois/"},
+            {"title": "Federal appeals court upholds Illinois ban on semiautomatic weapons (WTTW/AP, July 2026)", "url": "https://news.wttw.com/2026/07/10/federal-appeals-court-upholds-illinois-ban-semiautomatic-weapons-overturning-lower-court"},
+            {"title": "Pritzker sticking to proposal to fully fund pensions (NPR Illinois, Feb. 3, 2026)", "url": "https://www.nprillinois.org/government-politics/2026-02-03/pritzker-sticking-to-proposal-to-fully-fund-pensions"},
+            {"title": "Pritzker selects former Deputy Gov. Christian Mitchell as running mate (Capitol News Illinois, July 1, 2025)", "url": "https://capitolnewsillinois.com/news/pritzker-selects-former-deputy-gov-christian-mitchell-as-running-mate/"},
+            {"title": "What to know about the race for Illinois governor (WBEZ)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-llinois-governor-race-jb-pritzker-darren-bailey-collin-corbett"},
+            {"title": "Bailey trying to stay on message (Capitol News Illinois — $90M self-funding)", "url": "https://capitolnewsillinois.com/news/bailey-trying-to-stay-on-message-as-attacks-from-pritzker-mount/"},
+            {"title": "Illinois Governor Election 2026: Pritzker, Bailey and Corbett on key issues (MundoNow, citing MultiState — fundraising)", "url": "https://www.mundonow.com/en/illinois-governor-election-2026-pritzker-bailey-and-corbett/"}
+          ]
+        },
+        {
+          "name": "Collin Corbett",
+          "ballot": 6,
+          "party": "Independent",
+          "running_mate": "Carolyn Schofield",
+          "incumbent": false,
+          "bio": "Palatine political strategist, 40, who founded the Republican consulting firm Cor Strategies (plus EmpowerPolitics and Long9 Studio) and hosted the 'Smoke-Filled Room' podcast. He left the GOP after the 2026 primary, saying the party supports violent immigration raids and no longer welcomes dissent, and qualified as an independent with about 37,000 signatures. Running mate Carolyn Schofield is a former Republican McHenry County Board member, vice chair of the Chicago Metropolitan Agency for Planning and the 2022 GOP lieutenant-governor candidate with Paul Schimpf.",
+          "qualifications": "Campaign consultant and small-business owner; has never held elected or appointed office. High school education listed.",
+          "positions": {
+            "taxes_budget": "Self-described fiscal conservative: overhaul the sales tax by broadening the base to non-essential services, lowering the rate and exempting groceries, diapers, medicine and school supplies; freeze discretionary spending; an 'Office of the Repealer' to cut rules; incentives for local governments that lower property taxes. Did not directly say whether he'd ever raise income or sales taxes.",
+            "millionaire_tax": "Not found.",
+            "safety": "Not found (lists 'public safety' among priorities without specifics).",
+            "immigration": "Left the GOP over its support for 'violent immigration raids'; opposes much of the Trump agenda. No detailed immigration policy found.",
+            "abortion": "Supports abortion rights: 'government shouldn't be getting involved in women's medical decisions.'",
+            "guns": "Not found.",
+            "transit": "Not found.",
+            "pensions": "Not found.",
+            "energy_climate": "Data centers should pay their own grid costs, publicly report energy and water use, use closed-loop cooling, sign binding community-benefit agreements and pay into a property-tax relief fund; end NDAs.",
+            "education": "Calls CPS's $150M request unreasonable; supports full statewide school funding and cutting unfunded mandates.",
+            "ethics": "Calls for Speaker Chris Welch's removal as speaker and from the House; proposes an independent ethics commission with inspectors general, subpoena power and members vetted by the Illinois Supreme Court.",
+            "bears_stadium": "Keep the Bears via negotiated property-tax payments (~$15M/yr) rather than subsidies."
+          },
+          "endorsements": ["None found."],
+          "polling": "6% in the PPP/Chicago News Weekly poll; excluded from the WTTW debate for low polling. Raised about $40,000 in May 2026 (latest figure found).",
+          "gaps": [
+            "No government experience; small campaign treasury.",
+            "No stated positions found on the SAFE-T Act, guns, transit, pensions or the millionaire's tax.",
+            "Bailey's campaign calls his bid a 'vanity project' that helps Pritzker; Don Tracy is a former client of his firm."
+          ],
+          "axes": {
+            "econ": {"v": 1, "why": "Fiscal conservative: spending freeze, regulatory repeal, sales-tax overhaul with lower rate."},
+            "safety": {"v": null, "why": "No public-safety or SAFE-T Act position found."},
+            "federal": {"v": -1, "why": "Thin evidence: left GOP over 'violent immigration raids' and opposes much of Trump's agenda; no policy specifics."},
+            "change": {"v": 2, "why": "Independent outsider calling for an 'Independent majority' and Welch's removal."},
+            "social": {"v": -1, "why": "Supports abortion rights; no gun or LGBTQ positions found."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: Collin Corbett questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/collin-corbett/"},
+            {"title": "Former Republican strategist Collin Corbett files to run for governor as independent (Capitol News Illinois, May 26, 2026)", "url": "https://capitolnewsillinois.com/news/former-republican-strategist-collin-corbett-files-to-run-for-governor-as-independent/"},
+            {"title": "What to know about the race for Illinois governor (WBEZ)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-llinois-governor-race-jb-pritzker-darren-bailey-collin-corbett"},
+            {"title": "Drinks and interruptions (Capitol News Illinois — Corbett statement)", "url": "https://capitolnewsillinois.com/news/drinks-and-interruptions-pritzker-bailey-meet-in-only-governor-debate-of-election-cycle/"},
+            {"title": "PPP / Chicago News Weekly poll", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attorney-general",
+      "title": "Attorney General",
+      "context": "The attorney general is the state's top lawyer: defends state laws in court, handles consumer protection and civil-rights enforcement, and sues the federal government on the state's behalf. With Illinois in more than 50 lawsuits against the Trump administration, the race is largely about whether that posture continues.",
+      "candidates": [
+        {
+          "name": "Robert W. Fioretti",
+          "ballot": 7,
+          "party": "Republican",
+          "incumbent": false,
+          "bio": "Civil-rights attorney, 73, and Chicago's 2nd Ward alderman from 2007 to 2015. A former Democrat, he ran unsuccessfully for mayor twice, state Senate (2016) and Cook County Board president, then switched to the GOP and lost the 2024 Cook County state's attorney race to Eileen O'Neill Burke (about 30%-66% in early returns). He was unopposed in the 2026 GOP primary.",
+          "qualifications": "Decades as a lawyer, including Chicago Law Department civil-rights litigation under Mayor Harold Washington, special assistant attorney general and special assistant state's attorney; two council terms.",
+          "positions": {
+            "office_plans": "Says the office should focus on violent crime and corruption and stop acting as 'the governor's personal lawyer'; pledges independence from insiders and to prioritize workers, crime victims, taxpayers and utility customers.",
+            "federal_lawsuits": "Says Illinois is targeted because it doesn't follow federal law; would align state policy with federal law on immigration enforcement, sports/locker-room access and anti-discrimination rules to stop funding cuts. Agrees with only three of Raoul's suits (wouldn't name them): 'Quit the gamesmanship and quit putting out press releases.'",
+            "safety": "Calls the SAFE-T Act a failure; would seek to repeal or substantially amend it; would seek to end the Chicago Police consent decree (keeping officer mental-health pieces).",
+            "immigration": "Align state policy with federal immigration enforcement.",
+            "voting": "Supports voter ID; says he has not seen anyone's voting rights attacked.",
+            "abortion": "Not found.",
+            "guns": "Not found.",
+            "taxes_budget": "Not applicable/not found.",
+            "ethics": "Anti-corruption pitch cites 'unnamed corruption'; no specific plan found."
+          },
+          "endorsements": ["None found."],
+          "polling": "PPP/Chicago News Weekly: Raoul 52%, Fioretti 38%, 11% undecided. No fundraising figures found.",
+          "gaps": [
+            "Perennial candidate who has lost at least five races and switched parties.",
+            "Few specifics on how he would run the office's consumer-protection or civil-rights divisions.",
+            "No positions found on abortion or gun laws, both of which the AG defends in court.",
+            "Ending state defenses against federal funding cuts could cost Illinois money Raoul's office says it preserved (>$8B claimed)."
+          ],
+          "axes": {
+            "econ": {"v": null, "why": "No tax/spending positions found."},
+            "safety": {"v": 2, "why": "Repeal SAFE-T Act; end the police consent decree."},
+            "federal": {"v": 2, "why": "Would align Illinois with federal immigration enforcement rather than sue."},
+            "change": {"v": 1, "why": "Challenger running against insiders, though a longtime politician."},
+            "social": {"v": 1, "why": "Would align with federal rules on sports/locker-room access (transgender policy); no abortion/gun stance found."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: Robert W. Fioretti questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/robert-w-fioretti/"},
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "What to know about the race for Illinois attorney general (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-candidates-race-illinois-attorney-general-kwame-raoul-bob-fioretti"},
+            {"title": "Eileen O'Neill Burke, Robert Fioretti… who is running for Cook County state's attorney (Wednesday Journal, 2024 — party switch)", "url": "https://www.oakpark.com/2024/10/14/who-is-running-for-cook-county-states-attorney/"},
+            {"title": "O'Neill Burke projected to win Cook County state's attorney race (Daily Northwestern, 2024)", "url": "https://dailynorthwestern.com/2024/11/05/city/oneill-burke-projected-to-win-cook-county-states-attorney-race"},
+            {"title": "Bob Fioretti AG profile (Stateside, July 2026)", "url": "https://www.stateside.com/sites/default/files/2026-07/Bob%20Fioretti%20AG%20Profile.pdf"},
+            {"title": "PPP / Chicago News Weekly poll", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"}
+          ]
+        },
+        {
+          "name": "Kwame Raoul",
+          "ballot": 8,
+          "party": "Democratic",
+          "incumbent": true,
+          "bio": "Attorney general since 2019, seeking a third term; son of Haitian immigrants. He was a City Colleges staff attorney and Cook County prosecutor, then a state senator for 14 years after being appointed to the seat Barack Obama vacated. He won his last two elections by more than 11 points and was unopposed in the March primary.",
+          "qualifications": "Two terms as AG; former prosecutor; 14 years in the state Senate.",
+          "positions": {
+            "office_plans": "Retain attorneys and expand resources after lawmakers cut his budget by $10M this year; says underfunding could make winning fights with the Trump administration harder.",
+            "federal_lawsuits": "Office has been in 51+ lawsuits against the Trump administration and filed 100+ amicus briefs (as of Jan. 2026); ~90 legal battles that his office says preserved >$8B in state funding. Cases cover tariffs, public-health grant cuts, disaster and transportation funding withheld over immigration enforcement, medical research funding, mail-in ballot access, birthright citizenship and gender-affirming-care funding.",
+            "immigration": "Fought the National Guard deployment (Supreme Court declined to allow it in Dec. 2025; case later declared moot) and challenged what the state calls the federal 'occupation of Illinois and Chicago' by immigration agents, describing masked agents using tear gas and pepper balls on residents, police and journalists.",
+            "safety": "Successfully defended the SAFE-T Act's end of cash bail before the Illinois Supreme Court (2023). Endorsed by the Chicago and Illinois Fraternal Order of Police.",
+            "consumer_protection": "Part of a multistate settlement with Meta over youth social-media addiction.",
+            "abortion": "Endorsed by Reproductive Freedom for All; defended gender-affirming-care funding. No 2026-specific abortion statement found.",
+            "guns": "Not found in 2026 sources.",
+            "ethics": "Acknowledges criticism that his office isn't visible in high-profile corruption cases; says it was involved but couldn't say so publicly.",
+            "taxes_budget": "Not applicable/not found."
+          },
+          "endorsements": [
+            "Chicago Tribune (Oct. 7, 2026)",
+            "Illinois AFL-CIO",
+            "Chicago FOP and Illinois FOP; SEIU and Operating Engineers locals; Reproductive Freedom for All; Cook County Democratic Party; Chicago Crusader (Wikipedia list; some may date to the primary)"
+          ],
+          "polling": "PPP/Chicago News Weekly: Raoul 52%, Fioretti 38%.",
+          "gaps": [
+            "No Sun-Times questionnaire profile was linked in the voter guide (may not have responded).",
+            "Criticized for low visibility on public-corruption cases.",
+            "Third-term incumbent whose agenda centers on federal litigation; few new state-level initiatives found."
+          ],
+          "axes": {
+            "econ": {"v": null, "why": "No tax/spending positions found."},
+            "safety": {"v": -1, "why": "Defended ending cash bail in court, yet backed by both FOP lodges."},
+            "federal": {"v": -2, "why": "50+ lawsuits against the Trump administration, including over the National Guard and immigration agents."},
+            "change": {"v": -2, "why": "Two-term incumbent backed by party and labor."},
+            "social": {"v": -2, "why": "Defended gender-affirming-care funding; endorsed by Reproductive Freedom for All."}
+          },
+          "sources": [
+            {"title": "What to know about the race for Illinois attorney general (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-candidates-race-illinois-attorney-general-kwame-raoul-bob-fioretti"},
+            {"title": "What to know about the race for Illinois attorney general (Sun-Times)", "url": "https://chicago.suntimes.com/elections/2026/10/01/what-to-know-candidates-race-illinois-attorney-general-kwame-raoul-bob-fioretti"},
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "Trump one year: Raoul's lawsuits (WBEZ, Jan. 21, 2026)", "url": "https://www.wbez.org/springfield/2026/01/21/trump-one-year-kwame-raoul-illinois-lawsuits-jb-pritzker"},
+            {"title": "Raoul suggests underfunding could make winning legal battles against Trump harder (NPR Illinois, June 10, 2026)", "url": "https://www.nprillinois.org/illinois/2026-06-10/raoul-suggests-underfunding-of-his-office-could-make-winning-legal-battles-against-trump-harder"},
+            {"title": "AG Raoul statement after court declares National Guard case moot (IL AG)", "url": "https://illinoisattorneygeneral.gov/news/story/attorney-general-raoul-issues-statement-after-us-district-court-declares-case-over-national-guard-deployment-moot"},
+            {"title": "Illinois Supreme Court upholds SAFE-T Act provision eliminating cash bail (WTTW, July 18, 2023)", "url": "https://news.wttw.com/2023/07/18/illinois-supreme-court-upholds-safe-t-act-provision-eliminating-cash-bail"},
+            {"title": "2026 Illinois Attorney General election (Wikipedia — endorsements)", "url": "https://en.wikipedia.org/wiki/2026_Illinois_Attorney_General_election"},
+            {"title": "Tribune general-election endorsements", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-121000359.html"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "secretary-of-state",
+      "title": "Secretary of State",
+      "context": "The secretary of state runs driver's licenses, state IDs and vehicle registration, keeps state records, registers lobbyists and oversees the state library and library grants. The incumbent is simultaneously running for Chicago mayor in February 2027; if he wins both, Gov. Pritzker could appoint a successor for nearly the full term.",
+      "candidates": [
+        {
+          "name": "Diane M. Harris",
+          "ballot": 9,
+          "party": "Republican",
+          "incumbent": false,
+          "bio": "Joliet-area substitute teacher and self-described small-business owner, 70, who previously worked at ComEd and in insurance. She lost a 2022 race for the 43rd state Senate district, was elected a Joliet Junior College trustee in 2024, and has been a Joliet Public Library trustee since 2016. She won the March 2026 GOP primary 53%-47%.",
+          "qualifications": "Community college and library trustee; GOP precinct committeeman since 2010. No state government experience.",
+          "positions": {
+            "office_plans": "Work with unions to streamline driver's license/REAL ID service with reliable online appointments; keep Giannoulias' modernization initiatives; improve business licensing; reduce fees for vehicle stickers, titles and other vehicle services; end 'pay-to-play' practices.",
+            "drivers_tests": "Require rules-of-the-road tests to be given only in English; all drivers regardless of age should prove driving proficiency (opposes the rollback of age-based road tests).",
+            "license_plate_readers": "Says ALPR equipment is outside the office's jurisdiction; would follow the law; proposes no specific limits on data-sharing with immigration authorities.",
+            "libraries": "AI study areas paired with spaces for human learning; small-business partnerships in grant criteria.",
+            "pledge": "Would serve the full four-year term and not seek another office; criticizes Giannoulias' mayoral run as abandoning the state.",
+            "immigration": "Not found beyond English-only test proposal and ALPR answer.",
+            "abortion": "Not found.",
+            "guns": "Not found."
+          },
+          "endorsements": ["Chicago Tribune and Daily Herald in the March primary (per Wikipedia); no general-election endorsement found — the Tribune endorsed Giannoulias in November."],
+          "polling": "PPP/Chicago News Weekly: Giannoulias 55%, Harris 37%. Reported $134 cash on hand at the end of September vs. Giannoulias' $19.1M; ads limited to a Joliet-area radio station.",
+          "gaps": [
+            "Virtually unfunded campaign.",
+            "No executive or state-level experience.",
+            "English-only driving tests could conflict with federal civil-rights/language-access rules (not analyzed in sources reviewed)."
+          ],
+          "axes": {
+            "econ": {"v": 1, "why": "Proposes cutting vehicle-related fees."},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": null, "why": "No immigration-enforcement position beyond declining to propose ALPR data-sharing limits."},
+            "change": {"v": 1, "why": "Outsider challenger pledging to end 'pay-to-play'; longtime local GOP committeeman."},
+            "social": {"v": null, "why": "No position found."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: Diane M. Harris questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/diane-m-harris/"},
+            {"title": "What to know about the Illinois secretary of state race (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-illinois-secretary-of-state-race-alexi-giannoulias-diane-harris"},
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "Diane Harris poised to carry GOP nomination (Shaw Local, Mar. 18, 2026)", "url": "https://www.shawlocal.com/news/2026/03/18/diane-harris-poised-to-carry-gop-nomination-in-secretary-of-state-race"},
+            {"title": "2026 Illinois Secretary of State election (Wikipedia)", "url": "https://en.wikipedia.org/wiki/2026_Illinois_Secretary_of_State_election"}
+          ]
+        },
+        {
+          "name": "Alexi Giannoulias",
+          "ballot": 10,
+          "party": "Democratic",
+          "incumbent": true,
+          "bio": "Secretary of state since 2023, 50, previously Illinois treasurer (2007-2011) and a Chicago Public Library board member; he got his start in politics through his friendship with Barack Obama and once played professional basketball in Greece. He is also a frontrunner in Chicago's February 2027 mayoral election, which he entered in August with about $22M.",
+          "qualifications": "One term as secretary of state; one term as state treasurer. University of Chicago BA (economics), Boston University JD.",
+          "positions": {
+            "office_plans": "'Momentum on modernization': appointments, online transactions, one-stop counters, fast-pass kiosks, a Chicago REAL ID center and Mobile ID in Apple Wallet; next: more one-stop offices and kiosks, Mobile ID for Google/Samsung, back-end tech upgrades, clearer REAL ID guidance, and a new license-plate design.",
+            "license_plate_readers": "State law bars plate-reader use to target people over immigration status or reproductive care; his office cut off federal access to Illinois plate data after audits found violations; wants proactive audits, tighter access and real penalties.",
+            "senior_drivers": "Ended age-based road tests for drivers 79-86 (vision screening and in-person renewal remain; 87+ still tested annually); family members can report concerns.",
+            "libraries": "Championed a first-in-the-nation law against politically motivated book bans; $183M+ in library and literacy grants; digital-divide and AI-literacy priorities.",
+            "immigration": "See ALPR: blocked federal access to plate data for immigration enforcement.",
+            "abortion": "Touts reproductive-health data protections via the ALPR law.",
+            "guns": "Not found.",
+            "ethics": "Not found; criticized for running for two offices at once."
+          },
+          "endorsements": [
+            "Chicago Tribune (Oct. 7, 2026)",
+            "Illinois AFL-CIO; Operating Engineers Locals 150 and 399; SEIU groups; Cook County Democratic Party (Wikipedia list)"
+          ],
+          "polling": "PPP/Chicago News Weekly: Giannoulias 55%, Harris 37%. ~$19.1M cash on hand at end of September. Sabato rated the race Safe D.",
+          "gaps": [
+            "Running simultaneously for Chicago mayor; if elected mayor, Pritzker would appoint his replacement. He answers: 'when you're interviewing for a job, you don't leave the one that you're in.'",
+            "Has spent at least $5M on Chicago-market ads tied to the mayoral race while seeking reelection."
+          ],
+          "axes": {
+            "econ": {"v": null, "why": "No tax/spending positions found."},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": -1, "why": "Cut off federal access to Illinois plate-reader data after misuse; law bars immigration targeting."},
+            "change": {"v": -2, "why": "Incumbent and party/labor-backed former statewide officeholder."},
+            "social": {"v": -1, "why": "Anti-book-ban law and reproductive-care data protections; no gun stance."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: Alexi Giannoulias questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/alexi-giannoulias/"},
+            {"title": "What to know about the Illinois secretary of state race (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-illinois-secretary-of-state-race-alexi-giannoulias-diane-harris"},
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "Illinois Sec. of State Alexi Giannoulias launches Chicago mayoral bid (Fox 32)", "url": "https://www.fox32chicago.com/news/alexi-giannoulias-chicago-mayor-campaign-launch"},
+            {"title": "2026 Illinois Secretary of State election (Wikipedia)", "url": "https://en.wikipedia.org/wiki/2026_Illinois_Secretary_of_State_election"},
+            {"title": "Tribune general-election endorsements", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-121000359.html"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comptroller",
+      "title": "Comptroller",
+      "context": "The comptroller is the state's chief fiscal officer: pays the state's bills, tracks spending and contracts, publishes financial reports, sits on pension and investment boards and regulates cemeteries. This is the first open race since 2016 because Comptroller Susana Mendoza is running for Chicago mayor.",
+      "candidates": [
+        {
+          "name": "Bryan Drew",
+          "ballot": 11,
+          "party": "Republican",
+          "incumbent": false,
+          "bio": "Personal-injury and civil-litigation attorney from Benton in southern Illinois for more than 25 years who co-owns a cafe with his wife. He has served eight years as an elected Rend Lake Community College trustee, including as chairman, and finished second in a 2024 GOP primary for circuit judge. He was unopposed in the March 2026 GOP primary.",
+          "qualifications": "Attorney and small-business owner; community college board chair. No state-level or financial-management experience in government.",
+          "positions": {
+            "office_plans": "Use the office as an independent taxpayer 'watchdog' and ombudsman with its 'bully pulpit'; first priority is overhauling the comptroller's hard-to-navigate website; easier tracking of grant spending to nonprofits ('hundreds of millions'); use AI to flag waste, fraud and abuse.",
+            "independence": "Calls Croke Pritzker's 'hand-picked candidate' and says the governor's and Welch's endorsements are a 'conflict of interest'; 'I'll probably be eating lunch by myself.'",
+            "pensions": "Would facilitate pension reform but says the governor and legislature must lead.",
+            "taxes_budget": "Says running a cafe showed him how high taxes hurt small businesses; no specific budget proposals found.",
+            "cemetery_oversight": "Fine for the comptroller to keep funeral/cemetery regulation, with better coordination with IDFPR.",
+            "millionaire_tax": "Not found.",
+            "immigration": "Not applicable/not found.",
+            "abortion": "Not found.",
+            "guns": "Not found."
+          },
+          "endorsements": ["None found."],
+          "polling": "PPP/Chicago News Weekly: Croke 48%, Drew 37%, 15% undecided. Raised just under $80,000 from outside donors; no paid advertising.",
+          "gaps": [
+            "Limited state-government and public-finance experience.",
+            "Underfunded campaign relying on in-person travel.",
+            "No Sun-Times voter-guide questionnaire profile was linked (may not have responded)."
+          ],
+          "axes": {
+            "econ": {"v": 1, "why": "Taxpayer-watchdog focus on waste, fraud and nonprofit grant spending; critic of high taxes."},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": null, "why": "No position found."},
+            "change": {"v": 2, "why": "Downstate outsider running against the governor's hand-picked candidate."},
+            "social": {"v": null, "why": "No position found."}
+          },
+          "sources": [
+            {"title": "Replacing Mendoza: candidates vie to be state's first new comptroller in a decade (Capitol News Illinois, Sept. 29, 2026)", "url": "https://capitolnewsillinois.com/news/replacing-mendoza-candidates-vie-to-be-states-first-new-comptroller-in-a-decade/"},
+            {"title": "7 key points from our interviews with the candidates for Illinois comptroller (Capitol News Illinois, Sept. 29, 2026)", "url": "https://insider.capitolnewsillinois.com/7-key-points-from-our-interviews-with-the-candidates-for-illinois-comptroller/"},
+            {"title": "What to know about the Illinois comptroller race (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-illinois-comptroller-race-bryan-drew-state-rep-margaret-croke"},
+            {"title": "PPP / Chicago News Weekly poll", "url": "https://citizennewspapergroup.com/news/2026/oct/05/new-chicago-news-weekly-poll-finds-pritzker-up-20-points-democratic-candidates-leading-statewide-races/"}
+          ]
+        },
+        {
+          "name": "Margaret Croke",
+          "ballot": 12,
+          "party": "Democratic",
+          "incumbent": false,
+          "bio": "State representative, 34, from Lincoln Park (12th District) since 2021 who calls herself a moderate Democrat. She chairs the House Financial Institutions Committee and sits on Revenue & Finance; earlier she was deputy chief of staff at the state commerce agency (DCEO) and worked on Pritzker's 2018 campaign. She won the four-way March primary with about 34-35%.",
+          "qualifications": "Six years as a legislator on fiscal issues; managed a 300+ person agency role and billions in disbursements at DCEO (her description). University of Michigan BA.",
+          "positions": {
+            "office_plans": "Views the office as primarily administrative (pay bills, transparency, accurate reporting); a public 'Budget to Bill' tool tracing dollars from appropriation to payment; connect comptroller software with other agencies; push timely audits with the Auditor General and help small governments clear overdue audits; prepare for federal funding cuts.",
+            "rainy_day_fund": "Keep rebuilding the reserve and avoid raids that would hurt borrowing costs; did not name a target level.",
+            "pensions": "Make statutory pension payments and build reserves to win credit upgrades; address pensions as the state's biggest budget burden.",
+            "treasurer_merger": "Opposes merging the comptroller and treasurer offices (citing the Dixon fraud and credit risk).",
+            "cemetery_oversight": "Move cemetery/crematory oversight to IDFPR; add inspections and stronger enforcement.",
+            "independence": "Says her duty is to voters and she'd push back on the governor: 'The governor does not appreciate Yes people.'",
+            "taxes_budget": "Voted for several balanced budgets; supports balanced budgets and on-time bill payment.",
+            "millionaire_tax": "Not found.",
+            "immigration": "Not applicable/not found.",
+            "abortion": "Not found.",
+            "guns": "Not found."
+          },
+          "endorsements": [
+            "Chicago Tribune (Oct. 7, 2026; also endorsed her in the primary)",
+            "Gov. JB Pritzker (gave $72,800) and House Speaker Chris Welch",
+            "Illinois AFL-CIO and several trade unions"
+          ],
+          "polling": "PPP/Chicago News Weekly: Croke 48%, Drew 37%. Has disclosed $2.6M+ in donations since 2025, more than 80% before the primary.",
+          "gaps": [
+            "Independence questioned: top donor is Pritzker ally Michael Sacks (>$300,000) and Pritzker contributed directly; even Mendoza criticized this in the primary.",
+            "Did not specify a rainy-day-fund target when asked.",
+            "Relatively short public-sector career for the state's chief fiscal officer."
+          ],
+          "axes": {
+            "econ": {"v": 0, "why": "Self-described moderate focused on balanced budgets, reserves and pension payments; no tax-policy stance found."},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": null, "why": "Only mentions preparing for federal funding cuts."},
+            "change": {"v": -2, "why": "Governor- and Speaker-backed establishment candidate."},
+            "social": {"v": null, "why": "No position found."}
+          },
+          "sources": [
+            {"title": "Sun-Times voter guide: Margaret Croke questionnaire", "url": "https://chicago.suntimes.com/elections/2026/graphics/voter-guide-midterm-election-illinois/candidates/margaret-croke/"},
+            {"title": "Replacing Mendoza (Capitol News Illinois, Sept. 29, 2026)", "url": "https://capitolnewsillinois.com/news/replacing-mendoza-candidates-vie-to-be-states-first-new-comptroller-in-a-decade/"},
+            {"title": "7 key points from comptroller interviews (Capitol News Illinois)", "url": "https://insider.capitolnewsillinois.com/7-key-points-from-our-interviews-with-the-candidates-for-illinois-comptroller/"},
+            {"title": "What to know about the Illinois comptroller race (WBEZ, Oct. 1, 2026)", "url": "https://www.wbez.org/government-politics/elections/2026/10/01/what-to-know-illinois-comptroller-race-bryan-drew-state-rep-margaret-croke"},
+            {"title": "Editorial: Margaret Croke for Illinois comptroller (Chicago Tribune via Yahoo)", "url": "https://www.yahoo.com/news/politics/articles/editorial-margaret-croke-illinois-comptroller-101000147.html"},
+            {"title": "Tribune general-election endorsements", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-121000359.html"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "treasurer",
+      "title": "Treasurer",
+      "context": "The treasurer is the state's chief investment officer and banker: invests state money, runs the I-Cash unclaimed-property program, the Bright Start/Bright Directions college-savings plans, Secure Choice retirement savings and ABLE accounts. Incumbent Michael Frerichs seeks a fourth term; no Republican filed for the primary, and the GOP nominee got on the ballot through a write-in campaign.",
+      "candidates": [
+        {
+          "name": "Max Solomon",
+          "ballot": 13,
+          "party": "Republican",
+          "incumbent": false,
+          "bio": "South suburban attorney born in Lagos, Nigeria, who teaches political science and law as an adjunct at South Suburban Community College. He first ran for governor, dropped that bid, then waged a write-in campaign for treasurer in the March primary, winning more than 60,000 write-in votes to claim the GOP line.",
+          "qualifications": "Attorney; degrees from South Suburban College, DePaul (political science) and Valparaiso (theology master's and law degree). No government or investment-management experience found.",
+          "positions": {
+            "office_plans": "Reduce 'politically motivated' investment decisions and 'invest in Illinois first'; focus on waste and fraud as a 'whistleblower-in-chief.' Said he doesn't care about bond returns; did not identify a specific politically motivated Frerichs decision.",
+            "israel_bonds": "Not stated directly (beyond the 'politically motivated investments' critique).",
+            "taxes_budget": "Not found.",
+            "millionaire_tax": "Not found.",
+            "immigration": "Not found.",
+            "abortion": "Not found.",
+            "guns": "Not found."
+          },
+          "endorsements": ["None found."],
+          "polling": "No poll found. About $4,917 in his campaign account on Oct. 1.",
+          "gaps": [
+            "Extremely low-profile campaign; detailed platform 'has not been widely publicized' (Stateside).",
+            "No investment or financial-management experience found; his comment that he doesn't care about bond returns cuts against the office's core duty.",
+            "No Sun-Times voter-guide profile found."
+          ],
+          "axes": {
+            "econ": {"v": 1, "why": "Thin evidence: anti-waste/fraud pitch and 'invest in Illinois first.'"},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": null, "why": "No position found."},
+            "change": {"v": 2, "why": "Write-in outsider with no party-establishment backing."},
+            "social": {"v": null, "why": "No position found."}
+          },
+          "sources": [
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "Max Solomon treasurer profile (Stateside, July 2026)", "url": "https://www.stateside.com/sites/default/files/2026-07/Max%20Solomon%20Treasurer%20Profile.pdf"},
+            {"title": "Illinois treasurer faces no GOP challenger as 2026 primary ballots take shape (NPR Illinois, Nov. 4, 2025)", "url": "https://www.nprillinois.org/government-politics/2025-11-04/illinois-treasurer-faces-no-gop-challenger-as-2026-primary-ballots-take-shape"},
+            {"title": "2026 Illinois State Treasurer election (Wikipedia)", "url": "https://en.wikipedia.org/wiki/2026_Illinois_State_Treasurer_election"}
+          ]
+        },
+        {
+          "name": "Michael W. Frerichs",
+          "ballot": 14,
+          "party": "Democratic",
+          "incumbent": true,
+          "bio": "State treasurer since 2015, seeking a fourth term that would make him the longest-serving treasurer in state history. A Yale graduate from rural Gifford who taught English in Taiwan, he served as Champaign County Board member, county auditor and state senator before narrowly winning the office in 2014 (by under 10,000 votes).",
+          "qualifications": "Three terms as treasurer; former county auditor and state senator.",
+          "positions": {
+            "office_plans": "Touts returning about $1M a day in unclaimed property (I-Cash), turning around the Bright Start college-savings plan, $1.4B+ in investment earnings in FY2026, growth in The Illinois Funds for local governments, Secure Choice retirement accounts, Ag Invest loans and ABLE accounts.",
+            "israel_bonds": "Some progressives want the state to stop buying Israeli government bonds; he says they meet his return, safety and diversification criteria and that divestment is a legislative question.",
+            "taxes_budget": "Not found.",
+            "millionaire_tax": "Not found.",
+            "immigration": "Not found.",
+            "abortion": "Not found.",
+            "guns": "Not found."
+          },
+          "endorsements": [
+            "Chicago Tribune (Oct. 7, 2026)",
+            "Illinois AFL-CIO; Chicago and Illinois FOP; Operating Engineers Locals 150 and 399; SEIU; Citizen Action/Illinois; Cook County Democratic Party (Wikipedia list; some may date to the primary)"
+          ],
+          "polling": "Not polled. About $1.6M in his campaign account as of Oct. 1 vs. Solomon's ~$4,900.",
+          "gaps": [
+            "Faces criticism from the left over Israel bond holdings (activists have protested, including at his home).",
+            "Long tenure; no Sun-Times voter-guide profile found.",
+            "Few 2026 sources on new fourth-term initiatives."
+          ],
+          "axes": {
+            "econ": {"v": null, "why": "No tax/spending positions found."},
+            "safety": {"v": null, "why": "No position found."},
+            "federal": {"v": null, "why": "No position found."},
+            "change": {"v": -2, "why": "Three-term incumbent backed by party and labor."},
+            "social": {"v": null, "why": "No position found."}
+          },
+          "sources": [
+            {"title": "Statewide races: little-known GOP slate (Capitol News Illinois, Oct. 23, 2026)", "url": "https://capitolnewsillinois.com/news/statewide-races-little-known-gop-slate-faces-uphill-battle-against-mostly-incumbent-dems/"},
+            {"title": "Mike Frerichs treasurer profile (Stateside, July 2026)", "url": "https://www.stateside.com/sites/default/files/2026-07/Mike%20Frerichs%20Treasurer%20Profile.pdf"},
+            {"title": "2026 Illinois State Treasurer election (Wikipedia — endorsements)", "url": "https://en.wikipedia.org/wiki/2026_Illinois_State_Treasurer_election"},
+            {"title": "Illinois Treasurer Michael Frerichs denounces 3 a.m. protest at his house (CBS Chicago)", "url": "https://www.cbsnews.com/amp/chicago/news/illinois-treasurer-michael-frerichs-protest-house"},
+            {"title": "Tribune general-election endorsements", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-121000359.html"}
+          ]
+        }
+      ]
+    }
+  ]
+}
