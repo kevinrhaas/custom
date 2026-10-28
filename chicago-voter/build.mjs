@@ -88,12 +88,22 @@ const LAYOUT = [
   { id: 'cps-1b', group: 'Board of Education', title: 'Member, Chicago Board of Education, Subdistrict 1B', short: 'School Board (1B)', es: 'Miembro de la Junta de Educación, Subdistrito 1B', src: cps, nums: [131, 132], writeIn: true,
     weights: { union: 1, change: 0.6, econ: 0.4 } },
   // measures: order on the ballot
-  { id: 'q-millionaire-county', group: 'Public questions', short: 'Millionaire Amendment (county)', measureIndex: 0 },
-  { id: 'q-shotspotter', group: 'Public questions', short: 'Restart gunshot detection', measureIndex: 1 },
-  { id: 'q-festival', group: 'Public questions', short: 'Permanent festival space', measureIndex: 2, lightning: true },
-  { id: 'q-midway-blitz', group: 'Public questions', short: 'Midway Blitz cost recovery', measureIndex: 3 },
-  { id: 'q-cps-millionaire', group: 'Public questions', short: 'Millionaire surcharge for schools (CPS)', measureIndex: 4 },
-  { id: 'q-vacant-land', group: 'Public questions', short: 'Vacant-land charge for CPS', measureIndex: 5 },
+  // `yes` (editorial) says how a Yes vote reads on the survey axes; it replaces the
+  // researcher's scores so the reason line under each pick reads as plain English.
+  { id: 'q-millionaire-county', group: 'Public questions', short: 'Millionaire Amendment (county)', measureIndex: 0,
+    yes: { econ: { v: -2, why: 'A Yes backs a 3% surcharge on income over $1 million, split between property-tax relief and schools.' } } },
+  { id: 'q-shotspotter', group: 'Public questions', short: 'Restart gunshot detection', measureIndex: 1,
+    yes: { safety: { v: 1.8, why: 'A Yes asks the city to bring back gunshot-detection sensors, the police technology Mayor Johnson ended in 2024.' } } },
+  { id: 'q-festival', group: 'Public questions', short: 'Permanent festival space', measureIndex: 2, lightning: true,
+    lightningAsk: 'Should Chicago build a permanent festival grounds for big outdoor events? (Advisory; no site or budget named.)' },
+  { id: 'q-midway-blitz', group: 'Public questions', short: 'Midway Blitz cost recovery', measureIndex: 3,
+    yes: { federal: { v: -2, why: 'A Yes tells the city to pursue the federal government for the costs of the 2025 Midway Blitz ICE surge.' },
+      safety: { v: -0.6, why: 'Supporters frame the surge’s militarized tactics as harmful to public safety.' } } },
+  { id: 'q-cps-millionaire', group: 'Public questions', short: 'Millionaire surcharge for schools (CPS)', measureIndex: 4,
+    yes: { econ: { v: -2, why: 'A Yes asks Springfield to tax millionaires more and send the money to public schools.' } } },
+  { id: 'q-vacant-land', group: 'Public questions', short: 'Vacant-land charge for CPS', measureIndex: 5,
+    yes: { econ: { v: -1.6, why: 'A Yes backs a new yearly charge on long-vacant commercial and investment land, paid to CPS.' },
+      taxfair: { v: -1.2, why: 'It puts more of the load on commercial and investment property owners.' } } },
   // ---- side B
   { id: 'retain-appellate', group: 'Judges: retention', title: 'Retention, Appellate Court (First District)', short: 'Appellate retention', kind: 'retention', yesNums: [201] },
   { id: 'retain-circuit', group: 'Judges: retention', title: 'Retention, Circuit Court of Cook County', short: 'Circuit retention', kind: 'retention', yesFrom: 203 },
@@ -103,7 +113,13 @@ const LAYOUT = [
 //   concern  = a major bar (CBA, Chicago Council of Lawyers, ISBA) rated them Not Recommended / Not Qualified
 //   caution  = only an Alliance member bar said No, or Injustice Watch documents a notable controversy
 //   clean    = positive across every group found
-const JUDGE_FLAGS = {};
+const JUDGE_FLAGS = {
+  'lorraine-mary-murphy': 'concern', 'tiesha-l-smith': 'concern',
+  'ursula-walowski': 'caution', 'maritza-martinez': 'caution', 'erin-haggerty-antonietti': 'caution',
+  'teresa-molina-gonzalez': 'caution', 'gerardo-tristan-jr': 'caution', 'chris-stacey': 'caution',
+  'ashonta-c-rice': 'caution', 'steven-q-mckenzie': 'caution',
+};
+const judgeFlag = (id) => JUDGE_FLAGS[id] || 'clean';
 
 const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -135,14 +151,18 @@ function cleanPositions(p) {
 const arr = (x) => (Array.isArray(x) ? x : x ? [x] : []).filter((s) => s && !/^not found\.?$/i.test(String(s).trim()));
 const srcs = (x) => arr(x).filter((s) => s.url && /^https?:/.test(s.url)).map((s) => ({ title: s.title || '', url: s.url }));
 
+const SHORT = { 'Whitfield Harrington Jr': 'Harrington', 'Eira Lizeth Corral Sepúlveda': 'Corral Sepúlveda', 'Elizabeth "Liz" Nicholson': 'Nicholson',
+  'Cameron "Cam" Davis': 'Davis', 'JB Pritzker': 'Pritzker' };
+const shortName = (n) => SHORT[n] || n.replace(/,?\s+(Jr\.?|Sr\.?|II|III)$/, '').split(' ').slice(-1)[0];
 function candidate(c, n, race) {
   const party = c.party || '';
   const pkey = PARTY[party] || (party ? party.slice(0, 3).toUpperCase() : 'NP');
   return {
-    id: slug(c.name), name: c.name, short: c.short || c.name.split(' ').filter((w) => !/^\(|^"/.test(w)).slice(-1)[0].replace(/,$/, ''),
+    id: slug(c.name), name: c.name, short: shortName(c.name),
     ballot: n, party: pkey, partyName: party, incumbent: !!c.incumbent, runningMate: c.running_mate || undefined,
     bio: c.bio || '', quals: c.qualifications || '', positions: cleanPositions(c.positions),
     endorse: arr(c.endorsements), gaps: arr(c.gaps), axes: axes(c.axes), sources: srcs(c.sources),
+    withdrawn: c.withdrawn || undefined,
   };
 }
 
@@ -152,7 +172,7 @@ function judgeFromResearch(j, extra = {}) {
     id: slug(name), name, yes: j.yes, no: j.no, ballot: j.ballot, seat: j.seat || '',
     assignment: [j.assignment, j.served_since ? `on the bench since ${j.served_since}` : ''].filter(Boolean).join(' · '),
     bio: j.bio || '', ratings: Object.fromEntries(Object.entries(j.ratings || {}).filter(([, v]) => v)),
-    flag: JUDGE_FLAGS[slug(name)] || j.flag || 'unknown', why: j.why || '', iw: j.injustice_watch || '',
+    flag: j.flag === 'unknown' ? 'unknown' : judgeFlag(slug(name)), why: j.why || '', iw: j.injustice_watch || '',
     sources: srcs(j.sources), ...extra,
   };
 }
@@ -164,7 +184,7 @@ for (const L of LAYOUT) {
     const m = cps.questions[L.measureIndex];
     RACES.push({ ...base, kind: 'measure', title: m.title, jurisdiction: m.jurisdiction, wording: m.wording, binding: !!m.binding,
       sponsor: m.sponsor, yesMeans: m.yes_means, noMeans: m.no_means, for: arr(m.for), against: arr(m.against), facts: arr(m.facts),
-      yes: axes(m.yes_axes), lightning: !!L.lightning, lightningAsk: m.lightning_ask || m.wording, sources: srcs(m.sources) });
+      yes: L.yes || (L.lightning ? {} : axes(m.yes_axes)), lightning: !!L.lightning, lightningAsk: L.lightningAsk || m.wording, sources: srcs(m.sources) });
     continue;
   }
   if (L.kind === 'judge') {

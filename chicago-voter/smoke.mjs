@@ -26,14 +26,22 @@ let fail = 0;
 const patterns = { first: () => 0, last: () => 3, second: () => 1, mixed: (i) => [0, 3, 1, 2, 2, 0, 3, 1, 0, 2, 1, 3][i % 12] };
 for (const [w, h] of [[390, 780], [1280, 800]]) {
   for (const [pname, pick] of Object.entries(patterns)) {
-    const ctx = await browser.newContext({ viewport: { width: w, height: h } });
+    // the animated run waits out each transition; the rest run with reduced motion
+    const animated = pname === 'mixed';
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, reducedMotion: animated ? 'no-preference' : 'reduce' });
     const page = await ctx.newPage();
     const errs = []; page.on('pageerror', (e) => errs.push(e.message)); page.on('console', (m) => m.type() === 'error' && errs.push(m.text()));
     await page.goto(base);
     await page.click('#start');
     let n = 0;
     for (; n < 30; n++) {
-      if (await page.$('#ldone')) { await page.click('#ldone'); break; }
+      await page.waitForTimeout(animated ? 800 : 60);
+      if (await page.$('#ldone')) {
+        const segs = await page.$$('.lrow .seg'); for (let k = 0; k < segs.length; k++) { const bs = await segs[k].$$('button'); await bs[k % 2].click(); }
+        if (shots && animated) await page.screenshot({ path: `${shots}/lightning-${w}.png` });
+        await page.click('#ldone'); break;
+      }
+      if (shots && animated && n === 3) await page.screenshot({ path: `${shots}/q4-${w}.png` });
       const opts = await page.$$('.opt'); if (!opts.length) break;
       if (shots && n === 0 && pname === 'mixed') await page.screenshot({ path: `${shots}/q-${w}.png` });
       await opts[pick(n) % opts.length].click();

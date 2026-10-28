@@ -1,0 +1,557 @@
+{
+  "meta": {
+    "compiled": "2026-10-28",
+    "ballot": "Chicago Ward 30 Precinct 04; Board of Education Subdistrict 1B",
+    "notes": [
+      "All Board of Education races are nonpartisan. 2026 is the first election in which Chicago voters elect the board president and all 20 district seats (full transition from mayoral appointment).",
+      "Sendhil Revuluri (ballot 123) suspended his campaign Sept. 30, 2026 but his name stays on the ballot; he endorsed no one.",
+      "Several outlets (WTTW news.wttw.com, Axios) returned HTTP 403 to the fetcher; facts attributed to them come only from search-result summaries and are marked as such where used.",
+      "The prompt's '~$700M+ pension payment fight' could not be matched to one sourced figure: CPS's FY2027 budget gap was $732.5M; the disputed municipal (MEABF) pension payment to the city is $175M-$200M per CPS and $346M per a mayor's office presentation; CPS teacher pension costs were about $660M. See race context."
+    ]
+  },
+  "races": [
+    {
+      "id": "cps-president",
+      "title": "President of the Chicago Board of Education",
+      "vote_for": 1,
+      "context": "First-ever citywide election of the school board president, ending 30+ years of mayoral control. The elected president sets the monthly agenda and, unlike the current appointed president (Sean Harden), votes on all matters. Field: Victor P. Henderson (121), Jessica Biggs (122), Sendhil Revuluri (123, suspended Sept. 30 but on ballot), Hilario Dominguez (124). Jennifer Custer (current 1B member) withdrew Aug. 27 citing special-interest spending. Budget backdrop: CEO Macquline King announced a $732.5M FY2027 shortfall; on July 30, 2026 the board passed an amended ~$10B budget 11-7 (1 abstention) that reversed 1,000+ layoffs and assumed an extra $150M in state money not yet appropriated (plus $285M in city TIF surplus); Biggs and Custer voted no; CTU backed the amendment. Pension fight: the mayor has pressed CPS to pay the city's municipal employees' pension fund (MEABF) for CPS non-teaching staff; CPS puts it at $175M-$200M a year, a mayor's office presentation put it at $346M. In 2025 the board refused a high-cost loan to make the payment (a rebuke to Mayor Johnson), then in Oct. 2025 unanimously approved a $175M reimbursement after the mayor steered record TIF dollars to CPS; the proposed FY2027 budget included no MEABF contribution. CEO: the board fired CEO Pedro Martinez without cause (he left June 2025); Macquline King became interim CEO, and after a search Biggs chaired that collapsed when finalists' names leaked, the board voted 18-1 on March 30, 2026 to hire King permanently (contract through 2029; Custer the lone no). Money: Michael Sacks's Common Ground Collective super PAC spent $3.7M on digital ads, about half opposing Dominguez; INCS Action spent $450K on an anti-Dominguez ad; CTU's political arms raised ~$2.5M; Sacks personally gave Biggs $400K.",
+      "candidates": [
+        {
+          "name": "Victor P. Henderson",
+          "ballot": 121,
+          "incumbent": false,
+          "appointed_member": false,
+          "bio": "Henderson, 65, of Beverly, is a trial attorney and former certified public accountant who founded the law firm Henderson Parks; notable clients have included Jussie Smollett, Ald. William Beavers and Jackie Robinson West Little League. His four children attended CPS elementary schools and selective-enrollment/magnet high schools (Whitney Young, Brooks). He sat on the 'recovery board' of the Urban Prep charter network from 2023 and opposed the district's attempt to close it.",
+          "qualifications": "J.D., Georgetown; B.S. economics, Wharton. Former CPA (at what is now PwC); outside ethics officer for the Chicago Housing Authority and counsel to the U.S. House Ethics Committee (per Fox 32). The only president candidate with no educator experience; has not served on a Local School Council or worked for CPS.",
+          "positions": {
+            "budget_deficit": "Says he does not believe CPS's budget figures 'at all'; would commission a forensic audit / line-by-line review of central office, contracts and procurement and 'rather cut contracts than teachers.' Says CPS can't 'create a budget based on money that hasn't arrived.' Would make the case in Springfield if more revenue is needed after an audit.",
+            "borrowing": "not found",
+            "taxes": "Opposes raising the property tax levy to the maximum each year; says voters shouldn't 'pay another dime' without an audit and he would not back a tax increase until CPS shows it spends money properly.",
+            "closures": "Closures only as an 'extraordinary last resort' based on educational, safety and financial evidence, with community participation; never merely to balance a budget. Said keeping 'all' buildings open doesn't 'necessarily make sense' and wants the issue faced when the closure moratorium expires.",
+            "selective_vs_neighborhood": "Supports keeping neighborhood, selective-enrollment, magnet, career/technical and charter options, each held to quality standards. No more specific stance found.",
+            "ctu_contract": "not found (says he doesn't want 'any powerful unions like the CTU or SEIU pulling my strings' and calls CTU backing of Dominguez a possible conflict of interest)",
+            "charters": "Would support existing charters that meet rigorous standards and is sympathetic to more funding for operators; answered 'Neither' on opening more charters but would consider new schools meeting a community need (Chalkbeat says he would consider opening more).",
+            "police_safety": "Lists protecting students from gun violence as a top-three issue; no position on school police found.",
+            "mayor": "not found beyond claims of independence from all special interests.",
+            "pension_payment": "not found",
+            "ceo": "not found"
+          },
+          "endorsements": [
+            "U.S. Rep. Danny Davis; former U.S. Sens. Carol Moseley Braun and Roland Burris; Father Michael Pfleger; Bishop Byron Brazier; businessman Willie Wilson (Fox 32; Chalkbeat)",
+            "No union, PAC or education-group endorsements (WBEZ endorsement roundup; WBEZ money analysis)",
+            "Fundraising: $671,575 cash and in-kind as of Sept. 16 (Sun-Times); lent his campaign $500,000, which lifted contribution caps in the race"
+          ],
+          "gaps": [
+            "No stated position found on borrowing, the MEABF pension payment, the CTU contract, school police/SROs, the CEO, or Mayor Johnson.",
+            "Controversy: 15-year-old divorce filings in which his ex-wife accused him of hitting his son; he denies abusing his children and says school staff should never use corporal punishment.",
+            "Urban Prep's founder/former CEO was recently charged with embezzling more than $100,000; Henderson blames prior administration, not the network.",
+            "Tribune editorial said he seemed least open to consolidation in its interview, which differs from his questionnaire wording."
+          ],
+          "axes": {
+            "union": {"v": 2, "why": "Rejects CTU/SEIU influence, demands a forensic audit before any new taxes, opposes max levy, and is the most charter-friendly candidate."},
+            "change": {"v": 2, "why": "Outsider with no board or CPS experience who says he doesn't trust CPS's numbers and wants a forensic audit and an end to 'politically-driven' costs."},
+            "econ": {"v": 1, "why": "Prioritizes cutting contracts/bloat and opposes tax increases before an audit, but would lobby Springfield for more revenue if justified."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: 2026 school board president voter guide", "url": "https://chalkbeat.org/chicago/2026/09/24/school-board-election-2026-president-candidates-voter-guide"},
+            {"title": "Sun-Times voter guide: Victor P. Henderson", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/victor-p-henderson"},
+            {"title": "Chalkbeat: 4 takeaways from Oct. 14 president forum", "url": "https://www.chalkbeat.org/chicago/2026/10/15/chicago-school-board-president-forum-2026-takeaways/"},
+            {"title": "Chalkbeat: 4 takeaways from WTTW forum (Sept. 15)", "url": "https://www.chalkbeat.org/chicago/2026/09/16/school-board-president-candidates-meet-at-wttw-forum/"},
+            {"title": "Fox 32: Who is running for Chicago School Board president?", "url": "https://www.fox32chicago.com/news/who-is-running-chicago-school-board-president"},
+            {"title": "Chalkbeat: Henderson defends disciplining his kids", "url": "https://www.chalkbeat.org/chicago/2026/09/22/chicago-public-schools-board-president-candidate-victor-henderson-defends-discipline/"},
+            {"title": "WBEZ: Cash floods CPS school board races", "url": "https://www.wbez.org/education/2026/10/16/cash-floods-cps-school-board-races-with-big-money-groups-outraising-the-chicago-teachers-union-5-to-1"}
+          ]
+        },
+        {
+          "name": "Jessica Biggs",
+          "ballot": 122,
+          "incumbent": false,
+          "appointed_member": false,
+          "current_board_member": "Yes - elected in 2024 to the District 6 (6B) seat; not the incumbent president.",
+          "bio": "Biggs, 43, of Douglas, is a former CPS principal (Burke Elementary, 2012-2018) and directs the Southwest System of Care at the Southwest Organizing Project. She won her South Side board seat in 2024 with about 45% of the vote despite being outspent. She was fired as principal in 2018 after an inspector general report on tardy-marking and pickup practices and was on CPS's 'Do Not Hire' list until it was lifted in 2025; she says the firing was retaliation.",
+          "qualifications": "B.A. philosophy and B.S. psychology (Loyola); Ed.M. school leadership (Harvard); certificates in civic leadership (UChicago Harris) and education finance (Georgetown). Former special-education teacher and CPS principal; chaired the board's 2025-26 superintendent search; CPS parent (magnet school).",
+          "positions": {
+            "budget_deficit": "Efficiencies first, then revenue: find savings outside classrooms, press the state, build a multiyear plan with city and state. Voted against the July 30, 2026 budget, saying CPS 'simply cannot budget with money that we don't have' and calling for a 'clear stance against assuming revenue that is not available.'",
+            "borrowing": "Opposed a high-interest operating loan in 2025 'even under City Hall pressure'; says CPS should avoid high-interest loans.",
+            "taxes": "Opposes raising the property tax levy to the max every year (calls property taxes regressive); said it is 'long past time' for the very wealthy and large corporations to pay more and would have backed the board's millionaires-tax referendum.",
+            "closures": "Does not rule out closures but calls them 'the last thing we should want' and the 2013 closures 'exceptionally harmful'; wants community input and a plan for empty buildings; called yes/no framing a 'false dichotomy.'",
+            "selective_vs_neighborhood": "Supports keeping neighborhood, charter, selective and magnet schools. No more specific stance found.",
+            "ctu_contract": "not found",
+            "charters": "Support existing charters more; opposes opening new charters or diverting more public money to charter growth.",
+            "police_safety": "not found",
+            "mayor": "Cites opposing the loan under City Hall pressure and leading an 'independent' superintendent search as proof of independence.",
+            "pension_payment": "Opposed borrowing to make the 2025 municipal pension payment (via loan opposition); no other position found.",
+            "ceo": "Chaired the search to replace Pedro Martinez; blames its collapse on board political divisions after finalists' names leaked; the board later hired interim CEO Macquline King 18-1 (Custer the only no, so Biggs was in the majority)."
+          },
+          "endorsements": [
+            "Chicago Tribune Editorial Board (Sept. 27, 2026)",
+            "SEIU Illinois State Council / SEIU Local 73 (Brighter Futures PAC)",
+            "Chicago Federation of Labor; Cook County Board President Toni Preckwinkle; Alds. Pat Dowell, Lamont Robinson, Desmon Yancy, Scott Waguespack, Timmy Knudsen; Chicago Laborers' District Council; IUOE Local 150; IBEW Local 134 (Fox 32)",
+            "Former Emanuel-era officials including Janice Jackson and Beth Swanson; business community (Chalkbeat)",
+            "Michael Sacks gave $400,000 directly to her campaign (WBEZ)",
+            "Fundraising: $385,558 as of Sept. 16 (Sun-Times); about $1M raised directly by mid-October (WBEZ)"
+          ],
+          "gaps": [
+            "No stated position found on the CTU contract, school police/SROs, or selective-enrollment policy specifics.",
+            "Her 2018 firing and Do-Not-Hire listing remain a campaign issue; she says it was political.",
+            "Opponents accused her of resurfacing their controversies; she denies it.",
+            "She did not attend the Aug. 13 vote putting the CPS revenue referendums on the ballot."
+          ],
+          "axes": {
+            "union": {"v": 1, "why": "Not CTU-backed and voted against the CTU-backed budget and against borrowing, but is SEIU-backed, supports a millionaires tax and opposes new charters."},
+            "change": {"v": 0, "why": "Sitting board member who led the CEO search and backed keeping King, while dissenting from the board majority on the budget."},
+            "econ": {"v": 0, "why": "Efficiencies first, opposes max property-tax levy and high-interest loans, but also wants more state money and higher taxes on the very wealthy."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: 2026 school board president voter guide", "url": "https://chalkbeat.org/chicago/2026/09/24/school-board-election-2026-president-candidates-voter-guide"},
+            {"title": "Sun-Times voter guide: Jessica Biggs", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/jessica-biggs"},
+            {"title": "Chalkbeat: 4 takeaways from Oct. 14 president forum", "url": "https://www.chalkbeat.org/chicago/2026/10/15/chicago-school-board-president-forum-2026-takeaways/"},
+            {"title": "Chalkbeat: 4 takeaways from WTTW forum (Sept. 15)", "url": "https://www.chalkbeat.org/chicago/2026/09/16/school-board-president-candidates-meet-at-wttw-forum/"},
+            {"title": "Fox 32: Who is running for Chicago School Board president?", "url": "https://www.fox32chicago.com/news/who-is-running-chicago-school-board-president"},
+            {"title": "Tribune endorsement of Biggs (reprinted on candidate site)", "url": "https://www.biggs4chicago.com/headlines/chicago-tribune-editorial-board-endorses-jessica-biggs"},
+            {"title": "Tribune Editorial Board endorsements, 2026 general election (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"},
+            {"title": "WBEZ: Board approves budget that reverses layoffs (vote list)", "url": "https://www.wbez.org/education/chicago-school-board/2026/07/30/chicago-school-board-approves-budget-that-reverses-layoffs-but-counts-on-shaky-state-funds"},
+            {"title": "WBEZ: Cash floods CPS school board races", "url": "https://www.wbez.org/education/2026/10/16/cash-floods-cps-school-board-races-with-big-money-groups-outraising-the-chicago-teachers-union-5-to-1"},
+            {"title": "Chalkbeat: Board adds revenue referendums to ballot", "url": "https://www.chalkbeat.org/chicago/2026/08/13/chicago-public-schools-board-backs-revenue-referendums/"}
+          ]
+        },
+        {
+          "name": "Sendhil Revuluri",
+          "ballot": 123,
+          "incumbent": false,
+          "appointed_member": "Former appointed member - vice president of the board 2019-2022 under Mayor Lori Lightfoot; not currently on the board.",
+          "withdrawn": "Suspended campaign Sept. 30, 2026; name remains on ballot; endorsed no one.",
+          "bio": "Revuluri, 50, of West Town, is a leadership consultant (principal/COO of Solidarity Futures) and former New York City public school math teacher who co-founded a school there and was a CPS math instructional specialist. He was the first candidate to declare (Oct. 2025). He dropped out saying a 'gusher of special-interest cash has crowded out the voices of real Chicagoans.'",
+          "qualifications": "B.A. physics and math (UChicago); M.S. secondary math (Pace); Georgetown education finance certificate; former board VP; former Suder Montessori LSC member; CPS parent (Whitney Young, Suder).",
+          "positions": {
+            "budget_deficit": "Balance 'honestly, sustainably, and with students first' with multi-year projections; said the 2026 budget was crafted to appease special interests.",
+            "borrowing": "Avoid 'borrowing or gimmicks.'",
+            "taxes": "Opposes automatically maxing the property tax levy, calling it the board's 'automatic first move.'",
+            "closures": "Would consider closures if they improve students' academic experience; says there are 'too many schools that are too empty.'",
+            "selective_vs_neighborhood": "Range of school types with strong neighborhood schools as the foundation.",
+            "ctu_contract": "not found (describes himself as pro-labor but often critical of CTU; advocated a board independent of CTU)",
+            "charters": "Support existing charters held to district standards; no new charters given limited resources.",
+            "police_safety": "not found",
+            "mayor": "Wants voters, not the mayor, to hold the board accountable.",
+            "pension_payment": "not found",
+            "ceo": "Board should hold the CEO accountable for instructional results."
+          },
+          "endorsements": [
+            "Chicago Democrats for Education",
+            "U.S. Reps. Raja Krishnamoorthi and Ro Khanna (Fox 32)",
+            "Fundraising: $722,372 as of Sept. 16, much of it self-funded"
+          ],
+          "gaps": [
+            "Withdrawn candidate; votes cast for him still count for him but he is not campaigning.",
+            "Fox 32 described him as the 'current' board vice president, which conflicts with Chalkbeat/Sun-Times (former VP, 2019-2022)."
+          ],
+          "axes": {
+            "union": {"v": 1, "why": "Ran as independent of CTU and against borrowing, but pro-labor and opposed new charters."},
+            "change": {"v": 1, "why": "Criticized the current board as too political and wanted a reset toward measurable student goals."},
+            "econ": {"v": 1, "why": "Emphasized efficient spending, no borrowing and no automatic max levy, while still seeking fair state funding."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: Revuluri drops out", "url": "https://www.chalkbeat.org/chicago/2026/09/30/sendhil-revuluri-drops-out-of-chicago-school-board-president-race/"},
+            {"title": "Sun-Times voter guide: Sendhil Revuluri", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/sendhil-revuluri"},
+            {"title": "Chalkbeat: 4 takeaways from WTTW forum (Sept. 15)", "url": "https://www.chalkbeat.org/chicago/2026/09/16/school-board-president-candidates-meet-at-wttw-forum/"},
+            {"title": "Fox 32: Who is running for Chicago School Board president?", "url": "https://www.fox32chicago.com/news/who-is-running-chicago-school-board-president"}
+          ]
+        },
+        {
+          "name": "Hilario Dominguez",
+          "ballot": 124,
+          "incumbent": false,
+          "appointed_member": false,
+          "bio": "Dominguez, 33, a Pilsen native and Whitney Young graduate, is a CPS special-education teacher and former CTU deputy political director, on leave from both. He organized a student walkout in 2010, helped organize the 2019 11-day teachers' strike, and ran for 25th Ward alderman in 2019. He is the CTU's candidate and is endorsed by Mayor Brandon Johnson, a former CTU organizer.",
+          "qualifications": "B.A. sociology and business management (Johns Hopkins); M.A. special education (Dominican). CPS teacher/case manager 2015-17 and 2019-22; Whitney Young LSC 2018-2021; says he has made 100+ lobbying trips to Springfield.",
+          "positions": {
+            "budget_deficit": "Close the gap with state money owed under the Evidence-Based Funding formula ('Our students are owed $2 billion dollars') and progressive revenue such as taxing the wealthiest Illinoisans; supported the July 2026 budget assuming $150M more in state money and praised halting layoffs.",
+            "borrowing": "not found",
+            "taxes": "Supports continuing to raise the property tax levy to the maximum each year.",
+            "closures": "Only candidate ruling out all closures; would extend the moratorium and repurpose underused buildings for clinics, libraries and food pantries.",
+            "selective_vs_neighborhood": "Supports keeping neighborhood, charter, selective and magnet schools; wants a 'Sustainable Community School District.'",
+            "ctu_contract": "not found (CTU notes the board will negotiate its next contract; critics cite potential conflict of interest; he told the Tribune CTU does not have too much power)",
+            "charters": "Support existing charters with stronger oversight; no new charters until existing operators have stronger financial accountability.",
+            "police_safety": "not found",
+            "mayor": "Endorsed by Johnson, who campaigned with him and kept backing him through an inspector general probe; credited by CTU with pushing Johnson to send surplus TIF money to CPS.",
+            "pension_payment": "not found",
+            "ceo": "Wants a CEO evaluation that 'requires vision'; no position on King found.",
+            "other": "Universal free full-day pre-K for 3-year-olds via partnerships with private childcare; youth jobs and paid internships; better cafeteria food."
+          },
+          "endorsements": [
+            "Chicago Teachers Union (House of Delegates) and Our Schools Chicago (CTU-affiliated)",
+            "Mayor Brandon Johnson",
+            "Alds. Jessie Fuentes (26th) and Rossana Rodriguez Sanchez (33rd); Painters District Council 14; CWA District 4 (Fox 32)",
+            "Refuses money from billionaires/their PACs, charter interests, developers and corporate PACs",
+            "Fundraising: $241,604 as of Sept. 16 (Sun-Times); about $1M raised directly by mid-October (WBEZ); target of ~$1.85M Common Ground and $450K INCS opposition ads"
+          ],
+          "gaps": [
+            "No stated position found on borrowing, the MEABF pension payment, school police/SROs, or the CTU contract.",
+            "CPS Inspector General reopened, then on ~Oct. 14 closed with 'no actionable finding of sexual misconduct,' a probe into a 2017 allegation that he hugged/lifted a 17-year-old program participant; he denies wrongdoing and calls it politically motivated.",
+            "A 2021 complaint alleged he made a Nazi salute toward a fellow teacher; withdrawn; he called it baseless.",
+            "Skipped the Tribune editorial board interview on 34 minutes' notice."
+          ],
+          "axes": {
+            "union": {"v": -2, "why": "CTU's own candidate, endorsed by Mayor Johnson; supports budgeting on expected state money, max property tax levy and progressive revenue."},
+            "change": {"v": -2, "why": "Continuity with the CTU/mayor-aligned board majority and its budget; would extend the closure moratorium."},
+            "econ": {"v": -2, "why": "Wants new progressive taxes, maximum property tax levy and more state funding rather than cuts; proposes new universal pre-K."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: 2026 school board president voter guide", "url": "https://chalkbeat.org/chicago/2026/09/24/school-board-election-2026-president-candidates-voter-guide"},
+            {"title": "Sun-Times voter guide: Hilario Dominguez", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/hilario-dominguez"},
+            {"title": "Chalkbeat: 4 takeaways from Oct. 14 president forum", "url": "https://www.chalkbeat.org/chicago/2026/10/15/chicago-school-board-president-forum-2026-takeaways/"},
+            {"title": "Block Club: Reopening of CPS watchdog inquiry roils race", "url": "https://blockclubchicago.org/2026/10/06/reopening-of-cps-watchdog-inquiry-roils-candidates-bid-for-school-board-president/"},
+            {"title": "CBS Chicago: CPS IG closes probe into Dominguez", "url": "https://www.cbsnews.com/chicago/news/chicago-public-schools-ig-closes-hilario-dominguez/"},
+            {"title": "Fox 32: Who is running for Chicago School Board president?", "url": "https://www.fox32chicago.com/news/who-is-running-chicago-school-board-president"},
+            {"title": "WBEZ: Key education endorsements", "url": "https://www.wbez.org/education/chicago-school-board/2026/09/21/key-education-endorsements-for-cps-school-board-candidates"},
+            {"title": "WBEZ: Cash floods CPS school board races", "url": "https://www.wbez.org/education/2026/10/16/cash-floods-cps-school-board-races-with-big-money-groups-outraising-the-chicago-teachers-union-5-to-1"},
+            {"title": "Tribune endorsement of Biggs (Dominguez interview no-show)", "url": "https://www.biggs4chicago.com/headlines/chicago-tribune-editorial-board-endorses-jessica-biggs"}
+          ]
+        }
+      ],
+      "sources": [
+        {"title": "Chalkbeat: CPS releases budget, $732.5M gap", "url": "https://www.chalkbeat.org/chicago/2026/07/15/chicago-public-schools-releases-district-budget/"},
+        {"title": "WBEZ: Board approves budget that reverses layoffs", "url": "https://www.wbez.org/education/chicago-school-board/2026/07/30/chicago-school-board-approves-budget-that-reverses-layoffs-but-counts-on-shaky-state-funds"},
+        {"title": "Chalkbeat: CPS worried about pension bills (Feb. 2026)", "url": "https://www.chalkbeat.org/chicago/2026/02/24/chicago-public-schools-concerned-about-pension-bills/"},
+        {"title": "WBEZ: Jennifer Custer drops out", "url": "https://www.wbez.org/education/2026/08/27/jennifer-custer-drops-out-of-race-for-chicago-school-board-president"},
+        {"title": "Chalkbeat: Macquline King hired as permanent leader", "url": "https://www.chalkbeat.org/chicago/2026/03/30/chicago-board-of-education-hires-macquline-king/"},
+        {"title": "Sun-Times voter guide: president", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/school-board/president/"}
+      ]
+    },
+    {
+      "id": "cps-1b",
+      "title": "Member, Chicago Board of Education, Subdistrict 1B",
+      "vote_for": 1,
+      "context": "Open Northwest Side seat (Portage Park, Dunning, Irving Park, Belmont Cragin, North Park, Montclare, Albany Park) held since Jan. 2025 by Jennifer Custer, who is leaving after one two-year term; Custer was the board's lone vote against hiring CEO Macquline King and against the CPS revenue referendums, and voted against the July 2026 budget. Pierre narrowly lost to Custer in 2024. Candidates in 1B raised $292,062 combined (WBEZ, mid-October).",
+      "candidates": [
+        {
+          "name": "Claudia Peralta",
+          "ballot": 131,
+          "incumbent": false,
+          "appointed_member": false,
+          "bio": "Peralta, 42, of Portage Park, immigrated from Ecuador at 12, grew up in Logan Square and graduated from CPS's Prosser Career Academy. She is district director for U.S. Rep. Delia Ramirez and was chief of staff to state Rep. Lindsey LaPointe and a program coordinator for the Illinois Coalition for Immigrant and Refugee Rights. This is her first run for office.",
+          "qualifications": "B.A. political science (DePaul); A.A. (Wilbur Wright College). Von Linne Elementary LSC member 2019-2023; CPS parent (Von Linne, Von Steuben, Amundsen); 45th Ward Dems committeeperson; participatory-budget committee for Ald. Rodriguez Sanchez. No CPS employment or education career.",
+          "positions": {
+            "budget_deficit": "Closing the gap shouldn't cost educators' jobs; intergovernmental approach and 'progressive revenue'; 'move away from the reactivity and crisis of annual budget cycles.' Top local concern is special-education staff cuts.",
+            "borrowing": "not found",
+            "taxes": "Opposes raising the property tax levy to the max every year; favors reducing reliance on property taxes.",
+            "closures": "Answered No to closing schools for any reason (also called closures a 'last resort').",
+            "selective_vs_neighborhood": "Top issue is investing in strong neighborhood schools; supports keeping a mix of school types evaluated 'through an equity lens.'",
+            "ctu_contract": "not found",
+            "charters": "Support existing charters; no new charters.",
+            "police_safety": "not found ('protecting every CPS student and family' is a top issue, context not specified)",
+            "mayor": "not found",
+            "pension_payment": "not found",
+            "ceo": "not found"
+          },
+          "endorsements": [
+            "Chicago Teachers Union; Our Schools Chicago; SEIU (incl. SEIU Illinois State Council, which contributed)",
+            "Fundraising: $41,565 as of Sept. 16 (Sun-Times)"
+          ],
+          "gaps": [
+            "No positions found on borrowing, pensions, CTU contract, school police, Mayor Johnson, or the CEO.",
+            "No Mayor Johnson endorsement found for this race.",
+            "Tribune endorsed her opponent."
+          ],
+          "axes": {
+            "union": {"v": -2, "why": "CTU- and SEIU-endorsed; would not close the gap with educator job cuts; rejects support from 'privatize' interests."},
+            "change": {"v": -1, "why": "Would align with the CTU-backed board majority; no closures; emphasizes intergovernmental relationships."},
+            "econ": {"v": -1, "why": "Favors progressive revenue and more intergovernmental funding, but opposes maxing the property tax levy."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: District 1B voter guide", "url": "https://chalkbeat.org/chicago/2026/09/24/school-board-election-2026-district-1b-candidates-voter-guide"},
+            {"title": "Sun-Times voter guide: Claudia Peralta", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/claudia-peralta"},
+            {"title": "Sun-Times voter guide: District 1B", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/school-board/districts/1b/"},
+            {"title": "WBEZ: Key education endorsements", "url": "https://www.wbez.org/education/chicago-school-board/2026/09/21/key-education-endorsements-for-cps-school-board-candidates"}
+          ]
+        },
+        {
+          "name": "Michelle N. Pierre",
+          "ballot": 132,
+          "incumbent": false,
+          "appointed_member": false,
+          "bio": "Pierre, 50, of Montclare, has nearly 30 years in education as a teacher, principal and administrator, including six years as chief academic officer of the Cleveland Metropolitan School District and chief schools officer at LEARN Charter Network; she is now a senior executive at New Leaders, a school-leadership nonprofit. She lost narrowly to Custer in 2024. Chalkbeat describes her as metrics-driven, weighing decisions by return on investment for student outcomes.",
+          "qualifications": "Ed.D. educational leadership (UPenn); M.S. school leadership (Trinity); M.S. HR development (Towson); B.A. (Adelphi); Georgetown education finance certificate. Principal in D.C. Public Schools and Friendship Public Charter; Ogden ES LSC 2020-2021; ChiArts board 2023-2026; CPS parent.",
+          "positions": {
+            "budget_deficit": "'Balancing the budget requires disciplined leadership and not across-the-board cuts or automatic tax increases'; eliminate inefficiencies, judge programs by ROI, protect classroom instruction.",
+            "borrowing": "not found",
+            "taxes": "Top issue is limiting CPS property tax increases; opposes maxing the levy each year.",
+            "closures": "Yes, but only for persistently low achievement or poor learning experiences, with community input.",
+            "selective_vs_neighborhood": "Preserve school choice (neighborhood, magnet, selective, charter, career) so students can attend outside their neighborhood, while strengthening neighborhood schools.",
+            "ctu_contract": "not found",
+            "charters": "Support high-performing charters; open more where communities lack quality options, under rigorous accountability.",
+            "police_safety": "not found",
+            "mayor": "not found",
+            "pension_payment": "not found",
+            "ceo": "Board's role is to hold the CEO accountable for results; wants a student-outcomes committee."
+          },
+          "endorsements": [
+            "Chicago Tribune Editorial Board",
+            "Common Ground Collective (anti-CTU super PAC largely funded by Michael Sacks)",
+            "The Urban Center (centrist, pro-school-choice)",
+            "INCS Action PAC and Leadership for Educational Equity PAC (donating, not endorsing, per Sun-Times)",
+            "Fundraising: $18,938 as of Sept. 16 (Sun-Times)"
+          ],
+          "gaps": [
+            "No positions found on borrowing, pensions, CTU contract, school police, Mayor Johnson.",
+            "No dollar figure found for outside (Common Ground/INCS) spending specifically in 1B."
+          ],
+          "axes": {
+            "union": {"v": 2, "why": "Backed by anti-CTU and charter-network PACs; ROI-driven budgeting; supports opening more charters and preserving choice."},
+            "change": {"v": 1, "why": "Supports school ratings, closures for chronically low performance and new charters - a shift from the current board majority."},
+            "econ": {"v": 1, "why": "Prioritizes limiting property taxes and cutting inefficiencies, but rejects across-the-board cuts."}
+          },
+          "sources": [
+            {"title": "Chalkbeat: District 1B voter guide", "url": "https://chalkbeat.org/chicago/2026/09/24/school-board-election-2026-district-1b-candidates-voter-guide"},
+            {"title": "Sun-Times voter guide: Michelle N. Pierre", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/candidates/michelle-n-pierre"},
+            {"title": "Sun-Times voter guide: District 1B", "url": "https://chicago.suntimes.com/elections/2026/graphics/chicago-school-board-education-voter-guide/school-board/districts/1b/"},
+            {"title": "WBEZ: Key education endorsements", "url": "https://www.wbez.org/education/chicago-school-board/2026/09/21/key-education-endorsements-for-cps-school-board-candidates"},
+            {"title": "Tribune Editorial Board endorsements, 2026 general election (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"}
+          ]
+        }
+      ],
+      "sources": [
+        {"title": "WBEZ: Cash floods CPS school board races", "url": "https://www.wbez.org/education/2026/10/16/cash-floods-cps-school-board-races-with-big-money-groups-outraising-the-chicago-teachers-union-5-to-1"},
+        {"title": "WBEZ: Jennifer Custer drops out", "url": "https://www.wbez.org/education/2026/08/27/jennifer-custer-drops-out-of-race-for-chicago-school-board-president"}
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-millionaire-county",
+      "title": "The Cook County Millionaire Amendment for Property Tax Relief and Education",
+      "jurisdiction": "Cook County",
+      "wording": "Shall Illinois adopt the Millionaire Amendment for Property Tax Relief and Education, which would enact a 3% income tax surcharge only on millionaires and use 50% of this new revenue to provide property tax relief for residential and commercial taxpayers and 50% to improve state funding for public education?",
+      "binding": false,
+      "sponsor": "Cook County Board of Commissioners, unanimous vote in July 2026; resolution introduced July 8 by Commissioner Donna Miller (D-6th). It mirrors HJRCA0021, a proposed state constitutional amendment by state Rep. La Shawn Ford that stalled in the Illinois House in April 2026 (Speaker Welch did not call it before the May 3 deadline to make the 2026 ballot). Pat Quinn had also sought a Chicago version, which the City Council blocked.",
+      "yes_means": "Advises state lawmakers that you support amending the Illinois Constitution to add a 3% surcharge on millionaires' income, with half the money for property tax relief and half for school funding. It changes no law.",
+      "no_means": "Advises that you oppose such an amendment. It changes no law.",
+      "for": [
+        "Commissioner Donna Miller: lets voters 'send a clear message' to Springfield; residents shouldn't have to choose between affordable property taxes and well-funded schools.",
+        "Commissioner Josina Morita: local governments are strained by federal cuts; voters should be heard.",
+        "Supporters named by Block Club: House Speaker Chris Welch, Mayor Brandon Johnson, former Gov. Pat Quinn."
+      ],
+      "against": [
+        "Illinois Policy (Bryce Hill): removing the flat-tax protection could open the door to more brackets and broader taxes over time; Illinois has made 'temporary' tax hikes permanent; estimates the plan would fall more than $2B short of meaningful property tax relief.",
+        "Detractors cited by Block Club: could hurt business owners and push taxpayers out of Illinois.",
+        "Chicago Tribune Editorial Board recommends No (reasoning not in the excerpt seen)."
+      ],
+      "facts": [
+        "Advisory only; a real change requires the General Assembly to pass an amendment and statewide voters to approve it; Illinois Policy says the earliest statewide vote would be November 2028.",
+        "Illinois Economic Policy Institute (April 2026): a 3% tax on income over $1M would affect about 41,000 people and could raise $4.2B a year by 2030 (via Block Club); The Record North Shore reports about $4B a year.",
+        "In 2024 a similar statewide advisory question (3% on income over $1M for property tax relief) passed with about 60% yes (NPR).",
+        "In 2020 voters rejected Gov. Pritzker's graduated-income-tax amendment (Illinois Policy)."
+      ],
+      "yes_axes": {
+        "econ": {"v": -2, "why": "Endorses a new tax on high incomes to fund schools and property tax relief."},
+        "safety": {"v": null, "why": "Not relevant."},
+        "federal": {"v": null, "why": "Not relevant."}
+      },
+      "sources": [
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "The Record North Shore: Cook County votes to give opinion on statewide millionaire tax", "url": "https://www.therecordnorthshore.org/2026/07/26/cook-county-votes-to-give-opinion-on-statewide-millionaire-tax/"},
+        {"title": "Illinois Policy: Cook County to vote on non-binding millionaires tax question", "url": "https://www.illinoispolicy.org/?p=79658"},
+        {"title": "Fox 32: guide to Chicago-area ballot questions", "url": "https://www.fox32chicago.com/news/election-2026-chicago-referenda-ballot-question"},
+        {"title": "NPR: Illinois voters approve the idea of raising taxes on income over $1 million (2024)", "url": "https://www.npr.org/2024/11/06/g-s1-33090/illinois-voters-approve-the-idea-of-raising-taxes-on-income-over-1-million"},
+        {"title": "ABC7: Illinois millionaire tax amendment fails to gain enough support", "url": "https://abc7chicago.com/post/illinois-millionaire-tax-amendment-fails-gain-enough-support-house-dems-would-impose-3-income-1-million/18954281/"},
+        {"title": "Tribune Editorial Board endorsements, 2026 (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"}
+      ]
+    },
+    {
+      "id": "q-gunshot-detection",
+      "title": "Restart Chicago Gunshot Detection",
+      "jurisdiction": "City of Chicago",
+      "wording": "Should the City of Chicago restart the use of gunshot detection technology that informs first responders when gunshots are detected?",
+      "binding": false,
+      "sponsor": "Ald. Marty Quinn (13th) and the City Council 'rebel bloc' that opposes Mayor Johnson (Resolution R2026-0025451). Advanced by the Rules Committee July 9, 2026 after the bloc blocked Johnson's millionaire-tax referendum; Chicago allows at most three advisory questions per election, so the slot choices became a proxy fight between the mayor and Council critics.",
+      "yes_means": "Advises the city to bring back a gunshot detection system such as ShotSpotter. It does not itself sign a contract.",
+      "no_means": "Advises against restarting gunshot detection. It does not end the city's pending procurement.",
+      "for": [
+        "Ald. Marty Quinn: gives taxpayers a voice; the mayor's office has given 'crickets' on a promised replacement.",
+        "Ald. Brian Hopkins (Public Safety chair): delays are unacceptable; shootings continue in formerly covered areas; the UChicago response-time study doesn't show causation.",
+        "Ald. Pat Dowell: ShotSpotter alerted police to a shooting victim nobody called 911 about; 'just another tool' to save lives.",
+        "Northeastern's Eric Piza et al.: in Chicago, ShotSpotter responses got officers closer to scenes faster and increased gun recoveries.",
+        "Chicago Police said officers gave lifesaving aid 430 times over three years after alerts (as reported in search summaries; primary figure not verified).",
+        "Chicago Tribune Editorial Board recommends Yes."
+      ],
+      "against": [
+        "Mayor Brandon Johnson: the old system was 'junk' and 'ineffective,' wasted money and overpoliced communities; the city is 'thoroughly vetting' replacements.",
+        "City Inspector General (Aug. 2021): only 9.1% of dispatched ShotSpotter alerts (4,556 of 41,830) produced evidence of a gun crime; some officers used alerts to justify stops.",
+        "MacArthur Justice Center (Northwestern Law): 40,000+ 'dead-end deployments' over nearly two years.",
+        "UChicago Justice Project (Robert Vargas, 2026): Priority 1 response times in formerly covered beats improved ~4 minutes after removal (critics note the analysis excluded shots-fired calls).",
+        "Piza study also found no reduction in fatal or nonfatal shootings and no improvement in clearance rates; a 2024 Topper & Ferrazares paper found ShotSpotter slowed 911 response.",
+        "Critics recall the 2021 police killing of 13-year-old Adam Toledo after a ShotSpotter alert."
+      ],
+      "facts": [
+        "Chicago spent about $49M on ShotSpotter from 2018; Johnson let the SoundThinking contract lapse Sept. 22, 2024.",
+        "In Sept. 2024 the Council voted 33-14 for an ordinance letting the police superintendent renew it; Johnson called it illegal and never formally vetoed it; the system went dark anyway.",
+        "The city issued an RFP for 'gun violence detection technology' in Feb. 2025; nine vendors responded (including SoundThinking); as of June 2026 no award, and procurement said such buys typically take at least two years.",
+        "Advisory only; contracting authority stays with the mayor's administration."
+      ],
+      "yes_axes": {
+        "econ": {"v": null, "why": "Cost (~$49M over six years) is secondary to the policing question."},
+        "safety": {"v": 2, "why": "Endorses restoring police surveillance technology."},
+        "federal": {"v": null, "why": "Not relevant."}
+      },
+      "sources": [
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "Block Club: Alders demand ShotSpotter replacement (June 2026)", "url": "https://blockclubchicago.org/2026/06/08/more-than-a-year-after-mayor-promised-shotspotter-replacement-alders-demand-whats-taking-so-long/"},
+        {"title": "Sun-Times: Johnson's millionaires tax referendum shot down", "url": "https://chicago.suntimes.com/brandon-johnson/2026/07/09/johnsons-advisory-referendum-on-millionaires-tax-shot-down-in-latest-council-rebellion"},
+        {"title": "Block Club: 7 potential ballot questions advanced by Council", "url": "https://blockclubchicago.org/2026/07/09/should-city-seek-compensation-from-feds-for-midway-blitz-7-potential-ballot-referendum-questions-advanced-by-council/"},
+        {"title": "Chicago Councilmatic: Resolution R2026-0025451", "url": "https://chicago.councilmatic.org/legislation/r2026-0025451/"},
+        {"title": "WTTW (2021): ShotSpotter alerts rarely lead to evidence of gun crime", "url": "https://news.wttw.com/2021/08/24/shotspotter-alerts-rarely-lead-evidence-gun-crime-city-watchdog"},
+        {"title": "Crime and Justice Research Alliance: impact of gunshot detection technology (Piza)", "url": "https://crimeandjusticeresearchalliance.org/rsrch/the-impact-of-gunshot-detection-technology-on-gun-violence/"},
+        {"title": "UChicago Justice Project crime map / response-time analysis", "url": "https://uchicago-justice-project.github.io/chicago_crime_map/"},
+        {"title": "CWB Chicago: study excluded gunfire calls", "url": "https://cwbchicago.com/2026/05/mayor-says-study-proves-police-respond-faster-without-shotspotter-the-study-excluded-gunfire-calls.html"},
+        {"title": "ABC7: Chicago will not renew ShotSpotter ($49M since 2018)", "url": "https://abc7chicago.com/post/chicago-will-not-renew-controversial-shotspotter-contract/14419466/"},
+        {"title": "ABC7: Johnson refuses to veto ordinance to revive system", "url": "https://abc7chicago.com/post/future-shotspotter-chicago-unclear-after-mayor-brandon-johnson-refuses-veto-ordinance-revive-gun-detection-technology/15409473/"},
+        {"title": "Tribune Editorial Board endorsements, 2026 (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"}
+      ]
+    },
+    {
+      "id": "q-festival-space",
+      "title": "Permanent Chicago Festival Space",
+      "jurisdiction": "City of Chicago",
+      "wording": "Should Chicago develop a permanent festival and outdoor event space for large-scale events?",
+      "binding": false,
+      "sponsor": "Ald. Nicole Lee (11th), introduced and passed through City Council as one of the three city advisory questions (a rebel-bloc slot per the Sun-Times).",
+      "yes_means": "Advises the city to plan a dedicated permanent site for large festivals and outdoor events. No location, cost or funding is specified.",
+      "no_means": "Advises against a dedicated site; festivals would keep using parks such as Grant Park and Douglass Park under current permits.",
+      "for": [
+        "Ald. Nicole Lee: weeks-long park takeovers by Lollapalooza (Grant Park) and Riot Fest (Douglass Park) leave damage; a dedicated site could spur economic development elsewhere in the city.",
+        "Illinois Policy summary of the case for: keeps big events in Chicago without taking over neighborhood parks."
+      ],
+      "against": [
+        "Illinois Policy summary of the case against: temporary park closures are a fair tradeoff; the city could change schedules or permit rules instead of building a venue.",
+        "Chicago Tribune Editorial Board recommends No (reasoning not in the excerpt seen)."
+      ],
+      "facts": [
+        "No location, cost estimate or funding source has been determined.",
+        "Riot Fest has a Park District deal to stay in Douglass Park through 2027 (option to 2029), over neighbor objections (CBS/Illinois Policy).",
+        "Advisory only."
+      ],
+      "yes_axes": {
+        "econ": {"v": -1, "why": "Implies a new city-developed facility of unknown public cost."},
+        "safety": {"v": null, "why": "Not relevant."},
+        "federal": {"v": null, "why": "Not relevant."}
+      },
+      "sources": [
+        {"title": "Illinois Policy: Should Chicago have a new venue for festivals and concerts?", "url": "https://www.illinoispolicy.org/?p=79698"},
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "Block Club: 7 potential ballot questions advanced by Council", "url": "https://blockclubchicago.org/2026/07/09/should-city-seek-compensation-from-feds-for-midway-blitz-7-potential-ballot-referendum-questions-advanced-by-council/"},
+        {"title": "CBS Chicago: Riot Fest to remain in Douglass Park through 2027", "url": "https://www.cbsnews.com/amp/chicago/news/riot-fest-chicago-douglass-park-through-2027"},
+        {"title": "Tribune Editorial Board endorsements, 2026 (Yahoo syndication)", "url": "https://www.yahoo.com/news/politics/articles/tribune-editorial-board-endorsements-2026-171200294.html"}
+      ]
+    },
+    {
+      "id": "q-midway-blitz",
+      "title": "Chicago Cost Recovery from Midway Blitz",
+      "jurisdiction": "City of Chicago",
+      "wording": "Shall the City of Chicago pursue all lawful means to recover financial compensation from the federal government for the costs and economic harm caused by the Donald Trump administration's violent, militarized ICE operations, including the Midway Blitz operation led by Greg Bovino, to recover lost tax revenue, public safety response costs, and services provided to residents and families affected by those operations?",
+      "binding": false,
+      "sponsor": "Mayor Brandon Johnson, by direct introduction to the Rules Committee (July 9, 2026); the full City Council approved it 'overwhelmingly' at its July 22 meeting (NBC Chicago).",
+      "yes_means": "Advises the city to seek, through lawsuits or other lawful means, federal reimbursement for costs and economic losses tied to 2025 federal immigration-enforcement operations. It authorizes no specific action.",
+      "no_means": "Advises against pursuing such compensation. It changes nothing by itself.",
+      "for": [
+        "Mayor Johnson: Midway Blitz 'disrupted' families and businesses through 'military-style raids'; cites earlier Texas busing of migrants 'without notice or adequate federal support.'",
+        "The resolution cites independent studies of comparable ICE operations finding millions in economic losses."
+      ],
+      "against": [
+        "No organized opposition reported (Block Club). Open questions: the mayor's office did not say how the city would seek compensation.",
+        "Ald. Anthony Beale called Johnson's direct introduction an 'abuse of the rules' (procedural, not substantive, objection)."
+      ],
+      "facts": [
+        "Operation Midway Blitz began in September 2025 in Chicago and suburbs, led by Border Patrol's Gregory Bovino.",
+        "More than 3,800 detentions per DHS records (via Block Club).",
+        "A UIC report estimated immigrant business corridors lost more than $1B in economic activity (via Block Club).",
+        "Governor's office (Dec. 2025): Little Village businesses reported revenue drops up to 50%; nearly 14,000 students at predominantly Latino schools stayed home on Sept. 29, 2025; National Guard deployment cost estimates of $12.8M-$19.4M (advocacy-framed state release).",
+        "The question's wording itself characterizes the operations as 'violent, militarized.'"
+      ],
+      "yes_axes": {
+        "econ": {"v": null, "why": "Seeks recovery of existing losses rather than new taxes or programs."},
+        "safety": {"v": -1, "why": "Frames federal enforcement tactics as harmful; aligns with limiting aggressive enforcement."},
+        "federal": {"v": -2, "why": "Directly calls for the city to pursue compensation from the federal government."}
+      },
+      "sources": [
+        {"title": "NBC Chicago: referendum will ask if city should seek compensation after Midway Blitz", "url": "https://www.nbcchicago.com/news/local/chicago-politics/chicago-voters-will-be-asked-whether-city-should-seek-compensation-after-midway-blitz/3964880/"},
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "Block Club: 7 potential ballot questions advanced by Council", "url": "https://blockclubchicago.org/2026/07/09/should-city-seek-compensation-from-feds-for-midway-blitz-7-potential-ballot-referendum-questions-advanced-by-council/"},
+        {"title": "Sun-Times: Johnson's millionaires tax referendum shot down", "url": "https://chicago.suntimes.com/brandon-johnson/2026/07/09/johnsons-advisory-referendum-on-millionaires-tax-shot-down-in-latest-council-rebellion"},
+        {"title": "Illinois Governor's Office: Operation Midway Blitz economic and human costs", "url": "https://gov-pritzker-newsroom.prezly.com/operation-midway-blitz-the-economic-and-human-costs-to-illinois-communities"}
+      ]
+    },
+    {
+      "id": "q-cps-millionaire",
+      "title": "Advisory Question Regarding Millionaires Surcharge",
+      "jurisdiction": "Chicago Public Schools (District 299)",
+      "wording": "Shall Illinois use revenue from a surcharge on millionaires to increase funding to public schools?",
+      "binding": false,
+      "sponsor": "Chicago Board of Education, Aug. 13, 2026 special meeting - the first time the board has placed referendums on the ballot, under a 2011 law allowing it by simple majority. Proposed via board chief of staff Fae Rabin; a favored idea of Mayor Johnson and pushed by his allies on the board. Jennifer Custer was the only no vote; Jessica Biggs was absent but said she would have backed it.",
+      "yes_means": "Advises state lawmakers that you support a millionaires' surcharge whose revenue goes to public schools. It compels nothing.",
+      "no_means": "Advises against such a surcharge for schools. It compels nothing.",
+      "for": [
+        "Board President Sean Harden: pursue urgent fixes but also let the public weigh in on longer-term solutions - 'a window of opportunity.'",
+        "Vice President Angel Velez: move CPS 'from scarcity to adequacy' under the state's funding formula.",
+        "Jessica Biggs (statement): 'long past time' for the very wealthy and large corporations to pay more."
+      ],
+      "against": [
+        "Jennifer Custer: 'I don't see these as being actionable items' - 'window dressing to a larger problem'; board should focus on immediate budget fixes.",
+        "Civic Federation: referendums make little headway on CPS's finances; focus on what the board controls.",
+        "Che 'Rhymefest' Smith questioned the rushed process and that the questions don't say how money would help students."
+      ],
+      "facts": [
+        "Broader than the Cook County question: no rate and no property-tax-relief split.",
+        "Context: the FY2027 budget assumes $150M in extra state money that lawmakers had not approved; without it in the November veto session, midyear cuts are likely.",
+        "A binding state millionaires-tax amendment failed to advance in Springfield in spring 2026.",
+        "Advisory only; would require a state constitutional amendment to implement."
+      ],
+      "yes_axes": {
+        "econ": {"v": -2, "why": "Endorses a new tax on top earners to expand school funding."},
+        "safety": {"v": null, "why": "Not relevant."},
+        "federal": {"v": null, "why": "Not relevant."}
+      },
+      "sources": [
+        {"title": "Chalkbeat: Divided school board adds revenue referendums", "url": "https://www.chalkbeat.org/chicago/2026/08/13/chicago-public-schools-board-backs-revenue-referendums/"},
+        {"title": "Chalkbeat: Board to weigh adding ballot questions", "url": "https://www.chalkbeat.org/chicago/2026/08/10/chicago-public-schools-board-weighs-two-referendums/"},
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "Fox 32: guide to Chicago-area ballot questions", "url": "https://www.fox32chicago.com/news/election-2026-chicago-referenda-ballot-question"},
+        {"title": "WBEZ: Jennifer Custer drops out (lone no vote)", "url": "https://www.wbez.org/education/2026/08/27/jennifer-custer-drops-out-of-race-for-chicago-school-board-president"}
+      ]
+    },
+    {
+      "id": "q-cps-vacant-land",
+      "title": "Advisory Question Regarding Chicago Land Owners",
+      "jurisdiction": "Chicago Public Schools (District 299)",
+      "wording": "Should the City of Chicago require owners of long-term vacant or undeveloped commercial or investment properties to pay an additional annual charge that would support Chicago Public Schools?",
+      "binding": false,
+      "sponsor": "Chicago Board of Education, Aug. 13, 2026; introduced by board member Cydney Wallace (Johnson appointee). Custer the lone no vote.",
+      "yes_means": "Advises the city to create a new annual charge on owners of long-term vacant or undeveloped commercial/investment property, with proceeds to CPS. Details would be left to the city.",
+      "no_means": "Advises against such a charge. It compels nothing.",
+      "for": [
+        "Cydney Wallace: vacant lots are eyesores that affect public safety; cites research linking development of vacant urban land to better resident mental health.",
+        "Supporters (Block Club): would fund safety improvements in underserved neighborhoods and bring in school revenue; the city would work out details."
+      ],
+      "against": [
+        "Jennifer Custer: not actionable; 'window dressing.'",
+        "Some board members worried it could punish owners who plan to develop their land and questioned enforcement.",
+        "Civic Federation: referendums do little for CPS's immediate finances."
+      ],
+      "facts": [
+        "No rate, threshold or revenue estimate has been proposed; Chalkbeat notes thousands of vacant lots citywide.",
+        "Only the city (not CPS) could enact such a charge.",
+        "Advisory only."
+      ],
+      "yes_axes": {
+        "econ": {"v": -2, "why": "Endorses a new charge on property owners to raise school revenue."},
+        "safety": {"v": null, "why": "Not relevant (supporters cite blight/safety, but no policing component)."},
+        "federal": {"v": null, "why": "Not relevant."}
+      },
+      "sources": [
+        {"title": "Chalkbeat: Divided school board adds revenue referendums", "url": "https://www.chalkbeat.org/chicago/2026/08/13/chicago-public-schools-board-backs-revenue-referendums/"},
+        {"title": "Chalkbeat: Board to weigh adding ballot questions", "url": "https://www.chalkbeat.org/chicago/2026/08/10/chicago-public-schools-board-weighs-two-referendums/"},
+        {"title": "Block Club: ballot questions in November", "url": "https://blockclubchicago.org/2026/10/14/from-millionaires-tax-to-public-fairgrounds-you-can-vote-on-these-ballot-questions-in-november/"},
+        {"title": "Fox 32: guide to Chicago-area ballot questions", "url": "https://www.fox32chicago.com/news/election-2026-chicago-referenda-ballot-question"}
+      ]
+    }
+  ]
+}

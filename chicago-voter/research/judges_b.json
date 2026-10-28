@@ -1,0 +1,1558 @@
+{
+ "retention_rule": "Circuit Court of Cook County judges run unopposed in retention elections and need at least 60% 'Yes' votes to keep their seat. Circuit terms are 6 years and appellate terms 10 years (Injustice Watch). 60 circuit judges and 1 appellate justice are on the Nov. 3, 2026 ballot.",
+ "sources_overview": [
+  {
+   "title": "Injustice Watch: Cook County November 2026 Judicial Election Guide (data updated Oct. 21, 2026)",
+   "url": "https://2026retention.injusticewatch.org/"
+  },
+  {
+   "title": "Injustice Watch: Cook County judges running for retention, November 2026 (list and 60% rule)",
+   "url": "https://www.injusticewatch.org/judges/judicial-elections/2026-retention/2026/cook-county-judges-running-for-retention-november-2026-tips/"
+  },
+  {
+   "title": "VoteForJudges.org (Alliance of Bar Associations for Judicial Screening)",
+   "url": "https://www.voteforjudges.org/"
+  },
+  {
+   "title": "Alliance 2026 General Election ballot ratings PDF (Oct. 6, 2026)",
+   "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+  },
+  {
+   "title": "Chicago Council of Lawyers 2026 general election evaluation report (Sept. 25, 2026)",
+   "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+  },
+  {
+   "title": "Chicago Bar Association Vote Smart page (ratings with ballot numbers)",
+   "url": "https://www.chicagobar.org/votejudges"
+  },
+  {
+   "title": "CBA 2026 General Election Smart Guide (JEC findings, Sept. 24, 2026)",
+   "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+  },
+  {
+   "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+   "url": "https://www.isba.org/judicial-elections/counties/cook"
+  }
+ ],
+ "notes": [
+  "Newspaper recommendations: no Chicago Tribune or Chicago Sun-Times 2026 judicial retention endorsements were found (the search tool cannot reach chicagotribune.com), so 'newspapers' is null for every judge.",
+  "CBA rated all 60 retention judges 'Qualified' and published no per-judge narrative for retention.",
+  "The Alliance PDF gives each member bar's Yes/No; there is no single consensus rating. 'alliance' summarizes the 13 member votes. The ISBA and CCL are Alliance members and are also listed separately.",
+  "Flag rule used: 'concern' means a negative CBA, CCL or ISBA rating, or an Injustice Watch 'Notable controversy' flag. Antonietti and Molina-Gonzalez are marked 'clean' even though the Cook County Bar Association (an Alliance identity bar, not a major group under the rule) voted No. Their 'why' says so, and the caller may wish to reclassify them.",
+  "Spellings: CBA, CCL and the Alliance spell 'Maire Aileen Dempsey'; IW says she also uses 'Maire'. CCL and ISBA write 'Christ Stacey'; the CCL PDF misspells Antonietti as 'Antoinetti' and Tiesha Smith as 'Taisha'."
+ ],
+ "retention": [
+  {
+   "name": "Terrence J. McGuire",
+   "yes": 251,
+   "no": 252,
+   "court": "circuit",
+   "assignment": "Probate Division, Decedent Estates Section",
+   "served_since": "Elected 2014; retained 2020",
+   "bio": "Former sole practitioner in estate planning, probate and real estate, and an administrative law judge in ordinance enforcement. Admitted 1991.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'today is a well-respected jurist'; praised for 'the fairness and respect that he shows all parties' and for being decisive.",
+    "isba": "Recommended (Yes) — 'overwhelmingly positive feedback regarding his legal knowledge and ability, his level-headedness and understanding of complex matters.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No notable controversies, reversals or discipline reported; no IW flags.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from CBA, CCL, ISBA and all 13 Alliance bars.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Terrence J. McGuire",
+     "url": "https://2026retention.injusticewatch.org/candidate/terrence-j-mcguire-35837"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Bridget Anne Mitchell",
+   "yes": 253,
+   "no": 254,
+   "court": "circuit",
+   "assignment": "Law Division, Trial Section (civil jury trials)",
+   "served_since": "Elected 2014; retained 2020",
+   "bio": "Civil litigator from 1981 focused on tort defense, medical malpractice and wrongful death before taking the bench. Sister of Appellate Justice Raymond W. Mitchell.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'considered to have good legal ability and temperament.'",
+    "isba": "Recommended (Yes) — praised for legal knowledge, impartiality and demeanor, 'though some attorneys thought she moved cases too slowly.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported; IW notes she is the sister of Appellate Court Judge Raymond W. Mitchell.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups; ISBA's only caveat was that some lawyers found her slow.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Bridget Anne Mitchell",
+     "url": "https://2026retention.injusticewatch.org/candidate/bridget-anne-mitchell-35802"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "James P. Pieczonka",
+   "yes": 255,
+   "no": 256,
+   "court": "circuit",
+   "assignment": "Third Municipal District (Rolling Meadows), civil matters incl. evictions and consumer debt; ISBA describes civil jury trials",
+   "served_since": "Elected 2014 (12th Subcircuit, as a Republican); retained 2020",
+   "bio": "Longtime sole practitioner (transactional and litigation) and former Illinois Dept. of Revenue administrative law judge (1985–1996). Admitted 1983.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — had 'limited litigation experience when he was elected' but 'has overcome that weakness'; praised for 'thoroughness and quality of his rulings.'",
+    "isba": "Recommended (Yes) — 'well prepared, consistent, patient, professional, fair, diligent, and efficient.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW reports he lost a residential rental and two commercial properties to foreclosure sales between 2013 and 2020 and went through personal bankruptcy in that period; no courtroom controversies or IW flags.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. IW notes past personal foreclosures and bankruptcy, but flags nothing.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: James P. Pieczonka",
+     "url": "https://2026retention.injusticewatch.org/candidate/james-p-pieczonka-35897"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Patricia O'Brien Sheahan",
+   "yes": 257,
+   "no": 258,
+   "court": "circuit",
+   "assignment": "Law Division, Trial Section",
+   "served_since": "Elected 2014; retained 2020",
+   "bio": "Former associate general counsel at the Rehabilitation Institute of Chicago, and litigation associate at Baker & McKenzie (1996–99).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for the quality of her work product and is considered to be knowledgeable and always prepared.'",
+    "isba": "Recommended (Yes) — 'impartial, professional and hardworking', with 'a pleasant, consistent demeanor.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported. IW notes her father-in-law is former Cook County Sheriff and 19th Ward Ald. Michael F. Sheahan.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Patricia O’Brien Sheahan",
+     "url": "https://2026retention.injusticewatch.org/candidate/patricia-obrien-sheahan-35859"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Michael A. Forti",
+   "yes": 259,
+   "no": 260,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, individual calendar",
+   "served_since": "Appointed 2016 (again 2018); associate judge 2019/2020; elected 2020",
+   "bio": "Former IDOT chief counsel and ethics officer, City of Chicago deputy corporation counsel, and Bell Boyd & Lloyd partner. Admitted 1980.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for his handling of pro se litigants – respectful and informative without going beyond the role of judge.'",
+    "isba": "Recommended (Yes) — 'highly skilled and knowledgeable on domestic relations matters, issuing well-reasoned decisions.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW cites a June 2026 Sun-Times piece. In 2022 Forti held ex-options trader Steve Fanady in civil contempt and jailed him for not turning over $10M in stock awarded to his ex-wife, one of the longest civil contempt detentions in recent Cook County history. The appellate court affirmed in 2025. Fanady's lawyer says Forti has not held substantive review hearings.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. The Fanady contempt detention drew press scrutiny, but the appellate court affirmed it.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Michael A. Forti",
+     "url": "https://2026retention.injusticewatch.org/candidate/michael-a-forti-35849"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Nichole C. Patton",
+   "yes": 261,
+   "no": 262,
+   "court": "circuit",
+   "assignment": "Law Division, Trial Section (formerly County Division)",
+   "served_since": "Appointed 2018; elected 2020",
+   "bio": "Former Cook County assistant state's attorney (mental-health commitments, civil and criminal), Liberty Mutual attorney and solo practitioner; CBA president 2025–26.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'considered to have good legal ability'; previously praised as 'a zealous advocate who was trustworthy and respectful.'",
+    "isba": "Recommended (Yes) — 'The super majority of respondents were complimentary about her legal knowledge, sensitivity, temperament, character and diligence.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she ran unsuccessfully in 2025 to unseat Chief Judge Timothy Evans in the judges' vote, and lost three judicial campaigns before her 2018 appointment. CBA president June 2025 to June 2026.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Nichole C. Patton",
+     "url": "https://2026retention.injusticewatch.org/candidate/nichole-c-patton-35903"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Sondra N. Denmark",
+   "yes": 263,
+   "no": 264,
+   "court": "circuit",
+   "assignment": "Supervising Judge, Civil Jury / Trial Section, First Municipal District",
+   "served_since": "Appointed Dec 2018; elected 2020",
+   "bio": "Former Will County assistant state's attorney (2008–2018) and Cook County ASA (2004–07).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'considered to have good legal ability and temperament'; 'substantial litigation experience.'",
+    "isba": "Recommended (Yes) — praised for 'her firm grasp of case law, and her ability to explain things to jurors and pro se litigants.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported; IW notes an unsuccessful 2014 run in the 15th Subcircuit.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Sondra N. Denmark",
+     "url": "https://2026retention.injusticewatch.org/candidate/sondra-n-denmark-35829"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Gerardo Tristan, Jr.",
+   "yes": 265,
+   "no": 266,
+   "court": "circuit",
+   "assignment": "First Municipal District, Civil Jury Section",
+   "served_since": "Appointed Jan 2019; elected 2020",
+   "bio": "Former Cook County assistant state's attorney (from 2003) and associate at Tristan & Cervantes. Brother of lobbyist Homero Tristan.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability'; 'reported to have a good temperament and respondents praised his fairness.'",
+    "isba": "Recommended (Yes) — comments on 'legal knowledge, sensitivity, temperament, diligence, and integrity were all positive.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW flag 'Notable controversy'. In 2023 his parents' caregiver sued him and a brother over $240 in unpaid wages. She alleged he berated her and blocked her from leaving. His brother called police and told the 911 operator he 'seems intox'. Police saw no signs of intoxication, and the suit settled in May 2024. Tristan denies blocking her or being intoxicated. Separately, his brother Homero's PAC and law firm (a city debt-collection contractor) funded his 2020 campaign.",
+   "newspapers": null,
+   "flag": "concern",
+   "why": "All bars rated him Qualified/Yes, but Injustice Watch flags a 'notable controversy': a settled 2023 caregiver lawsuit and police call alleging he blocked her from leaving. He denies it.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Gerardo Tristan, Jr.",
+     "url": "https://2026retention.injusticewatch.org/candidate/gerardo-tristan-jr-35901"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Lynn Weaver Boyle",
+   "yes": 267,
+   "no": 268,
+   "court": "circuit",
+   "assignment": "Chancery Division, General Chancery Section",
+   "served_since": "Appointed 2019; elected 2020",
+   "bio": "Former commercial litigation partner (Grotefeld Hoffmann; Grotefeld & Denenberg) and Cook County ASA (1990–99) in felony trial, narcotics and gang crimes units.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'a respected practitioner with a good temperament'; 'substantial trial experience.'",
+    "isba": "Recommended (Yes) — comments on her 'legal knowledge, sensitivity, integrity, temperament, and preparedness were positive.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported; no notable entries.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Lynn Weaver Boyle",
+     "url": "https://2026retention.injusticewatch.org/candidate/lynn-weaver-boyle-35821"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Daniel Edward Maloney",
+   "yes": 269,
+   "no": 270,
+   "court": "circuit",
+   "assignment": "Sixth Municipal District (Markham): felony preliminary hearings; presides over drug, mental health and veterans treatment courts",
+   "served_since": "Appointed 2019; elected 2020",
+   "bio": "Career Cook County ASA (2001–2019) in complex narcotics, including the DEA/HIDTA strike force.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for his courtroom skills and for his temperament'; 'an excellent mentor to less experienced lawyers.'",
+    "isba": "Recommended (Yes) — comments on 'legal knowledge, sensitivity, character, temperament, and diligence were all positive.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies. IW profiles his move from major drug prosecutions to running Markham's problem-solving courts.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Daniel Edward Maloney",
+     "url": "https://2026retention.injusticewatch.org/candidate/daniel-edward-maloney-35835"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Thomas M. Cushing",
+   "yes": 271,
+   "no": 272,
+   "court": "circuit",
+   "assignment": "Law Division, Trial Section (civil jury)",
+   "served_since": "Appointed June 2019; elected 2020",
+   "bio": "Former civil litigator (Ambrose & Cushing; Christopher A. Kreid & Assoc.), Chicago Climate Exchange SVP, and ARDC hearing board member.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'a solid practitioner with very good ability and an excellent temperament.'",
+    "isba": "Recommended (Yes) — praised for 'legal knowledge and ability, his diligence, integrity, and even keeled temperament.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW flag 'Notable reversals'. In 2022 the appellate court reversed his denial of an order of protection to a woman alleging repeated abuse, calling his error 'considerable' for focusing on who was the aggressor rather than evidence of abuse. Cushing says he learned from it.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. One notable 2022 appellate reversal in a domestic-violence protection case.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Thomas M. Cushing",
+     "url": "https://2026retention.injusticewatch.org/candidate/thomas-m-cushing-35873"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "John G. Mulroe",
+   "yes": 273,
+   "no": 274,
+   "court": "circuit",
+   "assignment": "Juvenile Justice Division (delinquency, 3rd police district)",
+   "served_since": "Appointed 2019; elected 2020",
+   "bio": "Former Illinois state senator (10th District, 2010–2019), Cook County ASA, solo practitioner, and CPA.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'respected for his trial skills and for his integrity'; 'a very good temperament.'",
+    "isba": "Recommended (Yes) — 'All comments about Judge Mulroe's legal knowledge, sensitivity, temperament, diligence, and character were very favorable.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: John G. Mulroe",
+     "url": "https://2026retention.injusticewatch.org/candidate/john-g-mulroe-35889"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Tyria B. Walton",
+   "yes": 275,
+   "no": 276,
+   "court": "circuit",
+   "assignment": "Criminal Division, Leighton Criminal Courthouse (felony bench and jury trials)",
+   "served_since": "Appointed 2019; elected 2020",
+   "bio": "Former Cook County assistant public defender and Murder Task Force attorney. President of the Illinois Judicial Council.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her trial skills, her diligence and for her integrity'; 'exceptionally knowledgeable.'",
+    "isba": "Recommended (Yes) — 'References uniformly praised her Legal knowledge, temperament, character, and professionalism.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: in 2024 she acquitted Whitley Temple, who dragged a CPD officer with his squad car, finding her not guilty of attempted murder and not guilty by reason of insanity on other counts. Police allies were furious, and Walton said she received threats and saw racist posts. In August 2026 she urged a church congregation to vote 'yes' on all retention judges.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. A high-profile 2024 insanity acquittal drew criticism from police allies, but IW flags no controversy.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Tyria B. Walton",
+     "url": "https://2026retention.injusticewatch.org/candidate/tyria-b-walton-35827"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Erin Haggerty Antonietti",
+   "yes": 277,
+   "no": 278,
+   "court": "circuit",
+   "assignment": "Sixth Municipal District (Markham), floating judge / misdemeanor courtroom",
+   "served_since": "Appointed June 2019; elected 2020",
+   "bio": "Former Cook County ASA for 17+ years in Central Bond Court; earlier an associate at Bresnahan & Garvey (1991–94).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability, temperament, and the ability to manage high volume courtrooms.'",
+    "isba": "Recommended (Yes) — 'good legal knowledge and gives thorough rulings, is prepared and punctual.'",
+    "alliance": "12 of 13 Alliance bars Yes; Cook County Bar Association (CCBA): No",
+    "other": "Cook County Bar Association: No (Not recommended for retention; no stated reason found)"
+   },
+   "injustice_watch": "IW flag 'Negative ratings' for the CCBA 'No' alone. No controversies or reversals reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "CBA, CCL and ISBA all positive. The only negative is a Cook County Bar Association 'No' with no published reason; she is not 'clean' across every group.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Erin Haggerty Antonietti",
+     "url": "https://2026retention.injusticewatch.org/candidate/erin-haggerty-antonietti-35833"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Teresa Molina-Gonzalez",
+   "yes": 279,
+   "no": 280,
+   "court": "circuit",
+   "assignment": "Fourth Municipal District (Maywood): rotating felony, misdemeanor, preliminary hearing, DV and traffic calls",
+   "served_since": "Appointed July 2019; elected 2020 (countywide)",
+   "bio": "Former Cook County ASA (2001–2016) and IDFPR chief of real estate prosecutions (2016–19). First Puerto Rican appointed and elected countywide in Cook County.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'considered to be a good jurist in the limited time she has been on the bench.'",
+    "isba": "Recommended (Yes) — 'knowledgeable and research cases; is level-headed and respectful.'",
+    "alliance": "12 of 13 Alliance bars Yes; Cook County Bar Association (CCBA): No",
+    "other": "Cook County Bar Association: No (Not recommended for retention; no stated reason found)"
+   },
+   "injustice_watch": "IW flag 'Negative ratings' (CCBA). IW reports 'intense public criticism' in 2025, including a Tribune editorial. She had granted pretrial release on electronic monitoring to a man charged with battering a mental-health worker, who then allegedly set a woman on fire on the CTA. She did not respond to IW.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "CBA, CCL and ISBA all positive, but there is a Cook County Bar Association 'No' (no reason published) and heavy 2025 criticism of a pretrial release ruling. Borderline call.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Teresa Molina-Gonzalez",
+     "url": "https://2026retention.injusticewatch.org/candidate/teresa-molina-gonzalez-35804"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Patricia Maria Fallon",
+   "yes": 281,
+   "no": 282,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, individual calendar (Daley Center)",
+   "served_since": "Appointed 2019; elected 2020 (12th Subcircuit)",
+   "bio": "Former chief of human resources for the Cook County Recorder of Deeds (2017–19) and Cook County ASA in labor and employment (2004–17).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'hard-working with a good temperament, and is praised for her supervisory skills.'",
+    "isba": "Recommended (Yes) — 'strong legal knowledge and analytical ability and is well-respected for her preparedness and fairness.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she won in 2020 by 502 votes. Her Republican opponent Frank DiFranco has sued for a recount; he lost in state court, his federal suit was dismissed, and his appeal is pending in the 7th Circuit. No judicial-conduct issues.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Patricia Maria Fallon",
+     "url": "https://2026retention.injusticewatch.org/candidate/patricia-maria-fallon-35895"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Sheree D. Henry",
+   "yes": 283,
+   "no": 284,
+   "court": "circuit",
+   "assignment": "Fourth Municipal District (Maywood): misdemeanor, traffic, felony; has presided over mental health and veterans courts",
+   "served_since": "Appointed Aug 2019; elected 2020",
+   "bio": "Former Cook County assistant public defender (1999–2019) and assistant public guardian (1995–99). Illinois Army National Guard veteran.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability with substantial bench and jury litigation experience in a variety of criminal law matters.'",
+    "isba": "Recommended (Yes) — 'a good judge who mainly follows the law and who is honest, respectful and calm.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported; IW notes she is married to a Cook County assistant public defender.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Sheree D. Henry",
+     "url": "https://2026retention.injusticewatch.org/candidate/sheree-d-henry-35794"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Celestia L. Mays",
+   "yes": 285,
+   "no": 286,
+   "court": "circuit",
+   "assignment": "Fourth Municipal District (Maywood): misdemeanor and traffic",
+   "served_since": "Appointed Jan 2019; associate judge 2020; elected 2020",
+   "bio": "Former solo practitioner in family, probate and real estate law. Past president of the Cook County Bar Association.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'an excellent practitioner with great integrity'; 'very good legal ability.'",
+    "isba": "Recommended (Yes) — 'patient, respectful, and a good researcher, with good legal knowledge.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she oversaw the misdemeanor battery case against Nick Fuentes (pepper-spraying a woman), which ended in a deferred prosecution deal requiring an apology, about $635 restitution, anger management and 75 hours of community service. No conduct issues.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Celestia L. Mays",
+     "url": "https://2026retention.injusticewatch.org/candidate/celestia-l-mays-35800"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Levander Smith, Jr.",
+   "yes": 287,
+   "no": 288,
+   "court": "circuit",
+   "assignment": "Juvenile Court, Child Protection Division",
+   "served_since": "Appointed March 2019; associate judge 2019/2020; elected 2020",
+   "bio": "Former DCFS litigation and regional counsel, Missouri assistant attorney general, and Cook County ASA (2003–04).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability'; 'praised for his trial skills'; 'a good temperament.'",
+    "isba": "Recommended (Yes) — notes his twice-monthly volunteer 'benchmark hearings' for youth aging out of foster care.",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW flag 'Notable reversals'. In 2022 the appellate court reversed his ruling after he removed an incarcerated mother from a Zoom hearing, during which he found her unable or unwilling to care for her child. The court said it was 'hard … to imagine' a muted parent disrupting the hearing, though it noted Zoom was new and intended no criticism. Smith says he would act differently now.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. One notable 2022 reversal over removing a parent from a Zoom hearing.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Levander Smith, Jr.",
+     "url": "https://2026retention.injusticewatch.org/candidate/levander-smith-jr-35813"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Julie Bess Aimen",
+   "yes": 289,
+   "no": 290,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, individual calendar (Daley Center)",
+   "served_since": "Elected 2020 (9th Subcircuit)",
+   "bio": "Solo practitioner from 1986 in criminal, family, municipal and civil rights law; former assistant appellate defender; past president of Illinois Attorneys for Criminal Justice.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'very good legal ability and a good temperament'; 'Her integrity is unquestioned.'",
+    "isba": "Recommended (Yes) — 'smart, hardworking, professional, and patient with the many pro se litigants.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: at a July 2025 Cook County Board hearing, two litigants criticized her. One said she was ordered into mediation with an abusive ex; the other said her fee waivers were denied. IW found the mediation order recorded both parties' agreement and no motion to avoid it, and that the fee waiver was granted that same week.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. IW's review of the 2025 litigant complaints largely explained them.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Julie Bess Aimen",
+     "url": "https://2026retention.injusticewatch.org/candidate/julie-bess-aimen-35871"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Laura Ayala-Gonzalez",
+   "yes": 291,
+   "no": 292,
+   "court": "circuit",
+   "assignment": "Criminal Division, Leighton Criminal Courthouse (felony call)",
+   "served_since": "Elected 2020",
+   "bio": "Former Cook County ASA for 14 years, first chair in the Felony Trial Division.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her trial skills'; 'a very good temperament.'",
+    "isba": "Recommended (Yes) — 'one of the stronger jurists in the Criminal Division'; 'fair, effective, diligent, and prepared.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she tried and sentenced ex-Orr basketball star Raekwon Drake to 14 years for second-degree murder (2024). No conduct issues.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Laura Ayala-Gonzalez",
+     "url": "https://2026retention.injusticewatch.org/candidate/laura-ayala-gonzalez-35786"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Krista D. Butler",
+   "yes": 293,
+   "no": 294,
+   "court": "circuit",
+   "assignment": "First Municipal District, Civil Jury Section (formerly eviction / landlord-tenant)",
+   "served_since": "Elected 2020 (1st Subcircuit, unopposed)",
+   "bio": "Held various state agency legal positions before taking the bench. Admitted 1993.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'fair and hard working'; 'especially praised for her handling of self-represented litigants.'",
+    "isba": "Recommended (Yes) — 'a hardworking judge with a good understanding of legal issues who takes the time to understand all sides.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she ran unopposed in 2020 and declined bar evaluation then. She did not respond to IW's requests for background information.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups this cycle. She skipped bar screening in 2020.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Krista D. Butler",
+     "url": "https://2026retention.injusticewatch.org/candidate/krista-d-butler-35825"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Marie Aileen Dempsey",
+   "yes": 295,
+   "no": 296,
+   "court": "circuit",
+   "assignment": "Law Division, Motion Section",
+   "served_since": "Elected 2020 (10th Subcircuit)",
+   "bio": "Former medical malpractice defense litigator (partner at Hughes Socol Piers Resnick & Dym, 2016–2020). Spelled 'Maire' by CBA, CCL and the Alliance.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her temperament and her litigation skills.'",
+    "isba": "Recommended (Yes) — 'very smart with an immense amount of legal knowledge and integrity'; 'diligent and slow to anger.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported. IW notes refugee and legal-aid volunteer work.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Marie Aileen Dempsey",
+     "url": "https://2026retention.injusticewatch.org/candidate/marie-aileen-dempsey-35881"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Jamie Guerra Dickler",
+   "yes": 297,
+   "no": 298,
+   "court": "circuit",
+   "assignment": "Probate Division, Minor Guardianship Estates Section",
+   "served_since": "Elected 2020",
+   "bio": "Former Cook County ASA (2005–2020) in felony trial, grand jury, sex and homicide, and felony review units. Daughter of retired Judge Grace Dickler.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her legal ability and for her integrity'; 'highly professional and always well prepared.'",
+    "isba": "Recommended (Yes) — 'highly knowledgeable, patient with pro se litigants, and thoroughly prepared on complex matters.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Jamie Guerra Dickler",
+     "url": "https://2026retention.injusticewatch.org/candidate/jamie-guerra-dickler-35843"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Jonathan Clark Green",
+   "yes": 299,
+   "no": 300,
+   "court": "circuit",
+   "assignment": "Law Division, Commercial Calendar Section",
+   "served_since": "Elected 2020 (8th Subcircuit)",
+   "bio": "Former senior counsel and supervisor in the City of Chicago Law Dept.'s Federal Civil Rights Litigation Division; earlier a private civil litigator.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'knowledgeable about substantive and procedural law with good legal ability.'",
+    "isba": "Recommended (Yes) — 'many stated that \"the bench could use more like him\".'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: he supervised in the city Law Department when it was criticized (2016) for withholding police-abuse evidence in lawsuits. IW found no instance where Green was individually accused of withholding evidence. He declined to comment.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. The past Law Department criticism is institutional, not personal, per IW.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Jonathan Clark Green",
+     "url": "https://2026retention.injusticewatch.org/candidate/jonathan-clark-green-35851"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Mary Catherine Marubio",
+   "yes": 301,
+   "no": 302,
+   "court": "circuit",
+   "assignment": "Presiding Judge, Second Municipal District (Skokie); Deputy Chief Judge of First Appearance Court",
+   "served_since": "Associate judge 2016; elected circuit judge 2020",
+   "bio": "Former IDFPR administrative law judge and ethics officer, and solo criminal defense and immigration practitioner. Serves on the Illinois Judicial Ethics Committee.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'a smart, solid practitioner'; praised for her temperament.",
+    "isba": "Recommended (Yes) — praised for 'legal knowledge and ability, her preparedness, her fairness and her sensitivity.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: she was key to implementing the Pretrial Fairness Act countywide. Chief Judge Charles Beach, a law-school friend, elevated her to leadership roles. No controversies flagged.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Mary Catherine Marubio",
+     "url": "https://2026retention.injusticewatch.org/candidate/mary-catherine-marubio-35887"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Regina A. Mescall",
+   "yes": 303,
+   "no": 304,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, Fifth Municipal District (Bridgeview), since July 2025",
+   "served_since": "Elected 2020",
+   "bio": "Former Cook County ASA (2008–2020), first chair in the Felony Trial Division, and earlier a New Mexico assistant district attorney.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her litigation skills and for her professional demeanor.'",
+    "isba": "Recommended (Yes) — comments on temperament 'uniformly positive', but 'There were concerns voiced about her legal knowledge and impartiality in her new assignment in Domestic Relations Court. She appears interested in improving and willing to learn.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: in 2025 the appellate court reversed her $75,000 eviction judgment against a tenant for failing to hold an evidentiary hearing (a case of first impression).",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups. ISBA noted concerns about her legal knowledge and impartiality in her new Domestic Relations assignment, and she had a 2025 reversal.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Regina A. Mescall",
+     "url": "https://2026retention.injusticewatch.org/candidate/regina-a-mescall-35839"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Lorraine Mary Murphy",
+   "yes": 305,
+   "no": 306,
+   "court": "circuit",
+   "assignment": "Second Municipal District (Skokie), felony courtroom; presides over drug treatment court",
+   "served_since": "Elected 2020 (countywide)",
+   "bio": "Former career Cook County ASA, first chair in a felony courtroom at the Leighton Criminal Courthouse. Her husband James V. Murphy III became a judge in 2024.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability'; 'a good temperament'; 'praised for her trial skills.'",
+    "isba": "NOT RECOMMENDED (No) — 'concerns were expressed about her lack of impartiality in criminal cases in favor of the prosecution and what the Committee felt was careless preparation of her judicial evaluation questionnaire. ISBA does not recommend Judge Lorraine Mary Murphy be retained.'",
+    "alliance": "11 of 13 Alliance bars Yes; No from ISBA and the Cook County Bar Association (CCBA)",
+    "other": "Cook County Bar Association: No (no stated reason found)"
+   },
+   "injustice_watch": "IW flag 'Negative ratings'. It reports the ISBA and CCBA did not recommend her and that all other bar groups found her qualified. Her husband was elected a judge in 2024, and her father-in-law was an associate judge.",
+   "newspapers": null,
+   "flag": "concern",
+   "why": "ISBA 'Not Recommended', citing 'lack of impartiality in criminal cases in favor of the prosecution' and a 'careless' evaluation questionnaire. The Cook County Bar Association also said No; CBA and CCL said Qualified.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Lorraine Mary Murphy",
+     "url": "https://2026retention.injusticewatch.org/candidate/lorraine-mary-murphy-35808"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Eileen Marie O'Connor",
+   "yes": 307,
+   "no": 308,
+   "court": "circuit",
+   "assignment": "Law Division, Trial Section",
+   "served_since": "Elected 2020 (6th Subcircuit)",
+   "bio": "Former private civil litigator in personal injury, medical malpractice, product liability, construction and civil rights cases. Admitted 2006.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised as being hard-working'; 'a good temperament and to be diligent and punctual.'",
+    "isba": "Recommended (Yes) — 'All comments in the areas of legal knowledge, temperament, sensitivity, diligence, and character were positive.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Eileen Marie O’Connor",
+     "url": "https://2026retention.injusticewatch.org/candidate/eileen-marie-oconnor-35847"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Jill Rose Quinn",
+   "yes": 309,
+   "no": 310,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, Team Trial Section",
+   "served_since": "Elected 2020 (countywide)",
+   "bio": "Former family law, real estate and probate practitioner (solo from 1996) and Cook and DuPage County arbitrator. Illinois' first openly transgender elected official.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability and temperament.'",
+    "isba": "Recommended (Yes) — 'Comments were uniformly positive about her legal knowledge, sensitivity, temperament, character, and diligence.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Jill Rose Quinn",
+     "url": "https://2026retention.injusticewatch.org/candidate/jill-rose-quinn-35865"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Pamela Reaves-Harris",
+   "yes": 311,
+   "no": 312,
+   "court": "circuit",
+   "assignment": "First Municipal District: Housing Section (per CCL and ISBA); IW says she now hears small claims",
+   "served_since": "Elected 2020 (7th Subcircuit)",
+   "bio": "Former state representative (10th District), solo practitioner, municipal administrative law judge, and Cook County special assistant for legal affairs.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'an exemplary temperament'; in 2020 the Council had flagged 'little litigation experience.'",
+    "isba": "Recommended (Yes) — 'praised for her legal knowledge, sensitivity, character, diligence, and temperament.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: in 2019 she publicly objected when Justice Anne Burke appointed a white woman to the majority-Black 7th Subcircuit seat, citing the CBA's earlier not-recommended rating of her. She then won the 2020 primary after being rated qualified.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Pamela Reaves-Harris",
+     "url": "https://2026retention.injusticewatch.org/candidate/pamela-reaves-harris-35855"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Tiesha L. Smith",
+   "yes": 313,
+   "no": 314,
+   "court": "circuit",
+   "assignment": "Juvenile Justice Division (delinquency and juvenile expungements; a DCFS-involved calendar), since 2024",
+   "served_since": "Elected 2020 (countywide)",
+   "bio": "Former Cook County assistant public defender (2010–2020). She skipped bar evaluations in 2018 and 2020 and was rated Not Qualified then.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — but only after 'seeking an agreement from her to attend a Stress Management course'. Since her 2024 transfer 'there have been a number of problems reported with both her temperament and attendance'; practitioners describe 'a hostile temperament.'",
+    "isba": "NOT RECOMMENDED (No) — 'Reports of screaming matches between the Judge and attorneys, and between the Judge and minor respondents cause concern about her temperament and effectiveness of her judicial performance.'",
+    "alliance": "Split, 6 Yes / 7 No. No: AABA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA. Yes: AABAR, BMLA, BWLA, CCL, CCBA, WBAI.",
+    "other": "Identity bars voting No: Asian American Bar Assn., Decalogue Society, Hellenic Bar Assn., Hispanic Lawyers Assn., LAGBAC, Puerto Rican Bar Assn."
+   },
+   "injustice_watch": "IW flag 'Negative ratings'. ISBA and five other bars (six per the Alliance PDF) said she should not be retained. She won in 2020 over the party-slated appointed judge without bar evaluation. She told IW she skipped 2018 for lack of experience and 2020 because the old ratings were still valid.",
+   "newspapers": null,
+   "flag": "concern",
+   "why": "ISBA 'Not Recommended' over 'screaming matches' with attorneys and minors, plus six more Alliance bars voting No. CCL said Qualified only after she agreed to a stress-management course amid reports of a 'hostile temperament' and attendance problems.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Tiesha L. Smith",
+     "url": "https://2026retention.injusticewatch.org/candidate/tiesha-l-smith-35811"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Chris Stacey",
+   "yes": 315,
+   "no": 316,
+   "court": "circuit",
+   "assignment": "First Municipal District, Civil Jury Section",
+   "served_since": "Elected 2020 (countywide)",
+   "bio": "Solo civil litigation practitioner (tort and commercial) from 1992; admitted 1982. Also spelled 'Christ'.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'a professional temperament, and is praised for his diligence and integrity.'",
+    "isba": "Recommended (Yes) — the ISBA write-up cites his Inn of Court and World Relief involvement.",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW flags 'Notable controversy' and 'Notable reversals'. In 2026 the appellate court vacated his criminal contempt order jailing a self-represented father for 7 days during an eviction trial, saying the man's frustration 'was exacerbated by the remarks and responses of the Judge' and that 'judges are supposed to be people of fortitude'. His 2020 race involved an alleged 'sham candidate', which he denied. He owns rental properties while hearing evictions, and is suing the city over a sidewalk fall.",
+   "newspapers": null,
+   "flag": "concern",
+   "why": "All bars rated him Qualified/Yes, but IW flags a controversy and reversals. In 2026 the appellate court vacated his order jailing a pro se eviction litigant for contempt and criticized his own remarks.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Chris Stacey",
+     "url": "https://2026retention.injusticewatch.org/candidate/chris-stacey-35815"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Perla Tirado",
+   "yes": 317,
+   "no": 318,
+   "court": "circuit",
+   "assignment": "First Municipal District, Civil Jury Section (since 2024)",
+   "served_since": "Elected 2020",
+   "bio": "Former supervising attorney at Beyond Legal Aid / Community Activism Law Alliance, criminal defense and immigration solo practitioner, and assistant public defender.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'praised for her knowledge of the law'; 'good temperament.'",
+    "isba": "Recommended (Yes) — 'favorable comments for her diligence, temperament, sensitivity, and character.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "IW: some bars found her not qualified in 2020 for lack of complex-litigation experience. Lawyers now call her 'balanced', patient and fair. She is co-authoring the civil jury bench book.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Perla Tirado",
+     "url": "https://2026retention.injusticewatch.org/candidate/perla-tirado-35899"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Elizabeth Anne Walsh",
+   "yes": 319,
+   "no": 320,
+   "court": "circuit",
+   "assignment": "Law Division, Motion Section (since Feb 2025)",
+   "served_since": "Elected 2020",
+   "bio": "Former insurance defense attorney at Bruce Farrel Dorn & Associates (2007–2020).",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability'; 'praised for her temperament.'",
+    "isba": "Recommended (Yes) — 'uniformly positive about her legal knowledge, sensitivity, temperament, diligence, and character.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Elizabeth Anne Walsh",
+     "url": "https://2026retention.injusticewatch.org/candidate/elizabeth-anne-walsh-35817"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Maura McMahon Zeller",
+   "yes": 321,
+   "no": 322,
+   "court": "circuit",
+   "assignment": "Domestic Relations Division, individual calendar",
+   "served_since": "Elected 2020 (countywide)",
+   "bio": "Former child representative, guardian ad litem and mediator in solo practice, and assistant public guardian for 10 years.",
+   "ratings": {
+    "cba": "Qualified (CBA Judicial Evaluation Committee, Sept. 24, 2026; all 60 retention judges found Qualified, no narrative given)",
+    "ccl": "Qualified — 'good legal ability'; practice area 'narrow' but 'highly respected for her knowledge and for her skills.'",
+    "isba": "Recommended (Yes) — 'temperament being a particular strong point.'",
+    "alliance": "Yes from all 13 Alliance member bars (AABAR, AABA, BMLA, BWLA, CCL, CCBA, DSL, HBA, HLAI, ISBA, LAGBAC, PRBA, WBAI)",
+    "other": null
+   },
+   "injustice_watch": "No controversies reported.",
+   "newspapers": null,
+   "flag": "clean",
+   "why": "Qualified/Yes from all groups.",
+   "sources": [
+    {
+     "title": "Injustice Watch 2026 guide: Maura McMahon Zeller",
+     "url": "https://2026retention.injusticewatch.org/candidate/maura-mcmahon-zeller-35823"
+    },
+    {
+     "title": "Chicago Council of Lawyers evaluation report, Nov. 3, 2026 (ballot order)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/09/CCL-Judicial-Evaluation-Report-for-Nov-3-2026-General-Election_Ballot-Order.pdf"
+    },
+    {
+     "title": "ISBA 2026 General Election Cook County Judicial Evaluations",
+     "url": "https://www.isba.org/judicial-elections/counties/cook"
+    },
+    {
+     "title": "CBA 2026 General Election Smart Guide",
+     "url": "https://www.chicagobar.org/common/Uploaded%20files/JEC%20PDFs/2026GeneralElectionSmartGuide.pdf"
+    },
+    {
+     "title": "Alliance of Bar Associations 2026 General Election ratings (Oct. 6, 2026)",
+     "url": "https://www.voteforjudges.org/wp-content/uploads/2026/10/2026-Alliance-General-Ballot-Ratings-Oct-6-2026.pdf"
+    }
+   ]
+  }
+ ]
+}

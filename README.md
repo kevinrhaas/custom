@@ -11,6 +11,7 @@ A garden-themed landing page and the interactive **Hosta Gangway Guide** are pub
 - **Porchfest Planner:** `https://kevinrhaas.github.io/custom/porchfest/`
 - **Stay Finder:** `https://kevinrhaas.github.io/custom/stay/`
 - **Chicago Atlas / 4D Chicago:** moved on 2026-09-23 to its own repo, [kevinrhaas/chicago](https://github.com/kevinrhaas/chicago), at **https://chicago.polecat.live/** (the walkthrough is `/4d/`). The old `/chicago/…` addresses here forward there, keeping the rest of the link. Its history up to the move stays in this repo.
+- **Chicago Voter:** `https://kevinrhaas.github.io/custom/chicago-voter/`
 - **Zion + Bryce Field Guide:** `https://kevinrhaas.github.io/custom/zion-bryce/`
 - **Wau-Bun:** `https://kevinrhaas.github.io/custom/wau-bun/`
 
@@ -28,6 +29,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [ordovician-sandstone](ordovician-sandstone/) | Parametric sandstone strata lamp shade generator — organic geology-inspired cylindrical forms with a Python/OpenSCAD pipeline |
 | [peachtree-city-bowl](peachtree-city-bowl/) | Parametric wavy-rim decorative bowl designed in OpenSCAD |
 | [stand](stand/) | Parametric three-rail adjustable display stand with removable axle and locking pins |
+| [chicago-voter](chicago-voter/) | Chicago Voter · Ballot Match — an adaptive scenario survey that fills in every race on a Nov. 3, 2026 Ward 30 ballot (Senate to the water district, the first elected school board president, six public questions, sixty judges), each pick showing the answer behind it and every candidate researched and cited. Builds `site/chicago-voter/js/data.js` |
 | [porchfest](porchfest/) | Uptown Porchfest 2026 walking-route planner — 91 bands rated across ten dimensions, an orienteering solver over the real street grid, self-contained map, and shareable plans. Builds `site/porchfest/app/` |
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
 | [stay](stay/) | Stay Finder — 168 houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast and inland ranch country for Dec 19–27, 2026, ranked for a party of nine wanting five or six rooms and three kings, and mapped on a coastline built from US Census TIGERweb. Builds `site/stay/` |
