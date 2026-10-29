@@ -4,7 +4,7 @@ A collection of original, custom-designed 3D-printable models — spanning decor
 
 ## Live site
 
-A garden-themed landing page and the interactive **Hosta Gangway Guide** are published via GitHub Pages from the [`site/`](site/) folder:
+The public landing page (Chicago research, field tools, and the printed-object catalogue — `site/index.html`, `site/css/home.css`, `site/js/home.js`) and the interactive apps are published via GitHub Pages from the [`site/`](site/) folder:
 
 - **Landing:** `https://kevinrhaas.github.io/custom/`
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
