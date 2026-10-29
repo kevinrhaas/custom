@@ -1,233 +1,437 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Custom — a workshop of made things</title>
-<meta name="description" content="A workshop of original, custom-designed projects — interactive research tools, 3D-printable models, parametric generators, and deeply-researched plans. Made with care, shared in the open.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%B4%3C/text%3E%3C/svg%3E">
-<meta property="og:title" content="Custom — a workshop of made things">
-<meta property="og:description" content="Interactive research tools, original 3D-printable models, parametric generators, and deeply-researched plans. Made with care, shared in the open.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Custom — research you can walk through, objects you can hold</title>
+<meta name="description" content="Custom turns deep, sourced research into things you can use: a walkable reconstruction of early Chicago, a ballot matched to your answers, trip planners worked out to the hour, and parametric objects designed in code and 3D-printed.">
+<meta name="theme-color" content="#08090c">
+<meta property="og:title" content="Custom — research you can walk through, objects you can hold">
+<meta property="og:description" content="4D Chicago and a building atlas from 1674 to 1904, interactive field tools, and parametric objects designed in code. Free, open, no account.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308090c'/%3E%3Cg fill='none' stroke='%23f2a65a' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M16 5l9.5 5.5v11L16 27l-9.5-5.5v-11z'/%3E%3Cpath d='M16 16l9.5-5.5M16 16v11M16 16l-9.5-5.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="css/home.css">
+<script>
+/* Pre-paint: theme before first frame (saved choice, else the system's, else dark). */
+(function () {
+  var r = document.documentElement, t = null;
+  r.classList.add('js');
+  try { t = localStorage.getItem('custom.theme'); } catch (e) {}
+  if (!t && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches) t = 'light';
+  r.setAttribute('data-theme', t || 'dark');
+})();
+</script>
 </head>
 <body>
-<div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-<div class="grain" aria-hidden="true"></div>
 
-<nav class="nav">
-  <a class="brand" href="./">
-    <span class="brand-mark">🪴</span>
-    <span>Cus<span class="grad">tom</span></span>
-  </a>
-  <div class="nav-links">
-    <a href="#featured">Featured</a>
-    <a href="#projects">Projects</a>
-    <a href="https://chicago.polecat.live/">Chicago Atlas</a>
-    <a href="chicago-voter/">Chicago Voter</a>
-    <a href="wau-bun/">Wau-Bun</a>
-    <a href="stay/">Stay Finder</a>
-    <a href="zion-bryce/">Zion + Bryce</a>
-    <a href="vehicle/">Vehicle Finder</a>
-    <a href="porchfest/">Porchfest Planner</a>
-    <a href="#about">About</a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
+<!-- Icon sprite. Single-colour line art, currentColor. o-* are the object drawings (48 grid). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-brand" viewBox="0 0 24 24"><path d="M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5z"/><path d="M12 12l8.2-4.75M12 12v9.5M12 12L3.8 7.25"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7l-5 5 5 5M15.5 7l5 5-5 5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 13.4A8.5 8.5 0 1 1 10.6 3.5a6.6 6.6 0 0 0 9.9 9.9z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v8.6L12 20.2l-7.5-4.3V7.3z"/><path d="M12 11.6l7.5-4.3M12 11.6v8.6M12 11.6L4.5 7.3"/><path d="M2 12.5c.6 4.6 4.6 8.5 10 8.5M22 11.5C21.4 6.9 17.4 3 12 3" stroke-dasharray="1.5 2.5"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+    <symbol id="i-crane" viewBox="0 0 24 24"><path d="M7 21V3.5M3 3.5h18M7 3.5l-4 3M7 7.5l3.5-4M17.5 3.5v6"/><path d="M15.5 9.5h4v3.5h-4zM3.5 21h7"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 21V10.5l8-6.5 8 6.5V21M3 21h18"/><path d="M9.5 21v-5.5h5V21M7 12.5h2.5M14.5 12.5H17M15.5 6.8V3.5h2v4.9"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3.5 5v14c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v14"/></symbol>
+    <symbol id="i-ballot" viewBox="0 0 24 24"><path d="M3 12h18v9H3zM8.5 12h7"/><path d="M8 12V3.5h8V12M10 8l1.6 1.6L14.5 6.5"/></symbol>
+    <symbol id="i-peaks" viewBox="0 0 24 24"><path d="M3 19l6.2-10 3.1 4.8L15.8 8 22 19H3z"/><path d="M7.2 12.2l2 1.1 2.1-1.4M14.4 10.3l1.8 1.2 1.6-1"/></symbol>
+    <symbol id="i-stay" viewBox="0 0 24 24"><path d="M4 12.5l8-6 8 6M6 11v5.5h12V11M10.5 16.5v-3.5h3v3.5"/><path d="M2 20.5c1.7-1.2 3.3-1.2 5 0s3.3 1.2 5 0 3.3-1.2 5 0 3.3 1.2 5 0"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18h6.5a3 3 0 0 0 0-6h-3a3 3 0 0 1 0-6H16"/><path d="M19.5 9.5c0-1.7 2-3 2-4.5a2 2 0 0 0-4 0c0 1.5 2 2.8 2 4.5z"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M3 15.5V13l2.2-4.6a1.5 1.5 0 0 1 1.4-.9h8.8a1.5 1.5 0 0 1 1.2.6l3.4 4.4 1 .5v2.5h-1.6M5.6 15.5h9.6"/><path d="M9.4 15.8a1.9 1.9 0 1 1-3.8 0 1.9 1.9 0 0 1 3.8 0zM19 15.8a1.9 1.9 0 1 1-3.8 0 1.9 1.9 0 0 1 3.8 0zM4.5 12.5h15"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21C6 18 3.5 13 4 8c4-1 8 1 8 1s4-2 8-1c.5 5-2 10-8 13zM12 21V9"/><path d="M12 13.5l-4-2.5M12 17l-5-2M12 13.5l4-2.5M12 17l5-2"/></symbol>
+    <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M3 9.5h5.5l3-2v9l-3-2H3z"/><path d="M14 9l7-3M14 12h7.5M14 15l7 3"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.5c-3.9 0-6.5-2.6-6.5-6 0-3.2 2.3-5 3.6-7.6.6 1.6 1.6 2.4 2.6 2.9.1-3.3 1.5-5.6 3.9-7.3-.4 2.6.9 4.3 2.1 5.8 1.3 1.6 2 3.4 2 5.7 0 3.6-2.9 6.5-7.7 6.5z"/><path d="M12 21.5c-1.7 0-2.8-1.1-2.8-2.6 0-1.6 1.4-2.4 2.1-3.9.9 1.1 3.5 2 3.5 4 0 1.5-1.1 2.5-2.8 2.5z"/></symbol>
+    <symbol id="i-star6" viewBox="0 0 48 48"><path d="M24 4l4.2 12.7L41.3 14l-8.9 10 8.9 10-13.1-2.7L24 44l-4.2-12.7L6.7 34l8.9-10-8.9-10 13.1 2.7z"/></symbol>
+
+    <!-- objects -->
+    <symbol id="o-gator" viewBox="0 0 48 48"><path pathLength="1" d="M17 39l1.6-11.4L14.6 22l.8-6.6L21.6 10l15.6-1.4 1.2 3.2-11.8 3.3.8 3.9-4.2 2.4 6.4 6.2L32 39z"/><path pathLength="1" d="M27.4 15.1l9-1.7M18.6 27.6l4.6-6.2 6.4 6.2M14.6 22l-3.4-.6 2.6-2.6M15.4 15.4l-3.2-1.2 3-2.2M16 28.4l-3.4.4 2-2.8"/><path pathLength="1" d="M22.4 13.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/><path pathLength="1" d="M13 39h22M11 43.5h26l-2-4.5H13z"/></symbol>
+    <symbol id="o-vase" viewBox="0 0 48 48"><path pathLength="1" d="M13 27c0-2.2 1.2-3.5 3.5-3.5h15c2.3 0 3.5 1.3 3.5 3.5v11c0 3-2 5-5 5H18c-3 0-5-2-5-5z"/><path pathLength="1" d="M17.5 24c-1 6-1 12 .5 18.6M22 23.5c-.6 6.5-.6 13 0 19.5M26.5 23.5c.6 6.5.6 13 0 19.5M30.5 24c1 6 1 12-.5 18.6"/><path pathLength="1" d="M21.5 23.5V14c0-3 2.6-3.6 2.6-6.6M25.5 23.5V6M28.5 23.5V15c0-2.2 1.8-3.4 4-3.4M20.5 17h2M24.5 12h2M27.5 18.5h2M25.5 9c2.8-2.6 6.6-2.8 9-1.8-2.6 2.2-5.8 2.8-9 1.8z"/></symbol>
+    <symbol id="o-star" viewBox="0 0 48 48"><path pathLength="1" d="M24 6l3.75 11.5L39.6 15l-8.1 9 8.1 9-11.85-2.5L24 42l-3.75-11.5L8.4 33l8.1-9-8.1-9 11.85 2.5z"/><path pathLength="1" d="M45.5 24a21.5 21.5 0 1 1-43 0 21.5 21.5 0 0 1 43 0z"/></symbol>
+    <symbol id="o-strata" viewBox="0 0 48 48"><path pathLength="1" d="M14 8c-1 8 2 14 0 22-1.5 6 0 10 1 12h18c1-2 2.5-6 1-12-2-8 1-14 0-22"/><path pathLength="1" d="M14 8c0-2.4 20-2.4 20 0s-20 2.4-20 0z"/><path pathLength="1" d="M14.4 14c5.6 2 11.6-2 19.2.5M15 20c6-2 12 2 18.3-.5M14.6 26c6.4 2 12.4-2 19 .5M13.6 32c6.4-2 13.4 2 20.6 0M14 37.5c6 1.5 14-1.5 20.6 0"/><path pathLength="1" d="M11 42h26v2.5H11z"/></symbol>
+    <symbol id="o-facet" viewBox="0 0 48 48"><path pathLength="1" d="M15 7h18l2 7-3 7 3 8-2 7 1 6H14l1-6-2-7 3-8-3-7z"/><path pathLength="1" d="M13 14h6l5-2 5 2h6M16 21l6 1 5-2 5 1M13 29l6-1 5 2 5-2 6 1M15 36l6 1 6-2 6 1M15 7l4 7-3 7M33 7l-4 7 3 7M24 7v5M11 42h26"/></symbol>
+    <symbol id="o-wavebowl" viewBox="0 0 48 48"><path pathLength="1" d="M5 20c3-4 6 4 9.5 0s6.5-4 9.5 0 6.5 4 9.5 0 6-4 9.5 0"/><path pathLength="1" d="M5 20c1 11 9 17 19 17s18-6 19-17"/><path pathLength="1" d="M10 23c6 3 22 3 28 0M18.5 37l-1.5 4.5h14L29.5 37"/></symbol>
+    <symbol id="o-bowl" viewBox="0 0 48 48"><path pathLength="1" d="M6 18c0-4.5 36-4.5 36 0s-36 4.5-36 0z"/><path pathLength="1" d="M6 18c1 12 9 18 18 18s17-6 18-18"/><path pathLength="1" d="M9.5 25.5c6 3.5 23 3.5 29 0M13.5 31c5 2.6 16 2.6 21 0"/><path pathLength="1" d="M17 39c0-2.6 14-2.6 14 0s-14 2.6-14 0z"/></symbol>
+    <symbol id="o-planter" viewBox="0 0 48 48"><path pathLength="1" d="M9 24.5c0-2.4 30-2.4 30 0 0 10-5 17.5-15 17.5S9 34.5 9 24.5z"/><path pathLength="1" d="M15 25.5c-2 5 3 9 1 14.5M22 24.5c-2 5.5 4 9.5 1.5 17.3M29 24.5c-2 5.5 4 9.5 1.5 16.9M35.5 25.5c-1.5 4 1.5 8-1 13"/><path pathLength="1" d="M20 23c-2-7-1-14 1-19 2 6 2 13 1.5 19M25 23c0-8 2-13 5-16 0 6-2 11-2.5 16M17.5 23c-2-4-3-8-4-11 3 3 5 6 6 11"/></symbol>
+    <symbol id="o-grid" viewBox="0 0 48 48"><path pathLength="1" d="M5 11.5h38a3 3 0 0 1 3 3v19a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-19a3 3 0 0 1 3-3z"/><path pathLength="1" d="M7.5 15h7a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 6 21.5v-5A1.5 1.5 0 0 1 7.5 15zM20.5 15h7a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5v-5a1.5 1.5 0 0 1 1.5-1.5zM33.5 15h7a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5v-5a1.5 1.5 0 0 1 1.5-1.5z"/><path pathLength="1" d="M7.5 25h7a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 6 31.5v-5A1.5 1.5 0 0 1 7.5 25zM20.5 25h20a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5h-20a1.5 1.5 0 0 1-1.5-1.5v-5a1.5 1.5 0 0 1 1.5-1.5z"/><path pathLength="1" d="M2 40.5h44"/></symbol>
+    <symbol id="o-garage" viewBox="0 0 48 48"><path pathLength="1" d="M4 18L24 6l20 12M8 16v26M40 16v26M3 42h42"/><path pathLength="1" d="M10 19h28M11 20h26v4H11z"/><path pathLength="1" d="M12 24v18M36 24v18M12 29.5h24M12 35h24"/></symbol>
+    <symbol id="o-stand" viewBox="0 0 48 48"><path pathLength="1" d="M14 17c0-8 8-12 14-10 7 2 8 8 5 11-4 3-15 3-19-1z"/><path pathLength="1" d="M7 43l26-24M41 43L15 19M24 43V17"/><path pathLength="1" d="M26.5 30a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4 43.5h40"/></symbol>
+    <symbol id="o-tube" viewBox="0 0 48 48"><path pathLength="1" d="M8 22h12v12H8zM8 22l16-10h12L20 22M36 12v12L20 34"/><path pathLength="1" d="M10.5 24.5h7v7h-7zM4.5 28.5h7v7h-7zM4.5 28.5l6-4M11.5 28.5l6-4M11.5 35.5l6-4"/><path pathLength="1" d="M28 40.5h15M30 40.5v-2.5M33.5 40.5v-3.5M37 40.5v-2.5M40.5 40.5v-3.5"/></symbol>
+    <symbol id="o-rack" viewBox="0 0 48 48"><path pathLength="1" d="M6 40h36l-2 4H8z"/><path pathLength="1" d="M10 40V8h28v32"/><path pathLength="1" d="M10 16l8-8M10 26L28 8M10 36L38 8M14 40l24-24M24 40l14-14M34 40l4-4M38 16l-8-8M38 26L20 8M38 36L10 8M34 40L10 16M24 40L10 26M14 40l-4-4"/></symbol>
+    <symbol id="o-bracket" viewBox="0 0 48 48"><path pathLength="1" d="M10 8h28l4 4v24l-4 4H10l-4-4V12z"/><path pathLength="1" d="M12 11h24l3 3v20l-3 3H12l-3-3V14z"/><path pathLength="1" d="M17 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM35 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM17 32a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM35 32a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path pathLength="1" d="M19 24h10"/></symbol>
+  </defs>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="wrap nav-in">
+    <a class="brand" href="./" aria-label="Custom, home">
+      <svg class="ic brand-mark" aria-hidden="true"><use href="#i-brand"/></svg>
+      <span>Custom</span>
+    </a>
+    <div class="nav-links">
+      <a href="#chicago">Chicago</a>
+      <a href="#tools">Tools</a>
+      <a href="#objects">Objects</a>
+      <a href="#method">Method</a>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch between light and dark">
+        <svg class="ic theme-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="ic theme-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
-<header class="hero">
-  <span class="hero-mascot">🪴</span>
-  <h1>A workshop of<br><span class="grad">made things.</span></h1>
-  <p class="hero-sub">Original, custom-designed projects — 3D-printable models, parametric
-  generators, and the occasional deeply-researched garden plan. Designed carefully, shared
-  in the open, and built to actually get made.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary btn-lg" href="hosta/">Open the Hosta Guide →</a>
-    <a class="btn btn-ghost btn-lg" href="#projects">Browse projects</a>
+<header class="hero" id="top">
+  <canvas class="hero-canvas" id="strata" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Made in Chicago · free &amp; open</span>
+    <h1>
+      <span class="line"><span class="w" style="--i:0">Research</span> <span class="w" style="--i:1">you</span> <span class="w" style="--i:2">can</span></span>
+      <span class="line"><em class="w" style="--i:3">walk</em> <em class="w" style="--i:4">through.</em></span>
+      <span class="line"><span class="w" style="--i:5">Objects</span> <span class="w" style="--i:6">you</span> <span class="w" style="--i:7">can</span> <em class="w" style="--i:8">hold.</em></span>
+    </h1>
+    <p class="hero-sub">Custom is where sourced, obsessive research becomes something you can use — a walkable
+    reconstruction of 1835 Chicago, a ballot matched to your answers, trip plans worked out to the hour — and where
+    designs written in code become printed objects.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter 4D Chicago <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="#chicago">See the work</a>
+    </div>
   </div>
-  <p class="hero-note">Free, open, and account-free. Not part of the Polecat app fleet —
-  but built to the same standards.</p>
+  <a class="scroll-cue" href="#chicago" aria-label="Scroll to the work"></a>
 </header>
 
+<div class="ticker" aria-label="By the numbers">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span class="tick"><b>1674–2026</b>Chicago, end to end</span><i class="tick-sep"></i>
+      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
+      <span class="tick"><b>23</b>dated city maps</span><i class="tick-sep"></i>
+      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
+      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
+      <span class="tick"><b>168</b>houses ranked</span><i class="tick-sep"></i>
+      <span class="tick"><b>91</b>bands rated ten ways</span><i class="tick-sep"></i>
+      <span class="tick"><b>14</b>printable objects</span><i class="tick-sep"></i>
+    </div>
+    <div class="ticker-group" aria-hidden="true">
+      <span class="tick"><b>1674–2026</b>Chicago, end to end</span><i class="tick-sep"></i>
+      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
+      <span class="tick"><b>23</b>dated city maps</span><i class="tick-sep"></i>
+      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
+      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
+      <span class="tick"><b>168</b>houses ranked</span><i class="tick-sep"></i>
+      <span class="tick"><b>91</b>bands rated ten ways</span><i class="tick-sep"></i>
+      <span class="tick"><b>14</b>printable objects</span><i class="tick-sep"></i>
+    </div>
+  </div>
+</div>
+
 <main>
-  <!-- FEATURED: Hosta -->
-  <section id="featured" class="wrap">
-    <div class="section-head center">
-      <div class="kicker">Featured</div>
-      <h2>The Gangway Hosta Garden</h2>
-      <p class="lead narrow" style="margin-inline:auto">Six designed plans (plus finalization
-      variations) for ninety-five feet of deep shade between two Chicago bungalows — a real
-      site, a real budget, and the whole Lurvey hosta catalog reasoned through plant by plant.</p>
-    </div>
-    <a class="app-card feature reveal" href="hosta/" style="--c:var(--leaf)">
-      <div class="feat-media"><img src="hosta/assets/plates/design2.jpg" alt="Photoreal render of a shaded hosta border" loading="lazy"></div>
-      <div class="feat-body">
-        <div class="app-top">
-          <span class="app-glyph">🌿</span>
-          <div><div class="app-name">Hosta Gangway Guide</div><div class="app-sub">interactive planting guide</div></div>
-        </div>
-        <p class="app-tagline">Photoreal renders, measured top-down plans, a searchable 74-variety
-        plant finder, soil &amp; slug strategy, a full build sequence and budget — and a render kit
-        for generating better images. Reorganized into one calm, navigable app.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="tag">6 reference designs</span>
-          <span class="tag">+6 variations</span>
-          <span class="tag">plant finder</span>
-        </div>
-        <div class="app-status"><span class="app-dot"></span>Live · open the app</div>
-      </div>
-    </a>
-  </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="band">
-    <div class="wrap">
-      <div class="section-head center">
-        <div class="kicker">The workshop</div>
-        <h2>Projects</h2>
-        <p class="lead narrow" style="margin-inline:auto">Interactive research tools and
-        FDM-printable models — designed carefully and backed by open source files in the repo.</p>
-      </div>
-      <div class="apps-grid" id="projectsGrid"></div>
+<!-- 01 · CHICAGO ------------------------------------------------------------ -->
+<section class="chicago sec" id="chicago">
+  <div class="chi-stars" aria-hidden="true">
+    <svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg>
+  </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">01 · Chicago research</div>
+      <h2>Three and a half centuries of one city, <em>to the source.</em></h2>
+      <p>A building atlas from the first recorded structures to Prairie Avenue in 1904, a walkable reconstruction
+      of the river town, a frontier memoir taken apart scene by scene — and this year's ballot. Every record
+      carries its citation, and every gap stays visible.</p>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="wrap">
-    <div class="section-head center">
-      <div class="kicker">About</div>
-      <h2>Made carefully, shared openly</h2>
-      <p class="lead narrow" style="margin-inline:auto">Custom is a personal workshop repo: one-off
-      designs that solved a specific problem or scratched a specific itch, kept public so they're
-      useful to someone else. Everything here is designed for FDM printing or, in Hosta's case, for
-      a spade and a Saturday. It borrows the Polecat platform's front-door craft — the drifting
-      aurora backdrop, instant system-font paint, a light/dark garden palette — without being part
-      of the app fleet.</p>
+    <article class="four-d reveal">
+      <div class="four-d-stage">
+        <canvas id="iso" aria-label="An animated isometric model of Chicago at Wolf Point, building up from 1812 through 1835 to 1904" role="img"></canvas>
+        <div class="four-d-hud" aria-hidden="true"><span>41° 53′ N · 87° 38′ W</span><span>Wolf Point aperture</span></div>
+        <div class="four-d-year" aria-hidden="true"><small>Destination year</small><span id="isoYear">1835</span></div>
+        <div class="four-d-legend" aria-hidden="true">
+          <span>Documented <i class="lg-doc"></i></span>
+          <span>Inferred <i class="lg-inf"></i></span>
+          <span>Conjectured <i class="lg-gue"></i></span>
+        </div>
+      </div>
+      <div class="four-d-body">
+        <div class="kick">Featured · 4D Chicago</div>
+        <h3>Walk the town <em>as the record describes it.</em></h3>
+        <p>Step through the aperture at Wolf Point, where the river forks, and walk Chicago at a fixed moment in
+        time. Switch on the confidence view and the city tells you how much it knows: documented geometry renders
+        solid, inferred is tinted, and anything conjectured turns to translucent massing. Click any building for
+        its attributes and citations.</p>
+        <ul class="dests" id="dests">
+          <li data-y="1812"><b>1812</b><span>Fort Dearborn</span><span class="st">Surveying</span></li>
+          <li data-y="1835" class="on"><b>1835</b><span>The river settlement</span><span class="st">Open</span></li>
+          <li data-y="1904"><b>1904</b><span>Prairie Avenue</span><span class="st">Calibrating</span></li>
+        </ul>
+        <div class="hero-cta" style="opacity:1;animation:none;margin-top:4px">
+          <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter the observatory <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="https://chicago.polecat.live/">All Chicago research</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="chron">
+      <div class="chron-head reveal">
+        <h3>The chronicle</h3>
+        <p>Each project picks up a different stretch of the same city. Read top to bottom, they run from a
+        portage on the prairie to the voting booth.</p>
+      </div>
+      <ol class="chron-list" id="chron">
+        <li><a class="chron-row reveal" href="https://chicago.polecat.live/pre-fire/viewer/" style="--rc:#41b6e6">
+          <div class="chron-yr">1674<small>to 1871</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg><div><h4>Chicago Before the Fire</h4><p>Choose any year and see the nearest dated map, every source-identifiable structure standing by then, boundary changes, landscape events — and what the 1871 fire took.</p></div></div>
+          <div class="chron-meta"><span class="chip">324 records</span><span class="chip">14 maps</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+        <li><a class="chron-row reveal" href="https://chicago.polecat.live/4d/" style="--rc:#7ec8e3">
+          <div class="chron-yr">1812<small>1835 · 1904</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-cube"/></svg><div><h4>4D Chicago</h4><p>A first-person walk through the city at set moments in time, every surface shaded by how sure the evidence is. The 1835 river town is open; the fort and Prairie Avenue are being surveyed.</p></div></div>
+          <div class="chron-meta"><span class="chip">walkable</span><span class="chip">evidence-shaded</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+        <li><a class="chron-row reveal" href="wau-bun/" style="--rc:#f2a65a">
+          <div class="chron-yr">1830s<small>published 1856</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg><div><h4>Wau-Bun</h4><p>Juliette Kinzie's memoir of the early Northwest as an interactive book: who is present in every scene, and each scene four ways — summary, modernized, a suspense retelling, and her 1856 original.</p></div></div>
+          <div class="chron-meta"><span class="chip">158 scenes</span><span class="chip">225 people</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+        <li><div class="chron-row event reveal" style="--rc:#ff7a3d">
+          <div class="chron-yr">Oct 1871</div>
+          <p><svg class="ic flame" aria-hidden="true"><use href="#i-flame"/></svg>The Great Fire. Both atlases turn on it — what stood, what burned, and what came back.</p>
+        </div></li>
+        <li><a class="chron-row reveal" href="https://chicago.polecat.live/rebuilding-1870s/viewer/" style="--rc:#ff3b4f">
+          <div class="chron-yr">1872<small>to 1879</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-crane"/></svg><div><h4>Chicago Rebuilds</h4><p>Each post-fire year through its annual map: construction and reconstruction projects, which building replaced which, city-model notes, and a separate view of the 1874 fire.</p></div></div>
+          <div class="chron-meta"><span class="chip">312 records</span><span class="chip">9 maps</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+        <li><a class="chron-row reveal" href="https://chicago.polecat.live/prairie-1904/viewer/" style="--rc:#c9a46a">
+          <div class="chron-yr">1904<small>maps to 1911</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg><div><h4>Prairie Avenue</h4><p>The city's grandest street, house by house: construction and demolition dates, archival sources, fire-insurance maps, and a dedicated Glessner House collection.</p></div></div>
+          <div class="chron-meta"><span class="chip">building histories</span><span class="chip">Glessner House</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+        <li><a class="chron-row reveal" href="chicago-voter/" style="--rc:#ff3b4f">
+          <div class="chron-yr">2026<small>Nov 3 ballot</small></div>
+          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-ballot"/></svg><div><h4>Chicago Voter</h4><p>About ten scenario questions, and every race on a Ward 30 ballot fills in as you answer — Senate to the water district, the first elected school board president, six public questions, sixty judges. Each pick shows the answer behind it.</p></div></div>
+          <div class="chron-meta"><span class="chip">every race</span><span class="chip">cited</span></div>
+          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </a></li>
+      </ol>
     </div>
+  </div>
+</section>
+
+<!-- 02 · TOOLS -------------------------------------------------------------- -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">02 · Field tools</div>
+      <h2>Planned to the hour, <em>ranked to the room.</em></h2>
+      <p>Decision tools built for one real outing at a time — researched until the answer is obvious, then made
+      fast enough to use standing in a parking lot.</p>
+    </div>
+    <div class="bento">
+      <a class="card span-3 reveal" href="zion-bryce/" style="--cc:#e07a4d">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-peaks"/></svg></div>
+        <h3>Zion + Bryce Field Guide</h3>
+        <div class="sub">Two parks · one canyon loop</div>
+        <p>An offline-ready road-trip companion: researched daily run sheets, shuttle clocks, a forecast-aware Narrows day swap, trail comparisons, driving buffers, time-zone cues and calendar export.</p>
+        <div class="card-foot"><div class="stat" data-count="9">9<small>days, run-sheeted</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-3 reveal" href="stay/" style="--cc:#2bb3c0;--d:1">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-stay"/></svg></div>
+        <h3>Stay Finder</h3>
+        <div class="sub">Tampa Bay to the Nature Coast</div>
+        <p>Houses, estates and inn buyouts ranked for nine people who want five or six rooms and three king beds — mapped on a real coastline and linked to each listing with the dates filled in.</p>
+        <div class="card-foot"><div class="stat" data-count="168">168<small>places ranked</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-2 reveal" href="porchfest/" style="--cc:#ff6b4a">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></div>
+        <h3>Porchfest Planner</h3>
+        <div class="sub">Uptown · one afternoon</div>
+        <p>Every band rated ten ways. Ask for "loud and fast" or "quiet enough for a stroller" and get a walking route solved over the real street grid.</p>
+        <div class="card-foot"><div class="stat" data-count="91">91<small>bands rated</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-2 reveal" href="vehicle/" style="--cc:#e04a5f;--d:1">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></div>
+        <h3>Vehicle Finder</h3>
+        <div class="sub">Exact trim · exact colour</div>
+        <p>Nationwide searches for two specific 2026 builds, ranked by value — with photos, window stickers, VINs, prices and dealer contacts side by side.</p>
+        <div class="card-foot"><div class="stat">VIN<small>level detail</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-2 reveal" href="hosta/" style="--cc:#5fb86a;--d:2">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
+        <h3>Hosta Gangway Guide</h3>
+        <div class="sub">95 feet of deep shade</div>
+        <p>Six designed plans for a Chicago gangway: photoreal renders, measured plans, a searchable plant finder, soil and slug strategy, and a full build budget.</p>
+        <div class="card-foot"><div class="stat" data-count="74">74<small>varieties reasoned</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-6 wide joliet reveal" href="joliet/">
+        <div class="beam" aria-hidden="true"></div>
+        <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-lamp"/></svg></div>
+        <h3>Joliet: Midnight Infiltration</h3>
+        <div class="sub">A browser game · Old Joliet Prison, 1858</div>
+        <p style="max-width:640px">A first-person walk through Boyington &amp; Wheelock's limestone castle in its present decayed state. No weapons, no enemies — a headlamp, a finite battery, the dark, and whatever is under the east block.</p>
+        <div class="card-foot"><div class="stat">Play<small>runs in the browser</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · OBJECTS ------------------------------------------------------------ -->
+<section class="objects sec" id="objects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">03 · Printed objects</div>
+      <h2>Designed in code. <em>Printed in layers.</em></h2>
+      <p>Parametric generators in Python, OpenSCAD and Blender — so a vase can be sized to its plant and an insert
+      to its tube. Every source file is open.</p>
+    </div>
+    <div class="obj-bar reveal">
+      <div class="filters" id="filters" role="group" aria-label="Filter objects">
+        <span class="pill" aria-hidden="true"></span>
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="decor" aria-pressed="false">Decor</button>
+        <button type="button" data-f="home" aria-pressed="false">Functional</button>
+      </div>
+      <span class="obj-note">FDM · PLA / PETG / ASA-CF</span>
+    </div>
+    <div class="obj-grid" id="objGrid">
+      <article class="obj reveal" data-k="decor" style="--d:0"><span class="obj-idx">01</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-gator"/></svg></div>
+        <h3>Tomorrowland Alligators</h3><p>A six-piece chess set from one faceted, mid-century alligator bust. Support-free.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python → STL</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/alligator-chess"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:1"><span class="obj-idx">02</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-vase"/></svg></div>
+        <h3>Wave-Ring Bamboo Vase</h3><p>A squat fluted vessel sized around a real bunch of lucky bamboo. Six variants and a centering collar.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/bamboo-vase"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:2"><span class="obj-idx">03</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-star"/></svg></div>
+        <h3>Chicago Star</h3><p>The flag's six-pointed star as coasters and lattice mesh pieces.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Blender</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/chicago-star"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:3"><span class="obj-idx">04</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-strata"/></svg></div>
+        <h3>Ordovician Sandstone Lamp</h3><p>Lamp shades that swell and pinch like Illinois sandstone strata, regenerated at any size.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python + OpenSCAD</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/ordovician-sandstone"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:0"><span class="obj-idx">05</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-facet"/></svg></div>
+        <h3>Geometric Sandstone Lamp</h3><p>The same strata, cut into straight, jagged facets. Seats on the standard 80 mm base.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/geometric-sandstone"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:1"><span class="obj-idx">06</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-wavebowl"/></svg></div>
+        <h3>Peachtree City Bowl</h3><p>A wavy-rim bowl with tunable scallops, shimmer texture and a concave dish.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">OpenSCAD</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/peachtree-city-bowl"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:2"><span class="obj-idx">07</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-bowl"/></svg></div>
+        <h3>Delaney Bowl</h3><p>A turned-look bowl, generated as one clean polyhedron.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python → SCAD</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/delaney-bowl"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="decor" style="--d:3"><span class="obj-idx">08</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-planter"/></svg></div>
+        <h3>Wave Snake Planter</h3><p>A squat bowl planter whose ribs split and rejoin as smooth ribbons. 180 mm mouth.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/wave-gentle-snake-planter"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:0"><span class="obj-idx">09</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-grid"/></svg></div>
+        <h3>Gridfinity × Rationell</h3><p>Lets Gridfinity bins sit square inside IKEA Rationell drawer trays.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">3MF</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/gridfinity-rationell"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:1"><span class="obj-idx">10</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-rack"/></svg></div>
+        <h3>Cutting-Board Rack</h3><p>A diamond-trellis panel and drain stand, split to print flat with no overhangs.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Python</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/Drying-rack"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:2"><span class="obj-idx">11</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-stand"/></svg></div>
+        <h3>Three-Rail Stand</h3><p>Three identical rails on one removable axle, locked by pins. Holds 1 kg.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">OpenSCAD</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/stand"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:3"><span class="obj-idx">12</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-tube"/></svg></div>
+        <h3>AC Screen Support</h3><p>Carbon-fibre ASA inserts for 20 mm aluminium tube, with fit gauges to dial in the size.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">ASA-CF</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/ac-support"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:0"><span class="obj-idx">13</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-garage"/></svg></div>
+        <h3>Garage Header Trim</h3><p>Multi-part trim that finishes the exposed framing above a garage door.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">Blender</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/garage"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+      <article class="obj reveal" data-k="home" style="--d:1"><span class="obj-idx">14</span>
+        <div class="obj-art"><svg class="ic" aria-hidden="true"><use href="#o-bracket"/></svg></div>
+        <h3>Hurricane Strut Cover</h3><p>A chamfered plate and rail that close over a hurricane strut bracket.</p>
+        <div class="obj-foot"><div class="obj-tags"><span class="chip">STL</span></div><a class="obj-src" href="https://github.com/kevinrhaas/custom/tree/main/HurricanStrutBracketCover"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Source</a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · METHOD ------------------------------------------------------------- -->
+<section class="sec" id="method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">04 · Method</div>
+      <h2>Fewer guesses. <em>More receipts.</em></h2>
+    </div>
+    <div class="method">
+      <div class="m reveal"><div class="num">01</div><h3>Sourced, not invented</h3><p>Every building, candidate and band traces back to a record. Where the record runs out, the gap stays on screen — confidence is part of the interface, not a footnote.</p></div>
+      <div class="m reveal" style="--d:1"><div class="num">02</div><h3>Built for a real day</h3><p>Each tool answers one question someone actually had: a walk, a vote, a trip, a gift. They load fast, work on a phone, and ask for no account.</p></div>
+      <div class="m reveal" style="--d:2"><div class="num">03</div><h3>Made in the open</h3><p>Objects come from parametric scripts, not one-off meshes, so they can be resized and reprinted. Code, data and CAD source all live in public repos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap reveal">
+    <h2>Start in <em>1835.</em></h2>
+    <p>Step through at Wolf Point and walk the river town as the sources describe it.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#projects">Browse the projects</a>
-      <a class="btn btn-ghost" href="hosta/">Open the Hosta Guide</a>
+      <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter 4D Chicago <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="chicago-voter/">Match your ballot</a>
     </div>
-  </section>
+  </div>
+</section>
+
 </main>
 
 <footer class="foot">
-  <div class="foot-brand">Cus<span class="grad">tom</span></div>
-  <div class="foot-links">
-    <a href="#featured">Featured</a>
-    <a href="#projects">Projects</a>
-    <a href="https://chicago.polecat.live/">Chicago Atlas</a>
-    <a href="wau-bun/">Wau-Bun</a>
-    <a href="stay/">Stay Finder</a>
-    <a href="zion-bryce/">Zion + Bryce</a>
-    <a href="vehicle/">Vehicle Finder</a>
-    <a href="porchfest/">Porchfest Planner</a>
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="#top"><svg class="ic brand-mark" aria-hidden="true"><use href="#i-brand"/></svg><span>Custom</span></a>
+      <p class="foot-meta">Research, tools and printed objects. Made in Chicago, shared in the open. © 2026</p>
+    </div>
+    <div class="foot-cols">
+      <div><h5>Chicago</h5><ul>
+        <li><a href="https://chicago.polecat.live/4d/">4D Chicago</a></li>
+        <li><a href="https://chicago.polecat.live/pre-fire/viewer/">Before the Fire</a></li>
+        <li><a href="https://chicago.polecat.live/rebuilding-1870s/viewer/">Chicago Rebuilds</a></li>
+        <li><a href="https://chicago.polecat.live/prairie-1904/viewer/">Prairie Avenue</a></li>
+        <li><a href="wau-bun/">Wau-Bun</a></li>
+        <li><a href="chicago-voter/">Chicago Voter</a></li>
+      </ul></div>
+      <div><h5>Tools</h5><ul>
+        <li><a href="zion-bryce/">Zion + Bryce</a></li>
+        <li><a href="stay/">Stay Finder</a></li>
+        <li><a href="porchfest/">Porchfest Planner</a></li>
+        <li><a href="vehicle/">Vehicle Finder</a></li>
+        <li><a href="hosta/">Hosta Gangway Guide</a></li>
+        <li><a href="joliet/">Joliet</a></li>
+      </ul></div>
+      <div><h5>Studio</h5><ul>
+        <li><a href="#objects">Printed objects</a></li>
+        <li><a href="https://github.com/kevinrhaas/custom">Source on GitHub</a></li>
+        <li><a href="https://github.com/kevinrhaas/chicago">Chicago research data</a></li>
+        <li><a href="https://polecat.live/">polecat.live</a></li>
+      </ul></div>
+    </div>
   </div>
-  <div class="foot-meta">© 2026 · a workshop of made things · shared in the open</div>
 </footer>
 
-<script>
-// ---- theme (garden light <-> dark), remembered ----
-(function () {
-  var root = document.documentElement, btn = document.getElementById('themeToggle');
-  var saved = null;
-  try { saved = localStorage.getItem('custom.theme'); } catch (e) {}
-  if (!saved && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) saved = 'dark';
-  if (saved) root.setAttribute('data-theme', saved);
-  function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
-  paint();
-  btn.addEventListener('click', function () {
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('custom.theme', next); } catch (e) {}
-    paint();
-  });
-})();
-
-// ---- projects grid (source-linked cards) ----
-(function () {
-  var projects = [
-    { dir: 'bamboo-vase', name: 'Bamboo Vase', glyph: '🎍', c: 'var(--leaf-2)', tag: 'Parametric "Wave Ring" fluted vase for lucky bamboo — six variants + centering collar, pure-Python STL generator.' },
-    { dir: 'chicago-star', name: 'Chicago Star', glyph: '⭐', c: 'var(--sky)', tag: 'Chicago-flag six-pointed star coasters and mesh art pieces, modeled in Blender.' },
-    { dir: 'ordovician-sandstone', name: 'Ordovician Sandstone', glyph: '🪨', c: 'var(--soil)', tag: 'Parametric sandstone-strata lamp shade — organic geology-inspired forms via a Python/OpenSCAD pipeline.' },
-    { dir: 'geometric-sandstone', name: 'Geometric Sandstone', glyph: '🧱', c: 'var(--honey)', tag: 'Faceted geometric take on the sandstone strata form.' },
-    { dir: 'peachtree-city-bowl', name: 'Peachtree City Bowl', glyph: '🥣', c: 'var(--bloom)', tag: 'Parametric wavy-rim decorative bowl designed in OpenSCAD.' },
-    { dir: 'delaney-bowl', name: 'Delaney Bowl', glyph: '🍥', c: 'var(--leaf)', tag: 'A turned-look decorative bowl.' },
-    { dir: 'wave-gentle-snake-planter', name: 'Wave Snake Planter', glyph: '🐍', c: 'var(--leaf-2)', tag: 'Gentle-wave serpentine planter form.' },
-    { dir: 'gridfinity-rationell', name: 'Gridfinity × Rationell', glyph: '🗄️', c: 'var(--sky)', tag: 'Gridfinity adapter for IKEA Rationell drawer organizers.' },
-    { dir: 'garage', name: 'Garage Trim', glyph: '🚪', c: 'var(--soil)', tag: 'Custom garage door header trim pieces, modeled in Blender.' },
-    { dir: 'pentaho', name: 'Pentaho Logo', glyph: '🔶', c: 'var(--honey)', tag: 'Pentaho logo 3D prints, modeled in Blender from SVG source.' },
-    { dir: 'HurricanStrutBracketCover', name: 'Hurricane Strut Cover', glyph: '🌀', c: 'var(--sky)', tag: 'A cover for a hurricane strut bracket.' },
-    { dir: 'Drying-rack', name: 'Drying Rack', glyph: '🧺', c: 'var(--leaf)', tag: 'A custom drying rack.' },
-    { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
-  ];
-  var grid = document.getElementById('projectsGrid');
-  var voterCard = '<a class="app-card reveal" href="chicago-voter/" style="--c:#e4002b">' +
-    '<div class="app-top"><span class="app-glyph">\u2605</span>' +
-    '<div><div class="app-name">Chicago Voter</div><div class="app-sub">chicago-voter \u00b7 your Nov 3, 2026 ballot, matched</div></div></div>' +
-    '<p class="app-tagline">About ten scenario questions, and every race on a Ward 30 ballot fills in as you answer \u2014 U.S. Senate to the water district, ' +
-    'Chicago\u2019s first elected school board president, six public questions and sixty judges \u2014 each pick showing the answer that put it there, ' +
-    'with every candidate researched and cited. Watch your ballot fill in as you go, then print a cheat sheet for the booth.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 match your ballot \u2197</div></a>';
-  var zionBryceCard = '<a class="app-card reveal" href="zion-bryce/" style="--c:#d96f45">' +
-    '<div class="app-top"><span class="app-glyph"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 19 6.2-10 3.1 4.8L15.8 8 22 19H3Z"/><path d="m7.2 12.2 2 1.1 2.1-1.4M14.4 10.3l1.8 1.2 1.6-1"/></svg></span>' +
-    '<div><div class="app-name">Zion + Bryce Field Guide</div><div class="app-sub">9 days · two parks · one canyon loop</div></div></div>' +
-    '<p class="app-tagline">An offline-ready September 2026 road-trip companion: researched daily run sheets, Zion shuttle clocks, a live forecast-assisted Narrows/Scout day swap, trail comparisons, driving buffers, time-zone cues, calendar export, checklists, and private on-device confirmations.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live · open the field guide ↗</div></a>';
-  var chicagoCard = '<a class="app-card reveal" href="https://chicago.polecat.live/" style="--c:#aa3c27">' +
-    '<div class="app-top"><span class="app-glyph">🏙️</span>' +
-    '<div><div class="app-name">Chicago Building Atlas</div><div class="app-sub">1674–1879 · maps + buildings</div></div></div>' +
-    '<p class="app-tagline">Browse source-identifiable buildings through Chicago\'s early growth, the 1871 fire, and the rebuilding decade. Explore dated maps, city-change events, addresses, architects, construction phases, and confidence notes.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live · open the atlas ↗</div></a>';
-  var vehicleCard = '<a class="app-card reveal" href="vehicle/" style="--c:#b62236">' +
-    '<div class="app-top"><span class="app-glyph">🚗</span>' +
-    '<div><div class="app-name">Vehicle Finder</div><div class="app-sub">vehicle · nationwide car searches</div></div></div>' +
-    '<p class="app-tagline">Ranked nationwide car searches centered on Crystal Lake — Pat\'s 2026 Lincoln Corsair ' +
-    '(Red Carpet Metallic + light Smoked Truffle) and a 2026 Subaru Forester Touring Hybrid in Crimson Red Pearl — ' +
-    'with photos, window stickers, prices, value ratings, VINs, dealers, and contacts.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live · open the app ↗</div></a>';
-  var porchfestCard = '<a class="app-card reveal" href="porchfest/" style="--c:#ff6b4a">' +
-    '<div class="app-top"><span class="app-glyph">\uD83C\uDFB8</span>' +
-    '<div><div class="app-name">Porchfest Planner</div><div class="app-sub">porchfest \u00b7 91 bands, one afternoon</div></div></div>' +
-    '<p class="app-tagline">Plan a walking route through Uptown Porchfest 2026. Every band rated across ten dimensions \u2014 ' +
-    'energy, loudness, kid-friendly and the rest \u2014 so you can ask for &quot;loud and fast&quot; or &quot;quiet enough for a stroller&quot;, ' +
-    'pick how many bands you want, and get an optimised schedule, walking map and a shareable link.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the planner \u2197</div></a>';
-  var waubunCard = '<a class="app-card reveal" href="wau-bun/" style="--c:#2a78d6">' +
-    '<div class="app-top"><span class="app-glyph">\ud83c\udf04</span>' +
-    '<div><div class="app-name">Wau-Bun</div><div class="app-sub">wau-bun \u00b7 the early Northwest, scene by scene</div></div></div>' +
-    '<p class="app-tagline">Juliette Kinzie\'s 1856 memoir of the frontier, told as an interactive book: ' +
-    'a character-presence chart of every person against every scene, a scene-by-scene reader that gives you the ' +
-    'summary, the modernized text, a retelling in a modern horror-suspense voice, or her original 1856 words ' +
-    'in full, and the whole cast \u2014 who enters the story, ' +
-    'who leaves it, and who shares each scene. All three parts \u2014 158 scenes, chapters I\u2013XXXVIII \u2014 are complete.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the telling \u2197</div></a>';
-  var stayCard = '<a class="app-card reveal" href="stay/" style="--c:#0e7c8a">' +
-    '<div class="app-top"><span class="app-glyph">\uD83C\uDFD6\uFE0F</span>' +
-    '<div><div class="app-name">Stay Finder</div><div class="app-sub">stay \u00b7 6\u20138 bedroom houses, Tampa area</div></div></div>' +
-    '<p class="app-tagline">A hundred and sixty-eight houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast '  +
-    'around Cedar Key and Crystal River, and the ranch country near Crystal Springs \u2014 ranked for nine people who want five or six '  +
-    'rooms and three king beds, not a house built for twenty. Eighty-nine carry a real eight-night price quoted for Dec 19\u201327. '  +
-    'Mapped on a real coastline, and linked straight to the original listing with the dates already filled in.</p>' +
-    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the search \u2197</div></a>';
-  grid.innerHTML = voterCard + zionBryceCard + chicagoCard + waubunCard + stayCard + vehicleCard + porchfestCard + projects.map(function (p) {
-    return '<div class="app-card reveal" style="--c:' + p.c + '">' +
-      '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
-      '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
-      '<p class="app-tagline">' + p.tag + '</p>' +
-      '<div class="app-status"><span class="app-dot src"></span>3D-printable model</div></div>';
-  }).join('');
-})();
-
-// ---- reveal on scroll ----
-(function () {
-  var els = [].slice.call(document.querySelectorAll('.reveal'));
-  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function (ents) {
-    ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { threshold: .12 });
-  els.forEach(function (e) { io.observe(e); });
-})();
-</script>
+<script src="js/home.js" defer></script>
 </body>
 </html>
