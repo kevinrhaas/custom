@@ -20,10 +20,9 @@
     themeListeners.forEach(function (fn) { fn(); });
   });
 
-  /* ---- nav state, page progress, chronicle line ------------------------ */
+  /* ---- nav state + page progress ---------------------------------------- */
   var nav = document.getElementById('nav');
   var bar = document.querySelector('.progress');
-  var chron = document.getElementById('chron');
   var ticking = false;
   function onScroll() {
     if (ticking) return;
@@ -34,10 +33,6 @@
       var max = Math.max(1, document.documentElement.scrollHeight - vh);
       if (nav) nav.classList.toggle('scrolled', y > 24);
       if (bar) bar.style.setProperty('--sp', (y / max).toFixed(4));
-      if (chron) {
-        var r = chron.getBoundingClientRect();
-        chron.style.setProperty('--p', clamp((vh * 0.7 - r.top) / r.height, 0, 1).toFixed(4));
-      }
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -208,7 +203,6 @@
     var cv = document.getElementById('iso');
     if (!cv || !cv.getContext) return;
     var yearEl = document.getElementById('isoYear');
-    var dests = [].slice.call(document.querySelectorAll('#dests li'));
     var N = 12;
 
     // Seeded random so the town is the same every visit.
@@ -268,7 +262,7 @@
       inf: ['rgba(126,200,227,.92)', 'rgba(65,182,230,.62)', 'rgba(41,128,170,.62)'],
       gue: ['rgba(255,255,255,.07)', 'rgba(255,255,255,.04)', 'rgba(255,255,255,.02)']
     };
-    var px = 0, py = 0, tpx = 0, tpy = 0, lastStop = null;
+    var px = 0, py = 0, tpx = 0, tpy = 0;
     cv.addEventListener('pointermove', function (e) {
       var r = cv.getBoundingClientRect();
       tpx = (e.clientX - r.left) / r.width - 0.5; tpy = (e.clientY - r.top) / r.height - 0.5;
@@ -332,10 +326,6 @@
       }
 
       if (yearEl) yearEl.textContent = Math.round(Y);
-      if (st.stop !== lastStop) {
-        lastStop = st.stop;
-        dests.forEach(function (li) { li.classList.toggle('on', +li.getAttribute('data-y') === st.stop); });
-      }
     });
   })();
 })();
