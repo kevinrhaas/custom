@@ -213,7 +213,7 @@
     var film = document.getElementById('filmVideo'), close = document.getElementById('closeFilm');
     if (!dlg || !open || !film) return;
     if (typeof dlg.showModal !== 'function') {   // very old browsers: just go to the file
-      open.addEventListener('click', function () { location.href = 'media/4d-film.mp4'; });
+      open.addEventListener('click', function () { location.href = 'media/chicago-walk.mp4'; });
       return;
     }
     open.addEventListener('click', function () {
