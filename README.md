@@ -4,7 +4,7 @@ A collection of original, custom-designed 3D-printable models — spanning decor
 
 ## Live site
 
-The public landing page (Chicago research, field tools, and the printed-object catalogue — `site/index.html`, `site/css/home.css`, `site/js/home.js`) and the interactive apps are published via GitHub Pages from the [`site/`](site/) folder:
+The public landing page (field tools, Chicago research, and the printed-object catalogue — `site/index.html`, `site/css/home.css`, `site/js/home.js`; the 4D Chicago reel and walkthrough in `site/media/` are cut from kevinrhaas/chicago `reference/walkthroughs/` 2026-08-31) and the interactive apps are published via GitHub Pages from the [`site/`](site/) folder:
 
 - **Landing:** `https://kevinrhaas.github.io/custom/`
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`

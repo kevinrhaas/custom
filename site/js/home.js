@@ -198,134 +198,34 @@
     });
   })();
 
-  /* ---- 4D Chicago: an isometric town that builds itself through time ---- */
+  /* ---- 4D Chicago: the reel plays while it is on screen; the film opens in a dialog ---- */
   (function () {
-    var cv = document.getElementById('iso');
-    if (!cv || !cv.getContext) return;
-    var yearEl = document.getElementById('isoYear');
-    var N = 12;
-
-    // Seeded random so the town is the same every visit.
-    var seed = 1835;
-    function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-
-    // Water: the main stem runs east from the Wolf Point fork to the lake; branches run north and south.
-    function water(i, j) {
-      if (i >= N - 1) return 'lake';
-      if (j === 5 && i >= 5) return 'river';
-      if (i === 5 && j <= 5) return 'river';
-      if ((i === 4 && j <= 2)) return 'river';
-      if (i === 5 && j >= 5 && j <= 8) return 'river';
-      if (i === 6 && j >= 9) return 'river';
-      return null;
+    var reel = document.getElementById('reel');
+    var saveData = navigator.connection && navigator.connection.saveData;
+    if (reel && !reduce && !saveData) {
+      var tryPlay = function () { var p = reel.play(); if (p && p.catch) p.catch(function () {}); };
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { if (e[0].isIntersecting) tryPlay(); else reel.pause(); }, { threshold: 0.25 }).observe(reel);
+      } else tryPlay();
+      document.addEventListener('visibilitychange', function () { if (document.hidden) reel.pause(); });
     }
-    function conf() { var r = rnd(); return r < 0.5 ? 'doc' : r < 0.82 ? 'inf' : 'gue'; }
-
-    // Each lot is a list of epochs: [from, to, height, confidence]. 1871 burns the centre.
-    var lots = [];
-    for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) {
-      if (water(i, j)) continue;
-      var ep = [], d = Math.abs(i - 7) + Math.abs(j - 5);
-      if ((i === 9 || i === 10) && j === 6) ep.push([1803, 0, 0.9, 'doc']);              // Fort Dearborn
-      else if ((i === 8 && j === 4) || (i === 6 && j === 4)) ep.push([1804, 1871, 0.6, 'doc']); // cabins across the river
-      else if (d <= 5 && rnd() < 0.62) ep.push([1828 + Math.floor(rnd() * 7), 1871, 0.4 + rnd() * 0.8, conf()]);
-      var south = j >= 8 && i >= 7;
-      if (south && rnd() < 0.7) ep.push([1880 + Math.floor(rnd() * 20), 0, 1.1 + rnd() * 0.8, conf()]); // Prairie Avenue
-      else if (!south && rnd() < 0.78) ep.push([1873 + Math.floor(rnd() * 25), 0, 1 + rnd() * (d < 4 ? 4.5 : 2), conf()]);
-      lots.push({ i: i, j: j, ep: ep });
+    var dlg = document.getElementById('film'), open = document.getElementById('playFilm');
+    var film = document.getElementById('filmVideo'), close = document.getElementById('closeFilm');
+    if (!dlg || !open || !film) return;
+    if (typeof dlg.showModal !== 'function') {   // very old browsers: just go to the file
+      open.addEventListener('click', function () { location.href = 'media/4d-film.mp4'; });
+      return;
     }
-
-    function ease(k) { return k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; }
-    function heightAt(lot, Y) {
-      var h = 0;
-      for (var n = 0; n < lot.ep.length; n++) {
-        var e = lot.ep[n], g = clamp((Y - e[0]) / 4, 0, 1);
-        if (e[1] && Y > e[1]) g *= clamp(1 - (Y - e[1]) / 1.2, 0, 1);
-        h = Math.max(h, e[2] * ease(g));
-        if (g > 0) lot.c = e[3];
-      }
-      return h;
-    }
-
-    // Timeline: hold at each destination, travel between them, rewind at the end.
-    var stops = [1812, 1835, 1904], HOLD = 2600, TRAVEL = 2600;
-    var cycle = stops.length * (HOLD + TRAVEL);
-    function yearAt(t) {
-      var p = t % cycle, s = Math.floor(p / (HOLD + TRAVEL)), q = p - s * (HOLD + TRAVEL);
-      var a = stops[s], b = stops[(s + 1) % stops.length];
-      if (q < HOLD) return { y: a, stop: a, fwd: true };
-      return { y: a + (b - a) * ease((q - HOLD) / TRAVEL), stop: null, fwd: b > a };
-    }
-
-    var shade = {
-      doc: ['#f3eee2', '#d3c9b4', '#a89d86'],
-      inf: ['rgba(126,200,227,.92)', 'rgba(65,182,230,.62)', 'rgba(41,128,170,.62)'],
-      gue: ['rgba(255,255,255,.07)', 'rgba(255,255,255,.04)', 'rgba(255,255,255,.02)']
-    };
-    var px = 0, py = 0, tpx = 0, tpy = 0;
-    cv.addEventListener('pointermove', function (e) {
-      var r = cv.getBoundingClientRect();
-      tpx = (e.clientX - r.left) / r.width - 0.5; tpy = (e.clientY - r.top) / r.height - 0.5;
+    open.addEventListener('click', function () {
+      dlg.showModal();
+      if (reel) reel.pause();
+      var p = film.play(); if (p && p.catch) p.catch(function () {});
     });
-    cv.addEventListener('pointerleave', function () { tpx = tpy = 0; });
-
-    function poly(ctx, pts, fill, stroke, dash) {
-      ctx.beginPath(); ctx.moveTo(pts[0], pts[1]);
-      for (var n = 2; n < pts.length; n += 2) ctx.lineTo(pts[n], pts[n + 1]);
-      ctx.closePath();
-      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-      if (stroke) { ctx.setLineDash(dash || []); ctx.strokeStyle = stroke; ctx.stroke(); ctx.setLineDash([]); }
-    }
-
-    animate(cv, function (t) {
-      var f = fitCanvas(cv), ctx = f.ctx, W = f.w, H = f.h;
-      var st = reduce ? { y: 1835, stop: 1835 } : yearAt(t);
-      var Y = st.y;
-      px += (tpx - px) * 0.06; py += (tpy - py) * 0.06;
-      var hw = Math.min(W * 0.84 / (2 * N), H * 0.9 / (N + 4)), hh = hw * 0.5, unit = hh * 1.5;
-      var ox = W / 2 + px * 14, oy = H / 2 - N * hh + hh * 2.2 + py * 10;
-      ctx.clearRect(0, 0, W, H);
-      ctx.lineWidth = 1;
-
-      function P(i, j, z) { return [ox + (i - j) * hw, oy + (i + j) * hh - z * unit]; }
-
-      // ground + water
-      for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) {
-        var a = P(i, j, 0), b = P(i + 1, j, 0), c = P(i + 1, j + 1, 0), d = P(i, j + 1, 0);
-        var w = water(i, j);
-        if (w) {
-          var sh = 0.16 + 0.08 * Math.sin(t * 0.002 + (i + j) * 0.7);
-          poly(ctx, [a[0], a[1], b[0], b[1], c[0], c[1], d[0], d[1]], 'rgba(65,182,230,' + (w === 'lake' ? sh + 0.06 : sh + 0.12).toFixed(3) + ')', null);
-        } else {
-          poly(ctx, [a[0], a[1], b[0], b[1], c[0], c[1], d[0], d[1]], null, 'rgba(255,255,255,.06)');
-        }
-      }
-
-      // buildings, back to front
-      for (var n = 0; n < lots.length; n++) {
-        var L = lots[n], h = heightAt(L, Y);
-        if (h < 0.02) continue;
-        var m = 0.16, i0 = L.i + m, j0 = L.j + m, i1 = L.i + 1 - m, j1 = L.j + 1 - m;
-        var s = shade[L.c || 'doc'];
-        var t0 = P(i0, j0, h), t1 = P(i1, j0, h), t2 = P(i1, j1, h), t3 = P(i0, j1, h);
-        var g1 = P(i1, j0, 0), g2 = P(i1, j1, 0), g3 = P(i0, j1, 0);
-        var line = L.c === 'gue' ? 'rgba(255,255,255,.55)' : L.c === 'inf' ? 'rgba(160,220,240,.5)' : 'rgba(0,0,0,.18)';
-        var dash = L.c === 'gue' ? [3, 3] : null;
-        poly(ctx, [t3[0], t3[1], t2[0], t2[1], g2[0], g2[1], g3[0], g3[1]], s[1], line, dash);   // left face
-        poly(ctx, [t1[0], t1[1], t2[0], t2[1], g2[0], g2[1], g1[0], g1[1]], s[2], line, dash);   // right face
-        poly(ctx, [t0[0], t0[1], t1[0], t1[1], t2[0], t2[1], t3[0], t3[1]], s[0], line, dash);   // roof
-      }
-
-      // the fire: a glow that passes as the year crosses October 1871
-      var fire = st.fwd ? clamp(1 - Math.abs(Y - 1871.5) / 2.2, 0, 1) : 0;
-      if (fire > 0) {
-        var c0 = P(7, 4, 0), gr = ctx.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], W * 0.55);
-        gr.addColorStop(0, 'rgba(255,122,61,' + (0.55 * fire).toFixed(3) + ')');
-        gr.addColorStop(1, 'rgba(255,59,79,0)');
-        ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
-      }
-
-      if (yearEl) yearEl.textContent = Math.round(Y);
+    close.addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () {
+      film.pause();
+      if (reel && !reduce && !saveData) { var p = reel.play(); if (p && p.catch) p.catch(function () {}); }
     });
   })();
 })();
