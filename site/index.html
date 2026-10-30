@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Custom — research you can walk through, objects you can hold</title>
-<meta name="description" content="Custom turns deep, sourced research into things you can use: a walkable reconstruction of early Chicago, a ballot matched to your answers, trip planners worked out to the hour, and parametric objects designed in code and 3D-printed.">
+<meta name="description" content="Custom is a workshop of made things: field tools researched until the answer is obvious, histories you can step inside, and parametric objects designed in code and 3D-printed.">
 <meta name="theme-color" content="#08090c">
 <meta property="og:title" content="Custom — research you can walk through, objects you can hold">
-<meta property="og:description" content="4D Chicago and a building atlas from 1674 to 1904, interactive field tools, and parametric objects designed in code. Free, open, no account.">
+<meta property="og:description" content="Field tools, Chicago research and parametric objects designed in code. Free, open, no account.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308090c'/%3E%3Cg fill='none' stroke='%23f2a65a' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M16 5l9.5 5.5v11L16 27l-9.5-5.5v-11z'/%3E%3Cpath d='M16 16l9.5-5.5M16 16v11M16 16l-9.5-5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,6 @@
     <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7l-5 5 5 5M15.5 7l5 5-5 5"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 13.4A8.5 8.5 0 1 1 10.6 3.5a6.6 6.6 0 0 0 9.9 9.9z"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
-    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v8.6L12 20.2l-7.5-4.3V7.3z"/><path d="M12 11.6l7.5-4.3M12 11.6v8.6M12 11.6L4.5 7.3"/><path d="M2 12.5c.6 4.6 4.6 8.5 10 8.5M22 11.5C21.4 6.9 17.4 3 12 3" stroke-dasharray="1.5 2.5"/></symbol>
     <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
     <symbol id="i-crane" viewBox="0 0 24 24"><path d="M7 21V3.5M3 3.5h18M7 3.5l-4 3M7 7.5l3.5-4M17.5 3.5v6"/><path d="M15.5 9.5h4v3.5h-4zM3.5 21h7"/></symbol>
     <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 21V10.5l8-6.5 8 6.5V21M3 21h18"/><path d="M9.5 21v-5.5h5V21M7 12.5h2.5M14.5 12.5H17M15.5 6.8V3.5h2v4.9"/></symbol>
@@ -48,8 +47,6 @@
     <symbol id="i-car" viewBox="0 0 24 24"><path d="M3 15.5V13l2.2-4.6a1.5 1.5 0 0 1 1.4-.9h8.8a1.5 1.5 0 0 1 1.2.6l3.4 4.4 1 .5v2.5h-1.6M5.6 15.5h9.6"/><path d="M9.4 15.8a1.9 1.9 0 1 1-3.8 0 1.9 1.9 0 0 1 3.8 0zM19 15.8a1.9 1.9 0 1 1-3.8 0 1.9 1.9 0 0 1 3.8 0zM4.5 12.5h15"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21C6 18 3.5 13 4 8c4-1 8 1 8 1s4-2 8-1c.5 5-2 10-8 13zM12 21V9"/><path d="M12 13.5l-4-2.5M12 17l-5-2M12 13.5l4-2.5M12 17l5-2"/></symbol>
     <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M3 9.5h5.5l3-2v9l-3-2H3z"/><path d="M14 9l7-3M14 12h7.5M14 15l7 3"/></symbol>
-    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.5c-3.9 0-6.5-2.6-6.5-6 0-3.2 2.3-5 3.6-7.6.6 1.6 1.6 2.4 2.6 2.9.1-3.3 1.5-5.6 3.9-7.3-.4 2.6.9 4.3 2.1 5.8 1.3 1.6 2 3.4 2 5.7 0 3.6-2.9 6.5-7.7 6.5z"/><path d="M12 21.5c-1.7 0-2.8-1.1-2.8-2.6 0-1.6 1.4-2.4 2.1-3.9.9 1.1 3.5 2 3.5 4 0 1.5-1.1 2.5-2.8 2.5z"/></symbol>
-    <symbol id="i-star6" viewBox="0 0 48 48"><path d="M24 4l4.2 12.7L41.3 14l-8.9 10 8.9 10-13.1-2.7L24 44l-4.2-12.7L6.7 34l8.9-10-8.9-10 13.1 2.7z"/></symbol>
 
     <!-- objects -->
     <symbol id="o-gator" viewBox="0 0 48 48"><path pathLength="1" d="M17 39l1.6-11.4L14.6 22l.8-6.6L21.6 10l15.6-1.4 1.2 3.2-11.8 3.3.8 3.9-4.2 2.4 6.4 6.2L32 39z"/><path pathLength="1" d="M27.4 15.1l9-1.7M18.6 27.6l4.6-6.2 6.4 6.2M14.6 22l-3.4-.6 2.6-2.6M15.4 15.4l-3.2-1.2 3-2.2M16 28.4l-3.4.4 2-2.8"/><path pathLength="1" d="M22.4 13.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/><path pathLength="1" d="M13 39h22M11 43.5h26l-2-4.5H13z"/></symbol>
@@ -79,8 +76,8 @@
       <span>Custom</span>
     </a>
     <div class="nav-links">
-      <a href="#chicago">Chicago</a>
       <a href="#tools">Tools</a>
+      <a href="#chicago">Chicago</a>
       <a href="#objects">Objects</a>
       <a href="#method">Method</a>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch between light and dark">
@@ -100,145 +97,49 @@
       <span class="line"><em class="w" style="--i:3">walk</em> <em class="w" style="--i:4">through.</em></span>
       <span class="line"><span class="w" style="--i:5">Objects</span> <span class="w" style="--i:6">you</span> <span class="w" style="--i:7">can</span> <em class="w" style="--i:8">hold.</em></span>
     </h1>
-    <p class="hero-sub">Custom is where sourced, obsessive research becomes something you can use — a walkable
-    reconstruction of 1835 Chicago, a ballot matched to your answers, trip plans worked out to the hour — and where
-    designs written in code become printed objects.</p>
+    <p class="hero-sub">Custom is a workshop of made things: field tools researched until the answer is obvious,
+    histories you can step inside, and objects designed in code and printed in layers. Free, open, and built to
+    actually get used.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter 4D Chicago <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn-ghost" href="#chicago">See the work</a>
+      <a class="btn btn-primary" href="#tools">See the work <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="#objects">Printed objects</a>
     </div>
   </div>
-  <a class="scroll-cue" href="#chicago" aria-label="Scroll to the work"></a>
+  <a class="scroll-cue" href="#tools" aria-label="Scroll to the work"></a>
 </header>
 
 <div class="ticker" aria-label="By the numbers">
   <div class="ticker-track">
     <div class="ticker-group">
-      <span class="tick"><b>1674–2026</b>Chicago, end to end</span><i class="tick-sep"></i>
-      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
-      <span class="tick"><b>23</b>dated city maps</span><i class="tick-sep"></i>
-      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
-      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
       <span class="tick"><b>168</b>houses ranked</span><i class="tick-sep"></i>
       <span class="tick"><b>91</b>bands rated ten ways</span><i class="tick-sep"></i>
       <span class="tick"><b>14</b>printable objects</span><i class="tick-sep"></i>
+      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
+      <span class="tick"><b>74</b>hosta varieties weighed</span><i class="tick-sep"></i>
+      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
+      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
+      <span class="tick"><b>9</b>days run-sheeted</span><i class="tick-sep"></i>
     </div>
     <div class="ticker-group" aria-hidden="true">
-      <span class="tick"><b>1674–2026</b>Chicago, end to end</span><i class="tick-sep"></i>
-      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
-      <span class="tick"><b>23</b>dated city maps</span><i class="tick-sep"></i>
-      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
-      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
       <span class="tick"><b>168</b>houses ranked</span><i class="tick-sep"></i>
       <span class="tick"><b>91</b>bands rated ten ways</span><i class="tick-sep"></i>
       <span class="tick"><b>14</b>printable objects</span><i class="tick-sep"></i>
+      <span class="tick"><b>60</b>judges researched</span><i class="tick-sep"></i>
+      <span class="tick"><b>74</b>hosta varieties weighed</span><i class="tick-sep"></i>
+      <span class="tick"><b>636</b>sourced building records</span><i class="tick-sep"></i>
+      <span class="tick"><b>158</b>scenes, 225 people</span><i class="tick-sep"></i>
+      <span class="tick"><b>9</b>days run-sheeted</span><i class="tick-sep"></i>
     </div>
   </div>
 </div>
 
 <main>
 
-<!-- 01 · CHICAGO ------------------------------------------------------------ -->
-<section class="chicago sec" id="chicago">
-  <div class="chi-stars" aria-hidden="true">
-    <svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg><svg viewBox="0 0 48 48"><use href="#i-star6"/></svg>
-  </div>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-num">01 · Chicago research</div>
-      <h2>Three and a half centuries of one city, <em>to the source.</em></h2>
-      <p>A building atlas from the first recorded structures to Prairie Avenue in 1904, a walkable reconstruction
-      of the river town, a frontier memoir taken apart scene by scene — and this year's ballot. Every record
-      carries its citation, and every gap stays visible.</p>
-    </div>
-
-    <article class="four-d reveal">
-      <div class="four-d-stage">
-        <canvas id="iso" aria-label="An animated isometric model of Chicago at Wolf Point, building up from 1812 through 1835 to 1904" role="img"></canvas>
-        <div class="four-d-hud" aria-hidden="true"><span>41° 53′ N · 87° 38′ W</span><span>Wolf Point aperture</span></div>
-        <div class="four-d-year" aria-hidden="true"><small>Destination year</small><span id="isoYear">1835</span></div>
-        <div class="four-d-legend" aria-hidden="true">
-          <span>Documented <i class="lg-doc"></i></span>
-          <span>Inferred <i class="lg-inf"></i></span>
-          <span>Conjectured <i class="lg-gue"></i></span>
-        </div>
-      </div>
-      <div class="four-d-body">
-        <div class="kick">Featured · 4D Chicago</div>
-        <h3>Walk the town <em>as the record describes it.</em></h3>
-        <p>Step through the aperture at Wolf Point, where the river forks, and walk Chicago at a fixed moment in
-        time. Switch on the confidence view and the city tells you how much it knows: documented geometry renders
-        solid, inferred is tinted, and anything conjectured turns to translucent massing. Click any building for
-        its attributes and citations.</p>
-        <ul class="dests" id="dests">
-          <li data-y="1812"><b>1812</b><span>Fort Dearborn</span><span class="st">Surveying</span></li>
-          <li data-y="1835" class="on"><b>1835</b><span>The river settlement</span><span class="st">Open</span></li>
-          <li data-y="1904"><b>1904</b><span>Prairie Avenue</span><span class="st">Calibrating</span></li>
-        </ul>
-        <div class="hero-cta" style="opacity:1;animation:none;margin-top:4px">
-          <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter the observatory <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-ghost" href="https://chicago.polecat.live/">All Chicago research</a>
-        </div>
-      </div>
-    </article>
-
-    <div class="chron">
-      <div class="chron-head reveal">
-        <h3>The chronicle</h3>
-        <p>Each project picks up a different stretch of the same city. Read top to bottom, they run from a
-        portage on the prairie to the voting booth.</p>
-      </div>
-      <ol class="chron-list" id="chron">
-        <li><a class="chron-row reveal" href="https://chicago.polecat.live/pre-fire/viewer/" style="--rc:#41b6e6">
-          <div class="chron-yr">1674<small>to 1871</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg><div><h4>Chicago Before the Fire</h4><p>Choose any year and see the nearest dated map, every source-identifiable structure standing by then, boundary changes, landscape events — and what the 1871 fire took.</p></div></div>
-          <div class="chron-meta"><span class="chip">324 records</span><span class="chip">14 maps</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-        <li><a class="chron-row reveal" href="https://chicago.polecat.live/4d/" style="--rc:#7ec8e3">
-          <div class="chron-yr">1812<small>1835 · 1904</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-cube"/></svg><div><h4>4D Chicago</h4><p>A first-person walk through the city at set moments in time, every surface shaded by how sure the evidence is. The 1835 river town is open; the fort and Prairie Avenue are being surveyed.</p></div></div>
-          <div class="chron-meta"><span class="chip">walkable</span><span class="chip">evidence-shaded</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-        <li><a class="chron-row reveal" href="wau-bun/" style="--rc:#f2a65a">
-          <div class="chron-yr">1830s<small>published 1856</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg><div><h4>Wau-Bun</h4><p>Juliette Kinzie's memoir of the early Northwest as an interactive book: who is present in every scene, and each scene four ways — summary, modernized, a suspense retelling, and her 1856 original.</p></div></div>
-          <div class="chron-meta"><span class="chip">158 scenes</span><span class="chip">225 people</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-        <li><div class="chron-row event reveal" style="--rc:#ff7a3d">
-          <div class="chron-yr">Oct 1871</div>
-          <p><svg class="ic flame" aria-hidden="true"><use href="#i-flame"/></svg>The Great Fire. Both atlases turn on it — what stood, what burned, and what came back.</p>
-        </div></li>
-        <li><a class="chron-row reveal" href="https://chicago.polecat.live/rebuilding-1870s/viewer/" style="--rc:#ff3b4f">
-          <div class="chron-yr">1872<small>to 1879</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-crane"/></svg><div><h4>Chicago Rebuilds</h4><p>Each post-fire year through its annual map: construction and reconstruction projects, which building replaced which, city-model notes, and a separate view of the 1874 fire.</p></div></div>
-          <div class="chron-meta"><span class="chip">312 records</span><span class="chip">9 maps</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-        <li><a class="chron-row reveal" href="https://chicago.polecat.live/prairie-1904/viewer/" style="--rc:#c9a46a">
-          <div class="chron-yr">1904<small>maps to 1911</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg><div><h4>Prairie Avenue</h4><p>The city's grandest street, house by house: construction and demolition dates, archival sources, fire-insurance maps, and a dedicated Glessner House collection.</p></div></div>
-          <div class="chron-meta"><span class="chip">building histories</span><span class="chip">Glessner House</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-        <li><a class="chron-row reveal" href="chicago-voter/" style="--rc:#ff3b4f">
-          <div class="chron-yr">2026<small>Nov 3 ballot</small></div>
-          <div class="chron-t"><svg class="ic" aria-hidden="true"><use href="#i-ballot"/></svg><div><h4>Chicago Voter</h4><p>About ten scenario questions, and every race on a Ward 30 ballot fills in as you answer — Senate to the water district, the first elected school board president, six public questions, sixty judges. Each pick shows the answer behind it.</p></div></div>
-          <div class="chron-meta"><span class="chip">every race</span><span class="chip">cited</span></div>
-          <span class="chron-go" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        </a></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- 02 · TOOLS -------------------------------------------------------------- -->
+<!-- 01 · TOOLS -------------------------------------------------------------- -->
 <section class="sec" id="tools">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-num">02 · Field tools</div>
+      <div class="sec-num">01 · Field tools</div>
       <h2>Planned to the hour, <em>ranked to the room.</em></h2>
       <p>Decision tools built for one real outing at a time — researched until the answer is obvious, then made
       fast enough to use standing in a parking lot.</p>
@@ -258,28 +159,35 @@
         <p>Houses, estates and inn buyouts ranked for nine people who want five or six rooms and three king beds — mapped on a real coastline and linked to each listing with the dates filled in.</p>
         <div class="card-foot"><div class="stat" data-count="168">168<small>places ranked</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
       </a>
-      <a class="card span-2 reveal" href="porchfest/" style="--cc:#ff6b4a">
+      <a class="card span-2 reveal" href="chicago-voter/" style="--cc:#ff3b4f">
+        <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-ballot"/></svg></div>
+        <h3>Chicago Voter</h3>
+        <div class="sub">Nov 3, 2026 · every race</div>
+        <p>About ten scenario questions, and a whole Ward 30 ballot fills in as you answer — Senate to the water district, six public questions, sixty judges — each pick showing why.</p>
+        <div class="card-foot"><div class="stat" data-count="60">60<small>judges researched</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
+      </a>
+      <a class="card span-2 reveal" href="porchfest/" style="--cc:#ff6b4a;--d:1">
         <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></div>
         <h3>Porchfest Planner</h3>
         <div class="sub">Uptown · one afternoon</div>
         <p>Every band rated ten ways. Ask for "loud and fast" or "quiet enough for a stroller" and get a walking route solved over the real street grid.</p>
         <div class="card-foot"><div class="stat" data-count="91">91<small>bands rated</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
       </a>
-      <a class="card span-2 reveal" href="vehicle/" style="--cc:#e04a5f;--d:1">
+      <a class="card span-2 reveal" href="vehicle/" style="--cc:#e04a5f;--d:2">
         <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></div>
         <h3>Vehicle Finder</h3>
         <div class="sub">Exact trim · exact colour</div>
         <p>Nationwide searches for two specific 2026 builds, ranked by value — with photos, window stickers, VINs, prices and dealer contacts side by side.</p>
         <div class="card-foot"><div class="stat">VIN<small>level detail</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
       </a>
-      <a class="card span-2 reveal" href="hosta/" style="--cc:#5fb86a;--d:2">
+      <a class="card span-2 reveal" href="hosta/" style="--cc:#5fb86a">
         <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
         <h3>Hosta Gangway Guide</h3>
         <div class="sub">95 feet of deep shade</div>
         <p>Six designed plans for a Chicago gangway: photoreal renders, measured plans, a searchable plant finder, soil and slug strategy, and a full build budget.</p>
         <div class="card-foot"><div class="stat" data-count="74">74<small>varieties reasoned</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
       </a>
-      <a class="card span-6 wide joliet reveal" href="joliet/">
+      <a class="card span-4 wide joliet reveal" style="--d:1" href="joliet/">
         <div class="beam" aria-hidden="true"></div>
         <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-lamp"/></svg></div>
@@ -288,6 +196,56 @@
         <p style="max-width:640px">A first-person walk through Boyington &amp; Wheelock's limestone castle in its present decayed state. No weapons, no enemies — a headlamp, a finite battery, the dark, and whatever is under the east block.</p>
         <div class="card-foot"><div class="stat">Play<small>runs in the browser</small></div><span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span></div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · CHICAGO ------------------------------------------------------------ -->
+<section class="sec chicago" id="chicago">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">02 · Chicago research</div>
+      <h2>One city, <em>layer by layer.</em></h2>
+      <p>An ongoing study of early Chicago: a building atlas from the first recorded structures to Prairie Avenue,
+      and a reconstruction you can walk. Every record carries its citation; every gap stays visible.</p>
+    </div>
+    <div class="chi-grid">
+      <a class="four-d reveal" href="https://chicago.polecat.live/4d/">
+        <div class="four-d-stage">
+          <canvas id="iso" aria-label="An animated isometric model of Chicago at Wolf Point, building up from 1812 through 1835 to 1904" role="img"></canvas>
+          <div class="four-d-hud" aria-hidden="true"><span>41° 53′ N · 87° 38′ W</span><span>Wolf Point</span></div>
+          <div class="four-d-year" aria-hidden="true"><small>Year</small><span id="isoYear">1835</span></div>
+          <div class="four-d-legend" aria-hidden="true">
+            <span>Documented <i class="lg-doc"></i></span>
+            <span>Inferred <i class="lg-inf"></i></span>
+            <span>Conjectured <i class="lg-gue"></i></span>
+          </div>
+        </div>
+        <div class="four-d-body">
+          <div><div class="kick">4D Chicago</div>
+          <h3>Walk the town <em>as the record describes it.</em></h3>
+          <p>A first-person walk through 1835, every surface shaded by how sure the evidence is.</p></div>
+          <span class="arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow-ur"/></svg></span>
+        </div>
+      </a>
+      <ul class="chi-list">
+        <li><a class="chi-row reveal" href="https://chicago.polecat.live/pre-fire/viewer/" style="--rc:#41b6e6">
+          <svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>
+          <div><span class="yr">1674–1871</span><h4>Before the Fire</h4><p>Any year: its nearest map and every structure standing.</p></div>
+          <span class="chip">324 records</span></a></li>
+        <li><a class="chi-row reveal" href="https://chicago.polecat.live/rebuilding-1870s/viewer/" style="--rc:#ff3b4f;--d:1">
+          <svg class="ic" aria-hidden="true"><use href="#i-crane"/></svg>
+          <div><span class="yr">1872–1879</span><h4>Chicago Rebuilds</h4><p>The post-fire decade, year by year, building by building.</p></div>
+          <span class="chip">312 records</span></a></li>
+        <li><a class="chi-row reveal" href="https://chicago.polecat.live/prairie-1904/viewer/" style="--rc:#c9a46a;--d:2">
+          <svg class="ic" aria-hidden="true"><use href="#i-house"/></svg>
+          <div><span class="yr">1904</span><h4>Prairie Avenue</h4><p>The grand street house by house, with Glessner House.</p></div>
+          <span class="chip">to 1911</span></a></li>
+        <li><a class="chi-row reveal" href="wau-bun/" style="--rc:#f2a65a;--d:3">
+          <svg class="ic" aria-hidden="true"><use href="#i-book"/></svg>
+          <div><span class="yr">1830s</span><h4>Wau-Bun</h4><p>Juliette Kinzie's frontier memoir, scene by scene, four ways.</p></div>
+          <span class="chip">158 scenes</span></a></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -388,11 +346,11 @@
 
 <section class="closer">
   <div class="wrap reveal">
-    <h2>Start in <em>1835.</em></h2>
-    <p>Step through at Wolf Point and walk the river town as the sources describe it.</p>
+    <h2>Made to be <em>used.</em></h2>
+    <p>Free, open, and no account. Pick something and go.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://chicago.polecat.live/4d/">Enter 4D Chicago <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn-ghost" href="chicago-voter/">Match your ballot</a>
+      <a class="btn btn-primary" href="#tools">Browse the tools <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="#objects">See the objects</a>
     </div>
   </div>
 </section>
@@ -412,10 +370,10 @@
         <li><a href="https://chicago.polecat.live/rebuilding-1870s/viewer/">Chicago Rebuilds</a></li>
         <li><a href="https://chicago.polecat.live/prairie-1904/viewer/">Prairie Avenue</a></li>
         <li><a href="wau-bun/">Wau-Bun</a></li>
-        <li><a href="chicago-voter/">Chicago Voter</a></li>
       </ul></div>
       <div><h5>Tools</h5><ul>
         <li><a href="zion-bryce/">Zion + Bryce</a></li>
+        <li><a href="chicago-voter/">Chicago Voter</a></li>
         <li><a href="stay/">Stay Finder</a></li>
         <li><a href="porchfest/">Porchfest Planner</a></li>
         <li><a href="vehicle/">Vehicle Finder</a></li>
