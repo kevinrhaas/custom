@@ -150,24 +150,27 @@ section { position: relative; }
   background: #070a12; color: #eef0f4; border: 1px solid rgba(255,255,255,.08);
   --text: #eef0f4; --text-2: #a7aec0; --text-3: #6b7387; --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.18);
   transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
-.four-d:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -30px rgba(65,182,230,.45); }
+.four-d:hover { box-shadow: 0 30px 60px -30px rgba(65,182,230,.45); }
 .four-d-stage { position: relative; flex: 1; min-height: 330px; background: radial-gradient(80% 70% at 50% 55%, rgba(65,182,230,.12), transparent 70%); }
-.four-d-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.four-d-hud { position: absolute; left: 20px; right: 20px; top: 18px; display: flex; justify-content: space-between; font: 500 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); pointer-events: none; }
-.four-d-year { position: absolute; left: 20px; bottom: 14px; font: 600 44px/1 var(--sans); letter-spacing: -.05em; font-variant-numeric: tabular-nums; color: #fff; pointer-events: none; }
-.four-d-year small { display: block; font: 500 10px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
-.four-d-legend { position: absolute; right: 20px; bottom: 18px; display: grid; gap: 6px; font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); pointer-events: none; }
-.four-d-legend span { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
-.four-d-legend i { width: 9px; height: 9px; border-radius: 2px; }
-.lg-doc { background: #e9e4d8; }
-.lg-inf { background: rgba(65,182,230,.75); }
-.lg-gue { border: 1px dashed rgba(255,255,255,.6); }
+.four-d-reel { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.four-d-stage::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,10,18,.55), transparent 22%, transparent 60%, rgba(7,10,18,.75)); }
+.four-d-hud { position: absolute; z-index: 1; left: 20px; right: 20px; top: 18px; display: flex; justify-content: space-between; font: 500 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); pointer-events: none; }
+.four-d-hud span { display: inline-flex; align-items: center; gap: 8px; }
+.rec { width: 7px; height: 7px; border-radius: 50%; background: #ff3b4f; animation: pulse 2.4s ease-out infinite; --accent: #ff3b4f; }
+.play { position: absolute; z-index: 1; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+  background: rgba(7,10,18,.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font: 500 14px/1 var(--sans); cursor: pointer; transition: background-color .3s, border-color .3s, transform .4s var(--ease); }
+.play small { margin-left: 6px; font: 500 11px/1 var(--mono); color: rgba(255,255,255,.6); }
+.play-ic { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #070a12; transition: transform .4s var(--ease); }
+.play-ic .ic { width: 16px; height: 16px; fill: currentColor; stroke: none; margin-left: 2px; }
+.play:hover { background: rgba(7,10,18,.65); border-color: rgba(255,255,255,.45); transform: translateY(-2px); }
+.play:hover .play-ic { transform: scale(1.08); }
 .four-d-body { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 22px 22px 24px; border-top: 1px solid var(--line); }
 .four-d-body .kick { font: 500 11px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: #41b6e6; }
 .four-d-body h3 { margin: 10px 0 6px; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.1; letter-spacing: -.035em; font-weight: 600; }
 .four-d-body h3 em { font-family: var(--serif); font-weight: 400; font-style: italic; color: #ff5a6a; }
 .four-d-body p { margin: 0; color: var(--text-2); font-size: 15px; }
-.four-d:hover .arrow { transform: rotate(-45deg); background: #41b6e6; border-color: transparent; color: #070a12; }
+.four-d .arrow:hover, .four-d .arrow:focus-visible { transform: rotate(-45deg); background: #41b6e6; border-color: transparent; color: #070a12; }
 
 .chi-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .chi-row { position: relative; display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: center; height: 100%; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); overflow: hidden;
@@ -182,6 +185,17 @@ section { position: relative; }
 .chip { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line); font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--text-2); white-space: nowrap; }
 @media (max-width: 900px) { .chi-grid { grid-template-columns: 1fr; } .four-d-stage { min-height: 300px; } }
 @media (max-width: 520px) { .chi-row { grid-template-columns: 30px 1fr; padding: 16px; } .chi-row .chip { display: none; } .four-d-hud span + span { display: none; } }
+
+/* ---- film lightbox ------------------------------------------------------ */
+.film { width: min(1100px, 100vw - 24px); max-width: none; max-height: none; padding: 0; border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); background: #070a12; color: #eef0f4; overflow: hidden;
+  --text: #eef0f4; --text-2: #a7aec0; --line: rgba(255,255,255,.12); --line-2: rgba(255,255,255,.22); --bg: #070a12; }
+.film::backdrop { background: rgba(3,4,8,.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.film[open] { animation: filmIn .5s var(--ease); }
+@keyframes filmIn { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+.film-bar, .film-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 12px 20px; font: 500 12px/1.4 var(--mono); letter-spacing: .08em; color: var(--text-2); }
+.film-foot { padding: 14px 14px 14px 20px; font-family: var(--sans); letter-spacing: 0; font-size: 14px; flex-wrap: wrap; }
+.film video { display: block; width: 100%; aspect-ratio: 5 / 3; background: #000; }
+@media (max-width: 520px) { .film-foot span { display: none; } .film-foot .btn { width: 100%; justify-content: center; } }
 
 /* ---- tools (bento) ------------------------------------------------------ */
 .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
