@@ -4,7 +4,7 @@ A collection of original, custom-designed 3D-printable models — spanning decor
 
 ## Live site
 
-The public landing page (field tools, Chicago research, and the printed-object catalogue — `site/index.html`, `site/css/home.css`, `site/js/home.js`; the 4D Chicago reel and walkthrough in `site/media/` were filmed frame by frame from the dev build at chicago.polecat.live/4d/dev/ (dev@34dd87e2, 2026-10-30) through the app's own `window.__chicago4d` camera API, as its `tools/portal_clips.mjs` does) and the interactive apps are published via GitHub Pages from the [`site/`](site/) folder:
+The public landing page (field tools, Chicago research, and the printed-object catalogue — `site/index.html`, `site/css/home.css`, `site/js/home.js`; the 4D Chicago reel and walkthrough in `site/media/` were filmed frame by frame from the dev build at chicago.polecat.live/4d/dev/ (dev@34dd87e2, 2026-10-30; 1812, 1835 and 1904) through the app's own `window.__chicago4d` camera API, as its `tools/portal_clips.mjs` does) and the interactive apps are published via GitHub Pages from the [`site/`](site/) folder:
 
 - **Landing:** `https://kevinrhaas.github.io/custom/`
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
