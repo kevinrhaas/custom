@@ -186,6 +186,32 @@ section { position: relative; }
 @media (max-width: 900px) { .chi-grid { grid-template-columns: 1fr; } .four-d-stage { min-height: 300px; } }
 @media (max-width: 520px) { .chi-row { grid-template-columns: 30px 1fr; padding: 16px; } .chi-row .chip { display: none; } .four-d-hud span + span { display: none; } }
 
+/* ---- the three year films ------------------------------------------------- */
+.films3-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin: clamp(48px, 6vw, 72px) 0 20px; }
+.films3-head h3 { margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -.035em; line-height: 1.1; }
+.films3-head h3 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--accent); }
+.films3-head p { margin: 0; color: var(--text-2); font-size: 15px; }
+.films3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.yfilm { display: flex; flex-direction: column; padding: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: inherit; font: inherit; text-align: left; cursor: pointer; overflow: hidden;
+  transition: border-color .3s ease, transform .5s var(--ease), box-shadow .5s var(--ease); }
+.yfilm:hover, .yfilm:focus-visible { border-color: color-mix(in srgb, var(--fc) 55%, var(--line)); transform: translateY(-3px); box-shadow: 0 24px 50px -28px color-mix(in srgb, var(--fc) 70%, transparent); }
+.yfilm-media { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #070a12; }
+.yfilm-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease), filter .6s ease; filter: saturate(.92); }
+.yfilm:hover .yfilm-media img { transform: scale(1.06); filter: saturate(1.05); }
+.yfilm-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(5,7,12,.7)); }
+.yfilm-yr { position: absolute; z-index: 1; left: 16px; bottom: 8px; font: italic 400 46px/1 var(--serif); color: #fff; letter-spacing: -.01em; }
+.yfilm-play { position: absolute; z-index: 1; right: 14px; bottom: 14px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: #070a12; transition: transform .4s var(--ease), background-color .3s; }
+.yfilm-play .ic { width: 16px; height: 16px; fill: currentColor; stroke: none; margin-left: 2px; }
+.yfilm:hover .yfilm-play { transform: scale(1.1); background: var(--fc); }
+.yfilm-body { display: grid; gap: 4px; padding: 16px 18px 18px; }
+.yfilm-body b { font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+.yfilm-body span { font-size: 14px; color: var(--text-2); line-height: 1.45; }
+.yfilm-body small { margin-top: 6px; font: 500 11px/1 var(--mono); letter-spacing: .1em; color: var(--text-3); }
+@media (max-width: 760px) {
+  .films3 { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .yfilm { scroll-snap-align: start; }
+}
+
 /* ---- film lightbox ------------------------------------------------------ */
 .film { width: min(1100px, 100vw - 24px); max-width: none; max-height: none; padding: 0; border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); background: #070a12; color: #eef0f4; overflow: hidden;
   --text: #eef0f4; --text-2: #a7aec0; --line: rgba(255,255,255,.12); --line-2: rgba(255,255,255,.22); --bg: #070a12; }
