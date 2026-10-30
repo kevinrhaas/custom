@@ -209,17 +209,29 @@
       } else tryPlay();
       document.addEventListener('visibilitychange', function () { if (document.hidden) reel.pause(); });
     }
-    var dlg = document.getElementById('film'), open = document.getElementById('playFilm');
-    var film = document.getElementById('filmVideo'), close = document.getElementById('closeFilm');
-    if (!dlg || !open || !film) return;
-    if (typeof dlg.showModal !== 'function') {   // very old browsers: just go to the file
-      open.addEventListener('click', function () { location.href = 'media/chicago-walk.mp4'; });
-      return;
+    var dlg = document.getElementById('film'), film = document.getElementById('filmVideo');
+    var close = document.getElementById('closeFilm'), title = document.getElementById('filmTitle');
+    var openers = [].slice.call(document.querySelectorAll('[data-film]'));
+    if (!dlg || !film || !openers.length) return;
+    var current = '', V = '?v=4';
+    function load(name) {
+      if (name === current && film.currentSrc) return;
+      current = name;
+      film.pause();
+      film.innerHTML = '<source src="media/' + name + '.webm' + V + '" type="video/webm"><source src="media/' + name + '.mp4' + V + '" type="video/mp4">';
+      film.poster = 'media/' + name + '.jpg' + V;
+      film.load();
     }
-    open.addEventListener('click', function () {
-      dlg.showModal();
-      if (reel) reel.pause();
-      var p = film.play(); if (p && p.catch) p.catch(function () {});
+    openers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-film');
+        if (typeof dlg.showModal !== 'function') { location.href = 'media/' + name + '.mp4'; return; }   // very old browsers
+        load(name);
+        if (title) title.textContent = btn.getAttribute('data-title') || '';
+        dlg.showModal();
+        if (reel) reel.pause();
+        var p = film.play(); if (p && p.catch) p.catch(function () {});
+      });
     });
     close.addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });

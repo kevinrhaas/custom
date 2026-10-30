@@ -216,7 +216,7 @@
         <div class="four-d-stage">
           <video class="four-d-reel" id="reel" poster="media/chicago-reel.jpg?v=3" muted loop playsinline preload="metadata" aria-label="Footage filmed in 4D Chicago: Fort Dearborn in 1812, the forks of the river and the Sauganash Hotel in 1835, then Prairie Avenue, Glessner House and the lakefront in 1904"><source src="media/chicago-reel.webm?v=3" type="video/webm"><source src="media/chicago-reel.mp4?v=3" type="video/mp4"></video>
           <div class="four-d-hud" aria-hidden="true"><span><i class="rec"></i>Filmed in the app</span><span>1812 · 1835 · 1904</span></div>
-          <button class="play" type="button" id="playFilm" aria-haspopup="dialog">
+          <button class="play" type="button" id="playFilm" data-film="chicago-walk" data-title="4D Chicago · 1812, 1835 and 1904" aria-haspopup="dialog">
             <span class="play-ic"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span>
             <span>Watch the walkthrough <small>1:20</small></span>
           </button>
@@ -246,6 +246,24 @@
           <div><span class="yr">1830s</span><h4>Wau-Bun</h4><p>Juliette Kinzie's frontier memoir, scene by scene, four ways.</p></div>
           <span class="chip">158 scenes</span></a></li>
       </ul>
+    </div>
+    <div class="films3-head reveal">
+      <h3>Three summers, <em>one film each.</em></h3>
+      <p>Longer walks through each year, filmed frame by frame in the app.</p>
+    </div>
+    <div class="films3">
+      <button class="yfilm reveal" type="button" data-film="chicago-1812" data-title="4D Chicago · Fort Dearborn, summer 1812" aria-haspopup="dialog" style="--fc:#e0a050">
+        <span class="yfilm-media"><img src="media/chicago-1812.jpg?v=4" alt="" loading="lazy"><span class="yfilm-yr">1812</span><span class="yfilm-play"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span></span>
+        <span class="yfilm-body"><b>Fort Dearborn</b><span>The stockade, the Kinzie house and the river, the day before the evacuation.</span><small data-dur="1812">0:49 · filmed in the app</small></span>
+      </button>
+      <button class="yfilm reveal" type="button" data-film="chicago-1835" data-title="4D Chicago · the river town, summer 1835" aria-haspopup="dialog" style="--fc:#7ec8e3;--d:1">
+        <span class="yfilm-media"><img src="media/chicago-1835.jpg?v=4" alt="" loading="lazy"><span class="yfilm-yr">1835</span><span class="yfilm-play"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span></span>
+        <span class="yfilm-body"><b>The river town</b><span>The forks, the wharves, the Sauganash and its record, and the confidence view.</span><small data-dur="1835">0:58 · filmed in the app</small></span>
+      </button>
+      <button class="yfilm reveal" type="button" data-film="chicago-1904" data-title="4D Chicago · Prairie Avenue, summer 1904" aria-haspopup="dialog" style="--fc:#c9a46a;--d:2">
+        <span class="yfilm-media"><img src="media/chicago-1904.jpg?v=4" alt="" loading="lazy"><span class="yfilm-yr">1904</span><span class="yfilm-play"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span></span>
+        <span class="yfilm-body"><b>Prairie Avenue</b><span>Under the elms to Glessner House, then out over the district to the lake.</span><small data-dur="1904">0:51 · filmed in the app</small></span>
+      </button>
     </div>
   </div>
 </section>
@@ -393,7 +411,7 @@
 <dialog class="film" id="film" aria-label="4D Chicago walkthrough">
   <div class="film-in">
     <div class="film-bar">
-      <span>4D Chicago · 1812, 1835 and 1904</span>
+      <span id="filmTitle">4D Chicago · 1812, 1835 and 1904</span>
       <button class="icon-btn" type="button" id="closeFilm" aria-label="Close the walkthrough"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
     <video id="filmVideo" poster="media/chicago-walk.jpg?v=3" controls playsinline preload="none"><source src="media/chicago-walk.webm?v=3" type="video/webm"><source src="media/chicago-walk.mp4?v=3" type="video/mp4"></video>
