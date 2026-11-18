@@ -64,6 +64,7 @@ let LIB = null;            // normalized library
 let byId = new Map();
 let chapterById = new Map();
 let guestLabel = '';
+let isKeeper = false;
 let currentBase = null;    // the route under the viewer
 let currentList = [];      // photos the viewer pages through
 
@@ -86,6 +87,8 @@ async function boot() {
   }
   if (!gate.granted) return;
   guestLabel = gate.label || '';
+  isKeeper = !!gate.isAdmin;
+  if (gate.keeperUnlocked) setTimeout(() => toast(`That was the keeper's key — you're in, and you can make invite links on the Keeper's page.`, 6500), 600);
   showChrome();
   main.innerHTML = `<div class="loading"><div><div class="ring"></div><p>Opening the album…</p></div></div>`;
   try {
@@ -181,7 +184,10 @@ function viewHome() {
   const greet = guestLabel && !sessionStorage.getItem(`${P}.greeted`) ? `<p class="greeting">Welcome, ${esc(guestLabel)}.</p>` : '';
   if (greet) sessionStorage.setItem(`${P}.greeted`, '1');
   const html = `
-    ${CONFIG.sample ? `<p class="sample-note">${icon('boxes', 18)} Sample photos — the real album is on its way</p>` : ''}
+    <div class="note-row">
+      ${CONFIG.sample ? `<p class="sample-note">${icon('boxes', 18)} Sample photos — the real album is on its way</p>` : ''}
+      ${isKeeper ? `<a class="sample-note keeper-note" href="admin/">${icon('link', 18)} Make an invite link</a>` : ''}
+    </div>
     <section class="hero">
       <div>
         ${greet}

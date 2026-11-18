@@ -52,12 +52,16 @@ export async function runGate(CONFIG, mountEl) {
 
   await ensureStyles();
   return new Promise((resolve) => {
-    render(CONFIG, mountEl, first.inviteError, async (code) => {
+    let keeperUnlocked = false;
+    render(CONFIG, mountEl, first.inviteError, async (code, raw) => {
       const r = await access.verifyInvite(code);
-      if (!r.ok) return r.reason;
-      access.grant('invite', r.payload?.label || '');
-      return null;
-    }, () => resolve(result()));
+      if (r.ok) { access.grant('invite', r.payload?.label || ''); return null; }
+      // The keeper may paste the admin key here instead of on the admin page.
+      // Accept it: it opens the album and unlocks link-making on this device.
+      const key = adminKeyIn(raw);
+      if (key && await access.unlockAdmin(key)) { keeperUnlocked = true; return null; }
+      return r.reason;
+    }, () => resolve({ ...result(), keeperUnlocked }));
   });
 }
 
@@ -75,6 +79,12 @@ export function extractCode(text) {
   // them across lines, so look for the shape after removing whitespace.
   const bare = /[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{40,}/.exec(s.replace(/\s+/g, ''));
   return bare ? bare[0] : s.replace(/\s+/g, '');
+}
+
+/** A pasted admin key: one long standard-base64 run (PKCS#8 P-256 ≈ 184 chars). */
+export function adminKeyIn(text) {
+  const m = /[A-Za-z0-9+/]{120,}={0,2}/.exec(String(text || '').replace(/\s+/g, ''));
+  return m ? m[0] : '';
 }
 
 // ---- view --------------------------------------------------------------
@@ -159,7 +169,7 @@ function render(CONFIG, mountEl, inviteError, tryCode, done) {
     busy = true;
     button.disabled = true;
     btnText.textContent = 'Opening…';
-    const reason = await tryCode(code);
+    const reason = await tryCode(code, input.value);
     if (reason) {
       busy = false;
       button.disabled = false;

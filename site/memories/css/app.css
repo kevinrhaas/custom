@@ -112,6 +112,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 1.2rem max(1rem, env(saf
 .kicker { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); font-weight: 700; font-family: var(--font-body); }
 .lede { color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
 
+.note-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.note-row .sample-note { margin: 0; }
+.sample-note.keeper-note { text-decoration: none; border-style: solid; background: var(--accent); color: var(--accent-ink); min-height: 2.75rem; }
 .sample-note {
   display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1rem;
   padding: .35rem .85rem; border-radius: 999px; font-size: .82rem; font-weight: 700;
