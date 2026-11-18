@@ -39,7 +39,7 @@ try {
       assert.equal(await page.title(),published.settings.title);
       assert.deepEqual(await page.locator('.gate-name').allTextContents(),['Kevin','Lee']);
       assert.equal(await page.locator('.gate-years').count(),0);
-      assert.equal(await page.locator('.gate-kicker').innerText(),'Our story, so far');
+      assert.equal(await page.locator('.gate-kicker').innerText(),'The moments we hold close');
       assert.doesNotMatch(await page.locator('.gate').innerText(),unwanted);
       const defaults=await page.evaluate(async()=>{
         const {DEFAULT_SETTINGS}=await import('./js/config.js');
