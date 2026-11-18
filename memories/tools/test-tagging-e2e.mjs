@@ -65,7 +65,7 @@ try {
       await visible(page,'#result');
       const invite=await page.locator('#resultLink').inputValue();
       assert.ok(new URL(invite).searchParams.get('invite'));
-      // A fresh guest context consumes a real signed test invite.
+      // Clear the earlier grant so this visit consumes a signed test invite.
       await page.evaluate(()=>localStorage.removeItem('memories.access'));
       await page.goto(invite,{waitUntil:'networkidle'});
       await hidden(page,'.gate');
