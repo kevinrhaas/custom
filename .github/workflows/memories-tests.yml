@@ -27,3 +27,5 @@ jobs:
       - run: node memories/tools/test-faces.mjs
       - run: node memories/tools/test-tagging-state.mjs
       - run: node --test memories/tools/test-ai-tagging.mjs
+      - run: node --test memories/tools/test-settings.mjs
+      - run: node --test memories/tools/test-publishing.mjs

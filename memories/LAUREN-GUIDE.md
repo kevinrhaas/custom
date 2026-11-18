@@ -1,6 +1,16 @@
 # Your family album: a short guide
 
-Once Kevin connects your shared Google Drive folder, photos and descriptions come from there. Reopen or refresh the album to see changes. The current demo still uses sample photos.
+Photos and descriptions come from the shared Google Drive folder selected in Album settings. Reopen or refresh the album to see changes.
+
+## Changing the album settings
+
+Unlock **custom.polecat.live/memories/admin/** and open **Album settings**. Connect
+publishing with the separate publishing token Kevin provides for editing, then
+enter the family names, welcome message, Drive folder, or starting look and press
+**Save album settings**. Nothing needs to be copied into a file. The page saves
+the shared settings and publishes them; **Check published version** tells you
+when they are live. Keep the token in your password manager and reconnect when
+starting a new editing session.
 
 ## Adding photos
 
@@ -67,9 +77,9 @@ yourself, or review suggestions.
   photos. The browser suggests similar faces. Name a group once, correct any
   wrong matches, then review the suggested names. These scans and face data stay
   in your browser; they are not sent to the caption service.
-- **Share the result:** export the approved tags file and give it to Kevin to
-  publish. Approving a suggestion saves it on this device; relatives see it
-  after Kevin publishes the file. Keep an exported backup of your work.
+- **Share the result:** with publishing connected, press **Save approved tags**.
+  The page saves and publishes approved names, tags, and captions for relatives.
+  Drafts stay on your device. You can download a backup too.
 
 Old scans can confuse both tools. Leave uncertain names blank and keep the
 original caption unless you want to replace it. Face grouping works best in

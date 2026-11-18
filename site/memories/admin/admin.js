@@ -6,15 +6,13 @@
 //   2. Make a link: name + how long → a signed ?invite= link, with copy /
 //      share / text / email buttons and a QR code to scan.
 //   •  Links you've made: kept on this device (access.minted()).
-//   3. Check the Google Drive folder: runs the real Drive loader and prints
-//      the config.js snippet.
+//   3. Edit and publish the shared album settings from the admin form.
 // -----------------------------------------------------------------------
 
 import { CONFIG } from '../js/config.js';
 import { createAccess } from '../vendor/polecat-shell/access.js';
 import { icon, registerIcons } from '../vendor/polecat-shell/icons.js';
 import qrcode from '../vendor/qrcode/qrcode.mjs';
-import { loadDrive, folderIdFrom } from '../js/sources/drive.js';
 
 registerIcons({
   share: '<path d="M12 15V3m0 0L7.5 7.5M12 3l4.5 4.5"/><path d="M5 11.5V19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7.5"/>',
@@ -23,7 +21,7 @@ registerIcons({
 
 const ALBUM_ROOT = new URL('../', location.href).href;
 const KEEPER = CONFIG.keeper || 'the family';
-const HELPER = CONFIG.helper || 'Kevin'; // who edits config.js
+const HELPER = CONFIG.helper || 'Kevin'; // who helps with the album
 const cfg = CONFIG.access || {};
 const access = createAccess({
   prefix: cfg.prefix || 'memories',
@@ -92,6 +90,32 @@ function cleanKey(s) {
   return String(s || '').replace(/-----[^-]+-----/g, '').replace(/\s+/g, '');
 }
 
+let settingsController;
+let settingsHost;
+
+async function showSettings(admin) {
+  $('#settingsCard').hidden = !admin;
+  if (!admin) {
+    settingsController?.destroy?.();
+    settingsController = null; settingsHost = null;
+    $('#settingsTools').replaceChildren();
+    return;
+  }
+  if (settingsHost) return;
+  const host = document.createElement('div'); settingsHost = host;
+  $('#settingsTools').append(host);
+  host.textContent = 'Opening album settings…';
+  try {
+    const { mountSettings } = await import('./settings.js');
+    if (settingsHost !== host || !access.isAdmin()) return;
+    const controller = mountSettings(host);
+    if (settingsHost !== host || !access.isAdmin()) controller?.destroy?.();
+    else settingsController = controller;
+  } catch {
+    if (settingsHost === host) host.textContent = 'Album settings could not open. Reload this page to try again.';
+  }
+}
+
 let taggingController;
 let taggingHost;
 
@@ -126,6 +150,7 @@ function showLockState() {
   $('#unlockedView').hidden = !admin;
   $('#makeCard').hidden = !admin;
   $('#madeCard').hidden = !admin;
+  showSettings(admin);
   showTagging(admin);
   if (admin) renderMade();
 }
@@ -302,62 +327,5 @@ function renderMade() {
     return li;
   }));
 }
-
-// ---- step 3: check the Drive folder ------------------------------------------
-
-$('#apiKey').value = CONFIG.drive?.apiKey || '';
-$('#folder').value = CONFIG.drive?.folderId || '';
-
-$('#driveForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const out = $('#driveOut');
-  const apiKey = $('#apiKey').value.trim();
-  const folderId = folderIdFrom($('#folder').value);
-  if (!apiKey || !folderId) {
-    out.innerHTML = `<p class="adm-error">${!apiKey ? 'Paste the Google API key first.' : "That doesn't look like a Drive folder link or ID."}</p>`;
-    return;
-  }
-  out.innerHTML = '<p class="adm-muted">Looking in the folder…</p>';
-  let lib;
-  try {
-    lib = await loadDrive({ apiKey, folderId });
-  } catch (err) {
-    out.innerHTML = '<p class="adm-error"></p>';
-    $('.adm-error', out).textContent = err.friendly ? err.message : `Something went wrong: ${err.message || err}`;
-    return;
-  }
-  const counts = new Map(lib.chapters.map((c) => [c.id, 0]));
-  lib.photos.forEach((p) => counts.set(p.chapter, (counts.get(p.chapter) || 0) + 1));
-  const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
-  out.innerHTML = `
-    <p class="adm-ok">${icon('check', 22)}<span></span></p>
-    <ul class="adm-chapters"></ul>
-    <div class="adm-thumbs"></div>
-    <p class="adm-label">Put this in js/config.js</p>
-    <pre class="adm-snippet"></pre>
-    <button class="adm-btn" type="button" data-do="copy-snippet">${icon('copy', 20)}<span>Copy the settings</span></button>`;
-  $('.adm-ok span', out).textContent =
-    `Found ${plural(lib.chapters.length, 'chapter', 'chapters')} and ${plural(lib.photos.length, 'photo', 'photos')}.`;
-  $('.adm-chapters', out).replaceChildren(...lib.chapters.map((c) => {
-    const li = document.createElement('li');
-    li.innerHTML = '<span></span><span class="adm-muted"></span>';
-    li.firstChild.textContent = c.title;
-    li.lastChild.textContent = plural(counts.get(c.id) || 0, 'photo', 'photos');
-    return li;
-  }));
-  $('.adm-thumbs', out).replaceChildren(...lib.photos.slice(0, 6).map((p) => {
-    const img = new Image();
-    img.alt = p.title;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
-    img.onerror = () => { if (img.src !== p.thumbFallback) img.src = p.thumbFallback; };
-    img.src = p.thumb;
-    return img;
-  }));
-  const snippet = `  sample: false,\n  source: 'drive',\n  drive: {\n    apiKey: '${apiKey}',\n    folderId: '${folderId}',\n  },`;
-  $('.adm-snippet', out).textContent = snippet;
-  $('[data-do="copy-snippet"]', out).addEventListener('click', () => copyText(snippet));
-});
 
 showLockState();

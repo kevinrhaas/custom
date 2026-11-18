@@ -11,7 +11,9 @@ House rules: static-first, no build step, no frameworks. Plain HTML, ES modules 
 ```
 site/memories/
   index.html            the album (app shell)
-  js/config.js          THE file to edit: names, dedication, keeper, photo source, invite settings
+  js/config.js          immutable invite/bootstrap settings and runtime configuration
+  js/settings.js        public settings validation and offline-aware loading
+  data/settings.json    shared settings saved automatically by the admin page
   js/app.js             the UI
   js/library.js         loads the photos and normalizes them (the Library contract lives here)
   js/sources/manifest.js  source: data/library.json (the sample set)
@@ -20,7 +22,7 @@ site/memories/
   css/skins.css         looks (skins): tokens for light and dark
   css/app.css           app layout
   css/gate.css          gate styles (.gate-*), reads only skin tokens
-  admin/                Lauren's "Make invite links" page (noindex)
+  admin/                settings, invitations, and photo review (noindex)
   vendor/polecat-shell/ access.js (invite tokens), icons.js, fonts
   vendor/qrcode/        qrcode-generator 2.0.4 (MIT, Kazuhiko Arase), ESM build
 
@@ -32,7 +34,39 @@ memories/               (outside site/, not published)
   tools/shots/          screenshots from the e2e run (390x780, light and dark)
 ```
 
-## config.js fields
+## Edit and save in the admin page
+
+Open `/memories/admin/`, unlock with the existing admin key, then use **Album
+settings**. Names, optional dates, welcome message, keeper, searchable names, the Drive folder
+and restricted browser API key, photo source, and starting skin are editable
+there. Press **Save album settings**. No configuration file editing or download is
+required.
+
+GitHub Pages serves static files, so saving uses the existing repository as shared
+storage. An owner sets up publishing access once:
+
+1. Create a **fine-grained GitHub personal access token**, selecting only
+   `kevinrhaas/custom` and **Contents: Read and write**. Choose an expiration and
+   keep the token in a password manager.
+2. In Album settings, paste that token into **Publishing token** and choose
+   **Connect publishing**. The current saved settings load before editing starts.
+3. Make changes and save. The page commits the settings and starts Pages
+   publication automatically. **Saved** means the shared repository accepted the
+   change; **Check published version** confirms when visitors can see it.
+
+The publishing token is separate from the invite admin key. It is held only in
+memory for the open page, cleared on lock/disconnect, and never included in saved
+settings, logs, or browser storage. Reconnect when opening a new editing session.
+The Google browser key is public and must be restricted as described below; AI
+provider keys must never be entered there.
+
+Saves use the current file revision to reject conflicting changes instead of
+overwriting another editor. Reload the saved settings when prompted. Visitors
+load the shared settings on opening/refreshing the album; a validated local cache
+helps returning visitors open it offline. Invite verification and the publishing
+destination stay in the bootstrap code and cannot be changed by public settings.
+
+## Public settings and technical defaults
 
 | Field | What it does |
 |---|---|
@@ -52,7 +86,7 @@ memories/               (outside site/, not published)
 | `access.publicKey` | ECDSA P-256 public key (SPKI, base64). It can only check links, not make them. |
 | `access.revoked` | Invite IDs (`jti`) turned off for everyone. |
 | `defaultSkin` | The look a first-time visitor sees. |
-| `helper` *(optional)* | Name shown on the admin page as the person who edits config.js. Defaults to "Kevin". |
+| `helper` | Name of the person who helps maintain the site. |
 
 ## The Library contract
 
@@ -89,8 +123,8 @@ Run the tests: `node memories/tools/test-drive-parse.mjs`
      `https://custom.polecat.live/*`. Use a separate development key with localhost referrers if local testing is needed.
    - *API restrictions:* **Restrict key** → only **Google Drive API**.
    - Save. Restrictions can take a few minutes to take effect.
-7. **Check it:** open `/memories/admin/`, expand **Check the Google Drive folder**, and paste the key and the folder link. It lists the chapters and photo counts, shows a few thumbnails, and gives you a snippet to copy.
-8. **Edit `js/config.js`:** paste the snippet, which sets `sample: false`, `source: 'drive'` and `drive: { apiKey, folderId }`. Commit and push.
+7. **Enter it:** unlock `/memories/admin/`, connect publishing, and select **Shared Google Drive folder** in **Album settings**. Enter the key and folder link. **Check the folder** lists the chapters and photo counts.
+8. **Save album settings.** A changed Drive folder/key must pass the check before saving. Publication starts automatically; use **Check published version**, then refresh the album. No file editing is needed.
 
 A referrer-restricted, Drive-only key is designed to be public in browser code. It can only read files that are already shared publicly.
 
@@ -128,10 +162,10 @@ The Drive API key must allow `localhost/*` for Drive mode to work locally.
 End-to-end test (needs Playwright, and the server above running from `site/`):
 
 ```sh
-ADMIN_KEY_FILE=/path/outside/repo/memories-ADMIN-KEY.txt node memories/tools/test-gate-e2e.mjs
+CHROMIUM_PATH=/path/to/chromium node memories/tools/test-gate-e2e.mjs
 ```
 
-It mints tokens with the private key the same way `access.js` does. It checks the gate (no token, pasted link, raw code, bad and expired codes, `?invite=` in the URL) and the admin page (unlock, make a link, list, turn off, and a Drive check against a fake Drive API), then saves screenshots to `memories/tools/shots/`.
+It creates an ephemeral key for the local browser fixture and mints tokens the same way `access.js` does. It checks the gate (no token, pasted link, raw code, bad and expired codes, admin key, and `?invite=` in the URL) and the admin page (unlock, make a link, list, turn off), then saves screenshots to `memories/tools/shots/`. No production admin key is needed. The settings suite covers shared publishing and Drive checks against mocked APIs.
 
 ## Known caveats
 
@@ -165,9 +199,10 @@ in the caption. Names found in the title/caption still work too.
 
 Unlock `/memories/admin/` and open **Tag photos**. Edit a photo's labels and
 caption, import AI drafts, or use local face grouping. Suggestions remain drafts
-until approved. Export the approved `tags.json` and replace
-`site/memories/data/tags.json`, then commit and deploy. This is a static site:
-clicking Approve or downloading the file does not publish it for relatives.
+until approved. With publishing connected, press **Save approved tags** to save
+shared metadata and start publication automatically. Only approved text is saved;
+drafts stay local. Downloading an approved backup is optional. The save checks
+for newer shared edits and asks you to resolve conflicts before publishing.
 
 The public metadata format is:
 
@@ -226,6 +261,8 @@ node memories/tools/test-metadata.mjs
 node memories/tools/test-faces.mjs
 node memories/tools/test-tagging-state.mjs
 node --test memories/tools/test-ai-tagging.mjs
+node --test memories/tools/test-settings.mjs
+node --test memories/tools/test-publishing.mjs
 ```
 
 These also run in the scoped Family album tests GitHub Actions workflow. For
@@ -234,6 +271,7 @@ browser checks, start the local server above and use Playwright with Chromium:
 ```sh
 CHROMIUM_PATH=/path/to/chromium node memories/tools/test-tagging-e2e.mjs
 CHROMIUM_PATH=/path/to/chromium node memories/tools/test-faces-e2e.mjs
+CHROMIUM_PATH=/path/to/chromium node memories/tools/test-settings-e2e.mjs
 ```
 
 The tagging browser suite creates an ephemeral test key and intercepts only the
@@ -242,8 +280,8 @@ The face suite defaults to a sample illustration with no detectable face; set
 `FACE_TEST_IMAGE=/path/to/portrait.jpg` to exercise detection and name approval
 with a real photographic fixture. Neither face test uploads the selected image.
 
-The family's cutover still needs the original admin-key file, the real honorees'
-names/years, Lauren's shared folder link and a restricted Drive API key. Keep the
-admin key in a password manager and outside Git. Do not rotate it just to run
-tests. Leave `sample: true` until a real test folder loads correctly. Claude live
-calls remain optional and unconnected until the maintainer supplies a local key.
+The existing Drive connection is preserved. Family details and future Drive
+changes can now be saved from the admin form. Keep the original admin key and
+publishing token in a password manager and outside Git. Do not rotate the invite
+key just to run tests. Claude live calls remain optional and unconnected until
+the maintainer supplies a local key.

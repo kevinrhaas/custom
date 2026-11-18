@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "revision": "kevin-lee-welcome-2026-11-18",
+  "settings": {
+    "title": "Our Life in Pictures",
+    "honorees": [
+      {
+        "name": "Kevin",
+        "years": ""
+      },
+      {
+        "name": "Lee",
+        "years": ""
+      }
+    ],
+    "dedication": "The places we've been, the people we love, and the moments we want to keep.",
+    "keeper": "Lauren",
+    "helper": "Kevin",
+    "people": [
+      "Kevin",
+      "Lee"
+    ],
+    "sample": false,
+    "source": "drive",
+    "drive": {
+      "apiKey": "AIzaSyASZFkUdwLnHwtjxm3O-VcXybTVZIOEyY8",
+      "folderId": "16sNwmbN-tsJHJ6jCAamgFCG3MKpdZ06E"
+    },
+    "defaultSkin": "heirloom"
+  }
+}

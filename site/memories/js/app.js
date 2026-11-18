@@ -178,6 +178,7 @@ function viewHome() {
   const names = H.length === 2
     ? `${esc(firstNames(H[0].name))}<span class="amp">&amp;</span>${esc(firstNames(H[1].name))}`
     : H.map((h) => esc(h.name)).join(', ');
+  const datedNames = H.filter(h => h.years?.trim());
   const picks = pickStack();
   const decades = decadeCounts();
   const lovedList = LIB.photos.filter((p) => loved.has(p.id));
@@ -193,7 +194,7 @@ function viewHome() {
         ${greet}
         <p class="kicker">${esc(CONFIG.title)}</p>
         <h1 class="hero-names">${names}</h1>
-        <p class="hero-years">${H.map((h) => `<span>${esc(h.name.split(' ')[0])} · ${esc(h.years)}</span>`).join('')}</p>
+        ${datedNames.length ? `<p class="hero-years">${datedNames.map((h) => `<span>${esc(h.name.split(' ')[0])} · ${esc(h.years)}</span>`).join('')}</p>` : ''}
         <p class="hero-dedication">${esc(CONFIG.dedication)}</p>
         <div class="hero-ctas">
           <button class="btn btn-primary" type="button" data-play="all">${icon('play', 22)} Watch the slideshow</button>

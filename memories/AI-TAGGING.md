@@ -76,9 +76,9 @@ permissions where the operating system supports them.
 1. In the admin photo review tool, import the draft JSON file.
 2. Check the photo, edit its tags/caption and approve only what you want visitors to
    see. A faint scan may produce no useful tags; omission is safer than a guess.
-3. Export the approved tags file. Publish it as `site/memories/data/tags.json`
-   through the normal repository deployment. Exporting in the browser does not
-   update GitHub Pages by itself.
+3. Connect publishing in Album settings, then choose **Save approved tags**.
+   The admin page saves the shared metadata and starts publication automatically.
+   Downloading a backup remains optional; no file editing is required.
 
 The draft format is:
 
