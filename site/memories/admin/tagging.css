@@ -1,0 +1,25 @@
+/* Admin tagging follows the album's current skin, in either color scheme. */
+.tag-help { margin: 22px 0; padding: 16px; border: 1px solid var(--a-line); border-radius: var(--a-radius); }
+.tag-help > summary { cursor: pointer; font-weight: 600; min-height: 44px; display: list-item; }
+.tag-help[open] > summary { margin-bottom: 12px; }
+.tag-help code, .tag-export code { overflow-wrap: anywhere; font-size: .85em; }
+.tag-file { padding: 12px; min-width: 0; max-width: 100%; font-size: 15px; }
+.tag-preview { margin: 20px 0 12px; }
+.tag-preview img { display: block; width: 100%; max-height: 340px; object-fit: contain; border-radius: var(--a-radius); background: var(--a-bg-2); }
+.tag-preview figcaption { margin-top: 12px; font-size: 16px; overflow-wrap: anywhere; }
+.tag-check { display: flex; gap: 12px; align-items: flex-start; margin-top: 20px; cursor: pointer; }
+.tag-check input { flex: none; width: 22px; height: 22px; margin-top: 4px; accent-color: var(--a-accent); }
+.tag-check input:focus-visible { outline: 3px solid var(--a-focus); outline-offset: 3px; }
+.tag-export { border-top: 1px solid var(--a-line); margin-top: 24px; padding-top: 20px; }
+.tag-export h3 { font-family: var(--a-display); font-size: 24px; font-weight: 500; margin: 0 0 12px; }
+.tag-export .adm-btn { margin-bottom: 12px; }
+#tagTools, #tagTools > div { min-width: 0; }
+#tagTools select { text-overflow: ellipsis; }
+#tagTools [data-tag-status], #tagTools [data-tag-original] { overflow-wrap: anywhere; }
+#tagTools textarea:disabled { opacity: .65; }
+#tagTools .adm-actions { margin-top: 16px; }
+@media (max-width: 440px) {
+  .tag-help { padding: 12px; }
+  #tagTools .adm-actions { display: grid; grid-template-columns: 1fr; }
+  #tagTools .adm-actions .adm-btn { width: 100%; justify-content: center; }
+}

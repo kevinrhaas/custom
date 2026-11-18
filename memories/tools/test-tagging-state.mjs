@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import { reconcileApproved } from '../../site/memories/admin/tagging-state.js';
+
+const file = (photos) => ({ version: 1, photos });
+const horse = { tags: ['horse'] };
+const lake = { tags: ['lake'] };
+const farm = { tags: ['farm'] };
+let result = reconcileApproved(file({ a: horse, b: lake }), file({ a: horse }), file({ a: horse }));
+assert.deepEqual(result.approved.photos.b, lake, 'new published photo is preserved');
+assert.equal(result.conflicts.length, 0);
+result = reconcileApproved(file({ a: horse, b: lake }), file({}), file({ a: horse }));
+assert.equal(Object.hasOwn(result.approved.photos, 'a'), false, 'local removal stays removed');
+assert.deepEqual(result.approved.photos.b, lake);
+result = reconcileApproved(file({}), file({ a: horse }), file({ a: horse }));
+assert.equal(Object.hasOwn(result.approved.photos, 'a'), false, 'published removal wins over unchanged local copy');
+result = reconcileApproved(file({ a: farm }), file({ a: lake }), file({ a: horse }));
+assert.deepEqual(result.approved.photos.a, farm, 'conflict retains published until review');
+assert.deepEqual(result.conflicts, [{ id: 'a', local: lake, published: farm }]);
+result = reconcileApproved(file({ a: farm }), file({}), file({ a: horse }));
+assert.equal(result.conflicts[0].local, undefined, 'local removal conflicts with new published edits');
+result = reconcileApproved(file({ a: lake }), file({ a: lake }), file({ a: horse }));
+assert.equal(result.conflicts.length, 0, 'same change in both places needs no review');
+result = reconcileApproved(file({ a: horse, b: lake }), file({ a: farm }));
+assert.equal(result.conflicts.length, 1, 'legacy saved data cannot silently overwrite published');
+assert.deepEqual(result.approved.photos.b, lake);
+console.log('7 tagging reconciliation scenarios passed.');

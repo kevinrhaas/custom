@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Make invite links</title>
+  <title>Care for the album</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="same-origin">
   <script>
@@ -24,14 +24,16 @@
   <link rel="stylesheet" href="../css/skins.css">
   <link rel="stylesheet" href="../css/app.css">
   <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="tagging.css">
+  <link rel="stylesheet" href="faces.css">
 </head>
 <body class="adm">
   <main class="adm-wrap" id="main">
     <header class="adm-head">
       <a class="adm-back" href="../"><span class="adm-ic" data-icon="back"></span><span>Back to the album</span></a>
       <p class="adm-kicker" id="albumName">Our Family Album</p>
-      <h1 class="adm-title">Make invite links</h1>
-      <p class="adm-intro">Each person gets their own link. When they tap it, the album opens on their phone or computer. No passwords, no accounts.</p>
+      <h1 class="adm-title">Care for the album</h1>
+      <p class="adm-intro">Invite the family, add names and stories, and help everyone find their favorite photos.</p>
       <p class="adm-banner" id="openBanner" hidden></p>
     </header>
 
@@ -47,7 +49,7 @@
         <button class="adm-btn adm-primary" type="button" id="unlockBtn"><span class="adm-ic" data-icon="lock"></span><span>Unlock</span></button>
       </div>
       <div id="unlockedView" hidden>
-        <p class="adm-ok"><span class="adm-ic" data-icon="check"></span><span>This device can make links.</span></p>
+        <p class="adm-ok"><span class="adm-ic" data-icon="check"></span><span>This device can make links and review photo tags.</span></p>
         <p class="adm-muted">The key is remembered here. If this phone or computer is shared with others, lock it when you're done.</p>
         <button class="adm-btn adm-quiet" type="button" id="lockBtn"><span class="adm-ic" data-icon="lock"></span><span>Lock this device</span></button>
       </div>
@@ -95,6 +97,11 @@
       <p class="adm-muted adm-small" id="madeHelp" hidden>"Turn off on this device" only stops the link here. To turn a link off for everyone, send <span class="helperName">Kevin</span> its ID.</p>
     </section>
 
+    <section class="adm-card" id="tagCard" aria-labelledby="tagTitle" hidden>
+      <div class="adm-step"><span class="adm-num" aria-hidden="true">3</span><h2 id="tagTitle">Tag photos</h2></div>
+      <div id="tagTools"></div>
+    </section>
+
     <!-- How to add photos -->
     <details class="adm-card adm-fold">
       <summary><span class="adm-ic" data-icon="folder"></span><span>How to add photos</span><span class="adm-ic adm-chev" data-icon="chevronDown"></span></summary>
@@ -109,6 +116,8 @@
         <p>Not sure of the year? Write "about" in front, or use the decade like "1960s".</p>
         <h3>Write the story in the Description box</h3>
         <p>In Google Drive, open a photo's details (the <b>i</b> button) and type in <b>Description</b>. That becomes the caption. To say where it was taken, add a line like <span class="adm-code">Place: Joliet</span>.</p>
+        <h3>Add names and things to find</h3>
+        <p>Add <span class="adm-code">Tags: horse, county fair</span> and <span class="adm-code">People: June, Uncle Frank</span> on their own lines in the Description box. These become searchable without showing those lines in the caption.</p>
         <h3>Keepsakes and letters</h3>
         <p>For a scanned keepsake or letter, add <span class="adm-code">#keepsake</span> or <span class="adm-code">#letter</span> anywhere in the description. A folder with "Keepsakes" in its name does this for everything inside.</p>
       </div>

@@ -44,6 +44,7 @@ memories/               (outside site/, not published)
 | `sample` | `true` shows a small "Sample photos" note. Set to `false` for real photos. |
 | `source` | `'manifest'` (data/library.json) or `'drive'`. |
 | `manifestUrl` | Path to the manifest when `source: 'manifest'`. |
+| `metadataUrl` | Approved tags/people/caption sidecar, default `data/tags.json`; `false` or `null` disables it. |
 | `drive.apiKey` | Browser API key, restricted (see below). |
 | `drive.folderId` | The ID from the folder's share link. A full share URL works too. |
 | `access.enabled` | Turns the invite gate on or off. |
@@ -85,7 +86,7 @@ Run the tests: `node memories/tools/test-drive-parse.mjs`
 5. **Create an API key:** APIs & Services → Credentials → **Create credentials → API key**.
 6. **Restrict the key** (Edit API key):
    - *Application restrictions:* **Websites** (HTTP referrers), and add
-     `custom.polecat.live/*` and `localhost/*` (add `127.0.0.1/*` too if you preview that way).
+     `https://custom.polecat.live/*`. Use a separate development key with localhost referrers if local testing is needed.
    - *API restrictions:* **Restrict key** → only **Google Drive API**.
    - Save. Restrictions can take a few minutes to take effect.
 7. **Check it:** open `/memories/admin/`, expand **Check the Google Drive folder**, and paste the key and the folder link. It lists the chapters and photo counts, shows a few thumbnails, and gives you a snippet to copy.
@@ -137,4 +138,112 @@ It mints tokens with the private key the same way `access.js` does. It checks th
 - **lh3 / thumbnail URLs are not a documented Google API.** `lh3.googleusercontent.com/d/<id>` and `drive.google.com/thumbnail` work for publicly shared files today, but Google can rate-limit them (HTTP 429) or change them. That's why every photo carries a fallback. If both fail for a big album, the robust option is a one-time export of resized copies into `photos/` plus a manifest.
 - **Downloads** go to `drive.google.com/uc?export=download`, which sends the original file as an attachment. The `download` attribute is ignored across origins, so the file name comes from Drive (it's the original name anyway). Very large files (>100 MB) get Google's virus-scan page, which isn't an issue for photos.
 - **HEIC** files from iPhones are listed (they're `image/*`). The thumbnail URLs return a JPEG rendering, but the download is still HEIC, which older Windows PCs can't open. Scanning to JPG avoids this.
-- The Drive API can't be reached from the build sandbox, so the Drive source was tested against a faithful fake of the API's responses and error bodies, not live Google.
+- The Drive source has been tested against mocked API responses and error bodies. A live test folder still needs the family's restricted Drive API key and folder link; that setup has not yet been verified.
+
+## Search tags, AI drafts, and local face groups
+
+The album now searches explicit `tags` and `people` as well as titles, captions,
+places, years, and chapter names. Google's Photos face groups and object labels
+are not imported.
+
+### Manual labels in Drive
+
+Add these lines to a photo's Description box:
+
+```text
+June with the pony at the county fair.
+Place: Joliet
+Tags: horse, county fair, Ferris wheel
+People: June Hale; Walter Hale
+```
+
+`Tags:` and `People:` accept comma- or semicolon-separated lists, including
+repeated lines. These lines become searchable metadata rather than appearing
+in the caption. Names found in the title/caption still work too.
+
+### Review before publishing
+
+Unlock `/memories/admin/` and open **Tag photos**. Edit a photo's labels and
+caption, import AI drafts, or use local face grouping. Suggestions remain drafts
+until approved. Export the approved `tags.json` and replace
+`site/memories/data/tags.json`, then commit and deploy. This is a static site:
+clicking Approve or downloading the file does not publish it for relatives.
+
+The public metadata format is:
+
+```json
+{
+  "version": 1,
+  "photos": {
+    "stable-photo-id": {
+      "tags": ["horse", "county fair"],
+      "people": ["June Hale"],
+      "caption": "June with the pony at the county fair."
+    }
+  }
+}
+```
+
+Use the exact album photo ID (the Drive file ID in Drive mode), not its title.
+Tags and people are added to source metadata. An explicit `caption` replaces the
+source caption; omit it to keep future edits in Drive visible. An empty caption
+is an intentional replacement. Drafts, API keys, and face vectors must never be
+added to this public file. The loader accepts only the text fields above.
+`CONFIG.metadataUrl` selects the sidecar; `false` or `null` disables it.
+
+### AI captions and object tags
+
+AI tagging runs as a local command with Claude. Only the selected images are
+sent to Anthropic when the command is run with a configured API key. The public
+website never receives that key. The command drafts object/scene tags and a
+caption, not people's identities. Review uncertain details, especially on faded
+scans; no model can guarantee correct recognition.
+
+See [the AI tagging guide](AI-TAGGING.md) for inputs, key setup, resumable runs,
+and importing drafts. Keep the key and draft output outside `site/`; neither is
+needed by relatives. Live API testing is deferred until a key is connected.
+
+### Local face grouping
+
+The admin tool uses locally selected image files and vendored models. Match
+files to their album photos, scan, review the suggested groups, and supply the
+names yourself. Correct individual mismatches before accepting suggestions.
+Selected image bytes and face embeddings are processed locally in the browser;
+the AI caption command is a separate, explicitly run operation. The published
+metadata contains only confirmed names associated with photo IDs.
+
+Face grouping is approximate, particularly for old, blurred, or profile photos.
+Use a desktop for large batches and keep the originals. There is no automatic
+identification and no demographic or emotion analysis.
+
+## Validation and remaining setup
+
+Run the offline regression checks from the repository root:
+
+```sh
+node memories/tools/test-drive-parse.mjs
+node memories/tools/test-metadata.mjs
+node memories/tools/test-faces.mjs
+node memories/tools/test-tagging-state.mjs
+node --test memories/tools/test-ai-tagging.mjs
+```
+
+These also run in the scoped Family album tests GitHub Actions workflow. For
+browser checks, start the local server above and use Playwright with Chromium:
+
+```sh
+CHROMIUM_PATH=/path/to/chromium node memories/tools/test-tagging-e2e.mjs
+CHROMIUM_PATH=/path/to/chromium node memories/tools/test-faces-e2e.mjs
+```
+
+The tagging browser suite creates an ephemeral test key and intercepts only the
+local browser's configuration response. It never rotates the deployed invite key.
+The face suite defaults to a sample illustration with no detectable face; set
+`FACE_TEST_IMAGE=/path/to/portrait.jpg` to exercise detection and name approval
+with a real photographic fixture. Neither face test uploads the selected image.
+
+The family's cutover still needs the original admin-key file, the real honorees'
+names/years, Lauren's shared folder link and a restricted Drive API key. Keep the
+admin key in a password manager and outside Git. Do not rotate it just to run
+tests. Leave `sample: true` until a real test folder loads correctly. Claude live
+calls remain optional and unconnected until the maintainer supplies a local key.

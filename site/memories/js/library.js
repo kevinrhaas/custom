@@ -16,7 +16,8 @@
 //     year?:     number | null              1948
 //     approx?:   boolean  (true → "about 1948")
 //     place?:    string                     "St. Mary's, Joliet"
-//     people?:   [string]  (optional — derived from config.people if absent)
+//     people?:   [string]  (optional — augmented by names found in captions)
+//     tags?:     [string]  (objects, scenes and other searchable labels)
 //     kind?:     'photo' | 'keepsake' | 'letter'   (default 'photo')
 //     src:       display URL, ~1600px long edge
 //     thumb:     grid URL, ~480px long edge
@@ -25,13 +26,19 @@
 //     w?, h?:    pixel size of src (for layout without jank)
 //   }
 //
-// normalize() adds: decade, people (if missing), search (lowercased text).
+// normalize() adds: decade, people from captions, search (lowercased text).
 // -----------------------------------------------------------------------
 
+import { applyMetadata, loadMetadata, uniqueLabels } from './metadata.js';
+
 const CACHE_KEY = (prefix) => `${prefix}.library.v1`;
+const ALBUM_BASE = new URL('../', import.meta.url);
 
 export async function loadLibrary(config) {
   const prefix = config.access?.prefix || 'memories';
+  const metadataUrl = config.metadataUrl === undefined ? 'data/tags.json' : config.metadataUrl;
+  // Paths are album-relative even when Lauren opens these tools under /admin/.
+  const metadataPromise = loadMetadata(metadataUrl ? new URL(metadataUrl, ALBUM_BASE).href : null);
   let raw;
   if (config.source === 'drive' && config.drive?.apiKey && config.drive?.folderId) {
     const { loadDrive } = await import('./sources/drive.js');
@@ -47,8 +54,10 @@ export async function loadLibrary(config) {
     }
   } else {
     const { loadManifest } = await import('./sources/manifest.js');
-    raw = await loadManifest(config.manifestUrl || 'data/library.json');
+    raw = await loadManifest(new URL(config.manifestUrl || 'data/library.json', ALBUM_BASE).href);
   }
+  const metadata = await metadataPromise;
+  if (metadata) raw = applyMetadata(raw, metadata);
   return normalize(raw, config);
 }
 
@@ -63,15 +72,16 @@ export function normalize(raw, config) {
   const photos = (raw.photos || []).map((p) => {
     const year = Number.isFinite(+p.year) && p.year !== null && p.year !== '' ? +p.year : null;
     const text = `${p.title || ''} ${p.caption || ''}`;
-    const found = p.people && p.people.length ? p.people : people.filter((n) => wordIn(text, n));
+    const found = uniqueLabels([...uniqueLabels(p.people), ...people.filter((n) => wordIn(text, n))]);
     const ph = {
       kind: 'photo', caption: '', place: '', approx: false,
       ...p,
       year,
       decade: year ? Math.floor(year / 10) * 10 : null,
       people: found,
+      tags: uniqueLabels(p.tags),
     };
-    ph.search = [ph.title, ph.caption, ph.place, ph.people.join(' '), year || '', ph.decade ? `${ph.decade}s` : '', ph.kind]
+    ph.search = [ph.title, ph.caption, ph.place, ph.people.join(' '), ph.tags.join(' '), year || '', ph.decade ? `${ph.decade}s` : '', ph.kind]
       .join(' ').toLowerCase();
     return ph;
   });
@@ -80,6 +90,8 @@ export function normalize(raw, config) {
     chapters.push({ id: '_more', title: 'More treasures', blurb: '', order: chapters.length });
     photos.forEach((p) => { if (!known.has(p.chapter)) p.chapter = '_more'; });
   }
+  const chapterNames = new Map(chapters.map((chapter) => [chapter.id, chapter.title]));
+  photos.forEach((photo) => { photo.search += ` ${chapterNames.get(photo.chapter) || ''}`.toLowerCase(); });
   const byChapter = new Map(chapters.map((c) => [c.id, []]));
   photos.forEach((p) => byChapter.get(p.chapter).push(p));
   for (const list of byChapter.values()) list.sort(byYearThenTitle);

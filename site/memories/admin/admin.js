@@ -45,7 +45,7 @@ if (CONFIG.defaultSkin) {
 }
 paintIcons(document);
 $('#albumName').textContent = CONFIG.title || 'Family album';
-document.title = `Make invite links · ${CONFIG.title || 'Family album'}`;
+document.title = `Care for the album · ${CONFIG.title || 'Family album'}`;
 $$('.helperName').forEach((el) => { el.textContent = HELPER; });
 $('#unlockHelp').textContent =
   `Paste the admin key ${HELPER} gave you. You only need to do this once on each phone or computer.`;
@@ -92,12 +92,41 @@ function cleanKey(s) {
   return String(s || '').replace(/-----[^-]+-----/g, '').replace(/\s+/g, '');
 }
 
+let taggingController;
+let taggingHost;
+
+async function showTagging(admin) {
+  $('#tagCard').hidden = !admin;
+  if (!admin) {
+    taggingController?.destroy?.();
+    taggingController = null;
+    taggingHost = null;
+    $('#tagTools').replaceChildren();
+    return;
+  }
+  if (taggingHost) return;
+  const host = document.createElement('div');
+  taggingHost = host;
+  $('#tagTools').append(host);
+  host.textContent = 'Opening photo tags…';
+  try {
+    const { mountTagging } = await import('./tagging.js');
+    if (taggingHost !== host || !access.isAdmin()) return;
+    const controller = await mountTagging(host);
+    if (taggingHost !== host || !access.isAdmin()) controller?.destroy?.();
+    else taggingController = controller;
+  } catch (error) {
+    if (taggingHost === host) host.textContent = `Photo tagging could not open. Reload this page to try again. ${error.message}`;
+  }
+}
+
 function showLockState() {
   const admin = access.isAdmin();
   $('#lockedView').hidden = admin;
   $('#unlockedView').hidden = !admin;
   $('#makeCard').hidden = !admin;
   $('#madeCard').hidden = !admin;
+  showTagging(admin);
   if (admin) renderMade();
 }
 
