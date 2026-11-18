@@ -15,3 +15,6 @@ site/stay/artifact.html
 # Stay Finder: cached TIGERweb downloads for the map builder
 stay/geo-cache/
 
+
+# Family Album: dev screenshots from the QA harnesses
+memories/tools/shots/

@@ -1,0 +1,264 @@
+/* -----------------------------------------------------------------------
+   gate.css — the private-album front door (js/gate.js).
+
+   Themed only through the skin's custom properties:
+     --bg --bg-2 --surface --surface-2 --text --muted --line --accent
+     --accent-ink --focus --radius --radius-lg --shadow
+     --font-display --font-body
+   Each is read through a local --g-* alias with a warm fallback, so the
+   gate still looks right if skins.css hasn't loaded. Dark fallbacks follow
+   html[data-scheme="dark"] (set by index.html) or the system setting.
+   ----------------------------------------------------------------------- */
+
+.gate {
+  --g-bg: var(--bg, #f3ece0);
+  --g-bg-2: var(--bg-2, #e9dfcd);
+  --g-surface: var(--surface, #fdfaf4);
+  --g-surface-2: var(--surface-2, #f6f0e5);
+  --g-text: var(--text, #2d2620);
+  --g-muted: var(--muted, #6e6257);
+  --g-line: var(--line, #dccfba);
+  --g-accent: var(--accent, #8c4a2c);
+  --g-accent-ink: var(--accent-ink, #fffaf3);
+  --g-focus: var(--focus, #2b6a8a);
+  --g-radius: var(--radius, 14px);
+  --g-radius-lg: var(--radius-lg, 24px);
+  --g-shadow: var(--shadow, 0 1px 2px rgba(60, 40, 20, .06), 0 12px 40px -12px rgba(60, 40, 20, .22));
+  --g-display: var(--font-display, 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif);
+  --g-body: var(--font-body, 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  --g-error: #9b2c1f;
+}
+:root[data-scheme="dark"] .gate {
+  --g-bg: var(--bg, #191512);
+  --g-bg-2: var(--bg-2, #231d18);
+  --g-surface: var(--surface, #25201b);
+  --g-surface-2: var(--surface-2, #2e2721);
+  --g-text: var(--text, #f2eadf);
+  --g-muted: var(--muted, #b8aa99);
+  --g-line: var(--line, #3d342b);
+  --g-accent: var(--accent, #dca476);
+  --g-accent-ink: var(--accent-ink, #1d1611);
+  --g-focus: var(--focus, #8cc6e0);
+  --g-shadow: var(--shadow, 0 1px 2px rgba(0, 0, 0, .3), 0 16px 48px -16px rgba(0, 0, 0, .6));
+  --g-error: #ffb4a6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme]) .gate {
+    --g-bg: var(--bg, #191512);
+    --g-bg-2: var(--bg-2, #231d18);
+    --g-surface: var(--surface, #25201b);
+    --g-surface-2: var(--surface-2, #2e2721);
+    --g-text: var(--text, #f2eadf);
+    --g-muted: var(--muted, #b8aa99);
+    --g-line: var(--line, #3d342b);
+    --g-accent: var(--accent, #dca476);
+    --g-accent-ink: var(--accent-ink, #1d1611);
+    --g-focus: var(--focus, #8cc6e0);
+    --g-shadow: var(--shadow, 0 1px 2px rgba(0, 0, 0, .3), 0 16px 48px -16px rgba(0, 0, 0, .6));
+    --g-error: #ffb4a6;
+  }
+}
+
+/* A fixed, full-bleed layer: it sits above whatever container it was
+   mounted in (the app's <main> has its own width and padding). */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  padding: max(24px, env(safe-area-inset-top)) 18px max(28px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(120% 60% at 50% 0%, var(--g-bg-2), transparent 70%),
+    var(--texture, none),
+    var(--g-bg);
+  color: var(--g-text);
+  font-family: var(--g-body);
+  font-size: 18px;
+  line-height: 1.55;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  animation: gate-in .6s ease-out both;
+}
+.gate *, .gate *::before, .gate *::after { box-sizing: border-box; }
+
+.gate-card {
+  margin: auto;            /* centers, and never clips when taller than the screen */
+  width: 100%;
+  max-width: 30rem;
+  text-align: center;
+  padding: 36px 24px 28px;
+  background: var(--g-surface);
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius-lg);
+  box-shadow: var(--g-shadow);
+}
+@media (min-width: 560px) {
+  .gate-card { padding: 48px 44px 36px; }
+}
+
+.gate-mark {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--g-accent);
+  background: var(--g-surface-2);
+  border: 1px solid var(--g-line);
+}
+.gate-mark .ic { display: block; }
+
+.gate-title {
+  margin: 0;
+  font-family: var(--g-display);
+  font-weight: var(--display-weight, 500);
+  font-style: var(--display-style, normal);
+  font-size: clamp(30px, 8vw, 40px);
+  line-height: 1.15;
+  letter-spacing: var(--display-track, -.01em);
+  text-wrap: balance;
+}
+
+.gate-kicker {
+  margin: 18px 0 6px;
+  font-size: 15px;
+  letter-spacing: .04em;
+  color: var(--g-muted);
+}
+.gate-names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.gate-name {
+  font-family: var(--g-display);
+  font-size: 22px;
+  line-height: 1.3;
+}
+.gate-years {
+  display: block;
+  font-family: var(--g-body);
+  font-size: 15px;
+  color: var(--g-muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.gate-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px auto 20px;
+  max-width: 12rem;
+}
+.gate-rule::before, .gate-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--g-line);
+}
+.gate-rule span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--g-accent);
+  opacity: .7;
+}
+
+.gate-lead {
+  margin: 0 0 6px;
+  font-family: var(--g-display);
+  font-size: 22px;
+  line-height: 1.35;
+}
+.gate-sub {
+  margin: 0 auto 26px;
+  max-width: 24rem;
+  color: var(--g-muted);
+  text-wrap: pretty;
+}
+
+.gate-form { text-align: left; }
+.gate-label {
+  display: block;
+  margin: 0 0 8px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.gate-input {
+  display: block;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px 18px;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--g-text);
+  background: var(--g-surface-2);
+  border: 2px solid var(--g-line);
+  border-radius: var(--g-radius);
+  resize: none;
+  word-break: break-all;
+  transition: border-color .15s ease;
+}
+.gate-input::placeholder { color: var(--g-muted); }
+.gate-input:focus { outline: none; border-color: var(--g-accent); }
+.gate-input:focus-visible { outline: 3px solid var(--g-focus); outline-offset: 2px; }
+.gate-has-error .gate-input { border-color: var(--g-error); }
+
+.gate-error {
+  margin: 10px 2px 0;
+  min-height: 0;
+  color: var(--g-error);
+  font-weight: 600;
+  font-size: 17px;
+}
+.gate-error:empty { display: none; }
+
+.gate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 60px;
+  margin-top: 16px;
+  padding: 14px 22px;
+  font: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--g-accent-ink);
+  background: var(--g-accent);
+  border: 0;
+  border-radius: var(--g-radius);
+  cursor: pointer;
+  transition: filter .15s ease, transform .15s ease;
+}
+.gate-btn:hover { filter: brightness(1.06); }
+.gate-btn:active { transform: translateY(1px); }
+.gate-btn:focus-visible { outline: 3px solid var(--g-focus); outline-offset: 3px; }
+.gate-btn:disabled { cursor: progress; filter: saturate(.7); }
+
+.gate-help {
+  margin: 20px 0 0;
+  font-size: 16px;
+  color: var(--g-muted);
+  text-wrap: pretty;
+}
+
+.gate-leaving { animation: gate-out .42s ease-in forwards; }
+
+@keyframes gate-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes gate-out { to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .gate, .gate-leaving { animation: none; }
+  .gate-input, .gate-btn { transition: none; }
+}

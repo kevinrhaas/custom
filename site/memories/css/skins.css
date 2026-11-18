@@ -1,0 +1,177 @@
+/* -----------------------------------------------------------------------
+   skins.css — the album's looks. Each skin is a set of tokens for a light
+   and a dark scheme; app.css, gate.css and admin.css read ONLY these
+   variables, so adding a skin = one block here + one entry in js/skins.js.
+
+   html[data-skin="<id>"][data-scheme="light|dark"]
+
+   Tokens: --bg --bg-2 --surface --surface-2 --text --muted --line --accent
+   --accent-ink --focus --radius --radius-lg --shadow --font-display
+   --font-body --display-weight --display-style --display-track --print
+   --print-pad --tile-radius --tile-shadow --viewer-bg --viewer-text
+   --texture (a background-image for the page) --hero-ornament (on/off)
+   ----------------------------------------------------------------------- */
+
+:root {
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', 'URW Palladio L', Georgia, 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --round: ui-rounded, 'SF Pro Rounded', 'Hanken Grotesk', system-ui, sans-serif;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --radius: 14px; --radius-lg: 22px;
+  --display-weight: 600; --display-style: normal; --display-track: -0.01em;
+  --print: transparent; --print-pad: 0px; --stack-print: var(--surface); --tile-radius: 10px;
+  --texture: none;
+}
+
+/* ---- Heirloom: a linen-bound album, warm paper, ink-brown serif ------- */
+[data-skin="heirloom"][data-scheme="light"] {
+  --stack-print: var(--print);
+  --bg: #f3ece0; --bg-2: #ebe1d0; --surface: #fbf7f0; --surface-2: #f1e8d9;
+  --text: #33261b; --muted: #74624f; --line: #dccdb6;
+  --accent: #8a4b2a; --accent-ink: #fff8f0; --focus: #c26a2e;
+  --shadow: 0 1px 2px rgba(70,45,20,.10), 0 10px 28px -10px rgba(70,45,20,.28);
+  --tile-shadow: 0 1px 1px rgba(70,45,20,.12), 0 8px 18px -8px rgba(70,45,20,.35);
+  --print: #fffdf8; --print-pad: 7px; --tile-radius: 3px;
+  --viewer-bg: #1c1610; --viewer-text: #f5ecdd;
+  --font-display: var(--serif); --font-body: var(--serif);
+  --display-weight: 600; --display-style: normal;
+  --texture: var(--grain);
+}
+[data-skin="heirloom"][data-scheme="dark"] {
+  --stack-print: var(--print);
+  --bg: #1d1712; --bg-2: #241c15; --surface: #2a2119; --surface-2: #33281e;
+  --text: #f1e6d4; --muted: #bba78d; --line: #463728;
+  --accent: #e0a46f; --accent-ink: #24170c; --focus: #f0b47e;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 30px -12px rgba(0,0,0,.7);
+  --tile-shadow: 0 2px 4px rgba(0,0,0,.45), 0 10px 22px -10px rgba(0,0,0,.8);
+  --print: #efe5d3; --print-pad: 6px; --tile-radius: 3px;
+  --viewer-bg: #0f0b08; --viewer-text: #f5ecdd;
+  --font-display: var(--serif); --font-body: var(--serif);
+  --texture: var(--grain);
+}
+
+/* ---- Gallery: a quiet modern museum wall, Polecat's own typeface ------ */
+[data-skin="gallery"][data-scheme="light"] {
+  --bg: #fafaf8; --bg-2: #f1f1ee; --surface: #ffffff; --surface-2: #f4f4f1;
+  --text: #16161a; --muted: #62626b; --line: #e3e3de;
+  --accent: #16161a; --accent-ink: #ffffff; --focus: #c46a1f;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 12px 32px -16px rgba(0,0,0,.18);
+  --tile-shadow: none; --tile-radius: 2px;
+  --viewer-bg: #0d0d0f; --viewer-text: #f3f3f3;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: -0.025em;
+  --radius: 10px; --radius-lg: 14px;
+}
+[data-skin="gallery"][data-scheme="dark"] {
+  --bg: #111113; --bg-2: #18181b; --surface: #1c1c20; --surface-2: #232328;
+  --text: #f2f2f0; --muted: #a1a1aa; --line: #2e2e34;
+  --accent: #f2f2f0; --accent-ink: #111113; --focus: #e08a45;
+  --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 34px -16px rgba(0,0,0,.8);
+  --tile-shadow: none; --tile-radius: 2px;
+  --viewer-bg: #000; --viewer-text: #f3f3f3;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: -0.025em;
+  --radius: 10px; --radius-lg: 14px;
+}
+
+/* ---- Evening: candlelight on velvet — deep plum, soft gold ------------ */
+[data-skin="evening"][data-scheme="dark"] {
+  --bg: #16121d; --bg-2: #1d1726; --surface: #231c2e; --surface-2: #2c2339;
+  --text: #f3ecf7; --muted: #b9abc8; --line: #3a2f4a;
+  --accent: #d9b56c; --accent-ink: #1d150a; --focus: #f0cd85;
+  --shadow: 0 1px 2px rgba(0,0,0,.5), 0 18px 40px -18px rgba(0,0,0,.9);
+  --tile-shadow: 0 0 0 1px rgba(217,181,108,.22), 0 12px 26px -12px rgba(0,0,0,.9);
+  --tile-radius: 6px;
+  --viewer-bg: #0c0910; --viewer-text: #f3ecf7;
+  --font-display: var(--serif); --font-body: var(--sans);
+  --display-weight: 500; --display-style: italic; --display-track: 0;
+  --texture: radial-gradient(1200px 600px at 80% -10%, rgba(217,181,108,.10), transparent 60%),
+             radial-gradient(900px 500px at -10% 30%, rgba(150,90,200,.10), transparent 60%);
+}
+[data-skin="evening"][data-scheme="light"] {
+  --bg: #f4eef3; --bg-2: #ece3ea; --surface: #fffafd; --surface-2: #f3e9f0;
+  --text: #2a1f33; --muted: #6e5f7b; --line: #e0d2de;
+  --accent: #6b3f75; --accent-ink: #fff7fd; --focus: #b07d2e;
+  --shadow: 0 1px 2px rgba(60,30,70,.08), 0 14px 34px -16px rgba(60,30,70,.3);
+  --tile-shadow: 0 0 0 1px rgba(107,63,117,.14), 0 10px 22px -12px rgba(60,30,70,.35);
+  --tile-radius: 6px;
+  --viewer-bg: #160f1a; --viewer-text: #f6eff8;
+  --font-display: var(--serif); --font-body: var(--sans);
+  --display-weight: 500; --display-style: italic; --display-track: 0;
+  --texture: radial-gradient(1000px 500px at 85% -10%, rgba(176,125,46,.10), transparent 60%);
+}
+
+/* ---- Garden: sage, cream and a little sunshine ------------------------ */
+[data-skin="garden"][data-scheme="light"] {
+  --bg: #eef1e6; --bg-2: #e3e8d8; --surface: #fbfcf6; --surface-2: #eef2e4;
+  --text: #24301f; --muted: #5d6b55; --line: #d3dbc4;
+  --accent: #4d6b45; --accent-ink: #f8fbf2; --focus: #a8720f;
+  --shadow: 0 1px 2px rgba(40,60,30,.08), 0 12px 30px -14px rgba(40,60,30,.28);
+  --tile-shadow: 0 6px 16px -8px rgba(40,60,30,.4);
+  --tile-radius: 18px; --radius: 18px; --radius-lg: 28px;
+  --viewer-bg: #121a10; --viewer-text: #f1f5e9;
+  --font-display: var(--serif); --font-body: var(--round);
+  --display-weight: 600; --display-style: italic; --display-track: 0;
+  --texture: radial-gradient(800px 400px at 100% 0%, rgba(201,144,43,.10), transparent 60%);
+}
+[data-skin="garden"][data-scheme="dark"] {
+  --bg: #141a12; --bg-2: #1a2217; --surface: #1f281b; --surface-2: #283322;
+  --text: #ecf2e2; --muted: #a9b89d; --line: #33402c;
+  --accent: #a9c98f; --accent-ink: #15200f; --focus: #e2b45a;
+  --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 32px -14px rgba(0,0,0,.8);
+  --tile-shadow: 0 8px 18px -8px rgba(0,0,0,.8);
+  --tile-radius: 18px; --radius: 18px; --radius-lg: 28px;
+  --viewer-bg: #0b100a; --viewer-text: #f1f5e9;
+  --font-display: var(--serif); --font-body: var(--round);
+  --display-weight: 600; --display-style: italic; --display-track: 0;
+}
+
+/* ---- Postcard: 1960s Kodachrome — mustard, teal, tomato --------------- */
+[data-skin="postcard"][data-scheme="light"] {
+  --stack-print: var(--print);
+  --bg: #f6ead2; --bg-2: #f0dfbf; --surface: #fff7e8; --surface-2: #f7e8cc;
+  --text: #2b2118; --muted: #6f5a43; --line: #e6cfa6;
+  --accent: #b8431f; --accent-ink: #fff8ec; --focus: #1f7f86; /* tomato, deepened to 4.5:1 for small text */
+  --shadow: 4px 4px 0 rgba(43,33,24,.12), 0 10px 26px -14px rgba(43,33,24,.35);
+  --tile-shadow: 3px 3px 0 rgba(31,127,134,.35);
+  --print: #fffaf0; --print-pad: 8px; --tile-radius: 10px;
+  --viewer-bg: #1d1712; --viewer-text: #fff3df;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: -0.02em;
+  --texture: var(--grain);
+}
+[data-skin="postcard"][data-scheme="dark"] {
+  --stack-print: var(--print);
+  --bg: #1d2a2b; --bg-2: #233334; --surface: #28393a; --surface-2: #304445;
+  --text: #fbefd8; --muted: #c9b89a; --line: #3d5455;
+  --accent: #f0a53a; --accent-ink: #2a1d08; --focus: #ff7a52;
+  --shadow: 4px 4px 0 rgba(0,0,0,.25), 0 12px 28px -14px rgba(0,0,0,.7);
+  --tile-shadow: 3px 3px 0 rgba(240,165,58,.35);
+  --print: #f8ecd4; --print-pad: 7px; --tile-radius: 10px;
+  --viewer-bg: #101818; --viewer-text: #fff3df;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: -0.02em;
+  --texture: var(--grain);
+}
+
+/* ---- Clear view: maximum contrast, biggest targets -------------------- */
+[data-skin="clear"][data-scheme="light"] {
+  --bg: #ffffff; --bg-2: #f2f2f2; --surface: #ffffff; --surface-2: #f2f2f2;
+  --text: #000000; --muted: #2b2b2b; --line: #000000;
+  --accent: #0040c8; --accent-ink: #ffffff; --focus: #c75000;
+  --shadow: 0 0 0 2px #000; --tile-shadow: 0 0 0 2px #000;
+  --tile-radius: 4px; --radius: 10px; --radius-lg: 12px;
+  --viewer-bg: #000; --viewer-text: #fff;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: 0;
+}
+[data-skin="clear"][data-scheme="dark"] {
+  --bg: #000000; --bg-2: #111111; --surface: #000000; --surface-2: #161616;
+  --text: #ffffff; --muted: #e6e6e6; --line: #ffffff;
+  --accent: #ffd400; --accent-ink: #000000; --focus: #00d1ff;
+  --shadow: 0 0 0 2px #fff; --tile-shadow: 0 0 0 2px #fff;
+  --tile-radius: 4px; --radius: 10px; --radius-lg: 12px;
+  --viewer-bg: #000; --viewer-text: #fff;
+  --font-display: var(--sans); --font-body: var(--sans);
+  --display-weight: 800; --display-track: 0;
+}

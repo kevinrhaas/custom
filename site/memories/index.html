@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" data-skin="heirloom" data-mode="auto" data-text="regular">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Our Family Album</title>
+  <meta name="description" content="A private family album: photos, letters and keepsakes, kept safe for everyone.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f3ece0">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script>
+    // Apply the visitor's saved look before first paint (no flash).
+    (function () {
+      var d = document.documentElement;
+      try {
+        var s = JSON.parse(localStorage.getItem('memories.prefs') || '{}');
+        if (s.skin) d.dataset.skin = s.skin;
+        if (s.mode) d.dataset.mode = s.mode;
+        if (s.text) d.dataset.text = s.text;
+      } catch (e) {}
+      var dark = d.dataset.mode === 'dark' ||
+        (d.dataset.mode === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      d.dataset.scheme = dark ? 'dark' : 'light';
+    }());
+  </script>
+  <link rel="preload" href="vendor/polecat-shell/fonts/HankenGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="vendor/polecat-shell/fonts.css">
+  <link rel="stylesheet" href="css/skins.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/gate.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the photos</a>
+
+  <header class="topbar" id="topbar" hidden>
+    <a class="brand" href="#/" aria-label="Album home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><b id="brandTitle">Our Family Album</b><small id="brandSub"></small></span>
+    </a>
+    <nav class="topnav" aria-label="Album">
+      <a class="navbtn" href="#/" data-nav="home"><span class="ic-slot" data-icon="home"></span><span>Home</span></a>
+      <a class="navbtn" href="#/years" data-nav="years"><span class="ic-slot" data-icon="calendar"></span><span>Years</span></a>
+      <a class="navbtn" href="#/search" data-nav="search"><span class="ic-slot" data-icon="search"></span><span>Search</span></a>
+      <button class="navbtn" type="button" id="lookButton" aria-haspopup="dialog"><span class="ic-slot" data-icon="sliders"></span><span>Text &amp; look</span></button>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <nav class="tabbar" id="tabbar" aria-label="Album" hidden>
+    <a class="tab" href="#/" data-nav="home"><span class="ic-slot" data-icon="home"></span><span>Home</span></a>
+    <a class="tab" href="#/years" data-nav="years"><span class="ic-slot" data-icon="calendar"></span><span>Years</span></a>
+    <a class="tab" href="#/search" data-nav="search"><span class="ic-slot" data-icon="search"></span><span>Search</span></a>
+    <button class="tab" type="button" data-look><span class="ic-slot" data-icon="sliders"></span><span>Text &amp; look</span></button>
+  </nav>
+
+  <footer class="foot" id="foot" hidden>
+    <p id="footKeeper"></p>
+    <p class="foot-meta">Made with care · <a href="https://polecat.live" target="_blank" rel="noopener">polecat.live</a></p>
+  </footer>
+
+  <!-- Photo viewer -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Photo" hidden>
+    <div class="viewer-top">
+      <button class="pill-btn" type="button" data-v="close"><span class="ic-slot" data-icon="back"></span><span>Back to photos</span></button>
+      <span class="viewer-count" id="vCount" aria-live="polite"></span>
+    </div>
+    <div class="viewer-stage" id="vStage">
+      <img id="vImg" alt="" decoding="async">
+      <button class="v-arrow v-prev" type="button" data-v="prev" aria-label="Previous photo"><span class="ic-slot" data-icon="back"></span></button>
+      <button class="v-arrow v-next" type="button" data-v="next" aria-label="Next photo"><span class="ic-slot" data-icon="chevron"></span></button>
+    </div>
+    <div class="viewer-info">
+      <div class="v-text">
+        <h2 id="vTitle"></h2>
+        <p class="v-meta" id="vMeta"></p>
+        <p class="v-caption" id="vCaption"></p>
+        <div class="v-people" id="vPeople"></div>
+      </div>
+      <div class="v-actions">
+        <button class="act" type="button" data-v="prev"><span class="ic-slot" data-icon="back"></span><span>Previous</span></button>
+        <button class="act" type="button" data-v="next"><span>Next</span><span class="ic-slot" data-icon="chevron"></span></button>
+        <button class="act" type="button" data-v="fav" aria-pressed="false"><span class="ic-slot" data-icon="heart"></span><span class="fav-label">Love it</span></button>
+        <a class="act" id="vDownload" download><span class="ic-slot" data-icon="download"></span><span>Save a copy</span></a>
+        <button class="act" type="button" data-v="share"><span class="ic-slot" data-icon="share"></span><span>Share</span></button>
+        <button class="act" type="button" data-v="zoom" aria-pressed="false"><span class="ic-slot" data-icon="zoom"></span><span class="zoom-label">Zoom in</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slideshow -->
+  <div class="show" id="show" role="dialog" aria-modal="true" aria-label="Slideshow" hidden>
+    <div class="show-frame"><img class="show-img a" alt=""><img class="show-img b" alt=""></div>
+    <div class="show-caption" id="sCaption" aria-live="polite"></div>
+    <div class="show-controls" id="sControls">
+      <button class="show-btn" type="button" data-s="prev" aria-label="Previous"><span class="ic-slot" data-icon="back"></span></button>
+      <button class="show-btn big" type="button" data-s="toggle"><span class="ic-slot" data-icon="pause"></span><span class="s-toggle-label">Pause</span></button>
+      <button class="show-btn" type="button" data-s="next" aria-label="Next"><span class="ic-slot" data-icon="chevron"></span></button>
+      <button class="show-btn" type="button" data-s="close"><span class="ic-slot" data-icon="close"></span><span>Stop</span></button>
+    </div>
+    <div class="show-progress"><span id="sProgress"></span></div>
+  </div>
+
+  <!-- Look & feel sheet -->
+  <div class="sheet-scrim" id="lookScrim" hidden></div>
+  <section class="sheet" id="lookSheet" role="dialog" aria-modal="true" aria-labelledby="lookTitle" hidden>
+    <div class="sheet-head">
+      <h2 id="lookTitle">Make it yours</h2>
+      <button class="pill-btn" type="button" data-close-sheet><span class="ic-slot" data-icon="close"></span><span>Done</span></button>
+    </div>
+    <div class="sheet-body">
+      <h3 class="sheet-label">Text size</h3>
+      <div class="seg" role="radiogroup" aria-label="Text size" id="textSeg">
+        <button type="button" role="radio" data-text="regular"><span class="aa s1">Aa</span>Regular</button>
+        <button type="button" role="radio" data-text="large"><span class="aa s2">Aa</span>Large</button>
+        <button type="button" role="radio" data-text="xl"><span class="aa s3">Aa</span>Largest</button>
+      </div>
+      <h3 class="sheet-label">Style</h3>
+      <div class="skins" role="radiogroup" aria-label="Album style" id="skinGrid"></div>
+      <h3 class="sheet-label">Light or dark</h3>
+      <div class="seg" role="radiogroup" aria-label="Light or dark" id="modeSeg">
+        <button type="button" role="radio" data-mode="auto">Automatic</button>
+        <button type="button" role="radio" data-mode="light">Light</button>
+        <button type="button" role="radio" data-mode="dark">Dark</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

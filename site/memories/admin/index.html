@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-skin="heirloom" data-mode="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Make invite links</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <script>
+    // Same look as the album on this device (skin + light/dark), before first paint.
+    (function () {
+      var d = document.documentElement;
+      try {
+        var s = JSON.parse(localStorage.getItem('memories.prefs') || '{}');
+        if (s.skin) d.dataset.skin = s.skin;
+        if (s.mode) d.dataset.mode = s.mode;
+      } catch (e) {}
+      var dark = d.dataset.mode === 'dark' ||
+        (d.dataset.mode !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      d.dataset.scheme = dark ? 'dark' : 'light';
+    }());
+  </script>
+  <link rel="stylesheet" href="../vendor/polecat-shell/fonts.css">
+  <link rel="stylesheet" href="../css/skins.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="adm">
+  <main class="adm-wrap" id="main">
+    <header class="adm-head">
+      <a class="adm-back" href="../"><span class="adm-ic" data-icon="back"></span><span>Back to the album</span></a>
+      <p class="adm-kicker" id="albumName">Our Family Album</p>
+      <h1 class="adm-title">Make invite links</h1>
+      <p class="adm-intro">Each person gets their own link. When they tap it, the album opens on their phone or computer. No passwords, no accounts.</p>
+      <p class="adm-banner" id="openBanner" hidden></p>
+    </header>
+
+    <!-- Step 1 -->
+    <section class="adm-card" aria-labelledby="unlockTitle">
+      <div class="adm-step"><span class="adm-num" aria-hidden="true">1</span><h2 id="unlockTitle">Unlock this device</h2></div>
+      <div id="lockedView">
+        <p id="unlockHelp">Paste the admin key you were given. You only need to do this once on each phone or computer.</p>
+        <label class="adm-label" for="adminKey">Admin key</label>
+        <textarea class="adm-field adm-key" id="adminKey" rows="3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea>
+        <p class="adm-note"><span class="adm-ic" data-icon="key"></span><span>Keep this key private — it can make links to the album.</span></p>
+        <p class="adm-error" id="unlockError" role="alert"></p>
+        <button class="adm-btn adm-primary" type="button" id="unlockBtn"><span class="adm-ic" data-icon="lock"></span><span>Unlock</span></button>
+      </div>
+      <div id="unlockedView" hidden>
+        <p class="adm-ok"><span class="adm-ic" data-icon="check"></span><span>This device can make links.</span></p>
+        <p class="adm-muted">The key is remembered here. If this phone or computer is shared with others, lock it when you're done.</p>
+        <button class="adm-btn adm-quiet" type="button" id="lockBtn"><span class="adm-ic" data-icon="lock"></span><span>Lock this device</span></button>
+      </div>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="adm-card" id="makeCard" aria-labelledby="makeTitle" hidden>
+      <div class="adm-step"><span class="adm-num" aria-hidden="true">2</span><h2 id="makeTitle">Make a link</h2></div>
+      <form id="makeForm" novalidate>
+        <label class="adm-label" for="who">Who is it for?</label>
+        <input class="adm-field" id="who" type="text" placeholder="For example, Amber" autocomplete="off" autocapitalize="words" enterkeyhint="done">
+        <fieldset class="adm-fieldset">
+          <legend class="adm-label">How long should it work?</legend>
+          <div class="adm-seg">
+            <label><input type="radio" name="days" value="0" checked><span>Always</span></label>
+            <label><input type="radio" name="days" value="30"><span>30 days</span></label>
+            <label><input type="radio" name="days" value="365"><span>1 year</span></label>
+          </div>
+        </fieldset>
+        <button class="adm-btn adm-primary" type="submit"><span class="adm-ic" data-icon="link"></span><span>Make the link</span></button>
+      </form>
+
+      <div class="adm-result" id="result" hidden tabindex="-1">
+        <h3 class="adm-result-title" id="resultTitle"></h3>
+        <p class="adm-muted" id="resultWhen"></p>
+        <textarea class="adm-field adm-link" id="resultLink" rows="4" readonly aria-label="The link"></textarea>
+        <div class="adm-actions">
+          <button class="adm-btn adm-primary" type="button" data-act="copy"><span class="adm-ic" data-icon="copy"></span><span>Copy link</span></button>
+          <button class="adm-btn" type="button" data-act="share" hidden><span class="adm-ic" data-icon="share"></span><span>Share…</span></button>
+          <a class="adm-btn" data-act="sms"><span class="adm-ic" data-icon="chat"></span><span>Text it</span></a>
+          <a class="adm-btn" data-act="mail"><span class="adm-ic" data-icon="mail"></span><span>Email it</span></a>
+        </div>
+        <figure class="adm-qr-wrap">
+          <div class="adm-qr" id="qr"></div>
+          <figcaption>Sitting together? They can point their phone's camera at this square to open the album.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Links made -->
+    <section class="adm-card" id="madeCard" aria-labelledby="madeTitle" hidden>
+      <div class="adm-step"><span class="adm-num adm-num-ic" aria-hidden="true"><span class="adm-ic" data-icon="list"></span></span><h2 id="madeTitle">Links you've made</h2></div>
+      <p class="adm-muted" id="madeEmpty">Links you make on this device will show up here.</p>
+      <ul class="adm-list" id="made"></ul>
+      <p class="adm-muted adm-small" id="madeHelp" hidden>"Turn off on this device" only stops the link here. To turn a link off for everyone, send <span class="helperName">Kevin</span> its ID.</p>
+    </section>
+
+    <!-- How to add photos -->
+    <details class="adm-card adm-fold">
+      <summary><span class="adm-ic" data-icon="folder"></span><span>How to add photos</span><span class="adm-ic adm-chev" data-icon="chevronDown"></span></summary>
+      <div class="adm-fold-body adm-prose">
+        <p>Everything lives in the shared Google Drive folder. Whatever you put there shows up in the album, usually within a minute.</p>
+        <h3>Folders are chapters</h3>
+        <p>Make a folder for each part of the story. Put a number at the front to set the order — the number won't show.</p>
+        <p class="adm-eg">01 Early years<br>02 The farm<br>03 Keepsakes</p>
+        <h3>Name each photo with its year</h3>
+        <p>Start the name with the year, then a few words.</p>
+        <p class="adm-eg">1948 - Wedding day.jpg<br>about 1955 - Picnic at the lake.jpg<br>1960s - The old Buick.jpg</p>
+        <p>Not sure of the year? Write "about" in front, or use the decade like "1960s".</p>
+        <h3>Write the story in the Description box</h3>
+        <p>In Google Drive, open a photo's details (the <b>i</b> button) and type in <b>Description</b>. That becomes the caption. To say where it was taken, add a line like <span class="adm-code">Place: Joliet</span>.</p>
+        <h3>Keepsakes and letters</h3>
+        <p>For a scanned keepsake or letter, add <span class="adm-code">#keepsake</span> or <span class="adm-code">#letter</span> anywhere in the description. A folder with "Keepsakes" in its name does this for everything inside.</p>
+      </div>
+    </details>
+
+    <!-- Step 3 (setup) -->
+    <details class="adm-card adm-fold" id="driveFold">
+      <summary><span class="adm-ic" data-icon="search"></span><span>Check the Google Drive folder</span><span class="adm-ic adm-chev" data-icon="chevronDown"></span></summary>
+      <div class="adm-fold-body">
+        <p class="adm-muted">For setting up. This looks inside the folder the way the album will, and shows what it finds.</p>
+        <form id="driveForm" novalidate>
+          <label class="adm-label" for="apiKey">Google API key</label>
+          <input class="adm-field" id="apiKey" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="AIza…">
+          <label class="adm-label" for="folder">Folder link or ID</label>
+          <input class="adm-field" id="folder" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://drive.google.com/drive/folders/…">
+          <button class="adm-btn adm-primary" type="submit"><span class="adm-ic" data-icon="search"></span><span>Check the folder</span></button>
+        </form>
+        <div id="driveOut" class="adm-drive-out" aria-live="polite"></div>
+      </div>
+    </details>
+
+    <p class="adm-foot">This page is private. It isn't listed anywhere and search engines are asked to skip it.</p>
+  </main>
+
+  <div class="adm-toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
