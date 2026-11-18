@@ -30,24 +30,25 @@
 // -----------------------------------------------------------------------
 
 import { applyMetadata, loadMetadata, uniqueLabels } from './metadata.js';
+import { readLocalMetadata } from './local-metadata.js';
 
-const CACHE_KEY = (prefix) => `${prefix}.library.v1`;
+const CACHE_KEY = (config) => `${config.access?.prefix || 'memories'}.library.v2.drive.${config.drive?.folderId || ''}`;
 const ALBUM_BASE = new URL('../', import.meta.url);
 
 export async function loadLibrary(config) {
-  const prefix = config.access?.prefix || 'memories';
   const metadataUrl = config.metadataUrl === undefined ? 'data/tags.json' : config.metadataUrl;
   // Paths are album-relative even when Lauren opens these tools under /admin/.
-  const metadataPromise = loadMetadata(metadataUrl ? new URL(metadataUrl, ALBUM_BASE).href : null);
+  const localMetadata = config.localMetadata === false ? null : readLocalMetadata(config).document;
+  const metadataPromise = localMetadata ? Promise.resolve(localMetadata) : loadMetadata(metadataUrl ? new URL(metadataUrl, ALBUM_BASE).href : null);
   let raw;
   if (config.source === 'drive' && config.drive?.apiKey && config.drive?.folderId) {
     const { loadDrive } = await import('./sources/drive.js');
     try {
       raw = await loadDrive(config.drive);
-      try { localStorage.setItem(CACHE_KEY(prefix), JSON.stringify({ at: Date.now(), raw })); } catch {}
+      try { localStorage.setItem(CACHE_KEY(config), JSON.stringify({ at: Date.now(), raw })); } catch {}
     } catch (err) {
       // Offline or Drive hiccup: fall back to the last good copy on this device.
-      const cached = readCache(prefix);
+      const cached = readCache(config);
       if (!cached) throw err;
       raw = cached;
       raw.stale = true;
@@ -61,8 +62,8 @@ export async function loadLibrary(config) {
   return normalize(raw, config);
 }
 
-function readCache(prefix) {
-  try { return JSON.parse(localStorage.getItem(CACHE_KEY(prefix)) || 'null')?.raw || null; } catch { return null; }
+function readCache(config) {
+  try { return JSON.parse(localStorage.getItem(CACHE_KEY(config)) || 'null')?.raw || null; } catch { return null; }
 }
 
 export function normalize(raw, config) {

@@ -1,17 +1,16 @@
-.settings-publishing { padding-bottom: 20px; border-bottom: 1px solid var(--a-line); }
-.settings-publishing h3, .settings-heading { font-family: var(--a-display); font-size: 24px; font-weight: 500; margin: 20px 0 12px; }
-.settings-help { margin: 16px 0; padding: 12px; border: 1px solid var(--a-line); border-radius: var(--a-radius); }
+.settings-heading { font-family: var(--a-display); font-size: 24px; font-weight: 500; margin: 20px 0 12px; }
+.settings-help { margin: 20px 0; padding: 12px; border: 1px solid var(--a-line); border-radius: var(--a-radius); }
 .settings-help summary { min-height: 44px; cursor: pointer; font-weight: 600; }
 .settings-help p { overflow-wrap: anywhere; }
-.settings-fields { border: 0; padding: 0; margin: 20px 0; min-width: 0; }
+.settings-fields { border: 0; padding: 0; margin: 20px 0 0; min-width: 0; }
 .settings-fields:disabled { opacity: .65; }
 .settings-person { border: 1px solid var(--a-line); border-radius: var(--a-radius); padding: 0 14px 14px; margin-bottom: 14px; }
 .settings-person .adm-btn { margin-top: 10px; }
 .settings-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.settings-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
 #settingsTools, #settingsTools > div { min-width: 0; }
 #settingsTools select, #settingsTools input, #settingsTools textarea { max-width: 100%; min-width: 0; }
 #settingsTools [data-settings-status], #settingsTools [data-settings-drive-status] { overflow-wrap: anywhere; }
-#settingsSave { margin-top: 12px; }
 @media (max-width: 480px) {
   .settings-pair { grid-template-columns: 1fr; gap: 0; }
   #settingsTools .adm-btn { max-width: 100%; white-space: normal; }

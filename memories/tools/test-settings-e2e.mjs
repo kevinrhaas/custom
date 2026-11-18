@@ -1,257 +1,203 @@
-// Tests shared publishing against a mock of GitHub's Contents API. No production
-// write, real publishing token, real invite key, or real Drive request is used.
+// Device-local settings and approved tags. All Drive responses and invite keys
+// are fixtures. No GitHub account, publishing token, or remote write is used.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { webcrypto } from 'node:crypto';
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import { sampleSettingsDocument, installConfigFixture } from './settings-test-fixture.mjs';
-const { chromium } = createRequire(import.meta.url)('playwright');
-const base = (process.env.ALBUM_TEST_URL || 'http://127.0.0.1:8765/memories/').replace(/\/?$/, '/');
-if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Use a local preview for fixture-key browser tests.');
-const shots = process.env.SETTINGS_QA_SHOTS || '/tmp/memories-settings-qa';
-await mkdir(shots, { recursive: true });
-const pair = await webcrypto.subtle.generateKey({name:'ECDSA', namedCurve:'P-256'}, true, ['sign','verify']);
-const publicKey = Buffer.from(await webcrypto.subtle.exportKey('spki', pair.publicKey)).toString('base64');
-const privateKey = Buffer.from(await webcrypto.subtle.exportKey('pkcs8', pair.privateKey)).toString('base64');
-const token = 'github_pat_qa_fixture_never_live_0123456789012345678901234567890';
-const endpoint = 'https://api.github.com/repos/kevinrhaas/custom/contents/site/memories/data/settings.json';
-const metadataEndpoint = endpoint.replace('settings.json','tags.json');
-const hash = number => number.toString(16).padStart(40, '0');
-const browser = await chromium.launch({headless:true, executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium', args:['--no-sandbox']});
-const reports = [];
-const failures = [];
-async function statusIncludes(page, expression) {
-  await page.waitForFunction(source => new RegExp(source, 'i').test(document.querySelector('[data-settings-status]')?.textContent || ''), expression);
+const {chromium}=createRequire(import.meta.url)('playwright');
+const base=(process.env.ALBUM_TEST_URL || 'http://127.0.0.1:8765/memories/').replace(/\/?$/,'/');
+if(!['localhost','127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Use a local preview for fixture-key browser tests.');
+const shots=process.env.SETTINGS_QA_SHOTS || '/tmp/memories-local-settings-qa';
+await mkdir(shots,{recursive:true});
+const pair=await webcrypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},true,['sign','verify']);
+const publicKey=Buffer.from(await webcrypto.subtle.exportKey('spki',pair.publicKey)).toString('base64');
+const privateKey=Buffer.from(await webcrypto.subtle.exportKey('pkcs8',pair.privateKey)).toString('base64');
+const payload=Buffer.from(JSON.stringify({v:1,label:'Local QA',iat:Date.now(),exp:0,jti:'local-settings-qa'})).toString('base64url');
+const signature=Buffer.from(await webcrypto.subtle.sign({name:'ECDSA',hash:'SHA-256'},pair.privateKey,new TextEncoder().encode(payload))).toString('base64url');
+const invite=`${base}?invite=${payload}.${signature}`;
+const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium',args:['--no-sandbox']});
+const reports=[],failures=[];
+async function installMocks(context,githubRequests,driveRequests) {
+  await installConfigFixture(context,publicKey,()=>sampleSettingsDocument());
+  await context.route('**/memories/data/tags.json*',route=>route.fulfill({json:{version:1,photos:{}}}));
+  await context.route('https://api.github.com/**',route=>{githubRequests.push(route.request().url());return route.abort();});
+  await context.route('https://www.googleapis.com/drive/v3/**',route=>{
+    const request=route.request(),url=new URL(request.url());
+    driveRequests.push(url.pathname);
+    assert.equal(request.headers().referer,new URL(base).origin+'/', 'restricted Drive key receives the site origin');
+    const headers={'access-control-allow-origin':'*'};
+    if(/\/files\/[^/]+$/.test(url.pathname)) return route.fulfill({headers,json:{id:url.pathname.split('/').pop(),name:'Local folder',mimeType:'application/vnd.google-apps.folder'}});
+    const parent=/'([^']+)'/.exec(url.searchParams.get('q') || '')?.[1];
+    const which=parent==='QA_LOCAL_FOLDER_A'?'A':'B';
+    return route.fulfill({headers,json:{files:[{id:'drive-shared-id',name:`2001 - Folder ${which} photo.jpg`,mimeType:'image/jpeg',description:`A photo from folder ${which}.`}]}});
+  });
+  await context.route(/https:\/\/(?:lh3\.googleusercontent\.com|drive\.google\.com)\//,route=>route.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="#c6b69c"/></svg>'}));
 }
-async function fits(page, label) {
-  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, `${label} overflows horizontally`);
+async function status(page,selector,pattern) {
+  await page.waitForFunction(({selector,pattern})=>new RegExp(pattern,'i').test(document.querySelector(selector)?.textContent || ''),{selector,pattern});
+}
+async function saveSettings(page) {
+  await page.locator('#settingsSave').click();
+  await status(page,'[data-settings-status]','^Saved on this device\\.');
+}
+async function openAdmin(page) {
+  await page.goto(new URL('admin/',base).href,{waitUntil:'networkidle'});
+  if(await page.locator('#unlockBtn').isVisible()) {
+    await page.locator('#adminKey').fill(privateKey);
+    await page.locator('#unlockBtn').click();
+  }
+  await page.locator('#albumTitleInput').waitFor({state:'visible'});
+  await page.locator('[data-tag-controls]').waitFor({state:'visible'});
+}
+async function searchCount(context,query) {
+  const page=await context.newPage();
+  try {
+    await page.goto(base+'#/search?q='+encodeURIComponent(query),{waitUntil:'networkidle'});
+    await page.waitForFunction(()=>document.querySelector('#results')?.children.length);
+    return await page.locator('#results [data-open]').count();
+  } finally {await page.close();}
+}
+async function saveTags(page) {
+  await page.locator('[data-tag-save]').click();
+  await status(page,'[data-tag-status]','saved on this device');
+}
+async function blockStorage(page,prefix='') {
+  await page.evaluate(prefix=>{
+    window.__qaSetItem=Storage.prototype.setItem;
+    Storage.prototype.setItem=function(key,value){if(String(key).startsWith(prefix))throw new DOMException('Fixture storage is full','QuotaExceededError');return window.__qaSetItem.call(this,key,value);};
+  },prefix);
+}
+async function restoreStorage(page) {
+  await page.evaluate(()=>{Storage.prototype.setItem=window.__qaSetItem;delete window.__qaSetItem;});
 }
 try {
-  for (const viewport of [{width:390,height:780}, {width:1280,height:800}]) {
-    const context = await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
+  for(const viewport of [{width:390,height:780},{width:1280,height:800}]) {
+    const context=await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
     context.setDefaultTimeout(15000);
-    let publicDocument = sampleSettingsDocument();
-    let repositoryDocument = structuredClone(publicDocument);
-    let generation = 1;
-    let repositorySha = hash(generation);
-    let rejectAuth = false;
-    const writes = [], metadataWrites = [], requests = [], errors = [];
-    let publicMetadata = {version:1,photos:{}};
-    let repositoryMetadata = structuredClone(publicMetadata);
-    let metadataSha = hash(1000);
-    let metadataConflict = false;
-    let driveRequests = 0;
-    await installConfigFixture(context, publicKey, () => publicDocument);
-    await context.route('**/memories/data/tags.json*', route => route.fulfill({json:publicMetadata}));
-    await context.route('https://www.googleapis.com/drive/v3/**', route => {
-      driveRequests++;
-      assert.equal(route.request().headers().referer, new URL(base).origin+'/', 'Drive restriction receives the site origin');
-      return route.fulfill({status:404,headers:{'access-control-allow-origin':'*'},json:{error:{code:404,message:'Fixture folder not shared'}}});
-    });
-    await context.route('https://api.github.com/**', async route => {
-      const request = route.request();
-      const method = request.method();
-      const url = new URL(request.url());
-      requests.push({method, path:url.pathname});
-      const isMetadata = url.origin + url.pathname === metadataEndpoint;
-      assert.ok(isMetadata || url.origin + url.pathname === endpoint, 'publishing target is fixed');
-      assert.ok(!request.url().includes(token));
-      const headers = {'access-control-allow-origin':'*','access-control-allow-methods':'GET,PUT,OPTIONS','access-control-allow-headers':'authorization,content-type,x-github-api-version,accept'};
-      if (method === 'OPTIONS') return route.fulfill({status:204,headers});
-      if (rejectAuth || request.headers().authorization !== `Bearer ${token}`) {
-        return route.fulfill({status:401,headers,json:{message:`Mock rejected ${token}`}});
-      }
-      if (method === 'GET') {
-        assert.equal(url.searchParams.get('ref'), 'main');
-        return route.fulfill({headers,json:{type:'file',encoding:'base64',sha:isMetadata ? metadataSha : repositorySha,content:Buffer.from(JSON.stringify(isMetadata ? repositoryMetadata : repositoryDocument)).toString('base64')}});
-      }
-      assert.equal(method, 'PUT');
-      const body = request.postDataJSON();
-      assert.equal(body.branch, 'main');
-      const document = JSON.parse(Buffer.from(body.content, 'base64').toString('utf8'));
-      if (isMetadata) {
-        assert.deepEqual(Object.keys(document).sort(), ['photos','version']);
-        assert.ok(!JSON.stringify(document).includes(token));
-        assert.ok(!JSON.stringify(document).includes(privateKey));
-        if (metadataConflict) {
-          metadataConflict=false; metadataSha=hash(1500);
-          repositoryMetadata={version:1,photos:{'walter-frank-fence-1930':{tags:['Another keeper tag']}}};
-          return route.fulfill({status:409,headers,json:{message:'Concurrent metadata update'}});
-        }
-        if (body.sha !== metadataSha) return route.fulfill({status:409,headers,json:{message:'Metadata revision changed'}});
-        metadataWrites.push(document); repositoryMetadata=structuredClone(document); metadataSha=hash(1000+metadataWrites.length);
-        return route.fulfill({headers,json:{content:{sha:metadataSha},commit:{sha:hash(2000+metadataWrites.length)}}});
-      }
-      assert.deepEqual(Object.keys(document).sort(), ['revision','settings','version']);
-      assert.ok(!JSON.stringify(document).includes(token));
-      assert.ok(!JSON.stringify(document).includes(privateKey));
-      assert.ok(!Object.hasOwn(document.settings, 'access'));
-      if (body.sha !== repositorySha) return route.fulfill({status:409,headers,json:{message:'The saved revision changed.'}});
-      writes.push(document);
-      repositoryDocument = structuredClone(document);
-      repositorySha = hash(++generation);
-      return route.fulfill({headers,json:{content:{sha:repositorySha},commit:{sha:hash(100+generation)}}});
-    });
-    const page = await context.newPage();
-    page.on('pageerror',error=>errors.push(error.message));
+    const githubRequests=[],driveRequests=[],errors=[];
+    await installMocks(context,githubRequests,driveRequests);
+    const page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
     try {
-      console.log(`Testing shared settings at ${viewport.width}px`);
-      await page.goto(new URL('admin/',base).href,{waitUntil:'networkidle'});
-      await page.locator('#adminKey').fill(privateKey);
-      await page.locator('#unlockBtn').click();
-      await page.locator('#settingsCard').waitFor({state:'visible'});
-      await fits(page,'Settings admin');
-      assert.equal(await page.locator('#settingsSave').isDisabled(), true, 'saving needs publishing authorization');
-
-      // Invalid credentials cannot unlock publishing, and provider error text
-      // containing credentials must never be reflected in the page.
-      await page.locator('#publishingToken').fill('bad-fixture-credential');
-      await page.locator('#publishingConnect').click();
-      await statusIncludes(page,'rejected|expired|valid');
-      assert.equal(await page.locator('#settingsSave').isDisabled(), true);
-      assert.ok(!(await page.locator('body').innerText()).includes(token));
-      await page.locator('#publishingToken').fill(token);
-      await page.locator('#publishingConnect').click();
-      await page.waitForFunction(()=>!document.querySelector('#settingsSave').disabled);
-      assert.equal(await page.locator('#publishingToken').inputValue(), '');
-      assert.equal(await page.locator('#albumTitleInput').inputValue(), repositoryDocument.settings.title);
-      const stored = await page.evaluate(()=>JSON.stringify({local:{...localStorage},session:{...sessionStorage}}));
-      assert.ok(!stored.includes(token), 'publishing credential is not persisted');
-
-      // A blank required title blocks the write, preserving the last saved doc.
+      console.log(`Testing local settings at ${viewport.width}px`);
+      // Existing preferences must not prevent an admin's newly saved look, nor
+      // lose the separately chosen dark mode or text size.
+      await page.goto(base,{waitUntil:'networkidle'});
+      await page.locator('.gate').waitFor({state:'visible'});
+      await page.evaluate(()=>localStorage.setItem('memories.prefs',JSON.stringify({skin:'heirloom',mode:'dark',text:'large'})));
+      await openAdmin(page);
+      assert.equal(await page.locator('#albumTitleInput').isEnabled(),true);
+      assert.equal(await page.locator('#settingsSave').isEnabled(),true);
+      assert.equal(await page.locator('#publishingToken').count(),0);
+      assert.doesNotMatch(await page.locator('#settingsCard').innerText(),/github|publishing token|repository|connect publishing/i);
       await page.locator('#albumTitleInput').fill('');
       await page.locator('#settingsSave').click();
-      assert.equal(writes.length,0);
-      const title = `June & José — shared album ${viewport.width}`;
+      await status(page,'[data-settings-status]','title');
+      const title=`José & June — this device ${viewport.width}`;
       await page.locator('#albumTitleInput').fill(title);
-      await page.locator('#albumSourceInput').selectOption('drive');
-      await page.locator('#settingsSave').click();
-      assert.equal(writes.length,0,'invalid Drive settings cannot be saved');
-      assert.equal(driveRequests,0,'invalid Drive settings fail before network access');
-      await page.locator('#albumApiKeyInput').fill('AIza'+'x'.repeat(35));
-      await page.locator('#albumFolderInput').fill('QA_FOLDER_12345');
-      await page.locator('#settingsSave').click();
-      await statusIncludes(page,'could not be verified');
-      assert.equal(writes.length,0,'an unverified new folder cannot replace the album source');
-      assert.ok(driveRequests>0);
-      await page.locator('#albumApiKeyInput').fill('');
-      await page.locator('#albumFolderInput').fill('');
-      await page.locator('#albumSourceInput').selectOption('manifest');
       await page.locator('[data-honoree-name]').first().fill('José Example');
-      await page.locator('#albumDedicationInput').fill('Our stories, saved for every relative.');
+      await page.locator('#albumDedicationInput').fill('A few moments we want to keep.');
+      await page.getByText('More settings',{exact:true}).click();
       await page.locator('#albumPeopleInput').fill('José, June, Lauren');
+      await page.locator('#albumSkinInput').selectOption('gallery');
+      await saveSettings(page);
+      const settingsKey=await page.evaluate(async()=> (await import('../js/settings.js')).LOCAL_SETTINGS_KEY);
+      const saved=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),settingsKey);
+      assert.equal(saved.settings.title,title);
+      assert.deepEqual(saved.settings.people,['José','June','Lauren']);
+      assert.ok(!JSON.stringify(saved).includes(privateKey));
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.skin),'gallery');
+      await page.reload({waitUntil:'networkidle'});
+      await page.locator('#albumTitleInput').waitFor({state:'visible'});
+      assert.equal(await page.locator('#albumTitleInput').inputValue(),title);
+      await page.goto(base,{waitUntil:'networkidle'});
+      await page.locator('.hero').waitFor({state:'visible'});
+      assert.equal(await page.title(),title);
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.skin),'gallery');
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.mode),'dark');
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.text),'large');
+      await openAdmin(page);
+      await blockStorage(page,'memories.settings.local.v1:');
+      await page.locator('#albumTitleInput').fill('This edit cannot be saved');
       await page.locator('#settingsSave').click();
-      await page.waitForFunction(()=>/saved/i.test(document.querySelector('[data-settings-status]').textContent));
-      assert.equal(writes.length,1);
-      assert.equal(repositoryDocument.settings.title,title);
-      assert.equal(publicDocument.settings.title,'Our Family Album','saved and deployed are distinct states');
-      assert.deepEqual(repositoryDocument.settings.people,['José','June','Lauren']);
-      assert.notEqual(repositoryDocument.revision,'qa-sample-settings');
-      await fits(page,'Saved settings admin');
+      await status(page,'[data-settings-status]','could not save');
+      assert.equal(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).settings.title,settingsKey),title);
+      await restoreStorage(page);
+      await page.reload({waitUntil:'networkidle'});
+      await page.locator('#albumTitleInput').waitFor({state:'visible'});
+      assert.equal(await page.locator('#albumTitleInput').inputValue(),title,'failed storage does not claim a durable setting');
 
-      // Simulate Pages finishing the publication. A completely separate browser
-      // profile sees the shared document; it never receives admin browser state.
-      publicDocument = structuredClone(repositoryDocument);
-      await page.locator('#settingsCheckLive').click();
-      await statusIncludes(page,'published|now live|is live|are live');
-      const visitor = await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
-      await installConfigFixture(visitor,publicKey,()=>publicDocument);
-      const visitorPage = await visitor.newPage();
-      visitorPage.on('pageerror',error=>errors.push(error.message));
-      await visitorPage.goto(base,{waitUntil:'networkidle'});
-      assert.equal(await visitorPage.title(),title);
-      assert.match(await visitorPage.locator('.gate').innerText(),/José Example/);
-      assert.equal(await visitorPage.evaluate(()=>localStorage.getItem('memories.adminkey')),null);
-      await fits(visitorPage,'Fresh visitor gate');
-      await visitor.close();
-
-      // Approved additions save through the same connection. Unreviewed AI
-      // drafts are excluded, and pending publication survives a page reload.
-      const tagId='walter-frank-fence-1930', draftOnlyId='june-baby-1925';
-      await page.locator('#tagDraftFile').setInputFiles({name:'drafts.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({version:1,photos:{[tagId]:{tags:['Approved search object']},[draftOnlyId]:{tags:['Unreviewed object']}}}))});
-      await page.waitForFunction(()=>document.querySelector('[data-tag-status]').textContent.includes('drafts imported'));
+      // Approval stages a suggestion; only explicit Save makes it searchable.
+      const tagId='walter-frank-fence-1930',draftId='june-baby-1925';
+      const tag='LocalReviewHorse',draftTag='UnreviewedSunflower';
+      await page.locator('#tagDraftFile').setInputFiles({name:'drafts.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({version:1,photos:{[tagId]:{tags:[tag]},[draftId]:{tags:[draftTag]}}}))});
+      await status(page,'[data-tag-status]','drafts imported');
       await page.locator('#tagPhoto').selectOption(tagId);
       await page.locator('[data-tag-form] button[type=submit]').click();
-      await page.locator('[data-tag-save]').click();
-      await page.waitForFunction(()=>document.querySelector('[data-tag-status]').textContent.includes('saved for the whole album'));
-      assert.equal(metadataWrites.length,1);
-      assert.deepEqual(Object.keys(repositoryMetadata.photos),[tagId]);
-      assert.equal(publicMetadata.photos[tagId],undefined,'metadata is durably saved before Pages catches up');
+      assert.equal(await searchCount(context,tag),0,'approval alone does not enter search');
+      await saveTags(page);
+      assert.equal(await searchCount(context,tag),1);
+      assert.equal(await searchCount(context,draftTag),0,'unreviewed drafts remain out of search');
       await page.reload({waitUntil:'networkidle'});
       await page.locator('[data-tag-controls]').waitFor({state:'visible'});
       await page.locator('#tagPhoto').selectOption(tagId);
-      assert.match(await page.locator('[data-tag-review-state]').innerText(),/Approved/);
-      assert.equal(await page.locator('#tagLabels').inputValue(),'Approved search object');
-      const backupWait=page.waitForEvent('download');
-      await page.locator('[data-tag-export]').click();
-      const backup=JSON.parse(await readFile(await (await backupWait).path(),'utf8'));
-      assert.deepEqual(backup,repositoryMetadata,'backup retains a pending saved publication after reload');
-      await page.locator('#publishingToken').fill(token);
-      await page.locator('#publishingConnect').click();
-      await page.waitForFunction(()=>!document.querySelector('#settingsSave').disabled);
-      await page.locator('#tagLabels').fill('Revised approved object');
+      assert.equal(await page.locator('#tagLabels').inputValue(),tag);
+      await page.locator('#tagLabels').fill('UnsavedTagAfterStorageFailure');
       await page.locator('[data-tag-form] button[type=submit]').click();
+      await blockStorage(page);
       await page.locator('[data-tag-save]').click();
-      await page.waitForFunction(()=>document.querySelector('[data-tag-status]').textContent.includes('saved for the whole album'));
-      assert.equal(metadataWrites.length,2,'a pending first publication does not create a false conflict on the next save');
-      await page.reload({waitUntil:'networkidle'});
-      await page.locator('[data-tag-controls]').waitFor({state:'visible'});
-      page.once('dialog',dialog=>dialog.accept());
-      await page.locator('[data-tag-clear]').click();
-      const clearedBackupWait=page.waitForEvent('download');
-      await page.locator('[data-tag-export]').click();
-      const clearedBackup=JSON.parse(await readFile(await (await clearedBackupWait).path(),'utf8'));
-      assert.deepEqual(clearedBackup,repositoryMetadata,'clearing local work retains already saved tags while deployment is pending');
-      await page.reload({waitUntil:'networkidle'});
-      await page.locator('[data-tag-controls]').waitFor({state:'visible'});
-      await page.locator('#tagPhoto').selectOption(tagId);
-      assert.equal(await page.locator('#tagLabels').inputValue(),'Revised approved object','a second reload retains saved pending tags after clear');
-      await page.locator('#publishingToken').fill(token);
-      await page.locator('#publishingConnect').click();
-      await page.waitForFunction(()=>!document.querySelector('#settingsSave').disabled);
-      await page.locator('#tagLabels').fill('Conflicting object');
+      await status(page,'[data-tag-status]','could not save|not saved');
+      await restoreStorage(page);
+      assert.equal(await searchCount(context,'UnsavedTagAfterStorageFailure'),0);
+      assert.equal(await searchCount(context,tag),1,'previous saved metadata survives failed Save');
+
+      // Another browser has the published defaults and no private local edits.
+      const other=await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
+      await installMocks(other,githubRequests,driveRequests);
+      const otherPage=await other.newPage();
+      await otherPage.goto(base,{waitUntil:'networkidle'});
+      await otherPage.locator('.gate').waitFor({state:'visible'});
+      assert.equal(await otherPage.title(),sampleSettingsDocument().settings.title);
+      assert.equal(await otherPage.evaluate(()=>document.documentElement.dataset.skin),'heirloom');
+      assert.equal(await otherPage.evaluate(key=>localStorage.getItem(key),settingsKey),null);
+      await otherPage.goto(invite,{waitUntil:'networkidle'});
+      assert.equal(await searchCount(other,tag),0);
+      await other.close();
+
+      // Save accepts local Drive settings without a publishing service. The new
+      // source mounts immediately, and folder-specific metadata cannot leak.
+      await page.locator('#albumSourceInput').selectOption('drive');
+      await page.getByText('Connection details',{exact:true}).click();
+      await page.locator('#albumApiKeyInput').fill('AIza'+'x'.repeat(35));
+      await page.locator('#albumFolderInput').fill('QA_LOCAL_FOLDER_A');
+      await saveSettings(page);
+      await page.waitForFunction(()=>document.querySelector('#tagPhoto option')?.textContent.includes('Folder A photo'));
+      assert.equal(await page.locator('#tagPhoto option').count(),1);
+      await page.locator('#tagLabels').fill('FolderOnlyApricot');
       await page.locator('[data-tag-form] button[type=submit]').click();
-      metadataConflict=true;
-      await page.locator('[data-tag-save]').click();
-      await page.waitForFunction(()=>/changed|review|conflict/i.test(document.querySelector('[data-tag-status]').textContent));
-      assert.equal(metadataWrites.length,2,'metadata conflict does not claim a successful new save');
-      assert.equal(metadataConflict,false,'the test exercised a race at PUT, not only a pre-read conflict');
-      assert.match(await page.locator('#tagLabels').inputValue(),/Conflicting object/);
-
-      // Another keeper changes the saved document while this form is open.
-      repositorySha = hash(++generation);
-      repositoryDocument = {...repositoryDocument,revision:'changed-by-another-keeper',settings:{...repositoryDocument.settings,title:'Another keeper’s title'}};
-      await page.locator('#albumTitleInput').fill('Unsaved conflicting title');
-      await page.locator('#settingsSave').click();
-      await statusIncludes(page,'changed|reload|revision');
-      assert.equal(writes.length,1,'a stale SHA cannot overwrite shared settings');
-      assert.equal(await page.locator('#albumTitleInput').inputValue(),'Unsaved conflicting title','conflict preserves edits for review');
-      page.once('dialog',dialog=>dialog.accept());
-      await page.locator('#settingsReload').click();
-      await page.waitForFunction(()=>document.querySelector('#albumTitleInput').value === 'Another keeper’s title');
-      rejectAuth = true;
-      await page.locator('#albumTitleInput').fill('Should not be saved');
-      await page.locator('#settingsSave').click();
-      await statusIncludes(page,'rejected|expired|valid');
-      assert.equal(writes.length,1,'revoked credentials cannot report a new save');
-      assert.ok(!(await page.locator('body').innerText()).includes(token));
-      rejectAuth = false;
-      await page.screenshot({path:`${shots}/settings-${viewport.width}.png`,fullPage:false});
-
-      page.once('dialog',dialog=>dialog.accept());
-      await page.locator('#lockBtn').click();
-      await page.locator('#lockedView').waitFor({state:'visible'});
-      assert.equal(await page.evaluate(async()=>{const {publisher}=await import('./publishing.js');return publisher.isConnected();}),false,'locking destroys the in-memory publishing credential');
-      assert.equal(await page.locator('#settingsCard').isVisible(),false);
-      assert.ok(!(await page.evaluate(()=>JSON.stringify({local:{...localStorage},session:{...sessionStorage}}))).includes(token));
+      await saveTags(page);
+      assert.equal(await searchCount(context,'FolderOnlyApricot'),1);
+      await page.locator('#albumFolderInput').fill('QA_LOCAL_FOLDER_B');
+      await saveSettings(page);
+      await page.waitForFunction(()=>document.querySelector('#tagPhoto option')?.textContent.includes('Folder B photo'));
+      assert.equal(await page.locator('#tagLabels').inputValue(),'','new folder does not inherit local tags from the old one');
+      assert.equal(await searchCount(context,'FolderOnlyApricot'),0);
+      await page.locator('#albumSourceInput').selectOption('manifest');
+      await saveSettings(page);
+      await page.waitForFunction(()=>document.querySelector('#tagPhoto')?.options.length>1);
+      assert.equal(await searchCount(context,tag),1,'returning to the sample source restores its separately saved metadata');
+      assert.ok(driveRequests.length>0);
+      assert.deepEqual(githubRequests,[],'no GitHub authorization, token, or network request is needed');
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
       assert.deepEqual(errors,[]);
-      reports.push({viewport,writes:writes.length,checks:['approved metadata shared save and pending reload','Drive validation blocks invalid source','authorized shared save','Unicode metadata','separate visitor loads published JSON','saved versus published state','required fields','stale revision conflict','credential failures','token not stored or published','lock disconnect','no horizontal overflow'],pageErrors:errors});
-    } catch (error) {
+      await page.screenshot({path:`${shots}/settings-${viewport.width}.png`,fullPage:false});
+      reports.push({viewport,checks:['immediately editable after admin unlock','local settings survive reload','isolated browser keeps published defaults','no GitHub requests','truthful settings and metadata storage failures','saved skin preserves mode/text','approved-only saved tags enter search','Drive source remount and folder-specific tags'],pageErrors:errors});
+    } catch(error) {
       failures.push({viewport,error:error.stack,pageErrors:errors});
-      console.error(`Settings QA failed at ${viewport.width}px: ${error.message}`);
+      console.error(`Local settings QA failed at ${viewport.width}px: ${error.message}`);
       await page.screenshot({path:`${shots}/failure-${viewport.width}.png`,fullPage:false}).catch(()=>{});
-    } finally { await context.close(); }
+    } finally {await context.close();}
   }
-} finally { await browser.close(); }
+} finally {await browser.close();}
 console.log(JSON.stringify({reports,failures,screenshots:shots},null,2));
-if (failures.length) process.exitCode=1;
+if(failures.length)process.exitCode=1;

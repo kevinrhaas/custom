@@ -8,7 +8,7 @@
 //   #/loved                 photos this visitor loved
 //   …/p/<photoId>           the viewer, open on top of any of the above
 // -----------------------------------------------------------------------
-import { CONFIG } from './config.js';
+import { CONFIG, SETTINGS_STATE } from './config.js';
 import { loadLibrary, yearLabel } from './library.js';
 import { SKINS, THEME_COLOR } from './skins.js';
 import { makeZip } from './zip.js';
@@ -36,6 +36,12 @@ const store = {
   set(k, v) { try { localStorage.setItem(`${P}.${k}`, JSON.stringify(v)); } catch {} },
 };
 const prefs = Object.assign({ skin: CONFIG.defaultSkin || 'heirloom', mode: 'auto', text: 'regular' }, store.get('prefs', {}));
+// A newly saved personal look applies once; later Text & look choices remain
+// the visitor's choice. Keep their existing light/dark mode and text size.
+if (SETTINGS_STATE.source === 'local' && prefs.settingsRevision !== SETTINGS_STATE.document.revision) {
+  prefs.skin = CONFIG.defaultSkin;
+  prefs.settingsRevision = SETTINGS_STATE.document.revision;
+}
 let loved = new Set(store.get('loved', []));
 
 function applyPrefs() {
