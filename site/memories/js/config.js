@@ -1,12 +1,9 @@
-// -----------------------------------------------------------------------
-// config.js — the ONE file to edit when making this album someone's own.
-//
-// Everything family-specific lives here: names, dates, the dedication, who
-// hands out invite links, and where the photos come from. The rest of the app
-// reads from this object and never hardcodes a name.
-// -----------------------------------------------------------------------
+// Bootstrap paths, invite verification, and recovery defaults for the album.
+// Family settings are entered in the admin page and saved to shared settings.
+// Visitors load the published JSON before the album or invite page renders.
+import { loadSettings, settingsFromConfig } from './settings.js';
 
-export const CONFIG = {
+const BOOTSTRAP_CONFIG = {
   // Shown on the welcome page and the browser tab.
   title: 'Our Family Album',
   // The people this album remembers. Keep it to the names the family uses.
@@ -19,7 +16,7 @@ export const CONFIG = {
     'For the grandkids, nieces and nephews: the boxes from the closet, kept safe here so everyone can see them, anytime.',
   // Who keeps the album. Used in "Ask Lauren for your link" and "Made by Lauren".
   keeper: 'Lauren',
-  // Who maintains the site (named on the admin page for permanent link changes).
+  // Who maintains the site (named on the admin page for help).
   helper: 'Kevin',
 
   // Names that appear in captions. The app finds them in photo titles and
@@ -62,3 +59,11 @@ export const CONFIG = {
   // Skin shown on first visit. Visitors can change it; their choice is kept.
   defaultSkin: 'heirloom',
 };
+
+
+export const DEFAULT_SETTINGS = settingsFromConfig(BOOTSTRAP_CONFIG);
+// Node-based tools use the bootstrap without trying to fetch a file:// URL.
+export const SETTINGS_STATE = typeof window !== 'undefined'
+  ? await loadSettings(DEFAULT_SETTINGS)
+  : { document: { version: 1, revision: 'bootstrap', settings: DEFAULT_SETTINGS }, source: 'defaults' };
+export const CONFIG = { ...BOOTSTRAP_CONFIG, ...SETTINGS_STATE.document.settings };

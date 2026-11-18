@@ -1,22 +1,22 @@
-// End-to-end check of the invite gate and the admin page in headless Chromium.
-//
-//   python3 -m http.server 8765 --directory site &          (from the repo root)
-//   ADMIN_KEY_FILE=/path/to/memories-ADMIN-KEY.txt node memories/tools/test-gate-e2e.mjs
-//
-// The admin key is read from ADMIN_KEY_FILE at run time and never printed or
-// written anywhere. Screenshots land in memories/tools/shots/.
-// The gate is exercised on a throwaway harness page that Playwright serves
-// at /memories/__gate-test.html (nothing is written into site/).
-import { chromium } from 'playwright';
-import { readFileSync, mkdirSync } from 'node:fs';
+// Local regression checks of invite gating and the admin invite tools.
+// Start the local site server, then run node memories/tools/test-gate-e2e.mjs.
+// A fresh key pair is created in memory for each run and injected into local
+// browser responses. Production settings and invite keys are never changed.
+// Screenshots land in memories/tools/shots/ (ignored by Git).
+import { createRequire } from 'node:module';
+import { mkdirSync } from 'node:fs';
 import { webcrypto as crypto } from 'node:crypto';
 import assert from 'node:assert/strict';
+import { installConfigFixture, sampleSettingsDocument } from './settings-test-fixture.mjs';
+const { chromium } = createRequire(import.meta.url)('playwright');
 
-const BASE = process.env.BASE || 'http://localhost:8765/memories/';
-const KEY_FILE = process.env.ADMIN_KEY_FILE || '/home/claude/secrets/memories-ADMIN-KEY.txt';
+const BASE = (process.env.BASE || process.env.ALBUM_TEST_URL || 'http://127.0.0.1:8765/memories/').replace(/\/?$/, '/');
+if (!['localhost', '127.0.0.1'].includes(new URL(BASE).hostname)) throw new Error('Run fixture-key tests against a local preview only.');
 const SHOTS = new URL('./shots/', import.meta.url).pathname;
 mkdirSync(SHOTS, { recursive: true });
-const ADMIN_KEY = readFileSync(KEY_FILE, 'utf8').replace(/-----[^-]+-----/g, '').replace(/\s+/g, '');
+const pair = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+const PUBLIC_KEY = Buffer.from(await crypto.subtle.exportKey('spki', pair.publicKey)).toString('base64');
+const ADMIN_KEY = Buffer.from(await crypto.subtle.exportKey('pkcs8', pair.privateKey)).toString('base64');
 
 // ---- mint exactly like access.js mintInvite --------------------------------
 const b64 = (buf) => Buffer.from(buf).toString('base64');
@@ -41,22 +41,27 @@ import { CONFIG } from './js/config.js';
 import { runGate } from './js/gate.js';
 const r = await runGate(CONFIG, document.getElementById('main'));
 window.__gate = { granted: r.granted, label: r.label, isAdmin: r.isAdmin };
-document.getElementById('main').insertAdjacentHTML('beforeend', '<p id="welcome">Welcome' + (r.label ? ', ' + r.label : '') + '</p>');
+const welcome = document.createElement('p'); welcome.id = 'welcome';
+welcome.textContent = 'Welcome' + (r.label ? ', ' + r.label : '');
+document.getElementById('main').append(welcome);
 </script></body></html>`;
 const GATE_URL = `${BASE}__gate-test.html`;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
 let checks = 0;
 const ok = (cond, msg) => { assert.ok(cond, msg); checks++; console.log('  ✓', msg); };
 
 async function ctx(colorScheme = 'light') {
-  const c = await browser.newContext({ viewport: { width: 390, height: 780 }, deviceScaleFactor: 2, colorScheme });
+  const c = await browser.newContext({ viewport: { width: 390, height: 780 }, deviceScaleFactor: 1, colorScheme, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  c.setDefaultTimeout(15000);
+  await installConfigFixture(c, PUBLIC_KEY, sampleSettingsDocument);
   await c.route(/__gate-test\.html/, (route) => route.fulfill({ contentType: 'text/html', body: HARNESS }));
   return c;
 }
 const errors = [];
 const watch = (page) => page.on('pageerror', (e) => errors.push(String(e)));
 
+try {
 // 1. No token → gate shows; paste link → granted with label; reload stays in.
 {
   const c = await ctx();
@@ -125,7 +130,7 @@ for (const scheme of ['light', 'dark']) {
   const page = await c.newPage(); watch(page);
   await page.goto(`${BASE}admin/`);
   await page.waitForSelector('#unlockBtn');
-  await page.screenshot({ path: `${SHOTS}admin-locked-${scheme}.png`, fullPage: true, animations: 'disabled' });
+  await page.screenshot({ path: `${SHOTS}admin-locked-${scheme}.png`, animations: 'disabled' });
   await page.fill('#adminKey', 'not-a-key');
   await page.click('#unlockBtn');
   await page.waitForSelector('#unlockError:not(:empty)');
@@ -133,7 +138,7 @@ for (const scheme of ['light', 'dark']) {
   await page.fill('#adminKey', ADMIN_KEY);
   await page.click('#unlockBtn');
   await page.waitForSelector('#makeCard:not([hidden])');
-  ok(await page.isVisible('text=This device can make links.'), `admin (${scheme}): unlocked`);
+  ok(await page.isVisible('text=This device can make links, edit album settings, and review photo tags.'), `admin (${scheme}): unlocked`);
   ok((await page.inputValue('#adminKey')) === '', `admin (${scheme}): key field cleared`);
   await page.fill('#who', 'Amber');
   await page.check('input[name=days][value="30"]');
@@ -151,7 +156,8 @@ for (const scheme of ['light', 'dark']) {
   await page.evaluate(() => { document.getElementById('toast').hidden = true; });
   await page.locator('#result').scrollIntoViewIfNeeded();
   await page.screenshot({ path: `${SHOTS}admin-link-${scheme}.png`, animations: 'disabled' });
-  await page.screenshot({ path: `${SHOTS}admin-unlocked-${scheme}-full.png`, fullPage: true, animations: 'disabled' });
+  await page.locator('#makeCard').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `${SHOTS}admin-unlocked-${scheme}.png`, animations: 'disabled' });
 
   // Turn off on this device → status + the "send Kevin its ID" note.
   page.once('dialog', (d) => d.accept());
@@ -162,31 +168,7 @@ for (const scheme of ['light', 'dark']) {
   await page.evaluate(() => { document.getElementById('toast').hidden = true; });
   await page.screenshot({ path: `${SHOTS}admin-list-${scheme}.png`, animations: 'disabled' });
 
-  // Drive check against a fake Drive API (real Google is unreachable from here).
-  await page.route(/googleapis\.com\/drive\/v3\/files/, (route) => {
-    const u = new URL(route.request().url());
-    const F = 'application/vnd.google-apps.folder';
-    if (/\/files\/[^/]+$/.test(u.pathname)) return route.fulfill({ json: { id: 'ROOT', name: 'Album', mimeType: F } });
-    const parent = /'([^']+)'/.exec(u.searchParams.get('q'))[1];
-    const files = parent === 'ROOTFOLDERID123' ? [
-      { id: 'A', name: '01 Early years', mimeType: F },
-      { id: 'B', name: '02 Keepsakes', mimeType: F },
-    ] : [1, 2, 3, 4].map((i) => ({ id: `${parent}${i}`, name: `19${40 + i} - Photo ${i}.jpg`, mimeType: 'image/jpeg' }));
-    return route.fulfill({ json: { files } });
-  });
-  await page.route(/(lh3\.googleusercontent|drive\.google)\.com/, (route) => route.fulfill({
-    contentType: 'image/svg+xml',
-    body: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><rect width="48" height="48" fill="#b9a58a"/></svg>`,
-  }));
-  await page.click('#driveFold summary');
-  await page.fill('#apiKey', 'AIzaTEST');
-  await page.fill('#folder', 'https://drive.google.com/drive/folders/ROOTFOLDERID123?usp=sharing');
-  await page.click('#driveForm button[type=submit]');
-  await page.waitForSelector('.adm-snippet');
-  ok(/Found 2 chapters and 8 photos/.test(await page.textContent('#driveOut')), `admin (${scheme}): drive check summarizes`);
-  ok((await page.textContent('.adm-snippet')).includes("folderId: 'ROOTFOLDERID123'"), `admin (${scheme}): config snippet`);
-  await page.locator('#driveFold').scrollIntoViewIfNeeded();
-  await page.screenshot({ path: `${SHOTS}admin-drive-${scheme}.png`, animations: 'disabled' });
+  // Shared settings and Drive verification are covered by test-settings-e2e.mjs.
   await c.close();
 }
 
@@ -200,6 +182,20 @@ for (const scheme of ['light', 'dark']) {
   await c.close();
 }
 
-await browser.close();
+// 5. The keeper can also paste the admin key into the album gate.
+{
+  const c = await ctx();
+  const page = await c.newPage(); watch(page);
+  await page.goto(GATE_URL);
+  await page.fill('#gate-code', ADMIN_KEY);
+  await page.click('.gate-btn');
+  await page.waitForSelector('#welcome');
+  ok((await page.evaluate(() => window.__gate)).isAdmin === true, 'keeper admin key accepted by the album gate');
+  await c.close();
+}
+} finally {
+  await browser.close();
+}
+
 assert.deepEqual(errors, [], `page errors: ${errors.join('\n')}`);
 console.log(`ok — ${checks} checks passed, no page errors`);

@@ -5,6 +5,7 @@ import { createRequire } from 'node:module';
 import { webcrypto } from 'node:crypto';
 import { readFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { sampleSettingsDocument, installConfigFixture } from './settings-test-fixture.mjs';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const base = (process.env.ALBUM_TEST_URL || 'http://127.0.0.1:8765/memories/').replace(/\/?$/, '/');
@@ -43,12 +44,7 @@ try {
     const page=await context.newPage();
     const errors=[];
     page.on('pageerror',error=>errors.push(error.message));
-    await context.route('**/memories/js/config.js', async route=>{
-      const response=await route.fetch();
-      const source=await response.text();
-      assert.match(source,/publicKey:\s*'[^']*'/);
-      await route.fulfill({response,body:source.replace(/publicKey:\s*'[^']*'/,`publicKey: '${publicKey}'`)});
-    });
+    await installConfigFixture(context, publicKey, () => sampleSettingsDocument());
     const published={version:1,photos:{'june-baby-1925':{tags:['QA-only-object'],people:['QA Person']}}};
     await context.route('**/memories/data/tags.json',route=>route.fulfill({json:published}));
     try {

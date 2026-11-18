@@ -1,9 +1,9 @@
 // sw.js — keeps the album opening even on a weak connection.
 // App files: network first, cached copy if offline. Photos: cache first
 // (they never change once scanned), including Google Drive images.
-const VERSION = 'memories-v2-tags';
+const VERSION = 'memories-v3-settings';
 const CORE = ['./', './index.html', './css/skins.css', './css/app.css', './css/gate.css', './js/app.js', './js/config.js',
-  './js/library.js', './js/metadata.js', './data/tags.json', './js/skins.js', './js/zip.js', './js/gate.js', './js/sources/manifest.js', './js/sources/drive.js',
+  './js/library.js', './js/metadata.js', './js/settings.js', './data/settings.json', './data/tags.json', './js/skins.js', './js/zip.js', './js/gate.js', './js/sources/manifest.js', './js/sources/drive.js',
   './vendor/polecat-shell/icons.js', './vendor/polecat-shell/access.js', './vendor/polecat-shell/fonts.css', './icon.svg'];
 const PHOTOS = 'memories-photos-v1';
 

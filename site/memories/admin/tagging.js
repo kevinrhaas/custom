@@ -2,12 +2,14 @@ import { CONFIG } from '../js/config.js';
 import { loadLibrary } from '../js/library.js';
 import { uniqueLabels, validateMetadata } from '../js/metadata.js';
 import { reconcileApproved } from './tagging-state.js';
+import { publisher } from './publishing.js';
 
 const ROOT = new URL('../', import.meta.url);
 const MAX_IMPORT = 5 * 1024 * 1024;
 const empty = () => ({ version: 1, photos: Object.create(null) });
 const copy = (value) => ({ version: 1, photos: Object.assign(Object.create(null), JSON.parse(JSON.stringify(value.photos))) });
 const count = (value) => Object.keys(value.photos).length;
+const sameMetadata = (a, b) => JSON.stringify(Object.entries(a.photos).sort().map(([id, value]) => [id, value.tags || [], value.people || [], Object.hasOwn(value, 'caption') ? value.caption : null])) === JSON.stringify(Object.entries(b.photos).sort().map(([id, value]) => [id, value.tags || [], value.people || [], Object.hasOwn(value, 'caption') ? value.caption : null]));
 
 // The only published artifact is tags.json. Drafts, image files and face
 // descriptors never enter it. Importing a suggestion cannot approve it.
@@ -18,7 +20,7 @@ export async function mountTagging(container) {
   const storageKey = `${CONFIG.access?.prefix || 'memories'}.tagging.v1.${CONFIG.source === 'drive' ? CONFIG.drive?.folderId : 'manifest'}`;
   container.innerHTML = `
     <p>Help the family find a horse, a place, or someone they love. Review each photo before saving its additions.</p>
-    <p class="adm-muted adm-small">Drafts and approvals are saved on this browser. Nothing is sent to the album until the approved file is published.</p>
+    <p class="adm-muted adm-small">Drafts and approvals are kept on this browser. Use Save approved tags when you are ready to share approved additions with the family.</p>
     <p class="adm-muted" data-tag-status role="status" aria-live="polite">Loading the album…</p>
     <p class="adm-error" data-tag-storage-warning role="alert"></p>
     <div data-tag-controls hidden>
@@ -66,8 +68,9 @@ export async function mountTagging(container) {
       <div class="tag-export">
         <h3>Save the approved additions</h3>
         <p data-tag-count></p>
-        <button class="adm-btn adm-primary" type="button" data-tag-export>Download approved tags.json</button>
-        <p class="adm-small adm-muted">Give this file to the person maintaining the album. Replace <code>site/memories/data/tags.json</code> with it and publish the site. Draft suggestions are excluded.</p>
+        <button class="adm-btn adm-primary" type="button" data-tag-save>Save approved tags</button>
+        <p class="adm-small adm-muted">Connect publishing in Album settings, then save here. Approved tags are saved for the whole album and publication starts automatically. Draft suggestions stay on this browser.</p>
+        <button class="adm-btn" type="button" data-tag-export>Download approved tags.json backup</button>
         <button class="adm-btn adm-quiet" type="button" data-tag-clear>Clear tagging data on this browser</button>
       </div>
     </div>`;
@@ -80,6 +83,9 @@ export async function mountTagging(container) {
   let approved = empty();
   let drafts = empty();
   let published = empty();
+  let deployed = empty();
+  let pendingPublication = null;
+  let publishing = false;
   let savedWarning = '';
   const conflicts = new Set();
   let photos;
@@ -94,6 +100,7 @@ export async function mountTagging(container) {
       if (response.ok) published = copy(validateMetadata(await response.json()));
       else if (response.status !== 404) throw new Error('The approved tags could not be loaded. Try again before making changes.');
     }
+    deployed = copy(published);
     approved = copy(published);
     let saved;
     try { saved = localStorage.getItem(storageKey); } catch {}
@@ -101,7 +108,14 @@ export async function mountTagging(container) {
       try {
         const state = JSON.parse(saved);
         drafts = copy(validateMetadata(state.drafts));
-        const reconciled = reconcileApproved(published, validateMetadata(state.approved), state.baseline ? validateMetadata(state.baseline) : empty());
+        if (state.pendingPublication) {
+          const pending = { document: validateMetadata(state.pendingPublication.document), baseline: validateMetadata(state.pendingPublication.baseline) };
+          if (!sameMetadata(published, pending.document)) pendingPublication = pending;
+        }
+        // A repository save may not have reached Pages yet. Preserve it as a
+        // local change from the deployed baseline until the published copy catches up.
+        const baseline = pendingPublication?.baseline || (state.baseline ? validateMetadata(state.baseline) : empty());
+        const reconciled = reconcileApproved(published, validateMetadata(state.approved), baseline);
         approved = reconciled.approved;
         const knownIds = new Set(photos.map((photo) => String(photo.id)));
         for (const id of state.conflicts || []) if (knownIds.has(id)) conflicts.add(id);
@@ -127,7 +141,7 @@ export async function mountTagging(container) {
   const byId = new Map(photos.map((photo) => [String(photo.id), photo]));
   const save = () => {
     try {
-      localStorage.setItem(storageKey, JSON.stringify({ approved, drafts, baseline: published, conflicts: [...conflicts] }));
+      localStorage.setItem(storageKey, JSON.stringify({ approved, drafts, baseline: published, pendingPublication, conflicts: [...conflicts] }));
       $('[data-tag-storage-warning]').textContent = '';
     } catch {
       $('[data-tag-storage-warning]').textContent = 'This browser could not save your work. Download approved tags.json before leaving.';
@@ -135,8 +149,9 @@ export async function mountTagging(container) {
   };
   function updateCounts() {
     $('[data-tag-count]').textContent = `${count(approved)} photos have approved additions. ${count(drafts)} photos have drafts awaiting review.`;
-    if (conflicts.size) $('[data-tag-count]').textContent += ` ${conflicts.size} changed published photos need a decision before download.`;
-    $('[data-tag-export]').disabled = conflicts.size > 0;
+    if (conflicts.size) $('[data-tag-count]').textContent += ` ${conflicts.size} changed saved photos need a decision before saving.`;
+    $('[data-tag-export]').disabled = publishing || conflicts.size > 0;
+    $('[data-tag-save]').disabled = publishing || conflicts.size > 0;
   }
   function renderOptions() {
     const query = $('#tagFilter').value.trim().toLocaleLowerCase();
@@ -176,7 +191,7 @@ export async function mountTagging(container) {
     updateReviewState();
   }
   function updateReviewState() {
-    $('[data-tag-review-state]').textContent = conflicts.has(currentId) ? 'Published additions changed. Approve your draft to replace them, discard the draft to keep the published additions, or remove additions.' : drafts.photos[currentId] ? 'Draft · review and approve when ready.' : approved.photos[currentId] ? 'Approved · included in your next download.' : 'No additions approved yet.';
+    $('[data-tag-review-state]').textContent = conflicts.has(currentId) ? 'Published additions changed. Approve your draft to replace them, discard the draft to keep the published additions, or remove additions.' : drafts.photos[currentId] ? 'Draft · review and approve when ready.' : approved.photos[currentId] ? 'Approved · ready to save to the album.' : 'No additions approved yet.';
     updateCounts();
   }
   function readFields() {
@@ -199,10 +214,11 @@ export async function mountTagging(container) {
   $('#tagFilter').addEventListener('input', renderOptions);
   $('[data-tag-form]').addEventListener('submit', (event) => {
     event.preventDefault();
+    if (publishing) return;
     approved.photos[currentId] = readFields();
     delete drafts.photos[currentId];
     conflicts.delete(currentId);
-    save(); updateReviewState(); status('Approved for your next download. The live album has not changed yet.');
+    save(); updateReviewState(); status('Approved. Use Save approved tags to share it with the family.');
   });
   $('[data-tag-next]').addEventListener('click', () => {
     const select = $('#tagPhoto');
@@ -213,9 +229,10 @@ export async function mountTagging(container) {
     delete drafts.photos[currentId]; conflicts.delete(currentId); save(); renderPhoto(); status('Draft discarded. Approved additions are kept.');
   });
   $('[data-tag-remove]').addEventListener('click', () => {
+    if (publishing) return;
     delete approved.photos[currentId]; delete drafts.photos[currentId];
     conflicts.delete(currentId);
-    save(); renderPhoto(); status('Removed from your next download. Original photo descriptions are kept.');
+    save(); renderPhoto(); status('Removed from your next save. Original photo descriptions are kept.');
   });
   async function importFile(input, isApproved) {
     const file = input.files?.[0];
@@ -224,6 +241,7 @@ export async function mountTagging(container) {
       if (file.size > MAX_IMPORT) throw new Error('Choose a JSON file smaller than 5 MB.');
       const data = validateMetadata(JSON.parse(await file.text()));
       if (disposed) return;
+      if (publishing) throw new Error('Finish saving, then select the import file again.');
       let added = 0; let skipped = 0;
       for (const [id, item] of Object.entries(data.photos)) {
         if (!byId.has(id)) { skipped++; continue; }
@@ -265,43 +283,80 @@ export async function mountTagging(container) {
     downloadJSON({ photos: mapped }, 'photo-list.json');
     status(`Downloaded a list of ${mapped.length} photos.${candidates.length !== photos.length ? ' Files without a JPG or PNG original name were skipped.' : ''}${duplicates ? ` ${duplicates} photos with duplicate file names were skipped; give each original a unique name first.` : ''} Put it beside the matching originals before running the tagging tool.`);
   });
-  $('[data-tag-export]').addEventListener('click', async () => {
-    if (conflicts.size) { status('Resolve the changed published photos before downloading.', true); return; }
-    $('[data-tag-export]').disabled = true;
+  function reconcileSaved(latest) {
+    const reconciled = reconcileApproved(latest, approved, pendingPublication?.document || published);
+    published = copy(latest);
+    approved = reconciled.approved;
+    pendingPublication = sameMetadata(deployed, latest) ? null : { document: copy(latest), baseline: copy(deployed) };
+    for (const conflict of reconciled.conflicts) {
+      if (!byId.has(conflict.id)) continue;
+      conflicts.add(conflict.id);
+      if (!drafts.photos[conflict.id]) drafts.photos[conflict.id] = conflict.local || {};
+    }
+    save(); renderOptions();
+  }
+  $('[data-tag-save]').addEventListener('click', async () => {
+    if (publishing || conflicts.size) return;
+    if (!publisher.isConnected()) {
+      status('Connect publishing in Album settings before saving approved tags.', true);
+      document.querySelector('#settingsCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    publishing = true;
+    const controls = [...container.querySelectorAll('input, textarea, select, button')].map(element => [element, element.disabled]);
+    controls.forEach(([element]) => { element.disabled = true; });
+    updateCounts();
     try {
-      if (CONFIG.metadataUrl !== false && CONFIG.metadataUrl !== null) {
-        status('Checking for newly published additions before downloading…');
-        const response = await fetch(new URL(CONFIG.metadataUrl || 'data/tags.json', ROOT), { cache: 'no-store' });
-        if (!response.ok && response.status !== 404) throw new Error('The latest published tags could not be checked. Try the download again when the connection returns.');
-        const latest = response.ok ? copy(validateMetadata(await response.json())) : empty();
-        if (disposed) return;
-        const reconciled = reconcileApproved(latest, approved, published);
-        published = latest;
-        approved = reconciled.approved;
-        for (const conflict of reconciled.conflicts) {
-          if (!byId.has(conflict.id)) continue;
-          conflicts.add(conflict.id);
-          if (!drafts.photos[conflict.id]) drafts.photos[conflict.id] = conflict.local || {};
-        }
-        save(); renderOptions();
-        if (conflicts.size) { status('Published tags changed. Review the marked photos before downloading; discard a draft to keep the latest published additions.', true); return; }
+      status('Checking the latest saved tags…');
+      const current = await publisher.readMetadata();
+      if (disposed) return;
+      reconcileSaved(copy(validateMetadata(current.document)));
+      if (conflicts.size) {
+        status('Saved tags changed. Review the marked photos before saving; discard a draft to keep the latest saved additions.', true);
+        return;
       }
-      downloadJSON(approved, 'tags.json');
-      status('Downloaded approved tags.json. Publish this file to update the album.');
+      status('Saving approved tags…');
+      const result = await publisher.saveMetadata(validateMetadata(approved), current.sha);
+      if (disposed) return;
+      approved = copy(validateMetadata(result.document));
+      published = copy(approved);
+      pendingPublication = sameMetadata(deployed, approved) ? null : { document: copy(approved), baseline: copy(deployed) };
+      save(); renderPhoto();
+      status('Approved tags saved for the whole album. Publication starts automatically and can take a few minutes. Drafts were not included.');
     } catch (error) {
-      status(`Could not download safely: ${error.message}`, true);
+      if (disposed) return;
+      if (error.code === 'conflict' && publisher.isConnected()) {
+        try {
+          const current = await publisher.readMetadata();
+          if (disposed) return;
+          reconcileSaved(copy(validateMetadata(current.document)));
+        } catch { /* Keep local work when a fresh read is unavailable. */ }
+      }
+      status(conflicts.size ? 'Someone changed the saved tags. Review the marked photos before saving again.' : `Tags were not confirmed saved: ${error.message}`, true);
     } finally {
-      if (!disposed) updateCounts();
+      if (!disposed) {
+        publishing = false;
+        controls.forEach(([element, disabled]) => { if (element.isConnected) element.disabled = disabled; });
+        updateCounts();
+      }
     }
   });
+  $('[data-tag-export]').addEventListener('click', () => {
+    if (publishing || conflicts.size) { status('Resolve the changed saved photos before downloading a backup.', true); return; }
+    downloadJSON(validateMetadata(approved), 'tags.json');
+    status('Downloaded a backup of approved tags. Use Save approved tags to update the album.');
+  });
   $('[data-tag-clear]').addEventListener('click', () => {
+    if (publishing) return;
     if (!confirm('Clear drafts and unpublished approvals on this browser? Download your approved file first if you want to keep it.')) return;
-    approved = copy(published); drafts = empty();
+    approved = copy(pendingPublication?.document || published); drafts = empty();
     conflicts.clear();
     try { localStorage.removeItem(storageKey); } catch {}
+    // Keep confirmed saves while Pages is still publishing them.
+    if (pendingPublication) save();
     faces?.destroy?.(); faces = undefined;
     $('[data-tag-face-tool]').replaceChildren(); $('[data-tag-faces]').open = false;
-    renderPhoto(); status('Local tagging data cleared. Published additions are still available.');
+    renderPhoto(); status('Local drafts cleared. Saved additions are still available.');
   });
   $('[data-tag-faces]').addEventListener('toggle', async () => {
     if (!$('[data-tag-faces]').open || faces) return;

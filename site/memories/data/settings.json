@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "revision": "ce45a1e38",
+  "settings": {
+    "title": "Our Family Album",
+    "honorees": [
+      {
+        "name": "Walter Hale",
+        "years": "1921 – 2019"
+      },
+      {
+        "name": "June Hale",
+        "years": "1924 – 2011"
+      }
+    ],
+    "dedication": "For the grandkids, nieces and nephews: the boxes from the closet, kept safe here so everyone can see them, anytime.",
+    "keeper": "Lauren",
+    "helper": "Kevin",
+    "people": [
+      "Walter",
+      "June",
+      "Margaret",
+      "Robert",
+      "Eleanor",
+      "Grandma Rose",
+      "Uncle Frank",
+      "Peggy",
+      "Danny"
+    ],
+    "sample": false,
+    "source": "drive",
+    "drive": {
+      "apiKey": "AIzaSyASZFkUdwLnHwtjxm3O-VcXybTVZIOEyY8",
+      "folderId": "16sNwmbN-tsJHJ6jCAamgFCG3MKpdZ06E"
+    },
+    "defaultSkin": "heirloom"
+  }
+}
