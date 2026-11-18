@@ -39,10 +39,10 @@ export function settingsFromConfig(config) {
 /** Strictly validate known fields and discard every unknown field. */
 export function validateSettings(value) {
   if (!record(value)) throw new Error('Album settings must be an object.');
-  if (!Array.isArray(value.honorees) || value.honorees.length < 1 || value.honorees.length > 8) throw new Error('Add between one and eight people the album remembers.');
+  if (!Array.isArray(value.honorees) || value.honorees.length < 1 || value.honorees.length > 8) throw new Error('Add between one and eight names for the album.');
   const honorees = value.honorees.map(person => {
     if (!record(person)) throw new Error('Each person needs a name and years.');
-    return { name: text(person.name, 'Name', 120), years: text(person.years, 'Years', 100, { optional: true }) };
+    return { name: text(person.name, 'Name', 120), years: text(person.years, 'Dates or note', 100, { optional: true }) };
   });
   if (!Array.isArray(value.people) || value.people.length > 300) throw new Error('Names to find in captions must be a list of at most 300 names.');
   const seen = new Set();
@@ -62,7 +62,7 @@ export function validateSettings(value) {
   return {
     title: text(value.title, 'Album title', 120),
     honorees,
-    dedication: text(value.dedication, 'Dedication', 4000, { optional: true, multiline: true }),
+    dedication: text(value.dedication, 'Welcome message', 4000, { optional: true, multiline: true }),
     keeper: text(value.keeper, 'Album keeper', 120),
     helper: text(value.helper, 'Site helper', 120),
     people,

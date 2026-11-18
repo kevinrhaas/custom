@@ -1,31 +1,24 @@
 {
   "version": 1,
-  "revision": "ce45a1e38",
+  "revision": "kevin-lee-welcome-2026-11-18",
   "settings": {
-    "title": "Our Family Album",
+    "title": "Our Life in Pictures",
     "honorees": [
       {
-        "name": "Walter Hale",
-        "years": "1921 – 2019"
+        "name": "Kevin",
+        "years": ""
       },
       {
-        "name": "June Hale",
-        "years": "1924 – 2011"
+        "name": "Lee",
+        "years": ""
       }
     ],
-    "dedication": "For the grandkids, nieces and nephews: the boxes from the closet, kept safe here so everyone can see them, anytime.",
+    "dedication": "The places we've been, the people we love, and the moments we want to keep.",
     "keeper": "Lauren",
     "helper": "Kevin",
     "people": [
-      "Walter",
-      "June",
-      "Margaret",
-      "Robert",
-      "Eleanor",
-      "Grandma Rose",
-      "Uncle Frank",
-      "Peggy",
-      "Danny"
+      "Kevin",
+      "Lee"
     ],
     "sample": false,
     "source": "drive",

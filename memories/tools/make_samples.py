@@ -2935,7 +2935,7 @@ CHAPTERS = [
     dict(id='keepsakes', title='Keepsakes', cover='service-plaque-1972',
          blurb='The things they tucked away in the cedar chest, photographed so everyone can see them up close.'),
     dict(id='later', title='The later years', cover='anniversary-50th-1998',
-         blurb='Anniversaries, grandkids, and the long, happy porch afternoons of a life well shared.'),
+         blurb='Anniversaries, good company, and long, happy afternoons on the porch.'),
 ]
 
 

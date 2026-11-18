@@ -37,7 +37,7 @@ memories/               (outside site/, not published)
 ## Edit and save in the admin page
 
 Open `/memories/admin/`, unlock with the existing admin key, then use **Album
-settings**. Names, years, dedication, keeper, searchable names, the Drive folder
+settings**. Names, optional dates, welcome message, keeper, searchable names, the Drive folder
 and restricted browser API key, photo source, and starting skin are editable
 there. Press **Save album settings**. No configuration file editing or download is
 required.

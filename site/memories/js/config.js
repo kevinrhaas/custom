@@ -5,15 +5,15 @@ import { loadSettings, settingsFromConfig } from './settings.js';
 
 const BOOTSTRAP_CONFIG = {
   // Shown on the welcome page and the browser tab.
-  title: 'Our Family Album',
-  // The people this album remembers. Keep it to the names the family uses.
+  title: 'Our Life in Pictures',
+  // Names on the album. Keep it to the names you use.
   honorees: [
-    { name: 'Walter Hale', years: '1921 – 2019' },
-    { name: 'June Hale', years: '1924 – 2011' },
+    { name: 'Kevin', years: '' },
+    { name: 'Lee', years: '' },
   ],
   // One or two sentences. Shown under the names on the welcome page.
   dedication:
-    'For the grandkids, nieces and nephews: the boxes from the closet, kept safe here so everyone can see them, anytime.',
+    "The places we've been, the people we love, and the moments we want to keep.",
   // Who keeps the album. Used in "Ask Lauren for your link" and "Made by Lauren".
   keeper: 'Lauren',
   // Who maintains the site (named on the admin page for help).
@@ -21,7 +21,7 @@ const BOOTSTRAP_CONFIG = {
 
   // Names that appear in captions. The app finds them in photo titles and
   // captions automatically, so nobody has to tag anything by hand.
-  people: ['Walter', 'June', 'Margaret', 'Robert', 'Eleanor', 'Grandma Rose', 'Uncle Frank', 'Peggy', 'Danny'],
+  people: ['Kevin', 'Lee'],
 
   // true while the sample photos are showing. Adds a small "Sample photos" note.
   sample: false,

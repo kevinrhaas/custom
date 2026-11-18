@@ -46,7 +46,7 @@ export async function mountTagging(container) {
           <label class="adm-label" for="tagLabels">Additional tags</label>
           <input class="adm-field" id="tagLabels" type="text" placeholder="horse, county fair, Ferris wheel">
           <label class="adm-label" for="tagPeople">Additional people</label>
-          <input class="adm-field" id="tagPeople" type="text" placeholder="June, Uncle Frank">
+          <input class="adm-field" id="tagPeople" type="text" placeholder="Kevin, Lee">
           <p class="adm-small adm-muted">Separate tags and names with commas. These add to the names and tags already in the photo’s description.</p>
           <label class="tag-check"><input id="tagReplaceCaption" type="checkbox"> Use a reviewed caption instead of the original</label>
           <p class="adm-small adm-muted">Replacing a caption can change which names search finds. Names from the original caption are added to People for you to check; remove any that are wrong.</p>

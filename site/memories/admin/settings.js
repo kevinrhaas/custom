@@ -16,7 +16,7 @@ export function mountSettings(container) {
   let rowNumber = 0;
   let checkedDrive = '';
   container.innerHTML = `
-    <p>Change the family names, dedication, photo folder, and starting look here. Saving updates the album for everyone after it finishes publishing.</p>
+    <p>Change the names, welcome message, photo folder, and starting look here. Saving updates the album for everyone after it finishes publishing.</p>
     <div class="settings-publishing">
       <h3>Publishing access</h3>
       <p class="adm-small adm-muted">Your admin key opens these tools. To save shared changes, connect publishing for this session. The publishing token is forgotten when you lock this device or close this page.</p>
@@ -41,10 +41,10 @@ export function mountSettings(container) {
         <legend class="sr">Album settings</legend>
         <label class="adm-label" for="albumTitleInput">Album title</label>
         <input class="adm-field" id="albumTitleInput" type="text" maxlength="120" required>
-        <h3 class="settings-heading">People the album remembers</h3>
+        <h3 class="settings-heading">Names on the album</h3>
         <div data-settings-honorees></div>
         <button class="adm-btn" data-settings-add-person type="button">Add a person</button>
-        <label class="adm-label" for="albumDedicationInput">Dedication</label>
+        <label class="adm-label" for="albumDedicationInput">Welcome message</label>
         <textarea class="adm-field" id="albumDedicationInput" rows="4" maxlength="4000"></textarea>
         <div class="settings-pair">
           <div><label class="adm-label" for="albumKeeperInput">Album keeper</label><input class="adm-field" id="albumKeeperInput" type="text" maxlength="120" required></div>
@@ -114,7 +114,7 @@ export function mountSettings(container) {
       input.dataset[field === 'name' ? 'honoreeName' : 'honoreeYears'] = '';
       wrap.append(label, input); row.append(wrap);
     };
-    addField('Name', 'name', person.name, 120); addField('Years (optional)', 'years', person.years, 100);
+    addField('Name', 'name', person.name, 120); addField('Dates or a short note (optional)', 'years', person.years, 100);
     const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'adm-btn adm-quiet'; remove.textContent = 'Remove person';
     remove.addEventListener('click', () => { row.remove(); updatePeopleButtons(); });
     row.append(remove); $('[data-settings-honorees]').append(row); updatePeopleButtons();

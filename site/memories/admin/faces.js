@@ -147,7 +147,7 @@ export function mountFaceTool(container, { photos = [], onApprove = () => {} } =
         const section = element('fieldset', '', 'face-group');
         section.append(element('legend', `Suggested group ${index + 1} · ${group.faces.length} face${group.faces.length === 1 ? '' : 's'}`));
         const nameLabel = element('label', 'Name for this group');
-        const name = document.createElement('input'); name.type = 'text'; name.maxLength = 100; name.placeholder = 'For example, June';
+        const name = document.createElement('input'); name.type = 'text'; name.maxLength = 100; name.placeholder = 'For example, Kevin';
         name.addEventListener('input', () => { group.name = name.value; }); nameLabel.append(name); section.append(nameLabel);
         const cards = element('div', '', 'face-cards');
         group.faces.forEach(face => {

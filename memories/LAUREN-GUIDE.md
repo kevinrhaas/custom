@@ -6,7 +6,7 @@ Photos and descriptions come from the shared Google Drive folder selected in Alb
 
 Unlock **custom.polecat.live/memories/admin/** and open **Album settings**. Connect
 publishing with the separate publishing token Kevin provides for editing, then
-enter the family names, dedication, Drive folder, or starting look and press
+enter the family names, welcome message, Drive folder, or starting look and press
 **Save album settings**. Nothing needs to be copied into a file. The page saves
 the shared settings and publishes them; **Check published version** tells you
 when they are live. Keep the token in your password manager and reconnect when

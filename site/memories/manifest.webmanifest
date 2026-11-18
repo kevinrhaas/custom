@@ -1,15 +1,28 @@
 {
-  "name": "Our Family Album",
-  "short_name": "Family Album",
-  "description": "Photos, letters and keepsakes, kept safe for the whole family.",
+  "name": "Our Life in Pictures",
+  "short_name": "Kevin & Lee",
+  "description": "The places, people, and moments that make up a life together.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f3ece0",
   "theme_color": "#f3ece0",
   "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

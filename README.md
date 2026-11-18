@@ -35,7 +35,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
 | [stay](stay/) | Stay Finder — 168 houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast and inland ranch country for Dec 19–27, 2026, ranked for a party of nine wanting five or six rooms and three kings, and mapped on a coastline built from US Census TIGERweb. Builds `site/stay/` |
 | [zion-bryce](zion-bryce/) | Zion + Bryce Field Guide — a nine-day, offline-ready September 2026 canyon-loop planner with researched daily run sheets, live forecast-assisted Zion day swaps, time-zone cues, trail comparisons, checklists, calendar export, and private on-device notes. Builds `site/zion-bryce/` |
-| [memories](memories/) | Family Album — an invite-only memorial photo album over a shared Google Drive folder: chapters, decades, search, slideshow, save-a-copy, six skins, grandparent-friendly type and targets. Lives at `site/memories/`; admin page mints invite links |
+| [memories](memories/) | Family Album — an invite-only album for Kevin and Lee over a shared Google Drive folder: chapters, decades, search, slideshow, save-a-copy, six skins, grandparent-friendly type and targets. Lives at `site/memories/`; admin page mints invite links |
 | [wau-bun](site/wau-bun/) | Juliette Kinzie's 1856 frontier memoir as an interactive telling — a character-presence chart of every person against every scene, a scene-by-scene reader carrying four readings of every scene — summary, modernized text, a modern horror-suspense retelling, and the original 1856 text — and the full cast. All three parts are complete — 158 scenes across chapters I–XXXVIII, 225 people |
 
 ## File Formats
