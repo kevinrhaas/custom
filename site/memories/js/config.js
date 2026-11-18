@@ -27,14 +27,14 @@ export const CONFIG = {
   people: ['Walter', 'June', 'Margaret', 'Robert', 'Eleanor', 'Grandma Rose', 'Uncle Frank', 'Peggy', 'Danny'],
 
   // true while the sample photos are showing. Adds a small "Sample photos" note.
-  sample: true,
+  sample: false,
 
   // ---- where the photos come from ---------------------------------------
   // 'manifest' → data/library.json in this folder (the sample set).
   // 'drive'    → a Google Drive folder shared "Anyone with the link can view".
   //              Subfolders become chapters; the file's Drive description is the
   //              caption; a year at the start of the file name dates the photo.
-  source: 'manifest',
+  source: 'drive',
   manifestUrl: 'data/library.json',
   // Approved tags, names and caption edits exported from the admin review tool.
   // Set false to use only the photo source's descriptions. Never put drafts here.
@@ -42,9 +42,9 @@ export const CONFIG = {
   drive: {
     // A Google API key restricted to the Drive API and to this site's address
     // (HTTP referrer custom.polecat.live/*). Safe to publish once restricted.
-    apiKey: '',
+    apiKey: 'AIzaSyASZFkUdwLnHwtjxm3O-VcXybTVZIOEyY8',
     // The ID at the end of the folder's share link: drive.google.com/drive/folders/<ID>
-    folderId: '',
+    folderId: '16sNwmbN-tsJHJ6jCAamgFCG3MKpdZ06E',
   },
 
   // ---- invite links -------------------------------------------------------
