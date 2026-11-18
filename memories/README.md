@@ -12,8 +12,9 @@ House rules: static-first, no build step, no frameworks. Plain HTML, ES modules 
 site/memories/
   index.html            the album (app shell)
   js/config.js          immutable invite/bootstrap settings and runtime configuration
-  js/settings.js        public settings validation and offline-aware loading
-  data/settings.json    shared settings saved automatically by the admin page
+  js/settings.js        validated device settings and offline-aware defaults
+  data/settings.json    shared defaults for browsers without their own settings
+  js/local-metadata.js  approved photo labels saved on this device
   js/app.js             the UI
   js/library.js         loads the photos and normalizes them (the Library contract lives here)
   js/sources/manifest.js  source: data/library.json (the sample set)
@@ -37,48 +38,36 @@ memories/               (outside site/, not published)
 ## Edit and save in the admin page
 
 Open `/memories/admin/`, unlock with the existing admin key, then use **Album
-settings**. Names, optional dates, welcome message, keeper, searchable names, the Drive folder
-and restricted browser API key, photo source, and starting skin are editable
-there. Press **Save album settings**. No configuration file editing or download is
-required.
+settings**. Change the names, welcome message, photos, or look and press **Save**.
+Connection details and less-used choices are folded away. No GitHub token,
+configuration file editing, or publishing step is needed.
 
-GitHub Pages serves static files, so saving uses the existing repository as shared
-storage. An owner sets up publishing access once:
+Choices, including the Drive connection key, are saved in this browser's
+localStorage. They take effect on this device and persist across visits; other
+browsers keep the shared defaults. Clearing website data removes local choices.
+The form reports a failed save if browser storage is blocked or full.
 
-1. Create a **fine-grained GitHub personal access token**, selecting only
-   `kevinrhaas/custom` and **Contents: Read and write**. Choose an expiration and
-   keep the token in a password manager.
-2. In Album settings, paste that token into **Publishing token** and choose
-   **Connect publishing**. The current saved settings load before editing starts.
-3. Make changes and save. The page commits the settings and starts Pages
-   publication automatically. **Saved** means the shared repository accepted the
-   change; **Check published version** confirms when visitors can see it.
-
-The publishing token is separate from the invite admin key. It is held only in
-memory for the open page, cleared on lock/disconnect, and never included in saved
-settings, logs, or browser storage. Reconnect when opening a new editing session.
-The Google browser key is public and must be restricted as described below; AI
-provider keys must never be entered there.
-
-Saves use the current file revision to reject conflicting changes instead of
-overwriting another editor. Reload the saved settings when prompted. Visitors
-load the shared settings on opening/refreshing the album; a validated local cache
-helps returning visitors open it offline. Invite verification and the publishing
-destination stay in the bootstrap code and cannot be changed by public settings.
+A valid local override takes precedence over `data/settings.json`. Without one,
+the album loads that shared default, then its validated offline cache, then the
+bootstrap defaults. Invalid local data does not stop the album from opening and
+can be replaced by saving again in admin. Invite verification stays in bootstrap
+code and cannot be changed by the settings form. The browser Drive key must be restricted as
+described below; AI provider keys are kept separately by the local caption tool.
 
 ## Public settings and technical defaults
 
 | Field | What it does |
 |---|---|
 | `title` | Album name: welcome page, browser tab, gate. |
-| `honorees` | `[{ name, years }]`, the people the album remembers. |
+| `honorees` | `[{ name, years }]`, names on the album with optional dates or notes. |
 | `dedication` | One or two sentences under the names. |
 | `keeper` | Who hands out links ("Ask Lauren for your own link"). |
 | `people` | Names to spot in titles and captions automatically. |
 | `sample` | `true` shows a small "Sample photos" note. Set to `false` for real photos. |
 | `source` | `'manifest'` (data/library.json) or `'drive'`. |
 | `manifestUrl` | Path to the manifest when `source: 'manifest'`. |
-| `metadataUrl` | Approved tags/people/caption sidecar, default `data/tags.json`; `false` or `null` disables it. |
+| `metadataUrl` | Default tags/people/caption sidecar, default `data/tags.json`; `false` or `null` disables the sidecar. |
+| `localMetadata` | Set to `false` when a tool needs source data without saved device labels. |
 | `drive.apiKey` | Browser API key, restricted (see below). |
 | `drive.folderId` | The ID from the folder's share link. A full share URL works too. |
 | `access.enabled` | Turns the invite gate on or off. |
@@ -123,8 +112,8 @@ Run the tests: `node memories/tools/test-drive-parse.mjs`
      `https://custom.polecat.live/*`. Use a separate development key with localhost referrers if local testing is needed.
    - *API restrictions:* **Restrict key** → only **Google Drive API**.
    - Save. Restrictions can take a few minutes to take effect.
-7. **Enter it:** unlock `/memories/admin/`, connect publishing, and select **Shared Google Drive folder** in **Album settings**. Enter the key and folder link. **Check the folder** lists the chapters and photo counts.
-8. **Save album settings.** A changed Drive folder/key must pass the check before saving. Publication starts automatically; use **Check published version**, then refresh the album. No file editing is needed.
+7. **Enter it:** unlock `/memories/admin/` and choose Google Drive photos in **Album settings**. Paste the folder link, then enter the key under **Connection details**. **Check the folder** can show its chapters and photo counts.
+8. **Save.** Reopen the album to use these settings on this device. No file editing or publishing is needed.
 
 A referrer-restricted, Drive-only key is designed to be public in browser code. It can only read files that are already shared publicly.
 
@@ -165,7 +154,7 @@ End-to-end test (needs Playwright, and the server above running from `site/`):
 CHROMIUM_PATH=/path/to/chromium node memories/tools/test-gate-e2e.mjs
 ```
 
-It creates an ephemeral key for the local browser fixture and mints tokens the same way `access.js` does. It checks the gate (no token, pasted link, raw code, bad and expired codes, admin key, and `?invite=` in the URL) and the admin page (unlock, make a link, list, turn off), then saves screenshots to `memories/tools/shots/`. No production admin key is needed. The settings suite covers shared publishing and Drive checks against mocked APIs.
+It creates an ephemeral key for the local browser fixture and mints tokens the same way `access.js` does. It checks the gate (no token, pasted link, raw code, bad and expired codes, admin key, and `?invite=` in the URL) and the admin page (unlock, make a link, list, turn off), then saves screenshots to `memories/tools/shots/`. No production admin key is needed. The settings suite covers device persistence, browser isolation, storage failures, and Drive checks against mocked APIs.
 
 ## Known caveats
 
@@ -195,14 +184,20 @@ People: June Hale; Walter Hale
 repeated lines. These lines become searchable metadata rather than appearing
 in the caption. Names found in the title/caption still work too.
 
-### Review before publishing
+### Review before saving
 
 Unlock `/memories/admin/` and open **Tag photos**. Edit a photo's labels and
 caption, import AI drafts, or use local face grouping. Suggestions remain drafts
-until approved. With publishing connected, press **Save approved tags** to save
-shared metadata and start publication automatically. Only approved text is saved;
-drafts stay local. Downloading an approved backup is optional. The save checks
-for newer shared edits and asks you to resolve conflicts before publishing.
+until approved. Press **Save approved tags** to make approved additions searchable
+on this device and browser. Drafts stay in the review tool. Downloading an approved
+backup is optional. The save checks for changes from another open tab and asks you
+to resolve conflicting edits. Drive descriptions remain the way to share labels
+with all visitors.
+
+Saved device labels are separate from draft work and are scoped to the photo
+source and Drive folder. They replace the default sidecar's additions for that
+source. Only approved text is stored in this search layer; no images or face
+vectors are included. The loader can skip it with `localMetadata: false`.
 
 The public metadata format is:
 
@@ -244,7 +239,7 @@ The admin tool uses locally selected image files and vendored models. Match
 files to their album photos, scan, review the suggested groups, and supply the
 names yourself. Correct individual mismatches before accepting suggestions.
 Selected image bytes and face embeddings are processed locally in the browser;
-the AI caption command is a separate, explicitly run operation. The published
+the AI caption command is a separate, explicitly run operation. The saved
 metadata contains only confirmed names associated with photo IDs.
 
 Face grouping is approximate, particularly for old, blurred, or profile photos.
@@ -262,7 +257,7 @@ node memories/tools/test-faces.mjs
 node memories/tools/test-tagging-state.mjs
 node --test memories/tools/test-ai-tagging.mjs
 node --test memories/tools/test-settings.mjs
-node --test memories/tools/test-publishing.mjs
+node --test memories/tools/test-local-metadata.mjs
 ```
 
 These also run in the scoped Family album tests GitHub Actions workflow. For
@@ -281,7 +276,7 @@ The face suite defaults to a sample illustration with no detectable face; set
 with a real photographic fixture. Neither face test uploads the selected image.
 
 The existing Drive connection is preserved. Family details and future Drive
-changes can now be saved from the admin form. Keep the original admin key and
-publishing token in a password manager and outside Git. Do not rotate the invite
-key just to run tests. Claude live calls remain optional and unconnected until
+changes can now be saved on each device from the admin form. Keep the original
+admin key in a password manager and outside Git. Do not rotate the invite key
+just to run tests. Claude live calls remain optional and unconnected until
 the maintainer supplies a local key.

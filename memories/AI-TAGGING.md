@@ -71,14 +71,15 @@ Store `*.drafts.json` outside `site/` and outside Git. Drafts can contain mistak
 captions and are not ready for visitors. Output files are created with owner-only
 permissions where the operating system supports them.
 
-## Review, approve and publish
+## Review, approve and save
 
 1. In the admin photo review tool, import the draft JSON file.
-2. Check the photo, edit its tags/caption and approve only what you want visitors to
+2. Check the photo, edit its tags/caption and approve only what you want the album to
    see. A faint scan may produce no useful tags; omission is safer than a guess.
-3. Connect publishing in Album settings, then choose **Save approved tags**.
-   The admin page saves the shared metadata and starts publication automatically.
-   Downloading a backup remains optional; no file editing is required.
+3. Choose **Save approved tags**. The album can now search those additions on
+   this device and browser. No publishing token or file editing is needed.
+   Download a backup if you want to keep another copy. To share labels with
+   everyone, add them to the photos' Drive descriptions.
 
 The draft format is:
 
@@ -112,7 +113,7 @@ relationships, sensitive traits, dates or places.
 Every completed draft is saved atomically before the next request. Re-run the same
 command after a failure: photos with matching image hash, model and prompt version
 are skipped. Changing a file or model refreshes its draft; it does not change the
-previously published tags. To deliberately re-draft an unchanged image, use a new
+previously saved tags. To deliberately re-draft an unchanged image, use a new
 output file or remove that photo's draft and provenance entries from a backup copy.
 
 The output retains completed entries from earlier runs, including photos omitted

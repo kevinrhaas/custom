@@ -4,13 +4,14 @@ Photos and descriptions come from the shared Google Drive folder selected in Alb
 
 ## Changing the album settings
 
-Unlock **custom.polecat.live/memories/admin/** and open **Album settings**. Connect
-publishing with the separate publishing token Kevin provides for editing, then
-enter the family names, welcome message, Drive folder, or starting look and press
-**Save album settings**. Nothing needs to be copied into a file. The page saves
-the shared settings and publishes them; **Check published version** tells you
-when they are live. Keep the token in your password manager and reconnect when
-starting a new editing session.
+Unlock **custom.polecat.live/memories/admin/** and open **Album settings**. Change
+the names, welcome message, photos, or look, then press **Save**. Your choices
+are remembered on this device and browser. Nothing needs to be copied into a
+file, and no extra sign-in is needed. Connection details and less-used choices
+are tucked away until you need them.
+
+Other devices keep the album's original settings. Clearing this website's saved
+data also clears your choices.
 
 ## Adding photos
 
@@ -77,9 +78,10 @@ yourself, or review suggestions.
   photos. The browser suggests similar faces. Name a group once, correct any
   wrong matches, then review the suggested names. These scans and face data stay
   in your browser; they are not sent to the caption service.
-- **Share the result:** with publishing connected, press **Save approved tags**.
-  The page saves and publishes approved names, tags, and captions for relatives.
-  Drafts stay on your device. You can download a backup too.
+- **Keep the result:** press **Save approved tags**. The approved names, tags,
+  and captions become searchable in the album on this device and browser.
+  Drafts stay in the review tool. You can download a backup too. For labels
+  everyone can see, use the photo's Description box in Drive.
 
 Old scans can confuse both tools. Leave uncertain names blank and keep the
 original caption unless you want to replace it. Face grouping works best in

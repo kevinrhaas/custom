@@ -1,9 +1,9 @@
 // sw.js — keeps the album opening even on a weak connection.
 // App files: network first, cached copy if offline. Photos: cache first
 // (they never change once scanned), including Google Drive images.
-const VERSION = 'memories-v3-settings';
+const VERSION = 'memories-v4-local-settings';
 const CORE = ['./', './index.html', './css/skins.css', './css/app.css', './css/gate.css', './js/app.js', './js/config.js',
-  './js/library.js', './js/metadata.js', './js/settings.js', './data/settings.json', './data/tags.json', './js/skins.js', './js/zip.js', './js/gate.js', './js/sources/manifest.js', './js/sources/drive.js',
+  './js/library.js', './js/metadata.js', './js/local-metadata.js', './js/settings.js', './data/settings.json', './data/tags.json', './js/skins.js', './js/zip.js', './js/gate.js', './js/sources/manifest.js', './js/sources/drive.js',
   './vendor/polecat-shell/icons.js', './vendor/polecat-shell/access.js', './vendor/polecat-shell/fonts.css', './icon.svg'];
 const PHOTOS = 'memories-photos-v1';
 
@@ -17,7 +17,7 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
-  // Admin freshness checks must fail offline, not look like fresh published tags.
+  // Explicit freshness checks must reach the network or report that it is offline.
   if (req.cache === 'no-store') return;
   const url = new URL(req.url);
   const isPhoto = req.destination === 'image' && (url.pathname.includes('/photos/') || /googleusercontent\.com|drive\.google\.com/.test(url.host));

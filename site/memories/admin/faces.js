@@ -32,7 +32,7 @@ export function mountFaceTool(container, { photos = [], onApprove = () => {} } =
   const photoMap = new Map(photos.map(photo => [String(photo.id), photo]));
   const root = element('section', '', 'face-tool');
   const description = element('p', 'Choose copies of your album photos from this device. Face matching happens here in your browser; these copies are never uploaded. Faded prints can produce wrong matches, so check every face before adding a name.');
-  const privacy = element('p', 'The face tools download about 7 MB once. Face measurements and crops are kept only while this page is open. Only the names you confirm can be exported with the album.', 'face-note');
+  const privacy = element('p', 'The face tools download about 7 MB once. Face measurements and crops are kept only while this page is open. Only names you review and save are added to search on this device.', 'face-note');
   const label = element('label', 'Choose JPG, PNG or WebP photos');
   const input = document.createElement('input');
   input.type = 'file'; input.multiple = true; input.accept = 'image/jpeg,image/png,image/webp';
@@ -135,7 +135,7 @@ export function mountFaceTool(container, { photos = [], onApprove = () => {} } =
       const count = Object.keys(names).length;
       if (!count) { status.textContent = 'Name at least one group or individual face first.'; return; }
       onApprove(names);
-      status.textContent = `Names added for ${count} photo${count === 1 ? '' : 's'}. Review and export the album tags to publish them.`;
+      status.textContent = `Names added for ${count} photo${count === 1 ? '' : 's'}. Review each photo, then use Save approved tags to make the names searchable on this device.`;
     });
     review.append(element('h3', 'Check these suggested groups'), element('p', 'Name a group only after checking its faces. To fix a wrong match, enter a different name beside that face, or uncheck it. Blank groups are ignored.'), thresholdLabel, groupList, approve);
     function regroup() {

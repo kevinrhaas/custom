@@ -1,6 +1,6 @@
 // Bootstrap paths, invite verification, and recovery defaults for the album.
-// Family settings are entered in the admin page and saved to shared settings.
-// Visitors load the published JSON before the album or invite page renders.
+// Family settings entered in the admin page are saved on this device.
+// This browser uses its saved settings before the published album defaults.
 import { loadSettings, settingsFromConfig } from './settings.js';
 
 const BOOTSTRAP_CONFIG = {
@@ -65,5 +65,5 @@ export const DEFAULT_SETTINGS = settingsFromConfig(BOOTSTRAP_CONFIG);
 // Node-based tools use the bootstrap without trying to fetch a file:// URL.
 export const SETTINGS_STATE = typeof window !== 'undefined'
   ? await loadSettings(DEFAULT_SETTINGS)
-  : { document: { version: 1, revision: 'bootstrap', settings: DEFAULT_SETTINGS }, source: 'defaults' };
+  : { document: { version: 1, revision: 'bootstrap', settings: DEFAULT_SETTINGS }, source: 'defaults', localStatus: 'none' };
 export const CONFIG = { ...BOOTSTRAP_CONFIG, ...SETTINGS_STATE.document.settings };

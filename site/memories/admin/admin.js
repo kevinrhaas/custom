@@ -6,10 +6,10 @@
 //   2. Make a link: name + how long → a signed ?invite= link, with copy /
 //      share / text / email buttons and a QR code to scan.
 //   •  Links you've made: kept on this device (access.minted()).
-//   3. Edit and publish the shared album settings from the admin form.
+//   3. Save personal album settings in this browser from the admin form.
 // -----------------------------------------------------------------------
 
-import { CONFIG } from '../js/config.js';
+import { CONFIG, SETTINGS_STATE } from '../js/config.js';
 import { createAccess } from '../vendor/polecat-shell/access.js';
 import { icon, registerIcons } from '../vendor/polecat-shell/icons.js';
 import qrcode from '../vendor/qrcode/qrcode.mjs';
@@ -20,8 +20,8 @@ registerIcons({
 });
 
 const ALBUM_ROOT = new URL('../', location.href).href;
-const KEEPER = CONFIG.keeper || 'the family';
-const HELPER = CONFIG.helper || 'Kevin'; // who helps with the album
+let KEEPER = CONFIG.keeper || 'the family';
+let HELPER = CONFIG.helper || 'Kevin'; // who helps with the album
 const cfg = CONFIG.access || {};
 const access = createAccess({
   prefix: cfg.prefix || 'memories',
@@ -36,10 +36,16 @@ const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 // ---- chrome --------------------------------------------------------------
 
 if (CONFIG.defaultSkin) {
-  try {
-    const saved = JSON.parse(localStorage.getItem('memories.prefs') || '{}');
-    if (!saved.skin) document.documentElement.dataset.skin = CONFIG.defaultSkin;
-  } catch {}
+  const prefsKey = `${CONFIG.access?.prefix || 'memories'}.prefs`;
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(prefsKey) || '{}') || {}; } catch {}
+  // A settings save can succeed even when the separate preferences write fails.
+  // Apply its look once, while preserving later Text & look choices.
+  const newLocalLook = SETTINGS_STATE.source === 'local' && saved.settingsRevision !== SETTINGS_STATE.document.revision;
+  if (newLocalLook || !saved.skin) document.documentElement.dataset.skin = CONFIG.defaultSkin;
+  if (newLocalLook) {
+    try { localStorage.setItem(prefsKey, JSON.stringify({ ...saved, skin: CONFIG.defaultSkin, settingsRevision: SETTINGS_STATE.document.revision })); } catch {}
+  }
 }
 paintIcons(document);
 $('#albumName').textContent = CONFIG.title || 'Family album';
@@ -108,7 +114,14 @@ async function showSettings(admin) {
   try {
     const { mountSettings } = await import('./settings.js');
     if (settingsHost !== host || !access.isAdmin()) return;
-    const controller = mountSettings(host);
+    const controller = mountSettings(host, { onSave: (saved, { libraryChanged }) => {
+      KEEPER = saved.settings.keeper; HELPER = saved.settings.helper;
+      $('#albumName').textContent = saved.settings.title;
+      document.title = `Care for the album · ${saved.settings.title}`;
+      $$('.helperName').forEach(el => { el.textContent = HELPER; });
+      $('#unlockHelp').textContent = `Paste the admin key ${HELPER} gave you. You only need to do this once on each phone or computer.`;
+      if (libraryChanged) { showTagging(false); showTagging(true); }
+    } });
     if (settingsHost !== host || !access.isAdmin()) controller?.destroy?.();
     else settingsController = controller;
   } catch {
