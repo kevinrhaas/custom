@@ -18,3 +18,10 @@ stay/geo-cache/
 
 # Family Album: dev screenshots from the QA harnesses
 memories/tools/shots/
+
+# Family Album: private credentials and unpublished AI drafts
+.env
+.env.*
+*ADMIN-KEY*.txt
+memories/private/
+*.drafts.json

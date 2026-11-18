@@ -1,0 +1,29 @@
+name: Family album tests
+
+on:
+  pull_request:
+    paths: ['site/memories/**', 'memories/**', '.github/workflows/memories-tests.yml']
+  push:
+    branches: [main]
+    paths: ['site/memories/**', 'memories/**', '.github/workflows/memories-tests.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  metadata-and-tagging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            site/memories
+            memories
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node memories/tools/test-drive-parse.mjs
+      - run: node memories/tools/test-metadata.mjs
+      - run: node memories/tools/test-faces.mjs
+      - run: node memories/tools/test-tagging-state.mjs
+      - run: node --test memories/tools/test-ai-tagging.mjs

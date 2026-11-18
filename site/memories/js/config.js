@@ -36,6 +36,9 @@ export const CONFIG = {
   //              caption; a year at the start of the file name dates the photo.
   source: 'manifest',
   manifestUrl: 'data/library.json',
+  // Approved tags, names and caption edits exported from the admin review tool.
+  // Set false to use only the photo source's descriptions. Never put drafts here.
+  metadataUrl: 'data/tags.json',
   drive: {
     // A Google API key restricted to the Drive API and to this site's address
     // (HTTP referrer custom.polecat.live/*). Safe to publish once restricted.

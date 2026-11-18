@@ -1,6 +1,6 @@
 # Your family album: a short guide
 
-Everything in the album comes from one shared Google Drive folder. Whatever you add there shows up in the album by itself, usually within a minute. You never have to touch the website.
+Once Kevin connects your shared Google Drive folder, photos and descriptions come from there. Reopen or refresh the album to see changes. The current demo still uses sample photos.
 
 ## Adding photos
 
@@ -23,6 +23,12 @@ Not sure of the year? Write "about" in front, or use the decade, like "1960s". I
 **Tell the story in the Description box.** In Google Drive, click a photo, open its details (the little **i** button) and type in **Description**. That becomes the caption under the photo. To say where it was taken, add a line like:
 
 > Place: St. Mary's, Joliet
+>
+> Tags: horse, county fair, Ferris wheel
+>
+> People: June Hale; Walter Hale
+
+**Tags and people help search.** These extra lines do not appear in the caption. Use commas or semicolons between names and tags. You can still mention people naturally in the story.
 
 **Keepsakes and letters.** For a scanned keepsake (a recipe card, a medal, a ticket stub), type **#keepsake** anywhere in its description. For a letter, type **#letter**. Or put them in a folder with "Keepsakes" in its name, and everything inside counts.
 
@@ -48,3 +54,23 @@ They tap the link you sent, and the album opens. That's all. Their phone or comp
 If someone sees "This album is just for family", they haven't opened their link on that device yet. Send it again, or have them paste it into the box on that screen.
 
 Inside the album they can look through each chapter, see the photos by year, search for a name or place, and tap **Save a copy** on any photo they want to keep.
+
+## Help with captions and faces
+
+After unlocking the admin page, open **Tag photos**. You can edit tags and names
+yourself, or review suggestions.
+
+- **AI drafts:** Kevin runs the caption tool on selected scans, then you import
+  its draft file. Read each suggestion, fix mistakes, and approve that photo.
+  This tool sends selected scans to Claude when Kevin runs it.
+- **Face groups:** choose local copies of the scans and match them to their album
+  photos. The browser suggests similar faces. Name a group once, correct any
+  wrong matches, then review the suggested names. These scans and face data stay
+  in your browser; they are not sent to the caption service.
+- **Share the result:** export the approved tags file and give it to Kevin to
+  publish. Approving a suggestion saves it on this device; relatives see it
+  after Kevin publishes the file. Keep an exported backup of your work.
+
+Old scans can confuse both tools. Leave uncertain names blank and keep the
+original caption unless you want to replace it. Face grouping works best in
+small batches on a computer.

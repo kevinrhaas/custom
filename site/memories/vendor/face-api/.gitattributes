@@ -1,0 +1,5 @@
+face-api.min.js -diff linguist-vendored
+models/*-shard* binary linguist-vendored
+models/*-weights_manifest.json linguist-vendored
+# Keep the upstream license bytes (and recorded hashes) intact, including CRLF.
+*.txt -whitespace

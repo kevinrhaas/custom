@@ -44,13 +44,21 @@ name('1965.jpg', '', 1965);
 
 // Descriptions
 eq(parseDescription("June made her own dress.\nPlace: St. Mary's, Joliet"),
-  { caption: 'June made her own dress.', place: "St. Mary's, Joliet", kind: null }, 'place line');
+  { caption: 'June made her own dress.', place: "St. Mary's, Joliet", kind: null, tags: [], people: [] }, 'place line');
 eq(parseDescription('Dad\'s letter from the Navy #letter'),
-  { caption: "Dad's letter from the Navy", place: '', kind: 'letter' }, 'letter tag');
+  { caption: "Dad's letter from the Navy", place: '', kind: 'letter', tags: [], people: [] }, 'letter tag');
 eq(parseDescription('#Keepsake Mom\'s recipe box.\nwhere: the kitchen on Elm.'),
-  { caption: "Mom's recipe box.", place: 'the kitchen on Elm', kind: 'keepsake' }, 'keepsake tag + where');
-eq(parseDescription(''), { caption: '', place: '', kind: null }, 'empty');
-eq(parseDescription('Line one.\n\n\n\nLine two.'), { caption: 'Line one.\n\nLine two.', place: '', kind: null }, 'blank lines');
+  { caption: "Mom's recipe box.", place: 'the kitchen on Elm', kind: 'keepsake', tags: [], people: [] }, 'keepsake tag + where');
+eq(parseDescription(''), { caption: '', place: '', kind: null, tags: [], people: [] }, 'empty');
+eq(parseDescription('Line one.\n\n\n\nLine two.'), { caption: 'Line one.\n\nLine two.', place: '', kind: null, tags: [], people: [] }, 'blank lines');
+eq(parseDescription("Mom's pie recipe.\nTags: recipe, #Keepsake"),
+  { caption: "Mom's pie recipe.", place: '', kind: 'keepsake', tags: ['recipe'], people: [] }, 'kind marker in tags is not a label');
+eq(parseDescription('A note home.\nTags:navy;#letter\nPeople: Walter Hale'),
+  { caption: 'A note home.', place: '', kind: 'letter', tags: ['navy'], people: ['Walter Hale'] }, 'kind marker after tag delimiter');
+eq(parseDescription('People: June Hale, #photo\nTags: wedding'),
+  { caption: '', place: '', kind: 'photo', tags: ['wedding'], people: ['June Hale'] }, 'kind marker in people is not a name');
+eq(parseDescription('Tags:#letter'),
+  { caption: '', place: '', kind: 'letter', tags: [], people: [] }, 'kind-only metadata line');
 
 // Chapters
 eq(chapterTitle('01 Early years'), 'Early years', 'chapter number');
@@ -75,7 +83,7 @@ const tree = {
     { id: 'CH2', name: '02 Keepsakes', mimeType: F, description: 'Things June kept.' },
     { id: 'CH1', name: '01 Early years', mimeType: F },
     { id: 'EMPTY', name: '03 Nothing yet', mimeType: F },
-    { id: 'L1', name: 'IMG_0001.jpg', mimeType: 'image/jpeg', description: 'Walter at the lake.\nPlace: Lake Geneva' },
+    { id: 'L1', name: 'IMG_0001.jpg', mimeType: 'image/jpeg', description: 'Walter at the lake.\nPlace: Lake Geneva\nTags: lake, canoe\nPeople: Walter Hale' },
     { id: 'DOC', name: 'notes.pdf', mimeType: 'application/pdf' },
   ] },
   CH1: { kids: [
@@ -121,6 +129,8 @@ eq([byId.L1.chapter, byId.L1.title, byId.L1.place], ['_album', 'Walter at the la
 eq(byId.P1.src, 'https://lh3.googleusercontent.com/d/P1=w1600', 'src');
 eq(byId.P1.thumbFallback, 'https://drive.google.com/thumbnail?id=P1&sz=w480', 'thumb fallback');
 eq([byId.P1.download, byId.P1.downloadName], ['https://drive.google.com/uc?export=download&id=P1', '1948 - Wedding day.jpg'], 'download');
+eq(byId.L1.tags, ['lake', 'canoe'], 'Drive tags survive loading');
+eq(byId.L1.people, ['Walter Hale'], 'Drive people survive loading');
 eq(byId.DOC, undefined, 'non-images skipped');
 const code = async (opts) => { try { await loadDrive(opts); return 'no error'; } catch (e) { return e.code; } };
 eq(await code({ apiKey: 'BAD', folderId: 'ROOTFOLDER0001' }), 'key', '400 bad key');

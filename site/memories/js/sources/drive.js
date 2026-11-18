@@ -15,11 +15,15 @@
 // A file's Drive "Description" becomes its caption. Inside it:
 //   #keepsake / #letter   → kind (the tag is removed from the caption)
 //   Place: Joliet         → place (the line is removed from the caption)
+//   Tags: horse, lake     → searchable labels (commas or semicolons)
+//   People: June; Walter  → named people, in addition to caption matches
 //
 // Image URLs: lh3.googleusercontent.com/d/<id> serves resized copies of
 // publicly shared files; drive.google.com/thumbnail is the fallback the UI
 // swaps to if lh3 fails (img onerror → photo.fallback / photo.thumbFallback).
 // -----------------------------------------------------------------------
+
+import { uniqueLabels } from '../metadata.js';
 
 const API = 'https://www.googleapis.com/drive/v3/files';
 const FOLDER = 'application/vnd.google-apps.folder';
@@ -208,6 +212,8 @@ function toPhoto(f, chapterId, folderKind) {
     chapter: chapterId,
     title,
     caption: desc.caption,
+    tags: desc.tags,
+    people: desc.people,
     year: year ?? null,
     approx: !!approx,
     kind: desc.kind || folderKind || 'photo',
@@ -301,14 +307,20 @@ export function parseName(fileName) {
 
 /**
  * parseDescription("June made her own dress.\nPlace: St. Mary's, Joliet #keepsake")
- *   → { caption: "June made her own dress.", place: "St. Mary's, Joliet", kind: "keepsake" }
+ *   → { caption: "June made her own dress.", place: "St. Mary's, Joliet", kind: "keepsake", tags: [], people: [] }
  */
 export function parseDescription(text) {
   let s = String(text || '').replace(/\r\n?/g, '\n');
   let kind = null;
-  s = s.replace(/(^|\s)#(keepsake|letter|photo)\b/gi, (_, pre, tag) => {
+  // Reserved markers work anywhere, including a Tags: or People: line.
+  s = s.replace(/(^|[\s,;:])#(keepsake|letter|photo)\b/gi, (_, pre, tag) => {
     kind = tag.toLowerCase();
     return pre;
+  });
+  const labels = { tags: [], people: [] };
+  s = s.replace(/^[ \t]*(tags|people)[ \t]*:[ \t]*([^\n]*)$/gim, (_, field, value) => {
+    labels[field.toLowerCase()].push(...uniqueLabels(value));
+    return '';
   });
   let place = '';
   s = s.replace(/^[ \t]*(?:place|where)\s*:\s*(.+)$/gim, (_, p) => {
@@ -316,7 +328,7 @@ export function parseDescription(text) {
     return '';
   });
   const caption = s.split('\n').map((l) => l.trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim();
-  return { caption: tidySpace(caption, true), place, kind };
+  return { caption: tidySpace(caption, true), place, kind, tags: uniqueLabels(labels.tags), people: uniqueLabels(labels.people) };
 }
 
 function tidySpace(s, keepLines = false) {
