@@ -106,7 +106,7 @@ function render(CONFIG, mountEl, inviteError, tryCode, done) {
     <div class="gate-card">
       <div class="gate-mark" aria-hidden="true">${icon('gate-photo', 30)}</div>
       <h1 class="gate-title" id="gate-title"></h1>
-      ${honorees.length ? `<p class="gate-kicker">Our story, so far</p><ul class="gate-names"></ul>` : ''}
+      ${honorees.length ? `<p class="gate-kicker">The moments we hold close</p><ul class="gate-names"></ul>` : ''}
       <div class="gate-rule" aria-hidden="true"><span></span></div>
       <p class="gate-lead">This album is just for family.</p>
       <p class="gate-sub"></p>
